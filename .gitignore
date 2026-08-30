@@ -10,6 +10,11 @@
 live_sessions/*
 contact_session
 
+# Slide editing sources. The .odp decks live here next to their exported PDFs, but
+# only the PDFs are published: the sources are multi-MB binaries that would bloat
+# history on every re-save.
+*.odp
+
 # LaTeX build artifacts
 lecture_notes/tex/*.aux
 lecture_notes/tex/*.log
