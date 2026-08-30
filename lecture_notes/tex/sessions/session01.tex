@@ -1,0 +1,560 @@
+\chapter{Second Quantization, Mean-Field, and Spontaneous Symmetry Breaking}
+
+This is the first session of the course, so there is no previous cliffhanger to pick up. Instead
+let us open with the question the whole course is organized around: how do we get from a single
+atom, an object we understand rather well, to a \emph{quantum material}, where electrons moving
+together produce phenomena no individual atom could ever show on its own? Answering that question
+is going to require a new piece of mathematical language, second quantization, and a first tool
+for actually using it, mean-field theory. By the end of today we will have used that tool three
+times, to build a charge density wave, a magnet, and a superconductor out of the very same starting
+Hamiltonian, just by changing the sign and the geometry of one interaction term. That three-way
+split (broken translational symmetry, broken time-reversal symmetry, broken gauge symmetry) is the
+skeleton the rest of the course hangs on, so it is worth having it clearly in view from today. It is
+also worth flagging early that today is the \emph{only} place in the course where the general logic of
+spontaneous symmetry breaking gets developed at length: next session moves straight into symmetry
+and band structure without revisiting it, and magnetism and superconductivity only get their full,
+dedicated treatments much later, in sessions 6 and 5 respectively. What we build here is meant to
+carry that conceptual load on its own.
+
+\section{Why quantum materials, and why now}
+
+Let us start with a bit of perspective on why this subject matters before we get into the
+mathematics. Every age of human technology has been named after the material that defined it:
+the stone age, the copper age, and, very recently, the silicon age, which gave us the entire
+information revolution we are currently living through. If we look ahead, the next age is
+plausibly a \emph{quantum} age, one in which our technology relies directly on harnessing quantum
+mechanical behavior at microscopic scales rather than working around it. Quantum materials are the
+physical platform for that shift: they are what actually realizes quantum matter in the lab.
+
+By the end of today, concretely, we should be able to describe what a quantum material is, explain
+why quantum mechanics (rather than classical physics) is needed to understand it, work with the
+basics of second quantization, and rationalize why mean-field theory gives rise to spontaneous
+symmetry breaking.
+
+This is not just a rhetorical framing. Quantum materials already sit behind technologies we use
+today: superconductors make MRI machines possible by generating the very large magnetic fields
+nuclear magnetic resonance needs, and semiconductors are the basis of the solar cells much of our
+renewable energy strategy depends on. Looking forward, essentially every serious quantum
+computing platform, whether built from superconductors, semiconductors, or combinations of the
+two, is a quantum materials problem at its core. It is also worth noting, briefly, that this
+connects to several of the UN Sustainable Development Goals: quantum computing to goals 8 and 9
+(economic growth, industry and innovation), solar energy and low-consumption superconducting or
+topological electronics to goals 7 and 13 (clean energy, climate action), and the inherently
+international, cross-disciplinary nature of the field to goal 17 (partnerships). None of this is
+mathematics, but it is worth remembering why we are doing the mathematics.
+
+Within the course, we will meet two kinds of examples that make a useful contrast. Semiconductors
+are, in a sense, the easy case: their properties follow from single-particle physics, which you
+have likely already seen in an earlier materials course. Superconductors are the harder case:
+understanding them requires accounting for how electrons interact with each other collectively,
+which is exactly the many-body machinery we start building today.
+
+\section{A tour of the quantum materials we will meet}
+
+It is worth previewing, briefly, the range of materials this formalism is eventually going to let
+us understand, so that today's abstract tools have concrete targets to attach to later.
+
+\begin{itemize}
+\item \textbf{Insulators}, conventional ones like magnesium oxide, sodium chloride, or boron nitride, where
+  a finite band gap simply prevents electrons from propagating. \emph{Topological} insulators look
+  identical in the bulk but behave completely differently at the edge, a distinction we will need
+  a dedicated session to explain.
+\item \textbf{Semiconductors} (gallium nitride, silicon, gallium arsenide), which share the single-particle
+  description of insulators but are lightly doped, so they carry free carriers that do the actual
+  work in electronics and solar cells.
+\item \textbf{Magnets}: ferromagnets, antiferromagnets, and spin spirals, all \emph{correlated} materials in the
+  sense that they exist only because electrons repel each other via the Coulomb interaction. A
+  distinct and more exotic case is the \emph{quantum magnet}, where local moments exist at every site
+  but are entangled with each other so thoroughly that the material has no net magnetization at
+  all, microscopically, and every site forms a singlet with its neighbors. We will return to these
+  at length later in the course.
+\item \textbf{Dirac and topological matter}, with graphene, a single honeycomb layer of carbon, as the
+  prototype: electrons here propagate with a topologically protected phase (a Berry phase). The
+  same family includes quantum spin Hall insulators (helical edge states), Chern insulators
+  (chiral edge states), and chiral superconductors (which host Majorana excitations).
+\item \textbf{Superconductors}, from conventional, phonon-mediated ones like aluminum, to \emph{correlated}
+  superconductors such as the cuprates and pnictides, whose mechanism remains one of the biggest
+  open problems in the field.
+\item \textbf{Fractional quantum matter}, where the fundamental excitations are literal fractions of an
+  electron. The fractional quantum Hall state is the best-established example, observed for decades
+  in materials like gallium arsenide; fractional Chern insulators are a newer, more accessible route
+  to the same physics, and a promising building block for new quantum devices.
+\end{itemize}
+
+\section{Emergent quasiparticles: what putting atoms in a lattice actually buys you}
+
+Here is the puzzle that motivates everything that follows. All of this phenomenology is built from
+the same four ingredients, electrons, protons, neutrons, and photons, and a single, isolated atom
+shows none of it: no fractionalization, no vortices, no magnons, no spinons. So how does arranging
+identical atoms into a lattice produce such a rich zoo of collective behavior? Before we build the
+formalism to answer that question properly, it helps to know what we are looking for. A few of the
+emergent quasiparticles we will meet along the way:
+
+\begin{itemize}
+\item \textbf{Phonons}: lattice vibrations, the simplest quasiparticle of all, since they exist even
+  classically.
+\item \textbf{Magnons}: spin-1 excitations of a magnetically ordered state, a small precession of the local
+  moment that propagates energy (and spin) through the material. Notably, magnons can propagate
+  even in a Mott insulator, where charge cannot: a magnetic insulator can still carry spin and
+  heat.
+\item \textbf{Spinons}: spin-1/2, charge-neutral excitations that live in quantum magnets, where
+  time-reversal symmetry is \emph{not} broken. A spinon is, in a sense, only the spin half of an
+  electron, with the charge half frozen out, an example of electron fractionalization known as
+  spin-charge separation.
+\item \textbf{Dirac fermions}: massless-looking electrons with a linear dispersion, arising not from
+  interactions but from lattice geometry (graphene's honeycomb lattice is the standard example).
+\item \textbf{Vortices}: topological defects in a superconductor's phase, themselves dynamical
+  quasiparticles, and useful enough that they underlie some of our most precise measurements of
+  the electron charge and Planck's constant.
+\end{itemize}
+
+The course's own summary slide for this list also shows Majorana fermions (which we will meet again
+shortly, tied to chiral superconductors) and anyons alongside these five. Anyons in particular are
+not discussed any further in this session, slides or speech; they belong properly to the fractional
+quantum Hall material in a later session, and are mentioned here only as a name to recognize.
+
+\section{Setting up the formalism: the Schrödinger equation, two ways}
+
+Every quantum mechanical system is governed by the Schrödinger equation, built from a Hamiltonian
+(think of it, for our purposes, as a matrix) acting on a wave function. Given the wave function at
+time zero and the Hamiltonian, we can in principle integrate this equation forward and know the
+state at any later time. This statement is completely general: it holds whether the wave function
+describes one particle or an entire many-body system. The practical difference is enormous,
+though. Single-particle problems can always be solved exactly, in every case that matters to us.
+Many-body problems generically cannot, and the difficulty grows extremely fast with system size,
+as we will see concretely in a moment. Since most of the quantum matter we care about is genuinely
+many-body, we need a systematic (if often approximate) way of handling that difficulty, and that
+is what today's session builds.
+
+\subsection{First quantization}
+
+When electrons can be treated as independent of one another, we can describe the system with a
+single-particle wave function living in an ordinary Hilbert space: this is \emph{first quantization},
+the language you already know from a standard quantum mechanics course. It is a remarkably capable
+tool, sufficient to describe metals, semiconductors, insulators, and even topological insulators.
+
+\subsection{Second quantization}
+
+First quantization assumes a fixed number of particles, and that assumption fails for a whole
+class of quantum materials: any system where electrons are not independent, or, more strikingly,
+where the \emph{number} of electrons itself is not fixed. For those systems we need \emph{second
+quantization}, a formalism built not around ``how many electrons are present'' but around how
+electrons are created and destroyed. It turns out to be essential for superconductors,
+superfluids, and correlated materials generally, and it is what makes phenomena like spinon
+fractionalization straightforward to describe at all.
+
+\section{A warm-up in first quantization, and the puzzle that breaks it}
+
+Consider the simplest possible single-particle system: a lattice of sites, one level and one
+electron each, forming some finite island (a quantum dot, say). With no many-body interactions,
+this is an ordinary diagonalization problem, exactly analogous to a particle in a box: a lowest
+energy state, a first excited state, and so on. In this language, ``one electron in the ground
+level'' and ``one electron in the first excited level'' are simply two different single-particle
+states, or superpositions of the two, but in every case there is exactly one electron in the
+system, full stop.
+
+Now here is the puzzle. Suppose we want to describe a quantum dot in a coherent superposition of
+having zero electrons and having two electrons, each with 50\% probability. We cannot write this
+down as an ordinary wave function, because a wave function needs a fixed number of coordinates,
+and there is no sensible way to have zero coordinates and two coordinates ``at the same time.'' This
+is not a contrived example either: exactly this kind of reasoning, about a fluctuating number of
+electrons, is what lets us understand how local magnetic moments couple to each other in real
+oxides (the Goodenough-Kanamori rules for predicting ferro- versus antiferromagnetism), and it is
+built into the very definition of a superconductor, whose mean-field order parameter conserves
+only the \emph{parity} of the electron number, not the number itself. This particular non-particle-
+conserving description of superconductors has a name of its own, the Bogoliubov-de Gennes
+formalism, that the slides introduce here but that we will only properly use once we reach the
+superconductivity session.
+
+\section{Building second quantization: creation and annihilation operators}
+
+To describe systems like this we introduce two operators at every site $i$: the annihilation
+operator $c_i$, which destroys an electron at site $i$, and the creation operator $c_i^\dagger$,
+which creates one. The Hamiltonian, and all of the system's dynamics, gets written entirely in
+terms of these operators.
+
+We define the vacuum (empty) state $|0\rangle$ by
+
+\begin{equation}
+c_i|0\rangle = 0 \quad \text{for every site } i.
+\end{equation}
+
+A two-site hopping term, an electron able to jump between sites 0 and 1, is then written
+
+\begin{equation}
+H_\text{hop} = t\left(c_0^\dagger c_1 + c_1^\dagger c_0\right),
+\end{equation}
+
+read as ``destroy an electron at 1, create one at 0'' plus the reverse process. Building up from the
+vacuum by applying creation operators gives us every state of the two-site system: $|0\rangle$,
+$c_0^\dagger|0\rangle$ (one electron at site 0), $c_1^\dagger|0\rangle$ (one electron at site 1),
+and $c_0^\dagger c_1^\dagger|0\rangle$ (both sites occupied).
+
+\begin{notebookbox}{\texttt{session1.ipynb}, ``The spectra of a dimer'' (Core)}
+Build exactly this two-site system and diagonalize it. Check that the Fock states above really
+do reproduce the spectrum you'd get from an ordinary two-level first-quantization treatment,
+before we add any interactions.
+\end{notebookbox}
+
+\section{Enforcing fermionic statistics}
+
+Nothing so far distinguishes fermions from bosons: everything above applies equally to both. The
+distinction is imposed through the operator algebra. Fermi statistics requires the many-body wave
+function to pick up a minus sign when we exchange two particles, and as a direct consequence, a
+given single-particle level can hold zero or one fermion, never two. We enforce this with
+anticommutation relations,
+
+\begin{equation}
+\{c_i, c_j^\dagger\} = \delta_{ij}, \qquad \{c_i, c_j\} = \{c_i^\dagger, c_j^\dagger\} = 0.
+\end{equation}
+
+The second relation is doing the real work: setting $i=j$ makes $(c_i^\dagger)^2 = 0$, which is
+exactly the statement that you cannot create two electrons in the same level. It simultaneously
+enforces the wave function's antisymmetry, so Pauli exclusion is built into the algebra itself
+rather than added by hand.
+
+\section{First versus second quantization: the same problem, viewed two ways}
+
+For a purely single-particle tight-binding Hamiltonian, first and second quantization are, in
+practice, the same amount of work. Write the first-quantized Hamiltonian with hopping matrix
+elements $t_{ij}$ between orbitals $i,j$; the second-quantized version has the very same $t_{ij}$
+multiplying $c_i^\dagger c_j$. Diagonalizing either one uses the same unitary transformation $U$
+and produces the same eigenvalues. The only formal difference is that in first quantization the
+diagonalizing coefficients form a vector, while in second quantization they become operators; the
+physics is identical either way.
+
+\section{Where the two formalisms diverge: the exponential wall}
+
+The gap between the two languages opens up the moment we add genuine many-body interactions, and
+it opens up fast. Consider just three sites with a generic quartic (four-operator) interaction
+term added to the kinetic Hamiltonian. We are no longer allowed to restrict ourselves to
+single-particle states; we need the full Fock space: the empty state, three states with one
+electron, three states with two electrons, and one state with all three sites filled, for a total
+of $2^3 = 8$ many-body states; figure~\ref{fig:s01:fockspace} draws both sides of the comparison
+explicitly.
+
+\input{figures/s01f01_fockspace}
+
+In general, for $L$ sites, the single-particle problem is an $L \times L$ matrix, while the
+many-body problem is $2^L \times 2^L$, and the ground-state wave function itself needs $2^L$
+coefficients to write down. This is why $L \approx 20$ already puts us near the practical limit of
+what can be handled by brute force. The exact rate of growth depends on what kind of site we are
+dealing with: spinful fermions give four states per site (empty, up, down, doubly occupied),
+spinless fermions give two (relevant once a single spin species is isolated, by strong magnetism
+or a strong field), and pure spin sites, which we will need once we get to quantum magnets and
+Kondo systems later in the course, also grow exponentially but with a different underlying
+algebra.
+
+\section{A first look at eigenstates: finite tight-binding islands}
+
+Before turning to interactions, it is worth pausing on what a purely single-particle Hamiltonian
+already gives us, because it is something we can directly compare to experiment. Take a
+tight-binding Hamiltonian $H = \sum_{ij} t_{ij}\, c_i^\dagger c_j$ on a honeycomb lattice cut into
+a finite island, triangular, hexagonal, or rectangular, and diagonalize it. Plotting the
+probability density of a given eigenvector in real space is directly comparable to what a scanning
+tunneling microscope measures. Qualitatively, these look exactly like finite-size ``particle in a
+box'' states: the lowest-energy state is peaked near the island's center, and higher states develop
+progressively more nodes. This is a nice first checkpoint: single-particle diagonalization,
+nothing more, already reproduces a recognizable and experimentally measurable structure.
+
+\begin{notebookbox}{\texttt{session1.ipynb}, ``Finite sized chains'' (Core), and ``Density of states of a finite system as a function of the system size'' (Challenge)}
+Diagonalize a finite chain (or island) and look at how the eigenstates' spatial profiles and the
+density of states change as you grow the system. This is the numerical version of the
+particle-in-a-box argument above, and a good place to build intuition for how a genuinely
+infinite, periodic system (which session 2 gets to) is approached in the finite-size limit.
+\end{notebookbox}
+
+Two software tools will carry us through this and every following session: \textbf{PyQula}, a Python
+library for tight-binding and mean-field calculations, topological properties, and spectral
+functions, used through the course's Jupyter notebooks, and \textbf{Quantum Lattice}, a GUI front end
+built on PyQula that needs no coding at all. Both are open source, and both are worth having open
+alongside these notes.
+
+\section{Spontaneous symmetry breaking: why a symmetric Hamiltonian can have an asymmetric ground state}
+
+Before we set up interactions in earnest, it is worth stepping back and asking a more general
+question, because everything we do for the rest of the session is really an instance of it.
+Physical theories tend to have a lot of symmetry built in: space is symmetric, time is symmetric,
+and so on. But reality is not: an object sits in one place and not another, a system evolves
+forward and not (usually) backward. So why do symmetries present in the Hamiltonian so often fail
+to survive into the ground state?
+
+Let us start with a very down-to-earth example. Imagine sitting down at a table for a meal with
+colleagues, bread in front of you on both sides. You have to choose: bread on the left, or bread on
+the right. There is, of course, a ``correct'' etiquette answer, but suppose neither of us knows it.
+Some people will pick left, others right, and once the choice is made, everyone at the table settles
+into one of two equally good arrangements: everybody-left, or everybody-right. The setup you started
+from, bread symmetrically placed on both sides, was perfectly symmetric. The outcome, once chosen,
+is not. That mismatch, a symmetric problem with a non-symmetric solution, is spontaneous symmetry
+breaking in miniature.
+
+The same logic, made rigorous, is exactly what happens in a classical Ising ferromagnet. The
+Hamiltonian's set of ground states is symmetric: all spins up is just as good a solution as all
+spins down. But take a \emph{very} large system, formally infinitely large, the thermodynamic limit, and
+the system has to commit to one of the two: all spins up, or all spins down. Which one you measure
+is decided by fluctuations, not by the Hamiltonian, and once decided, the state you observe is no
+longer symmetric even though the Hamiltonian that produced it always was. This thermodynamic-limit
+requirement is essential: spontaneous symmetry breaking, strictly speaking, is a statement about
+infinite systems, and it is a generic feature of many-body interactions and correlations, not
+something that shows up for a handful of particles. Figure~\ref{fig:s01:ssb} collects all of this
+into one picture: a symmetric energy landscape whose minima are not symmetric, with a barrier
+between them that only becomes insurmountable in the thermodynamic limit.
+
+\input{figures/s01f02_ssb}
+
+This gives us a genuinely useful classification scheme: sort states of matter by \emph{which} symmetry
+they spontaneously break.
+
+\begin{itemize}
+\item Broken \textbf{time-reversal symmetry} gives classical magnets: the magnetization is odd under time
+  reversal, so a magnetic ground state is simply not invariant when you run the movie backward.
+\item Broken \textbf{rotational (inversion) symmetry} gives ferroelectrics: materials that spontaneously
+  develop an electric polarization, the electric analog of a magnetization, breaking the rotational
+  symmetry of the underlying crystal.
+\item Broken \textbf{gauge symmetry} gives superconductors: the phase of the pairing order parameter (or,
+  equivalently, of the creation and annihilation operators) becomes physical once the order sets
+  in. Many observable superconducting phenomena, notably the Josephson effect, are direct
+  consequences of fluctuations in this broken phase; we will develop that properly in the
+  superconductivity session.
+\end{itemize}
+
+It is worth being explicit that this symmetry classification, useful as it is, does not capture
+everything. Topological materials, topological insulators and fractional Chern insulators among
+them, can share \emph{exactly} the same broken (or unbroken) symmetries as an ordinary, trivial material
+and yet behave completely differently, because they differ in their topological classification
+rather than their symmetry classification. That distinction is the subject of its own dedicated
+session later in the course; for now, just keep in mind that ``which symmetry is broken'' is not the
+whole story of quantum matter.
+
+Every instance of spontaneous symmetry breaking also comes with its own emergent quasiparticle, the
+low-energy fluctuation of the order that formed:
+
+\begin{center}
+\begin{tabular}{|l|l|l|c|c|l|}
+\hline
+\textbf{Broken symmetry} & \textbf{Realized in} & \textbf{Quasiparticle} & \textbf{Spin} & \textbf{Charge} & \textbf{Gap} \\
+\hline
+Continuous translational & Crystals & Phonon & 0 & 0 & Gapless (always) \\
+Spin-rotational $SO(3)$ & Magnets & Magnon & 1 & 0 & Gapless or gapped \\
+Gauge & Superconductors & Higgs mode & 0 & 0 & Gapped \\
+\hline
+\end{tabular}
+\end{center}
+
+Notice that magnons and the Higgs mode both carry zero charge, but very different spin, and that
+only the phonon is guaranteed to be gapless in every material; whether a magnon or the Higgs mode
+is gapped depends on the details of the electronic structure.
+
+Since we cannot literally run time backward in the lab to check whether a material breaks
+time-reversal symmetry, we instead measure quantities that are themselves odd under time reversal.
+Two are especially useful: the \textbf{Hall conductivity} (a transverse current generated by a
+longitudinal voltage) and the \textbf{magneto-optical Kerr effect} (a different optical reflection for
+left- versus right-handed circularly polarized light). A nonzero signal in either one is direct
+evidence of broken time-reversal symmetry.
+
+That gives us, finally, a precise, formal definition of a magnet, beyond ``the thing that sticks to
+your fridge'': a magnet is a many-body state whose wave function is not invariant under the
+time-reversal operator $\hat T$,
+
+\begin{equation}
+\hat T|\Psi\rangle = |\Psi\rangle \;\Rightarrow\; \text{not magnetic}, \qquad
+\hat T|\Psi\rangle \neq |\Psi\rangle \;\Rightarrow\; \text{magnetic}.
+\end{equation}
+
+A bar magnet's north and south poles swap under time reversal (since a magnetic pole is tied to an
+orbital angular momentum, and angular momenta flip sign under $\hat T$), so a bar magnet fails the
+invariance test in (1.4) and is magnetic by this definition. A plain, non-magnetic stick, by
+contrast, looks the same under time reversal and passes the test.
+
+With this general picture in hand, let us now go build it explicitly, three times over.
+
+\section{The general interacting Hamiltonian, and the tool we'll use on it}
+
+We are now ready to state the problem this whole session is building toward. The Hamiltonians we
+care about take the generic form
+
+\begin{equation}
+H = \sum_{ij} t_{ij}\, c_i^\dagger c_j \;+\; \sum_{ijkl} V_{ijkl}\, c_i^\dagger c_j^\dagger c_k c_l,
+\end{equation}
+
+a free (single-particle, exactly solvable) part plus a quartic interaction. The interaction itself
+can come from plain electrostatic (repulsive) Coulomb repulsion, or from an effective interaction
+mediated by some other quasiparticle (phonons, magnons, plasmons), which can render the net
+interaction attractive rather than repulsive. We will treat these interactions phenomenologically,
+as given effective models, rather than deriving them microscopically from first principles.
+
+Solving (1.5) exactly is generically hopeless, for exactly the exponential reason in Section 1.9.
+\textbf{Mean-field theory} is the tool that lets us extract systematic, if approximate, solutions from
+it anyway, and it is capable of predicting a wide range of symmetry-broken states. We are going to
+work through three of them today, the same three cases classified in Section 1.11:
+
+\begin{enumerate}
+\item \textbf{Broken time-reversal symmetry}, magnetism: run the system's movie backwards and it looks
+   different from the original.
+\item \textbf{Broken (lattice translational) symmetry}, the charge density wave: a Hamiltonian that starts
+   out the same at every site ends up with charge on some sites and not others.
+\item \textbf{Broken gauge symmetry}, superconductivity: the system develops an order parameter with a
+   physical phase, something the original Hamiltonian's symmetry forbids.
+\end{enumerate}
+
+Figure~\ref{fig:s01:channels} sets these three branches side by side, together with the equation
+each one is developed from and the session it returns in.
+
+\input{figures/s01f03_threechannels}
+
+Two of today's three cases (magnetism and superconductivity) will come back for a full,
+much deeper treatment in their own dedicated sessions later in the course; think of what follows
+as the first pass, establishing the mean-field machinery itself, not the last word on either one.
+
+\section{Worked example 1: the charge density wave}
+
+Take the simplest possible interacting case: a spinless one-dimensional chain, nearest-neighbor
+hopping $t$, plus a nearest-neighbor Coulomb repulsion $V$,
+
+\begin{equation}
+H = -t\sum_n \left(c_n^\dagger c_{n+1} + \text{h.c.}\right) + V\sum_n c_n^\dagger c_n\, c_{n+1}^\dagger c_{n+1}.
+\end{equation}
+
+As written, every site is equivalent by translational symmetry. The quartic term is the
+troublesome one, so mean-field theory factorizes it: replace one pair of operators by its
+expectation value, leaving the rest untouched. This is, to be clear, an \emph{uncontrolled}
+approximation (a more rigorous route exists via a path integral and a saddle-point approximation),
+but it is the practical workhorse we will use throughout the course. The result is that the
+interaction term becomes a spatially dependent single-particle on-site energy: nothing forces the
+expectation value $\langle c_n^\dagger c_n\rangle$ to be the same at every site, so even though the
+bare Hamiltonian (1.6) is translationally symmetric, the mean-field solution need not be. That
+mismatch, a symmetric Hamiltonian with an asymmetric ground state, \emph{is} the charge density wave,
+and it is exactly the same mismatch Section 1.11 described in the abstract.
+
+More rigorously, mean-field theory is a variational search over single-particle product states,
+minimizing $\langle H\rangle$ with respect to the bilinear expectation values $\langle
+c_i^\dagger c_j\rangle$ that parameterize the mean-field Hamiltonian. Since the Hamiltonian depends
+on these expectation values and the expectation values depend on the Hamiltonian, we solve it
+self-consistently: guess a Hamiltonian, compute the expectation values it implies, build a new
+Hamiltonian from those, and repeat until the process converges. Figure~\ref{fig:s01:mfloop} draws
+that loop; every worked example below, and every notebook callout in this chapter, runs it.
+
+\input{figures/s01f05_selfconsistency}
+
+Numerically, this shows up exactly as you would hope: at $V=0$ the spectrum is gapless (a metal);
+as $V$ grows, a gap opens in the single-particle spectrum and widens, while the charge imbalance
+between even and odd sites grows from zero toward its maximal, fully polarized value.
+Figure~\ref{fig:s01:cdw} shows the two limits in real space, alongside the spectrum each one has.
+
+\input{figures/s01f04_cdw}
+
+\begin{notebookbox}{\texttt{session1.ipynb}, ``Symmetry breaking in the spinless fermionic chain'' (Core), and ``Gap opening in a spinless interacting model'' (Challenge)}
+Run the self-consistency loop of Section 1.13 yourself: start from an unbiased guess, iterate,
+and watch the site-resolved charge imbalance grow with $V$, alongside the gap opening in the
+spectrum and density of states.
+\end{notebookbox}
+
+\section{Worked example 2: magnetism}
+
+Now restore the spin degree of freedom and switch the interaction to an on-site (Hubbard) term
+between spin-up and spin-down electrons,
+
+\begin{equation}
+H = -t\sum_{n,\sigma}\left(c_{n\sigma}^\dagger c_{n+1,\sigma} + \text{h.c.}\right) + U\sum_n c_{n\uparrow}^\dagger c_{n\uparrow}\, c_{n\downarrow}^\dagger c_{n\downarrow}.
+\end{equation}
+
+The sign of $U$ alone decides the physics: $U<0$ (attractive) drives superconductivity, which we
+will get to in Section 1.15; $U>0$ (repulsive) drives magnetism, our focus here.
+
+The mean-field decoupling proceeds exactly as before, now applied to $\langle
+c_{\uparrow}^\dagger c_\uparrow\rangle$ and $\langle c_\downarrow^\dagger c_\downarrow\rangle$
+separately, giving a bilinear Hamiltonian with spin-dependent on-site energies. Define the
+magnetization
+
+\begin{equation}
+m = \langle c_\uparrow^\dagger c_\uparrow\rangle - \langle c_\downarrow^\dagger c_\downarrow\rangle.
+\end{equation}
+
+Self-consistency gives $m=0$ automatically for $U<0$, and a finite $m$ for $U>0$: a genuinely
+magnetic solution.
+
+It is worth being precise about \emph{which} symmetry this breaks, tying back to the formal definition
+in (1.4). Time-reversal symmetry reverses the arrow of time and, with it, every angular momentum in
+the system, including spin; on the fermionic operators this means it swaps $c_\uparrow^\dagger
+c_\uparrow \leftrightarrow c_\downarrow^\dagger c_\downarrow$. Since $m$ in (1.8) flips sign under
+exactly that swap, a nonzero $m$ means the ground state fails the invariance test in (1.4): a
+magnet, by definition. More generally this is a breaking of the \emph{continuous} spin-rotational
+symmetry, and it is that continuous symmetry breaking which produces the gapless magnon
+excitations named in Section 1.11's table; we will study them properly in a later session, and only
+need the mean-field ground state itself today.
+
+Numerically, ramping up $U$ opens a \textbf{Mott gap} in the spectrum, growing linearly with $U$ at
+large $U$ and associated with the formation of a genuine local moment on every site.
+
+\begin{notebookbox}{\texttt{session1.ipynb}, ``The interacting Hubbard dimer'' (Core), ``Magnetic order driven by interactions in a chain'' (Core), ``Gap opening of the Hubbard model in a chain'' (Challenge), and ``Gap opening in the Hubbard model on the honeycomb lattice'' (Challenge)}
+Work through the two-site (dimer) case first to get a feel for how the self-consistency loop
+converges on a small, hand-checkable system, then move to the extended chain and finally the
+honeycomb lattice (the same finite-island geometries from Section 1.10, now with interactions
+switched on) to watch the Mott gap open and grow with $U$.
+\end{notebookbox}
+
+\section{Worked example 3: superconductivity and broken gauge symmetry}
+
+Return to (1.7) with $U<0$. The mean-field decoupling we used above always keeps one creation and
+one annihilation operator together, but nothing forces that choice: we are equally free to take an
+expectation value between two creation operators (or two annihilation operators),
+
+\begin{equation}
+\Delta = \langle c_i c_j\rangle.
+\end{equation}
+
+This anomalous, ``pairing'' term looks qualitatively different from anything we have written so far,
+but it is a perfectly legitimate mean-field term. Self-consistently, $\Delta$ comes out zero for
+repulsive interactions and can become nonzero for attractive ones: precisely the superconducting
+order parameter. This worked example is slides-only, with no accompanying notebook section this
+session; the pairing (Bogoliubov-de Gennes) machinery needed to solve it numerically is left for the
+dedicated superconductivity session.
+
+Why does this order break gauge symmetry? A gauge transformation acts on the operators as
+
+\begin{equation}
+c \to c\, e^{i\varphi}, \qquad c^\dagger \to c^\dagger e^{-i\varphi}.
+\end{equation}
+
+Any term built from one creation and one annihilation operator, $c^\dagger c$, is invariant under
+(1.10), since the two phases cancel. But the pairing term in (1.9) is built from \emph{two} annihilation
+operators (or two creation operators), so it picks up a phase $e^{2i\varphi}$ (or $e^{-2i\varphi}$)
+under the very same transformation, and does not cancel. A superconductor with $\Delta \neq 0$
+therefore spontaneously breaks the Hamiltonian's gauge symmetry, exactly the ``broken gauge
+symmetry'' entry from Section 1.11's classification. This is tied directly back to Section 1.5's
+fluctuating-electron-number puzzle: breaking gauge symmetry and losing a fixed particle number are,
+physically, the same statement. A mean-field superconductor genuinely does not have a fixed number
+of electrons, only a fixed parity.
+
+\section{Closing summary}
+
+\begin{itemize}
+\item Quantum materials realize an enormous range of phenomena (topological order, fractionalization,
+  correlated superconductivity) that no single atom shows on its own; understanding how they
+  emerge from electrons in a lattice is this course's central question.
+\item \textbf{Second quantization} is the language that lets us treat both fixed-particle-number
+  (single-particle) and fluctuating-particle-number (many-body) systems on the same footing, built
+  from creation/annihilation operators satisfying the anticommutation relations (1.3).
+\item The many-body Hilbert space grows as $2^L$ (Section 1.9), which is why interacting problems need
+  a systematic approximation scheme rather than brute-force diagonalization.
+\item \textbf{Spontaneous symmetry breaking} is the general phenomenon of a symmetric Hamiltonian producing
+  an asymmetric ground state in the thermodynamic limit; states of matter can be classified by which
+  symmetry they break (time-reversal for magnets, rotational for ferroelectrics, gauge for
+  superconductors), each with its own emergent quasiparticle, and a magnet has the precise, formal
+  definition given in (1.4). Topological materials are a reminder that this classification is not
+  exhaustive.
+\item \textbf{Mean-field theory} supplies the practical machinery: factorize the interacting Hamiltonian
+  (1.5) by taking an expectation value over part of the quartic term, then solve the resulting
+  single-particle problem self-consistently.
+\item The same recipe, applied to three different interaction channels, produces three different
+  symmetry-broken states: a charge density wave via (1.6) (broken translational symmetry), a
+  magnet via (1.7)-(1.8) (broken time-reversal symmetry), and a superconductor via (1.9)-(1.10)
+  (broken gauge symmetry). Magnetism and superconductivity each get a full session of their own
+  later in the course; today's versions are the first pass.
+\end{itemize}
+
+Next session, we leave interactions aside for a while and go back to the single-particle side of
+today's Hamiltonian, to see how \emph{symmetry} (translational symmetry, specifically) lets us
+diagonalize it exactly, no approximation required, via Bloch's theorem. The general
+symmetry-breaking framework built in Section 1.11 will not be revisited there, so it is worth
+carrying forward from here rather than expecting a recap.

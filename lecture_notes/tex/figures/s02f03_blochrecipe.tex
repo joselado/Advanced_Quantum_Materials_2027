@@ -1,0 +1,102 @@
+% Session 2 -- from lattice to Bloch Hamiltonian: the recipe.
+% Placement: sec. "Multi-orbital band structures", between eqs. (2.12) and (2.13).
+%
+% NOTE: the intracell hopping t_AB sits OFF the diagonal here -- that is the whole
+% point of the annotation, and the reason the adjacent prose was corrected.
+%
+% The \foreach loop variable is \et, NOT \eta: naming it \eta silently substitutes
+% into every "$\eta$" in the panel titles and prints the numeric value instead.
+\begin{aqmfigure}{fig:s02:recipe}{Reading a Bloch Hamiltonian off a lattice. The number of orbitals
+per unit cell sets the matrix size; an intracell hopping enters the entry its orbital pair indexes
+with no phase, an intercell hopping enters the corresponding entry multiplied by $e^{\pm i\varphi}$.
+Note that the intracell $A$--$B$ hopping lands \emph{off} the diagonal. For the alternating-hopping
+chain (2.13) this gives the two bands $\epsilon_\pm=\pm|1+\eta e^{-i\varphi}|$: gapped for
+$\eta\neq1$, and gap-closing exactly at $\eta=1$ -- the Su-Schrieffer-Heeger chain the topology
+session picks up.}
+
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+\def\dx{1.55}   % intracell A-B separation
+\def\cw{2.65}   % unit-cell period
+
+% ======================= left: the two-orbital chain ========================
+\begin{scope}[shift={(0,0)}]
+  \node[aqmpanel, anchor=south west] at (-0.75,1.55) {real space};
+
+  % three unit cells
+  \foreach \n/\lab in {0/{$n-1$}, 1/{$n$}, 2/{$n+1$}} {
+    \begin{scope}[shift={(\n*\cw,0)}]
+      \draw[aqmcell] (-0.46,-0.52) rectangle ({\dx+0.55},0.52);
+      \node[aqmlabmuted, anchor=north] at ({\dx/2},-1.15) {\lab};
+      % strong intracell bond A-B
+      \draw[aqmbondstrong, draw=aqmaccent] (0,0) -- (\dx,0);
+      \node[aqmsite, minimum size=7pt] at (0,0) {};
+      \node[aqmsitealt, minimum size=7pt] at (\dx,0) {};
+      \node[aqmlabsmall, anchor=south] at (0,0.12) {$A$};
+      \node[aqmlabsmall, anchor=south] at (\dx,0.12) {$B$};
+    \end{scope}
+  }
+  % weak intercell bonds B(n) - A(n+1)
+  \foreach \n in {0,1} {
+    \draw[aqmbondweak, draw=aqmbroken] ({\n*\cw+\dx},0) -- ({(\n+1)*\cw},0);
+  }
+  \draw[aqmbondweak, draw=aqmbroken] (-0.68,0) -- (0,0);
+  \draw[aqmbondweak, draw=aqmbroken] ({2*\cw+\dx},0) -- ({2*\cw+\dx+0.68},0);
+
+  \node[aqmlabsmall, anchor=south, text=aqmaccent] at ({\cw+\dx/2},0.66)
+    {intracell $t_{AB}=1$};
+  \node[aqmlabsmall, anchor=north, text=aqmbroken] at ({\cw+\dx+(\cw-\dx)/2},-0.60)
+    {intercell $\gamma=\eta$};
+\end{scope}
+
+% ======================= right: the Bloch matrix ============================
+\begin{scope}[shift={(8.95,0)}]
+  \node[aqmpanel, anchor=south] at (1.45,1.55) {Bloch Hamiltonian $H(\varphi)$};
+
+  \node[aqmbox, text width=3.9cm, minimum height=1.5cm] (mat) at (1.45,0)
+    {$\displaystyle
+      \begin{pmatrix}
+        0 & \textcolor{aqmaccent}{1}+\textcolor{aqmbroken}{\eta e^{-i\varphi}}\\[2pt]
+        \textcolor{aqmaccent}{1}+\textcolor{aqmbroken}{\eta e^{i\varphi}} & 0
+      \end{pmatrix}$};
+
+  \node[aqmlabsmall, anchor=north, align=center, text width=5.0cm] at (1.45,-0.95)
+    {\textcolor{aqmaccent}{intracell: no phase}\quad
+     \textcolor{aqmbroken}{intercell: $\times\,e^{\pm i\varphi}$}\\[1pt]
+     \textcolor{aqmmuted}{matrix size $=$ orbitals per cell $=2$}};
+\end{scope}
+
+\draw[aqmarrow] (7.45,0) -- (8.55,0);
+
+% ======================= bottom: the three band panels ======================
+\begin{scope}[shift={(0,-6.55)}]
+\foreach \px/\et/\ttl/\note in {0/0.45/{$\eta<1$: gapped}/{},
+                                4.75/1.0/{$\eta=1$: gap closes}/{gap closes at $\varphi=\pm\pi$},
+                                9.50/1.8/{$\eta>1$: gapped again}/{}} {
+  \begin{scope}[shift={(\px,0)}]
+    \begin{axis}[
+      aqmplot,
+      width=5.3cm, height=4.3cm,
+      title={\ttl},
+      xlabel={$\varphi$}, ylabel={$\epsilon_\pm$},
+      ylabel style={at={(ticklabel* cs:1.0)}, anchor=south east},
+      xmin=-3.9, xmax=3.9, ymin=-3.3, ymax=3.3,
+      xtick={-3.14159,0,3.14159}, xticklabels={$-\pi$,$0$,$\pi$},
+      ytick=\empty,
+      axis lines=middle,
+    ]
+    % eps_pm = +- |1 + eta e^{-i phi}| = +- sqrt(1 + eta^2 + 2 eta cos phi)
+    \addplot[aqmcurve, domain=-3.14159:3.14159, samples=220]
+      {sqrt(1 + \et*\et + 2*\et*cos(deg(x)))};
+    \addplot[aqmcurve, domain=-3.14159:3.14159, samples=220]
+      {-sqrt(1 + \et*\et + 2*\et*cos(deg(x)))};
+    % per-panel note, positioned in axis coordinates so it lands correctly
+    \node[aqmlabsmall, anchor=north, text=aqmbroken] at (axis cs:0,-2.42) {\note};
+    \end{axis}
+  \end{scope}
+}
+\end{scope}
+
+\end{tikzpicture}
+
+\end{aqmfigure}

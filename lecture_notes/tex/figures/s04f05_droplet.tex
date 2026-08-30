@@ -1,0 +1,105 @@
+% Session 4 -- lowest-Landau-level orbitals as nested rings, and the uniform
+% droplet they add up to at nu=1 and at nu=1/3.
+% Placement: sec. "Angular momentum, enclosed flux, and the uniform electron gas".
+%
+% Panel (a) plots |psi_m|^2 = r^{2m} e^{-r^2/2} (l_B = 1), each renormalized to unit
+% peak so the ring positions can be compared; the peak is at r_m = sqrt(2m).
+% Panel (b) is an explicitly SCHEMATIC flat-top profile (a logistic edge), not a
+% literal sum of Gaussians: what matters is that the total is flat out to
+% sqrt(2(N-1)) l_B and then drops, and that at nu = 1/3 the same N electrons cover
+% sqrt(3) times the radius at one third the density.
+\begin{aqmfigure}{fig:s04:droplet}{Angular momentum is radius. (a) The lowest-Landau-level orbitals
+(4.10), $|\psi_m|^2\propto r^{2m}e^{-r^2/2\ell_B^2}$, each renormalized here to the same peak
+height: they are nested rings, and raising $m$ moves the ring outward, to $r_m=\sqrt{2m}\,\ell_B$,
+enclosing more flux. (b) Stacking every orbital from $m=0$ to $m=N-1$ therefore fills a disc, and
+the rings overlap in exactly such a way that the total density is flat inside it and falls off
+sharply at the edge: the filled lowest Landau level is a featureless, uniform electron droplet,
+one electron per flux quantum. The Laughlin state (4.12) at $\nu=1/3$ is the second profile: the
+same $N$ electrons now use orbitals up to $m=3(N-1)$, so the droplet swells by $\sqrt{3}$ in
+radius and thins to a third of the density, while staying just as uniform. That uniformity is the
+property the Laughlin construction is built to preserve; the edge profiles are schematic.}
+
+\begin{tikzpicture}
+
+% ===================== (a) the individual LLL orbitals ======================
+\begin{axis}[
+  aqmplot,
+  name=axA,
+  width=12.4cm, height=4.3cm,
+  axis lines=left,
+  axis line style={aqm, black},
+  title={(a) single-particle lowest-Landau-level orbitals},
+  ylabel={$|\psi_m|^2$},
+  xmin=0, xmax=10.4, ymin=0, ymax=1.62,
+  xticklabels=\empty,
+  ytick=\empty,
+  enlargelimits=false,
+]
+
+% radial guides at the ring radii r_m = sqrt(2m)
+\addplot[aqmguide, forget plot] coordinates {(2.0,0) (2.0,1.0)};
+\addplot[aqmguide, forget plot] coordinates {(3.4641,0) (3.4641,1.0)};
+\addplot[aqmguide, forget plot] coordinates {(4.899,0) (4.899,1.0)};
+
+\addplot[aqmaccent, line width=1.0pt, domain=0:7.6, samples=180, forget plot]
+  {exp(-x^2/2)};
+\addplot[aqmaccent, line width=1.0pt, domain=0.20:7.6, samples=180, forget plot]
+  {exp(4*ln(x) - x^2/2 - 2*ln(4) + 2)};
+\addplot[aqmaccent, line width=1.0pt, domain=0.60:8.4, samples=180, forget plot]
+  {exp(12*ln(x) - x^2/2 - 6*ln(12) + 6)};
+\addplot[aqmaccent, line width=1.0pt, domain=1.20:9.0, samples=180, forget plot]
+  {exp(24*ln(x) - x^2/2 - 12*ln(24) + 12)};
+
+\node[aqmlabsmall, anchor=south west] at (axis cs:0.10,1.04) {$m{=}0$};
+\node[aqmlabsmall, anchor=south]      at (axis cs:2.0,1.06)  {$m{=}2$};
+\node[aqmlabsmall, anchor=south]      at (axis cs:3.4641,1.06) {$m{=}6$};
+\node[aqmlabsmall, anchor=south]      at (axis cs:4.899,1.06) {$m{=}12$};
+
+\node[aqmlabsmall, anchor=west, align=left] at (axis cs:6.9,0.72)
+  {ring radius $r_m=\sqrt{2m}\,\ell_B$\\[2pt]
+   \textcolor{aqmmuted}{more angular momentum,}\\[-1pt]
+   \textcolor{aqmmuted}{more enclosed flux}};
+
+\end{axis}
+
+% ======================= (b) the many-body droplet ==========================
+\begin{axis}[
+  aqmplot,
+  name=axB,
+  at={($(axA.south west)+(0,-1.25cm)$)}, anchor=north west,
+  width=12.4cm, height=4.3cm,
+  axis lines=left,
+  axis line style={aqm, black},
+  title={(b) total density of the many-body state},
+  xlabel={$r/\ell_B$}, ylabel={$n(r)$},
+  xlabel style={at={(axis description cs:1.02,0)}, anchor=west},
+  xmin=0, xmax=10.4, ymin=0, ymax=2.05,
+  xtick={0,2,4,6,8,10},
+  ytick=\empty,
+  enlargelimits=false,
+]
+
+\addplot[aqmaccent, line width=1.2pt, domain=0:10.3, samples=220, forget plot]
+  {1/(1+exp((x-4.899)/0.30))};
+\addplot[aqmbroken, line width=1.2pt, dash pattern=on 3.4pt off 2.2pt,
+         domain=0:10.3, samples=220, forget plot]
+  {0.3333/(1+exp((x-8.485)/0.30))};
+
+\addplot[aqmguide, forget plot] coordinates {(4.899,1.0) (4.899,1.55)};
+\addplot[aqmguide, forget plot] coordinates {(8.485,0.3333) (8.485,1.05)};
+
+\node[aqmlabsmall, anchor=south, text=aqmaccent] at (axis cs:4.899,1.57)
+  {$R_1=\sqrt{2(N{-}1)}\,\ell_B$};
+\node[aqmlabsmall, anchor=south, text=aqmbroken] at (axis cs:8.485,1.07)
+  {$R_{1/3}=\sqrt3\,R_1$};
+
+\node[aqmlabsmall, anchor=south west, text=aqmaccent] at (axis cs:0.25,1.06)
+  {$\nu=1$: one electron per $2\pi\ell_B^2$};
+\node[aqmlabsmall, anchor=south west, text=aqmbroken] at (axis cs:0.25,0.38)
+  {$\nu=\tfrac13$: one third the density};
+
+\end{axis}
+
+\end{tikzpicture}
+
+\end{aqmfigure}

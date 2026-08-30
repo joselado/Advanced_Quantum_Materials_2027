@@ -1,0 +1,109 @@
+% Session 2 -- three archetypes of dispersion and the density of states each produces.
+% Placement: sec. "Three archetypes of dispersion", alongside the enumerated list.
+%
+% DIMENSION: every panel is TWO-dimensional, and the caption says so. This is not
+% cosmetic -- g(omega) ~ |omega| for a Dirac point is 2D-specific, and the parabolic
+% 2D density of states is a step. Mixing dimensions here would contradict the 1D
+% density of states drawn in figure fig:s02:cosband, which diverges at the band edges.
+\begin{aqmfigure}{fig:s02:archetypes}{The three dispersion archetypes and the densities of states
+they produce, all in \emph{two} dimensions. A parabolic band gives a constant (step) density of
+states; a Dirac point makes it vanish linearly, so a finite interaction strength is needed before
+anything happens; a flat band makes it diverge, so an arbitrarily weak interaction can drive the
+symmetry-broken states of Session 1. Almost every band structure in this course is, locally, one of
+these three.}
+
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+% ================================ top row: E(k) =============================
+% --- parabolic ---
+\begin{scope}[shift={(0,0)}]
+\begin{axis}[aqmplot, width=5.0cm, height=3.5cm,
+  title={parabolic, $E\propto k^{2}$},
+  xlabel={$k$}, ylabel={$E$},
+  xmin=-1.35, xmax=1.35, ymin=-0.30, ymax=1.55,
+  xtick=\empty, ytick=\empty, axis lines=middle]
+  \addplot[aqmcurve, domain=-1.15:1.15, samples=80] {x^2};
+\end{axis}
+\end{scope}
+
+% --- Dirac ---
+\begin{scope}[shift={(5.0,0)}]
+\begin{axis}[aqmplot, width=5.0cm, height=3.5cm,
+  title={Dirac, $E\propto|k|$},
+  xlabel={$k$}, ylabel={$E$},
+  xmin=-1.35, xmax=1.35, ymin=-1.35, ymax=1.55,
+  xtick=\empty, ytick=\empty, axis lines=middle]
+  \addplot[aqmcurve, domain=-1.15:0, samples=2] {x};
+  \addplot[aqmcurve, domain=0:1.15, samples=2] {-x};
+  \addplot[aqmcurve, domain=-1.15:0, samples=2] {-x};
+  \addplot[aqmcurve, domain=0:1.15, samples=2] {x};
+  \node[circle, fill=aqmbroken, inner sep=1.3pt] at (axis cs:0,0) {};
+\end{axis}
+\end{scope}
+
+% --- flat ---
+\begin{scope}[shift={(10.0,0)}]
+\begin{axis}[aqmplot, width=5.0cm, height=3.5cm,
+  title={flat, $E=\text{const}$},
+  xlabel={$k$}, ylabel={$E$},
+  xmin=-1.35, xmax=1.35, ymin=-0.30, ymax=1.55,
+  xtick=\empty, ytick=\empty, axis lines=middle]
+  \addplot[aqmcurve, line width=1.7pt, domain=-1.15:1.15, samples=2] {0.75};
+\end{axis}
+\end{scope}
+
+% ============================ bottom row: g(omega) ==========================
+% --- parabolic: 2D step ---
+\begin{scope}[shift={(0,-4.25)}]
+\begin{axis}[aqmplot, width=5.0cm, height=3.5cm,
+  title={$g(\omega)=\text{const}$ (a step)},
+  xlabel={$g$}, ylabel={$\omega$},
+  xmin=-0.12, xmax=1.45, ymin=-0.30, ymax=1.55,
+  xtick=\empty, ytick=\empty, axis lines=middle]
+  \addplot[aqmcurve] coordinates {(0,0) (0.85,0)};
+  \addplot[aqmcurve] coordinates {(0.85,0) (0.85,1.35)};
+\end{axis}
+\end{scope}
+
+% --- Dirac: g ~ |omega|, vanishing at the node ---
+\begin{scope}[shift={(5.0,-4.25)}]
+\begin{axis}[aqmplot, width=5.0cm, height=3.5cm,
+  title={$g(\omega)\propto|\omega|$, vanishes},
+  xlabel={$g$}, ylabel={$\omega$},
+  xmin=-0.12, xmax=1.45, ymin=-1.35, ymax=1.55,
+  xtick=\empty, ytick=\empty, axis lines=middle]
+  \addplot[aqmcurve, domain=0:1.25, samples=2] ({0.85*x},{x});
+  \addplot[aqmcurve, domain=0:1.25, samples=2] ({0.85*x},{-x});
+  \node[circle, fill=aqmbroken, inner sep=1.3pt] at (axis cs:0,0) {};
+  \node[aqmlabsmall, anchor=west, text=aqmbroken] at (axis cs:0.26,0.46) {$g=0$};
+\end{axis}
+\end{scope}
+
+% --- flat: delta function ---
+\begin{scope}[shift={(10.0,-4.25)}]
+\begin{axis}[aqmplot, width=5.0cm, height=3.5cm,
+  title={$g(\omega)$ diverges},
+  xlabel={$g$}, ylabel={$\omega$},
+  xmin=-0.12, xmax=1.45, ymin=-0.30, ymax=1.55,
+  xtick=\empty, ytick=\empty, axis lines=middle]
+  \draw[aqm, draw=aqmbroken, line width=1.6pt, -{Stealth[length=5pt,width=4pt]}]
+    (axis cs:0,0.75) -- (axis cs:1.30,0.75);
+  \node[aqmlabsmall, anchor=south east, text=aqmbroken] at (axis cs:1.28,0.88)
+    {$\delta(\omega-\epsilon_0)$};
+\end{axis}
+\end{scope}
+
+% ============================ column annotations ============================
+\node[aqmlabsmall, anchor=north, align=center, text width=4.5cm] at (2.5,-5.85)
+  {semiconductors,\\ conventional metals\\[2pt]
+   \textcolor{aqmmuted}{interactions act in the ordinary way}};
+\node[aqmlabsmall, anchor=north, align=center, text width=4.5cm] at (7.5,-5.85)
+  {graphene,\\ topological materials\\[2pt]
+   \textcolor{aqmmuted}{a finite interaction strength is needed before anything happens}};
+\node[aqmlabsmall, anchor=north, align=center, text width=4.5cm] at (12.5,-5.85)
+  {Lieb and kagome,\\ moir\'e materials\\[2pt]
+   \textcolor{aqmmuted}{arbitrarily weak interactions matter}};
+
+\end{tikzpicture}
+
+\end{aqmfigure}

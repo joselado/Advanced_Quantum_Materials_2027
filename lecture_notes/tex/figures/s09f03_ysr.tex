@@ -1,0 +1,108 @@
+% Session 9 -- Yu-Shiba-Rusinov states: what a magnetic impurity does to a
+% superconductor that a non-magnetic one does not.
+% Placement: sec. "Impurities as diagnostics II", after equation (9.10).
+\begin{aqmfigure}{fig:s09:ysr}{A magnetic impurity in an s-wave superconductor. (a) The
+single-particle density of states. The BCS continuum, gapped by $\Delta$ with coherence peaks at the
+gap edges, is left essentially untouched by a \emph{non-magnetic} impurity: it does not distinguish
+up from down, so it cannot make breaking any particular Cooper pair cheaper. A \emph{magnetic}
+impurity does distinguish them, breaks time-reversal symmetry, and pulls a pair of bound states into
+the gap at $\pm E_b$. (b) Where those states sit, from (9.10), as a function of
+$\alpha=\pi\nu_0JS$. At $\alpha=0$ they sit exactly at the gap edges, which is to say there is no
+bound state yet; as the exchange grows they sweep across the gap and cross at $\alpha=1$. The
+crossing is not a level repulsion that failed to open --- it is a genuine quantum phase transition
+of the many-body ground state, from $S_{\rm tot}=0$ (every Cooper pair intact, the impurity spin
+screened into the condensate) to $S_{\rm tot}=1/2$ (one pair broken, one dangling spin left behind).
+A single tunable impurity is thus an exactly solvable quantum phase transition.}
+
+\begin{tikzpicture}
+
+% ============================ (a) density of states =========================
+\begin{axis}[
+  aqmplot, name=pa,
+  width=7.3cm, height=5.6cm,
+  axis lines=left,
+  axis line style={aqm, black},
+  xlabel={$E/\Delta$}, ylabel={},
+  title={(a) density of states},
+  xmin=-3.15, xmax=3.15, ymin=0, ymax=6.55,
+  xtick={-1,0,1}, xticklabels={$-\Delta$,$0$,$\Delta$},
+  ytick={1}, yticklabels={$1$},
+  xlabel style={at={(axis description cs:1.0,-0.03)}, anchor=north east},
+  enlargelimits=false,
+]
+% the gap region
+\path[fill=black!5] (axis cs:-1,0) rectangle (axis cs:1,6.05);
+
+% BCS continuum, |E| / sqrt(E^2 - 1)
+\addplot[aqmcurve, domain=-3.1:-1.035, samples=140] {abs(x)/sqrt(x^2-1)};
+\addplot[aqmcurve, domain=1.035:3.1, samples=140] {abs(x)/sqrt(x^2-1)};
+\addplot[aqmguide, forget plot] coordinates {(-3.1,1) (3.1,1)};
+
+\node[aqmlabsmall, anchor=north east, align=right, text=aqmaccent, text width=2.1cm]
+  at (axis cs:3.12,5.30) {clean BCS, and unchanged by a non-magnetic impurity};
+
+% the two in-gap YSR states
+\draw[aqm, draw=aqmbroken, line width=1.4pt, dash pattern=on 3pt off 1.8pt]
+  (axis cs:-0.45,0) -- (axis cs:-0.45,2.55);
+\node[circle, draw=aqmbroken, fill=aqmbroken, minimum size=4pt, inner sep=0pt]
+  at (axis cs:-0.45,2.55) {};
+\draw[aqm, draw=aqmbroken, line width=1.4pt, dash pattern=on 3pt off 1.8pt]
+  (axis cs:0.45,0) -- (axis cs:0.45,2.55);
+\node[circle, draw=aqmbroken, fill=aqmbroken, minimum size=4pt, inner sep=0pt]
+  at (axis cs:0.45,2.55) {};
+\node[aqmlabsmall, anchor=south, align=center, text=aqmbroken, text width=2.2cm]
+  at (axis cs:0,2.72) {$\pm E_b$: only a \emph{magnetic} impurity};
+\draw[aqm, draw=aqmmuted, line width=0.6pt,
+      {Stealth[length=3.6pt,width=3pt]}-{Stealth[length=3.6pt,width=3pt]}]
+  (axis cs:-1,5.55) -- (axis cs:1,5.55);
+\node[aqmlabmuted, anchor=south] at (axis cs:0,5.62) {gap $2\Delta$};
+\node[aqmlabsmall, anchor=west] at (axis cs:-3.10,6.20) {$N(E)/N_0$};
+\end{axis}
+
+% ============================ (b) the bound-state energy ====================
+\begin{axis}[
+  aqmplot, name=pb,
+  at={($(pa.outer south east)+(0.55cm,0)$)}, anchor=outer south west,
+  width=7.2cm, height=5.6cm,
+  axis lines=left,
+  axis line style={aqm, black},
+  xlabel={$\alpha=\pi\nu_0 J S$}, ylabel={},
+  title={(b) the in-gap state sweeps the gap},
+  xmin=0, xmax=3.05, ymin=-2.95, ymax=1.72,
+  xtick={0,1,2,3},
+  ytick={-1,0,1}, yticklabels={$-\Delta$,$0$,$+\Delta$},
+  xlabel style={at={(axis description cs:1.0,-0.14)}, anchor=north east},
+  enlargelimits=false,
+]
+% gap edges
+\addplot[aqmguide, forget plot] coordinates {(0,1) (3.05,1)};
+\addplot[aqmguide, forget plot] coordinates {(0,-1) (3.05,-1)};
+% the transition
+\addplot[aqmbroken, line width=0.8pt, dash pattern=on 2.5pt off 2pt, forget plot]
+  coordinates {(1,-1.10) (1,1.22)};
+
+% E_b = Delta (1 - alpha^2)/(1 + alpha^2) and its particle-hole partner
+\addplot[aqmcurve, line width=1.4pt, domain=0:3, samples=140] {(1-x^2)/(1+x^2)};
+\addplot[aqmcurve, line width=1.4pt, domain=0:3, samples=140] {-(1-x^2)/(1+x^2)};
+
+\node[circle, draw=aqmbroken, fill=aqmbroken, minimum size=4.5pt, inner sep=0pt]
+  at (axis cs:1,0) {};
+\node[aqmlabsmall, anchor=south, text=aqmbroken] at (axis cs:1.02,1.24) {$\alpha=1$};
+\node[aqmlabsmall, anchor=south east, text=aqmmuted] at (axis cs:3.02,1.05) {gap edge $+\Delta$};
+\node[aqmlabsmall, anchor=west] at (axis cs:0.05,1.48) {$E_b/\Delta$};
+
+% the many-body ground state, as a footer band below the gap
+\draw[aqmguide] (axis cs:0,-1.34) -- (axis cs:3.05,-1.34);
+\node[aqmlabsmall, anchor=north, align=center, text width=3.0cm] at (axis cs:0.72,-1.42)
+  {ground state $S_{\rm tot}=0$\\[-1pt]\textcolor{aqmmuted}{spin screened,}\\[-1pt]
+   \textcolor{aqmmuted}{every pair intact}};
+\node[aqmlabsmall, anchor=north, align=center, text width=3.0cm] at (axis cs:2.28,-1.42)
+  {ground state $S_{\rm tot}=1/2$\\[-1pt]\textcolor{aqmmuted}{one pair broken,}\\[-1pt]
+   \textcolor{aqmmuted}{one spin left over}};
+\draw[aqmbroken, line width=0.8pt, dash pattern=on 2.5pt off 2pt]
+  (axis cs:1,-1.34) -- (axis cs:1,-2.70);
+\end{axis}
+
+\end{tikzpicture}
+
+\end{aqmfigure}

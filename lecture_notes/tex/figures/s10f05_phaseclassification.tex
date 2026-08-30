@@ -1,0 +1,151 @@
+% Session 10 -- phase classification: where a local order parameter works and where it fails.
+% Placement: sec. "Phase classification", after the Ising-gauge-theory paragraph.
+%
+% NUMERICAL PROVENANCE (all configurations below were generated and checked in a
+% throwaway script before being hard-coded here; nothing is eyeballed):
+%   (a) 6x6 Ising sites, 4 spins flipped  -> m = +0.78
+%   (b) 6x6 Ising sites, 19 up / 17 down  -> m = +0.06  (no fully polarized row or column)
+%   (c) 5x5 vertex grid, spins on the 40 BONDS, built as sigma_(vw) = eps_v eps_w with
+%       random eps_v = +-1 on the vertices.  Every plaquette product is then automatically
+%       +1 (each eps appears twice around any plaquette); verified explicitly: 0 of the 16
+%       plaquettes violated.  Bond magnetization m = +0.05.
+%   (d) same 40 bonds drawn independently at random: 7 of the 16 plaquettes have product
+%       -1 (marked), and m = -0.05, i.e. indistinguishable from (c) by magnetization alone.
+% The star flip highlighted in (c) is the gauge transformation: the four bonds meeting at a
+% vertex each belong to exactly two of the four adjacent plaquettes, so flipping all four
+% leaves every plaquette product +1 (checked in the same script).
+\begin{aqmfigure}{fig:s10:phaseclass}{Why one phase-classification problem is easy and the other is
+hard. \textbf{(a,b)} For the Ising model (10.9) the magnetization of a single snapshot already
+separates the phases, and a network trained on such snapshots is only rediscovering the
+local-order-parameter logic of sessions 1, 5 and 6. \textbf{(c,d)} For the Ising gauge theory
+(10.10) the spins live on the \emph{bonds}, and the $T=0$ condition $\prod_{i\in\partial p}\sigma_i
+= +1$ leaves an exponentially large degenerate manifold: a typical ground state is bond-by-bond
+random, so the magnetization is $\approx 0$ in both columns and no single-bond quantity tells them
+apart. What differs is the four-spin plaquette structure, marked in the plaquette centres, and
+finding a function of the raw configuration sensitive to it is what the convolutional network has
+to do for itself. This is the same obstruction that forced sessions 3 and 4 from local order
+parameters to Chern numbers and Zak phases.}
+
+\begin{tikzpicture}[
+  spinup/.style={aqmsite, minimum size=6.5pt},
+  spindn/.style={aqmsiteopen, minimum size=6.5pt},
+  bondup/.style={aqmsite, minimum size=5.6pt},
+  bonddn/.style={aqmsiteopen, minimum size=5.6pt},
+  gridline/.style={aqm, draw=aqmmuted, line width=0.35pt},
+  plusmark/.style={font=\tiny, text=aqmmuted, inner sep=0pt},
+  minusmark/.style={font=\tiny\bfseries, text=aqmbroken, inner sep=0pt},
+  readout/.style={aqmlabsmall, anchor=north west, align=left},
+]
+
+% ============================ ROW 1: Ising model =============================
+\node[anchor=south west, font=\small\bfseries] at (-0.20,3.62)
+   {Ising model (10.9): spins on sites, $m=\tfrac{1}{N}\sum_i\sigma_i$};
+
+% ---- (a) ordered ------------------------------------------------------------
+\begin{scope}[shift={(0,0)}]
+  \def\u{0.58}
+  \foreach \i in {0,...,5} \foreach \j in {0,...,5}
+     \node[spinup] at (\i*\u,\j*\u) {};
+  \foreach \i/\j in {1/4,3/1,4/5,5/2} \node[spindn] at (\i*\u,\j*\u) {};
+  \node[aqmpanel, anchor=south west] at (-0.20,3.15) {(a) $T<T_c$};
+  \node[readout] at (-0.20,-0.22) {$m=+0.78$\\ ordered};
+\end{scope}
+
+% ---- (b) disordered ---------------------------------------------------------
+\begin{scope}[shift={(4.35,0)}]
+  \def\u{0.58}
+  \foreach \i/\j in {0/0,0/2,0/5,1/2,1/3,1/4,1/5,2/1,2/4,2/5,3/2,3/4,3/5,4/0,4/1,4/2,5/0,5/2,5/3}
+     \node[spinup] at (\i*\u,\j*\u) {};
+  \foreach \i/\j in {0/1,0/3,0/4,1/0,1/1,2/0,2/2,2/3,3/0,3/1,3/3,4/3,4/4,4/5,5/1,5/4,5/5}
+     \node[spindn] at (\i*\u,\j*\u) {};
+  \node[aqmpanel, anchor=south west] at (-0.20,3.15) {(b) $T>T_c$};
+  \node[readout] at (-0.20,-0.22) {$m=+0.06$\\ disordered};
+\end{scope}
+
+% ---- verdict, row 1 ---------------------------------------------------------
+\node[anchor=north west, text width=6.3cm, align=left, font=\small] at (8.45,3.62)
+ {\textbf{Local order parameter works.}\\[3pt]
+  One number read off a single snapshot separates the phases, so the cat-versus-dog
+  architecture of Section 10.2 --- the $N\times N$ array in, a one-hot ordered/disordered
+  label out --- is only being asked to rediscover what we can already compute. That is
+  exactly what makes it a controlled test case.};
+
+% ============================ ROW 2: Ising gauge theory ======================
+\node[anchor=south west, font=\small\bfseries] at (-0.20,-2.35)
+   {Ising gauge theory (10.10): spins on bonds, $\prod_{i\in\partial p}\sigma_i$ per plaquette};
+
+% ---- (c) T = 0 ground state -------------------------------------------------
+\begin{scope}[shift={(0,-5.95)}]
+  \def\v{0.725}
+  \foreach \i in {0,...,4} {
+    \draw[gridline] (\i*\v,0) -- (\i*\v,4*\v);
+    \draw[gridline] (0,\i*\v) -- (4*\v,\i*\v);
+  }
+  % every plaquette product is +1
+  \foreach \i in {0,...,3} \foreach \j in {0,...,3}
+     \node[plusmark] at (\i*\v+0.5*\v,\j*\v+0.5*\v) {$+$};
+  % horizontal bonds: midpoint at ((i+1/2)v, j v)
+  \foreach \i/\j in {0/2,1/0,1/2,1/3,2/0,2/2,2/4,3/0,3/1,3/2,3/3}
+     \node[bondup] at (\i*\v+0.5*\v,\j*\v) {};
+  \foreach \i/\j in {0/0,0/1,0/3,0/4,1/1,1/4,2/1,2/3,3/4}
+     \node[bonddn] at (\i*\v+0.5*\v,\j*\v) {};
+  % vertical bonds: midpoint at (i v, (j+1/2) v)
+  \foreach \i/\j in {0/2,0/3,1/1,1/3,2/0,3/1,3/2,3/3,4/1,4/2}
+     \node[bondup] at (\i*\v,\j*\v+0.5*\v) {};
+  \foreach \i/\j in {0/0,0/1,1/0,1/2,2/1,2/2,2/3,3/0,4/0,4/3}
+     \node[bonddn] at (\i*\v,\j*\v+0.5*\v) {};
+  % the gauge (star) flip at vertex (2,2)
+  \draw[aqm, draw=aqmbroken, dashed, line width=0.8pt] (2*\v,2*\v) circle (0.68*\v);
+  \node[aqmpanel, anchor=south west] at (-0.20,3.15) {(c) $T=0$};
+  \node[readout] at (-0.20,-0.22)
+      {$m=+0.05$\\ all $16$ plaquettes $+$\\
+       \textcolor{aqmbroken}{dashed: one gauge flip}};
+\end{scope}
+
+% ---- (d) T -> infinity ------------------------------------------------------
+\begin{scope}[shift={(4.35,-5.95)}]
+  \def\v{0.725}
+  \foreach \i in {0,...,4} {
+    \draw[gridline] (\i*\v,0) -- (\i*\v,4*\v);
+    \draw[gridline] (0,\i*\v) -- (4*\v,\i*\v);
+  }
+  % frustrated plaquettes: product -1
+  \foreach \i/\j in {0/0,0/3,1/0,1/2,2/1,2/3,3/1} {
+     \fill[aqmfillb] (\i*\v+0.13*\v,\j*\v+0.13*\v) rectangle (\i*\v+0.87*\v,\j*\v+0.87*\v);
+     \node[minusmark] at (\i*\v+0.5*\v,\j*\v+0.5*\v) {$-$};
+  }
+  \foreach \i/\j in {0/1,0/2,1/1,1/3,2/0,2/2,3/0,3/2,3/3}
+     \node[plusmark] at (\i*\v+0.5*\v,\j*\v+0.5*\v) {$+$};
+  \foreach \i/\j in {0/0,0/4,1/0,1/2,1/3,2/2,2/3,3/0,3/1,3/3,3/4}
+     \node[bondup] at (\i*\v+0.5*\v,\j*\v) {};
+  \foreach \i/\j in {0/1,0/2,0/3,1/1,1/4,2/0,2/1,2/4,3/2}
+     \node[bonddn] at (\i*\v+0.5*\v,\j*\v) {};
+  \foreach \i/\j in {0/1,0/2,1/1,1/2,2/3,3/3,4/2,4/3}
+     \node[bondup] at (\i*\v,\j*\v+0.5*\v) {};
+  \foreach \i/\j in {0/0,0/3,1/0,1/3,2/0,2/1,2/2,3/0,3/1,3/2,4/0,4/1}
+     \node[bonddn] at (\i*\v,\j*\v+0.5*\v) {};
+  \node[aqmpanel, anchor=south west] at (-0.20,3.15) {(d) $T\to\infty$};
+  \node[readout] at (-0.20,-0.22)
+      {$m=-0.05$\\ \textcolor{aqmbroken}{$7$ plaquettes $-$ (shaded)}};
+\end{scope}
+
+% ---- verdict, row 2 ---------------------------------------------------------
+\node[anchor=north west, text width=6.3cm, align=left, font=\small] at (8.45,-2.35)
+ {\textbf{Local order parameter fails.}\\[3pt]
+  Flipping the four bonds that meet at a single vertex changes two bonds of each
+  neighbouring plaquette, so every plaquette product survives: the $T=0$ manifold is
+  $2^{N_{\rm v}}$-fold degenerate and a typical member of it is bond-by-bond random.
+  Summing the spins therefore returns $\approx 0$ on both sides, and the classifier has to
+  key on the plaquette correlations instead.};
+
+% ---- legend -----------------------------------------------------------------
+\node[spinup] at (0.10,-7.75) {};
+\node[aqmlabsmall, anchor=west] at (0.28,-7.75) {$\sigma=+1$};
+\node[spindn] at (2.05,-7.75) {};
+\node[aqmlabsmall, anchor=west] at (2.23,-7.75) {$\sigma=-1$};
+\node[aqmlabsmall, anchor=west] at (4.20,-7.75)
+   {$+$ / $-$ in a plaquette centre $=$ the value of $\prod_{i\in\partial p}\sigma_i$ there};
+
+\end{tikzpicture}
+
+\end{aqmfigure}

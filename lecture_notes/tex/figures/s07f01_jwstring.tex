@@ -1,0 +1,81 @@
+% Session 7 -- the Jordan-Wigner string: "spin equals fermion times string".
+% Placement: sec. "Fermions and spins are the same physics", after equation (7.2).
+%
+% LAYOUT NOTE: pure TikZ, no axis, so canvas coordinates throughout. Occupations
+% are passed through the \foreach as a style name plus an arrow direction, so the
+% fermion row and the spin row can never disagree with each other.
+\begin{aqmfigure}{fig:s07:jwstring}{Spin equals fermion times string. Site by site the dictionary is
+trivial: an empty site is a down spin, an occupied site an up spin, $S^z_i = n_i - \tfrac12$. It is
+the \emph{relative} signs between sites that the naive identification gets wrong, because fermion
+operators on different sites anticommute while spin operators on different sites commute. The string
+$K_i$ of (7.2) repairs exactly this: it contributes a factor $-1$ once for every fermion sitting to
+the left of site $i$. The two chains drawn here differ only in the occupations to the left of the
+marked site $i=6$, three fermions above and two below, and that parity alone flips the sign of
+$S_6^+ = c_6^\dagger K_6$. The string is genuinely nonlocal, and what it carries is the fermionic
+exchange sign that spins do not have on their own.}
+
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+\def\sx{0.80}   % site spacing
+
+% ============================ legend ========================================
+\node[aqmsite] at (0.15,1.72) {};
+\node[aqmlabsmall, anchor=west] at (0.34,1.72) {occupied, $n_j=1$\;$\equiv$\;spin $\uparrow$};
+\node[aqmsiteopen] at (4.35,1.72) {};
+\node[aqmlabsmall, anchor=west] at (4.54,1.72) {empty, $n_j=0$\;$\equiv$\;spin $\downarrow$};
+
+% ============================ chain 1 =======================================
+\begin{scope}[shift={(0,0)}]
+  \draw[aqm, draw=aqmmuted, line width=\aqmthinwidth] (-0.35,0) -- ({\sx*7+0.35},0);
+  \foreach \i/\st/\dy in {0/aqmsite/1, 1/aqmsiteopen/-1, 2/aqmsite/1, 3/aqmsite/1,
+                          4/aqmsiteopen/-1, 5/aqmsiteopen/-1, 6/aqmsite/1, 7/aqmsiteopen/-1} {
+    \draw[aqm, draw=black, -{Stealth[length=3.4pt,width=2.8pt]}]
+      ({\sx*\i},{0.66-0.19*\dy}) -- ({\sx*\i},{0.66+0.19*\dy});
+    \node[\st] at ({\sx*\i},0) {};
+  }
+  \foreach \i/\lab in {0/1, 1/2, 2/3, 3/4, 4/5, 5/6, 6/7, 7/8} {
+    \node[aqmlabmuted, anchor=north] at ({\sx*\i},-0.16) {\lab};
+  }
+  \node[circle, draw=aqmaccent, line width=\aqmlinewidth, minimum size=13pt,
+        inner sep=0pt] at ({\sx*5},0) {};
+  \node[aqmlabsmall, text=aqmaccent, anchor=south] at ({\sx*5},1.02) {$i=6$};
+
+  \draw[aqmbrace, draw=aqmaccent] ({\sx*4+0.26},-0.60) -- (-0.26,-0.60);
+  \node[aqmlabsmall, anchor=north, align=center, text=aqmaccent] at ({\sx*2},-0.74)
+    {string $K_6$: every site $j<i$};
+
+  \node[aqmlab, anchor=north west, align=left] at ({\sx*7+0.70},0.42)
+    {three fermions to the left\\[2pt]
+     $K_6=e^{i\pi\cdot 3}=-1$\\[2pt]
+     \textcolor{aqmbroken}{$S_6^+=c_6^\dagger K_6=-\,c_6^\dagger$}};
+\end{scope}
+
+% ============================ chain 2 =======================================
+\begin{scope}[shift={(0,-2.45)}]
+  \draw[aqm, draw=aqmmuted, line width=\aqmthinwidth] (-0.35,0) -- ({\sx*7+0.35},0);
+  \foreach \i/\st/\dy in {0/aqmsite/1, 1/aqmsiteopen/-1, 2/aqmsiteopen/-1, 3/aqmsite/1,
+                          4/aqmsiteopen/-1, 5/aqmsiteopen/-1, 6/aqmsite/1, 7/aqmsiteopen/-1} {
+    \draw[aqm, draw=black, -{Stealth[length=3.4pt,width=2.8pt]}]
+      ({\sx*\i},{0.66-0.19*\dy}) -- ({\sx*\i},{0.66+0.19*\dy});
+    \node[\st] at ({\sx*\i},0) {};
+  }
+  \foreach \i/\lab in {0/1, 1/2, 2/3, 3/4, 4/5, 5/6, 6/7, 7/8} {
+    \node[aqmlabmuted, anchor=north] at ({\sx*\i},-0.16) {\lab};
+  }
+  \node[circle, draw=aqmaccent, line width=\aqmlinewidth, minimum size=13pt,
+        inner sep=0pt] at ({\sx*5},0) {};
+  \node[aqmlabsmall, text=aqmaccent, anchor=south] at ({\sx*5},1.02) {$i=6$};
+
+  \draw[aqmbrace, draw=aqmaccent] ({\sx*4+0.26},-0.60) -- (-0.26,-0.60);
+  \node[aqmlabsmall, anchor=north, align=center, text=aqmaccent] at ({\sx*2},-0.74)
+    {same string, one occupation changed};
+
+  \node[aqmlab, anchor=north west, align=left] at ({\sx*7+0.70},0.42)
+    {two fermions to the left\\[2pt]
+     $K_6=e^{i\pi\cdot 2}=+1$\\[2pt]
+     \textcolor{aqmaccent}{$S_6^+=c_6^\dagger K_6=+\,c_6^\dagger$}};
+\end{scope}
+
+\end{tikzpicture}
+
+\end{aqmfigure}

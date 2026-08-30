@@ -1,0 +1,153 @@
+% Session 7 -- the area law, from the exactly solvable dimer and tetramer models.
+% Placement: sec. "Two dimensions and the area law", after the dimer/tetramer comparison.
+%
+% LAYOUT NOTE: pure TikZ, canvas coordinates. Every cut bond is drawn highlighted and
+% marked, and the marker count in each panel is the number quoted beneath it: 2, 2, 8, 16.
+\begin{aqmfigure}{fig:s07:arealaw}{Why the entanglement entropy counts boundary, not volume. In both
+panels the ground state is an exact product of decoupled cluster ground states, so a cluster lying
+entirely inside $A$ or entirely inside $B$ is in a pure state and contributes nothing; only the
+clusters the bipartition actually cuts contribute, and the cut bonds are the highlighted ones.
+(a) The dimerized chain: each cut singlet contributes exactly the single-dimer result $\log 2$ of
+(7.7), and the boundary of a block is two points no matter how long the block is, so enlarging $A$
+from two interior dimers to five leaves $S_A = 2\log 2$ unchanged. The entropy saturates. (b) The
+same construction with four-site clusters on a square lattice. Each straddling cluster still
+contributes only a bounded amount, at most $\log 2$ per cut bond, but now the boundary is a curve
+whose length grows with the subsystem: doubling the linear size of $A$ doubles the number of cut
+bonds, eight to sixteen, and $S_A$ grows in proportion. That is the area law (7.9), $S_A \sim
+\alpha\,|\partial A|$, and the contrast between the two panels is exactly why matrix product states
+are a one-dimensional tool.}
+
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+\def\dx{0.52}   % 1D site spacing
+\def\pl{0.55}   % 2D lattice spacing
+
+% ===================== (a) the dimerized chain ==============================
+\node[aqmpanel, anchor=west] at (-0.40,1.30) {(a) one dimension: the boundary is two points};
+
+% ---- upper chain: small A (cuts the dimers 0-1 and 6-7) ----
+\begin{scope}[shift={(0,0.55)}]
+  \fill[aqmfill] (0.26,-0.26) rectangle (3.38,0.26);
+  \foreach \m in {0,1,2,3,4,5,6,7} {
+    \draw[aqmbond] ({\dx*2*\m},0) -- ({\dx*(2*\m+1)},0);
+  }
+  \foreach \m in {0,3} {
+    \draw[aqm, draw=aqmaccent, line width=2.1pt] ({\dx*2*\m},0) -- ({\dx*(2*\m+1)},0);
+  }
+  \foreach \k in {0,...,15} { \node[aqmsite, minimum size=4.4pt] at ({\dx*\k},0) {}; }
+  \foreach \xc in {0.26, 3.38} {
+    \draw[aqm, draw=aqmaccent, line width=\aqmthinwidth, dash pattern=on 2pt off 1.5pt]
+      (\xc,-0.42) -- (\xc,0.42);
+    \node[aqm, diamond, draw=aqmaccent, fill=white, line width=\aqmthinwidth,
+          minimum size=4.6pt, inner sep=0pt] at (\xc,0) {};
+  }
+  \node[aqmlabsmall, text=aqmaccent] at (1.82,0.40) {$A$};
+  \node[aqmlabsmall, text=aqmmuted] at (-0.20,0.40) {$B$};
+  \node[aqmlabsmall, text=aqmmuted] at (5.40,0.40) {$B$};
+  \node[aqmlabsmall, anchor=west] at (8.45,0) {$n_\text{cut}=2$,\quad $S_A=2\log 2$};
+\end{scope}
+
+% ---- lower chain: large A (cuts the dimers 0-1 and 12-13) ----
+\begin{scope}[shift={(0,-0.60)}]
+  \fill[aqmfill] (0.26,-0.26) rectangle (6.50,0.26);
+  \foreach \m in {0,1,2,3,4,5,6,7} {
+    \draw[aqmbond] ({\dx*2*\m},0) -- ({\dx*(2*\m+1)},0);
+  }
+  \foreach \m in {0,6} {
+    \draw[aqm, draw=aqmaccent, line width=2.1pt] ({\dx*2*\m},0) -- ({\dx*(2*\m+1)},0);
+  }
+  \foreach \k in {0,...,15} { \node[aqmsite, minimum size=4.4pt] at ({\dx*\k},0) {}; }
+  \foreach \xc in {0.26, 6.50} {
+    \draw[aqm, draw=aqmaccent, line width=\aqmthinwidth, dash pattern=on 2pt off 1.5pt]
+      (\xc,-0.42) -- (\xc,0.42);
+    \node[aqm, diamond, draw=aqmaccent, fill=white, line width=\aqmthinwidth,
+          minimum size=4.6pt, inner sep=0pt] at (\xc,0) {};
+  }
+  \node[aqmlabsmall, text=aqmaccent] at (3.38,0.40) {$A$, much larger};
+  \node[aqmlabsmall, text=aqmmuted] at (-0.20,0.40) {$B$};
+  \node[aqmlabsmall, text=aqmmuted] at (7.35,0.40) {$B$};
+  \node[aqmlabsmall, anchor=west] at (8.45,0) {$n_\text{cut}=2$,\quad $S_A=2\log 2$ \emph{again}};
+  \node[aqmlabsmall, anchor=north, text=aqmmuted, align=left] at (2.60,-0.46)
+    {one singlet per bond; no coupling at all between different dimers};
+\end{scope}
+
+% ===================== (b) the tetramer lattice =============================
+\node[aqmpanel, anchor=west] at (-0.40,-1.85) {(b) two dimensions: the boundary is a line};
+
+% ---- small A: 8 cut bonds ----
+\begin{scope}[shift={(0.30,-5.35)}]
+  \fill[aqmfill] ({\pl*0.5},{\pl*0.5}) rectangle ({\pl*2.5},{\pl*2.5});
+  \foreach \I in {0,1,2} { \foreach \J in {0,1,2} {
+      \draw[aqmbond] ({\pl*2*\I},{\pl*2*\J}) rectangle ({\pl*(2*\I+1)},{\pl*(2*\J+1)});
+  }}
+  % the eight cut bonds, highlighted
+  \foreach \q in {1,2} {
+    \draw[aqm, draw=aqmaccent, line width=2.1pt] ({\pl*0},{\pl*\q}) -- ({\pl*1},{\pl*\q});
+    \draw[aqm, draw=aqmaccent, line width=2.1pt] ({\pl*2},{\pl*\q}) -- ({\pl*3},{\pl*\q});
+    \draw[aqm, draw=aqmaccent, line width=2.1pt] ({\pl*\q},{\pl*0}) -- ({\pl*\q},{\pl*1});
+    \draw[aqm, draw=aqmaccent, line width=2.1pt] ({\pl*\q},{\pl*2}) -- ({\pl*\q},{\pl*3});
+  }
+  \foreach \p in {0,...,5} { \foreach \q in {0,...,5} {
+      \node[aqmsite, minimum size=3.8pt] at ({\pl*\p},{\pl*\q}) {};
+  }}
+  \draw[aqm, draw=aqmaccent, line width=\aqmthinwidth, dash pattern=on 2pt off 1.5pt]
+    ({\pl*0.5},{\pl*0.5}) rectangle ({\pl*2.5},{\pl*2.5});
+  \foreach \q in {1,2} {
+    \node[aqm, diamond, draw=aqmaccent, fill=white, line width=\aqmthinwidth,
+          minimum size=4.4pt, inner sep=0pt] at ({\pl*0.5},{\pl*\q}) {};
+    \node[aqm, diamond, draw=aqmaccent, fill=white, line width=\aqmthinwidth,
+          minimum size=4.4pt, inner sep=0pt] at ({\pl*2.5},{\pl*\q}) {};
+    \node[aqm, diamond, draw=aqmaccent, fill=white, line width=\aqmthinwidth,
+          minimum size=4.4pt, inner sep=0pt] at ({\pl*\q},{\pl*0.5}) {};
+    \node[aqm, diamond, draw=aqmaccent, fill=white, line width=\aqmthinwidth,
+          minimum size=4.4pt, inner sep=0pt] at ({\pl*\q},{\pl*2.5}) {};
+  }
+  \node[aqmlabsmall, anchor=north, align=center] at ({\pl*2.5},-0.24)
+    {subsystem $A$: $n_\text{cut}=8$};
+\end{scope}
+
+% ---- large A: 16 cut bonds ----
+\begin{scope}[shift={(4.55,-5.35)}]
+  \fill[aqmfill] ({\pl*0.5},{\pl*0.5}) rectangle ({\pl*4.5},{\pl*4.5});
+  \foreach \I in {0,1,2} { \foreach \J in {0,1,2} {
+      \draw[aqmbond] ({\pl*2*\I},{\pl*2*\J}) rectangle ({\pl*(2*\I+1)},{\pl*(2*\J+1)});
+  }}
+  \foreach \q in {1,2,3,4} {
+    \draw[aqm, draw=aqmaccent, line width=2.1pt] ({\pl*0},{\pl*\q}) -- ({\pl*1},{\pl*\q});
+    \draw[aqm, draw=aqmaccent, line width=2.1pt] ({\pl*4},{\pl*\q}) -- ({\pl*5},{\pl*\q});
+    \draw[aqm, draw=aqmaccent, line width=2.1pt] ({\pl*\q},{\pl*0}) -- ({\pl*\q},{\pl*1});
+    \draw[aqm, draw=aqmaccent, line width=2.1pt] ({\pl*\q},{\pl*4}) -- ({\pl*\q},{\pl*5});
+  }
+  \foreach \p in {0,...,5} { \foreach \q in {0,...,5} {
+      \node[aqmsite, minimum size=3.8pt] at ({\pl*\p},{\pl*\q}) {};
+  }}
+  \draw[aqm, draw=aqmaccent, line width=\aqmthinwidth, dash pattern=on 2pt off 1.5pt]
+    ({\pl*0.5},{\pl*0.5}) rectangle ({\pl*4.5},{\pl*4.5});
+  \foreach \q in {1,2,3,4} {
+    \node[aqm, diamond, draw=aqmaccent, fill=white, line width=\aqmthinwidth,
+          minimum size=4.4pt, inner sep=0pt] at ({\pl*0.5},{\pl*\q}) {};
+    \node[aqm, diamond, draw=aqmaccent, fill=white, line width=\aqmthinwidth,
+          minimum size=4.4pt, inner sep=0pt] at ({\pl*4.5},{\pl*\q}) {};
+    \node[aqm, diamond, draw=aqmaccent, fill=white, line width=\aqmthinwidth,
+          minimum size=4.4pt, inner sep=0pt] at ({\pl*\q},{\pl*0.5}) {};
+    \node[aqm, diamond, draw=aqmaccent, fill=white, line width=\aqmthinwidth,
+          minimum size=4.4pt, inner sep=0pt] at ({\pl*\q},{\pl*4.5}) {};
+  }
+  \node[aqmlabsmall, anchor=north, align=center] at ({\pl*2.5},-0.24)
+    {$A$ twice as wide: $n_\text{cut}=16$};
+\end{scope}
+
+% ---- the message ----
+\node[aqmboxaccent, anchor=north west, text width=4.9cm, align=left] at (8.30,-2.35)
+  {\footnotesize \textbf{1D:} $|\partial A|$ is two points, whatever the size of $A$ \\[3pt]
+   \textbf{2D:} $|\partial A|$ grows with $A$ \\[4pt]
+   $S_A \sim \alpha\,|\partial A|$: the area law (7.9), never a volume law};
+
+\node[aqmlabsmall, anchor=north west, text=aqmmuted, align=left, text width=4.9cm]
+  at (8.30,-5.00)
+  {each diamond marks one cut cluster bond, worth at most $\log 2$; every uncut cluster
+   contributes nothing at all};
+
+\end{tikzpicture}
+
+\end{aqmfigure}

@@ -1,0 +1,86 @@
+% Session 1 -- spontaneous symmetry breaking: symmetric landscape, asymmetric minima.
+% Placement: sec. "Spontaneous symmetry breaking", after the Ising paragraph.
+%
+% LAYOUT NOTE (applies to every figure in this set): everything is positioned in
+% "axis cs:" coordinates, and any fixed-size ornament (the spin arrows) is drawn
+% with canvas-unit offsets from an anchor node that is itself placed in axis cs.
+% Never mix bare tikzpicture coordinates with an axis -- they do not align.
+\begin{aqmfigure}{fig:s01:ssb}{Spontaneous symmetry breaking. The energy as a function of the order
+parameter is symmetric under $m\to-m$, exactly as the Hamiltonian is, yet its minima are not: the
+system must sit at $+m_0$ or $-m_0$. Which one is chosen by fluctuations, not by the Hamiltonian.
+The barrier between the two grows with system size, which is why spontaneous symmetry breaking is
+strictly a statement about the thermodynamic limit.}
+
+\begin{tikzpicture}
+\begin{axis}[
+  aqmplot,
+  width=12.2cm, height=6.6cm,
+  axis lines=left,
+  axis line style={aqm, black},
+  xlabel={order parameter $m$},
+  ylabel={$E(m)$},
+  xlabel style={at={(axis description cs:0.30,-0.10)}, anchor=north},
+  xmin=-1.75, xmax=3.05, ymin=-1.95, ymax=1.02,
+  xtick={-1,0,1}, xticklabels={$-m_0$,$0$,$+m_0$},
+  ytick=\empty,
+  enlargelimits=false,
+]
+
+% --- the mirror axis of the Hamiltonian -------------------------------------
+\addplot[aqmguide, forget plot] coordinates {(0,-1.95) (0,0.42)};
+\node[aqmlabsmall, anchor=south, align=center, text=aqmmuted] at (axis cs:0,0.44)
+  {$m\to-m$\\[-1pt]\itshape the Hamiltonian's symmetry};
+
+% --- the double well ---------------------------------------------------------
+% E(m) = (m^2-1)^2 - 1 : minima at m = +-1, barrier top at m = 0.
+\addplot[aqmcurve, domain=-1.45:1.45, samples=200] {(x^2-1)^2 - 1};
+
+% --- guides marking the barrier height ---------------------------------------
+\addplot[aqmguide, forget plot] coordinates {(0,0) (2.10,0)};
+\addplot[aqmguide, forget plot] coordinates {(1,-1) (2.10,-1)};
+
+% --- the two degenerate minima ----------------------------------------------
+\node[circle, draw=aqmmuted, fill=white, line width=\aqmthinwidth,
+      minimum size=7pt, inner sep=0pt] (wellL) at (axis cs:-1,-1) {};
+\node[circle, draw=aqmbroken, fill=aqmfillb, line width=\aqmlinewidth,
+      minimum size=8pt, inner sep=0pt] (wellR) at (axis cs:1,-1) {};
+
+\node[aqmlabsmall, anchor=north, align=center, text=aqmmuted]
+  at (axis cs:-1,-1.12) {equally good,\\[-2pt]not chosen};
+\node[aqmlabsmall, anchor=north, align=center, text=aqmbroken]
+  at (axis cs:1,-1.12) {realized\\[-2pt]ground state};
+
+% --- anchors for the spin insets --------------------------------------------
+\node (insetL) at (axis cs:-1,0.36) {};
+\node (insetR) at (axis cs:1,0.36) {};
+
+% --- barrier annotation ------------------------------------------------------
+\node (barTop) at (axis cs:2.10,0) {};
+\node (barBot) at (axis cs:2.10,-1) {};
+
+\end{axis}
+
+% --- Ising spin insets, drawn in canvas units off the axis-placed anchors -----
+% Left well: all spins down. Right well: all spins up.
+\foreach \i in {0,1,2,3,4} {
+  \draw[aqm, draw=aqmmuted, -{Stealth[length=3.4pt,width=2.8pt]}]
+    ([xshift=(\i-2)*2.6pt, yshift=3.2pt]insetL.center) --
+    ([xshift=(\i-2)*2.6pt, yshift=-3.2pt]insetL.center);
+  \draw[aqm, draw=aqmbroken, -{Stealth[length=3.4pt,width=2.8pt]}]
+    ([xshift=(\i-2)*2.6pt, yshift=-3.2pt]insetR.center) --
+    ([xshift=(\i-2)*2.6pt, yshift=3.2pt]insetR.center);
+}
+\node[aqmlabsmall, text=aqmmuted, anchor=north] at ([yshift=-4pt]insetL.center) {all down};
+\node[aqmlabsmall, text=aqmbroken, anchor=north] at ([yshift=-4pt]insetR.center) {all up};
+
+% --- barrier brace and its label ---------------------------------------------
+\draw[aqmbrace] (barTop.center) -- (barBot.center);
+\node[aqmlabsmall, anchor=west, align=left, text width=3.0cm]
+  at ([xshift=6pt]$(barTop.center)!0.5!(barBot.center)$)
+  {\textbf{barrier grows with~$N$}\\[2pt]
+   \textcolor{aqmmuted}{finite $N$: tunnels, stays symmetric}\\[2pt]
+   \textcolor{aqmmuted}{$N\to\infty$: commits}};
+
+\end{tikzpicture}
+
+\end{aqmfigure}

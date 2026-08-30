@@ -1,0 +1,87 @@
+% Session 2 -- symmetry eigenstates on a ring: the phase winds.
+% Placement: sec. "Worked exercises", at the three-site ring / eq. (2.4).
+\begin{aqmfigure}{fig:s02:ring}{Symmetry fixes the eigenstates before the Hamiltonian is ever
+written down. On a three-site ring the rotation $R$ can only have eigenvalues $e^{2\pi i n/3}$ by
+(2.4), and the state's coefficients must therefore advance by that same phase from site to site:
+the eigenstates are the discrete Fourier modes, whatever the hopping amplitudes happen to be. Each
+site's arrow is the complex coefficient $\alpha_j\propto e^{i\varphi_n j}$. Right: the allowed
+phases for $L=3$, $L=5$ and $L\to\infty$ -- in the limit they fill the circle, and that circle is
+the first Brillouin zone.}
+
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+\def\rr{0.72}   % triangle circumradius
+\def\ar{0.30}   % coefficient-arrow length
+
+% ============ three panels, one per symmetry eigenvalue phi_n ================
+% \px = panel x offset, \nn = mode index n, \phdeg = phi_n in degrees
+\foreach \px/\nn/\phdeg in {0/0/0, 3.15/1/120, 6.30/2/240} {
+  \begin{scope}[shift={(\px,0)}]
+
+    % the three sites of the ring, at 90, 210, 330 degrees
+    \foreach \j/\ang in {0/90, 1/210, 2/330} {
+      \coordinate (s\j) at (\ang:\rr);
+    }
+    \draw[aqmbond] (s0) -- (s1) -- (s2) -- (s0);
+    \foreach \j in {0,1,2} { \node[aqmsite, minimum size=6pt] at (s\j) {}; }
+
+    % site indices
+    \node[aqmlabmuted] at (90:{\rr+0.42})  {$0$};
+    \node[aqmlabmuted] at (210:{\rr+0.42}) {$1$};
+    \node[aqmlabmuted] at (330:{\rr+0.42}) {$2$};
+
+    % the coefficient alpha_j = e^{i phi_n j}, drawn as an arrow at angle phi_n * j
+    \foreach \j/\ang in {0/90, 1/210, 2/330} {
+      \draw[aqm, draw=aqmbroken, -{Stealth[length=4pt,width=3.2pt]}]
+        (\ang:\rr) -- ++({\phdeg*\j}:\ar);
+    }
+
+    % the rotation R
+    \draw[aqmarrowmuted, draw=aqmmuted]
+      (150:{\rr*0.46}) arc (150:30:{\rr*0.46});
+    \node[aqmlabmuted] at (0,-0.12) {$R$};
+
+    \node[aqmpanel, anchor=south] at (0,1.74) {$n=\nn$};
+    \node[aqmlabsmall, anchor=north] at (0,-1.34)
+      {$\varphi_{\nn}=\tfrac{2\pi\cdot\nn}{3}$};
+  \end{scope}
+}
+
+\node[aqmlabmuted, anchor=north] at (3.15,-2.28) {site index $j=0,1,2$};
+
+% explicit eigenvalues under each panel
+\node[aqmlabsmall, anchor=north, text=aqmaccent] at (0,-1.78)    {$e^{i\varphi_0}=1$};
+\node[aqmlabsmall, anchor=north, text=aqmaccent] at (3.15,-1.78) {$e^{i\varphi_1}$};
+\node[aqmlabsmall, anchor=north, text=aqmaccent] at (6.30,-1.78) {$e^{i\varphi_2}$};
+
+% ============ right panel: allowed phases as L grows ========================
+\begin{scope}[shift={(10.15,0)}]
+  \node[aqmpanel, anchor=south] at (0,1.74) {allowed phases $e^{i\varphi}$};
+
+  % L = 3
+  \begin{scope}[shift={(0,0.62)}]
+    \draw[aqmguide] (0,0) circle (0.42);
+    \foreach \k in {0,1,2} { \node[aqmsite, minimum size=3.6pt] at ({120*\k}:0.42) {}; }
+    \node[aqmlabsmall, anchor=west] at (0.62,0) {$L=3$};
+  \end{scope}
+
+  % L = 5
+  \begin{scope}[shift={(0,-0.50)}]
+    \draw[aqmguide] (0,0) circle (0.42);
+    \foreach \k in {0,...,4} { \node[aqmsite, minimum size=3.6pt] at ({72*\k}:0.42) {}; }
+    \node[aqmlabsmall, anchor=west] at (0.62,0) {$L=5$};
+  \end{scope}
+
+  % L -> infinity: the circle fills in
+  \begin{scope}[shift={(0,-1.62)}]
+    \draw[aqm, draw=aqmbroken, line width=1.6pt] (0,0) circle (0.42);
+    \node[aqmlabsmall, anchor=west, align=left, text=aqmbroken] at (0.62,0)
+      {$L\to\infty$};
+  \end{scope}
+  \node[aqmlabsmall, anchor=north, align=center, text width=2.9cm] at (0.25,-2.24)
+    {the first Brillouin zone, $\varphi\in(-\pi,\pi]$};
+\end{scope}
+
+\end{tikzpicture}
+
+\end{aqmfigure}

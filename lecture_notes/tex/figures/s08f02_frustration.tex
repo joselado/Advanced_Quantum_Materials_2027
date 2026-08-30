@@ -1,0 +1,150 @@
+% Session 8 -- geometric frustration: why triangles, and why kagome.
+% Placement: sec. "Frustration: the route to a quantum spin liquid", after the
+% triangular-plaquette paragraph.
+%
+% NOTE (physics): the spins are drawn as Ising (collinear) configurations, exactly as
+% the text's argument is phrased. For the Ising antiferromagnet on a triangle the ground
+% manifold is 6-fold degenerate (three inequivalent placements of the unsatisfied bond,
+% times a global flip); panel (c) shows the three inequivalent ones. The macroscopic
+% degeneracy comes from tiling these triangles corner-to-corner, panel (d).
+\begin{aqmfigure}{fig:s08:frustration}{Frustration, with the spins drawn as Ising (collinear)
+variables throughout, which is how the argument in the text is phrased; allowing them to rotate
+freely instead resolves the triangle into the $120^\circ$ noncollinear state of
+figure~\ref{fig:s06:frustration}, and the degeneracy discussed here is the Ising one.
+(a) On a bipartite plaquette every
+antiferromagnetic bond can be satisfied at once ($\checkmark$), and the ground state is the
+N\'eel state: two configurations, related by a global flip, each breaking time-reversal symmetry.
+(b) On a triangle it cannot be done: once two spins are antiparallel the third bond is stuck
+($\times$), whichever way the last spin points. (c) The frustrated bond can sit on any of the three
+edges, so the classical ground state is degenerate rather than unique; quantum fluctuations mix the
+degenerate configurations into a single superposition with $\langle\mathbf S_i\rangle=\mathbf 0$,
+which does \emph{not} break time-reversal symmetry. (d) The kagome lattice of herbertsmithite is
+built entirely from corner-sharing triangles, so every one of them is frustrated at once and the
+classical degeneracy becomes macroscopic: this is why triangular and kagome lattices are the
+hunting ground for quantum spin liquids.}
+
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+\tikzset{
+  sup/.pic={\draw[aqm, -{Stealth[length=3.8pt,width=3.2pt]}] (0,-0.20) -- (0,0.20);},
+  sdn/.pic={\draw[aqm, -{Stealth[length=3.8pt,width=3.2pt]}] (0,0.20) -- (0,-0.20);},
+  okbond/.style={aqmbond},
+  badbond/.style={aqm, draw=aqmbroken, dash pattern=on 2.6pt off 2pt},
+  fsite/.style={aqmsite, minimum size=4.4pt},
+  vmark/.style={aqmlabsmall, text=aqmmuted, fill=white, inner sep=0.8pt},
+  xmark/.style={aqmlabsmall, text=aqmbroken, fill=white, inner sep=0.8pt},
+  ktri/.style={aqm, draw=none, fill=aqmfill},
+  kbond/.style={aqm, draw=black, line width=\aqmthinwidth},
+  ksite/.style={aqmsite, minimum size=3.4pt}
+}
+
+% ===================== (a) bipartite plaquette: no frustration ===============
+\begin{scope}[shift={(0,0)}]
+  \node[aqmpanel, anchor=south west] at (-0.42,1.92) {(a) bipartite};
+  \draw[okbond] (0,0) -- (1.15,0) -- (1.15,1.15) -- (0,1.15) -- cycle;
+  \foreach \p in {(0,0),(1.15,0),(0,1.15),(1.15,1.15)} { \node[fsite] at \p {}; }
+  \pic at (0,-0.34) {sup};      \pic at (1.15,-0.34) {sdn};
+  \pic at (0,1.49) {sdn};       \pic at (1.15,1.49) {sup};
+  \foreach \p in {(0.575,0),(0.575,1.15),(0,0.575),(1.15,0.575)} {
+    \node[vmark] at \p {$\checkmark$};
+  }
+  \node[aqmlabsmall, anchor=north, align=center, text=aqmmuted] at (0.575,-0.80)
+    {all four bonds satisfied\\[-1pt]N\'eel order};
+\end{scope}
+
+% ===================== (b) triangle: frustration =============================
+\begin{scope}[shift={(3.15,0)}]
+  \node[aqmpanel, anchor=south west] at (-0.34,1.92) {(b) frustrated};
+  \draw[okbond] (0,0) -- (1.30,0);
+  \draw[okbond] (1.30,0) -- (0.65,1.13);
+  \draw[badbond] (0.65,1.13) -- (0,0);
+  \foreach \p in {(0,0),(1.30,0),(0.65,1.13)} { \node[fsite] at \p {}; }
+  \pic at (0,-0.34) {sup};  \pic at (1.30,-0.34) {sdn};
+  \pic[draw=aqmbroken] at (0.65,1.47) {sup};
+  \node[vmark] at (0.65,0) {$\checkmark$};
+  \node[vmark] at (0.975,0.565) {$\checkmark$};
+  \node[xmark] at (0.325,0.565) {$\times$};
+  \node[aqmlabsmall, anchor=north, align=center, text=aqmbroken] at (0.65,-0.80)
+    {one bond can never\\[-1pt]be satisfied};
+\end{scope}
+
+% ===================== (d) kagome patch ======================================
+% Rows: y=0 and y=2u carry a full line of sites (spacing u); y=u and y=3u carry
+% every second site, offset by one u between successive half-rows.
+\begin{scope}[shift={(7.35,0)}, x=0.60cm, y=0.60cm]
+  \def\hy{0.866}
+  % shaded triangles
+  \foreach \a in {0,2,4} {
+    \fill[ktri] (\a,0) -- (\a+1,0) -- (\a+0.5,\hy) -- cycle;                       % up, base y=0
+    \fill[ktri] (\a,2*\hy) -- (\a+1,2*\hy) -- (\a+0.5,\hy) -- cycle;               % down, base y=2h
+  }
+  \foreach \a in {1,3} {
+    \fill[ktri] (\a,2*\hy) -- (\a+1,2*\hy) -- (\a+0.5,3*\hy) -- cycle;             % up, base y=2h
+  }
+  % bonds
+  \draw[kbond] (0,0) -- (5,0);
+  \draw[kbond] (0,2*\hy) -- (5,2*\hy);
+  \foreach \a in {0,2,4} {
+    \draw[kbond] (\a,0) -- (\a+0.5,\hy) -- (\a+1,0);
+    \draw[kbond] (\a,2*\hy) -- (\a+0.5,\hy) -- (\a+1,2*\hy);
+  }
+  \foreach \a in {1,3} {
+    \draw[kbond] (\a,2*\hy) -- (\a+0.5,3*\hy) -- (\a+1,2*\hy);
+  }
+  % sites
+  \foreach \a in {0,...,5} {
+    \node[ksite] at (\a,0) {};
+    \node[ksite] at (\a,2*\hy) {};
+  }
+  \foreach \a in {0.5,2.5,4.5} { \node[ksite] at (\a,\hy) {}; }
+  \foreach \a in {1.5,3.5} { \node[ksite] at (\a,3*\hy) {}; }
+  \node[aqmpanel, anchor=south west] at (-0.15,3.20) {(d) kagome};
+  \node[aqmlabsmall, anchor=north, align=center, text=aqmmuted] at (2.5,-1.33)
+    {corner-sharing triangles:\\[-1pt]
+     \emph{every} triangle is frustrated\\[-1pt]
+     (herbertsmithite, spin-$1/2$ sites)};
+\end{scope}
+
+% ===================== (c) the degenerate manifold ===========================
+\begin{scope}[shift={(0,-4.30)}]
+  \node[aqmpanel, anchor=south west] at (-0.42,1.72)
+    {(c) classically degenerate, quantum mechanically superposed};
+
+  % the three inequivalent Ising ground states of the triangle (up to a global flip):
+  % the unsatisfied bond sits on the left edge, the right edge, or the base.
+  \begin{scope}[shift={(0,0)}]
+    \draw[okbond] (0,0) -- (1.05,0);
+    \draw[okbond] (1.05,0) -- (0.525,0.91);
+    \draw[badbond] (0.525,0.91) -- (0,0);
+    \foreach \p in {(0,0),(1.05,0),(0.525,0.91)} { \node[fsite] at \p {}; }
+    \pic at (0,-0.32) {sup};  \pic at (1.05,-0.32) {sdn};  \pic at (0.525,1.23) {sup};
+  \end{scope}
+  \begin{scope}[shift={(2.20,0)}]
+    \draw[okbond] (0,0) -- (1.05,0);
+    \draw[badbond] (1.05,0) -- (0.525,0.91);
+    \draw[okbond] (0.525,0.91) -- (0,0);
+    \foreach \p in {(0,0),(1.05,0),(0.525,0.91)} { \node[fsite] at \p {}; }
+    \pic at (0,-0.32) {sdn};  \pic at (1.05,-0.32) {sup};  \pic at (0.525,1.23) {sup};
+  \end{scope}
+  \begin{scope}[shift={(4.40,0)}]
+    \draw[badbond] (0,0) -- (1.05,0);
+    \draw[okbond] (1.05,0) -- (0.525,0.91);
+    \draw[okbond] (0.525,0.91) -- (0,0);
+    \foreach \p in {(0,0),(1.05,0),(0.525,0.91)} { \node[fsite] at \p {}; }
+    \pic at (0,-0.32) {sup};  \pic at (1.05,-0.32) {sup};  \pic at (0.525,1.23) {sdn};
+  \end{scope}
+  \node[aqmlab] at (1.62,0.45) {$+$};
+  \node[aqmlab] at (3.82,0.45) {$+$};
+  \node[aqmlab, anchor=west] at (5.60,0.45) {$+\;\cdots$};
+
+  \draw[aqmarrowaccent] (6.55,0.45) -- (7.45,0.45);
+  \node[aqmboxaccent, anchor=west, align=center] at (7.60,0.45)
+    {a single superposition:\\[2pt]
+     $\langle\mathbf S_i\rangle=\mathbf 0$, time-reversal symmetric};
+  \node[aqmlabsmall, anchor=north, align=center, text=aqmmuted] at (2.75,-0.78)
+    {same energy, different configurations};
+\end{scope}
+
+\end{tikzpicture}
+
+\end{aqmfigure}

@@ -1,0 +1,115 @@
+% Session 3 -- the bulk-boundary correspondence: an integer that has to jump
+% forces the gap to close.
+% Placement: sec. "What topology means for a Hamiltonian", after the
+% interpolating-Hamiltonian paragraph.
+%
+% LAYOUT NOTE: three stacked axes sharing the same x range; every annotation is
+% placed in "axis cs:" coordinates inside its own axis. The one exception is the
+% shared x-axis caption at the very end, which is a standalone node placed in
+% canvas units below the (explicitly positioned) bottom axis box.
+\begin{aqmfigure}{fig:s03:bulkboundary}{The bulk-boundary correspondence, as an argument about an
+integer. A Hamiltonian is interpolated slowly in space from $H_1$ on the left to $H_2$ on the right.
+Top: the Chern number is an integer, so it cannot slide from $C_1=1$ to $C_2=0$; it can only jump.
+Middle: a jump is only allowed where the quantization argument itself fails, that is, where the gap
+closes, so the local gap is forced down to zero somewhere in the interface region (drawn
+schematically, in the local-gap approximation). Bottom: what lives there is a gapless state bound to
+the interface. Nothing in this argument used any detail of how the interface is built, which is why
+the edge state survives roughened boundaries and impurities: only $C_1$ and $C_2$ enter. Taking
+$H_2$ to be the vacuum, $C_2=0$, this recovers the chiral edge state of
+figure~\ref{fig:s03:chiraledge} from a completely general argument.}
+
+\begin{tikzpicture}
+
+% =====================================================================
+% top strip: the invariant
+% =====================================================================
+\begin{axis}[
+  aqmplot, scale only axis, width=9.4cm, height=1.15cm,
+  at={(0cm,0cm)}, anchor=north west,
+  axis lines=left,
+  axis line style={aqm, black},
+  xmin=-3, xmax=3, ymin=-0.55, ymax=1.75,
+  xtick=\empty, ytick={0,1},
+  ylabel={$C$},
+  ylabel style={at={(axis description cs:-0.062,0.5)}, anchor=east,
+                font=\footnotesize},
+  clip=false,
+]
+\fill[aqmfill] (axis cs:-3,-0.55) rectangle (axis cs:-0.42,1.75);
+\draw[aqm, draw=aqmmuted, line width=\aqmthinwidth, dashed]
+  (axis cs:-0.42,-0.55) -- (axis cs:-0.42,1.75);
+\draw[aqm, draw=aqmmuted, line width=\aqmthinwidth, dashed]
+  (axis cs:0.42,-0.55) -- (axis cs:0.42,1.75);
+\draw[aqm, draw=black, line width=1.4pt] (axis cs:-3,1) -- (axis cs:-0.42,1);
+\draw[aqm, draw=black, line width=1.4pt] (axis cs:0.42,0) -- (axis cs:3,0);
+\draw[aqm, draw=aqmbroken, line width=1.2pt, dash pattern=on 2.5pt off 2pt]
+  (axis cs:-0.42,1) -- (axis cs:0.42,0);
+\node[aqmlabsmall, anchor=south] at (axis cs:-1.7,1.06) {$H_1$: $C_1=1$};
+\node[aqmlabsmall, anchor=south] at (axis cs:1.7,0.08) {$H_2$: $C_2=0$ (vacuum)};
+\node[aqmlabsmall, anchor=south, text=aqmbroken, align=center] at (axis cs:0,1.82)
+  {an integer cannot change continuously: it can only jump};
+\end{axis}
+
+% =====================================================================
+% middle: the local gap
+% =====================================================================
+\begin{axis}[
+  aqmplot, scale only axis, width=9.4cm, height=2.9cm,
+  at={(0cm,-2.15cm)}, anchor=north west,
+  axis lines=left,
+  axis line style={aqm, black},
+  xmin=-3, xmax=3, ymin=-2.0, ymax=2.0,
+  xtick=\empty, ytick={0},
+  ylabel={$E$},
+  ylabel style={at={(axis description cs:-0.062,0.5)}, anchor=east,
+                font=\footnotesize},
+  clip=false,
+]
+\fill[aqmfill] (axis cs:-3,-2.0) rectangle (axis cs:-0.42,2.0);
+\draw[aqm, draw=aqmmuted, line width=\aqmthinwidth, dashed]
+  (axis cs:-0.42,-2.0) -- (axis cs:-0.42,2.0);
+\draw[aqm, draw=aqmmuted, line width=\aqmthinwidth, dashed]
+  (axis cs:0.42,-2.0) -- (axis cs:0.42,2.0);
+\draw[aqmguide] (axis cs:-3,0) -- (axis cs:3,0);
+\addplot[aqmcurve, domain=-3:3, samples=200]  {1.4*abs(x)/sqrt(0.16+x*x)};
+\addplot[aqmcurve, domain=-3:3, samples=200] {-1.4*abs(x)/sqrt(0.16+x*x)};
+\node[aqmlabsmall, anchor=south west] at (axis cs:-2.92,1.48) {empty bands};
+\node[aqmlabsmall, anchor=north west] at (axis cs:-2.92,-1.48) {filled bands};
+\node[aqmlabsmall, anchor=south west, text=aqmbroken, align=left]
+  at (axis cs:0.95,0.02) {the local gap is\\[-1pt]forced to close};
+\draw[aqm, draw=aqmbroken, line width=\aqmthinwidth,
+      -{Stealth[length=4pt,width=3pt]}] (axis cs:0.90,0.24) -- (axis cs:0.16,0.10);
+\end{axis}
+
+% =====================================================================
+% bottom: the interface state
+% =====================================================================
+\begin{axis}[
+  aqmplot, scale only axis, width=9.4cm, height=1.55cm,
+  at={(0cm,-5.75cm)}, anchor=north west,
+  axis lines=left,
+  axis line style={aqm, black},
+  xmin=-3, xmax=3, ymin=-0.06, ymax=1.30,
+  xtick=\empty, ytick=\empty,
+  ylabel={$|\psi|^2$},
+  ylabel style={at={(axis description cs:-0.062,0.5)}, anchor=east,
+                font=\footnotesize},
+  clip=false,
+]
+\fill[aqmfill] (axis cs:-3,-0.06) rectangle (axis cs:-0.42,1.30);
+\draw[aqm, draw=aqmmuted, line width=\aqmthinwidth, dashed]
+  (axis cs:-0.42,-0.06) -- (axis cs:-0.42,1.30);
+\draw[aqm, draw=aqmmuted, line width=\aqmthinwidth, dashed]
+  (axis cs:0.42,-0.06) -- (axis cs:0.42,1.30);
+\addplot[aqmcurvebroken, domain=-3:3, samples=160] {exp(-3.2*x*x)};
+\node[aqmlabsmall, anchor=west, text=aqmbroken, align=left] at (axis cs:0.72,0.80)
+  {a gapless state, bound to the interface};
+\end{axis}
+
+% shared x-axis caption, placed below the bottom axis box (0..9.4cm wide,
+% -5.75..-7.30cm tall) in canvas units
+\node[aqmlabsmall, anchor=north] at (4.7cm,-7.44cm) {position across the interface};
+
+\end{tikzpicture}
+
+\end{aqmfigure}

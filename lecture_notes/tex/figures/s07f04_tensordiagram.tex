@@ -1,0 +1,127 @@
+% Session 7 -- tensor diagram notation, the MPS, and the MPO/truncation step.
+% Placement: sec. "Tensor diagrams: notation for networks and operators", after the
+% MPO paragraph.
+%
+% LAYOUT NOTE: pure TikZ. The two one-off node shapes (tensor, operator tensor) are
+% declared with \tikzset inside this picture only, so figures_preamble.tex is untouched.
+\begin{aqmfigure}{fig:s07:tensors}{The graphical notation, and what the MPS ansatz looks like in it.
+(a) A tensor is a dot and each of its indices is a leg, so a scalar is a bare point, a vector has one
+leg, a matrix two, and so on; joining two legs means summing over that shared index. (b) The exact
+coefficient tensor of (7.4) is a single object with one leg per site, and it hides $2^L$ independent
+numbers. The matrix product state (7.5) replaces it by a chain of small tensors, each carrying one
+physical leg pointing down and virtual legs of dimension $M$ linking it to its neighbours, for
+$\sim 2LM^2$ numbers in total: the exponential wall is traded for a chain that grows linearly. (c) An
+operator, the Hamiltonian above all, becomes a matrix product operator with two physical legs per
+site. Applying it to a state means gluing the diagrams along the shared physical legs and contracting
+them away, which multiplies the two bond dimensions together; a singular value decomposition keeping
+only the largest singular values then truncates the result back to a workable $M$. That truncation is
+the engine inside every MPS algorithm, DMRG included.}
+
+\begin{tikzpicture}[x=1cm, y=1cm]
+\tikzset{
+  tens/.style={aqm, circle, draw=black, fill=aqmfill, minimum size=6.5pt, inner sep=0pt},
+  tensop/.style={aqm, rectangle, draw=black, fill=white, minimum size=6.5pt, inner sep=0pt},
+  leg/.style={aqm, draw=black, line width=\aqmthinwidth}
+}
+
+% ============================ (a) notation ==================================
+\node[aqmpanel, anchor=west] at (-0.45,0.62) {(a) a leg per index; a joined leg is a summed index};
+
+\node[tens] (sc) at (0.10,0) {};
+
+\node[tens] (vc) at (1.30,0) {};
+\draw[leg] (vc) -- (1.30,-0.36);
+
+\node[tens] (mx) at (2.60,0) {};
+\draw[leg] (2.28,0) -- (2.92,0);
+
+\node[tens] (rk3) at (4.00,0) {};
+\draw[leg] (3.68,0) -- (4.32,0);
+\draw[leg] (rk3) -- (4.00,-0.36);
+
+\foreach \x/\lab in {0.10/scalar, 1.30/vector, 2.60/matrix, 4.00/{rank $3$}} {
+  \node[aqmlabmuted, anchor=north] at (\x,-0.52) {\lab};
+}
+
+\node[tens] (ca) at (6.10,0) {};
+\node[tens] (cb) at (6.90,0) {};
+\draw[leg] (ca) -- (cb);
+\draw[leg] (5.78,0) -- (ca);
+\draw[leg] (cb) -- (7.22,0);
+\node[aqmlabsmall, anchor=south] at (6.50,0.06) {$j$};
+\node[aqmlabsmall, anchor=east] at (5.76,0) {$i$};
+\node[aqmlabsmall, anchor=west] at (7.24,0) {$k$};
+\node[aqmlabsmall, anchor=west] at (7.55,0) {$=\;\sum_j A_{ij}B_{jk}$};
+\node[aqmlabmuted, anchor=north] at (6.50,-0.52) {contraction};
+
+% ============================ (b) the MPS ===================================
+\node[aqmpanel, anchor=west] at (-0.45,-1.28) {(b) one huge tensor, or a chain of small ones};
+
+% the exact coefficient tensor
+\node[aqm, draw=aqmbroken, fill=aqmfillb, rounded corners=2pt, minimum width=2.5cm,
+      minimum height=0.42cm, inner sep=0pt] (Cbig) at (1.25,-2.05) {$C$};
+\foreach \i/\n in {0/1, 1/2, 2/3, 3/4, 4/5} {
+  \draw[leg] (0.25+0.50*\i,-2.26) -- (0.25+0.50*\i,-2.70);
+  \node[aqmlabsmall, anchor=north] at (0.25+0.50*\i,-2.70) {$s_{\n}$};
+}
+\node[aqmlabsmall, anchor=north, align=center, text=aqmbroken] at (1.25,-3.10)
+  {$2^L$ numbers};
+
+\node[aqmlab] at (3.45,-2.05) {$\approx$};
+
+% the matrix product state
+\foreach \i/\n in {0/1, 1/2, 2/3, 3/4, 4/5} {
+  \node[tens] (m\i) at (4.55+0.62*\i,-2.05) {};
+  \draw[leg] (4.55+0.62*\i,-2.13) -- (4.55+0.62*\i,-2.70);
+  \node[aqmlabsmall, anchor=north] at (4.55+0.62*\i,-2.70) {$s_{\n}$};
+}
+\foreach \i/\j in {0/1, 1/2, 2/3, 3/4} { \draw[leg] (m\i) -- (m\j); }
+\node[aqmlabsmall, anchor=south, text=aqmmuted] at (5.79,-1.90)
+  {virtual bonds, dimension $M$};
+\node[aqmlabsmall, anchor=north, align=center, text=aqmaccent] at (5.79,-3.10)
+  {$L$ tensors, $\sim 2LM^{2}$ numbers};
+
+% ============================ (c) MPO and truncation ========================
+\node[aqmpanel, anchor=west] at (-0.45,-3.75) {(c) applying an operator, and truncating afterwards};
+
+% --- the sandwich ---
+\node[aqmlabsmall, anchor=east] at (1.22,-4.35) {$|\Psi\rangle$, bond $M$};
+\node[aqmlabsmall, anchor=east] at (1.22,-5.05) {$H$, bond $M'$};
+\foreach \i in {0,1,2,3} {
+  \node[tens]   (p\i) at (1.45+0.60*\i,-4.35) {};
+  \node[tensop] (o\i) at (1.45+0.60*\i,-5.05) {};
+  \draw[leg] (p\i) -- (o\i);
+  \draw[leg] (o\i) -- (1.45+0.60*\i,-5.48);
+}
+\foreach \i/\j in {0/1, 1/2, 2/3} {
+  \draw[leg] (p\i) -- (p\j);
+  \draw[leg] (o\i) -- (o\j);
+}
+\draw[aqmarrowaccent] (3.62,-4.75) -- (4.48,-4.75);
+\node[aqmlabsmall, anchor=south, align=center] at (4.05,-4.66) {contract};
+
+% --- the result, with multiplied bond dimension ---
+\foreach \i in {0,1,2,3} {
+  \node[tens] (q\i) at (4.80+0.60*\i,-4.75) {};
+  \draw[leg] (q\i) -- (4.80+0.60*\i,-5.20);
+}
+\foreach \i/\j in {0/1, 1/2, 2/3} { \draw[leg] (q\i) -- (q\j); }
+\node[aqmlabsmall, anchor=north, align=center, text=aqmbroken] at (5.70,-5.32)
+  {bond dimension $M\!\cdot\!M'$};
+
+\draw[aqmarrowaccent] (6.70,-4.75) -- (7.66,-4.75);
+\node[aqmlabsmall, anchor=south, align=center] at (7.18,-4.66) {SVD};
+\node[aqmlabsmall, anchor=north, align=center, text=aqmmuted] at (7.18,-5.02) {truncate};
+
+% --- back down to M ---
+\foreach \i in {0,1,2,3} {
+  \node[tens] (r\i) at (7.98+0.60*\i,-4.75) {};
+  \draw[leg] (r\i) -- (7.98+0.60*\i,-5.20);
+}
+\foreach \i/\j in {0/1, 1/2, 2/3} { \draw[leg] (r\i) -- (r\j); }
+\node[aqmlabsmall, anchor=north, align=center, text=aqmaccent] at (8.88,-5.32)
+  {back to $M$};
+
+\end{tikzpicture}
+
+\end{aqmfigure}

@@ -1,0 +1,86 @@
+% Session 1 -- the exponential wall: one matrix versus a Fock space.
+% Placement: sec. "Where the two formalisms diverge", after the three-site paragraph.
+\begin{aqmfigure}{fig:s01:fockspace}{The exponential wall, for three sites. A single-particle
+tight-binding problem is an $L\times L$ matrix (left). The interacting problem needs the full Fock
+space (right): every site independently empty or occupied, $2^L$ states in all, organised here by
+particle number. For $L=3$ this is a modest $8$; by $L\approx20$ it is already about a million,
+which is where brute-force diagonalization stops.}
+
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+% =========================== left panel: the L x L matrix ===================
+\begin{scope}[shift={(0,0.45)}]
+  \node[aqmpanel, anchor=south] at (0.55,0.92) {first quantization};
+
+  \foreach \i in {0,1,2} {
+    \foreach \j in {0,1,2} {
+      \node[aqm, draw=black, minimum width=0.55cm, minimum height=0.55cm,
+            inner sep=0pt, fill=white, font=\footnotesize]
+        at (0.55*\j, -0.55*\i) {};
+    }
+  }
+  % diagonal shaded, off-diagonal carries the hoppings
+  \foreach \k in {0,1,2} {
+    \node[aqm, draw=black, minimum width=0.55cm, minimum height=0.55cm,
+          inner sep=0pt, fill=aqmfill] at (0.55*\k, -0.55*\k) {};
+  }
+  \node[aqmlabsmall] at (0.55,0) {$t_{ij}$};
+  \node[aqmlabsmall] at (0,-0.55) {$t_{ji}$};
+
+  \node[aqmlabsmall, anchor=north, align=center] at (0.55,-1.55)
+    {$L\times L=9$ entries\\[-1pt]\textcolor{aqmmuted}{grows as $L^2$}};
+\end{scope}
+
+% =========================== right panel: the Fock space ====================
+\begin{scope}[shift={(3.35,0)}]
+  \node[aqmpanel, anchor=south] at (4.15,1.37) {second quantization: the full Fock space};
+
+  % column headers
+  \foreach \x/\N in {0/0, 2.9/1, 5.9/2, 8.3/3} {
+    \node[aqmlabsmall, anchor=south, text=aqmmuted] at (\x,0.92) {$N=\N$};
+  }
+
+  % Each state: three circles, filled = occupied, open = empty.
+  % \sa/\sb/\sc select the style per site; \xx/\yy position the state.
+  \foreach \sa/\sb/\sc/\xx/\yy in {%
+    aqmsiteopen/aqmsiteopen/aqmsiteopen/0/0.10,
+    aqmsite/aqmsiteopen/aqmsiteopen/2.9/0.55,
+    aqmsiteopen/aqmsite/aqmsiteopen/2.9/0.10,
+    aqmsiteopen/aqmsiteopen/aqmsite/2.9/-0.35,
+    aqmsite/aqmsite/aqmsiteopen/5.9/0.55,
+    aqmsite/aqmsiteopen/aqmsite/5.9/0.10,
+    aqmsiteopen/aqmsite/aqmsite/5.9/-0.35,
+    aqmsite/aqmsite/aqmsite/8.3/0.10}
+  {
+    \node[\sa] at (\xx-0.26,\yy) {};
+    \node[\sb] at (\xx,\yy) {};
+    \node[\sc] at (\xx+0.26,\yy) {};
+  }
+
+  % operator strings: the N=1 column and the filled state only (labelling all
+  % eight is unreadable at \footnotesize in this width)
+  \node[aqmlabsmall, anchor=west] at (3.42,0.55) {$c_1^\dagger|0\rangle$};
+  \node[aqmlabsmall, anchor=west] at (3.42,0.10) {$c_2^\dagger|0\rangle$};
+  \node[aqmlabsmall, anchor=west] at (3.42,-0.35) {$c_3^\dagger|0\rangle$};
+  \node[aqmlabsmall, anchor=north] at (0,-0.10) {$|0\rangle$};
+  \node[aqmlabsmall, anchor=north] at (8.3,-0.10) {$c_1^\dagger c_2^\dagger c_3^\dagger|0\rangle$};
+
+  % binomial counts
+  \foreach \x/\c in {0/1, 2.9/3, 5.9/3, 8.3/1} {
+    \node[aqmlabsmall, anchor=north, text=aqmaccent] at (\x,-0.72) {$\c$};
+  }
+  \draw[aqmguide, -] (-0.55,-1.10) -- (8.9,-1.10);
+  \node[aqmlabsmall, anchor=north, align=center] at (4.15,-1.16)
+    {$1+3+3+1=2^L=8$ many-body states\\[-1pt]
+     \textcolor{aqmbroken}{grows as $2^L$}};
+\end{scope}
+
+% legend
+\node[aqmsite] (lgA) at (0.30,-2.35) {};
+\node[aqmlabmuted, anchor=west] at (0.45,-2.35) {occupied};
+\node[aqmsiteopen] (lgB) at (2.20,-2.35) {};
+\node[aqmlabmuted, anchor=west] at (2.35,-2.35) {empty};
+
+\end{tikzpicture}
+
+\end{aqmfigure}

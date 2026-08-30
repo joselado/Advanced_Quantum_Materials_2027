@@ -1,0 +1,23 @@
+# Numerical output written by running the notebooks
+*.OUT
+*.pkl
+.mpsfolder
+
+# Jupyter
+.ipynb_checkpoints
+
+# Live/contact session working copies (local only)
+live_sessions/*
+contact_session
+
+# LaTeX build artifacts
+lecture_notes/tex/*.aux
+lecture_notes/tex/*.log
+lecture_notes/tex/*.out
+lecture_notes/tex/*.toc
+lecture_notes/tex/*.fdb_latexmk
+lecture_notes/tex/*.fls
+lecture_notes/tex/*.synctex.gz
+
+# OS cruft
+.DS_Store

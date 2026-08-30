@@ -1,0 +1,71 @@
+% Session 7 -- what an MPS of bond dimension M can and cannot represent.
+% Placement: sec. "Why MPS work in 1D, and where they stop working", after (7.10).
+%
+% LAYOUT NOTE: the only pgfplots figure of this set. Everything, annotations
+% included, is positioned in (axis cs:...) so nothing can drift off the curves.
+\begin{aqmfigure}{fig:s07:ceiling}{The bond dimension is a ceiling on entanglement, and that is the
+whole story of when matrix product states work. An MPS with bond dimension $M$ admits at most $M$
+Schmidt terms across any bond, so by (7.10) it can carry at most $S=\log M$ there: the two horizontal
+lines. A gapped one-dimensional ground state obeys the area law of Section 7.6, its entropy
+saturating at a value set by the correlation length and not by the subsystem size, so it slips under
+a fixed, modest ceiling and stays there for any chain length. A critical chain violates the area law
+logarithmically, (7.12), so it eventually pierces any fixed ceiling and $M$ must be raised as the
+system grows, slowly but without bound. A generic state of the $2^L$-dimensional Hilbert space obeys
+a volume law, $S=\ell\log 2$, and exhausts any usable $M$ after a handful of sites, which is why long
+time evolution, highly excited states, and two-dimensional systems are all out of reach. Drawn in
+bits, $S/\log 2$, with central charge $c=1$; the curves are schematic, not fits to a particular
+model.}
+
+\begin{tikzpicture}
+\begin{axis}[
+  aqmplot,
+  width=12.4cm, height=7.0cm,
+  axis lines=left,
+  axis line style={aqm, black},
+  xlabel={subsystem size $\ell$ (sites)},
+  ylabel={$S/\log 2$},
+  xlabel style={at={(axis description cs:0.5,-0.11)}, anchor=north},
+  ylabel style={at={(axis description cs:-0.075,0.5)}, anchor=south, rotate=90},
+  xmin=0, xmax=74, ymin=0, ymax=6.5,
+  xtick={0,16,32,48,64}, ytick={0,2,4,6},
+  enlargelimits=false,
+]
+
+% --- the two MPS ceilings, S = log M ----------------------------------------
+\addplot[aqmguide, forget plot, domain=0:74, samples=2] {2};
+\addplot[aqmguide, forget plot, domain=0:74, samples=2] {4};
+\node[aqmlabsmall, anchor=south west, text=aqmmuted] at (axis cs:6.5,2.04)
+  {$\log M$ for $M=4$};
+\node[aqmlabsmall, anchor=south west, text=aqmmuted] at (axis cs:6.5,4.04)
+  {MPS ceiling $S=\log M$, $\;M=16$};
+
+% --- volume law: a generic state --------------------------------------------
+\addplot[aqmcurvebroken, dash pattern=on 4pt off 2pt, domain=0:6.4, samples=2] {x};
+\node[aqmlabsmall, anchor=west, align=left, text=aqmbroken] at (axis cs:7.6,5.62)
+  {generic (volume-law) state: $S=\ell\log 2$\\[-1pt]
+   no practical $M$ survives past a few sites};
+
+% --- critical 1D chain: (c/3) log l ------------------------------------------
+\addplot[black, smooth, dash pattern=on 2.5pt off 2pt, domain=1:74, samples=120]
+  {0.4809*ln(x)+0.35};
+\node[aqmlabsmall, anchor=north east, align=right] at (axis cs:73,1.92)
+  {critical 1D chain, $S=\frac{c}{3}\log\ell$ (7.12):\\[-1pt]
+   grows without bound, so $M$ must grow too};
+
+% --- gapped 1D ground state: saturates ---------------------------------------
+\addplot[aqmcurve, domain=0:74, samples=140] {0.90*(1-exp(-x/3.2))};
+\node[aqmlabsmall, anchor=north west, align=left, text=aqmaccent] at (axis cs:26,0.71)
+  {gapped 1D ground state: $S$ saturates};
+
+% --- where the small ceiling is exhausted ------------------------------------
+\node[circle, draw=black, fill=white, line width=\aqmthinwidth, minimum size=5pt,
+      inner sep=0pt] (xcross) at (axis cs:30.9,2) {};
+\draw[aqmguide, draw=aqmmuted] (axis cs:30.9,2.78) -- (xcross);
+\node[aqmlabsmall, anchor=north west, align=left] at (axis cs:19,3.52)
+  {$M=4$ is exhausted here; a larger $M$ lifts the\\[-1pt]
+   ceiling, but it never flattens the curve};
+
+\end{axis}
+\end{tikzpicture}
+
+\end{aqmfigure}

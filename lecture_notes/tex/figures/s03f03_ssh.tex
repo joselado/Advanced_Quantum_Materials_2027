@@ -1,0 +1,126 @@
+% Session 3 -- the SSH chain: the same bulk, two dimerizations, two spectra.
+% Placement: sec. "The SSH model", after the dangling-site paragraph.
+%
+% LAYOUT NOTE: pure tikzpicture, no pgfplots axis, so all coordinates are bare
+% canvas coordinates and there is nothing to mis-align.
+\begin{aqmfigure}{fig:s03:ssh}{The Su-Schrieffer-Heeger chain, drawn with the same eight sites and
+the same unit-cell convention in both rows, so that the only difference is which of the two bonds is
+the strong one. (a) When the intracell hopping dominates, $t\gg1$, every site is paired into a dimer
+and the spectrum is two levels at $\pm t$ with a clean gap around zero: the trivial phase. (b) When
+the intercell hopping dominates, $t\to0$, the dimer pattern is shifted by one site, the first and last
+sites are left uncoupled, and the same bulk spectrum now carries two extra states pinned at $E=0$,
+one localized at each end: the topological phase. Nothing in the bulk distinguishes the two chains;
+the difference lives entirely at the ends, which is exactly what a bulk invariant has to predict. At
+small but finite $t$ the two end states hybridize through the chain and split away from zero only
+exponentially in the chain length.}
+
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+\def\dx{0.82}          % site spacing
+\def\ladx{9.55}        % x of the level-ladder axis
+\def\lada{9.75}        % level segment start
+\def\ladb{10.60}       % level segment end
+
+% =====================================================================
+% (a) trivial chain: strong INTRACELL bonds
+% =====================================================================
+\begin{scope}[yshift=2.55cm]
+
+\node[aqmpanel, anchor=west] at (-0.55,1.62) {(a) intracell hopping dominates, $t\gg1$};
+\node[aqmlabsmall, anchor=west, text=aqmmuted] at (-0.55,1.20) {trivial: every site is paired};
+
+% unit cells (0,1) (2,3) (4,5) (6,7)
+\foreach \c in {0,2,4,6} {
+  \draw[aqmcell] (\c*\dx-0.30,-0.42) rectangle (\c*\dx+\dx+0.30,0.42);
+}
+
+% bonds
+\foreach \i in {0,2,4,6}  \draw[aqmbondstrong] (\i*\dx,0) -- (\i*\dx+\dx,0);
+\foreach \i in {1,3,5}    \draw[aqmbondweak]   (\i*\dx,0) -- (\i*\dx+\dx,0);
+
+% sites
+\foreach \i in {0,2,4,6}  \node[aqmsite]     at (\i*\dx,0) {};
+\foreach \i in {1,3,5,7}  \node[aqmsiteopen] at (\i*\dx,0) {};
+
+\node[aqmlabsmall, anchor=north] at (2.5*\dx,-0.50) {$t$};
+\node[aqmlabsmall, anchor=north] at (1.5*\dx,-0.50) {$1$};
+\node[aqmlabsmall, anchor=south, text=aqmmuted] at (0.5*\dx,0.46) {cell};
+
+% --- level ladder ---
+\draw[aqm, black, -{Stealth[length=4pt,width=3pt]}] (\ladx,-2.30) -- (\ladx,2.30);
+\node[aqmlabsmall, anchor=south] at (\ladx,2.32) {$E$};
+\draw[aqmguide] (\ladx-0.12,0) -- (\ladb+0.10,0);
+\node[aqmlabsmall, anchor=west, text=aqmmuted] at (\ladb+0.10,0) {$E=0$};
+
+\draw[aqm, line width=1.6pt, draw=aqmaccent] (\lada,1.75) -- (\ladb,1.75);
+\draw[aqm, line width=1.6pt, draw=aqmaccent] (\lada,-1.75) -- (\ladb,-1.75);
+\node[aqmlabsmall, anchor=west] at (\ladb+0.10,1.75) {$+t\ (\times4)$};
+\node[aqmlabsmall, anchor=west] at (\ladb+0.10,-1.75) {$-t\ (\times4)$};
+
+\draw[aqmbrace, decoration={brace, amplitude=4pt}]
+  (\ladx-0.55,1.70) -- (\ladx-0.55,-1.70);
+\node[aqmlabsmall, anchor=east, align=right, text=aqmmuted]
+  at (\ladx-0.75,0) {bulk gap:\\[-2pt]nothing at $E=0$};
+
+\end{scope}
+
+% =====================================================================
+% (b) topological chain: strong INTERCELL bonds
+% =====================================================================
+\begin{scope}[yshift=-2.55cm]
+
+\node[aqmpanel, anchor=west] at (-0.55,1.62) {(b) intercell hopping dominates, $t\to0$};
+\node[aqmlabsmall, anchor=west, text=aqmbroken] at (-0.55,1.20)
+  {topological: two sites left over};
+
+\foreach \c in {0,2,4,6} {
+  \draw[aqmcell] (\c*\dx-0.30,-0.42) rectangle (\c*\dx+\dx+0.30,0.42);
+}
+
+\foreach \i in {1,3,5}    \draw[aqmbondstrong] (\i*\dx,0) -- (\i*\dx+\dx,0);
+\foreach \i in {0,2,4,6}  \draw[aqmbondweak]   (\i*\dx,0) -- (\i*\dx+\dx,0);
+
+\foreach \i in {0,2,4,6}  \node[aqmsite]     at (\i*\dx,0) {};
+\foreach \i in {1,3,5,7}  \node[aqmsiteopen] at (\i*\dx,0) {};
+
+% highlight the two dangling end sites
+\draw[aqm, draw=aqmbroken, line width=1.0pt] (0,0) circle (0.20);
+\draw[aqm, draw=aqmbroken, line width=1.0pt] (7*\dx,0) circle (0.20);
+
+\node[aqmlabsmall, anchor=north] at (2.5*\dx,-0.50) {$t\!\to\!0$};
+\node[aqmlabsmall, anchor=north] at (1.5*\dx,-0.50) {$1$};
+
+\node[aqmlabsmall, anchor=south, text=aqmbroken] at (0,0.54) {dangling};
+\node[aqmlabsmall, anchor=south, text=aqmbroken] at (7*\dx,0.54) {dangling};
+
+% localized zero-mode envelopes
+\draw[aqm, draw=aqmbroken, line width=0.8pt, dash pattern=on 2pt off 1.5pt]
+  plot[domain=0:2.9, samples=48] (\x,{-1.92+0.90*exp(-2.6*\x)});
+\draw[aqm, draw=aqmbroken, line width=0.8pt, dash pattern=on 2pt off 1.5pt]
+  plot[domain=0:2.9, samples=48] ({7*\dx-\x},{-1.92+0.90*exp(-2.6*\x)});
+\draw[aqmguide] (-0.2,-1.92) -- (7*\dx+0.2,-1.92);
+\node[aqmlabsmall, anchor=north, text=aqmbroken] at (3.5*\dx,-2.00)
+  {$|\psi_{E=0}|^2$: one end mode at each edge};
+
+% --- level ladder ---
+\draw[aqm, black, -{Stealth[length=4pt,width=3pt]}] (\ladx,-2.30) -- (\ladx,2.30);
+\node[aqmlabsmall, anchor=south] at (\ladx,2.32) {$E$};
+\draw[aqmguide] (\ladx-0.12,0) -- (\lada-0.06,0);
+
+\draw[aqm, line width=1.6pt, draw=aqmaccent] (\lada,1.05) -- (\ladb,1.05);
+\draw[aqm, line width=1.6pt, draw=aqmaccent] (\lada,-1.05) -- (\ladb,-1.05);
+\node[aqmlabsmall, anchor=west] at (\ladb+0.10,1.05) {$+1\ (\times3)$};
+\node[aqmlabsmall, anchor=west] at (\ladb+0.10,-1.05) {$-1\ (\times3)$};
+
+\draw[aqm, line width=1.3pt, draw=aqmbroken] (\lada,0.16) -- (\ladb,0.16);
+\draw[aqm, line width=1.3pt, draw=aqmbroken] (\lada,-0.16) -- (\ladb,-0.16);
+\node[aqmlabsmall, anchor=west, text=aqmbroken, align=left]
+  at (\ladb+0.10,0) {$E=0\ (\times2)$};
+\node[aqmlabsmall, anchor=east, align=right, text=aqmbroken]
+  at (\ladx-0.20,0) {two protected\\[-2pt]zero modes};
+
+\end{scope}
+
+\end{tikzpicture}
+
+\end{aqmfigure}

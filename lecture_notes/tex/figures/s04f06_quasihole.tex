@@ -1,0 +1,106 @@
+% Session 4 -- the Laughlin quasihole: a depletion of fractional charge, and the
+% Berry phase that measures both its charge and its exchange statistics.
+% Placement: sec. "Berry phase, fractional charge, and anyonic statistics",
+% after equation (4.16).
+%
+% NOTE ON PHASES: (4.16) is the phase for a FULL LOOP of one quasihole around the
+% other. A full loop is two exchanges, so the exchange phase -- the number that is
+% 0 for bosons and pi for fermions -- is pi/m. The interpolation strip at the
+% bottom is drawn in exchange phase, and is labelled as such. The winding sense is
+% left unlabelled on purpose: its sign depends on the field/charge convention.
+\begin{aqmfigure}{fig:s04:quasihole}{Fractional charge and fractional statistics, both read off a
+Berry phase. (a) Multiplying the Laughlin state by $\prod_i(z_i-w)$, equation (4.14), raises every
+electron's angular momentum about $w$ by one, which by figure~\ref{fig:s04:droplet} pushes charge
+radially outward and leaves a depleted spot behind. Doing it $m$ times removes exactly one
+electron's worth of charge, so one quasihole is short of an electron by a factor $m$: it carries
+$q=e/m$. (b) Carrying one quasihole once around another and tracking the Berry phase separates
+that statement into two pieces: an Aharonov-Bohm piece, proportional to the enclosed flux, whose
+prefactor is what fixes $q=e/m$ in (4.15), and a leftover piece $2\pi/m$ that depends on nothing
+but the fact that one quasiparticle went around the other. A full loop is two exchanges, so the
+exchange phase itself is $\pi/m$, drawn at the bottom: for every odd $m>1$ it lands strictly
+between the bosonic $0$ and the fermionic $\pi$, which is what makes these excitations anyons.}
+
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+% ============================ (a) the quasihole =============================
+\begin{scope}[shift={(2.0,0)}]
+
+\filldraw[aqm, draw=aqmaccent, fill=aqmfill] (0,0) circle (1.70);
+
+% the depleted spot at w
+\filldraw[aqm, draw=aqmbroken, fill=white, dash pattern=on 2.6pt off 1.8pt]
+  (-0.40,0.18) circle (0.42);
+\node[circle, fill=aqmbroken, inner sep=0pt, minimum size=3.2pt] at (-0.40,0.18) {};
+\node[aqmlabsmall, text=aqmbroken, anchor=south] at (-0.40,0.28) {$w$};
+
+% charge pushed radially outward, away from w
+\foreach \a in {20,80,140,200,260,320} {
+  \draw[aqm, draw=aqmbroken, -{Stealth[length=4pt,width=3.2pt]}]
+    ([shift={(-0.40,0.18)}]\a:0.50) -- ([shift={(-0.40,0.18)}]\a:0.92);
+}
+
+\node[aqmlabsmall, text=aqmbroken, anchor=north] at (0,-1.12) {$q=e/m$};
+
+\node[aqmlabsmall, text=aqmaccent, anchor=south] at (0,1.76) {uniform $\nu=1/m$ droplet};
+\node[aqmpanel, anchor=south] at (0,2.20) {(a) one quasihole};
+\node[aqmlabsmall, anchor=north, align=center] at (0,-1.90)
+  {$\Psi_{\text{qh}}(w)=\prod_i(z_i-w)\,\Psi_m$ pushes charge\\[1pt]
+   outward from $w$, leaving a depleted spot\\[3pt]
+   \textcolor{aqmmuted}{repeat it $m$ times and exactly one}\\[-1pt]
+   \textcolor{aqmmuted}{whole electron has been removed}};
+
+\end{scope}
+
+% ============================== (b) the braid ===============================
+\begin{scope}[shift={(9.4,0)}]
+
+% the two quasiholes
+\node[circle, fill=aqmbroken, inner sep=0pt, minimum size=5.5pt] at (0,0) {};
+\node[circle, fill=aqmbroken, inner sep=0pt, minimum size=5.5pt] at (1.25,0) {};
+\node[aqmlabsmall, text=aqmbroken, anchor=north east] at (-0.06,-0.08) {$0$};
+\node[aqmlabsmall, text=aqmbroken, anchor=west] at (1.36,-0.14) {$w$};
+
+% the transported loop
+\draw[aqm, draw=aqmaccent, dash pattern=on 3.4pt off 2.4pt,
+      -{Stealth[length=5pt,width=4pt]}] (7:1.25) arc (7:353:1.25);
+
+% enclosed flux
+\node[aqmlabsmall, text=aqmmuted, anchor=south] at (0,0.30) {$\Phi$};
+
+\node[aqmpanel, anchor=south] at (0,2.20) {(b) take one around the other};
+\node[aqmlabsmall, anchor=north, align=center] at (0,-1.90)
+  {parameterize $w=|w|e^{i\theta}$, $\theta:0\to2\pi$\\[3pt]
+   \textcolor{aqmmuted}{and compute the Berry phase}\\[-1pt]
+   \textcolor{aqmmuted}{of the two-quasihole state}};
+
+\end{scope}
+
+% ====================== the Berry phase, split in two =======================
+\node[aqmboxaccent, anchor=north, align=center] at (5.7,-3.98)
+  {Berry phase for the full loop\; $=\;
+   \underbrace{2\pi\,q\Phi/\Phi_0}_{\text{Aharonov--Bohm: forces } q=e/m}\;+\;
+   \underbrace{2\pi/m}_{\text{statistical (4.16)}}$};
+
+% ================= exchange phase: where the anyons sit =====================
+\begin{scope}[shift={(0.25,-6.60)}]
+  \draw[aqm, draw=black, |-|] (0,0) -- (10.9,0);
+  \node[aqmlabsmall, anchor=north] at (0,-0.16) {$0$};
+  \node[aqmlabsmall, anchor=north] at (10.9,-0.16) {$\pi$};
+  \node[aqmlabsmall, anchor=south] at (0,0.14) {bosons};
+  \node[aqmlabsmall, anchor=south] at (10.9,0.14) {fermions};
+
+  \foreach \xp/\lb in {2.18/{$\pi/5$}, 3.633/{$\pi/3$}} {
+    \draw[aqm, draw=aqmbroken, line width=1.1pt] (\xp,-0.16) -- (\xp,0.16);
+    \node[aqmlabsmall, text=aqmbroken, anchor=north] at (\xp,-0.18) {\lb};
+  }
+  \node[aqmlabsmall, text=aqmbroken, anchor=south] at (2.18,0.20) {$m{=}5$};
+  \node[aqmlabsmall, text=aqmbroken, anchor=south] at (3.633,0.20) {$m{=}3$};
+
+  \node[aqmlabsmall, anchor=north, align=center] at (5.45,-0.90)
+    {exchange phase $\pi/m$ ($m$ odd): neither bosonic nor fermionic --- these are
+     \textbf{anyons}};
+\end{scope}
+
+\end{tikzpicture}
+
+\end{aqmfigure}

@@ -1,0 +1,112 @@
+% Session 10 -- neural network quantum states: what the network actually computes, how the
+% variational energy is estimated by sampling, and where NNQS sits among the ansaetze.
+% Placement: sec. "Neural network quantum states", at the paragraph describing the slides'
+% nested picture of the variational families.
+\begin{aqmfigure}{fig:s10:nnqs}{Neural network quantum states. \textbf{(a)} What the ansatz
+actually is: the exponentially long table of coefficients in (10.2) is not compressed, it is
+simply never written down. The configuration $s$ is fed in as an $L$-pixel ``image'' and the
+network returns the one coefficient $C_\theta(s)$ that was asked for --- the same silhouette as
+figure~\ref{fig:s10:template}, with only the input and output relabelled. \textbf{(b)} Training:
+the variational energy (10.3) is the loss, and it is estimated by sampling configurations from the
+Born distribution and averaging the local energy (10.4). This is what makes the scheme work at
+all: $E_{\rm loc}(s)$ only ever needs the handful of matrix elements $H_{ss'}$ that a sparse
+Hamiltonian actually connects to $s$, never the full $2^L\times2^L$ matrix. \textbf{(c)} The
+nesting the slides draw: a matrix product state is a highly structured special case of a PEPS, a
+PEPS is in turn the kind of state a large enough NNQS can absorb, and NNQS sits outermost because
+it imposes the least structure of all on how $C$ depends on $s$. Read this as the lecture's
+organizing picture rather than as a theorem --- the outer inclusion is a statement about
+sufficiently expressive networks, not about every architecture --- and note that expressiveness is
+not free: the ordering runs the other way for how easy each family is to optimize.}
+
+\begin{tikzpicture}[
+  unit/.style={aqm, circle, draw=black, fill=white, minimum size=5.5pt, inner sep=0pt},
+  unitin/.style={unit, fill=aqmfill, draw=aqmaccent},
+  unitout/.style={unit, fill=aqmfill, draw=aqmaccent, minimum size=7pt},
+  wire/.style={draw=aqmmuted, line width=0.22pt},
+  stepbox/.style={aqmbox, text width=3.25cm, font=\footnotesize, minimum height=2.15cm},
+  ring/.style={aqm, draw=black, fill=white},
+]
+
+% ===================== (a) the table the network replaces ====================
+\node[aqmpanel, anchor=south west] at (0,4.55) {(a) the ansatz};
+
+\node[aqmlabsmall, anchor=north west, align=left] (tab) at (0.42,4.35)
+  {$\uparrow\uparrow\uparrow\uparrow\uparrow \;\to\; C(s)$\\[1pt]
+   $\uparrow\uparrow\uparrow\uparrow\downarrow \;\to\; C(s)$\\[1pt]
+   $\uparrow\uparrow\uparrow\downarrow\uparrow \;\to\; C(s)$\\[1pt]
+   $\uparrow\uparrow\downarrow\uparrow\uparrow \;\to\; C(s)$\\[1pt]
+   $\vdots$\\[1pt]
+   $\downarrow\downarrow\downarrow\downarrow\downarrow \;\to\; C(s)$};
+\draw[aqmbrace, decoration={mirror}] ([xshift=-4pt]tab.north west) -- ([xshift=-4pt]tab.south west);
+\node[aqmlabsmall, anchor=north west, text width=3.0cm, align=left, text=aqmmuted]
+  at ([xshift=-14pt,yshift=-4pt]tab.south west)
+  {$2^L$ numbers, one per configuration: hopeless past $L\approx40$};
+
+\draw[aqmarrowaccent, line width=1.4pt] (3.15,3.25) -- (4.05,3.25);
+\node[aqmlabsmall, anchor=south, align=center, text width=1.5cm, text=aqmaccent] at (3.60,3.34)
+   {not stored,\\[-2pt] generated};
+
+% --- the network -------------------------------------------------------------
+\foreach \j/\s in {0/\downarrow,1/\uparrow,2/\uparrow,3/\downarrow,4/\uparrow} {
+  \node[unitin] (I\j) at (4.90,0.40*\j+2.05) {};
+  \node[aqmlabsmall, anchor=east, inner sep=2pt] at (4.77,0.40*\j+2.05) {$\s$};
+}
+\foreach \j in {0,...,5} \node[unit] (A\j) at (5.95,0.40*\j+1.85) {};
+\foreach \j in {0,...,5} \node[unit] (B\j) at (7.00,0.40*\j+1.85) {};
+\node[unitout] (O0) at (8.05,3.05) {};
+\node[unitout] (O1) at (8.05,2.45) {};
+
+\begin{scope}[on background layer]
+  \foreach \a in {0,...,4} \foreach \b in {0,...,5} \draw[wire] (I\a) -- (A\b);
+  \foreach \a in {0,...,5} \foreach \b in {0,...,5} \draw[wire] (A\a) -- (B\b);
+  \foreach \a in {0,...,5} \foreach \b in {0,1}     \draw[wire] (B\a) -- (O\b);
+\end{scope}
+
+\node[aqmlabsmall, anchor=west] at (8.25,3.05) {$\mathrm{Re}\,C_\theta$};
+\node[aqmlabsmall, anchor=west] at (8.25,2.45) {$\mathrm{Im}\,C_\theta$};
+\node[aqmlabsmall, anchor=north, align=center] at (6.45,1.75)
+   {input $s=(s_1,\dots,s_L)$: one node per spin};
+
+% ===================== (c) the variational hierarchy =========================
+\node[aqmpanel, anchor=south west] at (10.15,4.55) {(c) where NNQS sits};
+
+\def\hx{12.60}
+\draw[ring, line width=\aqmthinwidth] (\hx,2.05) ellipse (2.55 and 2.15);
+\draw[ring, draw=aqmaccent, fill=aqmfill, line width=1.2pt] (\hx,1.80) ellipse (2.05 and 1.70);
+\draw[ring] (\hx,1.55) ellipse (1.60 and 1.28);
+\draw[ring] (\hx,1.32) ellipse (1.15 and 0.88);
+\draw[ring, dashed, line width=\aqmthinwidth] (\hx,1.12) ellipse (0.78 and 0.50);
+
+\node[aqmlabsmall, anchor=center] at (\hx,3.78) {full Hilbert space};
+\node[aqmlabsmall, anchor=center, text=aqmaccent] at (\hx,3.16) {\textbf{NNQS}};
+\node[aqmlabsmall, anchor=center] at (\hx,2.55) {PEPS};
+\node[aqmlabsmall, anchor=center] at (\hx,1.98) {MPS};
+\node[font=\tiny, anchor=center] at (\hx,1.12) {gapped 1D};
+
+\node[aqmlabsmall, anchor=north, align=center, text width=5.0cm, text=aqmmuted] at (\hx,-0.25)
+   {more expressive outwards; easier to optimize inwards};
+
+% ===================== (b) the sampled variational loop ======================
+\node[aqmpanel, anchor=south west] at (0,-1.35) {(b) training: the energy is the loss};
+
+\node[stepbox, anchor=north west] (s1) at (0,-1.60)
+   {sample configurations from the Born rule,\\[1pt]
+    $p(s)=\dfrac{|C_\theta(s)|^2}{\sum_{s'}|C_\theta(s')|^2}$};
+\node[stepbox, anchor=north west] (s2) at (3.85,-1.60)
+   {$E_{\rm loc}(s)=\displaystyle\sum_{s'}H_{ss'}\frac{C_\theta(s')}{C_\theta(s)}$\\[1pt]
+    only $s'$ that $H$ connects to $s$};
+\node[stepbox, anchor=north west] (s3) at (7.70,-1.60)
+   {$E[\theta]=\big\langle E_{\rm loc}(s)\big\rangle_{s\sim p}$\\[1pt] (10.4): this is\\ the loss function};
+\node[stepbox, anchor=north west, draw=aqmaccent, fill=aqmfill] (s4) at (11.55,-1.60)
+   {gradient (10.5), then\\[1pt] $\theta_k\to\theta_k-\eta\,\partial E/\partial\theta_k$};
+
+\draw[aqmarrow] (s1.east) -- (s2.west);
+\draw[aqmarrow] (s2.east) -- (s3.west);
+\draw[aqmarrow] (s3.east) -- (s4.west);
+\draw[aqmarrowaccent] (s4.south) -- ++(0,-0.55) -| (s1.south);
+\node[aqmlabsmall, anchor=south, text=aqmaccent, fill=white, inner sep=2.5pt] at (7.30,-4.30)
+   {repeat until the variational energy stops falling};
+
+\end{tikzpicture}
+
+\end{aqmfigure}

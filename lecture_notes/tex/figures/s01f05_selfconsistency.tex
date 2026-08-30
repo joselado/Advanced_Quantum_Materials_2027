@@ -1,0 +1,44 @@
+% Session 1 -- the mean-field self-consistency loop.
+% Placement: sec. "Worked example 1", at the "more rigorously, mean-field theory is a
+% variational search..." paragraph.
+%
+% NOTE: no side column listing the three decoupling channels -- that duplicates
+% figure fig:s01:channels exactly.
+\begin{aqmfigure}{fig:s01:mfloop}{The mean-field self-consistency loop. Guess the bilinear
+expectation values, build the single-particle Hamiltonian they imply, diagonalize it, recompute the
+expectation values that result, and repeat until they stop changing. All three worked examples of
+this session, and every notebook callout in this chapter, run this identical loop.}
+
+\begin{tikzpicture}[x=1cm, y=1cm,
+  mfstep/.style={aqmbox, text width=2.35cm, minimum height=1.0cm}]
+
+\node[mfstep, aqmboxaccent] (guess) at (0,0)   {guess\\[1pt]$\langle c_i^\dagger c_j\rangle$};
+\node[mfstep]               (build) at (3.3,0) {build\\[1pt]$H_{\text{MF}}$};
+\node[mfstep]               (diag)  at (6.6,0) {diagonalize\\[1pt]$H_{\text{MF}}$};
+\node[mfstep]               (recomp)at (9.9,0) {recompute\\[1pt]$\langle c_i^\dagger c_j\rangle$};
+
+\node[aqmdiamond, aspect=2.3, text width=1.5cm] (conv) at (9.9,-2.05) {converged?};
+\node[mfstep, aqmboxbroken, text width=2.9cm] (sol) at (5.6,-3.65)
+  {\textbf{self-consistent solution}};
+
+% forward path
+\draw[aqmarrow] (guess)  -- (build);
+\draw[aqmarrow] (build)  -- (diag);
+\draw[aqmarrow] (diag)   -- (recomp);
+\draw[aqmarrow] (recomp) -- (conv);
+
+% the iteration: "no" returns to the build step
+\draw[aqmarrowbroken] (conv.west) -- ++(-4.95,0) |- (build.south);
+\node[aqmlabsmall, text=aqmbroken, anchor=south] at (7.0,-2.02) {no};
+
+% the exit
+\draw[aqmarrow] (conv.south) |- (sol.east);
+\node[aqmlabsmall, anchor=west] at (10.02,-2.95) {yes};
+
+\node[aqmlabmuted, anchor=north, align=center, text width=9.5cm] at (4.95,-4.45)
+  {$H_{\text{MF}}$ depends on the expectation values, and the expectation values depend on
+   $H_{\text{MF}}$: the loop is what resolves that circularity};
+
+\end{tikzpicture}
+
+\end{aqmfigure}

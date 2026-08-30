@@ -1,0 +1,88 @@
+% Session 6 -- the Kitaev interaction: frustration that lives in the coupling, not in the lattice.
+% Placement: sec. "Anisotropic exchange", in the Kitaev paragraph, after the H_Kitaev display.
+\begin{aqmfigure}{fig:s06:kitaev}{The Kitaev interaction and the second kind of frustration. The
+honeycomb lattice is bipartite: its sites two-colour (filled/open) exactly as in
+figure~\ref{fig:s06:frustration}(a), so an ordinary Heisenberg antiferromagnet on it is not
+frustrated at all. The Kitaev coupling frustrates it anyway, because each of the three bond
+directions couples only \emph{one} spin component: the $x$-bond cares only about $S^x$ and so wants
+both of its spins along $\pm\hat x$, the $y$-bond wants $\pm\hat y$, the $z$-bond wants
+$\pm\hat z$. Every site sits on one bond of each type, and no single orientation can satisfy three
+mutually orthogonal demands at once. This is frustration built into the interaction rather than
+into the geometry, and it is what makes the Kitaev model a paradigm for quantum spin liquids in
+sessions 7 and 8.}
+
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+% --- hexagon vertices --------------------------------------------------------
+\def\rr{1.10}
+\coordinate (v30)  at (30:\rr);
+\coordinate (v90)  at (90:\rr);
+\coordinate (v150) at (150:\rr);
+\coordinate (v210) at (210:\rr);
+\coordinate (v270) at (270:\rr);
+\coordinate (v330) at (330:\rr);
+
+% --- bond styles: colour AND weight/dash, so greyscale still separates them ---
+\tikzset{
+  xbond/.style={aqm, draw=aqmaccent, line width=1.0pt},
+  ybond/.style={aqm, draw=black, line width=0.8pt, dash pattern=on 3pt off 2pt},
+  zbond/.style={aqm, draw=aqmbroken, line width=1.9pt}
+}
+
+% --- the six ring bonds ------------------------------------------------------
+\draw[xbond] (v30) -- (v90);
+\draw[xbond] (v210) -- (v270);
+\draw[ybond] (v90) -- (v150);
+\draw[ybond] (v270) -- (v330);
+\draw[zbond] (v150) -- (v210);
+\draw[zbond] (v330) -- (v30);
+
+% --- outward stubs, one per site, completing each site's three bonds ---------
+\draw[ybond] (v30)  -- ++(30:0.55);
+\draw[zbond] (v90)  -- ++(90:0.55);
+\draw[xbond] (v150) -- ++(150:0.55);
+\draw[ybond] (v210) -- ++(210:0.55);
+\draw[zbond] (v270) -- ++(270:0.55);
+\draw[xbond] (v330) -- ++(330:0.55);
+
+% --- sublattices: filled = A, open = B --------------------------------------
+\foreach \v in {v30,v150,v270} {\node[aqmsite, minimum size=7pt] at (\v) {};}
+\foreach \v in {v90,v210,v330} {\node[aqmsiteopen, minimum size=7pt] at (\v) {};}
+
+% --- the highlighted site and its three bond labels -------------------------
+\node[circle, draw=aqmmuted, dashed, line width=\aqmthinwidth,
+      minimum size=17pt, inner sep=0pt] at (v90) {};
+\node[aqmlabsmall, text=aqmaccent, anchor=south west] at (0.56,0.90) {$x$};
+\node[aqmlabsmall, anchor=south east] at (-0.56,0.90) {$y$};
+\node[aqmlabsmall, text=aqmbroken, anchor=west] at (0.12,1.44) {$z$};
+
+\node[aqmlabsmall, text=aqmmuted, anchor=north, align=center, text width=4.2cm]
+  at (0,-1.90) {one honeycomb plaquette:\\[-1pt]three bond directions,\\[-1pt]three couplings};
+
+% ================= the conflict, spelled out ================================
+\node[aqmlabsmall, anchor=north west, align=left, text width=6.1cm] at (2.35,1.72)
+  {\textbf{each bond fixes a different axis}\\[3pt]
+   \textcolor{aqmaccent}{$x$-bond}, $K\,S_i^xS_j^x$: wants $\mathbf S\parallel\pm\hat x$\\[2pt]
+   $y$-bond, $K\,S_i^yS_j^y$: wants $\mathbf S\parallel\pm\hat y$\\[2pt]
+   \textcolor{aqmbroken}{$z$-bond}, $K\,S_i^zS_j^z$: wants $\mathbf S\parallel\pm\hat z$\\[4pt]
+   Every site carries all three, so no orientation satisfies them all. The lattice is
+   unfrustrated; the \emph{interaction} is not.};
+
+% --- the little spin-space triad --------------------------------------------
+\begin{scope}[shift={(3.60,-2.70)}]
+  \draw[aqm, draw=aqmbroken, line width=1.4pt, -{Stealth[length=4pt,width=3.2pt]}]
+    (0,0) -- (90:0.68);
+  \node[aqmlabsmall, text=aqmbroken, anchor=south] at (90:0.72) {$\hat z$};
+  \draw[aqm, draw=aqmaccent, line width=0.9pt, -{Stealth[length=4pt,width=3.2pt]}]
+    (0,0) -- (200:0.68);
+  \node[aqmlabsmall, text=aqmaccent, anchor=east] at (200:0.74) {$\hat x$};
+  \draw[aqm, draw=black, line width=0.7pt, dash pattern=on 3pt off 2pt,
+        -{Stealth[length=4pt,width=3.2pt]}] (0,0) -- (-20:0.68);
+  \node[aqmlabsmall, anchor=west] at (-20:0.74) {$\hat y$};
+  \node[aqmlabsmall, text=aqmmuted, anchor=west, align=left, text width=4.0cm] at (1.30,0)
+    {one spin cannot point\\[-1pt]along all three at once};
+\end{scope}
+
+\end{tikzpicture}
+
+\end{aqmfigure}

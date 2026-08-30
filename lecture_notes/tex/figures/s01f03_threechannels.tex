@@ -1,0 +1,72 @@
+% Session 1 -- one Hamiltonian, three broken symmetries.
+% Placement: sec. "The general interacting Hamiltonian", alongside the enumerated list.
+%
+% Deliberately NO quasiparticle row: the phonon belongs to broken *continuous*
+% translation (the worked CDW breaks only discrete translation) and the magnon to
+% broken *continuous spin-rotational* symmetry, not to time reversal. Pairing them
+% off against this table's rows would teach a conflation the chapter is careful about.
+\colorlet{aqmthird}{violet!60!black}
+\begin{aqmfigure}{fig:s01:channels}{One Hamiltonian, three ordered states. The same generic
+interacting Hamiltonian (1.5), decoupled around three different bilinear expectation values,
+produces a charge density wave, a magnet, or a superconductor, each breaking a different symmetry.
+This branching is the organising skeleton of the rest of the course.}
+
+\begin{tikzpicture}[x=1cm, y=1cm,
+  chanbox/.style={aqmbox, text width=3.5cm, minimum height=0.95cm},
+  statebox/.style={aqmbox, text width=3.5cm, minimum height=0.62cm, font=\small\bfseries},
+  symbox/.style={aqmbox, text width=3.5cm, minimum height=0.62cm}]
+
+% ------------------------------- root ---------------------------------------
+\node[aqmboxaccent, text width=8.4cm] (root) at (0,0)
+  {$\displaystyle H=\sum_{ij}t_{ij}\,c_i^\dagger c_j
+     \;+\;\sum_{ijkl}V_{ijkl}\,c_i^\dagger c_j^\dagger c_k c_l$ \\[2pt]
+   \footnotesize the generic interacting Hamiltonian (1.5)};
+
+
+% --------------------------- the three columns ------------------------------
+% x centres of the three branches
+\def\xa{-4.15} \def\xb{0} \def\xc{4.15}
+
+\node[chanbox] (cha) at (\xa,-2.05) {$\langle c_n^\dagger c_n\rangle$\\[1pt]
+  \footnotesize site charge};
+\node[chanbox] (chb) at (\xb,-2.05) {$\langle c_{n\uparrow}^\dagger c_{n\uparrow}\rangle
+  -\langle c_{n\downarrow}^\dagger c_{n\downarrow}\rangle$\\[1pt]
+  \footnotesize spin imbalance};
+\node[chanbox] (chc) at (\xc,-2.05) {$\langle c_i c_j\rangle$\\[1pt]
+  \footnotesize anomalous pairing};
+
+\node[statebox] (sta) at (\xa,-3.35) {charge density wave};
+\node[statebox] (stb) at (\xb,-3.35) {magnet};
+\node[statebox] (stc) at (\xc,-3.35) {superconductor};
+
+\node[symbox] (sya) at (\xa,-4.45) {breaks\\ \textbf{translational}};
+\node[symbox] (syb) at (\xb,-4.45) {breaks\\ \textbf{time-reversal}};
+\node[symbox] (syc) at (\xc,-4.45) {breaks\\ \textbf{gauge}};
+
+% --------------------------- connecting arrows ------------------------------
+% One hue per branch, each also given its own dash pattern so the branches stay
+% distinguishable in greyscale.
+\draw[aqmarrow, draw=aqmaccent] (root.south) -- ++(0,-0.62) -| (cha.north);
+\draw[aqmarrow, draw=aqmbroken, dash pattern=on 3pt off 2pt]
+  (root.south) -- ++(0,-0.62) -| (chb.north);
+\draw[aqmarrow, draw=aqmthird, dash pattern=on 1pt off 1.6pt]
+  (root.south) -- ++(0,-0.62) -| (chc.north);
+
+\draw[aqmarrow, draw=aqmaccent] (cha) -- (sta);
+\draw[aqmarrow, draw=aqmaccent] (sta) -- (sya);
+\draw[aqmarrow, draw=aqmbroken, dash pattern=on 3pt off 2pt] (chb) -- (stb);
+\draw[aqmarrow, draw=aqmbroken, dash pattern=on 3pt off 2pt] (stb) -- (syb);
+\draw[aqmarrow, draw=aqmthird, dash pattern=on 1pt off 1.6pt] (chc) -- (stc);
+\draw[aqmarrow, draw=aqmthird, dash pattern=on 1pt off 1.6pt] (stc) -- (syc);
+
+% ------------------------------- footer -------------------------------------
+\node[aqmlabsmall, anchor=north, align=center, text=aqmmuted] at (\xa,-5.02)
+  {eq.~(1.6)\\[-1pt]\itshape not revisited};
+\node[aqmlabsmall, anchor=north, align=center, text=aqmmuted] at (\xb,-5.02)
+  {eqs.~(1.7)--(1.8)\\[-1pt]\itshape full treatment: session 6};
+\node[aqmlabsmall, anchor=north, align=center, text=aqmmuted] at (\xc,-5.02)
+  {eqs.~(1.9)--(1.10)\\[-1pt]\itshape full treatment: session 5};
+
+\end{tikzpicture}
+
+\end{aqmfigure}

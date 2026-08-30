@@ -1,0 +1,131 @@
+% Session 3 -- two ways to gap the honeycomb Dirac cones, and why only one of
+% them gives a Chern insulator.
+% Placement: sec. "Gapping the Dirac cone", after equation (3.8).
+%
+% LAYOUT NOTE: pure tikzpicture, bare canvas coordinates throughout. The only
+% local style is a tiny-label style, declared inside this picture.
+\begin{aqmfigure}{fig:s03:masses}{The whole content of Section 3.10 in one piece of bookkeeping.
+Equation (3.8) gives each gapped Dirac point a Chern number $\tfrac12\,\mathrm{sgn}(m)\,
+\mathrm{sgn}(\lambda)$, and the honeycomb lattice's two Dirac points are time-reversal partners with
+opposite chirality, $\lambda=+1$ at $K$ and $\lambda=-1$ at $K'$. So everything hinges on how the
+mass term itself behaves under time reversal. (a) A staggered sublattice potential is an ordinary
+scalar potential, even under time reversal, so $m$ has the same sign at both valleys, the two
+half-integers come out opposite, and they cancel: a perfectly ordinary insulator, the
+boron-nitride-like gap. (b) The Haldane coupling is a pattern of circulating orbital currents, odd
+under time reversal, so $m$ flips sign between the valleys, the two half-integers come out equal,
+and they add: $C=\pm1$, a genuine Chern insulator with quantized $\sigma_{xy}$ and chiral edge
+states, built from lattice hoppings alone with no external magnetic field and zero net flux. The
+two gaps look identical in the bulk spectrum; only the wavefunctions know the difference.}
+
+\begin{tikzpicture}[x=1cm, y=1cm]
+\tikzset{aqmlabtiny/.style={font=\tiny, inner sep=0.8pt}}
+
+\def\hexR{0.66}
+
+% =====================================================================
+% header: the Brillouin zone and the rule
+% =====================================================================
+\begin{scope}[shift={(1.00,0)}]
+  \draw[aqm, draw=black] (0:0.86) \foreach \a in {60,120,...,360} {-- (\a:0.86)} -- cycle;
+  \foreach \a in {0,120,240} {
+    \node[circle, fill=aqmaccent, draw=aqmaccent, minimum size=4.5pt, inner sep=0pt]
+      at (\a:0.86) {};
+  }
+  \foreach \a in {60,180,300} {
+    \node[circle, fill=white, draw=black, minimum size=4.5pt, inner sep=0pt]
+      at (\a:0.86) {};
+  }
+  \node[aqmlabsmall, anchor=north west] at (0:0.94)   {$K$};
+  \node[aqmlabsmall, anchor=south west] at (60:0.94)  {$K'$};
+  \node[aqmlabsmall, anchor=north] at (0,-1.06) {Brillouin zone};
+\end{scope}
+
+\node[aqmlab, anchor=west, align=left, text width=9.9cm] at (2.75,0)
+  {\textbf{The rule (3.8):}\quad
+   $C_{\text{Dirac}} = \tfrac12\,\mathrm{sgn}(m)\,\mathrm{sgn}(\lambda)$.\\[3pt]
+   The lattice fixes the chirality: $\lambda = +1$ at $K$ and $\lambda = -1$ at $K'$,\\[3pt]
+   because $K$ and $K'$ are time-reversal partners; only the \emph{sum}\\[3pt]
+   over the two valleys has to be an integer.};
+
+\draw[aqm, draw=aqmmuted, line width=\aqmthinwidth] (-0.35,-1.72) -- (12.7,-1.72);
+
+% =====================================================================
+% (a) staggered sublattice potential -> C = 0
+% =====================================================================
+\begin{scope}[shift={(0,-3.55)}]
+
+\node[aqmpanel, anchor=west] at (-0.35,1.45) {(a) staggered sublattice potential};
+
+% -- lattice icon --
+\begin{scope}[shift={(1.05,-0.12)}]
+  \draw[aqmbond] (0:\hexR) \foreach \a in {60,120,...,360} {-- (\a:\hexR)} -- cycle;
+  \foreach \a in {0,120,240} {
+    \draw[aqmbond] (\a:\hexR) -- (\a:{\hexR+0.30});
+    \node[aqmsite] at (\a:\hexR) {};
+    \node[aqmlabtiny] at (\a:{\hexR+0.46}) {$+\Delta$};
+  }
+  \foreach \a in {60,180,300} {
+    \draw[aqmbond] (\a:\hexR) -- (\a:{\hexR+0.30});
+    \node[aqmsiteopen] at (\a:\hexR) {};
+    \node[aqmlabtiny] at (\a:{\hexR+0.46}) {$-\Delta$};
+  }
+\end{scope}
+
+\node[aqmlab, anchor=west, align=left, text width=4.55cm] at (2.62,-0.12)
+  {a scalar on-site potential:\\[1pt]
+   \textbf{even} under time reversal,\\[1pt]
+   so $m$ has the \textbf{same} sign\\[1pt]
+   at $K$ and $K'$.};
+
+\node[aqmboxaccent, anchor=west, align=left, text width=4.7cm] at (7.45,-0.12)
+  {$C_K \;=\; \tfrac12\,(+)(+) \;=\; +\tfrac12$\\[2pt]
+   $C_{K'} \;=\; \tfrac12\,(+)(-) \;=\; -\tfrac12$\\[3pt]
+   \hrule height 0.4pt \vspace{3pt}
+   $C = 0$: the two cancel.\\[1pt]
+   An \textbf{ordinary insulator}.};
+
+\end{scope}
+
+% =====================================================================
+% (b) Haldane coupling -> C = +-1
+% =====================================================================
+\begin{scope}[shift={(0,-7.15)}]
+
+\node[aqmpanel, anchor=west] at (-0.35,1.45) {(b) Haldane coupling};
+
+% -- lattice icon --
+\begin{scope}[shift={(1.05,-0.12)}]
+  \draw[aqmbond] (0:\hexR) \foreach \a in {60,120,...,360} {-- (\a:\hexR)} -- cycle;
+  \foreach \a in {0,120,240} {
+    \draw[aqmbond] (\a:\hexR) -- (\a:{\hexR+0.30});
+    \node[aqmsite] at (\a:\hexR) {};
+  }
+  \foreach \a in {60,180,300} {
+    \draw[aqmbond] (\a:\hexR) -- (\a:{\hexR+0.30});
+    \node[aqmsiteopen] at (\a:\hexR) {};
+  }
+  % circulating orbital current inside the hexagon
+  \draw[aqm, draw=aqmbroken, line width=1.1pt, -{Stealth[length=5pt,width=4pt]}]
+    (-95:0.34) arc (-95:215:0.34);
+  \node[aqmlabtiny, text=aqmbroken, anchor=north] at (0,-0.86) {loop current};
+\end{scope}
+
+\node[aqmlab, anchor=west, align=left, text width=4.55cm] at (2.62,-0.12)
+  {circulating orbital currents:\\[1pt]
+   \textbf{odd} under time reversal,\\[1pt]
+   so $m$ \textbf{flips} sign between\\[1pt]
+   $K$ and $K'$.};
+
+\node[aqmboxbroken, anchor=west, align=left, text width=4.7cm] at (7.45,-0.12)
+  {$C_K \;=\; \tfrac12\,(+)(+) \;=\; +\tfrac12$\\[2pt]
+   $C_{K'} \;=\; \tfrac12\,(-)(-) \;=\; +\tfrac12$\\[3pt]
+   \hrule height 0.4pt \vspace{3pt}
+   $C = +1$: the two add.\\[1pt]
+   A \textbf{Chern insulator}, no field.\\[1pt]
+   (Reversing the coupling gives $-1$.)};
+
+\end{scope}
+
+\end{tikzpicture}
+
+\end{aqmfigure}

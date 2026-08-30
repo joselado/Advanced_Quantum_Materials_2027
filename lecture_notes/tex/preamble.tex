@@ -1,0 +1,40 @@
+% Shared preamble for the Advanced Quantum Materials lecture notes.
+% Included once by main.tex; do not duplicate inside session files.
+
+\usepackage[a4paper,margin=2.7cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{physics}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+\numberwithin{equation}{chapter}
+\renewcommand{\chaptername}{Session}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!45!black,
+  citecolor=blue!45!black,
+  urlcolor=blue!45!black,
+  pdftitle={Advanced Quantum Materials -- Lecture Notes},
+  pdfauthor={Jose Lado}
+}
+
+% Notebook check-in callout: \begin{notebookbox}{<descriptive title>} ... \end{notebookbox}
+\newtcolorbox{notebookbox}[1]{
+  colback=blue!4!white,
+  colframe=blue!45!black,
+  boxrule=0.6pt,
+  arc=1.5pt,
+  left=6pt,right=6pt,top=4pt,bottom=4pt,
+  fonttitle=\bfseries\small,
+  title={Notebook check-in: #1},
+  fontupper=\small
+}
+
+% Slide-only / transcript-only content markers, used inline in prose as needed.
+\newcommand{\slidesonly}{\textit{(slides-only content, no notebook counterpart)}}
+\newcommand{\transcriptonly}{\textit{(transcript-only content, no slide backing)}}

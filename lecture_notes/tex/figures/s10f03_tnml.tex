@@ -1,0 +1,142 @@
+% Session 10 -- tensor networks run in reverse: the same architectures session 7 built to
+% compress ground states, used as machine-learning function approximators.
+% Placement: sec. "The many-body wavefunction as a big-data problem", after the paragraph
+% naming MPS / tree / MERA / PEPS and before the Fashion-MNIST numbers.
+\begin{aqmfigure}{fig:s10:tnml}{Tensor networks used the other way round. \textbf{(a)} The four
+geometries the text names, drawn as tensor diagrams: every box is a tensor, every line an index
+summed over, and the dangling legs are the physical indices. The bond dimension $D$ carried by the
+internal lines is what (10.6) calls a free parameter. For ground-state search these are emphatically
+not interchangeable --- an MPS optimizes easily, a PEPS does not --- but as flexible parameterized
+functions of a high-dimensional input, which is all a classifier needs, any of them will serve.
+\textbf{(b)} Image classification with a tree tensor network. Each pixel becomes a two-component
+vector, and their tensor product is a single vector in a $2^N$-dimensional space --- exactly the
+space an $N$-spin wavefunction of (10.2) lives in. Classification is then a \emph{linear} map on
+that space down to two numbers, and the tensor network is precisely the efficient, structured
+parameterization of such a map that (10.6) already handed us. Note what has and has not changed
+from figure~\ref{fig:s10:template}: the input is still an array with a categorical label, the
+output is still one-hot, only the function in between is now built from matrices instead of layers
+of nodes.}
+
+\begin{tikzpicture}[
+  tn/.style={aqm, rectangle, draw=black, fill=aqmfill, minimum size=4.6pt, inner sep=0pt},
+  tnleg/.style={aqm, draw=black, line width=0.5pt},
+  pix/.style={aqm, rectangle, draw=aqmaccent, fill=white, minimum size=4.6pt, inner sep=0pt},
+]
+
+% ======================= (a) the four geometries =============================
+\node[aqmpanel, anchor=south west] at (0,2.55) {(a) the same architectures session 7 built};
+
+% --- MPS ---------------------------------------------------------------------
+\begin{scope}[shift={(1.55,1.55)}]
+  \foreach \k in {0,...,4} {
+    \node[tn] (m\k) at (0.50*\k-1.00,0) {};
+    \draw[tnleg] (0.50*\k-1.00,0) -- (0.50*\k-1.00,-0.32);
+  }
+  \foreach \k in {0,...,3} \draw[tnleg] (m\k) -- (m\the\numexpr\k+1\relax);
+\end{scope}
+\node[aqmlabsmall, anchor=north, align=center] at (1.55,0.82) {matrix product state\\[-2pt] (a chain)};
+
+% --- tree tensor network -----------------------------------------------------
+\begin{scope}[shift={(5.20,1.62)}]
+  \foreach \k in {0,...,3} {
+    \node[tn] (t\k) at (0.42*\k-0.63,-0.28) {};
+    \draw[tnleg] (0.42*\k-0.63,-0.28) -- (0.42*\k-0.63,-0.60);
+  }
+  \node[tn] (u0) at (-0.42,0.14) {}; \node[tn] (u1) at (0.42,0.14) {};
+  \node[tn] (v0) at (0,0.56) {};
+  \draw[tnleg] (t0) -- (u0); \draw[tnleg] (t1) -- (u0);
+  \draw[tnleg] (t2) -- (u1); \draw[tnleg] (t3) -- (u1);
+  \draw[tnleg] (u0) -- (v0); \draw[tnleg] (u1) -- (v0);
+\end{scope}
+\node[aqmlabsmall, anchor=north, align=center] at (5.20,0.82) {tree tensor network};
+
+% --- MERA --------------------------------------------------------------------
+% one disentangler straddling the two isometry blocks, then a top tensor.
+\begin{scope}[shift={(8.85,1.80)}]
+  % outer physical legs run straight up into the isometries
+  \draw[tnleg] (-0.63,-0.72) -- (-0.63,-0.10);
+  \draw[tnleg] ( 0.63,-0.72) -- ( 0.63,-0.10);
+  % inner physical legs run into the disentangler
+  \draw[tnleg] (-0.21,-0.72) -- (-0.21,-0.38);
+  \draw[tnleg] ( 0.21,-0.72) -- ( 0.21,-0.38);
+  \node[tn, fill=white, minimum width=0.52cm, minimum height=0.16cm] (dis) at (0,-0.30) {};
+  \draw[tnleg] (-0.21,-0.22) -- (-0.21,-0.10);
+  \draw[tnleg] ( 0.21,-0.22) -- ( 0.21,-0.10);
+  \node[tn] (w0) at (-0.42,-0.02) {};
+  \node[tn] (w1) at ( 0.42,-0.02) {};
+  \draw[tnleg] (-0.63,-0.10) -- (w0); \draw[tnleg] (-0.21,-0.10) -- (w0);
+  \draw[tnleg] ( 0.63,-0.10) -- (w1); \draw[tnleg] ( 0.21,-0.10) -- (w1);
+  \node[tn] (x0) at (0,0.44) {};
+  \draw[tnleg] (w0) -- (x0); \draw[tnleg] (w1) -- (x0);
+\end{scope}
+\node[aqmlabsmall, anchor=north, align=center] at (8.85,0.82)
+   {MERA (tree $+$ extra\\[-2pt] coarse-graining layers)};
+
+% --- PEPS --------------------------------------------------------------------
+\begin{scope}[shift={(12.75,1.55)}]
+  \foreach \a in {0,1,2} \foreach \b in {0,1,2} {
+    \node[tn] (p\a\b) at (0.42*\a-0.42,0.42*\b-0.42) {};
+    \draw[tnleg] (0.42*\a-0.42,0.42*\b-0.42) -- ++(-0.16,-0.16);
+  }
+  \foreach \a in {0,1} \foreach \b in {0,1,2}
+     \draw[tnleg] (p\a\b) -- (p\the\numexpr\a+1\relax\b);
+  \foreach \a in {0,1,2} \foreach \b in {0,1}
+     \draw[tnleg] (p\a\b) -- (p\a\the\numexpr\b+1\relax);
+\end{scope}
+\node[aqmlabsmall, anchor=north, align=center] at (12.75,0.82) {PEPS (a 2D grid)};
+
+\node[aqmlabsmall, anchor=north, align=center, text=aqmmuted] at (7.20,-0.10)
+   {box $=$ a tensor \quad line $=$ an index summed over, of bond dimension $D$ \quad
+    dangling leg $=$ a physical index};
+
+% ======================= (b) the classifier ==================================
+\node[aqmpanel, anchor=south west] at (0,-1.10) {(b) an image classifier built from one of them};
+
+% --- the image ---------------------------------------------------------------
+\begin{scope}[shift={(0.34,-3.62)}]
+  \foreach \i in {0,1,2,3} \foreach \j in {0,1,2,3}
+     \draw[aqm, draw=aqmmuted, line width=0.3pt, fill=aqmfill]
+        (\i*0.18,\j*0.18) rectangle (\i*0.18+0.18,\j*0.18+0.18);
+\end{scope}
+\node[aqmlabsmall, anchor=north, align=center] at (0.70,-3.75) {$N$ pixels};
+
+\draw[aqmarrowaccent] (1.55,-3.26) -- (2.60,-3.26);
+\node[aqmlabsmall, anchor=south, align=center, text width=2.2cm, text=aqmaccent] at (2.08,-3.20)
+   {each pixel $\to$ a 2-vector};
+
+% --- the tree tensor network acting on the pixel vectors ---------------------
+\foreach \k in {0,...,7} {
+  \node[pix] (px\k) at (0.62*\k+3.20,-4.42) {};
+  \draw[tnleg] (0.62*\k+3.20,-4.42) -- (0.62*\k+3.20,-3.98);
+}
+\foreach \k/\x in {0/3.51,1/4.75,2/5.99,3/7.23} \node[tn] (L1\k) at (\x,-3.98) {};
+\foreach \k/\x in {0/4.13,1/6.61} \node[tn] (L2\k) at (\x,-3.38) {};
+\node[tn] (L3) at (5.37,-2.78) {};
+
+\draw[tnleg] (px0) -- (L10); \draw[tnleg] (px1) -- (L10);
+\draw[tnleg] (px2) -- (L11); \draw[tnleg] (px3) -- (L11);
+\draw[tnleg] (px4) -- (L12); \draw[tnleg] (px5) -- (L12);
+\draw[tnleg] (px6) -- (L13); \draw[tnleg] (px7) -- (L13);
+\draw[tnleg] (L10) -- (L20); \draw[tnleg] (L11) -- (L20);
+\draw[tnleg] (L12) -- (L21); \draw[tnleg] (L13) -- (L21);
+\draw[tnleg] (L20) -- (L3);  \draw[tnleg] (L21) -- (L3);
+\draw[tnleg] (L3) -- (5.05,-2.34); \draw[tnleg] (L3) -- (5.69,-2.34);
+\node[aqmlabsmall, anchor=east] at (5.00,-2.28) {``purse'' $(1,0)$};
+\node[aqmlabsmall, anchor=west] at (5.74,-2.28) {``shirt'' $(0,1)$};
+
+\draw[aqmbrace, decoration={mirror}] (3.05,-4.62) -- (7.69,-4.62);
+\node[aqmlabsmall, anchor=north, align=center, text width=7.0cm] at (5.37,-4.86)
+   {tensor product of all $N$ pixel vectors: one vector in a $2^N$-dimensional space ---
+    the very space an $N$-spin wavefunction (10.2) lives in};
+
+\node[aqmboxaccent, text width=5.7cm, font=\footnotesize, anchor=north west, align=left]
+   at (9.10,-2.30)
+   {Classification is a \emph{linear} map on that $2^N$-dimensional space down to two numbers, and
+    the tensor network is exactly the structured, efficiently parameterized version of such a map
+    that (10.6) already gave us.\\[3pt]
+    On Fashion-MNIST this reaches $95.38\%$ training and $88.97\%$ test accuracy, competitive with
+    a conventional network on the same task.};
+
+\end{tikzpicture}
+
+\end{aqmfigure}

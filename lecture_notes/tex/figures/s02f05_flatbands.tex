@@ -1,0 +1,157 @@
+% Session 2 -- flat bands from destructive interference: Lieb and kagome.
+% Placement: sec. "The Dirac cone ... and flat-band lattices", at the flat-band passage.
+%
+% The notes state twice that this content cannot stand without a figure
+% ("seeing the actual flat-band dispersion requires the figure itself").
+%
+% BAND DATA: not hand-derived. Both dispersions were obtained by exact
+% diagonalization of the nearest-neighbour Bloch Hamiltonian H = -t sum(c^dag c)
+% with t=1, sampled along the high-symmetry path shown, and pasted in as
+% coordinates. Lieb: flat band exactly at eps=0, with all three bands touching
+% at M. Kagome: flat band at eps=+2t (the TOP of the spectrum for this sign of
+% t; it moves to the bottom if the sign of t is flipped), with the two
+% dispersive bands meeting in a Dirac-like crossing at K, at eps=-t.
+\begin{aqmfigure}{fig:s02:flatbands}{Flat bands from geometry alone. \textbf{(a)} The Lieb lattice
+(a square lattice with one site in four removed) and \textbf{(b)} its bands: two dispersive bands
+plus a band that is exactly flat at $\epsilon=0$, all three touching at $M$. \textbf{(c)} The
+kagome lattice (corner-sharing triangles) and \textbf{(d)} its bands: a Dirac-like crossing at $K$,
+plus a flat band at $\epsilon=2t$. \textbf{(e)} Why the flat band exists. An eigenstate can be
+confined to a single kagome hexagon with amplitudes alternating in sign around it; every path by
+which it could hop onto an outside site arrives twice with opposite sign and cancels. Nothing has
+been fine-tuned to zero -- the flatness is a property of the lattice geometry, and by (2.16) it
+makes the density of states diverge.}
+
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+% ============================ (a) Lieb lattice =============================
+\begin{scope}[shift={(0,0)}]
+  \foreach \i in {0,1,2} {
+    \foreach \j in {0,1,2} {
+      \draw[aqmbond, draw=aqmmuted, line width=0.5pt]
+        (0.7*\i,0.7*\j) -- (0.7*\i+0.7,0.7*\j);
+      \draw[aqmbond, draw=aqmmuted, line width=0.5pt]
+        (0.7*\i,0.7*\j) -- (0.7*\i,0.7*\j+0.7);
+    }
+  }
+  % corner sites (kept) and edge-centre sites (kept); the plaquette centre is removed
+  \foreach \i in {0,1,2,3} { \foreach \j in {0,1,2,3} {
+      \node[aqmsite, minimum size=4.6pt] at (0.7*\i,0.7*\j) {}; } }
+  \foreach \i in {0,1,2} { \foreach \j in {0,1,2,3} {
+      \node[aqmsitealt, minimum size=4pt] at (0.7*\i+0.35,0.7*\j) {}; } }
+  \foreach \i in {0,1,2,3} { \foreach \j in {0,1,2} {
+      \node[aqmsitealt, minimum size=4pt] at (0.7*\i,0.7*\j+0.35) {}; } }
+  \node[aqmpanel, anchor=north] at (1.05,-0.32) {(a) Lieb};
+  \node[aqmlabsmall, anchor=north, text=aqmmuted] at (1.05,-0.72) {3 sites per cell};
+\end{scope}
+
+% ============================ (b) Lieb bands ===============================
+\begin{scope}[shift={(3.35,-0.30)}]
+\begin{axis}[
+  aqmplot, width=4.9cm, height=3.9cm,
+  ylabel={$\epsilon$}, xlabel={},
+  ylabel style={at={(ticklabel* cs:1.0)}, anchor=south east, yshift=2pt},
+  title={(b) Lieb bands},
+  xmin=0, xmax=10.7261, ymin=-3.35, ymax=3.35,
+  xtick={0,3.1416,6.2832,10.7261},
+  xticklabels={$\Gamma$,$X$,$M$,$\Gamma$},
+  ytick={-2.828,0,2.828}, yticklabels={$-2\sqrt{2}t$,$0$,$2\sqrt{2}t$},
+  axis lines=left, xmajorgrids, grid style={aqmmuted, line width=0.3pt, dotted},
+]
+% --- Lieb bands, computed by exact diagonalization of the
+% --- nearest-neighbour model H = -t sum(c^dag c), t=1.
+% xmax=10.7261 ticks=[(0.0, 'G'), (3.142, 'X'), (6.283, 'M'), (10.726, 'G')]
+\addplot[aqmcurve] coordinates {(0.000,-2.828) (0.136,-2.825) (0.271,-2.815) (0.407,-2.799) (0.542,-2.777) (0.678,-2.749) (0.814,-2.715) (0.949,-2.677) (1.085,-2.633) (1.220,-2.586) (1.356,-2.535) (1.492,-2.482) (1.627,-2.426) (1.763,-2.370) (1.899,-2.314) (2.034,-2.260) (2.170,-2.207) (2.305,-2.159) (2.441,-2.115) (2.577,-2.076) (2.712,-2.045) (2.848,-2.021) (2.983,-2.006) (3.119,-2.000) (3.232,-1.998) (3.368,-1.987) (3.503,-1.967) (3.639,-1.939) (3.774,-1.901) (3.910,-1.854) (4.046,-1.799) (4.181,-1.736) (4.317,-1.665) (4.452,-1.586) (4.588,-1.499) (4.724,-1.406) (4.859,-1.307) (4.995,-1.201) (5.131,-1.090) (5.266,-0.974) (5.402,-0.853) (5.537,-0.729) (5.673,-0.601) (5.809,-0.470) (5.944,-0.337) (6.080,-0.203) (6.215,-0.068) (6.347,-0.064) (6.539,-0.255) (6.731,-0.446) (6.922,-0.634) (7.114,-0.819) (7.306,-1.001) (7.498,-1.178) (7.690,-1.349) (7.881,-1.514) (8.073,-1.673) (8.265,-1.824) (8.457,-1.966) (8.648,-2.099) (8.840,-2.223) (9.032,-2.336) (9.224,-2.439) (9.416,-2.530) (9.607,-2.610) (9.799,-2.678) (9.991,-2.733) (10.183,-2.776) (10.374,-2.807) (10.566,-2.824)};
+\addplot[aqmcurvebroken, line width=1.6pt] coordinates {(0.000,0.000) (0.136,0.000) (0.271,0.000) (0.407,0.000) (0.542,0.000) (0.678,0.000) (0.814,0.000) (0.949,0.000) (1.085,0.000) (1.220,0.000) (1.356,0.000) (1.492,0.000) (1.627,0.000) (1.763,0.000) (1.899,0.000) (2.034,0.000) (2.170,0.000) (2.305,0.000) (2.441,0.000) (2.577,0.000) (2.712,0.000) (2.848,0.000) (2.983,0.000) (3.119,0.000) (3.232,0.000) (3.368,0.000) (3.503,0.000) (3.639,0.000) (3.774,0.000) (3.910,0.000) (4.046,0.000) (4.181,0.000) (4.317,0.000) (4.452,0.000) (4.588,0.000) (4.724,0.000) (4.859,0.000) (4.995,0.000) (5.131,0.000) (5.266,0.000) (5.402,0.000) (5.537,0.000) (5.673,0.000) (5.809,0.000) (5.944,0.000) (6.080,0.000) (6.215,0.000) (6.347,0.000) (6.539,0.000) (6.731,0.000) (6.922,0.000) (7.114,0.000) (7.306,0.000) (7.498,0.000) (7.690,0.000) (7.881,0.000) (8.073,0.000) (8.265,0.000) (8.457,0.000) (8.648,0.000) (8.840,0.000) (9.032,0.000) (9.224,0.000) (9.416,0.000) (9.607,0.000) (9.799,0.000) (9.991,0.000) (10.183,0.000) (10.374,0.000) (10.566,0.000)};
+\addplot[aqmcurve] coordinates {(0.000,2.828) (0.136,2.825) (0.271,2.815) (0.407,2.799) (0.542,2.777) (0.678,2.749) (0.814,2.715) (0.949,2.677) (1.085,2.633) (1.220,2.586) (1.356,2.535) (1.492,2.482) (1.627,2.426) (1.763,2.370) (1.899,2.314) (2.034,2.260) (2.170,2.207) (2.305,2.159) (2.441,2.115) (2.577,2.076) (2.712,2.045) (2.848,2.021) (2.983,2.006) (3.119,2.000) (3.232,1.998) (3.368,1.987) (3.503,1.967) (3.639,1.939) (3.774,1.901) (3.910,1.854) (4.046,1.799) (4.181,1.736) (4.317,1.665) (4.452,1.586) (4.588,1.499) (4.724,1.406) (4.859,1.307) (4.995,1.201) (5.131,1.090) (5.266,0.974) (5.402,0.853) (5.537,0.729) (5.673,0.601) (5.809,0.470) (5.944,0.337) (6.080,0.203) (6.215,0.068) (6.347,0.064) (6.539,0.255) (6.731,0.446) (6.922,0.634) (7.114,0.819) (7.306,1.001) (7.498,1.178) (7.690,1.349) (7.881,1.514) (8.073,1.673) (8.265,1.824) (8.457,1.966) (8.648,2.099) (8.840,2.223) (9.032,2.336) (9.224,2.439) (9.416,2.530) (9.607,2.610) (9.799,2.678) (9.991,2.733) (10.183,2.776) (10.374,2.807) (10.566,2.824)};
+\node[aqmlabsmall, anchor=west, text=aqmbroken] at (axis cs:0.4,0.42) {flat band};
+\end{axis}
+\end{scope}
+
+% ============================ (c) kagome lattice ===========================
+\begin{scope}[shift={(8.55,0)}]
+  % corner-sharing triangles: draw up- and down-triangles on a triangular lattice
+  \foreach \i in {0,1,2} {
+    \foreach \j in {0,1} {
+      \pgfmathsetmacro\ox{0.72*\i + 0.36*\j}
+      \pgfmathsetmacro\oy{0.624*\j}
+      \draw[aqmbond, draw=aqmmuted, line width=0.5pt]
+        (\ox,\oy) -- ++(0.72,0) -- ++(-0.36,0.624) -- cycle;
+      \draw[aqmbond, draw=aqmmuted, line width=0.5pt]
+        (\ox+0.36,\oy+0.624) -- ++(0.72,0) -- ++(-0.36,-0.624) -- cycle;
+    }
+  }
+  \foreach \i in {0,1,2,3} {
+    \foreach \j in {0,1,2} {
+      \pgfmathsetmacro\ox{0.72*\i + 0.36*\j}
+      \pgfmathsetmacro\oy{0.624*\j}
+      \node[aqmsite, minimum size=4.2pt] at (\ox,\oy) {};
+      \node[aqmsite, minimum size=4.2pt] at (\ox+0.36,\oy) {};
+    }
+  }
+  \node[aqmpanel, anchor=north] at (1.05,-0.32) {(c) kagome};
+  \node[aqmlabsmall, anchor=north, text=aqmmuted] at (1.05,-0.72) {3 sites per cell};
+\end{scope}
+
+% ============================ (d) kagome bands =============================
+\begin{scope}[shift={(11.90,-0.30)}]
+\begin{axis}[
+  aqmplot, width=4.9cm, height=3.9cm,
+  ylabel={$\epsilon$}, xlabel={},
+  ylabel style={at={(ticklabel* cs:1.0)}, anchor=south east, yshift=2pt},
+  title={(d) kagome bands},
+  xmin=0, xmax=9.4029, ymin=-4.5, ymax=2.9,
+  xtick={0,3.1416,5.5654,9.4029},
+  xticklabels={$\Gamma$,$M$,$K$,$\Gamma$},
+  ytick={-4,-1,2}, yticklabels={$-4t$,$-t$,$2t$},
+  axis lines=left, xmajorgrids, grid style={aqmmuted, line width=0.3pt, dotted},
+]
+% --- Kagome bands, computed by exact diagonalization of the
+% --- nearest-neighbour model H = -t sum(c^dag c), t=1.
+% xmax=9.4029 ticks=[(0.0, 'G'), (3.142, 'M'), (5.565, 'K'), (9.403, 'G')]
+\addplot[aqmcurve] coordinates {(0.000,-4.000) (0.136,-3.995) (0.271,-3.982) (0.407,-3.959) (0.542,-3.927) (0.678,-3.886) (0.814,-3.837) (0.949,-3.779) (1.085,-3.713) (1.220,-3.639) (1.356,-3.558) (1.492,-3.469) (1.627,-3.374) (1.763,-3.272) (1.899,-3.165) (2.034,-3.052) (2.170,-2.934) (2.305,-2.812) (2.441,-2.686) (2.577,-2.558) (2.712,-2.426) (2.848,-2.293) (2.983,-2.158) (3.119,-2.023) (3.211,-2.005) (3.316,-2.012) (3.421,-2.018) (3.525,-2.024) (3.630,-2.030) (3.734,-2.035) (3.839,-2.039) (3.944,-2.042) (4.048,-2.044) (4.153,-2.045) (4.258,-2.044) (4.362,-2.043) (4.467,-2.040) (4.571,-2.035) (4.676,-2.030) (4.781,-2.023) (4.885,-2.014) (4.990,-2.004) (5.095,-1.993) (5.199,-1.981) (5.304,-1.968) (5.408,-1.953) (5.513,-1.938) (5.621,-1.921) (5.786,-1.922) (5.952,-1.963) (6.118,-2.040) (6.283,-2.145) (6.449,-2.268) (6.615,-2.404) (6.780,-2.547) (6.946,-2.693) (7.111,-2.838) (7.277,-2.981) (7.443,-3.119) (7.608,-3.250) (7.774,-3.374) (7.940,-3.489) (8.105,-3.594) (8.271,-3.688) (8.437,-3.771) (8.602,-3.842) (8.768,-3.900) (8.934,-3.945) (9.099,-3.977) (9.265,-3.995)};
+\addplot[aqmcurve] coordinates {(0.000,2.000) (0.136,1.995) (0.271,1.982) (0.407,1.959) (0.542,1.927) (0.678,1.886) (0.814,1.837) (0.949,1.779) (1.085,1.713) (1.220,1.639) (1.356,1.558) (1.492,1.469) (1.627,1.374) (1.763,1.272) (1.899,1.165) (2.034,1.052) (2.170,0.934) (2.305,0.812) (2.441,0.686) (2.577,0.558) (2.712,0.426) (2.848,0.293) (2.983,0.158) (3.119,0.023) (3.211,0.005) (3.316,0.012) (3.421,0.018) (3.525,0.024) (3.630,0.030) (3.734,0.035) (3.839,0.039) (3.944,0.042) (4.048,0.044) (4.153,0.045) (4.258,0.044) (4.362,0.043) (4.467,0.040) (4.571,0.035) (4.676,0.030) (4.781,0.023) (4.885,0.014) (4.990,0.004) (5.095,-0.007) (5.199,-0.019) (5.304,-0.032) (5.408,-0.047) (5.513,-0.062) (5.621,-0.079) (5.786,-0.078) (5.952,-0.037) (6.118,0.040) (6.283,0.145) (6.449,0.268) (6.615,0.404) (6.780,0.547) (6.946,0.693) (7.111,0.838) (7.277,0.981) (7.443,1.119) (7.608,1.250) (7.774,1.374) (7.940,1.489) (8.105,1.594) (8.271,1.688) (8.437,1.771) (8.602,1.842) (8.768,1.900) (8.934,1.945) (9.099,1.977) (9.265,1.995)};
+\addplot[aqmcurvebroken, line width=1.6pt] coordinates {(0.000,2.000) (0.136,2.000) (0.271,2.000) (0.407,2.000) (0.542,2.000) (0.678,2.000) (0.814,2.000) (0.949,2.000) (1.085,2.000) (1.220,2.000) (1.356,2.000) (1.492,2.000) (1.627,2.000) (1.763,2.000) (1.899,2.000) (2.034,2.000) (2.170,2.000) (2.305,2.000) (2.441,2.000) (2.577,2.000) (2.712,2.000) (2.848,2.000) (2.983,2.000) (3.119,2.000) (3.211,2.000) (3.316,2.000) (3.421,2.000) (3.525,2.000) (3.630,2.000) (3.734,2.000) (3.839,2.000) (3.944,2.000) (4.048,2.000) (4.153,2.000) (4.258,2.000) (4.362,2.000) (4.467,2.000) (4.571,2.000) (4.676,2.000) (4.781,2.000) (4.885,2.000) (4.990,2.000) (5.095,2.000) (5.199,2.000) (5.304,2.000) (5.408,2.000) (5.513,2.000) (5.621,2.000) (5.786,2.000) (5.952,2.000) (6.118,2.000) (6.283,2.000) (6.449,2.000) (6.615,2.000) (6.780,2.000) (6.946,2.000) (7.111,2.000) (7.277,2.000) (7.443,2.000) (7.608,2.000) (7.774,2.000) (7.940,2.000) (8.105,2.000) (8.271,2.000) (8.437,2.000) (8.602,2.000) (8.768,2.000) (8.934,2.000) (9.099,2.000) (9.265,2.000)};
+\node[aqmlabsmall, anchor=south east, text=aqmbroken] at (axis cs:8.55,2.12) {flat band};
+\node[aqmlabsmall, anchor=west, align=left] at (axis cs:5.75,-1.02)
+  {\footnotesize Dirac};
+\end{axis}
+\end{scope}
+
+% ================= (e) the localized flat-band state =======================
+\begin{scope}[shift={(4.55,-4.35)}]
+  \node[aqmpanel, anchor=south] at (0.9,1.45) {(e) why the band is flat: destructive interference};
+
+  % a kagome hexagon: six sites at 60-degree steps
+  \def\hr{1.02}
+  \foreach \k in {0,...,5} { \coordinate (h\k) at ({60*\k}:\hr); }
+  \foreach \k in {0,...,5} {
+    \pgfmathtruncatemacro\kk{mod(\k+1,6)}
+    \draw[aqmbondstrong, draw=black] (h\k) -- (h\kk);
+  }
+  % alternating amplitudes +1 / -1 around the loop
+  \foreach \k in {0,2,4} {
+    \node[circle, draw=aqmbroken, fill=aqmfillb, line width=0.9pt,
+          minimum size=13pt, inner sep=0pt, font=\footnotesize] at (h\k) {$+$};
+  }
+  \foreach \k in {1,3,5} {
+    \node[circle, draw=aqmaccent, fill=aqmfill, line width=0.9pt,
+          minimum size=13pt, inner sep=0pt, font=\footnotesize] at (h\k) {$-$};
+  }
+  \node[aqmlabsmall, align=center] at (0,0) {amplitude\\[-2pt]$\pm1$};
+
+  % an outside site, reached from two hexagon sites of opposite sign
+  \coordinate (out) at ({\hr*1.86},{\hr*0.52});
+  \node[aqmsiteopen, minimum size=8pt] at (out) {};
+  \draw[aqmbondweak, draw=aqmmuted] (h0) -- (out);
+  \draw[aqmbondweak, draw=aqmmuted] (h1) -- (out);
+  \node[aqmlabsmall, anchor=north west, align=left, text width=4.6cm] at ({\hr*2.05},{\hr*0.72})
+    {the two hopping paths onto this site arrive with amplitudes
+     $-t(+1)$ and $-t(-1)$:\\[2pt]
+     \textbf{they cancel exactly}\\[2pt]
+     \textcolor{aqmmuted}{the state cannot leak out, so its energy does not
+     depend on $\mathbf k$ -- a flat band}};
+\end{scope}
+
+\end{tikzpicture}
+
+\end{aqmfigure}

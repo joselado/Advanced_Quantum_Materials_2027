@@ -1,0 +1,123 @@
+% ---------------------------------------------------------------------------
+% Figure preamble for the short lecture notes.
+%
+% Loaded by main.tex ONLY, deliberately NOT by preamble.tex, so that anything
+% reusing preamble.tex does not inherit the whole figure machinery as a side
+% effect. Reuse is opt-in: \input this file explicitly.
+%
+% Every schematic in tex/figures/ is drawn against the styles defined here.
+% Do not hard-code colours or line widths in a figure file; add a style here
+% instead, so the whole set stays visually consistent.
+% ---------------------------------------------------------------------------
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+% adjustbox: shrinks a figure to the text width only when it would otherwise
+% overflow, so a schematic that runs a little wide is scaled instead of spilling
+% into the margin. Figures narrower than \linewidth are left completely alone.
+\usepackage{adjustbox}
+\pgfplotsset{compat=1.16}
+\usetikzlibrary{
+  arrows.meta,
+  positioning,
+  calc,
+  decorations.pathreplacing,
+  decorations.markings,
+  shapes.geometric,
+  fit,
+  backgrounds,
+  patterns
+}
+
+% --- Palette -----------------------------------------------------------------
+% One accent, one "broken/anomalous" colour, one muted grey. Every colour
+% distinction is ALSO carried by a shape, weight or dash difference, so the
+% figures survive greyscale printing.
+\definecolor{aqmaccent}{RGB}{31,78,121}   % ~blue!45!black, matches notebookbox frame
+\definecolor{aqmbroken}{RGB}{168,42,34}   % ~red!70!black, reserved for broken/asymmetric/anomalous
+\definecolor{aqmmuted}{RGB}{125,125,125}  % de-emphasis
+\definecolor{aqmfill}{RGB}{222,233,243}   % pale accent wash for filled regions
+\definecolor{aqmfillb}{RGB}{246,225,222}  % pale broken-colour wash
+
+% --- Shared metrics ----------------------------------------------------------
+\newcommand{\aqmlinewidth}{0.9pt}
+\newcommand{\aqmthinwidth}{0.5pt}
+
+% --- Node / flowchart styles -------------------------------------------------
+\tikzset{
+  aqm/.style={line width=\aqmlinewidth, line cap=round, line join=round},
+  aqmbox/.style={
+    aqm, draw=black, fill=white, rounded corners=1.5pt,
+    inner sep=4pt, align=center, font=\small
+  },
+  aqmboxaccent/.style={aqmbox, draw=aqmaccent, fill=aqmfill},
+  aqmboxbroken/.style={aqmbox, draw=aqmbroken, fill=aqmfillb},
+  aqmdiamond/.style={
+    aqm, draw=black, fill=white, diamond, aspect=1.7,
+    inner sep=2pt, align=center, font=\small
+  },
+  aqmarrow/.style={aqm, draw=black, -{Stealth[length=5pt,width=4pt]}},
+  aqmarrowaccent/.style={aqmarrow, draw=aqmaccent},
+  aqmarrowbroken/.style={aqmarrow, draw=aqmbroken, dashed},
+  aqmarrowmuted/.style={aqmarrow, draw=aqmmuted, line width=\aqmthinwidth},
+  % Lattices
+  aqmsite/.style={
+    aqm, circle, draw=black, fill=aqmaccent, minimum size=5pt, inner sep=0pt
+  },
+  aqmsiteopen/.style={aqmsite, fill=white},
+  aqmsitealt/.style={aqmsite, fill=white, draw=black, line width=\aqmlinewidth},
+  aqmbond/.style={aqm, draw=black},
+  aqmbondweak/.style={aqm, draw=black, line width=\aqmthinwidth, dash pattern=on 2pt off 1.5pt},
+  aqmbondstrong/.style={aqm, draw=black, line width=1.8pt},
+  aqmcell/.style={aqm, draw=aqmmuted, line width=\aqmthinwidth, dashed, rounded corners=1pt},
+  % Text
+  aqmlab/.style={font=\small, inner sep=1.5pt},
+  aqmlabsmall/.style={font=\footnotesize, inner sep=1pt},
+  aqmlabmuted/.style={aqmlabsmall, text=aqmmuted},
+  aqmpanel/.style={font=\small\bfseries, inner sep=2pt},
+  aqmbrace/.style={aqm, decorate, decoration={brace, amplitude=4pt}, draw=aqmmuted,
+                   line width=\aqmthinwidth},
+  % TikZ-level twin of the pgfplots "aqmguide" style below, so the same dashed
+  % construction-line look is available inside a plain tikzpicture.
+  aqmguide/.style={draw=aqmmuted, line width=0.6pt, dash pattern=on 2pt off 1.5pt}
+}
+
+% --- pgfplots styles ---------------------------------------------------------
+% aqmplot: the default look for every dispersion / DOS panel in the set.
+\pgfplotsset{
+  aqmplot/.style={
+    width=6cm, height=4.2cm,
+    axis lines=middle,
+    axis line style={aqm, black, -{Stealth[length=4pt,width=3pt]}},
+    tick align=outside,
+    tick style={black, line width=\aqmthinwidth},
+    label style={font=\small},
+    tick label style={font=\footnotesize},
+    title style={font=\small\bfseries, yshift=1pt},
+    every axis plot/.append style={line width=1.1pt},
+    clip=false,
+    legend style={font=\footnotesize, draw=none, fill=none}
+  },
+  aqmcurve/.style={aqmaccent, smooth},
+  aqmcurvebroken/.style={aqmbroken, smooth},
+  aqmcurvemuted/.style={aqmmuted, smooth, line width=0.7pt, dashed},
+  aqmguide/.style={aqmmuted, line width=0.6pt, dash pattern=on 2pt off 1.5pt}
+}
+
+% --- Figure float helper -----------------------------------------------------
+% Every schematic file uses this so floats behave identically across the set.
+% Usage:
+%   \begin{aqmfigure}{fig:s01:ssb}{Caption text.}
+%     <tikzpicture>
+%   \end{aqmfigure}
+\newenvironment{aqmfigure}[2]{%
+  \begin{figure}[htbp]
+  \centering
+  \def\aqmfiglabel{#1}\def\aqmfigcaption{#2}%
+  \begin{adjustbox}{max width=\linewidth}%
+}{%
+  \end{adjustbox}
+  \caption{\small\aqmfigcaption}
+  \label{\aqmfiglabel}
+  \end{figure}
+}

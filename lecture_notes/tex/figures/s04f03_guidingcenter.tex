@@ -1,0 +1,105 @@
+% Session 4 -- why Landau levels are flat: the Landau-gauge reduction turns every
+% k_y into the same harmonic oscillator, only displaced.
+% Placement: sec. "Landau levels of Schroedinger electrons", after equation (4.6).
+%
+% LAYOUT NOTE: two pgfplots axes in one tikzpicture; the second is placed off the
+% first with "at={($(ax1.south east)+(...)$)}". Everything inside each axis is in
+% axis cs, nothing is drawn in bare tikzpicture coordinates.
+\begin{aqmfigure}{fig:s04:guidingcenter}{Why the Landau levels are flat. (a) In the Landau gauge each
+$k_y$ reduces (4.5) to a one-dimensional harmonic oscillator in $x$, identical in every respect
+except that it is centred on the guiding centre $x_0=\hbar k_y/B$: raising $k_y$ slides the whole
+well to the left without changing its curvature. Every well therefore carries the identical ladder
+$E_n=\hbar\omega_c(n+\tfrac12)$, drawn here as the horizontal guides, and the ground-state
+wavepacket of each one is the same shape parked in a different place. (b) Plotted against $k_y$,
+that is a set of exactly dispersionless bands. The flatness is not an artefact of the gauge: it is
+the statement that the energy knows nothing about where in the sample the electron sits, which is
+also where the enormous Landau-level degeneracy comes from.}
+
+\begin{tikzpicture}
+
+% ============================ (a) the shifted wells ==========================
+\begin{axis}[
+  aqmplot,
+  name=ax1,
+  width=8.8cm, height=5.8cm,
+  axis lines=left,
+  axis line style={aqm, black},
+  title={(a) the Landau-gauge oscillator, one per $k_y$},
+  xlabel={$x$}, ylabel={$E$},
+  xlabel style={at={(axis description cs:1.02,0)}, anchor=west},
+  xmin=-6.2, xmax=6.2, ymin=0, ymax=4.6,
+  xtick=\empty,
+  ytick={0.5,1.5,2.5}, yticklabels={$E_0$,$E_1$,$E_2$},
+  enlargelimits=false,
+]
+
+% --- the shared ladder: the whole point of the figure ------------------------
+\addplot[aqmguide, forget plot] coordinates {(-6.0,0.5) (6.0,0.5)};
+\addplot[aqmguide, forget plot] coordinates {(-6.0,1.5) (6.0,1.5)};
+\addplot[aqmguide, forget plot] coordinates {(-6.0,2.5) (6.0,2.5)};
+
+% --- the three displaced parabolic wells -------------------------------------
+% muted+dashed for the two flanking ones, accent for the central one.
+\addplot[aqmcurvemuted, domain=-5.50:-0.90, samples=60, forget plot] {0.55*(x+3.2)^2};
+\addplot[aqmcurvemuted, domain= 0.90: 5.50, samples=60, forget plot] {0.55*(x-3.2)^2};
+\addplot[aqmaccent, line width=1.1pt, domain=-2.30:2.30, samples=60, forget plot] {0.55*x^2};
+
+% --- their (identical) ground-state wavepackets ------------------------------
+\addplot[aqmmuted, line width=0.8pt, domain=-4.9:-1.5, samples=60, forget plot]
+  {0.5+0.52*exp(-2*(x+3.2)^2)};
+\addplot[aqmmuted, line width=0.8pt, domain=1.5:4.9, samples=60, forget plot]
+  {0.5+0.52*exp(-2*(x-3.2)^2)};
+\addplot[aqmaccent, line width=1.1pt, domain=-1.7:1.7, samples=60, forget plot]
+  {0.5+0.52*exp(-2*x^2)};
+
+% --- guiding centres marked on the axis --------------------------------------
+\node[circle, fill=black, inner sep=0pt, minimum size=3.4pt] at (axis cs:-3.2,0) {};
+\node[circle, fill=black, inner sep=0pt, minimum size=3.4pt] at (axis cs: 0,0)   {};
+\node[circle, fill=black, inner sep=0pt, minimum size=3.4pt] at (axis cs: 3.2,0) {};
+\node[aqmlabsmall, anchor=north] at (axis cs:0,-0.20) {guiding centres $x_0=\hbar k_y/B$};
+
+% --- the sliding statement ---------------------------------------------------
+\draw[aqmarrowaccent] (axis cs:2.6,3.45) -- (axis cs:-2.6,3.45);
+\node[aqmlabsmall, anchor=south] at (axis cs:0,3.52) {increasing $k_y$};
+\node[aqmlabsmall, anchor=south] at (axis cs:0,4.02)
+  {\itshape same ladder, different place};
+
+\end{axis}
+
+% ============================== (b) the flat band ============================
+\begin{axis}[
+  aqmplot,
+  name=ax2,
+  at={($(ax1.south east)+(2.1cm,0)$)}, anchor=south west,
+  width=4.4cm, height=5.8cm,
+  axis lines=left,
+  axis line style={aqm, black},
+  title={(b) the band},
+  xlabel={$k_y$}, ylabel={$E$},
+  xlabel style={at={(axis description cs:1.02,0)}, anchor=west},
+  xmin=-1.15, xmax=1.15, ymin=0, ymax=4.6,
+  xtick={0}, xticklabels={$0$},
+  ytick={0.5,1.5,2.5}, yticklabels={$E_0$,$E_1$,$E_2$},
+  enlargelimits=false,
+]
+\addplot[black, line width=1.1pt, forget plot] coordinates {(-1.05,0.5) (1.05,0.5)};
+\addplot[black, line width=1.1pt, forget plot] coordinates {(-1.05,1.5) (1.05,1.5)};
+\addplot[black, line width=1.1pt, forget plot] coordinates {(-1.05,2.5) (1.05,2.5)};
+\node[circle, fill=aqmaccent, inner sep=0pt, minimum size=4pt] at (axis cs:-0.55,0.5) {};
+\node[circle, fill=aqmaccent, inner sep=0pt, minimum size=4pt] at (axis cs: 0,0.5)    {};
+\node[circle, fill=aqmaccent, inner sep=0pt, minimum size=4pt] at (axis cs: 0.55,0.5) {};
+\node[aqmlabsmall, anchor=south, align=center] at (axis cs:0,3.05)
+  {$\partial E/\partial k_y=0$\\[-1pt]\itshape exactly flat};
+\end{axis}
+
+% =========================== the degeneracy punchline ========================
+\node[aqmboxaccent, anchor=north west, align=center]
+  at ($(ax1.south west)+(0,-1.30cm)$)
+  {on a sample of size $W\times L_y$ the allowed $k_y$ are spaced by $2\pi/L_y$,\\[1pt]
+   so the guiding centres are spaced by $\Delta x_0=2\pi\hbar/BL_y$\\[4pt]
+   number of orbitals per Landau level $=W/\Delta x_0=BWL_y/2\pi\hbar=\Phi/\Phi_0$:\\[1pt]
+   one state per flux quantum through the sample};
+
+\end{tikzpicture}
+
+\end{aqmfigure}

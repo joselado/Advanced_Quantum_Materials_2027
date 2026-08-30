@@ -1,0 +1,136 @@
+% Session 5 -- same gap, different topology: trivial s-wave versus chiral p-wave.
+% Placement: sec. "Same gap, different topology", after the bulk-boundary paragraph.
+%
+% The dials are drawn IN THE COMPLEX PLANE but PLACED at the momentum where Delta is
+% evaluated; this is the one thing the figure must not let the reader confuse, so each dial
+% is given its own little frame and the panel labels say it in words. On a small circular
+% pocket, sin k_x + i sin k_y is approximately k_F e^{i phi}: constant modulus, phase equal
+% to the momentum angle. That is exactly why the two states are spectrally alike and
+% topologically different.
+%
+% The lower row is deliberately a REAL-SPACE cartoon and not a ribbon band structure: the
+% ribbon spectrum is what the notebook asks the reader to compute.
+\begin{aqmfigure}{fig:s05:topology}{Two gaps that a spectroscopy experiment cannot tell apart. Each
+dial is the phase of $\Delta(\mathbf k)$, an arrow in the complex plane, drawn at the point of the
+Fermi pocket where it is evaluated. (a) For $s$-wave pairing that phase is the same everywhere, so
+as $\mathbf k$ goes once around the pocket the value of $\Delta$ never moves off a single point of
+the complex plane: winding number zero, Chern number zero. (b) For chiral $p$-wave pairing (5.15)
+the phase instead tracks the direction of $\mathbf k$, so $\Delta$ traces a loop that encircles the
+origin once. The modulus is essentially the same in both cases, so both fully gap the same pocket
+by the same amount; only the winding differs, and the winding is what the Chern number counts.
+(c) The consequence on a finite sample: the trivial state is gapped at its boundary as well as in
+its bulk, while the chiral state must carry $|C|$ gapless branches on each edge, all running the
+same way, and the opposite way on the opposite edge. Here $C=\pm2$, one branch from each of the two
+identical spin blocks of (5.8).}
+
+\begin{tikzpicture}[x=1cm, y=1cm]
+\tikzset{
+  gline/.style={aqm, draw=aqmmuted, line width=0.6pt, dash pattern=on 2pt off 1.5pt},
+  cplane/.style={aqm, draw=black, line width=\aqmthinwidth,
+                 -{Stealth[length=4pt,width=3pt]}}
+}
+\def\R{0.94}   % Fermi-pocket radius
+\def\Dr{1.42}  % radius at which the dials sit
+
+% ####################### (a) s-wave: no winding ##############################
+\node[aqmpanel, anchor=south west] at (-0.10,2.15)
+  {(a) $s$-wave, $\Delta(\mathbf k)=\Delta_0$};
+
+\begin{scope}[shift={(1.55,0)}]
+  \draw[aqm, draw=aqmaccent, line width=1.3pt] (0,0) circle(\R);
+  \fill[aqmmuted] (0,0) circle(1.1pt);
+  \node[aqmlabmuted, anchor=north east] at (-0.02,-0.04) {$\Gamma$};
+  \foreach \a in {0,45,...,315} {
+    \draw[aqm, draw=aqmmuted, line width=0.5pt] (\a:\Dr) circle(0.23);
+    \draw[aqm, draw=aqmaccent, -{Stealth[length=3.8pt,width=3pt]}]
+      (\a:\Dr) -- ++(0:0.23);
+  }
+\end{scope}
+
+\begin{scope}[shift={(5.35,0)}]
+  \draw[cplane] (-0.95,0) -- (1.15,0);
+  \draw[cplane] (0,-0.95) -- (0,1.15);
+  \node[aqmlabmuted, anchor=west] at (1.16,0) {$\operatorname{Re}\Delta$};
+  \node[aqmlabmuted, anchor=south west] at (0.04,1.16) {$\operatorname{Im}\Delta$};
+  \fill[aqmaccent] (0.66,0) circle(2.6pt);
+  \node[aqmlabsmall, anchor=south, text=aqmaccent] at (0.66,0.10) {$\Delta_0$};
+\end{scope}
+
+\node[aqmlabsmall, anchor=north, align=center, text width=3.3cm] at (1.55,-1.95)
+  {the Fermi pocket; each dial gives $\arg\Delta$ at that momentum};
+\node[aqmlabsmall, anchor=north, align=center, text width=3.6cm] at (5.35,-1.25)
+  {$\Delta$ never leaves one point\\[1pt]
+   \textcolor{aqmmuted}{winding $W=0$, so $C=0$}};
+
+% ####################### (b) chiral p-wave: winding 1 ########################
+\node[aqmpanel, anchor=south west] at (7.75,2.15)
+  {(b) chiral $p$-wave, $\Delta_0(\sin k_x+i\sin k_y)$};
+
+\begin{scope}[shift={(9.35,0)}]
+  \draw[aqm, draw=aqmbroken, line width=1.3pt] (0,0) circle(\R);
+  \fill[aqmmuted] (0,0) circle(1.1pt);
+  \node[aqmlabmuted, anchor=north east] at (-0.02,-0.04) {$\Gamma$};
+  \foreach \a in {0,45,...,315} {
+    \draw[aqm, draw=aqmmuted, line width=0.5pt] (\a:\Dr) circle(0.23);
+    \draw[aqm, draw=aqmbroken, -{Stealth[length=3.8pt,width=3pt]}]
+      (\a:\Dr) -- ++(\a:0.23);
+  }
+\end{scope}
+
+\begin{scope}[shift={(13.15,0)}]
+  \draw[cplane] (-0.95,0) -- (1.15,0);
+  \draw[cplane] (0,-0.95) -- (0,1.15);
+  \node[aqmlabmuted, anchor=west] at (1.16,0) {$\operatorname{Re}\Delta$};
+  \node[aqmlabmuted, anchor=south west] at (0.04,1.16) {$\operatorname{Im}\Delta$};
+  \draw[aqm, draw=aqmbroken, line width=1.3pt,
+        postaction={decorate, decoration={markings,
+          mark=at position 0.30 with {\arrow{Stealth[length=5pt,width=4pt]}},
+          mark=at position 0.80 with {\arrow{Stealth[length=5pt,width=4pt]}}}}]
+    (0,0) circle(0.66);
+  \draw[aqm, draw=black, line width=0.7pt] (-0.09,-0.09) -- (0.09,0.09);
+  \draw[aqm, draw=black, line width=0.7pt] (-0.09,0.09) -- (0.09,-0.09);
+\end{scope}
+
+\node[aqmlabsmall, anchor=north, align=center, text width=3.3cm] at (9.35,-1.95)
+  {the phase follows the direction of $\mathbf k$};
+\node[aqmlabsmall, anchor=north, align=center, text width=3.7cm] at (13.15,-1.25)
+  {$\Delta$ circles the origin once\\[1pt]
+   \textcolor{aqmbroken}{winding $W=1$ per block, so $C=\pm2$}};
+
+% ####################### (c) what the boundary does ##########################
+\node[aqmpanel, anchor=south west] at (-0.10,-4.15)
+  {(c) the same two states on a finite sample};
+
+\begin{scope}[shift={(0.10,-6.55)}]
+  \fill[aqmfill] (0,0) rectangle (6.10,1.55);
+  \draw[aqm, draw=aqmaccent] (0,0) rectangle (6.10,1.55);
+  \node[aqmlab, anchor=center] at (3.05,0.78) {gapped bulk \emph{and} gapped edge};
+  \node[aqmlabsmall, anchor=north, align=center, text width=6.1cm] at (3.05,-0.30)
+    {$s$-wave ($C=0$): nothing at zero energy, bulk or boundary};
+\end{scope}
+
+\begin{scope}[shift={(7.85,-6.55)}]
+  \fill[aqmfillb] (0,0) rectangle (6.10,1.55);
+  \draw[aqm, draw=aqmbroken] (0,0) rectangle (6.10,1.55);
+  \node[aqmlab, anchor=center] at (3.05,0.78) {gapped bulk};
+  % top edge: two co-propagating branches, running right
+  \foreach \dy in {0.16,0.36} {
+    \draw[aqm, draw=aqmbroken, -{Stealth[length=5pt,width=4pt]}]
+      (0.70,1.55+\dy) -- (5.40,1.55+\dy);
+  }
+  % bottom edge: two co-propagating branches, running left
+  \foreach \dy in {0.16,0.36} {
+    \draw[aqm, draw=aqmbroken, -{Stealth[length=5pt,width=4pt]}]
+      (5.40,-\dy) -- (0.70,-\dy);
+  }
+  \node[aqmlabsmall, anchor=south, text=aqmbroken] at (3.05,1.98)
+    {two branches, both $\rightarrow$};
+  \node[aqmlabsmall, anchor=north, text=aqmbroken] at (3.05,-0.52)
+    {two branches, both $\leftarrow$};
+  \node[aqmlabsmall, anchor=north, align=center, text width=6.1cm] at (3.05,-0.88)
+    {chiral $p$-wave ($C=\pm2$): gapless modes on every edge};
+\end{scope}
+
+\end{tikzpicture}
+
+\end{aqmfigure}

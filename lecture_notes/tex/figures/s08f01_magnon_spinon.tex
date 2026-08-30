@@ -1,0 +1,95 @@
+% Session 8 -- magnon versus spinon: the Delta S = 1 versus Delta S = 1/2 counting.
+% Placement: sec. "Two emergent excitations: magnons versus spinons", right after the
+% "simple pictorial argument" paragraph.
+%
+% NOTE (physics): a chain of an even number of sites cannot host a single unpaired
+% spin, so the excited singlet background is drawn with the honest *two* unpaired
+% sites. The point of the figure survives unchanged and gets sharper: each unpaired
+% spin separately carries S=1/2, which is exactly why the elementary excitation is
+% half a magnon rather than a whole one.
+\begin{aqmfigure}{fig:s08:magnonspinon}{Why the two kinds of magnet host excitations differing by
+exactly a factor of two in spin. (a) In a symmetry-broken magnet every site carries a definite spin
+(arrows). Flipping one costs $\Delta S=1$: that excitation is the magnon of session 6. (The single flipped
+spin drawn here is only the $\Delta S$ bookkeeping; the actual magnon is the delocalized precession
+of figure~\ref{fig:s06:magnon}, not one overturned site.) (b) In a
+quantum magnet no site carries a definite spin at all; the sites are paired into singlets (8.3)
+(capsules), so $\langle\mathbf S_i\rangle=0$ everywhere and $S_\text{tot}=0$. Breaking one pair
+leaves \emph{unpaired} sites (open circles), and each one separately carries $S=1/2$: a spinon,
+half a magnon. Spinons are therefore always created in pairs, and whether the pair stays bound or
+comes apart is the whole content of figure~\ref{fig:s08:vbsrvb}.}
+
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+\tikzset{
+  sup/.pic={\draw[aqm, -{Stealth[length=3.8pt,width=3.2pt]}] (0,-0.21) -- (0,0.21);},
+  sdn/.pic={\draw[aqm, -{Stealth[length=3.8pt,width=3.2pt]}] (0,0.21) -- (0,-0.21);},
+  chainline/.style={aqm, draw=aqmmuted, line width=\aqmthinwidth},
+  capsule/.style={aqm, draw=aqmaccent, fill=aqmfill, rounded corners=0.19cm},
+  dot/.style={aqmsite, minimum size=4.6pt},
+  dotopen/.style={aqmsite, fill=white, draw=aqmbroken, minimum size=6.5pt,
+                  line width=\aqmlinewidth}
+}
+
+\def\dx{0.62}
+\def\xa{-0.42}   % right edge of the left label column
+\def\xr{5.05}    % left edge of the right annotation column
+
+% ======================= (a) symmetry-broken magnet =========================
+\node[aqmpanel, anchor=west] at (\xa-2.55,0.98) {(a) symmetry-broken magnet};
+
+% --- ground state -----------------------------------------------------------
+\draw[chainline] (-0.12,0) -- (7*\dx+0.12,0);
+\foreach \n in {0,...,7} {
+  \node[dot] at (\n*\dx,0) {};
+  \pic at (\n*\dx,0.36) {sup};
+}
+\node[aqmlabsmall, anchor=east, text=aqmmuted] at (\xa,0.18) {ground state};
+\node[aqmlabsmall, anchor=west] at (\xr,0.18)
+  {$S_\text{tot}^z=N/2$, \; $\langle S_i^z\rangle=\tfrac12$ on every site};
+
+% --- one flipped spin -------------------------------------------------------
+\draw[chainline] (-0.12,-1.10) -- (7*\dx+0.12,-1.10);
+\foreach \n in {0,...,7} { \node[dot] at (\n*\dx,-1.10) {}; }
+\foreach \n in {0,1,2,4,5,6,7} { \pic at (\n*\dx,-0.74) {sup}; }
+\draw[aqm, draw=aqmbroken, line width=\aqmthinwidth, dash pattern=on 1.8pt off 1.6pt,
+      rounded corners=2pt, fill=white]
+  (3*\dx-0.17,-0.99) rectangle (3*\dx+0.17,-0.49);
+\pic[draw=aqmbroken] at (3*\dx,-0.74) {sdn};
+\node[aqmlabsmall, anchor=east, text=aqmmuted] at (\xa,-0.92) {flip one spin};
+\node[aqmlabsmall, anchor=west, align=left] at (\xr,-0.92)
+  {$\Delta S = 1$: \textbf{magnon} \; \textcolor{aqmmuted}{(spin $1$, no charge)}};
+
+% ======================= (b) quantum magnet =================================
+\node[aqmpanel, anchor=west] at (\xa-2.55,-2.05) {(b) quantum magnet};
+
+% --- singlet-covered ground state -------------------------------------------
+\foreach \n in {0,2,4,6} {
+  \draw[capsule] (\n*\dx-0.19,-2.94) rectangle (\n*\dx+\dx+0.19,-2.56);
+}
+\foreach \n in {0,...,7} { \node[dot] at (\n*\dx,-2.75) {}; }
+\node[aqmlabsmall, anchor=east, text=aqmmuted, align=right] at (\xa,-2.75)
+  {ground state:\\[-1pt]every site paired};
+\node[aqmlabsmall, anchor=west, align=left] at (\xr,-2.75)
+  {$S_\text{tot}=0$, \; $\langle \mathbf S_i\rangle=\mathbf 0$ on every site};
+
+% --- one pair broken --------------------------------------------------------
+\foreach \n in {0,3,6} {
+  \draw[capsule] (\n*\dx-0.19,-4.09) rectangle (\n*\dx+\dx+0.19,-3.71);
+}
+\foreach \n in {0,1,3,4,6,7} { \node[dot] at (\n*\dx,-3.90) {}; }
+\foreach \n in {2,5} { \node[dotopen] at (\n*\dx,-3.90) {}; }
+\node[aqmlabsmall, anchor=north, text=aqmbroken] at (2*\dx,-4.06) {$S=\tfrac12$};
+\node[aqmlabsmall, anchor=north, text=aqmbroken] at (5*\dx,-4.06) {$S=\tfrac12$};
+\node[aqmlabsmall, anchor=east, text=aqmmuted, align=right] at (\xa,-3.90)
+  {break one pair};
+\node[aqmlabsmall, anchor=west, align=left] at (\xr,-3.90)
+  {$\Delta S = \tfrac12$ each: \textbf{spinon} \; \textcolor{aqmmuted}{(spin $\tfrac12$, no charge)}};
+
+% --- legend for the capsule --------------------------------------------------
+\node[aqmlabsmall, anchor=north west, text=aqmmuted] at (\xa-2.55,-4.55)
+  {capsule $=$ singlet $\tfrac{1}{\sqrt2}\big(|{\uparrow\downarrow}\rangle-|{\downarrow\uparrow}\rangle\big)$
+   of (8.3); \; open circle $=$ unpaired site};
+
+\end{tikzpicture}
+
+\end{aqmfigure}

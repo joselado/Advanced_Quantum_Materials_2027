@@ -1,0 +1,96 @@
+% Session 1 -- the charge density wave in real space.
+% Placement: sec. "Worked example 1", at the "numerically, this shows up..." paragraph.
+%
+% NOTE: deliberately no band-folding / dispersion panel here. Brillouin zones and band
+% folding are session-2 machinery; the chapter's own claim at this point is about the
+% single-particle *spectrum*, which the level ladder shows directly.
+\begin{aqmfigure}{fig:s01:cdw}{The charge density wave. At $V=0$ every site of the chain (1.6)
+carries the same charge and the single-particle spectrum is gapless (top). Once the
+nearest-neighbour repulsion drives the mean-field instability, charge piles up on alternating sites,
+doubling the unit cell and opening a gap in the spectrum (bottom). The Hamiltonian is
+translationally symmetric in both cases; its ground state is not.}
+
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+\def\dx{0.95}   % site spacing
+
+% ============================ top: V = 0 ====================================
+\begin{scope}[shift={(0,0)}]
+  \node[aqmpanel, anchor=east, align=right] at (-0.75,0) {$V=0$};
+  \node[aqmlabsmall, anchor=east, align=right, text=aqmmuted] at (-0.75,-0.40)
+    {uniform\\[-1pt]charge};
+
+  % bonds
+  \draw[aqmbond] (0,0) -- (7*\dx,0);
+  % sites, all equal
+  \foreach \n in {0,...,7} {
+    \node[aqmsite, minimum size=8pt] at (\n*\dx,0) {};
+  }
+  % one-site unit cell
+  \draw[aqmcell] (-0.42,-0.42) rectangle (0.42,0.42);
+  \draw[aqmbrace] (-0.42,0.52) -- (0.42,0.52);
+  \node[aqmlabsmall, anchor=south, text=aqmmuted] at (0,0.76) {unit cell $a$};
+
+  \node[aqmlabsmall, anchor=north] at (3.5*\dx,-0.55)
+    {$\langle n_{\text{even}}\rangle=\langle n_{\text{odd}}\rangle$, \; $\delta n=0$};
+\end{scope}
+
+% ============================ bottom: V >> t ================================
+\begin{scope}[shift={(0,-3.0)}]
+  \node[aqmpanel, anchor=east, align=right] at (-0.75,0) {$V\gg t$};
+  \node[aqmlabsmall, anchor=east, align=right, text=aqmbroken] at (-0.75,-0.40)
+    {staggered\\[-1pt]charge};
+
+  % markers of the doubled periodicity
+  \foreach \n in {0,2,4,6} {
+    \draw[aqmguide, draw=aqmmuted, dash pattern=on 1.5pt off 1.5pt]
+      (\n*\dx-0.475,-0.60) -- (\n*\dx-0.475,0.60);
+  }
+  \draw[aqmbond] (0,0) -- (7*\dx,0);
+  % alternating large / small
+  \foreach \n in {0,2,4,6} {
+    \node[aqmsite, fill=aqmbroken, minimum size=11pt] at (\n*\dx,0) {};
+  }
+  \foreach \n in {1,3,5,7} {
+    \node[aqmsite, fill=aqmfillb, draw=aqmbroken, minimum size=5pt] at (\n*\dx,0) {};
+  }
+  % two-site unit cell
+  \draw[aqmbrace] (-0.475,0.66) -- (\dx+0.475,0.66);
+  \node[aqmlabsmall, anchor=south, text=aqmmuted] at (0.5*\dx,0.90) {unit cell $2a$};
+
+  \node[aqmlabsmall, anchor=north] at (3.5*\dx,-0.62)
+    {$\delta n=\langle n_{\text{even}}\rangle-\langle n_{\text{odd}}\rangle\neq0$};
+\end{scope}
+
+% ===================== level ladders on the right ===========================
+\def\lx{8.75}
+
+% gapless
+\begin{scope}[shift={(\lx,0)}]
+  \draw[aqmarrowmuted] (0,-1.05) -- (0,1.28);
+  \node[aqmlabsmall, anchor=south, text=aqmmuted] at (0,1.30) {$E$};
+  \foreach \y in {-0.90,-0.60,-0.30,0,0.30,0.60,0.90} {
+    \draw[aqm, draw=aqmaccent] (0.10,\y) -- (0.95,\y);
+  }
+  \node[aqmlabsmall, anchor=west, align=left] at (1.05,0) {gapless\\[-1pt]
+    \textcolor{aqmmuted}{a metal}};
+\end{scope}
+
+% gapped
+\begin{scope}[shift={(\lx,-3.0)}]
+  \draw[aqmarrowmuted] (0,-1.15) -- (0,1.25);
+  \node[aqmlabsmall, anchor=south, text=aqmmuted] at (0,1.30) {$E$};
+  \foreach \y in {-1.00,-0.82,-0.64,-0.46} {
+    \draw[aqm, draw=aqmbroken] (0.10,\y) -- (0.95,\y);
+  }
+  \foreach \y in {0.46,0.64,0.82,1.00} {
+    \draw[aqm, draw=aqmbroken] (0.10,\y) -- (0.95,\y);
+  }
+  \draw[aqmbrace, decoration={brace, amplitude=3.5pt, mirror}] (1.02,-0.46) -- (1.02,0.46);
+  \node[aqmlabsmall, anchor=west, align=left] at (1.32,0)
+    {gap opens\\[-1pt]\textcolor{aqmmuted}{an insulator}};
+\end{scope}
+
+\end{tikzpicture}
+
+\end{aqmfigure}

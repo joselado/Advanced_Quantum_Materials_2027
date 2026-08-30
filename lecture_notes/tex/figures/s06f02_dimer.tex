@@ -1,0 +1,107 @@
+% Session 6 -- the Hubbard dimer: why superexchange is antiferromagnetic, and why J = 4t^2/U.
+% Placement: sec. "From the Hubbard dimer to the Heisenberg model", after the 2x2 matrix
+% and its eigenvalues, at the paragraph that reads off (6.4).
+%
+% LAYOUT NOTE: panel (a) is drawn in bare canvas coordinates; panel (b) is a pgfplots
+% axis placed with "at={(...)}" in those same canvas coordinates. Nothing outside the
+% axis ever refers to (axis cs:...), so the two never need to agree.
+\begin{aqmfigure}{fig:s06:dimer}{Superexchange on the two-site Hubbard model, and why it always
+comes out antiferromagnetic. (a) With parallel spins the only hop available would put two
+$\uparrow$ electrons on one site, which Pauli exclusion forbids outright: the triplet states cannot
+lower their energy at any order and sit at exactly $E_T=0$. With antiparallel spins the hop is
+allowed, so the singlet borrows a virtual double occupancy of energy $U$ and returns, gaining
+second-order energy $-4t^2/U$. Magnetic order here is a purely kinetic effect: antiparallel spins
+are cheaper because they are the only ones allowed to move. (b) The exact singlet energy
+$E_S=\tfrac{U}{2}-\sqrt{(U/2)^2+4t^2}$ against $U/t$, with $E_T=0$ exact for every $U$. The
+singlet-triplet splitting \emph{is} the Heisenberg coupling $J$ of (6.4), and it decays as
+$4t^2/U$: the same $1/U$ law that the mean-field ferromagnet/antiferromagnet energy difference of
+Section 6.5 was found to obey numerically.}
+
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+% --- local drawing helpers (scoped to this figure) --------------------------
+\newcommand{\dimerframe}[1]{%
+  \draw[aqmbond] (#1,0) -- (#1+0.85,0);
+  \node[aqmsiteopen, minimum size=15pt] at (#1,0) {};
+  \node[aqmsiteopen, minimum size=15pt] at (#1+0.85,0) {};}
+\newcommand{\upar}[2]{%
+  \draw[aqm, draw=#2, -{Stealth[length=3.4pt,width=2.8pt]}] (#1,-0.17) -- (#1,0.17);}
+\newcommand{\dnar}[2]{%
+  \draw[aqm, draw=#2, -{Stealth[length=3.4pt,width=2.8pt]}] (#1,0.17) -- (#1,-0.17);}
+
+\node[aqmpanel, anchor=west] at (-0.30,2.15) {(a) which spin configuration is allowed to move};
+
+% ---------------- left block: parallel spins, blocked -----------------------
+\begin{scope}[shift={(0,0.95)}]
+  \dimerframe{1.28}
+  \upar{1.28}{aqmaccent}\upar{2.13}{aqmaccent}
+  \draw[aqmarrowbroken, draw=aqmbroken] (1.33,0.40) to[bend left=45] (2.08,0.40);
+  \node[aqmlabsmall, text=aqmbroken, anchor=south] at (1.705,0.76) {$t$};
+  \draw[aqm, draw=aqmbroken, line width=1.1pt] (1.605,0.51) -- (1.805,0.71);
+  \draw[aqm, draw=aqmbroken, line width=1.1pt] (1.605,0.71) -- (1.805,0.51);
+  \node[aqmlabsmall, anchor=north, text=aqmmuted] at (1.705,-0.34) {$E=0$};
+\end{scope}
+\node[aqmlabsmall, anchor=north, align=center, text width=4.2cm] at (1.705,0.18)
+  {\textbf{parallel} $|{\uparrow\uparrow}\rangle$: the target site already holds an
+   $\uparrow$, so the hop is Pauli-forbidden. No virtual excursion exists, and
+   \textcolor{aqmbroken}{$E_T=0$ exactly, to all orders.}};
+
+% ---------------- right block: antiparallel spins, allowed ------------------
+\begin{scope}[shift={(0,0.95)}]
+  \dimerframe{5.05}
+  \upar{5.05}{aqmaccent}\dnar{5.90}{aqmaccent}
+  \draw[aqmarrowaccent] (5.10,0.40) to[bend left=45] (5.85,0.40);
+  \node[aqmlabsmall, text=aqmaccent, anchor=south] at (5.475,0.70) {$t$};
+  \node[aqmlabsmall, anchor=north, text=aqmmuted] at (5.475,-0.34) {$E=0$};
+
+  \draw[aqmarrowmuted] (6.32,0) -- (6.90,0);
+
+  \dimerframe{7.30}
+  \upar{7.22}{aqmbroken}\dnar{7.38}{aqmbroken}
+  \node[aqmlabsmall, anchor=north, text=aqmbroken] at (7.725,-0.34) {$E=U$};
+\end{scope}
+\node[aqmlabsmall, anchor=north, align=center, text width=4.6cm] at (6.60,0.18)
+  {\textbf{antiparallel} $|S\rangle$: the hop is allowed, so the singlet borrows the doubly
+   occupied $|D\rangle$ and returns, gaining \textcolor{aqmaccent}{$-(2t)^2/U$.}};
+
+% ======================= panel (b): the exact spectrum ======================
+\begin{axis}[
+  aqmplot, name=panB,
+  at={(0cm,-7.6cm)}, anchor=south west,
+  width=13.0cm, height=5.0cm,
+  axis lines=left,
+  axis line style={aqm, black},
+  title={(b) exact two-site spectrum, and the $1/U$ tail it leaves behind},
+  xlabel={$U/t$}, ylabel={$E/t$},
+  xlabel style={at={(axis description cs:0.5,-0.14)}, anchor=north},
+  xmin=0, xmax=9.4, ymin=-2.35, ymax=0.55,
+  xtick={0,2,4,6,8}, ytick={-2,-1,0},
+  enlargelimits=false,
+]
+
+% triplet: exactly zero for all U
+\addplot[black, line width=1.1pt, domain=0:9.4, samples=2] {0};
+\node[aqmlabsmall, anchor=south east] at (axis cs:9.35,0.04)
+  {$E_T=0$ \textcolor{aqmmuted}{(exact, all $U$)}};
+
+% asymptote -4 t^2 / U
+\addplot[aqmcurvemuted, domain=1.85:9.4, samples=120] {-4/x};
+\node[aqmlabsmall, text=aqmmuted, anchor=north] at (axis cs:7.55,-1.02)
+  {large-$U$ limit $-4t^2/U$};
+\draw[aqmguide] (axis cs:7.55,-0.96) -- (axis cs:7.55,-0.58);
+
+% exact singlet
+\addplot[aqmcurve, domain=0:9.4, samples=200] {x/2 - sqrt(x*x/4 + 4)};
+\node[aqmlabsmall, text=aqmaccent, anchor=west] at (axis cs:1.15,-0.52)
+  {$E_S=\tfrac{U}{2}-\sqrt{(U/2)^2+4t^2}$};
+
+% the splitting = J, read off at U = 5t  (E_S = -0.7016)
+\draw[aqmbrace, decoration={brace, amplitude=4pt, mirror}]
+  (axis cs:5.0,-0.7016) -- (axis cs:5.0,0);
+\node[aqmlabsmall, anchor=west] at (axis cs:5.16,-0.30) {$J=E_T-E_S$};
+
+\end{axis}
+
+\end{tikzpicture}
+
+\end{aqmfigure}

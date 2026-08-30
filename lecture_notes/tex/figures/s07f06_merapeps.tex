@@ -1,0 +1,105 @@
+% Session 7 -- MERA and PEPS: the two architectures the section names but never draws.
+% Placement: sec. "Beyond MPS: MERA and PEPS", after the PEPS paragraph.
+%
+% LAYOUT NOTE: pure TikZ, canvas coordinates; one-off tensor shapes declared with
+% \tikzset inside this picture only.
+\begin{aqmfigure}{fig:s07:merapeps}{The two tensor networks beyond the chain, and what their geometry
+buys. Left: the multi-scale entanglement renormalization ansatz. Its tensors are stacked in layers,
+each layer first removing the short-range entanglement between neighbouring blocks (the square
+disentanglers) and then coarse-graining two sites into one (the triangular isometries), so that the
+network describes the state at successively longer length scales rather than at successive positions
+along a chain. A bipartition now cuts one bond in every layer instead of one bond in total, which is
+precisely how MERA supports the logarithmically growing entropy (7.12) of a critical chain that an
+MPS of fixed bond dimension cannot reach. Right: projected entangled pair states, the honest 2D
+generalization of (7.5), with one tensor per lattice site carrying a physical leg and four virtual
+bonds. The picture also shows the difficulty: there is no way to sweep along such a network one
+tensor at a time with the rest reduced to a simple environment, and contracting it exactly is itself
+a hard problem, which is why PEPS has no clean analogue of DMRG.}
+
+\begin{tikzpicture}[x=1cm, y=1cm]
+\tikzset{
+  tens/.style={aqm, circle, draw=black, fill=aqmfill, minimum size=6.5pt, inner sep=0pt},
+  diseng/.style={aqm, rectangle, draw=black, fill=white, minimum size=8pt, inner sep=0pt},
+  isom/.style={aqm, regular polygon, regular polygon sides=3, draw=black, fill=aqmfill,
+               minimum size=11pt, inner sep=0pt},
+  leg/.style={aqm, draw=black, line width=\aqmthinwidth}
+}
+
+% ============================ (a) MERA ======================================
+\node[aqmpanel, anchor=west] at (-0.10,3.30) {(a) MERA: layers across length scales};
+
+% --- physical sites -----------------------------------------------------------
+\foreach \i in {0,...,7} {
+  \node[tens] (p\i) at (0.42*\i,0) {};
+  \draw[leg] (0.42*\i,-0.08) -- (0.42*\i,-0.34);
+}
+
+% --- layer 1: disentanglers on (1,2), (3,4), (5,6) ---------------------------
+\foreach \c/\l/\r in {0.63/1/2, 1.47/3/4, 2.31/5/6} {
+  \node[diseng] (u\l) at (\c,0.62) {};
+  \draw[leg] (p\l) -- (u\l);
+  \draw[leg] (p\r) -- (u\l);
+}
+% --- layer 1: isometries on (0,1), (2,3), (4,5), (6,7) -----------------------
+\foreach \c/\n in {0.21/0, 1.05/1, 1.89/2, 2.73/3} {
+  \node[isom] (w\n) at (\c,1.32) {};
+}
+\draw[leg] (p0) -- (w0);
+\draw[leg] (u1) -- (w0);
+\draw[leg] (u1) -- (w1);
+\draw[leg] (u3) -- (w1);
+\draw[leg] (u3) -- (w2);
+\draw[leg] (u5) -- (w2);
+\draw[leg] (u5) -- (w3);
+\draw[leg] (p7) -- (w3);
+
+% --- layer 2 -----------------------------------------------------------------
+\node[diseng] (uu) at (1.47,1.92) {};
+\draw[leg] (w1) -- (uu);
+\draw[leg] (w2) -- (uu);
+\node[isom] (v0) at (0.63,2.56) {};
+\node[isom] (v1) at (2.31,2.56) {};
+\draw[leg] (w0) -- (v0);
+\draw[leg] (uu) -- (v0);
+\draw[leg] (uu) -- (v1);
+\draw[leg] (w3) -- (v1);
+\node[tens] (top) at (1.47,3.02) {};
+\draw[leg] (v0) -- (top);
+\draw[leg] (v1) -- (top);
+
+% --- the scale axis ----------------------------------------------------------
+\draw[aqmarrowmuted] (-0.62,-0.20) -- (-0.62,3.00);
+\node[aqmlabmuted, rotate=90, anchor=south] at (-0.76,1.40) {coarser length scale};
+
+% --- legend and message ------------------------------------------------------
+\node[diseng] at (3.75,0.62) {};
+\node[aqmlabsmall, anchor=west] at (3.92,0.62) {disentangler};
+\node[isom] at (3.75,1.32) {};
+\node[aqmlabsmall, anchor=west] at (3.92,1.32) {isometry ($2\to1$ sites)};
+\node[aqmlabsmall, anchor=west, align=left, text width=3.3cm, text=aqmaccent] at (3.65,2.45)
+  {a bipartition cuts one bond \emph{per layer}, so $S$ can grow like $\log\ell$: the critical
+   law (7.12)};
+\node[aqmlabsmall, anchor=north, text=aqmmuted] at (1.47,-0.48) {physical legs};
+
+% ============================ (b) PEPS ======================================
+\node[aqmpanel, anchor=west] at (7.30,3.30) {(b) PEPS: a 2D grid of tensors};
+
+\begin{scope}[shift={(8.20,0.85)}]
+  \foreach \i in {0,1,2,3} { \foreach \j in {0,1,2,3} {
+      \node[tens] (t\i\j) at (0.62*\i,0.62*\j) {};
+      \draw[leg] (0.62*\i-0.05,0.62*\j-0.05) -- (0.62*\i-0.24,0.62*\j-0.24);
+  }}
+  \foreach \i/\k in {0/1, 1/2, 2/3} { \foreach \j in {0,1,2,3} {
+      \draw[leg] (t\i\j) -- (t\k\j);
+      \draw[leg] (t\j\i) -- (t\j\k);
+  }}
+\end{scope}
+\node[aqmlabsmall, anchor=north, align=center, text width=4.4cm, text=aqmmuted] at (9.13,0.44)
+  {four virtual bonds and one physical leg per site};
+\node[aqmlabsmall, anchor=north, align=center, text width=4.4cm, text=aqmbroken] at (9.13,-0.34)
+  {no 1D order to sweep along, and contracting the network is itself hard: DMRG's local
+   eigenproblem has no analogue here};
+
+\end{tikzpicture}
+
+\end{aqmfigure}

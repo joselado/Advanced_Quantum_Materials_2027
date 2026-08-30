@@ -1,0 +1,105 @@
+% Session 6 -- what a magnon is in real space, and the Holstein-Primakoff bookkeeping.
+% Placement: sec. "The Holstein-Primakoff transformation", at the paragraph that states the
+% bookkeeping (S^- creates a magnon, S^+ destroys one) after eq. (6.7).
+%
+% The side view and the top view use the same phase, 45 degrees per site: the arrow tip in
+% the side view sits at (0.32 cos(ka n), 0.15 sin(ka n)) relative to the top of the cone,
+% which is the foreshortened projection of the in-plane arrow drawn in the top view.
+\begin{aqmfigure}{fig:s06:magnon}{What (6.6)--(6.7) actually describe. (a) The ferromagnetic ground
+state: every spin at its maximal $S^z=S$, and therefore zero magnons. (b) A single magnon is
+\emph{not} one spin flipped over on one site. It is every spin tipped slightly out of alignment and
+precessing on its cone, with the precession phase advancing by $\mathbf k\cdot\boldsymbol\delta$
+from site to site (seen most clearly in the top view, where the transverse component turns steadily
+and closes on itself after one wavelength). The missing unit of spin is therefore shared coherently
+across the whole lattice: $\sum_i\langle S_i^z\rangle=NS-1$. Because the tipping angle is small,
+$\langle a_i^\dagger a_i\rangle\ll S$ everywhere, which is exactly the condition under which the
+square roots in (6.6) may be expanded; the tipping angle is drawn far larger here than it
+really is. (c) The counting rule that makes the transformation easy to
+remember: the boson number counts spin removed from saturation, so the \emph{lowering} operator
+$S^-$ creates a magnon and the \emph{raising} operator $S^+$ destroys one.}
+
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+% ==================== (a) the fully polarized ground state ==================
+\begin{scope}[shift={(0,0)}]
+  \node[aqmpanel, anchor=west] at (-0.30,1.34) {(a) ground state: no magnons};
+  \draw[aqmguide] (-0.25,0) -- (6.65,0);
+  \foreach \n in {0,...,8} {
+    \node[aqmsite, minimum size=4pt] at (\n*0.8,0) {};
+    \draw[aqm, draw=aqmaccent, -{Stealth[length=4.6pt,width=3.8pt]}]
+      (\n*0.8,0.02) -- (\n*0.8,0.86);
+  }
+  \node[aqmlabsmall, anchor=north, text=aqmmuted] at (3.2,-0.16)
+    {$S_i^z=S$ on every site, $\;n_i=a_i^\dagger a_i=0$, $\;\sum_i S_i^z=NS$};
+\end{scope}
+
+% ==================== (b) one magnon ========================================
+\begin{scope}[shift={(0,-4.35)}]
+  \node[aqmpanel, anchor=west] at (-0.30,2.88) {(b) one magnon: a precession wave};
+
+  % ---- wavelength marker ---------------------------------------------------
+  \draw[aqm, draw=aqmmuted, line width=\aqmthinwidth,
+        {Stealth[length=4pt,width=3pt]}-{Stealth[length=4pt,width=3pt]}]
+    (0,2.42) -- (6.4,2.42);
+  \node[aqmlabsmall, text=aqmmuted, fill=white, inner sep=2pt]
+    at (3.2,2.42) {one wavelength $2\pi/k$};
+
+  % ---- top view: the transverse component turns by ka per site -------------
+  \node[aqmlabsmall, text=aqmmuted, anchor=east, align=right, text width=1.5cm]
+    at (-0.32,1.70) {top\\[-2pt]view};
+  \foreach \n in {0,...,8} {
+    \node[aqmsite, minimum size=3pt] at (\n*0.8,1.70) {};
+    \draw[aqm, draw=aqmbroken, -{Stealth[length=4pt,width=3.2pt]}]
+      (\n*0.8,1.70) -- ({\n*0.8+0.30*cos(45*\n)},{1.70+0.30*sin(45*\n)});
+  }
+
+  % ---- side view: cones, sites, tipped spins -------------------------------
+  \node[aqmlabsmall, text=aqmmuted, anchor=east, align=right, text width=1.5cm]
+    at (-0.32,0.50) {side\\[-2pt]view};
+  \draw[aqmguide] (-0.25,0) -- (6.65,0);
+  \foreach \n in {0,...,8} {
+    \draw[aqmguide] (\n*0.8,0.85) ellipse [x radius=0.30, y radius=0.14];
+    \node[aqmsite, minimum size=4pt] at (\n*0.8,0) {};
+    \draw[aqm, draw=aqmaccent, -{Stealth[length=4.6pt,width=3.8pt]}]
+      (\n*0.8,0.02) -- ({\n*0.8+0.30*cos(45*\n)},{0.85+0.14*sin(45*\n)});
+  }
+
+  \node[aqmlabsmall, anchor=north, align=center, text width=7.4cm] at (3.2,-0.16)
+    {$\langle S_i^z\rangle=S-\tfrac1N$ on every site, so
+     $\sum_i\langle S_i^z\rangle=NS-1$:\\[1pt]
+     \textbf{one} unit of spin, shared over the whole chain};
+\end{scope}
+
+% ==================== (c) the counting rule =================================
+\begin{scope}[shift={(9.15,-3.10)}]
+  \node[aqmpanel, anchor=center] at (0.75,2.62) {(c) counting rule};
+
+  \foreach \y/\n/\sz in {0/0/{S}, 1.0/1/{S-1}, 2.0/2/{S-2}} {
+    \draw[aqm, draw=black] (0,\y) -- (1.5,\y);
+    \node[aqmlabsmall, anchor=east] at (-0.12,\y) {$n=\n$};
+    \node[aqmlabsmall, anchor=west] at (1.62,\y) {$S_i^z=\sz$};
+  }
+
+  % creating magnons
+  \foreach \a/\b in {0.07/0.93, 1.07/1.93} {
+    \draw[aqm, draw=aqmaccent, -{Stealth[length=4.6pt,width=3.8pt]}]
+      (0.45,\a) -- (0.45,\b);
+  }
+  \node[aqmlabsmall, text=aqmaccent, anchor=east] at (0.37,0.50) {$a_i^\dagger$};
+
+  % destroying magnons
+  \foreach \a/\b in {0.93/0.07, 1.93/1.07} {
+    \draw[aqm, draw=aqmmuted, dash pattern=on 3pt off 2pt,
+          -{Stealth[length=4.6pt,width=3.8pt]}] (1.05,\a) -- (1.05,\b);
+  }
+  \node[aqmlabsmall, text=aqmmuted, anchor=west] at (1.13,0.50) {$a_i$};
+
+  \node[aqmlabsmall, anchor=north, align=left, text width=4.7cm] at (0.75,-0.42)
+    {\textcolor{aqmaccent}{$S_i^-=\sqrt{2S}\,a_i^\dagger$} lowers the magnetization and
+     \emph{creates} a magnon;\\[2pt]
+     \textcolor{aqmmuted}{$S_i^+=\sqrt{2S}\,a_i$} raises it and \emph{destroys} one.};
+\end{scope}
+
+\end{tikzpicture}
+
+\end{aqmfigure}
