@@ -1,6 +1,19 @@
 # Advanced Quantum Materials 2027
 Teaching material for the Advanced Quantum Materials course at Aalto University 2027
 
+## Lecture slides
+The folder `slides_prerecordings` contains the slides of the prerecorded lectures, one per topic
+- [Lecture 1: Second quantization, mean field and spontaneous symmetry breaking](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/slides_prerecordings/lecture1.pdf)
+- [Lecture 2: Symmetries, band structure theory and effective models](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/slides_prerecordings/lecture2.pdf)
+- [Lecture 3: Topological band structure theory](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/slides_prerecordings/lecture3.pdf)
+- [Lecture 4: Electrons in magnetic fields, the quantum Hall effect and Landau levels](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/slides_prerecordings/lecture4.pdf)
+- [Lecture 5: Superconductivity, Nambu representation and Majorana physics](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/slides_prerecordings/lecture5.pdf)
+- [Lecture 6: Classical magnetism and magnons](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/slides_prerecordings/lecture6.pdf)
+- [Lecture 7: Quantum entanglement and tensor networks](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/slides_prerecordings/lecture7.pdf)
+- [Lecture 8: Quantum magnetism, spinons and Kondo physics](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/slides_prerecordings/lecture8.pdf)
+- [Lecture 9: Excitations and defects in quantum materials](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/slides_prerecordings/lecture9.pdf)
+- [Lecture 10: Machine learning quantum materials](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/slides_prerecordings/lecture10.pdf)
+
 ## Lecture notes
 Condensed lecture notes covering the ten topics of the course, in `lecture_notes/tex`
 - [Lecture notes (PDF)](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/lecture_notes/tex/main.pdf)
