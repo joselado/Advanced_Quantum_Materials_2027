@@ -19,9 +19,6 @@ Lecture notes covering the ten topics of the course, in `lecture_notes` (LaTeX s
 - [Lecture notes (PDF)](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/lecture_notes/main.pdf)
 
 
-```bash
-cd lecture_notes/src && latexmk -pdf main.tex && cp main.pdf ..
-```
 
 ## Interactive exercise sessions
 The folder `jupyter-notebooks` contains the Jupyter notebooks for the different sessions of the course
