@@ -15,14 +15,12 @@ The folder `slides_prerecordings` contains the slides of the prerecorded lecture
 - [Lecture 10: Machine learning quantum materials](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/slides_prerecordings/lecture10.pdf)
 
 ## Lecture notes
-Condensed lecture notes covering the ten topics of the course, in `lecture_notes/tex`
-- [Lecture notes (PDF)](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/lecture_notes/tex/main.pdf)
+Lecture notes covering the ten topics of the course, in `lecture_notes` (LaTeX sources in `lecture_notes/src`)
+- [Lecture notes (PDF)](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/lecture_notes/main.pdf)
 
-The notes are written in LaTeX, one file per topic in `lecture_notes/tex/sessions`, with the
-schematics as standalone TikZ figures in `lecture_notes/tex/figures`. They are built with
 
 ```bash
-cd lecture_notes/tex && latexmk -pdf main.tex
+cd lecture_notes/src && latexmk -pdf main.tex && cp main.pdf ..
 ```
 
 ## Interactive exercise sessions

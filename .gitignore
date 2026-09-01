@@ -15,14 +15,16 @@ contact_session
 # history on every re-save.
 *.odp
 
-# LaTeX build artifacts
-lecture_notes/tex/*.aux
-lecture_notes/tex/*.log
-lecture_notes/tex/*.out
-lecture_notes/tex/*.toc
-lecture_notes/tex/*.fdb_latexmk
-lecture_notes/tex/*.fls
-lecture_notes/tex/*.synctex.gz
+# LaTeX build artifacts. main.pdf is built inside src/ and copied to lecture_notes/,
+# so only the published copy at the top of lecture_notes/ is tracked.
+lecture_notes/src/main.pdf
+lecture_notes/src/*.aux
+lecture_notes/src/*.log
+lecture_notes/src/*.out
+lecture_notes/src/*.toc
+lecture_notes/src/*.fdb_latexmk
+lecture_notes/src/*.fls
+lecture_notes/src/*.synctex.gz
 
 # OS cruft
 .DS_Store
