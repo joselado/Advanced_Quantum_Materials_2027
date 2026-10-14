@@ -1,0 +1,35 @@
+% Figure s03f03 (Session 3): the SSH chain in its two dimerizations, with the spectra.
+% The image is rendered by figures/blender/s03f03_ssh.py; the coordinates of the labels come from
+% figures/blender/out/s03f03_ssh_anchors.tex. Build with figures/blender/build_figure.sh s03f03_ssh.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx}
+\usepackage{xcolor}
+\input{aqmcolors.tex}
+\newlength{\figw}\setlength{\figw}{15.6cm}   % the text width of the notes (A4, 2.7 cm margins)
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}]
+  \node[anchor=south west, inner sep=0pt] at (0,0)
+    {\includegraphics[width=\figw]{../blender/out/s03f03_ssh.jpg}};
+  \input{../blender/out/s03f03_ssh_anchors.tex}
+  % (a) in front: the trivial chain
+  \node[lbl, anchor=south west] at (apanel) {\textbf{(a)}\quad intracell hopping dominates, $t\gg1$, trivial};
+  \node[lbl, anchor=south] at (at) {$t$};
+  \node[lbl, anchor=south] at (aone) {$1$};
+  \node[lbl, anchor=south] at (aE) {$E$};
+  \node[lbl, anchor=east, text=aqmmuted] at (azero) {$0$};
+  \node[lbl, anchor=west] at (atop) {$+t$};
+  \node[lbl, anchor=west] at (abot) {$-t$};
+  % (b) behind: the topological chain
+  \node[lbl, anchor=south west] at (bpanel) {\textbf{(b)}\quad intercell hopping dominates, $t\to0$, topological};
+  \node[lbl, anchor=south] at (bt) {$t$};
+  \node[lbl, anchor=south] at (bone) {$1$};
+  \node[lbl, anchor=south, text=aqmbroken] at (bendL) {end state};
+  \node[lbl, anchor=south, text=aqmbroken] at (bendR) {end state};
+  \node[lbl, anchor=south] at (bE) {$E$};
+  \node[lbl, anchor=east, text=aqmbroken] at (bzero) {$0$};
+  \node[lbl, anchor=west] at (btop) {$+1$};
+  \node[lbl, anchor=west] at (bbot) {$-1$};
+\end{tikzpicture}
+\end{document}
