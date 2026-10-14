@@ -1,44 +1,15 @@
 % Session 1 -- the mean-field self-consistency loop.
 % Placement: sec. "Worked example 1", at the "more rigorously, mean-field theory is a
 % variational search..." paragraph.
-%
-% NOTE: no side column listing the three decoupling channels -- that duplicates
-% figure fig:s01:channels exactly.
+% Rendered by figures/blender/s01f05_selfconsistency.py, labels in figures/overlays/s01f05_selfconsistency.tex.
 \begin{aqmfigure}{fig:s01:mfloop}{The mean-field self-consistency loop. We guess the bilinear
 expectation values, build the single-particle Hamiltonian that they give, and diagonalize it. Then
-we compute the new expectation values and repeat until they do not change anymore. The three
-worked examples of this session and every notebook box in this chapter use this same loop.}
-
-\begin{tikzpicture}[x=1cm, y=1cm,
-  mfstep/.style={aqmbox, text width=2.35cm, minimum height=1.0cm}]
-
-\node[mfstep, aqmboxaccent] (guess) at (0,0)   {guess\\[1pt]$\langle c_i^\dagger c_j\rangle$};
-\node[mfstep]               (build) at (3.3,0) {build\\[1pt]$H_{\text{MF}}$};
-\node[mfstep]               (diag)  at (6.6,0) {diagonalize\\[1pt]$H_{\text{MF}}$};
-\node[mfstep]               (recomp)at (9.9,0) {recompute\\[1pt]$\langle c_i^\dagger c_j\rangle$};
-
-\node[aqmdiamond, aspect=2.3, text width=1.5cm] (conv) at (9.9,-2.05) {converged?};
-\node[mfstep, aqmboxbroken, text width=2.9cm] (sol) at (5.6,-3.65)
-  {\textbf{self-consistent solution}};
-
-% forward path
-\draw[aqmarrow] (guess)  -- (build);
-\draw[aqmarrow] (build)  -- (diag);
-\draw[aqmarrow] (diag)   -- (recomp);
-\draw[aqmarrow] (recomp) -- (conv);
-
-% the iteration: "no" returns to the build step
-\draw[aqmarrowbroken] (conv.west) -- ++(-4.95,0) |- (build.south);
-\node[aqmlabsmall, text=aqmbroken, anchor=south] at (7.0,-2.02) {no};
-
-% the exit
-\draw[aqmarrow] (conv.south) |- (sol.east);
-\node[aqmlabsmall, anchor=west] at (10.02,-2.95) {yes};
-
-\node[aqmlabmuted, anchor=north, align=center, text width=9.5cm] at (4.95,-4.45)
-  {$H_{\text{MF}}$ depends on the expectation values, and the expectation values depend on
-   $H_{\text{MF}}$: the loop is what resolves that circularity};
-
-\end{tikzpicture}
-
+we compute the new expectation values and repeat until they do not change anymore. The four stations
+are one pass of the loop, computed for the charge density wave of (1.6) on a periodic chain of four
+sites with $V=3t$. The guessed charges $0.6$ and $0.4$, drawn as columns, raise the onsite energy of
+the neighboring sites, so the sites of the mean-field Hamiltonian stand at two heights. Filling its
+two lowest levels gives the new charges $0.82$ and $0.18$, which are not the guess, so the loop goes
+round again. The three worked examples of this session and every notebook box in this chapter use
+this same loop.}
+\includegraphics{figures/pdf/s01f05_selfconsistency.pdf}
 \end{aqmfigure}

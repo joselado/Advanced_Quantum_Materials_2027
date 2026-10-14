@@ -1,0 +1,32 @@
+% Figure s01f01_fockspace (Session 1): one hopping matrix against the Fock space of three sites.
+% The image is rendered by figures/blender/s01f01_fockspace.py; the coordinates of the labels come from
+% figures/blender/out/s01f01_fockspace_anchors.tex. Build with figures/blender/build_figure.sh s01f01_fockspace.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,calc}
+\input{aqmcolors.tex}
+\newlength{\figw}\setlength{\figw}{15.6cm}   % the text width of the notes (A4, 2.7 cm margins)
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt},
+    flow/.style={line width=0.9pt, -{Stealth[length=5pt,width=4pt]}}]
+  \node[anchor=south west, inner sep=0pt] at (0,0)
+    {\includegraphics[width=\figw]{../blender/out/s01f01_fockspace.jpg}};
+  \input{../blender/out/s01f01_fockspace_anchors.tex}
+  \node[lbl, anchor=south] at (titleA) {first quantization};
+  \node[lbl, anchor=west] at (mat) {$L\times L$};
+  \node[lbl, anchor=north] at (chain) {$L=3$ sites};
+  \node[lbl, anchor=south] at (titleB) {second quantization, the full Fock space};
+  \node[lbl, anchor=south, text=aqmmuted] at (N0) {$N=0$};
+  \node[lbl, anchor=south, text=aqmmuted] at (N1) {$N=1$};
+  \node[lbl, anchor=south, text=aqmmuted] at (N2) {$N=2$};
+  \node[lbl, anchor=south, text=aqmmuted] at (N3) {$N=3$};
+  \node[lbl, anchor=north, text=aqmaccent] at (c0) {$1$};
+  \node[lbl, anchor=north, text=aqmaccent] at (c1) {$3$};
+  \node[lbl, anchor=north, text=aqmaccent] at (c2) {$3$};
+  \node[lbl, anchor=north, text=aqmaccent] at (c3) {$1$};
+  \node[lbl, anchor=north] at ($(c1)!0.5!(c2)+(0,-0.45cm)$) {$1+3+3+1=2^L=8$ states};
+\end{tikzpicture}
+\end{document}

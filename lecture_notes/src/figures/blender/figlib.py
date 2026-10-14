@@ -378,6 +378,68 @@ def level(name, x, y, z, length=0.8, r=0.05, rgb=SITE):
     return ob
 
 
+SLAB = (0.86, 0.87, 0.90)
+
+
+def slab(name, center, size, rgb=SLAB, radius=0.03, alpha=1.0):
+    """A thin plate with rounded edges, for a basis state, a matrix entry or a unit cell."""
+    key = 'slab_%d_%d_%d_%.2f' % (*(int(255 * c) for c in rgb), alpha)
+    m = ghost(key, rgb, alpha) if alpha < 1.0 else mat(key, rgb, rough=0.6, spec=0.3)
+    return obj(name, mesh_of(name, [m], lambda bm: bm_rounded_box(bm, Vector((0, 0, 0)), size, radius)),
+               loc=center)
+
+
+def rod(name, p0, p1, r=0.03, rgb=BOND):
+    m = mat('rod_%d_%d_%d' % tuple(int(255 * c) for c in rgb), rgb, rough=0.5, spec=0.3)
+    return obj(name, mesh_of(name, [m], lambda bm: bm_cylinder(bm, p0, p1, r, seg=16)))
+
+
+def ghost_ball(name, loc, r, rgb=ELECTRON, alpha=0.25):
+    m = ghost('ghostball_%d_%d_%d_%.2f' % (*(int(255 * c) for c in rgb), alpha), rgb, alpha)
+    return obj(name, mesh_of(name, [m], lambda bm: bm_sphere(bm, Vector((0, 0, 0)), r)), loc=loc)
+
+
+def flow(name, points, r=0.03, rgb=(0.16, 0.20, 0.30), head=True):
+    """A polyline as a tube with an arrowhead at its end, for a flow or a hop."""
+    pts = [Vector(p) for p in points]
+    m = mat('rod_%d_%d_%d' % tuple(int(255 * c) for c in rgb), rgb, rough=0.5, spec=0.3)
+
+    def f(bm):
+        d = (pts[-1] - pts[-2]).normalized()
+        body = pts[:-1] + [pts[-1] - 0.26 * d] if head else pts
+        for a, b in zip(body[:-1], body[1:]):
+            bm_cylinder(bm, a, b, r, seg=12)
+            bm_sphere(bm, b, r, seg=12, rings=6)
+        if head:
+            bm_cylinder(bm, pts[-1] - 0.28 * d, pts[-1], 3 * r, 0.0, seg=24)
+    return obj(name, mesh_of(name, [m], f))
+
+
+def ladder(tag, x, y, z0, energies, scale, length=0.8, r=0.03, filled=0, color=None, tol=1e-6):
+    """A single-particle spectrum as a column of level rods centered on x at depth y, energy E at
+    height z0 + scale * E. Degenerate levels sit side by side, the lowest `filled` levels carry an
+    electron ball, and `color(E)` picks the rgb of a level (the site color by default)."""
+    es = sorted(energies)
+    groups = []
+    for e in es:
+        if groups and abs(e - groups[-1][0]) < tol:
+            groups[-1].append(e)
+        else:
+            groups.append([e])
+    k = 0
+    for g, grp in enumerate(groups):
+        n = len(grp)
+        w = (length - 0.08 * (n - 1)) / n
+        for j, e in enumerate(grp):
+            xc = x - length / 2 + w / 2 + j * (w + 0.08)
+            rgb = SITE if color is None else color(e)
+            level(f'{tag}_l{g}_{j}', xc, y, z0 + scale * e, length=w, r=r, rgb=rgb)
+            if k < filled:
+                b = ball(f'{tag}_e{g}_{j}', (xc, y, z0 + scale * e + r + 0.07), 0.07)
+                b.visible_shadow = False
+            k += 1
+
+
 # ------------------------------------------------------------------------------------------------
 # Studio, camera and render
 # ------------------------------------------------------------------------------------------------

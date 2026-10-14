@@ -1,0 +1,28 @@
+% Figure s01f05_selfconsistency (Session 1): the mean-field self-consistency loop, one pass computed.
+% The image is rendered by figures/blender/s01f05_selfconsistency.py; the coordinates of the labels come from
+% figures/blender/out/s01f05_selfconsistency_anchors.tex. Build with figures/blender/build_figure.sh s01f05_selfconsistency.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta}
+\input{aqmcolors.tex}
+\newlength{\figw}\setlength{\figw}{15.6cm}   % the text width of the notes (A4, 2.7 cm margins)
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt},
+    flow/.style={line width=0.9pt, -{Stealth[length=5pt,width=4pt]}}]
+  \node[anchor=south west, inner sep=0pt] at (0,0)
+    {\includegraphics[width=\figw]{../blender/out/s01f05_selfconsistency.jpg}};
+  \input{../blender/out/s01f05_selfconsistency_anchors.tex}
+  \node[lbl, anchor=south, align=center] at (st1) {1.\ guess\\$\langle c_i^\dagger c_i\rangle$};
+  \node[lbl, anchor=south, align=center] at (st2) {2.\ build\\$H_{\mathrm{MF}}$};
+  \node[lbl, anchor=south, align=center] at (st3) {3.\ diagonalize,\\fill up to $N$};
+  \node[lbl, anchor=south, align=center] at (st4) {4.\ recompute\\$\langle c_i^\dagger c_i\rangle$};
+  \draw[flow] (out1) -- (in2);
+  \draw[flow] (out2) -- (in3);
+  \draw[flow] (out3) -- (in4);
+  \draw[flow, aqmbroken] (low4) -- ++(0,-0.35cm) -| node[pos=0.25, below, lbl] {converged? no, repeat} (low1);
+  \draw[flow, aqmaccent] (out4) -- ++(0.5cm,0) node[lbl, anchor=west, align=left] {yes\\solution};
+\end{tikzpicture}
+\end{document}

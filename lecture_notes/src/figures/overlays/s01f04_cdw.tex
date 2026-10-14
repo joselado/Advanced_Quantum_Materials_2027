@@ -1,0 +1,27 @@
+% Figure s01f04_cdw (Session 1): the charge density wave of the spinless chain, in real space and in the spectrum.
+% The image is rendered by figures/blender/s01f04_cdw.py; the coordinates of the labels come from
+% figures/blender/out/s01f04_cdw_anchors.tex. Build with figures/blender/build_figure.sh s01f04_cdw.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta}
+\input{aqmcolors.tex}
+\newlength{\figw}\setlength{\figw}{15.6cm}   % the text width of the notes (A4, 2.7 cm margins)
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt},
+    flow/.style={line width=0.9pt, -{Stealth[length=5pt,width=4pt]}}]
+  \node[anchor=south west, inner sep=0pt] at (0,0)
+    {\includegraphics[width=\figw]{../blender/out/s01f04_cdw.jpg}};
+  \input{../blender/out/s01f04_cdw_anchors.tex}
+  \node[lbl, anchor=south west] at (apanel) {$V=0$, $\langle n_i\rangle=\tfrac12$ on every site};
+  \node[lbl, anchor=south west, text=aqmbroken] at (bpanel) {$V=3t$, $\langle n_i\rangle=0.95,\,0.05,\,0.95,\dots$};
+  \node[lbl, anchor=west, text=aqmmuted] at (acell) {unit cell $a$};
+  \node[lbl, anchor=west, text=aqmmuted] at (bcell) {unit cell $2a$};
+  \node[lbl, anchor=south] at (aE) {$E$};
+  \node[lbl, anchor=south] at (bE) {$E$};
+  \node[lbl, anchor=west] at (aspec) {gapless};
+  \node[lbl, anchor=west, text=aqmbroken] at (bspec) {gap};
+\end{tikzpicture}
+\end{document}

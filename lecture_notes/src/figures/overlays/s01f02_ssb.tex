@@ -1,0 +1,26 @@
+% Figure s01f02_ssb (Session 1): a symmetric energy landscape with minima that are not symmetric.
+% The image is rendered by figures/blender/s01f02_ssb.py; the coordinates of the labels come from
+% figures/blender/out/s01f02_ssb_anchors.tex. Build with figures/blender/build_figure.sh s01f02_ssb.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta}
+\input{aqmcolors.tex}
+\newlength{\figw}\setlength{\figw}{10.9cm}   % 0.7 of the text width
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt},
+    flow/.style={line width=0.9pt, -{Stealth[length=5pt,width=4pt]}}]
+  \node[anchor=south west, inner sep=0pt] at (0,0)
+    {\includegraphics[width=\figw]{../blender/out/s01f02_ssb.jpg}};
+  \input{../blender/out/s01f02_ssb_anchors.tex}
+  \foreach \p/\t in {a/{small $L$}, b/{large $L$}} {
+    \node[lbl, anchor=south] at (\p title) {\t};
+    \node[lbl, anchor=west] at (\p m) {$m$};
+    \node[lbl, anchor=south] at (\p E) {$E$};
+    \node[lbl, anchor=north] at (\p plus) {$+m_0$};
+    \node[lbl, anchor=north, text=aqmmuted] at (\p minus) {$-m_0$};
+  }
+\end{tikzpicture}
+\end{document}
