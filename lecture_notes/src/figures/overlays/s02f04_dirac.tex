@@ -1,0 +1,30 @@
+% Figure s02f04_dirac (Session 2): the honeycomb lattice, the phasor sum and the two cones.
+% The image is rendered by figures/blender/s02f04_dirac.py; the coordinates of the labels come from
+% figures/blender/out/s02f04_dirac_anchors.tex. Build with figures/blender/build_figure.sh s02f04_dirac.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx,bm}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,calc}
+\input{aqmcolors.tex}
+\newlength{\figw}\setlength{\figw}{15.6cm}   % the text width of the notes (A4, 2.7 cm margins)
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
+  \node[anchor=south west, inner sep=0pt] at (0,0)
+    {\includegraphics[width=\figw]{../blender/out/s02f04_dirac.jpg}};
+  \input{../blender/out/s02f04_dirac_anchors.tex}
+  \node[pnl, anchor=west] at (apanel) {(a)};
+  \node[pnl, anchor=west] at (bpanel) {(b)};
+  \node[pnl, anchor=west] at (cpanel) {(c)};
+  \node[lbl, text=aqmaccent] at (ad1) {$\bm\delta_1$};
+  \node[lbl, text=aqmaccent] at (ad2) {$\bm\delta_2$};
+  \node[lbl, text=aqmaccent] at (ad3) {$\bm\delta_3$};
+  \node[lbl, anchor=north east] at (aA) {$A$};
+  \node[lbl, anchor=north] at (bK) {at $\mathbf K$, closed};
+  \node[lbl, anchor=north] at (bk) {generic $\mathbf k$, open};
+  \node[lbl, anchor=south west] at (cK) {$K$};
+  \node[lbl, anchor=south west] at (cKp) {$K'$};
+  \node[lbl, anchor=south, text=aqmmuted] at (cGamma) {$\Gamma$};
+\end{tikzpicture}
+\end{document}

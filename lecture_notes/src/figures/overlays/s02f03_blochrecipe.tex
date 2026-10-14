@@ -1,0 +1,44 @@
+% Figure s02f03_blochrecipe (Session 2): band folding, the two-band chain seen from the one-band chain.
+% The image is rendered by figures/blender/s02f03_blochrecipe.py; the coordinates of the labels come from
+% figures/blender/out/s02f03_blochrecipe_anchors.tex. Build with figures/blender/build_figure.sh s02f03_blochrecipe.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx,bm}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,calc}
+\input{aqmcolors.tex}
+\newlength{\figw}\setlength{\figw}{15.6cm}   % the text width of the notes (A4, 2.7 cm margins)
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
+  \begin{scope}
+    \setlength{\figw}{4.4cm}
+    \node[anchor=south west, inner sep=0pt] at (0,0)
+      {\includegraphics[width=\figw]{../blender/out/s02f03_blochrecipe_a.jpg}};
+    \input{../blender/out/s02f03_blochrecipe_a_anchors.tex}
+    \node[lbl, anchor=south west] at (aone) {\textbf{(a)}\quad\textcolor{aqmmuted}{one site per cell}};
+    \node[lbl, anchor=south west, text=aqmmuted] at (atwo) {two sites per cell};
+    \node[lbl, anchor=south] at (aA) {$A$};
+    \node[lbl, anchor=south] at (aB) {$B$};
+    \node[lbl, anchor=north] at (at1) {$1$};
+    \node[lbl, anchor=north] at (ateta) {$\eta$};
+  \end{scope}
+  \begin{scope}[shift={(4.6cm,0)}]
+    \setlength{\figw}{11.0cm}
+    \node[anchor=south west, inner sep=0pt] at (0,0)
+      {\includegraphics[width=\figw]{../blender/out/s02f03_blochrecipe_b.jpg}};
+    \input{../blender/out/s02f03_blochrecipe_b_anchors.tex}
+    \node[lbl, anchor=south] at (btitle) {\textbf{(b)}\quad$\eta=1$, folded};
+    \node[lbl, anchor=south] at (ctitle) {$\eta=0.6$};
+    \foreach \p in {b,c} {
+      \node[lbl, anchor=north] at (\p pip) {$\pi$};
+      \node[lbl, anchor=north] at (\p pim) {$-\pi$};
+      \node[lbl, anchor=south east] at (\p phi) {$\varphi$};
+      \node[lbl, anchor=east] at (\p E) {$\epsilon$};
+    }
+    \node[lbl, anchor=north, text=aqmmuted] at (btwopip) {$2\pi$};
+    \node[lbl, anchor=north, text=aqmmuted] at (btwopim) {$-2\pi$};
+    \node[lbl, anchor=west, text=aqmbroken] at (cgap) {gap};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,23 @@
+% Figure s02f06_archetypes (Session 2): three two-dimensional dispersions and their densities of states.
+% The image is rendered by figures/blender/s02f06_archetypes.py; the coordinates of the labels come from
+% figures/blender/out/s02f06_archetypes_anchors.tex. Build with figures/blender/build_figure.sh s02f06_archetypes.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx,bm}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,calc}
+\input{aqmcolors.tex}
+\newlength{\figw}\setlength{\figw}{15.6cm}   % the text width of the notes (A4, 2.7 cm margins)
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
+  \node[anchor=south west, inner sep=0pt] at (0,0)
+    {\includegraphics[width=\figw]{../blender/out/s02f06_archetypes.jpg}};
+  \input{../blender/out/s02f06_archetypes_anchors.tex}
+  \foreach \p/\t in {a/{parabolic band}, b/{Dirac cone}, c/{flat band}} {
+    \node[lbl, anchor=south] at (\p E) {$\epsilon$};
+    \node[lbl, anchor=south east] at (\p g) {$g$};
+    \node[lbl, anchor=north] at (\p band) {\t};
+  }
+\end{tikzpicture}
+\end{document}

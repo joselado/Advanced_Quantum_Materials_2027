@@ -1,88 +1,13 @@
 % Session 2 -- the 1D band, annotated.
 % Placement: sec. "Bloch's theorem and the first band structure", after eq. (2.8).
-%
-% SIGN CONVENTION: eq. (2.5) is H = -t sum(c^dag c + h.c.) with t>0, so
-% eps(phi) = -2t cos(phi): band MINIMUM at phi=0, maximum at phi=+-pi.
-% Plotted here for t=1. Do not "simplify" to +2cos(phi) -- that flips the band
-% and puts every annotation on the wrong extremum.
+% Rendered by figures/blender/s02f02_cosband.py, labels in figures/overlays/s02f02_cosband.tex.
 \begin{aqmfigure}{fig:s02:cosband}{The one-dimensional band $\epsilon_\varphi=-2t\cos\varphi$ of
-(2.8), drawn for $t=1$. Near the band bottom the dispersion is an upward parabola,
-and quasiparticles behave as ordinary electrons with positive mass. Near the top the curvature has
-the opposite sign and they behave as holes. Near midband it is locally
-linear, which is a first sign of the Dirac physics of Section 2.11. The slope is the group velocity
-(2.17) and the curvature is the inverse effective mass (2.18), and both are read from
-this one curve. On the right we show the resulting density of states (2.16), which diverges at both
-band edges, at the same points where the group velocity vanishes.}
-
-\begin{tikzpicture}
-
-% ============================ the dispersion ================================
-\begin{axis}[
-  aqmplot,
-  name=disp,
-  width=9.8cm, height=7.0cm,
-  xlabel={$\varphi$}, ylabel={$\epsilon_\varphi$},
-  xmin=-3.7, xmax=3.9, ymin=-3.9, ymax=3.9,
-  xtick={-3.14159,-1.5708,0,1.5708,3.14159},
-  xticklabels={$-\pi$,$-\frac{\pi}{2}$,$0$,$\frac{\pi}{2}$,$\pi$},
-  ytick={-2,2}, yticklabels={$-2t$,$2t$},
-  axis lines=middle,
-]
-
-% the band
-\addplot[aqmcurve, domain=-3.14159:3.14159, samples=200] {-2*cos(deg(x))};
-
-% (i) parabolic fit at the band bottom: eps ~ -2t + t phi^2
-\addplot[aqmcurvebroken, dashed, domain=-1.25:1.25, samples=60] {-2 + x^2};
-\node[aqmlabsmall, anchor=west, align=left, text=aqmbroken] at (axis cs:-3.62,-2.95)
-  {$\epsilon\approx-2t+t\varphi^{2}$\\[-1pt]electron-like, $m^\ast>0$};
-\draw[aqmguide, draw=aqmbroken] (axis cs:-1.30,-2.72) -- (axis cs:-0.28,-2.10);
-
-% (ii) parabolic fit at the band top: eps ~ 2t - t delta^2, delta = phi - pi
-\addplot[aqmcurvebroken, dashed, domain=1.95:3.14159, samples=40] {2 - (x-3.14159)^2};
-\addplot[aqmcurvebroken, dashed, domain=-3.14159:-1.95, samples=40] {2 - (x+3.14159)^2};
-\node[aqmlabsmall, anchor=west, align=left, text=aqmbroken] at (axis cs:-3.62,3.28)
-  {$\epsilon\approx2t-t\delta^{2}$, \; $\delta=\varphi-\pi$\\[-1pt]hole-like, $m^\ast<0$};
-\draw[aqmguide, draw=aqmbroken] (axis cs:-3.30,3.02) -- (axis cs:-3.08,2.15);
-
-% (iii) tangent at the zero crossing phi = pi/2, where d(eps)/d(phi) = 2t
-\addplot[aqmcurvemuted, dashed, domain=0.78:2.36, samples=2] {2*(x-1.5708)};
-\node[circle, fill=aqmaccent, inner sep=1.4pt] at (axis cs:1.5708,0) {};
-\node[aqmlabsmall, anchor=west, align=left] at (axis cs:1.05,-2.70)
-  {locally \textbf{linear}\\[-1pt]
-   \textcolor{aqmmuted}{slope $=\hbar v/a$, eq.~(2.17)}\\[-1pt]
-   \textcolor{aqmmuted}{a first Dirac hint}};
-\draw[aqmguide] (axis cs:1.5708,0) -- (axis cs:1.42,-1.95);
-
-\end{axis}
-
-% ============================ the density of states =========================
-\begin{axis}[
-  aqmplot,
-  name=dos,
-  at={(disp.right of east)}, anchor=left of west,
-  width=6.2cm, height=7.0cm,
-  xlabel={$g(\omega)$}, ylabel={$\omega$},
-  xmin=0, xmax=2.45, ymin=-3.9, ymax=3.9,
-  xtick=\empty,
-  ytick={-2,2}, yticklabels={$-2t$,$2t$},
-  axis lines=middle,
-]
-% g(w) = 1/(pi sqrt(4t^2 - w^2)) for |w| < 2t; sampled just short of the edges
-% so the divergence is drawn rather than evaluated at the singular point.
-\addplot[aqmcurve, domain=-1.9945:1.9945, samples=260] ({1/(pi*sqrt(4-x^2))},{x});
-\addplot[aqmguide, forget plot] coordinates {(0,2) (1.10,2)};
-\addplot[aqmguide, forget plot] coordinates {(0,-2) (1.10,-2)};
-
-\node[aqmlabsmall, anchor=west, align=left, text=aqmbroken] at (axis cs:0.72,3.10)
-  {Van Hove divergences};
-\draw[aqmarrowmuted, draw=aqmbroken] (axis cs:0.82,2.88) -- (axis cs:0.58,2.10);
-\draw[aqmarrowmuted, draw=aqmbroken] (axis cs:1.62,2.88) -- (axis cs:0.58,-1.90);
-
-\node[aqmlabmuted, anchor=north west, align=left, text width=2.6cm]
-  at (axis cs:0.30,-2.35) {$g$ diverges where the band is flat, i.e.\ where $v=0$};
-\end{axis}
-
-\end{tikzpicture}
-
+(2.8), drawn for $t=1$, with the grey tubes showing its local forms. Near the band bottom the
+dispersion is an upward parabola, and quasiparticles behave as ordinary electrons with positive
+mass. Near the top the curvature has the opposite sign and they behave as holes. Near midband it is
+locally linear, which is a first sign of the Dirac physics of Section 2.11. The slope is the group
+velocity (2.17) and the curvature is the inverse effective mass (2.18), and both are read from this
+one curve. On the right is the resulting density of states (2.16), cut at the top of the drawing,
+which diverges at both band edges, at the same points where the group velocity vanishes.}
+\includegraphics{figures/pdf/s02f02_cosband.pdf}
 \end{aqmfigure}

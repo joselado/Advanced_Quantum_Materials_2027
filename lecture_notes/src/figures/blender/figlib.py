@@ -50,6 +50,7 @@ def srgb(r, g, b):
 
 
 ACCENT_AQM = srgb(31, 78, 121)                # aqmaccent of figures_preamble.tex
+SURFACE = srgb(118, 158, 198)                 # a lighter accent for large surfaces, which print dark
 BROKEN = srgb(168, 42, 34)                    # aqmbroken: the one anomalous element of a figure
 
 ANCHORS = {}
@@ -438,6 +439,57 @@ def ladder(tag, x, y, z0, energies, scale, length=0.8, r=0.03, filled=0, color=N
                 b = ball(f'{tag}_e{g}_{j}', (xc, y, z0 + scale * e + r + 0.07), 0.07)
                 b.visible_shadow = False
             k += 1
+
+
+def phasor(name, loc, angle, length=0.8, rgb=None, z_tilt=0.0):
+    """A complex number as an arrow lying in the horizontal plane, centered on loc and pointing at
+    `angle` (radians from +x), in the accent color: a phase, not a spin."""
+    rgb = ACCENT_AQM if rgb is None else rgb
+    key = 'phasor_%d_%d_%d' % tuple(int(255 * c) for c in rgb)
+    if bpy.data.meshes.get(key) is None:
+        arrow_mesh(key, mat(key, rgb, rough=0.4, emit=0.1, spec=0.4))
+    d = Vector((math.cos(angle), math.sin(angle), z_tilt)).normalized()
+    return obj(name, bpy.data.meshes[key], loc=loc, rot=d.to_track_quat('Z', 'Y').to_euler(), scale=length)
+
+
+def vector_arrow(name, p0, p1, r=0.035, rgb=None, head=0.22):
+    """A straight arrow from p0 to p1 with a cone at p1, for a bond vector or a phasor sum."""
+    rgb = ACCENT_AQM if rgb is None else rgb
+    p0, p1 = Vector(p0), Vector(p1)
+    d = (p1 - p0).normalized()
+    m = mat('rod_%d_%d_%d' % tuple(int(255 * c) for c in rgb), rgb, rough=0.45, emit=0.08, spec=0.4)
+
+    def f(bm):
+        bm_cylinder(bm, p0, p1 - head * d, r, seg=16)
+        bm_cylinder(bm, p1 - head * d, p1, 2.6 * r, 0.0, seg=24)
+    return obj(name, mesh_of(name, [m], f))
+
+
+def revolution(name, fn, R, rgb, loc=(0, 0, 0), nr=60, nth=96, r0=0.0, alpha=1.0):
+    """A surface of revolution z = fn(r) for r0 <= r <= R around loc, for a cone, a paraboloid or a
+    radial density."""
+    key = 'rev_%d_%d_%d_%.2f' % (*(int(255 * c) for c in rgb), alpha)
+    m = ghost(key, rgb, alpha) if alpha < 1.0 else mat(key, rgb, rough=0.4, emit=0.05, spec=0.4)
+
+    def f(bm):
+        rs = [r0 + (R - r0) * i / nr for i in range(nr + 1)]
+        rings = [[bm.verts.new((r * math.cos(2 * math.pi * j / nth), r * math.sin(2 * math.pi * j / nth),
+                                fn(r))) for j in range(nth)] for r in rs]
+        for a, b in zip(rings[:-1], rings[1:]):
+            for j in range(nth):
+                fc = bm.faces.new((a[j], a[(j + 1) % nth], b[(j + 1) % nth], b[j]))
+                fc.smooth = True
+    return obj(name, mesh_of(name, [m], f), loc=loc)
+
+
+def dos(name, x0, y, z0, es, gs, ez, gx, depth=0.12, rgb=None, alpha=1.0):
+    """A density of states as a thin slab standing next to a band: energy up (height z0 + ez * E),
+    the density along +x from x0 (gx per unit of g)."""
+    rgb = ACCENT_AQM if rgb is None else rgb
+    ob = profile(name, [-ez * e for e in es], [gx * g for g in gs], depth, rgb, alpha=alpha)
+    ob.rotation_euler = (0, math.pi / 2, 0)       # local x (minus the energy) becomes world z
+    ob.location = (x0, y, z0)
+    return ob
 
 
 # ------------------------------------------------------------------------------------------------

@@ -1,146 +1,15 @@
 % Session 2 -- graphene: three bond vectors, one cancellation, two cones.
 % Placement: sec. "The Dirac cone", between eqs. (2.19) and (2.20).
-%
-% Panels (a) and (b) are kept visually distinct on purpose: (a) shows REAL-SPACE
-% bond angles, (b) shows COMPLEX-PLANE phase angles. Students conflate the two.
-% The 120-degree phasor arrangement in (b) holds at k = K specifically, not at
-% general k -- the second sub-panel shows the generic case failing to close.
-%
-% The lattice in (a) is built the honest way: a triangular Bravais lattice
-% (a1, a2) with a two-site basis, with every A site bonded to A+delta_j.
-% A "brick wall" of squares is NOT a honeycomb and gets the bond angles wrong.
-\begin{aqmfigure}{fig:s02:dirac}{The Dirac cones of graphene. \textbf{(a)} The honeycomb lattice, with two
-sublattices $A$, $B$ per unit cell and the three nearest-neighbour vectors
-$\boldsymbol\delta_{1,2,3}$ from an $A$ site. \textbf{(b)} The reason why the bands touch. At
-$\mathbf k=\mathbf K$ the three phase factors $e^{i\mathbf K\cdot\boldsymbol\delta_j}$ are three
-unit vectors at $120^\circ$ from each other in the complex plane. When we place them one after the
-other they close a triangle, so $f(\mathbf K)=0$ in (2.19) and both bands meet at zero energy. At a
-generic $\mathbf k$ they do not close, and the bands are split. \textbf{(c)} The two inequivalent
-points $K$ and $K'$ of the Brillouin zone with zero energy, around which the dispersion is the
-linear cone $E_\pm=\pm\hbar v_F|\mathbf q|$ of (2.21).}
-
-\begin{tikzpicture}[x=1cm, y=1cm]
-
-% ================= (a) the honeycomb lattice ================================
-\begin{scope}[shift={(0,0)}]
-  \node[aqmpanel, anchor=south west] at (-0.95,2.55) {(a) honeycomb lattice};
-
-  \def\a{0.60}  % bond length
-  % Bravais vectors of the underlying triangular lattice
-  \pgfmathsetmacro\ax{1.5*\a}
-  \pgfmathsetmacro\ay{0.86603*\a}
-
-  % A sites at m*a1 + n*a2 ; bonds from each A to A + delta_j
-  \foreach \m in {-1,0,1} {
-    \foreach \n in {-1,0,1} {
-      \pgfmathsetmacro\px{\ax*\m + \ax*\n}
-      \pgfmathsetmacro\py{\ay*\m - \ay*\n}
-      % the three nearest-neighbour bonds
-      \draw[aqmbond] (\px,\py) -- ++({\a},0);
-      \draw[aqmbond] (\px,\py) -- ++({-0.5*\a},{0.86603*\a});
-      \draw[aqmbond] (\px,\py) -- ++({-0.5*\a},{-0.86603*\a});
-    }
-  }
-  % sites on top of the bonds
-  \foreach \m in {-1,0,1} {
-    \foreach \n in {-1,0,1} {
-      \pgfmathsetmacro\px{\ax*\m + \ax*\n}
-      \pgfmathsetmacro\py{\ay*\m - \ay*\n}
-      \node[aqmsite,    minimum size=5.4pt] at (\px,\py) {};
-      \node[aqmsitealt, minimum size=5.4pt] at ({\px+\a},\py) {};
-      \node[aqmsitealt, minimum size=5.4pt] at ({\px-0.5*\a},{\py+0.86603*\a}) {};
-      \node[aqmsitealt, minimum size=5.4pt] at ({\px-0.5*\a},{\py-0.86603*\a}) {};
-    }
-  }
-
-  % highlight the central A site and its three delta vectors
-  \node[circle, draw=aqmbroken, line width=1pt, inner sep=2.4pt] at (0,0) {};
-  \draw[aqm, draw=aqmbroken, -{Stealth[length=4.5pt,width=3.6pt]}]
-    (0,0) -- ({\a},0);
-  \node[aqmlabsmall, anchor=north, text=aqmbroken] at ({0.55*\a},-0.10)
-    {$\boldsymbol\delta_1$};
-  \draw[aqm, draw=aqmbroken, -{Stealth[length=4.5pt,width=3.6pt]}]
-    (0,0) -- ({-0.5*\a},{0.86603*\a});
-  \node[aqmlabsmall, anchor=south east, text=aqmbroken] at ({-0.34*\a},{0.56*\a})
-    {$\boldsymbol\delta_2$};
-  \draw[aqm, draw=aqmbroken, -{Stealth[length=4.5pt,width=3.6pt]}]
-    (0,0) -- ({-0.5*\a},{-0.86603*\a});
-  \node[aqmlabsmall, anchor=north east, text=aqmbroken] at ({-0.34*\a},{-0.56*\a})
-    {$\boldsymbol\delta_3$};
-
-  % legend
-  \node[aqmsite,    minimum size=5.4pt] at (-0.90,-2.02) {};
-  \node[aqmlabmuted, anchor=west] at (-0.78,-2.02) {$A$};
-  \node[aqmsitealt, minimum size=5.4pt] at (-0.20,-2.02) {};
-  \node[aqmlabmuted, anchor=west] at (-0.08,-2.02) {$B$};
-\end{scope}
-
-% ================= (b) the phase cancellation ===============================
-\begin{scope}[shift={(4.60,0)}]
-  \node[aqmpanel, anchor=south west] at (-0.65,2.55) {(b) the three phases at $\mathbf K$};
-
-  % at k = K : three unit vectors 120 degrees apart, head to tail, close
-  \begin{scope}[shift={(0.55,1.02)}]
-    \def\uu{0.56}
-    \coordinate (p0) at (0,0);
-    \coordinate (p1) at ({\uu*cos(90)},{\uu*sin(90)});
-    \coordinate (p2) at ($(p1)+({\uu*cos(-30)},{\uu*sin(-30)})$);
-    \coordinate (p3) at ($(p2)+({\uu*cos(210)},{\uu*sin(210)})$);
-    \draw[aqm, draw=aqmbroken, -{Stealth[length=4pt,width=3.2pt]}] (p0) -- (p1);
-    \draw[aqm, draw=aqmbroken, -{Stealth[length=4pt,width=3.2pt]}] (p1) -- (p2);
-    \draw[aqm, draw=aqmbroken, -{Stealth[length=4pt,width=3.2pt]}] (p2) -- (p3);
-    \node[aqmlabsmall, anchor=west, align=left, text=aqmbroken] at (0.72,0.30)
-      {$\mathbf k=\mathbf K$: closes\\[-1pt]$f(\mathbf K)=0$, bands touch};
-  \end{scope}
-
-  % generic k: the three vectors fail to close
-  \begin{scope}[shift={(0.55,-1.10)}]
-    \def\uu{0.56}
-    \coordinate (q0) at (0,0);
-    \coordinate (q1) at ({\uu*cos(75)},{\uu*sin(75)});
-    \coordinate (q2) at ($(q1)+({\uu*cos(5)},{\uu*sin(5)})$);
-    \coordinate (q3) at ($(q2)+({\uu*cos(205)},{\uu*sin(205)})$);
-    \draw[aqm, draw=aqmmuted, -{Stealth[length=4pt,width=3.2pt]}] (q0) -- (q1);
-    \draw[aqm, draw=aqmmuted, -{Stealth[length=4pt,width=3.2pt]}] (q1) -- (q2);
-    \draw[aqm, draw=aqmmuted, -{Stealth[length=4pt,width=3.2pt]}] (q2) -- (q3);
-    \draw[aqm, draw=aqmaccent, line width=1.3pt,
-          -{Stealth[length=4pt,width=3.2pt]}] (q0) -- (q3);
-    \node[aqmlabsmall, anchor=west, align=left, text=aqmaccent] at (0.86,-0.10)
-      {generic $\mathbf k$: does not close\\[-1pt]$f(\mathbf k)\neq0$, bands split};
-  \end{scope}
-\end{scope}
-
-% ================= (c) Brillouin zone and cone ==============================
-\begin{scope}[shift={(10.75,0)}]
-  \node[aqmpanel, anchor=south west] at (-0.55,2.55) {(c) $K$, $K'$, and the cone};
-
-  % hexagonal Brillouin zone
-  \begin{scope}[shift={(0.85,1.28)}]
-    \draw[aqm, draw=black] (0:0.80) \foreach \ang in {60,120,...,300} { -- (\ang:0.80) } -- cycle;
-    \foreach \ang in {0,120,240} { \node[circle, fill=aqmbroken, inner sep=1.4pt] at (\ang:0.80) {}; }
-    \foreach \ang in {60,180,300} { \node[circle, fill=aqmaccent, inner sep=1.4pt] at (\ang:0.80) {}; }
-    \node[aqmlabsmall, anchor=west,       text=aqmbroken] at (0:0.90)  {$K$};
-    \node[aqmlabsmall, anchor=south west, text=aqmaccent] at (60:0.86) {$K'$};
-    \node[circle, fill=aqmmuted, inner sep=1.1pt] at (0,0) {};
-    \node[aqmlabmuted, anchor=north east] at (0,-0.04) {$\Gamma$};
-  \end{scope}
-
-  % the Dirac cone: two lines plus dashed rims
-  \begin{scope}[shift={(0.85,-1.18)}]
-    \draw[aqmarrowmuted] (0,-0.98) -- (0,1.12);
-    \node[aqmlabsmall, anchor=east, text=aqmmuted] at (-0.06,1.08) {$E$};
-    \draw[aqm, draw=aqmbroken] (-0.66,0.66) -- (0,0) -- (0.66,0.66);
-    \draw[aqm, draw=aqmbroken] (-0.66,-0.66) -- (0,0) -- (0.66,-0.66);
-    \draw[aqmguide] (0,0.66) ellipse (0.66 and 0.14);
-    \draw[aqmguide] (0,-0.66) ellipse (0.66 and 0.14);
-    \node[circle, fill=aqmbroken, inner sep=1.4pt] at (0,0) {};
-    \node[aqmlabsmall, anchor=west, align=left] at (0.78,0.42)
-      {$E_\pm=\pm\hbar v_F|\mathbf q|$};
-    \node[aqmlabsmall, anchor=west, align=left, text=aqmmuted] at (0.78,-0.42)
-      {$m^\ast=0$ on the cone,\\[-1pt]undefined at its tip};
-  \end{scope}
-\end{scope}
-
-\end{tikzpicture}
-
+% Rendered by figures/blender/s02f04_dirac.py, labels in figures/overlays/s02f04_dirac.tex.
+\begin{aqmfigure}{fig:s02:dirac}{The Dirac cones of graphene. \textbf{(a)} The honeycomb lattice,
+with two sublattices $A$, $B$ per unit cell, drawn as dark and grey discs, and the three
+nearest-neighbor vectors $\boldsymbol\delta_{1,2,3}$ from an $A$ site. \textbf{(b)} The reason why
+the bands touch. At $\mathbf k=\mathbf K$ the three phase factors $e^{i\mathbf
+K\cdot\boldsymbol\delta_j}$ are three unit vectors at $120^\circ$ from each other in the complex
+plane. When we place them one after the other they close a triangle, so $f(\mathbf K)=0$ in (2.19)
+and both bands meet at zero energy. At a generic $\mathbf k$ they do not close, the ghost ball marks
+where the sum ends, and the bands are split. \textbf{(c)} The two inequivalent points $K$ and $K'$
+of the Brillouin zone with zero energy, at two corners of the hexagonal tile, around which the
+dispersion is the linear cone $E_\pm=\pm\hbar v_F|\mathbf q|$ of (2.21).}
+\includegraphics{figures/pdf/s02f04_dirac.pdf}
 \end{aqmfigure}

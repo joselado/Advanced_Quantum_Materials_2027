@@ -1,0 +1,27 @@
+% Figure s02f01_ringmodes (Session 2): the eigenstates of the three-site ring and the allowed phases.
+% The image is rendered by figures/blender/s02f01_ringmodes.py; the coordinates of the labels come from
+% figures/blender/out/s02f01_ringmodes_anchors.tex. Build with figures/blender/build_figure.sh s02f01_ringmodes.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx,bm}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,calc}
+\input{aqmcolors.tex}
+\newlength{\figw}\setlength{\figw}{15.6cm}   % the text width of the notes (A4, 2.7 cm margins)
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
+  \node[anchor=south west, inner sep=0pt] at (0,0)
+    {\includegraphics[width=\figw]{../blender/out/s02f01_ringmodes.jpg}};
+  \input{../blender/out/s02f01_ringmodes_anchors.tex}
+  \node[lbl, anchor=north] at (n0) {$n=0$};
+  \node[lbl, anchor=north] at (n1) {$n=1$};
+  \node[lbl, anchor=north] at (n2) {$n=2$};
+  \node[lbl, anchor=north] at (L0) {$L=3$};
+  \node[lbl, anchor=north] at (L1) {$L=5$};
+  \node[lbl, anchor=north] at (L2) {$L\to\infty$};
+  \node[lbl, anchor=south east, text=aqmaccent] at (BZ) {first Brillouin zone};
+  \node[lbl, anchor=south] at ($(n1)+(0,2.55cm)$) {$\alpha_j\propto e^{2\pi i n j/3}$};
+  \node[lbl, anchor=south] at ($(L0)!0.5!(L1)+(0,2.55cm)$) {allowed phases $e^{2\pi i n/L}$};
+\end{tikzpicture}
+\end{document}
