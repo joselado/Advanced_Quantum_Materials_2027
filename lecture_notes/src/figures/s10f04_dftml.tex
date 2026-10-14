@@ -3,16 +3,17 @@
 % Placement: sec. "Machine learning in density functional theory", at the itemized list of
 % the two ML strategies.
 \begin{aqmfigure}{fig:s10:dft}{Where machine learning enters density functional theory, and why the
-two entry points are not the same idea. \textbf{Top:} the Hohenberg--Kohn reduction is deliberately
-lopsided. Going from the many-body ground state to the density is a $3N\to3$ integral anyone can do;
-coming back is guaranteed to be possible but comes with no formula, and that missing formula is the
-whole opening. \textbf{Bottom:} the Kohn--Sham loop (10.8) turns the problem into a self-consistent
-single-particle one. \textbf{Route 1} replaces the unknown exchange--correlation piece by a trained
-network: more accurate, but the diagonalization stays inside the loop and it is the
-diagonalization, not $v_{\rm xc}$, that limits the system size. \textbf{Route 2} learns the
-Hohenberg--Kohn map $v_{\rm ext}\mapsto n$ outright, trained on conventional Kohn--Sham results for
-small systems, and then does no diagonalization at all --- the whole loop is bypassed. Only route 2
-changes what is computationally possible; route 1 changes only how good the answer is.}
+two entry points are different ideas. \textbf{Top.} The Hohenberg--Kohn reduction is very
+asymmetric on purpose. To go from the many-body ground state to the density is a $3N\to3$ integral
+that anyone can do. To go back is guaranteed to be possible but there is no formula for it, and this
+missing formula is where machine learning can enter. \textbf{Bottom.} The Kohn--Sham loop (10.8)
+turns the problem into a self-consistent single-particle problem. \textbf{Route 1} replaces the
+unknown exchange--correlation part by a trained network. This is more accurate, but the
+diagonalization stays inside the loop, and the diagonalization, not $v_{\rm xc}$, is what limits
+the system size. \textbf{Route 2} learns the Hohenberg--Kohn map $v_{\rm ext}\mapsto n$ directly,
+trained on conventional Kohn--Sham results for small systems, and then does no diagonalization at
+all, so the whole loop is skipped. Only route 2 changes which systems we can compute, while route 1
+only changes how good the answer is.}
 
 \begin{tikzpicture}[
   proc/.style={aqmbox, text width=3.9cm},

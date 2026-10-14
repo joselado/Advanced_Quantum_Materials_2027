@@ -2,20 +2,20 @@
 % compress ground states, used as machine-learning function approximators.
 % Placement: sec. "The many-body wavefunction as a big-data problem", after the paragraph
 % naming MPS / tree / MERA / PEPS and before the Fashion-MNIST numbers.
-\begin{aqmfigure}{fig:s10:tnml}{Tensor networks used the other way round. \textbf{(a)} The four
-geometries the text names, drawn as tensor diagrams: every box is a tensor, every line an index
-summed over, and the dangling legs are the physical indices. The bond dimension $D$ carried by the
-internal lines is what (10.6) calls a free parameter. For ground-state search these are emphatically
-not interchangeable --- an MPS optimizes easily, a PEPS does not --- but as flexible parameterized
-functions of a high-dimensional input, which is all a classifier needs, any of them will serve.
-\textbf{(b)} Image classification with a tree tensor network. Each pixel becomes a two-component
-vector, and their tensor product is a single vector in a $2^N$-dimensional space --- exactly the
-space an $N$-spin wavefunction of (10.2) lives in. Classification is then a \emph{linear} map on
-that space down to two numbers, and the tensor network is precisely the efficient, structured
-parameterization of such a map that (10.6) already handed us. Note what has and has not changed
-from figure~\ref{fig:s10:template}: the input is still an array with a categorical label, the
-output is still one-hot, only the function in between is now built from matrices instead of layers
-of nodes.}
+\begin{aqmfigure}{fig:s10:tnml}{Tensor networks used in the reverse direction. \textbf{(a)} The four
+geometries that the text names, drawn as tensor diagrams. Every box is a tensor, every line is an
+index that is summed over, and the open legs are the physical indices. The bond dimension $D$ of the
+internal lines is what (10.6) calls a free parameter. For a ground-state search these geometries
+are not equivalent, since an MPS is easy to optimize and a PEPS is not. However, as flexible
+functions of a high-dimensional input with parameters, which is all that a classifier needs, any of
+them can be used. \textbf{(b)} Image classification with a tree tensor network. Each pixel becomes
+a vector with two components, and their tensor product is a single vector in a $2^N$-dimensional
+space, which is the same space where an $N$-spin wavefunction of (10.2) lives. Classification is
+then a \emph{linear} map from this space down to two numbers, and the tensor network is the
+efficient and structured parameterization of such a map that (10.6) already gave us. Note what
+changes and what does not change with respect to figure~\ref{fig:s10:template}. The input is still
+an array with a categorical label and the output is still one-hot, and only the function between
+them is now built from matrices instead of layers of nodes.}
 
 \begin{tikzpicture}[
   tn/.style={aqm, rectangle, draw=black, fill=aqmfill, minimum size=4.6pt, inner sep=0pt},

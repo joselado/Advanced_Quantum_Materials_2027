@@ -1,608 +1,628 @@
 \chapter{Classical Magnetism and Magnons}
 
-Last session closed on a sentence worth repeating exactly, because it is the sentence that opens
-today's lecture too: the same Hubbard-like Hamiltonian can mean-field into either a superconductor
-or a magnet, and magnetism was deferred to the next recording. Today is that next recording. We
-already met a first pass at mean-field magnetism all the way back in session 1 (the Hubbard chain,
-the magnetization $m$, the Mott gap), but that was deliberately left as an appetizer: a sign flip
-away from the superconducting case, worked out just far enough to show that magnetism \emph{is} a
-symmetry-broken mean-field state. Today we go much further. We will solve the Hubbard model's
-magnetism numerically and see ferromagnetism and antiferromagnetism compete as two genuinely
-different self-consistent solutions of the same Hamiltonian; we will find the precise threshold
-interaction strength above which magnetism appears at all; and then, because that threshold sits
-exactly where mean-field theory itself becomes unreliable, we will leave mean field behind and
-derive, from first principles, the effective spin Hamiltonian that governs the strongly correlated
-limit: the Heisenberg model. From there we go one level further still and ask about the \emph{excitations}
-living on top of a magnetically ordered state, which brings us to magnons, the magnetic analogue of
-a phonon, built rigorously via the Holstein-Primakoff transformation. And once we have a genuine
-band structure for magnons, we will find that the topological machinery from sessions 3 and 4,
-Chern numbers, Berry curvature, chiral edge states, applies to them too, giving us topological
-magnon bands as a third application of a tool we have now used on electrons twice and on magnons
-once.
+The last session ended with a sentence that we repeat here, because it is also the sentence that
+starts this lecture. The same Hubbard-like Hamiltonian can give, at the mean-field level, either a
+superconductor or a magnet, and magnetism was left for the next recording. This session is that next
+recording. We already did a first mean-field treatment of magnetism in session 1, with the Hubbard
+chain, the magnetization $m$ and the Mott gap. That treatment was only an introduction on purpose. It
+was one change of sign away from the superconducting case, and we only went far enough to show that
+magnetism \emph{is} a symmetry-broken mean-field state. In this session we go much further. First, we
+will solve the magnetism of the Hubbard model numerically, and we will see that ferromagnetism and
+antiferromagnetism compete as two different self-consistent solutions of the same Hamiltonian. Then we
+will find the exact value of the interaction above which magnetism appears. This threshold is in the
+same regime where mean-field theory stops being reliable, so after that we will leave mean field and
+derive from first principles the effective spin Hamiltonian of the strongly correlated limit, which is
+the Heisenberg model. After this we go one step further and ask about the \emph{excitations} on top
+of a magnetically ordered state. This leads us to magnons, which are the magnetic analogue of a
+phonon, and we will construct them exactly with the Holstein-Primakoff transformation. Once magnons
+have a real band structure, we will see that the topological methods of sessions 3 and 4, namely
+Chern numbers, Berry curvature and chiral edge states, also apply to them. This gives us topological
+magnon bands, which is a third application of a tool that we have now used twice on electrons and
+once on magnons.
 
-One piece of framing before we start, because it explains how this session ends. Today's recording
-is a single, self-contained lecture on classical magnetism and magnons only; it does not also carry
-a second recording on quantum magnetism and the Kondo model the way it might sound from the opening
-preview of spinons below. That material genuinely belongs to its own session later in the course.
-What is true, and worth saying plainly rather than papering over, is that today's recording simply
-stops once it reaches the end of the ``topological magnons'' material: there is no closing take-home
-summary slide narrated at the end, the lecture just runs out of planned material. So these notes end
-the same way, on topological magnons, without inventing a wrap-up sentence the lecture itself never
-says.
+Before we start, we comment on how the session is organized, because this explains how it ends.
+This recording is one self-contained lecture on classical magnetism and magnons only. It does not
+include a second recording on quantum magnetism and the Kondo model, even if the preview of spinons
+below may give that impression. That material belongs to its own session later in the course. We
+should also say clearly that this recording stops when it reaches the end of the ``topological
+magnons'' material. There is no summary slide narrated at the end, and the lecture ends when the
+planned material ends. For this reason these notes also end with topological magnons, and we do not
+add a final sentence that the lecture itself does not say.
 
-\section{Two classes of magnets, and the excitations that live on each}
+\section{Two classes of magnets and their excitations}
 
-Let us start by drawing the map of where we are headed, because today's lecture actually previews
-material from two future sessions before settling into its own. There are two big classes of
-magnetic system.
+Let us start with a map of where we are going, since this lecture first previews material from two
+later sessions and only then moves to its own topic. There are two big classes of magnetic systems.
 
-The first class is magnets that break time-reversal symmetry. These are materials with a net
-magnetization on every site (or a staggered one), and a finite spin angular momentum is precisely
-what makes a system look different when its ``movie'' is run backwards, which is the definition of
-broken time-reversal symmetry. Ferromagnets, antiferromagnets, and noncollinear spin spirals all
-belong here. Iron and cobalt are the two materials the lecture actually names, repeatedly, as
-concrete examples of this family. This is the class we spend all of today on.
+The first class contains the magnets that break time-reversal symmetry. These materials have a net
+magnetization on every site, or a staggered one, and a finite spin angular momentum is what makes a
+system look different when we play its ``movie'' backwards, which is the definition of broken
+time-reversal symmetry. Ferromagnets, antiferromagnets and noncollinear spin spirals are in this
+class. Iron and cobalt are the two materials that the lecture names, several times, as concrete
+examples of this family. In this session we spend all our time on this class.
 
-The second class is magnets that do \emph{not} break time-reversal symmetry, at least not classically:
-quantum magnets, among them quantum spin liquids. These have a local moment on every site, but the
-spins are in quantum superposition rather than settling into a static classical arrangement, so
-time-reversal symmetry need not be broken overall. A related case, also mentioned today only in
-passing, is the heavy-fermion Kondo system: a combination of local moments in quantum superposition
-together with an itinerant metallic electron sea. (The ``Classical and quantum magnetism'' slide
-illustrates all three families with material photographs, iron for the ferromagnet/antiferromagnet
-family, herbertsmithite for quantum spin liquids, samarium hexaboride SmB$_6$ for heavy-fermion
-insulators, but none of those three compound names is actually spoken in this year's narration; they
-are slide-only labels, worth knowing about but not something the lecture itself says out loud.)
+The second class contains the magnets that do \emph{not} break time-reversal symmetry, at least not
+classically. These are quantum magnets, and quantum spin liquids are among them. They have a local
+moment on every site, but the spins are in a quantum superposition and do not form a static classical
+arrangement, so time-reversal symmetry does not need to be broken overall. A related case, which is
+also mentioned only briefly in this lecture, is the heavy-fermion Kondo system. It is a combination of
+local moments in a quantum superposition with a sea of itinerant metallic electrons. The ``Classical
+and quantum magnetism'' slide shows the three families with photographs of materials, which are iron
+for the ferromagnet and antiferromagnet family, herbertsmithite for quantum spin liquids and samarium
+hexaboride SmB$_6$ for heavy-fermion insulators. None of these three compound names is said in this
+year's narration. They are only labels on the slide, which are good to know but which the lecture does
+not say out loud.
 
-Each class comes with its own emergent excitation. Time-reversal-breaking magnets host \textbf{magnons}:
-spin-1, charge-neutral fluctuations of the order parameter, the direct magnetic analogue of a
-phonon. Because magnons carry no charge, they are completely unaffected by electric fields, and they
-can propagate in materials that are electronic insulators: a ferromagnetic (or antiferromagnetic)
-Mott insulator lets no current through, yet a magnon can still carry spin and heat across it.
-Quantum magnets instead host \textbf{spinons}: spin-$1/2$, charge-neutral excitations, sometimes
-described informally as ``half an electron,'' since an electron's spin and charge degrees of freedom
-have effectively separated. We will build magnons carefully over the rest of today's session.
-Spinons, and the Kondo lattice model, are only previewed here as a name and a spin quantum number;
-their full construction is a later session's material (session 8), not something today's lecture
-returns to.
+Each class has its own emergent excitation. Magnets that break time-reversal symmetry have
+\textbf{magnons}, which are spin-1 and charge-neutral fluctuations of the order parameter, and they
+are the direct magnetic analogue of a phonon. Magnons have no charge, so electric fields do not affect
+them at all, and they can propagate in materials that are electronic insulators. A ferromagnetic or
+antiferromagnetic Mott insulator does not let any current through, but a magnon can still carry spin
+and heat across it. Quantum magnets have instead \textbf{spinons}, which are spin-$1/2$ and
+charge-neutral excitations. They are sometimes described informally as ``half an electron,'' since the
+spin and the charge degrees of freedom of the electron have in practice separated. In the rest of this
+session we will construct magnons in detail. Spinons and the Kondo lattice model only appear here as a
+name and a spin quantum number. Their full construction is the material of a later session, session 8,
+and this lecture does not come back to them.
 
-\section{A recap: symmetry breaking and the mean-field philosophy}
+\section{A recap of symmetry breaking and the mean-field philosophy}
 
-We have seen this move twice already in this course, first in session 1 in miniature, then in full
-depth for superconductivity in session 5, so let us state it once more, briskly, before putting it
-to work on magnetism specifically. Many-body interactions can spontaneously break a symmetry that
-the Hamiltonian itself possesses. Three cases run through this entire course: magnets break
-time-reversal (equivalently, real-space spin-rotation) symmetry; charge density waves break lattice
-translational symmetry; superconductors break gauge symmetry. All three emerge from the same generic
-starting point, a kinetic (single-particle, exactly solvable) term plus a quartic many-body
-interaction, and all three are extracted the same way: mean-field theory factorizes the quartic term
-by replacing part of it with its expectation value, turning an intractable many-body problem into a
-solvable single-particle one, solved self-consistently.
+We have already used this idea twice in this course, first in a small form in session 1 and then in
+full detail for superconductivity in session 5. Let us state it once more, in a short way, before we
+apply it to magnetism. Many-body interactions can spontaneously break a symmetry that the Hamiltonian
+itself has. Three cases appear in the whole course. Magnets break time-reversal symmetry, and they
+also break spin-rotation symmetry, since a magnetic moment breaks both. Charge density waves break the translational
+symmetry of the lattice. Superconductors break gauge symmetry. All three emerge from the same generic
+starting point, which is a kinetic term that is single-particle and exactly solvable, plus a quartic
+many-body interaction. All three are also obtained in the same way. Mean-field theory factorizes the
+quartic term by replacing part of it with its expectation value, which turns a many-body problem that
+we cannot solve into a single-particle problem that we can solve, and we solve it self-consistently.
 
-Where do the interactions themselves come from? Two sources. Electrostatic (Coulomb) repulsion
-between electrons is the classical, always-present contribution. Interactions can also be mediated
-by other quasiparticles (phonons, magnons, plasmons), which can flip the \emph{net} effective interaction
-from repulsive to attractive. Magnetism specifically needs the net interaction to be repulsive; since
-bare Coulomb repulsion is already repulsive, this is the easy case to realize, which is one reason
-magnetism is so common in nature.
+Where do the interactions themselves come from? There are two sources. The electrostatic, or Coulomb,
+repulsion between electrons is the classical contribution, and it is always present. Interactions can
+also be mediated by other quasiparticles, such as phonons, magnons or plasmons, and these can change
+the \emph{net} effective interaction from repulsive to attractive. Magnetism needs a net interaction
+that is repulsive. The bare Coulomb repulsion is already repulsive, so this case is easy to realize,
+which is one of the reasons why magnetism is so common in nature.
 
 \section{The Hubbard model and mean-field magnetism, revisited}
 
-The minimal Hamiltonian for all of this is the one-dimensional Hubbard chain we first met in
+The minimal Hamiltonian for all of this is the one-dimensional Hubbard chain that we first saw in
 session 1,
 
 \begin{equation}
 H = -t\sum_{n,\sigma}\left(c_{n\sigma}^\dagger c_{n+1,\sigma} + \text{h.c.}\right) + U\sum_n c_{n\uparrow}^\dagger c_{n\uparrow}\, c_{n\downarrow}^\dagger c_{n\downarrow},
 \end{equation}
 
-hopping $t$ plus a purely local (on-site) density-density interaction between opposite spins, the
-Hubbard term. Negative $U$ (attractive) drives superconductivity, session 5's territory; positive $U$
-(repulsive) drives magnetism, ours today.
+which is the hopping $t$ plus a purely local onsite density-density interaction between opposite
+spins, called the Hubbard term. A negative $U$, which is attractive, gives rise to superconductivity,
+which was the topic of session 5. A positive $U$, which is repulsive, gives rise to magnetism, which is
+our topic in this session.
 
-The mean-field decoupling proceeds exactly as before: replace $c_{n\uparrow}^\dagger c_{n\uparrow}$
-and $c_{n\downarrow}^\dagger c_{n\downarrow}$ by their expectation values, leaving a bilinear
-Hamiltonian with spin-dependent on-site energies. Nothing forces these two expectation values to
-agree, and the imbalance between them is exactly the magnetization,
+The mean-field decoupling is done in the same way as before. We replace
+$c_{n\uparrow}^\dagger c_{n\uparrow}$ and $c_{n\downarrow}^\dagger c_{n\downarrow}$ by their
+expectation values, and we obtain a bilinear Hamiltonian with onsite energies that depend on the spin.
+Nothing forces these two expectation values to be equal, and the difference between them is the
+magnetization,
 
 \begin{equation}
 m = \langle c_\uparrow^\dagger c_\uparrow\rangle - \langle c_\downarrow^\dagger c_\downarrow\rangle,
 \end{equation}
 
-which plays the role of an exchange field: the resulting mean-field Hamiltonian looks schematically
-like $H_\text{MF} \sim -\tfrac{U}{2}\, m\, \boldsymbol\sigma\cdot c$, where $\boldsymbol\sigma$ is the
-vector of Pauli matrices. Self-consistency gives $m=0$ for $U<0$ and a genuinely magnetic $m\neq 0$
-for $U>0$, exactly as in session 1.
+which plays the role of an exchange field. In a schematic form, the resulting mean-field Hamiltonian is
+$H_\text{MF} \sim -\tfrac{U}{2}\, m\, \boldsymbol\sigma\cdot c$, where $\boldsymbol\sigma$ is the
+vector of Pauli matrices. Self-consistency gives $m=0$ for $U<0$ and a magnetic solution with
+$m\neq 0$ for $U>0$, as in session 1.
 
-Here is a piece of rigor the slides show but the spoken explanation only gestures at: nothing in this
-construction singles out the $z$ axis. The Hubbard interaction can be rewritten exactly, for a single
-site, in terms of the local spin operator $\mathbf{S} = \tfrac12 c_\alpha^\dagger \boldsymbol\sigma_{\alpha\beta} c_\beta$
+There is a more careful point here, which the slides show but the spoken explanation only mentions.
+Nothing in this construction chooses the $z$ axis. For a single site, the Hubbard interaction can be
+rewritten exactly in terms of the local spin operator
+$\mathbf{S} = \tfrac12 c_\alpha^\dagger \boldsymbol\sigma_{\alpha\beta} c_\beta$
 and the total occupation $n = n_\uparrow + n_\downarrow$, as
-$U\, n_\uparrow n_\downarrow = \tfrac{U}{4}n^2 - U\mathbf{S}^2$ (up to the usual $n^2=n+2n_\uparrow n_\downarrow$
-identity for fermionic occupation numbers). Mean-field theory then factorizes the quadratic operator
-$\mathbf{S}^2$ the same way it factorizes any product of two operators, $\mathbf{S}^2 \approx
+$U\, n_\uparrow n_\downarrow = \tfrac{U}{2}n - \tfrac{2U}{3}\mathbf{S}^2$, where we used that a single site has
+$\mathbf{S}^2=\tfrac34(n-2n_\uparrow n_\downarrow)$, since only a singly occupied site has a spin. Mean-field theory then factorizes the quadratic operator
+$\mathbf{S}^2$ in the same way as any product of two operators, $\mathbf{S}^2 \approx
 2\langle\mathbf{S}\rangle\cdot\mathbf{S} - \langle\mathbf{S}\rangle^2$, and the resulting exchange
-field points along $\mathbf{m} \equiv \langle\mathbf{S}\rangle$, in \emph{whichever} direction that
-expectation value happens to be nonzero. Choosing $\langle c_\uparrow^\dagger c_\uparrow\rangle \neq
-\langle c_\downarrow^\dagger c_\downarrow\rangle$, as in (6.2), picks out $m_z\neq 0$; choosing instead
-$\langle c_\uparrow^\dagger c_\downarrow\rangle \neq 0$ picks out $m_x$ or $m_y$. Mean-field magnetism
-is therefore not restricted to the $z$ axis at all: it produces magnets with magnetization along any
-direction in space, including genuinely noncollinear arrangements where $\mathbf{m}$ points in
-different directions on different sites. This is exactly the ``non-collinear mean-field Hamiltonian''
-figure on the slides, which the spoken lecture only names in passing.
+field points along $\mathbf{m} \equiv \langle\mathbf{S}\rangle$, in \emph{any} direction where this
+expectation value is nonzero. If we choose $\langle c_\uparrow^\dagger c_\uparrow\rangle \neq
+\langle c_\downarrow^\dagger c_\downarrow\rangle$, as in (6.2), we select $m_z\neq 0$. If we choose
+instead $\langle c_\uparrow^\dagger c_\downarrow\rangle \neq 0$, we select $m_x$ or $m_y$. For this
+reason mean-field magnetism is not restricted to the $z$ axis. It gives magnets with a magnetization
+along any direction in space, and this includes noncollinear arrangements where $\mathbf{m}$ points in
+different directions on different sites. This is the ``non-collinear mean-field Hamiltonian'' figure
+on the slides, which the spoken lecture only names briefly.
 
-Mean field is only trustworthy when $U \ll t$; we will see in Section 6.6 that magnetism typically
-needs the opposite regime, which is precisely why the strongly localized limit of Section 6.7 onward
-matters so much.
+Mean field can only be trusted when $U \ll t$. We will see in Section 6.6 that magnetism usually needs
+the opposite regime, and this is the reason why the strongly localized limit, from Section 6.7 on, is
+so important.
 
-\section{Numerical mean-field magnetism: exchange splitting and antiferromagnetic order}
+\section{Exchange splitting and antiferromagnetic order in numerical mean-field theory}
 
-Let us see the machinery of Section 6.3 actually run. First take the one-dimensional chain (6.1)
-with a single-site unit cell at 20\% filling and solve it self-consistently. The resulting band
-structure exchange-splits: the spin-up band (occupied up to the chemical potential) sits at lower
-energy than the spin-down band (empty at this filling), and the splitting between them, the
-\textbf{exchange splitting}, grows with $U$. Since only spin-up states are occupied, this is a fully
-polarized ferromagnetic solution with $m\neq 0$.
+Let us now see the method of Section 6.3 in a real calculation. First we take the one-dimensional
+chain (6.1) with a unit cell of one site at 20\% filling, and we solve it self-consistently. The
+resulting band structure shows an exchange splitting. The spin-up band, which is occupied up to the
+chemical potential, is at lower energy than the spin-down band, which is empty at this filling. The
+splitting between them is called the \textbf{exchange splitting}, and it grows with $U$. Only spin-up
+states are occupied, so this is a fully polarized ferromagnetic solution with $m\neq 0$.
 
-Now enlarge the unit cell to two sites and work at half filling instead. At $U=0$ there are two
-bands (one per site in the cell), crossing at one point: the system is metallic. Turning on $U>0$
-opens a mean-field gap, and in real space the two sublattices develop opposite spin polarization: one
-site mostly up, its neighbor mostly down. The \emph{net} magnetization is zero, but the \emph{staggered}
-magnetization is not: this is antiferromagnetic order, and (as always with mean-field gap opening)
-it lowers the total electronic energy relative to the ungapped state, because the states that get
-pushed down in energy by the gap are exactly the occupied ones.
+Now we take a unit cell with two sites, and we work at half filling. At $U=0$ there are two bands, one
+per site in the cell, and they cross at one point, so the system is metallic. When we turn on $U>0$ a
+mean-field gap opens, and in real space the two sublattices get opposite spin polarization, with one
+site mostly up and its neighbor mostly down. The \emph{net} magnetization is zero, but the
+\emph{staggered} magnetization is not, and this is antiferromagnetic order. As always when a
+mean-field gap opens, it lowers the total electronic energy with respect to the state without a gap,
+because the states that the gap pushes down in energy are the occupied ones.
 
 \begin{notebookbox}{\texttt{session6.ipynb}, ``(Reminder) Bandstructure of a tight binding chain with two sites'' and ``(Exercise) Magnetic order driven by interactions in a chain''}
-Start from the two-site, non-interacting band structure (the metallic crossing case), then switch
-on $U$ and watch the mean-field gap open and the real-space spin pattern become antiferromagnetic,
-reproducing (6.2)'s exchange splitting directly. The single-site, 20\% filling ferromagnetic case
-from the same section is the companion calculation.
+Start from the band structure of the two-site chain without interactions, which is the metallic case
+with a crossing. Then turn on $U$ and see how the mean-field gap opens and how the spin pattern in
+real space becomes antiferromagnetic, which reproduces the exchange splitting of (6.2) directly. The
+ferromagnetic case with one site per cell at 20\% filling, from the same section, is the companion
+calculation.
 \end{notebookbox}
 
-\section{Ferromagnet versus antiferromagnet: which one wins?}
+\section{Competition between the ferromagnet and the antiferromagnet}
 
-The Hubbard chain (6.1) admits \emph{both} a ferromagnetic self-consistent solution (single-site cell,
-metallic, gapless) and an antiferromagnetic one (two-site cell, insulating, gapped) at the same
-filling and the same $U$. Both are genuine fixed points of the self-consistency loop; only one can be
-the true ground state, and we settle that by comparing total energies. The gapped antiferromagnetic
-solution always wins here: opening a gap pushes the occupied single-particle energies down, so the
-insulating configuration has lower total energy than the gapless ferromagnetic one at every $U>0$ we
-can reach numerically in this half-filled chain.
+The Hubbard chain (6.1) has \emph{both} a ferromagnetic self-consistent solution, with one site per
+cell, metallic and gapless, and an antiferromagnetic one, with two sites per cell, insulating and
+gapped, at the same filling and the same $U$. Both are real fixed points of the self-consistency loop.
+Only one of them can be the true ground state, and we decide which one by comparing total energies.
+Here the gapped antiferromagnetic solution always has the lower energy. Opening a gap pushes the
+occupied single-particle energies down, so the insulating configuration has a lower total energy than
+the gapless ferromagnetic one for every $U>0$ that we can reach numerically in this half-filled chain.
 
-It is worth tracking how large that energy advantage is as a function of $U$. At $U=0$ the two
-configurations are identical, so the energy difference vanishes. As $U$ grows from zero the gap opens
-and the energy difference grows with it. But then, surprisingly, as $U$ keeps growing the energy
-difference starts \emph{shrinking} again, and in the $U\to\infty$ limit (equivalently, the limit where the
-kinetic energy becomes negligible) the two configurations become degenerate. Numerically this energy
-difference fits a $1/U$ functional form. We are going to rederive this exact $1/U$ scaling
-analytically in Section 6.8, from a completely independent calculation, as a genuine cross-check
-between the mean-field numerics and a many-body perturbative treatment.
+Let us follow how large this energy difference is as a function of $U$. At $U=0$ the two
+configurations are the same, so the energy difference is zero. When $U$ grows from zero the gap opens
+and the energy difference grows with it. However, when $U$ keeps growing, the energy difference
+starts to \emph{decrease} again, which is not what one would expect. In the limit $U\to\infty$, which
+is the same as the limit where the kinetic energy can be neglected, the two configurations become
+degenerate. Numerically, this energy difference follows a $1/U$ form. In Section 6.8 we will derive
+this exact $1/U$ scaling analytically from a completely independent calculation, which is a real
+cross-check between the mean-field numerics and a many-body perturbative treatment.
 
-\section{A criterion for magnetism: the Stoner threshold}
+\section{The Stoner threshold as a criterion for magnetism}
 
-A natural question: does \emph{any} repulsive $U>0$ produce magnetism, or is there a threshold? Write the
-mean-field bands as $E_\sigma(\mathbf{k}) = E(\mathbf{k}) - \sigma\, \tfrac{U}{2}m$ for
-$\sigma=\pm1$ (spin up/down), with $m$ the self-consistent magnetization of (6.2). At zero
-temperature, self-consistency reads
+A natural question is whether \emph{any} repulsive $U>0$ gives magnetism, or if there is a threshold.
+We write the mean-field bands as $E_\sigma(\mathbf{k}) = E(\mathbf{k}) - \sigma\, \tfrac{U}{2}m$ for
+$\sigma=\pm1$, meaning spin up and down, where $m$ is the self-consistent magnetization of (6.2). At
+zero temperature, the self-consistency condition is
 
 \begin{equation*}
 m = \sum_{\mathbf k}\Big[n_F\big(E(\mathbf k)-\tfrac{U}{2}m\big) - n_F\big(E(\mathbf k)+\tfrac{U}{2}m\big)\Big].
 \end{equation*}
 
-Expanding the right-hand side for small $m$ gives $m \approx U\,m\,D(E_F)$, where $D(E_F)$ is the
-density of states at the Fermi level. This has the trivial solution $m=0$ always, but a \emph{nontrivial}
-solution branches off exactly when the linear coefficient reaches one:
+If we expand the right-hand side for small $m$ we obtain $m \approx U\,m\,D(E_F)$, where $D(E_F)$ is
+the density of states at the Fermi level. The trivial solution $m=0$ always exists, but a
+\emph{nontrivial} solution appears when the linear coefficient reaches one, which gives the condition
 
 \begin{equation}
 U\, D(E_F) \geq 1.
 \end{equation}
 
-This is the Stoner criterion. Below threshold only $m=0$ is stable, and the system is nonmagnetic no
-matter how you perturb it; above threshold the nonmagnetic solution becomes unstable and a finite $m$
-develops spontaneously. This is exactly why some metals with sizable Coulomb repulsion, aluminum or
-lead, stay nonmagnetic: their density of states at the Fermi level is too small for the product in
-(6.3) to clear one. Iron and cobalt, by contrast, combine a large density of states (from narrow $d$
-bands) with a sizable effective $U$, comfortably clearing the threshold. Numerically, this shows up
-exactly as (6.3) predicts: the self-consistent magnetization of the chain stays pinned at zero below
-a critical $U$, then grows continuously once $U$ crosses that threshold. Figure~\ref{fig:s06:stoner}
-shows both halves of this statement at once: why a nontrivial solution of the self-consistency
-condition only exists above threshold, and what the resulting magnetization curve looks like.
+This condition is called the Stoner criterion. Below the threshold only $m=0$ is stable, and the
+system stays nonmagnetic for any perturbation. Above the threshold the nonmagnetic solution becomes
+unstable, and a finite $m$ appears spontaneously. This is the reason why some metals with a sizable
+Coulomb repulsion, such as aluminum or lead, stay nonmagnetic, since their density of states at the
+Fermi level is too small for the product in (6.3) to reach one. Iron and cobalt, on the other hand,
+have a large density of states from their narrow $d$ bands together with a sizable effective $U$, so
+they are clearly above the threshold. In the numerics we see what (6.3) predicts. The self-consistent
+magnetization of the chain stays at zero below a critical $U$, and it grows continuously once $U$ is
+above this threshold. Figure~\ref{fig:s06:stoner} shows both parts of this statement together. It
+shows why a nontrivial solution of the self-consistency condition only exists above the threshold,
+and how the resulting magnetization curve looks.
 
 \input{figures/s06f01_stoner}
 
 \begin{notebookbox}{\texttt{session6.ipynb}, ``(Exercise) Intermediate coupling regime and Stoner instability''}
-Reproduce the threshold behavior of (6.3) directly: scan the self-consistent magnetization as a
-function of $U$ and locate the critical interaction where $m$ first becomes nonzero.
+Reproduce the threshold behavior of (6.3) directly. Compute the self-consistent magnetization as a
+function of $U$, and find the critical interaction at which $m$ first becomes nonzero.
 \end{notebookbox}
 
 \begin{notebookbox}{\texttt{session6.ipynb}, ``(Exercise) Magnetism in flat bands''}
-A flat band has (in principle) a divergent density of states at $E_F$, so the Stoner product
-$U D(E_F)$ in (6.3) clears threshold for essentially any $U>0$. This exercise is not narrated in
-the transcript, but it is the natural numerical extension of Section 6.6: a flat-band system is
-the ``easiest possible'' case for magnetism to appear.
+In principle, a flat band has a divergent density of states at $E_F$, so the Stoner product
+$U D(E_F)$ in (6.3) is above the threshold for practically any $U>0$. This exercise is not narrated
+in the transcript, but it is the natural numerical extension of Section 6.6, since a flat-band system
+is the case where it is easiest for magnetism to appear.
 \end{notebookbox}
 
-One important consequence closes this section and opens the next: (6.3) tells us that magnetism
-generically wants $U D(E_F) \gtrsim 1$, and for a reasonable bandwidth that typically means $U$ needs
-to be comparable to or larger than $t$, not smaller. But mean-field theory itself is only reliable for
-$U \ll t$ (Section 6.3). So the regime where magnetism actually shows up is, generically, exactly the
-regime where the tool we have been using breaks down. We need a genuinely different approach for
-$U \gg t$, and that is what the rest of this session builds.
+One important consequence ends this section and starts the next one. From (6.3), magnetism in general
+needs $U D(E_F) \gtrsim 1$, and for a reasonable bandwidth this usually means that $U$ has to be
+comparable to $t$ or larger, and not smaller. However, mean-field theory itself is only reliable for
+$U \ll t$, as we saw in Section 6.3. So the regime where magnetism appears is, in general, the same
+regime where the method that we have been using stops working. We need a different approach for
+$U \gg t$, and we construct it in the rest of this session.
 
-\section{Where mean field breaks down: the strongly localized limit}
+\section{The strongly localized limit, where mean field breaks down}
 
-Let us look again at the half-filled chain from Section 6.4, but now track the magnetization per site
-as $U$ grows from zero to very large values. At $U=0$ there is no interaction and $m=0$. As $U$
-increases, $m$ grows, and as $U\to\infty$ it saturates at exactly one Bohr magneton per site: a full,
-localized spin-$1/2$ moment on every site, pointing in alternating directions from one sublattice to
-the next (the ``Ising-like'' antiferromagnetic state the numerics converge to).
+Let us look again at the half-filled chain of Section 6.4, but now we follow the magnetization per site
+as $U$ grows from zero to very large values. At $U=0$ there is no interaction and $m=0$. When $U$
+increases, $m$ grows, and for $U\to\infty$ it saturates at exactly one Bohr magneton per site. This is
+a full localized spin-$1/2$ moment on every site, and the moments point in alternating directions on
+the two sublattices, which is the ``Ising-like'' antiferromagnetic state to which the numerics
+converge.
 
-This saturation is telling us something physical: in the large-$U$ limit electrons stop moving
-altogether. Hopping an electron onto an already-occupied neighboring site costs an energy $U$, and
-once $U\gg t$ that cost is prohibitive, so each site simply keeps its one electron, localized, with
-only its spin free to fluctuate. The right way to organize perturbation theory in this limit is
-therefore \emph{not} around the kinetic term (as mean field implicitly does), but around localization
-itself: treat the interacting, localized configuration as the zeroth-order ground state, and treat
-hopping as a small perturbation on top of it.
+This saturation tells us something physical, which is that in the large-$U$ limit the electrons stop
+moving completely. If an electron hops onto a neighboring site that is already occupied, this costs an
+energy $U$. When $U\gg t$ this cost is too large, so each site keeps its one localized electron, and
+only its spin can still fluctuate. For this reason, in this limit perturbation theory should \emph{not}
+be organized around the kinetic term, as mean field does implicitly, but around the localized state.
+We take the interacting and localized configuration as the ground state at zeroth order, and we treat
+the hopping as a small perturbation on top of it.
 
 \section{From the Hubbard dimer to the Heisenberg model}
 
-Let us make this precise on the smallest possible example: two sites, $0$ and $1$, hopping $t$
-between them, local repulsion $U$ on each, and exactly two electrons total (half filling). The Fock
-space at this filling has $\binom{4}{2}=6$ states: four with one electron on each site (each site's
-electron can independently be up or down) and two with both electrons on the same site (one electron
-up, one down, by Pauli exclusion).
+Let us make this precise in the smallest possible example. We take two sites, $0$ and $1$, with a
+hopping $t$ between them, a local repulsion $U$ on each of them, and exactly two electrons in total,
+which is half filling. The Fock space at this filling has $\binom{4}{2}=6$ states. Four of them have
+one electron on each site, where the electron of each site can be up or down independently. The other
+two have both electrons on the same site, with one electron up and one down because of Pauli
+exclusion.
 
-Group these by energy in the atomic limit ($t=0$). The four singly-occupied configurations,
-$|\!\uparrow,\uparrow\rangle$, $|\!\downarrow,\downarrow\rangle$, $|\!\uparrow,\downarrow\rangle$,
-$|\!\downarrow,\uparrow\rangle$, cost no interaction energy at all: call this the \textbf{low-energy
-manifold}, at energy $0$. The two doubly-occupied configurations,
-$|\!\uparrow\downarrow,0\rangle$ and $|0,\uparrow\downarrow\rangle$, each pay the full charging
-energy $U$: the \textbf{high-energy manifold}. In the low-energy manifold, every state has exactly one
-electron per site, so the charge degree of freedom is completely frozen; only the spin on each site
-can still fluctuate. The natural low-energy effective Hamiltonian is therefore a Hamiltonian for spin
-alone, and rotational invariance fixes its form up to an overall coupling: $H_\text{eff} = J\,
-\mathbf S_0\cdot\mathbf S_1$, the two-site Heisenberg Hamiltonian. What remains is to extract $J$ from
-the microscopic $t$ and $U$.
+Let us group these states by energy in the atomic limit ($t=0$). The four configurations with single
+occupation, $|\!\uparrow,\uparrow\rangle$, $|\!\downarrow,\downarrow\rangle$, $|\!\uparrow,\downarrow\rangle$
+and $|\!\downarrow,\uparrow\rangle$, have no interaction energy. We call them the \textbf{low-energy
+manifold}, at energy $0$. The two configurations with double occupation,
+$|\!\uparrow\downarrow,0\rangle$ and $|0,\uparrow\downarrow\rangle$, each have the full charging
+energy $U$, and they form the \textbf{high-energy manifold}. In the low-energy manifold every state has
+exactly one electron per site, so the charge degree of freedom is completely frozen and only the spin
+on each site can still fluctuate. For this reason the natural low-energy effective Hamiltonian is a
+Hamiltonian for the spin only, and rotational invariance fixes its form up to an overall coupling,
+$H_\text{eff} = J\,
+\mathbf S_0\cdot\mathbf S_1$, which is the two-site Heisenberg Hamiltonian. What
+remains is to obtain $J$ from the microscopic $t$ and $U$.
 
-Hopping (the perturbation) conserves total spin, so it cannot connect the low-energy manifold to the
-high-energy one for the \emph{parallel}-spin states at all: applying $H_t$ to $|\!\uparrow,\uparrow\rangle$
-would require moving a spin-up electron onto a site that already holds one, which Pauli exclusion
-forbids outright. The three parallel/triplet-like states ($|\!\uparrow,\uparrow\rangle$,
-$|\!\downarrow,\downarrow\rangle$, and the symmetric combination $\tfrac{1}{\sqrt2}(|\!\uparrow,\downarrow\rangle+|\!\downarrow,\uparrow\rangle)$)
-are therefore exact eigenstates of the \emph{full} Hamiltonian at energy exactly $E_T=0$: hopping simply
-cannot touch them, to any order. The antiparallel/singlet combination
+The hopping, which is the perturbation, conserves the total spin, so for the \emph{parallel}-spin
+states it cannot connect the low-energy manifold to the high-energy one at all. If we apply $H_t$ to
+$|\!\uparrow,\uparrow\rangle$, we would need to move a spin-up electron onto a site that already has
+one, and Pauli exclusion forbids this completely. The three parallel or triplet-like states,
+$|\!\uparrow,\uparrow\rangle$, $|\!\downarrow,\downarrow\rangle$ and the symmetric combination
+$\tfrac{1}{\sqrt2}(|\!\uparrow,\downarrow\rangle+|\!\downarrow,\uparrow\rangle)$, are therefore exact
+eigenstates of the \emph{full} Hamiltonian at energy exactly $E_T=0$, since the hopping does not act
+on them at any order. The antiparallel or singlet combination
 $|S\rangle=\tfrac{1}{\sqrt2}(|\!\uparrow,\downarrow\rangle-|\!\downarrow,\uparrow\rangle)$ is
-different: hopping \emph{can} connect it to the (symmetric) doubly-occupied combination
+different. The hopping \emph{can} connect it to the symmetric combination with double occupation,
 $|D\rangle=\tfrac{1}{\sqrt2}(|\!\uparrow\downarrow,0\rangle+|0,\uparrow\downarrow\rangle)$, with
-matrix element $\langle D|H_t|S\rangle = -2t$. Restricted to the two-dimensional subspace
+matrix element $\langle D|H_t|S\rangle = -2t$. In the two-dimensional subspace
 $\{|S\rangle,|D\rangle\}$, the Hamiltonian is exactly
 
 \begin{equation*}
 H = \begin{pmatrix} 0 & -2t \\ -2t & U\end{pmatrix},
 \end{equation*}
 
-with exact eigenvalues $E_\pm = \tfrac{U}{2}\pm\sqrt{(U/2)^2+4t^2}$. The singlet ground-state energy
-is the lower root, $E_S = \tfrac{U}{2}-\sqrt{(U/2)^2+4t^2}$; expanding for $U\gg t$,
+with exact eigenvalues $E_\pm = \tfrac{U}{2}\pm\sqrt{(U/2)^2+4t^2}$. The energy of the singlet ground
+state is the lower root, $E_S = \tfrac{U}{2}-\sqrt{(U/2)^2+4t^2}$, and if we expand it for $U\gg t$
+we obtain
 
 \begin{equation*}
 E_S \;\approx\; -\frac{4t^2}{U} + O(t^4/U^3), \qquad E_T = 0 \text{ exactly.}
 \end{equation*}
 
-Comparing this to the Heisenberg dimer's exact spectrum, $E_\text{singlet}=-\tfrac34 J$ and
-$E_\text{triplet}=+\tfrac14 J$ (so the singlet-triplet gap is $\Delta E = E_T-E_S = J$), we read off
+We compare this with the exact spectrum of the Heisenberg dimer, $E_\text{singlet}=-\tfrac34 J$ and
+$E_\text{triplet}=+\tfrac14 J$, where the singlet-triplet gap is $\Delta E = E_T-E_S = J$, and we
+obtain
 
 \begin{equation}
 J = \frac{4t^2}{U}.
 \end{equation}
 
-$J>0$: antiferromagnetic, the singlet sits below the triplet. This confirms, with the correct
-numerical prefactor, the second-order perturbation theory sketched in the lecture (pristine
-Hamiltonian = the Hubbard term, perturbation = hopping, matrix element $t$, energy denominator $U$),
-and it reproduces exactly the $1/U$ scaling found numerically for the ferromagnet/antiferromagnet
-energy splitting back in Section 6.5: that mean-field energy difference \emph{is} (twice) the exchange
-coupling (6.4), so the two completely different calculations, mean-field numerics and many-body
-perturbation theory, agree. Figure~\ref{fig:s06:dimer} collects the whole argument: the Pauli
-blockade that protects the triplet, the virtual excursion that lowers the singlet, and the exact
-spectrum whose splitting is $J$.
+We have $J>0$, which is antiferromagnetic, and the singlet is below the triplet. This confirms, with
+the correct numerical prefactor, the second-order perturbation theory that the lecture sketches, where
+the unperturbed Hamiltonian is the Hubbard term, the perturbation is the hopping, the matrix element is
+$t$ and the energy denominator is $U$. It also reproduces exactly the $1/U$ scaling that we found
+numerically for the energy difference between the ferromagnet and the antiferromagnet in Section 6.5.
+That mean-field energy difference per bond \emph{is} one half of the exchange coupling (6.4), so the two completely
+different calculations, the mean-field numerics and the many-body perturbation theory, agree.
+Figure~\ref{fig:s06:dimer} shows the whole argument. It shows the Pauli blockade that protects the
+triplet, the virtual process that lowers the energy of the singlet, and the exact spectrum, whose
+splitting is $J$.
 
 \input{figures/s06f02_dimer}
 
 \begin{notebookbox}{\texttt{session6.ipynb}, ``(Reminder) The spectra of a dimer,'' ``(Exercise) The interacting Hubbard dimer,'' ``Gap opening in the Hubbard model,'' and ``(Exercise) The strongly interacting limit''}
-Diagonalize the six-state Hubbard dimer directly and confirm the singlet-triplet splitting matches
-(6.4). Then push $U/t$ large and check that the gap and the low-energy spectrum converge to the
-Heisenberg-model prediction, cross-checking this section's exact result against brute-force
-diagonalization.
+Diagonalize the Hubbard dimer with six states directly, and check that the singlet-triplet splitting
+agrees with (6.4). Then take large values of $U/t$ and check that the gap and the low-energy spectrum
+converge to the prediction of the Heisenberg model. This compares the exact result of this section
+with a direct numerical diagonalization.
 \end{notebookbox}
 
 \section{The Heisenberg model on a general lattice}
 
-Nothing in Section 6.8's argument used the fact that we had only two sites. For a generic lattice
-with hopping $t_{ij}$ between sites $i$ and $j$ and local interaction $U$, the same second-order
-argument applies to every bonded pair independently, in the limit $U\gg t_{ij}$, giving the
+The argument of Section 6.8 did not use the fact that we had only two sites. For a generic lattice
+with hopping $t_{ij}$ between sites $i$ and $j$ and a local interaction $U$, the same second-order
+argument applies to every connected pair independently in the limit $U\gg t_{ij}$, and it gives the
 generalized Heisenberg Hamiltonian
 
 \begin{equation}
 H_\text{Heis} = \sum_{\langle ij\rangle} J_{ij}\, \mathbf S_i\cdot\mathbf S_j, \qquad J_{ij} = \frac{4t_{ij}^2}{U}.
 \end{equation}
 
-Because $J_{ij}\propto t_{ij}^2$, this superexchange coupling derived directly from a single-orbital
-Hubbard model is always positive, antiferromagnetic, regardless of the sign or geometry of $t_{ij}$.
-More general (non-Hubbard, multi-orbital) microscopic models can and do produce couplings of either
-sign; we will see explicitly in Section 6.11 how ferromagnetic coupling arises once a second,
-intermediate orbital gets involved. The sign convention throughout is: $J_{ij}>0$ favors antiparallel
-neighboring spins (antiferromagnetic), $J_{ij}<0$ favors parallel neighboring spins (ferromagnetic).
-Treating the spins in (6.5) as classical vectors already reproduces both classical ground states on a
-two-site bond: antiparallel for $J>0$, parallel for $J<0$.
+Since $J_{ij}\propto t_{ij}^2$, this superexchange coupling, derived directly from a single-orbital
+Hubbard model, is always positive and antiferromagnetic, regardless of the sign or the geometry of
+$t_{ij}$. More general microscopic models, which are not Hubbard models or have several orbitals, can
+give couplings of both signs, and they do. In Section 6.11 we will see explicitly how a ferromagnetic
+coupling appears when a second, intermediate orbital takes part. In all of this session we use the
+following sign convention. A coupling $J_{ij}>0$ favors antiparallel neighboring spins, which is
+antiferromagnetic, and $J_{ij}<0$ favors parallel neighboring spins, which is ferromagnetic. If we
+treat the spins in (6.5) as classical vectors, we already obtain both classical ground states on a
+bond between two sites, which are antiparallel for $J>0$ and parallel for $J<0$.
 
 \section{Bipartite order versus geometric frustration}
 
-On a \textbf{bipartite} lattice, one where the sites split cleanly into two sublattices $A$ and $B$ such
-that every bond connects an $A$ site to a $B$ site (square, honeycomb), the antiferromagnetic
-Heisenberg model (6.5) has an obvious classical ground state: all spins on $A$ point one way, all
-spins on $B$ point the opposite way, satisfying every single bond's preference for antiparallel
-neighbors simultaneously. This is exactly the two-sublattice, collinear antiferromagnetic order we
-already saw appear at the mean-field level in Section 6.4, and (6.5) explains \emph{why}: in the large-$U$
-limit the mean-field Hubbard model on a bipartite lattice literally reduces to this Heisenberg model.
+On a \textbf{bipartite} lattice, such as the square or the honeycomb lattice, the sites split into two
+sublattices $A$ and $B$ so that every bond connects an $A$ site with a $B$ site. On such a lattice the
+antiferromagnetic Heisenberg model (6.5) has an obvious classical ground state. All spins on $A$ point
+in one direction and all spins on $B$ point in the opposite direction, and in this way every bond has
+antiparallel neighbors at the same time, which is what it prefers. This is the collinear
+antiferromagnetic order with two sublattices that we already saw at the mean-field level in Section
+6.4, and (6.5) explains \emph{why} it appears. In the large-$U$ limit, the mean-field Hubbard model on
+a bipartite lattice reduces exactly to this Heisenberg model.
 
-Frustrated lattices are different. On a \textbf{non-bipartite} lattice, kagome or triangular being the
-standard examples, there is no way to two-color the sites so that every bond connects opposite
-colors; a triangular plaquette, for instance, has three mutually neighboring sites, and no assignment
-of up/down spins can make all three bonds antiparallel simultaneously. The antiferromagnetic
-tendency of $J_{ij}>0$ is still there on every individual bond, but it cannot be satisfied everywhere
-at once: this is \textbf{geometric frustration}. The system's best compromise is typically a noncollinear
-arrangement (classic case: spins at $120^\circ$ to each other on a triangular plaquette) that maximizes
-the total antiferromagnetic character bond by bond, without fully satisfying any single bond. This
-noncollinear character shows up directly in the mean-field solution of the corresponding electronic
-Hamiltonian too, not just in the spin-model picture. Figure~\ref{fig:s06:frustration} places the
-bipartite case, the frustrated collinear attempt and the $120^\circ$ compromise side by side, with
-the classical bond energies that decide between the last two.
+Frustrated lattices are different. On a \textbf{non-bipartite} lattice, of which the kagome and the
+triangular lattices are the standard examples, it is not possible to color the sites with two colors
+so that every bond connects opposite colors. For instance, a triangular plaquette has three sites that
+are all neighbors of each other, and no choice of up and down spins makes all three bonds antiparallel
+at the same time. The antiferromagnetic tendency of $J_{ij}>0$ is still present on every single bond,
+but it cannot be satisfied everywhere at the same time, and this is what is called \textbf{geometric
+frustration}. The best compromise for the system is usually a noncollinear arrangement, and the
+standard case is spins at $120^\circ$ from each other on a triangular plaquette. This arrangement
+maximizes the total antiferromagnetic character bond by bond, without fully satisfying any single
+bond. This noncollinear character also appears directly in the mean-field solution of the
+corresponding electronic Hamiltonian, and not only in the spin model. Figure~\ref{fig:s06:frustration}
+shows next to each other the bipartite case, the frustrated collinear attempt and the $120^\circ$
+compromise, together with the classical bond energies that decide between the last two.
 
 \input{figures/s06f03_frustration}
 
 \begin{notebookbox}{\texttt{session6.ipynb}, ``(Exercise) Magnetic instabilities of the square lattice'' and ``(Exercise) Non-collinear magnetic order from geometric frustration''}
-Compare a bipartite lattice (square) against a frustrated one (triangular or kagome) at the
-mean-field level: the square lattice should converge to the collinear two-sublattice order of
-Section 6.10, while the frustrated lattice should converge to a noncollinear compromise, both
-traceable back to (6.5)'s sign convention on each bond.
+Compare at the mean-field level a bipartite lattice, the square lattice, with a frustrated one, the
+triangular or kagome lattice. The square lattice should converge to the collinear order with two
+sublattices of Section 6.10, and the frustrated lattice should converge to a noncollinear compromise.
+Both results can be traced back to the sign convention of (6.5) on each bond.
 \end{notebookbox}
 
-\section{Where ferromagnetic coupling comes from: superexchange}
+\section{Superexchange as the origin of ferromagnetic coupling}
 
-Section 6.9's direct $t^2/U$ mechanism is always antiferromagnetic, yet plenty of real magnetic
-materials are ferromagnets. So ferromagnetic coupling needs a different microscopic route: it
-typically requires an intermediate atom (a ligand) sitting between the two magnetic ions rather than
-a single direct hop. Picture two transition-metal ions, cobalt, iron, or nickel say, bridged by a
-ligand such as oxygen. Electrons can, as before, hop directly between the two metal sites, and that
-channel is antiferromagnetic exactly as in Section 6.9. But there is a second virtual process
-available: an electron hops from the ligand onto one metal ion, and another electron hops from the
-ligand onto the other, leaving a virtual state with two electrons (a full shell) on the ligand
-itself. Depending on which $d$ orbitals are involved and the metal-ligand-metal bond angle, the
-energy correction from this virtual ligand-double-occupation channel can favor the ferromagnetic
-configuration over the antiferromagnetic one, flipping the net sign of the effective coupling. The
-systematic version of this reasoning is the \textbf{Goodenough-Kanamori rules}, which predict the sign of
-the exchange coupling from orbital filling and bond geometry, and which can also be derived
-systematically from self-consistent multi-orbital calculations (density functional theory, for
-instance). This is slides-and-transcript material with no dedicated notebook exercise in this
-session; the notebook's exercises stay within the single-orbital Hubbard model.
+The direct $t^2/U$ mechanism of Section 6.9 is always antiferromagnetic, but many real magnetic
+materials are ferromagnets. So a ferromagnetic coupling needs a different microscopic mechanism, and
+it usually requires an intermediate atom, called a ligand, between the two magnetic ions, instead of a
+single direct hop. Let us take two transition-metal ions, for example cobalt, iron or nickel, connected
+by a ligand such as oxygen. As before, electrons can hop directly between the two metal sites, and
+this channel is antiferromagnetic as in Section 6.9. However, there is a second virtual process. An
+electron hops from the ligand onto one metal ion, and another electron hops from the ligand onto the
+other one. The two electrons are now on the metal ions, and this leaves a virtual state with two
+holes in the $p$ shell of the ligand, which was full before.
+Depending on which $d$ orbitals take part and on the metal-ligand-metal bond angle, the energy
+correction from this virtual channel with two holes on the ligand can favor the ferromagnetic
+configuration over the antiferromagnetic one, and in this way it changes the net sign of the effective
+coupling. The systematic version of this argument is given by the \textbf{Goodenough-Kanamori rules},
+which predict the sign of the exchange coupling from the orbital filling and the bond geometry. These
+rules can also be derived systematically from self-consistent multi-orbital calculations, for instance
+with density functional theory. This material comes from the slides and the transcript, and there is no
+dedicated notebook exercise for it in this session, since the exercises of the notebook stay within
+the single-orbital Hubbard model.
 
-\section{Anisotropic exchange: Dzyaloshinskii-Moriya, Ising, and Kitaev terms}
+\section{Anisotropic exchange with Dzyaloshinskii-Moriya, Ising and Kitaev terms}
 
-Everything in (6.5) assumed the coupling is an isotropic scalar product, $\mathbf S_i\cdot\mathbf
-S_j$, which is what rotational (spin) symmetry forces in the absence of spin-orbit coupling. Once
-spin-orbit coupling enters the underlying electronic Hamiltonian, additional, less symmetric spin
-couplings become allowed. Three appear repeatedly in real materials:
+In (6.5) we assumed that the coupling is an isotropic scalar product, $\mathbf S_i\cdot\mathbf
+S_j$, which is what the rotational spin symmetry requires when there is no spin-orbit coupling. Once
+spin-orbit coupling is included in the underlying electronic Hamiltonian, other spin couplings with
+lower symmetry become allowed. Three of them appear often in real materials, and we list them now.
 
-\textbf{Antisymmetric (Dzyaloshinskii-Moriya) exchange},
+\textbf{Antisymmetric, or Dzyaloshinskii-Moriya, exchange},
 \begin{equation*}
 H_\text{DM} = \sum_{\langle ij\rangle} \mathbf D_{ij}\cdot\big(\mathbf S_i\times\mathbf S_j\big),
 \end{equation*}
-a cross product rather than a dot product. It requires broken mirror symmetry (which is exactly why
-it is prominent at surfaces and interfaces, where the substrate itself breaks that mirror), and it
-favors neighboring spins rotated roughly $90^\circ$ relative to each other, promoting noncollinear,
-often spiral, order.
+which is a cross product and not a dot product. It requires broken mirror symmetry, which is the
+reason why it is strong at surfaces and interfaces, where the substrate itself breaks this mirror
+symmetry. It favors neighboring spins rotated by roughly $90^\circ$ with respect to each other, so it
+favors noncollinear order, which is often a spiral.
 
-\textbf{Anisotropic (Ising-like) exchange}, a single-component coupling such as $\Lambda\, S_i^z S_j^z$,
-which promotes an easy axis (or, with the opposite sign, an easy plane): the system magnetizes more
-readily along one direction than another.
+\textbf{Anisotropic, or Ising-like, exchange}, which is a coupling of a single component such as
+$\Lambda\, S_i^z S_j^z$. It favors an easy axis, or an easy plane for the opposite sign, which means
+that the system magnetizes more easily along one direction than along another.
 
-\textbf{Kitaev interaction}, bond-dependent coupling on a honeycomb-like lattice: an $S^x_iS^x_j$
-term on one bond direction, $S^y_iS^y_j$ on a second, $S^z_iS^z_j$ on a third,
+\textbf{Kitaev interaction}, which is a coupling that depends on the bond, on a lattice of honeycomb
+type. It has an $S^x_iS^x_j$ term on one bond direction, $S^y_iS^y_j$ on a second one and
+$S^z_iS^z_j$ on a third one,
 \begin{equation*}
 H_\text{Kitaev} = \sum_{\langle ij\rangle \in x\text{-bonds}}\! K\, S_i^xS_j^x \;+\!\!\sum_{\langle ij\rangle \in y\text{-bonds}}\!\! K\, S_i^yS_j^y \;+\!\!\sum_{\langle ij\rangle \in z\text{-bonds}}\!\! K\, S_i^zS_j^z.
 \end{equation*}
-Even on a bipartite honeycomb lattice, where geometry alone would not frustrate anything, this
-bond-dependence is itself intrinsically frustrating, since no single spin orientation can
-simultaneously satisfy all three bond types at once (figure~\ref{fig:s06:kitaev}). This is the
-interaction that makes the Kitaev model a paradigm for quantum spin liquids, which is why it is
-flagged here explicitly as important groundwork for the frustrated-magnet material picked up in
-sessions 7 and 8.
+Even on a bipartite honeycomb lattice, where the geometry alone would not give any frustration, this
+dependence on the bond is frustrating by itself, since no single spin orientation can satisfy the
+three types of bonds at the same time (figure~\ref{fig:s06:kitaev}). This interaction is what makes the
+Kitaev model a paradigm for quantum spin liquids, and this is why we point it out here explicitly, as
+an important preparation for the material on frustrated magnets in sessions 7 and 8.
 
 \input{figures/s06f04_kitaev}
 
 \begin{notebookbox}{\texttt{session6.ipynb}, ``(Exercise) Non-collinear magnetism from spin-orbit coupling''}
-Add a Dzyaloshinskii-Moriya-type term to the mean-field Hamiltonian and watch the ground state
-tilt away from collinear order, the electronic counterpart of the spin-model statement above.
+Add a term of Dzyaloshinskii-Moriya type to the mean-field Hamiltonian, and see how the ground state
+tilts away from collinear order. This is the electronic counterpart of the statement above for the
+spin model.
 \end{notebookbox}
 
-\section{Magnons: fluctuations of the order parameter}
+\section{Magnons as fluctuations of the order parameter}
 
-Up to this point we have only asked about ground states. Let us now ask about excitations. Take the
-Heisenberg model (6.5) with $J<0$ (ferromagnetic), promote the spins to genuine quantum-mechanical
-operators obeying the angular-momentum algebra $[S_i^a,S_j^b] = i\hbar\,\delta_{ij}\epsilon^{abc}S_i^c$
-(we set $\hbar=1$ from here on, standard for this kind of calculation), and ask for its low-lying
-excited states. Unlike the interacting electron problem, the ferromagnetic Heisenberg model's exact
-ground state is known immediately: it is the fully polarized state, every spin aligned, since no
-other configuration can lower $\langle \mathbf S_i\cdot\mathbf S_j\rangle$ any further for $J<0$. A
-\textbf{magnon} is a small, propagating fluctuation of the magnetization away from this fully polarized
-state: qualitatively, a single spin tipped slightly out of alignment, delocalized coherently over the
-whole lattice as a wave. The question is how to extract these excitations systematically from a
-genuinely many-body spin Hamiltonian, and the answer is a change of variables that turns the spin
-problem into a bosonic tight-binding problem.
+Until now we have only asked about ground states. Let us now ask about excitations. We take the
+Heisenberg model (6.5) with $J<0$, which is ferromagnetic, and we promote the spins to real quantum
+operators that satisfy the angular-momentum algebra $[S_i^a,S_j^b] = i\hbar\,\delta_{ij}\epsilon^{abc}S_i^c$.
+From here on we set $\hbar=1$, which is the standard choice for this kind of calculation, and we ask
+for the low-lying excited states. In contrast with the interacting electron problem, the exact ground
+state of the ferromagnetic Heisenberg model is known immediately. It is the fully polarized state with
+all spins aligned, since for $J<0$ no other configuration can lower $\langle \mathbf S_i\cdot\mathbf
+S_j\rangle$ further. A \textbf{magnon} is a small fluctuation of the magnetization that propagates on
+top of this fully polarized state. Qualitatively, it is a single spin tilted slightly out of
+alignment, delocalized coherently over the whole lattice as a wave. The question is how to obtain
+these excitations systematically from a many-body spin Hamiltonian. The answer is a change of
+variables that turns the spin problem into a bosonic tight-binding problem.
 
 \section{The Holstein-Primakoff transformation}
 
-The \textbf{Holstein-Primakoff transformation} maps spin operators exactly onto bosonic creation and
-annihilation operators $a_i^\dagger, a_i$ with $[a_i,a_j^\dagger]=\delta_{ij}$. For a spin of
-magnitude $S$ on site $i$,
+There is an exact mapping between spin operators and bosonic creation and annihilation operators
+$a_i^\dagger, a_i$ with $[a_i,a_j^\dagger]=\delta_{ij}$, which is called the \textbf{Holstein-Primakoff
+transformation}. For a spin of magnitude $S$ on site $i$, it reads
 
 \begin{equation}
 S_i^z = S - a_i^\dagger a_i, \qquad S_i^+ = \sqrt{2S-a_i^\dagger a_i}\;a_i, \qquad S_i^- = a_i^\dagger\sqrt{2S-a_i^\dagger a_i}.
 \end{equation}
 
-This is an \emph{exact} rewriting: substituting (6.6) into the bosonic commutation relations reproduces
-the full $SU(2)$ spin algebra $[S_i^z,S_i^\pm]=\pm S_i^\pm$, $[S_i^+,S_i^-]=2S_i^z$ exactly, with no
-approximation yet made. The physical picture behind it is direct: $a_i^\dagger a_i$ counts how many
-units of spin have been removed from the fully polarized value $S$ on site $i$, i.e. it counts
-\textbf{magnons} on that site, and $S_i^z=S-a_i^\dagger a_i$ says exactly that. The square-root operator
-factors are what make (6.6) exact even far from full polarization; they are also what makes the
-Hamiltonian, written this way, look more complicated rather than less.
+This is an \emph{exact} rewriting. If we insert (6.6) and use the bosonic commutation relations, we
+obtain exactly the full $SU(2)$ spin algebra $[S_i^z,S_i^\pm]=\pm S_i^\pm$, $[S_i^+,S_i^-]=2S_i^z$,
+without any approximation so far. The physical picture is direct. The operator $a_i^\dagger a_i$ counts
+how many units of spin have been removed from the fully polarized value $S$ on site $i$, which means
+that it counts the \textbf{magnons} on that site, and $S_i^z=S-a_i^\dagger a_i$ states exactly this.
+The square-root operators are what make (6.6) exact even far from full polarization. They are also the
+reason why the Hamiltonian, written in this form, looks more complicated and not simpler.
 
-The simplification comes from linearizing: whenever the expectation value of $a_i^\dagger a_i$ stays
-much smaller than $S$, i.e. whenever we stay close to the fully polarized ground state (precisely the
-regime we want, since we are looking for low-lying excitations above that ground state), we can
-expand the square roots and keep only the leading term,
+The simplification comes from linearizing. When the expectation value of $a_i^\dagger a_i$ stays much
+smaller than $S$, which means when we stay close to the fully polarized ground state, we can expand
+the square roots and keep only the leading term. This is the regime that we want, since we are looking
+for low-lying excitations above this ground state, and the result is
 
 \begin{equation}
 S_i^+ \approx \sqrt{2S}\, a_i, \qquad S_i^- \approx \sqrt{2S}\, a_i^\dagger, \qquad S_i^z = S - a_i^\dagger a_i.
 \end{equation}
 
-This linearized form is the one used to compute magnon spectra in practice. The bookkeeping it
-implies is worth stating plainly, since it is the cleanest way to remember the whole transformation:
-$S^+$ (which \emph{raises} $S^z$, i.e. increases the local magnetization back toward saturation)
-\emph{destroys} a magnon, while $S^-$ (which lowers the magnetization) \emph{creates} one; the total
-magnetization of the system is the fully saturated value minus the total magnon number,
-$\sum_i \langle S_i^z\rangle = NS - \sum_i\langle a_i^\dagger a_i\rangle$. Each individual magnon
-carries exactly one unit of spin, so magnons are $S=1$ excitations, consistent with what we said about
-them back in Section 6.1, and they exist only because the ground state they live on top of has
-already spontaneously broken spin-rotation symmetry. Figure~\ref{fig:s06:magnon} draws all three
-pieces: the fully polarized ground state, the delocalized precession wave that carries a single
-magnon, and this raising/lowering dictionary.
+This linearized form is the one that is used in practice to compute magnon spectra. The counting that
+follows from it is the easiest way to remember the whole transformation, so we write it out. The
+operator $S^+$ \emph{raises} $S^z$, meaning that it increases the local magnetization back toward
+saturation, and it \emph{destroys} a magnon. The operator $S^-$ lowers the magnetization, and it
+\emph{creates} a magnon. The total magnetization of the system is the fully saturated value minus the
+total number of magnons, $\sum_i \langle S_i^z\rangle = NS - \sum_i\langle a_i^\dagger a_i\rangle$.
+Each magnon has exactly one unit of spin, so magnons are $S=1$ excitations, in agreement with what we
+said about them in Section 6.1. They exist only because the ground state on which they live has
+already broken spin-rotation symmetry spontaneously. Figure~\ref{fig:s06:magnon} shows the three
+parts, which are the fully polarized ground state, the delocalized precession wave that carries a
+single magnon, and this rule for raising and lowering.
 
 \input{figures/s06f05_magnon}
 
-Substituting (6.7) into the ferromagnetic Heisenberg Hamiltonian, $H = J\sum_{\langle ij\rangle}
+We insert (6.7) into the ferromagnetic Heisenberg Hamiltonian, $H = J\sum_{\langle ij\rangle}
 \mathbf S_i\cdot\mathbf S_j = J\sum_{\langle ij\rangle}\big[S_i^zS_j^z + \tfrac12(S_i^+S_j^-+S_i^-S_j^+)\big]$,
-and keeping terms up to quadratic order in the bosonic operators,
+and we keep the terms up to quadratic order in the bosonic operators,
 
 \begin{equation*}
 S_i^zS_j^z \approx S^2 - S\big(a_i^\dagger a_i + a_j^\dagger a_j\big), \qquad
 \tfrac12\big(S_i^+S_j^- + S_i^-S_j^+\big) \approx S\big(a_i^\dagger a_j + a_j^\dagger a_i\big),
 \end{equation*}
 
-converts the spin Hamiltonian into a bosonic tight-binding Hamiltonian for magnons, whose hopping
-amplitude is set directly by the exchange coupling $J$, exactly as advertised: the magnon ``hops''
-between sites with amplitude proportional to $JS$, in precise analogy with the electronic
-tight-binding Hamiltonians we have diagonalized all course.
+and in this way the spin Hamiltonian becomes a bosonic tight-binding Hamiltonian for magnons, and its
+hopping amplitude is set directly by the exchange coupling $J$, as we said before. The magnon ``hops''
+between sites with an amplitude proportional to $JS$, in direct analogy with the electronic
+tight-binding Hamiltonians that we have diagonalized during the whole course.
 
-\section{Magnon dispersions: ferromagnets versus antiferromagnets}
+\section{Magnon dispersions in ferromagnets and antiferromagnets}
 
-Fourier transforming the bosonic Hamiltonian from Section 6.14 on a Bravais lattice with coordination
-number $z$ and nearest-neighbor structure factor $\gamma(\mathbf k) = \tfrac1z\sum_{\boldsymbol\delta}
-e^{i\mathbf k\cdot\boldsymbol\delta}$ gives, for the \textbf{ferromagnet} ($J<0$, writing $|J|=-J$), a
-diagonal magnon Hamiltonian with dispersion
+We Fourier transform the bosonic Hamiltonian of Section 6.14 on a Bravais lattice with coordination
+number $z$ and first-neighbor structure factor $\gamma(\mathbf k) = \tfrac1z\sum_{\boldsymbol\delta}
+e^{i\mathbf k\cdot\boldsymbol\delta}$. For the \textbf{ferromagnet}, with $J<0$ and $|J|=-J$, this
+gives a diagonal magnon Hamiltonian with dispersion
 
 \begin{equation}
 E_\text{FM}(\mathbf k) = |J|\,S\,z\big(1-\gamma(\mathbf k)\big).
 \end{equation}
 
-This vanishes at $\mathbf k=0$, as it must (a uniform rotation of every spin costs no energy at all,
-the Goldstone mode of the broken spin-rotation symmetry), and expanding $\gamma(\mathbf k)$ for small
-$\mathbf k$ gives $E_\text{FM}(\mathbf k)\propto k^2$: a \textbf{quadratic} magnon dispersion, exactly the
-``gapless, quadratic'' ferromagnetic magnon the lecture flags.
+This dispersion is zero at $\mathbf k=0$, as it has to be. A uniform rotation of all the spins costs no
+energy, and this is the Goldstone mode of the broken spin-rotation symmetry. If we expand
+$\gamma(\mathbf k)$ for small $\mathbf k$ we obtain $E_\text{FM}(\mathbf k)\propto k^2$, which is a
+\textbf{quadratic} magnon dispersion, and this is the ``gapless, quadratic'' ferromagnetic magnon that
+the lecture points out.
 
-The \textbf{antiferromagnetic} case needs one more step, because the ground state is not simply ``all
-spins up.'' On a bipartite lattice, apply the Holstein-Primakoff transformation (6.7) separately on the
-two sublattices, with the roles of $S^+$ and $S^-$ swapped on the $B$ sublattice (since those spins
-point the opposite way): $S_i^z=S-a_i^\dagger a_i$ on $A$, but $S_j^z=-S+b_j^\dagger b_j$ on $B$.
-Substituting into $\mathbf S_i\cdot\mathbf S_j$ for a bond between the two sublattices now produces
-not just density terms $a^\dagger a$, $b^\dagger b$, but also \emph{anomalous}, particle-number-non-conserving
-terms $a_i b_j$ and $a_i^\dagger b_j^\dagger$: a signature that the magnon vacuum on top of the Néel
-state is not simply the bosonic vacuum, and that diagonalizing the Hamiltonian requires a Bogoliubov
-transformation rather than a plain Fourier transform. Carrying that out gives the antiferromagnetic
-magnon dispersion
+The \textbf{antiferromagnetic} case needs one more step, because the ground state is not ``all spins
+up.'' On a bipartite lattice, we apply the Holstein-Primakoff transformation (6.7) separately on the
+two sublattices, and on the $B$ sublattice the roles of $S^+$ and $S^-$ are exchanged, since these
+spins point in the opposite direction. We have $S_i^z=S-a_i^\dagger a_i$ on $A$, but $S_j^z=-S+b_j^\dagger b_j$ on $B$.
+If we insert this into $\mathbf S_i\cdot\mathbf S_j$ for a bond between the two sublattices, we obtain
+not only density terms $a^\dagger a$ and $b^\dagger b$, but also \emph{anomalous} terms
+$a_i b_j$ and $a_i^\dagger b_j^\dagger$, which do not conserve the particle number. This tells us that
+the magnon vacuum on top of the Néel state is not the bosonic vacuum, and that to diagonalize the
+Hamiltonian we need a Bogoliubov transformation and not only a Fourier transform. If we do this, we
+obtain the antiferromagnetic magnon dispersion
 
 \begin{equation}
 E_\text{AFM}(\mathbf k) = J\,S\,z\,\sqrt{1-\gamma(\mathbf k)^2}.
 \end{equation}
 
-Near $\mathbf k=0$, $1-\gamma(\mathbf k)^2 \propto k^2$, so $E_\text{AFM}(\mathbf k)\propto |k|$: a
-\textbf{linear}, Dirac-cone-like dispersion, gapless at the same point but linear rather than quadratic.
-This is exactly the ``quadratic in ferromagnets, linear in antiferromagnets'' rule of thumb from the
-lecture, now derived rather than merely quoted; it is also, incidentally, one more example (alongside
-the Dirac cones of session 2 and 3) of a linear dispersion arising from the structure of a symmetry
-rather than being put in by hand. Figure~\ref{fig:s06:dispersion} plots (6.8) and (6.9) together,
-with the zone centre magnified so the parabola and the cone can be told apart.
+Close to $\mathbf k=0$ we have $1-\gamma(\mathbf k)^2 \propto k^2$, so $E_\text{AFM}(\mathbf k)\propto |k|$.
+This is a \textbf{linear} dispersion similar to a Dirac cone, which is gapless at the same point but
+linear and not quadratic. This is the rule ``quadratic in ferromagnets, linear in antiferromagnets''
+from the lecture, which we have now derived and not only stated. It is also one more example, together
+with the Dirac cones of session 2 and 3, of a linear dispersion that comes from the structure of a
+symmetry and is not put in by hand. Figure~\ref{fig:s06:dispersion} shows (6.8) and (6.9) together,
+with a magnified view of the zone center, so that the parabola and the cone can be distinguished.
 
 \input{figures/s06f06_dispersion}
 
 \section{Topological magnons}
 
-Once magnons have a genuine band structure, a dispersion $E(\mathbf k)$ over the Brillouin zone, the
-same question we have already asked twice about \emph{electronic} bands becomes available to ask about
-\emph{magnon} bands: can that band structure carry a nontrivial topological invariant? This is precisely
-the Chern-number machinery from sessions 3 and 4 (Berry curvature $\Omega(\mathbf k)$ of a Bloch band,
-integrated over the Brillouin zone to give an integer,
+Once magnons have a real band structure, which is a dispersion $E(\mathbf k)$ over the Brillouin zone,
+we can ask about \emph{magnon} bands the same question that we have already asked twice about
+\emph{electronic} bands. Can this band structure have a nontrivial topological invariant? To answer
+it, we use again the Chern number of sessions 3 and 4, where the Berry curvature $\Omega(\mathbf k)$ of
+a Bloch band is integrated over the Brillouin zone and gives an integer,
 
 \begin{equation}
 C = \frac{1}{2\pi}\int_\text{BZ} \Omega(\mathbf k)\, d^2k,
 \end{equation}
 
-applied a third time, now to the bosonic Bogoliubov Hamiltonian of Section 6.15 instead of an
-electronic tight-binding Hamiltonian. Adding spin-orbit coupling on top of the plain Heisenberg
-exchange, of the Dzyaloshinskii-Moriya type from Section 6.12, plays exactly the role that the
-Haldane model's complex second-neighbor hopping played for electrons back in session 4: it introduces
-complex phases into the magnon hopping amplitudes, which can open a gap in the magnon band structure
-at finite energy and endow the bands on either side of that gap with a nonzero Chern number (6.10).
-When such a topological magnon Hamiltonian is put on a ribbon geometry, bulk-boundary correspondence
-guarantees chiral magnon edge modes living in the gap, propagating in one direction only along each
-edge, the magnon analogue of the chiral electronic edge states of a Chern insulator. These modes carry
-spin and energy, not charge, but they are topologically protected in exactly the same sense as their
-electronic counterparts: the same tool we used for electrons in sessions 3 and 4, now applied to
+and this is the third time that we apply it, now to the bosonic Bogoliubov Hamiltonian of Section 6.15
+instead of an electronic tight-binding Hamiltonian. We add to the plain Heisenberg exchange a
+spin-orbit coupling of the Dzyaloshinskii-Moriya type of Section 6.12. This term plays the same role
+as the complex second-neighbor hopping of the Haldane model for electrons in session 4. It introduces
+complex phases in the magnon hopping amplitudes, which can open a gap in the magnon band structure at
+finite energy and give the bands on both sides of this gap a nonzero Chern number (6.10). When we put
+such a topological magnon Hamiltonian on a ribbon, the bulk-boundary correspondence guarantees chiral
+magnon edge modes inside the gap. These modes propagate in only one direction along each edge, and
+they are the magnon analogue of the chiral electronic edge states of a Chern insulator. They carry spin
+and energy and not charge, but they are topologically protected in the same sense as their electronic
+counterparts. It is the same tool that we used for electrons in sessions 3 and 4, now applied to
 magnon bands.
 
 \begin{notebookbox}{\texttt{session6.ipynb}, ``(Exercise) Topological magnons in 2D magnets''}
-Build a magnon Hamiltonian with a Dzyaloshinskii-Moriya-type spin-orbit term on top of Heisenberg
-exchange, compute its Chern number via (6.10), and check for chiral edge magnon modes on a ribbon,
-directly reproducing the bulk-boundary correspondence argument above in the magnon setting.
+Construct a magnon Hamiltonian with a spin-orbit term of Dzyaloshinskii-Moriya type on top of the
+Heisenberg exchange, compute its Chern number with (6.10), and look for chiral magnon edge modes on a
+ribbon. This reproduces directly, for magnons, the argument of the bulk-boundary correspondence above.
 \end{notebookbox}
 
-A brief note on scope before we stop: the companion notebook goes further than this session's lecture
-in a few places, most visibly its exercises on electronic and magnetic symmetry breaking in graphene
-multilayers, and its closing sections on many-body spin response functions. Those are genuine,
-worthwhile extensions of today's material, but since neither the transcript nor the slides for this
-session narrate them, we have not built the corresponding derivations into these notes; treat them as
-independent notebook exploration rather than as material these notes derive.
+Before we stop, a short comment on the scope of these notes. The companion notebook goes further than
+the lecture of this session in a few places. The most visible ones are its exercises on electronic and
+magnetic symmetry breaking in graphene multilayers, and its last sections on many-body spin response
+functions. These are real and useful extensions of the material of this session. However, neither the
+transcript nor the slides of this session narrate them, so we have not included the corresponding
+derivations in these notes. They should be taken as independent work with the notebook, and not as
+material that these notes derive.
 
 \section{Closing summary}
 
-So far in this session we have:
+So far in this session we have done the following.
 
 \begin{itemize}
-\item Rebuilt Hubbard-model magnetism numerically in full depth, including the direct competition
-  between ferromagnetic and antiferromagnetic self-consistent solutions and the Stoner threshold
-  (6.3) that decides whether magnetism appears at all.
-\item Derived the Heisenberg model rigorously from the strongly correlated Hubbard limit, getting the
-  exact coefficient $J=4t^2/U$ (6.4) and its lattice generalization (6.5), including how frustration
-  and superexchange modify that simple picture.
-\item Built the magnon spectrum from first principles via the Holstein-Primakoff transformation
-  (6.6)--(6.7), getting the quadratic ferromagnetic dispersion (6.8) and linear antiferromagnetic
-  dispersion (6.9), and then extended session 3 and 4's topological machinery a third time to show
-  that magnon bands can be topological too.
+\item We constructed again the magnetism of the Hubbard model numerically and in full detail. This
+  includes the direct competition between the ferromagnetic and the antiferromagnetic self-consistent
+  solutions, and the Stoner threshold (6.3) that decides whether magnetism appears at all.
+\item We derived the Heisenberg model exactly from the strongly correlated limit of the Hubbard model,
+  and we obtained the exact coefficient $J=4t^2/U$ (6.4) and its generalization to a lattice (6.5).
+  We also saw how frustration and superexchange modify this simple picture.
+\item We constructed the magnon spectrum from first principles with the Holstein-Primakoff
+  transformation (6.6)--(6.7). We obtained the quadratic ferromagnetic dispersion (6.8) and the linear
+  antiferromagnetic dispersion (6.9), and then we applied the topological methods of sessions 3 and 4
+  a third time to show that magnon bands can also be topological.
 \end{itemize}
 
-And that is exactly where the live lecture leaves us: right after topological magnons, with no
-narrated take-home slide. This is a genuine feature of this year's recording, not a gap in these
-notes, so we end here too rather than inventing a summary sentence the lecture never says. Every
-magnet we have built today, from the mean-field exchange field all the way to the topological magnon
-edge states, is a state that breaks time-reversal symmetry: some net, staggered, or noncollinear spin
-arrangement that looks different run backwards in time from how it looks run forwards.
+This is the point where the live lecture ends, right after topological magnons and without a narrated
+summary slide. This is a real feature of this year's recording and not something missing in these
+notes, so we also end here, and we do not add a summary sentence that the lecture does not say. Every
+magnet that we have constructed in this session, from the mean-field exchange field to the
+topological magnon edge states, is a state that breaks time-reversal symmetry. It is a net, staggered
+or noncollinear spin arrangement that looks different when we run time backwards than when we run it
+forwards.
 
-Two threads are left dangling on purpose, both flagged along the way rather than resolved here. The
-Kitaev interaction of Section 6.12, singled out explicitly as ``important for quantum spin liquids,''
-is picked up from two different directions in the sessions ahead: session 7 treats the
-frustrated, kagome-type Hamiltonians it belongs to as the paradigm case where mean-field theory
-simply fails, while session 8 returns to the Kitaev model itself as a route to an exactly solvable
-quantum spin liquid. And the spinon, previewed only by name and by its spin-$1/2$, charge-neutral
-quantum numbers back in Section 6.1, gets the same full treatment magnons received today, only in
-session 8, once we turn from magnets that break time-reversal symmetry to quantum magnets that do
-not.
+Two topics are left open on purpose, and both were pointed out along the way without being resolved
+here. The Kitaev interaction of Section 6.12, which the lecture points out explicitly as ``important
+for quantum spin liquids,'' comes back from two different directions in the next sessions. Session 7
+treats the frustrated Hamiltonians of kagome type, to which it belongs, as the paradigm case where
+mean-field theory fails. Session 8 comes back to the Kitaev model itself as a way to obtain an exactly
+solvable quantum spin liquid. The spinon was previewed in Section 6.1 only by name and by its
+spin-$1/2$ and charge-neutral quantum numbers. It will get the same full treatment that magnons got in
+this session, but only in session 8, when we move from magnets that break time-reversal symmetry to
+quantum magnets that do not.

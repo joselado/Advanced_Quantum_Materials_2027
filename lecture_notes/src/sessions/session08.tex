@@ -1,153 +1,162 @@
 \chapter{Quantum Magnetism, Spinons and Kondo Physics}
 
-Session 6 spent its whole runtime on magnets that break time-reversal symmetry: ferromagnets,
-antiferromagnets, and, in its final stretch, the Holstein-Primakoff bosonization of these ordered
-states into magnons, pushed all the way to a topological magnon band structure with its own
-chiral edge modes. That session ended abruptly, right on ``topological magnons,'' with no closing
-recap, but it did leave one loose thread along the way: a passing aside about Kitaev-type
-interactions, flagged at the time as ``important for quantum spin liquids'' without being followed
-up. This session is where that thread gets picked up properly, not as a resumed sentence but as
-its own self-contained lecture, with its own welcome and its own roadmap: minimal models of
-quantum magnetism, the excitations that quantum spin liquids (QSLs) support (spinons and gauge
-excitations), and then Kondo systems and Kondo lattice models, where a completely different
-physical setup turns out to be solvable with exactly the same trick. The thread that ties the
-whole session together is the one that has been running under this entire course since session 1:
-take a many-body Hamiltonian that mean-field theory cannot handle, find the right auxiliary-particle
-reformulation, and mean-field \emph{that} instead.
+In Session 6 we only studied magnets that break time-reversal symmetry, which are ferromagnets and
+antiferromagnets. In the last part of that session we used the Holstein-Primakoff transformation to
+write these ordered states in terms of bosons, the magnons, and we went as far as a topological
+magnon band structure with its own chiral edge modes. That session stopped suddenly, at
+``topological magnons,'' without a final recap. It also left one open point. There was a short
+remark about Kitaev-type interactions, which were called ``important for quantum spin liquids'' at
+that time, but we did not continue with them. In this session we come back to that point, as a lecture
+of its own, with its own introduction and its own plan. First, we will see minimal models of quantum magnetism. Then we will see the excitations that
+quantum spin liquids (QSLs) have, which are spinons and gauge excitations. At the end we will study
+Kondo systems and Kondo lattice models, which are a very different physical system that can be
+solved with the same method. The idea that connects the whole session is the same idea that we
+have used in this course since Session 1. We take a many-body Hamiltonian that mean-field theory
+cannot treat, we write it with the right auxiliary particles, and we do mean-field theory on
+\emph{that} problem.
 
-We set $\hbar = 1$ throughout for the spin operators, matching the convention already implicit in
-session 6.
+In this session we use $\hbar = 1$ for the spin operators, which is the same convention that we
+already used without saying it in Session 6.
 
-\section{Two classes of magnet, and where each one lives}
+\section{Two classes of magnets and where we find them}
 
-Every magnetic material we could point to falls, in this lecture's language, into one of two
-classes. \textbf{Classical magnets} break time-reversal symmetry: conventional ferromagnets,
-antiferromagnets, spin spirals. From the electron's perspective these are describable by
-mean-field theory, exactly as built in sessions 1 and 6, and this is where most magnetic materials
-in nature actually sit: iron, copper oxide, or any material with a well-defined N\'eel temperature.
+In the language of this lecture, every magnetic material belongs to one of two classes.
+\textbf{Classical magnets} break time-reversal symmetry, and examples are conventional
+ferromagnets, antiferromagnets and spin spirals. For the electrons, these magnets can be described
+with mean-field theory, in the same way as we did in Sessions 1 and 6. Most magnetic materials in
+nature are of this type, for example iron, copper oxide, or any material with a well-defined
+N\'eel temperature.
 
-\textbf{Quantum magnets} are the opposite: they admit no mean-field description in terms of electrons at
-all, and their ground states carry long-range entanglement. That entanglement is not a side detail,
-it is what gives rise to excitations that have no counterpart in a symmetry-broken magnet. Two
-quite different physical realizations of quantum magnetism are the subject of this session:
+\textbf{Quantum magnets} are the opposite case. They cannot be described with mean-field theory in
+terms of electrons, and their ground states have long-range entanglement. This entanglement is not
+a small detail, since it gives rise to excitations that do not exist in a symmetry-broken magnet.
+In this session we will study two physical realizations of quantum magnetism, which are quite
+different from each other.
 
 \begin{itemize}
-\item \textbf{Quantum spin liquids (QSLs)}, the first class we build up in detail. The best-known candidate
-  material is herbertsmithite, a compound whose magnetic ions sit on a kagome lattice of spin-$1/2$
-  sites.
-\item \textbf{Heavy-fermion Kondo insulators}, often rare-earth compounds, with samarium hexaboride
-  (SmB$_6$) as the standard example. We build the theory for this class in the second half of the
-  session.
+\item \textbf{Quantum spin liquids (QSLs)}, which are the first class that we build in detail. The
+  best-known candidate material is herbertsmithite, a compound where the magnetic ions form a
+  kagome lattice of spin-$1/2$ sites.
+\item \textbf{Heavy-fermion Kondo insulators}, which are often rare-earth compounds, and the
+  standard example is samarium hexaboride (SmB$_6$). We build the theory for this class in the
+  second half of the session.
 \end{itemize}
 
-\section{Two emergent excitations: magnons versus spinons}
+\section{Two emergent excitations, magnons and spinons}
 
-Strong many-body interactions between electrons are what give magnetic materials their emergent,
-collective excitations in the first place. In a symmetry-broken magnet, that collective excitation
-is the \textbf{magnon}: spin $1$, no charge, because the strong electronic repulsion freezes the charge
-degree of freedom completely and only spin is left to fluctuate. In a quantum magnet, the
-excitation is qualitatively different: the \textbf{spinon}, spin $1/2$, also no charge. It is useful to
-picture a spinon as literally the spin half of an electron. Push that picture one step further and
-you get the standard fractionalization language for a QSL: the electron splits into a \textbf{chargon},
-carrying the charge, and a \textbf{spinon}, carrying the spin.
+The strong many-body interactions between electrons are the origin of the emergent collective
+excitations of magnetic materials. In a symmetry-broken magnet, this collective excitation is the
+\textbf{magnon}, which has spin $1$ and no charge. The reason is that the strong repulsion between
+electrons freezes the charge degree of freedom completely, so only the spin can fluctuate. In a
+quantum magnet, the excitation is of a different kind. It is the \textbf{spinon}, which has spin
+$1/2$ and also no charge. It is useful to think of a spinon as the spin half of an electron. If we
+take this picture one step further, we obtain the standard language of fractionalization for a QSL,
+where the electron splits into a \textbf{chargon}, which has the charge, and a \textbf{spinon},
+which has the spin.
 
-There is a simple pictorial argument for why the two excitations differ by exactly a factor of two
-in spin. Take a ferromagnet: the ground state is all spins up, $|{\uparrow\uparrow\uparrow\cdots}\rangle$.
-Flip one spin to build an excited state, and the difference in total spin between ground and
-excited state is $\Delta S = 1$: a (local) magnon. Now take a quantum spin liquid: the ground state
-is a collection of singlets everywhere, no single spin pointing anywhere in particular. Build an
-excited state by leaving one spin unpaired instead of pairing it into a singlet, and the difference
-in total spin is $\Delta S = 1/2$: pictorially, a spinon. This picture is deliberately oversimplified
-(spinons are genuinely more subtle than ``an unpaired spin''), but it is exactly the right starting
-intuition for why symmetry-broken magnets and quantum spin liquids host fundamentally different
-excitations. Figure~\ref{fig:s08:magnonspinon} puts the two counting arguments side by side.
+There is a simple argument with pictures that shows why the spin of the two excitations differs by
+exactly a factor of two. Let us take a ferromagnet, where the ground state has all spins up,
+$|{\uparrow\uparrow\uparrow\cdots}\rangle$. If we flip one spin to build an excited state, the
+total spin of the excited state differs from the one of the ground state by $\Delta S = 1$, and
+this is a local magnon. Let us now take a quantum spin liquid, where the ground state is a
+collection of singlets everywhere and no spin points in a specific direction. If we build an
+excited state by leaving one spin without a partner, instead of putting it in a singlet, the
+difference in total spin is $\Delta S = 1/2$, and in this picture this is a spinon. This picture is
+too simple on purpose, since real spinons are more subtle than ``an unpaired spin,'' but it
+is the right first intuition for why symmetry-broken magnets and quantum spin liquids have
+fundamentally different excitations. Figure~\ref{fig:s08:magnonspinon} shows the two counting
+arguments next to each other.
 
 \input{figures/s08f01_magnon_spinon}
 
-\section{Two minimal dimers: classical order parameter versus quantum singlet}
+\section{Two minimal dimers, a classical order parameter and a quantum singlet}
 
-The cleanest way into quantum magnetism is to look first at the smallest possible magnet, two
-spins, and compare two different Hamiltonians on it.
+The simplest way to start with quantum magnetism is to look first at the smallest possible magnet,
+which has two spins, and to compare two different Hamiltonians for it.
 
-The first is the \textbf{Ising dimer},
+The first one is the \textbf{Ising dimer},
 
 \begin{equation}
 \mathcal H_\text{Ising} = S_0^z S_1^z,
 \end{equation}
 
-coupling only the $z$-components of two spin-$1/2$'s. This Hamiltonian has two degenerate ground
-states, related by time reversal:
+which couples only the $z$-components of two spin-$1/2$'s. This Hamiltonian has two degenerate
+ground states, which are related by time reversal.
 
 \begin{equation*}
 |GS_1\rangle = |{\uparrow\downarrow}\rangle, \qquad |GS_2\rangle = |{\downarrow\uparrow}\rangle.
 \end{equation*}
 
-Both are eigenstates with the same energy, but each one \emph{individually} breaks time-reversal
-symmetry (time reversal flips every spin, so it swaps $|GS_1\rangle$ and $|GS_2\rangle$ into one
-another); only the two-state degenerate pair together respects it. A macroscopic, symmetry-broken
-antiferromagnet, of exactly the kind built in session 6, is just an infinite-site version of this
-same story, and the same argument runs equally well for ferromagnets and spin spirals.
+Both are eigenstates with the same energy, but each one of them \emph{alone} breaks time-reversal
+symmetry, since time reversal flips every spin and so it turns $|GS_1\rangle$ into $|GS_2\rangle$
+and the other way around. Only the degenerate pair of the two states together respects the
+symmetry. A macroscopic symmetry-broken antiferromagnet, of the same kind as the one we built in
+Session 6, is the version of this same problem with an infinite number of sites, and the same
+argument also works for ferromagnets and spin spirals.
 
-Now replace the Ising coupling by the full, rotationally symmetric \textbf{quantum Heisenberg dimer},
+Let us now replace the Ising coupling by the full \textbf{quantum Heisenberg dimer}, which has
+rotational symmetry,
 
 \begin{equation}
 \mathcal H_\text{Heis} = \mathbf S_0 \cdot \mathbf S_1.
 \end{equation}
 
-This is what a half-filled, strongly-interacting Hubbard model reduces to in the large-$U$ limit
-(session 1's derivation). Solving it with $\mathbf S_0, \mathbf S_1$ as genuine spin-$1/2$
-operators, two spin-$1/2$'s combine into a singlet ($S=0$) and a triplet ($S=1$), with
-$\mathbf S_0\cdot\mathbf S_1 = -3/4$ on the singlet and $+1/4$ on the triplet, so the unique ground
-state is the \textbf{singlet},
+This is the model that we obtain from a half-filled Hubbard model with strong interactions in the
+large-$U$ limit, as we derived in Session 1. When we solve it with $\mathbf S_0, \mathbf S_1$ as
+real spin-$1/2$ operators, the two spin-$1/2$'s combine into a singlet ($S=0$) and a triplet
+($S=1$). The value is $\mathbf S_0\cdot\mathbf S_1 = -3/4$ for the singlet and $+1/4$ for the
+triplet, so the unique ground state is the \textbf{singlet},
 
 \begin{equation}
 |GS\rangle = \frac{1}{\sqrt2}\Big(|{\uparrow\downarrow}\rangle -
 |{\downarrow\uparrow}\rangle\Big), \qquad \langle \mathbf S_i \rangle = 0.
 \end{equation}
 
-This ground state is qualitatively different from the Ising case in three ways that matter for
-everything that follows: it is \emph{uniquely} the ground state, with no degeneracy to spontaneously
-choose between; it is \emph{time-reversal symmetric}, since its net magnetization vanishes on the nose
-and time reversal maps $|GS\rangle$ to itself; and it is \emph{maximally entangled} (the two terms in
-(8.3) carry equal weight, the largest entanglement two qubits can hold). Can we have a macroscopic
-version of this same ground state? That question is exactly where quantum spin liquids come from.
+This ground state is different from the Ising case in three ways, and these three points are
+important for the rest of the session. First, it is the \emph{unique} ground state, so there is no
+degeneracy and no spontaneous choice between states. Second, it is \emph{time-reversal symmetric},
+since its net magnetization is exactly zero and time reversal maps $|GS\rangle$ to itself. Third,
+it is \emph{maximally entangled}, since the two terms in (8.3) have the same weight, which is the
+largest entanglement that two qubits can have. Can we have a macroscopic version of this ground
+state? This question is the origin of quantum spin liquids.
 
-\section{Frustration: the route to a quantum spin liquid}
+\section{Frustration as the route to a quantum spin liquid}
 
-Before building a macroscopic version of (8.3), we need to know when a Heisenberg model's ground
-state actually stays time-reversal symmetric like this, rather than spontaneously ordering the way
-session 1 and session 6's magnets did. The rule of thumb is \textbf{frustration}. The paradigm case is a
-triangular plaquette with antiferromagnetic coupling on all three bonds: any two spins can point
-oppositely, but the third bond is then forced to sit between two spins that are already
-antiparallel to each other, and no single spin configuration satisfies all three bonds at once.
-Geometric frustration of this kind produces many classically degenerate ground states (same energy,
-different spin configurations), and once quantum fluctuations are switched on, they mix these
-degenerate configurations into a single quantum superposition that, generically, does not break
+Before we build a macroscopic version of (8.3), we need to know when the ground state of a
+Heisenberg model stays time-reversal symmetric in this way, instead of ordering spontaneously as
+the magnets of Session 1 and Session 6 did. The general rule is \textbf{frustration}. The standard
+example is a triangular plaquette with antiferromagnetic coupling on all three bonds. Any two spins
+can point in opposite directions, but then the third bond is between two spins that are already
+antiparallel to each other, so no spin configuration can satisfy all three bonds at the same time.
+This geometric frustration gives many classical ground states that are degenerate, which means that
+they have the same energy and different spin configurations. When we add quantum fluctuations, they
+mix these degenerate configurations into one quantum superposition, which in general does not break
 time-reversal symmetry.
 
-This is why the \textbf{triangular} and \textbf{kagome} lattices, both built entirely out of triangles, are
-the standard hunting ground for quantum spin liquid physics: an antiferromagnetic Heisenberg model
-on either lattice is, in the right coupling regime, a genuine candidate for a QSL ground state. And
-this is precisely why herbertsmithite, a kagome-lattice compound of spin-$1/2$ sites, keeps coming
-up as the best-known real material candidate. Figure~\ref{fig:s08:frustration} collects the geometry
-behind the whole argument: an unfrustrated plaquette, a frustrated triangle with its degenerate
-configurations, and the kagome lattice built entirely out of them.
+This is the reason why the \textbf{triangular} and \textbf{kagome} lattices, which are both built
+only from triangles, are the standard place to look for quantum spin liquid physics. An
+antiferromagnetic Heisenberg model on either lattice is a real candidate for a QSL ground state, in
+the right range of couplings. This is also the reason why herbertsmithite, a compound with
+spin-$1/2$ sites on a kagome lattice, is the best-known real candidate material.
+Figure~\ref{fig:s08:frustration} shows the geometry behind the whole argument, which is a plaquette
+without frustration, a frustrated triangle with its degenerate configurations, and the kagome
+lattice that is built only from such triangles.
 
 \input{figures/s08f02_frustration}
 
-\section{A first stop short of a spin liquid: the dimerized Heisenberg model}
+\section{The dimerized Heisenberg model, a first step before a spin liquid}
 
-Before tackling a genuinely frustrated Hamiltonian, it is worth building the simplest possible
-\emph{macroscopic} quantum magnet and checking explicitly that its ground state does what (8.3) promised.
-Take a \textbf{fully dimerized Heisenberg model}: perfectly decoupled dimers, arranged in a chain or on
-a two-dimensional lattice,
+Before we study a frustrated Hamiltonian, it is useful to build the simplest possible
+\emph{macroscopic} quantum magnet and to check explicitly that its ground state does what (8.3)
+told us. Let us take a \textbf{fully dimerized Heisenberg model}, which is made of dimers that are
+completely decoupled from each other, placed on a chain or on a two-dimensional lattice,
 
 \begin{equation}
 H = \sum_n J\, \mathbf S_{2n}\cdot \mathbf S_{2n+1}, \qquad J>0.
 \end{equation}
 
-Because every dimer is completely decoupled from its neighbors, the many-body ground state can be
-written down exactly, as a simple product of singlets over the dimer pairs,
+Since every dimer is decoupled from its neighbors, we can write the many-body ground state
+exactly, as a product of singlets over the pairs of the dimers,
 
 \begin{equation}
 |\Psi\rangle \sim \bigotimes_n \Big(|{\uparrow_{2n}\downarrow_{2n+1}}\rangle -
@@ -155,155 +164,163 @@ written down exactly, as a simple product of singlets over the dimer pairs,
 site}.
 \end{equation}
 
-This is, in one sense, a trivial Hamiltonian, effectively a collection of independent
-zero-dimensional problems. But it already establishes something important: a macroscopic Heisenberg
-Hamiltonian genuinely \emph{can} have a ground state that does not break time-reversal symmetry, exactly
-generalizing the two-site singlet (8.3) to an extensive system. Turning on small couplings between
-the dimers deforms this state smoothly without breaking time-reversal symmetry either.
+In one sense this is a trivial Hamiltonian, a collection of independent zero-dimensional
+problems. But it already shows something important. A macroscopic Heisenberg
+Hamiltonian \emph{can} have a ground state that does not break time-reversal symmetry, and this
+state is the direct generalization of the two-site singlet (8.3) to an extensive system. If we add
+small couplings between the dimers, the state changes smoothly and it still does not break
+time-reversal symmetry.
 
-There is, however, a crucial distinction to draw here, because this state is \emph{not yet} a quantum
-spin liquid. Its fundamental excitations are still spin-$1$ excitations: break one singlet into its
-triplet partner, and you get a \textbf{triplon}, a local singlet-to-triplet transition, structurally the
-same object as a magnon in everything but name. A state built this way, out of a fixed, static
-pattern of singlets, is called a \textbf{valence bond solid (VBS)}. Getting to a genuine quantum spin
-liquid, with spin-$1/2$ excitations rather than spin-$1$ triplons, requires going a step further
-than a static dimer covering: it requires the singlets themselves to fluctuate and resonate across
-the whole lattice, which is exactly the frustrated case we return to next.
-Figure~\ref{fig:s08:vbsrvb} draws that contrast explicitly.
+There is, however, an important difference to make here, because this state is \emph{not yet} a
+quantum spin liquid. Its fundamental excitations still have spin $1$. If we turn one singlet into
+its triplet partner, we obtain a \textbf{triplon}, which is a local transition from singlet to
+triplet, and it has the same structure as a magnon, with only a different name. A state that is
+built in this way, from a fixed and static pattern of singlets, is called a \textbf{valence bond
+solid (VBS)}. To obtain a real quantum spin liquid, with spin-$1/2$ excitations instead of spin-$1$
+triplons, we need more than a static dimer covering. We need the singlets to fluctuate and to
+resonate over the whole lattice, and this is the frustrated case that we study in the next section.
+Figure~\ref{fig:s08:vbsrvb} shows this difference explicitly.
 
-\section{The QSL ground state: the resonating valence bond wavefunction}
+\section{The resonating valence bond wavefunction as the QSL ground state}
 
-For a genuinely frustrated Heisenberg Hamiltonian $\mathcal H = \sum_{ij} J_{ij}\, \mathbf
-S_i\cdot\mathbf S_j$, the expected ground state is no longer a single, fixed dimer covering like
-(8.5). Instead it is a \textbf{linear combination of singlets over every possible pairing of sites}, each
-pairing carrying its own amplitude, a genuinely complicated many-body wavefunction. One could try to
-attack this directly (write it as a tensor network, as session 7 does for the general strongly
-correlated case), but there is a more physically transparent route: a variational ansatz built on an
-analogy to superconductivity.
+For a frustrated Heisenberg Hamiltonian $\mathcal H = \sum_{ij} J_{ij}\, \mathbf
+S_i\cdot\mathbf S_j$, we do not expect the ground state to be one fixed dimer covering as in
+(8.5). Instead, we expect a \textbf{linear combination of singlets over every possible pairing of
+sites}, where each pairing has its own amplitude, which is a complicated many-body wavefunction. We
+could try to treat this directly, for example by writing it as a tensor network as in Session 7 for
+the general strongly correlated case. There is, however, a way that is easier to understand
+physically, which is a variational ansatz based on an analogy with superconductivity.
 
-The idea is that singlets in a QSL ``feel'' a lot like Cooper pairs in an s-wave superconductor: both
-are pairwise singlet correlations. A BCS-type wavefunction is easy to write at the mean-field level
-in the right basis (Nambu space, exactly as in session 5), so we start from a BCS-paired state built
-out of the same auxiliary fermions $f_{i\sigma}$ that we will justify properly in Section 8.8,
+The idea is that the singlets in a QSL are similar to the Cooper pairs in an s-wave
+superconductor, since both are singlet correlations between pairs. A BCS-type wavefunction is easy
+to write at the mean-field level in the right basis, which is the Nambu space as in Session 5. So we
+start from a BCS-paired state built from the same auxiliary fermions $f_{i\sigma}$ that we will
+justify in detail in Section 8.8,
 
 \begin{equation}
 |\Psi_\text{BCS}\rangle = \prod_{\mathbf k}\Big(u_{\mathbf k} + v_{\mathbf k}\,
 f^\dagger_{\mathbf k\uparrow} f^\dagger_{-\mathbf k\downarrow}\Big)|0\rangle,
 \end{equation}
 
-with $u_{\mathbf k}, v_{\mathbf k}$ variational parameters exactly as in session 5's BCS state. Left
-on its own, (8.6) is a superposition of states with every possible fermion occupation per site
-(empty, singly, doubly occupied), which is not a physical spin state at all: a QSL enforces strong
-local interactions, so single occupation per site is required, with no charge fluctuations allowed
-between sites. We enforce this by applying a \textbf{Gutzwiller projector} onto the singly-occupied
-subspace,
+where $u_{\mathbf k}, v_{\mathbf k}$ are variational parameters, as in the BCS state of Session 5.
+By itself, (8.6) is a superposition of states with every possible number of fermions per site,
+which can be empty, singly occupied or doubly occupied. This is not a physical spin state at all.
+A QSL has strong local interactions, so we need single occupation on every site, and no charge
+fluctuations between sites are allowed. We impose this condition with a \textbf{Gutzwiller
+projector} onto the singly-occupied subspace,
 
 \begin{equation}
 |\Psi_\text{RVB}\rangle = P_G\,|\Psi_\text{BCS}\rangle, \qquad P_G = \prod_i n_i(2-n_i), \qquad
 n_i = \sum_\sigma f^\dagger_{i\sigma}f_{i\sigma},
 \end{equation}
 
-which evaluates to $1$ on states with exactly one fermion per site and to $0$ otherwise. What
-survives is a genuine many-body spin wavefunction: a superposition over ways of pairing up sites
-into singlets, in the spirit of the single-dimer singlet (8.3), now spread across an entire
-frustrated lattice. This construction is named exactly for what it describes: the \textbf{resonating
-valence bond (RVB)} variational wavefunction, and it turns out to be a genuinely good description
-of quantum spin liquid physics. Figure~\ref{fig:s08:vbsrvb} shows what separates this resonating
-state, and the excitations it supports, from the frozen dimer covering of Section 8.5.
+which gives $1$ for states with exactly one fermion per site and $0$ for all other states. What
+remains is a real many-body spin wavefunction. It is a superposition over the different ways to
+pair sites into singlets, in the same spirit as the singlet of a single dimer (8.3), but now over a
+whole frustrated lattice. The name of this construction describes what it is, and it is called the
+\textbf{resonating valence bond (RVB)} variational wavefunction. It turns out to be a good
+description of the physics of quantum spin liquids. Figure~\ref{fig:s08:vbsrvb} shows what makes
+this resonating state, and the excitations that it has, different from the frozen dimer covering of
+Section 8.5.
 
 \input{figures/s08f03_vbs_rvb}
 
-\section{Why the magnon (Holstein-Primakoff) approach fails for QSL excitations}
+\section{Why the Holstein-Primakoff magnon approach fails for QSL excitations}
 
-Writing down the exact QSL ground state is hard, so the natural next move, exactly as in session 6,
-is to ask about excitations \emph{on top of} the ground state rather than the ground state itself. Our
-only tool for that so far is the \textbf{Holstein-Primakoff transformation}, which represents
+It is hard to write the exact QSL ground state, so the natural next step, as in Session 6, is to
+ask about the excitations \emph{on top of} the ground state, and not about the ground state itself.
+Up to now, the only tool that we have for this is the \textbf{Holstein-Primakoff transformation},
+which writes
 
 \begin{equation}
 S_i^z = S - a_i^\dagger a_i, \qquad S_i^+ \approx \sqrt{2S}\,a_i, \qquad S_i^- \approx
 \sqrt{2S}\,a_i^\dagger,
 \end{equation}
 
-linearized under the assumption that the bosonic magnon population is small,
-$\langle a_i^\dagger a_i\rangle \ll S$: an excellent approximation near a fully (or nearly)
-polarized magnet, exactly the regime session 6 used it in.
+where we linearized under the assumption that the number of bosonic magnons is small,
+$\langle a_i^\dagger a_i\rangle \ll S$. This is a very good approximation close to a fully or
+nearly polarized magnet, which is the regime where we used it in Session 6.
 
-A QSL sits in the opposite limit. Its defining property, $\langle \mathbf S_i\rangle = 0$ on every
-site, forces, through (8.8),
+A QSL is in the opposite limit. Its defining property, $\langle \mathbf S_i\rangle = 0$ on every
+site, gives through (8.8)
 
 \begin{equation}
 \langle a_i^\dagger a_i \rangle = S,
 \end{equation}
 
-precisely the regime where the small-boson-density condition behind the linearized
-Holstein-Primakoff mapping fails outright. There is no ordered reference state for a QSL to be
-``close to'' and expand around, so the whole magnon machinery that worked for session 6's ordered
-magnets simply is not the right tool here. We need a genuinely different approximation for the
-excitations of a quantum spin liquid.
+which is the regime where the condition of a small boson density, the basis of the linearized
+Holstein-Primakoff mapping, fails completely. For a QSL there is no ordered
+reference state that it is ``close to'' and around which we can expand. As a result, the magnon
+method that worked for the ordered magnets of Session 6 is not the right tool here, and we need a
+different approximation for the excitations of a quantum spin liquid.
 
 \begin{notebookbox}{\texttt{session8.ipynb}, ``Magnetization of a large Heisenberg model'' (Core)}
-Diagonalize a moderately large quantum Heisenberg chain and confirm numerically that the local
-magnetization stays zero on every site, even in the presence of a small external field, as long as
-that field is weaker than the finite-size gap to the neighboring total-spin sector: the numerical
-face of the defining property behind (8.4) and (8.9).
+Diagonalize a quantum Heisenberg chain of moderate size and check numerically that the local
+magnetization stays zero on every site. This also holds with a small external field, as long as the
+field is weaker than the finite-size gap to the neighboring sector of total spin. This is how the
+defining property behind (8.5) and (8.9) appears in a numerical calculation.
 \end{notebookbox}
 
-\section{The parton construction: Abrikosov fermions and the single-occupancy constraint}
+\section{The parton construction with Abrikosov fermions and the single-occupancy constraint}
 
-The construction that makes QSL excitations tractable represents each spin not as a bosonic
-fluctuation around an ordered reference state, but as an auxiliary \textbf{fermion} field $f_{i\sigma}$
-($\sigma=\uparrow,\downarrow$) living at every site: a particle carrying spin $1/2$ but no electric
-charge, exactly the spinon of Section 8.2, now written down formally. These are called
-\textbf{Abrikosov fermions}, and the operator identity that defines the parton transformation is
+The construction that allows us to treat QSL excitations does not write each spin as a bosonic
+fluctuation around an ordered reference state. Instead, it writes each spin with an auxiliary
+\textbf{fermion} field $f_{i\sigma}$ ($\sigma=\uparrow,\downarrow$) on every site. This is a
+particle with spin $1/2$ and no electric charge, which is the spinon of Section 8.2, now written in
+a formal way. These particles are called \textbf{Abrikosov fermions}, and the operator identity
+that defines the parton transformation is
 
 \begin{equation}
 \mathbf S_i = \frac12 \sum_{\alpha\beta} f_{i\alpha}^\dagger\, \boldsymbol\sigma_{\alpha\beta}\,
 f_{i\beta},
 \end{equation}
 
-with $\boldsymbol\sigma$ the vector of Pauli matrices. One can check directly, from the fermionic
-anticommutation relations, that (8.10) reproduces the correct $SU(2)$ spin algebra
-$[S_i^a,S_i^b] = i\varepsilon^{abc}S_i^c$ on the full four-state Fock space of
-$f_{i\uparrow},f_{i\downarrow}$ (empty, singly occupied up, singly occupied down, doubly occupied),
-with no extra input needed. The catch is that this transformation \emph{artificially enlarges} the local
-Hilbert space: a physical spin-$1/2$ has only two states, while $f_{i\uparrow},f_{i\downarrow}$
-give four. We remove the two unphysical extra states (empty and doubly occupied, both of which
-(8.10) sends to $\mathbf S_i=0$ anyway) by imposing, by hand, the \textbf{single-occupancy constraint}
+where $\boldsymbol\sigma$ is the vector of Pauli matrices. One can check directly, from the
+anticommutation relations of the fermions, that (8.10) gives the correct $SU(2)$ spin algebra
+$[S_i^a,S_i^b] = i\varepsilon^{abc}S_i^c$ on the full Fock space of
+$f_{i\uparrow},f_{i\downarrow}$, which has four states, namely empty, singly occupied with spin up,
+singly occupied with spin down and doubly occupied. No extra input is needed for this. The problem
+is that this transformation makes the local Hilbert space \emph{artificially larger}, since a
+physical spin-$1/2$ has only two states, while $f_{i\uparrow},f_{i\downarrow}$ give four. We remove
+the two extra unphysical states, which are the empty and the doubly occupied ones and which (8.10)
+maps to $\mathbf S_i=0$ in any case. We do this by imposing by hand the
+\textbf{single-occupancy constraint}
 
 \begin{equation}
 \sum_\sigma f_{i\sigma}^\dagger f_{i\sigma} = 1 \qquad \text{at every site } i.
 \end{equation}
 
-This is exactly the fermionic analogue of the Gutzwiller projection (8.7) applied earlier to the
-many-body wavefunction: projecting the many-body state onto the singly-occupied subspace and
-constraining the fermion filling to one per site are the same statement, seen from the wavefunction
-side versus the operator side. Figure~\ref{fig:s08:parton}a shows exactly which two states the
-constraint has to throw away, and why they were never spin states to begin with.
+This is the fermionic analogue of the Gutzwiller projection (8.7) that we applied before to the
+many-body wavefunction. To project the many-body state onto the singly-occupied subspace and to fix
+the fermion filling to one per site are the same statement, the first one seen from the side of
+the wavefunction and the second one from the side of the operators.
+Figure~\ref{fig:s08:parton}a shows which two states the constraint has to remove, and why they were
+never spin states in the first place.
 
-With (8.11) enforced, (8.10) is an \emph{exact} rewriting of a spin-$1/2$ operator in fermionic language,
-and we can substitute it directly into the Heisenberg Hamiltonian $\mathcal H=\sum_{\langle
-ij\rangle}J_{ij}\,\mathbf S_i\cdot\mathbf S_j$. Using the Pauli-matrix Fierz identity
+When (8.11) holds, (8.10) is an \emph{exact} way to write a spin-$1/2$ operator in the language of
+fermions, and we can put it directly into the Heisenberg Hamiltonian $\mathcal H=\sum_{\langle
+ij\rangle}J_{ij}\,\mathbf S_i\cdot\mathbf S_j$. With the Fierz identity for Pauli matrices
 $\sum_a \sigma^a_{\alpha\beta}\sigma^a_{\gamma\delta} = 2\delta_{\alpha\delta}\delta_{\beta\gamma} -
-\delta_{\alpha\beta}\delta_{\gamma\delta}$ and the constraint (8.11) on both sites gives the clean
-identity
+\delta_{\alpha\beta}\delta_{\gamma\delta}$ and the constraint (8.11) on both sites, we obtain the
+simple identity
 
 \begin{equation}
 \mathbf S_i \cdot \mathbf S_j = \frac14 - \frac12\, \chi_{ij}^\dagger \chi_{ij}, \qquad \chi_{ij}
 \equiv \sum_\sigma f_{i\sigma}^\dagger f_{j\sigma},
 \end{equation}
 
-with $\chi_{ij}$ the spinon ``bond'' (hopping) operator between sites $i$ and $j$. Substituting (8.12)
-turns the original, bilinear-in-spin Heisenberg Hamiltonian into a Hamiltonian that is \emph{quartic} in
-the auxiliary fermions,
+where $\chi_{ij}$ is the spinon bond operator, or hopping operator, between sites $i$ and $j$. When
+we insert (8.12), the original Heisenberg Hamiltonian, which is bilinear in the spins, becomes a
+Hamiltonian that is \emph{quartic} in the auxiliary fermions,
 
 \begin{equation}
 \mathcal H = \sum_{\langle ij\rangle} J_{ij}\left(\frac14 - \frac12\,\chi_{ij}^\dagger\chi_{ij}\right)
 = \text{const} - \frac12\sum_{\langle ij\rangle} J_{ij}\, \chi_{ij}^\dagger \chi_{ij}.
 \end{equation}
 
-This is exactly the same kind of difficulty session 1 and session 6 faced with the electronic
-Hubbard interaction: a quartic term with no direct diagonalization. We treat it the same way, by
-\textbf{mean-field decoupling},
+This is the same problem that we had in Sessions 1 and 6 with the Hubbard interaction,
+which is a quartic term that we cannot diagonalize directly. We treat
+it in the same way, with a \textbf{mean-field decoupling},
 
 \begin{equation}
 \chi_{ij}^\dagger\chi_{ij} \;\approx\; \langle\chi_{ij}^\dagger\rangle\,\chi_{ij} +
@@ -312,98 +329,102 @@ Hubbard interaction: a quartic term with no direct diagonalization. We treat it 
 
 \section{The mean-field spinon Hamiltonian and its dispersion classes}
 
-Absorbing the couplings and expectation value of (8.14) into a single mean-field parameter
-$\chi_{ij}$ per bond, and enforcing the constraint (8.11) on average with a Lagrange multiplier if
-needed, the mean-field decoupling of Section 8.8 collapses the original spin problem into a genuine,
-diagonalizable tight-binding-like Hamiltonian for the auxiliary fermions,
+We put the couplings and the expectation value of (8.14) together into one mean-field parameter
+$\chi_{ij}$ per bond, and if needed we impose the constraint (8.11) on average with a Lagrange
+multiplier. In this way, the mean-field decoupling of Section 8.8 turns the original spin problem
+into a real Hamiltonian for the auxiliary fermions, which has the form of a tight-binding model and
+which we can diagonalize,
 
 \begin{equation}
 \mathcal H_\text{MF} = \sum_{ij,s} \chi_{ij}\, f^\dagger_{i,s} f_{j,s}.
 \end{equation}
 
-It is worth pausing on what makes this mean-field step different from every other mean-field
-decoupling in this course so far: it does not need to break time-reversal symmetry. Choosing the
-same $\chi_{ij}$ for spin up and spin down keeps $\langle \mathbf S_i\rangle = 0$ exactly, so the
-resulting ground state is time-reversal symmetric by construction, just as (8.4) and (8.9) require.
-Equation (8.15) is nothing but a tight-binding model for the auxiliary fermions, with hoppings
-$\chi_{ij}$ fixed self-consistently by the lattice geometry and the exchange couplings $J_{ij}$. Its
-excitations are the \textbf{spinons}: emergent, spin-$1/2$, charge-neutral fermionic quasiparticles,
-produced by exactly the same ``quartic interaction, mean-field decouple, diagonalize a bilinear
-Hamiltonian'' recipe used for electrons throughout this course, just transplanted into the spin
-sector. Figure~\ref{fig:s08:parton}b is the resulting picture: spinons hopping on the lattice with
-amplitude $\chi_{ij}$, at half filling because of (8.11).
+This mean-field step is different from all the other mean-field decouplings of this course up
+to now, since it does not need to break time-reversal symmetry. If we take the same $\chi_{ij}$ for spin up and spin down, we keep
+$\langle \mathbf S_i\rangle = 0$ exactly, so the ground state that we obtain is time-reversal
+symmetric by construction, as (8.5) and (8.9) require. Equation (8.15) is a tight-binding model for
+the auxiliary fermions, with hoppings $\chi_{ij}$ that are fixed self-consistently by the geometry
+of the lattice and by the exchange couplings $J_{ij}$. Its excitations are the \textbf{spinons},
+which are emergent fermionic quasiparticles with spin $1/2$ and no charge. We obtain them with the
+same procedure that we used for electrons in the whole course, which is to take a quartic
+interaction, decouple it at the mean-field level and diagonalize a bilinear Hamiltonian, and the
+only difference is that now we apply it to the spin sector. Figure~\ref{fig:s08:parton}b shows the
+resulting picture, with spinons that hop on the lattice with amplitude $\chi_{ij}$, at half filling
+because of (8.11).
 
 \input{figures/s08f04_parton}
 
-Diagonalizing (8.15) on a given lattice produces a genuine spinon band structure, and depending on
-the resulting mean-field parameters, three qualitatively different outcomes are possible:
+When we diagonalize (8.15) on a given lattice, we obtain a real spinon band structure. Depending on
+the mean-field parameters that we obtain, there are three different possible outcomes.
 
 \begin{itemize}
-\item \textbf{Gapless spinons}, with excitations arbitrarily close to zero energy.
-\item \textbf{Gapped spinons}, with a finite energy cost to create a spinon.
-\item \textbf{Dirac spinons}, with a linear energy-momentum relation at isolated points in the Brillouin
-  zone.
+\item \textbf{Gapless spinons}, with excitations at energies as close to zero as we want.
+\item \textbf{Gapped spinons}, where it costs a finite energy to create a spinon.
+\item \textbf{Dirac spinons}, with a linear relation between energy and momentum at isolated points
+  in the Brillouin zone.
 \end{itemize}
 
 \begin{notebookbox}{\texttt{session8.ipynb}, ``Spinon Fermi surface in gapless quantum spin liquids'' (Core)}
-Build the spinon tight-binding Hamiltonian (8.15) on the triangular lattice and watch its Fermi
-surface evolve as the ratio of hopping amplitudes $t_2/t_1$ changes. The quiz asks you to redo it
-on the square and kagome lattices, and to justify why the effective spinon model must sit at half
-filling: that is exactly the single-occupancy constraint (8.11) at the mean-field level.
+Build the spinon tight-binding Hamiltonian (8.15) on the triangular lattice and look at how its
+Fermi surface changes when the ratio of hopping amplitudes $t_2/t_1$ changes. In the quiz you
+repeat this on the square and kagome lattices, and you explain why the effective spinon model must
+be at half filling. The reason is the single-occupancy constraint (8.11) at the mean-field level.
 \end{notebookbox}
 
 \section{Emergent gauge symmetry and vison excitations}
 
-There is one more essential piece to the QSL story, and it is a direct consequence of the fact that
-we introduced fermions to represent a spin. Consider a local, site-dependent phase rotation of the
-auxiliary fermions,
+There is one more essential part of the QSL picture, and it comes directly from the fact that we
+introduced fermions to describe a spin. Let us take a local phase rotation of the auxiliary
+fermions that depends on the site,
 
 \begin{equation}
 f_{i\sigma} \;\to\; e^{i\theta_i}\, f_{i\sigma}, \qquad f^\dagger_{i\sigma} \to e^{-i\theta_i}
 f^\dagger_{i\sigma}.
 \end{equation}
 
-Both the physical spin operator (8.10) and the single-occupancy constraint (8.11) are completely
-unaffected by (8.16): the phase $e^{i\theta_i}$ cancels between $f^\dagger_{i\alpha}$ and
-$f_{i\beta}$ in every term, so the Hamiltonian and the physical spin operators are exactly invariant.
-But the mean-field bond variable $\chi_{ij}$ is \emph{not}: it picks up a relative phase,
-$\chi_{ij} \to e^{i(\theta_i - \theta_j)}\chi_{ij}$. This is precisely the structure of a lattice
-gauge theory: $\chi_{ij}$ behaves like a link variable, and (8.16) is a local (``gauge'')
-transformation under which the physical spin theory is invariant while the mean-field saddle point
-of Section 8.9 is not. Any two choices of $\chi_{ij}$ related by (8.16) describe exactly the same
-physical quantum spin liquid; the mean-field decoupling only ever fixes a gauge-equivalence class,
-not a unique set of hoppings. This redundancy is the origin of an \textbf{emergent gauge theory} for
-quantum spin liquids.
+Both the physical spin operator (8.10) and the single-occupancy constraint (8.11) do not change at
+all under (8.16). The phase $e^{i\theta_i}$ cancels between $f^\dagger_{i\alpha}$ and
+$f_{i\beta}$ in every term, so the Hamiltonian and the physical spin operators are exactly
+invariant. The mean-field bond variable $\chi_{ij}$, however, is \emph{not} invariant, since it
+gets a relative phase, $\chi_{ij} \to e^{i(\theta_i - \theta_j)}\chi_{ij}$. This is the structure
+of a lattice gauge theory. The variable $\chi_{ij}$ behaves as a link variable, and (8.16) is a
+local transformation, which is called a gauge transformation. The physical spin theory is invariant
+under it, while the mean-field saddle point of Section 8.9 is not. Any two choices of $\chi_{ij}$
+that are related by (8.16) describe the same physical quantum spin liquid, so the mean-field
+decoupling only fixes a class of gauge-equivalent solutions and not a unique set of hoppings. This
+redundancy is the origin of an \textbf{emergent gauge theory} for quantum spin liquids.
 
-Once this gauge structure is recognized, $\chi_{ij}$ becomes a genuinely dynamical field on the
-lattice links, capable of carrying its own topological defects, in direct analogy to how the
-superconducting order parameter's gauge degree of freedom can host vortices. Write the mean-field
-Hamiltonian as $\mathcal H = \sum_{ij,s}|\chi_{ij}|e^{i\theta_{ij}}f^\dagger_{i,s}f_{j,s}$, and
-define the flux around a plaquette as the product of phases picked up going around its boundary,
-$\Phi = \prod e^{i\theta_{ij}}$. A concrete example: on a square lattice, imagine hoppings around
-every elementary loop pick up phase $\Phi=+1$ (a ground state), except one loop, which picks up
-$\Phi=-1$. That single flipped plaquette is an excited state, a topological defect in the emergent
-gauge field, called a \textbf{vison}: the gauge sector's own excitation, generally coupled to the matter
-sector's spinon excitations built in Section 8.9. A quantum spin liquid, in this language, is
-characterized not just by its spinon dispersion but by an emergent gauge theory and the vison
-excitations that theory supports, a genuinely new organizing principle with no counterpart anywhere
-in the symmetry-broken magnets of session 6. There is no notebook exercise built around this
-construction; it stands as a purely conceptual, formal piece of the QSL picture.
-Figure~\ref{fig:s08:gauge} draws both halves of it: why the flux, and not the link variable, is the
+Once we see this gauge structure, $\chi_{ij}$ becomes a dynamical field on the links of the
+lattice, and it can have its own topological defects. This is in direct analogy with the superconducting
+order parameter, whose gauge degree of freedom can have vortices. Let us write the
+mean-field Hamiltonian as $\mathcal H = \sum_{ij,s}|\chi_{ij}|e^{i\theta_{ij}}f^\dagger_{i,s}f_{j,s}$,
+and let us define the flux through a plaquette as the product of the phases that we pick up when we
+go around its boundary, $\Phi = \prod e^{i\theta_{ij}}$. For concreteness, let us take a square
+lattice where the hoppings around every elementary loop pick up the phase $\Phi=+1$, which is a
+ground state, except for one loop, where the phase is $\Phi=-1$. This single flipped plaquette is an
+excited state. It is a topological defect in the emergent gauge field, and it is called a
+\textbf{vison}. The vison is the excitation of the gauge sector, and in general it is coupled to the
+spinon excitations of the matter sector that we built in Section 8.9. In this language, a quantum
+spin liquid is described not only by its spinon dispersion but also by an emergent gauge theory and
+by the vison excitations of that theory. This is a new organizing principle, and nothing like it
+exists in the symmetry-broken magnets of Session 6. There is no notebook exercise for this
+construction, which is a purely conceptual and formal part of the QSL picture.
+Figure~\ref{fig:s08:gauge} shows both parts of it, why the flux and not the link variable is the
 physical quantity, and what a single flipped flux looks like on the lattice.
 
 \input{figures/s08f05_gauge_vison}
 
 \section{From a single Kondo impurity to the Kondo lattice}
 
-Having built the machinery for quantum spin liquids, the lecture turns to a second, physically quite
-different setting that turns out to be solvable with exactly the same trick: the \textbf{Kondo lattice
-model}, which arises whenever a metal and a correlated, local-moment system coexist.
+Now that we have the method for quantum spin liquids, the lecture moves to a second physical
+system, which is quite different but which can be solved with the same method. This is the
+\textbf{Kondo lattice model}, which appears whenever a metal and a correlated system of local
+moments exist together.
 
-Start with the simplest possible case: a single spin-$1/2$ magnetic impurity sitting inside a
-non-interacting two-dimensional electron gas. The total Hamiltonian is a free, dispersive kinetic
-term for the conduction electrons, plus a Heisenberg-like coupling between the impurity spin and the
-local conduction-electron spin density at the impurity site,
+Let us start with the simplest case, which is a single spin-$1/2$ magnetic impurity in a
+non-interacting two-dimensional electron gas. The total Hamiltonian is a free kinetic term with a
+dispersion for the conduction electrons, plus a Heisenberg-like coupling between the spin of the
+impurity and the local spin density of the conduction electrons at the impurity site,
 
 \begin{equation}
 H = -t\sum_{\langle ij\rangle,\sigma}\Big(c^\dagger_{i\sigma}c_{j\sigma} + \text{h.c.}\Big) +
@@ -411,23 +432,22 @@ H_K, \qquad H_K = \sum_{\alpha\beta}\Big(c^\dagger_{0\beta}\,\boldsymbol\sigma_{
 c_{0\alpha}\Big)\cdot \mathbf S,
 \end{equation}
 
-the \textbf{Kondo coupling} $H_K$. Solving this exactly is a genuinely hard many-body problem, but the
-physical picture of its ground state is simple to state even without the full solution: the impurity
-spin forms a singlet, structurally the same object as (8.3), with some effective conduction electron
-in its vicinity,
+where $H_K$ is the \textbf{Kondo coupling}. To solve this problem exactly is hard. However, we
+can describe the ground state in a simple way, even without the full solution. The spin of the impurity forms a singlet, which has the same structure
+as (8.3), with an effective conduction electron close to it,
 
 \begin{equation*}
 |GS\rangle \sim \frac{1}{\sqrt2}\Big(|{\Uparrow\downarrow}\rangle -
 |{\Downarrow\uparrow}\rangle\Big),
 \end{equation*}
 
-while the rest of the electron gas behaves as an effectively non-interacting Fermi sea. This turns
-out to be a genuinely good approximation to the many-body ground state, and the resulting state has
-total spin zero and does not break time-reversal symmetry: despite hosting a real local moment,
-this is already, in the sense of Section 8.4, a quantum magnet.
+and the rest of the electron gas behaves as a Fermi sea without interactions. This is a good
+approximation to the many-body ground state. The resulting state has total spin zero and does
+not break time-reversal symmetry, so even if it has a real local moment, it is already a quantum
+magnet in the sense of Section 8.1.
 
-Now generalize to a whole \textbf{lattice} of magnetic impurities, one per site, each coupled to the same
-conduction-electron bath,
+Let us now generalize this to a whole \textbf{lattice} of magnetic impurities, with one impurity per
+site, where each impurity is coupled to the same bath of conduction electrons,
 
 \begin{equation}
 H = -t\sum_{\langle ij\rangle,\sigma}\Big(c^\dagger_{i\sigma}c_{j\sigma} + \text{h.c.}\Big) +
@@ -435,35 +455,37 @@ J\sum_{j,\alpha\beta}\Big(c^\dagger_{j\beta}\,\boldsymbol\sigma_{\beta\alpha}\,c
 \mathbf S_j.
 \end{equation}
 
-Every impurity again wants to form a singlet with a nearby conduction electron, but with many
-impurities competing for the same electron sea, the screening electrons end up shared, fractionally,
-between different impurities' singlets. The result is a state of massive, lattice-wide entanglement
-between all the magnetic sites and the electron gas, while the total spin remains exactly zero.
+Every impurity again tends to form a singlet with a conduction electron close to it. Since many
+impurities compete for the same sea of electrons, the electrons that screen the impurities are
+shared, in a fractional way, between the singlets of different impurities. The result is a state
+with a large entanglement over the whole lattice, between all the magnetic sites and the electron
+gas, while the total spin stays exactly zero.
 
 \begin{notebookbox}{\texttt{session8.ipynb}, ``Magnetization of a large Heisenberg model with a magnetic impurity'' (Challenge) and ``Magnetization of a dimerized Heisenberg model with a magnetic impurity'' (Challenge)}
-These exercises show, numerically and in real space, how a single magnetic impurity's local field
-decays with distance into an otherwise gapless or dimerized quantum magnet: the gapless chain shows
-algebraic, staggered decay, tracing the correlation profile of a critical spin liquid; the
-dimerized (valence-bond-solid) chain of Section 8.5 instead shows exponential decay over a finite
-correlation length, because its ground state is gapped. This is the same screening-cloud physics
-behind (8.17), viewed from the real-space, single-chain side rather than the itinerant-electron
-side.
+These exercises show, numerically and in real space, how the local field of a single magnetic
+impurity decays with the distance in a quantum magnet that is otherwise gapless or dimerized. The
+gapless chain shows an algebraic and staggered decay, which follows the correlation profile of a
+critical spin liquid. The dimerized chain of Section 8.5, which is a valence bond solid, shows
+instead an exponential decay over a finite correlation length, because its ground state is gapped.
+This is the same physics of the screening cloud as in (8.17), seen from the side of a single chain
+in real space and not from the side of itinerant electrons.
 \end{notebookbox}
 
-\section{Solving the Kondo lattice: the same parton trick, now with a hybridization}
+\section{Solving the Kondo lattice with the parton method and a hybridization}
 
-The lecture makes the parallel to Section 8.8 explicit: this problem is solved the same way we
-solved the QSL. Replace every impurity spin by an Abrikosov fermion, $\mathbf S_j = \tfrac12
-f_{j\alpha}^\dagger \boldsymbol\sigma_{\alpha\beta} f_{j\beta}$, subject to the same single-occupancy
-constraint (8.11), written here in the equivalent traceless form
+The lecture makes the parallel with Section 8.8 explicit, since we solve this problem in the same
+way as we solved the QSL. We replace every impurity spin by an Abrikosov fermion,
+$\mathbf S_j = \tfrac12
+f_{j\alpha}^\dagger \boldsymbol\sigma_{\alpha\beta} f_{j\beta}$, with the same single-occupancy
+constraint (8.11), which we write here in the equivalent traceless form
 
 \begin{equation}
 S_{\alpha\beta}(j) = f^\dagger_{j\alpha}f_{j\beta} - \frac{n_f(j)}{N}\delta_{\alpha\beta}.
 \end{equation}
 
-Substituting into (8.18) turns the Kondo coupling into a genuine quartic interaction, now coupling
-the auxiliary $f$ fermions not to another site's $f$ fermion (as in (8.13)) but to the \emph{real}
-conduction electrons $c_{j\sigma}$ at the same site,
+When we insert this into (8.18), the Kondo coupling becomes a real quartic interaction. Now it does
+not couple the auxiliary $f$ fermions to the $f$ fermion of another site, as in (8.13), but to the
+\emph{real} conduction electrons $c_{j\sigma}$ on the same site,
 
 \begin{equation}
 H \sim \sum_{\mathbf k\alpha} \varepsilon_{\mathbf k}\, c^\dagger_{\mathbf k\alpha}c_{\mathbf
@@ -471,92 +493,99 @@ k\alpha} \;-\; J\sum_{j,\alpha\beta}\Big(c^\dagger_{j\beta}f_{j\beta}\Big)\Big(f
 c_{j\alpha}\Big).
 \end{equation}
 
-Exactly as in (8.14), we mean-field decouple this quartic term, taking the expectation value
-$\langle c^\dagger_j f_j\rangle$, and Fourier transform to momentum space. This produces a genuinely
-bilinear Hamiltonian mixing real electrons and auxiliary fermions,
+As in (8.14), we decouple this quartic term at the mean-field level, with the expectation value
+$\langle c^\dagger_j f_j\rangle$, and we do a Fourier transform to momentum space. This gives a
+bilinear Hamiltonian that mixes real electrons and auxiliary fermions,
 
 \begin{equation}
 H \sim \sum_{\mathbf k\alpha} \varepsilon_{\mathbf k}\, c^\dagger_{\mathbf k\alpha} c_{\mathbf
-k\alpha} \;-\; \gamma_K \sum_{\mathbf k,\alpha\beta} f^\dagger_{\mathbf k\alpha}c_{\mathbf k\alpha} +
+k\alpha} \;-\; \gamma_K \sum_{\mathbf k,\alpha} f^\dagger_{\mathbf k\alpha}c_{\mathbf k\alpha} +
 \text{h.c.},
 \end{equation}
 
-with $\varepsilon_{\mathbf k}$ the \textbf{conduction band dispersion} and $\gamma_K$ the \textbf{Kondo
-hybridization}, the single self-consistently determined mean-field parameter carrying all of the
-information about the strength of the original Kondo coupling $J$.
+where $\varepsilon_{\mathbf k}$ is the \textbf{conduction band dispersion} and $\gamma_K$ is the
+\textbf{Kondo hybridization}. The hybridization is the only mean-field parameter, it is determined
+self-consistently, and it contains all the information about the strength of the original Kondo
+coupling $J$.
 
-\section{Electronic structure of the Kondo lattice: the Kondo insulator}
+\section{Electronic structure of the Kondo lattice and the Kondo insulator}
 
-Equation (8.21) is, per spin, an ordinary two-band Bloch Hamiltonian in the basis $(c_{\mathbf
-k\alpha}, f_{\mathbf k\alpha})$. When $\gamma_K = 0$, there is no mixing at all: the spectrum is
-simply the ordinary, dispersive conduction band $\varepsilon_{\mathbf k}$, together with a
-perfectly \textbf{flat}, zero-energy band of $f$-fermion levels (flat because these auxiliary fermions
-carry no hopping of their own once the Kondo coupling is switched off). Switching the Kondo coupling
-back on makes $\gamma_K$ finite, and the flat and dispersive bands undergo an \textbf{anti-crossing}:
-wherever the flat spinon band would have crossed the conduction band, a \textbf{gap} opens instead, and
-the bigger the Kondo coupling, the bigger this gap becomes. This is confirmed directly by comparing
-the spectra at increasing $J_K$: at $J_K=0$ the bands simply cross; already by $J_K=0.25$ a visible
-gap has opened at the crossing; by $J_K=0.5$ the gap is substantially larger.
-Figure~\ref{fig:s08:kondobands} shows the two ends of that comparison, and where the Fermi level
-sits in each.
+For each spin, Equation (8.21) is an ordinary two-band Bloch Hamiltonian in the basis $(c_{\mathbf
+k\alpha}, f_{\mathbf k\alpha})$. When $\gamma_K = 0$, there is no mixing at all. The spectrum is
+then the ordinary dispersive conduction band $\varepsilon_{\mathbf k}$, together with a completely
+\textbf{flat} band of $f$-fermion levels at zero energy. This band is flat because the auxiliary
+fermions have no hopping of their own when the Kondo coupling is zero. When we switch the Kondo
+coupling on again, $\gamma_K$ becomes finite, and the flat band and the dispersive band have an
+\textbf{anti-crossing}. In every place where the flat spinon band would cross the conduction band,
+a \textbf{gap} opens instead, and the gap is larger when the Kondo coupling is larger. We see this
+directly when we compare the spectra for increasing $J_K$. At $J_K=0$ the bands cross. At
+$J_K=0.25$ there is already a visible gap at the crossing. At $J_K=0.5$ the gap is much larger.
+Figure~\ref{fig:s08:kondobands} shows the two ends of this comparison, and where the Fermi level is
+in each case.
 
 \input{figures/s08f06_kondo_bands}
 
-Physically, the ground state of this hybridized system is, by construction, non-magnetic:
-total spin zero, time-reversal symmetric, exactly as it was for the single impurity (8.17) and for
-the quantum spin liquid of Section 8.9. The consequence for the electronic structure, though, is
-new: a lattice of Kondo impurities converts what would otherwise be an ordinary metal into an
-\textbf{insulator}, because every electron sitting at the Fermi surface ends up forming a bound state
-with a magnetic impurity. This is the \textbf{Kondo insulator}, also called a heavy-fermion insulator,
-and SmB$_6$, introduced already in Section 8.1, is the standard real-material example.
+Physically, the ground state of this hybridized system is non-magnetic by construction. It has
+total spin zero and it is time-reversal symmetric, in the same way as for the single impurity
+(8.17) and for the quantum spin liquid of Section 8.9. The consequence for the electronic
+structure, however, is new. A lattice of Kondo impurities turns a system that would otherwise be an
+ordinary metal into an \textbf{insulator}, because every electron at the Fermi surface forms a
+bound state with a magnetic impurity. This is the \textbf{Kondo insulator}, which is also called a
+heavy-fermion insulator, and SmB$_6$, which we already introduced in Section 8.1, is the standard
+real material example.
 
-It is worth noting the resemblance to a rather different construction from session 5: superconductors
-also open a gap in their quasiparticle spectrum through hybridization, there between electrons and
-holes rather than between electrons and auxiliary fermions. The two settings are physically very
-different, but the \emph{mechanism} by which the single-particle spectrum develops a gap is closely
-analogous, and so is the way the effect turns on: the temperature scale at which the Kondo-insulator
-gap becomes visible depends on the Kondo coupling in a strongly non-linear way, the same qualitative
-non-linear dependence familiar from the superconducting gap's dependence on the pairing interaction.
+Note that there is a similarity with a quite different construction of Session 5. Superconductors
+also open a gap in their quasiparticle spectrum through a hybridization, but there it is between
+electrons and holes and not between electrons and auxiliary fermions. The two systems are
+physically very different, but the \emph{mechanism} that opens a gap in the single-particle
+spectrum is very similar. The way the effect appears is also similar. The temperature
+scale at which the gap of the Kondo insulator becomes visible depends on the Kondo coupling in a
+strongly non-linear way, which is the same kind of non-linear dependence that we know from the
+dependence of the superconducting gap on the pairing interaction.
 
 \begin{notebookbox}{\texttt{session8.ipynb}, ``Quantum magnetism in the Kondo lattice'' (Core) and ``Spinon dispersion in the Kondo lattice'' (Challenge)}
-The first exercise builds (8.21) directly on a van der Waals-type lattice: identify the flat
-(Kondo-site) band, the anti-crossing with the conduction band, and check what happens to the gap as
-you move the chemical potential. The second adds a direct exchange coupling between the Kondo
-sites themselves, giving the otherwise-flat spinon band its own dispersion, the lattice version of
-the Doniach picture: the Kondo coupling $J_K$ favors a local screened singlet while the direct
-exchange $J$ favors magnetic correlations between the local moments, and their competition controls
-which regime, screened or magnetic, is stable.
+The first exercise builds (8.21) directly on a lattice of van der Waals type. You identify the flat
+band of the Kondo sites and the anti-crossing with the conduction band, and you check what happens
+to the gap when you change the chemical potential. The second exercise adds a direct exchange
+coupling between the Kondo sites, which gives a dispersion to the spinon band that would otherwise
+be flat. This is the lattice version of the Doniach picture. The Kondo coupling $J_K$ favors a
+local screened singlet, while the direct exchange $J$ favors magnetic correlations between the local
+moments, and the competition between them decides which regime is stable, the screened one or the
+magnetic one.
 \end{notebookbox}
 
 \section{Closing summary}
 
-The lecture's own closing recap, reconstructed here with the equations it was pointing back to:
+This is the final recap of the lecture, with the equations that it refers to.
 
 \begin{itemize}
-\item Magnetism, in every form met across sessions 1, 6 and today, arises from strong repulsive
-  interactions between electrons.
-\item Frustrated magnetic models (triangular and kagome lattices, Section 8.4) can display \textbf{quantum
-  spin liquid} behavior: a ground state with zero local spin expectation value on every site (8.4),
-  maximally entangled, generalizing the Heisenberg dimer singlet (8.3) through the valence-bond-solid
-  state (8.5) to a genuinely resonating, frustrated ground state (8.6)-(8.7); conventional mean-field
-  theory cannot capture it by construction.
-\item Because a QSL's zero magnetization is the opposite regime from the one Holstein-Primakoff needs
-  (8.9), its fundamental excitations are not magnons but \textbf{spinons}, with $S=1/2$: emergent,
-  charge-neutral fermions obtained from the Abrikosov/parton construction, (8.10)-(8.15), the
-  electron mean-field recipe of sessions 1 and 6 transplanted into the spin sector. Spinon bands can
-  be gapless, gapped, or Dirac-like (Section 8.9).
-\item The parton construction carries an emergent gauge redundancy (8.16): the mean-field bond variable
-  is a link field whose topological defects are gauge excitations called \textbf{visons}, generally
-  coupled to the spinons (Section 8.10).
-\item Quantum entanglement mixing spin and fermion degrees of freedom also arises in \textbf{Kondo systems}:
-  the same parton trick, applied to a lattice of local moments embedded in a metal, (8.17)-(8.21),
-  turns the Kondo exchange coupling into a mean-field \textbf{hybridization} $\gamma_K$ that gaps the
-  conduction band at the anti-crossing and converts a metal into a \textbf{Kondo insulator}
-  (heavy-fermion insulator), with the gap growing monotonically with the Kondo coupling strength
+\item Magnetism, in all the forms that we saw in Sessions 1 and 6 and in this session, comes from
+  strong repulsive interactions between electrons.
+\item Frustrated magnetic models, such as those on triangular and kagome lattices (Section 8.4),
+  can show \textbf{quantum spin liquid} behavior. This is a maximally entangled ground state with
+  zero local spin expectation value on every site (8.5). It generalizes the singlet of the
+  Heisenberg dimer (8.3), through the valence bond solid state (8.5), to a resonating and
+  frustrated ground state (8.6)-(8.7), and conventional mean-field theory cannot describe it by
+  construction.
+\item The zero magnetization of a QSL is the opposite regime from the one that Holstein-Primakoff
+  needs (8.9). For this reason, its fundamental excitations are not magnons but \textbf{spinons},
+  with $S=1/2$. These are emergent fermions without charge that we obtain from the Abrikosov or
+  parton construction, (8.10)-(8.15), which is the mean-field method for electrons of Sessions 1
+  and 6 applied to the spin sector. Spinon bands can be gapless, gapped, or of Dirac type
+  (Section 8.9).
+\item The parton construction has an emergent gauge redundancy (8.16). The mean-field bond variable
+  is a link field, and its topological defects are gauge excitations called \textbf{visons}, which
+  are in general coupled to the spinons (Section 8.10).
+\item Quantum entanglement that mixes spin and fermion degrees of freedom also appears in
+  \textbf{Kondo systems}. The same parton method, applied to a lattice of local moments inside a
+  metal, (8.17)-(8.21), turns the Kondo exchange coupling into a mean-field
+  \textbf{hybridization} $\gamma_K$. This hybridization opens a gap in the conduction band at the
+  anti-crossing and turns a metal into a \textbf{Kondo insulator}, also called a heavy-fermion
+  insulator, and the gap grows monotonically with the strength of the Kondo coupling
   (Section 8.13).
 \end{itemize}
 
-Session 9 picks this construction straight back up: the Abrikosov-fermion/spinon machinery built
-here gets reused directly, now applied to a single magnetic impurity sitting inside an otherwise
-ordinary metal, with an explicit callback to a Friedel-oscillation result derived earlier in that
-same session.
+Session 9 continues directly from this construction. The method of Abrikosov fermions and spinons
+that we built here is used again, now for a single magnetic impurity in a metal that is otherwise
+ordinary, with an explicit reference to a result on Friedel oscillations that is derived earlier in
+that same session.

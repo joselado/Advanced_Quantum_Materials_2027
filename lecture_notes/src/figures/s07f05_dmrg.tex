@@ -7,16 +7,17 @@
 % inside this picture only. Panel titles are short tags, with the explanatory line
 % placed under each panel, so nothing collides across the top of the figure.
 \begin{aqmfigure}{fig:s07:dmrg}{How DMRG turns an exponentially large minimization into a sequence of
-tiny ones. (a) The numerator of the Rayleigh quotient (7.11) is a single closed network: the ket MPS,
-the Hamiltonian as an MPO, and the bra MPS, all contracted together, leaving no free legs and hence a
-number. (b) Every tensor enters that network linearly, once in the bra layer and once in the ket
-layer, so differentiating with respect to the bra tensor at site $k$ simply deletes it. What is left
-has exactly three open legs, the two virtual bonds and the physical index of site $k$, which are
-precisely the indices of the tensor $M_k^{s_k}$ we are solving for: everything to the left and right
-of $k$ has been reduced to an environment, and the stationarity condition is an ordinary eigenvalue
-problem of the size of a single tensor. (c) Solve it, move one site along, solve again, and sweep
-back and forth until the energy stops falling. That is the density matrix renormalization group; at
-no point is anything of size $2^L$ ever built.}
+small ones. (a) The numerator of the Rayleigh quotient (7.11) is a single closed network, made of the
+ket MPS, the Hamiltonian as an MPO and the bra MPS, all contracted together. It has no free legs, so
+it is a number. (b) Every tensor enters that network once in the bra layer and once in the ket layer, so
+the energy is a quadratic form in each tensor and linear in its bra copy, and the derivative with
+respect to the bra tensor at site $k$ removes it. What is left has
+exactly three open legs, the two virtual bonds and the physical index of site $k$, which are the
+indices of the tensor $M_k^{s_k}$ that we want to find. Everything to the left and right of $k$ has
+been reduced to an environment, and the stationarity condition is a generalized eigenvalue problem,
+which is an ordinary one in an orthonormal gauge, with the size of a single tensor. (c) We solve it, move one site along, solve again, and sweep back and
+forth until the energy stops decreasing. This is the density matrix renormalization group, and at no
+point do we build an object of size $2^L$.}
 
 \begin{tikzpicture}[x=1cm, y=1cm]
 \tikzset{

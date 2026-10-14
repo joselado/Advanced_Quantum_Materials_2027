@@ -1,272 +1,290 @@
 \chapter{Electrons in a Magnetic Field, Quantum Hall Effect and Landau Levels}
 
-Last time we built the general machinery of topological band structure: the Kubo formula for the
-Hall conductivity, its rewriting as an integral of Berry curvature, the Chern number as the
-resulting topological invariant, and the bulk-boundary correspondence that ties a nonzero Chern
-number to a protected chiral edge state. We worked all of that machinery through two concrete
-examples, the SSH chain and a gapped Dirac cone on the honeycomb lattice (the Haldane
-construction), and we did it quite deliberately without ever turning on a magnetic field. That
-was a promissory note: session 2 had already told us that a Bloch Hamiltonian's dispersion comes
-in three archetypes, parabolic, Dirac, and flat, and the flat-band case, the one that gives a
-literal magnetic field its own dedicated topological story, was left for today. So let us pick up
-exactly where we left off. Today we run session 3's Chern-number machinery through the flat-band
-case in full: the integer quantum Hall effect, Landau levels as topological flat bands, and then,
-once we let those flat bands become genuinely many-body objects, the Laughlin wavefunction,
-fractional charge, and anyonic statistics, the simplest example of fractionalization we will meet
-in this course. We will close by turning the telescope back around: the Haldane model gives us a
-quantized Hall conductance with no magnetic field at all, and we will see explicitly that it and
-the ordinary quantum Hall state are two faces of the very same topological phase.
+In the last session we built the general tools of topological band structure. These were the Kubo
+formula for the Hall conductivity, the way to write it as an integral of the Berry curvature, the
+Chern number as the topological invariant that comes out of it, and the bulk-boundary
+correspondence, which says that a nonzero Chern number gives a protected chiral edge state. We
+applied these tools to two concrete examples, the SSH chain and a gapped Dirac cone on the
+honeycomb lattice, which is the Haldane construction, and we did this on purpose without any
+magnetic field. This choice left one case open. In session 2 we saw that the dispersion of a Bloch
+Hamiltonian comes in three basic types, parabolic, Dirac and flat, and the flat-band case, which is
+the one where a real magnetic field gives its own topological story, was left for this session. So
+let us continue from the point where we stopped. In this session we apply the Chern-number tools of
+session 3 to the flat-band case in full. First we will see the integer quantum Hall effect and
+Landau levels as topological flat bands. Then we will let these flat bands become real many-body
+objects, and we will see the Laughlin wavefunction, fractional charge and anyonic statistics, which
+are the simplest example of fractionalization that we will meet in this course. At the end we will
+go back to the case without a field. The Haldane model gives a quantized Hall conductance with no
+magnetic field at all, and we will see explicitly that it and the ordinary quantum Hall state are
+two forms of the same topological phase.
 
 \section{Where the quantum Hall state shows up}
 
-The first thing worth appreciating about the quantum Hall state is that it is not the property of
-one particular material; it is a state of matter that a whole family of two-dimensional electron
-systems can realize, each with its own convenient energy and temperature scale.
+The quantum Hall state is not the property of one specific material. It is a state of matter that a whole family of two-dimensional electron systems
+can realize, and each of these systems has its own energy scale and temperature scale.
 
 \begin{itemize}
-\item \textbf{Semiconductor quantum wells}, historically gallium arsenide (GaAs), were the original
-  platform. There the electrons are essentially parabolic (ordinary, quadratic-dispersion)
-  electrons, the relevant energy scale grows linearly in the magnetic field, and the numbers work
-  out to roughly one millielectronvolt for laboratory-accessible fields, which is why GaAs quantum
-  Hall physics needs temperatures on the order of one kelvin.
-\item \textbf{Two-dimensional materials}, and graphene above all, realize the same physics but with Dirac
-  electrons rather than parabolic ones. As we will derive explicitly below, that changes the
-  energy scale to grow as the square root of the field rather than linearly, and the slides give
-  the concrete numbers: roughly two orders of magnitude larger, around 100 millielectronvolts, high
-  enough that graphene's quantum Hall plateaus survive up to about 100 K, and in the best samples
-  essentially up to room temperature.
+\item \textbf{Semiconductor quantum wells}, historically gallium arsenide (GaAs), were the first
+  platform. In these systems the electrons are essentially parabolic electrons, with the ordinary
+  quadratic dispersion, and the relevant energy scale grows linearly with the magnetic field. For
+  the fields that we can reach in a laboratory this gives roughly one millielectronvolt, and this is
+  the reason why quantum Hall physics in GaAs needs temperatures of the order of one kelvin.
+\item \textbf{Two-dimensional materials}, and graphene above all, realize the same physics but
+  with Dirac electrons instead of parabolic ones. As we will derive explicitly below, the energy
+  scale then grows as the square root of the field and not linearly. The slides give the concrete
+  numbers, which are roughly two orders of magnitude larger, around 100 millielectronvolts. This is
+  high enough that the quantum Hall plateaus of graphene survive up to about 100 K, and in the best
+  samples up to almost room temperature.
 \end{itemize}
 
-Whatever the platform, the common thread is the one we already met last session: an observable,
-the Hall conductance, comes out exactly quantized, and that quantization is a statement about
-topology rather than about any particular material's chemistry.
+For all these platforms the common point is the one we already saw in the last session. An
+observable, the Hall conductance, is exactly quantized, and this quantization comes from topology
+and not from the chemistry of a specific material.
 
 \section{Measuring the Hall conductance}
 
-The experiment itself is simple to state. Take a two-dimensional system, apply a voltage along
-one in-plane direction (call it $y$), and measure the resulting current along the perpendicular
-in-plane direction ($x$). The ratio of that transverse current to the applied voltage is the Hall
-conductance, and it is this object that gets quantized in the quantum Hall regime.
+The experiment itself is simple to describe. We take a two-dimensional system, apply a voltage
+along one in-plane direction, which we call $y$, and measure the current that flows along the
+perpendicular in-plane direction, $x$. The ratio of this transverse current to the applied voltage
+is the Hall conductance, and this is the quantity that becomes quantized in the quantum Hall
+regime.
 
-A real device realizing this measurement is a two-dimensional electron gas (2DEG) contacted by
-several finger gates: a voltage is imposed between a top and a bottom gate, and the current is
-read off between two gates arranged along $x$, with everything wired through metallic leads.
-The device geometry itself carries no new physics beyond what we need conceptually, so we will not
-dwell on it further; the slide deck's device figures are worth a glance for the real-world picture,
-but the notes from here on work with the idealized two-dimensional system.
+A real device for this measurement is a two-dimensional electron gas (2DEG) with several finger
+gates in contact with it. A voltage is applied between a top gate and a bottom gate, and the
+current is measured between two gates placed along $x$, with all the connections made through
+metallic leads. The geometry of the device does not add new physics beyond what we need for the
+concepts, so we will not discuss it further. The device figures in the slides are useful to see
+how a real experiment looks, but from here on the notes work with the ideal two-dimensional
+system.
 
 \section{From the Kubo formula to the Chern number, briefly}
 
-We derived this result in full last session, so let us not repeat fifteen lines of algebra that
-would look almost identical; instead let us recall the logic and confirm that it applies unchanged
-here. Second-order perturbation theory (the Kubo formula) gives the transverse conductivity as a
-sum, over all pairs of occupied and empty bands, of matrix elements of $\partial H/\partial k_x$
-and $\partial H/\partial k_y$ divided by energy differences. Using the identity that relates
-$\partial H/\partial k$ to the derivative of the eigenstates themselves (differentiate the
-eigenvalue equation $H(\mathbf{k})|u_\mathbf{k}\rangle = \varepsilon(\mathbf{k})|u_\mathbf{k}\rangle$
-with respect to $\mathbf{k}$), every explicit energy denominator cancels, and what survives depends
-only on the wavefunctions: the Berry connection $\mathbf{A}(\mathbf{k}) = i\langle
+We derived this result in full in the last session, so we will not repeat fifteen lines of algebra
+that would look almost the same. Instead, let us recall the logic and check that it applies here
+without changes. The Kubo formula is linear response, so it is first order in the applied field,
+and its sum over states has the form of a second-order perturbation expression. It writes the
+transverse conductivity as a sum over all pairs of occupied and empty bands, where each term has
+matrix elements of $\partial H/\partial k_x$ and $\partial H/\partial k_y$ divided by energy
+differences. There is an identity that relates $\partial H/\partial k$ to the derivative of the
+eigenstates, which we obtain when we differentiate the eigenvalue equation
+$H(\mathbf{k})|u_\mathbf{k}\rangle = \varepsilon(\mathbf{k})|u_\mathbf{k}\rangle$ with respect to
+$\mathbf{k}$. With this identity every explicit energy denominator cancels, and the result depends
+only on the wavefunctions, through the Berry connection $\mathbf{A}(\mathbf{k}) = i\langle
 u_\mathbf{k}|\nabla_\mathbf{k}|u_\mathbf{k}\rangle$ and its curl, the Berry curvature
-$\Omega(\mathbf{k}) = \nabla_\mathbf{k}\times\mathbf{A}(\mathbf{k})$. Summing over occupied bands
-and integrating over the Brillouin zone (a closed, compact manifold, a torus) gives an integer,
+$\Omega(\mathbf{k}) = \nabla_\mathbf{k}\times\mathbf{A}(\mathbf{k})$. The Brillouin zone is a
+closed, compact manifold, which is a torus, and when we sum over occupied bands and integrate over
+it we obtain an integer,
 
 \begin{equation}
 \sigma_{xy} = \frac{e^2}{h}\, C, \qquad C = \frac{1}{2\pi}\sum_{n\,\text{occ.}}\int_{\text{BZ}} \Omega_n(\mathbf{k})\, d^2k \in \mathbb{Z},
 \end{equation}
 
-the Chern number of the occupied bands. This is the same statement as session 3's: the Hall
-conductance is not just quantized, it is a topological invariant, insensitive to any smooth
-deformation of the Hamiltonian that does not close the bulk gap. What is new today is not this
-derivation; it is the specific band structure we are going to plug into it, a magnetic field's
-Landau levels, and everything that follows once we ask what the many-body ground state of a
-\emph{partially filled} Landau level looks like.
+which is the Chern number of the occupied bands. This is the same statement as in session 3. The
+Hall conductance is not only quantized, it is also a topological invariant, so it does not change
+under any smooth deformation of the Hamiltonian that does not close the bulk gap. What is new in
+this session is not this derivation. It is the specific band structure that we will use in it,
+which is the set of Landau levels of a magnetic field, and everything that follows when we ask how
+the many-body ground state of a \emph{partially filled} Landau level looks.
 
 \section{Landau levels as Chern-number-one flat bands}
 
 A two-dimensional electron gas in a perpendicular magnetic field develops a set of completely flat
-bands, the Landau levels, indexed $n=0,1,2,\dots$. ``Flat'' here means dispersionless: the energy
-does not depend on momentum at all (we will derive exactly why in Section 4.9). Despite carrying
-no dispersion, each Landau level carries a finite, and in fact minimal nonzero, Chern number:
-$C=1$. If the chemical potential sits between the $N$-th and $(N+1)$-th Landau level, the total
-Chern number of the occupied bands is simply the sum of $N$ individual contributions of $1$,
+bands, the Landau levels, with index $n=0,1,2,\dots$. In this context ``flat'' means without
+dispersion, so the energy does not depend on momentum at all, and we will derive the reason for
+this in Section 4.9. Even if they have no dispersion, each Landau level has a finite Chern number,
+which is also the smallest nonzero value, $C=1$. If the chemical potential is between the $N$-th
+and the $(N+1)$-th Landau level, the total Chern number of the occupied bands is the sum of $N$
+contributions equal to $1$,
 
 \begin{equation}
-C_{\text{tot}} = \sum_{n=1}^{N} C_n = N \quad\Longrightarrow\quad \sigma_{xy} = N\,\frac{e^2}{h},
+C_{\text{tot}} = \sum_{n=0}^{N-1} C_n = N \quad\Longrightarrow\quad \sigma_{xy} = N\,\frac{e^2}{h},
 \end{equation}
 
-an integer directly counting the number of filled Landau levels. This is the integer quantum Hall
-effect: a state built entirely from flat, dispersionless bands, whose Hall conductance is
-nonetheless an exact, sharply quantized integer multiple of $e^2/h$.
+which is an integer that counts the number of filled Landau levels. This is the integer quantum
+Hall effect. It is a state built only from flat bands without dispersion, and still its Hall
+conductance is an exact integer multiple of $e^2/h$, with a sharp quantization.
 
-\section{Why an insulating bulk still conducts: edge states}
+\section{Edge states and why an insulating bulk still conducts}
 
-Here is the obvious puzzle. If the chemical potential sits in a gap between two Landau levels, the
-bulk of the sample is, by definition, an insulator: no partially filled band, no bulk states at
-the Fermi energy. So how can such a system carry a finite, quantized current at all?
+There is an obvious puzzle. If the chemical potential is in a gap between two Landau levels, the
+bulk of the sample is by definition an insulator, since there is no partially filled band and
+there are no bulk states at the Fermi energy. So how can such a system carry a finite, quantized
+current?
 
-The answer, exactly as in session 3's general bulk-boundary argument, is that a nonzero Chern
-number cannot simply end: at any interface where the Chern number changes (here, the boundary
-between a Chern-$N$ sample and the vacuum, which has $C=0$), there must be $N$ protected, gapless,
-chiral edge modes. A chiral mode propagates in only one direction; the number of edge modes at an
-interface equals the difference in Chern number across it. Every real sample is finite, so it
-always has an edge, and the edge states are always there, whether or not we are thinking about
-them. Applying a voltage between the top and bottom edges of the sample simply creates an
-imbalance between right-moving and left-moving edge electrons, and that imbalance is exactly the
-quantized Hall current.
+The answer is the same as in the general bulk-boundary argument of session 3. A nonzero Chern
+number cannot end without consequences. At any interface where the Chern number changes, which here
+is the boundary between a sample with Chern number $N$ and the vacuum, which has $C=0$, there must
+be $N$ protected, gapless and chiral edge modes. A chiral mode propagates in only one direction,
+and the number of edge modes at an interface is equal to the difference in Chern number across it.
+Every real sample is finite, so it always has an edge, and the edge states are always there, even
+when we do not think about them. When we apply a voltage between the top edge and the bottom edge
+of the sample, we create an imbalance between the edge electrons that move to the right and the
+ones that move to the left, and this imbalance is the quantized Hall current.
 
-The band structure of a ribbon (a sample infinite in $y$, finite in $x$) makes the picture
-completely explicit: alongside the flat, dispersionless bulk Landau levels, one finds a set of
-dispersive states localized at the left edge, all propagating in one direction, and a mirror set
-localized at the right edge, propagating in the opposite direction. Because a given propagation
-direction is tied to a \emph{location} (left edge or right edge), an impurity sitting on the left edge
-simply cannot scatter a left-moving electron into a right-moving one: the right edge is macroscopically
-far away. There is no available final state, so there is no backscattering, and the edge transport
-is dissipationless. Figure~\ref{fig:s04:ribbon} puts the ribbon spectrum and its real-space
-counterpart side by side, and shows the chiral modes crossing the chemical potential.
+The band structure of a ribbon, which is a sample that is infinite in $y$ and finite in $x$, shows
+this picture in a completely explicit way. Next to the flat bulk Landau levels without dispersion,
+we find a set of dispersive states localized at the left edge, which all propagate in one
+direction, and a mirror set localized at the right edge, which propagate in the opposite direction.
+Each propagation direction is tied to a \emph{location}, the left edge or the right edge, so an
+impurity on the left edge cannot scatter a left-moving electron into a right-moving one, because
+the right edge is at a macroscopic distance. There is no available final state, so there is no
+backscattering, and the edge transport has no dissipation. Figure~\ref{fig:s04:ribbon} shows the
+ribbon spectrum next to its real-space picture, together with the chiral modes that cross the
+chemical potential.
 
 \input{figures/s04f01_ribbon}
 
 \begin{notebookbox}{\texttt{session4.ipynb}, ``Localization of the edge states in the quantum Hall effect in a ribbon'' (Challenge), and ``Localization of the edge states in the quantum Hall effect in an island'' (Challenge)}
 Build a finite ribbon and a finite island in a magnetic field and look directly at where the
-edge-state wavefunctions live in real space, confirming the left/right (or perimeter) separation
-that the no-backscattering argument above depends on.
+edge-state wavefunctions are in real space. This confirms the separation between the left and the
+right edge, or along the perimeter of the island, which is the basis of the argument above for the
+absence of backscattering.
 \end{notebookbox}
 
-\section{The experimental signature: quantized Hall plateaus}
+\section{Quantized Hall plateaus in experiment}
 
-Sweeping the magnetic field on a real 2DEG shows this transition directly. At low field, before
-the quantum regime sets in, the Hall resistance grows linearly with $B$, exactly the classical
-Hall effect from ordinary electromagnetism. Once the field reaches the tesla range (the precise
-scale depends on the material, tracking the Landau-level spacing derived below), a staircase of
-sharp plateaus appears in the Hall resistance instead. As the field increases further, the
-cyclotron energy $\hbar\omega_c$ grows, so fewer and fewer Landau levels remain below a fixed
-chemical potential; each time the chemical potential sweeps past a Landau level, the number of
-filled levels $N$ in (4.2) drops by one, and the Hall resistance jumps to the next quantized
-plateau.
+When we sweep the magnetic field on a real 2DEG, we see this transition directly. At low field,
+before the quantum regime starts, the Hall resistance grows linearly with $B$, which is the
+classical Hall effect of ordinary electromagnetism. When the field reaches the tesla range, a
+staircase of sharp plateaus appears in the Hall resistance instead. The precise field scale
+depends on the material and follows the spacing of the Landau levels that we derive below. When
+the field increases further, the cyclotron energy $\hbar\omega_c$ grows, so fewer Landau levels
+stay below a fixed chemical potential. Each time the chemical potential goes past a Landau level,
+the number of filled levels $N$ in (4.2) decreases by one, and the Hall resistance jumps to the
+next quantized plateau.
 
-\section{Coupling electrons to a magnetic field: minimal coupling and the Peierls substitution}
+\section{Coupling electrons to a magnetic field with minimal coupling and the Peierls substitution}
 
-To go beyond this phenomenology and actually derive the Landau level spectrum, we need to know how
-to put a magnetic field into a Hamiltonian at all. Classically, a magnetic field $\mathbf{B} =
-\nabla\times\mathbf{A}$ enters the equations of motion through the canonical momentum,
+To go beyond this phenomenology and derive the spectrum of the Landau levels, we first need to
+know how to include a magnetic field in a Hamiltonian. In classical physics, a magnetic field
+$\mathbf{B} = \nabla\times\mathbf{A}$ enters the equations of motion through the canonical
+momentum,
 
 \begin{equation}
 \boldsymbol{\pi} = \mathbf{p} - e\mathbf{A},
 \end{equation}
 
-replacing the ordinary momentum $\mathbf{p}$ everywhere it appears; computing the resulting
-equations of motion reproduces the familiar Lorentz force law. Throughout this session we set the
-electron charge magnitude and the speed of light to one (as the slides implicitly do), keeping only
-$\hbar$ explicit where the Landau level spacing needs it. The same replacement (4.3) works
-unchanged in quantum mechanics, with $\mathbf{p}\to-i\hbar\nabla$: minimal coupling turns the free
-Hamiltonian $p^2/2m$ into $\pi^2/2m$, and similarly for the Dirac Hamiltonian below.
+which replaces the ordinary momentum $\mathbf{p}$ everywhere it appears, and when we compute the
+equations of motion that follow from it we recover the Lorentz force law. In this session we set
+the magnitude of the electron charge and the speed of light to one, as the slides do without
+saying it, and we keep only $\hbar$ explicit where the spacing of the Landau levels needs it. The
+same replacement (4.3) works without changes in quantum mechanics, with
+$\mathbf{p}\to-i\hbar\nabla$. Minimal coupling turns the free Hamiltonian $p^2/2m$ into
+$\pi^2/2m$, and in the same way it changes the Dirac Hamiltonian below.
 
-One subtlety is unavoidable: $\mathbf{A}$ is never unique. Any $\mathbf{A}\to\mathbf{A}+\nabla\chi$
-for a scalar function $\chi$ gives the same physical field $\mathbf{B}$, so we always have to pick
-a gauge. There are two gauges we will actually need, the Landau gauge and the symmetric gauge, and
-we will meet both in Section 4.8. A related, and slightly counterintuitive, point: applying a
-uniform out-of-plane field does not itself break the in-plane translational symmetry of the
-physical system, but \emph{every} choice of $\mathbf{A}$ realizing that field breaks translational
-symmetry formally, in one direction or in both. Which symmetry survives, and how much of it, is a
-gauge choice, not a physical one.
+There is one subtle point that we cannot avoid, which is that $\mathbf{A}$ is never unique. Any
+change $\mathbf{A}\to\mathbf{A}+\nabla\chi$ with a scalar function $\chi$ gives the same physical
+field $\mathbf{B}$, so we always have to choose a gauge. We will need two gauges, the Landau gauge
+and the symmetric gauge, and we will see both in Section 4.8. A related point is a bit against
+intuition. A uniform out-of-plane field does not break the in-plane translational symmetry of the
+physical system, but \emph{every} choice of $\mathbf{A}$ for this field breaks translational
+symmetry in a formal way, in one direction or in both. Which symmetry survives, and how much of it,
+is a choice of gauge and not a physical choice.
 
-The minimal-coupling replacement (4.3) is the natural route for continuum models: Schrödinger or
-Dirac electrons, where we directly write down and solve a differential equation. For a
-tight-binding model, written in real-space orbitals, the more natural route puts the field's
-dependence into the wavefunctions rather than the Hamiltonian, via a local gauge transformation.
-Concretely, the hopping amplitude $t_{ij}$ is, by definition, an overlap between the orbital
-wavefunctions at sites $i$ and $j$; folding the vector potential into those wavefunctions
-renormalizes every hopping by a complex phase equal to the line integral of $\mathbf{A}$ between
-the two sites,
+The minimal-coupling replacement (4.3) is the natural method for continuum models, which are
+Schrödinger or Dirac electrons, where we write and solve a differential equation directly. For a
+tight-binding model, which is written in real-space orbitals, the more natural method puts the
+dependence on the field into the wavefunctions and not into the Hamiltonian, with a local gauge
+transformation. In concrete terms, the hopping amplitude $t_{ij}$ is by definition an overlap
+between the orbital wavefunctions at sites $i$ and $j$. When we include the vector potential in
+these wavefunctions, every hopping gets multiplied by a complex phase, which is equal to the line
+integral of $\mathbf{A}$ between the two sites,
 
 \begin{equation}
 t_{ij} \;\longrightarrow\; t_{ij}\, \exp\!\left(i\int_{\mathbf{R}_i}^{\mathbf{R}_j} \mathbf{A}\cdot d\boldsymbol{\ell}\right),
 \end{equation}
 
-the \textbf{Peierls substitution}. It is the tight-binding counterpart of minimal coupling, and the two
-give the same physics: at low energies, expanding a Peierls-substituted tight-binding model
-reproduces the continuum minimal-coupling Hamiltonian directly.
+and this is what is called the \textbf{Peierls substitution}. It is the tight-binding version of
+minimal coupling, and the two give the same physics, since at low energies the expansion of a
+tight-binding model with the Peierls substitution gives directly the continuum Hamiltonian with
+minimal coupling.
 
-\section{Choosing a gauge: Landau versus symmetric}
+\section{The Landau gauge and the symmetric gauge}
 
-For a uniform field $\mathbf{B} = B\hat{z}$, two gauges will matter to us.
+For a uniform field $\mathbf{B} = B\hat{z}$, there are two gauges that will be important for us.
 
 \begin{itemize}
-\item The \textbf{Landau gauge}, $\mathbf{A} = (0, Bx, 0)$, puts all the spatial dependence into a single
-  coordinate, $x$. Since $\mathbf{A}$ has no $y$-dependence, the Hamiltonian built from it still
-  commutes with $p_y$ (translations along $y$ remain a good symmetry), but not with $p_x$. This
-  gauge preserves \emph{one} translational symmetry, which is exactly what we need to talk about a band
-  structure at all, and it is the gauge behind every ribbon calculation in this session.
-\item The \textbf{symmetric gauge}, $\mathbf{A} = \tfrac{B}{2}(-y, x, 0)$, breaks both translational
-  symmetries but preserves the system's rotational symmetry instead. It is the natural gauge for
-  writing down many-body wavefunctions with good angular momentum, which is exactly what we need
-  once we get to the fractional quantum Hall state in Section 4.13 onward.
+\item The \textbf{Landau gauge}, $\mathbf{A} = (0, Bx, 0)$, puts all the spatial dependence into
+  one coordinate, $x$. Since $\mathbf{A}$ does not depend on $y$, the Hamiltonian built from it
+  still commutes with $p_y$, so translations along $y$ are still a good symmetry, but it does not
+  commute with $p_x$. This gauge keeps \emph{one} translational symmetry, which is what we need to
+  have a band structure at all, and it is the gauge that we use in every ribbon calculation in this
+  session.
+\item The \textbf{symmetric gauge}, $\mathbf{A} = \tfrac{B}{2}(-y, x, 0)$, breaks both
+  translational symmetries but keeps the rotational symmetry of the system instead. It is the
+  natural gauge to write many-body wavefunctions with a good angular momentum, which is what we
+  need when we arrive at the fractional quantum Hall state, from Section 4.13 on.
 \end{itemize}
 
-Figure~\ref{fig:s04:gauge} makes the difference concrete by writing both gauges as Peierls phases
-(4.4) on a square lattice: the individual bond phases look nothing alike, but the sum around any
-plaquette --- the only gauge-invariant combination, and the only thing the electrons respond to
---- is the same flux in both.
+Figure~\ref{fig:s04:gauge} shows the difference in a concrete way, by writing both gauges as
+Peierls phases (4.4) on a square lattice. The phases of the single bonds are completely different
+in the two gauges, but the sum around any plaquette is the same flux in both. This sum is the only
+gauge-invariant combination, and it is the only thing that the electrons respond to.
 
 \input{figures/s04f02_gauge}
 
 \section{Landau levels of Schrödinger electrons}
 
-Let us now actually solve for the spectrum, starting with the simplest possible case: free
-electrons, no lattice, no potential beyond the field itself, dispersion $p^2/2m$ before the field
-is switched on. With minimal coupling and the Landau gauge $\mathbf{A}=(0,Bx,0)$,
+Let us now solve for the spectrum, and let us start with the simplest case. These are free
+electrons with no lattice and no potential apart from the field itself, and with dispersion
+$p^2/2m$ before we switch on the field. With minimal coupling and the Landau gauge
+$\mathbf{A}=(0,Bx,0)$ we have
 
 \begin{equation}
 H = \frac{\pi_x^2+\pi_y^2}{2m} = \frac{p_x^2}{2m} + \frac{(p_y-Bx)^2}{2m}.
 \end{equation}
 
-We take the carrier charge to be $+e$ in (4.3) and set $e=\hbar=1$ throughout. This is a
-bookkeeping choice, but not a free one: it fixes $[\pi_x,\pi_y]=+i\hbar^2/\ell_B^2$, which is the
-convention the ladder operators of Section 4.10 and the holomorphic wavefunctions of Section 4.13
-are built on. For an electron, of charge $-e$, every cyclotron orbit and every edge current below
-circulates the other way, and nothing else changes.
+We take the charge of the carriers to be $+e$ in (4.3) and we set $e=1$ in all this session, while we keep $\hbar$ explicit.
+This is a choice of convention, but it has consequences, since it fixes
+$[\pi_x,\pi_y]=+i\hbar^2/\ell_B^2$. The ladder operators of Section 4.10 and the holomorphic
+wavefunctions of Section 4.13 are built on this convention. For an electron, which has charge
+$-e$, every cyclotron orbit and every edge current below goes around in the other direction, and
+nothing else changes.
 
-Because $\mathbf{A}$ has no $y$-dependence, $[H,p_y]=0$, so we can look for eigenstates of the form
-$\psi(x,y) = e^{ik_y y}\phi(x)$. Replacing $p_y\to\hbar k_y$ turns (4.5) into a purely
-one-dimensional problem in $x$,
+Since $\mathbf{A}$ does not depend on $y$, we have $[H,p_y]=0$, so we can look for eigenstates of
+the form $\psi(x,y) = e^{ik_y y}\phi(x)$. With the replacement $p_y\to\hbar k_y$, the Hamiltonian
+(4.5) becomes a one-dimensional problem in $x$,
 
 \begin{equation*}
 H\phi(x) = \left[\frac{p_x^2}{2m} + \frac{B^2}{2m}\Big(x-\frac{\hbar k_y}{B}\Big)^2\right]\phi(x),
 \end{equation*}
 
-which is exactly the Hamiltonian of a quantum harmonic oscillator, centered at $x_0 = \hbar
-k_y/B$ (a shift absorbed by a change of variable, exactly as the lecture describes) with frequency
-$\omega_c = B/m$, the cyclotron frequency. Solving it with the same ladder-operator machinery as
-the ordinary harmonic oscillator gives
+which is exactly the Hamiltonian of a quantum harmonic oscillator centered at $x_0 = \hbar
+k_y/B$, with frequency $\omega_c = B/m$, the cyclotron frequency. The shift of the center is
+removed with a change of variable, as it is described in the lecture. When we solve it with the
+same ladder operators as the ordinary harmonic oscillator we obtain
 
 \begin{equation}
 E_n = \hbar\omega_c\left(n+\frac{1}{2}\right), \qquad n=0,1,2,\dots,
 \end{equation}
 
-completely independent of $k_y$: every value of $k_y$ (equivalently, every choice of guiding center
-$x_0$) gives the same energy, which is exactly why the Landau levels are flat bands, and why each
-one carries a macroscopic degeneracy proportional to the sample area. Figure~\ref{fig:s04:guidingcenter}
-draws that mechanism directly: the same well parked in different places, and the degeneracy
-counted as one orbital per flux quantum through the sample. Plugging in real physical
-constants for a GaAs-scale field gives the millielectronvolt scale quoted in Section 4.1.
+which does not depend on $k_y$ at all. Every value of $k_y$, or in other words every choice of the
+guiding center $x_0$, gives the same energy. This is the reason why the Landau levels are flat
+bands, and why each of them has a macroscopic degeneracy that is proportional to the area of the
+sample. Figure~\ref{fig:s04:guidingcenter} shows this mechanism directly, with the same well placed
+at different positions, and with the degeneracy counted as one orbital for each flux quantum
+through the sample. When we put in the real physical constants for a field typical of GaAs, we
+obtain the millielectronvolt scale that we gave in Section 4.1.
 
 \input{figures/s04f03_guidingcenter}
 
 \section{Landau levels of Dirac electrons}
 
-Now repeat the same exercise for a Dirac Hamiltonian, $H_0 = v_F(p_x\sigma_x+p_y\sigma_y)$, the
-low-energy effective description of graphene near the $K$ point. With the same minimal coupling
-and Landau gauge, $\pi_x=p_x$, $\pi_y=p_y-Bx$, the Hamiltonian is now an \emph{off-diagonal} $2\times2$
-matrix,
+Now we repeat the same calculation for a Dirac Hamiltonian, $H_0 = v_F(p_x\sigma_x+p_y\sigma_y)$,
+which is the low-energy effective description of graphene near the $K$ point. With the same
+minimal coupling and the same Landau gauge, $\pi_x=p_x$, $\pi_y=p_y-Bx$, the Hamiltonian is now an
+\emph{off-diagonal} $2\times2$ matrix,
 
 \begin{equation*}
 H = v_F\begin{pmatrix}0 & \pi_x-i\pi_y\\ \pi_x+i\pi_y & 0\end{pmatrix}.
 \end{equation*}
 
-$H$ itself is not diagonal and cannot be solved by inspection, but $H^2$ is. Introduce the
-magnetic length $\ell_B=\sqrt{\hbar/B}$ and ladder operators $a = \frac{\ell_B}{\sqrt{2}\hbar}(\pi_x+i\pi_y)$,
-$a^\dagger=\frac{\ell_B}{\sqrt{2}\hbar}(\pi_x-i\pi_y)$; since $[\pi_x,\pi_y]=i\hbar^2/\ell_B^2$, these
-satisfy the ordinary bosonic commutation relation $[a,a^\dagger]=1$. In terms of $a,a^\dagger$,
+The matrix $H$ is not diagonal and we cannot solve it by inspection, but its square is. We
+introduce the magnetic length $\ell_B=\sqrt{\hbar/B}$ and the ladder operators $a =
+\frac{\ell_B}{\sqrt{2}\hbar}(\pi_x+i\pi_y)$ and
+$a^\dagger=\frac{\ell_B}{\sqrt{2}\hbar}(\pi_x-i\pi_y)$. Since $[\pi_x,\pi_y]=i\hbar^2/\ell_B^2$,
+these operators satisfy the ordinary bosonic commutation relation $[a,a^\dagger]=1$. In terms of
+$a,a^\dagger$ we have
 
 \begin{equation*}
 H = \frac{\sqrt{2}\hbar v_F}{\ell_B}\begin{pmatrix}0 & a^\dagger\\ a & 0\end{pmatrix}
@@ -275,87 +293,88 @@ H^2 = \frac{2\hbar^2v_F^2}{\ell_B^2}\begin{pmatrix}a^\dagger a & 0\\ 0 & aa^\dag
 = \frac{2\hbar^2v_F^2}{\ell_B^2}\begin{pmatrix}N & 0\\ 0 & N+1\end{pmatrix},
 \end{equation*}
 
-with $N=a^\dagger a$ the harmonic-oscillator number operator: exactly the ``$p^2+B^2x^2+\text{const}$,
-which looks like a harmonic oscillator'' statement from the transcript. Since $H^2$ is diagonal and
-harmonic-oscillator-like, its eigenvalues are simply $2\hbar^2v_F^2 n/\ell_B^2$ for $n=0,1,2,\dots$,
-and the energy itself is the square root,
+where $N=a^\dagger a$ is the number operator of the harmonic oscillator. This is the statement in
+the transcript that $H^2$ has the form ``$p^2+B^2x^2+\text{const}$, which looks like a harmonic
+oscillator''. Since $H^2$ is diagonal and has the form of a harmonic oscillator, its eigenvalues
+are $2\hbar^2v_F^2 n/\ell_B^2$ for $n=0,1,2,\dots$, and the energy itself is the square root,
 
 \begin{equation}
 E_n = \text{sgn}(n)\, v_F\sqrt{2\hbar B|n|}, \qquad n = 0,\pm1,\pm2,\dots,
 \end{equation}
 
-with a genuine, exactly zero-energy mode at $n=0$ (the lower spinor component vanishes identically
-there, so there is no partner state to pair it with). This is the origin of graphene's $\sqrt{B}$
-scaling: because the spectrum is the \emph{square root} of a harmonic-oscillator spectrum rather than
-the spectrum itself, both the field-dependence and the level spacing change character, going from
-linear, equally-spaced levels for Schrödinger electrons to $\sqrt{n}$-spaced levels growing as
-$\sqrt{B}$ for Dirac electrons, which is exactly why graphene's Landau levels sit roughly two
-orders of magnitude higher in energy than a GaAs 2DEG's, at fixed field.
-Figure~\ref{fig:s04:ladders} puts the two ladders side by side, including the zero mode that has
-no counterpart at all in the Schrödinger case.
+with a real mode at exactly zero energy for $n=0$. For this mode the lower spinor component
+vanishes identically, so there is no partner state to pair it with. This is the origin of the
+$\sqrt{B}$ scaling in graphene. The spectrum is the \emph{square root} of a harmonic-oscillator
+spectrum and not the spectrum itself, so both the dependence on the field and the level spacing
+change their behavior. For Schrödinger electrons the levels are equally spaced and grow linearly,
+while for Dirac electrons the levels are spaced as $\sqrt{n}$ and grow as $\sqrt{B}$, and this is
+the reason why, at the same field, the Landau levels of graphene are roughly two orders of
+magnitude higher in energy than the ones of a GaAs 2DEG. Figure~\ref{fig:s04:ladders} shows the two
+ladders next to each other, including the zero mode, which has no counterpart at all in the
+Schrödinger case.
 
 \input{figures/s04f04_ladders}
 
 \begin{notebookbox}{\texttt{session4.ipynb}, ``The dispersion of the square lattice'' (Reminder), ``Bands in the conventional quantum Hall state'' (Reminder), ``Landau levels of conventional electrons'' (Core), ``Magnetic field dependence of Landau levels'' (Core), and ``Imaging the magnetic field dependence in the Landau levels'' (Core), together with ``The dispersion of the honeycomb lattice'' (Reminder), ``Bands in the Dirac quantum Hall state'' (Reminder), ``Landau levels of the Dirac equation'' (Core), ``Magnetic field dependence of Dirac Landau levels'' (Core), and ``Imaging the magnetic field dependence in the Dirac Landau levels'' (Core)}
-Build a square-lattice ribbon (parabolic band bottom) and a honeycomb-lattice armchair ribbon
-(Dirac cone) with the Peierls substitution (4.4) switched on, and confirm both spectra directly:
-equally-spaced flat Landau levels growing linearly in $B$ for the square lattice, reproducing
-(4.6), against unequally-spaced levels growing as $\sqrt{B}$ for the honeycomb lattice,
-reproducing (4.7). The ``imaging'' sections let you track individual level energies as an explicit
-function of field strength, which is the most direct numerical check of the linear-versus-square-root
-scaling derived above.
+Build a ribbon of the square lattice, which has a parabolic band bottom, and an armchair ribbon of
+the honeycomb lattice, which has a Dirac cone, with the Peierls substitution (4.4) switched on, and
+check both spectra directly. For the square lattice you should find equally spaced flat Landau
+levels that grow linearly in $B$, as in (4.6), and for the honeycomb lattice levels with unequal
+spacing that grow as $\sqrt{B}$, as in (4.7). The ``imaging'' sections let you follow the energy
+of each level as a function of the field strength, which is the most direct numerical check of the
+linear and square-root scaling that we derived above.
 \end{notebookbox}
 
-\section{Numerical confirmation: Landau levels and edge states on the lattice}
+\section{Numerical check of the Landau levels and edge states on the lattice}
 
-It is worth being explicit about how the continuum results of Sections 4.9 and 4.10 connect to
-tight-binding lattices, since this is where the edge states of Section 4.5 first become visible
-alongside the bulk Landau levels in a single calculation. Take a finite-width ribbon of a square
-lattice (whose band bottom is parabolic, hence a stand-in for the Schrödinger 2DEG), add a uniform
-orbital field through the Peierls substitution (4.4), and set the chemical potential near the
-bottom of the band, so the lattice model is effectively describing a dilute, nearly-free electron
-gas. The resulting band structure shows exactly what the continuum calculation predicted: a set of
-flat bulk bands (the Landau levels) sitting alongside dispersive edge bands, one branch localized
-at each edge of the ribbon and propagating in opposite directions, precisely the chiral pair
-described in Section 4.5. Repeating the same construction on a honeycomb-lattice armchair ribbon,
-whose low-energy physics is a genuine Dirac equation at the $K$ and $K'$ points, reproduces the
-$\sqrt{B}$ Landau levels of Section 4.10 together with their own chiral edge states. Both ribbon
-band structures (width-30 examples in the slides) are genuinely slide-only figures in the sense
-that the transcript only describes them qualitatively; the plots themselves carry the visual
-evidence, and building the equivalent ribbons yourself is exactly what the notebook callout above
-asks you to do.
+Let us say explicitly how the continuum results of Sections 4.9 and 4.10 are connected to
+tight-binding lattices, since this is where the edge states of Section 4.5 first appear together
+with the bulk Landau levels in a single calculation. We take a ribbon of a square lattice with a
+finite width. The band bottom of this lattice is parabolic, so it plays the role of the
+Schrödinger 2DEG. We add a uniform orbital field with the Peierls substitution (4.4), and we put
+the chemical potential near the bottom of the band, so that the lattice model effectively describes
+a dilute electron gas that is almost free. The band structure that we obtain shows what the
+continuum calculation predicted. There is a set of flat bulk bands, the Landau levels, together with
+dispersive edge bands, with one branch localized at each edge of the ribbon and propagating in
+opposite directions, which is the chiral pair described in Section 4.5. When we repeat the same
+construction on an armchair ribbon of the honeycomb lattice, where the low-energy physics is a real
+Dirac equation at the $K$ and $K'$ points, we obtain the $\sqrt{B}$ Landau levels of Section 4.10
+together with their own chiral edge states. The band structures of both ribbons, shown for a width
+of 30 in the slides, are figures that exist only in the slides, in the sense that the transcript
+describes them only in a qualitative way. The plots are the visual evidence, and the notebook box above asks you
+to build the same ribbons yourself.
 
 \section{Ladder operators and the many-body Landau Hamiltonian}
 
-Sections 4.9 and 4.10 both found harmonic-oscillator structure by working in a specific gauge. We
-can make that structure manifest in a gauge-independent way by defining ladder operators directly
-from the canonical momentum,
+In Sections 4.9 and 4.10 we found the structure of a harmonic oscillator by working in a specific
+gauge. We can show this structure in a way that does not depend on the gauge, if we define the
+ladder operators directly from the canonical momentum,
 
 \begin{equation*}
 a = \frac{\ell_B}{\sqrt{2}\hbar}(\pi_x + i\pi_y), \qquad a^\dagger = \frac{\ell_B}{\sqrt{2}\hbar}(\pi_x-i\pi_y),
 \end{equation*}
 
-which, using only $[\pi_x,\pi_y]=i\hbar^2/\ell_B^2$ (a statement purely about the field, not about
-any particular gauge), satisfy the canonical bosonic commutation relation $[a,a^\dagger]=1$. In
-terms of these operators the \emph{full} quantum Hall Hamiltonian for a Schrödinger electron becomes
+which satisfy the canonical bosonic commutation relation $[a,a^\dagger]=1$. For this we only use
+$[\pi_x,\pi_y]=i\hbar^2/\ell_B^2$, which depends on the field and not on the gauge. In terms of these operators the \emph{full} quantum Hall Hamiltonian for a
+Schrödinger electron becomes
 
 \begin{equation}
 H = \hbar\omega_c\left(a^\dagger a + \frac{1}{2}\right),
 \end{equation}
 
-manifestly a harmonic oscillator, with eigenvalues reproducing (4.6) directly and with no reference
-to a gauge at all. This is the cleanest way to see that ``Landau levels behave like a harmonic
-oscillator'' is not an artifact of the Landau gauge; it is a structural property of any electron in
-a uniform field.
+which is clearly a harmonic oscillator, with eigenvalues that give (4.6) directly, without any
+reference to a gauge. This is the clearest way to see that the statement ``Landau levels behave
+like a harmonic oscillator'' is not an artifact of the Landau gauge. It is a structural property
+of any electron in a uniform field.
 
 \section{The symmetric gauge and the lowest-Landau-level wavefunctions}
 
-To go from single-particle Landau levels to a genuinely many-body quantum Hall wavefunction, we
-switch to the symmetric gauge, $\mathbf{A}=\tfrac{B}{2}(-y,x,0)$, and to the complex coordinate
-$z=x+iy$. Writing $\partial_z = \tfrac12(\partial_x-i\partial_y)$ and $\partial_{\bar z} =
-\tfrac12(\partial_x+i\partial_y)$, the ladder operator of Section 4.12 becomes, in this gauge,
-proportional to $\partial_{\bar z} + z/4\ell_B^2$. The lowest-Landau-level (LLL) condition, $a\psi=0$,
-is therefore the first-order differential equation
+To go from single-particle Landau levels to a real many-body quantum Hall wavefunction, we change
+to the symmetric gauge, $\mathbf{A}=\tfrac{B}{2}(-y,x,0)$, and to the complex coordinate $z=x+iy$.
+We write $\partial_z = \tfrac12(\partial_x-i\partial_y)$ and $\partial_{\bar z} =
+\tfrac12(\partial_x+i\partial_y)$, and then the ladder operator of Section 4.12 in this gauge is
+proportional to $\partial_{\bar z} + z/4\ell_B^2$. The condition for the lowest Landau level (LLL),
+$a\psi=0$, is therefore the first-order differential equation
 
 \begin{equation}
 \left(\partial_{\bar z} + \frac{z}{4\ell_B^2}\right)\psi(z,\bar z) = 0
@@ -363,259 +382,273 @@ is therefore the first-order differential equation
 \psi(z,\bar z) = f(z)\, e^{-|z|^2/4\ell_B^2},
 \end{equation}
 
-for an \emph{arbitrary holomorphic function} $f(z)$, that is, any function built only from powers of $z$
-and never $\bar z$. This is the precise statement behind ``any power $z^m$ times a Gaussian is a
-zeroth-Landau-level wavefunction'': holomorphicity is not an extra assumption, it is exactly what
-solving the LLL condition in the symmetric gauge forces on us. The single-particle LLL orbitals are
-then
+where $f(z)$ is an \emph{arbitrary holomorphic function}, meaning any function built only from
+powers of $z$ and never from $\bar z$. This is the precise form of the statement ``any power $z^m$
+times a Gaussian is a zeroth-Landau-level wavefunction''. Holomorphicity is not an extra
+assumption, since it follows directly when we solve the LLL condition in the symmetric gauge. The
+single-particle LLL orbitals are then
 
 \begin{equation}
 \psi_m(z) = z^m\, e^{-|z|^2/4\ell_B^2}, \qquad m=0,1,2,\dots,
 \end{equation}
 
-each labeled by an angular momentum $m$ (the eigenvalue of $L_z$ in this gauge), all sharing the
-same Gaussian envelope but with the polynomial prefactor $z^m$ pushing the orbital's probability
-density further from the origin as $m$ grows, since $|\psi_m|^2$ peaks where $\tfrac{d}{d|z|}\big(|z|^{2m}e^{-|z|^2/2\ell_B^2}\big)=0$,
-at radius $r_m = \sqrt{2m}\,\ell_B$.
+and each of them has an angular momentum $m$, which is the eigenvalue of $L_z$ in this gauge. All
+of them have the same Gaussian envelope, but the polynomial prefactor $z^m$ moves the probability
+density of the orbital further from the origin when $m$ grows. The reason is that $|\psi_m|^2$ has
+its maximum where $\tfrac{d}{d|z|}\big(|z|^{2m}e^{-|z|^2/2\ell_B^2}\big)=0$, which is at the radius
+$r_m = \sqrt{2m}\,\ell_B$.
 
 \section{The many-body wavefunction of the filled lowest Landau level}
 
-Now we ask for the many-body ground state in which \emph{every} LLL orbital is occupied, for $N$
-electrons. Two requirements pin this state down completely: it must be built entirely from LLL
-orbitals (4.10), and it must be antisymmetric under exchange of any two electrons, as fermion
-statistics demands. Both requirements are satisfied at once by
+Now we look for the many-body ground state of $N$ electrons in which \emph{every} LLL orbital is
+occupied. Two conditions fix this state completely. It must be built only from LLL orbitals (4.10),
+and it must be antisymmetric under the exchange of any two electrons, as fermion statistics
+requires. Both conditions are satisfied by
 
 \begin{equation}
 \Psi_1(z_1,\dots,z_N) = \prod_{i<j}(z_i-z_j)\; \exp\!\left(-\sum_i \frac{|z_i|^2}{4\ell_B^2}\right).
 \end{equation}
 
-The Vandermonde product $\prod_{i<j}(z_i-z_j)$ does two jobs simultaneously. First, it is
-automatically antisymmetric: exchanging any two coordinates $z_i\leftrightarrow z_j$ flips the sign
-of exactly the one factor $(z_i-z_j)$, giving the overall minus sign Pauli's principle demands.
-Second, it is precisely the Slater determinant of the single-particle orbitals
-$1,z,z^2,\dots,z^{N-1}$, since $\det\!\big(z_i^{\,j-1}\big) = \prod_{i<j}(z_j-z_i)$ is the standard
-Vandermonde determinant identity, so (4.11) is nothing but the Slater determinant of all $N$
-lowest LLL orbitals, times their common Gaussian envelope (the individual Gaussians simply combine
-into the single collective exponential shown). This is the exact many-body ground state of $N$
-electrons filling the lowest Landau level completely: the integer quantum Hall state at filling
-$\nu=1$.
+The Vandermonde product $\prod_{i<j}(z_i-z_j)$ does two things at the same time. First, it is
+antisymmetric by construction, since the exchange of two coordinates $z_i\leftrightarrow z_j$
+changes the sign of exactly one factor $(z_i-z_j)$, and this gives the overall minus sign that the
+Pauli principle requires. Second, it is exactly the Slater determinant of the single-particle
+orbitals $1,z,z^2,\dots,z^{N-1}$, because of the standard identity for the Vandermonde determinant,
+$\det\!\big(z_i^{\,j-1}\big) = \prod_{i<j}(z_j-z_i)$. So (4.11) is the Slater determinant of the
+$N$ lowest LLL orbitals, times their common Gaussian envelope, where the Gaussians of the single
+electrons combine into the collective exponential shown above. This is the exact many-body ground
+state of $N$ electrons that fill the lowest Landau level completely, which is the integer quantum
+Hall state at filling $\nu=1$.
 
 \section{Angular momentum, enclosed flux, and the uniform electron gas}
 
-Section 4.13 already told us that larger angular momentum $m$ pushes an orbital's peak further from
-the origin, to radius $r_m=\sqrt{2m}\,\ell_B$; equivalently, that orbital encloses a larger area,
-and therefore a larger amount of magnetic flux. This link between angular momentum and enclosed
-flux is what we will use in Section 4.17 to track how much charge a quasiparticle carries. For now,
-the important consequence is about (4.11) itself: summing over the full Slater determinant, one
-finds a density profile that is essentially uniform (flat) out to a radius set by the highest
-occupied angular momentum $m=N-1$, and falls sharply to zero beyond it. The filled lowest Landau
-level, in other words, is a genuinely featureless, uniform two-dimensional electron gas, which is
-exactly the property we will now ask a \emph{fractionally} filled Landau level to share.
-Figure~\ref{fig:s04:droplet} shows both halves of that statement: the individual orbitals as
-nested rings of growing radius, and the flat droplet they add up to.
+In Section 4.13 we saw that a larger angular momentum $m$ moves the maximum of an orbital further
+from the origin, to the radius $r_m=\sqrt{2m}\,\ell_B$. In other words, this orbital encloses a
+larger area, and so a larger magnetic flux. We will use this link between angular momentum and
+enclosed flux in Section 4.17 to find how much charge a quasiparticle has. For now, the important
+consequence is about (4.11) itself. When we sum over the full Slater determinant, we find a density
+profile that is essentially uniform, or flat, up to a radius set by the highest occupied angular
+momentum $m=N-1$, and that drops sharply to zero beyond this radius. In other words, the filled
+lowest Landau level is a uniform two-dimensional electron gas without any structure, and this is the
+property that we will now ask also from a Landau level with \emph{fractional} filling.
+Figure~\ref{fig:s04:droplet} shows both parts of this statement, with the single orbitals as
+nested rings of growing radius, and the flat droplet that they give when we add them.
 
 \input{figures/s04f05_droplet}
 
 \section{Fractional filling and the Laughlin wavefunction}
 
-Suppose instead we want to occupy only a fraction of the available LLL orbitals, say two out of
-every three, but in a way that keeps the electron gas uniform rather than simply leaving isolated
-orbitals empty (which would create an obviously non-uniform, ``lumpy'' density, since each empty
-orbital sits at its own fixed radius). What we are looking for is a many-body wavefunction that:
-still lives entirely in the LLL, so it is built only from the coordinates $z_i$ and never $\bar
-z_i$; is still antisymmetric, since the particles are still electrons; and, heuristically, keeps the
-electrons as far apart from one another as possible, since that is what minimizing a repulsive
-Coulomb interaction energy would favor.
+Let us now say that we want to occupy only a fraction of the available LLL orbitals, for example
+two out of every three, but in a way that keeps the electron gas uniform. If we only leave some
+orbitals empty, we obtain a density that is clearly not uniform and has lumps, since each empty
+orbital is at its own fixed radius. We look for a many-body wavefunction with three properties.
+First, it still lives only in the LLL, so it is built only from the coordinates $z_i$ and never
+from $\bar z_i$. Second, it is still antisymmetric, since the particles are still electrons.
+Third, in a heuristic sense, it keeps the electrons as far from each other as possible, since this
+is what a repulsive Coulomb interaction favors when we minimize its energy.
 
-The construction that achieves all three requirements at once is remarkably simple: take the
-filled-LLL wavefunction (4.11) and raise the Vandermonde factor to a power,
+The construction that satisfies the three conditions at the same time is very simple. We take the
+wavefunction of the filled LLL (4.11) and we raise the Vandermonde factor to a power,
 
 \begin{equation}
 \Psi_m(z_1,\dots,z_N) = \prod_{i<j}(z_i-z_j)^m\; \exp\!\left(-\sum_i \frac{|z_i|^2}{4\ell_B^2}\right),
 \end{equation}
 
-the \textbf{Laughlin wavefunction}. The exponent $m$ must be an odd integer: an even power would make
-the wavefunction \emph{symmetric} rather than antisymmetric under exchange, which fermions cannot allow.
-Raising the exponent directly increases the ``avoidance'' between electrons (the wavefunction now
-vanishes to $m$-th order, not just linearly, whenever two electrons coincide), which is exactly the
-correlation effect we were after. Working out the resulting electron density gives filling factor
+which is called the \textbf{Laughlin wavefunction}. The exponent $m$ must be an odd integer, since
+an even power would make the wavefunction \emph{symmetric} and not antisymmetric under exchange,
+and this is not allowed for fermions. A larger exponent makes the electrons avoid each other more,
+since the wavefunction now vanishes to $m$-th order, and not only linearly, when two electrons are
+at the same point, and this is the correlation effect that we wanted. When we compute the electron
+density that follows from it, we obtain the filling factor
 
 \begin{equation}
 \nu = \frac{1}{m},
 \end{equation}
 
-which one can see directly by counting: the maximum power of any single coordinate appearing in the
-fully expanded polynomial (4.12) is $m(N-1)$, so the wavefunction uses angular-momentum orbitals up
-to $m(N-1)$, meaning $N$ electrons are spread over $\approx m(N-1)+1 \approx mN$ available LLL
-orbitals, a filling fraction of $N/(mN)=1/m$, matching (4.13). It is worth pausing on how
-remarkable this construction is: starting from nothing but the single-particle LLL orbitals,
-Pauli's exclusion principle, and a heuristic correlation argument, we land on the exact ground
-state of a strongly interacting many-body problem, and it is going to hand us fractional charge in
-the very next section.
+which we can also see directly by counting. The maximum power of any single coordinate in the
+fully expanded polynomial (4.12) is $m(N-1)$, so the wavefunction uses the angular-momentum
+orbitals up to $m(N-1)$. This means that $N$ electrons are spread over $\approx m(N-1)+1 \approx
+mN$ available LLL orbitals, which gives a filling fraction of $N/(mN)=1/m$, in agreement with
+(4.13). So we start only from the single-particle LLL
+orbitals, the Pauli exclusion principle and a heuristic argument about correlations, and we arrive
+at the exact ground state of a strongly interacting many-body problem, which will give us
+fractional charge in the next section.
 
 \section{Quasiholes and quasielectrons}
 
-\emph{From this point through the end of Section 4.18, the material has no counterpart in
-\texttt{session4.ipynb}. The notebook's coverage of this session stops at the integer quantum Hall state,
-its Landau levels, and its edge and Chern-insulator physics (Sections 4.10, 4.11, and 4.19 below);
-the Laughlin wavefunction, quasiholes and quasielectrons, and the Berry-phase argument for
-fractional charge and anyonic statistics are transcript-and-slide material with no numerical
-exercise built around them.}
+\emph{From this point to the end of Section 4.18, the material has no counterpart in
+\texttt{session4.ipynb}. The part of the notebook for this session stops at the integer quantum
+Hall state, its Landau levels, and its edge and Chern-insulator physics, which are Sections 4.10,
+4.11 and 4.19 below. The Laughlin wavefunction, the quasiholes and quasielectrons, and the
+Berry-phase argument for fractional charge and anyonic statistics come from the transcript and the
+slides, and there is no numerical exercise built around them.}
 
-Excitations above the Laughlin ground state (4.12) turn out to have an equally simple construction
-in these coordinates. A \textbf{quasihole} at the origin is obtained by multiplying the wavefunction by
-an extra overall factor of $z_i$ for every electron; a quasihole at an arbitrary location $w$ is
-obtained instead by inserting a factor $(z_i-w)$ for each electron,
+The excitations above the Laughlin ground state (4.12) also have a simple construction in these
+coordinates. A \textbf{quasihole} at the origin is obtained when we multiply the wavefunction by an
+extra overall factor $z_i$ for every electron. A quasihole at an arbitrary position $w$ is obtained
+instead when we insert a factor $(z_i-w)$ for each electron,
 
 \begin{equation}
 \Psi_{\text{qh}}(w) = \prod_i (z_i-w) \; \Psi_m(z_1,\dots,z_N).
 \end{equation}
 
-Multiplying by this extra factor raises the effective power associated with every orbital by one,
-which, by the angular-momentum-versus-radius relation of Section 4.15, pushes charge density
-outward, away from $w$, leaving a depleted region there: a quasihole. Repeating this construction
-$m$ times, at $m$ different locations, removes exactly one full electron's worth of charge overall,
-consistent with each individual quasihole carrying only a fraction $1/m$ of an electron charge (we
-will confirm this fraction directly via the Berry phase in Section 4.18). A \textbf{quasielectron} is, in
-this same language, the inverse operation: instead of raising the power (multiplying by
-$z_i-w$), we lower it, implemented by a derivative with respect to $z_i-w$ rather than a
-multiplication; this pulls charge inward instead of pushing it outward, giving an excitation of
-opposite (negative) fractional charge.
+This extra factor raises by one the effective power of every orbital. With the relation between
+angular momentum and radius of Section 4.15, this moves the charge density outward, away from $w$,
+and leaves a region with less charge there, which is the quasihole. When we repeat this
+construction $m$ times, at $m$ different positions, we remove in total exactly the charge of one
+electron, which is consistent with each quasihole having only a fraction $1/m$ of the electron
+charge. We will confirm this fraction directly with the Berry phase in Section 4.18. In the same
+language, a \textbf{quasielectron} is the inverse operation. Instead of raising the power, which
+we do when we multiply by $z_i-w$, we lower it, and we do this with the derivative $\partial/\partial z_i$
+acting on the polynomial part instead of a multiplication. This moves charge inward instead of outward, and it gives an
+excitation with the opposite, negative, fractional charge.
 
 \section{Berry phase, fractional charge, and anyonic statistics}
 
-We now use the Berry phase, the same object session 3 built the Chern number from, to show
-directly that the quasihole excitation of Section 4.17 really does carry a fraction of an electron
-charge, and that a pair of them obey neither fermionic nor bosonic exchange statistics.
+We now use the Berry phase, which is the same object that we used in session 3 to build the Chern
+number, to show directly two things. First, the quasihole excitation of Section 4.17 has a fraction
+of the electron charge. Second, a pair of them follow neither fermionic nor bosonic exchange
+statistics.
 
-\textbf{Fractional charge.} Take the single-quasihole wavefunction (4.14) and adiabatically move $w$
-around a closed loop, parameterizing $w=|w|e^{i\theta}$ and computing the resulting Berry phase as
-$\theta$ runs from $0$ to $2\pi$. The result comes out as an Aharonov-Bohm phase, proportional to
-the flux enclosed by the loop, but carrying an extra prefactor of $1/m$ relative to what an ordinary
-charge-$e$ particle would pick up around the same loop. Since the Aharonov-Bohm phase for a particle
-of charge $q$ around enclosed flux $\Phi$ is $2\pi q\Phi/\Phi_0$ (with $\Phi_0$ the flux quantum),
-the extra $1/m$ we find is a direct, unambiguous statement about the \emph{charge} of the excitation:
+\textbf{Fractional charge.} We take the wavefunction with one quasihole (4.14) and move $w$
+adiabatically around a closed loop. We write $w=|w|e^{i\theta}$ and compute the Berry phase that
+we obtain when $\theta$ goes from $0$ to $2\pi$. The result is an Aharonov-Bohm phase,
+proportional to the flux enclosed by the loop, but with an extra prefactor $1/m$ with respect to
+the phase that an ordinary particle with charge $e$ would get around the same loop. The
+Aharonov-Bohm phase for a particle with charge $q$ around an enclosed flux $\Phi$ is $2\pi
+q\Phi/\Phi_0$, where $\Phi_0$ is the flux quantum, so the extra factor $1/m$ that we find is a
+direct and clear statement about the \emph{charge} of the excitation,
 
 \begin{equation}
 q_{\text{qh}} = \frac{e}{m}.
 \end{equation}
 
-The electron is no longer the fundamental unit of charge for these excitations; a genuine fraction
-of it is.
+For these excitations the electron is no longer the basic unit of charge, and the unit is a real
+fraction of it.
 
-\textbf{Anyonic statistics.} Now take a wavefunction with \emph{two} quasiholes, one fixed at the origin and
-one at $w$, and move the second one in a loop around the first, again parameterizing
-$w=|w|e^{i\theta}$. The resulting Berry phase splits into two pieces: the same Aharonov-Bohm
-contribution as before (charge times enclosed flux), plus an additional \textbf{statistical phase}
-picked up purely from winding one quasiparticle around the other,
+\textbf{Anyonic statistics.} Now we take a wavefunction with \emph{two} quasiholes, one fixed at
+the origin and one at $w$, and we move the second one in a loop around the first, again with
+$w=|w|e^{i\theta}$. The Berry phase that we obtain has two parts. The first part is the same
+Aharonov-Bohm contribution as before, given by the charge times the enclosed flux. The second part
+is an additional \textbf{statistical phase}, which comes only from the fact that one quasiparticle
+goes around the other,
 
 \begin{equation}
 \theta_{\text{stat}} = \frac{2\pi}{m}.
 \end{equation}
 
-One bookkeeping point matters when comparing this to the familiar cases: taking one quasiparticle
-all the way around another is \emph{two} successive exchanges, so the exchange phase is half of
-(4.16), namely $\pi/m$. For ordinary fermions, exchanging two particles gives a phase of $\pi$; for
-bosons, a phase of $0$. The exchange phase $\pi/m$ is neither, and it interpolates between the two
-familiar cases as $m$ grows (see figure~\ref{fig:s04:quasihole}): these quasiparticles are \textbf{anyons}, excitations whose exchange
-statistics interpolate continuously between the fermionic and bosonic cases, labeled by the same
-integer $m$ that set the filling fraction. We started from a many-body wavefunction built entirely
-out of ordinary electrons, genuine fermions, and out of that wavefunction's own correlations we have
-produced excitations that are neither fermions nor bosons: this is the simplest example of
-fractionalization in a quantum many-body system that we will meet in this course.
+To compare with the familiar cases, note that to move one
+quasiparticle all the way around another is \emph{two} exchanges, one after the other, so the
+exchange phase is half of (4.16), which is $\pi/m$. For ordinary fermions the exchange of two
+particles gives a phase $\pi$, and for bosons it gives a phase $0$. The exchange phase $\pi/m$ is
+neither of the two, and it goes from one familiar case to the other as $m$ grows, as shown in
+figure~\ref{fig:s04:quasihole}. These quasiparticles are what are called \textbf{anyons}, which
+are excitations with exchange statistics that go continuously from the fermionic to the bosonic
+case, and they are labeled by the same integer $m$ that fixed the filling fraction. We started from
+a many-body wavefunction built only from ordinary electrons, which are real fermions, and from the
+correlations of this wavefunction we obtained excitations that are neither fermions nor bosons.
+This is the simplest example of fractionalization in a quantum many-body system that we will meet
+in this course.
 
 \input{figures/s04f06_quasihole}
 
-\section{The quantum Hall effect without Landau levels: the Haldane model, revisited}
+\section{The Haldane model and the quantum Hall effect without Landau levels}
 
-This closing section is a deliberate callback, not new material: session 3 already built the
-Haldane model, as its own worked example of a Chern insulator obtained by gapping a Dirac cone
-without any external field. We revisit it here specifically because it closes the loop this
-session opened: everything above required an actual magnetic field to produce Landau levels, so it
-is worth confirming explicitly that the quantized Hall conductance itself never actually required
-one.
+This last section goes back on purpose to a model that we already know, and it is not new
+material. In session 3 we already built the Haldane model, as an example of a Chern insulator
+obtained by opening a gap in a Dirac cone without any external field. We come back to it here
+because it closes the argument that we started in this session. Everything above needed a real
+magnetic field to give Landau levels, so we want to confirm explicitly that the quantized Hall
+conductance itself never needed one.
 
-As a quick reminder of the construction: start from the honeycomb lattice with first-neighbor
-hopping only (an ungapped Dirac cone at $K$ and $K'$), and add a second-neighbor hopping that is
-purely imaginary, which breaks time-reversal symmetry. In the Bloch Hamiltonian this term appears
-as a valley-dependent mass, with opposite sign at $K$ and $K'$ for an ordinary staggered on-site
-potential, but with the \emph{same} sign at both valleys for the Haldane (imaginary second-neighbor)
-term. Equal-sign masses at both valleys give equal-sign Berry curvature at both valleys too, so the
-two valley contributions add rather than cancel when integrated over the Brillouin zone, leaving a
-net, nonzero Chern number, an insulating bulk gap, and a chiral edge state, all with $B=0$
-throughout.
+Let us recall the construction. We start from the honeycomb lattice with first-neighbor hopping
+only, which has a Dirac cone without a gap at $K$ and $K'$, and we add a second-neighbor hopping
+that is purely imaginary, which breaks time-reversal symmetry. In the Bloch Hamiltonian this term
+appears as a mass at $K$ and $K'$. An ordinary staggered onsite potential also gives a mass at
+both valleys, but the two masses enter with opposite relative sign between the valleys. For the
+staggered potential the Berry curvatures of the two valleys have opposite sign and cancel, which
+gives $C=0$. For the Haldane term, the imaginary second-neighbor hopping, the Berry curvatures of
+the two valleys have the \emph{same} sign, so when we integrate over the Brillouin zone the two
+valley contributions add and do not cancel, which gives $C=\pm1$. The result is a net nonzero
+Chern number, an insulating bulk gap and a chiral edge state, all with $B=0$.
 
-What is genuinely new in today's version of this story is the explicit \textbf{adiabatic connection}
-between the Haldane model and the ordinary field-driven quantum Hall state of this session. Start
-in the Haldane model (imaginary second-neighbor hopping, no field); switch on a real magnetic field
-while keeping the Haldane coupling, and Landau levels develop out of the previously dispersive
-bands; then switch the Haldane coupling back off, leaving the system in the ordinary quantum Hall
-state built from Landau levels alone. At every step of this path the bulk gap stays open and the
-chiral edge state never disappears. Since the two end points can be connected without ever closing
-the gap, the Haldane-model Chern insulator and the Landau-level quantum Hall state are
-\emph{topologically equivalent}: the very same phase of matter, reached by two completely different
-physical routes, one that needs a magnetic field and one that does not.
+What is really new in our version of this story is the explicit \textbf{adiabatic connection}
+between the Haldane model and the ordinary quantum Hall state of this session, which is driven by
+the field. We start in the Haldane model, with imaginary second-neighbor hopping and no field.
+Then we switch on a real magnetic field while we keep the Haldane coupling, and Landau levels
+develop from the bands that were dispersive before. Finally we switch off the Haldane coupling,
+and the system is left in the ordinary quantum Hall state built only from Landau levels. At every
+step of this path the bulk gap stays open and the chiral edge state never disappears. Since we can
+connect the two end points without closing the gap, the Chern insulator of the Haldane model and
+the quantum Hall state of the Landau levels are \emph{topologically equivalent}. They are the same
+phase of matter, reached by two completely different physical routes, one that needs a magnetic
+field and one that does not.
 
 \begin{notebookbox}{\texttt{session4.ipynb}, ``Topological equivalence between the Quantum Hall state and a Chern insulator'' (Challenge), and ``Topological domains in the quantum Hall state'' (Challenge)}
-Build the Haldane model, turn a magnetic field on and off numerically alongside the Haldane
-coupling, and track the bulk gap and Chern number through the adiabatic path described above.
-The ``topological domains'' exercise lets you probe spatial regions where the two couplings
-compete directly, a hands-on version of the equivalence argument just given.
+Build the Haldane model, switch a magnetic field on and off numerically together with the Haldane
+coupling, and follow the bulk gap and the Chern number along the adiabatic path described above.
+The ``topological domains'' exercise lets you study spatial regions where the two couplings
+compete directly, which is a practical version of the equivalence argument that we just gave.
 \end{notebookbox}
 
 \section{Real materials realizing Chern and fractional Chern physics}
 
-\emph{This survey, like Section 4.17-4.18, is transcript-and-slide content with no notebook
-counterpart; there is no numerical exercise in \texttt{session4.ipynb} built around any of the specific
-compounds below.}
+\emph{This survey, like Sections 4.17-4.18, comes from the transcript and the slides and has no
+counterpart in the notebook. There is no numerical exercise in \texttt{session4.ipynb} built around
+any of the specific compounds below.}
 
-The zero-field Chern insulator is not just a theoretical curiosity. Chromium-doped
-$(\text{Bi,Sb})_2\text{Te}_3$, a magnetically doped topological insulator, breaks time-reversal
-symmetry through genuine magnetism and realizes an integer quantized Hall conductance with no
-applied field. Twisted graphene bilayers aligned with a boron nitride substrate realize the same
-physics through a different mechanism, orbital currents rather than magnetic moments. On the
-fractional side, twisted two-dimensional materials can host topological flat bands whose
-mathematical structure mimics an artificial, pseudo-magnetic field tied to elastic lattice
-reconstruction rather than any real field; twisted bilayers of molybdenum ditelluride
-(MoTe$_2$) are a recent, striking example, showing genuine fractional quantum Hall physics at zero
-magnetic field.
+The Chern insulator at zero field is not only a theoretical idea. Chromium-doped
+$(\text{Bi,Sb})_2\text{Te}_3$, which is a magnetically doped topological insulator, breaks
+time-reversal symmetry through real magnetism and realizes an integer quantized Hall conductance
+with no applied field. Twisted graphene bilayers aligned with a boron nitride substrate realize the
+same physics with a different mechanism, which is based on orbital currents and not on magnetic
+moments. On the fractional side, twisted two-dimensional materials can host topological flat bands
+with a mathematical structure similar to the one of an artificial pseudo-magnetic field, which
+comes from the elastic reconstruction of the lattice and not from a real field. Twisted bilayers of
+molybdenum ditelluride (MoTe$_2$) are a recent and striking example, and they show real fractional
+quantum Hall physics at zero magnetic field.
 
 \section{Closing summary}
 
 \begin{itemize}
-\item The Hall conductivity is a topological invariant, the Chern number of the occupied bands,
-  exactly as derived (more fully) in session 3; equation (4.1) is the same result confirmed once
-  more here rather than re-derived from scratch.
+\item The Hall conductivity is a topological invariant, the Chern number of the occupied bands, as
+  we derived in more detail in session 3. Equation (4.1) is the same result, which we confirm here
+  and do not derive again from the beginning.
 \item A magnetic field turns a two-dimensional electron gas into a set of flat Landau levels, each
-  carrying Chern number one, so the Hall conductivity is quantized to $N e^2/h$ for $N$ filled
-  Landau levels, equation (4.2).
-\item An insulating bulk still conducts because a nonzero Chern number forces chiral, backscattering-free
-  edge states at the sample boundary (Section 4.5), directly visible in ribbon band structures.
-\item Landau levels arise from minimal coupling (4.3) or, on a lattice, the Peierls substitution (4.4);
-  Schrödinger electrons give equally spaced levels $E_n=\hbar\omega_c(n+\tfrac12)$, equation (4.6),
-  while Dirac electrons give $E_n\propto\sqrt{nB}$, equation (4.7), explaining graphene's much
-  higher quantum Hall temperature scale.
-\item In the symmetric gauge, lowest-Landau-level wavefunctions are holomorphic, $\psi_m(z)\propto
-  z^m e^{-|z|^2/4\ell_B^2}$, equation (4.10); the filled-LLL many-body state is the Vandermonde
-  determinant times a collective Gaussian, equation (4.11).
-\item Raising the Vandermonde factor to an odd power $m$ gives the Laughlin wavefunction, equation
-  (4.12), with filling factor $\nu=1/m$, equation (4.13); its quasihole excitations, equation
-  (4.14), carry fractional charge $e/m$, equation (4.15), and obey anyonic statistics, picking up
-  $2\pi/m$ on a full braid, equation (4.16), that is an exchange phase $\pi/m$ strictly between the
-  bosonic $0$ and the fermionic $\pi$: the simplest instance of fractionalization we will meet.
-\item The Haldane model shows the quantized Hall conductance never strictly required a magnetic field
-  at all, and is adiabatically, topologically equivalent to the field-driven quantum Hall state, a
-  callback to session 3 rather than new machinery.
+  with Chern number one, so the Hall conductivity is quantized to $N e^2/h$ for $N$ filled Landau
+  levels, equation (4.2).
+\item An insulating bulk still conducts because a nonzero Chern number gives chiral edge states
+  without backscattering at the boundary of the sample (Section 4.5), which we can see directly in
+  the band structures of ribbons.
+\item Landau levels come from minimal coupling (4.3) or, on a lattice, from the Peierls
+  substitution (4.4). Schrödinger electrons give equally spaced levels
+  $E_n=\hbar\omega_c(n+\tfrac12)$, equation (4.6), while Dirac electrons give $E_n\propto\sqrt{nB}$,
+  equation (4.7), and this explains the much higher temperature scale of the quantum Hall effect in
+  graphene.
+\item In the symmetric gauge, the wavefunctions of the lowest Landau level are holomorphic,
+  $\psi_m(z)\propto z^m e^{-|z|^2/4\ell_B^2}$, equation (4.10). The many-body state of the filled
+  LLL is the Vandermonde determinant times a collective Gaussian, equation (4.11).
+\item When we raise the Vandermonde factor to an odd power $m$ we obtain the Laughlin wavefunction,
+  equation (4.12), with filling factor $\nu=1/m$, equation (4.13). Its quasihole excitations,
+  equation (4.14), have fractional charge $e/m$, equation (4.15), and follow anyonic statistics.
+  They get a phase $2\pi/m$ for a full braid, equation (4.16), which is an exchange phase $\pi/m$
+  strictly between the bosonic $0$ and the fermionic $\pi$, and this is the simplest case of
+  fractionalization that we will meet.
+\item The Haldane model shows that the quantized Hall conductance never strictly needed a magnetic
+  field, and that it is adiabatically and topologically equivalent to the quantum Hall state driven
+  by the field. This is a return to session 3 and not new theory.
 \end{itemize}
 
-Today's order was driven entirely by a magnetic field, an external, symmetry-breaking knob we
-simply turned on by hand. Next session we meet a completely different route to order: attractive
-interactions between electrons themselves, driving the system to superconduct without any external
-field at all, and we will see that the very same trivial-versus-chiral topological classification
-built here and in session 3 comes right back to sort superconducting order parameters into
-conventional and topological classes. It is also worth holding on to the flavor of fractionalization
-we just built, since we will meet a second, quite different-looking instance of it very soon: here,
-correlations inside a partially filled topological flat band split the electron's charge and turned
-its exchange statistics anyonic; next time, pairing correlations in a superconductor will split the
-electron into Majorana halves instead. Same underlying idea, a correlated topological state hosting
-excitations that are not the electron itself, reached by two genuinely different mechanisms.
+In this session the order was driven only by a magnetic field, which is an external
+symmetry-breaking parameter that we switched on by hand. In the next session we will see a
+completely different route to order, which is the attractive interaction between the electrons
+themselves. This interaction drives the system to become a superconductor without any external
+field, and we will see that the same classification into trivial and chiral topological states,
+which we built here and in session 3, comes back to sort superconducting order parameters into
+conventional and topological classes. It is also useful to keep in mind the form of
+fractionalization that we just built, since we will soon meet a second example of it, which looks
+quite different. Here, the correlations inside a partially filled topological flat band split the
+charge of the electron and made its exchange statistics anyonic. In the next session, pairing
+correlations in a superconductor will split the electron into two Majorana halves instead. The
+underlying idea is the same, which is a correlated topological state with excitations that are not
+the electron itself, but it is reached by two really different mechanisms.

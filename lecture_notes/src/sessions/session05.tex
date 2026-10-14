@@ -1,401 +1,424 @@
 \chapter{Superconductivity, Nambu Representation and Majorana Physics}
 
-Session 4 closed by holding on to the flavor of fractionalization we had just built there, and by
-pointing forward to a second, quite different-looking instance of it we were about to meet:
-correlations inside a partially filled topological flat band split the electron's charge and turned
-its exchange statistics anyonic; here, we were told, pairing correlations in a superconductor would
-split the electron into Majorana halves instead. Today is where that promissory note gets cashed in.
-Superconductors and fractional quantum Hall states are, as we will restate carefully below, two
-correlated states that both host fractional excitations via opposite mechanisms: one has a
-mean-field description and needs an attractive interaction, the other has none and needs a strong
-repulsive one. Same underlying idea, a correlated state hosting excitations that are not the
-electron itself, reached by two genuinely different routes; today we build the machinery for the
-superconducting route in full.
+At the end of Session 4 we kept in mind the kind of fractionalization that we had built there, and
+we pointed forward to a second example of it, which looks quite different. In a partially filled
+topological flat band, correlations split the charge of the electron and make its exchange
+statistics anyonic. In a superconductor, as we said there, pairing correlations instead split the
+electron into two Majorana halves. In this session we will work out this second case in full. As
+we will state carefully below, superconductors and fractional quantum Hall states are two
+correlated states that both host fractional excitations, but through opposite mechanisms. The first
+one has a mean-field description and needs an attractive interaction, and the second one has no
+mean-field description and needs a strong repulsive interaction. The idea behind both is the same,
+which is a correlated state with excitations that are not the electron itself, but the two routes
+to it are really different. In this session we will build all the tools for the superconducting
+route.
 
-That machinery has one further piece of unfinished business behind it. Back in session 1 we built
-mean-field theory as a general tool and then ran it through three symmetry-broken states in quick
-succession: a charge density wave, a magnet, and, as our third and briefest worked example, a
-superconductor. There, starting from an attractive Hubbard interaction, we let ourselves take an
-expectation value between two annihilation operators instead of one creation and one annihilation
-operator, defined the pairing order $\Delta = \langle c_i c_j\rangle$ (session 1, eq. 1.9), and
-showed that this term picks up a phase $e^{2i\varphi}$ under a gauge transformation while every
-ordinary bilinear term stays invariant: a superconductor spontaneously breaks gauge symmetry, and
-with it, a fixed electron number. That was deliberately a first pass. We said at the time that
-magnetism and superconductivity would each get "a full, much deeper treatment in their own
-dedicated sessions later in the course," and today is superconductivity's turn (magnetism is
-deferred once more, to the next recording, which in this course's arc is session 6).
+These tools also complete a topic that we left open before. In session 1 we built mean-field theory
+as a general tool and then applied it quickly to three symmetry-broken states, a charge density
+wave, a magnet and, as our third and shortest example, a superconductor. There we started from an
+attractive Hubbard interaction and took an expectation value of two annihilation operators instead
+of one creation and one annihilation operator. With this we defined the pairing order $\Delta =
+\langle c_i c_j\rangle$ (session 1, eq. 1.9), and we showed that this term gets a phase
+$e^{2i\varphi}$ under a gauge transformation, while every ordinary bilinear term stays invariant.
+This means that a superconductor spontaneously breaks gauge symmetry, and with it the fixed electron
+number. That first treatment was short on purpose. At that time we said that magnetism and
+superconductivity would each get "a full, much deeper treatment in their own dedicated sessions
+later in the course," and in this session it is the turn of superconductivity. Magnetism is moved
+once more to the next recording, which is session 6 in the plan of this course.
 
-So today we pick that thread back up and build the actual machinery around it. We will need a new
-representation, the Nambu spinor, to even diagonalize a Hamiltonian that mixes creation and
-annihilation operators the way a pairing term does; that representation hands us the
-Bogoliubov-de Gennes Hamiltonian, the central object of the whole session. We will use it to
-classify superconducting order by symmetry (singlet versus triplet, s-, p- and d-wave), to show
-that two superconductors can look spectrally identical and yet carry completely different
-topology, reusing exactly the Chern-number machinery from the topological-band-structure and
-quantum-Hall sessions to tell them apart. And we will follow that topological distinction all the
-way down to its most dramatic consequence: the Kitaev chain, a model we will recognize as nothing
-more than the SSH model from the topological-band-structure session, rewritten in the language of
-Majorana operators, whose topological zero modes turn out to be their own antiparticles. We will
-close by asking what these Majorana modes are good for (topological quantum computing), and by
-handing off to session 6, which returns to do for magnetism exactly what we are about to do for
-superconductivity, the course's one genuinely spoken cliffhanger: the same interacting Hamiltonian
-can mean-field into either a superconductor or a magnet, and magnetism is what got deferred to the
-next recording.
+So in this session we take up this topic again and build the full set of tools around it. First, we
+need a new representation, the Nambu spinor, since without it we cannot even diagonalize a
+Hamiltonian that mixes creation and annihilation operators in the way a pairing term does. This
+representation gives us the Bogoliubov-de Gennes Hamiltonian, which is the central object of the
+whole session. We will use it to classify superconducting order by symmetry, into singlet and
+triplet and into s-, p- and d-wave. Then we will show that two superconductors can have the same
+spectrum and still have a completely different topology, and to distinguish them we will use the
+same Chern-number tools as in the topological-band-structure and quantum-Hall sessions. We will
+follow this topological difference down to its strongest consequence, which is the Kitaev chain. We
+will see that this model is the SSH model from the topological-band-structure session written in
+terms of Majorana operators, and that its topological zero modes are their own antiparticles. At the
+end we will ask what these Majorana modes can be used for, which is topological quantum computing.
+We will also point to session 6, which does for magnetism what we are about to do for
+superconductivity, and this is the one point of the course where the lecture explicitly leaves a
+question open for the next recording. The same interacting Hamiltonian can give, at the mean-field
+level, either a superconductor or a magnet, and magnetism is the topic that we moved to the next
+recording.
 
 \section{Weakly versus strongly correlated matter, revisited}
 
-Let us restate the general setting, because it is worth having sharply in view before we specialize.
-Every interacting Hamiltonian we care about in this course has the same generic shape,
+Before we specialize, let us state again the general setting, since it is useful to have it clearly
+in mind. Every interacting Hamiltonian that we consider in this course has the same general form,
 
 \begin{equation*}
 H = \sum_{ij} t_{ij}\, c_i^\dagger c_j \;+\; \sum_{ijkl} V_{ijkl}\, c_i^\dagger c_j^\dagger c_k c_l,
 \end{equation*}
 
-a free bilinear part plus a quartic interaction (this is exactly session 1's eq. 1.5). When mean-field
-theory can turn the quartic term into a good effective bilinear Hamiltonian, we call the resulting
-state \emph{weakly correlated matter}: this covers magnets, charge density waves, and superconductors, all
-of the states session 1 built. When no such single-particle mean-field Hamiltonian captures the
-physics, we are dealing with \emph{strongly correlated matter}, and we need exact or numerical solutions
-instead; the fractional quantum Hall state from the quantum-Hall session is our standing example of
-that harder case.
+which is a free bilinear part plus a quartic interaction, and it is exactly eq. 1.5 of session 1.
+When mean-field theory can turn the quartic term into a good effective bilinear Hamiltonian, we call
+the resulting state \emph{weakly correlated matter}. This includes magnets, charge density waves and
+superconductors, which are all the states that we built in session 1. When no single-particle
+mean-field Hamiltonian of this kind describes the physics, we have \emph{strongly correlated
+matter}, and we need exact or numerical solutions instead. The fractional quantum Hall state from
+the quantum-Hall session is our main example of this harder case.
 
-It is worth noticing that superconductors and the fractional quantum Hall state actually sit at
-opposite corners of this classification, even though both eventually host "fractional" excitations.
-A superconductor has a mean-field description, arises from an \emph{attractive} interaction, is destroyed
-by a magnetic field, and (as we are about to see) hosts Majorana states. The fractional quantum Hall
-state has no mean-field description, arises from strong \emph{repulsive} interactions, typically requires
-a strong magnetic field, and hosts fractionally charged excitations. Majorana excitations and
-fractional-quantum-Hall excitations are both, loosely speaking, "a fraction of an electron," but they
-are fractions produced by entirely different mechanisms; it is one of the nicer illustrations in this
-course of how very different microscopic physics can converge on a shared qualitative phenomenon,
-emergent fractionalization, without the underlying mechanism being at all the same.
+Note that superconductors and the fractional quantum Hall state are at opposite ends of this
+classification, even though both of them in the end host fractional excitations. A superconductor
+has a mean-field description, comes from an \emph{attractive} interaction, is destroyed by a
+magnetic field and, as we will see soon, hosts Majorana states. The fractional quantum Hall state
+has no mean-field description, comes from strong \emph{repulsive} interactions, usually needs a
+strong magnetic field and hosts excitations with fractional charge. Roughly speaking, both Majorana
+excitations and fractional quantum Hall excitations are a fraction of an electron, but these
+fractions come from completely different mechanisms. This is one of the good examples in this course
+of how very different microscopic physics can lead to the same qualitative phenomenon, which is
+emergent fractionalization, while the mechanism behind it is not the same at all.
 
 \section{Superconductivity as a macroscopic quantum phenomenon}
 
-Before diving into the Hamiltonian, it is worth pausing on why superconductivity gets singled out as
-one of the cleanest windows we have onto quantum mechanics at macroscopic scale. A superconductor is
-built from trillions of atoms, and yet a measurement on the bulk sample can read off, essentially
-exactly, the microscopic constants $\hbar$ and $e$. This works because gauge symmetry breaking gives
-the many-body wave function a single, well-defined phase $\theta(\mathbf{r})$, and single-valuedness
-of that phase around a closed loop is a very strong constraint.
+Before we write the Hamiltonian, let us see why superconductivity is one of the clearest ways that
+we have to observe quantum mechanics at the macroscopic scale. A superconductor is made of trillions
+of atoms, and still a measurement on the bulk sample can give, essentially exactly, the microscopic
+constants $\hbar$ and $e$. This works because gauge symmetry breaking gives the many-body wave
+function a single well-defined phase $\theta(\mathbf{r})$, and the condition that this phase is
+single-valued around a closed loop is a very strong constraint.
 
-Consider a superconducting ring (or, equivalently, a hole in a bulk superconductor) threaded by
-magnetic flux, and take the loop deep enough inside the superconductor that the supercurrent density
-vanishes there (Meissner screening). The supercurrent of Cooper pairs (charge $2e$, since a pair is
-made of two electrons) is proportional to the gauge-invariant combination $\hbar\nabla\theta -
-2e\mathbf{A}$; setting the current to zero on our loop forces
+Let us take a superconducting ring threaded by magnetic flux, or in the same way a hole in a bulk
+superconductor, and let us take the loop deep enough inside the superconductor that the
+supercurrent density vanishes there because of Meissner screening. The supercurrent of Cooper pairs,
+which have charge $2e$ since a pair is made of two electrons, is proportional to the gauge-invariant
+combination $\hbar\nabla\theta -
+2e\mathbf{A}$. If we set the current to zero on our loop, we obtain
 
 \begin{equation*}
 \oint \nabla\theta \cdot d\boldsymbol\ell = \frac{2e}{\hbar}\oint \mathbf{A}\cdot d\boldsymbol\ell = \frac{2e}{\hbar}\Phi.
 \end{equation*}
 
-But $\theta$ is the phase of a single-valued wave function, so going once around the loop it can only
-change by an integer multiple of $2\pi$: $\oint \nabla\theta\cdot d\boldsymbol\ell = 2\pi n$ for
-integer $n$. Combining the two gives flux quantization,
+However, $\theta$ is the phase of a single-valued wave function, so after one turn around the loop
+it can only change by an integer multiple of $2\pi$, which means that $\oint \nabla\theta\cdot
+d\boldsymbol\ell = 2\pi n$ for integer $n$. If we combine the two equations, we obtain flux
+quantization,
 
 \begin{equation}
 \Phi = n\,\Phi_0, \qquad \Phi_0 = \frac{h}{2e}.
 \end{equation}
 
-The geometry and the phase-winding argument are collected in figure~\ref{fig:s05:flux}.
-This is exactly the mechanism behind the precision of Josephson-junction critical-current
-measurements: it is a direct, macroscopic readout of $h/e$, made possible entirely by gauge symmetry
-breaking. It is worth noticing the parallel with the quantum Hall state from earlier in the course:
-there too, a macroscopic measurement (the Hall conductance, quantized in units of $e^2/h$ by the
-Chern number) reads off a ratio of the same two constants, but through a completely different
-mechanism, the quantization of a single-particle topological invariant rather than the breaking of a
-continuous symmetry. Combining the two measurements, the flux quantum and the Hall conductance
-quantum, is in fact one of the most precise ways we have of extracting $h$ and $e$ separately; it is
-a nice, concrete example of the emergence this course keeps returning to; macroscopic measurements
-on billions of atoms handing you exact microscopic constants.
+Figure~\ref{fig:s05:flux} shows the geometry and the argument based on the winding of the phase.
+The same physics is behind the precision of Josephson junctions. In the AC Josephson effect, a
+voltage $V$ across the junction gives a current that oscillates with frequency $2eV/h$, which is a
+direct macroscopic readout of $h/2e$, and this is possible only because gauge symmetry is broken. Note the parallel with the quantum Hall state from earlier in the course.
+There, a macroscopic measurement also gives a ratio of the same two constants, which is the Hall
+conductance, quantized in units of $e^2/h$ by the Chern number. However, the mechanism is completely
+different, since it is the quantization of a single-particle topological invariant and not the
+breaking of a continuous symmetry. In fact, if we combine the two measurements, the flux quantum and
+the conductance quantum of the Hall effect, we have one of the most precise ways to obtain $h$ and
+$e$ separately. This is a concrete example of the emergence that we keep coming back to in this
+course, where macroscopic measurements on billions of atoms give us exact microscopic constants.
 
 \input{figures/s05f01_flux}
 
-\section{What a superconductor looks like: resistance and the Meissner effect}
+\section{Zero resistance and the Meissner effect in a superconductor}
 
-Historically, superconductivity was discovered through its transport signature: as you cool an
-ordinary metal, resistivity falls smoothly because there are fewer phonons for electrons to scatter
-off. A superconductor instead shows a \emph{sudden} drop of the resistance to exactly zero at a critical
-temperature $T_c$; below $T_c$ the resistance stays at zero, not just small. $T_c$ is precisely the
-temperature at which gauge symmetry breaking sets in. This is slides-only material with no notebook
-counterpart (the resistance-versus-temperature schematic and the field-expulsion figure are shown
-and described on the slides but there is no accompanying notebook cell): our companion notebook
-starts from the Hamiltonian side, not from transport measurements.
+In the history of the field, superconductivity was discovered through its transport signature. When
+we cool an ordinary metal, the resistivity goes down smoothly, because there are fewer phonons from
+which the electrons can scatter. A superconductor instead shows a \emph{sudden} drop of the
+resistance to exactly zero at a critical temperature $T_c$. Below $T_c$ the resistance stays zero,
+and not only small. $T_c$ is the temperature at which gauge symmetry breaking starts. This material
+appears only on the slides and has no counterpart in the notebook. The schematic of the resistance
+as a function of temperature and the figure of the field expulsion are shown and described on the
+slides, but there is no notebook cell for them, since our companion notebook starts from the
+Hamiltonian and not from transport measurements.
 
-The second hallmark is the \textbf{Meissner effect}: above $T_c$ a metal tolerates an external magnetic
-field just fine, but below $T_c$ the superconductor actively expels the field from its bulk. In
-type-II superconductors, the only field that survives inside the material is confined to quantized
-vortices, themselves dynamical topological defects of the broken-gauge-symmetry order parameter.
-Both signatures, zero resistance and flux expulsion, are direct consequences of the same underlying
-event: the condensation of Cooper pairs into a single macroscopic quantum state with a rigid,
-spontaneously chosen phase.
+The second signature is the \textbf{Meissner effect}. Above $T_c$ a metal allows an external
+magnetic field inside without any problem, but below $T_c$ the superconductor actively expels the
+field from its bulk. In type-II superconductors, the only field that remains inside the material is
+confined to quantized vortices, which are dynamical topological defects of the order parameter of
+the broken gauge symmetry. Both signatures, zero resistance and the expulsion of the flux, are
+direct consequences of the same event, which is the condensation of Cooper pairs into a single
+macroscopic quantum state with a rigid phase that is chosen spontaneously.
 
 \section{The interacting Hamiltonian and the origin of attractive interactions}
 
-We start, as in session 1, from the generic interacting Hamiltonian $H = \sum_{ij}t_{ij}c_i^\dagger
+As in session 1, we start from the general interacting Hamiltonian $H = \sum_{ij}t_{ij}c_i^\dagger
 c_j + \sum_{ijkl}V_{ijkl}c_i^\dagger c_j^\dagger c_k c_l$. The interaction $V_{ijkl}$ can come from
-plain electrostatic (repulsive) Coulomb repulsion, but it can equally well be an \emph{effective}
-interaction mediated by some other quasiparticle in the material: phonons (lattice vibrations),
-magnons (fluctuations of a magnetic moment), plasmons (collective charge fluctuations), or even more
-exotic mediators like skyrmion fluctuations or valence fluctuations. What matters for
-superconductivity is not the microscopic origin of $V_{ijkl}$ but its net sign in whichever channel
-turns out to matter: superconductivity requires that channel to be effectively \emph{attractive}.
+the plain electrostatic Coulomb repulsion, which is repulsive, but it can also be an
+\emph{effective} interaction mediated by another quasiparticle in the material. Examples are
+phonons, which are lattice vibrations, magnons, which are fluctuations of a magnetic moment,
+plasmons, which are collective charge fluctuations, and even more exotic mediators such as skyrmion
+fluctuations or valence fluctuations. For superconductivity, what matters is not the microscopic
+origin of $V_{ijkl}$ but its net sign in the channel that turns out to be relevant, and
+superconductivity requires this channel to be effectively \emph{attractive}.
 
-This is the natural place to draw the distinction between the two families of superconductors:
+This is the natural point to distinguish the two families of superconductors.
 
 \begin{itemize}
-\item \textbf{Conventional superconductors}, where the attractive channel is mediated by phonons. This is the
-  best-understood case: mean-field (BCS) theory works quantitatively well, and critical temperatures
-  of simple conventional superconductors like aluminum or lead can actually be predicted from theory.
-\item \textbf{Unconventional superconductors}, mediated by anything that is not a phonon: antiferromagnetic or
-  ferromagnetic magnons, plasmons, valence fluctuations, charge fluctuations, and so on. Here we have
-  no comparably reliable predictive theory; identifying even \emph{which} quasiparticle mediates the
-  attraction in a given unconventional superconductor is often still an open research question, and
-  it remains one of the major unsolved problems the field is currently working on.
+\item \textbf{Conventional superconductors}, where the attractive channel is mediated by phonons.
+  This is the case that we understand best. Mean-field theory, which is called BCS theory, works
+  well at the quantitative level, and the critical temperatures of simple conventional
+  superconductors such as aluminum or lead can be predicted from theory.
+\item \textbf{Unconventional superconductors}, where the attraction is mediated by anything that is
+  not a phonon, such as antiferromagnetic or ferromagnetic magnons, plasmons, valence fluctuations,
+  charge fluctuations and others. Here we do not have a predictive theory that is equally reliable.
+  Even to identify \emph{which} quasiparticle mediates the attraction in a given unconventional
+  superconductor is often still an open research question, and it is one of the major unsolved
+  problems that the field is working on today.
 \end{itemize}
 
-\section{The mean-field pairing Hamiltonian, done properly}
+\section{The mean-field pairing Hamiltonian in detail}
 
-Let us now build the pairing mean-field Hamiltonian with the same level of care session 1 used for
-its charge-density-wave and magnetic examples, rather than just gesturing at $\Delta = \langle
-cc\rangle$. Take the simplest interacting Hamiltonian that can produce superconductivity, a
-one-dimensional tight-binding chain with an attractive on-site interaction between opposite spins,
+Let us now build the mean-field pairing Hamiltonian with the same care that we used in session 1 for
+the charge-density-wave and magnetic examples, instead of only pointing at $\Delta = \langle
+cc\rangle$. We take the simplest interacting Hamiltonian that can give superconductivity, which is a
+one-dimensional tight-binding chain with an attractive onsite interaction between opposite spins,
 
 \begin{equation}
 H = -t\sum_{n,\sigma}\left(c_{n\sigma}^\dagger c_{n+1,\sigma} + \text{h.c.}\right) - \mu\sum_{n\sigma}c_{n\sigma}^\dagger c_{n\sigma} + U\sum_n c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger c_{n\downarrow} c_{n\uparrow}, \qquad U<0.
 \end{equation}
 
-This is exactly session 1's eq. 1.7, now with $U = -|U| < 0$: the attractive branch of that same
-Hamiltonian, whose repulsive branch instead drives magnetism (session 6's subject). We mean-field
-decouple the quartic term in the \emph{pairing} (particle-particle) channel this time rather than the
-density channel: define the order parameter
+This is exactly eq. 1.7 of session 1, now with $U = -|U| < 0$. It is the attractive branch of the
+same Hamiltonian, and its repulsive branch gives rise to magnetism, which is the topic of session 6.
+This time we do the mean-field decoupling of the quartic term in the \emph{pairing} channel, also
+called the particle-particle channel, instead of the density channel. We define the order parameter
 
 \begin{equation}
 \Delta_n \equiv U\langle c_{n\downarrow}c_{n\uparrow}\rangle,
 \end{equation}
 
-and factorize $c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger c_{n\downarrow}c_{n\uparrow} \approx
+and we factorize $c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger c_{n\downarrow}c_{n\uparrow} \approx
 \langle c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger\rangle c_{n\downarrow}c_{n\uparrow} +
 c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger \langle c_{n\downarrow}c_{n\uparrow}\rangle - \langle
-c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger\rangle\langle c_{n\downarrow}c_{n\uparrow}\rangle$, the
-same Wick-type factorization used throughout session 1, just applied to a different pair of
-operators. The resulting mean-field Hamiltonian is
+c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger\rangle\langle c_{n\downarrow}c_{n\uparrow}\rangle$.
+This is the same Wick-type factorization that we used in all of session 1, now applied to a
+different pair of operators. The resulting mean-field Hamiltonian is
 
 \begin{equation}
 H_{\text{MF}} = -t\sum_{n\sigma}\left(c_{n\sigma}^\dagger c_{n+1,\sigma}+\text{h.c.}\right) - \mu\sum_{n\sigma}c_{n\sigma}^\dagger c_{n\sigma} + \sum_n\left(\Delta_n\, c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger + \Delta_n^*\, c_{n\downarrow}c_{n\uparrow}\right) - \sum_n\frac{|\Delta_n|^2}{U}.
 \end{equation}
 
-Self-consistently, $\Delta_n$ comes out exactly zero for $U>0$ (repulsive) and can become nonzero for
-$U<0$ (attractive): this is precisely the superconducting order parameter, and it is exactly the term
-that breaks gauge symmetry.
+When we solve it self-consistently, $\Delta_n$ is exactly zero for $U>0$, the repulsive case, and it
+can become nonzero for $U<0$, the attractive case. This is the superconducting order parameter, and
+it is the term that breaks gauge symmetry.
 
 \begin{notebookbox}{\texttt{session5.ipynb}, ``s-wave superconductivity driven by attractive interactions'' (Core), and ``Dependence on the strength of the attractive interaction'' (Challenge)}
-Build the attractive-Hubbard chain of (5.2), run the pairing self-consistency loop that produces
-$\Delta$ in (5.3)-(5.4), and watch $\Delta$ grow from zero as you make $U$ more negative, exactly
-paralleling how session 1's charge imbalance and magnetization grew with $V$ and $U>0$
-respectively.
+Build the attractive-Hubbard chain of (5.2), run the pairing self-consistency loop that gives
+$\Delta$ in (5.3)-(5.4), and look at how $\Delta$ grows from zero as you make $U$ more negative.
+This is the same behavior as in session 1, where the charge imbalance grew with $V$ and the
+magnetization grew with $U>0$.
 \end{notebookbox}
 
-\section{Why pairing kills a fixed particle number}
+\section{Why pairing does not conserve the particle number}
 
-Now let us make the "fluctuating electron number" claim from session 1 fully rigorous, rather than
-just asserting it. Look at the eigenvalue equation $H_{\text{MF}}|G\rangle = E|G\rangle$ for the
-Hamiltonian in (5.4), and expand the ground state in the occupation-number (Fock) basis, sorted by
-total particle number $N$: $|G\rangle = \sum_N a_N |N\rangle$. The hopping and chemical-potential
-terms in (5.4) conserve $N$ exactly (one $c^\dagger$ and one $c$ each). The pairing terms $\Delta_n
+Let us now show in an exact way the statement from session 1 that the electron number fluctuates,
+instead of only stating it. We take the eigenvalue equation $H_{\text{MF}}|G\rangle = E|G\rangle$
+for the Hamiltonian in (5.4), and we expand the ground state in the occupation-number basis, which
+is the Fock basis, ordered by the total particle number $N$, as $|G\rangle = \sum_N a_N |N\rangle$.
+The hopping and chemical-potential terms in (5.4) conserve $N$ exactly, since each of them has one
+$c^\dagger$ and one $c$. The pairing terms $\Delta_n
 c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger$ and $\Delta_n^* c_{n\downarrow}c_{n\uparrow}$ change
-$N$ by $+2$ or $-2$ respectively; crucially, \emph{no term in $H_{\text{MF}}$ ever changes $N$ by $\pm 1$}.
-So $H_{\text{MF}}$ only ever connects Fock states whose particle numbers differ by an even integer.
-For $|G\rangle$ to be an eigenstate, this forces $a_N$ to be nonzero only within one fixed parity
-class of $N$ (all-even or all-odd), but says nothing about which particular even (or odd) $N$'s
-appear: generically $a_N \ne 0$ for several different values of $N$ within that class, e.g.
-$N=0,2,4,\dots$ simultaneously. The mean-field ground state is therefore \emph{not} an eigenstate of the
-total number operator $\hat N$, even though it does have a well-defined fermion parity. This is the
-precise sense in which "a superconductor has a fluctuating electron number, but a fixed parity,"
-exactly the statement session 1 flagged back in its discussion of the quantum-dot superposition
-puzzle (session 1, section 1.5).
+$N$ by $+2$ and $-2$ respectively. The key point is that \emph{no term in $H_{\text{MF}}$ ever
+changes $N$ by $\pm 1$}. So $H_{\text{MF}}$ only connects Fock states whose particle numbers differ
+by an even integer. For $|G\rangle$ to be an eigenstate, $a_N$ can then be nonzero only inside one
+fixed parity class of $N$, either all even or all odd. However, this says nothing about which even
+or odd values of $N$ appear, and in general $a_N \ne 0$ for several values of $N$ in that class,
+for example $N=0,2,4,\dots$ at the same time. The mean-field ground state is therefore \emph{not}
+an eigenstate of the total number operator $\hat N$, even though it has a well-defined fermion
+parity. This is the exact meaning of the statement that a superconductor has a fluctuating electron
+number but a fixed parity, which session 1 pointed out in its discussion of the superposition
+puzzle of the quantum dot (session 1, section 1.5).
 
-\section{The gauge transformation, made explicit}
+\section{The gauge transformation in explicit form}
 
-We already wrote the second-quantized gauge transformation in session 1 (eq. 1.10): $c \to c\,
-e^{i\varphi}$, $c^\dagger \to c^\dagger e^{-i\varphi}$, the second-quantized shadow of the statement
-that the phase of a first-quantized wave function carries no physical meaning. Let us now check
-explicitly which terms in a realistic Hamiltonian survive this transformation and which do not.
-Ordinary hopping $c_i^\dagger c_j$ is invariant, since the two phases cancel: $c_i^\dagger c_j \to
+We already wrote the gauge transformation in second quantization in session 1 (eq. 1.10), $c \to
+c\, e^{i\varphi}$, $c^\dagger \to c^\dagger e^{-i\varphi}$. It is the second-quantized version of
+the statement that the phase of a first-quantized wave function has no physical meaning. Let us now
+check explicitly which terms of a realistic Hamiltonian stay invariant under this transformation and
+which do not. Ordinary hopping $c_i^\dagger c_j$ is invariant, since the two phases cancel, as
+$c_i^\dagger c_j \to
 e^{-i\varphi}c_i^\dagger \cdot e^{i\varphi} c_j = c_i^\dagger c_j$. The same cancellation protects
-essentially every other bilinear term we have met so far: magnetic (spin-dependent) terms, spin-orbit
-coupling, and any density-density interaction term $c_i^\dagger c_i c_j^\dagger c_j$, since all of
-these are built from an equal number of creation and annihilation operators pairing up index by
-index.
+essentially every other bilinear term that we have seen so far, such as magnetic terms that depend
+on spin, spin-orbit coupling and any density-density interaction term $c_i^\dagger c_i c_j^\dagger
+c_j$, because all of them are built from the same number of creation and annihilation operators,
+which pair up index by index.
 
-The pairing term is the one exception. Under the same transformation,
+The pairing term is the only exception. Under the same transformation,
 
 \begin{equation}
 \Delta\, c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger \;\longrightarrow\; \Delta\, e^{-2i\varphi}\, c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger,
 \end{equation}
 
-it picks up the phase \emph{twice}, because both operators are creation operators rather than one
-creation and one annihilation operator. There is no way to choose $\varphi \ne 0 \pmod \pi$ that
-leaves this term invariant, so a Hamiltonian containing a nonzero $\Delta$ is not gauge invariant
-term by term; equivalently, if we insist on writing the transformation as acting on the order
-parameter itself, $\Delta \to \Delta\, e^{2i\varphi}$, then any particular fixed phase of $\Delta$ is
-a choice the ground state makes spontaneously, exactly the hallmark of continuous symmetry breaking.
-This is the same logic, applied with full explicit rigor, that session 1 used to establish the
-gauge-symmetry-breaking of eq. 1.9 there; we have now seen precisely why the factor is $2\varphi$
-and not $\varphi$.
+it gets the phase \emph{twice}, because both operators are creation operators and not one creation
+and one annihilation operator. No choice of $\varphi \ne 0 \pmod \pi$ leaves this term invariant, so
+a Hamiltonian with a nonzero $\Delta$ is not gauge invariant term by term. In an equivalent way, if
+we write the transformation as acting on the order parameter itself, $\Delta \to \Delta\,
+e^{2i\varphi}$, then any fixed phase of $\Delta$ is a choice that the ground state makes
+spontaneously, which is the signature of continuous symmetry breaking. This is the same logic that
+session 1 used to show the gauge symmetry breaking of eq. 1.9, now applied in full detail, and we
+have now seen why the factor is $2\varphi$ and not $\varphi$.
 
 \section{The Nambu spinor and the Bogoliubov-de Gennes Hamiltonian}
 
-Here is the technical obstacle the pairing term creates: we cannot diagonalize (5.4) with an
-ordinary vector of orbital operators, because the anomalous term mixes creation and annihilation
-operators rather than pairing them up the way every Hamiltonian we diagonalized in sessions 1-4 did.
-The fix is to \emph{enlarge} the operator basis so that creation and annihilation operators of the
-original problem both become "annihilation-like" entries of a bigger spinor. Working in momentum
-space, with a single orbital and both spins, define the \textbf{Nambu spinor}
+The pairing term creates a technical problem. We cannot diagonalize (5.4) with an ordinary vector of
+orbital operators, because the anomalous term mixes creation and annihilation operators, instead of
+pairing them up in the way of every Hamiltonian that we diagonalized in sessions 1-4. The solution
+is to \emph{enlarge} the operator basis, so that both the creation and the annihilation operators of
+the original problem become entries of a bigger spinor that behave like annihilation operators. We
+work in momentum space, with a single orbital and both spins, and we define the \textbf{Nambu
+spinor}
 
 \begin{equation}
 \Psi_{\mathbf{k}} = \begin{pmatrix} c_{\mathbf{k}\uparrow} \\ c_{\mathbf{k}\downarrow} \\ c_{-\mathbf{k}\downarrow}^\dagger \\ -c_{-\mathbf{k}\uparrow}^\dagger \end{pmatrix},
 \end{equation}
 
-an "electron sector" (the first two components, ordinary annihilation operators) glued to a "hole
-sector" (the last two components, creation operators at $-\mathbf{k}$, spins swapped, with an extra
-minus sign planted on the very last entry). That sign is not decorative: it is exactly what is
-needed to make the pairing term come out looking like two identical, decoupled copies of the same
-$2\times 2$ problem once we write $H_{\text{MF}}$ in terms of $\Psi_{\mathbf k}$, rather than mixing
-the two spin blocks together through a Pauli matrix. For a spin-singlet pairing $\Delta(\mathbf k)$
-(momentum-independent and equal to $\Delta$ for the on-site case of (5.4) Fourier-transformed), one
-checks directly, using the fermionic anticommutation relations to reorder operators where needed,
-that the mean-field Hamiltonian can be written exactly as
+which has an electron sector, formed by the first two components and containing
+ordinary annihilation operators, and a hole sector, formed by the last two components and
+containing creation operators at $-\mathbf{k}$, with the spins exchanged and with an extra minus sign
+on the last entry. This sign has a real role. It is what is needed so that, when we write
+$H_{\text{MF}}$ in terms of $\Psi_{\mathbf k}$, the pairing term gives two identical and decoupled
+copies of the same $2\times 2$ problem, instead of mixing the two spin blocks through a Pauli
+matrix. For a spin-singlet pairing $\Delta(\mathbf k)$, which does not depend on momentum and is
+equal to $\Delta$ for the Fourier transform of the onsite case of (5.4), one can check directly,
+using the fermionic anticommutation relations to reorder operators where needed, that the
+mean-field Hamiltonian can be written exactly as
 
 \begin{equation}
 H_{\text{MF}} = \frac{1}{2}\sum_{\mathbf{k}} \Psi_{\mathbf{k}}^\dagger\, H_{\text{BdG}}(\mathbf{k})\, \Psi_{\mathbf{k}} + \text{const.}, \qquad H_{\text{BdG}}(\mathbf{k}) = \begin{pmatrix} \varepsilon(\mathbf{k}) & 0 & \Delta(\mathbf k) & 0 \\ 0 & \varepsilon(\mathbf k) & 0 & \Delta(\mathbf k) \\ \Delta(\mathbf k)^* & 0 & -\varepsilon(\mathbf{k}) & 0 \\ 0 & \Delta(\mathbf k)^* & 0 & -\varepsilon(\mathbf k) \end{pmatrix},
 \end{equation}
 
-where $\varepsilon(\mathbf k) = -2t(\cos k_x + \cos k_y) - \mu$ is the ordinary band dispersion
-(assumed inversion symmetric, $\varepsilon(-\mathbf k) = \varepsilon(\mathbf k)$). This $4\times 4$
-matrix is the \textbf{Bogoliubov-de Gennes (BdG) Hamiltonian}: it is, in a very concrete sense, the single
-most important object for describing excitations of a superconductor. Note that the two diagonal
-entries in the lower-right carry $-\varepsilon(\mathbf k)$, not $+\varepsilon(\mathbf k)$: this is a
-direct consequence of rewriting $c_{-\mathbf k\sigma}^\dagger c_{-\mathbf k\sigma}$ in terms of
-$c_{-\mathbf k\sigma}c_{-\mathbf k\sigma}^\dagger = 1 - c_{-\mathbf k\sigma}^\dagger c_{-\mathbf
-k\sigma}$ via the anticommutation relations (this is exactly where the "hole" language comes from: a
-missing electron at $-\mathbf k$ behaves like a particle of opposite energy).
+where $\varepsilon(\mathbf k) = -2t(\cos k_x + \cos k_y) - \mu$ is the ordinary band dispersion,
+which we assume to be inversion symmetric, $\varepsilon(-\mathbf k) = \varepsilon(\mathbf k)$. This
+$4\times 4$ matrix is called the \textbf{Bogoliubov-de Gennes (BdG) Hamiltonian}, and in a concrete
+sense it is the most important object to describe the excitations of a superconductor. Note that
+the two diagonal entries in the lower-right part have $-\varepsilon(\mathbf k)$ and not
+$+\varepsilon(\mathbf k)$. This comes directly from writing $c_{-\mathbf k\sigma}^\dagger
+c_{-\mathbf k\sigma}$ in terms of $c_{-\mathbf k\sigma}c_{-\mathbf k\sigma}^\dagger = 1 -
+c_{-\mathbf k\sigma}^\dagger c_{-\mathbf
+k\sigma}$ with the anticommutation relations. This is also where the name hole comes from, since a
+missing electron at $-\mathbf k$ behaves like a particle with opposite energy.
 
-Because the spinor (5.6) was built with exactly that extra minus sign, the $4\times 4$ problem in
-(5.7) already comes out block-diagonal: one $2\times 2$ block built from $(c_{\mathbf k\uparrow},
-c_{-\mathbf k\downarrow}^\dagger)$ and an identical one from $(c_{\mathbf k\downarrow}, -c_{-\mathbf
-k\uparrow}^\dagger)$, each with reduced BdG matrix
+Since the spinor (5.6) was built with this extra minus sign, the $4\times 4$ problem in (5.7) is
+already block-diagonal. There is one $2\times 2$ block built from $(c_{\mathbf k\uparrow},
+c_{-\mathbf k\downarrow}^\dagger)$ and an identical one built from $(c_{\mathbf k\downarrow},
+-c_{-\mathbf
+k\uparrow}^\dagger)$, and each of them has the reduced BdG matrix
 
 \begin{equation}
 h_{\text{BdG}}(\mathbf k) = \begin{pmatrix} \varepsilon(\mathbf k) & \Delta(\mathbf k) \\ \Delta(\mathbf k)^* & -\varepsilon(\mathbf k)\end{pmatrix}.
 \end{equation}
 
-This is exactly the "$4\times 4$ matrix, single orbital with two spins, diagonal entries
-$\varepsilon(\mathbf k)$, $\varepsilon(\mathbf k)$, $-\varepsilon(\mathbf k)$,
-$-\varepsilon(\mathbf k)$,
-off-diagonal entries $\Delta$" structure read directly off the slides and quoted in the lecture, now
-derived rather than merely asserted. Diagonalizing (5.8) gives the celebrated BCS quasiparticle
-dispersion
+This is the structure that is shown on the slides and quoted in the lecture, a $4\times 4$ matrix
+for a single orbital with two spins, with diagonal entries $\varepsilon(\mathbf k)$,
+$\varepsilon(\mathbf k)$, $-\varepsilon(\mathbf k)$,
+$-\varepsilon(\mathbf k)$
+and off-diagonal entries $\Delta$, but now we have derived it instead of only stating it. If we
+diagonalize (5.8), we obtain the standard BCS quasiparticle dispersion
 
 \begin{equation}
 E(\mathbf k) = \pm\sqrt{\varepsilon(\mathbf k)^2 + |\Delta(\mathbf k)|^2}.
 \end{equation}
 
 \begin{notebookbox}{\texttt{session5.ipynb}, ``Nambu electronic structure without superconductivity'' and ``Nambu electronic structure with superconductivity'' (both Reminder)}
-Build the Nambu-doubled Hamiltonian of (5.6)-(5.7) with $\Delta = 0$ first, and confirm you get
-exactly two copies of the same band structure, one "physical" (electron sector) and one "spurious"
-mirror copy (hole sector) with dispersion $-\varepsilon(\mathbf k)$. Then switch $\Delta$ on and
-watch the gap in (5.9) open at every crossing between the two copies.
+First build the Nambu-doubled Hamiltonian of (5.6)-(5.7) with $\Delta = 0$, and check that you get
+exactly two copies of the same band structure. One is the physical copy, which is the electron
+sector, and the other is a spurious mirror copy, which is the hole sector, with dispersion
+$-\varepsilon(\mathbf k)$. Then turn on $\Delta$ and look at how the gap in (5.9) opens at every
+crossing between the two copies.
 \end{notebookbox}
 
-\section{A worked example: gap opening independent of dispersion}
+\section{An example of a gap that opens independently of the dispersion}
 
-Equation (5.9) already tells us something the transcript's slides illustrate with explicit band
-plots: the gap opens at the minimum of $E(\mathbf k)$, which happens wherever $\varepsilon(\mathbf
-k) = 0$, i.e. exactly on the original Fermi surface, and the minimum gap there is $|\Delta(\mathbf
+Equation (5.9) already tells us something that the slides of the lecture show with explicit band
+plots. The gap opens at the minimum of $E(\mathbf k)$, which is where $\varepsilon(\mathbf
+k) = 0$, that is, exactly on the original Fermi surface, and the minimum gap there is
+$|\Delta(\mathbf
 k)|$ evaluated on that Fermi surface. Nothing in this argument depends on the details of
-$\varepsilon(\mathbf k)$: not the range of hopping, not the lattice geometry, not the position of the
-chemical potential. Concretely, take the single-orbital square lattice with $\varepsilon(\mathbf k) =
-\cos k_x + \cos k_y$ (units where $t=1$) and a chemical potential tuned so that the "physical" red
-band and the "spurious" blue mirror band cross; turning on a constant $\Delta$ opens a gap of size
-$2|\Delta|$ at every such crossing, for \emph{any} choice of chemical potential along that dispersion.
-Exactly the same statement holds if we redo the calculation on the triangular lattice instead of the
-square lattice: as we move the chemical potential across the triangular-lattice band, a uniform
-$\Delta$ still gaps the spectrum everywhere the physical and spurious bands cross. This is the
-generic signature of \emph{conventional} (fully gapped) superconductivity: a uniform, momentum-independent
-$\Delta(\mathbf k)$ always fully gaps the Fermi surface, regardless of microscopic detail.
+$\varepsilon(\mathbf k)$, such as the range of the hopping, the lattice geometry or the position of
+the chemical potential. For concreteness, let us take the single-orbital square lattice with
+$\varepsilon(\mathbf k) =
+\cos k_x + \cos k_y$ (units where $t=1$) and a chemical potential such that the physical red band
+and the spurious blue mirror band cross. When we turn on a constant $\Delta$, a gap of size
+$2|\Delta|$ opens at every such crossing, for \emph{any} choice of the chemical potential along this
+dispersion. The same statement holds if we do the calculation on the triangular lattice instead of
+the square lattice. As we move the chemical potential across the band of the triangular lattice, a
+uniform $\Delta$ still opens a gap everywhere the physical and the spurious bands cross. This is the
+general signature of \emph{conventional} superconductivity, which is fully gapped, since a uniform
+$\Delta(\mathbf k)$ that does not depend on momentum always gaps the whole Fermi surface,
+regardless of the microscopic details.
 
 \begin{notebookbox}{\texttt{session5.ipynb}, ``Superconductivity, full spectral function and electron spectral function'' (Core), and ``The impact of superconductivity in an electronic structure'' (Challenge)}
-Reproduce the square-lattice example above: plot the electron-sector spectral function with
-$\Delta = 0$ (two crossing copies) and then with $\Delta \ne 0$ (gap of size $2|\Delta|$ opening
-at the crossing, per eq. 5.9). Repeat for the triangular-lattice dispersion and confirm the gap
-opens regardless of where you put the chemical potential.
+Reproduce the square-lattice example above. Plot the spectral function of the electron sector with
+$\Delta = 0$, where there are two crossing copies, and then with $\Delta \ne 0$, where a gap of size
+$2|\Delta|$ opens at the crossing, as in eq. 5.9. Repeat this for the triangular-lattice dispersion
+and check that the gap opens regardless of where you put the chemical potential.
 \end{notebookbox}
 
-\section{Three scenarios for one Fermi surface: metal, gapped SC, nodal SC}
+\section{Metal, gapped and nodal superconductor for one Fermi surface}
 
-Not every pairing function $\Delta(\mathbf k)$ is momentum-independent, and this is where things get
-more interesting. Given one electronic dispersion $\varepsilon(\mathbf k)$, there are, in general,
-three qualitatively different outcomes:
+Not every pairing function $\Delta(\mathbf k)$ is independent of momentum, and this gives more
+interesting cases. For a given electronic dispersion $\varepsilon(\mathbf k)$ there are in general
+three qualitatively different outcomes.
 
 \begin{enumerate}
-\item \textbf{No superconductivity} ($\Delta = 0$): a metal, gapless everywhere the Fermi surface sits.
-\item \textbf{Conventional (s-wave) superconductivity}: $\Delta(\mathbf k) \ne 0$ everywhere on the Fermi
-surface, so $E(\mathbf k)$ in (5.9) is bounded away from zero everywhere; a full gap.
-\item \textbf{Unconventional, nodal superconductivity}: $\Delta(\mathbf k)$ vanishes along particular lines or
-points of the Brillouin zone. Wherever the Fermi surface crosses one of those nodal lines, $E(\mathbf
-k) = 0$ even though $\Delta \ne 0$ nearby; the system is gapped in most of reciprocal space but
-remains gapless (metallic) at isolated momenta or along nodal lines.
+\item \textbf{No superconductivity} ($\Delta = 0$). This is a metal, which is gapless everywhere on
+the Fermi surface.
+\item \textbf{Conventional (s-wave) superconductivity.} Here $\Delta(\mathbf k) \ne 0$ everywhere on
+the Fermi surface, so $E(\mathbf k)$ in (5.9) stays away from zero everywhere, and there is a full
+gap.
+\item \textbf{Unconventional, nodal superconductivity.} Here $\Delta(\mathbf k)$ vanishes along some
+lines or points of the Brillouin zone. Wherever the Fermi surface crosses one of these nodal lines,
+$E(\mathbf
+k) = 0$ even though $\Delta \ne 0$ nearby. The system is gapped in most of reciprocal space, but it
+stays gapless, which means metallic, at isolated momenta or along nodal lines.
 \end{enumerate}
 
 \input{figures/s05f02_fsgap}
 
-Figure~\ref{fig:s05:fsgap} puts the three side by side, in the Brillouin zone and again as the gap
-read off around the Fermi surface itself, which is the only place it can be read off at all.
-The high-temperature cuprate superconductors are the standard real-world example of scenario 3: they
-are genuine superconductors, but with a gap function that has nodes, so parts of their Fermi surface
-remain gapless even in the superconducting state. This three-way split holds for any lattice geometry;
-the lecture works through it explicitly for both the square and triangular lattice Fermi surfaces.
+Figure~\ref{fig:s05:fsgap} shows the three cases next to each other, in the Brillouin zone and also
+as the gap along the Fermi surface itself, which is the only place where the gap can be read at all.
+The high-temperature cuprate superconductors are the standard example of scenario 3 in real
+materials. They are real superconductors, but their gap function has nodes, so parts of their Fermi
+surface stay gapless even in the superconducting state. This division into three cases holds for
+any lattice geometry, and the lecture shows it explicitly for the Fermi surfaces of both the square
+and the triangular lattice.
 
 \begin{notebookbox}{\texttt{session5.ipynb}, ``Unconventional singlet superconducting orders'' (Challenge), and ``Gapped and nodal superconducting orders'' (Core)}
-Build a momentum-dependent $\Delta(\mathbf k)$ that vanishes along a line in the Brillouin zone
-(e.g. the d-wave form of section 5.12 below) and confirm numerically, via (5.9), that the gap
-closes exactly where the Fermi surface crosses that nodal line, distinguishing this from the
-uniformly-gapped case of section 5.9.
+Build a $\Delta(\mathbf k)$ that depends on momentum and vanishes along a line in the Brillouin
+zone, for example the d-wave form of section 5.12 below. Then check numerically with (5.9) that the
+gap closes exactly where the Fermi surface crosses this nodal line, which is different from the
+uniformly gapped case of section 5.9.
 \end{notebookbox}
 
 \section{The general pairing Hamiltonian and its symmetry classification}
 
-So far $\Delta$ has been a single number. In general the pairing order can depend on momentum and
-carry spin structure: $\Delta_{\mathbf k,\sigma_1\sigma_2}$, with $\sigma_1,\sigma_2 \in
-\{\uparrow,\downarrow\}$, conveniently packaged into the $2\times 2$ pairing matrix $\Delta_{\mathbf
+Up to now $\Delta$ has been a single number. In general the pairing order can depend on momentum and
+have a spin structure, $\Delta_{\mathbf k,\sigma_1\sigma_2}$ with $\sigma_1,\sigma_2 \in
+\{\uparrow,\downarrow\}$. We can write it in a compact way as the $2\times 2$ pairing matrix
+$\Delta_{\mathbf
 k} = \begin{pmatrix}\Delta_{\mathbf k,\uparrow\uparrow} & \Delta_{\mathbf k,\uparrow\downarrow}\\
 \Delta_{\mathbf k,\downarrow\uparrow} & \Delta_{\mathbf k,\downarrow\downarrow}\end{pmatrix}$, and
-built from a generic mean-field Hamiltonian
+it is built from a general mean-field Hamiltonian
 
 \begin{equation}
 H_{\text{pair}} = -\frac{1}{2}\sum_{\mathbf k}{}^{\prime}\, \sum_{\sigma_1\sigma_2} \left[\Delta_{\mathbf k,\sigma_1\sigma_2}\, c_{\mathbf k\sigma_1}^\dagger c_{-\mathbf k\sigma_2}^\dagger + \Delta_{\mathbf k,\sigma_1\sigma_2}^*\, c_{\mathbf k\sigma_1} c_{-\mathbf k\sigma_2}\right],
 \end{equation}
 
-Real-space and reciprocal-space pictures of $\Delta$ are Fourier-transform equivalent, so we can
-equally well think of this order in terms of how the pair wave function looks as a function of the
-separation between the two paired electrons in real space. The key move is to classify
-superconducting order purely by the \emph{symmetry} of $\Delta_{\sigma\sigma'}(\mathbf k)$, because that
-symmetry alone controls how the superconductor is going to respond to perturbations (disorder,
-magnetic fields), independent of microscopic detail.
+The real-space and reciprocal-space pictures of $\Delta$ are related by a Fourier transform, so we
+can also think of this order in terms of how the pair wave function looks as a function of the
+distance between the two paired electrons in real space. The key step is to classify
+superconducting order only by the \emph{symmetry} of $\Delta_{\sigma\sigma'}(\mathbf k)$, because
+this symmetry alone controls how the superconductor responds to perturbations, such as disorder or
+magnetic fields, independently of the microscopic details.
 
-Fermionic antisymmetry (the operators $c_{\mathbf k\sigma}^\dagger c_{-\mathbf k\sigma'}^\dagger$
-anticommute) forces
+Fermionic antisymmetry, which comes from the fact that the operators $c_{\mathbf k\sigma}^\dagger
+c_{-\mathbf k\sigma'}^\dagger$ anticommute, imposes
 
 \begin{equation}
 \Delta_{\sigma\sigma'}(\mathbf k) = -\Delta_{\sigma'\sigma}(-\mathbf k),
 \end{equation}
 
-a minus sign under the \emph{combined} operation of exchanging spin indices and sending $\mathbf k \to
--\mathbf k$; this combined statement always holds regardless of the type of pairing. The physically
-meaningful classification comes from splitting $\Delta_{\sigma\sigma'}(\mathbf k)$ into its part
-symmetric and its part antisymmetric under spin exchange alone, which (via (5.11)) is equivalent to
-splitting it by its parity under $\mathbf k \to -\mathbf k$ alone:
+which is a minus sign under the \emph{combined} operation of exchanging the spin indices and sending
+$\mathbf k \to
+-\mathbf k$. This combined statement holds for any type of pairing. The classification that has a
+physical meaning comes from splitting $\Delta_{\sigma\sigma'}(\mathbf k)$ into a part that is
+symmetric and a part that is antisymmetric under spin exchange alone. Because of (5.11), this is the
+same as splitting it by its parity under $\mathbf k \to -\mathbf k$ alone,
 
 \begin{equation*}
 \textbf{Spin singlet (even parity):} \quad \Delta(\mathbf k) = \Delta(-\mathbf k), \qquad \Delta_{\sigma\sigma'} = -\Delta_{\sigma'\sigma}\ \text{(spin-antisymmetric)},
@@ -404,72 +427,75 @@ splitting it by its parity under $\mathbf k \to -\mathbf k$ alone:
 \textbf{Spin triplet (odd parity):} \quad \Delta(\mathbf k) = -\Delta(-\mathbf k), \qquad \Delta_{\sigma\sigma'} = +\Delta_{\sigma'\sigma}\ \text{(spin-symmetric)}.
 \end{equation}
 
-Concretely, on-site s-wave pairing ($\Delta(\mathbf k) = \Delta$, constant, arising from a local
-attractive interaction as in section 5.5) is even in $\mathbf k$, hence spin-singlet. This
-symmetry classification has an immediate physical payoff: a spin-singlet superconductor is
-essentially insensitive to non-magnetic disorder (Anderson's theorem, the pair wave function only
-cares about time-reversed partners, which non-magnetic disorder preserves), while a spin-triplet
-superconductor is strongly suppressed by even weak non-magnetic disorder, because scattering mixes
-the different momentum directions that the order parameter needs to keep coherent phase relations
-between. This is precisely why spin-singlet, s-wave superconductors vastly outnumber spin-triplet
-ones in nature: essentially any real material has some level of non-magnetic disorder, and that
-disorder selectively kills the triplet channel while leaving the singlet channel intact.
+For concreteness, onsite s-wave pairing, with $\Delta(\mathbf k) = \Delta$ constant, which comes
+from a local attractive interaction as in section 5.5, is even in $\mathbf k$, and so it is
+spin-singlet. This symmetry classification has a direct physical consequence. A spin-singlet
+superconductor is essentially insensitive to non-magnetic disorder, which is called Anderson's
+theorem, since the pair wave function only depends on time-reversed partners, and non-magnetic
+disorder preserves them. A spin-triplet superconductor, on the other hand, is strongly suppressed
+even by weak non-magnetic disorder, because scattering mixes the different momentum directions
+between which the order parameter needs to keep coherent phase relations. This is the reason why
+spin-singlet s-wave superconductors are much more common in nature than spin-triplet ones.
+Essentially every real material has some level of non-magnetic disorder, and this disorder destroys
+the triplet channel and leaves the singlet channel intact.
 
 \section{Building a spin-triplet superconductor out of a magnet}
 
-Given how fragile spin-triplet order is, how would we ever engineer one deliberately? One route is a
-toy model that combines a ferromagnetic exchange field with an attractive interaction in the same
+Since spin-triplet order is so fragile, how could we ever build one on purpose? One way is a toy
+model that has both a ferromagnetic exchange field and an attractive interaction in the same
 Hamiltonian,
 
 \begin{equation*}
 H = -t\sum_{\langle ij\rangle,\sigma}c_{i\sigma}^\dagger c_{j\sigma} \;\underbrace{-\, h\sum_i \left(c_{i\uparrow}^\dagger c_{i\uparrow} - c_{i\downarrow}^\dagger c_{i\downarrow}\right)}_{\text{exchange field}} \;+\; \underbrace{U\sum_{\langle ij\rangle} c_{i\sigma}^\dagger c_{j\sigma'}^\dagger c_{j\sigma'}c_{i\sigma}}_{\text{attractive interaction}}, \qquad U<0.
 \end{equation*}
 
-Solved self-consistently at mean-field level, both order parameters (the ferromagnetic exchange
-field and the pairing amplitude) can be nonzero simultaneously: the ground state breaks both
-time-reversal symmetry (it is magnetic) \emph{and} gauge symmetry (it is superconducting) at once, and the
-pairing that survives is, necessarily, spin-triplet, since the exchange field explicitly splits the
-$\uparrow$ and $\downarrow$ Fermi surfaces and thereby suppresses the singlet channel that needs them
-degenerate. Physically, s-wave singlet pairing is normally the leading instability precisely because
-it can gap the \emph{entire} Fermi surface (maximal condensation energy); once the exchange field quenches
-that channel, a different pairing channel, here the odd-parity, spin-triplet, effectively p-wave
-channel, becomes the leading instability instead.
+If we solve it self-consistently at the mean-field level, both order parameters, the ferromagnetic
+exchange field and the pairing amplitude, can be nonzero at the same time. The ground state then
+breaks both time-reversal symmetry, since it is magnetic, \emph{and} gauge symmetry, since it is
+superconducting. The pairing that survives is necessarily spin-triplet, because the exchange field
+explicitly splits the $\uparrow$ and $\downarrow$ Fermi surfaces, and in this way it suppresses the
+singlet channel, which needs them to be degenerate. Physically, s-wave singlet pairing is usually
+the leading instability because it can gap the \emph{entire} Fermi surface, which gives the largest
+condensation energy. When the exchange field suppresses this channel, a different pairing channel
+becomes the leading instability instead, which here is the odd-parity, spin-triplet channel, which
+is effectively p-wave.
 
-The truly striking feature of this state shows up when we put it on a finite ribbon rather than an
-infinite plane: the bulk spectrum is gapped, exactly as we would expect from a superconductor, but
-the edges of the ribbon carry gapless excitations. A superconductor that is fully gapped in the bulk
-and gapless at the edge; this is, by now, a familiar signature from the topological-band-structure
-and quantum-Hall sessions, and indeed these edge modes are identified as topological in origin,
-tied to a finite Chern number of the underlying BdG band structure exactly the way a Chern
-insulator's edge states were tied to its Chern number.
+The most interesting feature of this state appears when we put it on a finite ribbon instead of an
+infinite plane. The bulk spectrum is gapped, as we expect for a superconductor, but the edges of the
+ribbon have gapless excitations. A superconductor that is fully gapped in the bulk and gapless at
+the edge is a signature that we already know from the topological-band-structure and quantum-Hall
+sessions. Indeed, these edge modes have a topological origin, and they are tied to a finite Chern
+number of the underlying BdG band structure, in the same way as the edge states of a Chern
+insulator were tied to its Chern number.
 
 \begin{notebookbox}{\texttt{session5.ipynb}, ``The impact of a spin splitting in an electronic structure'' (Reminder), ``A spin triplet superconductor'' (Core), ``Majorana modes in a spin triplet superconductor'' (Challenge), ``Interaction-induced spin-triplet superconductivity'' (Challenge), and ``Topological modes in interaction-driven spin triplet superconductors''}
-Start from the plain spin-split (exchange-field-only) band structure to build intuition, then run
-the self-consistency loop for the model above and confirm a spin-triplet $\Delta$ emerges. Move
-to a ribbon geometry and locate the gapless edge modes described here, then connect them (in the
-later challenge notebook sections) to the Majorana physics of sections 5.15-5.17.
+Start from the plain spin-split band structure, with only an exchange field, to build intuition.
+Then run the self-consistency loop for the model above and check that a spin-triplet $\Delta$
+emerges. Move to a ribbon geometry and find the gapless edge modes described here, and then, in the
+later challenge sections of the notebook, connect them to the Majorana physics of sections
+5.15-5.17.
 \end{notebookbox}
 
-\section{Nodal singlet order: d-wave, cuprates, and the angular-momentum expansion}
+\section{Nodal singlet order, d-wave pairing in the cuprates and the angular-momentum expansion}
 
-Within spin-singlet, even-parity order there is a further useful distinction: a singlet gap can be
-uniformly nonzero (the s-wave case of section 5.9) or it can be nodal. The classic example is
-\textbf{d-wave} order on the square lattice,
+Inside the spin-singlet, even-parity order there is a further useful distinction, since a singlet
+gap can be uniformly nonzero, as in the s-wave case of section 5.9, or it can be nodal. The standard
+example of the second case is \textbf{d-wave} order on the square lattice,
 
 \begin{equation}
 \Delta_{d}(\mathbf k) = \Delta_0\left(\cos k_x - \cos k_y\right),
 \end{equation}
 
-which vanishes exactly along the Brillouin-zone diagonals $k_x = \pm k_y$. Combined with (5.9), the
-quasiparticle spectrum $E(\mathbf k) = \sqrt{\varepsilon(\mathbf k)^2 + \Delta_d(\mathbf k)^2}$ is
-gapless precisely where the Fermi surface crosses these diagonals: a nodal singlet superconductor.
-This is exactly the pairing symmetry realized in the cuprate high-temperature superconductors, many
-of which have critical temperatures in the hundreds of kelvin and are spin-singlet, but decidedly
-\emph{not} s-wave.
+which vanishes exactly along the diagonals of the Brillouin zone, $k_x = \pm k_y$. Together with
+(5.9), this means that the quasiparticle spectrum $E(\mathbf k) = \sqrt{\varepsilon(\mathbf k)^2 +
+\Delta_d(\mathbf k)^2}$ is gapless where the Fermi surface crosses these diagonals, which gives a
+nodal singlet superconductor. This is the pairing symmetry of the cuprate high-temperature
+superconductors, which have critical temperatures up to about 130 K at ambient pressure, above the boiling
+point of liquid nitrogen, and are spin-singlet, but clearly \emph{not} s-wave.
 
-There is a clean, general organizing scheme behind this, directly analogous to the spherical-harmonic
-expansion of an atomic orbital wave function: expand the superconducting gap in an angular-momentum
-basis on the Fermi surface,
+Behind this there is a clear and general way to organize the possible cases, which is analogous to
+the expansion of an atomic orbital wave function in spherical harmonics. We expand the
+superconducting gap in an angular-momentum basis on the Fermi surface,
 
 \begin{equation}
 \Delta(\mathbf k) \;\sim\; \sum_L \Delta_L\, Y_L(\mathbf k),
@@ -482,301 +508,322 @@ L=2:\quad &\text{d-wave (spin-singlet, often antiferromagnetic-magnon-driven; cu
 \end{aligned}
 \end{equation*}
 
-In real/reciprocal space, s-wave order looks flat and constant, with no momentum dependence at all;
-$d_{x^2-y^2}$ order, as in (5.13), alternates sign around the Fermi surface in a four-lobed
-$+,-,+,-$ pattern (the same nomenclature and the same lobe structure as an atomic $d$ orbital); and
-there is a third possibility, \emph{extended s-wave}, which is still $L=0$ (same overall symmetry as plain
-s-wave under the lattice point group) but is nodal along the \emph{radial} direction: positive near the
-zone center $\Gamma$, passing through a node, and negative further out. Figure~\ref{fig:s05:gapsymmetry}
-draws these sign structures over the Brillouin zone alongside the p- and f-wave cases below.
+In real and reciprocal space, s-wave order is flat and constant, with no momentum dependence at
+all. The $d_{x^2-y^2}$ order of (5.13) changes sign around the Fermi surface in a pattern of four
+lobes, $+,-,+,-$, with the same name and the same lobe structure as an atomic $d$ orbital. There is
+also a third possibility, which is called \emph{extended s-wave}. It is still $L=0$, meaning that it
+has the same overall symmetry as plain s-wave under the lattice point group, but it is nodal along
+the \emph{radial} direction, since it is positive near the zone center $\Gamma$, goes through a
+node and is negative further out. Figure~\ref{fig:s05:gapsymmetry} shows these sign structures over
+the Brillouin zone, together with the p- and f-wave cases below.
 
-The lecture repeats this same three-way classification (uniform s-wave, a nodal order, and extended
-s-wave) on the triangular lattice, where the nodal case shows six alternating-sign lobes around the
-Fermi surface: an \textbf{f-wave order, $L=3$} (confirmed by the instructor; the "L equal to two"
-heard in the raw recording was a slip, since a six-lobe alternating-sign pattern is the standard
-signature of $L=3$, not $L=2$, which is already used above for the square lattice's four-lobed
-$d_{x^2-y^2}$ state). Note that this one steps outside the present section's singlet family: six
-lobes alternating in sign means the gap changes sign under a half turn, so $\Delta(-\mathbf k) =
--\Delta(\mathbf k)$, and by (5.12) an $L=3$ order is odd-parity and hence necessarily
-\emph{spin-triplet}, not singlet like the s-, extended-s- and d-wave cases above.
+The lecture repeats the same classification into three cases, uniform s-wave, a nodal order and
+extended s-wave, on the triangular lattice. There the nodal case has six lobes of alternating sign
+around the Fermi surface, and it is an \textbf{f-wave order, $L=3$}. The instructor confirmed this,
+and the "L equal to two" in the raw recording was a mistake, since a pattern of six lobes with
+alternating sign is the standard signature of $L=3$ and not of $L=2$, which is already used above
+for the four-lobed $d_{x^2-y^2}$ state of the square lattice. Note that this order is outside the
+singlet family of this section. Six lobes with alternating sign mean that the gap changes sign under
+a half turn, so $\Delta(-\mathbf k) =
+-\Delta(\mathbf k)$, and by (5.12) an $L=3$ order has odd parity and is therefore necessarily
+\emph{spin-triplet}, and not singlet like the s-, extended-s- and d-wave cases above.
 
 \input{figures/s05f03_gapsymmetry}
 
 \begin{notebookbox}{\texttt{session5.ipynb}, ``Gapped and nodal superconducting orders'' (Core)}
 Implement the $d_{x^2-y^2}$ gap of (5.13) on the square lattice, plot $\Delta(\mathbf k)$ over the
-Brillouin zone and confirm the four-lobe alternating-sign pattern and the location of its nodes
-relative to a given Fermi surface. The triangular-lattice $L=3$ nodal (f-wave) case discussed above
-is also available in this notebook section if you want to see the six-lobe pattern directly.
+Brillouin zone, and check the pattern of four lobes with alternating sign and the position of its
+nodes relative to a given Fermi surface. The nodal $L=3$ (f-wave) case of the triangular lattice
+discussed above is also in this section of the notebook, if you want to see the pattern of six
+lobes directly.
 \end{notebookbox}
 
-\section{Same gap, different topology: trivial s-wave versus chiral p-wave}
+\section{Same gap and different topology in trivial s-wave and chiral p-wave pairing}
 
-Here is the pivot point of the whole session. Two superconducting gaps can look completely identical
-in their \emph{spectral} properties, both fully gapping the Fermi surface with, say, the same minimum gap
-size, and yet be topologically inequivalent. Compare plain s-wave pairing, $\Delta(\mathbf k) =
+This is the central point of the whole session. Two superconducting gaps can have completely
+identical \emph{spectral} properties, where both fully gap the Fermi surface with, for example, the
+same minimum gap, and still be topologically different. Let us compare plain s-wave pairing,
+$\Delta(\mathbf k) =
 \Delta_0$, with \textbf{chiral p-wave} pairing,
 
 \begin{equation}
 \Delta_{p+ip}(\mathbf k) = \Delta_0\left(\sin k_x + i \sin k_y\right),
 \end{equation}
 
-an odd-parity, spin-triplet order (consistent with (5.12): $\Delta_{p+ip}(-\mathbf k) =
--\Delta_{p+ip}(\mathbf k)$) that winds once around the origin of the complex plane as $\mathbf k$
-circles the Fermi surface. Both (5.9)-with-$\Delta_0$ and (5.9)-with-$\Delta_{p+ip}$ can fully gap the
-same Fermi surface, so a measurement of the bulk gap alone cannot distinguish them. But exactly as in
-the topological-band-structure session's Chern-number classification of gapped bands, we can compute
-the Chern number of the occupied BdG bands for each case, and they come out completely different: the
-trivial s-wave state has Chern number $0$, while the chiral p-wave state has Chern number $\pm 2$
-(the sign set by the chirality, $p_x + ip_y$ versus $p_x - ip_y$).
+which is an odd-parity, spin-triplet order, in agreement with (5.12) since $\Delta_{p+ip}(-\mathbf
+k) =
+-\Delta_{p+ip}(\mathbf k)$, and which winds once around the origin of the complex plane as $\mathbf
+k$ goes around the Fermi surface. Both (5.9) with $\Delta_0$ and (5.9) with $\Delta_{p+ip}$ can
+fully gap the same Fermi surface, so a measurement of the bulk gap alone cannot distinguish them.
+However, in the same way as for the Chern-number classification of gapped bands in the
+topological-band-structure session, we can compute the Chern number of the occupied BdG bands for
+each case, and the two results are completely different. The trivial s-wave state has Chern number
+$0$, while the chiral p-wave state has Chern number $\pm 2$, where the sign is set by the
+chirality, $p_x + ip_y$ or $p_x - ip_y$.
 
-What distinguishes them, drawn in figure~\ref{fig:s05:topology}, is the winding of the \emph{phase}
-of $\Delta(\mathbf k)$ as $\mathbf k$ is carried once around the Fermi surface: constant for s-wave,
-one full turn for $p+ip$.
+What distinguishes them, as shown in figure~\ref{fig:s05:topology}, is the winding of the
+\emph{phase} of $\Delta(\mathbf k)$ when $\mathbf k$ goes once around the Fermi surface. This phase
+is constant for s-wave, and it makes one full turn for $p+ip$.
 
-This has exactly the consequence the bulk-boundary correspondence would lead us to expect. On a
-finite system, the s-wave superconductor stays gapped everywhere, bulk and edge alike, just like a
-trivial (Chern-number-zero) insulator. The chiral p-wave superconductor, by contrast, is gapped in
-the bulk but carries gapless \emph{chiral} edge modes: on any one edge, $|C|$ branches all
-propagating the same way (here two, one from each of the two identical spin blocks), with the
-opposite edge carrying the same number of branches running the opposite way, precisely as a
-Chern-number-$\pm 2$ state must. On a ribbon, then, one sees two counter-propagating sets of
-branches, but they are localized on opposite edges rather than sharing one. These particular edge
-modes turn out to be
-"fractions of an electron" in a very specific and rigorous sense: they are Majorana modes, and
-understanding exactly what that means is the subject of the rest of this session.
+This has the consequence that we expect from the bulk-boundary correspondence. In a finite system,
+the s-wave superconductor stays gapped everywhere, both in the bulk and at the edge, in the same way
+as a trivial insulator with Chern number zero. The chiral p-wave superconductor, on the other hand,
+is gapped in the bulk but has gapless \emph{chiral} edge modes. On one edge there are $|C|$ branches
+that all propagate in the same direction, here two, one from each of the two identical spin blocks,
+and the opposite edge has the same number of branches that propagate in the opposite direction, as
+a state with Chern number $\pm 2$ must have. So on a ribbon we see two sets of branches that
+propagate in opposite directions, but they are localized on opposite edges and do not share one
+edge. These edge modes turn out to be fractions of an electron in a very specific and exact sense,
+since they are Majorana modes, and the rest of this session is about what this means.
 
 \input{figures/s05f04_topology}
 
 \begin{notebookbox}{\texttt{session5.ipynb}, ``Trivial and topological superconducting order parameters, bulk spectra'' (Core), and ``...edge spectra'' (Core)}
-Build the s-wave and chiral p-wave BdG Hamiltonians side by side, confirm their bulk spectra look
-alike (both gapped, comparable gap size), then switch to a ribbon geometry and confirm only the
-p-wave case develops gapless chiral edge states, with the two ribbon edges carrying branches of
-opposite velocity, exactly the Chern-number-driven distinction of section 5.14.
+Build the s-wave and chiral p-wave BdG Hamiltonians next to each other, and check that their bulk
+spectra look similar, since both are gapped with a comparable gap size. Then move to a ribbon
+geometry and check that only the p-wave case has gapless chiral edge states, with branches of
+opposite velocity on the two edges of the ribbon, which is the distinction driven by the Chern
+number of section 5.14.
 \end{notebookbox}
 
-\section{Majorana bound states: definition and the electron-splitting trick}
+\section{Majorana bound states and how to split an electron into two Majoranas}
 
-A \textbf{Majorana fermion} is defined algebraically by the condition that its field operator is its own
-Hermitian conjugate,
+A \textbf{Majorana fermion} is defined algebraically by the condition that its field operator is
+equal to its own Hermitian conjugate,
 
 \begin{equation}
 \gamma^\dagger = \gamma,
 \end{equation}
 
-meaning creation and annihilation of the quasiparticle are the same operation: the particle is its
-own antiparticle. This sounds like it has no place in an ordinary material, since an ordinary electron
-is emphatically not its own antiparticle ($c^\dagger \ne c$), and a semiconductor, say, never hosts
-anything of the kind.
+which means that the creation and the annihilation of the quasiparticle are the same operation, so
+the particle is its own antiparticle. At first this seems to have no place in an ordinary material,
+since an ordinary electron is clearly not its own antiparticle ($c^\dagger \ne c$), and a
+semiconductor, for example, never hosts anything of this kind.
 
-But there is a purely algebraic fact that opens the door: \emph{any} ordinary fermionic operator can be
-written as a combination of two Hermitian, mutually anticommuting Majorana operators,
+However, there is a purely algebraic fact that makes it possible. \emph{Any} ordinary fermionic
+operator can be written as a combination of two Hermitian Majorana operators that anticommute with
+each other,
 
 \begin{equation}
 \gamma_A = c + c^\dagger, \qquad \gamma_B = -i\left(c - c^\dagger\right),
 \end{equation}
 
-so that $\gamma_A^\dagger = \gamma_A$, $\gamma_B^\dagger = \gamma_B$, $\{\gamma_A,\gamma_B\}=0$,
-$\gamma_A^2=\gamma_B^2=1$ (using $\{c,c^\dagger\}=1$), and, inverting (5.17),
+so that $\gamma_A^\dagger = \gamma_A$, $\gamma_B^\dagger = \gamma_B$, $\{\gamma_A,\gamma_B\}=0$ and
+$\gamma_A^2=\gamma_B^2=1$, where we used $\{c,c^\dagger\}=1$. If we invert (5.17), we obtain
 
 \begin{equation}
 c = \frac{1}{2}\left(\gamma_A + i\gamma_B\right), \qquad c^\dagger = \frac{1}{2}\left(\gamma_A - i\gamma_B\right).
 \end{equation}
 
-This is initially just a change of variables, a mathematical trick with no new physics in it: every
-electron is \emph{always} secretly two Majorana operators, tightly bound together into an ordinary
-fermion, and normally there is no way to observe $\gamma_A$ or $\gamma_B$ individually, only their
-fixed combination $c$. What makes superconductors special is that BdG eigenstates are already
-electron-hole mixtures by construction (recall the Nambu spinor of section 5.8 explicitly combines
-$c_{\mathbf k\sigma}$ with $c_{-\mathbf k\sigma'}^\dagger$), so a superconductor is exactly the kind
-of setting where, with the right pairing symmetry and the right geometry, the two Majorana
-components of an electron can become spatially \emph{separated} (deconfined) rather than staying locked
-together at one site. That deconfinement is what the rest of this section is about.
+At first this is only a change of variables, a mathematical trick without new physics. Every
+electron is \emph{always} made of two Majorana operators that are tightly bound together into an
+ordinary fermion, and normally there is no way to observe $\gamma_A$ or $\gamma_B$ separately, only
+their fixed combination $c$. Superconductors are special because BdG eigenstates are already
+mixtures of electrons and holes by construction, since the Nambu spinor of section 5.8 explicitly
+combines $c_{\mathbf k\sigma}$ with $c_{-\mathbf k\sigma'}^\dagger$. So a superconductor is the
+kind of system where, with the right pairing symmetry and the right geometry, the two Majorana
+components of an electron can become spatially \emph{separated}, or deconfined, instead of staying
+together at one site. This deconfinement is the topic of the rest of this section.
 
-\section{The Kitaev chain: the minimal model with isolated Majoranas}
+\section{The Kitaev chain as the minimal model with isolated Majoranas}
 
-The simplest superconductor capable of hosting isolated Majoranas is, appropriately, about as simple
-as a superconducting Hamiltonian can be: a one-dimensional, \emph{spinless} chain with nearest-neighbor
-hopping and nearest-neighbor pairing,
+The simplest superconductor that can host isolated Majoranas is also one of the simplest
+superconducting Hamiltonians that we can write, which is a one-dimensional \emph{spinless} chain
+with nearest-neighbor hopping and nearest-neighbor pairing,
 
 \begin{equation}
 H_{\text{Kitaev}} = -t\sum_n \left(c_n^\dagger c_{n+1} + \text{h.c.}\right) - \mu\sum_n c_n^\dagger c_n + \Delta\sum_n \left(c_n c_{n+1} + c_{n+1}^\dagger c_n^\dagger\right).
 \end{equation}
 
-Pairing has to sit on a bond here rather than on-site: with spinless fermions, an on-site term
-$c_n c_n$ vanishes identically by the Pauli principle ($c_n^2=0$), so the simplest allowed pairing is
-exactly the nearest-neighbor term above. Fourier transforming, the dispersion and the pairing become
+Here the pairing has to be on a bond and not onsite. For spinless fermions, an onsite term $c_n c_n$
+vanishes identically because of the Pauli principle ($c_n^2=0$), so the simplest allowed pairing is
+the nearest-neighbor term above. After a Fourier transform, the dispersion and the pairing become
 
 \begin{equation}
 \varepsilon(k) = -2t\cos k - \mu, \qquad \Delta(k) = 2i\Delta\sin k,
 \end{equation}
 
-so the anomalous term is manifestly odd in $k$: this is, as (5.12) already tells us, necessarily a
-spin-triplet-type (here, spinless p-wave) superconductor, consistent with the Pauli-forbidden on-site
-channel.
+so the anomalous term is explicitly odd in $k$. As (5.12) already tells us, this means that this is
+necessarily a superconductor of spin-triplet type, here a spinless p-wave one, which agrees with the
+fact that the onsite channel is forbidden by the Pauli principle.
 
-Now set $\mu=0$ and tune to the special point $\Delta=t$, and substitute the Majorana decomposition
-(5.17)-(5.18) at every site, $c_n = \frac{1}{2}(\gamma_{2n-1}+i\gamma_{2n})$. Carrying the
-substitution through both the hopping and the pairing term (the algebra is a direct but slightly
-lengthy exercise in the anticommutation relations of the $\gamma$'s, which we encourage you to check
-yourself), the two terms combine so that every $\gamma_{2n-1}\gamma_{2n+2}$ contribution cancels
-exactly between hopping and pairing, leaving a remarkably clean result:
+Now let us set $\mu=0$ and go to the special point $\Delta=t$, and let us substitute the Majorana
+decomposition (5.17)-(5.18) at every site, $c_n = \frac{1}{2}(\gamma_{2n-1}+i\gamma_{2n})$. We do
+this substitution in both the hopping and the pairing term. The algebra is direct but a bit long,
+and it uses the anticommutation relations of the $\gamma$'s, so we suggest that you check it
+yourself. The two terms combine so that every $\gamma_{2n-1}\gamma_{2n+2}$ contribution cancels
+exactly between hopping and pairing, and the result is very simple,
 
 \begin{equation}
 H_{\text{Kitaev}}\Big|_{\Delta=t,\ \mu=0} = it\sum_{n=1}^{N-1} \gamma_{2n}\,\gamma_{2n+1}.
 \end{equation}
 
 Every Majorana operator $\gamma_2, \gamma_3, \gamma_4, \dots, \gamma_{2N-1}$ appears in this sum,
-paired up between neighboring \emph{sites}, but the very first Majorana, $\gamma_1$, and the very last,
-$\gamma_{2N}$, never appear at all. They drop out of the Hamiltonian entirely: they cost zero energy,
-and they are completely uncoupled from everything else in the system. This is precisely the same
-structure we met in the topological-band-structure session's SSH model, in its dimerized
-strong-coupling limit: there, at full dimerization, the bulk pairs up into bonding/antibonding
-dimers while a leftover site at each end decouples and produces a zero-energy edge mode. The Kitaev
-chain in (5.21) \emph{is} that same structure, just written in Majorana language rather than ordinary
-fermion language: two decoupled end Majoranas standing in for the SSH model's two decoupled end
-sites. We are not re-deriving the SSH model here; we are simply recognizing it, dressed up in a new
-set of operators. Which Majorana is bound to which, in this phase and in the trivial one, is drawn
-in figure~\ref{fig:s05:kitaev}.
+paired between neighboring \emph{sites}, but the first Majorana, $\gamma_1$, and the last one,
+$\gamma_{2N}$, do not appear at all. They are completely absent from the Hamiltonian, so they cost
+zero energy and are completely decoupled from the rest of the system. This is the same structure
+that we saw in the SSH model of the topological-band-structure session, in its dimerized
+strong-coupling limit. There, at full dimerization, the bulk forms bonding and antibonding dimers,
+while one remaining site at each end decouples and gives a zero-energy edge mode. The Kitaev chain
+in (5.21) \emph{is} this same structure, written in terms of Majorana operators instead of ordinary
+fermion operators, and the two decoupled end Majoranas play the role of the two decoupled end sites
+of the SSH model. We do not derive the SSH model again here, and we only recognize it in terms of a
+new set of operators. Figure~\ref{fig:s05:kitaev} shows which Majorana is bound to which, in this
+phase and in the trivial one.
 
 \input{figures/s05f05_kitaev}
 
 \begin{notebookbox}{\texttt{session5.ipynb}, ``Emergence of Majorana modes as a function of the size of the superconductor'' (Core)}
 Build the Kitaev chain of (5.19), diagonalize it at the fine-tuned point $\Delta=t$, $\mu=0$, and
-confirm directly (as system size grows) that two states pin exactly to zero energy and localize at
-the two ends, matching the two decoupled Majoranas $\gamma_1$ and $\gamma_{2N}$ predicted by
-(5.21).
+check directly, as the system size grows, that two states are pinned exactly to zero energy and are
+localized at the two ends. These are the two decoupled Majoranas $\gamma_1$ and $\gamma_{2N}$
+predicted by (5.21).
 \end{notebookbox}
 
-\section{Periodic versus open boundaries: the topological zero modes}
+\section{Topological zero modes with periodic and open boundaries}
 
-Diagonalizing (5.19) on a \emph{periodic} chain gives a fully gapped spectrum, with a superconducting gap
-set by $\Delta$ and a nontrivial bulk topological invariant (the same kind of $\mathbb{Z}_2$/winding
-invariant that classified the SSH model's two phases via the Zak phase in the topological-band-
-structure session, now computed from the BdG bands instead of an ordinary Bloch Hamiltonian). On an
-\emph{open} chain, say $N=100$ sites with the two ends disconnected, the bulk spectrum keeps essentially
-the same gap, but two extra states appear pinned exactly at zero energy, localized respectively at
-the left end and the right end of the chain: these are precisely the unpaired Majoranas $\gamma_1$
-and $\gamma_{2N}$ from (5.21), now visible as genuine mid-gap states of the open chain.
+If we diagonalize (5.19) on a \emph{periodic} chain, we obtain a fully gapped spectrum, with a
+superconducting gap set by $\Delta$ and a nontrivial topological invariant of the bulk. This is the
+same kind of $\mathbb{Z}_2$ or winding invariant that classified the two phases of the SSH model
+through the Zak phase in the topological-band-structure session, now computed from the BdG bands
+instead of an ordinary Bloch Hamiltonian. On an \emph{open} chain, for example with $N=100$ sites
+and the two ends disconnected, the bulk spectrum keeps essentially the same gap, but two extra
+states appear, pinned exactly at zero energy and localized at the left end and at the right end of
+the chain. These are the unpaired Majoranas $\gamma_1$
+and $\gamma_{2N}$ from (5.21), which we now see as real mid-gap states of the open chain.
 
-These zero modes are remarkably robust. Moving away from the fine-tuned point ($\Delta \ne t$,
-finite $\mu$), the zero modes survive as long as we stay within the same topological phase. The
-precise, standard criterion for the general Kitaev chain (5.19) with $\Delta \ne 0$ is
+These zero modes are very robust. When we move away from the fine-tuned point, with $\Delta \ne t$
+and finite $\mu$, the zero modes survive as long as we stay in the same topological phase. The
+standard criterion for the general Kitaev chain (5.19) with $\Delta \ne 0$ is
 
 \begin{equation}
 |\mu| < 2t \quad \Longrightarrow \quad \text{topological phase (unpaired end Majoranas)}, \qquad |\mu| > 2t \quad \Longrightarrow \quad \text{trivial phase.}
 \end{equation}
 
-In the trivial phase, large chemical potential effectively pins each site to be either empty or
-doubly occupied in the fermionic language, and the two Majoranas that make up each site's electron
-recombine locally into an ordinary, confined fermion; there is nothing left to deconfine. In the
-topological phase, by contrast, p-wave pairing dominates over the trivial on-site physics, and the
-two Majoranas at each site pair up with their neighbors' Majoranas instead of with each other,
-leaving the two end Majoranas with no partner at all. This is exactly the same "strong coupling /
-dimerized limit versus weak coupling / atomic limit" contrast that distinguished the SSH model's
-topological and trivial phases; the Kitaev chain reproduces it because, as we saw in section 5.16,
-it literally is the SSH model, just relabeled.
+In the trivial phase, a large chemical potential effectively fixes each site to be either empty or
+occupied in the fermionic language, since the chain is spinless, and the two Majoranas that form the electron of each site
+combine again locally into an ordinary confined fermion, so nothing is left to deconfine. In the
+topological phase, on the other hand, p-wave pairing dominates over the trivial onsite physics, and
+the two Majoranas at each site pair with the Majoranas of the neighboring sites instead of with each
+other, which leaves the two end Majoranas without any partner. This is the same contrast between
+the dimerized strong-coupling limit and the atomic weak-coupling limit that distinguished the
+topological and trivial phases of the SSH model. The Kitaev chain reproduces it because, as we saw
+in section 5.16, it is the SSH model with new labels.
 
 \section{Engineering a topological superconductor from a quantum spin Hall insulator}
 
 Chiral and p-wave superconductors of the kind we need are rare in nature, so in practice they are
-usually \emph{engineered} rather than found. One instructive recipe reuses the quantum spin Hall (QSH)
-insulator from the topological-band-structure session directly. Take a QSH insulator, tungsten
-ditelluride (WTe$_2$) is the concrete material example used, whose edge carries helical modes:
-spin-up electrons propagate one way, spin-down electrons propagate the other way, on the same edge.
-Now place ordinary ferromagnets on two segments of that edge. A magnet locally breaks time-reversal
-symmetry, which gaps out the helical edge modes underneath it (recall from the topological-band-
-structure session that the QSH edge's protection relies on time-reversal symmetry via Kramers
-degeneracy; break that symmetry locally and the protection is gone there). What remains ungapped is
-a short, isolated segment of helical edge sandwiched between the two magnetic regions.
+usually \emph{engineered} and not found. One instructive recipe uses directly the quantum spin Hall
+(QSH) insulator from the topological-band-structure session. We take a QSH insulator, and the
+concrete material used in the lecture is tungsten ditelluride (WTe$_2$), whose edge has helical
+modes, meaning that spin-up electrons propagate in one direction and spin-down electrons propagate
+in the other direction on the same edge. Now we place ordinary ferromagnets on two segments of this
+edge. A magnet breaks time-reversal symmetry locally, and this opens a gap in the helical edge modes
+below it. We recall from the topological-band-structure session that the protection of the QSH edge
+relies on time-reversal symmetry through Kramers degeneracy, so if we break this symmetry locally,
+the protection is lost there. What remains without a gap is a short isolated segment of helical edge
+between the two magnetic regions.
 
-That isolated segment only has spin-up electrons moving right and spin-down electrons moving left
-(no spin-down moving right, and no spin-up moving left): counting states purely by propagation
-direction, this segment is \emph{effectively spinless}, exactly the ingredient the Kitaev-chain
-construction of section 5.16 needs. Proximity-coupling this segment to an ordinary s-wave
-superconductor then reproduces, on this effectively spinless one-dimensional system, exactly the
-physics of (5.19): a one-dimensional p-wave superconductor with Majorana zero modes pinned at the
-two ends of the isolated segment. The whole stack is drawn in figure~\ref{fig:s05:qsh}.
+This isolated segment only has spin-up electrons moving right and spin-down electrons moving left,
+with no spin-down electrons moving right and no spin-up electrons moving left. If we count states
+only by their direction of propagation, this segment is \emph{effectively spinless}, which is the
+ingredient that the Kitaev-chain construction of section 5.16 needs. If we then couple this segment
+by proximity to an ordinary s-wave superconductor, we reproduce on this effectively spinless
+one-dimensional system the physics of (5.19), which is a one-dimensional p-wave superconductor with
+Majorana zero modes pinned at the two ends of the isolated segment. Figure~\ref{fig:s05:qsh} shows
+the whole setup.
 
 \input{figures/s05f06_qsh}
 
 \begin{notebookbox}{\texttt{session5.ipynb}, ``Artificial topological superconductivity'' (Challenge), ``Edge states of an artificial topological superconductor'' (Challenge), and ``Topological phase transition as a function of the exchange field''}
-Build the QSH-edge-plus-magnets-plus-superconductivity construction described above and confirm
-the emergence of end-localized zero modes as you vary the exchange field strength, watching the
-system cross the (5.22)-type topological/trivial boundary as the magnetic gapping strength changes.
+Build the construction described above, with the QSH edge, the magnets and superconductivity, and
+check that zero modes localized at the ends emerge as you change the strength of the exchange field.
+Look at how the system crosses the boundary between the topological and the trivial phase, of the
+type of (5.22), as the magnetic gap changes.
 \end{notebookbox}
 
 \section{Topological quantum computing with Majoranas}
 
-The reason Majorana modes attract so much attention beyond their own intrinsic strangeness is their
-proposed use in fault-tolerant quantum computing. Majoranas are \textbf{non-Abelian anyons}: exchanging
-(braiding) one Majorana around another multiplies the many-body ground state by a phase, and unlike
-an ordinary phase, the \emph{order} in which different braiding operations are carried out matters, an
-inherently non-commuting (non-Abelian) algebra. This follows directly from the structure of the BdG
-Hamiltonian once more than two Majoranas are present.
+Majorana modes get so much attention, beyond their own unusual properties, because of their
+proposed use in fault-tolerant quantum computing. Majoranas are \textbf{non-Abelian anyons}.
+Exchanging, or braiding, one Majorana around another does not only multiply the many-body ground
+state by a phase. It acts as a unitary matrix on a degenerate ground-state manifold, so the
+\emph{order} in which different braiding operations are done matters, which means that the algebra
+does not commute, and this is what is called non-Abelian. This
+follows directly from the structure of the BdG Hamiltonian when more than two Majoranas are present.
 
-Concretely, four Majorana operators $\gamma_1,\gamma_2,\gamma_3,\gamma_4$ can be recombined, via
-(5.18)-type pairings, into two ordinary ("artificial") fermionic operators, so a system with four
-Majoranas encodes two ordinary fermionic modes. The resulting many-body ground-state manifold, empty,
-one mode filled, the other mode filled, both filled, is four-fold degenerate (all four states cost
-zero energy, by the same argument that made $\gamma_1$ and $\gamma_{2N}$ zero-energy in the Kitaev
-chain), and this degenerate manifold is exactly the proposed computational basis for a topological
-qubit.
+For concreteness, four Majorana operators $\gamma_1,\gamma_2,\gamma_3,\gamma_4$ can be combined
+again, with pairings of the type of (5.18), into two ordinary fermionic operators, which we can call
+artificial fermions, so a system with four Majoranas encodes two ordinary fermionic modes. The
+resulting many-body ground-state manifold, with the states empty, one mode filled, the other mode
+filled and both filled, is four-fold degenerate. All four states cost zero energy, by the same
+argument that made $\gamma_1$ and $\gamma_{2N}$ zero-energy modes in the Kitaev chain, and this
+degenerate manifold is the proposed computational basis for a topological qubit.
 
-Braiding two Majoranas, say $\gamma_1$ around $\gamma_2$, acts on the ground-state manifold as a unitary
+Braiding two Majoranas, for example $\gamma_1$ around $\gamma_2$, acts on the ground-state manifold
+as a unitary
 
 \begin{equation}
 U_{12} = \exp\left(\frac{\pi}{4}\,\gamma_1\gamma_2\right),
 \end{equation}
 
-which multiplies states by a relative phase built from $e^{i\pi/4}$ times the Majorana product; the
-precise form is not the point so much as what it implies: braiding the pair $(1,2)$ and then the pair
-$(3,4)$ produces a different final state than braiding $(3,4)$ first and $(1,2)$ second, and braiding
-$(1,4)$ is different again. This non-commuting braid algebra is exactly what lets sequences of purely
-topological, purely geometric moves (physically moving Majoranas around one another) implement
-non-trivial quantum logic gates. Because the resulting qubit is stored non-locally, split between
-spatially separated Majoranas rather than living in one local degree of freedom, it is intrinsically
-resistant to local decoherence and to weak, local disorder; this robustness is the whole appeal of
-the topological-quantum-computing proposal. This braiding-and-quantum-computing material is
-slides-and-transcript-only content with no counterpart in \texttt{session5.ipynb}: none of the notebook's
-sections implement braiding dynamics or a qubit manifold, which makes sense given how far this is
-from a static tight-binding diagonalization; it is a genuinely separate, dynamical calculation.
+which multiplies states by a relative phase built from $e^{i\pi/4}$ times the Majorana product. The
+exact form is less important than what it implies. Two exchanges that share a Majorana do not commute.
+Braiding the pair $(1,2)$ and then the pair $(2,3)$ gives a different final state than braiding
+$(2,3)$ first and $(1,2)$ second, since $\gamma_1\gamma_2$ and $\gamma_2\gamma_3$ anticommute.
+Exchanges of disjoint pairs, such as $(1,2)$ and $(3,4)$, commute instead. This braid algebra that does not commute is what allows sequences of
+purely topological and geometric moves, which physically means moving Majoranas around one another,
+to implement non-trivial quantum logic gates. Since the resulting qubit is stored non-locally,
+divided between spatially separated Majoranas instead of being in one local degree of freedom, it is
+intrinsically resistant to local decoherence and to weak local disorder, and this robustness is the
+main reason for the interest in topological quantum computing. This material on braiding and quantum
+computing appears only in the slides and the transcript and has no counterpart in
+\texttt{session5.ipynb}. None of the sections of the notebook implement braiding dynamics or a qubit
+manifold, which is reasonable, since this is far from a static tight-binding diagonalization and it
+is a separate dynamical calculation.
 
 \section{Closing summary}
 
 \begin{itemize}
 \item \textbf{Superconductivity is a mean-field, attractive-interaction phenomenon.} Starting from an
-attractive Hubbard chain (5.2), pairing mean-field theory produces the order parameter
-$\Delta_n = U\langle c_{n\downarrow}c_{n\uparrow}\rangle$ (5.3) and mean-field Hamiltonian (5.4).
-\item \textbf{Pairing breaks particle-number conservation down to parity} (section 5.6), and this is exactly
-the statement that gauge symmetry is spontaneously broken: the pairing term picks up a phase
+attractive Hubbard chain (5.2), pairing mean-field theory gives the order parameter
+$\Delta_n = U\langle c_{n\downarrow}c_{n\uparrow}\rangle$ (5.3) and the mean-field Hamiltonian
+(5.4).
+\item \textbf{Pairing breaks particle-number conservation down to parity} (section 5.6), and this is
+the same as the statement that gauge symmetry is spontaneously broken. The pairing term gets a phase
 $e^{-2i\varphi}$ under the gauge transformation (5.5), unlike ordinary bilinear terms.
-\item \textbf{Flux quantization}, $\Phi = n\, h/2e$ (5.1), is a direct, measurable macroscopic consequence of
-that broken gauge symmetry, on par with the quantum Hall conductance quantum from earlier sessions.
-\item \textbf{The Nambu spinor (5.6) and the Bogoliubov-de Gennes Hamiltonian (5.7)-(5.8)} are the tools that
-let us diagonalize any mean-field superconducting Hamiltonian, giving the quasiparticle dispersion
-$E(\mathbf k) = \pm\sqrt{\varepsilon(\mathbf k)^2 + |\Delta(\mathbf k)|^2}$ (5.9); a gap opens at
-the original Fermi surface regardless of microscopic dispersion details.
-\item \textbf{The symmetry of $\Delta(\mathbf k)$ classifies the superconductor}: singlet (even in $\mathbf
-k$) versus triplet (odd in $\mathbf k$) via (5.11)-(5.12), with an angular-momentum ($L=0,1,2,\dots$)
-sub-classification (5.14) that recovers s-, p-, and d-wave order, the last of these realized by
-cuprate high-$T_c$ superconductors via the nodal $d_{x^2-y^2}$ gap (5.13).
-\item \textbf{Spectrally identical gaps can carry different topology.} Trivial s-wave ($C=0$) and chiral
-p-wave ($C=\pm2$, eq. 5.15) pairing both fully gap the same Fermi surface, but only the
-topological one hosts gapless edge modes, exactly the Chern-number bulk-boundary logic from the
-topological-band-structure and quantum-Hall sessions.
-\item \textbf{The Kitaev chain (5.19) is the SSH model in Majorana language.} At the fine-tuned point it
-reduces to $H = it\sum_n \gamma_{2n}\gamma_{2n+1}$ (5.21), leaving two unpaired, zero-energy end
-Majoranas; these survive away from fine-tuning throughout the topological phase $|\mu|<2t$ (5.22).
-\item \textbf{Majoranas are non-Abelian anyons.} Braiding them implements a non-commuting operator algebra
-(5.23) on a topologically degenerate ground-state manifold, the basis for proposed topological
-quantum computing schemes; this last piece is slides-and-transcript material with no notebook
-counterpart.
+\item \textbf{Flux quantization}, $\Phi = n\, h/2e$ (5.1), is a direct and measurable macroscopic
+consequence of this broken gauge symmetry, at the same level as the conductance quantum of the
+quantum Hall effect from earlier sessions.
+\item \textbf{The Nambu spinor (5.6) and the Bogoliubov-de Gennes Hamiltonian (5.7)-(5.8)} are the
+tools that allow us to diagonalize any mean-field superconducting Hamiltonian. They give the
+quasiparticle dispersion
+$E(\mathbf k) = \pm\sqrt{\varepsilon(\mathbf k)^2 + |\Delta(\mathbf k)|^2}$ (5.9), and a gap opens at
+the original Fermi surface regardless of the details of the microscopic dispersion.
+\item \textbf{The symmetry of $\Delta(\mathbf k)$ classifies the superconductor.} It can be singlet,
+even in $\mathbf
+k$, or triplet, odd in $\mathbf k$, as in (5.11)-(5.12), with a further classification by angular
+momentum ($L=0,1,2,\dots$) (5.14) that gives s-, p- and d-wave order. The last one is realized in
+the cuprate high-$T_c$ superconductors through the nodal $d_{x^2-y^2}$ gap (5.13).
+\item \textbf{Gaps with the same spectrum can have different topology.} Trivial s-wave ($C=0$) and
+chiral p-wave ($C=\pm2$, eq. 5.15) pairing both fully gap the same Fermi surface, but only the
+topological one has gapless edge modes, which is the bulk-boundary logic of the Chern number from
+the topological-band-structure and quantum-Hall sessions.
+\item \textbf{The Kitaev chain (5.19) is the SSH model in Majorana language.} At the fine-tuned
+point it reduces to $H = it\sum_n \gamma_{2n}\gamma_{2n+1}$ (5.21), which leaves two unpaired end
+Majoranas with zero energy. These survive away from the fine-tuned point in the whole topological
+phase $|\mu|<2t$ (5.22).
+\item \textbf{Majoranas are non-Abelian anyons.} Braiding them acts as a unitary (5.23) on a
+topologically degenerate ground-state manifold, and exchanges that share a Majorana do not commute, which is the basis of
+the proposed schemes for topological quantum computing. This last part is material from the slides
+and the transcript, with no counterpart in the notebook.
 \end{itemize}
 
-Today we followed session 1's superconductivity thread all the way from the bare pairing order
-parameter to Nambu spinors, Bogoliubov-de Gennes Hamiltonians, singlet/triplet classification, and
-finally to Majorana zero modes in the Kitaev chain. Session 1's fork had a second branch we have not
-touched since its first pass: magnetism, broken time-reversal symmetry rather than broken gauge
-symmetry. That is exactly where we go next. Session 6 returns to the very same Hubbard Hamiltonian
-that opened today's session 5.5, now on its repulsive ($U>0$) side, and gives magnetism the same
-depth of treatment we have just given superconductivity.
+In this session we followed the topic of superconductivity from session 1, from the bare pairing
+order parameter to Nambu spinors, Bogoliubov-de Gennes Hamiltonians, the singlet and triplet
+classification and finally Majorana zero modes in the Kitaev chain. The division that we made in
+session 1 had a second branch that we have not considered since its first short treatment, which is
+magnetism, where time-reversal symmetry is broken instead of gauge symmetry. This is where we go
+next. Session 6 comes back to the same Hubbard Hamiltonian that opened section 5.5 of this session,
+now on its repulsive ($U>0$) side, and gives magnetism the same depth of treatment that we have now
+given to superconductivity.

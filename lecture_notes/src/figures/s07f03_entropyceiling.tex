@@ -3,18 +3,18 @@
 %
 % LAYOUT NOTE: the only pgfplots figure of this set. Everything, annotations
 % included, is positioned in (axis cs:...) so nothing can drift off the curves.
-\begin{aqmfigure}{fig:s07:ceiling}{The bond dimension is a ceiling on entanglement, and that is the
-whole story of when matrix product states work. An MPS with bond dimension $M$ admits at most $M$
-Schmidt terms across any bond, so by (7.10) it can carry at most $S=\log M$ there: the two horizontal
-lines. A gapped one-dimensional ground state obeys the area law of Section 7.6, its entropy
-saturating at a value set by the correlation length and not by the subsystem size, so it slips under
-a fixed, modest ceiling and stays there for any chain length. A critical chain violates the area law
-logarithmically, (7.12), so it eventually pierces any fixed ceiling and $M$ must be raised as the
-system grows, slowly but without bound. A generic state of the $2^L$-dimensional Hilbert space obeys
-a volume law, $S=\ell\log 2$, and exhausts any usable $M$ after a handful of sites, which is why long
-time evolution, highly excited states, and two-dimensional systems are all out of reach. Drawn in
-bits, $S/\log 2$, with central charge $c=1$; the curves are schematic, not fits to a particular
-model.}
+\begin{aqmfigure}{fig:s07:ceiling}{The bond dimension is an upper limit on the entanglement, and this
+determines when matrix product states work. An MPS with bond dimension $M$ has at most $M$
+Schmidt terms across any bond, so by (7.10) it can have at most $S=\log M$ there, which is shown by
+the two horizontal lines. A gapped one-dimensional ground state follows the area law of Section 7.6,
+and its entropy saturates at a value set by the correlation length and not by the subsystem size, so
+it stays below a fixed and moderate limit for any chain length. A critical chain violates the area law
+logarithmically, (7.12), so it goes above any fixed limit at some point, and $M$ must be increased as
+the system grows, slowly but without bound. A general state of the Hilbert space of dimension $2^L$
+follows a volume law, $S=\ell\log 2$, and it goes above any usable $M$ after a few sites. This is why
+time evolution over long times, highly excited states and two-dimensional systems are all out of
+reach. The entropy is drawn in bits, $S/\log 2$, with central charge $c=1$, and the curves are
+schematic and not fits to a specific model.}
 
 \begin{tikzpicture}
 \begin{axis}[

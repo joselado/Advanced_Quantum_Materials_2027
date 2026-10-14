@@ -6,14 +6,14 @@
 % first with "at={($(ax1.south east)+(...)$)}". Everything inside each axis is in
 % axis cs, nothing is drawn in bare tikzpicture coordinates.
 \begin{aqmfigure}{fig:s04:guidingcenter}{Why the Landau levels are flat. (a) In the Landau gauge each
-$k_y$ reduces (4.5) to a one-dimensional harmonic oscillator in $x$, identical in every respect
-except that it is centred on the guiding centre $x_0=\hbar k_y/B$: raising $k_y$ slides the whole
-well to the left without changing its curvature. Every well therefore carries the identical ladder
-$E_n=\hbar\omega_c(n+\tfrac12)$, drawn here as the horizontal guides, and the ground-state
-wavepacket of each one is the same shape parked in a different place. (b) Plotted against $k_y$,
-that is a set of exactly dispersionless bands. The flatness is not an artefact of the gauge: it is
-the statement that the energy knows nothing about where in the sample the electron sits, which is
-also where the enormous Landau-level degeneracy comes from.}
+$k_y$ reduces (4.5) to a one-dimensional harmonic oscillator in $x$, which is the same in every
+respect except that it is centred on the guiding centre $x_0=\hbar k_y/B$. When $k_y$ increases,
+the whole well moves to the right without changing its curvature. Every well therefore has the same
+ladder $E_n=\hbar\omega_c(n+\tfrac12)$, drawn here as the horizontal guides, and the ground-state
+wavepacket of each well has the same shape at a different position. (b) As a function of $k_y$,
+this is a set of bands with exactly no dispersion. The flatness is not an artefact of the gauge.
+It means that the energy does not depend on the position of the electron in the sample, and this
+is also the origin of the very large degeneracy of the Landau levels.}
 
 \begin{tikzpicture}
 
@@ -59,7 +59,7 @@ also where the enormous Landau-level degeneracy comes from.}
 \node[aqmlabsmall, anchor=north] at (axis cs:0,-0.20) {guiding centres $x_0=\hbar k_y/B$};
 
 % --- the sliding statement ---------------------------------------------------
-\draw[aqmarrowaccent] (axis cs:2.6,3.45) -- (axis cs:-2.6,3.45);
+\draw[aqmarrowaccent] (axis cs:-2.6,3.45) -- (axis cs:2.6,3.45);
 \node[aqmlabsmall, anchor=south] at (axis cs:0,3.52) {increasing $k_y$};
 \node[aqmlabsmall, anchor=south] at (axis cs:0,4.02)
   {\itshape same ladder, different place};

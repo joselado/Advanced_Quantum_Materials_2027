@@ -4,18 +4,18 @@
 %
 % LAYOUT NOTE: pure TikZ. The two one-off node shapes (tensor, operator tensor) are
 % declared with \tikzset inside this picture only, so figures_preamble.tex is untouched.
-\begin{aqmfigure}{fig:s07:tensors}{The graphical notation, and what the MPS ansatz looks like in it.
-(a) A tensor is a dot and each of its indices is a leg, so a scalar is a bare point, a vector has one
-leg, a matrix two, and so on; joining two legs means summing over that shared index. (b) The exact
-coefficient tensor of (7.4) is a single object with one leg per site, and it hides $2^L$ independent
-numbers. The matrix product state (7.5) replaces it by a chain of small tensors, each carrying one
-physical leg pointing down and virtual legs of dimension $M$ linking it to its neighbours, for
-$\sim 2LM^2$ numbers in total: the exponential wall is traded for a chain that grows linearly. (c) An
-operator, the Hamiltonian above all, becomes a matrix product operator with two physical legs per
-site. Applying it to a state means gluing the diagrams along the shared physical legs and contracting
-them away, which multiplies the two bond dimensions together; a singular value decomposition keeping
-only the largest singular values then truncates the result back to a workable $M$. That truncation is
-the engine inside every MPS algorithm, DMRG included.}
+\begin{aqmfigure}{fig:s07:tensors}{The graphical notation, and the MPS ansatz drawn in it.
+(a) A tensor is a dot and each of its indices is a leg, so a scalar is a point, a vector has one
+leg, a matrix has two, and so on. Joining two legs means summing over the shared index. (b) The exact
+coefficient tensor of (7.4) is a single object with one leg per site, and it contains $2^L$
+independent numbers. The matrix product state (7.5) replaces it with a chain of small tensors. Each
+of them has one physical leg pointing down and virtual legs of dimension $M$ that link it to its
+neighbours, for a total of $\sim 2LM^2$ numbers, so the exponential growth is replaced by a chain that
+grows linearly. (c) An operator, in particular the Hamiltonian, becomes a matrix product operator with
+two physical legs per site. To apply it to a state we join the diagrams along the shared physical
+legs and contract them, which multiplies the two bond dimensions. A singular value decomposition that
+keeps only the largest singular values then truncates the result back to a usable $M$. This
+truncation is the core of every MPS algorithm, including DMRG.}
 
 \begin{tikzpicture}[x=1cm, y=1cm]
 \tikzset{

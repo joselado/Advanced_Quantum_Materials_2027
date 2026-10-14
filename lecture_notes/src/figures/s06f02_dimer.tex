@@ -5,17 +5,17 @@
 % LAYOUT NOTE: panel (a) is drawn in bare canvas coordinates; panel (b) is a pgfplots
 % axis placed with "at={(...)}" in those same canvas coordinates. Nothing outside the
 % axis ever refers to (axis cs:...), so the two never need to agree.
-\begin{aqmfigure}{fig:s06:dimer}{Superexchange on the two-site Hubbard model, and why it always
-comes out antiferromagnetic. (a) With parallel spins the only hop available would put two
-$\uparrow$ electrons on one site, which Pauli exclusion forbids outright: the triplet states cannot
-lower their energy at any order and sit at exactly $E_T=0$. With antiparallel spins the hop is
-allowed, so the singlet borrows a virtual double occupancy of energy $U$ and returns, gaining
-second-order energy $-4t^2/U$. Magnetic order here is a purely kinetic effect: antiparallel spins
-are cheaper because they are the only ones allowed to move. (b) The exact singlet energy
-$E_S=\tfrac{U}{2}-\sqrt{(U/2)^2+4t^2}$ against $U/t$, with $E_T=0$ exact for every $U$. The
-singlet-triplet splitting \emph{is} the Heisenberg coupling $J$ of (6.4), and it decays as
-$4t^2/U$: the same $1/U$ law that the mean-field ferromagnet/antiferromagnet energy difference of
-Section 6.5 was found to obey numerically.}
+\begin{aqmfigure}{fig:s06:dimer}{Superexchange in the two-site Hubbard model, and the reason why
+it is always antiferromagnetic. (a) With parallel spins, the only possible hop would put two
+$\uparrow$ electrons on one site, and Pauli exclusion forbids this completely. As a result the
+triplet states cannot lower their energy at any order, and stay at exactly $E_T=0$. With
+antiparallel spins the hop is allowed, so the singlet goes through a virtual double occupation of
+energy $U$ and comes back, and gains a second-order energy $-4t^2/U$. Here the magnetic order is a
+purely kinetic effect, since antiparallel spins have lower energy because only they can move. (b) The exact singlet energy $E_S=\tfrac{U}{2}-\sqrt{(U/2)^2+4t^2}$ as a function of
+$U/t$, with $E_T=0$ exact for every $U$. The singlet-triplet splitting \emph{is} the Heisenberg
+coupling $J$ of (6.4), and it decays as $4t^2/U$. This is the same $1/U$ law that we found
+numerically for the mean-field energy difference between the ferromagnet and the antiferromagnet in
+Section 6.5.}
 
 \begin{tikzpicture}[x=1cm, y=1cm]
 

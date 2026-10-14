@@ -2,15 +2,16 @@
 % places the very same template is reused later in the session.
 % Placement: sec. "Neural networks as function approximators", after equation (10.1) and the
 % cat-versus-dog paragraph.
-\begin{aqmfigure}{fig:s10:template}{The one construction the rest of this session keeps reusing.
-\textbf{Left:} a deep network is nothing but a parametric function $f_\theta$. The architecture ---
-how many layers, how wide --- fixes what functions it \emph{can} represent; the weights and biases
-$\theta$ fix which one it \emph{does} represent right now. \textbf{Right:} training is the loop of
-(10.1): evaluate the output, measure it against the label with a loss, get
-$\partial\mathcal{L}/\partial\theta$ exactly by backpropagation, take a gradient step, repeat.
-\textbf{Bottom:} every later construction in this session is that same loop with a different
-choice of input, output and loss --- nothing else changes. Read each row against the section it
-names: the physics sits entirely in the three columns, never in the machinery.}
+\begin{aqmfigure}{fig:s10:template}{The construction that the rest of this session uses again and again.
+\textbf{Left.} A deep network is a parametric function $f_\theta$. The architecture, which is the
+number of layers and their width, fixes which functions it \emph{can} represent, and the weights
+and biases $\theta$ fix which one it \emph{does} represent at a given moment. \textbf{Right.}
+Training is the loop of (10.1). We evaluate the output, compare it with the label through a loss,
+obtain $\partial\mathcal{L}/\partial\theta$ exactly with backpropagation, take a gradient step and
+repeat. \textbf{Bottom.} Every later construction in this session is the same loop with a different
+choice of input, output and loss, and nothing else changes. Each row should be read together with
+the section that it names, since the physics is only in the three columns and never in the
+training method.}
 
 \begin{tikzpicture}[
   unit/.style={aqm, circle, draw=black, fill=white, minimum size=5.5pt, inner sep=0pt},

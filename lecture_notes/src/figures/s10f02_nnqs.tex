@@ -2,21 +2,21 @@
 % variational energy is estimated by sampling, and where NNQS sits among the ansaetze.
 % Placement: sec. "Neural network quantum states", at the paragraph describing the slides'
 % nested picture of the variational families.
-\begin{aqmfigure}{fig:s10:nnqs}{Neural network quantum states. \textbf{(a)} What the ansatz
-actually is: the exponentially long table of coefficients in (10.2) is not compressed, it is
-simply never written down. The configuration $s$ is fed in as an $L$-pixel ``image'' and the
-network returns the one coefficient $C_\theta(s)$ that was asked for --- the same silhouette as
-figure~\ref{fig:s10:template}, with only the input and output relabelled. \textbf{(b)} Training:
-the variational energy (10.3) is the loss, and it is estimated by sampling configurations from the
-Born distribution and averaging the local energy (10.4). This is what makes the scheme work at
-all: $E_{\rm loc}(s)$ only ever needs the handful of matrix elements $H_{ss'}$ that a sparse
-Hamiltonian actually connects to $s$, never the full $2^L\times2^L$ matrix. \textbf{(c)} The
-nesting the slides draw: a matrix product state is a highly structured special case of a PEPS, a
-PEPS is in turn the kind of state a large enough NNQS can absorb, and NNQS sits outermost because
-it imposes the least structure of all on how $C$ depends on $s$. Read this as the lecture's
-organizing picture rather than as a theorem --- the outer inclusion is a statement about
-sufficiently expressive networks, not about every architecture --- and note that expressiveness is
-not free: the ordering runs the other way for how easy each family is to optimize.}
+\begin{aqmfigure}{fig:s10:nnqs}{Neural network quantum states. \textbf{(a)} What the ansatz is. The
+exponentially long table of coefficients in (10.2) is not compressed, it is never written down at
+all. The configuration $s$ is given as an $L$-pixel ``image,'' and the network returns the one
+coefficient $C_\theta(s)$ that we ask for. This is the same structure as in
+figure~\ref{fig:s10:template}, where only the input and the output have a new label. \textbf{(b)}
+Training. The variational energy (10.3) is the loss, and we estimate it by sampling configurations
+from the Born distribution and averaging the local energy (10.4). This is what makes the method
+possible, since $E_{\rm loc}(s)$ only needs the few matrix elements $H_{ss'}$ that a sparse
+Hamiltonian connects to $s$, and never the full $2^L\times2^L$ matrix. \textbf{(c)} The nested
+regions drawn on the slides. A matrix product state is a highly structured special case of a PEPS,
+a PEPS is in turn a state that a large enough NNQS can represent, and NNQS is the outer region
+because it imposes the least structure of all on how $C$ depends on $s$. This picture organizes
+the lecture and is not a theorem, since the outer inclusion is a statement about networks that are
+expressive enough and not about every architecture. Note also that expressiveness has a cost,
+because the order is the opposite one for how easy each family is to optimize.}
 
 \begin{tikzpicture}[
   unit/.style={aqm, circle, draw=black, fill=white, minimum size=5.5pt, inner sep=0pt},

@@ -4,17 +4,17 @@
 % LAYOUT NOTE: pure TikZ, canvas coordinates; one-off tensor shapes declared with
 % \tikzset inside this picture only.
 \begin{aqmfigure}{fig:s07:merapeps}{The two tensor networks beyond the chain, and what their geometry
-buys. Left: the multi-scale entanglement renormalization ansatz. Its tensors are stacked in layers,
-each layer first removing the short-range entanglement between neighbouring blocks (the square
-disentanglers) and then coarse-graining two sites into one (the triangular isometries), so that the
-network describes the state at successively longer length scales rather than at successive positions
-along a chain. A bipartition now cuts one bond in every layer instead of one bond in total, which is
-precisely how MERA supports the logarithmically growing entropy (7.12) of a critical chain that an
-MPS of fixed bond dimension cannot reach. Right: projected entangled pair states, the honest 2D
-generalization of (7.5), with one tensor per lattice site carrying a physical leg and four virtual
-bonds. The picture also shows the difficulty: there is no way to sweep along such a network one
-tensor at a time with the rest reduced to a simple environment, and contracting it exactly is itself
-a hard problem, which is why PEPS has no clean analogue of DMRG.}
+gives. Left, the multi-scale entanglement renormalization ansatz. Its tensors are stacked in layers.
+Each layer first removes the short-range entanglement between neighbouring blocks with the square
+disentanglers, and then it combines two sites into one with the triangular isometries, so the
+network describes the state at longer and longer length scales and not at successive positions
+along a chain. A division of the system now cuts one bond in every layer instead of one bond in total,
+and this is how MERA can describe the logarithmically growing entropy (7.12) of a critical chain,
+which an MPS with fixed bond dimension cannot reach. Right, projected entangled pair states, the
+direct 2D generalization of (7.5), with one tensor per lattice site that has a physical leg and four
+virtual bonds. The figure also shows the difficulty. There is no way to sweep along such a network one
+tensor at a time with the rest reduced to a simple environment, and the exact contraction of the
+network is itself a hard problem, which is why PEPS have no simple analogue of DMRG.}
 
 \begin{tikzpicture}[x=1cm, y=1cm]
 \tikzset{

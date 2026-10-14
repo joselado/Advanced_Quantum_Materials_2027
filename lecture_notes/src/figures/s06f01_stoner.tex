@@ -4,16 +4,16 @@
 % LAYOUT NOTE: two pgfplots axes in one tikzpicture; every annotation lives inside
 % its own axis and is placed in (axis cs:...). Nothing is drawn in bare canvas
 % coordinates, so nothing can drift relative to the curves.
-\begin{aqmfigure}{fig:s06:stoner}{The Stoner criterion (6.3), read graphically. (a) The
+\begin{aqmfigure}{fig:s06:stoner}{A graphical reading of the Stoner criterion (6.3). (a) The
 self-consistency condition $m=f(m)$, where $f$ is the right-hand side of the zero-temperature gap
-equation: an odd function that saturates once the bands are fully polarized, and whose slope at the
-origin is exactly $U D(E_F)$. If that slope is below one the only crossing with $y=m$ is the
-trivial $m=0$; once it exceeds one a pair of nontrivial solutions $\pm m_0$ appears and the
-nonmagnetic state becomes unstable. (b) The resulting order parameter: pinned at zero until
-$U D(E_F)$ reaches one, then growing continuously. Whether a metal magnetizes is therefore not
-decided by $U$ alone but by the \emph{product} of $U$ with the density of states at the Fermi
-level, which is why aluminium and lead stay nonmagnetic despite sizeable Coulomb repulsion, while
-the narrow $d$ bands of iron and cobalt clear the threshold comfortably.}
+equation. It is an odd function that saturates once the bands are fully polarized, and its slope at
+the origin is exactly $U D(E_F)$. If this slope is below one, the only crossing with $y=m$ is the
+trivial solution $m=0$. Once the slope is above one, a pair of nontrivial solutions $\pm m_0$
+appears and the nonmagnetic state becomes unstable. (b) The resulting order parameter, which stays at
+zero until $U D(E_F)$ reaches one and then grows continuously. For this reason, whether a metal
+becomes magnetic is not decided by $U$ alone but by the \emph{product} of $U$ with the density of
+states at the Fermi level. This is why aluminium and lead stay nonmagnetic even with a sizeable
+Coulomb repulsion, while the narrow $d$ bands of iron and cobalt are clearly above the threshold.}
 
 \begin{tikzpicture}
 

@@ -16,15 +16,15 @@
 % leaves every plaquette product +1 (checked in the same script).
 \begin{aqmfigure}{fig:s10:phaseclass}{Why one phase-classification problem is easy and the other is
 hard. \textbf{(a,b)} For the Ising model (10.9) the magnetization of a single snapshot already
-separates the phases, and a network trained on such snapshots is only rediscovering the
-local-order-parameter logic of sessions 1, 5 and 6. \textbf{(c,d)} For the Ising gauge theory
-(10.10) the spins live on the \emph{bonds}, and the $T=0$ condition $\prod_{i\in\partial p}\sigma_i
-= +1$ leaves an exponentially large degenerate manifold: a typical ground state is bond-by-bond
-random, so the magnetization is $\approx 0$ in both columns and no single-bond quantity tells them
-apart. What differs is the four-spin plaquette structure, marked in the plaquette centres, and
-finding a function of the raw configuration sensitive to it is what the convolutional network has
-to do for itself. This is the same obstruction that forced sessions 3 and 4 from local order
-parameters to Chern numbers and Zak phases.}
+separates the phases, and a network trained on such snapshots only finds again the logic of a local
+order parameter of sessions 1, 5 and 6. \textbf{(c,d)} For the Ising gauge theory (10.10) the spins
+live on the \emph{bonds}, and the $T=0$ condition $\prod_{i\in\partial p}\sigma_i
+= +1$ leaves an exponentially large degenerate manifold. A typical ground state is random from bond
+to bond, so the magnetization is $\approx 0$ in both columns and no quantity on a single bond can
+distinguish them. The difference is in the four-spin structure of the plaquettes, which is marked
+in the centres of the plaquettes, and the convolutional network has to find by itself a function of
+the configuration that is sensitive to it. This is the same obstruction that forced sessions 3 and
+4 to go from local order parameters to Chern numbers and Zak phases.}
 
 \begin{tikzpicture}[
   spinup/.style={aqmsite, minimum size=6.5pt},

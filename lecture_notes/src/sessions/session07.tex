@@ -1,111 +1,116 @@
 \chapter{Quantum Many-Body Entanglement and Tensor Networks}
 
-Session 6 ran the Hubbard-model magnetism of session 1 through in full numerical depth, built up the
-Heisenberg-model strong-coupling limit and Holstein-Primakoff magnons, and applied the topological
-machinery of sessions 3 and 4 a third time, now to magnon bands. Along the way it dropped a Kitaev-
-interaction aside flagged as important for quantum spin liquids, materials like herbertsmithite,
-whose local moments sit on a kagome lattice and refuse to order even at zero temperature, and it
-stopped right there, on ``topological magnons,'' without circling back for a closing summary. That
-abrupt stop is not a mid-sentence handoff into today; it is simply a session that ran out of material.
-But the thread it leaves dangling is exactly where we pick up. Unlike a ferromagnet or an
-antiferromagnet, a quantum spin liquid does not break time-reversal symmetry: its spins keep
-fluctuating, locally, no matter how cold we make the system, and the ground state ends up being one
-enormous entangled object rather than a simple pattern of arrows. That is precisely the kind of
-Hamiltonian on which every tool this course has built so far quietly breaks down. Mean-field theory,
-our workhorse since session 1, is a search for a symmetry-broken order parameter: a nonzero
-magnetization, a nonzero charge imbalance, a nonzero pairing amplitude. A quantum spin liquid has none
-of these by definition, so self-consistency has nothing to converge on and simply hands back zero,
-telling us nothing at all about the actual ground state underneath. The same failure shows up in a
-second family of materials, fractional Chern insulators, where the interactions are again too strong
-for any effective single-particle description to capture what is going on.
+In session 6 we studied the magnetism of the Hubbard model of session 1 in full numerical detail. We
+derived the Heisenberg model as the strong-coupling limit, we introduced Holstein-Primakoff magnons,
+and we used the topological methods of sessions 3 and 4 for a third time, now for magnon bands. In
+that session we also mentioned the Kitaev interaction as an important ingredient for quantum spin
+liquids, and we mentioned materials such as herbertsmithite, where the local moments sit on a kagome
+lattice and do not order even at zero temperature. That session ended with ``topological magnons,''
+without a final summary. This was not a transition into the present session, since that session had
+reached the end of its material, but the open topic is the one we continue with now. In contrast with a ferromagnet or an antiferromagnet, a quantum spin liquid does not
+break time-reversal symmetry. Its spins keep fluctuating locally for any low temperature, and the
+ground state is one large entangled object and not a simple pattern of arrows. All the tools that we
+have built in this course so far fail for this kind of Hamiltonian. Mean-field theory, which we have
+used since session 1, looks for an order parameter that breaks a symmetry, such as a nonzero
+magnetization, a nonzero charge imbalance or a nonzero pairing amplitude. By definition, a quantum
+spin liquid has none of these, so the self-consistent calculation has nothing to converge to and
+gives back zero, which tells us nothing about the real ground state. The same problem appears in a
+second family of materials, the fractional Chern insulators, where the interactions are again too
+strong to be described by any effective single-particle model.
 
-Today we build the tool that attacks this regime head-on rather than presupposing a broken symmetry:
-tensor networks, and specifically matrix product states (MPS). This is mature technology; it already
-produces the leading quantitative evidence for spin liquid physics on the triangular and kagome
-lattices, the very Hamiltonians session 6 teased. Getting there means first noticing something that
-has been sitting underneath the last several sessions without being said explicitly, that fermionic
-and spin Hamiltonians are literally the same physics in two languages (the Jordan-Wigner bridge), and
-then asking a question that turns out not to be ``how do we diagonalize a huge matrix'' but ``how do we
-even \emph{store} a many-body wave function in the first place.'' Entanglement, and a quantity called the
-entanglement entropy, is the right lens for answering that question, and it is where the bulk of
-today's session lives.
+In this session we will build a tool that works directly in this regime and does not assume that a
+symmetry is broken. This tool is tensor networks, and in particular matrix product states (MPS). This
+method is well developed, and today it gives the best quantitative evidence for spin liquid physics on
+the triangular and kagome lattices, which are the Hamiltonians mentioned in session 6. To get there,
+we first point out something that was present in the last sessions without being said explicitly,
+which is that fermionic and spin Hamiltonians describe the same physics in two languages, and the
+link between them is the Jordan-Wigner transformation. Then we will ask a question which is not
+``how do we diagonalize a huge matrix'' but ``how do we \emph{store} a many-body wave function in
+the first place.'' To answer this question we will use entanglement and a quantity called the
+entanglement entropy, and this is the main part of this session.
 
 \section{Two regimes of many-body physics}
 
-Let us return to the generic interacting Hamiltonian that has organized the whole course,
+Let us go back to the general interacting Hamiltonian that we have used in the whole course,
 
 \begin{equation}
 H = \sum_{ij} t_{ij}\, c_i^\dagger c_j \;+\; \sum_{ijkl} V_{ijkl}\, c_i^\dagger c_j c_k^\dagger c_l.
 \end{equation}
 
-The kinetic term is free and exactly solvable; the interaction term is, in general, not. Every session
-so far has attacked (7.1) the same way: decouple the quartic term by mean field, replace it with an
-effective bilinear Hamiltonian, and read off whatever symmetry the resulting order parameter breaks.
-That strategy defines what we can call \textbf{weakly correlated matter}: magnets, superconductors, and
-charge density waves are all, in this sense, single-particle physics in disguise, once the right
-symmetry-broken background is found.
+The kinetic term is free and can be solved exactly, and the interaction term in general cannot. In all
+sessions so far we treated (7.1) in the same way. We decoupled the quartic term with mean field, we
+replaced it with an effective bilinear Hamiltonian, and we looked at which symmetry is broken by the
+resulting order parameter. This strategy defines what we can call \textbf{weakly correlated matter}.
+In this sense, magnets, superconductors and charge density waves are all single-particle physics,
+once we find the right symmetry-broken background.
 
-Today we are explicitly in the opposite regime, \textbf{strongly correlated matter}, where interactions are
-strong enough that no effective single-particle Hamiltonian reproduces the ground state, no matter how
-we choose the decoupling. Quantum spin liquids and fractional Chern insulators are our two standing
-examples, and more generally, getting an accurate phase diagram of a genuinely interacting model runs
-into the same wall. In both cases we cannot shortcut the problem with an ansatz for what symmetry
-breaks; we need something closer to an exact numerical solution, or at least a controlled approximation
-that does not assume symmetry breaking from the outset. That is exactly what tensor networks provide.
+In this session we are in the opposite regime, which is \textbf{strongly correlated matter}. Here the
+interactions are so strong that no effective single-particle Hamiltonian gives the ground state, for
+any choice of the decoupling. Quantum spin liquids and fractional Chern insulators are our two main
+examples, and more generally, the same problem appears when we want an accurate phase diagram of a
+truly interacting model. In both cases we cannot solve the problem with an ansatz for the broken
+symmetry. Instead, we need something close to an exact numerical solution, or at least a controlled
+approximation that does not assume symmetry breaking from the start. This is what tensor networks
+give us.
 
-\section{Fermions and spins are the same physics: the Jordan-Wigner bridge}
+\section{Fermions, spins and the Jordan-Wigner transformation}
 
-Before building the tool, it is worth noticing something that has been sitting underneath the last
-several sessions without being said explicitly. We have used two apparently different families of
-many-body Hamiltonian: fermionic Hamiltonians of the form (7.1), with density-density interactions
-$V_{ijkl}$, in sessions 1 through 5, and spin Hamiltonians, above all the Heisenberg model $H =
-\sum_{ij} J_{ij}\, \mathbf{S}_i \cdot \mathbf{S}_j$, in session 6's magnon discussion and again today
-for quantum spin liquids. These are not two different subjects; they are the same physics written in
-two different languages, and today is where we make that translation precise.
+Before we build the tool, let us point out something that was present in the last sessions without
+being said explicitly. We have used two families of many-body Hamiltonians that look different. The
+first family is the fermionic Hamiltonians of the form (7.1), with a general two-body interaction
+$V_{ijkl}$, where density-density interactions are only a special case, which we used in sessions 1 to 5. The second family is the spin Hamiltonians, mainly the
+Heisenberg model $H =
+\sum_{ij} J_{ij}\, \mathbf{S}_i \cdot \mathbf{S}_j$, which we used for the magnons of session 6 and
+which we use again in this session for quantum spin liquids. These are not two different topics. They
+are the same physics written in two different languages, and in this section we make this
+translation precise.
 
-Look first at a single site. A spinless fermionic site has a two-dimensional local Hilbert space, empty
-or full; a spin-1/2 site also has a two-dimensional local Hilbert space, down or up. The obvious guess
-is $c_i^\dagger \leftrightarrow S_i^+$ and $c_i \leftrightarrow S_i^-$, and on a single site this guess
-is exactly right. It fails, however, the moment we have more than one site, because fermionic
-many-body wave functions are antisymmetric under particle exchange while spin many-body wave functions
-are symmetric (bosonic): the naive identification gets the relative signs between sites wrong. Fixing
-this requires attaching to each site an extra, occupation-dependent phase, a ``string'' running over
-every site to its left, so that exchanging two fermions produces exactly the minus sign the spin
-operators do not have on their own. This is the \textbf{Jordan-Wigner transformation}:
+Let us first look at a single site. A spinless fermionic site has a local Hilbert space of dimension
+two, empty or full, and a spin-1/2 site also has a local Hilbert space of dimension two, down or up.
+The first guess is $c_i^\dagger \leftrightarrow S_i^+$ and $c_i \leftrightarrow S_i^-$, and on a
+single site this guess is exactly right. However, it fails when we have more than one site, since
+fermion operators on different sites anticommute, while spin operators on different sites
+commute. As a result, the naive identification gives
+the wrong relative signs between sites. To fix this, we add to each site an extra phase that depends
+on the occupations. This phase is a ``string'' over all the sites to the left, chosen so that the
+exchange of two fermions gives the minus sign that the spin operators do not have by themselves. This
+mapping is called the \textbf{Jordan-Wigner transformation}, and it reads
 
 \begin{equation}
 S_i^+ = c_i^\dagger K_i, \qquad S_i^- = c_i K_i, \qquad S_i^z = n_i - \tfrac{1}{2}, \qquad
 K_i = \exp\!\left(i\pi \sum_{j<i} n_j\right),
 \end{equation}
 
-with $n_j = c_j^\dagger c_j$ the fermion number operator on site $j$. The string operator $K_i$ is built
-entirely from occupation numbers to the left of site $i$, so it commutes with everything local to sites
-$j \ge i$ and simply counts, mod 2, how many fermions sit to the left. One can check directly that
-(7.2), built this way, reproduces the full $SU(2)$ commutation algebra of spin-1/2 operators on every
-site and between every pair of sites, using only the fermionic anticommutation relations for $c_i,
-c_i^\dagger$ plus the string. The slogan the lecture uses for this is exactly right: \emph{spin equals
-fermion times string}. Figure~\ref{fig:s07:jwstring} shows what that string actually does: it counts
-the fermions sitting to the left of site $i$ and returns their parity, so changing a single occupation
-anywhere in that region flips the sign of $S_i^+$.
+where $n_j = c_j^\dagger c_j$ is the fermion number operator on site $j$. The string operator $K_i$
+is built only from the occupation numbers to the left of site $i$. For this reason it commutes with
+all local operators on sites $j \ge i$, and it counts, mod 2, how many fermions are to the left. We
+can check directly that (7.2), built in this way, gives the full $SU(2)$ commutation algebra of
+spin-1/2 operators on every site and between every pair of sites. For this check we only need the
+fermionic anticommutation relations for $c_i,
+c_i^\dagger$ and the string. In the lecture this is summarized as \emph{spin equals fermion times
+string}, and this statement is correct. Figure~\ref{fig:s07:jwstring} shows what the string does. It
+counts the fermions to the left of site $i$ and gives their parity, so a change of a single occupation
+anywhere in that region changes the sign of $S_i^+$.
 
 \input{figures/s07f01_jwstring}
 
-This is the course's one explicit bridge between the two languages we have used throughout: the
-fermionic operators of sessions 1 through 5 and the spin operators of session 6 and (as we will see)
-session 8 are related by (7.2), not just analogous to each other. It also explains a genuinely
-practical choice we make for the rest of today: since interacting fermionic and interacting spin
-Hamiltonians are mathematically equivalent, we are free to work entirely in the spin representation
-from here on, and we will, because spin wave functions are symmetric and that symmetry is exactly what
-makes the entanglement bookkeeping below clean.
+This is the one explicit link in the course between the two languages that we have used. The
+fermionic operators of sessions 1 to 5 and the spin operators of session 6 and, as we will see, of
+session 8 are related by (7.2), and they are not only analogous to each other. It also explains a
+practical choice that we make for the rest of this session. Since interacting fermionic Hamiltonians
+and interacting spin Hamiltonians are mathematically equivalent, we can work only in the spin
+representation from now on, and we will do so. The reason is that spin operators on different sites
+commute, so there is no fermionic sign to keep track of when we cut the chain, and this makes the
+counting of entanglement below clean.
 
-\section{The real bottleneck: storing the wave function}
+\section{Storing the wave function as the main bottleneck}
 
-With the spin language settled, let us ask directly why a generic interacting many-body Hamiltonian is
-hard. It is tempting to say ``because diagonalizing a huge matrix is slow,'' but that is not quite the
-heart of the problem; the heart of the problem is more basic than diagonalization, it is simply
-\emph{storage}.
+Now that we use the language of spins, let us ask why a general interacting many-body Hamiltonian is
+hard to solve. A first answer would be ``because the diagonalization of a huge matrix is slow,'' but
+the main problem is more basic, and it is the \emph{storage} of the wave function.
 
-Take the simplest nontrivial case, the antiferromagnetic Heisenberg dimer, $H = \mathbf{S}_0\cdot
+Let us take the simplest nontrivial case, which is the antiferromagnetic Heisenberg dimer, $H =
+\mathbf{S}_0\cdot
 \mathbf{S}_1$ on two spin-1/2 sites. Its ground state is the unique singlet,
 
 \begin{equation}
@@ -113,382 +118,413 @@ Take the simplest nontrivial case, the antiferromagnetic Heisenberg dimer, $H = 
 |{\downarrow\uparrow}\rangle\right),
 \end{equation}
 
-a state that breaks no symmetry (every single-site spin expectation value vanishes) and is, as we will
-make precise shortly, maximally entangled. The question of the whole session is how this kind of state
-generalizes to a macroscopic system with many sites.
+which is a state that does not break any symmetry, since the expectation value of every single-site
+spin vanishes. As we will show below, it is also maximally entangled. The question of the whole
+session is how this kind of state generalizes to a macroscopic system with many sites.
 
-Write a general spin-1/2 wave function in the natural product basis, one up/down label $s_i$ per site:
+Let us write a general spin-1/2 wave function in the natural product basis, with one up or down label
+$s_i$ per site.
 
 \begin{equation}
 |\Psi\rangle = \sum_{s_1,\dots,s_L} C(s_1,\dots,s_L)\, |s_1,\dots,s_L\rangle, \qquad
 s_i \in \{\uparrow,\downarrow\}.
 \end{equation}
 
-For $L=2$ there are four basis states, up-up, up-down, down-up, down-down, so four coefficients $C$;
-the Hamiltonian is a $4\times4$ matrix. Add one site, $L=3$, and the count doubles to eight. Add
-another, $L=4$, and it doubles again to sixteen. In general the dimension of the Hilbert space, and
-hence the number of coefficients $C(s_1,\dots,s_L)$ needed to write down the ground state exactly, is
-$d = 2^L$: an exponential wall. Even if we never build the full $2^L\times2^L$ Hamiltonian matrix and
-only ever generate matrix elements on demand, we still cannot avoid storing the $2^L$ coefficients of
-the ground state itself once we have found it. That storage cost, not the cost of diagonalization, is
-the actual obstruction, and it is the single most important point of the whole session. Tensor
-networks are one answer to this storage question; the lecture also names, in passing, \textbf{neural network
-quantum states} as a second, machine-learning-imported answer to the exact same question, but does
-not develop that second tool this session. Session 10 returns to neural network quantum states in
-depth, from the machine-learning side; today's material is entirely about the first answer, tensor
-networks, and specifically matrix product states.
+For $L=2$ there are four basis states, up-up, up-down, down-up and down-down, so there are four
+coefficients $C$, and the Hamiltonian is a $4\times4$ matrix. If we add one site, $L=3$, the number
+doubles to eight. If we add one more site, $L=4$, it doubles again to sixteen. In general, the
+dimension of the Hilbert space is $d = 2^L$, and this is also the number of coefficients
+$C(s_1,\dots,s_L)$ that we need to write the ground state exactly. This exponential growth is the
+main limitation. Even if we never build the full $2^L\times2^L$ Hamiltonian matrix, and we only
+compute the matrix elements when we need them, we still have to store the $2^L$ coefficients of the
+ground state once we have found it. This storage cost, and not the cost of the diagonalization, is
+the real obstruction, and it is the most important point of the whole session. Tensor networks are
+one answer to this storage problem. In the lecture, \textbf{neural network quantum states} are also
+mentioned briefly as a second answer to the same problem, which comes from machine learning, but
+this second tool is not developed in this session. In session 10 we will come back to neural network
+quantum states in detail, from the point of view of machine learning. The material of this session is
+only about the first answer, tensor networks, and in particular matrix product states.
 
 \begin{notebookbox}{\texttt{session7.ipynb}, ``Energy of the Heisenberg model as a function of the system size'' (Core)}
-This exercise has you compute the Heisenberg-chain ground-state energy per site by exact
-diagonalization as you grow the system, using the \texttt{dmrgpy} library (new for this session, alongside
-\texttt{pyqula}). Watch how quickly exact diagonalization stops being feasible; that wall is exactly the
-$2^L$ scaling of (7.4), made concrete rather than abstract.
+In this exercise you compute the ground-state energy per site of the Heisenberg chain with exact
+diagonalization, for growing system sizes. For this you use the \texttt{dmrgpy} library, which is new
+in this session, together with
+\texttt{pyqula}. You will see how fast exact diagonalization stops being possible, and this limit is
+the $2^L$ scaling of (7.4) in a concrete calculation.
 \end{notebookbox}
 
 \section{The matrix product state ansatz}
 
-The proposal that fixes this is disarmingly simple. Instead of storing $C(s_1,\dots,s_L)$ as one
-enormous array of $2^L$ numbers, write it as a product of matrices, one matrix per possible value of
-each local spin:
+The idea that solves this problem is very simple. Instead of storing $C(s_1,\dots,s_L)$ as one large
+array of $2^L$ numbers, we write it as a product of matrices, with one matrix for each possible value
+of each local spin.
 
 \begin{equation}
 C(s_1,s_2,\dots,s_L) \;\approx\; M^{s_1}_{1}\, M^{s_2}_{2}\, \cdots\, M^{s_L}_{L},
 \end{equation}
 
-where each $M^{s_i}_i$ is an $M\times M$ matrix (a vector at the two open ends, for a finite open
-chain), $M$ the \textbf{bond dimension}, a free parameter we choose. There are two matrices per site for a
-spin-1/2 chain, one for $s_i=\uparrow$ and one for $s_i=\downarrow$, so the total number of parameters
-needed to specify the state is proportional to $L\times M^2$: linear in the system size, in stark
-contrast to the $2^L$ of the exact representation (7.4). This is the \textbf{matrix product state} (MPS)
-ansatz. It is, on its face, just a choice, and a fairly arbitrary-looking one; the two questions we
-spend the rest of Sections 7.5 through 7.8 answering are why it is a \emph{good} choice, and what exactly it
-is capturing (and failing to capture) about the physical state.
+Here each $M^{s_i}_i$ is an $M\times M$ matrix, except at the two ends of a finite open chain where it
+is a vector, and $M$ is the \textbf{bond dimension}, which is a free parameter that we choose. For a
+spin-1/2 chain there are two matrices per site, one for $s_i=\uparrow$ and one for
+$s_i=\downarrow$. Therefore the total number of parameters of the state is proportional to $L\times
+M^2$, which is linear in the system size, in strong contrast with the $2^L$ of the exact
+representation (7.4). This is called the \textbf{matrix product state} (MPS) ansatz. At first sight,
+it is only a choice, and one that looks rather arbitrary. In Sections 7.5 to 7.8 we will answer two
+questions about it. First, why it is a \emph{good} choice. Second, what exactly it captures, and what it
+does not capture, about the physical state.
 
-It is worth knowing up front that this is not a toy proposal. Matrix product states currently give the
-most accurate available results for two of the paradigmatic hard problems in quantum materials: the
-doped two-dimensional Hubbard model with second-neighbor hopping (implicated in unconventional
-superconductivity), and the two-dimensional frustrated Heisenberg model on the triangular and kagome
-lattices, which is where the strongest numerical evidence for genuine quantum spin liquid physics,
-session 6's herbertsmithite teaser, actually comes from. Both examples are shown as labeled figure
-panels on slide 15 of the deck (``Solving the 2D Hubbard model at finite doping'' and ``Solving the 2D
-Heisenberg model in frustrated lattices''), underscoring that this is squarely a working tool for the
-strongly correlated regime, not just a formal device.
+We should know from the start that this is not a toy model. Today matrix product states give the most
+accurate results for two of the central hard problems in quantum materials. The first one is the doped
+two-dimensional Hubbard model with second-neighbor hopping, which is related to unconventional
+superconductivity. The second one is the two-dimensional frustrated Heisenberg model on the triangular
+and kagome lattices, and this is where the strongest numerical evidence for real quantum spin liquid
+physics comes from, which is the herbertsmithite example of session 6. Both examples are shown as
+labeled figure panels on slide 15 of the deck, with the titles ``Solving the 2D Hubbard model at
+finite doping'' and ``Solving the 2D Heisenberg model in frustrated lattices.'' This shows that MPS
+are a working tool for the strongly correlated regime, and not only a formal construction.
 
-\section{Measuring entanglement: the entanglement entropy}
+\section{Measuring entanglement with the entanglement entropy}
 
-To see why (7.5) works, we need a quantitative handle on how entangled a many-body state actually is.
-Split the system into two complementary pieces, subsystem $A$ and subsystem $B$. A state is \textbf{not
-entangled} (``a product state'') if it factorizes as $|\Psi\rangle = |\psi_A\rangle \otimes
-|\psi_B\rangle$; the state $|{\uparrow\downarrow}\rangle$, and a product of two independently
-$x$-polarized single-site states, are both examples. The singlet (7.3) is the opposite extreme: it
-cannot be written as any such product, and is our working example of an \textbf{entangled} state.
+To see why (7.5) works, we need a quantitative measure of how entangled a many-body state is. Let us
+split the system into two complementary parts, subsystem $A$ and subsystem $B$. A state is \textbf{not
+entangled}, which is also called a product state, if it can be written as $|\Psi\rangle = |\psi_A\rangle
+\otimes
+|\psi_B\rangle$. Two examples are the state $|{\uparrow\downarrow}\rangle$ and a product of two
+single-site states that are both polarized along $x$. The singlet (7.3) is the opposite case. It cannot
+be written as a product of this form, and it is our main example of an \textbf{entangled} state.
 
-To turn ``entangled or not'' into a number, define the full density matrix $\rho = |\Psi\rangle
-\langle\Psi|$ and trace out subsystem $B$ to obtain the \textbf{reduced density matrix} of $A$, $\rho_A =
+To turn the question ``entangled or not'' into a number, we define the full density matrix $\rho =
+|\Psi\rangle
+\langle\Psi|$, and we trace out subsystem $B$. This gives the \textbf{reduced density matrix} of $A$,
+$\rho_A =
 \mathrm{Tr}_B\,\rho$. The \textbf{entanglement entropy} is then the von Neumann entropy of $\rho_A$,
 
 \begin{equation}
 S(\rho_A) = -\,\mathrm{Tr}\!\left(\rho_A \log \rho_A\right).
 \end{equation}
 
-If $|\Psi\rangle$ is a product state, $\rho_A = |\psi_A\rangle\langle\psi_A|$ is a rank-one projector,
-its only nonzero eigenvalue is $1$, and $S=0$ immediately: no entanglement, zero entropy, exactly as we
-would want.
+If $|\Psi\rangle$ is a product state, $\rho_A = |\psi_A\rangle\langle\psi_A|$ is a projector of rank
+one, so its only nonzero eigenvalue is $1$, and we directly get $S=0$. This means that there is no
+entanglement and the entropy is zero, which is what we expect.
 
-Let us check (7.6) explicitly on the singlet (7.3). Writing $\rho = |\Psi\rangle\langle\Psi|$ out in
-the product basis and tracing over site $1$ (our subsystem $B$) leaves
+Let us now check (7.6) on the singlet (7.3). We write $\rho = |\Psi\rangle\langle\Psi|$ in the product
+basis and trace over site $1$, which is our subsystem $B$, and we obtain
 
 \begin{equation*}
 \rho_A = \tfrac{1}{2}\,|{\uparrow}\rangle\langle{\uparrow}| + \tfrac{1}{2}\,
 |{\downarrow}\rangle\langle{\downarrow}|,
 \end{equation*}
 
-a maximally mixed single-site density matrix, whose two eigenvalues are both $1/2$. Then
+which is a maximally mixed single-site density matrix, with two eigenvalues both equal to $1/2$. Then
 
 \begin{equation}
 S = -\left(\tfrac12\log\tfrac12 + \tfrac12\log\tfrac12\right) = \log 2.
 \end{equation}
 
-This is the maximum possible entanglement entropy a single spin-1/2 can carry (a $d$-dimensional local
-Hilbert space can carry at most $\log d$), which is exactly the sense in which the singlet is ``maximally
-entangled'': every last bit of the local Hilbert space's capacity for entanglement is used.
+This is the maximum entanglement entropy that a single spin-1/2 can have, since a local Hilbert space
+of dimension $d$ can have at most $\log d$. This is the meaning of the statement that the singlet is
+``maximally entangled,'' since it uses all the capacity of the local Hilbert space for entanglement.
 
-\section{A solvable warm-up: entanglement entropy of a dimerized chain}
+\section{Entanglement entropy of a solvable dimerized chain}
 
-Two exactly solvable models let us see how (7.6)-(7.7) scale with system size, and they are the key to
-the whole session, so it is worth working through them carefully.
+There are two exactly solvable models that show how (7.6)-(7.7) scale with the system size. They are
+the key to the whole session, so let us go through them carefully.
 
-Take a one-dimensional chain of spin-1/2's, but couple them only in disjoint pairs: an antiferromagnetic
-bond between sites $0$ and $1$, another between $2$ and $3$, another between $4$ and $5$, and so on,
-with \emph{no} coupling between different pairs,
+Let us take a one-dimensional chain of spin-1/2's, but we couple the spins only in separate pairs. There
+is an antiferromagnetic bond between sites $0$ and $1$, another one between $2$ and $3$, another one
+between $4$ and $5$, and so on, and there is \emph{no} coupling between different pairs,
 
 \begin{equation*}
 H = \sum_n J\,\mathbf{S}_{2n}\cdot\mathbf{S}_{2n+1}.
 \end{equation*}
 
-This Hamiltonian is trivial to solve exactly, because it is just a sum of independent Heisenberg
-dimers, and its ground state is therefore an exact tensor product of singlets, one per dimer bond:
+This Hamiltonian is easy to solve exactly, because it is a sum of independent Heisenberg dimers. Its
+ground state is therefore an exact tensor product of singlets, with one singlet per dimer bond,
 
 \begin{equation}
 |\Psi\rangle = |\text{singlet}\rangle_{01} \otimes |\text{singlet}\rangle_{23} \otimes
 |\text{singlet}\rangle_{45} \otimes \cdots.
 \end{equation}
 
-Physically this is the minimal model of a gapped quantum spin liquid: the ground state breaks no
-symmetry, and it is separated from the lowest triplet excitation by a large gap (the singlet-triplet
-splitting on a single dimer), so it is about as far from criticality as a spin model can be.
+Physically, this is a valence-bond product state, also called a dimer product state, which is the
+simplest example of a gapped state with short-range entanglement, and not a spin liquid. The ground
+state does not break any symmetry of this Hamiltonian, and it is separated from the lowest triplet excitation by a large gap, which is the
+singlet-triplet splitting of a single dimer. For this reason it is as far from criticality as a spin
+model can be.
 
-Now bipartition the chain and ask for the entanglement entropy. Because (7.8) is a tensor product over
-disjoint bonds, the reduced density matrix $\rho_A$ factorizes bond by bond: any dimer sitting entirely
-inside $A$ (or entirely inside $B$) contributes a pure state to $\rho_A$ and therefore contributes
-exactly zero to $S$, by the same argument as Section 7.5's product-state case. The only bonds that
-contribute are the ones the bipartition boundary actually cuts, and each cut bond contributes precisely
+Now we divide the chain into two parts and ask for the entanglement entropy. Since (7.8) is a tensor
+product over separate bonds, the reduced density matrix $\rho_A$ factorizes bond by bond. A dimer that
+is fully inside $A$, or fully inside $B$, gives a pure state in $\rho_A$, and therefore it gives
+exactly zero to $S$, with the same argument as for the product state in Section 7.5. The only bonds
+that contribute are the ones that are cut by the boundary between the two parts. Each cut bond gives
 the single-dimer result (7.7), $\log 2$, since tracing out one half of a singlet always leaves the same
-maximally mixed single-site density matrix regardless of what else is going on elsewhere in the chain.
-So if the boundary cuts $n_\text{cut}$ bonds, $S = n_\text{cut} \log 2$.
+maximally mixed single-site density matrix, regardless of what happens in the rest of the chain. So if
+the boundary cuts $n_\text{cut}$ bonds, $S = n_\text{cut} \log 2$.
 
-Take a small subsystem $A$ containing just two dimers: the boundary cuts exactly two bonds (one on each
-side), so $S = 2\log 2$. Take a much larger subsystem $A$, many dimers wide: the boundary still only
-touches two bonds, the ones immediately at its two edges, so $S = 2\log 2$ again, unchanged. \textbf{The
-entanglement entropy of this state does not grow with the size of the subsystem}; it is set entirely
-by the two points where the one-dimensional boundary sits, however far apart those points are.
+Let us take a small subsystem $A$ whose two ends cut through two dimers, one on each side. Then two
+singlet bonds cross the boundary, so $S = 2\log 2$. Let us now take a much larger subsystem $A$, with
+a width of many dimers, whose ends again cut through one dimer each. The boundary still crosses only
+two singlet bonds, the ones at its two edges, so we get again $S = 2\log 2$,
+with no change. \textbf{The entanglement entropy of this state does not grow with the size of the
+subsystem}. It is fully determined by the two points where the one-dimensional boundary is, for any
+distance between these two points.
 
 \section{Two dimensions and the area law}
 
-Now repeat the same construction one dimension up. Take a two-dimensional lattice and group sites into
-disjoint clusters of four (tetramers) instead of pairs, coupled internally but not to each other, so
-the ground state is again an exact tensor product, now of tetramer ground states rather than dimer
-singlets. The same factorization argument applies: a cluster fully inside $A$ or fully inside $B$
-contributes nothing, and only clusters straddling the bipartition boundary contribute to $S$.
+Let us now do the same construction in one more dimension. We take a two-dimensional lattice and we
+group the sites into separate clusters of four sites, called tetramers, instead of pairs. The sites
+inside a cluster are coupled, but different clusters are not coupled, so the ground state is again an
+exact tensor product, now of tetramer ground states instead of dimer singlets. The same factorization
+argument applies. A cluster fully inside $A$ or fully inside $B$ gives nothing, and only the clusters
+that cross the boundary between the two parts contribute to $S$.
 
-The difference is purely geometric. Compare a small bipartition $A$, whose boundary cuts eight bonds,
-against a much larger bipartition $B$, whose longer boundary cuts many more. Because the entropy again
-accumulates one contribution per cut bond, $S$ is now set by the \emph{length of the boundary}, and in two
-dimensions that length genuinely grows as the subsystem grows, unlike the 1D case in Section 7.6 where
-the boundary was always exactly two points no matter how large the subsystem got. This is the crucial
-contrast: \textbf{in one dimension the entanglement entropy of a gapped ground state saturates}, independent
-of subsystem size; \textbf{in two (or more) dimensions it grows with the size of the boundary}, $S_A \sim
-L_A \sim \partial A$ and $S_B \sim L_B \sim \partial B$, so $S_B > S_A$ for the larger bipartition.
-Figure~\ref{fig:s07:arealaw} puts the two cases side by side, with the cut bonds marked so that the
-counting can be done by eye in each.
+The only difference is geometric. Let us compare a small region $A$, whose boundary cuts eight bonds,
+with a much larger region $B$, whose longer boundary cuts many more bonds. Since the entropy again
+gets one contribution per cut bond, $S$ is now set by the \emph{length of the boundary}. In two
+dimensions this length grows when the subsystem grows. This is different from the 1D case of
+Section 7.6, where the boundary was always two points for any size of the subsystem. This is the
+central contrast. \textbf{In one dimension the entanglement entropy of a gapped ground state
+saturates}, and it does not depend on the size of the subsystem. \textbf{In two or more dimensions it
+grows with the size of the boundary}, $S_A \sim
+L_A \sim \partial A$ and $S_B \sim L_B \sim \partial B$, so $S_B > S_A$ for the larger region.
+Figure~\ref{fig:s07:arealaw} shows the two cases next to each other, with the cut bonds marked, so
+that we can count them by eye in each case.
 
 \input{figures/s07f02_arealaw}
 
-This behavior has a name, the \textbf{area law}: for the ground state of a gapped, local Hamiltonian, the
-entanglement entropy of a subsystem scales with the length (in 1D) or area (in 2D and higher) of the
-boundary separating it from the rest of the system,
+This behavior is called the \textbf{area law}. For the ground state of a gapped and local Hamiltonian,
+the entanglement entropy of a subsystem scales with the length of the boundary between the subsystem
+and the rest of the system in 1D, or with the area of this boundary in 2D and higher,
 
 \begin{equation}
 S_A \;\sim\; \alpha\, |\partial A|,
 \end{equation}
 
-rather than with the \emph{volume} of $A$ itself. This is genuinely restrictive. A uniformly random state
-drawn from the full $2^L$-dimensional Hilbert space would typically have $S_A$ close to its maximum
-possible value, $|A|\log 2$ for a spin-1/2 subsystem of size $|A|$: a volume law. Gapped ground states
-are wildly atypical states in exactly this sense; they occupy only the tiny corner of Hilbert space
-satisfying the area law, and that is precisely the corner both dimer and tetramer models above sit in
-exactly, and that realistic gapped Hamiltonians sit in approximately.
+and not with the \emph{volume} of $A$. This is a strong restriction. A random state taken uniformly
+from the full Hilbert space of dimension $2^L$ would usually have $S_A$ close to its maximum value,
+which is $|A|\log 2$ for a spin-1/2 subsystem of size $|A|$, and this is called a volume law. In this
+sense, gapped ground states are very far from typical states. They live only in the very small part
+of the Hilbert space that satisfies the area law. The dimer and tetramer models above are exactly in
+this part, and realistic gapped Hamiltonians are approximately in it.
 
 \section{Why MPS work in 1D, and where they stop working}
 
-The area law is the missing piece that explains why the ansatz (7.5) is a sensible one. Consider an MPS
-at a given bond, and use it to build the Schmidt decomposition of the state across a bipartition there:
+The area law is the missing piece that explains why the ansatz (7.5) is a good one. Let us take an
+MPS at a given bond, and use it to build the Schmidt decomposition of the state for a division of the
+system at that bond.
 
 \begin{equation*}
 |\Psi\rangle = \sum_{\alpha=1}^{M} \lambda_\alpha\, |\alpha\rangle_A \otimes |\alpha\rangle_B,
 \end{equation*}
 
-with at most $M$ terms, because the internal (virtual) index running through that bond only takes $M$
-values. The reduced density matrix $\rho_A = \sum_\alpha \lambda_\alpha^2 |\alpha\rangle_A
-\langle\alpha|_A$ therefore has rank at most $M$, and among all rank-$\le M$ density matrices the
-entropy (7.6) is maximized when every eigenvalue is equal, $\lambda_\alpha^2 = 1/M$, giving
+This sum has at most $M$ terms, because the internal index, also called virtual index, that runs
+through that bond only takes $M$ values. Therefore the reduced density matrix $\rho_A = \sum_\alpha
+\lambda_\alpha^2 |\alpha\rangle_A
+\langle\alpha|_A$ has rank at most $M$. Among all density matrices with rank $\le M$, the
+entropy (7.6) is maximal when all the eigenvalues are equal, $\lambda_\alpha^2 = 1/M$, which gives
 
 \begin{equation}
 S \;\le\; \log M.
 \end{equation}
 
-An MPS of bond dimension $M$, in other words, can represent entanglement entropy at most $\log M$
-across any given bond, growing only logarithmically with $M$. Compare this to (7.9): a 1D gapped ground
-state has entanglement entropy that \emph{saturates} at a finite, subsystem-size-independent value, so a
-modest, fixed bond dimension is already enough to capture it essentially exactly. That is the precise,
-quantitative reason matrix product states are such an excellent ansatz specifically in one dimension:
-the area law caps exactly the quantity the bond dimension caps. Geometrically, we can picture the whole
-many-body Hilbert space as a large set, of which MPS parameterize only a tiny corner, precisely the
-corner of area-law states, reached with a bond dimension that stays modest ($M \sim 10$, $100$) as long
-as we stay in the area-law regime, and that would have to blow up ($M \sim 10^{L/40}$ or worse) to reach
-a generic, volume-law state. Figure~\ref{fig:s07:ceiling} draws the comparison directly: the ceiling
-$\log M$ set by (7.10) against the entropy actually demanded by a gapped, a critical and a generic
-state as the subsystem grows.
+In other words, an MPS with bond dimension $M$ can have an entanglement entropy of at most $\log M$
+across any bond, which grows only logarithmically with $M$. Let us compare this with (7.9). A 1D
+gapped ground state has an entanglement entropy that \emph{saturates} at a finite value, which does
+not depend on the size of the subsystem, so a moderate and fixed bond dimension is already enough to
+describe it almost exactly. This is the precise and quantitative reason why matrix product states are
+such a good ansatz in one dimension, since the area law limits the same quantity that the bond
+dimension limits. Geometrically, we can think of the full many-body Hilbert space as a large set, and
+MPS describe only a very small part of it, which is the part of area-law states. This part is reached
+with a bond dimension that stays moderate ($M \sim 10$, $100$) as long as we stay in the area-law
+regime. To reach a general state with a volume law, the bond dimension would have to become very
+large, $M \sim 2^{L/2}$, which is exponential in $L$. Figure~\ref{fig:s07:ceiling} shows this comparison directly. It
+shows the upper limit
+$\log M$ given by (7.10) and the entropy that a gapped, a critical and a general state
+need when the subsystem grows.
 
 \input{figures/s07f03_entropyceiling}
 
-The same argument tells us immediately where MPS must fail: whenever the true entanglement entropy
-exceeds what any practical bond dimension can supply through (7.10). Concretely, this happens for
-long-time dynamics (entanglement grows \emph{linearly} with time after a quench, not logarithmically), for
-genuinely higher-dimensional systems (the area law's boundary length itself grows with system size, per
-Section 7.7, so $M$ has to grow correspondingly, often exponentially in the subsystem's linear size),
-for highly excited states (the area law is a ground-state statement, not a generic eigenstate one), and
-for states far from equilibrium generally. Where the physics stays close to a gapped 1D ground state,
-though, MPS remains usable well beyond the pure ground-state problem: it extends, at a cost, to time
-evolution, excited states, and open quantum systems, in 1D routinely and sometimes in 2D.
+The same argument tells us directly where MPS must fail, which is whenever the true entanglement
+entropy is larger than what a practical bond dimension can give through (7.10). In practice this
+happens in four cases. The first case is dynamics over long times, since after a quench the
+entanglement grows \emph{linearly} with time and not logarithmically. The second case is systems in
+more than one dimension, where the length of the boundary in the area law grows with the system size,
+as we saw in Section 7.7, so $M$ has to grow too, often exponentially in the linear size of the
+subsystem. The third case is highly excited states, since the area law is a statement about ground
+states and not about general eigenstates. The fourth case is, more generally, states far from
+equilibrium. However, when the physics stays close to a gapped 1D ground state, MPS can be used for
+more than the ground-state problem. With a higher cost, they can be used for time evolution, excited
+states and open quantum systems, routinely in 1D and in some cases in 2D.
 
 \begin{notebookbox}{\texttt{session7.ipynb}, ``Near linear scaling with system size with matrix product states'' (Core) and ``The role of the bond dimension in tensor networks'' (Core)}
-The first exercise has you confirm directly that the DMRG ground-state cost in \texttt{dmrgpy} grows
-linearly with system size, the $L\times M^2$ scaling of (7.5) rather than the $2^L$ scaling of (7.4).
-The second has you scan the bond dimension itself and watch the ground-state energy fluctuation
-shrink and saturate: that saturation point is where $M$ has become large enough to satisfy the bound
-(7.10) for the state at hand.
+In the first exercise you check directly that the cost of the DMRG ground-state calculation in
+\texttt{dmrgpy} grows linearly with the system size, which is the $L\times M^2$ scaling of (7.5) and
+not the $2^L$ scaling of (7.4). In the second exercise you change the bond dimension and see how the
+fluctuation of the ground-state energy becomes smaller and then saturates. The point where it
+saturates is where $M$ is large enough to satisfy the bound (7.10) for that state.
 \end{notebookbox}
 
 \begin{notebookbox}{\texttt{session7.ipynb}, ``Entanglement entropy of the ground state'' (Core), ``Size dependence of the entanglement entropy'' (Challenge), and ``Bond dimension dependence of the entanglement entropy'' (Challenge)}
-These three exercises let you reproduce Sections 7.5 through 7.8 numerically: compute the
-bond-resolved entanglement entropy of a Heisenberg chain's MPS ground state, check that it barely
-grows with system size (the 1D area-law saturation of Section 7.6, in a gapless rather than gapped
-chain this time), and check that it saturates once the bond dimension is large enough to satisfy
-(7.10). The quiz for the first of these also asks you to swap in an Ising model and watch the entropy
-change, a quick way to see the area law respond to a genuinely different (in this case classical,
-zero-entanglement) ground state.
+With these three exercises you can reproduce Sections 7.5 to 7.8 numerically. First, you compute the
+entanglement entropy at each bond for the MPS ground state of a Heisenberg chain. Then you check that
+it grows very little with the system size, which is the 1D area-law saturation of Section 7.6, but
+this time in a gapless chain and not in a gapped one. Finally, you check that it saturates once the
+bond dimension is large enough to satisfy (7.10). The quiz of the first exercise also asks you to
+replace the model with an Ising model and to see how the entropy changes. This is a quick way to see
+how the area law responds to a really different ground state, which in this case is classical and has
+zero entanglement.
 \end{notebookbox}
 
-\section{Tensor diagrams: notation for networks and operators}
+\section{Tensor diagrams as notation for networks and operators}
 
-Matrix product states come with a convenient graphical notation that makes both the ansatz and the
-algorithms built on it much easier to reason about. A scalar (rank-0 tensor) is drawn as a bare point;
-a vector (rank-1) is a point with one dangling leg; a matrix (rank-2) is a point with two legs; a
-rank-3 tensor is a point with three legs, and so on for any rank. Each leg represents one index of the
-tensor, and joining two legs together between two tensors means summing over that shared index
-(contracting it).
+Matrix product states come with a convenient graphical notation, which makes it much easier to think
+about both the ansatz and the algorithms built on it. A scalar, which is a tensor of rank 0, is drawn
+as a point. A vector, of rank 1, is a point with one free leg. A matrix, of rank 2, is a point with two
+legs. A tensor of rank 3 is a point with three legs, and so on for any rank. Each leg represents one
+index of the tensor, and when we join two legs of two tensors, this means that we sum over the shared
+index, which is called a contraction.
 
-An MPS is then simply a horizontal chain of such points, one per site, each with one \emph{physical} leg
-dangling downward (the index $s_i$, the actual local spin value) and one or two \emph{virtual} legs
-connecting it to its neighbors along the chain, carrying the bond-dimension index that gets summed
-over. A \textbf{matrix product operator} (MPO) represents an operator, most importantly the Hamiltonian
-itself, in the same spirit: each site now carries \emph{two} physical legs instead of one, corresponding to
-the two indices $\sigma_i,\sigma_i'$ of the operator, plus the same virtual legs linking neighboring
-sites. Applying an MPO to an MPS (computing $H|\Psi\rangle$, say) is then just gluing the two diagrams
-together along the physical legs and contracting: multiplying every pair of matrices that share an
-index and summing over it. Done naively, this operation multiplies the bond dimensions of the two
-objects together, which would defeat the whole point; in practice one performs a singular value
-decomposition on the result and keeps only the dominant singular values, truncating back down to a
-manageable bond dimension while discarding the least important part of the Hilbert space being
-represented. This truncation step is the practical engine behind essentially every MPS algorithm,
-including the ground-state search we turn to next. Figure~\ref{fig:s07:tensors} collects the
-notation, the ansatz (7.5) redrawn in it, and this contract-then-truncate step in one place.
+An MPS is then a horizontal chain of such points, with one point per site. Each point has one
+\emph{physical} leg pointing down, which is the index $s_i$, the local spin value. It also has one or
+two \emph{virtual} legs that connect it to its neighbors in the chain, and these carry the
+bond-dimension index that is summed over. A \textbf{matrix product operator} (MPO) represents an
+operator, in particular the Hamiltonian, in the same way. Now each site has \emph{two} physical
+legs instead of one, which correspond to the two indices $\sigma_i,\sigma_i'$ of the operator, and the
+same virtual legs that link neighboring sites. To apply an MPO to an MPS, for example to compute
+$H|\Psi\rangle$, we join the two diagrams along the physical legs and contract them. This means that
+we multiply every pair of matrices that share an index and sum over that index. If we do this in a
+naive way, the bond dimensions of the two objects are multiplied, which would remove the advantage of
+the method. In practice, we do a singular value decomposition of the result and keep only the largest
+singular values, so we truncate back to a bond dimension that we can handle, and we remove
+the least important part of the Hilbert space that is represented. This truncation step is the
+practical core of almost every MPS algorithm, including the ground-state search of the next section.
+Figure~\ref{fig:s07:tensors} shows together the notation, the ansatz (7.5) drawn in this notation,
+and this step of contraction and truncation.
 
 \input{figures/s07f04_tensordiagram}
 
-\section{Finding the ground state: the variational principle and DMRG}
+\section{The variational principle and DMRG for the ground state}
 
-Having an ansatz is only useful if we can actually optimize it. Treat the MPS matrices $\{M_i^{s_i}\}$
-as variational parameters and minimize the Rayleigh quotient
+An ansatz is only useful if we can optimize it. We take the MPS matrices $\{M_i^{s_i}\}$ as
+variational parameters and minimize the Rayleigh quotient
 
 \begin{equation}
 E[\Psi] = \frac{\langle \Psi | H | \Psi \rangle}{\langle \Psi | \Psi \rangle},
 \end{equation}
 
-equivalently, introducing a Lagrange multiplier $\lambda$ to enforce normalization, minimize $\langle
+or, in an equivalent way, we introduce a Lagrange multiplier $\lambda$ for the normalization and
+minimize $\langle
 \Psi|H|\Psi\rangle - \lambda\left(\langle\Psi|\Psi\rangle - 1\right)$ with respect to every matrix in
-the network. Diagrammatically, differentiating with respect to one particular tensor in the network
-(say the matrix at site $k$) is simply ``erasing'' that tensor from the diagram, since every tensor
-appears linearly (once in the bra layer, once in the ket layer) in the full contraction. What remains,
-after erasing site $k$'s tensor from both the numerator and denominator diagrams, is exactly an
-eigenvalue problem for that single tensor: an effective, reduced Hamiltonian acting on site $k$'s
-indices, whose ground eigenvector is the locally optimal replacement for $M_k^{s_k}$.
-Figure~\ref{fig:s07:dmrg} shows the erasure and the sweep it generates.
+the network. In the diagrams, the derivative with respect to one tensor in the network, for example
+the matrix at site $k$, corresponds to ``erasing'' that tensor from the diagram. The reason is that
+each tensor appears once in the bra layer and once in the ket layer, so with the other tensors fixed
+the energy is a quadratic form in that tensor, and it is linear in the bra copy alone. When we erase
+the bra tensor of site $k$ from both the numerator and the denominator diagrams, what is left is a
+generalized eigenvalue problem for that single tensor, which becomes an ordinary one when the other
+tensors are chosen orthonormal. It involves an effective, reduced Hamiltonian that acts on the
+indices of site $k$, and its ground eigenvector is the locally optimal
+replacement for $M_k^{s_k}$. Figure~\ref{fig:s07:dmrg} shows this erasure and the sweep that follows
+from it.
 
 \input{figures/s07f05_dmrg}
 
-This suggests, and is, an iterative algorithm: fix every tensor except site $1$'s, solve the local
-eigenvalue problem there, update $M_1^{s_1}$ to the resulting eigenvector; move to site $2$, fix
-everything else, solve the local eigenproblem there, update; continue sweeping through the chain, site
-by site, until the energy stops decreasing. This sweeping procedure is exactly the \textbf{density matrix
-renormalization group (DMRG)} algorithm. Its efficiency comes from precisely the feature we built
-(7.11) to exploit: at every step we only ever optimize one matrix at a time, a small, tractable
-linear-algebra problem, rather than the full exponentially large ground-state search all at once.
+This suggests an iterative algorithm. We fix every tensor except the
+one of site $1$, solve the local eigenvalue problem there, and update $M_1^{s_1}$ with the resulting
+eigenvector. Then we move to site $2$, fix everything else, solve the local eigenvalue problem there,
+and update. We continue sweeping through the chain, site by site, until the energy stops decreasing.
+This sweeping procedure is the \textbf{density matrix renormalization group (DMRG)} algorithm. Its
+efficiency comes from the property of (7.11) that we used to build it. At every step we optimize only
+one matrix at a time, which is a small linear-algebra problem that we can solve, instead of searching
+for the ground state in the full exponentially large space at once.
 
 \begin{notebookbox}{\texttt{session7.ipynb}, ``Low energy excitations of a Heisenberg model'' (Core)}
-This exercise asks you to look at the matrix elements between the DMRG ground state and the first
-excited state of a Heisenberg chain, i.e. what the sweeping procedure of Section 7.10 finds one level
-up from the state that directly minimizes (7.11).
+In this exercise you look at the matrix elements between the DMRG ground state and the first excited
+state of a Heisenberg chain, meaning what the sweeping procedure of Section 7.10 finds one level above
+the state that directly minimizes (7.11).
 \end{notebookbox}
 
-\section{Beyond MPS: MERA and PEPS}
+\section{MERA and PEPS beyond MPS}
 
-Matrix product states are the simplest member of a much larger family called \textbf{tensor networks};
-nothing forces the tensors to sit in a 1D chain, and the very same underlying coefficient tensor $C$
-from (7.4) can just as well be redrawn as a 2D grid or an arbitrary graph of connections. Richer
-connectivity trades optimization simplicity, MPS is the easiest tensor network to optimize, for a
-larger representable class of states. Two architectures are worth naming specifically.
+Matrix product states are the simplest member of a much larger family, which is called \textbf{tensor
+networks}. Nothing requires the tensors to sit in a 1D chain, and the same coefficient tensor $C$
+of (7.4) can also be drawn as a 2D grid or as a general graph of connections. A richer connectivity
+makes the optimization harder, and MPS are the tensor network that is easiest to optimize, but in
+exchange it can represent a larger class of states. Let us mention two of these architectures.
 
-The \textbf{multi-scale entanglement renormalization ansatz (MERA)} organizes its tensors hierarchically
-across length scales rather than along a single chain, and this extra structure lets it support more
-entanglement than an MPS built from a comparable number of parameters. That matters because the area
-law (7.9) is strictly a \emph{gapped}-system statement; exactly at a critical point (a continuous quantum
-phase transition, typically described by a conformal field theory in 1+1 dimensions), the ground state
-entanglement entropy no longer saturates but instead grows logarithmically with the size of the
-subsystem,
+The \textbf{multi-scale entanglement renormalization ansatz (MERA)} organizes its tensors in a
+hierarchy of length scales instead of along a single chain. This extra structure allows it to
+describe more entanglement than an MPS with a comparable number of parameters. This is important
+because the area law (7.9) is strictly a statement about \emph{gapped} systems. At a critical point,
+which is a continuous quantum phase transition usually described by a conformal field theory in 1+1
+dimensions, the entanglement entropy of the ground state does not saturate anymore. Instead, it grows
+logarithmically with the size of the subsystem,
 
 \begin{equation}
 S(\ell) \;=\; \frac{c}{3}\log \ell \;+\; \text{const.},
 \end{equation}
 
-with $c$ the CFT's central charge. This is a mild but genuine violation of the strict area law (7.9),
-and it is exactly the kind of mild violation MERA's extra hierarchical structure is built to
-accommodate, which is why MERA is the tensor network of choice specifically at criticality.
+where $c$ is the central charge of the CFT. This is a weak but real violation of the strict area
+law (7.9), and the extra hierarchical structure of MERA is built to describe this kind of weak
+violation. For this reason MERA is the tensor network that is used at criticality.
 
-\textbf{Projected entangled pair states (PEPS)} are the direct 2D generalization of the MPS idea: instead of
-tensors coupled in a line, they sit on the nodes of a genuine 2D lattice, coupled to all of their
-lattice neighbors. This is a natural and promising architecture for 2D quantum many-body problems, but
-it comes at a real cost: there is no analogue of DMRG's clean, single-tensor local eigenvalue problem
-for PEPS, because contracting a general 2D tensor network is itself computationally hard (unlike the 1D
-contraction that made Section 7.10's local eigenproblem tractable in the first place). PEPS
-optimization remains an active, harder problem. Figure~\ref{fig:s07:merapeps} draws both
-architectures, and makes visible where each one's extra structure comes from and what it costs.
+\textbf{Projected entangled pair states (PEPS)} are the direct 2D generalization of the MPS idea.
+Instead of tensors coupled in a line, the tensors sit on the nodes of a real 2D lattice, and they are
+coupled to all their lattice neighbors. This is a natural and promising architecture for 2D quantum
+many-body problems, but it has a real cost. For PEPS there is no analogue of the simple local
+eigenvalue problem for a single tensor that we have in DMRG, because the contraction of a general 2D
+tensor network is itself a hard computational problem. This is different from the 1D contraction,
+which is what made the local eigenvalue problem of Section 7.10 possible to solve. The optimization of
+PEPS is still an open and harder problem. Figure~\ref{fig:s07:merapeps} shows both architectures,
+where the extra structure of each one comes from and what it costs.
 
 \input{figures/s07f06_merapeps}
 
-This is also where this year's lecture ends. Unlike some previous editions of this course, this year's
-recording stops right after MERA and PEPS, with no continuation into neural network quantum states; the
-single mention in Section 7.3 is as far as the topic goes today. Keep the tensor-network machinery
-built across Sections 7.4 through 7.11 in mind regardless: session 10 reuses the same MPS/MERA/PEPS
-architectures directly, repurposed as machine-learning classifiers, and returns to neural network
-quantum states properly, from the machine-learning side.
+This is also where the lecture of this year ends. In contrast with some previous editions of this
+course, the recording of this year stops after MERA and PEPS, and it does not continue with neural
+network quantum states. The single mention in Section 7.3 is all that we say about this topic in this
+session. The tensor-network methods built in Sections 7.4 to 7.11 are still important,
+since in session 10 we will use the same MPS, MERA and PEPS architectures directly as
+machine-learning classifiers, and we will come back to neural network quantum states in detail, from
+the point of view of machine learning.
 
 \begin{notebookbox}{\texttt{session7.ipynb}, ``The entanglement entropy as a signal for phase transitions'' (Challenge)}
-This exercise has you track the entanglement entropy of the transverse-field Ising chain's ground
-state as you sweep the transverse field through its quantum critical point, using \texttt{dmrgpy}'s MPS
-machinery. Away from criticality you should see area-law saturation as in Section 7.8; near the
-transition, watch for the entropy failing to saturate the way (7.12) predicts, and for the quiz's own
-question about which regime is hardest for MPS to capture, which is really asking you to connect back
-to why MERA exists at all.
+In this exercise you follow the entanglement entropy of the ground state of the transverse-field Ising
+chain while you change the transverse field across its quantum critical point, using the MPS methods
+of \texttt{dmrgpy}. Away from criticality you should see the area-law saturation of Section 7.8. Close
+to the transition, you should see that the entropy does not saturate, as predicted by (7.12). The quiz
+also asks which regime is the hardest for MPS, and this question asks you to connect back to the
+reason why MERA exists.
 \end{notebookbox}
 
 \section{Closing summary}
 
 \begin{itemize}
-\item Strongly correlated matter, quantum spin liquids and fractional Chern insulators among them, is
-  exactly the regime where the mean-field machinery of sessions 1 through 6 has no order parameter to
-  converge on, per (7.1) and Section 7.1.
-\item The \textbf{Jordan-Wigner transformation} (7.2) is an exact mapping between fermionic and spin-1/2
-  Hamiltonians, ``spin equals fermion times string''; it is the bridge between the fermionic language of
-  sessions 1-5 and the spin language of sessions 6 and 8, and it is why we can freely work in the spin
-  representation for the rest of the session.
-\item The real obstruction to solving many-body Hamiltonians is \textbf{storage}: a system of $L$ spins needs
-  $2^L$ coefficients (7.4) to specify its wave function exactly.
-\item The \textbf{matrix product state} ansatz (7.5) replaces those $2^L$ coefficients with $O(LM^2)$
-  parameters, trading exactness for a controllable approximation set by the bond dimension $M$.
-\item The \textbf{entanglement entropy} (7.6), computed explicitly for the singlet in (7.7), quantifies how
-  entangled a state is; exactly solvable dimer and tetramer models show that gapped ground states obey
-  an \textbf{area law} (7.9), entropy set by the boundary length rather than the subsystem volume.
-\item MPS entanglement is itself bounded, $S \le \log M$ (7.10), which is exactly why MPS is so effective in
-  1D (where the area law saturates) and why it needs exponentially large $M$ in higher dimensions or
-  away from the ground state.
-\item Ground states are found variationally, by minimizing (7.11) one tensor at a time; this sweeping
-  procedure is the \textbf{DMRG} algorithm. \textbf{MERA} and \textbf{PEPS} extend the tensor-network idea to
-  criticality (via the logarithmic entropy correction (7.12)) and to genuine 2D lattices, respectively,
-  at the cost of DMRG's simple local optimization.
-\item Neural network quantum states were named once, alongside tensor networks, as a second answer to the
-  same storage problem, but were not developed this session; session 10 takes them up properly from the
-  machine-learning side, and also returns directly to this session's MPS/MERA/PEPS machinery as
-  ready-made architectures for machine-learning classifiers.
+\item Strongly correlated matter, including quantum spin liquids and fractional Chern insulators, is
+  the regime where the mean-field methods of sessions 1 to 6 have no order parameter to converge to,
+  as we saw with (7.1) and in Section 7.1.
+\item The \textbf{Jordan-Wigner transformation} (7.2) is an exact mapping between fermionic and
+  spin-1/2 Hamiltonians, summarized as ``spin equals fermion times string.'' It is the link between
+  the fermionic language of sessions 1-5 and the spin language of sessions 6 and 8, and it is the
+  reason why we can work in the spin representation for the rest of the session.
+\item The real obstruction to solving many-body Hamiltonians is \textbf{storage}, since a system of
+  $L$ spins needs $2^L$ coefficients (7.4) to describe its wave function exactly.
+\item The \textbf{matrix product state} ansatz (7.5) replaces these $2^L$ coefficients with $O(LM^2)$
+  parameters, so we give up exactness in exchange for an approximation that we control with the bond
+  dimension $M$.
+\item The \textbf{entanglement entropy} (7.6), which we computed for the singlet in (7.7), measures how
+  entangled a state is. Exactly solvable dimer and tetramer models show that gapped ground states
+  follow an \textbf{area law} (7.9), with an entropy set by the length of the boundary and not by the
+  volume of the subsystem.
+\item The entanglement of an MPS is itself bounded, $S \le \log M$ (7.10). This is the reason why MPS
+  work so well in 1D, where the area law saturates, and why they need an exponentially large $M$ in
+  higher dimensions or away from the ground state.
+\item Ground states are found variationally, by minimizing (7.11) one tensor at a time, and this
+  sweeping procedure is the \textbf{DMRG} algorithm. \textbf{MERA} and \textbf{PEPS} extend the idea
+  of tensor networks to criticality, through the logarithmic correction to the entropy (7.12), and to
+  real 2D lattices, respectively. MERA can still be optimized tensor by tensor, while for PEPS the
+  contraction is the hard step, so the simple local optimization of DMRG is lost.
+\item Neural network quantum states were mentioned once, together with tensor networks, as a second
+  answer to the same storage problem, but they were not developed in this session. In session 10 we
+  will study them in detail from the point of view of machine learning, and we will also come back to
+  the MPS, MERA and PEPS methods of this session as architectures for machine-learning classifiers.
 \end{itemize}

@@ -6,13 +6,13 @@
 %
 % The \foreach loop variable is \et, NOT \eta: naming it \eta silently substitutes
 % into every "$\eta$" in the panel titles and prints the numeric value instead.
-\begin{aqmfigure}{fig:s02:recipe}{Reading a Bloch Hamiltonian off a lattice. The number of orbitals
-per unit cell sets the matrix size; an intracell hopping enters the entry its orbital pair indexes
-with no phase, an intercell hopping enters the corresponding entry multiplied by $e^{\pm i\varphi}$.
-Note that the intracell $A$--$B$ hopping lands \emph{off} the diagonal. For the alternating-hopping
-chain (2.13) this gives the two bands $\epsilon_\pm=\pm|1+\eta e^{-i\varphi}|$: gapped for
-$\eta\neq1$, and gap-closing exactly at $\eta=1$ -- the Su-Schrieffer-Heeger chain the topology
-session picks up.}
+\begin{aqmfigure}{fig:s02:recipe}{Reading a Bloch Hamiltonian from a lattice. The number of
+orbitals per unit cell gives the size of the matrix. An intracell hopping enters the entry of its
+orbital pair with no phase, and an intercell hopping enters the corresponding entry multiplied by
+$e^{\pm i\varphi}$. Note that the intracell $A$--$B$ hopping goes \emph{off} the diagonal. For the
+chain with alternating hoppings (2.13) this gives the two bands $\epsilon_\pm=\pm|1+\eta e^{-i\varphi}|$.
+They have a gap for $\eta\neq1$, and the gap closes exactly at $\eta=1$. This is the
+Su-Schrieffer-Heeger chain of the topology session.}
 
 \begin{tikzpicture}[x=1cm, y=1cm]
 

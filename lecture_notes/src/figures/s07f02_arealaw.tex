@@ -3,18 +3,19 @@
 %
 % LAYOUT NOTE: pure TikZ, canvas coordinates. Every cut bond is drawn highlighted and
 % marked, and the marker count in each panel is the number quoted beneath it: 2, 2, 8, 16.
-\begin{aqmfigure}{fig:s07:arealaw}{Why the entanglement entropy counts boundary, not volume. In both
-panels the ground state is an exact product of decoupled cluster ground states, so a cluster lying
-entirely inside $A$ or entirely inside $B$ is in a pure state and contributes nothing; only the
-clusters the bipartition actually cuts contribute, and the cut bonds are the highlighted ones.
-(a) The dimerized chain: each cut singlet contributes exactly the single-dimer result $\log 2$ of
-(7.7), and the boundary of a block is two points no matter how long the block is, so enlarging $A$
-from two interior dimers to five leaves $S_A = 2\log 2$ unchanged. The entropy saturates. (b) The
-same construction with four-site clusters on a square lattice. Each straddling cluster still
-contributes only a bounded amount, at most $\log 2$ per cut bond, but now the boundary is a curve
-whose length grows with the subsystem: doubling the linear size of $A$ doubles the number of cut
-bonds, eight to sixteen, and $S_A$ grows in proportion. That is the area law (7.9), $S_A \sim
-\alpha\,|\partial A|$, and the contrast between the two panels is exactly why matrix product states
+\begin{aqmfigure}{fig:s07:arealaw}{Why the entanglement entropy counts the boundary and not the volume. In
+both panels the ground state is an exact product of the ground states of decoupled clusters, so a
+cluster that is fully inside $A$ or fully inside $B$ is in a pure state and gives nothing. Only the
+clusters that are cut by the division contribute, and the cut bonds are the highlighted ones.
+(a) The dimerized chain. Each cut singlet gives exactly the single-dimer result $\log 2$ of
+(7.7), and the boundary of a block is two points for any length of the block. Each end of $A$ cuts
+through one dimer, so making $A$ larger, from two interior dimers to five, leaves two cut singlets
+and $S_A = 2\log 2$ unchanged. The entropy saturates. (b) The
+same construction with clusters of four sites on a square lattice. Each cluster that crosses the
+boundary still gives a bounded amount, at most $\log 2$ per cut bond, but now the boundary is a
+curve whose length grows with the subsystem. When we double the linear size of $A$, the number of cut
+bonds doubles, from eight to sixteen, and $S_A$ grows in proportion. This is the area law (7.9), $S_A \sim
+\alpha\,|\partial A|$, and the contrast between the two panels is the reason why matrix product states
 are a one-dimensional tool.}
 
 \begin{tikzpicture}[x=1cm, y=1cm]

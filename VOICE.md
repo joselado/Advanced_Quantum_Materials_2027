@@ -260,34 +260,44 @@ for today. Thank you so much for joining."
 
 ### 4.3 Written lecture notes
 
-One `\chapter` per session, in `lecture_notes/src/sessions/sessionNN.tex`. The approved
-chapters show the shape:
+One `\chapter` per session, in `lecture_notes/src/sessions/sessionNN.tex`, with the captions of
+its figures in `lecture_notes/src/figures/`. The notes use a register of their own, fixed in
+`lecture_notes/writing_style.md`, which wins over this file where the two disagree: simple English
+written by a condensed matter physicist who is not a native speaker. The physics words stay
+technical and the sentences around them get plainer than in the spoken lecture, so most of the
+spoken habits of 4.1 and the moves of section 5 are kept, while the punctuation and the rhetoric
+of section 6 are not. The shape of a chapter:
 
-- **Opening paragraph.** Pick up the previous session's thread (or say there is none: "This is
-  the first session of the course, so there is no previous cliffhanger to pick up."), state the
-  question of the day, preview what will be built ("By the end of today we will have used that
-  tool three times, to build a charge density wave, a magnet, and a superconductor out of the
-  very same starting Hamiltonian"), and flag what will and will not be revisited later.
-- **Section titles** are descriptive and sometimes read like the spoken question: "Why quantum
-  materials, and why now", "A warm-up in first quantization, and the puzzle that breaks it",
-  "Where the two formalisms diverge: the exponential wall", "Worked example 1: the charge
-  density wave".
-- **Paragraphs** of five to ten sentences that narrate. Openers that recur: "Let us start
-  with...", "Here is the puzzle that motivates everything that follows.", "Now here is the
-  puzzle.", "It is worth being precise about which symmetry this breaks", "With this general
-  picture in hand, let us now go build it explicitly, three times over.", "Numerically, this
-  shows up exactly as you would hope".
-- **Equations** are numbered and referred to by number in the prose; the prose says what each
-  term is in words right after ("read as 'destroy an electron at 1, create one at 0' plus the
-  reverse process").
+- **Opening paragraph.** Pick up the thread of the previous session (or say there is none: "This
+  is the first session of the course, so we start with the question that organizes the whole
+  course."), ask the question of the session, say what will be built ("In this session we will
+  use this tool three times, and we will obtain a charge density wave, a magnet and a
+  superconductor from the same starting Hamiltonian"), and say what will and will not come back
+  later. "In this session", never "today".
+- **Section titles** are descriptive phrases without a colon, and some read like the spoken
+  question: "Why quantum materials, and why now", "A warm-up in first quantization, and the
+  puzzle that breaks it", "Emergent quasiparticles and what the lattice gives us", "Storing the
+  wave function as the main bottleneck".
+- **Paragraphs** of five to ten sentences of medium length, one idea per sentence, joined with
+  "and", "so", "since", "because", "which is" and "meaning that", never with a colon, a
+  semicolon or a dash. Openers that recur: "Let us start with", "Let us now state the puzzle
+  that motivates everything that follows.", "Let us now build this general picture explicitly,
+  three times.", "Note that", "The reason for this is", "In practice, this means". No idioms,
+  no images, no rhetorical turns, no stress words ("simply", "just", "precisely") unless they
+  state a physics fact.
+- **Equations** are numbered and referred to by number in the prose, and the prose says what
+  each term is in words right after.
 - **Notebook callouts** use `\begin{notebookbox}{\texttt{sessionN.ipynb}, ``Exact exercise
-  title'' (Core)}` and say in two or three sentences what to run and what to look for.
+  title'' (Core)}` and say in two or three sentences what to run and what to look for. The
+  quoted titles must match the notebook cells.
 - **Figures** are `\input{figures/sNNfMM_name}` and are always referred to in the prose before
-  they appear ("figure~\ref{fig:s01:fockspace} draws both sides of the comparison explicitly").
+  they appear ("Figure~\ref{fig:s01:fockspace} shows the two sides of this comparison"). The
+  caption follows the same register as the prose.
 - **Bulleted lists** appear only for taxonomies (the tour of materials, the quasiparticles, the
-  three broken symmetries) and for the closing summary. Explanations are prose.
+  three broken symmetries) and for the closing summary. An item starts with a capital letter and
+  ends with a period, and a named item reads "\textbf{Magnons.} Spin-1 excitations of ...".
 - **Closing.** A `\section{Closing summary}` with five or six bullets, then one paragraph
-  starting "Next session, ..." that says what comes next and what will not be recapped.
+  starting "In the next session" that says what comes next and what will not be recapped.
 - The Dropbox style guide's rules apply on sight: no em-dashes, no "well-known" or "textbook" or
   "literature", no year citations, no narrative attributions not backed by the transcript, box
   density limits.

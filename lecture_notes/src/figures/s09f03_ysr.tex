@@ -2,17 +2,18 @@
 % superconductor that a non-magnetic one does not.
 % Placement: sec. "Impurities as diagnostics II", after equation (9.10).
 \begin{aqmfigure}{fig:s09:ysr}{A magnetic impurity in an s-wave superconductor. (a) The
-single-particle density of states. The BCS continuum, gapped by $\Delta$ with coherence peaks at the
-gap edges, is left essentially untouched by a \emph{non-magnetic} impurity: it does not distinguish
-up from down, so it cannot make breaking any particular Cooper pair cheaper. A \emph{magnetic}
-impurity does distinguish them, breaks time-reversal symmetry, and pulls a pair of bound states into
-the gap at $\pm E_b$. (b) Where those states sit, from (9.10), as a function of
-$\alpha=\pi\nu_0JS$. At $\alpha=0$ they sit exactly at the gap edges, which is to say there is no
-bound state yet; as the exchange grows they sweep across the gap and cross at $\alpha=1$. The
-crossing is not a level repulsion that failed to open --- it is a genuine quantum phase transition
-of the many-body ground state, from $S_{\rm tot}=0$ (every Cooper pair intact, the impurity spin
-screened into the condensate) to $S_{\rm tot}=1/2$ (one pair broken, one dangling spin left behind).
-A single tunable impurity is thus an exactly solvable quantum phase transition.}
+single-particle density of states. The BCS continuum, with a gap $\Delta$ and coherence peaks at the
+gap edges, is almost unchanged by a \emph{non-magnetic} impurity. Such an impurity does not
+distinguish up from down, so it cannot lower the energy needed to break any specific Cooper pair. A
+\emph{magnetic} impurity distinguishes them, breaks time-reversal symmetry, and creates a
+pair of bound states inside the gap at $\pm E_b$. (b) The energy of these states, from (9.10), as a
+function of $\alpha=\pi\nu_0JS$. At $\alpha=0$ they are exactly at the gap edges, meaning that there
+is no bound state yet. As the exchange grows they move across the gap and cross at $\alpha=1$. The
+crossing is not a level repulsion that did not open. It is a real quantum phase transition of the
+electronic ground state, with a change of fermion parity, and the electron spin goes from
+$S_{\rm tot}=0$, where every Cooper pair is intact and the impurity spin is not screened, to
+$S_{\rm tot}=1/2$, where one quasiparticle is bound to the impurity and partially screens its spin.
+So a single impurity that we can tune is an exactly solvable quantum phase transition.}
 
 \begin{tikzpicture}
 
@@ -94,11 +95,11 @@ A single tunable impurity is thus an exactly solvable quantum phase transition.}
 % the many-body ground state, as a footer band below the gap
 \draw[aqmguide] (axis cs:0,-1.34) -- (axis cs:3.05,-1.34);
 \node[aqmlabsmall, anchor=north, align=center, text width=3.0cm] at (axis cs:0.72,-1.42)
-  {ground state $S_{\rm tot}=0$\\[-1pt]\textcolor{aqmmuted}{spin screened,}\\[-1pt]
+  {ground state $S_{\rm tot}=0$\\[-1pt]\textcolor{aqmmuted}{spin unscreened,}\\[-1pt]
    \textcolor{aqmmuted}{every pair intact}};
 \node[aqmlabsmall, anchor=north, align=center, text width=3.0cm] at (axis cs:2.28,-1.42)
-  {ground state $S_{\rm tot}=1/2$\\[-1pt]\textcolor{aqmmuted}{one pair broken,}\\[-1pt]
-   \textcolor{aqmmuted}{one spin left over}};
+  {ground state $S_{\rm tot}=1/2$\\[-1pt]\textcolor{aqmmuted}{quasiparticle bound,}\\[-1pt]
+   \textcolor{aqmmuted}{spin partly screened}};
 \draw[aqmbroken, line width=0.8pt, dash pattern=on 2.5pt off 2pt]
   (axis cs:1,-1.34) -- (axis cs:1,-2.70);
 \end{axis}

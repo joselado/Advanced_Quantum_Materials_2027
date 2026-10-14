@@ -1,492 +1,517 @@
 \chapter{Machine Learning Quantum Materials}
 
-Session 9 closed by turning linear response into a diagnostic tool and running it across
-essentially every system class the course had built: metals, superconductors, topological matter,
-quantum magnets. That session was a synthesis session in a narrow sense, one formalism applied
-everywhere. Today's session is a synthesis in a much broader sense: we are going to step back from
-condensed matter for a moment and ask what happens when we let machine learning talk to everything
-we have built over the last nine sessions, in both directions. Sometimes machine-learning
-architectures will turn out to be exactly the right tool for a hard many-body problem; sometimes,
-rather wonderfully, the reverse will be true, and a many-body technique we already know will turn
-out to be exactly the right architecture for a machine-learning problem. This is also, quite
-deliberately, the last session of the course, and before we start we should be upfront about one
-practical difference from every session before it: \textbf{there is no companion Jupyter notebook for
-this topic}. The \texttt{jupyter-notebooks/} folder stops at \texttt{session9.ipynb}, so today's notes carry no
-``try it in the notebook'' callouts anywhere, not because the material is any less hands-on in
-spirit, but because that particular piece of infrastructure was not built for this session. Treat
-today's derivations as the thing to sit with directly on the page.
+At the end of Session 9 we used linear response as a diagnostic tool, and we applied it to almost
+every class of system that we built in the course, which are metals, superconductors, topological
+matter and quantum magnets. That session was a synthesis in a narrow sense, since one formalism
+was applied to all the systems. In this session we do a synthesis in a much broader sense. We will
+leave condensed matter for a moment and ask what happens when machine learning meets everything
+that we built in the last nine sessions, in both directions. In some cases, a machine-learning
+architecture will be the right tool for a hard many-body problem. In other cases the reverse will
+be true, and a many-body technique that we already know will be the right architecture for a
+machine-learning problem. This is also, on purpose, the last session of the course, and before we
+start we should say clearly that there is one practical difference with all the sessions before.
+\textbf{There is no companion Jupyter notebook for this topic}. The \texttt{jupyter-notebooks/}
+folder stops at \texttt{session9.ipynb}, so in these notes there are no ``try it in the notebook''
+boxes. The reason is not that the material is less practical, but that this part of the
+infrastructure was not built for this session. For this reason, we should study the derivations
+of this session directly on the page.
 
-The session closes the course's arc in two deliberate ways, and it is worth naming both before we
-start. First, we are going to build neural network quantum states from the ground up. This is the
-first time the course meets the idea in full: a neural network standing in for the exponentially
-many coefficients of a many-body wavefunction, trained by turning the variational principle itself
-into a loss function, occupying its own place in the hierarchy of variational many-body states
-alongside matrix product states and projected entangled pair states, and reused a second time for
-reconstructing wavefunctions from a handful of measurements. Second, and this is the genuine
-full-circle moment, we are going to meet Hamiltonian learning, which is the literal inverse of the
-very first move this course ever made. Session 1 opened by saying: give us a Hamiltonian, and we
-integrate the Schr\"odinger equation forward to get observables. Today's closing topic starts from
-observables and asks for the Hamiltonian. Ten sessions after we first wrote that forward arrow
-down, we get to reverse it.
+The session closes the arc of the course in two ways, and we name both of them before we start.
+First, we will build neural network quantum states from the beginning. This is the first time that
+the course meets this idea in full. A neural network takes the place of the exponentially many
+coefficients of a many-body wavefunction, and it is trained by using the variational principle as
+a loss function. It has its own place in the hierarchy of variational many-body states, together
+with matrix product states and projected entangled pair states, and we will use it a second time
+to reconstruct wavefunctions from a small number of measurements. Second, and this is where the
+course comes back to its starting point, we will see Hamiltonian learning, which is the inverse of
+the very first step that this course made. Session 1 started by saying that, if we are given a
+Hamiltonian, we can integrate the Schr\"odinger equation forward in time to get observables. The
+last topic of this session starts from the observables and asks for the Hamiltonian. Ten sessions
+after we first wrote that forward arrow, we will reverse it.
 
-\section{Two directions of traffic between machine learning and many-body physics}
+\section{Machine learning and many-body physics in two directions}
 
-Let us set the map for today, because the session genuinely runs in two directions and it helps to
-know which way we are facing at each point. In one direction, we use machine-learning
-architectures, mostly neural networks, to attack many-body problems: representing wavefunctions
-too large to store, reconstructing states from a handful of measurements, classifying phases of
-matter, learning Hamiltonians from experimental observables. In the other direction, we use
-many-body architectures, tensor networks in particular, as machine-learning tools in their own
-right, applied to ordinary tasks like image classification. And running underneath both directions
-is a third theme, arguably the most practically important one: combining machine learning with the
-condensed-matter machinery we already have (density functional theory, phase classification,
-Hamiltonian extraction) to attack problems that are hard for either approach alone. The order we
-will follow, matching how the lecture actually unfolded, is: neural networks and how they learn,
-neural network quantum states and tomography, tensor networks repurposed as machine learning,
-machine learning inside density functional theory, phase classification, and finally Hamiltonian
+Let us first give the plan of this session, since the session goes in two directions and it is
+useful to know which direction we are following at each point. In one direction, we use
+machine-learning architectures, mostly neural networks, to solve many-body problems. Examples are
+to represent wavefunctions that are too large to store, to reconstruct states from a small number
+of measurements, to classify phases of matter and to learn Hamiltonians from experimental
+observables. In the other direction, we use many-body architectures, in particular tensor
+networks, as machine-learning tools, and we apply them to ordinary tasks such as image
+classification. Under both directions there is a third theme, which is probably the most important
+one in practice. This is to combine machine learning with the condensed-matter methods that we
+already have, such as density functional theory, phase classification and the extraction of
+Hamiltonians, to solve problems that are hard for each of the two approaches alone. We will follow
+the same order as the lecture. We start with neural networks and how they learn, then neural
+network quantum states and tomography, then tensor networks used as machine learning, then machine
+learning inside density functional theory, then phase classification, and at the end Hamiltonian
 learning.
 
 \section{Neural networks as function approximators}
 
-Machine learning is a large field, and it is worth being precise about which corner of it we are
-using today. Three broad task types are worth naming. \textbf{Supervised learning} maps labeled inputs
-to outputs, image classification being the standard example, and it is the one we will build on for
-the rest of the session. \textbf{Generative learning} models a probability distribution directly, so
-that one can \emph{sample} new instances of it; a generative adversarial network trained on photographs
-of cats, for instance, can produce photorealistic images of cats that never existed. \textbf{Reinforcement
-learning} trains an agent to choose actions that maximize a cumulative reward, given the state of
-its environment. We will not develop generative or reinforcement learning further today (though
-both have real uses elsewhere in quantum materials); the GAN cat-face example is worth keeping in
-mind purely as a reminder that supervised learning is not the whole of the field, even though it is
-the whole of today's toolkit.
+Machine learning is a large field, and we should say clearly which part of it we use in this
+session. There are three broad types of task. \textbf{Supervised learning} maps labeled inputs to
+outputs, and the standard example is image classification. This is the type that we will use in
+the rest of the session. \textbf{Generative learning} models a probability distribution directly,
+so that one can \emph{sample} new instances from it. For instance, a generative adversarial network
+that is trained on photographs of cats can produce realistic images of cats that never existed.
+\textbf{Reinforcement learning} trains an agent to choose the actions that maximize a cumulative
+reward, given the state of its environment. In this session we will not develop generative or
+reinforcement learning further, even though both of them have real uses in other parts of quantum
+materials. We keep the GAN example with cat faces in mind only to remember that supervised learning
+is not the whole field, even if it is all that we use in this session.
 
-A deep neural network is best thought of as a very flexible, parametric function. It takes an
-input (an array of numbers), passes it through a sequence of layers, and produces an output (another
-array of numbers). Within a layer, each node's value is a nonlinear function of the values of all
-nodes in the previous layer, combined with a set of free parameters: the \emph{weights} (one per
-connection) and \emph{biases} (one per node). The architecture, the number and width of the layers, sets
-how complex a function the network \emph{can} represent; the specific values of the weights and biases,
-collectively $\theta$, set which function it \emph{does} represent at any given moment. Training a
-network means searching over $\theta$ for the values that make the network implement the function
-we actually want. Concretely, we define a \textbf{loss function} $\mathcal{L}(\theta)$ that measures how
-far the network's output is from the desired one, and we minimize it, typically using
-backpropagation (an efficient, exact way of computing $\partial \mathcal{L}/\partial\theta$ via the
-chain rule) combined with gradient descent:
+We can think of a deep neural network as a very flexible function with parameters. It takes an
+input, which is an array of numbers, passes it through a sequence of layers, and gives an output,
+which is another array of numbers. Inside a layer, the value of each node is a nonlinear function
+of the values of all the nodes in the previous layer, combined with a set of free parameters. These
+parameters are the \emph{weights}, one for each connection, and the \emph{biases}, one for each
+node. The architecture, which is the number and the width of the layers, fixes how complex a
+function the network \emph{can} represent. The specific values of the weights and biases, which we
+call together $\theta$, fix which function it \emph{does} represent at a given moment. To train a
+network means to search over $\theta$ for the values that make the network give the function that
+we want. In practice, we define a \textbf{loss function} $\mathcal{L}(\theta)$ that measures how
+far the output of the network is from the desired one, and we minimize it. This is usually done
+with backpropagation, which is an efficient and exact way to compute $\partial
+\mathcal{L}/\partial\theta$ with the chain rule, together with gradient descent,
 
 \begin{equation}
 \mathcal{L}(\theta) = \sum_n \left\| f_\theta(x_n) - y_n \right\|^2, \qquad \theta \;\longrightarrow\; \theta - \eta\, \nabla_\theta \mathcal{L}(\theta),
 \end{equation}
 
 where $\{(x_n, y_n)\}$ is a set of labeled training examples and $\eta$ is the learning rate. Every
-use of a neural network in this session, however exotic the physics attached to it, is a variation
-on (10.1): identify the right input, the right output, and the right loss, and the training
-procedure is always the same gradient-descent machinery.
+use of a neural network in this session is a variation of (10.1), even when the physics attached to
+it is exotic. We have to choose the right input, the right output and the right loss, and then the
+training procedure is always the same gradient descent.
 
-The concrete example to keep in mind, because we will reuse its exact architecture twice more
-today, is cat-versus-dog image classification. An image is an $N\times N$ matrix of pixel values;
-we flatten it into the network's input layer, and the output layer has just two nodes, with the
-target $(1,0)$ for ``cat'' and $(0,1)$ for ``dog.'' We train on a labeled set of images, minimizing
-(10.1) with $f_\theta$ the network's output and $y_n$ the one-hot label, and once trained, the
-network classifies new, unlabeled images. This is a genuinely reusable template: nothing about it
-depends on the input being a photograph, only on it being an array of numbers with a categorical
-label attached. We will meet the very same input-matrix-to-one-hot-output structure again in
-Section 10.6, with a spin configuration standing in for a photograph. Figure~\ref{fig:s10:template}
-draws the template once and, underneath it, the four later constructions of this session that
-reuse it unchanged apart from the choice of input, output and loss.
+The concrete example that we keep in mind is the classification of images of cats and dogs, since
+we will use the same architecture two more times in this session. An image is an $N\times N$
+matrix of pixel values. We flatten it into the input layer of the network, and the output layer has
+only two nodes, with the target $(1,0)$ for ``cat'' and $(0,1)$ for ``dog.'' We train on a labeled
+set of images by minimizing (10.1), with $f_\theta$ the output of the network and $y_n$ the one-hot
+label. Once the network is trained, it classifies new images that have no label. This template can
+be used in many cases, since nothing in it depends on the input being a photograph. It only needs
+the input to be an array of numbers with a categorical label. We will see the same structure, an
+input matrix and a one-hot output, again in Section 10.6, where a spin configuration takes the place
+of the photograph. Figure~\ref{fig:s10:template} shows the template once, and below it the four
+later constructions of this session, which use it without change except for the choice of input,
+output and loss.
 
 \input{figures/s10f01_networktemplate}
 
 \section{Neural network quantum states}
 
-We meet neural network quantum states (NNQS) here for the first time in the course, and we get to
-treat them immediately with the full machine-learning machinery of Section 10.2. The one-sentence
-idea is that a neural network can stand in for the exponentially many coefficients of a many-body
-wavefunction, occupying its own place in the hierarchy of variational many-body states this course
-has been building since session 7's matrix product states, and today's job is to make that idea
-precise: what exactly the network computes, what loss function trains it, and where it sits
-relative to the ans\"atze we already know.
+In this section we meet neural network quantum states (NNQS) for the first time in the course, and
+we treat them directly with the machine-learning methods of Section 10.2. The idea in one sentence
+is that a neural network can take the place of the exponentially many coefficients of a many-body
+wavefunction. In this way it has its own place in the hierarchy of variational many-body states
+that this course has been building since the matrix product states of session 7. In this section
+we make this idea precise. We will see what the network computes, which loss function is used to
+train it, and how it is related to the ans\"atze that we already know.
 
-Start from the difficulty we have met before, most recently in session 7's discussion of
-entanglement growth: a wavefunction for $L$ spins,
+We start from a difficulty that we have met before, most recently in the discussion of
+entanglement growth in session 7. A wavefunction for $L$ spins,
 
 \begin{equation}
 |\psi\rangle = \sum_{s_1,\dots,s_L} C(s_1,\dots,s_L)\, |s_1,\dots,s_L\rangle,
 \end{equation}
 
-is specified by $2^L$ coefficients, and storing them explicitly is hopeless once $L$ is much bigger
-than 30 or 40. The neural network quantum state (NNQS) idea is to stop storing $C(s_1,\dots,s_L)$
-and instead \emph{generate} it: build a neural network $C_\theta$ that takes a spin configuration
-$(s_1,\dots,s_L)$ as input (formally, an $L$-pixel ``image'') and returns the coefficient, or, for a
-genuinely complex wavefunction, its real and imaginary parts (equivalently, its modulus and phase)
-as two output numbers. This is exactly the matrix-product-state move from Section 10.4 below,
-a compact generator standing in for exponentially many numbers, but built from a neural network's
-parameters rather than a chain of matrices.
+is given by $2^L$ coefficients, and it is not possible to store them explicitly once $L$ is much
+bigger than 30 or 40. The idea of a neural network quantum state (NNQS) is to not store
+$C(s_1,\dots,s_L)$, and instead to \emph{generate} it. We build a neural network $C_\theta$ that
+takes a spin configuration $(s_1,\dots,s_L)$ as input, which is formally an $L$-pixel ``image,''
+and returns the coefficient. For a wavefunction that is complex, it returns its real and imaginary
+parts as two output numbers, or in an equivalent way its modulus and phase. This is the same idea as
+the matrix product state of Section 10.4 below, where a compact generator takes the place of
+exponentially many numbers, but here it is built from the parameters of a neural network and not
+from a chain of matrices.
 
-The question is then how to find the right $\theta$ for the ground state, and here is where Section
-10.2's machinery reappears essentially unchanged. The variational principle tells us that
+The question is then how to find the right $\theta$ for the ground state, and here the methods of
+Section 10.2 appear again with almost no change. The variational principle tells us that
 
 \begin{equation}
 E[\theta] \;=\; \frac{\langle \psi_\theta | H | \psi_\theta\rangle}{\langle \psi_\theta|\psi_\theta\rangle} \;=\; \frac{\sum_{s,s'} C_\theta^*(s)\, H_{s s'}\, C_\theta(s')}{\sum_s |C_\theta(s)|^2} \;\geq\; E_0,
 \end{equation}
 
-with equality only when $|\psi_\theta\rangle$ coincides with the true ground state (or, in practice,
-the closest state the ansatz can reach). Equation (10.3) \emph{is} the loss function of (10.1): the
-``observable output'' the network is being trained to minimize is nothing but the system's energy.
-To make (10.3) computable without summing over all $2^L$ configurations, one samples $s$ from the
-Born distribution $p(s) = |C_\theta(s)|^2/\sum_{s'}|C_\theta(s')|^2$ and evaluates it as an average
-over the sampled local energy,
+where the equality holds only when $|\psi_\theta\rangle$ is the true ground state, or in practice
+the closest state that the ansatz can reach. Equation (10.3) \emph{is} the loss function of (10.1),
+meaning that the ``observable output'' that the network is trained to minimize is the energy of
+the system. To compute (10.3) without a sum over all the $2^L$ configurations, one samples $s$ from
+the Born distribution $p(s) = |C_\theta(s)|^2/\sum_{s'}|C_\theta(s')|^2$ and evaluates the energy
+as an average of the sampled local energy,
 
 \begin{equation}
 E_{\rm loc}(s) = \sum_{s'} H_{s s'}\, \frac{C_\theta(s')}{C_\theta(s)}, \qquad E[\theta] = \big\langle E_{\rm loc}(s)\big\rangle_{s\sim p},
 \end{equation}
 
-which only ever needs $H$ evaluated between configurations connected by the (typically sparse)
-Hamiltonian, not the full $2^L\times 2^L$ matrix. Training then proceeds exactly as in (10.1):
-compute the energy and its gradient with respect to the network parameters,
+which only needs $H$ between the configurations that are connected by the Hamiltonian, which is
+usually sparse, and not the full $2^L\times 2^L$ matrix. The training is then done in the same way
+as in (10.1). We compute the energy and its gradient with respect to the parameters of the network,
 
 \begin{equation}
 \frac{\partial E}{\partial \theta_k} = 2\,\mathrm{Re}\Big[\big\langle E_{\rm loc}(s)\, O_k^*(s)\big\rangle - \big\langle E_{\rm loc}(s)\big\rangle\big\langle O_k^*(s)\big\rangle\Big], \qquad O_k(s) \equiv \frac{\partial \ln C_\theta(s)}{\partial \theta_k},
 \end{equation}
 
-and update $\theta_k \to \theta_k - \eta\, \partial E/\partial\theta_k$ repeatedly, with the same
-learning rate $\eta$ as in any other neural-network training, until the gradient vanishes and the
-energy has converged to its variational minimum.
+and we update $\theta_k \to \theta_k - \eta\, \partial E/\partial\theta_k$ many times, with a
+learning rate $\eta$ as in any other training of a neural network, until the gradient vanishes and
+the energy has converged to its variational minimum.
 
-It is worth being precise about where NNQS sits relative to the other variational ans\"atze this
-course has used. The slides make this into an explicit nested picture: draw the full many-body
-Hilbert space as one region, and inside it a smaller region for every state an NNQS of a given
-architecture can reach; projected entangled pair states sit inside that NNQS region, matrix product
-states (session 7's construction) sit inside the PEPS region in turn, and the parameterizations of
-gapped one-dimensional systems sit innermost of all (a matrix product state is, after all, just a
-particular, highly structured choice of ``network''). NNQS is therefore the most expressive of the
-variational families this course has used, precisely because it imposes the least structure on how
-the coefficients depend on the configuration. Equation (10.3) is the loss function and
-(10.4)-(10.5) the training procedure that make this picture operational rather than just
-structural. Figure~\ref{fig:s10:nnqs} collects all three pieces: what the network actually
-computes, how the sampled energy estimate is assembled, and that nested picture drawn out.
+We should now say clearly how NNQS is related to the other variational ans\"atze of this course.
+The slides show this as a set of nested regions. The full many-body Hilbert space is one region,
+and inside it there is a smaller region with all the states that an NNQS with a given architecture
+can reach. Projected entangled pair states are inside this NNQS region, and matrix product states,
+which we built in session 7, are inside the PEPS region. The parameterizations of gapped
+one-dimensional systems are in the innermost region, since a matrix product state is a particular
+and highly structured choice of ``network.'' NNQS is therefore the most expressive of the
+variational families of this course, because it imposes the least structure on how the
+coefficients depend on the configuration. Equation (10.3) is the loss function, and (10.4)-(10.5)
+are the training procedure, and together they make this picture a working method and not only a
+structure. Figure~\ref{fig:s10:nnqs} shows all three parts, which are what the network computes,
+how the sampled estimate of the energy is built, and the nested picture.
 
 \input{figures/s10f02_nnqs}
 
 \subsection{Quantum state tomography}
 
-A second, genuinely distinct payoff of the same NNQS ansatz is \textbf{quantum state tomography}.
-Suppose we have a real experimental system in some unknown state $|\psi\rangle$, and the only access
-we have to it is through projective measurement: measure the state of every spin, and the system
-collapses to one particular configuration $s$ with probability $|C(s)|^2$. Repeating the measurement
-many times generates a set of observed configurations, distributed according to $|C(s)|^2$, but we
-never observe $C(s)$ itself, only its modulus squared, and doing this for all $2^L$ configurations
-separately is exactly the exponential problem we started with.
+A second and different use of the same NNQS ansatz is \textbf{quantum state tomography}. Let us
+take a real experimental system in some unknown state $|\psi\rangle$, and let us say that the only
+access that we have to it is through projective measurements. We measure the state of every spin,
+and the system collapses to one configuration $s$ with probability $|C(s)|^2$. If we repeat the
+measurement many times, we obtain a set of observed configurations that are distributed according
+to $|C(s)|^2$. However, we never observe $C(s)$ itself but only its modulus squared, and to do
+this for all the $2^L$ configurations one by one is the same exponential problem that we started
+with.
 
-The fix is structurally identical to the ground-state search above: parameterize the unknown
-amplitude and phase with a network, for instance a restricted Boltzmann machine, or two separate
-networks, one for $|C_\theta(s)|$ and one for its phase, and fit $\theta$ by \textbf{maximum likelihood}
-against the observed measurement outcomes, rather than by minimizing an energy. Concretely, one
-maximizes $\sum_{s} n(s) \ln p_\theta(s)$ over $\theta$, where $n(s)$ counts how often configuration
-$s$ was observed and $p_\theta(s) = |C_\theta(s)|^2/\sum_{s'}|C_\theta(s')|^2$ is the network's
-predicted probability. This reconstructs a full approximation to the unknown wavefunction using far
-fewer than $2^L$ measurements, which is precisely what makes it useful as an experimental tool:
-tomography with a genuinely exponential measurement budget is not an experiment anyone can run.
+The solution has the same structure as the ground-state search above. We parameterize the unknown
+amplitude and phase with a network, for instance a restricted Boltzmann machine, or with two
+separate networks, one for $|C_\theta(s)|$ and one for its phase. Then we fit $\theta$ by
+\textbf{maximum likelihood} to the observed measurement outcomes, instead of minimizing an energy.
+In practice, one maximizes $\sum_{s} n(s) \ln p_\theta(s)$ over $\theta$, where $n(s)$ counts how
+many times the configuration $s$ was observed and $p_\theta(s) =
+|C_\theta(s)|^2/\sum_{s'}|C_\theta(s')|^2$ is the probability predicted by the network. This
+reconstructs a full approximation to the unknown wavefunction with far fewer than $2^L$
+measurements, and this is what makes it useful as an experimental tool, since nobody can run a
+tomography experiment that needs an exponential number of measurements.
 
-This is slides-and-transcript material with no notebook counterpart, in keeping with this session's
-overall absence of a companion notebook; there is no \texttt{sessionN.ipynb} cell to point you to here, so
-treat (10.3)-(10.5) and the tomography likelihood above as the complete, self-contained derivation.
+This part comes from the slides and the transcript and has no notebook counterpart, in line with
+the fact that this session has no companion notebook. There is no \texttt{sessionN.ipynb} cell to
+point you to here, so (10.3)-(10.5) and the tomography likelihood above are the complete and
+self-contained derivation.
 
-\section{The many-body wavefunction as a big-data problem: tensor networks for machine learning}
+\section{Tensor networks for machine learning and the many-body wavefunction as a big-data problem}
 
-We now run the previous section's logic in reverse. Instead of using a machine-learning
-architecture to solve a many-body problem, we treat the many-body wavefunction itself as an
-instance of a big-data problem, and repurpose a many-body compression technique, tensor networks,
-as a machine-learning architecture.
+We now follow the logic of the previous section in the reverse direction. Instead of using a
+machine-learning architecture to solve a many-body problem, we treat the many-body wavefunction
+itself as a big-data problem, and we use a many-body compression technique, which is tensor
+networks, as a machine-learning architecture.
 
-Recall the matrix product state (MPS) ansatz, which will already be familiar from session 7: rather
-than storing all $2^L$ coefficients of (10.2) independently, we assume they factorize into a product
-of per-site matrices,
+Let us recall the matrix product state (MPS) ansatz, which we already know from session 7. Instead
+of storing all the $2^L$ coefficients of (10.2) independently, we assume that they factorize into a
+product of matrices, one for each site,
 
 \begin{equation}
 C(s_1,\dots,s_L) = \mathrm{Tr}\left[A^{s_1} A^{s_2}\cdots A^{s_L}\right],
 \end{equation}
 
-where for each physical value of $s_i$ (spin up or down, say) there is a distinct $D\times D$ matrix
-$A^{s_i}$, and $D$, the \emph{bond dimension}, is a free parameter we choose. The number of free
-parameters in (10.6) scales as $L \times d \times D^2$ ($d$ the local Hilbert space dimension),
-linear in system size rather than exponential, exactly the same compression idea as the NNQS of
-Section 10.3, just parameterized by matrix elements instead of network weights. The same
-compression trick generalizes beyond the strict one-dimensional MPS geometry: a \emph{tree tensor
-network} rearranges the same matrices into a tree rather than a chain, the \emph{multiscale
-renormalization ansatz} (MERA) adds extra layers of coarse-graining on top of a tree structure, and
-\emph{projected entangled pair states} (PEPS) generalize the whole construction to a genuinely
-two-dimensional grid. For ground-state search these architectures are not interchangeable (an MPS
-is substantially easier to optimize than a PEPS, which is exactly why one-dimensional problems favor
-MPS and two-dimensional problems often still resist it); but if all we want is a flexible,
-efficiently-parameterized function of a high-dimensional input, as in machine learning, the
-distinction between architectures matters much less, and any of them will do.
+where for each physical value of $s_i$, for example spin up or spin down, there is a different
+$D\times D$ matrix $A^{s_i}$, and $D$, which is called the \emph{bond dimension}, is a free
+parameter that we choose. The number of free parameters in (10.6) scales as $L \times d \times
+D^2$, with $d$ the dimension of the local Hilbert space, so it is linear in the system size and not
+exponential. This is the same compression idea as the NNQS of Section 10.3, but the parameters are
+matrix elements instead of network weights. The same compression can be generalized beyond the
+one-dimensional geometry of the MPS. A \emph{tree tensor network} puts the same matrices in a tree
+instead of a chain. The \emph{multiscale renormalization ansatz} (MERA) adds extra layers of
+coarse-graining on top of a tree structure. \emph{Projected entangled pair states} (PEPS)
+generalize the whole construction to a two-dimensional grid. For a ground-state search these
+architectures are not equivalent, since an MPS is much easier to optimize than a PEPS, and this is
+the reason why MPS works well for one-dimensional problems while two-dimensional problems are often
+still hard. However, if we only want a flexible function of a high-dimensional input with an
+efficient parameterization, as in machine learning, the difference between the architectures
+matters much less, and any of them can be used.
 
-This is a direct, literal reuse of session 7's own architectures, not just an analogy: the same
-matrix product states, tree tensor networks, MERA, and PEPS built there to compress ground-state
-wavefunctions are picked up here unchanged and repurposed as function approximators. This reframing
-has a name, ``quantum-many-body-inspired machine learning,'' and a clean worked example: image
-classification with tensor networks. Map each pixel of an $N$-pixel image to a
-two-dimensional vector (white $\to$ spin up, black $\to$ some other reference direction, say), and
-take the tensor product of all $N$ pixel-vectors to get a single vector in a $2^N$-dimensional
-space, exactly the same exponentially large space that a many-body wavefunction with $N$ spins would
-live in. The classification task then becomes the search for a \emph{linear} operator on that
-$2^N$-dimensional space that maps each image to its one-hot label, and a tensor network (a
-tree-tensor-network shape works well here) is exactly the efficient, structured parameterization of
-such a linear operator that (10.6) and its generalizations already gave us. Applying the tensor
-network to the tensor-product image, then a final small tensor to project down to two output
-numbers, reproduces precisely the cat-versus-dog structure of Section 10.2, now with ``purse versus
-shirt'' as the worked example and the pixel tensor-product standing in for the flattened input
-matrix. Figure~\ref{fig:s10:tnml} draws the four geometries as tensor diagrams and then the
-classifier built out of one of them.
+This is a direct reuse of the architectures of session 7, and not only an analogy. The same matrix
+product states, tree tensor networks, MERA and PEPS that we built there to compress ground-state
+wavefunctions are used here without change as function approximators. This approach has a name,
+which is ``quantum-many-body-inspired machine learning,'' and a clear example of it is image
+classification with tensor networks. We map each pixel of an image with $N$ pixels to a
+two-dimensional vector, for example white $\to$ spin up and black $\to$ some other reference
+direction. Then we take the tensor product of all the $N$ pixel vectors and obtain a single vector
+in a $2^N$-dimensional space, which is the same exponentially large space where a many-body
+wavefunction with $N$ spins lives. The classification task then becomes the search for a
+\emph{linear} operator on this $2^N$-dimensional space that maps each image to its one-hot label.
+A tensor network, and here a tree tensor network works well, is the efficient and structured
+parameterization of such a linear operator that (10.6) and its generalizations already gave us. We
+apply the tensor network to the tensor-product image, and then a final small tensor that projects
+down to two output numbers. This gives the same structure as the classification of cats and dogs in
+Section 10.2, where now the worked example is ``purse versus shirt'' and the tensor product of the
+pixels takes the place of the flattened input matrix. Figure~\ref{fig:s10:tnml} shows the four
+geometries as tensor diagrams, and then the classifier built from one of them.
 
 \input{figures/s10f03_tnml}
 
-This is not a toy result. Applied to the Fashion-MNIST dataset, a standard benchmark of clothing
-images, this tensor-network classifier reaches \textbf{95.38\% accuracy on the training set and 88.97\% on
-the test set}, competitive with conventional neural network architectures on the same task. (These
-numbers appear only on the slides, not narrated in the recording beyond ``very high accuracy,'' and
-are exactly the kind of concrete figure worth pulling into the written notes rather than leaving
-implicit.) The broader point to take away is symmetric with Section 10.3's: a variational
-architecture built to compress many-body wavefunctions is, mathematically, just another kind of
-neural network, and it is directly usable as one.
+This is not a toy result. On the Fashion-MNIST dataset, which is a standard benchmark of images of
+clothes, this tensor-network classifier reaches \textbf{95.38\% accuracy on the training set and
+88.97\% on the test set}, which is comparable with conventional neural network architectures on
+the same task. These numbers appear only on the slides, and in the recording they are only
+described as ``very high accuracy.'' They are the kind of concrete result that we want to have in
+the written notes and not leave implicit. The general point is the same as in Section 10.3, in the
+other direction. A variational architecture that was built to compress many-body wavefunctions is,
+in mathematical terms, one more kind of neural network, and we can use it directly as one.
 
 \section{Machine learning in density functional theory}
 
-We turn now to a different problem, and a much older piece of condensed-matter machinery: density
-functional theory (DFT). The motivation is familiar from Section 10.3, but posed for real materials
-rather than lattice models. Given a material's Hamiltonian,
+We now turn to a different problem, and to a much older method of condensed matter, which is
+density functional theory (DFT). The motivation is the same as in Section 10.3, but now for real
+materials instead of lattice models. Let us take the Hamiltonian of a material,
 
 \begin{equation*}
 H = \sum_i \left(-\frac{\hbar^2\nabla_i^2}{2m}\right) + \sum_i v_{\rm ext}(\mathbf{r}_i) + \frac{1}{2}\sum_{i\neq j} \frac{e^2}{|\mathbf{r}_i - \mathbf{r}_j|},
 \end{equation*}
 
-with $v_{\rm ext}$ the potential of the nuclei, the many-body ground state $\psi_0(\mathbf{r}_1,\dots,\mathbf{r}_N)$ is, of course, completely intractable to obtain directly for a realistic number of electrons. DFT sidesteps this by asking a smaller question: not for the full wavefunction, but for the much lower-dimensional ground-state electronic density $n(\mathbf{r}) = N\int |\psi_0|^2\, d^3r_2\cdots d^3r_N$.
+with $v_{\rm ext}$ the potential of the nuclei. For a realistic number of electrons, it is not possible to obtain the many-body ground state $\psi_0(\mathbf{r}_1,\dots,\mathbf{r}_N)$ directly. DFT avoids this problem by asking a smaller question. It does not ask for the full wavefunction, but for the ground-state electronic density $n(\mathbf{r}) = N\int |\psi_0|^2\, d^3r_2\cdots d^3r_N$, which has a much lower dimension.
 
-The \textbf{Hohenberg-Kohn theorem} is what makes this legitimate rather than merely convenient: for a
-given external potential $v_{\rm ext}(\mathbf{r})$, the ground-state density $n(\mathbf{r})$
-determines $v_{\rm ext}(\mathbf{r})$ uniquely (up to an additive constant), and hence determines the
-full Hamiltonian and the full many-body wavefunction. The arrow $\psi_0 \to n$ is trivial, an
-integral; the arrow $n \to \psi_0$ is the nontrivial, but \emph{guaranteed to exist}, content of the
-theorem. Consequently the ground-state energy is a functional of the density alone,
+The \textbf{Hohenberg-Kohn theorem} is what makes this approach exact and not only convenient. For
+a given external potential $v_{\rm ext}(\mathbf{r})$, the ground-state density $n(\mathbf{r})$
+determines $v_{\rm ext}(\mathbf{r})$ uniquely, up to an additive constant, and therefore it
+determines the full Hamiltonian and the full many-body wavefunction. The arrow $\psi_0 \to n$ is
+trivial, since it is an integral. The arrow $n \to \psi_0$ is the nontrivial content of the
+theorem, and the theorem says that this arrow is \emph{guaranteed to exist}. As a result, the
+ground-state energy is a functional of the density alone,
 
 \begin{equation}
 E[n] = F[n] + \int d^3r\, v_{\rm ext}(\mathbf{r})\, n(\mathbf{r}),
 \end{equation}
 
-with $F[n] = T[n] + V_{ee}[n]$ a \emph{universal} functional (the same for every system, independent of
-$v_{\rm ext}$) whose exact mathematical form nobody knows.
+where $F[n] = T[n] + V_{ee}[n]$ is a \emph{universal} functional, meaning that it is the same for
+every system and does not depend on $v_{\rm ext}$, and nobody knows its exact mathematical form.
 
-The \textbf{Kohn-Sham construction} makes (10.7) usable in practice. We introduce a fictitious system of
-non-interacting electrons chosen to reproduce the \emph{same} density $n(\mathbf{r})$ as the real,
-interacting one, governed by an effective single-particle Hamiltonian
+The \textbf{Kohn-Sham construction} makes (10.7) useful in practice. We introduce a fictitious
+system of non-interacting electrons, which is chosen so that it has the \emph{same} density
+$n(\mathbf{r})$ as the real interacting system, and which is described by an effective
+single-particle Hamiltonian
 
 \begin{equation}
 H_{\rm KS} = -\frac{\hbar^2\nabla^2}{2m} + v_{\rm eff}(\mathbf{r}), \qquad v_{\rm eff}(\mathbf{r}) = v_{\rm ext}(\mathbf{r}) + \underbrace{e^2\!\int\! d^3r'\, \frac{n(\mathbf{r}')}{|\mathbf{r}-\mathbf{r}'|}}_{\text{Hartree (mean-field) term}} + \underbrace{\frac{\delta E_{\rm xc}[n]}{\delta n(\mathbf{r})}}_{v_{\rm xc}(\mathbf{r})}.
 \end{equation}
 
-The first two pieces of $v_{\rm eff}$ are exactly a mean-field decoupling, structurally the same move
-as session 1's mean-field theory, applied here to the Coulomb interaction rather than a lattice
-Hubbard term. The last piece, the exchange-correlation potential $v_{\rm xc}$, is defined to absorb
-everything the mean-field approximation misses, and it is precisely as unknown as $F[n]$ was. In
-practice one approximates $E_{\rm xc}[n]$ (LDA, GGA, meta-GGA, and further refinements) and solves
-(10.8) self-consistently: guess a density, build $H_{\rm KS}$, diagonalize it for the Kohn-Sham
-orbitals, recompute the density from those orbitals, and repeat until convergence.
+The first part of $v_{\rm eff}$ is the external potential of the nuclei. The second part, the
+Hartree term, is a mean-field decoupling of the interaction, with the same structure as the
+mean-field theory of session 1, but applied here to the Coulomb interaction instead of a Hubbard
+term on a lattice. The last part, the exchange-correlation potential $v_{\rm xc}$, is defined so
+that it contains everything that the mean-field approximation misses, and it is as unknown as
+$F[n]$ was. In practice one uses an approximation for $E_{\rm xc}[n]$, such as LDA, GGA, meta-GGA
+and further refinements, and solves (10.8) self-consistently. We start from a guess for the density,
+build $H_{\rm KS}$ and diagonalize it to obtain the Kohn-Sham orbitals. Then we compute the density
+again from these orbitals, and we repeat until convergence.
 
-Two distinct places to bring machine learning into this loop were discussed, and it is worth keeping
-them separate, because they solve different problems:
+In the lecture we discussed two different places where machine learning can enter this loop. We
+keep them separate, because they solve different problems.
 
 \begin{itemize}
-\item \textbf{Learning the functional itself.} Replace or augment the LDA/GGA/meta-GGA approximation to
-  $E_{\rm xc}[n]$ (or its functional derivative $v_{\rm xc}$) with a neural-network
-  parameterization, trained to match higher-accuracy reference calculations. This can genuinely
-  improve accuracy, but it does \emph{not} remove the self-consistency loop: one still has to diagonalize
-  $H_{\rm KS}$ at every iteration, which remains the expensive step for large systems regardless of
-  how good $v_{\rm xc}$ is.
-\item \textbf{Learning the whole map.} A bolder use of the Hohenberg-Kohn theorem is to skip the
-  self-consistency loop altogether: train a neural network to map atomic positions (equivalently,
-  $v_{\rm ext}(\mathbf{r})$) directly to the ground-state density $n(\mathbf{r})$, with no
-  diagonalization at inference time at all. This is the idea behind a ``machine learning potential,''
-  already an established technique in quantum chemistry and condensed matter: train the network on
-  conventional Kohn-Sham calculations for small, tractable systems, then apply it to much larger
-  systems where a direct Kohn-Sham calculation would be too costly to run at all.
+\item \textbf{Learning the functional itself.} We replace or improve the LDA, GGA or meta-GGA
+  approximation to $E_{\rm xc}[n]$, or to its functional derivative $v_{\rm xc}$, with a neural
+  network, which is trained to reproduce reference calculations with a higher accuracy. This can
+  improve the accuracy, but it does \emph{not} remove the self-consistency loop. We still have to
+  diagonalize $H_{\rm KS}$ at every iteration, and this remains the expensive step for large
+  systems, independently of how good $v_{\rm xc}$ is.
+\item \textbf{Learning the whole map.} A more ambitious use of the Hohenberg-Kohn theorem is to
+  remove the self-consistency loop completely. We train a neural network to map the atomic
+  positions, or equivalently $v_{\rm ext}(\mathbf{r})$, directly to the ground-state density
+  $n(\mathbf{r})$, with no diagonalization at all when the network is used. This is the idea behind
+  machine-learned density functionals, which are related to the machine learning interatomic
+  potentials that map atomic positions to energies and forces, an established technique in quantum
+  chemistry and condensed matter. We train the network on conventional Kohn-Sham calculations for small
+  systems that we can solve, and then we apply it to much larger systems, where a direct Kohn-Sham
+  calculation would be too expensive.
 \end{itemize}
 
-Figure~\ref{fig:s10:dft} places both of these on the self-consistency loop itself, which is the
-quickest way to see why only the second of them changes what is computationally reachable.
+Figure~\ref{fig:s10:dft} places both of these on the self-consistency loop, which is the fastest way
+to see why only the second one changes which systems we can compute.
 
 \input{figures/s10f04_dftml}
 
-This too is slides-and-transcript material with no notebook counterpart; DFT calculations were never
-part of this course's numerical toolkit (\texttt{pyqula} is a tight-binding and mean-field library, not a
-DFT code), so there is nothing to point you to beyond the derivation above.
+This part also comes from the slides and the transcript and has no notebook counterpart. DFT
+calculations were never part of the numerical tools of this course, since \texttt{pyqula} is a
+tight-binding and mean-field library and not a DFT code, so there is nothing to point you to beyond
+the derivation above.
 
-\section{Phase classification: reusing the local-order-parameter-versus-topological-order split}
+\section{Phase classification with local order parameters and topological order}
 
-We come now to a section that is, in a real sense, a review of the whole course's classification
-scheme, seen through a machine-learning lens. Throughout this course we have used two quite
-different tools to tell phases apart. Sessions 1, 5, and 6 used a \textbf{local order parameter}: a
-quantity built from a simple, local expectation value (charge imbalance for the CDW, magnetization
-for the magnet, the pairing amplitude for the superconductor) that is zero in one phase and nonzero
-in the other. Sessions 3 and 4 instead used a \textbf{topological invariant} (the Chern number, the Zak
-phase) precisely because the phases in question are \emph{not} distinguished by any local quantity at
-all; the distinction only becomes visible non-locally. Today's phase-classification example runs
-exactly this contrast as an ``easy'' and a ``hard'' machine-learning worked example, and the lecture
-itself frames it that way.
+We now come to a section that is, in a real sense, a review of the classification scheme of the
+whole course, seen from the point of view of machine learning. In this course we have used two
+quite different tools to distinguish phases. Sessions 1, 5, and 6 used a \textbf{local order
+parameter}, which is a quantity built from a simple local expectation value that is zero in one
+phase and nonzero in the other. Examples are the charge imbalance for the CDW, the magnetization for
+the magnet and the pairing amplitude for the superconductor. Sessions 3 and 4 instead used a
+\textbf{topological invariant}, such as the Chern number or the Zak phase, because the phases there
+are \emph{not} distinguished by any local quantity at all, and the difference can only be seen in
+a non-local way. The phase-classification example of this session uses this contrast as an
+``easy'' and a ``hard'' worked example of machine learning, and the lecture itself presents it in
+this way.
 
-\textbf{The easy case: the Ising model.} Take classical Ising spins $\sigma_i = \pm 1$ on a square
-lattice with the standard nearest-neighbor Hamiltonian and a local order parameter,
+\textbf{The easy case, the Ising model.} Let us take classical Ising spins $\sigma_i = \pm 1$ on a
+square lattice, with the standard nearest-neighbor Hamiltonian and a local order parameter,
 
 \begin{equation}
 H_{\rm Ising} = -J\sum_{\langle i,j\rangle} \sigma_i \sigma_j, \qquad m = \frac{1}{N}\sum_i \sigma_i,
 \end{equation}
 
-which orders ferromagnetically ($|m|\to 1$) below a critical temperature $T_c$ and disorders
-($m\to 0$) above it. Given only a single snapshot of the spin configuration, at some unknown
-temperature, the phase is easy to read off even by eye: sum the spins and look at whether the
-result is close to $\pm N$ or close to $0$. It is nonetheless a clean, controlled test case for
-machine learning: train the very same cat-versus-dog architecture from Section 10.2 (input, the
-$N\times N$ spin snapshot; output, a one-hot ordered/disordered label) on labeled snapshots below and
-above $T_c$, and the classifier sharpens into a genuinely sharp transition as the system size grows
-(the concrete sweep shown on the slides runs $L = 10$ up to $L = 60$), reproducing what we already
-know analytically.
+which has ferromagnetic order ($|m|\to 1$) below a critical temperature $T_c$ and is disordered
+($m\to 0$) above it. If we only have a single snapshot of the spin configuration, at some unknown
+temperature, it is easy to see the phase even by eye. We sum the spins and check whether the
+result is close to $\pm N$ or close to $0$. Even so, it is a clean and controlled test case for
+machine learning. We train the same cat-versus-dog architecture of Section 10.2 on labeled
+snapshots below and above $T_c$, where the input is the $N\times N$ spin snapshot and the output is
+a one-hot label for ordered or disordered. The classifier then gives a transition that becomes
+sharper as the system size grows, where the sweep on the slides goes from $L = 10$ up to $L = 60$,
+and this reproduces what we already know analytically.
 
-\textbf{The hard case: the Ising gauge theory.} Now replace the pairwise coupling with a \textbf{plaquette}
-interaction, the product of the four spins around each elementary square of the lattice,
+\textbf{The hard case, the Ising gauge theory.} Now we replace the coupling between pairs with a
+\textbf{plaquette} interaction, which is the product of the four spins around each elementary square
+of the lattice,
 
 \begin{equation}
 H_{\rm IGT} = -J\sum_{p} \prod_{i \in \partial p} \sigma_i,
 \end{equation}
 
-with the sum running over plaquettes $p$ and the product over the four spins sitting on the four
-bonds that bound that plaquette; note that the spins here live on the \emph{links} of the lattice,
-not on its sites. At zero temperature the ground state satisfies $\prod_{i\in\partial p}\sigma_i = +1$ on
-\emph{every} plaquette, but this constraint is compatible with a macroscopic number of distinct spin
-configurations (flipping the four spins on the bonds that meet at any single vertex, for instance,
-leaves every plaquette product unchanged, since each of the four plaquettes touching that vertex
-contains exactly two of those four bonds and every other plaquette contains none --- this local
-gauge transformation is what gives the model its name). At infinite temperature, by contrast, plaquettes with product $+1$ and $-1$ occur with
-equal probability. Crucially, both the ordered, constraint-satisfying configurations and the
-disordered ones can look, individually, like a featureless $50/50$ mix of up and down spins: the
-naive order parameter (10.9) that worked perfectly for the Ising model is \emph{useless} here, exactly
-because this is a topological rather than a local-order transition, the same structural obstruction
-that forced sessions 3 and 4 away from local order parameters and toward Chern numbers and Zak
-phases. What (10.10) reproduces at the level of a toy classical model is the essential feature of
-those earlier examples: the low-temperature and high-temperature phases are \textbf{topologically
-distinct}, but nothing local tells them apart.
+where the sum runs over the plaquettes $p$ and the product runs over the four spins on the four
+bonds around that plaquette. Note that here the spins live on the \emph{links} of the lattice and
+not on its sites. At zero temperature the ground state satisfies $\prod_{i\in\partial p}\sigma_i =
++1$ on \emph{every} plaquette, but this constraint is satisfied by a macroscopic number of different
+spin configurations. For instance, if we flip the four spins on the bonds that meet at a single
+vertex, every plaquette product stays the same, because each of the four plaquettes that touch this
+vertex contains exactly two of these four bonds and every other plaquette contains none of them.
+This local gauge transformation is what gives the model its name. At infinite temperature, instead,
+plaquettes with product $+1$ and $-1$ appear with equal probability. Both the ordered
+configurations, which satisfy the constraint, and the disordered ones can look, one by one, like a
+featureless $50/50$ mix of up and down spins. As a result, the naive order parameter (10.9), which
+worked perfectly for the Ising model, is \emph{useless} here. The reason is that no local quantity
+can distinguish the two regimes, which is the same obstruction that forced sessions 3 and 4 to leave
+local order parameters and to use Chern numbers and Zak phases. What (10.10) reproduces, in a simple
+classical model, is this feature of those earlier examples. Note that in two dimensions this model
+has no true transition and no topological order at finite temperature, and only its ground state at
+zero temperature has topological order. On a finite system, however, the low-temperature and
+high-temperature regimes are clearly different, and no local quantity can distinguish them, which
+is what makes this model a good test for the classifier.
 
-A convolutional neural network, trained on labeled low-$T$ and high-$T$ configurations with the same
-supervised architecture as before, succeeds where the naive summary statistic fails; it is, in
-effect, learning a nonlocal function of the spin configuration that plays the role a topological
-invariant would play analytically. One further physical subtlety is worth stating precisely, since
-it is easy to blur: the two phases here are separated by a \textbf{size-dependent crossover}, not a true
-finite-temperature phase transition, so there is no sharp $T_c$ to converge to as the system grows,
-unlike the genuine Ising transition of (10.9). What makes the machine-learning result genuinely
-useful is that the trained network, having only ever seen one system size during training (the
-slides show it trained at a single size and evaluated across $L = 4$ up to $L = 28$), correctly
-captures this crossover across \emph{other} sizes and temperatures it was never trained on.
-Figure~\ref{fig:s10:phaseclass} sets the easy and the hard case side by side in real space, which
-is where the difference between them is actually visible.
+A convolutional neural network, trained on labeled configurations at low $T$ and high $T$ with the
+same supervised architecture as before, succeeds where the naive summary statistic fails. In
+practice, it learns a nonlocal function of the spin configuration, which plays the role that a
+topological invariant would play analytically. We should state one more physical point carefully,
+since it is easy to mix up. The two regimes here are separated by a \textbf{size-dependent
+crossover} and not by a true phase transition at finite temperature, so there is no sharp $T_c$
+that the result converges to as the system grows, unlike the true Ising transition of (10.9). What
+makes the machine-learning result useful is that the trained network has only seen one system size
+during training, and it still captures this crossover correctly for \emph{other} sizes and
+temperatures on which it was never trained. The slides show it trained at a single size and
+evaluated from $L = 4$ up to $L = 28$. Figure~\ref{fig:s10:phaseclass} shows the easy and the hard
+case next to each other in real space, which is where the difference between them can be seen.
 
 \input{figures/s10f05_phaseclassification}
 
-\section{Hamiltonian learning: the inverse of session 1's opening move}
+\section{Hamiltonian learning as the inverse of the first step of session 1}
 
-We come, finally, to the piece of today's material that closes the loop most explicitly. Go back to
-session 1, Section 1.4: every quantum mechanical system is governed by the Schr\"odinger equation,
-and given a Hamiltonian (and an initial state) we can integrate forward and obtain, in principle,
-every observable the system will ever show us: density, magnetization, response functions, and so
-on. That forward arrow, Hamiltonian $\to$ observable, is what essentially this entire course has
-been built to compute, one physical setting at a time.
+We come at the end to the part of this session that closes the loop in the most explicit way. Let
+us go back to session 1, Section 1.4. Every quantum mechanical system is described by the
+Schr\"odinger equation, and if we have a Hamiltonian and an initial state we can integrate forward
+in time and obtain, in principle, every observable of the system, such as the density, the
+magnetization, the response functions and so on. This forward arrow, Hamiltonian $\to$ observable,
+is what almost this entire course has been built to compute, one physical setting at a time.
 
-But it is not the arrow an experimentalist actually gets to use. A real measurement never hands you
-the Hamiltonian; it hands you an observable directly, a density, a conductivity, an ARPES spectrum,
-a neutron-scattering structure factor, and the Hamiltonian is exactly the thing you do \emph{not} have
-and would like to infer. \textbf{Hamiltonian learning} poses this explicitly as the inverse problem: the slides write the
-Hamiltonian itself as $H(\lambda_i, w_i)$, splitting its dependence into the physical parameters of
-interest $\lambda$ (magnetic or electric fields, hopping amplitudes, many-body interaction
-strengths) and a set of ``hidden,'' or nuisance, variables $w$ one does \emph{not} want to fit (smaller
-marginal parameters, disorder realizations, artifacts of whichever computational method generated
-the training data, plain randomness). Writing $\mu \equiv w$ for that hidden-variable vector, the
-forward direction is the map
+However, this is not the arrow that an experimentalist can use. A real measurement never gives you
+the Hamiltonian. It gives you an observable directly, such as a density, a conductivity, an ARPES
+spectrum or a neutron-scattering structure factor, and the Hamiltonian is the thing that you do
+\emph{not} have and would like to infer. \textbf{Hamiltonian learning} writes this explicitly as the
+inverse problem. On the slides the Hamiltonian is written as $H(\lambda_i, w_i)$, where its
+dependence is split into two parts. The first part are the physical parameters of interest
+$\lambda$, such as magnetic or electric fields, hopping amplitudes and many-body interaction
+strengths. The second part is a set of ``hidden,'' or nuisance, variables $w$ that one does
+\emph{not} want to fit, such as smaller parameters, disorder realizations, artifacts of the
+computational method that generated the training data, and plain randomness. If we write $\mu
+\equiv w$ for this vector of hidden variables, the forward direction is the map
 
 \begin{equation}
 \mathcal{O} = \mathcal{O}\big[H(\lambda,\mu)\big],
 \end{equation}
 
-and Hamiltonian learning asks for the inverse map, $\mathcal{O} \mapsto \lambda$, marginalizing over
-$\mu$ as best we can rather than trying to fit it. This is a genuinely difficult inverse problem in
-general (many different $\lambda$ can be compatible with the same measured $\mathcal{O}$, and real
-experimental data to train on is scarce), and the practical strategy is, once again, to lean on
-theory to make up for the shortage of experiment. Simulate the observable $\mathcal{O}$ from many
-different, \emph{known} Hamiltonians $H(\lambda_n)$ spanning the parameter range of physical interest
-(the same forward calculations, density, magnetization, spectroscopy, that earlier sessions taught
-us to compute directly), and train a neural network $\mathcal{N}_\theta$ on this synthetic data to
-invert (10.11), minimizing
+and Hamiltonian learning asks for the inverse map, $\mathcal{O} \mapsto \lambda$, where we
+marginalize over $\mu$ as well as we can instead of trying to fit it. In general this is a
+difficult inverse problem, since many different $\lambda$ can be compatible with the same measured
+$\mathcal{O}$, and there is little real experimental data to train on. The practical strategy is,
+once again, to use theory to compensate for the lack of experimental data. We simulate the
+observable $\mathcal{O}$ from many different and \emph{known} Hamiltonians $H(\lambda_n)$ that cover
+the range of parameters of physical interest. These are the same forward calculations, such as the
+density, the magnetization and the spectroscopy, that we learned to compute directly in the earlier
+sessions. Then we train a neural network $\mathcal{N}_\theta$ on this synthetic data to invert
+(10.11), and we do this by minimizing
 
 \begin{equation}
 \mathcal{L}(\theta) = \sum_n \left\| \mathcal{N}_\theta\big(\mathcal{O}[H(\lambda_n)]\big) - \lambda_n \right\|^2.
 \end{equation}
 
-Once trained on simulated pairs where the answer $\lambda_n$ is known by construction, the same
-network is applied to a genuine experimental observable $\mathcal{O}_{\rm exp}$ (a two-dimensional
-spectroscopy of a quantum magnet is the concrete example the lecture used), and $\hat\lambda =
-\mathcal{N}_\theta(\mathcal{O}_{\rm exp})$ gives an estimate of the physical Hamiltonian parameters,
-for instance the first-, second-, and third-neighbor exchange couplings of that magnet, extracted
-directly from a measurement with no closed-form inversion formula available at all.
-Figure~\ref{fig:s10:hamlearning} lays out both stages, the synthetic training set and the
-deployment on real data, against the forward arrow they are jointly inverting.
+Once the network is trained on simulated pairs, where the answer $\lambda_n$ is known by
+construction, the same network is applied to a real experimental observable $\mathcal{O}_{\rm
+exp}$. The concrete example of the lecture was a two-dimensional spectroscopy of a quantum magnet.
+Then $\hat\lambda = \mathcal{N}_\theta(\mathcal{O}_{\rm exp})$ gives an estimate of the physical
+parameters of the Hamiltonian, for instance the first-, second-, and third-neighbor exchange
+couplings of that magnet, extracted directly from a measurement for which there is no closed-form
+inversion formula at all. Figure~\ref{fig:s10:hamlearning} shows both stages, the synthetic training
+set and the use on real data, together with the forward arrow that the two stages invert.
 
 \input{figures/s10f06_hamiltonianlearning}
 
-This is the literal mirror image of session 1's opening framing, and it is worth sitting with that
-symmetry for a moment. We spent nine sessions building increasingly sophisticated ways to go from a
-Hamiltonian to an observable: mean-field decoupling, Bloch's theorem, topological invariants, Landau
-levels, Nambu spinors, magnon spectra, tensor-network ground states, parton constructions, and
-response functions. Hamiltonian learning does not abandon any of that; it uses exactly that forward
-machinery, run many times over on synthetic data, as the training set for learning to run the
-process in reverse. The course's method and the course's final method are, in that sense, the same
-method, pointed in opposite directions.
+This is the mirror image of the starting point of session 1, and we want to stop for a moment on
+this symmetry. In nine sessions we built more and more sophisticated ways to go from a Hamiltonian
+to an observable. These are mean-field decoupling, Bloch's theorem, topological invariants, Landau
+levels, Nambu spinors, magnon spectra, tensor-network ground states, parton constructions and
+response functions. Hamiltonian learning does not leave any of these behind. Instead, it uses the
+same forward methods, run many times on synthetic data, as the training set to learn how to run the
+process in reverse. In this sense, the method of the course and the final method of the course are
+the same method, applied in opposite directions.
 
 \section{Closing summary}
 
 \begin{itemize}
-\item A deep neural network is a parametric function trained by minimizing a loss function via gradient
-  descent, equation (10.1); every other construction in this session is a specific choice of input,
-  output, and loss built on top of that one template.
-\item \textbf{Neural network quantum states} replace explicit storage of a wavefunction's $2^L$ coefficients
-  with a network $C_\theta(s)$, equation (10.2), trained by treating the variational energy itself as
-  the loss function, equations (10.3)-(10.5); NNQS sits above matrix product states and PEPS in the
-  variational hierarchy, imposing the least structure of any ansatz this course has used. The same
-  ansatz, fitted by maximum likelihood instead of energy minimization, solves quantum state
-  tomography with far fewer than $2^L$ measurements.
-\item \textbf{Tensor networks}, built from the matrix product state ansatz (10.6) and its tree/MERA/PEPS
-  generalizations, can be run in reverse as machine-learning architectures; applied to image
-  classification (Fashion-MNIST), this reaches 95.38\% training and 88.97\% test accuracy, competitive
-  with conventional neural networks.
-\item \textbf{Density functional theory} rests on the Hohenberg-Kohn functional (10.7) and the Kohn-Sham
-  self-consistency loop (10.8); machine learning enters either by learning the unknown
-  exchange-correlation piece of (10.8) (self-consistency loop unchanged) or by learning the entire
-  potential-to-density map directly (self-consistency loop removed entirely).
-\item \textbf{Phase classification} reuses this course's local-order-parameter-versus-topological-order split
-  one more time: the Ising model (10.9) is the easy, locally-detectable case (sessions 1/5/6's
-  logic), while the Ising gauge theory (10.10) is the hard, topologically-distinct-phases-with-no-
-  local-order-parameter case (sessions 3/4's logic), and a trained network succeeds where the naive
-  order parameter fails.
-\item \textbf{Hamiltonian learning} poses the inference of a Hamiltonian from measured observables,
-  equation (10.11), as the literal inverse of session 1's opening move; training a network on
-  synthetic forward data, equation (10.12), and applying it to real experimental observables lets us
-  close that loop in practice, not just in principle.
+\item A deep neural network is a parametric function that is trained by minimizing a loss function
+  with gradient descent, equation (10.1). Every other construction in this session is a specific
+  choice of input, output and loss built on top of this one template.
+\item \textbf{Neural network quantum states} replace the explicit storage of the $2^L$ coefficients
+  of a wavefunction with a network $C_\theta(s)$, equation (10.2), which is trained by using the
+  variational energy as the loss function, equations (10.3)-(10.5). NNQS is above matrix product
+  states and PEPS in the variational hierarchy, and it imposes the least structure of all the
+  ans\"atze of this course. The same ansatz, fitted by maximum likelihood instead of energy
+  minimization, solves quantum state tomography with far fewer than $2^L$ measurements.
+\item \textbf{Tensor networks}, built from the matrix product state ansatz (10.6) and its
+  generalizations to trees, MERA and PEPS, can be used in the reverse direction as
+  machine-learning architectures. For image classification on Fashion-MNIST, this reaches 95.38\%
+  training accuracy and 88.97\% test accuracy, which is comparable with conventional neural
+  networks.
+\item \textbf{Density functional theory} is based on the Hohenberg-Kohn functional (10.7) and the
+  Kohn-Sham self-consistency loop (10.8). Machine learning enters in two ways. It can learn the
+  unknown exchange-correlation part of (10.8), and then the self-consistency loop stays the same, or
+  it can learn the whole map from potential to density directly, and then the self-consistency loop
+  is removed completely.
+\item \textbf{Phase classification} uses one more time the split of this course between local order
+  parameters and topological order. The Ising model (10.9) is the easy case, which can be detected
+  locally and follows the logic of sessions 1, 5 and 6. The Ising gauge theory (10.10) is the hard
+  case, where no local order parameter distinguishes the low-temperature and high-temperature
+  regimes, which are separated only by a crossover, and it follows the logic of
+  sessions 3 and 4. A trained network succeeds where the naive order parameter fails.
+\item \textbf{Hamiltonian learning} treats the inference of a Hamiltonian from measured observables,
+  equation (10.11), as the inverse of the first step of session 1. We train a network on synthetic
+  forward data, equation (10.12), and apply it to real experimental observables, and in this way we
+  close the loop in practice and not only in principle.
 \end{itemize}
 
-We opened this course by asking how a handful of identical atoms, arranged into a lattice, could
-produce a phenomenology as rich as the one we spent ten sessions touring: charge density waves,
-magnets, superconductors, topological insulators, fractional excitations, spin liquids, and more,
-none of it visible in a single atom on its own. Answering that question took us through second
-quantization and mean-field theory, through Bloch's theorem and topological invariants, through
-Nambu spinors and magnon spectra, through tensor networks and parton constructions, and through
-linear response as a diagnostic across all of it. Today's session closed that arc twice over: once
-by showing that a neural network can stand in for the many-body wavefunction itself, and once by
-showing that the entire forward machinery of the course, Hamiltonian in, observable out, can be run
-backward to infer the Hamiltonians that real materials actually have. That is a fitting place to
-leave things: not with a final answer, but with a general-purpose way of asking the question again,
-for whichever quantum material comes next.
+We started this course by asking how a small number of identical atoms, arranged in a lattice, can
+give rise to a phenomenology as rich as the one that we studied in ten sessions. This includes
+charge density waves, magnets, superconductors, topological insulators, fractional excitations,
+spin liquids and more, and none of it can be seen in a single atom alone. To answer this question we
+went through second quantization and mean-field theory, through Bloch's theorem and topological
+invariants, through Nambu spinors and magnon spectra, through tensor networks and parton
+constructions, and through linear response as a diagnostic for all of them. This session closed
+the arc in two ways. First, it showed that a neural network can take the place of the many-body
+wavefunction itself. Second, it showed that all the forward methods of the course, with a
+Hamiltonian as input and an observable as output, can be run backward to infer the Hamiltonians of
+real materials. This is a good place to end the course, not with a final answer, but with a general
+method to ask the question again, for the next quantum material that we want to understand.

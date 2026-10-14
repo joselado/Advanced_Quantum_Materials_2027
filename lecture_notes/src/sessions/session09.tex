@@ -1,78 +1,78 @@
 \chapter{Excitations and Defects in Quantum Materials}
 
-Session 8 left us with a small zoo of freshly built ground states: quantum spin liquids described
-by mean-field spinons, and Kondo lattices whose local moments, screened by conduction electrons
-through the very same Abrikosov-fermion trick, turn a metal into a heavy-fermion insulator. Every
-session up to this point has followed the same basic move: take a many-body Hamiltonian, find a
-controlled or approximate reformulation, and read off the ground state that comes out. Today we do
-something different with all of that machinery. Rather than building one more ground state, we are
-going to \emph{probe} the ground states we already have. The idea is simple to state: take a quantum
-material, metal, superconductor, topological insulator, quantum magnet, whichever one you like,
-disturb it a little, and watch how it responds. It turns out that the response itself, computed
-entirely from the undisturbed ground state, tells us an enormous amount about what that ground
-state actually is. We will run this one idea, linear response, as a probe over essentially every
-system class the course has built so far: ordinary metals, session 5's superconductors, sessions
-3 and 4's topological matter, and session 8's quantum magnets, and in each case we will see the
-response function acting as a diagnostic, reading off Fermi surfaces, superconducting pairing
-symmetries, topological invariants, and spin gaps, all from the same underlying formalism. Along
-the way we will also see the Stoner criterion for itinerant magnetism fall directly out of the
-same response-function language, reconnecting to session 1 and session 6's magnetism, but now
-viewed as an \emph{instability} of the paramagnetic response rather than as a mean-field ground-state
-ansatz we imposed by hand. Today's session is, in that sense, the course's diagnostic and synthesis
-session: less a new building block than a new lens trained on everything we have already built.
+In Session 8 we built a small set of new ground states. These were quantum spin liquids described
+by mean-field spinons, and Kondo lattices, where the local moments are screened by the conduction
+electrons with the same Abrikosov-fermion construction, so that a metal becomes a heavy-fermion
+insulator. Up to now every session has followed the same procedure. We take a many-body
+Hamiltonian, we write it in a controlled or approximate way, and we read the resulting ground state. In this session we use all of these methods in a different way. Instead of building
+one more ground state, we will \emph{probe} the ground states that we already have. The idea is easy
+to state. We take a quantum material, which can be a metal, a superconductor, a topological insulator
+or a quantum magnet, we disturb it a little, and we look at how it responds. The response itself is
+computed only from the undisturbed ground state, and it tells us a lot about what that ground state
+is. We will use this one idea, linear response, as a probe of almost every class of systems that
+we have built in the course so far. These are ordinary metals, the superconductors of session 5,
+the topological matter of sessions 3 and 4, and the quantum magnets of session 8. In each case we
+will see that the response function works as a diagnostic, and it gives us Fermi surfaces,
+superconducting pairing symmetries, topological invariants and spin gaps, all from the same formalism.
+We will also see that the Stoner criterion for itinerant magnetism follows directly from the same
+language of response functions. This connects again to the magnetism of session 1 and session 6, but
+now we see magnetism as an \emph{instability} of the paramagnetic response and not as a mean-field
+ansatz for the ground state that we impose by hand. In this sense, this is the diagnostic and synthesis
+session of the course, which gives a new way to look at everything that we have built.
 
-\section{Framing: response functions as a probe of the ground state}
+\section{Response functions as a probe of the ground state}
 
-Let us set up the general experiment we have in mind, because the same setup is going to recur in
-every example today. We take a quantum material with some ground state we understand (or think we
-understand), and we make a small perturbation at position $x$ and time $t$. Then we measure some
-observable at a different position $x'$ and a different (typically later) time $t'$. The relation
-between what we did at $(x,t)$ and what we observe at $(x',t')$ is encoded in a \textbf{response
-function}, and once we know that function completely, we know how the material reacts to a
-perturbation applied anywhere, at any time.
+Let us first set up the general experiment, since it will come back in every example of this
+session. We take a quantum material with a ground state that we understand,
+or that we think we understand, and we make a small perturbation at position $x$ and time $t$. Then we
+measure some observable at a different position $x'$ and at a different time $t'$, which is
+typically later. The relation between what we did at $(x,t)$ and what we observe at $(x',t')$ is
+contained in a \textbf{response
+function}. Once we know that function completely, we know how the material reacts to a
+perturbation applied at any place and at any time.
 
-The power of this framing is that it is completely observable-agnostic. The same formalism covers:
+This point of view does not depend on the observable that we choose, and the same formalism
+describes the following cases.
 
 \begin{itemize}
-\item a perturbation in the local electrostatic potential, measured as a change in the local charge
-  density, giving the \textbf{dielectric function};
-\item a local magnetic moment or field, measured as a change in the local magnetization elsewhere,
-  giving the \textbf{magnetic susceptibility} (equivalently, the spin-fluctuation response);
-\item a local temperature change, measured as a change in temperature elsewhere, giving the
-  \textbf{thermal conductance}.
+\item A perturbation in the local electrostatic potential, measured as a change in the local charge
+  density, which gives the \textbf{dielectric function}.
+\item A local magnetic moment or field, measured as a change in the local magnetization at another
+  place, which gives the \textbf{magnetic susceptibility}, also called the spin-fluctuation response.
+\item A local change of temperature, measured as a change of temperature at another place, which gives
+  the \textbf{thermal conductance}.
 \end{itemize}
 
-There are also two quite different ways of actually running this experiment in the lab, and it is
-worth having both in mind, because we will use each type of example today. One route is a genuine
-physical perturbation: substitute one atom of a metal for a different element, and you have created
-a real, localized impurity. As we will see in detail in Section 9.6, the resulting \textbf{Friedel
-oscillations} in the electronic density directly reveal the material's Fermi surface. The other
-route is that the measurement itself is the perturbation: fire a neutron, whose own magnetic
-moment couples to the local moments in a magnetic material, and the scattering cross-section you
-record is a direct readout of the material's magnetic fluctuations (inelastic neutron scattering).
-These look like very different experiments, but the underlying formalism, and the kind of
-information you extract, is the same in both cases.
+There are also two quite different ways to do this experiment in the lab, and we will use both in
+this session. The first way is a real
+physical perturbation. If we replace one atom of a metal by an atom of a different element, we have
+created a real, localized impurity. As we will see in detail in Section 9.6, the \textbf{Friedel
+oscillations} that appear in the electronic density show us directly the Fermi surface of the
+material. In the second way, the measurement itself is the perturbation. We send a neutron, whose
+magnetic moment couples to the local moments in a magnetic material, and the scattering
+cross-section that we record gives directly the magnetic fluctuations of the material, which is
+called inelastic neutron scattering. These two experiments look very different, but the formalism
+behind them, and the kind of information that we obtain, is the same in both cases.
 
-Finally, a simplification that will make almost everything below tractable: whenever the
-unperturbed Hamiltonian has translational symmetry in space and is time-independent, the response
-function can only depend on $x'-x$ and $t'-t$, not on $x,t,x',t'$ separately. That is precisely
-the situation in which Fourier transforming to reciprocal space and frequency, $(q,\omega)$, is the
-natural language, and it is the language we will use for essentially the rest of this session.
+Finally, a simplification makes almost everything below possible to compute. When the
+unperturbed Hamiltonian has translational symmetry in space and does not depend on time, the response
+function can only depend on $x'-x$ and $t'-t$, and not on $x,t,x',t'$ separately. In this situation
+the natural language is to Fourier transform to reciprocal space and frequency, $(q,\omega)$, and
+this is the language that we will use for almost all the rest of this session.
 
-\section{A classical warm-up: the response of a classical magnet}
+\section{The response of a classical magnet as a first example}
 
-Before bringing in any quantum many-body machinery, it is worth seeing the whole logic of ``response
-predicts the ground state'' play out in a setting we already know how to solve exactly: a classical
-Ising magnet at finite temperature, treated in mean-field theory (recall Section 1.12 for the
-mean-field recipe itself). The question we want to ask is genuinely useful: sitting at a
-temperature well above any ordering transition, is there a measurement we can make \emph{right there},
-in the disordered phase, that tells us what kind of order the system is heading toward as we cool
-it down?
+Before we use any quantum many-body method, let us see how the response predicts the ground state
+in a setting that we can solve exactly. This
+setting is a classical Ising magnet at finite temperature, treated in mean-field theory, and
+Section 1.12 gives the mean-field method itself. At a temperature well above any ordering transition, is there a measurement that we can do
+\emph{at that temperature}, in the disordered phase, which tells us what kind of order the system will
+develop when we cool it down?
 
-The relevant response is the \textbf{magnetic susceptibility}, $\chi = \partial M/\partial H$, the
-linear-response coefficient relating an applied field $H$ to the magnetization $M$ it induces.
-Solving the mean-field Ising model at high temperature gives three distinct behaviors, depending
-on the sign and strength of the exchange coupling:
+The relevant response is the \textbf{magnetic susceptibility}, $\chi = \partial M/\partial H$, which is
+the linear-response coefficient that relates an applied field $H$ to the magnetization $M$ that it
+induces. If we solve the mean-field Ising model at high temperature, we find three different
+behaviors, which depend on the sign and the strength of the exchange coupling.
 
 \begin{equation}
 \chi(T) \;\propto\;
@@ -83,257 +83,259 @@ on the sign and strength of the exchange coupling:
 \end{cases}
 \end{equation}
 
-The physical picture behind (9.1) is worth holding on to, because we are going to meet it again,
-in a fully quantum guise, in Section 9.5. In the paramagnetic regime, thermal fluctuations dominate
-and the susceptibility stays finite at any $T>0$: nothing is trying to order. In the ferromagnetic
-case, fluctuations \emph{reinforce} the applied field, so as $T\to T_c^+$ the system polarizes more and
-more easily, and $\chi$ genuinely diverges right at the transition. In the antiferromagnetic case,
-fluctuations \emph{fight} the applied field (favoring staggered rather than uniform order), which shows
-up as the opposite sign in the denominator: the susceptibility looks like it is heading toward a
-divergence at a temperature below absolute zero, which of course it never reaches, but the sign
-alone already tells you the ordering tendency is antiferromagnetic rather than ferromagnetic.
-Experimentally, this is a genuinely practical diagnostic: plot $\chi^{-1}(T)$, and a straight line
-extrapolating to a positive intercept signals an incipient ferromagnet, a negative intercept an
-incipient antiferromagnet, all measured entirely from the disordered high-temperature phase. This
-is the conceptual template for the entire session: \textbf{the response of the disordered/uniform state,
+The physical picture behind (9.1) is important, because we will find it again in a fully quantum
+form in Section 9.5. In the paramagnetic regime the thermal fluctuations dominate, and the
+susceptibility stays finite at any $T>0$, since nothing in the system tends to order. In the
+ferromagnetic case the fluctuations \emph{reinforce} the applied field, so as $T\to T_c^+$ the
+system becomes polarized more and more easily, and $\chi$ really diverges at the transition. In the
+antiferromagnetic case the fluctuations \emph{oppose} the applied field, since they favor staggered
+order and not uniform order, and this appears as the opposite sign in the denominator. The
+susceptibility then seems to go towards a divergence at a temperature below absolute zero. Of course
+it never reaches it, but the sign alone already tells us that the system tends to antiferromagnetic
+order and not to ferromagnetic order. In experiments this is a practical diagnostic. We plot
+$\chi^{-1}(T)$, and if the straight line extrapolates to a positive intercept, the system is close to
+a ferromagnet, while a negative intercept means that the system is close to an antiferromagnet.
+All of this is measured in the disordered phase at high temperature. This is the model for the whole
+session, which is that \textbf{the response of the disordered/uniform state,
 computed without ever solving for the ordered state itself, already contains the information about
 which ordered state is coming.}
 
-\section{Linear response and perturbation theory, done properly}
+\section{Linear response and perturbation theory in detail}
 
-Let us now build the quantum version of this idea carefully, since everything that follows rests
-on it. Split the full Hamiltonian into an unperturbed piece $H_0$ (a metal, a superconductor, a
-quantum magnet, whatever system we are studying) and a perturbation $V$, with a bookkeeping
-coupling constant $\lambda$ that we will eventually set to one:
+Let us now build the quantum version of this idea, since everything that follows is based on it. We split the full Hamiltonian into an unperturbed part $H_0$, which can be a metal, a
+superconductor, a quantum magnet or any system that we study, and a perturbation $V$. We also add a
+coupling constant $\lambda$ that helps us keep track of the orders, and at the end we will set it
+to one.
 
 \begin{equation}
 H(\lambda) = H_0 + \lambda V, \qquad \lambda = 0 \;\text{(pristine)}, \quad \lambda = 1\;\text{(full perturbation)}.
 \end{equation}
 
-Every observable of the system, energies, densities, magnetizations, wavefunctions themselves,
-becomes a function of $\lambda$ once we fix $H(\lambda)$. If that function is smooth enough to
-Taylor-expand around $\lambda=0$ (we will come back to exactly when this assumption fails), then
-for any observable $A$,
+Every observable of the system, such as energies, densities, magnetizations and the wavefunctions
+themselves, becomes a function of $\lambda$ once we fix $H(\lambda)$. If this function is smooth
+enough to make a Taylor expansion around $\lambda=0$, and later we will see when this assumption
+fails, then for any observable $A$ we have
 
 \begin{equation*}
 A(\lambda) = A^{(0)} + \lambda\, \chi_A + O(\lambda^2), \qquad
 \chi_A \equiv \left.\frac{\partial A}{\partial \lambda}\right|_{\lambda=0},
 \end{equation*}
 
-and by definition $\chi_A$, the first-order coefficient, \emph{is} the response function we have been
-talking about all session. To actually compute $\chi_A$ for a generic observable, we first need
-the perturbed wavefunctions. Expanding an unperturbed eigenstate $|n\rangle$ of $H_0$ (energy
-$E_n^{(0)}$) in the full basis $\{|m\rangle\}$ of $H_0$, standard Rayleigh-Schrödinger perturbation
-theory gives, to first order in $\lambda$ and away from any degeneracy,
+and by definition $\chi_A$, the first-order coefficient, \emph{is} the response function that we have
+been talking about in this session. To compute $\chi_A$ for a generic observable, we first need the
+perturbed wavefunctions. We expand an unperturbed eigenstate $|n\rangle$ of $H_0$, with energy
+$E_n^{(0)}$, in the full basis $\{|m\rangle\}$ of $H_0$. Standard Rayleigh-Schrödinger perturbation
+theory then gives, to first order in $\lambda$ and away from any degeneracy,
 
 \begin{equation}
 |n(\lambda)\rangle = |n\rangle + \lambda \sum_{m \neq n} \frac{\langle m|V|n\rangle}{E_n^{(0)} - E_m^{(0)}} \, |m\rangle + O(\lambda^2).
 \end{equation}
 
-The structure of (9.3) is worth keeping firmly in view, because it is the engine behind every
-derivation in the rest of this session: a perturbation mixes a state $|n\rangle$ with every other
-state $|m\rangle$, weighted by the matrix element of $V$ between them, and suppressed by the inverse
-energy gap between the two states. States close in energy mix strongly; states far apart barely
-mix at all. Once we have (9.3), any observable, in particular any density or magnetization, can be
-written down to first order in $\lambda$ by inserting the perturbed states.
+The structure of (9.3) is the basis of every derivation in the rest of this session. A perturbation mixes a state $|n\rangle$ with every other state $|m\rangle$.
+The weight of the mixing is the matrix element of $V$ between the two states, and it is suppressed by
+the inverse of the energy gap between them. States that are close in energy mix strongly, and states
+that are far apart in energy almost do not mix. Once we have (9.3), we can write any observable, in
+particular any density or magnetization, to first order in $\lambda$ by using the perturbed states.
 
-\textbf{When does this break down?} The whole construction in (9.3) presupposes that $A(\lambda)$ is an
-analytic function of $\lambda$ near $\lambda=0$, and that assumption is not automatic. Three
-paradigmatic quantum states are known to be intrinsically non-perturbative in exactly this sense,
-worth flagging explicitly since they mark the boundary of everything derived below:
+\textbf{When does this break down?} The construction in (9.3) assumes that $A(\lambda)$ is an
+analytic function of $\lambda$ close to $\lambda=0$, and this assumption is not always true. There
+are three paradigmatic quantum states that are known to be intrinsically non-perturbative in this
+sense, and we mention them explicitly since they mark the limit of everything that we derive below.
 
 \begin{itemize}
 \item \textbf{An impurity in a metal, the orthogonality catastrophe.} In the thermodynamic limit, the full
-  many-body wavefunction of a metal with an impurity switched on becomes exactly orthogonal to the
-  wavefunction with the impurity switched off, no matter how weak the impurity potential is.
+  many-body wavefunction of a metal with the impurity switched on becomes exactly orthogonal to the
+  wavefunction with the impurity switched off, for any strength of the impurity potential, even a
+  very weak one.
 \item \textbf{A quantum spin in a metal, the Kondo effect.} The emergent Kondo temperature is a
-  non-perturbative function of the Kondo coupling (it involves an essential singularity, not a
-  power series, in the coupling constant).
-\item \textbf{Superconductivity in the BCS limit.} The superconducting gap is likewise non-perturbative in
-  the attractive coupling constant.
+  non-perturbative function of the Kondo coupling, since it contains an essential singularity in the
+  coupling constant and not a power series.
+\item \textbf{Superconductivity in the BCS limit.} In the same way, the superconducting gap is
+  non-perturbative in the attractive coupling constant.
 \end{itemize}
 
-For the rest of this session we restrict ourselves to the regime where perturbation theory \emph{does}
-hold, which is where (9.2) and (9.3) give a controlled, systematic way of computing responses.
+In the rest of this session we stay in the regime where perturbation theory \emph{does} work, which
+is the regime where (9.2) and (9.3) give a controlled and systematic way to compute responses.
 
 \section{The Fermi sea and the Lindhard function}
 
-To make (9.3) concrete, let us specialize to the case that will occupy most of today: a
+To make (9.3) concrete, let us take the case that we will use for most of this session, which is a
 non-interacting electronic Hamiltonian in diagonal form, $H_0 = \sum_k \varepsilon(k)\, c_k^\dagger
-c_k$. Its many-body ground state is the Fermi sea: fill every single-particle state with
-$\varepsilon(k)$ below the Fermi energy, leave every state above it empty. Correspondingly,
-$\langle c_k^\dagger c_k\rangle = n_F(\varepsilon(k))$, equal to $1$ for occupied states and $0$ for
-unoccupied ones (at $T=0$; more generally the Fermi-Dirac function), and the set of $k$-points
-sitting exactly at the Fermi energy defines the \textbf{Fermi surface}. This surface is going to be the
-single most important geometric object in everything that follows, because a small perturbation can
-only rearrange states close to it: moving an electron from deep in the Fermi sea to deep above it
-costs far too much energy to matter at first order.
+c_k$. Its many-body ground state is the Fermi sea, where every single-particle state with
+$\varepsilon(k)$ below the Fermi energy is filled and every state above it is empty. In the same way,
+$\langle c_k^\dagger c_k\rangle = n_F(\varepsilon(k))$, which is equal to $1$ for occupied states and
+$0$ for unoccupied states at $T=0$, and more generally is the Fermi-Dirac function. The set of
+$k$-points that are exactly at the Fermi energy defines the \textbf{Fermi surface}. This surface will
+be the most important geometric object in everything that follows, because a small perturbation can
+only change the states that are close to it. To move an electron from deep inside the Fermi sea to
+far above it costs too much energy to be relevant at first order.
 
-Now apply (9.3) with a specific, physically motivated perturbation: a local shift of the on-site
-energy, i.e. a local change in the chemical potential at one point in the material. The observable
-we track is the change in local electronic density, $n(x) - n_0(x)$. Using translational symmetry,
-Fourier transform to $q$-space and insert the perturbed wavefunctions (9.3) into the density
-operator; after some algebra (each term comes from a matrix element $\langle k+q|V|k\rangle$
-divided by the energy denominator $\varepsilon(k+q)-\varepsilon(k)$, exactly the structure of
-(9.3)) one obtains the \textbf{static Lindhard function},
+Now we use (9.3) with a specific perturbation that has a clear physical meaning, which is a local
+shift of the onsite energy. This is a local change of the chemical potential at one point of the
+material. The observable that we follow is the change in the local electronic density,
+$n(x) - n_0(x)$. We use translational symmetry, we Fourier transform to $q$-space, and we insert the
+perturbed wavefunctions (9.3) into the density operator. After some algebra, where each term comes
+from a matrix element $\langle k+q|V|k\rangle$ divided by the energy denominator
+$\varepsilon(k+q)-\varepsilon(k)$, with the same structure as (9.3), we obtain the \textbf{static
+Lindhard function},
 
 \begin{equation}
 \chi_0(q) = \frac{1}{N} \sum_k \frac{n_F(\varepsilon(k)) - n_F(\varepsilon(k+q))}{\varepsilon(k+q) - \varepsilon(k)}.
 \end{equation}
 
-It is worth checking (9.4) makes sense before using it. As $q\to 0$, expanding both numerator and
-denominator to first order in $q$ gives $\chi_0(q\to 0) \to -\sum_k n_F'(\varepsilon(k))/N$, which
-at $T=0$ is exactly $D(E_F)$, the density of states per site at the Fermi level: a positive,
-finite number, as it should be. Equation (9.4) is non-zero only when $k$ is occupied and $k+q$ is
-unoccupied (or vice versa); if both are occupied or both empty, the numerator vanishes. So the
-response is built entirely out of states straddling the Fermi surface, exactly as the general
-argument above anticipated.
+Let us first check (9.4). As $q\to 0$, we expand both the
+numerator and the denominator to first order in $q$ and we obtain
+$\chi_0(q\to 0) \to -\sum_k n_F'(\varepsilon(k))/N$. At $T=0$ this is exactly $D(E_F)$, the density
+of states per site at the Fermi level, which is a positive and finite number, as expected. Equation
+(9.4) is different from zero only when $k$ is occupied and $k+q$ is unoccupied, or the opposite. If
+both are occupied or both are empty, the numerator vanishes. So the response is built only from
+states on the two sides of the Fermi surface, as the general argument above predicted.
 
-\textbf{Instabilities and nesting.} Equation (9.4) has a striking feature in one dimension. If there
-exists a wavevector $q^\star$ connecting an occupied state at $k$ to an empty state at $k+q^\star$
-of the \emph{same} energy, the denominator in (9.4) vanishes right at that term, and $\chi_0(q^\star)$
-diverges. For a generic 1D band the Fermi surface is just the two points $\pm k_F$, and the single
-nesting vector connecting them is $q^\star = 2k_F$ (figure~\ref{fig:s09:nesting}a,b); summing (9.4) over the whole band gives a
-logarithmic divergence, $\chi_0(2k_F) \sim \ln(W/T)$ (with $W$ a bandwidth cutoff), which is exactly
-the Peierls instability that drives one-dimensional metals to dimerize into a charge density wave.
-Physically: a response function that diverges means an arbitrarily weak perturbation at that
-wavevector produces an arbitrarily large rearrangement of the ground state, i.e. the ground state
-we started from is unstable to that particular fluctuation. This is the central strategic idea we
-will keep reusing: to predict a new phase of matter, look for the wavevector at which the response
-function of the old phase diverges.
+\textbf{Instabilities and nesting.} Equation (9.4) has a strong feature in one dimension. If there is
+a wavevector $q^\star$ that connects an occupied state at $k$ to an empty state at $k+q^\star$ with
+the \emph{same} energy, the denominator in (9.4) vanishes for that term, and $\chi_0(q^\star)$
+diverges. For a generic 1D band the Fermi surface is only the two points $\pm k_F$, and the single
+nesting vector that connects them is $q^\star = 2k_F$ (figure~\ref{fig:s09:nesting}a,b). When we sum
+(9.4) over the whole band we obtain a logarithmic divergence, $\chi_0(2k_F) \sim \ln(W/T)$, where $W$
+is a cutoff given by the bandwidth. This divergence is the Peierls instability, which drives
+one-dimensional metals to dimerize into a charge density wave. If a response function diverges, an arbitrarily weak perturbation at that wavevector gives an
+arbitrarily large change of the ground state, meaning that the ground state that we started from is
+unstable to that specific fluctuation. This is the central strategy of this session. To predict a new phase of matter, we look for the wavevector where the response function of the old
+phase diverges.
 
-Everything above generalizes straightforwardly to finite frequency: repeating the derivation with a
-time-dependent perturbation $\propto e^{-i\omega t}$ gives the (retarded) \textbf{dynamical Lindhard
-function},
+Everything above can be generalized directly to finite frequency. If we repeat the derivation with a
+perturbation that depends on time as $\propto e^{-i\omega t}$, we obtain the retarded
+\textbf{dynamical Lindhard function},
 
 \begin{equation}
 \chi_0(q,\omega) = \frac{1}{N} \sum_k \frac{n_F(\varepsilon(k)) - n_F(\varepsilon(k+q))}{\varepsilon(k+q) - \varepsilon(k) - \hbar\omega - i0^+},
 \end{equation}
 
-which reduces to (9.4) at $\omega = 0$. For a one-dimensional chain, plotting $\mathrm{Im}\,\chi_0(q,\omega)$
-over the whole $(q,\omega)$ plane produces a characteristic surface of divergences that traces out
-the particle-hole continuum of the band structure; this $\omega$-$q$ plot is slide-only material,
-the spoken lecture describes its shape in words (``a whole collection of $\omega$ versus $q$ values
-where there are divergences'') but never draws it, so the figure itself is worth opening the slides
-for.
+which becomes (9.4) at $\omega = 0$. For a one-dimensional chain, if we plot
+$\mathrm{Im}\,\chi_0(q,\omega)$ over the whole $(q,\omega)$ plane, we obtain a characteristic surface
+of divergences that follows the particle-hole continuum of the band structure. This $\omega$-$q$ plot
+is only on the slides. In the spoken lecture its shape is described in words, as ``a whole collection
+of $\omega$ versus $q$ values where there are divergences'', but it is not drawn, so it is useful to
+open the slides to see the figure.
 
-The same logic extends cleanly to two dimensions. For a square lattice with dispersion
-$\varepsilon(k) = -2t(\cos k_x + \cos k_y)$, low filling gives a small, roughly circular Fermi
-surface, and $\chi_0(q,0)$ is correspondingly large for $q$ inside a circle set by the
-Fermi surface's diameter and small outside it: the response function is, quite literally, a picture
-of the Fermi surface. This is the physical basis of \textbf{quasiparticle interference (QPI)}: real STM
-experiments put impurities into a 2D metal, image the resulting modulation of the local density of
-states, and invert the observed wavelength to read off the Fermi surface. At half filling, however,
-the square lattice's particular dispersion gives $\varepsilon(k+Q) = -\varepsilon(k)$ for
-$Q=(\pi,\pi)$: a \emph{perfect} nesting condition connecting enormous portions of the Fermi surface
-(which is itself a square of straight lines at half filling, not a circle) all at the same
-wavevector simultaneously. Equation (9.4) then develops a massive divergence exactly at
-$q=(\pi,\pi)$, signaling a strong instability there. Figure~\ref{fig:s09:nesting} collects the whole
-argument in one place: the single 1D nesting vector, the logarithmic divergence it produces in
-$\chi_0(q)$, and the straight-edged 2D Fermi surface that $Q=(\pi,\pi)$ nests all at once. The
-half-filling Fermi surface shape and the
-explicit nesting vector are shown on the slides more concretely than described in speech; it is
-worth looking at that figure directly to see the straight parallel edges that make the
-$(\pi,\pi)$ nesting so effective.
+The same logic extends directly to two dimensions. For a square lattice with dispersion
+$\varepsilon(k) = -2t(\cos k_x + \cos k_y)$, a low filling gives a small Fermi surface with a shape
+close to a circle. Then $\chi_0(q,0)$ is large for $q$ inside a circle whose size is set by the
+diameter of the Fermi surface, and small outside it, so the response function is a direct image of
+the Fermi surface. This is the physical basis of \textbf{quasiparticle interference (QPI)}. In real STM
+experiments, impurities are put into a 2D metal, the modulation of the local density of states that
+they create is imaged, and the observed wavelength is inverted to obtain the Fermi surface. At half
+filling, however, the specific dispersion of the square lattice gives $\varepsilon(k+Q) =
+-\varepsilon(k)$ for $Q=(\pi,\pi)$. This is a \emph{perfect} nesting condition, which connects very
+large parts of the Fermi surface with the same wavevector at the same time, and at half filling the
+Fermi surface itself is a square made of straight lines and not a circle. Equation (9.4) then has a
+very large divergence at $q=(\pi,\pi)$, which signals a strong instability there.
+Figure~\ref{fig:s09:nesting} shows the whole argument in one place. It shows the single 1D nesting
+vector, the logarithmic divergence that it gives in $\chi_0(q)$, and the 2D Fermi surface with
+straight edges that $Q=(\pi,\pi)$ nests all at once. The
+shape of the Fermi surface at half filling and the explicit nesting vector are shown on the slides in
+a more concrete way than in the spoken lecture. The figure shows the straight parallel edges that make the $(\pi,\pi)$ nesting so
+effective.
 
 \input{figures/s09f01_nesting}
 
 \begin{notebookbox}{\texttt{session9.ipynb}, ``The charge-charge response function'' (Challenge)}
-Plot $\mathrm{Im}\,\chi_0(q,\omega)$ for a tunable band structure and chemical potential $\mu$,
-exactly as in (9.5). Watch the divergence track the Fermi surface as you change $\mu$, and see
-whether you can predict, from the band structure alone, which $q$-vector the instability will sit
-at, before running the calculation.
+Plot $\mathrm{Im}\,\chi_0(q,\omega)$ for a band structure and a chemical potential $\mu$ that you can
+change, as in (9.5). Look at how the divergence follows the Fermi surface when you change $\mu$, and
+try to predict from the band structure alone at which $q$-vector the instability will appear, before
+you run the calculation.
 \end{notebookbox}
 
-\section{Interactions as a perturbation: RPA, plasmons, and the Stoner instability}
+\section{Interactions as a perturbation, with RPA, plasmons and the Stoner instability}
 
-So far the perturbation has been an external impurity. Nothing stops us from treating the
-electron-electron interaction \emph{itself} as the perturbation, using $\chi_0$, the non-interacting
-response we just built, as input, and asking for the response $\chi$ of the full interacting
-system. We need two things: a rule connecting $\chi$ to $\chi_0$, and a criterion for reading
-instabilities off of $\chi$.
+So far the perturbation has been an external impurity. However, we can also treat the
+electron-electron interaction \emph{itself} as the perturbation. We use $\chi_0$, the
+non-interacting response that we just built, as input, and we ask for the response $\chi$ of the full
+interacting system. For this we need two things. The first is a rule that connects $\chi$ to $\chi_0$,
+and the second is a criterion to find instabilities from $\chi$.
 
-\textbf{From $\chi_0$ to $\chi$: the random phase approximation.} Consider a contact (Hubbard-like)
-interaction of strength $U$ coupling to the density. The physical picture is a diagrammatic one:
-the response to a probe is the bare response $\chi_0$, plus the bare response followed by one
-interaction event and another bare response, plus two interaction events, and so on, an infinite
-ladder of terms. This is most efficiently captured not by summing the series term by term but by
-writing down the self-consistent equation the full response must satisfy,
+\textbf{From $\chi_0$ to $\chi$ with the random phase approximation.} Let us take a contact interaction,
+of Hubbard type, with strength $U$, which couples to the density. The physical picture is a
+diagrammatic one. The response to a probe is the bare response $\chi_0$, plus the bare response
+followed by one interaction event and another bare response, plus two interaction events, and so on,
+which is an infinite ladder of terms. The most efficient way to include all of them is not to sum the
+series term by term, but to write the self-consistent equation that the full response must satisfy,
 
 \begin{equation*}
 \chi(q,\omega) = \chi_0(q,\omega) + \chi_0(q,\omega)\, U\, \chi(q,\omega),
 \end{equation*}
 
-which solves algebraically to give the \textbf{random phase approximation (RPA)},
+and its algebraic solution gives the \textbf{random phase approximation (RPA)},
 
 \begin{equation}
 \chi(q,\omega) = \frac{\chi_0(q,\omega)}{1 - U\,\chi_0(q,\omega)}.
 \end{equation}
 
-Equation (9.6) is a curious hybrid: derived order by order in $U$, it is perturbative, but the act
-of resumming the whole geometric series makes it non-perturbative, capturing physics (a genuine
-pole, i.e. a genuine phase transition) that no finite order in $U$ alone ever could.
+Equation (9.6) has a mixed character. It is derived order by order in $U$, so it is perturbative,
+but since we sum the whole geometric series it becomes non-perturbative. In this way it includes
+physics that no finite order in $U$ can give, which is a real pole, meaning a real phase transition.
 
-\textbf{Two distinct sources of divergence.} The interacting response (9.6) can diverge for two quite
-different reasons, and it is worth telling them apart because they correspond to two different
-emergent quasiparticles.
+\textbf{Two different sources of divergence.} The interacting response (9.6) can diverge for two quite
+different reasons. It is useful to separate them, because they correspond to two different emergent
+quasiparticles.
 
-\emph{From $\chi_0$ itself}, exactly as in Section 9.4: an electron-hole excitation, a single-particle
-process, moving one electron from an occupied to an empty state.
+\emph{From $\chi_0$ itself}, as in Section 9.4. This is an electron-hole excitation, which is a
+single-particle process that moves one electron from an occupied state to an empty state.
 
-\emph{From the RPA denominator}, $1-U\chi_0=0$, which is a genuinely new, collective phenomenon coming
-from the interaction. For a long-range Coulomb interaction, $U \to v(q)$, with a strong $q$-dependence
-(diverging as $q\to0$), the pole of (9.6) as a function of $\omega$ at fixed $q$ defines a new
-quasiparticle, the \textbf{plasmon}: a collective charge oscillation of the whole electron gas. Its
-dispersion depends on the screening and dimensionality of the system, but in the standard RPA
-(Bohm-Pines) treatment of the three-dimensional electron gas, at long wavelength it takes the form
+\emph{From the RPA denominator}, $1-U\chi_0=0$, which is a new collective phenomenon that comes from
+the interaction. For a long-range Coulomb interaction, $U \to v(q)$, which depends strongly on $q$
+and diverges as $q\to0$. The pole of (9.6) as a function of $\omega$ at fixed $q$ then defines a new
+quasiparticle, the \textbf{plasmon}, which is a collective charge oscillation of the whole electron
+gas. Its dispersion depends on the screening and on the dimensionality of the system. In the standard
+RPA treatment of the three-dimensional electron gas, which is the Bohm-Pines treatment, at long
+wavelength the dispersion has the form
 
 \begin{equation}
 \omega_{\rm pl}(q)^2 = \omega_p^2 + \tfrac{3}{5} v_F^2\, q^2 + O(q^4),
 \end{equation}
 
-with $\omega_p$ the classical plasma frequency; the plasmon survives even at $q=0$, unlike the
-particle-hole continuum, because it is a genuinely collective mode of the whole charge density
-rather than a single-particle excitation. Figure~\ref{fig:s09:plasmon} puts both kinds of divergence
-on the same $(q,\omega)$ plane, and shows explicitly the small-$q$ window in which the pole exists
-and no single-particle excitation does.
+where $\omega_p$ is the classical plasma frequency. The plasmon exists even at $q=0$, which is
+different from the particle-hole continuum, because it is a collective mode of the whole charge
+density and not a single-particle excitation. Figure~\ref{fig:s09:plasmon} shows both kinds of
+divergence in the same $(q,\omega)$ plane, and it shows explicitly the window at small $q$ where the
+pole exists and no single-particle excitation exists.
 
 \input{figures/s09f02_plasmon}
 
-\textbf{The Stoner criterion, as a response-function instability.} Now apply the same RPA logic to the
-\emph{spin} channel of a Hubbard-type interaction, so $\chi_0$ in (9.6) becomes the non-interacting spin
-susceptibility. The interacting spin response diverges precisely when
+\textbf{The Stoner criterion as an instability of the response function.} Now we use the same RPA logic
+in the \emph{spin} channel of an interaction of Hubbard type, so that $\chi_0$ in (9.6) becomes the
+non-interacting spin susceptibility. The interacting spin response diverges when
 
 \begin{equation}
 U\, \chi_0(q,0) = 1.
 \end{equation}
 
-At $q=0$, using the $q\to0$ limit of (9.4), $\chi_0(0,0) = D(E_F)$, so (9.8) reduces to
-$U\,D(E_F) = 1$: this is exactly the \textbf{Stoner criterion} for itinerant ferromagnetism, an
-interacting metal becomes magnetic once the product of the density of states at the Fermi level and
-the interaction strength crosses one. But (9.8) is more general than the $q=0$ special case: for a
-Fermi surface with strong nesting, such as the half-filled square lattice of Section 9.4,
-$\chi_0(q,0)$ is \emph{maximized} not at $q=0$ but at the nesting vector $Q=(\pi,\pi)$, where it is
-already logarithmically enhanced. The instability threshold in (9.8) is then reached first at
-$Q=(\pi,\pi)$ rather than at $q=0$: the system develops a \emph{staggered}, antiferromagnetic instability
-rather than a uniform ferromagnetic one, at a smaller value of $U$ than the naive Stoner estimate
-would suggest.
+At $q=0$ we use the limit $q\to0$ of (9.4), $\chi_0(0,0) = D(E_F)$, so (9.8) becomes
+$U\,D(E_F) = 1$. This is exactly the \textbf{Stoner criterion} for itinerant ferromagnetism, which
+says that an interacting metal becomes magnetic once the product of the density of states at the
+Fermi level and the interaction strength is larger than one. However, (9.8) is more general than the
+special case $q=0$. For a Fermi surface with strong nesting, such as the half-filled square lattice
+of Section 9.4, $\chi_0(q,0)$ has its \emph{maximum} not at $q=0$ but at the nesting vector
+$Q=(\pi,\pi)$, where it is already logarithmically enhanced. The instability threshold in (9.8) is
+then reached first at $Q=(\pi,\pi)$ and not at $q=0$. As a result, the system develops a
+\emph{staggered} antiferromagnetic instability and not a uniform ferromagnetic one, and this happens
+at a smaller value of $U$ than the simple Stoner estimate predicts.
 
-It is worth pausing on this, because it is exactly the reconnection the course has been building
-toward. Sessions 1 and 6 derived magnetism by writing down the Hubbard model, applying mean-field
-theory directly to the \emph{ordered} state, and self-consistently solving for a non-zero magnetization
-$m$ (Section 1.13's Equation 1.7). Today we have derived the \emph{same physics}, the same threshold
-$U\,D(E_F)=1$, the same preference for antiferromagnetism at half filling, without ever writing
-down an ordered mean-field ansatz: we asked instead when the \emph{paramagnetic}, disordered response
-function develops a divergence, exactly the same logic as Section 9.2's classical susceptibility.
-Mean-field theory and the response-function view are two routes to the same instability, one
-computed from the broken-symmetry side, one computed entirely from the symmetric side by watching
-it become unstable.
+This is the connection that the course has been preparing. In Sessions 1 and 6 we obtained magnetism by writing the Hubbard model, applying mean-field
+theory directly to the \emph{ordered} state, and solving self-consistently for a non-zero
+magnetization $m$, as in Equation 1.7 of Section 1.13. In this session we have obtained the
+\emph{same physics}, with the same threshold $U\,D(E_F)=1$ and the same preference for
+antiferromagnetism at half filling, without writing any ordered mean-field ansatz. Instead, we asked
+when the \emph{paramagnetic}, disordered response function develops a divergence, which is the same
+logic as the classical susceptibility of Section 9.2. Mean-field theory and the response function
+are two ways to reach the same instability. The first one computes it from the side where the
+symmetry is broken, and the second one computes it only from the symmetric side, by following how
+this state becomes unstable.
 
-The same machinery, applied to different response channels and different signs of interaction,
-classifies a whole family of instabilities that is worth laying out explicitly (this three-way
-classification is presented as a clean summary table on the slides, more systematically than the
-spoken walkthrough, which mainly worked the magnetic case through in detail):
+The same method, applied to different response channels and to different signs of the interaction,
+classifies a whole family of instabilities, which we write here explicitly. On the slides this
+classification into three cases is presented as a clear summary table, in a more systematic way than
+in the spoken lecture, which mainly worked out the magnetic case in detail.
 
 \begin{center}
 \begin{tabular}{lll}
@@ -348,196 +350,208 @@ Superconductivity & electron-electron scattering response & attractive \\
 \end{center}
 
 \begin{notebookbox}{\texttt{session9.ipynb}, ``The charge-charge response function'' (Challenge)}
-The same notebook section used above for nesting extends, in its second part, to the interacting
-case: add a Hubbard interaction $U$ and an external staggered (antiferromagnetic) field to a
-dimerized chain, and watch what happens to the response as $U$ increases. This is the
-notebook-scale version of equation (9.8), the Stoner instability appearing as $U$ crosses the
-threshold set by $\chi_0$.
+The same notebook section that we used above for nesting is extended, in its second part, to the
+interacting case. You add a Hubbard interaction $U$ and an external staggered, antiferromagnetic
+field to a dimerized chain, and you look at what happens to the response as $U$ increases. This is
+the version of equation (9.8) on the scale of a notebook, where the Stoner instability appears when
+$U$ goes above the threshold set by $\chi_0$.
 \end{notebookbox}
 
-\section{Impurities as diagnostics I: Friedel oscillations in a metal}
+\section{Impurities as diagnostics I, Friedel oscillations in a metal}
 
-We now turn to the most physical realization of a perturbation: an actual local impurity. Four
-case studies follow, one for each broad class of ground state we have built over the course:
-metals, superconductors, topological matter, and quantum magnets. In each case the diagnostic logic
-is the same: perturb locally, and read the nature of the ground state off of how the perturbation's
-effect decays in space.
+We now go to the most physical realization of a perturbation, which is a real local impurity. Four
+case studies follow, one for each broad class of ground state that we have built in the course. These
+are metals, superconductors, topological matter and quantum magnets. In each case the diagnostic
+logic is the same. We perturb the system locally, and we obtain the nature of the ground state from
+how the effect of the perturbation decays in space.
 
-Start with a metal. An impurity is a local on-site energy shift, and adding one to a translationally
-symmetric Hamiltonian necessarily breaks that symmetry, but note that perturbation theory itself
-never required translational symmetry in the first place: equations (9.2) and (9.3) hold for any
-$H_0$ and any $V$. Applying them directly to the local density of states gives a response
-proportional to matrix elements between Fermi-surface states, and for a generic (parabolic-like)
-band the resulting oscillation is set entirely by the Fermi wavevector.
+Let us start with a metal. An impurity is a local shift of the onsite energy. If we add one to a
+Hamiltonian with translational symmetry, this symmetry is necessarily broken. Note, however, that
+perturbation theory itself never needed translational symmetry, since equations (9.2) and (9.3) are
+valid for any $H_0$ and any $V$. If we apply them directly to the local density of states, we obtain
+a response that is proportional to matrix elements between states at the Fermi surface. For a
+generic band, close to a parabolic one, the oscillation that results is set only by the Fermi
+wavevector.
 
-To see this rigorously, note that the static Lindhard function of a one-dimensional free-electron
-gas has the closed form
+To see this in an exact way, note that the static Lindhard function of a one-dimensional
+free-electron gas has the closed form
 
 \begin{equation*}
 \chi_0(q) = \frac{m}{\pi\hbar^2 q}\ln\left|\frac{2k_F + q}{2k_F - q}\right|,
 \end{equation*}
 
-which is smooth everywhere except for a logarithmic non-analyticity exactly at $q = 2k_F$, the very
-same nesting singularity identified in Section 9.4. A standard fact of Fourier analysis is that a
-non-analyticity of a function $\chi_0(q)$ at a wavevector $q^\star$ produces an algebraically
-decaying oscillatory tail in its real-space Fourier transform, with period fixed by $q^\star$ and
-an envelope set by the \emph{type} of the singularity. Applying this to the impurity-induced density
-change $\delta n(x) = \int \frac{dq}{2\pi}\, e^{iqx}\, \chi_0(q)\, v_0$ (Born approximation, impurity
-strength $v_0$) gives the \textbf{Friedel oscillation},
+which is smooth everywhere except for a logarithmic non-analyticity exactly at $q = 2k_F$. This is
+the same nesting singularity that we found in Section 9.4. A standard result of Fourier analysis is
+that a non-analyticity of a function $\chi_0(q)$ at a wavevector $q^\star$ gives an oscillating tail
+with an algebraic decay in its real-space Fourier transform. The period of this tail is fixed by
+$q^\star$, and its envelope is set by the \emph{type} of the singularity. We apply this to the change
+of density induced by the impurity,
+$\delta n(x) = \int \frac{dq}{2\pi}\, e^{iqx}\, \chi_0(q)\, v_0$, in the Born approximation with
+impurity strength $v_0$, and we obtain the \textbf{Friedel oscillation},
 
 \begin{equation}
 \delta n(x) \;\xrightarrow{|x|\to\infty}\; A(v_0)\, \frac{\cos\!\big(2k_F |x| + \varphi_0\big)}{|x|^{\,d}} \qquad (d = 1,2,3),
 \end{equation}
 
-with a universal oscillation wavevector fixed purely by the Fermi surface ($2k_F$ in 1D, or the
-Fermi-surface diameter more generally), an algebraic envelope whose power depends on the
-dimensionality $d$, and a non-universal amplitude and phase set by the impurity strength and
-microscopic details. This is a genuinely elegant closure of the loop opened in Section 9.4: the
-very same $q=2k_F$ singularity in $\chi_0(q)$ that we identified there as an instability channel is,
-here, what produces a long-ranged, power-law-decaying real-space oscillation, rather than an actual
-instability, because a single local impurity is far too weak a perturbation to reorganize the whole
-Fermi sea; the divergence in $\chi_0(q)$ just makes its Fourier partner decay slowly rather than
-exponentially.
+The oscillation has a universal wavevector that is fixed only by the Fermi surface, which is $2k_F$ in
+1D, or more generally the diameter of the Fermi surface. It has an algebraic envelope, whose power
+depends on the dimensionality $d$, and it has an amplitude and a phase that are not universal and are
+set by the impurity strength and by microscopic details. This closes the argument that we started in
+Section 9.4. The same singularity at $q=2k_F$ in $\chi_0(q)$, which we
+found there as an instability channel, gives here a long-ranged real-space oscillation with a
+power-law decay, and not a real instability. The reason is that a single local impurity is a
+perturbation that is much too weak to reorganize the whole Fermi sea. The divergence in $\chi_0(q)$
+only makes its Fourier partner decay slowly instead of exponentially.
 
-Concretely, for a one-dimensional tight-binding chain with an impurity at site $0$, the local
-density of states oscillates around the impurity with wavelength $\pi/k_F$ (half the Fermi
-wavelength $\lambda_F=2\pi/k_F$, since the modulation is set by $2k_F$ rather than by $k_F$), and
-raising the chemical potential shortens $k_F^{-1}$ and speeds up the oscillation
-correspondingly; the same phenomenon appears, with the same physical content, in a two-dimensional
-square lattice, and this real-space LDOS modulation around impurities is exactly what an STM
-measures in practice (this is quasiparticle interference again, seen this time in real rather than
-reciprocal space). The explicit LDOS-versus-position plots at two different fillings, for both the
-1D and the 2D case, are genuinely clearer on the slides than in words: the ``oscillations get faster
-as $k_F$ grows'' comparison is a visual one, worth looking at directly rather than only reading the
-formula. As a complementary check, the slides (and notebook) also show the \emph{insulating} case: an
-impurity placed in a gapped 1D chain produces an LDOS that converges to its uniform value very
-quickly rather than oscillating with a slow power-law envelope, a preview of the gapped-versus-gapless
-diagnostic that we will make fully general in Section 9.9 and draw in figure~\ref{fig:s09:decay}.
+For a concrete example, let us take a one-dimensional tight-binding chain with an impurity at site
+$0$. The local density of states oscillates around the impurity with wavelength $\pi/k_F$, which is
+half of the Fermi wavelength $\lambda_F=2\pi/k_F$, since the modulation is set by $2k_F$ and not by
+$k_F$. If we raise the chemical potential, $k_F^{-1}$ becomes shorter and the oscillation becomes
+faster in the same way. The same phenomenon, with the same physical content, appears in a
+two-dimensional square lattice. This real-space LDOS modulation around impurities is what an STM
+measures in practice, and it is quasiparticle interference again, seen this time in real space and
+not in reciprocal space. The explicit plots of the LDOS as a function of position at two different
+fillings, for both the 1D and the 2D case, are clearer on the slides than in words. The comparison
+that shows that the ``oscillations get faster as $k_F$ grows'' is a visual one, and it is better seen than read from the
+formula. As a complementary check, the slides and the
+notebook also show the \emph{insulating} case. An impurity placed in a gapped 1D chain gives an LDOS
+that converges very quickly to its uniform value, instead of oscillating with a slow power-law
+envelope. This is a first view of the diagnostic that separates gapped and gapless systems, which we
+will make fully general in Section 9.9 and draw in figure~\ref{fig:s09:decay}.
 
 \begin{notebookbox}{\texttt{session9.ipynb}, ``Impurity in a 1d metal'' (Core), ``Impurities in a 2d metal'' (Core), and ``Impurity in an electronic insulator'' (Core)}
-Place a single impurity in a 1D chain, then a 2D square lattice, and watch the LDOS oscillate as
-in (9.9). Change the chemical potential and confirm that the oscillation wavelength tracks
-$\pi/k_F$ exactly as predicted; this is the cleanest place in the whole session to see a response
-formula and a numerical experiment agree digit for digit. The third section repeats the exercise
-with the chemical potential inside a gap instead of a partially filled band: confirm that the LDOS
-now converges to its bulk value within a site or two, with no slowly-decaying oscillatory tail,
-exactly the gapped-versus-gapless contrast that Section 9.9 makes fully general.
+Place a single impurity in a 1D chain, and then in a 2D square lattice, and look at how the LDOS
+oscillates as in (9.9). Change the chemical potential and check that the wavelength of the
+oscillation follows $\pi/k_F$, as predicted. This is the clearest place in the whole session to see a
+response formula and a numerical experiment agree digit by digit. The third section repeats the
+exercise with the chemical potential inside a gap, instead of in a partially filled band. Check that
+the LDOS now converges to its bulk value within one or two sites, without an oscillating tail that
+decays slowly. This is the contrast between gapped and gapless systems that Section 9.9 makes fully
+general.
 \end{notebookbox}
 
-\section{Impurities as diagnostics II: magnetic impurities in a superconductor}
+\section{Impurities as diagnostics II, magnetic impurities in a superconductor}
 
-Superconductors behave completely differently under a local perturbation, because a superconductor
-is, for single-particle excitations, a bulk insulator: there is a finite gap $\Delta$, so there is
-no Fermi surface to produce Friedel-type oscillations. The interesting physics instead concerns the
-distinction between magnetic and non-magnetic impurities.
+Superconductors behave in a completely different way under a local perturbation, because for
+single-particle excitations a superconductor is an insulator in the bulk. There is a finite gap
+$\Delta$, so there is no Fermi surface that can give oscillations of the Friedel type. The interesting
+physics is instead the difference between magnetic and non-magnetic impurities.
 
-Recall that an s-wave Cooper pair binds one spin-up and one spin-down electron. A \textbf{non-magnetic}
-impurity, an ordinary local potential, does not distinguish spin up from spin down: it does not
-break time-reversal symmetry, and so it cannot lower the energy cost of breaking any particular
-Cooper pair. Concretely, the density of states of a conventional s-wave superconductor with and
-without a non-magnetic impurity is essentially unchanged, gap and all: the slides show the two
-spectra directly overlapping.
+Let us remember that an s-wave Cooper pair binds one spin-up electron and one spin-down electron. A
+\textbf{non-magnetic} impurity, which is an ordinary local potential, does not distinguish spin up from
+spin down. So it does not break time-reversal symmetry, and it cannot lower the energy needed to break
+any specific Cooper pair. In practice, the density of states of a conventional s-wave superconductor
+is almost the same with and without a non-magnetic impurity, including the gap, and the slides show
+the two spectra on top of each other.
 
-A \textbf{magnetic} impurity is entirely different: it couples with strength $J$ to the local spin,
-distinguishes up from down, and therefore \emph{does} break time-reversal symmetry. This lowers the
-energy cost of breaking one specific Cooper pair and produces a genuine bound state inside the gap.
-In the classical-spin (Born) approximation this is the \textbf{Yu-Shiba-Rusinov} problem (the transcript
-does not name it, but the setup matches it exactly): with $\alpha \equiv \pi
-\nu_0 J S$ (where $\nu_0$ is the normal-state density of states at the Fermi level and $S$ the
-impurity spin), the in-gap bound state energy is
+A \textbf{magnetic} impurity is completely different. It couples with strength $J$ to the local spin,
+it distinguishes up from down, and so it \emph{does} break time-reversal symmetry. This lowers the
+energy needed to break one specific Cooper pair and gives a real bound state inside the gap. In the
+approximation of a classical spin, in the Born approximation, this is the
+\textbf{Yu-Shiba-Rusinov} problem, which is not named in the transcript, but the setup is the
+same. With $\alpha \equiv \pi
+\nu_0 J S$, where $\nu_0$ is the density of states of the normal state at the Fermi level and $S$ is
+the impurity spin, the energy of the bound state in the gap is
 
 \begin{equation}
 E_b(J) = \Delta\, \frac{1-\alpha^2}{1+\alpha^2}.
 \end{equation}
 
-Equation (9.10) reproduces exactly the qualitative curve the slides show as a function of $J$: at
-$J=0$ ($\alpha=0$), $E_b = \Delta$, sitting right at the gap edge, i.e. no genuine bound state yet.
-As $J$ increases, $\alpha$ grows, and $E_b$ moves down through the gap; at $\alpha = 1$ (i.e.
-$\pi\nu_0 J S = 1$) the state crosses zero energy exactly, and for $\alpha>1$ the numerator of
-(9.10) turns negative, so the bound state re-emerges on the opposite side of zero. This crossing is
-a genuine quantum phase transition: below it the many-body ground state has total spin $S_{\rm
-tot}=0$ (every Cooper pair intact, the impurity spin screened into the condensate), above it
-$S_{\rm tot}=1/2$ (one Cooper pair broken, leaving a single dangling spin). A superconductor with a
-single, tunable magnetic impurity is therefore a minimal, exactly solvable model of a quantum phase
-transition, driven entirely by a local perturbation. Both halves of the story are drawn in
-figure~\ref{fig:s09:ysr}: the in-gap states that a magnetic impurity adds to an otherwise untouched
-BCS spectrum, and the trajectory (9.10) traces across the gap as $\alpha$ grows.
+Equation (9.10) gives the qualitative curve that the slides show as a function of $J$. At
+$J=0$ ($\alpha=0$), $E_b = \Delta$, which is at the gap edge, meaning that there is no real bound
+state yet. As $J$ increases, $\alpha$ grows and $E_b$ moves down through the gap. At $\alpha = 1$,
+which is $\pi\nu_0 J S = 1$, the state crosses zero energy exactly, and for $\alpha>1$ the numerator
+of (9.10) becomes negative, so the bound state appears again on the other side of zero. This crossing
+is a real quantum phase transition, where the fermion parity of the electronic ground state changes.
+Below it the electronic ground state is even, with total electron spin $S_{\rm
+tot}=0$, where every Cooper pair is intact and the impurity spin is not screened. Above it the
+electronic ground state has $S_{\rm tot}=1/2$, since one quasiparticle is bound to the impurity
+and partially screens its spin. So a superconductor with a single magnetic impurity that we can tune is a minimal,
+exactly solvable model of a quantum phase transition, which is driven only by a local perturbation.
+Both parts of this picture are drawn in figure~\ref{fig:s09:ysr}. It shows the in-gap states that a
+magnetic impurity adds to a BCS spectrum that is otherwise unchanged, and the path that (9.10)
+follows across the gap as $\alpha$ grows.
 
 \input{figures/s09f03_ysr}
 
 \begin{notebookbox}{\texttt{session9.ipynb}, ``Magnetic impurities in a conventional superconductor'' (Core) and ``Single magnetic impurity in a superconductor'' (Challenge)}
-Build a 1D superconducting chain with a magnetic impurity of tunable exchange $J$ and track the
-in-gap state's energy exactly as in (9.10). Confirm the sign change at the crossing, and check
-that a non-magnetic impurity (set $J=0$, vary only the local potential) leaves the gap edges
-essentially untouched, as the qualitative argument above predicts.
+Build a 1D superconducting chain with a magnetic impurity with an exchange $J$ that you can change,
+and follow the energy of the in-gap state as in (9.10). Check the change of sign at the crossing.
+Check also that a non-magnetic impurity, where you set $J=0$ and change only the local potential,
+leaves the gap edges almost unchanged, as the qualitative argument above predicts.
 \end{notebookbox}
 
-\section{Impurities as diagnostics III: vacancies in topological matter}
+\section{Impurities as diagnostics III, vacancies in topological matter}
 
-The strongest possible local impurity is a \textbf{vacancy}: remove a site entirely, equivalently send
-its on-site potential to infinity. This is where the bulk-boundary correspondence built in sessions
-3 and 4 (Chern number, Zak phase, and the guarantee of gapless modes at any boundary of a
-topologically non-trivial phase) pays off directly. Topological boundary modes are known to survive
-around a large hole cut into a topological material; shrink that hole all the way down to a single
-missing site, and the argument does not stop working. A vacancy is, in effect, a boundary of zero
-size, and bulk-boundary correspondence still applies: whenever the bulk carries a non-trivial
-topological invariant, a vacancy is guaranteed to host an in-gap bound state, as long as the vacancy
-itself preserves the symmetry protecting that invariant.
+The strongest local impurity that is possible is a \textbf{vacancy}, where we remove a site
+completely, which is the same as sending its onsite potential to infinity. Here the bulk-boundary
+correspondence that we built in sessions 3 and 4 gives a direct result. This correspondence includes
+the Chern number, the Zak phase, and the guarantee of gapless modes at any boundary of a
+topologically non-trivial phase. It is known that topological boundary modes survive around a large
+hole cut into a topological material. If we make that hole smaller, down to a single missing site,
+the argument still works. A vacancy is in practice a boundary of zero size, and the bulk-boundary
+correspondence still applies. When the bulk has a non-trivial topological invariant, a vacancy is
+guaranteed to host an in-gap bound state, as long as the vacancy itself preserves the symmetry that
+protects that invariant.
 
-This gives a genuinely useful diagnostic, because a fully gapped bulk spectrum on its own cannot
-distinguish a topological phase from a trivial one. Take a \textbf{chiral, spin-triplet topological
-superconductor} (the class studied via Majorana modes and Chern-number classification in session
-5): its bulk spectrum, with no impurities, is fully gapped and looks, on its own, indistinguishable
-from a trivial s-wave superconductor. But a vacancy is a non-magnetic perturbation (it does not
-distinguish spin, so it preserves time-reversal symmetry, even in the extreme limit where the local
-potential diverges), and once it is inserted, an in-gap mode appears. The same logic runs for a
-\textbf{Chern insulator}: a vacancy in a system with finite Chern number produces an in-gap mode, while
-the same vacancy in a topologically trivial insulator produces nothing of the sort. In both cases,
-the observable signature is identical and simple: \emph{if introducing vacancies produces in-gap modes,
-the underlying phase is topological; if it does not, the phase is trivial}, regardless of what the
-clean bulk spectrum alone would have told you. Figure~\ref{fig:s09:vacancy} draws both the geometric
-argument (a hole shrunk down to a single site) and the three spectra that make the diagnostic
-usable.
+This gives a useful diagnostic, because a fully gapped bulk spectrum alone cannot distinguish a
+topological phase from a trivial one. Let us take a \textbf{chiral, spin-triplet topological
+superconductor}, which is the class that we studied with Majorana modes and the Chern-number
+classification in session 5. Without impurities, its bulk spectrum is fully gapped, and by itself it
+looks the same as the spectrum of a trivial s-wave superconductor. But a vacancy is a non-magnetic
+perturbation. It is a local change of the potential that does not distinguish spin, even in the
+extreme limit where the local potential diverges, so it does not change the topological invariant of
+the bulk, and once we add it, an in-gap mode appears. The
+same logic holds for a \textbf{Chern insulator}. A vacancy in a system with a finite Chern number gives
+an in-gap mode, while the same vacancy in a topologically trivial insulator gives no such mode. In
+both cases the observable signature is the same and easy to read, which is that \emph{if introducing
+vacancies produces in-gap modes, the underlying phase is topological, and if it does not, the phase is
+trivial}, regardless of what the clean bulk spectrum alone would tell us.
+Figure~\ref{fig:s09:vacancy} draws both the geometric argument, where a hole becomes smaller down to
+a single site, and the three spectra that make the diagnostic possible to use.
 
 \input{figures/s09f04_vacancy}
 
 \begin{notebookbox}{\texttt{session9.ipynb}, ``Non-magnetic impurities in a topological superconductor'' (Challenge), ``DOS of non-magnetic impurities in a topological superconductor'' (Challenge), ``Single vacancy in a topological superconductor'' (Challenge), ``Vacancies in a topological insulator'' (Challenge), and ``Single vacancy in a topological insulator'' (Challenge)}
-Build a chiral p-wave superconductor and a Chern (Haldane-model) insulator, each with a single
-vacancy, and confirm the in-gap mode appears in both. The notebook's own suggested check is a
-good one: swap the pairing symmetry to conventional s-wave, or the topological gap to a trivial
-sublattice-imbalance gap, and watch the in-gap mode disappear, precisely because the bulk
-invariant that guaranteed it via bulk-boundary correspondence is now zero.
+Build a chiral p-wave superconductor and a Chern insulator of the Haldane model, each with a single
+vacancy, and check that the in-gap mode appears in both. The check that the notebook itself suggests
+is a good one. Change the pairing symmetry to conventional s-wave, or change the topological gap to a
+trivial gap from a sublattice imbalance, and look at how the in-gap mode disappears. It disappears
+because the bulk invariant, which guaranteed the mode through the bulk-boundary correspondence, is
+now zero.
 \end{notebookbox}
 
-\section{Impurities as diagnostics IV: screening in quantum magnets}
+\section{Impurities as diagnostics IV, screening in quantum magnets}
 
-The last case study returns us to session 8's construction directly. Take a frustrated Heisenberg
-model realizing a quantum-spin-liquid-like ground state: zero net magnetization on every site, and,
-crucially, a ground state that does not break time-reversal symmetry. Add one local magnetic
-perturbation and ask how the surrounding spins screen it.
+The last case study brings us directly back to the construction of session 8. We take a frustrated
+Heisenberg model with a ground state similar to a quantum spin liquid. This ground state has zero net
+magnetization on every site, and it does not break time-reversal symmetry. We add one local magnetic
+perturbation, and we ask how the spins around it screen it.
 
-For $S=1/2$, we do not need to redo the construction from scratch, session 8 already built exactly
-the tool we need: represent each spin by a pair of auxiliary (Abrikosov) fermions, $S_i =
+For $S=1/2$ we do not need to repeat the construction from the beginning, since session 8 already
+built the tool that we need. We write each spin with a pair of auxiliary (Abrikosov) fermions,
+$S_i =
 \tfrac{1}{2}\sum_{\alpha\beta} f_{i\alpha}^\dagger \boldsymbol{\sigma}_{\alpha\beta} f_{i\beta}$,
-subject to the single-occupancy constraint $\sum_\sigma f_{i\sigma}^\dagger f_{i\sigma} = 1$ at every
-site, and mean-field decouple the resulting quartic Hamiltonian. As derived in session 8, this turns
-the Heisenberg model plus a local magnetic perturbation into a bilinear, tight-binding-like
-Hamiltonian for the spinons, with an effective on-site term at the impurity site that mixes with the
-spinon band. We are not going to re-derive that mapping here; see session 8's notes (its Abrikosov-fermion
-construction) for the full mean-field decoupling.
+with the single-occupancy constraint $\sum_\sigma f_{i\sigma}^\dagger f_{i\sigma} = 1$ at every
+site, and we make a mean-field decoupling of the quartic Hamiltonian that we obtain. As we derived in
+session 8, this turns the Heisenberg model with a local magnetic perturbation into a bilinear
+Hamiltonian for the spinons, similar to a tight-binding one, with an effective onsite term at the
+impurity site that mixes with the spinon band. We will not derive this mapping again here, and the
+notes of session 8, in the part on the Abrikosov-fermion construction, give the full mean-field
+decoupling.
 
-What matters for us today is what this mapping buys us: it turns the ``screen a magnetic moment
-embedded in a quantum spin liquid'' problem into \emph{exactly} the same mathematical problem as Section
-9.6's ``impurity in a one-dimensional electron gas,'' just with electrons relabeled as spinons. The
-induced spin correlation $\langle S_0 \cdot S_n\rangle$ as a function of distance $n$ from the
-impurity therefore inherits the same structure as (9.9): an oscillation set by the antiferromagnetic
-exchange, decaying with distance according to whether the underlying spinon band is gapped or
-gapless.
+What matters for us in this session is what this mapping gives us. It turns the problem of screening
+a magnetic moment inside a quantum spin liquid into \emph{exactly} the same mathematical problem as
+the impurity in a one-dimensional electron gas of Section 9.6, where the electrons are replaced by
+spinons. The induced spin correlation $\langle S_0 \cdot S_n\rangle$, as a function of the distance
+$n$ from the impurity, therefore has the same structure as (9.9). It has an oscillation set by the
+antiferromagnetic exchange, and it decays with distance in a way that depends on whether the spinon
+band is gapped or gapless.
 
-This is where the comparison between $S=1/2$ and $S=1$ Heisenberg chains becomes sharp. Both realize
-a spin-liquid-like ground state with zero on-site magnetization in the absence of an impurity, and
-both develop an oscillating induced moment once the impurity is switched on, but the decay is
-qualitatively different:
+Here the comparison between the $S=1/2$ and $S=1$ Heisenberg chains becomes clear. Both have a ground
+state similar to a spin liquid, with zero onsite magnetization when there is no impurity, and both
+develop an oscillating induced moment once the impurity is switched on. However, the decay is
+qualitatively different in the two cases.
 
 \begin{equation}
 \langle S_0 \cdot S_n \rangle \;\sim\;
@@ -547,160 +561,167 @@ qualitatively different:
 \end{cases}
 \end{equation}
 
-The reason is exactly the reasoning behind (9.9) once more: the spin-$1/2$ Heisenberg chain maps, via
-the Abrikosov-fermion construction, onto a gapless spinon tight-binding chain, with a genuine Fermi
-surface (two points, as in Section 9.4's 1D metal), so the impurity response has to decay
-algebraically, precisely as a metal's Friedel oscillations do. The spin-1 chain, in contrast, has an
-excitation gap (the Haldane gap, not named explicitly in the transcript but exactly what opens for
-integer-spin antiferromagnetic chains), which sets a finite correlation length $\xi$ and forces the
-impurity response to decay exponentially, exactly as charge screening does inside a band insulator.
+The reason is the same reasoning as for (9.9). Through the Abrikosov-fermion construction, the
+spin-$1/2$ Heisenberg chain maps onto a gapless tight-binding chain of spinons, with a real Fermi
+surface of two points, as for the 1D metal of Section 9.4. So the impurity response must decay
+algebraically, in the same way as the Friedel oscillations of a metal. The spin-1 chain, on the other
+hand, has an excitation gap. This is the Haldane gap, which is not named explicitly in the
+transcript, but it is the gap that opens for antiferromagnetic chains with integer spin. This
+gap sets a finite correlation length $\xi$, and it forces the impurity response to decay
+exponentially, in the same way as charge screening inside a band insulator.
 
-This gives us a completely general diagnostic, one that ties together every case study in this
-session: \emph{power-law decay of an impurity response signals a gapless ground state; exponential decay
-signals a gapped one, and the exponential's prefactor is literally the correlation length.} Section
-9.6's metal (power law), the insulating chain noted at the end of that section (exponential), and
-the two quantum-magnet cases here are all instances of the same underlying statement, drawn side by
-side in figure~\ref{fig:s09:decay}.
+This gives us a completely general diagnostic, which connects all the case studies of this session,
+namely that \emph{a power-law decay of an impurity response signals a gapless ground state, and an
+exponential decay signals a gapped one, where the decay length in the exponent is the correlation
+length.} The metal of Section 9.6, which has a power law, the insulating chain at the end of that
+section, which has an exponential, and the two quantum-magnet cases here are all examples of the same
+statement, and they are drawn side by side in figure~\ref{fig:s09:decay}.
 
 \input{figures/s09f05_decay}
 
-This particular sub-topic, screening in quantum magnets, is slides-and-lecture material with no
-direct counterpart in \texttt{session9.ipynb}: none of the notebook's sections build a spinon/Abrikosov-fermion
-chain, so there is no hands-on check-in that reproduces (9.11) itself.
+This specific topic, the screening in quantum magnets, is only in the slides and in the lecture, and
+it has no direct counterpart in \texttt{session9.ipynb}. None of the sections of the notebook build a
+chain of spinons or Abrikosov fermions, so there is no hands-on exercise that reproduces (9.11)
+itself.
 
 \begin{notebookbox}{\texttt{session9.ipynb}, ``The impact of a strong impurity'' (Core)}
-Not a spin model, but the closest available exercise in spirit: it compares how a dimerized
-(more strongly gapped versus more weakly gapped) chain responds to a strong local impurity. Run
-it with (9.11) in mind and confirm the same principle in the fermionic language, the more
-strongly gapped chain screens the impurity over a shorter length scale.
+This is not a spin model, but it is the closest exercise in its logic. It compares how a dimerized
+chain, with a stronger or a weaker gap, responds to a strong local impurity. Run it with (9.11) in
+mind, and check the same principle in the fermionic language, where the chain with the stronger gap
+screens the impurity over a shorter length.
 \end{notebookbox}
 
 \section{Disorder and Anderson localization}
 
-Everything so far has concerned a \emph{single} impurity. What happens once we scatter many impurities
-throughout the whole material? A single impurity barely dents the ground state; many impurities,
-especially placed randomly, can change it completely, because they break translational symmetry
-throughout the entire system rather than just locally. It is worth laying out the full spectrum of
-possibilities, since there are genuinely three distinct regimes of translational symmetry to
-consider, not just ``symmetric'' and ``not'':
+So far we have only discussed a \emph{single} impurity. What happens when we put many impurities in
+the whole material? A single impurity changes the ground state only a little. Many impurities, in
+particular when they are placed at random, can change it completely, because they break translational
+symmetry in the whole system and not only locally. It is useful to list all the possibilities, since
+there are three different regimes of translational symmetry to consider, and not only the symmetric
+and the non-symmetric ones.
 
 \begin{enumerate}
-\item \textbf{Periodic.} Full translational symmetry; every eigenstate is extended, with weight
-   $\sim 1/N$ on each of $N$ sites.
-\item \textbf{Quasiperiodic.} Not periodic (no repeating unit cell), but not random either: the potential
-   follows a fixed, deterministic, non-repeating rule. Eigenstates here can be extended, critical
-   (power-law localized, not even normalizable in the strict sense), or fully localized, depending
-   on the potential's strength.
-\item \textbf{Strongly (randomly) disordered.} Eigenstates are localized, each with a finite localization
-   length.
+\item \textbf{Periodic.} There is full translational symmetry. Every eigenstate is extended, with
+   weight $\sim 1/N$ on each of $N$ sites.
+\item \textbf{Quasiperiodic.} The system is not periodic, since there is no repeating unit cell, but it
+   is not random either, since the potential follows a fixed and deterministic rule that never
+   repeats. Here the eigenstates can be extended, critical, or fully localized, depending on the
+   strength of the potential. Critical means localized with a power law, so that the state is not even
+   normalizable in the strict sense.
+\item \textbf{Strongly (randomly) disordered.} The eigenstates are localized, and each of them has a
+   finite localization length.
 \end{enumerate}
 
-\textbf{Quasiperiodic case.} The standard model here (an instance of the Aubry-André-Harper family,
-though not named as such in the transcript) is a 1D tight-binding chain with an on-site modulation
-at an irrational wavevector,
+\textbf{Quasiperiodic case.} The standard model here is a 1D tight-binding chain with an onsite
+modulation at an irrational wavevector. It belongs to the Aubry-André-Harper family, although it is
+not named in this way in the transcript.
 
 \begin{equation*}
 H = -t\sum_n \left(c_n^\dagger c_{n+1} + \text{h.c.}\right) + V_0 \sum_n \cos(2\pi q\, n + \phi)\, c_n^\dagger c_n, \qquad q \notin \mathbb{Q}.
 \end{equation*}
 
-Because $q$ is irrational, the potential never exactly repeats, so the chain has no translational
-symmetry at all, yet it is not random either: the value of the potential at every site is completely
-determined once $q$ and $\phi$ are fixed. As $V_0$ is tuned up from zero, the eigenstates cross over
-from extended to marginal, power-law critical behavior right around the model's self-dual point
-($V_0 = 2t$ in the plain Aubry-André model), and on to exponentially localized for $V_0$ well above
-it.
+Since $q$ is irrational, the potential never repeats exactly, so the chain has no translational
+symmetry at all. However, it is not random either, because the value of the potential at every site
+is completely fixed once we fix $q$ and $\phi$. As we increase $V_0$ from zero, the eigenstates change
+from extended to a marginal, critical behavior with a power law close to the self-dual point of the
+model, which is $V_0 = 2t$ in the plain Aubry-André model, and then to exponentially localized states
+for $V_0$ well above it.
 
-The diagnostic tool for telling these regimes apart is the \textbf{inverse participation ratio (IPR)},
+The tool that we use to distinguish these regimes is the \textbf{inverse participation ratio (IPR)},
 
 \begin{equation}
 \mathrm{IPR}(\psi) = \sum_i |\psi_i|^4, \qquad \sum_i |\psi_i|^2 = 1.
 \end{equation}
 
 An extended state with weight $\sim 1/N$ per site gives $\mathrm{IPR} \sim N\cdot(1/N)^2 = 1/N$,
-vanishing as the system grows. A localized state, with $O(1)$ weight on $O(1)$ sites, gives
-$\mathrm{IPR} \sim O(1)$, independent of system size. A critical state sits in between, with
-$\mathrm{IPR}$ following a non-trivial power law in $N$, a multifractal signature that is neither
-of the two clean limits. Figure~\ref{fig:s09:localization} shows all three eigenstates side by side,
-together with the $N$-scaling of (9.12) that separates them quantitatively.
+which vanishes as the system grows. A localized state, with $O(1)$ weight on $O(1)$ sites, gives
+$\mathrm{IPR} \sim O(1)$, which does not depend on the system size. A critical state is between the
+two, and its $\mathrm{IPR}$ follows a non-trivial power law in $N$. This is a multifractal signature,
+which is different from both of the two clean limits. Figure~\ref{fig:s09:localization} shows the
+three eigenstates side by side, together with the scaling of (9.12) with $N$, which separates them
+in a quantitative way.
 
 \input{figures/s09f06_localization}
 
-\textbf{Fully disordered case.} Now let the on-site potential be genuinely random, of strength $W$,
-$H = -t\sum_n (c_n^\dagger c_{n+1} + \text{h.c.}) + \sum_n w_n\, c_n^\dagger c_n$ with $w_n$ drawn
-uniformly from $[-W,W]$. At $W=0$ this is an ordinary clean metal with the band structure of the
-periodic hopping alone; as $W\to\infty$ every eigenstate collapses onto a single site. In dimension
-$d\geq 3$, there is a genuine \textbf{Anderson localization transition} at a finite critical disorder
-$W_c$, a true mobility edge separating extended, metallic states from localized ones, exactly the
-kind of ``critical point'' described on the slides. Below the transition (or at any energy on the
-extended side of a mobility edge) the system conducts; above it, states exist at every energy, so
-there is \emph{no spectral gap} in the density of states, but those states cannot carry current, so there
-\emph{is} a transport gap: the \textbf{Anderson insulator} is an insulator with no gap in its spectrum at all,
-a genuinely unusual state of matter compared to every band or Mott insulator we have met so far in
-this course.
+\textbf{Fully disordered case.} Now we take an onsite potential that is really random, with strength
+$W$, $H = -t\sum_n (c_n^\dagger c_{n+1} + \text{h.c.}) + \sum_n w_n\, c_n^\dagger c_n$, where $w_n$ is
+taken uniformly from $[-W,W]$. At $W=0$ this is an ordinary clean metal, with the band structure of
+the periodic hopping alone, and as $W\to\infty$ every eigenstate becomes concentrated on a single
+site. In dimension $d\geq 3$ there is a real \textbf{Anderson localization transition} at a finite
+critical disorder $W_c$. There is a real mobility edge that separates extended metallic states from
+localized states, which is the kind of ``critical point'' described on the slides. Below the
+transition, or at any energy on the extended side of a mobility edge, the system conducts. Above it,
+there are states at every energy, so there is \emph{no spectral gap} in the density of states, but
+these states cannot carry current, so there \emph{is} a transport gap. This means that the
+\textbf{Anderson insulator} is an insulator with no gap at all in its spectrum, which is a very
+unusual state of matter compared with every band insulator or Mott insulator that we have seen so far
+in this course.
 
-\textbf{The special role of one dimension.} In $d=1$ (and, by the scaling theory of localization,
-marginally in $d=2$ as well), there is no true metallic phase surviving at any non-zero disorder in
-the thermodynamic limit: an arbitrarily small $W>0$ eventually localizes every state. What survives
-is a finite localization length $\xi(W)$, which for weak disorder near the band center of the 1D
-model scales as $\xi(W) \propto (t/W)^2$, diverging as $W\to 0$. A finite sample shorter than
-$\xi(W)$ still looks metallic in practice; only once the sample length exceeds $\xi(W)$ does the
-localized, insulating character actually show up in transport. This is the precise sense in which
-``weak disorder in 1D'' and ``genuinely metallic'' are never quite the same statement, even though they
-can look identical at short length scales.
+\textbf{The special role of one dimension.} In $d=1$, and in a marginal way also in $d=2$ according to
+the scaling theory of localization, no real metallic phase survives at any non-zero disorder in the
+thermodynamic limit, since an arbitrarily small $W>0$ localizes every state at long enough distances.
+What survives is a finite localization length $\xi(W)$. For weak disorder close to the band center of
+the 1D model, it scales as $\xi(W) \propto (t/W)^2$, which diverges as $W\to 0$. A finite sample that
+is shorter than $\xi(W)$ still looks metallic in practice, and only when the length of the sample is
+larger than $\xi(W)$ do we see the localized, insulating behavior in transport. This is the exact
+sense in which ``weak disorder in 1D'' and ``genuinely metallic'' are never the same statement,
+although they can look the same at short length scales.
 
 \begin{notebookbox}{\texttt{session9.ipynb}, ``The impact of disorder in different systems'' (Core), ``Extended and localized states in quasicrystals'' (Challenge), and ``Localization due to random disorder'' (Core)}
-Sweep the quasiperiodic modulation strength and separately the random disorder strength $W$, and
-compute (9.12) for the resulting eigenstates in each case. Watch $\mathrm{IPR}$ cross over from
-$1/N$-like to $O(1)$ behavior as you increase the potential strength, and try to locate, by eye,
-where the extended-to-localized crossover happens in each of the two models; compare that to the
-critical/mobility-edge language above.
+Change the strength of the quasiperiodic modulation, and separately the strength $W$ of the random
+disorder, and compute (9.12) for the eigenstates that you obtain in each case. Look at how the
+$\mathrm{IPR}$ changes from a behavior like $1/N$ to a behavior like $O(1)$ as you increase the
+strength of the potential. Try to find by eye where the change from extended to localized states
+happens in each of the two models, and compare it with the language of critical points and mobility
+edges above.
 \end{notebookbox}
 
 \section{Closing summary}
 
 \begin{itemize}
-\item A perturbation applied to a quantum material and measured elsewhere defines a \textbf{response
-  function}; under translational and time-translation symmetry it is most naturally expressed in
-  $(q,\omega)$-space (Section 9.1).
-\item A classical warm-up already carries the whole session's logic: the sign of the divergence in the
-  high-temperature magnetic susceptibility (9.1) predicts, from the disordered phase alone, whether
-  the low-temperature order will be ferromagnetic or antiferromagnetic.
-\item Linear response theory (9.2)-(9.3) computes the leading effect of any perturbation from the
-  unperturbed ground state alone, but breaks down for the orthogonality catastrophe, the Kondo
-  effect, and the BCS gap, none of which are perturbatively connected to the unperturbed state.
-\item For a Fermi sea, the static and dynamical Lindhard functions (9.4)-(9.5) are built entirely from
-  matrix elements between occupied and empty states near the Fermi surface, and diverge whenever a
-  nesting vector connects large portions of that surface, signaling an instability (Section 9.4).
-\item Summing the interaction to all orders via the random phase approximation (9.6) reveals two
-  distinct sources of divergence: electron-hole excitations from $\chi_0$ itself, and collective
-  plasmon excitations (9.7) from the RPA denominator.
-\item The Stoner criterion (9.8), $U\chi_0(q,0)=1$, recovers session 1 and session 6's magnetism as an
-  \emph{instability of the paramagnetic response function}, including the preference for
-  antiferromagnetism at a nested (half-filled) Fermi surface, rather than as a mean-field ordered
-  ansatz imposed by hand.
-\item A local impurity in a metal produces Friedel oscillations (9.9), a power-law-decaying, $2k_F$-periodic
-  density modulation that directly images the Fermi surface, the same physics an STM measures via
-  quasiparticle interference.
-\item A magnetic impurity in a superconductor creates a Yu-Shiba-Rusinov in-gap bound state (9.10),
-  whose energy crosses zero at a genuine $S_{\rm tot}=0 \to 1/2$ quantum phase transition; a
-  non-magnetic impurity leaves the spectrum essentially untouched.
-\item A vacancy in a topological superconductor or Chern insulator produces an in-gap mode purely by
-  bulk-boundary correspondence, a diagnostic for topology that a clean, fully gapped bulk spectrum
-  alone cannot provide (Section 9.8).
-\item Screening of a magnetic impurity in a quantum spin liquid reuses session 8's Abrikosov-fermion
-  mean-field construction directly, and inherits the metal-impurity mathematics of Section 9.6: the
-  induced spin correlation (9.11) decays as a power law for the gapless spin-1/2 chain and
-  exponentially for the gapped spin-1 chain, giving a fully general gapped-versus-gapless diagnostic
-  from impurity response alone.
-\item Many impurities at once can break translational symmetry throughout the whole system, giving rise
-  to Anderson localization: a genuine mobility edge in $d\geq3$, diagnosed by the inverse
-  participation ratio (9.12), and a spectral-gap-free but transport-gapped Anderson insulator; in
-  one dimension, arbitrarily weak disorder localizes every state, with a diverging localization
-  length as the disorder strength goes to zero (Section 9.10).
+\item A perturbation that is applied to a quantum material and measured at another place defines a
+  \textbf{response function}. With translational symmetry and time-translation symmetry, it is most
+  natural to write it in $(q,\omega)$-space (Section 9.1).
+\item A classical first example already contains the logic of the whole session. The sign of the
+  divergence in the magnetic susceptibility at high temperature (9.1) predicts, from the disordered
+  phase alone, whether the order at low temperature will be ferromagnetic or antiferromagnetic.
+\item Linear response theory (9.2)-(9.3) computes the leading effect of any perturbation only from the
+  unperturbed ground state. It fails for the orthogonality catastrophe, the Kondo effect and the BCS
+  gap, since none of them are connected to the unperturbed state in a perturbative way.
+\item For a Fermi sea, the static and dynamical Lindhard functions (9.4)-(9.5) are built only from
+  matrix elements between occupied and empty states close to the Fermi surface. They diverge when a
+  nesting vector connects large parts of that surface, which signals an instability (Section 9.4).
+\item If we sum the interaction to all orders with the random phase approximation (9.6), we find two
+  different sources of divergence. These are electron-hole excitations from $\chi_0$ itself, and
+  collective plasmon excitations (9.7) from the RPA denominator.
+\item The Stoner criterion (9.8), $U\chi_0(q,0)=1$, gives again the magnetism of session 1 and
+  session 6 as an \emph{instability of the paramagnetic response function}, including the
+  preference for antiferromagnetism at a nested (half-filled) Fermi surface, and not as an ordered
+  mean-field ansatz imposed by hand.
+\item A local impurity in a metal gives Friedel oscillations (9.9). These are a density modulation
+  with period set by $2k_F$ and a power-law decay, and they give a direct image of the Fermi surface,
+  which is the same physics that an STM measures with quasiparticle interference.
+\item A magnetic impurity in a superconductor creates a Yu-Shiba-Rusinov in-gap bound state (9.10).
+  Its energy crosses zero at a real quantum phase transition, where the fermion parity of the electrons
+changes and their spin goes as $S_{\rm tot}=0 \to 1/2$, while a
+  non-magnetic impurity leaves the spectrum almost unchanged.
+\item A vacancy in a topological superconductor or in a Chern insulator gives an in-gap mode only
+  because of the bulk-boundary correspondence. This is a diagnostic for topology that a clean and
+  fully gapped bulk spectrum alone cannot give (Section 9.8).
+\item The screening of a magnetic impurity in a quantum spin liquid uses directly the
+  Abrikosov-fermion mean-field construction of session 8, and it has the same mathematics as the
+  impurity in a metal of Section 9.6. The induced spin correlation (9.11) decays as a power law for
+  the gapless spin-1/2 chain and exponentially for the gapped spin-1 chain. This gives a fully
+  general diagnostic of gapped and gapless states from the impurity response alone.
+\item Many impurities at the same time can break translational symmetry in the whole system, which
+  gives rise to Anderson localization. In $d\geq3$ there is a real mobility edge, which we diagnose
+  with the inverse participation ratio (9.12), and an Anderson insulator, which has no spectral gap but
+  has a transport gap. In one dimension an arbitrarily weak disorder localizes every state, and the
+  localization length diverges as the disorder strength goes to zero (Section 9.10).
 \end{itemize}
 
-Every session so far has gone in the same direction: start from a Hamiltonian, and compute what it
-predicts, whether an observable, a response function, or a ground state. Session 10 turns that
-arrow around. Having spent this whole course computing observables from Hamiltonians, next time we
-ask the inverse question: given only observed data, can we infer the Hamiltonian that produced it,
-and machine learning turns out to be exactly the right tool for making that question precise.
+Every session so far has gone in the same direction. We start from a Hamiltonian, and we compute what
+it predicts, which can be an observable, a response function or a ground state. Session 10 goes in
+the opposite direction. In this whole course we computed observables from Hamiltonians, and in the
+next session we ask the inverse question. Given only the observed data, can we find the Hamiltonian
+that produced it? We will see that machine learning is the right tool to make this question precise.
