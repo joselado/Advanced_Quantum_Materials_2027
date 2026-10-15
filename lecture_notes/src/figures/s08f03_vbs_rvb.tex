@@ -1,143 +1,17 @@
 % Session 8 -- valence bond solid versus resonating valence bond: a fixed dimer covering
-% with confined triplons, against a superposition of coverings with deconfined spinons.
 % Placement: end of sec. "The QSL ground state: the resonating valence bond wavefunction",
 % referenced from the dimerized-Heisenberg section as well.
-%
-% NOTE (physics): drawn on a chain throughout, so that the only difference between the two
-% ground states is the one that matters -- one covering versus a superposition of them.
-% The confining string in (a2) is the set of strong (J) bonds left without their singlet;
-% one more of them is damaged for every site the two unpaired spins move apart, which is
-% what binds them into a single S=1 triplon.
+% Rendered by figures/blender/s08f03_vbs_rvb.py, labels in figures/overlays/s08f03_vbs_rvb.tex.
 \begin{aqmfigure}{fig:s08:vbsrvb}{The difference between a valence bond solid and a quantum spin
 liquid is not whether the ground state is built from singlets, since both are, but whether the
-singlet pattern is frozen. (a1) The fully dimerized model (8.4) has one fixed covering, (8.5).
-(a2) When we separate the two unpaired spins of figure~\ref{fig:s08:magnonspinon}b, every strong
-bond between them loses its singlet, so the energy cost grows with the separation. The pair is
-confined, and only the bound object propagates, which is the spin-$1$ triplon. (b1) The RVB state
-(8.7) is a superposition over \emph{all} pairings, near and far. (b2) Now the background pairs
-again behind the excitations with no cost, the confining string does not form, and the two halves
-separate as independent spin-$1/2$ spinons. Frustration is the reason why the superposition in
-(b1), and not a single covering, is the ground state.}
-
-\begin{tikzpicture}[x=1cm, y=1cm]
-
-\tikzset{
-  chainline/.style={aqm, draw=aqmmuted, line width=\aqmthinwidth},
-  capsule/.style={aqm, draw=aqmaccent, fill=aqmfill, rounded corners=0.17cm},
-  capsulebad/.style={aqm, draw=aqmbroken, fill=aqmfillb, rounded corners=0.17cm,
-                     dash pattern=on 2.6pt off 2pt},
-  arcbond/.style={aqm, draw=aqmaccent},
-  dot/.style={aqmsite, minimum size=4.4pt},
-  dotopen/.style={aqmsite, fill=white, draw=aqmbroken, minimum size=6.5pt,
-                  line width=\aqmlinewidth}
-}
-
-\def\dx{0.55}
-\def\xa{-0.35}
-\def\xr{6.55}
-
-% ============================ (a) valence bond solid =========================
-\node[aqmpanel, anchor=west] at (\xa-2.65,0.72) {(a) valence bond solid};
-
-% --- a1: the fixed covering --------------------------------------------------
-% capsules first, then the bonds on top: thick = the strong (J) bonds of (8.4).
-\foreach \n in {0,2,4,6,8,10} {
-  \draw[capsule] (\n*\dx-0.17,-0.18) rectangle (\n*\dx+\dx+0.17,0.18);
-}
-\foreach \n in {0,2,4,6,8,10} { \draw[aqmbondstrong] (\n*\dx,0) -- (\n*\dx+\dx,0); }
-\foreach \n in {1,3,5,7,9} { \draw[chainline] (\n*\dx,0) -- (\n*\dx+\dx,0); }
-\foreach \n in {0,...,11} { \node[dot] at (\n*\dx,0) {}; }
-\node[aqmlabsmall, anchor=east, text=aqmmuted, align=right] at (\xa,0)
-  {(a1) one fixed\\[-1pt]covering};
-\node[aqmlabsmall, anchor=west, align=left] at (\xr,0)
-  {thick $=$ the strong bonds $J$ of (8.4):\\[1pt]
-   each one carries its singlet};
-
-% --- a2: two unpaired spins, joined by a string ------------------------------
-\foreach \n in {0,8,10} {
-  \draw[capsule] (\n*\dx-0.17,-1.48) rectangle (\n*\dx+\dx+0.17,-1.12);
-}
-\foreach \n in {3,5} {
-  \draw[capsulebad] (\n*\dx-0.17,-1.48) rectangle (\n*\dx+\dx+0.17,-1.12);
-}
-\foreach \n in {0,2,4,6,8,10} { \draw[aqmbondstrong] (\n*\dx,-1.30) -- (\n*\dx+\dx,-1.30); }
-\foreach \n in {1,3,5,7,9} { \draw[chainline] (\n*\dx,-1.30) -- (\n*\dx+\dx,-1.30); }
-\foreach \n in {0,1,3,4,5,6,8,9,10,11} { \node[dot] at (\n*\dx,-1.30) {}; }
-\foreach \n in {2,7} { \node[dotopen] at (\n*\dx,-1.30) {}; }
-% the strong bonds left without a singlet
-\foreach \n in {2,4,6} {
-  \node[aqmlabsmall, text=aqmbroken, fill=white, inner sep=0.6pt]
-    at (\n*\dx+0.5*\dx,-1.30) {$\times$};
-}
-\draw[aqmbrace, decoration={brace, amplitude=3.5pt, mirror}]
-  (2*\dx,-1.62) -- (7*\dx,-1.62);
-\node[aqmlabsmall, anchor=north, align=center, text=aqmbroken] at (4.5*\dx,-1.80)
-  {string: one more strong bond spoiled\\[-1pt]for every site of separation};
-\node[aqmlabsmall, anchor=east, text=aqmmuted, align=right] at (\xa,-1.30)
-  {(a2) break one\\[-1pt]singlet};
-\node[aqmlabsmall, anchor=west, align=left] at (\xr,-1.30)
-  {cost $\propto$ separation: the two halves stay\\[1pt]
-   bound $\Rightarrow$ \textbf{triplon}, $\Delta S = 1$};
-
-% ============================ (b) RVB ========================================
-\node[aqmpanel, anchor=west] at (\xa-2.65,-2.75) {(b) resonating valence bond};
-
-% --- b1: the superposition over coverings ------------------------------------
-\node[aqmlabsmall, anchor=east, text=aqmmuted, align=right] at (\xa,-3.55)
-  {(b1) all coverings\\[-1pt]at once};
-
-\def\sx{0.40}
-% covering A: (0,1)(2,3)(4,5)(6,7), all short
-\begin{scope}[shift={(0,-3.55)}]
-  \draw[chainline] (-0.08,0) -- (7*\sx+0.08,0);
-  \foreach \n in {0,2,4,6} {
-    \draw[capsule] (\n*\sx-0.13,-0.15) rectangle (\n*\sx+\sx+0.13,0.15);
-  }
-  \foreach \n in {0,...,7} { \node[dot] at (\n*\sx,0) {}; }
-\end{scope}
-\node[aqmlab] at (3.15,-3.55) {$+$};
-% covering B: (1,2)(3,4)(5,6) short, plus the long bond (0,7)
-\begin{scope}[shift={(3.60,-3.55)}]
-  \draw[chainline] (-0.08,0) -- (7*\sx+0.08,0);
-  \foreach \n in {1,3,5} {
-    \draw[capsule] (\n*\sx-0.13,-0.15) rectangle (\n*\sx+\sx+0.13,0.15);
-  }
-  \draw[arcbond] (0,0.16) to[bend left=42] (7*\sx,0.16);
-  \foreach \n in {0,...,7} { \node[dot] at (\n*\sx,0) {}; }
-\end{scope}
-\node[aqmlab] at (6.75,-3.55) {$+$};
-% covering C: (0,1)(3,4)(6,7) short, plus the nested long bond (2,5)
-\begin{scope}[shift={(7.20,-3.55)}]
-  \draw[chainline] (-0.08,0) -- (7*\sx+0.08,0);
-  \foreach \n in {0,3,6} {
-    \draw[capsule] (\n*\sx-0.13,-0.15) rectangle (\n*\sx+\sx+0.13,0.15);
-  }
-  \draw[arcbond] (2*\sx,0.16) to[bend left=52] (5*\sx,0.16);
-  \foreach \n in {0,...,7} { \node[dot] at (\n*\sx,0) {}; }
-\end{scope}
-\node[aqmlab, anchor=west] at (10.35,-3.55) {$+\;\cdots$};
-\node[aqmlabsmall, anchor=north, align=center, text=aqmmuted] at (5.0,-4.10)
-  {arcs are singlets between more distant sites: (8.7) keeps every pairing, with its own amplitude};
-
-% --- b2: deconfined spinons --------------------------------------------------
-% same covering as (a2), but now no bond of the chain is singled out, so nothing
-% about it is "wrong": pairs (0,1)(3,4)(5,6)(7,8)(10,11), spinons free at 2 and 9.
-\foreach \n in {0,3,5,7,10} {
-  \draw[capsule] (\n*\dx-0.17,-5.23) rectangle (\n*\dx+\dx+0.17,-4.87);
-}
-\draw[chainline] (-0.10,-5.05) -- (11*\dx+0.10,-5.05);
-\foreach \n in {0,1,3,4,5,6,7,8,10,11} { \node[dot] at (\n*\dx,-5.05) {}; }
-\foreach \n in {2,9} { \node[dotopen] at (\n*\dx,-5.05) {}; }
-\draw[aqmarrowbroken] (2.5*\dx,-5.45) -- (1.2*\dx,-5.45);
-\draw[aqmarrowbroken] (8.5*\dx,-5.45) -- (9.8*\dx,-5.45);
-\node[aqmlabsmall, anchor=north, text=aqmbroken] at (5.5*\dx,-5.62)
-  {the pairing rearranges behind them at no cost};
-\node[aqmlabsmall, anchor=east, text=aqmmuted, align=right] at (\xa,-5.05)
-  {(b2) break one\\[-1pt]singlet};
-\node[aqmlabsmall, anchor=west, align=left] at (\xr,-5.05)
-  {no string, energy independent of separation:\\[1pt]
-   two free \textbf{spinons}, $S=\tfrac12$ each};
-
-\end{tikzpicture}
-
+singlet pattern is frozen. (a1) The fully dimerized model (8.4) has one fixed covering, (8.5). (a2)
+When we separate the two unpaired spins of figure~\ref{fig:s08:magnonspinon}b, every strong bond
+between them loses its singlet, drawn in red, so the energy cost grows with the separation. The pair
+is confined, and only the bound object propagates, which is the spin-$1$ triplon. (b1) The RVB state
+(8.7) is a superposition over \emph{all} pairings, near and far, drawn as coverings stacked on top
+of each other. (b2) Now the background pairs again behind the excitations with no cost, the
+confining string does not form, and the two halves separate as independent spin-$1/2$ spinons.
+Frustration is the reason why the superposition in (b1), and not a single covering, is the ground
+state.}
+\includegraphics{figures/pdf/s08f03_vbs_rvb.pdf}
 \end{aqmfigure}

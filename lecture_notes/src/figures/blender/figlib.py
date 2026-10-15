@@ -362,17 +362,18 @@ def axis(name, p0, p1, r=0.025, head=0.18):
     return obj(name, mesh_of(name, [m], f))
 
 
-def profile(name, xs, ys, depth, rgb, y0=0.0, alpha=1.0):
-    """A thin slab whose top edge follows ys(xs) above the baseline y0, for a density of states or
-    a filled region; it lies in the xz plane at depth 0 and is `depth` thick along y."""
+def profile(name, xs, ys, depth, rgb, y0=0.0, alpha=1.0, lows=None):
+    """A thin slab whose top edge follows ys(xs) above the baseline y0, or above the curve lows(xs),
+    for a density of states or a filled region; it lies in the xz plane and is `depth` thick along y."""
     key = 'prof_%d_%d_%d_%.2f' % (*(int(255 * c) for c in rgb), alpha)
     m = ghost(key, rgb, alpha) if alpha < 1.0 else mat(key, rgb, rough=0.45, emit=0.05, spec=0.3)
 
     def f(bm):
         front, back = [], []
-        bot_f = [bm.verts.new((x, -depth / 2, y0)) for x in xs]
+        lo = [y0] * len(xs) if lows is None else lows       # a curved lower edge when lows is given
+        bot_f = [bm.verts.new((x, -depth / 2, l)) for x, l in zip(xs, lo)]
         top_f = [bm.verts.new((x, -depth / 2, y)) for x, y in zip(xs, ys)]
-        bot_b = [bm.verts.new((x, depth / 2, y0)) for x in xs]
+        bot_b = [bm.verts.new((x, depth / 2, l)) for x, l in zip(xs, lo)]
         top_b = [bm.verts.new((x, depth / 2, y)) for x, y in zip(xs, ys)]
         n = len(xs)
         for i in range(n - 1):

@@ -1,0 +1,32 @@
+% Figure s08f05_gauge_vison (Session 8): link phases are gauge, fluxes are physical, and a vison.
+% The image is rendered by figures/blender/s08f05_gauge_vison.py; the coordinates of the labels come from
+% figures/blender/out/s08f05_gauge_vison*_anchors.tex. Build with figures/blender/build_figure.sh s08f05_gauge_vison.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx,bm}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,calc}
+\input{aqmcolors.tex}
+\input{aqmstyles.tex}
+\newlength{\figw}\setlength{\figw}{15.60cm}   % the text width of the notes (A4, 2.7 cm margins)
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
+  \begin{scope}[shift={(0.00cm,0.00cm)}]
+    \setlength{\figw}{15.60cm}
+    \node[anchor=south west, inner sep=0pt] at (0,0)
+      {\includegraphics[width=\figw]{../blender/out/s08f05_gauge_vison.jpg}};
+    \input{../blender/out/s08f05_gauge_vison_anchors.tex}
+    \node[pnl, anchor=south west] at (pa) {(a)};
+    \node[pnl, anchor=south west] at (pb) {(b)};
+    \node[lbl, anchor=south west, text=aqmbroken] at (a1rot) {$\theta_i$};
+    \node[lbl] at (a0flux) {$\Phi$};
+    \node[lbl] at (a1flux) {$\Phi$};
+    \node[lbl, anchor=north] at (a0below) {before};
+    \node[lbl, anchor=north] at (a1below) {after (8.16)};
+    \draw[axarrow] (arrow0) -- (arrow1);
+    \node[lbl, anchor=south, text=aqmbroken] at (vison) {vison, $\Phi=-1$};
+    \aqmkey{(13.3cm,1.1cm)}{black!35}{link $+1$}{aqmbroken}{link $-1$}
+  \end{scope}
+\end{tikzpicture}
+\end{document}

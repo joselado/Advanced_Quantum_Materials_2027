@@ -1,98 +1,17 @@
 % Session 8 -- the parton construction: an enlarged local Hilbert space, cut back down
-% by the single-occupancy constraint, leaving a tight-binding model for spinons.
 % Placement: sec. "The parton construction", after the single-occupancy constraint (8.11).
+% Rendered by figures/blender/s08f04_parton.py, labels in figures/overlays/s08f04_parton.tex.
 \begin{aqmfigure}{fig:s08:parton}{What the Abrikosov-fermion rewriting (8.10) costs, and what it
 gives us. (a) The four fermionic states of a site. The two singly-occupied states give the physical
-spin-$1/2$ doublet exactly. The empty and doubly-occupied states are extra unphysical states, which
-(8.10) maps to $\mathbf S_i=\mathbf 0$ and which the constraint (8.11) removes by hand, and this
-constraint is the operator version of the Gutzwiller projector (8.7). (b) What remains after the
-mean-field decoupling (8.14), which is an ordinary tight-binding problem (8.15) for fermions with
-spin-$1/2$ and no charge, which hop with the self-consistent bond amplitude $\chi_{ij}$. Since there
-is one fermion per site, the resulting spinon model must be studied at half filling. Taking the same
-$\chi_{ij}$ for both spin species keeps $\langle\mathbf S_i\rangle=\mathbf 0$, so this mean field,
-unlike the magnetic mean fields of sessions 1 and 6, does not break time-reversal symmetry.}
-
-\begin{tikzpicture}[x=1cm, y=1cm]
-
-\tikzset{
-  fbox/.style={aqmbox, minimum width=1.05cm, minimum height=0.80cm, inner sep=2pt},
-  fboxok/.style={fbox, draw=aqmaccent, fill=aqmfill},
-  fboxbad/.style={fbox, draw=aqmbroken, fill=aqmfillb,
-                  dash pattern=on 2.4pt off 1.8pt},
-  badge/.style={aqm, circle, draw=aqmbroken, fill=white, inner sep=0.4pt,
-                font=\footnotesize, text=aqmbroken, line width=\aqmthinwidth},
-  sarrow/.style={aqm, -{Stealth[length=3.8pt,width=3.2pt]}},
-  dot/.style={aqmsite, minimum size=5pt}
-}
-
-% ================================ (a) the local Fock space ===================
-\node[aqmpanel, anchor=west] at (-0.72,1.78) {(a) four states per site, two unphysical};
-
-\node[fboxbad] (b1) at (0,0) {};
-\node[fboxok]  (b2) at (1.50,0) {};
-\node[fboxok]  (b3) at (3.00,0) {};
-\node[fboxbad] (b4) at (4.50,0) {};
-
-% contents
-\draw[sarrow] ([yshift=-0.20cm]b2.center) -- ([yshift=0.20cm]b2.center);
-\draw[sarrow] ([yshift=0.20cm]b3.center) -- ([yshift=-0.20cm]b3.center);
-\draw[sarrow] ([xshift=-0.14cm,yshift=-0.20cm]b4.center) -- ([xshift=-0.14cm,yshift=0.20cm]b4.center);
-\draw[sarrow] ([xshift=0.14cm,yshift=0.20cm]b4.center) -- ([xshift=0.14cm,yshift=-0.20cm]b4.center);
-
-% flag the two unphysical states
-\node[badge] at (b1.north east) {$\times$};
-\node[badge] at (b4.north east) {$\times$};
-
-% state labels above
-\node[aqmlabsmall, anchor=south] at ([yshift=2pt]b1.north) {$|0\rangle$};
-\node[aqmlabsmall, anchor=south] at ([yshift=2pt]b2.north) {$f^\dagger_{i\uparrow}|0\rangle$};
-\node[aqmlabsmall, anchor=south] at ([yshift=2pt]b3.north) {$f^\dagger_{i\downarrow}|0\rangle$};
-\node[aqmlabsmall, anchor=south] at ([yshift=2pt]b4.north) {$f^\dagger_{i\uparrow}f^\dagger_{i\downarrow}|0\rangle$};
-
-% spin content below
-\node[aqmlabsmall, anchor=north, text=aqmbroken] at (b1.south) {$\mathbf S_i=\mathbf 0$};
-\node[aqmlabsmall, anchor=north] at (b2.south) {$S^z_i=+\tfrac12$};
-\node[aqmlabsmall, anchor=north] at (b3.south) {$S^z_i=-\tfrac12$};
-\node[aqmlabsmall, anchor=north, text=aqmbroken] at (b4.south) {$\mathbf S_i=\mathbf 0$};
-
-% braces
-\draw[aqmbrace, draw=aqmaccent] ($(b3.north east)+(0,0.62)$) -- ($(b2.north west)+(0,0.62)$);
-\node[aqmlabsmall, anchor=south, align=center, text=aqmaccent] at (2.25,1.12)
-  {the physical spin-$1/2$ doublet};
-
-\draw[aqmbrace, draw=aqmbroken, decoration={brace, amplitude=4pt, mirror}]
-  ($(b1.south west)+(0,-1.02)$) -- ($(b4.south east)+(0,-1.02)$);
-\node[aqmlabsmall, anchor=north, align=center, text=aqmbroken] at (2.25,-1.62)
-  {$2^2=4$ states where a spin-$1/2$ has $2$: the crossed pair carries no spin\\[1pt]
-   and is removed by the constraint $\sum_\sigma f^\dagger_{i\sigma}f_{i\sigma}=1$ (8.11)};
-
-% ================================ (b) the spinon lattice =====================
-\begin{scope}[shift={(7.75,0)}]
-  \node[aqmpanel, anchor=west] at (-0.30,1.78) {(b) a tight-binding model for spinons};
-
-  \foreach \n in {0,...,4} { \draw[aqmbond] (\n*1.02,0) -- (\n*1.02+1.02,0); }
-  \foreach \n in {0,...,5} { \node[dot] at (\n*1.02,0) {}; }
-  % exactly one fermion per site, spin free
-  \foreach \n in {0,2,5} {
-    \draw[sarrow, draw=aqmaccent] (\n*1.02,0.16) -- (\n*1.02,0.58);
-  }
-  \foreach \n in {1,3,4} {
-    \draw[sarrow, draw=aqmaccent] (\n*1.02,0.58) -- (\n*1.02,0.16);
-  }
-  % bond amplitudes
-  \foreach \n in {0,...,4} {
-    \node[aqmlabsmall, anchor=north, text=aqmmuted] at (\n*1.02+0.51,-0.08) {$\chi_{ij}$};
-  }
-  % a hop
-  \draw[aqmarrowaccent] (2.05*1.02,-0.68) to[bend right=35] (2.95*1.02,-0.68);
-  \node[aqmlabsmall, anchor=north, text=aqmaccent] at (2.5*1.02,-1.02)
-    {a spinon hops};
-
-  \node[aqmlabsmall, anchor=north, align=center] at (2.5*1.02,-1.46)
-    {$\mathcal H_\text{MF}=\sum_{ij,s}\chi_{ij}f^\dagger_{i,s}f_{j,s}$ \; (8.15)\\[2pt]
-     \textcolor{aqmmuted}{one fermion per site $\Rightarrow$ half filling}};
-\end{scope}
-
-\end{tikzpicture}
-
+spin-$1/2$ doublet exactly. The empty and doubly-occupied states, drawn as ghosts with a cross, are
+extra unphysical states, which (8.10) maps to $\mathbf S_i=\mathbf 0$ and which the constraint
+(8.11) removes by hand, and this constraint is the operator version of the Gutzwiller projector
+(8.7). (b) What remains after the mean-field decoupling (8.14), which is an ordinary tight-binding
+problem (8.15) for fermions with spin-$1/2$ and no charge, which hop with the self-consistent bond
+amplitude $\chi_{ij}$, drawn as the thickness of the bond, here with two values for illustration.
+Since there is one fermion per site, the resulting spinon model must be studied at half filling.
+Taking the same $\chi_{ij}$ for both spin species keeps $\langle\mathbf S_i\rangle=\mathbf 0$, so
+this mean field, unlike the magnetic mean fields of sessions 1 and 6, does not break time-reversal
+symmetry.}
+\includegraphics{figures/pdf/s08f04_parton.pdf}
 \end{aqmfigure}

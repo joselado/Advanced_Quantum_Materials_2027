@@ -1,109 +1,18 @@
 % Session 8 -- the emergent gauge structure: link phases are gauge-dependent, plaquette
-% fluxes are not, and a single flipped flux is a vison.
 % Placement: sec. "Emergent gauge symmetry and vison excitations", after the square-lattice
 % example.
+% Rendered by figures/blender/s08f05_gauge_vison.py, labels in figures/overlays/s08f05_gauge_vison.tex.
 \begin{aqmfigure}{fig:s08:gauge}{The emergent gauge theory of the parton construction, and its
-excitation. (a) The mean-field bond variable is defined on the links,
-$\chi_{ij}=|\chi_{ij}|e^{i\theta_{ij}}$, and the local phase rotation (8.16) shifts every link
-phase by $\theta_i-\theta_j$. When we go once around a plaquette, each site phase appears twice
-with opposite signs, so the flux $\Phi=\prod e^{i\theta_{ij}}$ does not change. The link variables
-are pure gauge, and the flux is physical. This is the reason why two mean-field solutions related
-by (8.16) describe the same spin liquid. (b) As a result, the flux is what labels the state. With
-$\Phi=+1$ on every plaquette as the ground state, flipping a single plaquette to $\Phi=-1$ costs
-energy, and no gauge transformation can remove it. This localized defect of the gauge field is a
-\textbf{vison}. Which link has the minus sign is a gauge choice, and it can be moved freely, while
-the shaded plaquette cannot be moved.}
-
-\begin{tikzpicture}[x=1cm, y=1cm]
-
-\tikzset{
-  link/.style={aqm, draw=black, -{Stealth[length=4.2pt,width=3.4pt]}},
-  linkflip/.style={aqm, draw=aqmbroken, line width=1.7pt, dash pattern=on 3pt off 2pt},
-  gsite/.style={aqmsite, minimum size=5pt},
-  gsitehl/.style={aqmsite, fill=aqmbroken, minimum size=7pt}
-}
-
-% ============================== (a) one plaquette ============================
-\node[aqmpanel, anchor=west] at (-0.40,2.42) {(a) gauge redundancy on a plaquette};
-
-\def\L{1.80}
-\draw[link] (0,0) -- (\L,0);
-\draw[link] (\L,0) -- (\L,\L);
-\draw[link] (\L,\L) -- (0,\L);
-\draw[link] (0,\L) -- (0,0);
-
-\node[gsitehl] at (0,0) {};
-\node[gsite] at (\L,0) {};
-\node[gsite] at (\L,\L) {};
-\node[gsite] at (0,\L) {};
-
-\node[aqmlabsmall, anchor=north east, text=aqmbroken] at (-0.06,-0.06) {$1$};
-\node[aqmlabsmall, anchor=north west] at (\L+0.06,-0.06) {$2$};
-\node[aqmlabsmall, anchor=south west] at (\L+0.06,\L+0.06) {$3$};
-\node[aqmlabsmall, anchor=south east] at (-0.06,\L+0.06) {$4$};
-
-\node[aqmlabsmall, anchor=north] at (0.5*\L,-0.10) {$\theta_{12}$};
-\node[aqmlabsmall, anchor=west] at (\L+0.10,0.5*\L) {$\theta_{23}$};
-\node[aqmlabsmall, anchor=south] at (0.5*\L,\L+0.10) {$\theta_{34}$};
-\node[aqmlabsmall, anchor=east] at (-0.10,0.5*\L) {$\theta_{41}$};
-
-\node[aqmlabsmall] at (0.5*\L,0.5*\L) {$\Phi$};
-\draw[aqmarrowmuted] (0.5*\L+0.40,0.5*\L-0.14) arc (-22:250:0.42);
-
-\node[aqmlabsmall, anchor=north west, align=left] at (-0.40,-0.62)
-  {$\Phi=e^{i(\theta_{12}+\theta_{23}+\theta_{34}+\theta_{41})}$};
-\node[aqmlabsmall, anchor=north west, align=left, text=aqmbroken] at (-0.40,-1.06)
-  {gauge transformation at site $1$:\\[1pt]
-   $f_{1\sigma}\to e^{i\theta_1}f_{1\sigma}$, \; $\theta_{ij}\to\theta_{ij}+\theta_i-\theta_j$};
-\node[aqmlabsmall, anchor=north west, align=left] at (-0.40,-1.92)
-  {exponent $\to
-   (\theta_{12}\textcolor{aqmbroken}{{}+\theta_1})+\theta_{23}+\theta_{34}+
-   (\theta_{41}\textcolor{aqmbroken}{{}-\theta_1})$};
-\node[aqmlabsmall, anchor=north west, align=left, text=aqmmuted] at (-0.40,-2.36)
-  {each site phase enters the loop twice, with\\[1pt]
-   opposite signs, so $\Phi$ is unchanged};
-
-% ============================== (b) the vison ================================
-\begin{scope}[shift={(8.45,-0.62)}]
-  \def\a{0.78}
-  \node[aqmpanel, anchor=west] at (-0.15,4*\a+0.44) {(b) a vison};
-
-  % the flipped plaquette, shaded
-  \fill[aqmfillb] (2*\a,2*\a) rectangle (3*\a,3*\a);
-  % grid
-  \foreach \n in {0,...,4} {
-    \draw[aqmbond, line width=\aqmthinwidth] (0,\n*\a) -- (4*\a,\n*\a);
-    \draw[aqmbond, line width=\aqmthinwidth] (\n*\a,0) -- (\n*\a,4*\a);
-  }
-  % the one link carrying the extra minus sign
-  \draw[linkflip] (2*\a,2*\a) -- (3*\a,2*\a);
-  % sites
-  \foreach \n in {0,...,4} {
-    \foreach \m in {0,...,4} {
-      \node[gsite, minimum size=3.6pt] at (\n*\a,\m*\a) {};
-    }
-  }
-  % plaquette fluxes
-  \foreach \n in {0,...,3} {
-    \foreach \m in {0,...,3} {
-      \node[aqmlabsmall, text=aqmmuted] at (\n*\a+0.5*\a,\m*\a+0.5*\a) {$+$};
-    }
-  }
-  \node[aqmlabsmall, text=aqmbroken, fill=aqmfillb, inner sep=0.5pt]
-    at (2.5*\a,2.5*\a) {$-$};
-
-  \draw[aqmarrowbroken] (4*\a+0.75,2.5*\a) -- (4*\a+0.10,2.5*\a);
-  \node[aqmlabsmall, anchor=west, align=left, text=aqmbroken] at (4*\a+0.82,2.5*\a)
-    {$\Phi=-1$:\\[-1pt]\textbf{vison}};
-
-  \node[aqmlabsmall, anchor=north, align=center, text=aqmmuted] at (2*\a,-0.24)
-    {ground state: $\Phi=+1$ on every plaquette};
-  \node[aqmlabsmall, anchor=north, align=center] at (2*\a,-0.72)
-    {the thick link's sign can be gauged onto\\[1pt]
-     any other link of the same plaquette;\\[1pt]
-     the flux itself cannot be gauged away};
-\end{scope}
-
-\end{tikzpicture}
-
+excitation, seen from above. (a) The mean-field bond variable is defined on the links,
+$\chi_{ij}=|\chi_{ij}|e^{i\theta_{ij}}$, drawn as a dial at the phase $\theta_{ij}$, and the local
+phase rotation (8.16) on one site shifts every link phase by $\theta_i-\theta_j$, which changes the
+two red needles. When we go once around a plaquette, each site phase appears twice with opposite
+signs, so the flux $\Phi=\prod e^{i\theta_{ij}}$ does not change. The link variables are pure gauge,
+and the flux is physical. This is the reason why two mean-field solutions related by (8.16) describe
+the same spin liquid. (b) As a result, the flux is what labels the state. With $\Phi=+1$ on every
+plaquette as the ground state, flipping a single plaquette to $\Phi=-1$ costs energy, and no gauge
+transformation can remove it. This localized defect of the gauge field is a \textbf{vison}. Which
+links have the minus sign is a gauge choice, here a string from the edge, and it can be moved
+freely, while the shaded plaquette cannot be moved.}
+\includegraphics{figures/pdf/s08f05_gauge_vison.pdf}
 \end{aqmfigure}
