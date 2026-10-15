@@ -8,12 +8,13 @@
 \usetikzlibrary{arrows.meta,calc}
 \input{aqmcolors.tex}
 \input{aqmstyles.tex}
-\newlength{\figw}\setlength{\figw}{12.5cm}   % 0.8 of the text width
+\newlength{\figw}\setlength{\figw}{15.80cm}   % 1.01 of the text width, before the empty margins of the render are cropped
 
 \begin{document}
 \begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
-  \node[anchor=south west, inner sep=0pt] at (0,0)
+  \node[overlay, anchor=south west, inner sep=0pt] at (0,0)
     {\includegraphics[width=\figw]{../blender/out/s04f02_gauge.jpg}};
+  \input{../blender/out/s04f02_gauge_bbox.tex}
   \input{../blender/out/s04f02_gauge_anchors.tex}
   \node[lbl, anchor=south west] at (apanel) {\textbf{(a)}\quad Landau gauge};
   \node[lbl, anchor=south west] at (bpanel) {\textbf{(b)}\quad symmetric gauge};

@@ -8,14 +8,15 @@
 \usetikzlibrary{arrows.meta,calc}
 \input{aqmcolors.tex}
 \input{aqmstyles.tex}
-\newlength{\figw}\setlength{\figw}{15.60cm}   % the text width of the notes (A4, 2.7 cm margins)
+\newlength{\figw}\setlength{\figw}{16.92cm}   % 1.08 of the text width, before the empty margins of the render are cropped
 
 \begin{document}
 \begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
   \begin{scope}[shift={(0.00cm,0.00cm)}]
-    \setlength{\figw}{15.60cm}
-    \node[anchor=south west, inner sep=0pt] at (0,0)
+    \setlength{\figw}{16.92cm}
+    \node[overlay, anchor=south west, inner sep=0pt] at (0,0)
       {\includegraphics[width=\figw]{../blender/out/s10f02_nnqs.jpg}};
+    \input{../blender/out/s10f02_nnqs_bbox.tex}
     \input{../blender/out/s10f02_nnqs_anchors.tex}
     \node[pnl, anchor=south west] at (ap) {(a)};
     \node[pnl, anchor=south west] at (bp) {(b)};
@@ -24,10 +25,10 @@
     \node[lbl, anchor=south, text=aqmbroken] at (aC) {$C_\theta(s)$};
     \node[lbl, anchor=north] at (bs) {samples from $|C_\theta(s)|^2$};
     \node[lbl, anchor=south, text=aqmbroken] at (be) {$\langle E_{\rm loc}\rangle$};
-    \node[lbl, anchor=north] at (nnqs) {NNQS};
-    \node[lbl, anchor=north] at (peps) {PEPS};
-    \node[lbl, anchor=north, text=white] at (mps) {MPS};
-    \aqmkeyrow{(4.6cm,0.55cm)}{keyup}{$\uparrow$}{keydown}{$\downarrow$}
+    \node[lbl, font=\footnotesize, inner sep=0.5pt, anchor=north] at (nnqs) {NNQS};
+    \node[lbl, font=\footnotesize, inner sep=0.5pt, anchor=north] at (peps) {PEPS};
+    \node[lbl, font=\footnotesize, inner sep=0.5pt, anchor=north, text=white] at (mps) {MPS};
+    \aqmkeyrow{($(as)+(-0.8cm,1.25cm)$)}{keyup}{$\uparrow$}{keydown}{$\downarrow$}
   \end{scope}
 \end{tikzpicture}
 \end{document}

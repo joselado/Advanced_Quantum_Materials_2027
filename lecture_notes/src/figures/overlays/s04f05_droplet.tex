@@ -11,15 +11,16 @@
 
 \begin{document}
 \begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
-  \node[anchor=south west, inner sep=0pt] at (0,0)
+  \node[overlay, anchor=south west, inner sep=0pt] at (0,0)
     {\includegraphics[width=\figw]{../blender/out/s04f05_droplet.jpg}};
+  \input{../blender/out/s04f05_droplet_bbox.tex}
   \input{../blender/out/s04f05_droplet_anchors.tex}
   \node[pnl, anchor=west] at (apanel) {(a)};
   \node[pnl, anchor=west] at (bpanel) {(b)};
   \node[lbl, anchor=south] at (m0) {$m=0$};
   \node[lbl, anchor=south] at (m8) {$m=8$};
   \node[lbl, anchor=west] at (ar) {$r$};
-  \node[lbl, anchor=south] at (nu1) {$\nu=1$};
-  \node[lbl, anchor=south] at (nu3) {$\nu=1/3$};
+  \node[lbl, anchor=south, yshift=0.3cm] at (nu1) {$\nu=1$};
+  \node[lbl, anchor=south, yshift=0.5cm] at (nu3) {$\nu=1/3$};
 \end{tikzpicture}
 \end{document}

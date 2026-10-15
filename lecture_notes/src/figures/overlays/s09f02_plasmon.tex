@@ -8,23 +8,24 @@
 \usetikzlibrary{arrows.meta,calc}
 \input{aqmcolors.tex}
 \input{aqmstyles.tex}
-\newlength{\figw}\setlength{\figw}{10.10cm}   % 0.65 of the text width
+\newlength{\figw}\setlength{\figw}{10.10cm}   % 0.65 of the text width, before the empty margins of the render are cropped
 
 \begin{document}
 \begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
   \begin{scope}[shift={(0.00cm,0.00cm)}]
     \setlength{\figw}{10.10cm}
-    \node[anchor=south west, inner sep=0pt] at (0,0)
+    \node[overlay, anchor=south west, inner sep=0pt] at (0,0)
       {\includegraphics[width=\figw]{../blender/out/s09f02_plasmon.jpg}};
+    \input{../blender/out/s09f02_plasmon_bbox.tex}
     \input{../blender/out/s09f02_plasmon_anchors.tex}
     \node[lbl, anchor=north east] at (q) {$q/k_F$};
     \node[lbl, anchor=west] at (w) {$\omega$};
     \node[lbl, anchor=east, text=aqmbroken] at (wp) {$\omega_p$};
     \node[lbl, anchor=north] at (twokf) {$2$};
-    \node[lbl, anchor=south west, text=aqmbroken] at (plasmon) {plasmon};
+    \node[lbl, anchor=south west, xshift=-6pt, text=aqmbroken] at (plasmon) {plasmon};
     \node[lbl, anchor=west, text=aqmaccent] at (cont) {continuum};
     \node[lbl, anchor=west, text=aqmmuted, align=left] at (window) {no particle-hole\\pairs here};
-    \node[lbl, anchor=north west, text=aqmbroken] at (damped) {Landau damped};
+    \node[lbl, anchor=south, yshift=2pt, text=aqmbroken] at (damped) {Landau damped};
   \end{scope}
 \end{tikzpicture}
 \end{document}

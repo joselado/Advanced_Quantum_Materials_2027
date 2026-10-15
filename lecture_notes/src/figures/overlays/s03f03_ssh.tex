@@ -6,12 +6,13 @@
 \usepackage{amsmath,amssymb,graphicx}
 \usepackage{xcolor}
 \input{aqmcolors.tex}
-\newlength{\figw}\setlength{\figw}{15.6cm}   % the text width of the notes (A4, 2.7 cm margins)
+\newlength{\figw}\setlength{\figw}{17.17cm}   % 1.10 of the text width, before the empty margins of the render are cropped
 
 \begin{document}
 \begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}]
-  \node[anchor=south west, inner sep=0pt] at (0,0)
+  \node[overlay, anchor=south west, inner sep=0pt] at (0,0)
     {\includegraphics[width=\figw]{../blender/out/s03f03_ssh.jpg}};
+  \input{../blender/out/s03f03_ssh_bbox.tex}
   \input{../blender/out/s03f03_ssh_anchors.tex}
   % (a) in front: the trivial chain
   \node[lbl, anchor=south west] at (apanel) {\textbf{(a)}\quad intracell hopping dominates, $t\gg1$, trivial};

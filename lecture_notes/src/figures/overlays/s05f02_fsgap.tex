@@ -8,17 +8,19 @@
 \usetikzlibrary{arrows.meta,calc}
 \input{aqmcolors.tex}
 \input{aqmstyles.tex}
-\newlength{\figw}\setlength{\figw}{15.6cm}   % the text width of the notes (A4, 2.7 cm margins)
+\newlength{\figw}\setlength{\figw}{16.73cm}   % 1.07 of the text width, before the empty margins of the render are cropped
 
 \begin{document}
 \begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
-  \node[anchor=south west, inner sep=0pt] at (0,0)
+  \node[overlay, anchor=south west, inner sep=0pt] at (0,0)
     {\includegraphics[width=\figw]{../blender/out/s05f02_fsgap.jpg}};
+  \input{../blender/out/s05f02_fsgap_bbox.tex}
   \input{../blender/out/s05f02_fsgap_anchors.tex}
   \node[lbl, anchor=south west] at (apanel) {\textbf{(a)}\quad metal, $\Delta=0$};
   \node[lbl, anchor=south west] at (bpanel) {\textbf{(b)}\quad $s$-wave, $\Delta_0$};
   \node[lbl, anchor=south west] at (cpanel) {\textbf{(c)}\quad $d$-wave, (5.13)};
-  \foreach \p in {a,b,c} { \node[lbl, anchor=north, text=aqmmuted] at (\p Gamma) {$\Gamma$}; }
+  \foreach \p in {a,b} { \node[lbl, anchor=north, text=aqmmuted] at (\p Gamma) {$\Gamma$}; }
+  \node[lbl, anchor=north, text=aqmmuted, fill=white, fill opacity=0.8, text opacity=1, inner sep=0.8pt] at (cGamma) {$\Gamma$};
   \draw[axarrow] (akO) -- (akx);
   \draw[axarrow] (akO) -- (aky);
   \node[axlbl, anchor=north] at (akx) {$k_x$};
@@ -26,10 +28,10 @@
   \draw[axarrow] (bkO) -- (bkx);
   \draw[axarrow] (bkO) -- (bky);
   \node[axlbl, anchor=north] at (bkx) {$k_x$};
-  \node[axlbl, anchor=south west] at (bky) {$k_y$};
+  \node[axlbl, anchor=south west, xshift=1pt, yshift=3pt] at (bky) {$k_y$};
   \draw[axarrow] (ckO) -- (ckx);
   \draw[axarrow] (ckO) -- (cky);
-  \node[axlbl, anchor=south east] at (ckx) {$k_x$};
-  \node[axlbl, anchor=south west] at (cky) {$k_y$};
+  \node[axlbl, anchor=west] at (ckx) {$k_x$};
+  \node[axlbl, anchor=west, xshift=0.32cm, yshift=0.1cm] at (cky) {$k_y$};
 \end{tikzpicture}
 \end{document}

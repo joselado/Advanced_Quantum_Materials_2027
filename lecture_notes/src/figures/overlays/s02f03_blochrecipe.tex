@@ -13,8 +13,9 @@
 \begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
   \begin{scope}
     \setlength{\figw}{4.4cm}
-    \node[anchor=south west, inner sep=0pt] at (0,0)
+    \node[overlay, anchor=south west, inner sep=0pt] at (0,0)
       {\includegraphics[width=\figw]{../blender/out/s02f03_blochrecipe_a.jpg}};
+    \input{../blender/out/s02f03_blochrecipe_a_bbox.tex}
     \input{../blender/out/s02f03_blochrecipe_a_anchors.tex}
     \node[lbl, anchor=south west] at (aone) {\textbf{(a)}\quad\textcolor{aqmmuted}{one site per cell}};
     \node[lbl, anchor=south west, text=aqmmuted] at (atwo) {two sites per cell};
@@ -25,8 +26,9 @@
   \end{scope}
   \begin{scope}[shift={(4.6cm,0)}]
     \setlength{\figw}{11.0cm}
-    \node[anchor=south west, inner sep=0pt] at (0,0)
+    \node[overlay, anchor=south west, inner sep=0pt] at (0,0)
       {\includegraphics[width=\figw]{../blender/out/s02f03_blochrecipe_b.jpg}};
+    \input{../blender/out/s02f03_blochrecipe_b_bbox.tex}
     \input{../blender/out/s02f03_blochrecipe_b_anchors.tex}
     \node[lbl, anchor=south] at (btitle) {\textbf{(b)}\quad$\eta=1$, folded};
     \node[lbl, anchor=south] at (ctitle) {$\eta=0.6$};

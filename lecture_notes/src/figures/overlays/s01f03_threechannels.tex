@@ -12,8 +12,9 @@
 \begin{document}
 \begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt},
     flow/.style={line width=0.9pt, -{Stealth[length=5pt,width=4pt]}}]
-  \node[anchor=south west, inner sep=0pt] at (0,0)
+  \node[overlay, anchor=south west, inner sep=0pt] at (0,0)
     {\includegraphics[width=\figw]{../blender/out/s01f03_threechannels.jpg}};
+  \input{../blender/out/s01f03_threechannels_bbox.tex}
   \input{../blender/out/s01f03_threechannels_anchors.tex}
   \node[lbl, anchor=south, text=aqmaccent] at (H) {$V_{ijkl}$};
   \node[lbl, anchor=north, align=center] at (Hb)

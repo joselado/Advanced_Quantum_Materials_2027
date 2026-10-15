@@ -12,8 +12,9 @@
 
 \begin{document}
 \begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
-  \node[anchor=south west, inner sep=0pt] at (0,0)
+  \node[overlay, anchor=south west, inner sep=0pt] at (0,0)
     {\includegraphics[width=\figw]{../blender/out/s02f01_ringmodes.jpg}};
+  \input{../blender/out/s02f01_ringmodes_bbox.tex}
   \input{../blender/out/s02f01_ringmodes_anchors.tex}
   \node[lbl, anchor=north] at (n0) {$n=0$};
   \node[lbl, anchor=north] at (n1) {$n=1$};
@@ -23,8 +24,8 @@
   \node[lbl, anchor=north] at (L2) {$L\to\infty$};
   \node[lbl, anchor=south east, text=aqmaccent] at (BZ) {first Brillouin zone};
   \node[lbl, anchor=south] at ($(n1)+(0,2.55cm)$) {$\alpha_j\propto e^{2\pi i n j/3}$};
-  \node[lbl, anchor=south] at ($(L0)+(0,2.55cm)$) {allowed phases $e^{2\pi i n/L}$};
-  \node[axlbl, anchor=north west] at (cre) {$\mathrm{Re}$};
-  \node[axlbl, anchor=south west] at (cim) {$\mathrm{Im}$};
+  \node[lbl, anchor=south] at ($(L0)!0.3!(L1)+(0,2.55cm)$) {allowed phases $e^{2\pi i n/L}$};
+  \node[axlbl, anchor=north east, yshift=-1pt] at ($(one)+(-0.012\figw,0)$) {$\mathrm{Re}$};
+  \node[axlbl, anchor=west] at (cim) {$\mathrm{Im}$};
 \end{tikzpicture}
 \end{document}

@@ -14,22 +14,24 @@
 \begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
   \begin{scope}
     \setlength{\figw}{9.6cm}
-    \node[anchor=south west, inner sep=0pt] at (0,0)
+    \node[overlay, anchor=south west, inner sep=0pt] at (0,0)
       {\includegraphics[width=\figw]{../blender/out/s04f01_ribbon_a.jpg}};
+    \input{../blender/out/s04f01_ribbon_a_bbox.tex}
     \input{../blender/out/s04f01_ribbon_a_anchors.tex}
-    \node[pnl, anchor=north west] at (apanel) {(a)};
+    \node[pnl, anchor=south west] at (apanel) {(a)};
     \node[lbl, anchor=south east] at (ak) {$k_y$};
     \node[lbl, anchor=west] at (aE) {$E$};
     \node[lbl, anchor=north east, text=aqmbroken] at (amu) {$\mu$};
     \node[lbl, anchor=north, text=aqmmuted] at (awallL) {left wall};
     \node[lbl, anchor=north, text=aqmmuted] at (awallR) {right wall};
-    \node[lbl, anchor=south, fill=white, fill opacity=0.7, text opacity=1] at (an0) {$n=0$};
-    \node[lbl, anchor=south, fill=white, fill opacity=0.7, text opacity=1] at (an1) {$n=1$};
+    \node[lbl, anchor=north, yshift=-2pt] at (an0) {$n=0$};
+    \node[lbl, anchor=north, yshift=-2pt] at (an1) {$n=1$};
   \end{scope}
   \begin{scope}[shift={(9.8cm,0)}]
     \setlength{\figw}{5.8cm}
-    \node[anchor=south west, inner sep=0pt] at (0,0)
+    \node[overlay, anchor=south west, inner sep=0pt] at (0,0)
       {\includegraphics[width=\figw]{../blender/out/s04f01_ribbon_b.jpg}};
+    \input{../blender/out/s04f01_ribbon_b_bbox.tex}
     \input{../blender/out/s04f01_ribbon_b_anchors.tex}
     \node[pnl, anchor=north west] at (bpanel) {(b)};
     \node[lbl, anchor=west] at (bimp) {impurity};

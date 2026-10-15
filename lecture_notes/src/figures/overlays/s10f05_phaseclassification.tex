@@ -14,8 +14,9 @@
 \begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
   \begin{scope}[shift={(0.00cm,0.00cm)}]
     \setlength{\figw}{15.60cm}
-    \node[anchor=south west, inner sep=0pt] at (0,0)
+    \node[overlay, anchor=south west, inner sep=0pt] at (0,0)
       {\includegraphics[width=\figw]{../blender/out/s10f05_phaseclassification.jpg}};
+    \input{../blender/out/s10f05_phaseclassification_bbox.tex}
     \input{../blender/out/s10f05_phaseclassification_anchors.tex}
     \foreach \p/\t in {a/{Ising, ordered}, b/{Ising, disordered}, c/{gauge, ground state}, d/{gauge, random}} {
       \node[lbl, anchor=south west] at (p\p) {\textbf{(\p)}\ \t};

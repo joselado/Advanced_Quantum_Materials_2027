@@ -12,22 +12,25 @@
 
 \begin{document}
 \begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
-  \node[anchor=south west, inner sep=0pt] at (0,0)
+  \node[overlay, anchor=south west, inner sep=0pt] at (0,0)
     {\includegraphics[width=\figw]{../blender/out/s03f04_winding.jpg}};
+  \input{../blender/out/s03f04_winding_bbox.tex}
   \input{../blender/out/s03f04_winding_anchors.tex}
   \foreach \p/\t/\w in {a/{0.5}/{winding $1$}, b/{1}/{gap closes}, c/{1.5}/{winding $0$}} {
     \node[lbl, anchor=south] at (\p t) {\textbf{(\p)}\quad$t=\t$, \w};
-    \node[lbl, anchor=north east] at (\p zero) {$0$};
     \node[lbl, anchor=south west, text=aqmaccent] at (\p re) {$d(k)$};
     \node[lbl, anchor=south west] at (\p E) {$E_\pm$};
     \node[lbl, anchor=north] at (\p kmin) {$-\pi$};
     \node[lbl, anchor=north] at (\p kmax) {$\pi$};
   }
-  \node[axlbl, anchor=north east] at (acre) {$\mathrm{Re}\,d$};
+  \node[lbl, anchor=north west, yshift=-1pt] at (azero) {$0$};
+  \node[lbl, anchor=north east] at (bzero) {$0$};
+  \node[lbl, anchor=north east] at (czero) {$0$};
+  \node[axlbl, anchor=south east, xshift=1pt, fill=white, fill opacity=0.85, text opacity=1, inner sep=0.8pt] at (acre) {$\mathrm{Re}\,d$};
   \node[axlbl, anchor=west] at (acim) {$\mathrm{Im}\,d$};
-  \node[axlbl, anchor=north east] at (bcre) {$\mathrm{Re}\,d$};
+  \node[axlbl, anchor=south east, xshift=1pt, fill=white, fill opacity=0.85, text opacity=1, inner sep=0.8pt] at (bcre) {$\mathrm{Re}\,d$};
   \node[axlbl, anchor=west] at (bcim) {$\mathrm{Im}\,d$};
-  \node[axlbl, anchor=north east] at (ccre) {$\mathrm{Re}\,d$};
+  \node[axlbl, anchor=south east, xshift=1pt, fill=white, fill opacity=0.85, text opacity=1, inner sep=0.8pt] at (ccre) {$\mathrm{Re}\,d$};
   \node[axlbl, anchor=west] at (ccim) {$\mathrm{Im}\,d$};
 \end{tikzpicture}
 \end{document}

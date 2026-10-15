@@ -12,17 +12,18 @@
 
 \begin{document}
 \begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
-  \node[anchor=south west, inner sep=0pt] at (0,0)
+  \node[overlay, anchor=south west, inner sep=0pt] at (0,0)
     {\includegraphics[width=\figw]{../blender/out/s05f06_qsh.jpg}};
+  \input{../blender/out/s05f06_qsh_bbox.tex}
   \input{../blender/out/s05f06_qsh_anchors.tex}
   \node[lbl, anchor=south] at (fm0) {ferromagnet};
   \node[lbl, anchor=south] at (fm1) {ferromagnet};
   \node[lbl, anchor=south] at (sc) {$s$-wave superconductor};
   \node[lbl, anchor=north, text=aqmbroken] at (maj0) {Majorana};
   \node[lbl, anchor=north, text=aqmbroken] at (maj1) {Majorana};
-  \node[lbl, anchor=north east] at (up) {spin $\uparrow$};
-  \node[lbl, anchor=south west] at (dn) {spin $\downarrow$};
-  \node[lbl, anchor=south east, text=aqmmuted] at (qsh) {quantum spin Hall insulator};
-  \aqmkey{(0.3cm,5.25cm)}{keyup}{spin $\uparrow$}{keydown}{spin $\downarrow$}
+  \node[lbl, anchor=north east, yshift=-2pt] at (up) {spin $\uparrow$};
+  \node[lbl, anchor=south west, yshift=2pt] at (dn) {spin $\downarrow$};
+  \node[lbl, anchor=south east, text=aqmmuted, yshift=2pt] at (qsh) {quantum spin Hall insulator};
+  \aqmkeyrow{(0.3cm,3.95cm)}{keyup}{spin $\uparrow$}{keydown}{spin $\downarrow$}
 \end{tikzpicture}
 \end{document}

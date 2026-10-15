@@ -13,52 +13,57 @@
 \begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
   \begin{scope}[shift={(0.00cm,0)}]
     \setlength{\figw}{2.9cm}
-    \node[anchor=south west, inner sep=0pt] at (0,0)
+    \node[overlay, anchor=south west, inner sep=0pt] at (0,0)
       {\includegraphics[width=\figw]{../blender/out/s02f05_flatbands_a.jpg}};
+    \input{../blender/out/s02f05_flatbands_a_bbox.tex}
     \input{../blender/out/s02f05_flatbands_a_anchors.tex}
     \node[pnl, anchor=west] at (apanel) {(a)};
   \end{scope}
   \begin{scope}[shift={(3.00cm,0)}]
     \setlength{\figw}{3.3cm}
-    \node[anchor=south west, inner sep=0pt] at (0,0)
+    \node[overlay, anchor=south west, inner sep=0pt] at (0,0)
       {\includegraphics[width=\figw]{../blender/out/s02f05_flatbands_b.jpg}};
+    \input{../blender/out/s02f05_flatbands_b_bbox.tex}
     \input{../blender/out/s02f05_flatbands_b_anchors.tex}
-    \node[pnl, anchor=west] at (bpanel) {(b)};
+    \node[pnl, anchor=west, xshift=4pt] at (bpanel) {(b)};
     \node[lbl, anchor=north] at (bG1) {$\Gamma$};
     \node[lbl, anchor=north] at (bM) {$M$};
     \node[lbl, anchor=north] at (bG2) {$\Gamma$};
     \node[lbl, anchor=west] at (bE) {$\epsilon$};
     \node[lbl, anchor=north] at (bX) {$X$};
-    \node[lbl, anchor=south east, text=aqmbroken] at (bflat) {$0$};
+    \node[lbl, anchor=south east, yshift=1pt, text=aqmbroken] at (bflat) {$0$};
   \end{scope}
   \begin{scope}[shift={(6.40cm,0)}]
     \setlength{\figw}{2.9cm}
-    \node[anchor=south west, inner sep=0pt] at (0,0)
+    \node[overlay, anchor=south west, inner sep=0pt] at (0,0)
       {\includegraphics[width=\figw]{../blender/out/s02f05_flatbands_c.jpg}};
+    \input{../blender/out/s02f05_flatbands_c_bbox.tex}
     \input{../blender/out/s02f05_flatbands_c_anchors.tex}
     \node[pnl, anchor=west] at (cpanel) {(c)};
   \end{scope}
   \begin{scope}[shift={(9.40cm,0)}]
     \setlength{\figw}{3.3cm}
-    \node[anchor=south west, inner sep=0pt] at (0,0)
+    \node[overlay, anchor=south west, inner sep=0pt] at (0,0)
       {\includegraphics[width=\figw]{../blender/out/s02f05_flatbands_d.jpg}};
+    \input{../blender/out/s02f05_flatbands_d_bbox.tex}
     \input{../blender/out/s02f05_flatbands_d_anchors.tex}
-    \node[pnl, anchor=west] at (dpanel) {(d)};
+    \node[pnl, anchor=west, xshift=4pt] at (dpanel) {(d)};
     \node[lbl, anchor=north] at (dG1) {$\Gamma$};
     \node[lbl, anchor=north] at (dM) {$M$};
     \node[lbl, anchor=north] at (dG2) {$\Gamma$};
     \node[lbl, anchor=west] at (dE) {$\epsilon$};
     \node[lbl, anchor=north] at (dK) {$K$};
-    \node[lbl, anchor=north east, text=aqmbroken] at (dflat) {$2t$};
+    \node[lbl, anchor=south east, yshift=1pt, text=aqmbroken] at (dflat) {$2t$};
   \end{scope}
   \begin{scope}[shift={(12.80cm,0)}]
     \setlength{\figw}{2.8cm}
-    \node[anchor=south west, inner sep=0pt] at (0,0)
+    \node[overlay, anchor=south west, inner sep=0pt] at (0,0)
       {\includegraphics[width=\figw]{../blender/out/s02f05_flatbands_e.jpg}};
+    \input{../blender/out/s02f05_flatbands_e_bbox.tex}
     \input{../blender/out/s02f05_flatbands_e_anchors.tex}
     \node[pnl, anchor=west] at (epanel) {(e)};
-    \node[lbl] at (eamp0) {$+$};
-    \node[lbl] at (eamp5) {$-$};
+    \node[lbl, anchor=south west, xshift=-3pt, yshift=1pt] at (eamp0) {$+$};
+    \node[lbl, anchor=north west, xshift=-3pt, yshift=-1pt] at (eamp5) {$-$};
   \end{scope}
 \end{tikzpicture}
 \end{document}

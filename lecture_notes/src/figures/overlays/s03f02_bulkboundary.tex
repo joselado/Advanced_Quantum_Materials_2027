@@ -7,12 +7,13 @@
 \usepackage{xcolor}
 \usetikzlibrary{arrows.meta,calc}
 \input{aqmcolors.tex}
-\newlength{\figw}\setlength{\figw}{11.7cm}   % 0.75 of the text width
+\newlength{\figw}\setlength{\figw}{12.69cm}   % 0.81 of the text width, before the empty margins of the render are cropped
 
 \begin{document}
 \begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
-  \node[anchor=south west, inner sep=0pt] at (0,0)
+  \node[overlay, anchor=south west, inner sep=0pt] at (0,0)
     {\includegraphics[width=\figw]{../blender/out/s03f02_bulkboundary.jpg}};
+  \input{../blender/out/s03f02_bulkboundary_bbox.tex}
   \input{../blender/out/s03f02_bulkboundary_anchors.tex}
   \node[lbl, anchor=south] at (C1) {$C_1=1$};
   \node[lbl, anchor=south] at (C2) {$C_2=0$};

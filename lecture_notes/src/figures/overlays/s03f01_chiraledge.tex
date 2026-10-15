@@ -8,12 +8,13 @@
 \usetikzlibrary{arrows.meta,calc}
 \input{aqmcolors.tex}
 \input{aqmstyles.tex}
-\newlength{\figw}\setlength{\figw}{15.6cm}   % the text width of the notes (A4, 2.7 cm margins)
+\newlength{\figw}\setlength{\figw}{17.27cm}   % 1.11 of the text width, before the empty margins of the render are cropped
 
 \begin{document}
 \begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
-  \node[anchor=south west, inner sep=0pt] at (0,0)
+  \node[overlay, anchor=south west, inner sep=0pt] at (0,0)
     {\includegraphics[width=\figw]{../blender/out/s03f01_chiraledge.jpg}};
+  \input{../blender/out/s03f01_chiraledge_bbox.tex}
   \input{../blender/out/s03f01_chiraledge_anchors.tex}
   \node[pnl, anchor=south west] at (a) {(a)\quad\normalfont a gapped bulk with conducting edges};
   \node[pnl, anchor=south west] at (b) {(b)\quad\normalfont an impurity cannot stop it};

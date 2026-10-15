@@ -12,8 +12,9 @@
 
 \begin{document}
 \begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
-  \node[anchor=south west, inner sep=0pt] at (0,0)
+  \node[overlay, anchor=south west, inner sep=0pt] at (0,0)
     {\includegraphics[width=\figw]{../blender/out/s05f03_gapsymmetry.jpg}};
+  \input{../blender/out/s05f03_gapsymmetry_bbox.tex}
   \input{../blender/out/s05f03_gapsymmetry_anchors.tex}
   \foreach \p/\t in {a/{$s$, $L=0$}, b/{extended $s$}, c/{$p$, $L=1$}, d/{$d$, $L=2$}, e/{$f$, $L=3$}} {
     \node[lbl, anchor=south west] at (p\p) {\textbf{(\p)}\ \t};

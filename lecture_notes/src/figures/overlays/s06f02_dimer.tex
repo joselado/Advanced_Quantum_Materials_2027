@@ -14,8 +14,9 @@
 \begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
   \begin{scope}[shift={(0.00cm,0.00cm)}]
     \setlength{\figw}{6.80cm}
-    \node[anchor=south west, inner sep=0pt] at (0,0)
+    \node[overlay, anchor=south west, inner sep=0pt] at (0,0)
       {\includegraphics[width=\figw]{../blender/out/s06f02_dimer_a.jpg}};
+    \input{../blender/out/s06f02_dimer_a_bbox.tex}
     \input{../blender/out/s06f02_dimer_a_anchors.tex}
     \node[pnl, anchor=south west] at (apanel) {(a)};
     \node[lbl, anchor=south, text=aqmbroken] at (ablocked) {Pauli blocked};
@@ -25,15 +26,16 @@
   \end{scope}
   \begin{scope}[shift={(6.95cm,0.00cm)}]
     \setlength{\figw}{8.60cm}
-    \node[anchor=south west, inner sep=0pt] at (0,0)
+    \node[overlay, anchor=south west, inner sep=0pt] at (0,0)
       {\includegraphics[width=\figw]{../blender/out/s06f02_dimer_b.jpg}};
+    \input{../blender/out/s06f02_dimer_b_bbox.tex}
     \input{../blender/out/s06f02_dimer_b_anchors.tex}
     \node[pnl, anchor=south east] at (bpanel) {(b)};
     \node[lbl, anchor=south east] at (bU) {$U/t$};
     \node[lbl, anchor=west] at (bE) {$E/t$};
-    \node[lbl, anchor=south] at (bET) {$E_T=0$};
-    \node[lbl, anchor=north west, text=aqmaccent] at (bES) {$E_S$};
-    \node[lbl, anchor=west, text=aqmmuted] at (bpert) {$-4t^2/U$};
+    \node[lbl, anchor=south, yshift=1pt] at (bET) {$E_T=0$};
+    \node[lbl, anchor=south east, text=aqmaccent] at (bES) {$E_S$};
+    \node[lbl, anchor=west, xshift=4pt, text=aqmmuted] at (bpert) {$-4t^2/U$};
   \end{scope}
 \end{tikzpicture}
 \end{document}

@@ -7,15 +7,16 @@
 \usepackage{xcolor}
 \usetikzlibrary{arrows.meta,calc}
 \input{aqmcolors.tex}
-\newlength{\figw}\setlength{\figw}{15.6cm}   % the text width of the notes (A4, 2.7 cm margins)
+\newlength{\figw}\setlength{\figw}{16.74cm}   % 1.07 of the text width, before the empty margins of the render are cropped
 
 \begin{document}
 \begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
-  \node[anchor=south west, inner sep=0pt] at (0,0)
+  \node[overlay, anchor=south west, inner sep=0pt] at (0,0)
     {\includegraphics[width=\figw]{../blender/out/s04f04_ladders.jpg}};
+  \input{../blender/out/s04f04_ladders_bbox.tex}
   \input{../blender/out/s04f04_ladders_anchors.tex}
   \node[lbl, anchor=south west] at (apanel) {\textbf{(a)}\quad Schr\"odinger electrons};
-  \node[lbl, anchor=south west] at (bpanel) {\textbf{(b)}\quad Dirac electrons};
+  \node[lbl, anchor=south west, xshift=-0.35cm] at (bpanel) {\textbf{(b)}\quad Dirac electrons};
   \node[lbl, anchor=north east] at (aB) {$B$};
   \node[lbl, anchor=north east] at (bB) {$B$};
   \node[lbl, anchor=west] at (aE) {$E$};
@@ -24,7 +25,7 @@
   \node[lbl, anchor=north, text=aqmaccent] at (bB0) {$B_0$};
   \node[lbl, anchor=west] at (an5) {$n=5$};
   \node[lbl, anchor=west] at (an0) {$n=0$};
-  \node[lbl, anchor=south east, text=aqmaccent] at (bn0) {$n=0$};
-  \node[lbl, anchor=south east] at (bn3) {$n=3$};
+  \node[lbl, anchor=south west, xshift=0.2cm, yshift=3pt, text=aqmaccent] at (bn0) {$n=0$};
+  \node[lbl, anchor=south west, xshift=0.15cm] at (bn3) {$n=3$};
 \end{tikzpicture}
 \end{document}

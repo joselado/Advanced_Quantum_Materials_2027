@@ -7,13 +7,14 @@
 \usepackage{xcolor}
 \usetikzlibrary{arrows.meta}
 \input{aqmcolors.tex}
-\newlength{\figw}\setlength{\figw}{15.6cm}   % the text width of the notes (A4, 2.7 cm margins)
+\newlength{\figw}\setlength{\figw}{16.26cm}   % 1.04 of the text width, before the empty margins of the render are cropped
 
 \begin{document}
 \begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt},
     flow/.style={line width=0.9pt, -{Stealth[length=5pt,width=4pt]}}]
-  \node[anchor=south west, inner sep=0pt] at (0,0)
+  \node[overlay, anchor=south west, inner sep=0pt] at (0,0)
     {\includegraphics[width=\figw]{../blender/out/s01f04_cdw.jpg}};
+  \input{../blender/out/s01f04_cdw_bbox.tex}
   \input{../blender/out/s01f04_cdw_anchors.tex}
   \node[lbl, anchor=south west] at (apanel) {$V=0$, $\langle n_i\rangle=\tfrac12$ on every site};
   \node[lbl, anchor=south west, text=aqmbroken] at (bpanel) {$V=3t$, $\langle n_i\rangle=0.95,\,0.05,\,0.95,\dots$};

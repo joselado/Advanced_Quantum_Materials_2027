@@ -13,24 +13,26 @@
 \begin{document}
 \begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
   \begin{scope}[shift={(0.00cm,0.00cm)}]
-    \setlength{\figw}{10.00cm}
-    \node[anchor=south west, inner sep=0pt] at (0,0)
+    \setlength{\figw}{9.45cm}
+    \node[overlay, anchor=south west, inner sep=0pt] at (0,0)
       {\includegraphics[width=\figw]{../blender/out/s09f05_decay_chains.jpg}};
+    \input{../blender/out/s09f05_decay_chains_bbox.tex}
     \input{../blender/out/s09f05_decay_chains_anchors.tex}
-    \node[pnl, anchor=south west] at (chainsapanel) {(a)};
-    \node[pnl, anchor=south west] at (chainsbpanel) {(b)};
+    \node[pnl, anchor=south east] at (chainsbpanel) {(a)};
+    \node[pnl, anchor=south east] at ($(chainsapanel)!2!(chainsbpanel)$) {(b)};
     \node[lbl, anchor=south west, text=aqmmuted] at (chainsaenv) {$1/n$, $S=\tfrac12$};
     \node[lbl, anchor=south west, text=aqmmuted] at (chainsbenv) {$e^{-n/\xi}$, $S=1$};
   \end{scope}
-  \begin{scope}[shift={(10.20cm,0.00cm)}]
+  \begin{scope}[shift={(9.65cm,0.00cm)}]
     \setlength{\figw}{5.40cm}
-    \node[anchor=south west, inner sep=0pt] at (0,0)
+    \node[overlay, anchor=south west, inner sep=0pt] at (0,0)
       {\includegraphics[width=\figw]{../blender/out/s09f05_decay_log.jpg}};
+    \input{../blender/out/s09f05_decay_log_bbox.tex}
     \input{../blender/out/s09f05_decay_log_anchors.tex}
     \node[pnl, anchor=south west] at (logpanel) {(c)};
     \node[lbl, anchor=east] at (logd0) {$1$};
-    \foreach \d in {1,2,3} { \node[lbl, anchor=east] at (logd\d) {$10^{-\d}$}; }
-    \node[lbl, anchor=north east] at (logn) {$n$};
+    \foreach \d in {1,2} { \node[lbl, anchor=east] at (logd\d) {$10^{-\d}$}; }
+    \node[lbl, anchor=north east] at (logn |- logd2) {$n$};
     \node[lbl, anchor=west] at (logy) {envelope};
     \node[lbl, anchor=south east, text=aqmaccent] at (logpl) {$1/n$};
     \node[lbl, anchor=north east, text=aqmbroken] at (logex) {$e^{-n/\xi}$};

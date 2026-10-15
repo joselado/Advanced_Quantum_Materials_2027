@@ -14,13 +14,14 @@
 \begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
   \begin{scope}[shift={(0.00cm,0.00cm)}]
     \setlength{\figw}{10.40cm}
-    \node[anchor=south west, inner sep=0pt] at (0,0)
+    \node[overlay, anchor=south west, inner sep=0pt] at (0,0)
       {\includegraphics[width=\figw]{../blender/out/s09f01_nesting_ab.jpg}};
+    \input{../blender/out/s09f01_nesting_ab_bbox.tex}
     \input{../blender/out/s09f01_nesting_ab_anchors.tex}
     \node[pnl, anchor=south west] at (abapanel) {(a)};
     \node[pnl, anchor=south west] at (abbpanel) {(b)};
     \node[lbl, anchor=north east] at (abak) {$k$};
-    \node[lbl, anchor=west] at (abaE) {$\varepsilon(k)$};
+    \node[lbl, anchor=west, xshift=0.25cm] at (abaE) {$\varepsilon(k)$};
     \node[lbl, anchor=south, text=aqmbroken] at (abaq) {$q^\star=2k_F$};
     \node[lbl, anchor=north] at (abakfm) {$-k_F$};
     \node[lbl, anchor=north] at (abakfp) {$k_F$};
@@ -32,15 +33,16 @@
   \end{scope}
   \begin{scope}[shift={(10.70cm,0.00cm)}]
     \setlength{\figw}{4.90cm}
-    \node[anchor=south west, inner sep=0pt] at (0,0)
+    \node[overlay, anchor=south west, inner sep=0pt] at (0,0)
       {\includegraphics[width=\figw]{../blender/out/s09f01_nesting_c.jpg}};
+    \input{../blender/out/s09f01_nesting_c_bbox.tex}
     \input{../blender/out/s09f01_nesting_c_anchors.tex}
     \node[pnl, anchor=south west] at (cpanel) {(c)};
     \draw[axarrow] (ckO) -- (ckx);
     \draw[axarrow] (ckO) -- (cky);
     \node[axlbl, anchor=north] at (ckx) {$k_x$};
     \node[axlbl, anchor=west] at (cky) {$k_y$};
-    \node[lbl, anchor=south west, text=aqmbroken] at (cQ) {$Q=(\pi,\pi)$};
+    \node[lbl, anchor=south west, text=aqmbroken, fill=white, fill opacity=0.85, text opacity=1, inner sep=0.8pt] at (cQ) {$Q=(\pi,\pi)$};
   \end{scope}
 \end{tikzpicture}
 \end{document}
