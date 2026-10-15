@@ -1,6 +1,8 @@
 """Figure s04f04, fig:s04:ladders: the Landau fans, linear against square root.
 
-Seen from the front, a little from the side so that the cut reads as a plane. (a) Schroedinger
+Seen from the front at the height of the fans (no elevation, so that horizontal lines stay horizontal
+and the Dirac fan keeps its electron-hole symmetry on the page), a little from the side so that the
+cut reads as a plane. (a) Schroedinger
 electrons, E_n = (n + 1/2) hbar omega_c = (n + 1/2) B in units hbar e / m = 1, n = 0..5, straight lines
 through the origin. (b) Dirac electrons, E_n = sgn(n) sqrt(2 |n| B) in units v_F = hbar = e = 1,
 n = 0, +-1, +-2, +-3, square-root curves, with the flat n = 0 line in the accent color. In both, a
@@ -55,7 +57,7 @@ def build():
     F.anchor('bpanel', (XB - 0.3, 0, za + 4.45))
     F.anchor('bn0', (XB + WB, 0, zb))
     F.anchor('bn3', (XB + WB, 0, zb + szb * math.sqrt(6)))
-    F.camera((0.0, 0.0, 2.45), elev=10.0, azim=-18.0, ortho=15.4, aspect=2.9)
+    F.camera((0.0, 0.0, 2.45), elev=0.0, azim=-18.0, ortho=15.4, aspect=2.9)
 
 
 F.main(build, NAME)
