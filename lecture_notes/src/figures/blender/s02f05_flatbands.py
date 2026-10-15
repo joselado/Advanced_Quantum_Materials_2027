@@ -101,55 +101,85 @@ def kagome_sites(rmax=1.55):
 
 
 def hexagon(x0):
-    zc, rh = 0.75, 0.7                       # height of the plate, radius of the hexagon
-    plate = F.slab('e_plate', (x0, 1.0, zc), (2.5, 2.3, 0.03), alpha=0.25)
-    plate.visible_shadow = False
-    F.rod('e_post', (x0, 1.0, 0), (x0, 1.0, zc - 0.02), r=0.025)
+    """The localized kagome state seen from above: amplitude +1 as a filled ball and -1 as a ghost
+    ball on alternating hexagon sites, the six outside sites, and the two hops onto the top outside
+    site, which cancel at the cross."""
+    rh = 0.7
     hexp = [(x0 + rh * math.cos(math.pi / 6 + math.pi * m / 3), 1.0 + rh * math.sin(math.pi / 6 + math.pi * m / 3))
             for m in range(6)]
-    outer = [(x0 + 2 * rh * math.cos(math.pi / 2 + math.pi * m / 3) * S3 / 2,
-              1.0 + 2 * rh * math.sin(math.pi / 2 + math.pi * m / 3) * S3 / 2) for m in range(6)]
+    outer = [(x0 + 2 * rh * math.cos(math.pi * m / 3) * S3 / 2,      # beyond the middle of an edge,
+              1.0 + 2 * rh * math.sin(math.pi * m / 3) * S3 / 2) for m in range(6)]   # closing its triangle
     for m, (x, y) in enumerate(hexp):
-        F.site(f'e_s{m}', (x, y, zc + 0.02), r=0.1, h=0.03)
+        F.site(f'e_s{m}', (x, y, 0), r=0.1, h=0.03)
         x1, y1 = hexp[(m + 1) % 6]
-        F.bond(f'e_b{m}', (x, y, zc + 0.04), (x1, y1, zc + 0.04), r=0.018)
-        sgn = 1 if m % 2 == 0 else -1
-        F.rod(f'e_p{m}', (x, y, zc), (x, y, zc + sgn * 0.42), r=0.012)
-        F.ball(f'e_amp{m}', (x, y, zc + sgn * 0.5), 0.09)
-    for m, (x, y) in enumerate(outer):         # the outside sites, each shared by two hexagon sites
-        F.site(f'e_o{m}', (x, y, zc + 0.02), r=0.08, h=0.03)
+        F.bond(f'e_b{m}', (x, y, 0.03), (x1, y1, 0.03), r=0.018)
+        if m % 2 == 0:
+            F.ball(f'e_amp{m}', (x, y, 0.2), 0.14)
+        else:
+            F.ghost_ball(f'e_amp{m}', (x, y, 0.2), 0.14, alpha=0.3)
+        F.anchor(f'amp{m}', (x + 0.24 * (x - x0) / rh, y + 0.24 * (y - 1.0) / rh, 0.2))
+    for m, (x, y) in enumerate(outer):
+        F.site(f'e_o{m}', (x, y, 0), r=0.08, h=0.03)
         for q in (m, (m + 5) % 6):
             hx, hy = hexp[q]
-            F.bond(f'e_ob{m}{q}', (x, y, zc + 0.04), (hx, hy, zc + 0.04), r=0.012)
-    ox, oy = outer[0]                           # the two hops onto the top outside site, and the cancellation
-    for q in (0, 5):
+            F.bond(f'e_ob{m}{q}', (x, y, 0.03), (hx, hy, 0.03), r=0.012)
+    ox, oy = outer[0]
+    for q in (0, 5):                           # the + and the - site of the edge under outer[0]
         hx, hy = hexp[q]
-        sgn = 1 if q % 2 == 0 else -1
-        F.flow(f'e_hop{q}', [(hx, hy, zc + sgn * 0.5), ((hx + ox) / 2, (hy + oy) / 2, zc + sgn * 0.45 + 0.15),
-                             (ox, oy, zc + 0.12)], r=0.018, rgb=(0.16, 0.20, 0.30))
-    F.marker('e_zero', (ox, oy, zc + 0.3), kind='cross', r=0.16, rgb=F.BROKEN)
-    F.anchor('plus', (hexp[0][0] + 0.12, hexp[0][1], zc + 0.55))
-    F.anchor('minus', (hexp[1][0] - 0.1, hexp[1][1], zc - 0.5))
-    F.anchor('zero', (ox, oy + 0.15, zc + 0.45))
+        F.flow(f'e_hop{q}', [(hx + 0.25 * (ox - hx), hy + 0.25 * (oy - hy), 0.25),
+                             (hx + 0.8 * (ox - hx), hy + 0.8 * (oy - hy), 0.25)], r=0.02, rgb=(0.16, 0.20, 0.30))
+    F.marker('e_zero', (ox, oy, 0.3), kind='cross', r=0.17, rgb=F.BROKEN)
+    F.anchor('zero', (ox + 0.2, oy, 0.3))
 
 
-def build():
-    F.studio()
+H_CM = 4.0                             # height of every panel on the page
+WIDTHS = {'a': 2.9, 'b': 3.3, 'c': 2.9, 'd': 3.3, 'e': 2.8}   # widths in cm, with four gaps of 0.1 cm
+
+
+def cam_flat(ortho, panel, y=1.0):
+    F.camera((0.0, y, 0.0), elev=89.9, ortho=ortho, aspect=WIDTHS[panel] / H_CM)
+
+
+def cam_front(ortho, panel):
+    F.camera((0.0, 0.0, Z0 - 0.55 * SZ), elev=3.0, ortho=ortho, aspect=WIDTHS[panel] / H_CM)
+
+
+def build_a():
+    F.studio(shadows=False)
     s = lieb_sites()
-    lattice(XS[0], s, neighbors(s, 0.5), 'a', 1.15)
+    lattice(0.0, s, neighbors(s, 0.5), 'a', 1.15)
+    F.anchor('panel', (-1.15, 1.0 + 2.05, 0))
+    cam_flat(3.4, 'a')
+
+
+def build_b():
+    F.studio()
+    bands(0.0, lieb_h, [(0, 0), (math.pi, 0), (math.pi, math.pi), (0, 0)], ['G1', 'X', 'M', 'G2'], 0.0, 'b')
+    F.anchor('panel', (-1.6, 0, Z0 + 4.1 * SZ))
+    cam_front(3.55, 'b')
+
+
+def build_c():
+    F.studio(shadows=False)
     s = kagome_sites()
-    lattice(XS[2], s, neighbors(s, 0.5), 'c', 1.0)
-    F.PREFIX[0] = 'b'
-    bands(XS[1], lieb_h, [(0, 0), (math.pi, 0), (math.pi, math.pi), (0, 0)], ['G1', 'X', 'M', 'G2'], 0.0, 'b')
-    F.PREFIX[0] = 'd'
-    bands(XS[3], kagome_h, [(0, 0), (4 * math.pi / 3, 0), (math.pi, math.pi / S3), (0, 0)],
+    lattice(0.0, s, neighbors(s, 0.5), 'c', 1.0)
+    F.anchor('panel', (-1.15, 1.0 + 2.05, 0))
+    cam_flat(3.4, 'c')
+
+
+def build_d():
+    F.studio()
+    bands(0.0, kagome_h, [(0, 0), (4 * math.pi / 3, 0), (math.pi, math.pi / S3), (0, 0)],
           ['G1', 'K', 'M', 'G2'], 2.0, 'd')
-    F.PREFIX[0] = 'e'
-    hexagon(XS[4])
-    F.PREFIX[0] = ''
-    for k, x in enumerate(XS):
-        F.anchor('p' + 'abcde'[k], (x - (1.45 if k in (0, 2, 4) else 2.0), 0, Z0 + 3.0 * SZ))
-    F.camera((-0.25, 0.9, 1.1), elev=26.0, ortho=16.4, aspect=3.0)
+    F.anchor('panel', (-1.6, 0, Z0 + 4.1 * SZ))
+    cam_front(3.55, 'd')
 
 
-F.main(build, NAME)
+def build_e():
+    F.studio(shadows=False)
+    hexagon(0.0)
+    F.anchor('panel', (-1.55, 1.0 + 2.15, 1.0))
+    cam_flat(4.7, 'e')                          # a portrait camera: the ortho scale spans the height
+
+
+F.main_panels(NAME, [('a', build_a), ('b', build_b), ('c', build_c), ('d', build_d), ('e', build_e)])

@@ -6,6 +6,7 @@
     K = (4 pi / 3 sqrt3, 0) they close a triangle, f(K) = 0; at the generic k = K + (-0.55, 0.45)
     they do not, and the gap between the end and the start is |f(k)|.
 (c) The hexagonal Brillouin zone as a tile with the two cones E = +-v|q| standing at K and K'.
+Two renders: (a) and (b) from straight above, (c) tilted.
 """
 import cmath
 import math
@@ -20,7 +21,7 @@ XA, XB1, XB2, XC = -5.0, -1.0, 1.9, 5.5
 S3 = math.sqrt(3)
 DELTA = [(0.0, 1.0), (S3 / 2, -0.5), (-S3 / 2, -0.5)]
 A1, A2 = (S3, 0.0), (S3 / 2, 1.5)
-SL = 0.78                               # scale of the lattice
+SL = 0.9                                # scale of the lattice
 B_GREY = (0.55, 0.57, 0.62)
 
 
@@ -69,17 +70,22 @@ def phasors(x0, k, tag):
     return abs(p - o) / 1.2
 
 
-def build():
-    F.studio()
+def build_ab():
+    F.studio(shadows=False)
     F.PREFIX[0] = 'a'
     honeycomb()
-    F.anchor('panel', (XA - 2.1, 2.9, 0.0))
+    F.anchor('panel', (XA - 1.95, 2.75, 0.0))
     F.PREFIX[0] = 'b'
     K = (4 * math.pi / (3 * S3), 0.0)
     print('|f(K)| =', phasors(XB1, K, 'K'))
     print('|f(k)| =', phasors(XB2, (K[0] - 0.55, 0.45), 'k'))
-    F.anchor('panel', (XB1 - 1.2, 2.9, 0.0))
-    F.PREFIX[0] = 'c'
+    F.anchor('panel', (XB1 - 1.2, 2.75, 0.0))
+    F.PREFIX[0] = ''
+    F.camera((-1.55, 0.75, 0.0), elev=89.9, ortho=10.9, aspect=10.9 / 4.55)
+
+
+def build_c():
+    F.studio()
     yc, zc, rz = 0.95, 0.75, 1.15
     hexagon = [(XC + rz * math.cos(math.pi * m / 3), yc + rz * math.sin(math.pi * m / 3)) for m in range(6)]
     tile = F.mat('bz', (0.80, 0.82, 0.87), rough=0.6, spec=0.3)
@@ -99,11 +105,10 @@ def build():
             F.obj(f'cone{m}{sgn}', F.mesh_of(f'cone{m}{sgn}', [F.mat('cone', F.ACCENT_AQM, rough=0.4, emit=0.05)],
                   lambda bm: F.bm_cylinder(bm, (0, 0, sgn * 0.5), (0, 0, 0.0), 0.26, 0.0, seg=48)),
                   loc=(x, y, zc))
-        F.anchor(lab, (x + 0.2 * math.cos(math.pi * m / 3), y + 0.2 * math.sin(math.pi * m / 3), zc + 0.62))
+        F.anchor(lab, (x + 0.2 * math.cos(math.pi * m / 3), y + 0.2 * math.sin(math.pi * m / 3), zc + 0.52))
     F.anchor('Gamma', (XC, yc, zc + 0.02))
-    F.anchor('panel', (XC - 1.9, 2.9, 0.0))
-    F.PREFIX[0] = ''
-    F.camera((0.1, 0.9, 0.7), elev=42.0, ortho=15.4, aspect=3.1)
+    F.anchor('panel', (XC - 1.75, yc + 1.2, zc + 0.7))
+    F.camera((XC + 0.1, yc, zc + 0.15), elev=35.0, ortho=4.1, aspect=4.9 / 4.55)
 
 
-F.main(build, NAME)
+F.main_panels(NAME, [('ab', build_ab), ('c', build_c)])

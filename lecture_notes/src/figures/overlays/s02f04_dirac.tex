@@ -11,20 +11,29 @@
 
 \begin{document}
 \begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
-  \node[anchor=south west, inner sep=0pt] at (0,0)
-    {\includegraphics[width=\figw]{../blender/out/s02f04_dirac.jpg}};
-  \input{../blender/out/s02f04_dirac_anchors.tex}
-  \node[pnl, anchor=west] at (apanel) {(a)};
-  \node[pnl, anchor=west] at (bpanel) {(b)};
-  \node[pnl, anchor=west] at (cpanel) {(c)};
-  \node[lbl, text=aqmaccent] at (ad1) {$\bm\delta_1$};
-  \node[lbl, text=aqmaccent] at (ad2) {$\bm\delta_2$};
-  \node[lbl, text=aqmaccent] at (ad3) {$\bm\delta_3$};
-  \node[lbl, anchor=north east] at (aA) {$A$};
-  \node[lbl, anchor=north] at (bK) {at $\mathbf K$, closed};
-  \node[lbl, anchor=north] at (bk) {generic $\mathbf k$, open};
-  \node[lbl, anchor=south west] at (cK) {$K$};
-  \node[lbl, anchor=south west] at (cKp) {$K'$};
-  \node[lbl, anchor=south, text=aqmmuted] at (cGamma) {$\Gamma$};
+  \begin{scope}
+    \setlength{\figw}{10.4cm}
+    \node[anchor=south west, inner sep=0pt] at (0,0)
+      {\includegraphics[width=\figw]{../blender/out/s02f04_dirac_ab.jpg}};
+    \input{../blender/out/s02f04_dirac_ab_anchors.tex}
+    \node[pnl, anchor=west] at (apanel) {(a)};
+    \node[pnl, anchor=west] at (bpanel) {(b)};
+    \node[lbl, text=aqmaccent] at (ad1) {$\bm\delta_1$};
+    \node[lbl, text=aqmaccent] at (ad2) {$\bm\delta_2$};
+    \node[lbl, text=aqmaccent] at (ad3) {$\bm\delta_3$};
+    \node[lbl, anchor=north east] at (aA) {$A$};
+    \node[lbl, anchor=north] at (bK) {at $\mathbf K$, closed};
+    \node[lbl, anchor=north] at (bk) {generic $\mathbf k$, open};
+  \end{scope}
+  \begin{scope}[shift={(10.6cm,0)}]
+    \setlength{\figw}{5.0cm}
+    \node[anchor=south west, inner sep=0pt] at (0,0)
+      {\includegraphics[width=\figw]{../blender/out/s02f04_dirac_c.jpg}};
+    \input{../blender/out/s02f04_dirac_c_anchors.tex}
+    \node[pnl, anchor=west] at (cpanel) {(c)};
+    \node[lbl, anchor=south east] at (cK) {$K$};
+    \node[lbl, anchor=south west] at (cKp) {$K'$};
+    \node[lbl, anchor=south, text=aqmmuted] at (cGamma) {$\Gamma$};
+  \end{scope}
 \end{tikzpicture}
 \end{document}

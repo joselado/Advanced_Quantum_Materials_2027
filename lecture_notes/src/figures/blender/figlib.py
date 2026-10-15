@@ -287,19 +287,39 @@ def anchor(name, co):
 # ------------------------------------------------------------------------------------------------
 # Curves, axes and level ladders
 # ------------------------------------------------------------------------------------------------
+def bm_sweep(bm, points, r, seg=16, mat_index=0, end_caps=True):
+    """One continuous tube of radius r along a polyline, with rings carried by parallel transport
+    and a sphere at each end, built in time linear in the number of points."""
+    pts = [Vector(p) for k, p in enumerate(points) if k == 0 or (Vector(p) - Vector(points[k - 1])).length > 1e-9]
+    if len(pts) < 2:
+        return
+    tans = []
+    for k in range(len(pts)):
+        a, b = pts[max(k - 1, 0)], pts[min(k + 1, len(pts) - 1)]
+        tans.append((b - a).normalized())
+    n = tans[0].orthogonal().normalized()
+    rings = []
+    for k, (p, t) in enumerate(zip(pts, tans)):
+        if k > 0:
+            q = tans[k - 1].rotation_difference(t)
+            n = (q @ n).normalized()
+        b = t.cross(n)
+        rings.append([bm.verts.new(p + r * (math.cos(2 * math.pi * j / seg) * n + math.sin(2 * math.pi * j / seg) * b))
+                      for j in range(seg)])
+    for ra, rb in zip(rings[:-1], rings[1:]):
+        for j in range(seg):
+            f = bm.faces.new((ra[j], ra[(j + 1) % seg], rb[(j + 1) % seg], rb[j]))
+            f.material_index, f.smooth = mat_index, True
+    if end_caps:
+        bm_sphere(bm, pts[0], r, mat_index, seg=seg, rings=seg // 2)
+        bm_sphere(bm, pts[-1], r, mat_index, seg=seg, rings=seg // 2)
+
+
 def tube(name, points, r, rgb, emit=0.1, alpha=1.0):
-    """A thin tube through a list of points, spheres at the joints, for every curve of the notes."""
-    pts = [Vector(p) for p in points]
+    """A thin tube through a list of points, for every curve of the notes."""
     key = 'tube_%d_%d_%d_%.2f' % (*(int(255 * c) for c in rgb), alpha)
     m = ghost(key, rgb, alpha) if alpha < 1.0 else mat(key, rgb, rough=0.4, emit=emit, spec=0.4)
-
-    def f(bm):
-        for a, b in zip(pts[:-1], pts[1:]):
-            if (b - a).length > 1e-9:
-                bm_cylinder(bm, a, b, r, seg=16, caps=False)
-        for p in pts:
-            bm_sphere(bm, p, r, seg=16, rings=8)
-    return obj(name, mesh_of(name, [m], f))
+    return obj(name, mesh_of(name, [m], lambda bm: bm_sweep(bm, points, r)))
 
 
 def axis(name, p0, p1, r=0.025, head=0.18):
@@ -408,9 +428,7 @@ def flow(name, points, r=0.03, rgb=(0.16, 0.20, 0.30), head=True):
     def f(bm):
         d = (pts[-1] - pts[-2]).normalized()
         body = pts[:-1] + [pts[-1] - 0.26 * d] if head else pts
-        for a, b in zip(body[:-1], body[1:]):
-            bm_cylinder(bm, a, b, r, seg=12)
-            bm_sphere(bm, b, r, seg=12, rings=6)
+        bm_sweep(bm, body, r, seg=12)
         if head:
             bm_cylinder(bm, pts[-1] - 0.28 * d, pts[-1], 3 * r, 0.0, seg=24)
     return obj(name, mesh_of(name, [m], f))
@@ -537,8 +555,9 @@ def reset():
     ANCHORS.clear()
 
 
-def studio(floor_size=80.0):
-    """White world, a large soft key light, a fill, and a shadow catcher floor at z = 0."""
+def studio(floor_size=80.0, shadows=True):
+    """White world, a large soft key light, a fill, and a shadow catcher floor at z = 0; a flat view
+    from above passes shadows=False, since a shadow seen from above reads as a halo."""
     sc = bpy.context.scene
     w = bpy.data.worlds.new('world')
     w.use_nodes = True
@@ -558,6 +577,7 @@ def studio(floor_size=80.0):
     fl = obj('floor', mesh_of('floor', [m], lambda bm: bmesh.ops.create_grid(
         bm, x_segments=1, y_segments=1, size=floor_size / 2)))
     fl.is_shadow_catcher = True
+    fl.hide_render = not shadows
 
 
 def camera(target, elev=32.0, azim=0.0, ortho=12.0, aspect=2.4):
