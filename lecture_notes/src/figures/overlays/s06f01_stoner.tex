@@ -1,0 +1,34 @@
+% Figure s06f01_stoner (Session 6): a graphical reading of the Stoner criterion.
+% The image is rendered by figures/blender/s06f01_stoner.py; the coordinates of the labels come from
+% figures/blender/out/s06f01_stoner*_anchors.tex. Build with figures/blender/build_figure.sh s06f01_stoner.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx,bm}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,calc}
+\input{aqmcolors.tex}
+\input{aqmstyles.tex}
+\newlength{\figw}\setlength{\figw}{15.60cm}   % the text width of the notes (A4, 2.7 cm margins)
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
+  \begin{scope}[shift={(0.00cm,0.00cm)}]
+    \setlength{\figw}{15.60cm}
+    \node[anchor=south west, inner sep=0pt] at (0,0)
+      {\includegraphics[width=\figw]{../blender/out/s06f01_stoner.jpg}};
+    \input{../blender/out/s06f01_stoner_anchors.tex}
+    \node[pnl, anchor=south west] at (apanel) {(a)};
+    \node[pnl, anchor=south west] at (bpanel) {(b)};
+    \node[lbl, anchor=south east] at (am) {$m$};
+    \node[lbl, anchor=west] at (ay) {$y$};
+    \node[lbl, anchor=west] at (line) {$y=m$};
+    \node[lbl, anchor=west, text=aqmaccent] at (sup) {$UD(E_F)>1$};
+    \node[lbl, anchor=west, text=aqmaccent!60] at (sub) {$UD(E_F)<1$};
+    \node[lbl, anchor=south east, text=aqmbroken] at (m0p) {$+m_0$};
+    \node[lbl, anchor=north west, text=aqmbroken] at (m0m) {$-m_0$};
+    \node[lbl, anchor=south east] at (bs) {$UD(E_F)$};
+    \node[lbl, anchor=west] at (bm) {$m_0$};
+    \node[lbl, anchor=north] at (bone) {$1$};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

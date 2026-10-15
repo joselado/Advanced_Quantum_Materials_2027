@@ -1,0 +1,36 @@
+% Figure s06f06_dispersion (Session 6): ferromagnetic against antiferromagnetic magnons.
+% The image is rendered by figures/blender/s06f06_dispersion.py; the coordinates of the labels come from
+% figures/blender/out/s06f06_dispersion*_anchors.tex. Build with figures/blender/build_figure.sh s06f06_dispersion.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx,bm}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,calc}
+\input{aqmcolors.tex}
+\input{aqmstyles.tex}
+\newlength{\figw}\setlength{\figw}{12.50cm}   % 0.80 of the text width
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
+  \begin{scope}[shift={(0.00cm,0.00cm)}]
+    \setlength{\figw}{8.30cm}
+    \node[anchor=south west, inner sep=0pt] at (0,0)
+      {\includegraphics[width=\figw]{../blender/out/s06f06_dispersion_main.jpg}};
+    \input{../blender/out/s06f06_dispersion_main_anchors.tex}
+    \node[lbl, anchor=south east] at (maink) {$ka$};
+    \node[lbl, anchor=west] at (mainE) {$E/|J|Sz$};
+    \node[lbl, anchor=north] at (mainkmax) {$\pi$};
+    \node[lbl, anchor=north] at (mainkmin) {$-\pi$};
+    \node[lbl, anchor=south east, text=aqmaccent] at (mainfm) {FM, $1-\cos ka$};
+    \node[lbl, anchor=north west, text=aqmbroken] at (mainafm) {AFM, $|\sin ka|$};
+  \end{scope}
+  \begin{scope}[shift={(8.50cm,0.00cm)}]
+    \setlength{\figw}{4.00cm}
+    \node[anchor=south west, inner sep=0pt] at (0,0)
+      {\includegraphics[width=\figw]{../blender/out/s06f06_dispersion_zoom.jpg}};
+    \input{../blender/out/s06f06_dispersion_zoom_anchors.tex}
+    \node[lbl, anchor=north east] at (zoomk) {$ka$};
+            \node[lbl, anchor=south west, text=aqmmuted] at (zoompanel) {zone centre, magnified};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

@@ -1,98 +1,16 @@
 % Session 6 -- the Stoner criterion.
 % Placement: sec. "A criterion for magnetism: the Stoner threshold", right after eq. (6.3).
-%
-% LAYOUT NOTE: two pgfplots axes in one tikzpicture; every annotation lives inside
-% its own axis and is placed in (axis cs:...). Nothing is drawn in bare canvas
-% coordinates, so nothing can drift relative to the curves.
+% Rendered by figures/blender/s06f01_stoner.py, labels in figures/overlays/s06f01_stoner.tex.
 \begin{aqmfigure}{fig:s06:stoner}{A graphical reading of the Stoner criterion (6.3). (a) The
 self-consistency condition $m=f(m)$, where $f$ is the right-hand side of the zero-temperature gap
-equation. It is an odd function that saturates once the bands are fully polarized, and its slope at
-the origin is exactly $U D(E_F)$. If this slope is below one, the only crossing with $y=m$ is the
-trivial solution $m=0$. Once the slope is above one, a pair of nontrivial solutions $\pm m_0$
-appears and the nonmagnetic state becomes unstable. (b) The resulting order parameter, which stays at
-zero until $U D(E_F)$ reaches one and then grows continuously. For this reason, whether a metal
-becomes magnetic is not decided by $U$ alone but by the \emph{product} of $U$ with the density of
-states at the Fermi level. This is why aluminium and lead stay nonmagnetic even with a sizeable
-Coulomb repulsion, while the narrow $d$ bands of iron and cobalt are clearly above the threshold.}
-
-\begin{tikzpicture}
-
-% ================= panel (a): the graphical fixed point ======================
-\begin{axis}[
-  aqmplot, name=panA,
-  width=7.6cm, height=6.2cm,
-  axis lines=middle,
-  axis line style={aqm, black, -{Stealth[length=4pt,width=3pt]}},
-  title={(a) where a nonzero solution comes from},
-  xlabel={$m$},
-  xlabel style={at={(axis description cs:0.99,0.435)}, anchor=north east},
-  xmin=-1.30, xmax=1.90, ymin=-1.34, ymax=1.86,
-  xtick=\empty, ytick=\empty,
-]
-
-% --- the line y = m ---------------------------------------------------------
-\addplot[aqmguide, domain=-1.18:1.18, samples=2] {x};
-\node[aqmlabsmall, text=aqmmuted, anchor=south east] at (axis cs:1.16,1.20) {$y=m$};
-
-% --- subcritical: slope 0.6 -------------------------------------------------
-\addplot[aqmcurvemuted, domain=-1.25:1.25, samples=120]
-  {(exp(1.2*x)-1)/(exp(1.2*x)+1)};
-\node[aqmlabsmall, text=aqmmuted, anchor=west] at (axis cs:1.30,0.52) {$UD(E_F)<1$};
-
-% --- supercritical: slope 1.8 ----------------------------------------------
-\addplot[aqmcurve, domain=-1.25:1.25, samples=160]
-  {(exp(3.6*x)-1)/(exp(3.6*x)+1)};
-\node[aqmlabsmall, text=aqmaccent, anchor=west] at (axis cs:1.30,1.12) {$UD(E_F)>1$};
-
-% --- the nontrivial crossings ----------------------------------------------
-\node[circle, draw=aqmbroken, fill=aqmfillb, line width=\aqmlinewidth,
-      minimum size=6pt, inner sep=0pt] at (axis cs:0.933,0.933) {};
-\node[circle, draw=aqmbroken, fill=aqmfillb, line width=\aqmlinewidth,
-      minimum size=6pt, inner sep=0pt] at (axis cs:-0.933,-0.933) {};
-\node[aqmlabsmall, text=aqmbroken, anchor=west] at (axis cs:1.02,0.80) {$+m_0$};
-\node[aqmlabsmall, text=aqmbroken, anchor=east] at (axis cs:-1.02,-0.80) {$-m_0$};
-
-% --- the slope statement ----------------------------------------------------
-\node[aqmlabsmall, anchor=north west, align=left, text width=3.2cm]
-  at (axis cs:-1.32,1.86) {slope at $m=0$\\[-1pt]is $U D(E_F)$};
-
-\end{axis}
-
-% ================= panel (b): the order parameter ============================
-\begin{axis}[
-  aqmplot, name=panB,
-  at={(panA.right of south east)}, anchor=left of south west,
-  width=6.9cm, height=6.2cm,
-  axis lines=left,
-  axis line style={aqm, black},
-  title={(b) the magnetization that results},
-  xlabel={$U\,D(E_F)$}, ylabel={$m$},
-  xlabel style={at={(axis description cs:0.5,-0.12)}, anchor=north},
-  xmin=0, xmax=3.3, ymin=-0.04, ymax=1.44,
-  xtick={1}, xticklabels={$1$}, ytick={0,1}, yticklabels={$0$,},
-  enlargelimits=false,
-]
-
-% --- threshold marker -------------------------------------------------------
-\addplot[aqmguide] coordinates {(1,0) (1,1.14)};
-
-% --- below threshold: pinned at zero ---------------------------------------
-\addplot[aqmcurve] coordinates {(0,0) (1,0)};
-
-% --- above threshold: continuous onset -------------------------------------
-\addplot[aqmcurve, domain=1:3.3, samples=200] {sqrt(1-1/x)};
-
-\node[aqmlabsmall, anchor=south, text=aqmmuted] at (axis cs:1.0,1.16)
-  {threshold (6.3)};
-
-\node[aqmlabsmall, anchor=north, align=center, text=aqmmuted, text width=1.75cm]
-  at (axis cs:0.47,0.92) {no\\magnetism\\[1pt]\emph{Al, Pb}};
-
-\node[aqmlabsmall, anchor=north, align=center, text=aqmbroken, text width=2.4cm]
-  at (axis cs:2.35,0.50) {spontaneously\\[-1pt]magnetic\\[1pt]\emph{Fe, Co}};
-
-\end{axis}
-
-\end{tikzpicture}
-
+equation, drawn here with the shape $\tanh$ for two values of the slope. It is an odd function that
+saturates once the bands are fully polarized, and its slope at the origin is exactly $U D(E_F)$. If
+this slope is below one, the only crossing with $y=m$ is the trivial solution $m=0$. Once the slope
+is above one, a pair of nontrivial solutions $\pm m_0$ appears and the nonmagnetic state becomes
+unstable. (b) The resulting order parameter, which stays at zero until $U D(E_F)$ reaches one and
+then grows continuously. For this reason, whether a metal becomes magnetic is not decided by $U$
+alone but by the \emph{product} of $U$ with the density of states at the Fermi level. This is why
+aluminium and lead stay nonmagnetic even with a sizeable Coulomb repulsion, while the narrow $d$
+bands of iron and cobalt are clearly above the threshold.}
+\includegraphics{figures/pdf/s06f01_stoner.pdf}
 \end{aqmfigure}

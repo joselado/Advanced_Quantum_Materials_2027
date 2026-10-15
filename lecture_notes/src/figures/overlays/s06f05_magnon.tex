@@ -1,0 +1,33 @@
+% Figure s06f05_magnon (Session 6): what a magnon is in real space.
+% The image is rendered by figures/blender/s06f05_magnon.py; the coordinates of the labels come from
+% figures/blender/out/s06f05_magnon*_anchors.tex. Build with figures/blender/build_figure.sh s06f05_magnon.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx,bm}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,calc}
+\input{aqmcolors.tex}
+\input{aqmstyles.tex}
+\newlength{\figw}\setlength{\figw}{15.60cm}   % the text width of the notes (A4, 2.7 cm margins)
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
+  \begin{scope}[shift={(0.00cm,0.00cm)}]
+    \setlength{\figw}{10.00cm}
+    \node[anchor=south west, inner sep=0pt] at (0,0)
+      {\includegraphics[width=\figw]{../blender/out/s06f05_magnon_side.jpg}};
+    \input{../blender/out/s06f05_magnon_side_anchors.tex}
+    \node[pnl, anchor=south west] at (sidea) {(a)};
+    \node[pnl, anchor=south west] at (sideb) {(b)};
+    \node[lbl, anchor=north] at (sidelam) {one wavelength, $\mathbf k\cdot\boldsymbol\delta=45^\circ$ per site};
+  \end{scope}
+  \begin{scope}[shift={(10.20cm,2.30cm)}]
+    \setlength{\figw}{5.40cm}
+    \node[anchor=south west, inner sep=0pt] at (0,0)
+      {\includegraphics[width=\figw]{../blender/out/s06f05_magnon_top.jpg}};
+    \input{../blender/out/s06f05_magnon_top_anchors.tex}
+    \node[lbl, anchor=south west] at (toptop) {(b) seen from above};
+    \node[lbl, anchor=north west, align=left, text width=5.2cm] at (0,-0.2) {\textbf{(c)}\quad $S^-$ creates a magnon,\\\phantom{\textbf{(c)}}\quad $S^+$ destroys one};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

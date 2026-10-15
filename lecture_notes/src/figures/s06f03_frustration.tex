@@ -1,110 +1,17 @@
 % Session 6 -- bipartite order versus geometric frustration.
 % Placement: sec. "Bipartite order versus geometric frustration", after the triangular-plaquette
 % paragraph that introduces the 120-degree compromise.
-%
-% Energies are quoted per plaquette for classical spins of length S, so that
-% S_i . S_j = S^2 cos(theta_ij): a satisfied (antiparallel) bond contributes -J S^2,
-% a parallel bond +J S^2, and a 120-degree bond -J S^2 / 2.
-\begin{aqmfigure}{fig:s06:frustration}{How the geometry decides if an antiferromagnet can order.
-(a) On a bipartite lattice the sites can be coloured with two colours, every bond joins the two
-colours, and the N\'eel state of Section 6.10 satisfies all bonds at the same time. (b) On a triangle
-it is not possible to use two colours. If we fix two spins antiparallel, the third one is parallel to
-one of its neighbours for any choice, and one bond stays frustrated. For classical spins, this collinear compromise costs $+JS^2$ on the frustrated bond, and the total is
-$-JS^2$ per triangle. (c) The energy is lower if no single bond is fully satisfied. Three spins at $120^\circ$ give $\mathbf
-S_i\cdot\mathbf S_j=-S^2/2$ on \emph{every} bond and a total of $-\tfrac32 JS^2$, which is lower than
-(b) by half of its value. This is the origin of the noncollinear order to which the mean-field
-solution of the corresponding electronic Hamiltonian also converges.}
-
-\begin{tikzpicture}[x=1cm, y=1cm]
-
-% --- local helper: a classical spin, dot at (#1,#2), arrow at angle #3 -------
-\newcommand{\clspin}[4]{% x, y, angle, colour
-  \draw[aqm, draw=#4, -{Stealth[length=4.6pt,width=3.8pt]}]
-    ({#1-0.26*cos(#3)},{#2-0.26*sin(#3)}) -- ({#1+0.28*cos(#3)},{#2+0.28*sin(#3)});}
-
-% --- panel headings, all on one baseline ------------------------------------
-\node[aqmpanel, anchor=south] at (0.92,2.45) {(a) bipartite};
-\node[aqmpanel, anchor=south] at (4.90,2.45) {(b) frustrated};
-\node[aqmpanel, anchor=south] at (9.60,2.45) {(c) the $120^\circ$ state};
-
-% ============================ (a) bipartite ==================================
-\begin{scope}[shift={(0,0)}]
-  \def\dd{0.92}
-  \foreach \i in {0,1,2} {
-    \draw[aqmbond] (0,\i*\dd) -- (2*\dd,\i*\dd);
-    \draw[aqmbond] (\i*\dd,0) -- (\i*\dd,2*\dd);
-  }
-  % sublattice A: (i+j) even, spins up
-  \foreach \i/\j in {0/0,0/2,1/1,2/0,2/2} {
-    \node[aqmsite, minimum size=5pt] at (\i*\dd,\j*\dd) {};
-    \clspin{\i*\dd}{\j*\dd}{90}{aqmaccent}
-  }
-  % sublattice B: (i+j) odd, spins down
-  \foreach \i/\j in {0/1,1/0,1/2,2/1} {
-    \node[aqmsiteopen, minimum size=5pt] at (\i*\dd,\j*\dd) {};
-    \clspin{\i*\dd}{\j*\dd}{270}{aqmaccent}
-  }
-  \node[aqmlabsmall, anchor=north, align=center, text width=4.2cm] at (\dd,-0.55)
-    {every bond $\mathbf S_i\cdot\mathbf S_j=-S^2$,\\[1pt]
-     \textcolor{aqmaccent}{all satisfied at once}};
-\end{scope}
-
-% ============================ (b) frustrated triangle ========================
-\begin{scope}[shift={(4.90,0.62)}]
-  \def\rr{0.86}
-  \coordinate (b1) at (90:\rr);
-  \coordinate (b2) at (210:\rr);
-  \coordinate (b3) at (330:\rr);
-  \draw[aqmbond] (b1) -- (b2);
-  \draw[aqmbond] (b2) -- (b3);
-  \draw[aqmbondstrong, draw=aqmbroken] (b1) -- (b3);
-
-  \node[aqmsite, minimum size=5pt] at (b1) {};
-  \node[aqmsiteopen, minimum size=5pt] at (b2) {};
-  \node[aqmsite, minimum size=5pt] at (b3) {};
-  \clspin{0}{0.860}{90}{aqmaccent}
-  \clspin{-0.745}{-0.430}{270}{aqmaccent}
-  \clspin{0.745}{-0.430}{90}{aqmaccent}
-
-  % mark the unsatisfiable bond with a cross at its midpoint
-  \draw[aqm, draw=aqmbroken, line width=1.0pt] (0.272,0.115) -- (0.472,0.315);
-  \draw[aqm, draw=aqmbroken, line width=1.0pt] (0.272,0.315) -- (0.472,0.115);
-  \node[aqmlabsmall, text=aqmbroken, anchor=west] at (0.55,0.30) {$+JS^2$};
-
-  \node[aqmlabsmall, anchor=north, align=center, text width=3.6cm] at (0,-1.17)
-    {two bonds $-JS^2$, one bond $+JS^2$,\\[1pt]
-     total \textcolor{aqmbroken}{$-JS^2$}};
-\end{scope}
-
-% ============================ (c) 120-degree order ===========================
-\begin{scope}[shift={(9.60,0.62)}]
-  \def\rr{0.86}
-  \coordinate (c1) at (90:\rr);
-  \coordinate (c2) at (210:\rr);
-  \coordinate (c3) at (330:\rr);
-  \draw[aqmbond] (c1) -- (c2);
-  \draw[aqmbond] (c2) -- (c3);
-  \draw[aqmbond] (c1) -- (c3);
-
-  \node[aqmsite, minimum size=5pt] at (c1) {};
-  \node[aqmsite, minimum size=5pt] at (c2) {};
-  \node[aqmsite, minimum size=5pt] at (c3) {};
-  \clspin{0}{0.860}{90}{aqmbroken}
-  \clspin{-0.745}{-0.430}{210}{aqmbroken}
-  \clspin{0.745}{-0.430}{330}{aqmbroken}
-
-  % the relative angle between two of the three spin directions
-  \draw[aqmguide] (0,0) -- (90:0.56);
-  \draw[aqmguide] (0,0) -- (330:0.56);
-  \draw[aqm, draw=aqmmuted, line width=\aqmthinwidth] (330:0.28) arc (-30:90:0.28);
-  \draw[aqmguide] (0.94,0.46) -- (0.27,0.15);
-  \node[aqmlabsmall, text=aqmmuted, anchor=west] at (0.97,0.46) {$120^\circ$};
-
-  \node[aqmlabsmall, anchor=north, align=center, text width=3.6cm] at (0,-1.17)
-    {every bond $-\tfrac12 JS^2$,\\[1pt]
-     total \textcolor{aqmbroken}{$-\tfrac32 JS^2$}: lower};
-\end{scope}
-
-\end{tikzpicture}
-
+% Rendered by figures/blender/s06f03_frustration.py, labels in figures/overlays/s06f03_frustration.tex.
+\begin{aqmfigure}{fig:s06:frustration}{How the geometry decides if an antiferromagnet can order. (a)
+On a bipartite lattice the sites can be coloured with two colours, here dark and light, every bond
+joins the two colours, and the N\'eel state of Section 6.10 satisfies all bonds at the same time.
+(b) On a triangle it is not possible to use two colours. If we fix two spins antiparallel, the third
+one is parallel to one of its neighbours for any choice, the two ghost arrows, and one bond stays
+frustrated. For classical spins, this collinear compromise costs $+JS^2$ on the frustrated bond, and
+the total is $-JS^2$ per triangle. (c) The energy is lower if no single bond is fully satisfied.
+Three spins at $120^\circ$ in the plane give $\mathbf S_i\cdot\mathbf S_j=-S^2/2$ on \emph{every}
+bond and a total of $-\tfrac32 JS^2$, which is lower than (b) by half of its value. This is the
+origin of the noncollinear order to which the mean-field solution of the corresponding electronic
+Hamiltonian also converges.}
+\includegraphics{figures/pdf/s06f03_frustration.pdf}
 \end{aqmfigure}

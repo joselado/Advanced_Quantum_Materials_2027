@@ -1,0 +1,28 @@
+% Figure s06f04_kitaev (Session 6): the Kitaev interaction, frustration in the coupling.
+% The image is rendered by figures/blender/s06f04_kitaev.py; the coordinates of the labels come from
+% figures/blender/out/s06f04_kitaev*_anchors.tex. Build with figures/blender/build_figure.sh s06f04_kitaev.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx,bm}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,calc}
+\input{aqmcolors.tex}
+\input{aqmstyles.tex}
+\newlength{\figw}\setlength{\figw}{10.90cm}   % 0.70 of the text width
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
+  \begin{scope}[shift={(0.00cm,0.00cm)}]
+    \setlength{\figw}{10.90cm}
+    \node[anchor=south west, inner sep=0pt] at (0,0)
+      {\includegraphics[width=\figw]{../blender/out/s06f04_kitaev.jpg}};
+    \input{../blender/out/s06f04_kitaev_anchors.tex}
+    \node[lbl, anchor=west] at (x) {$\hat x$};
+    \node[lbl, anchor=south west] at (y) {$\hat y$};
+    \node[lbl, anchor=south] at (z) {$\hat z$};
+    \node[lbl, anchor=west, text=aqmmuted] at (bondx) {$x$-bond};
+    \node[lbl, anchor=west, text=aqmaccent] at (bondy) {$y$-bond};
+    \node[lbl, anchor=west] at (bondz) {$z$-bond};
+  \end{scope}
+\end{tikzpicture}
+\end{document}
