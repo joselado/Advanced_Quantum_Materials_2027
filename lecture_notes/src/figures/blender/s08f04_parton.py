@@ -56,6 +56,7 @@ def build():
                 strong = (i + j) % 2 == 1
                 F.rod(f'b_v{i}{j}', (x, y + 0.2, 0.05), (x, y + sp - 0.2, 0.05), r=0.07 if strong else 0.03, rgb=F.ACCENT_AQM)
     F.anchor('chi', (ox + 0.5 * sp, oy - 0.3, 0.05))
+    F.axes_anchors('r', (ox - 1.0, oy, 0.0), {'x': (ox - 0.4, oy, 0.0), 'y': (ox - 1.0, oy + 0.6, 0.0)})
     F.anchor('pb', (ox - 0.6, oy + (ny - 1) * sp + 0.6, 0.9))
     F.camera((-1.0, 0.4, 0.45), elev=34.0, ortho=12.4, aspect=2.8)
 

@@ -79,6 +79,7 @@ def build():
     print('cut bonds', c1, c2, c3, c4)
     F.anchor('pa', (-7.1, 2.0, 0))
     F.anchor('pb', (1.1, 2.0, 0))
+    F.axes_anchors('r', (0.55, -1.25, 0.0), {'x': (1.1, -1.25, 0.0), 'y': (0.55, -0.7, 0.0)})
     F.camera((0.6, 0.4, 0.0), elev=89.9, ortho=15.6, aspect=15.6 / 4.9)
 
 

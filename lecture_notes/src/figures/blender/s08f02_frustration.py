@@ -59,6 +59,7 @@ def build():
                 F.rod(f'k_b{nb}', (x1, y1, 0.04), (x2, y2, 0.04), r=0.045 if frus else 0.022, rgb=F.BROKEN if frus else F.BOND)
                 nb += 1
     F.anchor('pb', (x0 - 2.6, 2.0 + 0.3, 0.9))
+    F.axes_anchors('r', (x0 - 2.5, -0.4, 0.0), {'x': (x0 - 1.85, -0.4, 0.0), 'y': (x0 - 2.5, 0.25, 0.0)})
     F.camera((-1.25, 1.0, 0.45), elev=48.0, ortho=12.6, aspect=12.5 / 4.3)
 
 
