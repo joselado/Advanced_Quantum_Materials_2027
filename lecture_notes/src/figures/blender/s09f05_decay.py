@@ -39,7 +39,7 @@ def build_chains():
 
 def build_log():
     F.studio()
-    sx, sz, z0 = 0.27, 1.25, 2.4
+    sx, sz, z0 = 0.27, 1.25, 3.9                # the n axis at 10^-3 sits just above the floor
     P = lambda n, v: (-2.2 + sx * n, 0, z0 + sz * v)
     ns = [1 + (N - 1) * j / 200 for j in range(201)]
     F.tube('pl', [P(n, math.log10(1 / n)) for n in ns], 0.035, F.ACCENT_AQM)
@@ -54,7 +54,7 @@ def build_log():
     F.anchor('pl', P(N, math.log10(1 / N)))
     F.anchor('ex', P(7.5, math.log10(math.exp(-6.5 / XI))))
     F.anchor('panel', P(-1.0, 0.55))
-    F.camera((-0.0, 0.0, 1.0), elev=3.0, ortho=5.3, aspect=5.4 / 4.6)
+    F.camera((-0.0, 0.0, 2.5), elev=3.0, ortho=5.3, aspect=5.4 / 4.6)
 
 
 F.main_panels(NAME, [('chains', build_chains), ('log', build_log)])

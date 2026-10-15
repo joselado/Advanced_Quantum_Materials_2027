@@ -31,8 +31,8 @@
     \input{../blender/out/s09f05_decay_log_anchors.tex}
     \node[pnl, anchor=south west] at (logpanel) {(c)};
     \node[lbl, anchor=east] at (logd0) {$1$};
-    \foreach \d in {1,2} { \node[lbl, anchor=east] at (logd\d) {$10^{-\d}$}; }
-    \node[lbl, anchor=north east] at (logn |- logd2) {$n$};
+    \foreach \d in {1,2,3} { \node[lbl, anchor=east] at (logd\d) {$10^{-\d}$}; }
+    \node[lbl, anchor=north east] at (logn) {$n$};
     \node[lbl, anchor=west] at (logy) {envelope};
     \node[lbl, anchor=south east, text=aqmaccent] at (logpl) {$1/n$};
     \node[lbl, anchor=north east, text=aqmbroken] at (logex) {$e^{-n/\xi}$};

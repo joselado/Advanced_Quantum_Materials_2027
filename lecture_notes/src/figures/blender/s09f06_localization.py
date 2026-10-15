@@ -71,7 +71,7 @@ def build_states():
 def build_ipr():
     F.studio()
     sx, sz = 2.6, 1.55
-    P = lambda ln, li: (sx * (ln - 1.5) - 1.6, 0, 3.9 + sz * li)
+    P = lambda ln, li: (sx * (ln - 1.5) - 1.6, 0, 4.65 + sz * li)   # the log N axis just above the floor
     for kind, rgb in (('bloch', F.ACCENT_AQM), ('aah', F.SURFACE), ('rand', F.BROKEN)):
         pts = [P(math.log10(n), math.log10(ipr(n, kind))) for n in NS]
         F.tube(f'{kind}_line', pts, 0.03, rgb)
@@ -84,7 +84,7 @@ def build_ipr():
     F.anchor('lN', P(2.9, -2.9))
     F.anchor('lI', P(1.45, -0.4))
     F.anchor('panel', P(1.3, -0.25))
-    F.camera((sx * (2.17 - 1.5) - 1.6, 0, 3.9 + sz * -1.6), elev=3.0, ortho=5.2, aspect=5.4 / 4.6)
+    F.camera((sx * (2.17 - 1.5) - 1.6, 0, 4.65 + sz * -1.6), elev=3.0, ortho=5.2, aspect=5.4 / 4.6)
 
 
 F.main_panels(NAME, [('states', build_states), ('ipr', build_ipr)])
