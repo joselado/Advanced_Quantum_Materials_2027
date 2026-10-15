@@ -1,0 +1,26 @@
+% Figure s04f03_guidingcenter (Session 4): why the Landau levels are flat.
+% The image is rendered by figures/blender/s04f03_guidingcenter.py; the coordinates of the labels come from
+% figures/blender/out/s04f03_guidingcenter_anchors.tex. Build with figures/blender/build_figure.sh s04f03_guidingcenter.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx,bm}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,calc}
+\input{aqmcolors.tex}
+\newlength{\figw}\setlength{\figw}{15.6cm}   % the text width of the notes (A4, 2.7 cm margins)
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
+  \node[anchor=south west, inner sep=0pt] at (0,0)
+    {\includegraphics[width=\figw]{../blender/out/s04f03_guidingcenter.jpg}};
+  \input{../blender/out/s04f03_guidingcenter_anchors.tex}
+  \node[pnl, anchor=south west] at (apanel) {(a)};
+  \node[pnl, anchor=south west] at (bpanel) {(b)};
+  \node[lbl, anchor=south east] at (ax) {$x$};
+  \node[lbl, anchor=south east] at (bx) {$k_y$};
+  \node[lbl, anchor=west] at (aE) {$E$};
+  \node[lbl, anchor=west] at (bE) {$E$};
+  \foreach \n/\t in {0/{\tfrac12},1/{\tfrac32},2/{\tfrac52},3/{\tfrac72}} { \node[lbl, anchor=east] at (E\n) {$\t$}; }
+  \node[lbl, anchor=north] at ($(x1)+(0,-0.12cm)$) {guiding centres $x_0=\hbar k_y/B$};
+\end{tikzpicture}
+\end{document}

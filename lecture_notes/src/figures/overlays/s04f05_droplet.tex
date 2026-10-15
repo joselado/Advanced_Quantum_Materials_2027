@@ -1,0 +1,25 @@
+% Figure s04f05_droplet (Session 4): lowest-Landau-level orbitals and the droplets they fill.
+% The image is rendered by figures/blender/s04f05_droplet.py; the coordinates of the labels come from
+% figures/blender/out/s04f05_droplet_anchors.tex. Build with figures/blender/build_figure.sh s04f05_droplet.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx,bm}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,calc}
+\input{aqmcolors.tex}
+\newlength{\figw}\setlength{\figw}{15.6cm}   % the text width of the notes (A4, 2.7 cm margins)
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
+  \node[anchor=south west, inner sep=0pt] at (0,0)
+    {\includegraphics[width=\figw]{../blender/out/s04f05_droplet.jpg}};
+  \input{../blender/out/s04f05_droplet_anchors.tex}
+  \node[pnl, anchor=west] at (apanel) {(a)};
+  \node[pnl, anchor=west] at (bpanel) {(b)};
+  \node[lbl, anchor=south] at (m0) {$m=0$};
+  \node[lbl, anchor=south] at (m8) {$m=8$};
+  \node[lbl, anchor=west] at (ar) {$r$};
+  \node[lbl, anchor=south] at (nu1) {$\nu=1$};
+  \node[lbl, anchor=south] at (nu3) {$\nu=1/3$};
+\end{tikzpicture}
+\end{document}

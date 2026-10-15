@@ -500,6 +500,28 @@ def revolution(name, fn, R, rgb, loc=(0, 0, 0), nr=60, nth=96, r0=0.0, alpha=1.0
     return obj(name, mesh_of(name, [m], f), loc=loc)
 
 
+def disc_surface(name, fn, R, rgb, nr=80, nth=160, alpha=1.0):
+    """A surface z = fn(x, y) over the disc of radius R around the origin, on a polar mesh, for a
+    droplet or any height field that is round by nature."""
+    key = 'surf_%d_%d_%d_%.2f' % (*(int(255 * c) for c in rgb), alpha)
+    m = ghost(key, rgb, alpha) if alpha < 1.0 else mat(key, rgb, rough=0.4, emit=0.05, spec=0.4)
+
+    def f(bm):
+        center = bm.verts.new((0, 0, fn(0, 0)))
+        rings = []
+        for i in range(1, nr + 1):
+            r = R * i / nr
+            rings.append([bm.verts.new((r * math.cos(2 * math.pi * j / nth), r * math.sin(2 * math.pi * j / nth),
+                                        fn(r * math.cos(2 * math.pi * j / nth), r * math.sin(2 * math.pi * j / nth))))
+                          for j in range(nth)])
+        for j in range(nth):
+            bm.faces.new((center, rings[0][j], rings[0][(j + 1) % nth])).smooth = True
+        for a, b in zip(rings[:-1], rings[1:]):
+            for j in range(nth):
+                bm.faces.new((a[j], b[j], b[(j + 1) % nth], a[(j + 1) % nth])).smooth = True
+    return obj(name, mesh_of(name, [m], f))
+
+
 def dos(name, x0, y, z0, es, gs, ez, gx, depth=0.12, rgb=None, alpha=1.0):
     """A density of states as a thin slab standing next to a band: energy up (height z0 + ez * E),
     the density along +x from x0 (gx per unit of g)."""

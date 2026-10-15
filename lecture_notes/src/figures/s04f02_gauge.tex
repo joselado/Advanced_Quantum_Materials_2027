@@ -1,102 +1,17 @@
 % Session 4 -- Peierls phases on a square lattice in two different gauges, and the
 % gauge-invariant plaquette sum.
 % Placement: sec. "Choosing a gauge: Landau versus symmetric", after the two bullets.
-%
-% All phases are the line integrals of (4.4) in units where the lattice constant,
-% e and hbar are one, so \varphi = B a^2 is the flux through one plaquette.
-%   Landau  A = (0,Bx,0)      : horizontal bonds 0, vertical bond in column x is x\varphi.
-%   Symmetric A = (B/2)(-y,x,0): vertical bond in column x is x\varphi/2,
-%                                horizontal bond in row y is -y\varphi/2.
-% Both give the same counterclockwise plaquette sum \varphi.
+% Rendered by figures/blender/s04f02_gauge.py, labels in figures/overlays/s04f02_gauge.tex.
 \begin{aqmfigure}{fig:s04:gauge}{Two gauges for the same magnetic field, written as Peierls phases
-(4.4) on a square lattice. (a) In the Landau gauge the horizontal bonds have no phase at all and
-the vertical bond in column $x$ has the phase $x\varphi$. The phase pattern depends on $x$ but not
-on $y$, so translations along $y$ are still an exact symmetry and a band structure in $k_y$ still
-exists. (b) In the symmetric gauge every bond has a phase and none of them is the same as in (a),
-so no translation survives, but the pattern is invariant under rotation about the centre of the
+(4.4) on a square lattice, with a dial on every bond whose needle points at the angle of its phase,
+drawn for $\varphi=\pi/4$. (a) In the Landau gauge the horizontal bonds have no phase at all and the
+vertical bond in column $x$ has the phase $x\varphi$. The phase pattern depends on $x$ but not on
+$y$, so translations along $y$ are still an exact symmetry and a band structure in $k_y$ still
+exists. (b) In the symmetric gauge every bond has a phase and none of them is the same as in (a), so
+no translation survives, but the pattern is invariant under rotation about the centre of the
 plaquette. There is no physical difference between the two. When we go once around any plaquette,
-the phases of the single bonds add up to the same $\varphi$, which is the flux through that
-plaquette. The bond phases are a choice of gauge and the loop sum is not, and the electrons
-respond only to the loop sum.}
-
-\begin{tikzpicture}[x=1cm, y=1cm]
-
-% =============================== helper macro ===============================
-% \aqmlattice draws the 3x2 patch of sites and bonds at the current origin.
-\newcommand{\aqmpatch}{%
-  \foreach \i in {0,1,2} {
-    \draw[aqmbond] (1.62*\i,0) -- (1.62*\i,1.62);
-  }
-  \foreach \j in {0,1} {
-    \draw[aqmbond] (0,1.62*\j) -- (3.24,1.62*\j);
-  }
-  \foreach \i in {0,1,2} {
-    \foreach \j in {0,1} {
-      \node[aqmsite] at (1.62*\i,1.62*\j) {};
-    }
-  }
-  % circulation arrows, one per plaquette
-  \foreach \c in {0.81,2.43} {
-    \draw[aqm, draw=aqmbroken, line width=\aqmthinwidth,
-          -{Stealth[length=4pt,width=3.2pt]}]
-      (\c+0.30,0.81) arc (0:305:0.30);
-  }
-}
-
-% ============================ (a) Landau gauge ==============================
-\begin{scope}[shift={(0,0)}]
-  \aqmpatch
-  % vertical bonds: phase x*varphi
-  \node[aqmlabsmall, fill=white, inner sep=1.4pt] at (0,0.81)    {$0$};
-  \node[aqmlabsmall, fill=white, inner sep=1.4pt] at (1.62,0.81) {$\varphi$};
-  \node[aqmlabsmall, fill=white, inner sep=1.4pt] at (3.24,0.81) {$2\varphi$};
-  % horizontal bonds: no phase
-  \node[aqmlabsmall, fill=white, inner sep=1.4pt] at (0.81,0)    {$0$};
-  \node[aqmlabsmall, fill=white, inner sep=1.4pt] at (2.43,0)    {$0$};
-  \node[aqmlabsmall, fill=white, inner sep=1.4pt] at (0.81,1.62) {$0$};
-  \node[aqmlabsmall, fill=white, inner sep=1.4pt] at (2.43,1.62) {$0$};
-
-  \node[aqmpanel, anchor=south] at (1.62,2.30) {(a) Landau gauge};
-  \node[aqmlabsmall, anchor=south] at (1.62,1.96) {$\mathbf{A}=(0,Bx,0)$};
-
-  \foreach \i/\lb in {0/{$x{=}0$},1/{$1$},2/{$2$}} {
-    \node[aqmlabmuted, anchor=north] at (1.62*\i,-0.30) {\lb};
-  }
-  \node[aqmlabsmall, anchor=north, align=center] at (1.62,-0.86)
-    {no $y$-dependence: $[H,p_y]=0$,\\[-1pt]so a band structure in $k_y$ survives};
-\end{scope}
-
-% ========================== (b) symmetric gauge =============================
-\begin{scope}[shift={(6.6,0)}]
-  \aqmpatch
-  % vertical bonds: phase x*varphi/2, columns x = -1,0,1
-  \node[aqmlabsmall, fill=white, inner sep=1.4pt] at (0,0.81)    {$-\tfrac{\varphi}{2}$};
-  \node[aqmlabsmall, fill=white, inner sep=1.4pt] at (1.62,0.81) {$0$};
-  \node[aqmlabsmall, fill=white, inner sep=1.4pt] at (3.24,0.81) {$+\tfrac{\varphi}{2}$};
-  % horizontal bonds: phase -y*varphi/2, rows y = -1/2, +1/2
-  \node[aqmlabsmall, fill=white, inner sep=1.4pt] at (0.81,0)    {$+\tfrac{\varphi}{4}$};
-  \node[aqmlabsmall, fill=white, inner sep=1.4pt] at (2.43,0)    {$+\tfrac{\varphi}{4}$};
-  \node[aqmlabsmall, fill=white, inner sep=1.4pt] at (0.81,1.62) {$-\tfrac{\varphi}{4}$};
-  \node[aqmlabsmall, fill=white, inner sep=1.4pt] at (2.43,1.62) {$-\tfrac{\varphi}{4}$};
-
-  \node[aqmpanel, anchor=south] at (1.62,2.30) {(b) symmetric gauge};
-  \node[aqmlabsmall, anchor=south] at (1.62,1.96)
-    {$\mathbf{A}=\tfrac{B}{2}(-y,x,0)$};
-
-  \foreach \i/\lb in {0/{$x{=}{-}1$},1/{$0$},2/{$+1$}} {
-    \node[aqmlabmuted, anchor=north] at (1.62*\i,-0.30) {\lb};
-  }
-  \node[aqmlabsmall, anchor=north, align=center] at (1.62,-0.86)
-    {depends on $x$ \emph{and} $y$: no translation\\[-1pt]survives, but the rotation does};
-\end{scope}
-
-% =========================== the shared punchline ===========================
-\node[aqmboxbroken, anchor=north, align=center] at (4.86,-1.98)
-  {going once counterclockwise around \emph{any} plaquette, both gauges give the same
-   $\oint\mathbf{A}\cdot d\boldsymbol\ell=\varphi=\Phi_\square$\\[2pt]
-   \textcolor{aqmmuted}{the bond phases are a gauge choice; the loop sum is the physical flux}\\[2pt]
-   \textcolor{aqmmuted}{(each label is the phase for hopping in the $+x$ or $+y$ direction)}};
-
-\end{tikzpicture}
-
+such as the shaded one, the phases of the single bonds add up to the same $\varphi$, which is the
+flux through that plaquette. The bond phases are a choice of gauge and the loop sum is not, and the
+electrons respond only to the loop sum.}
+\includegraphics{figures/pdf/s04f02_gauge.pdf}
 \end{aqmfigure}

@@ -2,141 +2,18 @@
 % branches, and why an impurity cannot backscatter an edge electron.
 % Placement: sec. "Why an insulating bulk still conducts: edge states", after the
 % ribbon / no-backscattering paragraph.
-%
-% LAYOUT NOTE: everything inside the axis is placed in "axis cs:"; the real-space
-% panel (b) is a fixed-size ornament drawn in canvas units inside a scope shifted
-% off an anchor node that itself lives in axis description cs.
-%
-% PHYSICS NOTE: the chirality is fixed by the text's own guiding centre
-% x_0 = +hbar k_y / B (sec. 4.9). k_y > 0 puts the guiding centre on the RIGHT
-% half of the ribbon, so it is the k_y > 0 branches that ride up the right wall;
-% there dE/dk_y > 0, hence v_y > 0: the right edge carries +y movers. The left
-% edge is the mirror image. The overall sense follows the chapter's +e carrier
-% convention of (4.3); for electrons every arrow here reverses at once, which is
-% why this circulation is opposite to the one drawn in fig:s03:chiraledge.
+% Rendered by figures/blender/s04f01_ribbon.py, labels in figures/overlays/s04f01_ribbon.tex.
 \begin{aqmfigure}{fig:s04:ribbon}{The quantum Hall ribbon. (a) The spectrum of a strip that is
-infinite along $y$ and finite along $x$. In the bulk the Landau levels (4.6) are exactly flat, so
-they carry no current at all, but near each boundary the guiding centre $x_0=\hbar k_y/B$ is
-pushed into the wall and the level bends up strongly. These bending branches are the edge states,
-and each of them crosses the chemical potential exactly once per edge, so the number of chiral
-modes at a given edge is equal to the number $N$ of filled Landau levels, here $N=2$. (b) The same
-statement in real space. The branches with $k_y>0$ have $v_y=\hbar^{-1}\partial_{k_y}E>0$ and live
-on the right edge, and the branches with $k_y<0$ move in the opposite direction and live on the
-left edge. To reverse the velocity of an electron we would therefore have to move it to the other
-side of the sample, which no local impurity can do, and this is why the edge transport has no
-dissipation.}
-
-\begin{tikzpicture}
-
-\begin{axis}[
-  aqmplot,
-  width=9.4cm, height=6.8cm,
-  axis lines=left,
-  axis line style={aqm, black},
-  title={(a) ribbon spectrum},
-  xlabel={$k_y$}, ylabel={$E$},
-  xlabel style={at={(axis description cs:1.02,0)}, anchor=west},
-  xmin=-3.0, xmax=3.0, ymin=0, ymax=5.6,
-  xtick={0}, xticklabels={$0$},
-  ytick={0.5,1.5,2.5}, yticklabels={$n{=}0$,$n{=}1$,$n{=}2$},
-  enlargelimits=false,
-]
-
-% --- chemical potential, sitting in the gap between n=1 and n=2 --------------
-\addplot[aqmguide, forget plot] coordinates {(-3.0,2) (3.0,2)};
-\node[aqmlabsmall, text=aqmmuted, anchor=south west] at (axis cs:-2.96,2.02) {$\mu$};
-\node[aqmlabsmall, anchor=south] at (axis cs:0.35,4.96)
-  {$\mu$ in the gap: $N=2$ levels filled};
-
-% --- flat bulk Landau levels -------------------------------------------------
-\addplot[black, line width=1.1pt, forget plot] coordinates {(-1.7,0.5) (1.7,0.5)};
-\addplot[black, line width=1.1pt, forget plot] coordinates {(-1.7,1.5) (1.7,1.5)};
-\addplot[black, line width=1.1pt, forget plot] coordinates {(-1.7,2.5) (1.7,2.5)};
-
-% --- right-edge branches (k_y > 0, v_y > 0): solid accent --------------------
-\addplot[aqmaccent, line width=1.1pt, domain=1.7:2.80, samples=50, forget plot]
-  {0.5+3*(x-1.7)^2};
-\addplot[aqmaccent, line width=1.1pt, domain=1.7:2.65, samples=50, forget plot]
-  {1.5+3*(x-1.7)^2};
-\addplot[aqmaccent, line width=1.1pt, domain=1.7:2.45, samples=50, forget plot]
-  {2.5+3*(x-1.7)^2};
-
-% --- left-edge branches (k_y < 0, v_y < 0): dashed accent --------------------
-\addplot[aqmaccent, line width=1.1pt, dash pattern=on 3.2pt off 2.2pt,
-         domain=-2.80:-1.7, samples=50, forget plot] {0.5+3*(x+1.7)^2};
-\addplot[aqmaccent, line width=1.1pt, dash pattern=on 3.2pt off 2.2pt,
-         domain=-2.65:-1.7, samples=50, forget plot] {1.5+3*(x+1.7)^2};
-\addplot[aqmaccent, line width=1.1pt, dash pattern=on 3.2pt off 2.2pt,
-         domain=-2.45:-1.7, samples=50, forget plot] {2.5+3*(x+1.7)^2};
-
-% --- the four Fermi-level crossings -----------------------------------------
-\node[circle, fill=aqmaccent, inner sep=0pt, minimum size=4.2pt] at (axis cs: 2.4071,2) {};
-\node[circle, fill=aqmaccent, inner sep=0pt, minimum size=4.2pt] at (axis cs: 2.1082,2) {};
-\node[circle, fill=aqmaccent, inner sep=0pt, minimum size=4.2pt] at (axis cs:-2.4071,2) {};
-\node[circle, fill=aqmaccent, inner sep=0pt, minimum size=4.2pt] at (axis cs:-2.1082,2) {};
-
-% --- annotations -------------------------------------------------------------
-\node[aqmlabsmall, anchor=south, text=aqmaccent] at (axis cs:-1.85,4.32)
-  {left edge, $v_y<0$};
-\node[aqmlabsmall, anchor=south, text=aqmaccent] at (axis cs:1.85,4.32)
-  {right edge, $v_y>0$};
-\draw[aqmarrowmuted] (axis cs:-2.18,4.28) -- (axis cs:-2.52,4.00);
-\draw[aqmarrowmuted] (axis cs:2.18,4.28) -- (axis cs:2.52,4.00);
-
-\node[aqmlabsmall, anchor=south] at (axis cs:0,3.52) {flat bulk Landau levels};
-\draw[aqmarrowmuted] (axis cs:0,3.46) -- (axis cs:0,2.62);
-
-% --- anchor for the real-space panel ----------------------------------------
-\node (pbref) at (axis description cs:1,0.5) {};
-
-\end{axis}
-
-% ============================ panel (b), canvas units =======================
-\begin{scope}[shift={([xshift=3.15cm]pbref.center)}]
-
-% the ribbon: solid side walls, dashed top/bottom (it continues along y)
-\fill[aqmfill] (-1.05,-1.95) rectangle (1.05,1.95);
-\draw[aqm, black] (-1.05,-1.95) -- (-1.05,1.95);
-\draw[aqm, black] (1.05,-1.95) -- (1.05,1.95);
-\draw[aqm, draw=aqmmuted, line width=\aqmthinwidth, dashed]
-  (-1.05,1.95) -- (1.05,1.95) (-1.05,-1.95) -- (1.05,-1.95);
-
-\node[aqmlabsmall, align=center] at (0,1.15) {insulating\\[-2pt]bulk};
-
-% right edge: +y movers (solid); left edge: -y movers (dashed)
-\draw[aqmarrowaccent] (0.88,-1.72) -- (0.88,-0.55);
-\draw[aqmarrowaccent] (0.88,0.55) -- (0.88,1.72);
-\draw[aqmarrow, draw=aqmaccent, dash pattern=on 3.2pt off 2.2pt]
-  (-0.88,1.72) -- (-0.88,0.55);
-\draw[aqmarrow, draw=aqmaccent, dash pattern=on 3.2pt off 2.2pt]
-  (-0.88,-0.55) -- (-0.88,-1.72);
-
-% an impurity on the left edge, and the backscattering event it cannot cause
-\node[rectangle, fill=aqmbroken, inner sep=0pt, minimum size=5.5pt] at (-1.05,0.05) {};
-\node[aqmlabsmall, text=aqmbroken, anchor=east] at (-1.22,0.05) {impurity};
-
-\draw[aqmarrowbroken] (-0.92,-0.10) to[out=-32,in=-148] (0.92,-0.10);
-\draw[aqm, draw=aqmbroken, line width=1.6pt]
-  (-0.17,-0.72) -- (0.17,-0.38) (-0.17,-0.38) -- (0.17,-0.72);
-
-\node[aqmlabsmall, anchor=north, align=center] at (0,-2.12)
-  {reversing $v_y$ means\\[-1pt]crossing the whole sample:\\[-1pt]no backscattering};
-
-% the width, and the coordinate frame
-\draw[aqm, draw=aqmmuted, line width=\aqmthinwidth,
-      {Stealth[length=4pt,width=3pt]}-{Stealth[length=4pt,width=3pt]}]
-  (-1.05,2.16) -- (1.05,2.16);
-\node[aqmlabsmall, text=aqmmuted, anchor=south] at (0,2.18) {$W$};
-
-\draw[aqmarrowmuted] (-1.95,-1.95) -- (-1.95,-1.25);
-\node[aqmlabsmall, text=aqmmuted, anchor=east] at (-1.98,-1.25) {$y$};
-\draw[aqmarrowmuted] (-1.95,-1.95) -- (-1.45,-1.95);
-\node[aqmlabsmall, text=aqmmuted, anchor=north] at (-1.48,-1.99) {$x$};
-
-\node[aqmpanel, anchor=south] at (0,2.52) {(b) real space};
-
-\end{scope}
-
-\end{tikzpicture}
-
+infinite along $y$ and finite along $x$, computed for a width of $12\,\ell_B$ with hard walls. In
+the bulk the Landau levels (4.6) are exactly flat, so they carry no current at all, but near each
+boundary the guiding centre $x_0=\hbar k_y/B$ is pushed into the wall and the level bends up
+strongly. These bending branches are the edge states, and each of them crosses the chemical
+potential, the translucent plane, exactly once per edge, at the balls, so the number of chiral modes
+at a given edge is equal to the number $N$ of filled Landau levels, here $N=2$. (b) The same
+statement in real space, seen from above. The branches with $k_y>0$ have
+$v_y=\hbar^{-1}\partial_{k_y}E>0$ and live on the right edge, and the branches with $k_y<0$ move in
+the opposite direction and live on the left edge. To reverse the velocity of an electron we would
+therefore have to move it to the other side of the sample, which no local impurity can do, and this
+is why the edge transport has no dissipation.}
+\includegraphics{figures/pdf/s04f01_ribbon.pdf}
 \end{aqmfigure}

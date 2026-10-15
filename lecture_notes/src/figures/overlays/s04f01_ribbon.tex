@@ -1,0 +1,40 @@
+% Figure s04f01_ribbon (Session 4): the quantum Hall ribbon, its spectrum and its edges.
+% The image is rendered by figures/blender/s04f01_ribbon.py; the coordinates of the labels come from
+% figures/blender/out/s04f01_ribbon_anchors.tex. Build with figures/blender/build_figure.sh s04f01_ribbon.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx,bm}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,calc}
+\input{aqmcolors.tex}
+\newlength{\figw}\setlength{\figw}{15.6cm}   % the text width of the notes (A4, 2.7 cm margins)
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
+  \begin{scope}
+    \setlength{\figw}{9.6cm}
+    \node[anchor=south west, inner sep=0pt] at (0,0)
+      {\includegraphics[width=\figw]{../blender/out/s04f01_ribbon_a.jpg}};
+    \input{../blender/out/s04f01_ribbon_a_anchors.tex}
+    \node[pnl, anchor=north west] at (apanel) {(a)};
+    \node[lbl, anchor=south east] at (ak) {$k_y$};
+    \node[lbl, anchor=west] at (aE) {$E$};
+    \node[lbl, anchor=north east, text=aqmbroken] at (amu) {$\mu$};
+    \node[lbl, anchor=north, text=aqmmuted] at (awallL) {left wall};
+    \node[lbl, anchor=north, text=aqmmuted] at (awallR) {right wall};
+    \node[lbl, anchor=south, fill=white, fill opacity=0.7, text opacity=1] at (an0) {$n=0$};
+    \node[lbl, anchor=south, fill=white, fill opacity=0.7, text opacity=1] at (an1) {$n=1$};
+  \end{scope}
+  \begin{scope}[shift={(9.8cm,0)}]
+    \setlength{\figw}{5.8cm}
+    \node[anchor=south west, inner sep=0pt] at (0,0)
+      {\includegraphics[width=\figw]{../blender/out/s04f01_ribbon_b.jpg}};
+    \input{../blender/out/s04f01_ribbon_b_anchors.tex}
+    \node[pnl, anchor=north west] at (bpanel) {(b)};
+    \node[lbl, anchor=west] at (bimp) {impurity};
+    \node[lbl, anchor=west, align=left] at (bright) {$k_y>0$\\$v_y>0$};
+    \node[lbl, anchor=east, align=right] at (bleft) {$k_y<0$\\$v_y<0$};
+    \node[lbl, anchor=south] at (by) {$y$};
+  \end{scope}
+\end{tikzpicture}
+\end{document}
