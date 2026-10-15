@@ -1,0 +1,29 @@
+% Figure s07f03_entropyceiling (Session 7): what an MPS of bond dimension M can represent.
+% The image is rendered by figures/blender/s07f03_entropyceiling.py; the coordinates of the labels come from
+% figures/blender/out/s07f03_entropyceiling*_anchors.tex. Build with figures/blender/build_figure.sh s07f03_entropyceiling.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx,bm}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,calc}
+\input{aqmcolors.tex}
+\input{aqmstyles.tex}
+\newlength{\figw}\setlength{\figw}{10.10cm}   % 0.65 of the text width
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
+  \begin{scope}[shift={(0.00cm,0.00cm)}]
+    \setlength{\figw}{10.10cm}
+    \node[anchor=south west, inner sep=0pt] at (0,0)
+      {\includegraphics[width=\figw]{../blender/out/s07f03_entropyceiling.jpg}};
+    \input{../blender/out/s07f03_entropyceiling_anchors.tex}
+    \node[lbl, anchor=south east] at (l) {$\ell$};
+    \node[lbl, anchor=west] at (S) {$S/\log2$};
+    \node[lbl, anchor=south] at (M0) {$\log_2M$, $M=4$};
+    \node[lbl, anchor=south] at (M1) {$\log_2M$, $M=16$};
+    \node[lbl, anchor=north east, text=aqmaccent] at (gapped) {gapped};
+    \node[lbl, anchor=south east, text=aqmaccent!60] at (critical) {critical, $\tfrac{c}{3}\log_2\ell$};
+    \node[lbl, anchor=west, text=aqmbroken] at (volume) {volume law};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

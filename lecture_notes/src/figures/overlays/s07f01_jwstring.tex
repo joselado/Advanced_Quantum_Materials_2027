@@ -1,0 +1,25 @@
+% Figure s07f01_jwstring (Session 7): the Jordan-Wigner string, spin equals fermion times string.
+% The image is rendered by figures/blender/s07f01_jwstring.py; the coordinates of the labels come from
+% figures/blender/out/s07f01_jwstring*_anchors.tex. Build with figures/blender/build_figure.sh s07f01_jwstring.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx,bm}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,calc}
+\input{aqmcolors.tex}
+\input{aqmstyles.tex}
+\newlength{\figw}\setlength{\figw}{15.60cm}   % the text width of the notes (A4, 2.7 cm margins)
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
+  \begin{scope}[shift={(0.00cm,0.00cm)}]
+    \setlength{\figw}{15.60cm}
+    \node[anchor=south west, inner sep=0pt] at (0,0)
+      {\includegraphics[width=\figw]{../blender/out/s07f01_jwstring.jpg}};
+    \input{../blender/out/s07f01_jwstring_anchors.tex}
+    \foreach \p in {b,f} { \foreach \n in {1,...,8} { \node[lbl, anchor=north, text=aqmmuted] at (\p n\n) {$\n$}; } }
+            \node[lbl, anchor=east, text=aqmbroken] at (bcount) {$K_6=-1$};
+    \node[lbl, anchor=east, text=aqmbroken] at (fcount) {$K_6=+1$};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

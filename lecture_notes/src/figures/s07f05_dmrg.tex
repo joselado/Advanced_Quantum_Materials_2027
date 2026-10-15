@@ -1,107 +1,19 @@
 % Session 7 -- DMRG: differentiating the network erases one tensor and leaves a
-% small eigenvalue problem; sweeping that problem along the chain is the algorithm.
 % Placement: sec. "Finding the ground state: the variational principle and DMRG",
 % after the "erasing that tensor from the diagram" paragraph.
-%
-% LAYOUT NOTE: pure TikZ, canvas coordinates; one-off tensor styles are \tikzset
-% inside this picture only. Panel titles are short tags, with the explanatory line
-% placed under each panel, so nothing collides across the top of the figure.
-\begin{aqmfigure}{fig:s07:dmrg}{How DMRG turns an exponentially large minimization into a sequence of
-small ones. (a) The numerator of the Rayleigh quotient (7.11) is a single closed network, made of the
-ket MPS, the Hamiltonian as an MPO and the bra MPS, all contracted together. It has no free legs, so
-it is a number. (b) Every tensor enters that network once in the bra layer and once in the ket layer, so
-the energy is a quadratic form in each tensor and linear in its bra copy, and the derivative with
-respect to the bra tensor at site $k$ removes it. What is left has
-exactly three open legs, the two virtual bonds and the physical index of site $k$, which are the
-indices of the tensor $M_k^{s_k}$ that we want to find. Everything to the left and right of $k$ has
-been reduced to an environment, and the stationarity condition is a generalized eigenvalue problem,
-which is an ordinary one in an orthonormal gauge, with the size of a single tensor. (c) We solve it, move one site along, solve again, and sweep back and
-forth until the energy stops decreasing. This is the density matrix renormalization group, and at no
-point do we build an object of size $2^L$.}
-
-\begin{tikzpicture}[x=1cm, y=1cm]
-\tikzset{
-  tens/.style={aqm, circle, draw=black, fill=aqmfill, minimum size=6.5pt, inner sep=0pt},
-  tensop/.style={aqm, rectangle, draw=black, fill=white, minimum size=6.5pt, inner sep=0pt},
-  leg/.style={aqm, draw=black, line width=\aqmthinwidth},
-  openleg/.style={aqm, draw=aqmbroken, line width=1.15pt}
-}
-
-% ============================ (a) the closed network ========================
-\node[aqmpanel, anchor=west] at (-0.05,0.60) {(a)};
-
-\node[aqmlabsmall, anchor=east] at (0.42,0.10)  {$\langle\Psi|$};
-\node[aqmlabsmall, anchor=east] at (0.42,-0.52) {$H$};
-\node[aqmlabsmall, anchor=east] at (0.42,-1.14) {$|\Psi\rangle$};
-
-\foreach \i in {0,1,2,3,4} {
-  \node[tens]   (b\i) at (0.62+0.58*\i, 0.10)  {};
-  \node[tensop] (h\i) at (0.62+0.58*\i,-0.52)  {};
-  \node[tens]   (k\i) at (0.62+0.58*\i,-1.14)  {};
-  \draw[leg] (b\i) -- (h\i);
-  \draw[leg] (h\i) -- (k\i);
-}
-\foreach \i/\j in {0/1, 1/2, 2/3, 3/4} {
-  \draw[leg] (b\i) -- (b\j);
-  \draw[leg] (h\i) -- (h\j);
-  \draw[leg] (k\i) -- (k\j);
-}
-\node[aqmlabsmall, anchor=north, text=aqmmuted, align=center] at (1.78,-1.44)
-  {$\langle\Psi|H|\Psi\rangle$: no free legs,\\[-1pt] so the contraction is a number};
-
-% ============================ the differentiation arrow =====================
-\draw[aqmarrowaccent] (3.40,-0.52) -- (4.92,-0.52);
-\node[aqmlabsmall, anchor=south, align=center, text=aqmaccent] at (4.15,-0.44)
-  {erase the bra\\[-1pt] tensor at $k$};
-
-% ============================ (b) the hole ==================================
-\node[aqmpanel, anchor=west] at (5.25,0.60) {(b)};
-
-\foreach \i in {0,1,2,3,4} {
-  \node[tensop] (H\i) at (5.65+0.58*\i,-0.52)  {};
-  \node[tens]   (K\i) at (5.65+0.58*\i,-1.14)  {};
-  \draw[leg] (H\i) -- (K\i);
-}
-\foreach \i in {0,1,3,4} {
-  \node[tens] (B\i) at (5.65+0.58*\i, 0.10)  {};
-  \draw[leg] (B\i) -- (H\i);
-}
-\foreach \i/\j in {0/1, 1/2, 2/3, 3/4} {
-  \draw[leg] (H\i) -- (H\j);
-  \draw[leg] (K\i) -- (K\j);
-}
-% the hole at site k, and the three legs it leaves open
-\draw[openleg] (B1) -- (6.60,0.10);
-\draw[openleg] (7.00,0.10) -- (B3);
-\draw[openleg] (H2) -- (6.80,-0.12);
-\node[circle, draw=aqmbroken, dashed, line width=\aqmthinwidth, fill=none,
-      minimum size=12pt, inner sep=0pt] at (6.80,0.10) {};
-\node[aqmlabsmall, anchor=south, align=center, text=aqmbroken] at (6.80,0.34)
-  {site $k$ erased};
-\node[aqmlabsmall, anchor=north, text=aqmbroken, align=center] at (6.80,-1.44)
-  {three open legs: exactly the\\[-1pt] indices of one tensor $M_k^{s_k}$};
-
-\node[aqmboxaccent, anchor=west, text width=4.5cm, align=center] at (8.75,-0.52)
-  {$H^{\text{eff}}_k\,M_k^{s_k} = \lambda\,M_k^{s_k}$\\[3pt]
-   {\footnotesize\textcolor{aqmmuted}{one small eigenvalue problem; the rest of the chain is
-   now just an environment}}};
-
-% ============================ (c) the sweep =================================
-\node[aqmpanel, anchor=west] at (-0.05,-2.48) {(c)};
-
-\foreach \i in {0,...,7} {
-  \node[tens] (s\i) at (0.62+0.58*\i,-3.20) {};
-  \draw[leg] (0.62+0.58*\i,-3.28) -- (0.62+0.58*\i,-3.52);
-}
-\foreach \i/\j in {0/1, 1/2, 2/3, 3/4, 4/5, 5/6, 6/7} { \draw[leg] (s\i) -- (s\j); }
-
-\draw[aqmarrowaccent] (0.50,-2.86) -- (4.82,-2.86);
-\node[aqmlabsmall, anchor=west, text=aqmaccent] at (5.05,-2.86)
-  {solve one tensor, move one site along};
-\draw[aqmarrowmuted] (4.82,-3.78) -- (0.50,-3.78);
-\node[aqmlabsmall, anchor=west, text=aqmmuted] at (5.05,-3.78)
-  {\dots{} then sweep back, until the energy stops decreasing};
-
-\end{tikzpicture}
-
+% Rendered by figures/blender/s07f05_dmrg.py, labels in figures/overlays/s07f05_dmrg.tex.
+\begin{aqmfigure}{fig:s07:dmrg}{How DMRG turns an exponentially large minimization into a sequence
+of small ones. (a) The numerator of the Rayleigh quotient (7.11) is a single closed network, made of
+the ket MPS, the Hamiltonian as an MPO and the bra MPS, all contracted together. It has no free
+legs, so it is a number. (b) Every tensor enters that network once in the bra layer and once in the
+ket layer, so the energy is a quadratic form in each tensor and linear in its bra copy, and the
+derivative with respect to the bra tensor at site $k$ removes it, which is the ghost. What is left
+has exactly three open legs, drawn in red, the two virtual bonds and the physical index of site $k$,
+which are the indices of the tensor $M_k^{s_k}$ that we want to find. Everything to the left and
+right of $k$ has been reduced to an environment, and the stationarity condition is a generalized
+eigenvalue problem, which is an ordinary one in an orthonormal gauge, with the size of a single
+tensor. (c) We solve it, move one site along, solve again, and sweep back and forth until the energy
+stops decreasing. This is the density matrix renormalization group, and at no point do we build an
+object of size $2^L$.}
+\includegraphics{figures/pdf/s07f05_dmrg.pdf}
 \end{aqmfigure}

@@ -1,0 +1,36 @@
+% Figure s07f05_dmrg (Session 7): DMRG erases one tensor and leaves a small eigenvalue problem.
+% The image is rendered by figures/blender/s07f05_dmrg.py; the coordinates of the labels come from
+% figures/blender/out/s07f05_dmrg*_anchors.tex. Build with figures/blender/build_figure.sh s07f05_dmrg.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx,bm}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,calc}
+\input{aqmcolors.tex}
+\input{aqmstyles.tex}
+\newlength{\figw}\setlength{\figw}{15.60cm}   % the text width of the notes (A4, 2.7 cm margins)
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
+  \begin{scope}[shift={(0.00cm,0.00cm)}]
+    \setlength{\figw}{15.60cm}
+    \node[anchor=south west, inner sep=0pt] at (0,0)
+      {\includegraphics[width=\figw]{../blender/out/s07f05_dmrg.jpg}};
+    \input{../blender/out/s07f05_dmrg_anchors.tex}
+    \node[pnl, anchor=south west] at (apanel) {(a)};
+    \node[pnl, anchor=south west] at (bpanel) {(b)};
+    \foreach \p in {a,b} {
+      \node[lbl, anchor=west] at (\p bra) {bra};
+      \node[lbl, anchor=west] at (\p mpo) {$H$};
+      \node[lbl, anchor=west] at (\p ket) {ket};
+    }
+    \node[lbl, anchor=south, text=aqmbroken] at (bhole) {$\partial/\partial M_k^{s_k*}$, three open legs};
+    \draw[axarrow] (d0) -- (d1);
+    \draw[axarrow, aqmaccent, line width=0.9pt] (bsweep0) -- (bsweep1);
+    \draw[axarrow, aqmaccent, line width=0.9pt] ([yshift=-0.12cm]bsweep1) -- ([yshift=-0.12cm]bsweep0);
+    \node[lbl, anchor=north, text=aqmaccent] at ([yshift=-0.15cm]bbelow) {\textbf{(c)} sweep back and forth};
+    \node[lbl, anchor=north] at ([yshift=-0.15cm]abelow) {a single number};
+    \aqmkey{(0.1cm,1.0cm)}{keyteal}{state}{keyoper}{operator}
+  \end{scope}
+\end{tikzpicture}
+\end{document}

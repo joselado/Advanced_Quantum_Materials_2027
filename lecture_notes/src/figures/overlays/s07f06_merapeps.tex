@@ -1,0 +1,34 @@
+% Figure s07f06_merapeps (Session 7): MERA and PEPS.
+% The image is rendered by figures/blender/s07f06_merapeps.py; the coordinates of the labels come from
+% figures/blender/out/s07f06_merapeps*_anchors.tex. Build with figures/blender/build_figure.sh s07f06_merapeps.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx,bm}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,calc}
+\input{aqmcolors.tex}
+\input{aqmstyles.tex}
+\newlength{\figw}\setlength{\figw}{15.60cm}   % the text width of the notes (A4, 2.7 cm margins)
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
+  \begin{scope}[shift={(0.00cm,0.00cm)}]
+    \setlength{\figw}{6.40cm}
+    \node[anchor=south west, inner sep=0pt] at (0,0)
+      {\includegraphics[width=\figw]{../blender/out/s07f06_merapeps_mera.jpg}};
+    \input{../blender/out/s07f06_merapeps_mera_anchors.tex}
+    \node[pnl, anchor=south west] at (merapanel) {MERA};
+    \node[lbl, anchor=south, text=aqmbroken] at (meracut) {cut};
+    \draw[axarrow] (merascale0) -- (merascale1) node[midway, left, lbl] {scale};
+    \node[lbl, anchor=north] at (merasites) {sites};
+  \end{scope}
+  \begin{scope}[shift={(6.60cm,0.00cm)}]
+    \setlength{\figw}{8.90cm}
+    \node[anchor=south west, inner sep=0pt] at (0,0)
+      {\includegraphics[width=\figw]{../blender/out/s07f06_merapeps_peps.jpg}};
+    \input{../blender/out/s07f06_merapeps_peps_anchors.tex}
+    \node[pnl, anchor=south west] at (pepspanel) {PEPS};
+    \node[lbl, anchor=north west] at (pepsphys) {physical legs};
+  \end{scope}
+\end{tikzpicture}
+\end{document}
