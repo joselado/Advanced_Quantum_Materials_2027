@@ -1,0 +1,37 @@
+% Figure s09f06_localization (Session 9): three regimes, three eigenstates, and the IPR.
+% The image is rendered by figures/blender/s09f06_localization.py; the coordinates of the labels come from
+% figures/blender/out/s09f06_localization*_anchors.tex. Build with figures/blender/build_figure.sh s09f06_localization.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx,bm}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,calc}
+\input{aqmcolors.tex}
+\input{aqmstyles.tex}
+\newlength{\figw}\setlength{\figw}{15.60cm}   % the text width of the notes (A4, 2.7 cm margins)
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
+  \begin{scope}[shift={(0.00cm,0.00cm)}]
+    \setlength{\figw}{10.00cm}
+    \node[anchor=south west, inner sep=0pt] at (0,0)
+      {\includegraphics[width=\figw]{../blender/out/s09f06_localization_states.jpg}};
+    \input{../blender/out/s09f06_localization_states_anchors.tex}
+    \node[lbl, anchor=south west] at ([yshift=0.15cm]statesbloch) {\textbf{(a)}};
+    \node[lbl, anchor=south west] at ([yshift=0.15cm]statesaah) {\textbf{(b)}};
+    \node[lbl, anchor=south west] at ([yshift=0.15cm]statesrand) {\textbf{(c)}};
+  \end{scope}
+  \begin{scope}[shift={(10.20cm,0.00cm)}]
+    \setlength{\figw}{5.40cm}
+    \node[anchor=south west, inner sep=0pt] at (0,0)
+      {\includegraphics[width=\figw]{../blender/out/s09f06_localization_ipr.jpg}};
+    \input{../blender/out/s09f06_localization_ipr_anchors.tex}
+    \node[pnl, anchor=south west] at (iprpanel) {(d)};
+    \node[lbl, anchor=north east] at (iprlN) {$\log N$};
+    \node[lbl, anchor=west] at (iprlI) {$\log\mathrm{IPR}$};
+    \node[lbl, anchor=south east, text=aqmbroken] at (iprrand) {$O(1)$};
+    \node[lbl, anchor=south east, text=aqmaccent!60] at (ipraah) {$N^{-\tau}$};
+    \node[lbl, anchor=south west, text=aqmaccent] at ([xshift=-0.9cm]iprbloch) {$1/N$};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

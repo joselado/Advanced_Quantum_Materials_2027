@@ -1,79 +1,18 @@
 % Session 9 -- the two sources of divergence in the RPA response: the
-% particle-hole continuum inside chi_0, and the collective plasmon pole of the
-% RPA denominator.
 % Placement: sec. "Interactions as a perturbation", after equation (9.7).
+% Rendered by figures/blender/s09f02_plasmon.py, labels in figures/overlays/s09f02_plasmon.tex.
 \begin{aqmfigure}{fig:s09:plasmon}{The two divergences of the RPA response (9.6), drawn in the
 $(q,\omega)$ plane for the three-dimensional electron gas. The shaded region is where
 $\mathrm{Im}\,\chi_0(q,\omega)\neq0$, which is the \emph{particle-hole continuum}, the set of all
 $(q,\omega)$ at which a single electron can be moved from an occupied state $k$ to an empty state
 $k+q$. Its upper boundary is $\hbar\omega_+=\hbar v_Fq+\hbar^2q^2/2m$, and beyond $2k_F$ a lower
-boundary $\hbar\omega_-=\hbar^2q^2/2m-\hbar v_Fq$ appears. Both follow from the energy denominator of
-(9.5), and for $q<2k_F$ the continuum goes all the way down to $\omega=0$, which is the same statement
-as saying that $\chi_0$ is built only from states on the two sides of the Fermi surface. The plasmon
-(9.7) is a different object. It is a zero of the RPA \emph{denominator} $1-v(q)\chi_0$, so it exists
-at $\omega_p$ even as $q\to0$, in a window where no single-particle excitation exists at all. This
-window, marked in the figure, is the full meaning of the phrase ``collective mode, not a
-particle-hole pair''. Once the branch meets the continuum it can decay into particle-hole pairs, and
-it is Landau damped (dashed).}
-
-\begin{tikzpicture}
-\begin{axis}[
-  aqmplot,
-  width=10.8cm, height=6.4cm,
-  axis lines=left,
-  axis line style={aqm, black},
-  xlabel={$q$}, ylabel={},
-  xmin=0, xmax=2.30, ymin=0, ymax=5.35,
-  xtick={2}, xticklabels={$2k_F$},
-  ytick={1.3}, yticklabels={$\omega_p$},
-  xlabel style={at={(axis description cs:1.0,-0.02)}, anchor=north east},
-  enlargelimits=false,
-]
-
-% --- the particle-hole continuum -------------------------------------------
-% fill everything under omega_+ = v_F q + hbar q^2 / 2m ...
-\addplot[draw=none, fill=aqmfill, domain=0:2.28, samples=90] {x + x^2/2} \closedcycle;
-% ... then cut the region below omega_- back out again, for q > 2 k_F
-\addplot[draw=none, fill=white, domain=2:2.28, samples=30] {x^2/2 - x} \closedcycle;
-% boundaries
-\addplot[aqmmuted, solid, line width=0.8pt, smooth, domain=0:2.28, samples=90] {x + x^2/2};
-\addplot[aqmmuted, solid, line width=0.8pt, smooth, domain=2:2.28, samples=30] {x^2/2 - x};
-
-\node[aqmlabsmall, anchor=south east, text=aqmmuted] at (axis cs:2.28,4.40) {$\omega_+$};
-\node[aqmlabsmall, anchor=south east, text=aqmmuted] at (axis cs:2.29,0.40) {$\omega_-$};
-
-\node[aqmlab, anchor=center, align=center, text width=4.2cm] at (axis cs:1.64,0.74)
-  {\textbf{particle-hole continuum}\\[1pt]
-   \footnotesize $\mathrm{Im}\,\chi_0\neq0$: one electron, one hole};
-
-% --- the plasmon branch ------------------------------------------------------
-% omega_pl = sqrt(omega_p^2 + (3/5) v_F^2 q^2), undamped until it meets omega_+
-\addplot[aqmcurve, line width=1.5pt, domain=0:1.01, samples=50] {sqrt(1.69 + 0.6*x^2)};
-\addplot[aqmaccent, smooth, line width=1.2pt, dash pattern=on 3.5pt off 2pt,
-         domain=1.01:2.28, samples=60] {sqrt(1.69 + 0.6*x^2)};
-\node[circle, draw=aqmaccent, fill=aqmaccent, minimum size=4.5pt, inner sep=0pt]
-  at (axis cs:0,1.3) {};
-
-% --- annotations, all kept in the empty upper-left quadrant ------------------
-\node[aqmlabsmall, anchor=north west, align=left, text=aqmaccent, text width=3.4cm]
-  at (axis cs:0.06,5.28)
-  {\textbf{plasmon}: a zero of the RPA denominator $1-v(q)\chi_0$, collective};
-\draw[aqmarrowaccent, line width=0.6pt] (axis cs:0.94,4.30) -- (axis cs:0.86,1.50);
-
-\node[aqmlabsmall, anchor=north west, align=left, text=aqmbroken, text width=3.4cm]
-  at (axis cs:0.06,3.68)
-  {no particle-hole excitation exists in this window --- and yet the response has a pole};
-\draw[aqmarrowbroken, line width=0.6pt, dash pattern=on 2pt off 1.5pt]
-  (axis cs:0.30,2.62) -- (axis cs:0.28,1.46);
-\draw[aqm, draw=aqmbroken, {Stealth[length=4pt,width=3.2pt]}-{Stealth[length=4pt,width=3.2pt]}]
-  (axis cs:0.28,0.34) -- (axis cs:0.28,1.29);
-
-\node[aqmlabsmall, anchor=south east, align=right, text=aqmbroken, text width=2.6cm]
-  at (axis cs:2.28,2.25) {meets the continuum:\\[-1pt]Landau damped};
-
-\node[aqmlabsmall, anchor=south] at (axis cs:0,5.42) {$\omega$};
-
-\end{axis}
-\end{tikzpicture}
-
+boundary $\hbar\omega_-=\hbar^2q^2/2m-\hbar v_Fq$ appears. Both follow from the energy denominator
+of (9.5), and for $q<2k_F$ the continuum goes all the way down to $\omega=0$, which is the same
+statement as saying that $\chi_0$ is built only from states on the two sides of the Fermi surface.
+The plasmon (9.7) is a different object. It is a zero of the RPA \emph{denominator} $1-v(q)\chi_0$,
+so it exists at $\omega_p$ even as $q\to0$, in a window where no single-particle excitation exists
+at all. This window, marked in the figure, is the full meaning of the phrase ``collective mode, not
+a particle-hole pair''. Once the branch meets the continuum it can decay into particle-hole pairs,
+and it is Landau damped (dashed).}
+\includegraphics{figures/pdf/s09f02_plasmon.pdf}
 \end{aqmfigure}

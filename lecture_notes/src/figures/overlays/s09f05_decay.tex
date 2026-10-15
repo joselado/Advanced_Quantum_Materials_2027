@@ -1,0 +1,39 @@
+% Figure s09f05_decay (Session 9): power law against exponential.
+% The image is rendered by figures/blender/s09f05_decay.py; the coordinates of the labels come from
+% figures/blender/out/s09f05_decay*_anchors.tex. Build with figures/blender/build_figure.sh s09f05_decay.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx,bm}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,calc}
+\input{aqmcolors.tex}
+\input{aqmstyles.tex}
+\newlength{\figw}\setlength{\figw}{15.60cm}   % the text width of the notes (A4, 2.7 cm margins)
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
+  \begin{scope}[shift={(0.00cm,0.00cm)}]
+    \setlength{\figw}{10.00cm}
+    \node[anchor=south west, inner sep=0pt] at (0,0)
+      {\includegraphics[width=\figw]{../blender/out/s09f05_decay_chains.jpg}};
+    \input{../blender/out/s09f05_decay_chains_anchors.tex}
+    \node[pnl, anchor=south west] at (chainsapanel) {(a)};
+    \node[pnl, anchor=south west] at (chainsbpanel) {(b)};
+    \node[lbl, anchor=south west, text=aqmmuted] at (chainsaenv) {$1/n$, $S=\tfrac12$};
+    \node[lbl, anchor=south west, text=aqmmuted] at (chainsbenv) {$e^{-n/\xi}$, $S=1$};
+  \end{scope}
+  \begin{scope}[shift={(10.20cm,0.00cm)}]
+    \setlength{\figw}{5.40cm}
+    \node[anchor=south west, inner sep=0pt] at (0,0)
+      {\includegraphics[width=\figw]{../blender/out/s09f05_decay_log.jpg}};
+    \input{../blender/out/s09f05_decay_log_anchors.tex}
+    \node[pnl, anchor=south west] at (logpanel) {(c)};
+    \node[lbl, anchor=east] at (logd0) {$1$};
+    \foreach \d in {1,2,3} { \node[lbl, anchor=east] at (logd\d) {$10^{-\d}$}; }
+    \node[lbl, anchor=north east] at (logn) {$n$};
+    \node[lbl, anchor=west] at (logy) {envelope};
+    \node[lbl, anchor=south east, text=aqmaccent] at (logpl) {$1/n$};
+    \node[lbl, anchor=north east, text=aqmbroken] at (logex) {$e^{-n/\xi}$};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

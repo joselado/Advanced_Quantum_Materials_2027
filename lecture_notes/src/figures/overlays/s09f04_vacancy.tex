@@ -1,0 +1,36 @@
+% Figure s09f04_vacancy (Session 9): a vacancy is a boundary of zero size.
+% The image is rendered by figures/blender/s09f04_vacancy.py; the coordinates of the labels come from
+% figures/blender/out/s09f04_vacancy*_anchors.tex. Build with figures/blender/build_figure.sh s09f04_vacancy.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx,bm}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,calc}
+\input{aqmcolors.tex}
+\input{aqmstyles.tex}
+\newlength{\figw}\setlength{\figw}{15.60cm}   % the text width of the notes (A4, 2.7 cm margins)
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
+  \begin{scope}[shift={(0.00cm,3.60cm)}]
+    \setlength{\figw}{15.60cm}
+    \node[anchor=south west, inner sep=0pt] at (0,0)
+      {\includegraphics[width=\figw]{../blender/out/s09f04_vacancy_top.jpg}};
+    \input{../blender/out/s09f04_vacancy_top_anchors.tex}
+    \node[lbl, anchor=north] at (toph0) {large hole};
+    \node[lbl, anchor=north] at (toph1) {small hole};
+    \node[lbl, anchor=north, text=aqmbroken] at (toph2) {single vacancy};
+    \draw[axarrow] (toparr0) -- (toparr1);
+    \draw[axarrow] (toparr2) -- (toparr3);
+  \end{scope}
+  \begin{scope}[shift={(0.00cm,0.00cm)}]
+    \setlength{\figw}{15.60cm}
+    \node[anchor=south west, inner sep=0pt] at (0,0)
+      {\includegraphics[width=\figw]{../blender/out/s09f04_vacancy_bottom.jpg}};
+    \input{../blender/out/s09f04_vacancy_bottom_anchors.tex}
+    \node[lbl, anchor=south] at (bottomtop0) {clean, both};
+    \node[lbl, anchor=south] at (bottomtop1) {trivial, vacancy};
+    \node[lbl, anchor=south, text=aqmbroken] at (bottomtop2) {topological, vacancy};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

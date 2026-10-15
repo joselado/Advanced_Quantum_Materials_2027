@@ -1,113 +1,16 @@
 % Session 9 -- a vacancy as a boundary of zero size, and why that makes it a
-% topological diagnostic.
 % Placement: sec. "Impurities as diagnostics III", after the bulk-boundary paragraph.
-%
-% LAYOUT NOTE: entirely plain TikZ, no pgfplots axis, so every coordinate is in
-% canvas units throughout and nothing can drift.
-\begin{aqmfigure}{fig:s09:vacancy}{Why a single missing atom detects topology. Top. If we cut a large
-hole into a topologically non-trivial insulator or superconductor, the bulk-boundary correspondence
-guarantees gapless modes that run around its edge. Nothing in that argument depends on the size of
-the hole, so making it smaller does not remove these modes. A vacancy is a boundary of zero size, and
-it binds an in-gap mode. Bottom. This is the diagnostic that a clean spectrum cannot give. A trivial
-and a topological insulator with the same gap have bulk spectra that look the same, so nothing there
-distinguishes them (left). If we add a vacancy, only the topological one develops a state inside the
-gap (right). The rule is as direct as it looks. Vacancies produce in-gap modes if and only if the bulk
-invariant is non-zero, provided that the vacancy itself respects the symmetry that protects that
-invariant.}
-
-\begin{tikzpicture}[x=1cm, y=1cm]
-
-\def\d{0.245}   % lattice spacing
-
-% ===================== top left: a large hole, with edge modes ==============
-\begin{scope}[shift={(3.05,0)}]
-  \foreach \i in {-4,...,4} {
-    \foreach \j in {-4,...,4} {
-      \pgfmathsetmacro{\r}{sqrt(\i*\i+\j*\j)}
-      \ifdim \r pt > 2.35pt
-        \fill[aqmmuted] (\i*\d,\j*\d) circle (1.05pt);
-      \fi
-    }
-  }
-  % two arcs rather than one circle, so the chirality arrows are unmissable
-  \draw[aqm, draw=aqmaccent, line width=1.5pt, -{Stealth[length=6pt,width=5pt]}]
-    (0.60,0) arc (0:168:0.60);
-  \draw[aqm, draw=aqmaccent, line width=1.5pt, -{Stealth[length=6pt,width=5pt]}]
-    (-0.60,0) arc (180:348:0.60);
-  \node[aqmlabsmall, anchor=south, align=center, text=aqmaccent] at (0,1.12)
-    {gapless mode around a hole};
-  \node[aqmlabsmall, anchor=north, align=center, text=aqmmuted] at (0,-1.10)
-    {guaranteed by\\[-1pt]bulk-boundary correspondence};
-\end{scope}
-
-% ===================== the shrinking arrow ==================================
-\draw[aqmarrow, draw=aqmbroken, line width=1.0pt] (4.65,0) -- (7.35,0);
-\node[aqmlabsmall, anchor=south, align=center, text=aqmbroken, text width=2.5cm] at (6.00,0.12)
-  {shrink it to one missing site};
-\node[aqmlabsmall, anchor=north, align=center, text=aqmmuted, text width=3.0cm] at (6.00,-0.14)
-  {the argument never used the hole's size};
-
-% ===================== top right: a single vacancy ==========================
-\begin{scope}[shift={(8.95,0)}]
-  \foreach \i in {-4,...,4} {
-    \foreach \j in {-4,...,4} {
-      \pgfmathsetmacro{\rr}{abs(\i)+abs(\j)}
-      \ifdim \rr pt > 0.5pt
-        \fill[aqmmuted] (\i*\d,\j*\d) circle (1.05pt);
-      \fi
-    }
-  }
-  \fill[aqmfill] (0,0) circle (0.60);
-  \draw[aqm, draw=aqmaccent, line width=0.6pt, dash pattern=on 1.8pt off 1.5pt] (0,0) circle (0.60);
-  \fill[aqmfill] (0,0) circle (0.38);
-  \draw[aqm, draw=aqmaccent, line width=1.0pt] (0,0) circle (0.38);
-  \node[circle, draw=aqmaccent, fill=white, line width=\aqmlinewidth,
-        minimum size=5.5pt, inner sep=0pt] at (0,0) {};
-  \node[aqmlabsmall, anchor=south, align=center, text=aqmaccent] at (0,1.12)
-    {a bound state on the vacancy};
-  \node[aqmlabsmall, anchor=north, align=center, text=aqmmuted] at (0,-1.10)
-    {a vacancy is a\\[-1pt]boundary of zero size};
-\end{scope}
-
-% ===================== bottom: the three spectra ============================
-\def\ry{-4.75}
-
-% -- a reusable ladder is written out three times, since each differs slightly --
-\foreach \cx in {2.20, 6.55, 10.90} {
-  \begin{scope}[shift={(\cx,\ry)}]
-    \draw[aqmarrowmuted] (-0.78,-1.00) -- (-0.78,0.98);
-    \node[aqmlabmuted, anchor=south] at (-0.78,0.96) {$E$};
-    \foreach \y in {-0.86,-0.72,-0.58,-0.44} {
-      \draw[aqm, draw=black, line width=0.8pt] (-0.62,\y) -- (0.62,\y);
-    }
-    \foreach \y in {0.44,0.58,0.72,0.86} {
-      \draw[aqm, draw=black, line width=0.8pt] (-0.62,\y) -- (0.62,\y);
-    }
-    \draw[aqmcell] (-0.70,-0.38) rectangle (0.70,0.38);
-  \end{scope}
-}
-
-% the one spectrum that differs
-\draw[aqm, draw=aqmbroken, line width=1.8pt] (10.28,\ry+0.06) -- (11.52,\ry+0.06);
-\draw[aqm, draw=aqmbroken, line width=0.9pt, rounded corners=2.5pt]
-  (9.98,\ry-1.06) rectangle (11.82,\ry+1.38);
-
-% headings above each spectrum
-\node[aqmpanel, anchor=south, align=center, text width=3.8cm] at (2.20,\ry+1.46)
-  {clean bulk\\[-1pt]\normalfont\footnotesize\itshape trivial or topological alike};
-\node[aqmpanel, anchor=south, align=center, text width=3.8cm] at (6.55,\ry+1.46)
-  {one vacancy\\[-1pt]\normalfont\footnotesize\itshape trivial bulk, $C=0$};
-\node[aqmpanel, anchor=south, align=center, text width=3.8cm] at (10.90,\ry+1.46)
-  {one vacancy\\[-1pt]\normalfont\footnotesize\itshape topological bulk, $C\neq0$};
-
-% verdicts below each spectrum
-\node[aqmlabsmall, anchor=north, align=center, text=aqmmuted, text width=3.9cm] at (2.20,\ry-1.12)
-  {gap empty --- nothing here tells the two phases apart};
-\node[aqmlabsmall, anchor=north, align=center, text=aqmmuted, text width=3.4cm] at (6.55,\ry-1.12)
-  {gap still empty};
-\node[aqmlabsmall, anchor=north, align=center, text=aqmbroken, text width=3.4cm] at (10.90,\ry-1.12)
-  {\textbf{in-gap mode}: the invariant is non-zero};
-
-\end{tikzpicture}
-
+% Rendered by figures/blender/s09f04_vacancy.py, labels in figures/overlays/s09f04_vacancy.tex.
+\begin{aqmfigure}{fig:s09:vacancy}{Why a single missing atom detects topology. Top, seen from above.
+If we cut a large hole into a topologically non-trivial insulator or superconductor, the
+bulk-boundary correspondence guarantees gapless modes that run around its edge. Nothing in that
+argument depends on the size of the hole, so making it smaller does not remove these modes. A
+vacancy is a boundary of zero size, and it binds an in-gap mode. Bottom, schematic spectra. This is
+the diagnostic that a clean spectrum cannot give. A trivial and a topological insulator with the
+same gap have bulk spectra that look the same, so nothing there distinguishes them (left). If we add
+a vacancy, the trivial spectrum stays as it was (middle), and only the topological one develops a
+state inside the gap (right). The rule is as direct as it looks. Vacancies produce in-gap modes if
+and only if the bulk invariant is non-zero, provided that the vacancy itself respects the symmetry
+that protects that invariant.}
+\includegraphics{figures/pdf/s09f04_vacancy.pdf}
 \end{aqmfigure}

@@ -1,131 +1,18 @@
 % Session 9 -- Fermi-surface nesting: where the Lindhard function diverges.
 % Placement: sec. "The Fermi sea and the Lindhard function", at the
-% "Instabilities and nesting" paragraph.
-%
-% LAYOUT NOTE: panels (a) and (b) are pgfplots axes; panel (c) is drawn in plain
-% canvas units inside its own scope, anchored to a coordinate derived from the
-% axis node (not from an axis cs). No canvas coordinate ever refers to an axis
-% coordinate, and nothing inside an axis is placed in canvas units.
-\begin{aqmfigure}{fig:s09:nesting}{Nesting is what makes a response function diverge.
-(a) A one-dimensional band $\varepsilon(k)=-2t\cos k$ at partial filling. The occupied states (thick)
-end at $\pm k_F$, and the single wavevector $q^\star=2k_F$ connects one Fermi point to the other, so
-the energy denominator of (9.4) vanishes for that term. (b) The static Lindhard function that
-results, with the closed form given in Section 9.6. It is finite and equal to $D(E_F)$ as $q\to0$, as
-the $q\to0$ check of (9.4) requires, and it diverges logarithmically at $q^\star=2k_F$, which is the
+% Rendered by figures/blender/s09f01_nesting.py, labels in figures/overlays/s09f01_nesting.tex.
+\begin{aqmfigure}{fig:s09:nesting}{Nesting is what makes a response function diverge. (a) A
+one-dimensional band $\varepsilon(k)=-2t\cos k$ at partial filling. The occupied states (thick) end
+at $\pm k_F$, and the single wavevector $q^\star=2k_F$ connects one Fermi point to the other, so the
+energy denominator of (9.4) vanishes for that term. (b) The static Lindhard function that results,
+with the closed form given in Section 9.6. It is finite and equal to $D(E_F)$ as $q\to0$, as the
+$q\to0$ check of (9.4) requires, and it diverges logarithmically at $q^\star=2k_F$, which is the
 Peierls instability. (c) In two dimensions the criterion becomes geometric. At half filling the
 Fermi surface of the square lattice is the diamond with straight edges $|k_x|+|k_y|=\pi$, and since
-$\varepsilon(k+Q)=-\varepsilon(k)$ for $Q=(\pi,\pi)$, this one vector maps \emph{every} point of one
-edge onto the parallel opposite edge at the same time. For this reason the divergence at $(\pi,\pi)$
-is much stronger than the one-dimensional one, since whole segments of the Fermi surface nest, and
-not isolated points. At low filling the same Fermi surface is a small circle, which no single $q$ can
-nest in this way.}
-
-\begin{tikzpicture}
-
-% ============================ (a) the 1D band ===============================
-\begin{axis}[
-  aqmplot, name=pa,
-  width=5.4cm, height=4.8cm,
-  xlabel={}, ylabel={},
-  title={(a) one nesting vector},
-  xmin=-3.75, xmax=3.75, ymin=-3.35, ymax=3.30,
-  xtick=\empty,
-  ytick=\empty,
-  enlargelimits=false,
-]
-% empty part of the band
-\addplot[aqmmuted, solid, line width=0.7pt, smooth, domain=-3.1416:-1.005,
-         samples=50] {-2*cos(deg(x))};
-\addplot[aqmmuted, solid, line width=0.7pt, smooth, domain=1.005:3.1416,
-         samples=50] {-2*cos(deg(x))};
-% filled Fermi sea
-\addplot[aqmcurve, line width=1.7pt, domain=-1.005:1.005, samples=60] {-2*cos(deg(x))};
-% Fermi level
-\addplot[aqmguide, forget plot] coordinates {(-3.55,-1.072) (3.55,-1.072)};
-\node[aqmlabsmall, anchor=south east, text=aqmmuted] at (axis cs:3.58,-1.03) {$E_F$};
-% the nesting vector
-\draw[aqm, draw=aqmbroken, {Stealth[length=4.5pt,width=3.6pt]}-{Stealth[length=4.5pt,width=3.6pt]}]
-  (axis cs:-1.005,-1.072) -- (axis cs:1.005,-1.072);
-\node[aqmlabsmall, anchor=south, text=aqmbroken] at (axis cs:0,-0.62) {$q^\star=2k_F$};
-\node[aqmlabsmall, anchor=north east] at (axis cs:-1.02,-1.14) {$-k_F$};
-\node[aqmlabsmall, anchor=north west] at (axis cs:1.02,-1.14) {$k_F$};
-% the two Fermi points
-\node[circle, draw=aqmaccent, fill=aqmaccent, minimum size=4pt, inner sep=0pt]
-  at (axis cs:-1.005,-1.072) {};
-\node[circle, draw=aqmaccent, fill=white, line width=\aqmlinewidth, minimum size=4pt, inner sep=0pt]
-  at (axis cs:1.005,-1.072) {};
-% axis names, placed by hand so they cannot collide with the title
-\node[aqmlabsmall, anchor=west] at (axis cs:0.16,3.05) {$\varepsilon(k)$};
-\node[aqmlabsmall, anchor=south east] at (axis cs:3.62,0.10) {$k$};
-\node[aqmlabsmall, anchor=north, text=aqmaccent] at (axis cs:0,-2.20) {occupied};
-\node[aqmlabsmall, anchor=south, text=aqmmuted] at (axis cs:2.55,1.95) {empty};
-\end{axis}
-
-% ============================ (b) the Lindhard function =====================
-\begin{axis}[
-  aqmplot, name=pb,
-  at={($(pa.outer north east)+(0.45cm,0)$)}, anchor=outer north west,
-  width=5.1cm, height=4.8cm,
-  axis lines=left,
-  axis line style={aqm, black},
-  xlabel={$q$}, ylabel={},
-  title={(b) $\chi_0$ diverges},
-  xmin=0, xmax=2.55, ymin=0, ymax=7.4,
-  xtick={1,2}, xticklabels={$2k_F$,$4k_F$},
-  ytick={2}, yticklabels={$D(E_F)$},
-  xlabel style={at={(axis description cs:1.0,-0.17)}, anchor=north east},
-  enlargelimits=false,
-]
-% the divergence line
-\addplot[aqmbroken, line width=0.8pt, dash pattern=on 2.5pt off 2pt, forget plot]
-  coordinates {(1,0) (1,6.1)};
-% chi_0(q) = (1/q) ln|(2k_F+q)/(2k_F-q)| with 2k_F = 1
-\addplot[aqmcurve, domain=0.015:0.985, samples=140] {ln(abs((1+x)/(1-x)))/x};
-\addplot[aqmcurve, domain=1.015:2.55, samples=90] {ln(abs((1+x)/(1-x)))/x};
-% the q -> 0 check
-\addplot[aqmguide, forget plot] coordinates {(0,2) (0.40,2)};
-\node[aqmlabsmall, anchor=north west, align=left, text=aqmbroken, text width=2.2cm]
-  at (axis cs:1.05,7.30) {$\ln$ divergence\\[-1pt](Peierls)};
-\node[aqmlabsmall, anchor=west] at (axis cs:0.06,6.85) {$\chi_0(q)$};
-\end{axis}
-
-% ============================ (c) the 2D square lattice =====================
-% Anchored to the axis node, then drawn entirely in canvas units.
-\coordinate (canchor) at ($(pb.outer north east)+(0.70cm,-3.90cm)$);
-\begin{scope}[shift={(canchor)}, x=1cm, y=1cm]
-  \def\B{1.42}
-  \node[aqmpanel, anchor=south] at (\B,2*\B+0.56) {(c) nesting in 2D};
-
-  % Brillouin zone
-  \draw[aqmcell] (0,0) rectangle (2*\B,2*\B);
-  % axes through Gamma
-  \draw[aqmarrowmuted] (0.02,\B) -- (2*\B+0.30,\B) node[aqmlabmuted, anchor=west] {$k_x$};
-  \draw[aqmarrowmuted] (\B,0.02) -- (\B,2*\B+0.28) node[aqmlabmuted, anchor=south] {$k_y$};
-  \node[aqmlabmuted, anchor=north west] at (2*\B+0.03,\B-0.20) {$\pi$};
-  \node[aqmlabmuted, anchor=north east] at (-0.03,\B-0.20) {$-\pi$};
-
-  % Q = (pi,pi) mapping the lower-left edge onto the upper-right edge
-  \foreach \s in {-0.84,-0.48,-0.12,0.24,0.60} {
-    \pgfmathsetmacro{\ax}{\B+(-0.5+\s/2)*\B}
-    \pgfmathsetmacro{\ay}{\B+(-0.5-\s/2)*\B}
-    \draw[aqm, draw=aqmbroken, line width=0.7pt, dash pattern=on 2.5pt off 1.6pt,
-          -{Stealth[length=4pt,width=3.2pt]}]
-      (\ax,\ay) -- (\ax+\B,\ay+\B);
-  }
-
-  % the half-filled Fermi surface |kx|+|ky| = pi (drawn last, so it stays on top)
-  \draw[aqm, draw=aqmaccent, line width=1.7pt]
-    (2*\B,\B) -- (\B,2*\B) -- (0,\B) -- (\B,0) -- cycle;
-
-  % legend line underneath
-  \draw[aqm, draw=aqmbroken, line width=0.7pt, dash pattern=on 2.5pt off 1.6pt,
-        -{Stealth[length=4pt,width=3.2pt]}] (0.05,-0.42) -- (0.55,-0.42);
-  \node[aqmlabsmall, anchor=west, text=aqmbroken] at (0.62,-0.42) {$Q=(\pi,\pi)$};
-  \node[aqmlabsmall, anchor=north west, align=left, text width=3.7cm, text=aqmmuted]
-    at (0.02,-0.62) {every point of one straight edge lands on the parallel one:
-      $\varepsilon(k+Q)=-\varepsilon(k)$};
-\end{scope}
-
-\end{tikzpicture}
-
+$\varepsilon(k+Q)=-\varepsilon(k)$ for $Q=(\pi,\pi)$, this one vector, the red arrows, maps
+\emph{every} point of one edge onto the parallel opposite edge at the same time. For this reason the
+divergence at $(\pi,\pi)$ is much stronger than the one-dimensional one, since whole segments of the
+Fermi surface nest, and not isolated points. At low filling the same Fermi surface is a small
+circle, which no single $q$ can nest in this way.}
+\includegraphics{figures/pdf/s09f01_nesting.pdf}
 \end{aqmfigure}

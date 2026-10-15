@@ -1,0 +1,34 @@
+% Figure s09f03_ysr (Session 9): Yu-Shiba-Rusinov states.
+% The image is rendered by figures/blender/s09f03_ysr.py; the coordinates of the labels come from
+% figures/blender/out/s09f03_ysr*_anchors.tex. Build with figures/blender/build_figure.sh s09f03_ysr.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx,bm}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,calc}
+\input{aqmcolors.tex}
+\input{aqmstyles.tex}
+\newlength{\figw}\setlength{\figw}{15.60cm}   % the text width of the notes (A4, 2.7 cm margins)
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
+  \begin{scope}[shift={(0.00cm,0.00cm)}]
+    \setlength{\figw}{15.60cm}
+    \node[anchor=south west, inner sep=0pt] at (0,0)
+      {\includegraphics[width=\figw]{../blender/out/s09f03_ysr.jpg}};
+    \input{../blender/out/s09f03_ysr_anchors.tex}
+    \node[pnl, anchor=south west] at (apanel) {(a)};
+    \node[pnl, anchor=south west] at (bpanel) {(b)};
+    \node[lbl, anchor=north east] at (aE) {$E$};
+    \node[lbl, anchor=west] at (aN) {DOS};
+    \node[lbl, anchor=north] at (aD) {$\Delta$};
+    \node[lbl, anchor=north] at (amD) {$-\Delta$};
+    \node[lbl, anchor=west, text=aqmbroken] at (aEb) {$\pm E_b$};
+    \node[lbl, anchor=north east] at (balpha) {$\alpha$};
+    \node[lbl, anchor=west] at (bE) {$E_b/\Delta$};
+    \node[lbl, anchor=north] at (bone) {$1$};
+            \node[lbl, anchor=west, fill=white, fill opacity=0.8, text opacity=1] at (bS0) {$S_{\rm tot}=0$};
+    \node[lbl, anchor=west, fill=white, fill opacity=0.8, text opacity=1] at (bS1) {$S_{\rm tot}=\tfrac12$};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

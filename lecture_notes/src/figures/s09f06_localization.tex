@@ -1,154 +1,19 @@
 % Session 9 -- three regimes of translational symmetry, three kinds of eigenstate,
-% and the inverse participation ratio that separates them.
 % Placement: sec. "Disorder and Anderson localization", after equation (9.12).
-%
-% Panels (b) and (c) are exact eigenstates nearest the band centre of an N = 89
-% site chain, diagonalized numerically: (b) the Aubry-Andre-Harper potential at its
-% self-dual point V_0 = 2t with q = (sqrt(5)-1)/2, (c) uniform random on-site
-% disorder of strength W = 4t. Panel (d) averages the IPR over the states nearest
-% the band centre at each N.
-\begin{aqmfigure}{fig:s09:localization}{The three regimes of Section 9.10, shown through their effect
-on an eigenstate of a chain of $N=89$ sites. (a) With a periodic potential every eigenstate is a
-Bloch wave, with weight exactly $1/N$ on every site, and this height becomes smaller as the chain
-grows. (b) At the self-dual point of the quasiperiodic model the state is neither extended nor
-localized. It has structure on every length scale at the same time, with large peaks and smaller
-copies of the same pattern between them, and this state is called critical, or multifractal. (c) With
-really random disorder the state is concentrated on a few sites and it is strictly zero, to numerical
-precision, over most of the chain. \emph{Note the three different vertical scales.} For this reason
-we need a number and not a visual check, and this number is the inverse participation ratio (9.12).
-(d) The IPR separates the three regimes clearly by how it scales with system size, with
-$\mathrm{IPR}\sim1/N$ for extended states, $\mathrm{IPR}\sim O(1)$ for localized ones, and an
-anomalous power $N^{-\tau}$ with $0<\tau<1$ for the critical state between them. On a log-log plot
-these are three straight lines with three different slopes.}
-
-\begin{tikzpicture}
-
-% ============================ (a) periodic ==================================
-\begin{axis}[
-  aqmplot, name=pa,
-  width=10.3cm, height=3.05cm,
-  axis lines=left,
-  axis line style={aqm, black},
-  ylabel={},
-  title={(a) periodic: extended Bloch wave},
-  xmin=0, xmax=91, ymin=0, ymax=0.032,
-  xtick=\empty,
-  ytick={0,0.011236}, yticklabels={$0$,$1/N$},
-  scaled y ticks=false,
-  enlargelimits=false,
-]
-\addplot[ycomb, aqmaccent, line width=0.9pt, mark=none, domain=1:89, samples=89] {0.011236};
-\node[aqmlabsmall, anchor=north east, text=aqmaccent] at (axis cs:90,0.0315)
-  {$\mathrm{IPR}=1/N=0.011$: uniform, and it shrinks with $N$};
-\node[aqmlabsmall, anchor=west, text=black] at (axis cs:1.5,0.0265) {$|\psi_i|^2$};
-\end{axis}
-
-% ============================ (b) quasiperiodic, critical ===================
-\begin{axis}[
-  aqmplot, name=pb,
-  at={($(pa.south west)+(0,-0.98cm)$)}, anchor=north west,
-  width=10.3cm, height=3.05cm,
-  axis lines=left,
-  axis line style={aqm, black},
-  ylabel={},
-  title={(b) quasiperiodic at the self-dual point: critical},
-  xmin=0, xmax=91, ymin=0, ymax=0.235,
-  xtick=\empty,
-  ytick={0,0.1,0.2},
-  scaled y ticks=false,
-  enlargelimits=false,
-]
-\addplot[ycomb, aqmmuted, line width=0.9pt, mark=none] coordinates {
-(1,0.00008) (2,0.00028) (3,0.00065) (4,0.00003) (5,0.00025) (6,0.00066) (7,0.00241) (8,0.00048)
-(9,0.00033) (10,0.00021) (11,0.00162) (12,0.00064) (13,0.00013) (14,0.00001) (15,0.00004) (16,0.00000)
-(17,0.00003) (18,0.00009) (19,0.00055) (20,0.00098) (21,0.00006) (22,0.00034) (23,0.00084) (24,0.00294)
-(25,0.00042) (26,0.00059) (27,0.00080) (28,0.00440) (29,0.00168) (30,0.00029) (31,0.00006) (32,0.00002)
-(33,0.00003) (34,0.00008) (35,0.00050) (36,0.00254) (37,0.00433) (38,0.00015) (39,0.00203) (40,0.00579)
-(41,0.01786) (42,0.00195) (43,0.00445) (44,0.00796) (45,0.03774) (46,0.01222) (47,0.00293) (48,0.00001)
-(49,0.00237) (50,0.00036) (51,0.00091) (52,0.00148) (53,0.01004) (54,0.01378) (55,0.00052) (56,0.00598)
-(57,0.01618) (58,0.04704) (59,0.00330) (60,0.01603) (61,0.03805) (62,0.15526) (63,0.04241) (64,0.01439)
-(65,0.00107) (66,0.02973) (67,0.00949) (68,0.00492) (69,0.00141) (70,0.01887) (71,0.01834) (72,0.00140)
-(73,0.00463) (74,0.00863) (75,0.02668) (76,0.00074) (77,0.01424) (78,0.04407) (79,0.15549) (80,0.03537)
-(81,0.01762) (82,0.00592) (83,0.06361) (84,0.02283) (85,0.00689) (86,0.00011) (87,0.01021) (88,0.00553)
-(89,0.00164)
-};
-\node[aqmlabsmall, anchor=north east, text=aqmmuted] at (axis cs:90,0.232)
-  {$\mathrm{IPR}=0.068$: structure on every length scale at once};
-\node[aqmlabsmall, anchor=west, text=black] at (axis cs:1.5,0.195) {$|\psi_i|^2$};
-\end{axis}
-
-% ============================ (c) random, localized =========================
-\begin{axis}[
-  aqmplot, name=pc,
-  at={($(pb.south west)+(0,-0.98cm)$)}, anchor=north west,
-  width=10.3cm, height=3.35cm,
-  axis lines=left,
-  axis line style={aqm, black},
-  xlabel={site $i$}, ylabel={},
-  title={(c) random disorder $W=4t$: localized},
-  xmin=0, xmax=91, ymin=0, ymax=0.60,
-  xtick={20,40,60,80},
-  ytick={0,0.25,0.5},
-  scaled y ticks=false,
-  xlabel style={at={(axis description cs:0.5,-0.20)}, anchor=north},
-  enlargelimits=false,
-]
-\addplot[ycomb, aqmbroken, line width=0.9pt, mark=none] coordinates {
-(1,0.00000) (2,0.00000) (3,0.00000) (4,0.00000) (5,0.00000) (6,0.00000) (7,0.00000) (8,0.00000)
-(9,0.00000) (10,0.00000) (11,0.00000) (12,0.00000) (13,0.00000) (14,0.00000) (15,0.00000) (16,0.00000)
-(17,0.00000) (18,0.00000) (19,0.00000) (20,0.00000) (21,0.00000) (22,0.00000) (23,0.00000) (24,0.00000)
-(25,0.00000) (26,0.00000) (27,0.00000) (28,0.00000) (29,0.00000) (30,0.00000) (31,0.00001) (32,0.00000)
-(33,0.00000) (34,0.00003) (35,0.00023) (36,0.00000) (37,0.00033) (38,0.00007) (39,0.00175) (40,0.01221)
-(41,0.01016) (42,0.03472) (43,0.35788) (44,0.03151) (45,0.46605) (46,0.01368) (47,0.06347) (48,0.00730)
-(49,0.00050) (50,0.00006) (51,0.00001) (52,0.00000) (53,0.00001) (54,0.00000) (55,0.00001) (56,0.00000)
-(57,0.00000) (58,0.00000) (59,0.00000) (60,0.00000) (61,0.00000) (62,0.00000) (63,0.00000) (64,0.00000)
-(65,0.00000) (66,0.00000) (67,0.00000) (68,0.00000) (69,0.00000) (70,0.00000) (71,0.00000) (72,0.00000)
-(73,0.00000) (74,0.00000) (75,0.00000) (76,0.00000) (77,0.00000) (78,0.00000) (79,0.00000) (80,0.00000)
-(81,0.00000) (82,0.00000) (83,0.00000) (84,0.00000) (85,0.00000) (86,0.00000) (87,0.00000) (88,0.00000)
-(89,0.00000)
-};
-\node[aqmlabsmall, anchor=north east, text=aqmbroken] at (axis cs:90,0.595)
-  {$\mathrm{IPR}=0.35$, and it does not shrink with $N$};
-\node[aqmlabsmall, anchor=west, text=black] at (axis cs:1.5,0.50) {$|\psi_i|^2$};
-\draw[aqmbrace, decoration={brace, amplitude=3.5pt, mirror}]
-  (axis cs:36,0.115) -- (axis cs:53,0.115);
-\node[aqmlabsmall, anchor=west, text=aqmmuted] at (axis cs:55,0.135)
-  {localization length $\xi$};
-\end{axis}
-
-% ============================ (d) the IPR scaling ===========================
-\begin{loglogaxis}[
-  aqmplot, name=pd,
-  at={($(pa.outer north east)+(0.55cm,0)$)}, anchor=outer north west,
-  width=5.2cm, height=9.4cm,
-  axis lines=left,
-  axis line style={aqm, black},
-  xlabel={system size $N$}, ylabel={},
-  title={(d) how each scales with $N$},
-  xmin=42, xmax=1500, ymin=1.3e-4, ymax=1.9,
-  ytick={1e-3,1e-2,1e-1,1},
-  xlabel style={at={(axis description cs:0.5,-0.075)}, anchor=north},
-  enlargelimits=false,
-]
-\addplot[aqmbroken, line width=1.3pt, mark=triangle*, mark size=2pt,
-         mark options={draw=aqmbroken, fill=white}]
-  coordinates {(55,0.365) (89,0.381) (144,0.357) (233,0.381) (377,0.370) (610,0.373) (987,0.355)};
-\addplot[aqmmuted, line width=1.3pt, dash pattern=on 3.5pt off 2pt, mark=square*, mark size=1.7pt,
-         mark options={draw=aqmmuted, fill=white, solid}]
-  coordinates {(55,0.0979) (89,0.0887) (144,0.0792) (233,0.0496) (377,0.0440) (610,0.0361) (987,0.0279)};
-\addplot[aqmaccent, line width=1.3pt, mark=*, mark size=1.6pt,
-         mark options={draw=aqmaccent, fill=aqmaccent}]
-  coordinates {(55,0.01818) (89,0.01124) (144,0.00694) (233,0.00429) (377,0.00265) (610,0.00164) (987,0.00101)};
-
-\node[aqmlabsmall, anchor=south west, align=left, text=aqmbroken, text width=2.7cm]
-  at (axis cs:50,0.50) {localized:\\[-1pt]$\mathrm{IPR}\sim O(1)$};
-\node[aqmlabsmall, anchor=south west, align=left, text=aqmmuted, text width=2.7cm]
-  at (axis cs:215,0.104) {critical:\\[-1pt]$\mathrm{IPR}\sim N^{-\tau}$};
-\node[aqmlabsmall, anchor=south west, align=left, text=aqmaccent, text width=2.7cm]
-  at (axis cs:50,2.0e-4) {extended:\\[-1pt]$\mathrm{IPR}\sim1/N$};
-\node[aqmlabsmall, anchor=west, text=black] at (axis cs:48,1.55) {$\mathrm{IPR}$};
-\end{loglogaxis}
-
-\end{tikzpicture}
-
+% Rendered by figures/blender/s09f06_localization.py, labels in figures/overlays/s09f06_localization.tex.
+\begin{aqmfigure}{fig:s09:localization}{The three regimes of Section 9.10, shown through their
+effect on an eigenstate of a chain of $N=89$ sites, with the weight $|\psi_i|^2$ of each site as a
+column. (a) With a periodic potential every eigenstate is a Bloch wave, with weight exactly $1/N$ on
+every site, and this height becomes smaller as the chain grows. (b) At the self-dual point of the
+quasiperiodic model the state is neither extended nor localized. It has structure on every length
+scale at the same time, with large peaks and smaller copies of the same pattern between them, and
+this state is called critical, or multifractal. (c) With really random disorder the state is
+concentrated on a few sites and it is strictly zero, to numerical precision, over most of the chain.
+\emph{Note the three different vertical scales.} For this reason we need a number and not a visual
+check, and this number is the inverse participation ratio (9.12). (d) The IPR separates the three
+regimes clearly by how it scales with system size, with $\mathrm{IPR}\sim1/N$ for extended states,
+$\mathrm{IPR}\sim O(1)$ for localized ones, and an anomalous power $N^{-\tau}$ with $0<\tau<1$ for
+the critical state between them, here computed for $N=34$ to $610$. On a log-log plot these are
+three straight lines with three different slopes.}
+\includegraphics{figures/pdf/s09f06_localization.pdf}
 \end{aqmfigure}
