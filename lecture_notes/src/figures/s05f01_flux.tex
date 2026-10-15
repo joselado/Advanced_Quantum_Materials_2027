@@ -1,97 +1,15 @@
 % Session 5 -- flux quantization as a macroscopic readout of h/2e.
 % Placement: sec. "Superconductivity as a macroscopic quantum phenomenon", after eq. (5.1).
-%
-% LAYOUT NOTE: pure TikZ, no pgfplots axis, so every coordinate here is a canvas
-% coordinate and nothing is positioned relative to an axis.
-\begin{aqmfigure}{fig:s05:flux}{A drawing of flux quantization. On the left there is a superconducting
-ring. Deep in the bulk the Meissner effect has already removed the supercurrent, so on the dashed
-contour the gauge-invariant combination $\hbar\nabla\theta-2e\mathbf A$ vanishes and the phase
-gradient is locked to the vector potential. On the right, when we move the condensate phase
-$\theta$ once around this contour, it must come back to itself, so it can only wind by an integer
-number of turns. Together, the two statements give $\Phi=n\,h/2e$, which means that the flux
-through the hole is quantized, and the $2$ in the denominator is the charge $2e$ of a Cooper pair.
-None of this is a property of a single electron. It is a macroscopic sample that gives back a ratio
-of microscopic constants, only because gauge symmetry is broken.}
-
-\begin{tikzpicture}[x=1cm, y=1cm]
-\tikzset{
-  gline/.style={aqm, draw=aqmmuted, line width=0.6pt, dash pattern=on 2pt off 1.5pt}
-}
-
-% ======================= (a) the ring ========================================
-\node[aqmpanel, anchor=south] at (2.00,2.62) {(a) a ring, seen from above};
-
-\begin{scope}[shift={(2.0,0.55)}]
-  \fill[aqmfill, even odd rule] (0,0) circle(1.62) (0,0) circle(0.74);
-  \draw[aqm, draw=aqmaccent] (0,0) circle(1.62);
-  \draw[aqm, draw=aqmaccent] (0,0) circle(0.74);
-
-  % flux through the hole: field out of the page
-  \foreach \px/\py in {-0.34/-0.02, 0.34/-0.02, 0/-0.46} {
-    \node[circle, draw=aqmbroken, line width=0.6pt, minimum size=6.5pt, inner sep=0pt]
-      at (\px,\py) {};
-    \fill[aqmbroken] (\px,\py) circle(0.85pt);
-  }
-  \node[aqmlabsmall, text=aqmbroken] at (0,0.36) {$\Phi$};
-
-  % the contour, deep inside the superconductor
-  \draw[aqm, draw=aqmbroken, dash pattern=on 3pt off 2pt,
-        postaction={decorate, decoration={markings,
-          mark=at position 0.16 with {\arrow{Stealth[length=5pt,width=4pt]}}}}]
-    (0,0) circle(1.18);
-\end{scope}
-
-\node[aqmlabsmall, anchor=north, align=left, text width=4.55cm] at (2.00,-1.30)
-  {\textcolor{aqmaccent}{shaded}: the superconductor\\[2pt]
-   \textcolor{aqmbroken}{dashed}: a contour taken deep in the
-   bulk, where Meissner screening has already made $J_s=0$\\[2pt]
-   \textcolor{aqmbroken}{$\odot$}: the flux $\Phi$ through the hole};
-
-% ======================= (b) the phase winds ==================================
-\node[aqmpanel, anchor=south west] at (5.05,2.62)
-  {(b) the phase, transported once around the contour};
-
-\node[aqmlabsmall, anchor=south] at (5.45,2.00) {start};
-\node[aqmlabsmall, anchor=south east, align=right] at (11.95,2.00)
-  {same point, $\theta+2\pi$};
-
-\foreach \i in {0,...,8} {
-  \pgfmathsetmacro{\px}{5.45 + \i*0.80}
-  \pgfmathsetmacro{\ang}{\i*45}
-  \draw[aqm, draw=aqmmuted, line width=0.5pt] (\px,1.52) circle(0.27);
-  \draw[aqm, draw=aqmaccent, -{Stealth[length=4pt,width=3.2pt]}]
-    (\px,1.52) -- ++(\ang:0.27);
-}
-\draw[aqm, draw=aqmmuted, line width=0.5pt, -{Stealth[length=5pt,width=4pt]}]
-  (5.45,1.08) -- (11.90,1.08);
-\node[aqmlabsmall, text=aqmmuted, anchor=north] at (8.65,1.04)
-  {once around the contour};
-
-% the two constraints
-\node[aqmlabsmall, anchor=west, align=left] at (5.05,0.24)
-  {single-valued wave function:\quad
-   $\displaystyle\oint\nabla\theta\cdot d\boldsymbol\ell = 2\pi n$};
-\node[aqmlabsmall, anchor=west, align=left] at (5.05,-0.42)
-  {no supercurrent on the contour:\quad
-   $\displaystyle\oint\nabla\theta\cdot d\boldsymbol\ell = \frac{2e}{\hbar}\,\Phi$};
-
-\node[aqmboxbroken, anchor=north west, font=\small] at (5.05,-0.95)
-  {$\Phi = n\,\Phi_0,\qquad \Phi_0=\dfrac{h}{2e}$};
-
-\node[aqmlabsmall, anchor=north west, align=left, text width=4.05cm, text=aqmbroken]
-  at (9.75,-0.95) {the $2$ is the Cooper-pair charge; single electrons would give $h/e$};
-
-% allowed flux ladder
-\node[aqmlabsmall, anchor=west, text=aqmmuted] at (5.05,-2.55)
-  {the only flux values the hole may carry:};
-\draw[aqm, draw=aqmmuted, line width=0.5pt, -{Stealth[length=4pt,width=3pt]}]
-  (5.45,-3.02) -- (11.90,-3.02);
-\foreach \i/\lab in {0/$0$, 1/$\Phi_0$, 2/$2\Phi_0$, 3/$3\Phi_0$, 4/$4\Phi_0$} {
-  \pgfmathsetmacro{\px}{5.75 + \i*1.42}
-  \fill[aqmaccent] (\px,-3.02) circle(2.1pt);
-  \node[aqmlabsmall, anchor=north] at (\px,-3.12) {\lab};
-}
-
-\end{tikzpicture}
-
+% Rendered by figures/blender/s05f01_flux.py, labels in figures/overlays/s05f01_flux.tex.
+\begin{aqmfigure}{fig:s05:flux}{A drawing of flux quantization. On the left there is a
+superconducting ring. Deep in the bulk the Meissner effect has already removed the supercurrent, so
+on the dashed contour the gauge-invariant combination $\hbar\nabla\theta-2e\mathbf A$ vanishes and
+the phase gradient is locked to the vector potential. On the right, the arrows are the condensate
+phase $\theta$ at points of this contour. When we move once around it, the phase must come back to
+itself, so it can only wind by an integer number of turns. Together, the two statements give
+$\Phi=n\,h/2e$, which means that the flux through the hole is quantized, and the $2$ in the
+denominator is the charge $2e$ of a Cooper pair. None of this is a property of a single electron. It
+is a macroscopic sample that gives back a ratio of microscopic constants, only because gauge
+symmetry is broken.}
+\includegraphics{figures/pdf/s05f01_flux.pdf}
 \end{aqmfigure}

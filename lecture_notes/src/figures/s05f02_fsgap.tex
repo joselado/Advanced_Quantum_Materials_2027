@@ -1,128 +1,16 @@
 % Session 5 -- the three scenarios for one Fermi surface: metal, gapped SC, nodal SC.
 % Placement: sec. "Three scenarios for one Fermi surface", after the enumerated list.
-%
-% LAYOUT NOTE: pure TikZ throughout (no pgfplots axis), so all coordinates are canvas
-% coordinates. The lower row's "axes" are drawn by hand for that reason.
-%
-% The Fermi surface is drawn as a small circular pocket around Gamma. On such a pocket
-% Delta_d = Delta_0(cos k_x - cos k_y) ~ -Delta_0 (k_F^2/2) cos 2*phi, so the minimum
-% quasiparticle gap around the pocket is proportional to |cos 2*phi|: four nodes, exactly
-% where the pocket crosses the zone diagonals. That is what the bottom-right panel plots.
-\begin{aqmfigure}{fig:s05:fsgap}{One Fermi surface with three outcomes. The top row shows the
-Brillouin zone with a small Fermi pocket around $\Gamma$, and the bottom row shows the minimum of
-the quasiparticle energy
-$E(\mathbf k)=\sqrt{\varepsilon(\mathbf k)^2+|\Delta(\mathbf k)|^2}$ as we go once around this
-pocket. Since $\varepsilon=0$ on the Fermi surface, this minimum is $|\Delta|$ evaluated there,
-which is why the pairing function only matters \emph{on} the Fermi surface. (a) Without pairing
-the whole pocket is at zero energy, which is a metal. (b) A constant $\Delta_0$ lifts every point
-of it by the same amount, which gives a full gap. (c) The $d$-wave gap (5.13) vanishes on the zone
-diagonals, and the pocket crosses them in four places, so four gapless points survive in a
-superconductor that is gapped everywhere else. Nodes in other parts of the zone do not appear in
-the spectrum, and only nodes that intersect the Fermi surface give gapless quasiparticles.}
-
-\begin{tikzpicture}[x=1cm, y=1cm]
-\tikzset{
-  gline/.style={aqm, draw=aqmmuted, line width=0.6pt, dash pattern=on 2pt off 1.5pt},
-  nodeline/.style={aqm, draw=aqmbroken, line width=0.8pt, dash pattern=on 3pt off 2pt},
-  bzbox/.style={aqm, draw=black, line width=\aqmthinwidth}
-}
-\def\R{0.66}   % Fermi-pocket radius, in Brillouin-zone units
-
-% =========================== helper: the empty Brillouin zone =================
-\newcommand{\bzframe}{%
-  \draw[bzbox] (-1.15,-1.15) rectangle (1.15,1.15);
-  \fill[aqmmuted] (0,0) circle(1.1pt);
-  \node[aqmlabmuted, anchor=north east] at (-0.02,-0.03) {$\Gamma$};
-}
-
-% =========================== helper: the bottom axes =========================
-% x: -1.25 .. 1.25 represents phi = 0 .. 2 pi ; y: 0 .. 1.0 represents min E
-\newcommand{\gapaxes}{%
-  \draw[aqm, draw=black, line width=\aqmthinwidth, -{Stealth[length=4pt,width=3pt]}]
-    (-1.25,0) -- (1.45,0);
-  \draw[aqm, draw=black, line width=\aqmthinwidth, -{Stealth[length=4pt,width=3pt]}]
-    (-1.25,0) -- (-1.25,1.15);
-  \foreach \x/\lab in {-1.25/$0$, 0/$\pi$, 1.25/$2\pi$} {
-    \draw[aqm, draw=black, line width=\aqmthinwidth] (\x,0) -- (\x,-0.08);
-    \node[aqmlabsmall, anchor=north] at (\x,-0.09) {\lab};
-  }
-  \node[aqmlabsmall, anchor=north] at (0.10,-0.42) {$\varphi$ around the pocket};
-  \node[aqmlabsmall, anchor=south west, inner sep=1pt] at (-1.32,1.16) {$\min E$};
-}
-
-% ############################### (a) metal ###################################
-\begin{scope}[shift={(1.55,0)}]
-  \node[aqmpanel, anchor=south] at (0,1.42) {(a) no pairing};
-  \node[aqmlabsmall, anchor=south, text=aqmbroken] at (0,1.94) {$\Delta=0$};
-  \bzframe
-  \draw[aqm, draw=aqmbroken, line width=2.0pt] (0,0) circle(\R);
-  \node[aqmlabsmall, anchor=north, align=center, text=aqmbroken] at (0,-1.28)
-    {Fermi surface\\[-2pt]gapless everywhere};
-\end{scope}
-
-\begin{scope}[shift={(1.55,-3.60)}]
-  \gapaxes
-  \draw[aqm, draw=aqmbroken, line width=2.0pt] (-1.25,0) -- (1.25,0);
-  \node[aqmlabsmall, anchor=south, text=aqmbroken] at (0.10,0.10) {$\min E=0$ for all $\varphi$};
-  \node[aqmlabsmall, anchor=north, align=center] at (0.10,-0.92) {a metal};
-\end{scope}
-
-% ########################## (b) s-wave, full gap #############################
-\begin{scope}[shift={(6.35,0)}]
-  \node[aqmpanel, anchor=south] at (0,1.42) {(b) $s$-wave};
-  \node[aqmlabsmall, anchor=south, text=aqmaccent] at (0,1.94)
-    {$\Delta(\mathbf k)=\Delta_0$};
-  \bzframe
-  \draw[aqm, draw=aqmaccent, line width=1.3pt] (0,0) circle(\R);
-  \foreach \a in {0,90,180,270} {
-    \node[aqmlabsmall, text=aqmaccent] at (\a:{\R+0.26}) {$+$};
-  }
-  \node[aqmlabsmall, anchor=north, align=center, text=aqmaccent] at (0,-1.28)
-    {no nodes anywhere\\[-2pt]on the pocket};
-\end{scope}
-
-\begin{scope}[shift={(6.35,-3.60)}]
-  \gapaxes
-  \draw[aqm, draw=aqmmuted, line width=0.5pt, dash pattern=on 2pt off 1.5pt]
-    (-1.25,0.72) -- (1.30,0.72);
-  \node[aqmlabsmall, anchor=east, text=aqmmuted] at (-1.28,0.72) {$\Delta_0$};
-  \draw[aqm, draw=aqmaccent, line width=1.3pt] (-1.25,0.72) -- (1.25,0.72);
-  \node[aqmlabsmall, anchor=north, align=center] at (0.10,-0.92) {a fully gapped superconductor};
-\end{scope}
-
-% ########################## (c) d-wave, nodal ################################
-\begin{scope}[shift={(11.15,0)}]
-  \node[aqmpanel, anchor=south] at (0,1.42) {(c) $d$-wave};
-  \node[aqmlabsmall, anchor=south, text=aqmaccent] at (0,1.94)
-    {$\Delta_0(\cos k_x-\cos k_y)$};
-  \bzframe
-  \draw[nodeline] (-1.15,-1.15) -- (1.15,1.15);
-  \draw[nodeline] (-1.15,1.15) -- (1.15,-1.15);
-  \draw[aqm, draw=aqmaccent, line width=1.3pt] (0,0) circle(\R);
-  \foreach \a in {0,180} { \node[aqmlabsmall, text=aqmaccent] at (\a:{\R+0.28}) {$-$}; }
-  \foreach \a in {90,270} { \node[aqmlabsmall, text=aqmaccent] at (\a:{\R+0.28}) {$+$}; }
-  \foreach \a in {45,135,225,315} {
-    \fill[aqmbroken] (\a:\R) circle(2.4pt);
-  }
-  \node[aqmlabsmall, anchor=north, align=center, text=aqmbroken] at (0,-1.28)
-    {four nodes, where the\\[-2pt]pocket meets the diagonals};
-\end{scope}
-
-\begin{scope}[shift={(11.15,-3.60)}]
-  \gapaxes
-  \draw[aqm, draw=aqmmuted, line width=0.5pt, dash pattern=on 2pt off 1.5pt]
-    (-1.25,0.72) -- (1.30,0.72);
-  \node[aqmlabsmall, anchor=east, text=aqmmuted] at (-1.28,0.72) {$\Delta_0$};
-  \draw[aqm, draw=aqmaccent, line width=1.3pt]
-    plot[domain=-1.25:1.25, samples=241]
-    (\x, {0.72*abs(cos((\x+1.25)/2.5*720))});
-  \foreach \x in {-0.9375,-0.3125,0.3125,0.9375} {
-    \fill[aqmbroken] (\x,0) circle(2.4pt);
-  }
-  \node[aqmlabsmall, anchor=north, align=center] at (0.10,-0.92)
-    {a nodal superconductor};
-\end{scope}
-
-\end{tikzpicture}
-
+% Rendered by figures/blender/s05f02_fsgap.py, labels in figures/overlays/s05f02_fsgap.tex.
+\begin{aqmfigure}{fig:s05:fsgap}{One Fermi surface with three outcomes. Each panel shows the
+Brillouin zone with a small Fermi pocket around $\Gamma$, and the height of the tube standing on the
+pocket is the minimum of the quasiparticle energy $E(\mathbf k)=\sqrt{\varepsilon(\mathbf
+k)^2+|\Delta(\mathbf k)|^2}$ as we go once around it. Since $\varepsilon=0$ on the Fermi surface,
+this minimum is $|\Delta|$ evaluated there, which is why the pairing function only matters \emph{on}
+the Fermi surface. (a) Without pairing the whole pocket is at zero energy, which is a metal. (b) A
+constant $\Delta_0$ lifts every point of it by the same amount, which gives a full gap. (c) The
+$d$-wave gap (5.13) vanishes on the zone diagonals, the red lines, and the pocket crosses them in
+four places, so four gapless points survive in a superconductor that is gapped everywhere else.
+Nodes in other parts of the zone do not appear in the spectrum, and only nodes that intersect the
+Fermi surface give gapless quasiparticles.}
+\includegraphics{figures/pdf/s05f02_fsgap.pdf}
 \end{aqmfigure}

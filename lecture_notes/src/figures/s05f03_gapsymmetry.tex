@@ -1,123 +1,21 @@
 % Session 5 -- the angular-momentum classification of the pairing function.
 % Placement: sec. "Nodal singlet order: d-wave, cuprates, and the angular-momentum expansion",
 % after the extended-s-wave paragraph.
-%
-% What each panel shows is the SIGN of Delta(k) over the Brillouin zone, with the nodal
-% lines dashed. The parity under k -> -k (i.e. under a point reflection of the panel through
-% its centre) is then something the reader can read off by eye, and (5.12) converts it
-% immediately into singlet or triplet. Panels (a)-(d) are the square lattice, panel (e) the
-% triangular lattice with its hexagonal zone.
+% Rendered by figures/blender/s05f03_gapsymmetry.py, labels in figures/overlays/s05f03_gapsymmetry.tex.
 \begin{aqmfigure}{fig:s05:gapsymmetry}{The sign structure of $\Delta(\mathbf k)$ over the Brillouin
-zone, ordered by angular momentum $L$ as in (5.14), where the dashed lines are the nodes. A
-reflection of a panel through its centre sends $\mathbf k\to-\mathbf k$. Panels with even $L$ do
-not change and are therefore spin singlets, and panels with odd $L$ come back with every sign
-flipped and are spin triplets, which is (5.12) seen in a picture. Counting lobes is the fastest
-way to identify the order. Two lobes mean $L=1$, four mean $L=2$ and six mean $L=3$, and any
-pattern whose lobes alternate an odd number of times in a half turn is necessarily odd in
-$\mathbf k$, so it is a triplet. This is why the $f$-wave state (e), which has six lobes, is a
-spin triplet, even though it is similar to the singlet $d$-wave state in every other respect.
-Extended $s$-wave (b) deserves a second look, since its node is radial and not angular. It has the
-same even parity and the same point-group symmetry as plain $s$-wave, and only the position of its
-node ring relative to the Fermi surface decides whether it is nodal in the spectrum. The overall
-sign of $\Delta$ is a gauge choice, and only the sign \emph{changes} are physical.}
-
-\begin{tikzpicture}[x=1cm, y=1cm]
-\tikzset{
-  nodeline/.style={aqm, draw=aqmbroken, line width=0.8pt, dash pattern=on 3pt off 2pt},
-  bzbox/.style={aqm, draw=black, line width=\aqmthinwidth},
-  plus/.style={aqmlabsmall, text=aqmaccent},
-  minus/.style={aqmlabsmall, text=aqmbroken}
-}
-\def\B{0.98}     % half-width of the square Brillouin zone
-\def\Hx{1.06}    % circumradius of the hexagonal zone
-
-% ============================ (a) s-wave =====================================
-\begin{scope}[shift={(1.35,0)}]
-  \fill[aqmfill] (-\B,-\B) rectangle (\B,\B);
-  \draw[bzbox] (-\B,-\B) rectangle (\B,\B);
-  \node[plus] at (0,0) {$+$};
-  \node[aqmpanel, anchor=south] at (0,\B+0.10) {(a) $s$};
-  \node[aqmlabsmall, anchor=north, align=center, text width=2.5cm] at (0,-\B-0.12)
-    {$\Delta_0$\\[1pt]$L=0$, even\\[-1pt]\textcolor{aqmaccent}{singlet}};
-\end{scope}
-
-% ============================ (b) extended s-wave ============================
-\begin{scope}[shift={(4.30,0)}]
-  \fill[aqmfillb] (-\B,-\B) rectangle (\B,\B);
-  \fill[aqmfill] (-\B,0) -- (0,\B) -- (\B,0) -- (0,-\B) -- cycle;
-  \draw[bzbox] (-\B,-\B) rectangle (\B,\B);
-  \draw[nodeline] (-\B,0) -- (0,\B) -- (\B,0) -- (0,-\B) -- cycle;
-  \node[plus] at (0,0) {$+$};
-  \node[minus] at (0.68,0.68) {$-$};
-  \node[minus] at (-0.68,-0.68) {$-$};
-  \node[aqmpanel, anchor=south] at (0,\B+0.10) {(b) ext.\ $s$};
-  \node[aqmlabsmall, anchor=north, align=center, text width=2.5cm] at (0,-\B-0.12)
-    {$\cos k_x+\cos k_y$\\[1pt]$L=0$, even\\[-1pt]\textcolor{aqmaccent}{singlet}};
-\end{scope}
-
-% ============================ (c) p-wave =====================================
-\begin{scope}[shift={(7.25,0)}]
-  \fill[aqmfillb] (-\B,-\B) rectangle (0,\B);
-  \fill[aqmfill] (0,-\B) rectangle (\B,\B);
-  \draw[bzbox] (-\B,-\B) rectangle (\B,\B);
-  \draw[nodeline] (0,-\B) -- (0,\B);
-  \draw[nodeline] (-\B,-\B) -- (-\B,\B);
-  \draw[nodeline] (\B,-\B) -- (\B,\B);
-  \node[plus] at (0.50,0) {$+$};
-  \node[minus] at (-0.50,0) {$-$};
-  \node[aqmpanel, anchor=south] at (0,\B+0.10) {(c) $p$};
-  \node[aqmlabsmall, anchor=north, align=center, text width=2.5cm] at (0,-\B-0.12)
-    {$\sin k_x$\\[1pt]$L=1$, odd\\[-1pt]\textcolor{aqmbroken}{triplet}};
-\end{scope}
-
-% ============================ (d) d-wave =====================================
-\begin{scope}[shift={(10.20,0)}]
-  \fill[aqmfillb] (0,0) -- (\B,\B) -- (\B,-\B) -- cycle;
-  \fill[aqmfillb] (0,0) -- (-\B,\B) -- (-\B,-\B) -- cycle;
-  \fill[aqmfill] (0,0) -- (-\B,\B) -- (\B,\B) -- cycle;
-  \fill[aqmfill] (0,0) -- (-\B,-\B) -- (\B,-\B) -- cycle;
-  \draw[bzbox] (-\B,-\B) rectangle (\B,\B);
-  \draw[nodeline] (-\B,-\B) -- (\B,\B);
-  \draw[nodeline] (-\B,\B) -- (\B,-\B);
-  \node[minus] at (0.62,0) {$-$};
-  \node[minus] at (-0.62,0) {$-$};
-  \node[plus] at (0,0.62) {$+$};
-  \node[plus] at (0,-0.62) {$+$};
-  \node[aqmpanel, anchor=south] at (0,\B+0.10) {(d) $d$};
-  \node[aqmlabsmall, anchor=north, align=center, text width=2.5cm] at (0,-\B-0.12)
-    {$\cos k_x-\cos k_y$\\[1pt]$L=2$, even\\[-1pt]\textcolor{aqmaccent}{singlet}};
-\end{scope}
-
-% ============================ (e) f-wave, triangular lattice =================
-\begin{scope}[shift={(13.30,0)}]
-  \foreach \i in {0,2,4} {
-    \pgfmathsetmacro{\a}{\i*60}
-    \pgfmathsetmacro{\b}{\a+60}
-    \fill[aqmfill] (0,0) -- (\a:\Hx) -- (\b:\Hx) -- cycle;
-  }
-  \foreach \i in {1,3,5} {
-    \pgfmathsetmacro{\a}{\i*60}
-    \pgfmathsetmacro{\b}{\a+60}
-    \fill[aqmfillb] (0,0) -- (\a:\Hx) -- (\b:\Hx) -- cycle;
-  }
-  \draw[bzbox] (0:\Hx) -- (60:\Hx) -- (120:\Hx) -- (180:\Hx) -- (240:\Hx) -- (300:\Hx) -- cycle;
-  \foreach \i in {0,1,2} {
-    \pgfmathsetmacro{\a}{\i*60}
-    \draw[nodeline] (\a:\Hx) -- ({\a+180}:\Hx);
-  }
-  \foreach \i in {0,2,4} {
-    \pgfmathsetmacro{\a}{\i*60+30}
-    \node[plus] at (\a:0.62) {$+$};
-  }
-  \foreach \i in {1,3,5} {
-    \pgfmathsetmacro{\a}{\i*60+30}
-    \node[minus] at (\a:0.62) {$-$};
-  }
-  \node[aqmpanel, anchor=south] at (0,\B+0.10) {(e) $f$};
-  \node[aqmlabsmall, anchor=north, align=center, text width=2.6cm] at (0,-\B-0.12)
-    {triangular lattice\\[1pt]$L=3$, odd\\[-1pt]\textcolor{aqmbroken}{triplet}};
-\end{scope}
-
-\end{tikzpicture}
-
+zone, ordered by angular momentum $L$ as in (5.14). The positive regions are raised and the negative
+ones are sunk, in two colors, and the nodes are where the two colors meet. A reflection of a panel
+through its centre sends $\mathbf k\to-\mathbf k$. Panels with even $L$ do not change and are
+therefore spin singlets, and panels with odd $L$ come back with every sign flipped and are spin
+triplets, which is (5.12) seen in a picture. Counting lobes is the fastest way to identify the
+order. Two lobes mean $L=1$, four mean $L=2$ and six mean $L=3$, and any pattern whose lobes
+alternate an odd number of times in a half turn is necessarily odd in $\mathbf k$, so it is a
+triplet. This is why the $f$-wave state (e), which has six lobes on the hexagonal zone of the
+triangular lattice, is a spin triplet, even though it is similar to the singlet $d$-wave state in
+every other respect. Extended $s$-wave (b) deserves a second look, since its node is radial and not
+angular. It has the same even parity and the same point-group symmetry as plain $s$-wave, and only
+the position of its node ring relative to the Fermi surface decides whether it is nodal in the
+spectrum. The overall sign of $\Delta$ is a gauge choice, and only the sign \emph{changes} are
+physical.}
+\includegraphics{figures/pdf/s05f03_gapsymmetry.pdf}
 \end{aqmfigure}

@@ -1,87 +1,19 @@
 % Session 5 -- engineering a Kitaev chain out of a quantum spin Hall edge.
 % Placement: sec. "Engineering a topological superconductor from a quantum spin Hall insulator",
 % after the proximity-coupling paragraph.
-%
-% The two Majoranas sit at the ends of the proximitized segment, i.e. exactly at the two
-% magnet/superconductor interfaces, per the text.
+% Rendered by figures/blender/s05f06_qsh.py, labels in figures/overlays/s05f06_qsh.tex.
 \begin{aqmfigure}{fig:s05:qsh}{How to build the Kitaev chain from parts that exist. The edge of a
 quantum spin Hall insulator is helical, which means that on the same edge spin-up electrons move in
-one direction and spin-down electrons in the other. A ferromagnet placed on a part of this edge
-breaks time-reversal symmetry locally and removes the Kramers protection there, which opens a gap
-in the edge below it. With two ferromagnets, one short helical segment survives between them. This
-segment has only one direction of propagation for each spin, so if we count channels it is a
-\emph{spinless} one-dimensional wire. This is the ingredient that (5.19) needs, and nature does not
-give it to us directly. Coupling it by proximity to an ordinary $s$-wave superconductor gives the
-pairing, and the result is a one-dimensional $p$-wave superconductor with a Majorana zero mode at
-each end of the segment, which means at the two ferromagnet--superconductor interfaces. Note what
-was \emph{not} needed. No unconventional superconductor appears in the recipe, only an $s$-wave
-one, a magnet and a topological insulator.}
-
-\begin{tikzpicture}[x=1cm, y=1cm]
-\tikzset{
-  gline/.style={aqm, draw=aqmmuted, line width=0.6pt, dash pattern=on 2pt off 1.5pt},
-  chan/.style={aqm, line width=1.1pt, -{Stealth[length=5pt,width=4pt]}},
-  majdot/.style={aqm, circle, draw=aqmbroken, fill=aqmfillb, line width=1.1pt,
-                 minimum size=10pt, inner sep=0pt}
-}
-
-% ============================ the deposited layer ============================
-% ferromagnet | superconductor | ferromagnet, all sitting on top of the same edge
-\foreach \xa/\xb in {0/4.30, 8.70/13.0} {
-  \fill[white] (\xa,2.45) rectangle (\xb,3.35);
-  \path[pattern=north east lines, pattern color=aqmmuted] (\xa,2.45) rectangle (\xb,3.35);
-  \draw[aqm, draw=aqmmuted] (\xa,2.45) rectangle (\xb,3.35);
-  \node[aqmlab, anchor=center, fill=white, inner sep=2.5pt] at ({(\xa+\xb)/2},2.90)
-    {ferromagnet};
-}
-\fill[aqmfill] (4.30,2.45) rectangle (8.70,3.35);
-\draw[aqm, draw=aqmaccent] (4.30,2.45) rectangle (8.70,3.35);
-\node[aqmlab, anchor=center] at (6.50,2.90) {$s$-wave superconductor};
-
-% ============================ the interfaces =================================
-\draw[gline] (4.30,0.36) -- (4.30,2.43);
-\draw[gline] (8.70,0.36) -- (8.70,2.43);
-
-% ============================ what each block does ===========================
-\node[aqmlabsmall, anchor=north, align=center, text=aqmmuted]
-  at (2.15,2.28) {time reversal broken:\\[-2pt]helical modes gapped};
-\node[aqmlabsmall, anchor=north, align=center, text=aqmmuted]
-  at (10.85,2.28) {time reversal broken:\\[-2pt]helical modes gapped};
-\node[aqmlabsmall, anchor=north, align=center]
-  at (6.50,2.28) {one direction per spin:\\[-1pt]\textbf{effectively spinless}};
-
-% ============================ the helical edge ===============================
-% the surviving segment
-\draw[chan, draw=aqmbroken] (4.55,1.15) -- (8.45,1.15);
-\node[aqmlabsmall, fill=white, inner sep=1.5pt, text=aqmbroken]
-  at (6.50,1.15) {$\uparrow$ moves right};
-\draw[chan, draw=aqmbroken] (8.45,0.75) -- (4.55,0.75);
-\node[aqmlabsmall, fill=white, inner sep=1.5pt, text=aqmbroken]
-  at (6.50,0.75) {$\downarrow$ moves left};
-% the gapped stretches
-\foreach \xa/\xb in {0.20/4.05, 8.95/12.80} {
-  \draw[gline] (\xa,1.15) -- (\xb,1.15);
-  \draw[gline] (\xa,0.75) -- (\xb,0.75);
-}
-
-% ============================ the slab =======================================
-\fill[aqmfill] (0,-1.30) rectangle (13.0,0.36);
-\draw[aqm, draw=aqmaccent] (0,-1.30) rectangle (13.0,0.36);
-\node[aqmlab, anchor=center] at (6.50,-0.47)
-  {quantum spin Hall insulator, gapped bulk \; (e.g.\ WTe$_2$)};
-
-% ============================ the Majoranas ==================================
-\node[majdot] at (4.30,0.95) {};
-\node[majdot] at (8.70,0.95) {};
-\node[aqmlabsmall, anchor=east, text=aqmbroken] at (4.08,0.95) {$\gamma_1$};
-\node[aqmlabsmall, anchor=west, text=aqmbroken] at (8.92,0.95) {$\gamma_2$};
-
-% ============================ the read-off ===================================
-\node[aqmboxbroken, anchor=north, align=center] at (6.50,-1.60)
-  {an effectively spinless 1D segment $+$ proximity pairing $=$ the Kitaev chain (5.19),\\[2pt]
-   with its two unpaired end Majoranas now pinned\\[-1pt]
-   at the ferromagnet--superconductor interfaces};
-
-\end{tikzpicture}
-
+one direction and spin-down electrons in the other, drawn in a warm and a cold color. A ferromagnet
+placed on a part of this edge breaks time-reversal symmetry locally and removes the Kramers
+protection there, which opens a gap in the edge below it, where the channels are drawn faded. With
+two ferromagnets, one short helical segment survives between them. This segment has only one
+direction of propagation for each spin, so if we count channels it is a \emph{spinless}
+one-dimensional wire. This is the ingredient that (5.19) needs, and nature does not give it to us
+directly. Coupling it by proximity to an ordinary $s$-wave superconductor gives the pairing, and the
+result is a one-dimensional $p$-wave superconductor with a Majorana zero mode at each end of the
+segment, which means at the two ferromagnet-superconductor interfaces. Note what was \emph{not}
+needed. No unconventional superconductor appears in the recipe, only an $s$-wave one, a magnet and a
+topological insulator.}
+\includegraphics{figures/pdf/s05f06_qsh.pdf}
 \end{aqmfigure}

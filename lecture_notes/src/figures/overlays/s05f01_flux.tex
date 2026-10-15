@@ -1,0 +1,30 @@
+% Figure s05f01_flux (Session 5): flux quantization as a macroscopic readout of h/2e.
+% The image is rendered by figures/blender/s05f01_flux.py; the coordinates of the labels come from
+% figures/blender/out/s05f01_flux_anchors.tex. Build with figures/blender/build_figure.sh s05f01_flux.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx,bm}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,calc}
+\input{aqmcolors.tex}
+\newlength{\figw}\setlength{\figw}{10.9cm}   % 0.7 of the text width
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
+  \begin{scope}
+    \setlength{\figw}{5.3cm}
+    \node[anchor=south west, inner sep=0pt] at (0,0)
+      {\includegraphics[width=\figw]{../blender/out/s05f01_flux_a.jpg}};
+    \input{../blender/out/s05f01_flux_a_anchors.tex}
+    \node[lbl, anchor=south] at (aPhi) {$\Phi=n\,h/2e$};
+    \node[lbl, anchor=north, text=aqmaccent, align=center] at (acontour) {$\hbar\nabla\theta=2e\mathbf A$};
+  \end{scope}
+  \begin{scope}[shift={(5.5cm,0)}]
+    \setlength{\figw}{5.4cm}
+    \node[anchor=south west, inner sep=0pt] at (0,0)
+      {\includegraphics[width=\figw]{../blender/out/s05f01_flux_b.jpg}};
+    \input{../blender/out/s05f01_flux_b_anchors.tex}
+    \node[lbl, align=center] at (bcenter) {$\theta$ winds\\by $2\pi n$};
+  \end{scope}
+\end{tikzpicture}
+\end{document}
