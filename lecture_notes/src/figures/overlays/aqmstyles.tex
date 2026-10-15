@@ -1,0 +1,30 @@
+% Shared TikZ styles of the overlays: axis arrows drawn on top of the renders, between anchors
+% written by the scripts, so that they can be adjusted without rendering again.
+\tikzset{
+  axarrow/.style={line width=0.6pt, draw=black!70, -{Stealth[length=4.5pt,width=3.5pt]}},
+  axlbl/.style={font=\small, inner sep=1.5pt},
+}
+% A discrete color key: \aqmkey{(x,y)}{color 1}{label 1}{color 2}{label 2} draws two swatches in a
+% column with their labels, anchored at its north west corner. The colors are the sRGB values
+% used in the render, defined below.
+\definecolor{keypos}{RGB}{118,158,198}
+\definecolor{keyneg}{RGB}{214,150,132}
+\definecolor{keyup}{RGB}{224,62,40}
+\definecolor{keydown}{RGB}{40,92,200}
+\definecolor{keydark}{RGB}{31,78,121}
+\definecolor{keylight}{RGB}{118,158,198}
+\newcommand{\aqmkey}[5]{%
+  \begin{scope}[shift={#1}]
+    \fill[#2, draw=black!40, line width=0.3pt] (0,-0.32) rectangle (0.32,0);
+    \node[font=\small, anchor=west, inner sep=1.5pt] at (0.38,-0.16) {#3};
+    \fill[#4, draw=black!40, line width=0.3pt] (0,-0.74) rectangle (0.32,-0.42);
+    \node[font=\small, anchor=west, inner sep=1.5pt] at (0.38,-0.58) {#5};
+  \end{scope}}
+% The same key in one row, for a figure with no room for a column.
+\newcommand{\aqmkeyrow}[5]{%
+  \begin{scope}[shift={#1}]
+    \fill[#2, draw=black!40, line width=0.3pt] (0,-0.32) rectangle (0.32,0);
+    \node[font=\small, anchor=west, inner sep=1.5pt] (k1) at (0.38,-0.16) {#3};
+    \fill[#4, draw=black!40, line width=0.3pt] ([xshift=0.25cm]k1.east |- 0,-0.32) rectangle ++(0.32,0.32);
+    \node[font=\small, anchor=west, inner sep=1.5pt] at ([xshift=0.63cm]k1.east) {#5};
+  \end{scope}}

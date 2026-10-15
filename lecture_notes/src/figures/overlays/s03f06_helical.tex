@@ -7,6 +7,7 @@
 \usepackage{xcolor}
 \usetikzlibrary{arrows.meta,calc}
 \input{aqmcolors.tex}
+\input{aqmstyles.tex}
 \newlength{\figw}\setlength{\figw}{15.6cm}   % the text width of the notes (A4, 2.7 cm margins)
 
 \begin{document}
@@ -22,5 +23,6 @@
     \node[lbl, anchor=west, text=aqmmuted] at (\p bulk) {bulk};
   }
   \node[lbl, anchor=west, text=aqmbroken] at (cDelta) {$2\Delta$};
+  \aqmkeyrow{(7.4cm,5.12cm)}{keyup}{spin $\uparrow$}{keydown}{spin $\downarrow$}
 \end{tikzpicture}
 \end{document}

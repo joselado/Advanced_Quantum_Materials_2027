@@ -49,6 +49,7 @@ def column(x0, kind, tag):
             if z > 0.12:
                 F.rod(f'{tag}_post{j}', (x, y, 0.08), (x, y, z), r=0.008, rgb=F.BOND)
     F.anchor('Gamma', (x0, 0, 0.07))
+    F.axes_anchors('k', (x0, 0, 0.07), {'x': (x0 + 0.8 * ZS, 0, 0.07), 'y': (x0, 0.8 * ZS, 0.07)})
     F.anchor('panel', (x0 - ZS, ZS + 0.2, 0.06))
     F.anchor('bz', (x0 + ZS, -ZS, 0.0))
     return gaps

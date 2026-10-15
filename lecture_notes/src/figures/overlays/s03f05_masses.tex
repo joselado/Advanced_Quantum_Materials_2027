@@ -7,6 +7,7 @@
 \usepackage{xcolor}
 \usetikzlibrary{arrows.meta,calc}
 \input{aqmcolors.tex}
+\input{aqmstyles.tex}
 \newlength{\figw}\setlength{\figw}{15.6cm}   % the text width of the notes (A4, 2.7 cm margins)
 
 \begin{document}
@@ -18,7 +19,11 @@
     \node[pnl, anchor=east, align=right] at (lata) {(a)\\\normalfont staggered\\\normalfont potential $\pm m$};
     \node[pnl, anchor=east, align=right] at (latb) {(b)\\\normalfont Haldane coupling\\\normalfont $t_2e^{\pm i\pi/2}$};
     \node[lbl, anchor=west, text=aqmaccent] at (latt2) {$t_2$};
-  \end{scope}
+    \draw[axarrow] (latrO) -- (latrx);
+  \draw[axarrow] (latrO) -- (latry);
+  \node[axlbl, anchor=north] at (latrx) {$x$};
+  \node[axlbl, anchor=east] at (latry) {$y$};
+\end{scope}
   \node[anchor=south west, inner sep=0pt] at (0,0)
     {\includegraphics[width=\figw]{../blender/out/s03f05_masses_spec.jpg}};
   \input{../blender/out/s03f05_masses_spec_anchors.tex}
@@ -28,5 +33,6 @@
     \node[lbl, anchor=north] at (\p k2pi) {$2\pi$};
     \node[lbl, anchor=north] at (\p kx) {$k_x$};
   }
+  \aqmkey{(6.55cm,2.35cm)}{keydark}{top edge}{keylight}{bottom edge}
 \end{tikzpicture}
 \end{document}

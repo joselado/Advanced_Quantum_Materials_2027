@@ -7,6 +7,7 @@
 \usepackage{xcolor}
 \usetikzlibrary{arrows.meta,calc}
 \input{aqmcolors.tex}
+\input{aqmstyles.tex}
 \newlength{\figw}\setlength{\figw}{15.6cm}   % the text width of the notes (A4, 2.7 cm margins)
 
 \begin{document}
@@ -18,5 +19,17 @@
   \node[lbl, anchor=south west] at (bpanel) {\textbf{(b)}\quad $s$-wave, $\Delta_0$};
   \node[lbl, anchor=south west] at (cpanel) {\textbf{(c)}\quad $d$-wave, (5.13)};
   \foreach \p in {a,b,c} { \node[lbl, anchor=north, text=aqmmuted] at (\p Gamma) {$\Gamma$}; }
+  \draw[axarrow] (akO) -- (akx);
+  \draw[axarrow] (akO) -- (aky);
+  \node[axlbl, anchor=north] at (akx) {$k_x$};
+  \node[axlbl, anchor=south west] at (aky) {$k_y$};
+  \draw[axarrow] (bkO) -- (bkx);
+  \draw[axarrow] (bkO) -- (bky);
+  \node[axlbl, anchor=north] at (bkx) {$k_x$};
+  \node[axlbl, anchor=south west] at (bky) {$k_y$};
+  \draw[axarrow] (ckO) -- (ckx);
+  \draw[axarrow] (ckO) -- (cky);
+  \node[axlbl, anchor=south east] at (ckx) {$k_x$};
+  \node[axlbl, anchor=south west] at (cky) {$k_y$};
 \end{tikzpicture}
 \end{document}

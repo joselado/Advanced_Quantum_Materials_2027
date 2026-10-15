@@ -7,6 +7,7 @@
 \usepackage{xcolor}
 \usetikzlibrary{arrows.meta,calc}
 \input{aqmcolors.tex}
+\input{aqmstyles.tex}
 \newlength{\figw}\setlength{\figw}{15.6cm}   % the text width of the notes (A4, 2.7 cm margins)
 
 \begin{document}
@@ -23,5 +24,7 @@
   \node[lbl, anchor=south east, text=aqmaccent] at (BZ) {first Brillouin zone};
   \node[lbl, anchor=south] at ($(n1)+(0,2.55cm)$) {$\alpha_j\propto e^{2\pi i n j/3}$};
   \node[lbl, anchor=south] at ($(L0)+(0,2.55cm)$) {allowed phases $e^{2\pi i n/L}$};
+  \node[axlbl, anchor=north west] at (cre) {$\mathrm{Re}$};
+  \node[axlbl, anchor=south west] at (cim) {$\mathrm{Im}$};
 \end{tikzpicture}
 \end{document}

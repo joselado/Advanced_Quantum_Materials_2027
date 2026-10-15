@@ -75,6 +75,8 @@ def build():
         F.rod(f'post_{tag}', (x0, 0, 0), (x0, 0, 0.85 - HZ * 2.0), r=0.02)
         F.anchor(f'p{"abcde"[k]}', (x0 - HALF - 0.1, HALF + 0.4, 0.85 + HZ))
         F.anchor(f'G{"abcde"[k]}', (x0, 0, 0.85 + HZ * delta(0.0, 0.0) + 0.05))
+        if k == 1:
+            F.axes_anchors('k', (x0 - HALF, -HALF - 0.35, 0.0), {'x': (x0 - HALF + 0.9, -HALF - 0.35, 0.0), 'y': (x0 - HALF, -HALF + 0.55, 0.0)})
     F.camera((0.0, 0.25, 0.85), elev=40.0, ortho=16.0, aspect=3.4)
 
 

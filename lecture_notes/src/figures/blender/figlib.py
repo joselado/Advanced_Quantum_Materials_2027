@@ -179,6 +179,26 @@ def arrow_mesh(name, m):
     return mesh_of(name, [m], f)
 
 
+NEUTRAL_TIP, NEUTRAL_TAIL = (0.42, 0.45, 0.95), (0.08, 0.06, 0.38)
+
+
+def sz_arrow(name, loc, direction, length=0.8, neutral=False):
+    """A spin arrow colored continuously by its z component, mixing the up and down gradients, or
+    with one neutral gradient if `neutral`, so that a spin in the plane reads as neither up nor
+    down; `loc` is the center of the arrow. Taken from the sibling course."""
+    d = Vector(direction).normalized()
+    w = (d.z + 1) / 2
+    mix = lambda a, b: tuple(w * x + (1 - w) * y for x, y in zip(a, b))
+    if neutral:
+        tip, tail, key = NEUTRAL_TIP, NEUTRAL_TAIL, 'szarrow_neutral'
+    else:
+        tip, tail = mix(UP_TIP, DOWN_TIP), mix(UP_TAIL, DOWN_TAIL)
+        key = 'szarrow_%.3f' % d.z
+    if bpy.data.meshes.get(key) is None:
+        arrow_mesh(key, gradient_arrow_material(key, tip, tail))
+    return obj(name, bpy.data.meshes[key], loc=loc, rot=d.to_track_quat('Z', 'Y').to_euler(), scale=length)
+
+
 def spin_arrows():
     if bpy.data.meshes.get('arrow_up') is None:
         arrow_mesh('arrow_up', gradient_arrow_material('arrow_up', UP_TIP, UP_TAIL))
@@ -277,6 +297,14 @@ def cup(name, loc, fill, r=0.32, h=0.9, rgb=ELECTRON):
                                                                              seg=48)), loc=loc)
     if fill > 1e-3:
         column(name + '_fill', (loc[0], loc[1], loc[2] + 0.03), fill * (h - 0.03), r=0.92 * r, rgb=rgb)
+
+
+def axes_anchors(tag, origin, ends):
+    """Anchors for axis arrows drawn in the overlay: <tag>O at the origin and <tag><key> at the end
+    of each axis, from a dict like {'x': (x, y, z), 'y': (x, y, z)}."""
+    anchor(tag + 'O', origin)
+    for key, co in ends.items():
+        anchor(tag + key, co)
 
 
 def anchor(name, co):

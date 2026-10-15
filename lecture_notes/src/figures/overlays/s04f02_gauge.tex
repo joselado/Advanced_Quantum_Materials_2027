@@ -7,6 +7,7 @@
 \usepackage{xcolor}
 \usetikzlibrary{arrows.meta,calc}
 \input{aqmcolors.tex}
+\input{aqmstyles.tex}
 \newlength{\figw}\setlength{\figw}{12.5cm}   % 0.8 of the text width
 
 \begin{document}
@@ -18,5 +19,13 @@
   \node[lbl, anchor=south west] at (bpanel) {\textbf{(b)}\quad symmetric gauge};
   \node[lbl, text=aqmaccent] at (aplaq) {$\varphi$};
   \node[lbl, text=aqmaccent] at (bplaq) {$\varphi$};
+  \draw[axarrow] (arO) -- (arx);
+  \draw[axarrow] (arO) -- (ary);
+  \node[axlbl, anchor=north] at (arx) {$x$};
+  \node[axlbl, anchor=east] at (ary) {$y$};
+  \draw[axarrow] (brO) -- (brx);
+  \draw[axarrow] (brO) -- (bry);
+  \node[axlbl, anchor=north] at (brx) {$x$};
+  \node[axlbl, anchor=east] at (bry) {$y$};
 \end{tikzpicture}
 \end{document}

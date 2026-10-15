@@ -7,6 +7,7 @@
 \usepackage{xcolor}
 \usetikzlibrary{arrows.meta,calc}
 \input{aqmcolors.tex}
+\input{aqmstyles.tex}
 \newlength{\figw}\setlength{\figw}{15.6cm}   % the text width of the notes (A4, 2.7 cm margins)
 
 \begin{document}
@@ -18,5 +19,9 @@
   \node[pnl, anchor=south west] at (b) {(b)\quad\normalfont an impurity cannot stop it};
   \node[lbl, anchor=west] at (B) {$\mathbf B\odot$};
   \node[lbl, anchor=north] at (imp) {impurity};
+  \draw[axarrow] (rO) -- (rx);
+  \draw[axarrow] (rO) -- (ry);
+  \node[axlbl, anchor=north] at (rx) {$x$};
+  \node[axlbl, anchor=east] at (ry) {$y$};
 \end{tikzpicture}
 \end{document}

@@ -7,6 +7,7 @@
 \usepackage{xcolor}
 \usetikzlibrary{arrows.meta,calc}
 \input{aqmcolors.tex}
+\input{aqmstyles.tex}
 \newlength{\figw}\setlength{\figw}{15.6cm}   % the text width of the notes (A4, 2.7 cm margins)
 
 \begin{document}
@@ -22,5 +23,11 @@
     \node[lbl, anchor=north] at (\p kmin) {$-\pi$};
     \node[lbl, anchor=north] at (\p kmax) {$\pi$};
   }
+  \node[axlbl, anchor=north east] at (acre) {$\mathrm{Re}\,d$};
+  \node[axlbl, anchor=west] at (acim) {$\mathrm{Im}\,d$};
+  \node[axlbl, anchor=north east] at (bcre) {$\mathrm{Re}\,d$};
+  \node[axlbl, anchor=west] at (bcim) {$\mathrm{Im}\,d$};
+  \node[axlbl, anchor=north east] at (ccre) {$\mathrm{Re}\,d$};
+  \node[axlbl, anchor=west] at (ccim) {$\mathrm{Im}\,d$};
 \end{tikzpicture}
 \end{document}

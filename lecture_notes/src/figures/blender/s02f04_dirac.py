@@ -67,6 +67,7 @@ def phasors(x0, k, tag):
     if abs(p - o) > 0.05:
         F.marker(f'{tag}_end', (p.real, p.imag, 0.06), kind='ghost', r=0.08, rgb=F.BROKEN)
     F.anchor(tag, (x0, -0.55, 0))
+    F.axes_anchors(tag + 'ax', (x0 - 0.35, 0.55, 0.02), {'re': (x0 + 1.25, 0.55, 0.02), 'im': (x0 - 0.35, 2.1, 0.02)})
     return abs(p - o) / 1.2
 
 
@@ -75,6 +76,7 @@ def build_ab():
     F.PREFIX[0] = 'a'
     honeycomb()
     F.anchor('panel', (XA - 1.95, 2.75, 0.0))
+    F.axes_anchors('r', (XA - 1.85, -0.75, 0.0), {'x': (XA - 1.15, -0.75, 0.0), 'y': (XA - 1.85, -0.05, 0.0)})
     F.PREFIX[0] = 'b'
     K = (4 * math.pi / (3 * S3), 0.0)
     print('|f(K)| =', phasors(XB1, K, 'K'))
@@ -107,6 +109,7 @@ def build_c():
                   loc=(x, y, zc))
         F.anchor(lab, (x + 0.2 * math.cos(math.pi * m / 3), y + 0.2 * math.sin(math.pi * m / 3), zc + 0.52))
     F.anchor('Gamma', (XC, yc, zc + 0.02))
+    F.axes_anchors('k', (XC, yc, zc + 0.01), {'x': (XC + rz + 0.55, yc, zc + 0.01), 'y': (XC, yc + rz + 0.45, zc + 0.01)})
     F.anchor('panel', (XC - 1.75, yc + 1.2, zc + 0.7))
     F.camera((XC + 0.1, yc, zc + 0.15), elev=35.0, ortho=4.1, aspect=4.9 / 4.55)
 

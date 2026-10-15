@@ -37,6 +37,8 @@ def pocket(x0, chiral, tag):
                        (x + 0.2 * math.cos(ph), y + 0.2 * math.sin(ph), 0.08), r=0.022, head=0.09)
     F.anchor('panel', (x0 - RP - 0.35, RP + 0.75, 0))
     F.anchor('below', (x0, -RP - 0.65, 0))
+    F.anchor('kx', (x0 + RP + 0.6, 0, 0.01))
+    F.anchor('ky', (x0, RP + 0.6, 0.01))
 
 
 def sample(x0, y0, chiral, tag):

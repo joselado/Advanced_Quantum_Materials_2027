@@ -7,6 +7,7 @@
 \usepackage{xcolor}
 \usetikzlibrary{arrows.meta,calc}
 \input{aqmcolors.tex}
+\input{aqmstyles.tex}
 \newlength{\figw}\setlength{\figw}{15.6cm}   % the text width of the notes (A4, 2.7 cm margins)
 
 \begin{document}
@@ -22,5 +23,6 @@
   \node[lbl, anchor=north east] at (up) {spin $\uparrow$};
   \node[lbl, anchor=south west] at (dn) {spin $\downarrow$};
   \node[lbl, anchor=south east, text=aqmmuted] at (qsh) {quantum spin Hall insulator};
+  \aqmkey{(0.3cm,5.25cm)}{keyup}{spin $\uparrow$}{keydown}{spin $\downarrow$}
 \end{tikzpicture}
 \end{document}

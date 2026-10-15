@@ -79,6 +79,7 @@ def build_b():
     F.anchor('left', (-w / 2, -h / 2 + 0.6, 0))
     F.anchor('panel', (-w / 2 - 1.05, h / 2 + 0.05, 0))
     F.anchor('y', (0, h / 2, 0))
+    F.axes_anchors('r', (w / 2 + 0.35, h / 2 - 0.85, 0.0), {'x': (w / 2 + 1.05, h / 2 - 0.85, 0.0), 'y': (w / 2 + 0.35, h / 2 - 0.15, 0.0)})
     F.camera((0.0, 0.0, 0.0), elev=89.9, ortho=5.0, aspect=5.8 / 5.0)
 
 

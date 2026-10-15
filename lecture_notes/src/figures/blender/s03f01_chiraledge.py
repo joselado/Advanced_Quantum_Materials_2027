@@ -52,6 +52,7 @@ def build():
     F.anchor('bot', (XA, -LY / 2 - 0.15, 0))
     F.anchor('bulk', (XA, 0.05, z))
     F.anchor('a', (XA - LX / 2, LY / 2 + 0.6, 0))
+    F.axes_anchors('r', (XA + LX / 2 + 0.3, -LY / 2, 0.0), {'x': (XA + LX / 2 + 1.1, -LY / 2, 0.0), 'y': (XA + LX / 2 + 0.3, -LY / 2 + 0.8, 0.0)})
     # (b) one edge, an impurity, and the mode going around it
     w = 4.2
     F.slab('b_sample', (XB, 0.6, H / 2), (w, 2.2, H), rgb=(0.84, 0.86, 0.90), radius=0.04)

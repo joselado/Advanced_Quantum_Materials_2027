@@ -48,6 +48,7 @@ def build():
         F.rod(f'c{k}_re', (x0 - RC - 0.25, 0, 0.02), (x0 + RC + 0.25, 0, 0.02), r=0.012)
         F.rod(f'c{k}_im', (x0, -RC - 0.25, 0.02), (x0, RC + 0.25, 0.02), r=0.012)
         F.anchor(f'L{k}', (x0, -RC - 0.35, 0))
+    F.axes_anchors('c', (XC[0], 0, 0.02), {'re': (XC[0] + RC + 0.25, 0, 0.02), 'im': (XC[0], RC + 0.25, 0.02)})
     F.anchor('one', (XC[0] + RC + 0.12, 0, 0.1))
     F.anchor('BZ', (XC[2] + RC + 0.25, RC + 0.3, 0.1))
     F.camera((0.2, 0.0, 0.0), elev=89.9, ortho=15.4, aspect=4.0)

@@ -55,6 +55,7 @@ def patch(x0, gauge, tag):
     F.slab(f'{tag}_plaq', (x0, 0, 0.005), (S - 0.2, S - 0.2, 0.01), rgb=F.ACCENT_AQM, alpha=0.22)
     F.anchor('panel', (x0 - S * c - 0.35, S * c + 0.45, 0))
     F.anchor('plaq', (x0, 0, 0.02))
+    F.axes_anchors('r', (x0 + S * c + 0.45, -S * c, 0.0), {'x': (x0 + S * c + 1.1, -S * c, 0.0), 'y': (x0 + S * c + 0.45, -S * c + 0.65, 0.0)})
 
 
 def build():

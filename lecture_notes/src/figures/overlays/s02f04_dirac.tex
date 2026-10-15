@@ -7,6 +7,7 @@
 \usepackage{xcolor}
 \usetikzlibrary{arrows.meta,calc}
 \input{aqmcolors.tex}
+\input{aqmstyles.tex}
 \newlength{\figw}\setlength{\figw}{15.6cm}   % the text width of the notes (A4, 2.7 cm margins)
 
 \begin{document}
@@ -24,8 +25,16 @@
     \node[lbl, anchor=north east] at (aA) {$A$};
     \node[lbl, anchor=north] at (bK) {at $\mathbf K$, closed};
     \node[lbl, anchor=north] at (bk) {generic $\mathbf k$, open};
-  \end{scope}
-  \begin{scope}[shift={(10.6cm,0)}]
+    \node[axlbl, anchor=north east] at (bKaxre) {$\mathrm{Re}$};
+  \node[axlbl, anchor=south west] at (bKaxim) {$\mathrm{Im}$};
+  \node[axlbl, anchor=north east] at (bkaxre) {$\mathrm{Re}$};
+  \node[axlbl, anchor=south west] at (bkaxim) {$\mathrm{Im}$};
+  \draw[axarrow] (arO) -- (arx);
+  \draw[axarrow] (arO) -- (ary);
+  \node[axlbl, anchor=north] at (arx) {$x$};
+  \node[axlbl, anchor=south] at (ary) {$y$};
+\end{scope}
+  \begin{scope}[shift={(10.58cm,0)}]
     \setlength{\figw}{5.0cm}
     \node[anchor=south west, inner sep=0pt] at (0,0)
       {\includegraphics[width=\figw]{../blender/out/s02f04_dirac_c.jpg}};
@@ -34,6 +43,10 @@
     \node[lbl, anchor=south east] at (cK) {$K$};
     \node[lbl, anchor=south west] at (cKp) {$K'$};
     \node[lbl, anchor=south, text=aqmmuted] at (cGamma) {$\Gamma$};
-  \end{scope}
+    \draw[axarrow] (ckO) -- (ckx);
+  \draw[axarrow] (ckO) -- (cky);
+  \node[axlbl, anchor=south east] at (ckx) {$k_x$};
+  \node[axlbl, anchor=south west] at (cky) {$k_y$};
+\end{scope}
 \end{tikzpicture}
 \end{document}

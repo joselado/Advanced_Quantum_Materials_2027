@@ -100,6 +100,7 @@ def build_lattices():
             F.flow(f'b_t2_{sub}{j}', pts, r=0.018, rgb=F.ACCENT_AQM)
     F.anchor('t2', (cx + 0.75, cy + 0.2, 0.3))
     F.anchor('b', (LB - 1.8, 1.3, 0))
+    F.axes_anchors('r', (LA + 1.9, 0.0, 0.0), {'x': (LA + 2.6, 0.0, 0.0), 'y': (LA + 1.9, 0.7, 0.0)})
     F.camera((0.0, 1.3, 0.0), elev=89.9, ortho=15.6, aspect=15.6 / 2.4)
 
 

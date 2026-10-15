@@ -7,6 +7,7 @@
 \usepackage{xcolor}
 \usetikzlibrary{arrows.meta,calc}
 \input{aqmcolors.tex}
+\input{aqmstyles.tex}
 \newlength{\figw}\setlength{\figw}{12.5cm}   % 0.8 of the text width
 
 \begin{document}
@@ -21,5 +22,9 @@
   \node[lbl, anchor=north] at (bbelow) {winding $1$};
   \node[lbl, anchor=north, text=aqmmuted] at (ctriv) {trivial};
   \node[lbl, anchor=north, text=aqmaccent] at (cchir) {chiral, $C=2$};
+  \node[axlbl, anchor=north east] at (akx) {$k_x$};
+  \node[axlbl, anchor=south west] at (aky) {$k_y$};
+  \node[axlbl, anchor=north east] at (bkx) {$k_x$};
+  \node[axlbl, anchor=south west] at (bky) {$k_y$};
 \end{tikzpicture}
 \end{document}

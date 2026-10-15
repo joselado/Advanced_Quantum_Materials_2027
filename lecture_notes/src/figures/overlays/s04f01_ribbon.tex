@@ -7,6 +7,7 @@
 \usepackage{xcolor}
 \usetikzlibrary{arrows.meta,calc}
 \input{aqmcolors.tex}
+\input{aqmstyles.tex}
 \newlength{\figw}\setlength{\figw}{15.6cm}   % the text width of the notes (A4, 2.7 cm margins)
 
 \begin{document}
@@ -34,7 +35,10 @@
     \node[lbl, anchor=west] at (bimp) {impurity};
     \node[lbl, anchor=west, align=left] at (bright) {$k_y>0$\\$v_y>0$};
     \node[lbl, anchor=east, align=right] at (bleft) {$k_y<0$\\$v_y<0$};
-    \node[lbl, anchor=south] at (by) {$y$};
-  \end{scope}
+    \draw[axarrow] (brO) -- (brx);
+  \draw[axarrow] (brO) -- (bry);
+  \node[axlbl, anchor=north] at (brx) {$x$};
+  \node[axlbl, anchor=east] at (bry) {$y$};
+\end{scope}
 \end{tikzpicture}
 \end{document}

@@ -35,6 +35,7 @@ def build():
         F.flow(f'{tag}_ring', pts, r=0.025, rgb=F.ACCENT_AQM)
         F.anchor('zero', (xr - 0.05, 0, zr - 0.05))
         F.anchor('re', (xr + RS * (t + 0.7), 0, zr + RS * 0.75))
+        F.axes_anchors('c', (xr, 0, zr), {'re': (xr + 1.65, 0, zr), 'im': (xr, 0, zr + 0.95)})
         F.anchor('t', (x0 - 0.6, 0, 2.8))
         # the bands
         xb = x0 + 1.15

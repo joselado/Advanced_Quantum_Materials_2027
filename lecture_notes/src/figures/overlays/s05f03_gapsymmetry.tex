@@ -7,6 +7,7 @@
 \usepackage{xcolor}
 \usetikzlibrary{arrows.meta,calc}
 \input{aqmcolors.tex}
+\input{aqmstyles.tex}
 \newlength{\figw}\setlength{\figw}{15.6cm}   % the text width of the notes (A4, 2.7 cm margins)
 
 \begin{document}
@@ -17,5 +18,10 @@
   \foreach \p/\t in {a/{$s$, $L=0$}, b/{extended $s$}, c/{$p$, $L=1$}, d/{$d$, $L=2$}, e/{$f$, $L=3$}} {
     \node[lbl, anchor=south west] at (p\p) {\textbf{(\p)}\ \t};
   }
+  \draw[axarrow] (kO) -- (kx);
+  \draw[axarrow] (kO) -- (ky);
+  \node[axlbl, anchor=north] at (kx) {$k_x$};
+  \node[axlbl, anchor=south] at (ky) {$k_y$};
+  \aqmkey{(13.3cm,1.05cm)}{keypos}{$\Delta>0$}{keyneg}{$\Delta<0$}
 \end{tikzpicture}
 \end{document}
