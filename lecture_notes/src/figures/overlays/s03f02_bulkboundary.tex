@@ -1,0 +1,26 @@
+% Figure s03f02_bulkboundary (Session 3): the bulk-boundary correspondence as an argument about an integer.
+% The image is rendered by figures/blender/s03f02_bulkboundary.py; the coordinates of the labels come from
+% figures/blender/out/s03f02_bulkboundary_anchors.tex. Build with figures/blender/build_figure.sh s03f02_bulkboundary.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx,bm}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,calc}
+\input{aqmcolors.tex}
+\newlength{\figw}\setlength{\figw}{11.7cm}   % 0.75 of the text width
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
+  \node[anchor=south west, inner sep=0pt] at (0,0)
+    {\includegraphics[width=\figw]{../blender/out/s03f02_bulkboundary.jpg}};
+  \input{../blender/out/s03f02_bulkboundary_anchors.tex}
+  \node[lbl, anchor=south] at (C1) {$C_1=1$};
+  \node[lbl, anchor=south] at (C2) {$C_2=0$};
+  \node[lbl, anchor=east, align=right] at (Clab) {Chern\\number};
+  \node[lbl, anchor=east, align=right] at (glab) {local\\gap};
+  \node[lbl, anchor=east, align=right, text=aqmbroken] at (plab) {bound\\state};
+  \node[lbl, anchor=north west] at (H1) {$H_1$};
+  \node[lbl, anchor=north east] at (H2) {$H_2$};
+  \node[lbl, anchor=south east] at (x) {$x$};
+\end{tikzpicture}
+\end{document}

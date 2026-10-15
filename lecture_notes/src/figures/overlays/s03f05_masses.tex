@@ -1,0 +1,32 @@
+% Figure s03f05_masses (Session 3): two masses for the honeycomb Dirac cones, on the lattice and on a ribbon.
+% The image is rendered by figures/blender/s03f05_masses.py; the coordinates of the labels come from
+% figures/blender/out/s03f05_masses_anchors.tex. Build with figures/blender/build_figure.sh s03f05_masses.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx,bm}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,calc}
+\input{aqmcolors.tex}
+\newlength{\figw}\setlength{\figw}{15.6cm}   % the text width of the notes (A4, 2.7 cm margins)
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
+  \begin{scope}[shift={(0,2.55cm)}]
+    \node[anchor=south west, inner sep=0pt] at (0,0)
+      {\includegraphics[width=\figw]{../blender/out/s03f05_masses_lat.jpg}};
+    \input{../blender/out/s03f05_masses_lat_anchors.tex}
+    \node[pnl, anchor=east, align=right] at (lata) {(a)\\\normalfont staggered\\\normalfont potential $\pm m$};
+    \node[pnl, anchor=east, align=right] at (latb) {(b)\\\normalfont Haldane coupling\\\normalfont $t_2e^{\pm i\pi/2}$};
+    \node[lbl, anchor=west, text=aqmaccent] at (latt2) {$t_2$};
+  \end{scope}
+  \node[anchor=south west, inner sep=0pt] at (0,0)
+    {\includegraphics[width=\figw]{../blender/out/s03f05_masses_spec.jpg}};
+  \input{../blender/out/s03f05_masses_spec_anchors.tex}
+  \foreach \p in {a,b} {
+    \node[lbl, anchor=south west] at (\p E) {$E$};
+    \node[lbl, anchor=north] at (\p k0) {$0$};
+    \node[lbl, anchor=north] at (\p k2pi) {$2\pi$};
+    \node[lbl, anchor=north] at (\p kx) {$k_x$};
+  }
+\end{tikzpicture}
+\end{document}

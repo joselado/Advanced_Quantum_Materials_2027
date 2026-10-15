@@ -1,0 +1,22 @@
+% Figure s03f01_chiraledge (Session 3): chiral edge states in real space, seen from above.
+% The image is rendered by figures/blender/s03f01_chiraledge.py; the coordinates of the labels come from
+% figures/blender/out/s03f01_chiraledge_anchors.tex. Build with figures/blender/build_figure.sh s03f01_chiraledge.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx,bm}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,calc}
+\input{aqmcolors.tex}
+\newlength{\figw}\setlength{\figw}{15.6cm}   % the text width of the notes (A4, 2.7 cm margins)
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
+  \node[anchor=south west, inner sep=0pt] at (0,0)
+    {\includegraphics[width=\figw]{../blender/out/s03f01_chiraledge.jpg}};
+  \input{../blender/out/s03f01_chiraledge_anchors.tex}
+  \node[pnl, anchor=south west] at (a) {(a)\quad\normalfont a gapped bulk with conducting edges};
+  \node[pnl, anchor=south west] at (b) {(b)\quad\normalfont an impurity cannot stop it};
+  \node[lbl, anchor=west] at (B) {$\mathbf B\odot$};
+  \node[lbl, anchor=north] at (imp) {impurity};
+\end{tikzpicture}
+\end{document}

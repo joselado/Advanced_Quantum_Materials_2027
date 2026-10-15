@@ -1,0 +1,26 @@
+% Figure s03f06_helical (Session 3): schematic edge dispersions, chiral against helical.
+% The image is rendered by figures/blender/s03f06_helical.py; the coordinates of the labels come from
+% figures/blender/out/s03f06_helical_anchors.tex. Build with figures/blender/build_figure.sh s03f06_helical.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx,bm}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,calc}
+\input{aqmcolors.tex}
+\newlength{\figw}\setlength{\figw}{15.6cm}   % the text width of the notes (A4, 2.7 cm margins)
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
+  \node[anchor=south west, inner sep=0pt] at (0,0)
+    {\includegraphics[width=\figw]{../blender/out/s03f06_helical.jpg}};
+  \input{../blender/out/s03f06_helical_anchors.tex}
+  \node[lbl, anchor=south west] at (atitle) {\textbf{(a)}\quad chiral};
+  \node[lbl, anchor=south west] at (btitle) {\textbf{(b)}\quad helical};
+  \node[lbl, anchor=south west] at (ctitle) {\textbf{(c)}\quad time reversal broken};
+  \foreach \p in {a,b,c} {
+    \node[lbl, anchor=south east] at (\p k) {$k$};
+    \node[lbl, anchor=west, text=aqmmuted] at (\p bulk) {bulk};
+  }
+  \node[lbl, anchor=west, text=aqmbroken] at (cDelta) {$2\Delta$};
+\end{tikzpicture}
+\end{document}

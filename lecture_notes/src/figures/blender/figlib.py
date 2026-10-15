@@ -492,6 +492,43 @@ def dos(name, x0, y, z0, es, gs, ez, gx, depth=0.12, rgb=None, alpha=1.0):
     return ob
 
 
+def honeycomb(fits, bond=1.0):
+    """Sites of a honeycomb lattice with first-neighbor distance `bond`, kept where fits(x, y) is
+    true: returns the A sites, the B sites and the first-neighbor bonds as pairs of points."""
+    s3 = math.sqrt(3)
+    a1, a2 = (s3 * bond, 0.0), (s3 * bond / 2, 1.5 * bond)
+    A, B = [], []
+    for i in range(-12, 13):
+        for j in range(-12, 13):
+            x, y = i * a1[0] + j * a2[0], i * a1[1] + j * a2[1]
+            if fits(x, y):
+                A.append((x, y))
+            if fits(x, y + bond):
+                B.append((x, y + bond))
+    bonds = [(a, b) for a in A for b in B if abs(math.dist(a, b) - bond) < 1e-6]
+    return A, B, bonds
+
+
+def gradient_x_material(name, rgb0, rgb1, x0, x1, rough=0.5):
+    """A material whose color goes from rgb0 at x = x0 to rgb1 at x = x1 in object coordinates."""
+    m = principled(name, rgb0, rough=rough, spec=0.3)
+    nt = m.node_tree
+    b = nt.nodes['Principled BSDF']
+    tc = nt.nodes.new('ShaderNodeTexCoord')
+    sep = nt.nodes.new('ShaderNodeSeparateXYZ')
+    mr = nt.nodes.new('ShaderNodeMapRange')
+    mr.inputs['From Min'].default_value, mr.inputs['From Max'].default_value = x0, x1
+    mix = nt.nodes.new('ShaderNodeMix')
+    mix.data_type = 'RGBA'
+    mix.inputs['A'].default_value = (*rgb0, 1)
+    mix.inputs['B'].default_value = (*rgb1, 1)
+    nt.links.new(tc.outputs['Object'], sep.inputs[0])
+    nt.links.new(sep.outputs['X'], mr.inputs['Value'])
+    nt.links.new(mr.outputs['Result'], mix.inputs['Factor'])
+    nt.links.new(mix.outputs['Result'], b.inputs['Base Color'])
+    return m
+
+
 # ------------------------------------------------------------------------------------------------
 # Studio, camera and render
 # ------------------------------------------------------------------------------------------------

@@ -1,0 +1,26 @@
+% Figure s03f04_winding (Session 3): the winding of d(k) and the bands, for three values of t.
+% The image is rendered by figures/blender/s03f04_winding.py; the coordinates of the labels come from
+% figures/blender/out/s03f04_winding_anchors.tex. Build with figures/blender/build_figure.sh s03f04_winding.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx,bm}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,calc}
+\input{aqmcolors.tex}
+\newlength{\figw}\setlength{\figw}{15.6cm}   % the text width of the notes (A4, 2.7 cm margins)
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
+  \node[anchor=south west, inner sep=0pt] at (0,0)
+    {\includegraphics[width=\figw]{../blender/out/s03f04_winding.jpg}};
+  \input{../blender/out/s03f04_winding_anchors.tex}
+  \foreach \p/\t/\w in {a/{0.5}/{winding $1$}, b/{1}/{gap closes}, c/{1.5}/{winding $0$}} {
+    \node[lbl, anchor=south] at (\p t) {\textbf{(\p)}\quad$t=\t$, \w};
+    \node[lbl, anchor=north east] at (\p zero) {$0$};
+    \node[lbl, anchor=south west, text=aqmaccent] at (\p re) {$d(k)$};
+    \node[lbl, anchor=south west] at (\p E) {$E_\pm$};
+    \node[lbl, anchor=north] at (\p kmin) {$-\pi$};
+    \node[lbl, anchor=north] at (\p kmax) {$\pi$};
+  }
+\end{tikzpicture}
+\end{document}

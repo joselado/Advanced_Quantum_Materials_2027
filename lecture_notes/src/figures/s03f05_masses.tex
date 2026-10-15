@@ -1,132 +1,22 @@
-% Session 3 -- two ways to gap the honeycomb Dirac cones, and why only one of
-% them gives a Chern insulator.
+% Session 3 -- two masses for the honeycomb Dirac cones, on the lattice and on a ribbon.
 % Placement: sec. "Gapping the Dirac cone", after equation (3.8).
-%
-% LAYOUT NOTE: pure tikzpicture, bare canvas coordinates throughout. The only
-% local style is a tiny-label style, declared inside this picture.
-\begin{aqmfigure}{fig:s03:masses}{The full content of Section 3.10 as one counting of Chern numbers.
-Equation (3.8) gives each gapped Dirac point a Chern number $\tfrac12\,\mathrm{sgn}(m)\,
-\mathrm{sgn}(\lambda)$, and the two Dirac points of the honeycomb lattice are time-reversal partners
-with opposite chirality, $\lambda=+1$ at $K$ and $\lambda=-1$ at $K'$. So the result depends only on
-how the mass term itself behaves under time reversal. (a) A staggered sublattice potential is an
+% Rendered by figures/blender/s03f05_masses.py, labels in figures/overlays/s03f05_masses.tex.
+\begin{aqmfigure}{fig:s03:masses}{Two ways to gap the Dirac cones of the honeycomb lattice, on the
+lattice and in the spectrum of a zigzag ribbon. Equation (3.8) gives each gapped Dirac point a Chern
+number $\tfrac12\,\mathrm{sgn}(m)\,\mathrm{sgn}(\lambda)$, and the two Dirac points of the honeycomb
+lattice are time-reversal partners with opposite chirality, $\lambda=+1$ at $K$ and $\lambda=-1$ at
+$K'$. So the result depends only on how the mass term itself behaves under time reversal. (a) A
+staggered sublattice potential, $+m$ on the large dark sites and $-m$ on the small light ones, is an
 ordinary scalar potential, which is even under time reversal, so $m$ has the same sign at both
 valleys. The two half-integers are then opposite and they cancel, which gives an ordinary insulator
-with the same kind of gap as boron nitride. (b) The Haldane coupling is a pattern of circulating
-orbital currents, which is odd under time reversal, so $m$ changes sign between the valleys. The two
-half-integers are then equal and they add, which gives $C=\pm1$. This is a real Chern insulator with
-quantized $\sigma_{xy}$ and chiral edge states, built only from lattice hoppings, with no external
-magnetic field and zero net flux. The two gaps look the same in the bulk spectrum, and the difference
-appears only in the wavefunctions.}
-
-\begin{tikzpicture}[x=1cm, y=1cm]
-\tikzset{aqmlabtiny/.style={font=\tiny, inner sep=0.8pt}}
-
-\def\hexR{0.66}
-
-% =====================================================================
-% header: the Brillouin zone and the rule
-% =====================================================================
-\begin{scope}[shift={(1.00,0)}]
-  \draw[aqm, draw=black] (0:0.86) \foreach \a in {60,120,...,360} {-- (\a:0.86)} -- cycle;
-  \foreach \a in {0,120,240} {
-    \node[circle, fill=aqmaccent, draw=aqmaccent, minimum size=4.5pt, inner sep=0pt]
-      at (\a:0.86) {};
-  }
-  \foreach \a in {60,180,300} {
-    \node[circle, fill=white, draw=black, minimum size=4.5pt, inner sep=0pt]
-      at (\a:0.86) {};
-  }
-  \node[aqmlabsmall, anchor=north west] at (0:0.94)   {$K$};
-  \node[aqmlabsmall, anchor=south west] at (60:0.94)  {$K'$};
-  \node[aqmlabsmall, anchor=north] at (0,-1.06) {Brillouin zone};
-\end{scope}
-
-\node[aqmlab, anchor=west, align=left, text width=9.9cm] at (2.75,0)
-  {\textbf{The rule (3.8):}\quad
-   $C_{\text{Dirac}} = \tfrac12\,\mathrm{sgn}(m)\,\mathrm{sgn}(\lambda)$.\\[3pt]
-   The lattice fixes the chirality: $\lambda = +1$ at $K$ and $\lambda = -1$ at $K'$,\\[3pt]
-   because $K$ and $K'$ are time-reversal partners; only the \emph{sum}\\[3pt]
-   over the two valleys has to be an integer.};
-
-\draw[aqm, draw=aqmmuted, line width=\aqmthinwidth] (-0.35,-1.72) -- (12.7,-1.72);
-
-% =====================================================================
-% (a) staggered sublattice potential -> C = 0
-% =====================================================================
-\begin{scope}[shift={(0,-3.55)}]
-
-\node[aqmpanel, anchor=west] at (-0.35,1.45) {(a) staggered sublattice potential};
-
-% -- lattice icon --
-\begin{scope}[shift={(1.05,-0.12)}]
-  \draw[aqmbond] (0:\hexR) \foreach \a in {60,120,...,360} {-- (\a:\hexR)} -- cycle;
-  \foreach \a in {0,120,240} {
-    \draw[aqmbond] (\a:\hexR) -- (\a:{\hexR+0.30});
-    \node[aqmsite] at (\a:\hexR) {};
-    \node[aqmlabtiny] at (\a:{\hexR+0.46}) {$+\Delta$};
-  }
-  \foreach \a in {60,180,300} {
-    \draw[aqmbond] (\a:\hexR) -- (\a:{\hexR+0.30});
-    \node[aqmsiteopen] at (\a:\hexR) {};
-    \node[aqmlabtiny] at (\a:{\hexR+0.46}) {$-\Delta$};
-  }
-\end{scope}
-
-\node[aqmlab, anchor=west, align=left, text width=4.55cm] at (2.62,-0.12)
-  {a scalar on-site potential:\\[1pt]
-   \textbf{even} under time reversal,\\[1pt]
-   so $m$ has the \textbf{same} sign\\[1pt]
-   at $K$ and $K'$.};
-
-\node[aqmboxaccent, anchor=west, align=left, text width=4.7cm] at (7.45,-0.12)
-  {$C_K \;=\; \tfrac12\,(+)(+) \;=\; +\tfrac12$\\[2pt]
-   $C_{K'} \;=\; \tfrac12\,(+)(-) \;=\; -\tfrac12$\\[3pt]
-   \hrule height 0.4pt \vspace{3pt}
-   $C = 0$: the two cancel.\\[1pt]
-   An \textbf{ordinary insulator}.};
-
-\end{scope}
-
-% =====================================================================
-% (b) Haldane coupling -> C = +-1
-% =====================================================================
-\begin{scope}[shift={(0,-7.15)}]
-
-\node[aqmpanel, anchor=west] at (-0.35,1.45) {(b) Haldane coupling};
-
-% -- lattice icon --
-\begin{scope}[shift={(1.05,-0.12)}]
-  \draw[aqmbond] (0:\hexR) \foreach \a in {60,120,...,360} {-- (\a:\hexR)} -- cycle;
-  \foreach \a in {0,120,240} {
-    \draw[aqmbond] (\a:\hexR) -- (\a:{\hexR+0.30});
-    \node[aqmsite] at (\a:\hexR) {};
-  }
-  \foreach \a in {60,180,300} {
-    \draw[aqmbond] (\a:\hexR) -- (\a:{\hexR+0.30});
-    \node[aqmsiteopen] at (\a:\hexR) {};
-  }
-  % circulating orbital current inside the hexagon
-  \draw[aqm, draw=aqmbroken, line width=1.1pt, -{Stealth[length=5pt,width=4pt]}]
-    (-95:0.34) arc (-95:215:0.34);
-  \node[aqmlabtiny, text=aqmbroken, anchor=north] at (0,-0.86) {loop current};
-\end{scope}
-
-\node[aqmlab, anchor=west, align=left, text width=4.55cm] at (2.62,-0.12)
-  {circulating orbital currents:\\[1pt]
-   \textbf{odd} under time reversal,\\[1pt]
-   so $m$ \textbf{flips} sign between\\[1pt]
-   $K$ and $K'$.};
-
-\node[aqmboxbroken, anchor=west, align=left, text width=4.7cm] at (7.45,-0.12)
-  {$C_K \;=\; \tfrac12\,(+)(+) \;=\; +\tfrac12$\\[2pt]
-   $C_{K'} \;=\; \tfrac12\,(-)(-) \;=\; +\tfrac12$\\[3pt]
-   \hrule height 0.4pt \vspace{3pt}
-   $C = +1$: the two add.\\[1pt]
-   A \textbf{Chern insulator}, no field.\\[1pt]
-   (Reversing the coupling gives $-1$.)};
-
-\end{scope}
-
-\end{tikzpicture}
-
+with the same kind of gap as boron nitride, and the ribbon spectrum below it has a gap with nothing
+in it. (b) The Haldane coupling, the second-neighbor hoppings drawn as arrows around one hexagon, is
+a pattern of circulating orbital currents, which is odd under time reversal, so $m$ changes sign
+between the valleys. The two half-integers are then equal and they add, which gives $C=\pm1$. This
+is a real Chern insulator with quantized $\sigma_{xy}$ and chiral edge states, built only from
+lattice hoppings, with no external magnetic field and zero net flux, and in the ribbon spectrum one
+branch from each edge, the dark and the light tube, crosses the gap. The two gaps look the same in
+the bulk spectrum, and the difference appears only in the wavefunctions. The spectra are computed
+for ribbons 16 cells wide, with $m=0.5$ and $t_2=0.1$ in units of the first-neighbor hopping.}
+\includegraphics{figures/pdf/s03f05_masses.pdf}
 \end{aqmfigure}

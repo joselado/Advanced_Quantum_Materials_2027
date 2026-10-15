@@ -1,156 +1,18 @@
 % Session 3 -- the SSH invariant made visible: the winding of d(k)=t+e^{ik}.
 % Placement: sec. "The SSH model", after equation (3.6) (the Zak phase).
-%
-% LAYOUT NOTE: every annotation lives inside its own axis and is placed in
-% "axis cs:" coordinates. The complex-plane panels use "scale only axis" with
-% identical x- and y-ranges so that the circles come out round.
-\begin{aqmfigure}{fig:s03:winding}{A drawing of the one-dimensional invariant. The top row shows the
-off-diagonal element $d(k)=t+e^{ik}$ of the SSH Bloch Hamiltonian (3.5) in the complex plane, as $k$
-goes once through the Brillouin zone, and the arrow shows the direction of increasing $k$. It is
-always the unit circle, but centred at $(t,0)$, so it encloses the origin for $t<1$ and does not
-enclose it for $t>1$. The winding number of this curve around the origin is exactly $\gamma/\pi$,
-which is the Zak phase (3.6) in units of $\pi$. The bottom row shows the corresponding bands
-$E_\pm(k)=\pm|d(k)|$, with gap $2|1-t|$. The two rows give the same information in two ways. The only
-way to unwind the curve is to move it across the origin, and $d(k)=0$ is where the gap closes, so the
-invariant cannot change while the system stays insulating. Note that (a) and (c) have the same gap
-and look like ordinary spectra. The difference between them cannot be seen in the energies and is
-only in the wavefunctions, which is the main point of (3.4). By the bulk-boundary correspondence,
-$\gamma=\pi$ is also exactly the condition for the zero-energy end modes of
-figure~\ref{fig:s03:ssh}.}
-
-\begin{tikzpicture}
-
-% =====================================================================
-% top row: d(k) in the complex plane. Columns at x = 0, 5.3, 10.6 cm.
-% =====================================================================
-
-% ---------- (a) t = 0.5 : winding 1 ----------------------------------
-\begin{axis}[
-  aqmplot, scale only axis, width=3.5cm, height=3.5cm,
-  at={(0cm,0cm)}, anchor=north west,
-  axis lines=middle,
-  xmin=-1.45, xmax=2.85, ymin=-2.15, ymax=2.15,
-  xtick={1,2}, ytick={1},
-  xlabel={$\mathrm{Re}\,d$}, ylabel={$\mathrm{Im}\,d$},
-  xlabel style={at={(axis description cs:1.03,0.5)}, anchor=west, font=\footnotesize},
-  ylabel style={font=\footnotesize},
-  title={(a) $t=0.5$},
-]
-\addplot[aqmcurve, domain=0:360, samples=90] ({0.5+cos(x)},{sin(x)});
-\draw[aqm, draw=aqmaccent, -{Stealth[length=5pt,width=4pt]}]
-  (axis cs:0.72,0.97) -- (axis cs:0.24,0.97);
-\draw[aqm, draw=aqmbroken, line width=1.2pt] (axis cs:-0.14,-0.14) -- (axis cs:0.14,0.14);
-\draw[aqm, draw=aqmbroken, line width=1.2pt] (axis cs:-0.14,0.14) -- (axis cs:0.14,-0.14);
-\node[aqmlabsmall, text=aqmbroken, anchor=north east] at (axis cs:-0.10,-0.14) {$0$};
-\node[aqmlabsmall, anchor=north, align=center] at (axis cs:0.7,-2.32)
-  {origin \textbf{enclosed}\\[-1pt]winding $=1$, $\gamma=\pi$\\[-1pt]\textbf{topological}};
-\end{axis}
-
-% ---------- (b) t = 1 : critical --------------------------------------
-\begin{axis}[
-  aqmplot, scale only axis, width=3.5cm, height=3.5cm,
-  at={(5.3cm,0cm)}, anchor=north west,
-  axis lines=middle,
-  xmin=-1.45, xmax=2.85, ymin=-2.15, ymax=2.15,
-  xtick={1}, ytick={1},
-  xlabel={$\mathrm{Re}\,d$},
-  xlabel style={at={(axis description cs:1.03,0.5)}, anchor=west, font=\footnotesize},
-  title={(b) $t=1$},
-]
-\addplot[aqmcurvebroken, domain=0:360, samples=90] ({1+cos(x)},{sin(x)});
-\draw[aqm, draw=aqmbroken, -{Stealth[length=5pt,width=4pt]}]
-  (axis cs:1.22,0.97) -- (axis cs:0.74,0.97);
-\draw[aqm, draw=aqmbroken, line width=1.2pt] (axis cs:-0.14,-0.14) -- (axis cs:0.14,0.14);
-\draw[aqm, draw=aqmbroken, line width=1.2pt] (axis cs:-0.14,0.14) -- (axis cs:0.14,-0.14);
-\node[aqmlabsmall, text=aqmbroken, anchor=north east] at (axis cs:-0.10,-0.14) {$0$};
-\node[aqmlabsmall, anchor=north, align=center, text=aqmbroken] at (axis cs:0.9,-2.32)
-  {curve \textbf{hits} the origin\\[-1pt]winding undefined\\[-1pt]\textbf{transition}};
-\end{axis}
-
-% ---------- (c) t = 1.5 : winding 0 -----------------------------------
-\begin{axis}[
-  aqmplot, scale only axis, width=3.5cm, height=3.5cm,
-  at={(10.6cm,0cm)}, anchor=north west,
-  axis lines=middle,
-  xmin=-1.45, xmax=2.85, ymin=-2.15, ymax=2.15,
-  xtick={1,2}, ytick={1},
-  xlabel={$\mathrm{Re}\,d$},
-  xlabel style={at={(axis description cs:1.03,0.5)}, anchor=west, font=\footnotesize},
-  title={(c) $t=1.5$},
-]
-\addplot[aqmcurve, domain=0:360, samples=90] ({1.5+cos(x)},{sin(x)});
-\draw[aqm, draw=aqmaccent, -{Stealth[length=5pt,width=4pt]}]
-  (axis cs:1.72,0.97) -- (axis cs:1.24,0.97);
-\draw[aqm, draw=aqmmuted, line width=1.2pt] (axis cs:-0.14,-0.14) -- (axis cs:0.14,0.14);
-\draw[aqm, draw=aqmmuted, line width=1.2pt] (axis cs:-0.14,0.14) -- (axis cs:0.14,-0.14);
-\node[aqmlabsmall, text=aqmmuted, anchor=north east] at (axis cs:-0.10,-0.14) {$0$};
-\node[aqmlabsmall, anchor=north, align=center] at (axis cs:0.9,-2.32)
-  {origin \textbf{outside}\\[-1pt]winding $=0$, $\gamma=0$\\[-1pt]\textbf{trivial}};
-\end{axis}
-
-% =====================================================================
-% bottom row: the bands E = +- |d(k)|
-% =====================================================================
-
-\begin{axis}[
-  aqmplot, scale only axis, width=3.5cm, height=2.6cm,
-  at={(0cm,-6.1cm)}, anchor=north west,
-  axis lines=middle,
-  xmin=-3.9, xmax=3.9, ymin=-3.1, ymax=3.1,
-  xtick={-3.1416,3.1416}, xticklabels={$-\pi$,$\pi$},
-  ytick=\empty,
-  xlabel={$k$}, ylabel={$E$},
-  xlabel style={at={(axis description cs:1.03,0.5)}, anchor=west, font=\footnotesize},
-  ylabel style={font=\footnotesize},
-]
-\addplot[aqmcurve, domain=-3.1416:3.1416, samples=160]  {sqrt(1.25+cos(deg(x)))};
-\addplot[aqmcurve, domain=-3.1416:3.1416, samples=160] {-sqrt(1.25+cos(deg(x)))};
-\node[aqmlabsmall, anchor=north, align=center] at (axis cs:0,-3.35) {gap $=2|1-t|=1$};
-\end{axis}
-
-\begin{axis}[
-  aqmplot, scale only axis, width=3.5cm, height=2.6cm,
-  at={(5.3cm,-6.1cm)}, anchor=north west,
-  axis lines=middle,
-  xmin=-3.9, xmax=3.9, ymin=-3.1, ymax=3.1,
-  xtick={-3.1416,3.1416}, xticklabels={$-\pi$,$\pi$},
-  ytick=\empty,
-  xlabel={$k$},
-  xlabel style={at={(axis description cs:1.03,0.5)}, anchor=west, font=\footnotesize},
-]
-\addplot[aqmcurvebroken, domain=-3.1416:3.1416, samples=200]  {sqrt(2+2*cos(deg(x)))};
-\addplot[aqmcurvebroken, domain=-3.1416:3.1416, samples=200] {-sqrt(2+2*cos(deg(x)))};
-\node[circle, draw=aqmbroken, fill=white, line width=\aqmlinewidth,
-      minimum size=6pt, inner sep=0pt] at (axis cs:3.1416,0) {};
-\node[aqmlabsmall, anchor=north, align=center, text=aqmbroken] at (axis cs:0,-3.35)
-  {gap closes at $k=\pi$};
-\end{axis}
-
-\begin{axis}[
-  aqmplot, scale only axis, width=3.5cm, height=2.6cm,
-  at={(10.6cm,-6.1cm)}, anchor=north west,
-  axis lines=middle,
-  xmin=-3.9, xmax=3.9, ymin=-3.1, ymax=3.1,
-  xtick={-3.1416,3.1416}, xticklabels={$-\pi$,$\pi$},
-  ytick=\empty,
-  xlabel={$k$},
-  xlabel style={at={(axis description cs:1.03,0.5)}, anchor=west, font=\footnotesize},
-]
-\addplot[aqmcurve, domain=-3.1416:3.1416, samples=160]  {sqrt(3.25+3*cos(deg(x)))};
-\addplot[aqmcurve, domain=-3.1416:3.1416, samples=160] {-sqrt(3.25+3*cos(deg(x)))};
-\node[aqmlabsmall, anchor=north, align=center] at (axis cs:0,-3.35) {gap $=2|1-t|=1$};
-\end{axis}
-
-% ---- the phase-diagram strip tying the three columns together --------
-\draw[aqm, draw=black, line width=\aqmthinwidth]
-  (0cm,-9.55cm) -- (14.1cm,-9.55cm);
-\foreach \x in {1.75,7.05,12.35} {
-  \draw[aqm, draw=black, line width=\aqmthinwidth] (\x cm,-9.46cm) -- (\x cm,-9.64cm);
-}
-\node[aqmlabsmall, anchor=north] at (1.75cm,-9.70cm) {$t<1$: topological};
-\node[aqmlabsmall, anchor=north, text=aqmbroken] at (7.05cm,-9.70cm) {$t=1$: gap closes};
-\node[aqmlabsmall, anchor=north] at (12.35cm,-9.70cm) {$t>1$: trivial};
-
-\end{tikzpicture}
-
+% Rendered by figures/blender/s03f04_winding.py, labels in figures/overlays/s03f04_winding.tex.
+\begin{aqmfigure}{fig:s03:winding}{A drawing of the one-dimensional invariant. On the left of each
+panel is the off-diagonal element $d(k)=t+e^{ik}$ of the SSH Bloch Hamiltonian (3.5) in the complex
+plane, as $k$ goes once through the Brillouin zone, and the arrow shows the direction of increasing
+$k$. It is always the unit circle, but centred at $(t,0)$, so it encloses the origin, the ball, for
+$t<1$ and does not enclose it for $t>1$. The winding number of this curve around the origin is
+exactly $\gamma/\pi$, which is the Zak phase (3.6) in units of $\pi$. On the right of each panel are
+the corresponding bands $E_\pm(k)=\pm|d(k)|$, with gap $2|1-t|$. The two halves give the same
+information in two ways. The only way to unwind the curve is to move it across the origin, and
+$d(k)=0$ is where the gap closes, so the invariant cannot change while the system stays insulating.
+Note that (a) and (c) have the same gap and look like ordinary spectra. The difference between them
+cannot be seen in the energies and is only in the wavefunctions, which is the main point of (3.4).
+By the bulk-boundary correspondence, $\gamma=\pi$ is also exactly the condition for the zero-energy
+end modes of figure~\ref{fig:s03:ssh}.}
+\includegraphics{figures/pdf/s03f04_winding.pdf}
 \end{aqmfigure}
