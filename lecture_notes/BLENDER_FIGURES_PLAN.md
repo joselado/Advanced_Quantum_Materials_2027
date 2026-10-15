@@ -105,12 +105,13 @@ $B -b --factory-startup --python blender/s03f03_ssh.py -- anchors   # only the a
 ./blender/build_figure.sh s03f03_ssh                                 # jpg, overlay, pdf/s03f03_ssh.pdf
 ```
 
-This host has no GPU and the D22 machine that rendered the sibling's figures does not resolve from
-here, so `FIGLIB_GPU` stays unset and Cycles runs on the fourteen cores of this machine. Time the
-`final` of the pilot and budget the rest from that number, and run the finals of a session as one
-background batch rather than one at a time in the foreground. If the pilot's `final` at 256 samples
-is slow, 128 samples with the denoiser on is enough for print at this size, and the number goes into
-`setup_render` once rather than into each script. Blender's own Python has numpy
+The renders do not run on the workstation, which has no GPU, but on the GPU machine that also
+rendered the figures of the sibling course. That machine does not share the home directory of the
+workstation, so it has its own copy of Blender 5.2.2, and a small wrapper kept outside the
+repository copies the figure scripts across, runs Blender there with `FIGLIB_GPU=OPTIX`, and copies
+`out/<name>*.png` and the anchors files back. The PDF build and LaTeX stay on the workstation. With
+the GPU a final at 256 samples takes ten seconds to a minute, so the number of samples stays at 256
+in `setup_render`, and the finals of a session still run as one background batch. Blender's own Python has numpy
 (2.3.4), so the scripts compute their curves and eigenstates themselves and import nothing beyond
 `numpy`, `bpy`, `bmesh` and `mathutils`. `build_figure.sh` needs `PIL`, `pdflatex` and `ps2pdf`,
 which are all present.
@@ -228,6 +229,25 @@ Stoner function and the Lindhard function from their closed forms, the Yu-Shiba-
 equation (9.10), the lowest-Landau-level orbitals from their formula, and the Ising snapshots from
 the same rule the header of `s10f05` records. Where the old figure file carries a numerical
 provenance note, the script reproduces that computation.
+
+Three conventions were added while the figures were made, on the lecturer's request, and they
+hold for every figure. First, a scene that is flat by nature, a 2D lattice, a sample seen from
+above, a complex plane, is rendered with a camera straight from above (`elev=89.9`) and with
+`F.studio(shadows=False)`, since a shadow seen from above reads as a halo around every site, and a
+distinction that height would carry is carried by size or shade instead. Second, every plane in a
+figure has its axes, $k_x$ and $k_y$ on a zone or a Fermi pocket, $x$ and $y$ on a lattice or a
+sample, Re and Im on a complex plane, drawn as TikZ arrows in the overlay between anchors that the
+script writes with `F.axes_anchors`, so that an axis can be moved without rendering again. Third,
+every color that codes a quantity which no label names, the sign of $\Delta$, the two spins, the two
+edges of a ribbon, the cut bonds of a block, gets a small discrete key in the overlay, with the
+macros and colors of `overlays/aqmstyles.tex`. A configuration grid that is not a sample in real
+space, such as the $\mathbb Z_2$ links of the vison figure or the Ising snapshots, does not get
+axes.
+
+One remark on `figlib.py`. The `tube()` and `flow()` of the first version put a sphere at every
+point of a curve, and since each new sphere costs more as the mesh grows, building a scene with
+long curves took minutes. They now sweep one continuous tube with rings carried along the curve,
+which is linear in the number of points and looks the same or smoother.
 
 ## The order of the work
 
@@ -701,3 +721,15 @@ render time of the batch, the heights of the figures on the page, which captions
 and which physics check corrected a drawing or a caption, in the way the commit message of
 `efdc3f9` in the sibling does. It also reports what it could not verify, for instance a figure whose
 labels it could not check on the page, rather than leaving it out of the report.
+
+## Where the work stands
+
+All sixty-one figures are rendered, built and committed, one commit per session together with
+the additions above, and the notes went from 162 to 153 pages, with every figure on a page that
+also holds its text. The six replacements of the section "Figures that are better replaced than
+redrawn" are done, with the pointing sentences of the sessions edited as planned. What is left is
+tuning, which the overlays make cheap: a label or an axis is moved with an anchors run and a
+rebuild, and a new render is needed only when the scene itself changes. The figures of sessions 1
+and 3 were rendered before the tube change above and before the flat-view convention, so a new
+render of those would make the set fully uniform.
+
