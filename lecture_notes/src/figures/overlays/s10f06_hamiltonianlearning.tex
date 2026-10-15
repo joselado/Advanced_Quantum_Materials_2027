@@ -1,0 +1,34 @@
+% Figure s10f06_hamiltonianlearning (Session 10): Hamiltonian learning.
+% The image is rendered by figures/blender/s10f06_hamiltonianlearning.py; the coordinates of the labels come from
+% figures/blender/out/s10f06_hamiltonianlearning*_anchors.tex. Build with figures/blender/build_figure.sh s10f06_hamiltonianlearning.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx,bm}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,calc}
+\input{aqmcolors.tex}
+\input{aqmstyles.tex}
+\newlength{\figw}\setlength{\figw}{15.60cm}   % the text width of the notes (A4, 2.7 cm margins)
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
+  \begin{scope}[shift={(0.00cm,0.00cm)}]
+    \setlength{\figw}{15.60cm}
+    \node[anchor=south west, inner sep=0pt] at (0,0)
+      {\includegraphics[width=\figw]{../blender/out/s10f06_hamiltonianlearning.jpg}};
+    \input{../blender/out/s10f06_hamiltonianlearning_anchors.tex}
+    \node[lbl, anchor=south] at (tH) {$H(\lambda)$};
+    \node[lbl, anchor=south] at (tO) {$\mathcal O$};
+    \draw[axarrow, line width=0.8pt] (f0) -- (f1) node[midway, above, lbl] {forward};
+    \draw[axarrow, aqmbroken, dashed, line width=0.8pt] (i0) -- (i1) node[midway, below=0.15cm, lbl, text=aqmbroken] {no inverse};
+    \node[pnl, anchor=south west] at (apanel) {(a)};
+    \node[pnl, anchor=south west] at (bpanel) {(b)};
+    \foreach \k in {0,...,4} { \node[lbl, anchor=west, font=\footnotesize] at (alam\k) {$\lambda_{\k}$}; }
+    \draw[axarrow] (a0) -- (a1);
+    \node[lbl, anchor=north] at (anet) {fit with (10.12)};
+    \node[lbl, anchor=north] at (bO) {measured $\mathcal O$};
+    \draw[axarrow] (b0) -- (b1);
+    \node[lbl, anchor=south, text=aqmbroken] at (bout) {$\lambda$};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

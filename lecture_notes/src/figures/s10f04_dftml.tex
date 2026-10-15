@@ -1,85 +1,15 @@
-% Session 10 -- density functional theory: the Hohenberg-Kohn reduction, the Kohn-Sham
-% self-consistency loop, and the two distinct places machine learning enters it.
+% Session 10 -- the Kohn-Sham self-consistency loop and the two places machine learning enters it.
 % Placement: sec. "Machine learning in density functional theory", at the itemized list of
 % the two ML strategies.
+% Rendered by figures/blender/s10f04_dftml.py, labels in figures/overlays/s10f04_dftml.tex.
 \begin{aqmfigure}{fig:s10:dft}{Where machine learning enters density functional theory, and why the
-two entry points are different ideas. \textbf{Top.} The Hohenberg--Kohn reduction is very
-asymmetric on purpose. To go from the many-body ground state to the density is a $3N\to3$ integral
-that anyone can do. To go back is guaranteed to be possible but there is no formula for it, and this
-missing formula is where machine learning can enter. \textbf{Bottom.} The Kohn--Sham loop (10.8)
-turns the problem into a self-consistent single-particle problem. \textbf{Route 1} replaces the
-unknown exchange--correlation part by a trained network. This is more accurate, but the
-diagonalization stays inside the loop, and the diagonalization, not $v_{\rm xc}$, is what limits
-the system size. \textbf{Route 2} learns the Hohenberg--Kohn map $v_{\rm ext}\mapsto n$ directly,
-trained on conventional Kohn--Sham results for small systems, and then does no diagonalization at
-all, so the whole loop is skipped. Only route 2 changes which systems we can compute, while route 1
-only changes how good the answer is.}
-
-\begin{tikzpicture}[
-  proc/.style={aqmbox, text width=3.9cm},
-  mlbox/.style={aqmboxaccent, text width=3.5cm, font=\footnotesize, align=left},
-  hkbox/.style={aqmbox, text width=2.9cm, font=\footnotesize},
-]
-
-% ================= TOP: the Hohenberg-Kohn reduction ==========================
-\node[hkbox] (psi) at (1.75,0) {$\psi_0(\mathbf{r}_1,\dots,\mathbf{r}_N)$\\[1pt]
-                                $3N$ variables\\[1pt] intractable};
-\node[hkbox] (dens) at (6.45,0) {$n(\mathbf{r})$\\[1pt] $3$ variables\\[1pt] tractable};
-
-\draw[aqmarrow] ([yshift=-5pt]psi.east) -- ([yshift=-5pt]dens.west);
-\node[aqmlabsmall, anchor=north, align=center] at ($(psi.south east)!0.5!(dens.south west)+(0,-2pt)$)
-   {$n=N\!\int\!|\psi_0|^2 d^3r_2\cdots d^3r_N$\\[-1pt]\itshape an integral, and that is all};
-
-\draw[aqmarrowaccent, dashed] ([yshift=5pt]dens.west) -- ([yshift=5pt]psi.east);
-\node[aqmlabsmall, anchor=south, align=center, text=aqmaccent]
-   at ($(psi.north east)!0.5!(dens.north west)+(0,3pt)$)
-   {Hohenberg--Kohn: $n$ fixes $v_{\rm ext}$, hence $H$, hence $\psi_0$};
-
-\node[aqmbox, text width=5.3cm, font=\footnotesize, anchor=west] (efun) at (8.7,0)
-   {$E[n]=F[n]+\int\! d^3r\, v_{\rm ext}(\mathbf{r})\, n(\mathbf{r})$\\[2pt]
-    (10.7), with $F[n]$ universal\\[1pt] --- and its exact form unknown};
-\draw[aqmarrow] (dens.east) -- (efun.west);
-
-% ================= BOTTOM: the Kohn-Sham self-consistency loop ================
-\def\cx{6.00}
-\node[proc] (start) at (\cx,-2.55) {atomic positions $\{\mathbf{R}_a\}$, i.e.\ $v_{\rm ext}(\mathbf{r})$};
-\node[proc] (guess) at (\cx,-3.95) {guess a density $n(\mathbf{r})$};
-\node[proc] (build) at (\cx,-5.55) {build $H_{\rm KS}=-\tfrac{\hbar^2\nabla^2}{2m}+v_{\rm ext}
-   +v_{\rm H}[n]+\textcolor{aqmaccent}{v_{\rm xc}[n]}$};
-\node[proc] (diag) at (\cx,-7.15) {diagonalize $H_{\rm KS}\to\varphi_i(\mathbf{r})$\\[1pt]
-   \textcolor{aqmmuted}{\footnotesize the expensive step}};
-\node[proc] (recomp) at (\cx,-8.55) {$n(\mathbf{r})=\sum_{i\ \rm occ}|\varphi_i(\mathbf{r})|^2$};
-\node[aqmdiamond] (conv) at (\cx,-9.95) {converged?};
-\node[proc] (out) at (\cx,-11.45) {ground-state density $n(\mathbf{r})$ and energy $E[n]$};
-
-\draw[aqmarrow] (start) -- (guess);
-\draw[aqmarrow] (guess) -- (build);
-\draw[aqmarrow] (build) -- (diag);
-\draw[aqmarrow] (diag) -- (recomp);
-\draw[aqmarrow] (recomp) -- (conv);
-\draw[aqmarrow] (conv) -- node[aqmlabsmall, right=1pt] {yes} (out);
-
-% "no" feedback leg
-\draw[aqmarrowmuted] (conv.east) -- ++(1.40,0) |- (build.east);
-\node[aqmlabsmall, text=aqmmuted, anchor=west] at ($(conv.east)+(0.12,0.22)$) {no};
-
-% ---- ML route 1: learn the functional, loop unchanged ----------------------
-\node[mlbox, anchor=east] (ml1) at (3.35,-5.55)
-   {\textbf{Route 1: learn $E_{\rm xc}[n]$.}\\[2pt]
-    A network replaces LDA/GGA, trained against higher-accuracy references.\\[2pt]
-    \emph{The loop is untouched: every iteration still diagonalizes $H_{\rm KS}$.}};
-\draw[aqmarrowaccent] (ml1.east) -- (build.west);
-
-% ---- ML route 2: learn the whole map, loop bypassed ------------------------
-\draw[aqmarrowaccent, line width=1.7pt]
-   (start.east) -- (9.40,-2.55) -- (9.40,-11.45) -- (out.east);
-\node[mlbox, anchor=west, text width=4.5cm] (ml2) at (9.95,-7.15)
-   {\textbf{Route 2: learn $v_{\rm ext}\mapsto n$.}\\[2pt]
-    A network is trained on conventional Kohn--Sham results for small systems and then
-    applied to large ones.\\[2pt]
-    \emph{No diagonalization at all at inference time: the loop is skipped.}};
-\draw[aqmarrowaccent] (ml2.west) -- (9.48,-7.15);
-
-\end{tikzpicture}
-
+two entry points are different ideas. The Kohn-Sham loop (10.8), the ring in the middle, turns the
+problem into a self-consistent single-particle problem. \textbf{Route 1} replaces the unknown
+exchange-correlation part by a trained network. This is more accurate, but the diagonalization stays
+inside the loop, and the diagonalization, not $v_{\rm xc}$, is what limits the system size.
+\textbf{Route 2} learns the Hohenberg-Kohn map $v_{\rm ext}\mapsto n$ directly, trained on
+conventional Kohn-Sham results for small systems, and then does no diagonalization at all, so the
+whole loop is skipped. Only route 2 changes which systems we can compute, while route 1 only changes
+how good the answer is.}
+\includegraphics{figures/pdf/s10f04_dftml.pdf}
 \end{aqmfigure}

@@ -1,0 +1,37 @@
+% Figure s10f01_networktemplate (Session 10): the network as a parametric function, and its training loop.
+% The image is rendered by figures/blender/s10f01_networktemplate.py; the coordinates of the labels come from
+% figures/blender/out/s10f01_networktemplate*_anchors.tex. Build with figures/blender/build_figure.sh s10f01_networktemplate.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx,bm}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,calc}
+\input{aqmcolors.tex}
+\input{aqmstyles.tex}
+\newlength{\figw}\setlength{\figw}{15.60cm}   % the text width of the notes (A4, 2.7 cm margins)
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
+  \begin{scope}[shift={(0.00cm,0.00cm)}]
+    \setlength{\figw}{15.60cm}
+    \node[anchor=south west, inner sep=0pt] at (0,0)
+      {\includegraphics[width=\figw]{../blender/out/s10f01_networktemplate.jpg}};
+    \input{../blender/out/s10f01_networktemplate_anchors.tex}
+    \node[lbl, anchor=north] at (in) {input};
+    \node[lbl, anchor=north] at (net) {$f_\theta$};
+    \node[lbl, anchor=north, align=center] at (out) {one-hot\\label};
+    \node[lbl, anchor=south] at (theta) {weights and biases $\theta$};
+    \draw[axarrow] (a0) -- (a1);
+    \draw[axarrow] (a2) -- (a3);
+    \node[lbl, anchor=south] at ([yshift=0.35cm]st0) {evaluate};
+    \node[lbl, anchor=south] at ([yshift=0.45cm]st1) {loss $\mathcal L$};
+    \node[lbl, anchor=north] at ([yshift=-0.35cm]st2) {$\partial\mathcal L/\partial\theta$};
+    \node[lbl, anchor=north] at ([yshift=-0.35cm]st3) {step};
+    \draw[axarrow, aqmaccent, line width=0.8pt, shorten <=0.55cm, shorten >=0.55cm] (st0) to[bend left=30] (st1);
+    \draw[axarrow, aqmaccent, line width=0.8pt, shorten <=0.55cm, shorten >=0.55cm] (st1) to[bend left=30] (st2);
+    \draw[axarrow, aqmaccent, line width=0.8pt, shorten <=0.55cm, shorten >=0.55cm] (st2) to[bend left=30] (st3);
+    \draw[axarrow, aqmaccent, line width=0.8pt, shorten <=0.55cm, shorten >=0.55cm] (st3) to[bend left=30] (st0);
+    \node[lbl, text=aqmaccent] at (loopc) {(10.1)};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

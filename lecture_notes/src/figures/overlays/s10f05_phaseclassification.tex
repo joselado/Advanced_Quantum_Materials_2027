@@ -1,0 +1,30 @@
+% Figure s10f05_phaseclassification (Session 10): an easy and a hard phase-classification problem.
+% The image is rendered by figures/blender/s10f05_phaseclassification.py; the coordinates of the labels come from
+% figures/blender/out/s10f05_phaseclassification*_anchors.tex. Build with figures/blender/build_figure.sh s10f05_phaseclassification.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx,bm}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,calc}
+\input{aqmcolors.tex}
+\input{aqmstyles.tex}
+\newlength{\figw}\setlength{\figw}{15.60cm}   % the text width of the notes (A4, 2.7 cm margins)
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
+  \begin{scope}[shift={(0.00cm,0.00cm)}]
+    \setlength{\figw}{15.60cm}
+    \node[anchor=south west, inner sep=0pt] at (0,0)
+      {\includegraphics[width=\figw]{../blender/out/s10f05_phaseclassification.jpg}};
+    \input{../blender/out/s10f05_phaseclassification_anchors.tex}
+    \foreach \p/\t in {a/{Ising, ordered}, b/{Ising, disordered}, c/{gauge, ground state}, d/{gauge, random}} {
+      \node[lbl, anchor=south west] at (p\p) {\textbf{(\p)}\ \t};
+    }
+    \node[lbl, anchor=north] at (ma) {$m=+0.78$};
+    \node[lbl, anchor=north] at (mb) {$m=+0.06$};
+    \node[lbl, anchor=north] at (mc) {$m\approx0$};
+    \node[lbl, anchor=north] at (md) {$m\approx0$};
+    \aqmkeyrow{(6.6cm,0.35cm)}{keyup}{$\sigma=+1$}{keydown}{$\sigma=-1$}
+  \end{scope}
+\end{tikzpicture}
+\end{document}

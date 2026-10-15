@@ -93,9 +93,9 @@ label. Once the network is trained, it classifies new images that have no label.
 be used in many cases, since nothing in it depends on the input being a photograph. It only needs
 the input to be an array of numbers with a categorical label. We will see the same structure, an
 input matrix and a one-hot output, again in Section 10.6, where a spin configuration takes the place
-of the photograph. Figure~\ref{fig:s10:template} shows the template once, and below it the four
-later constructions of this session, which use it without change except for the choice of input,
-output and loss.
+of the photograph. Figure~\ref{fig:s10:template} shows the template once, and the four later
+constructions of this session use it without change except for the choice of input, output and
+loss.
 
 \input{figures/s10f01_networktemplate}
 
@@ -325,7 +325,10 @@ keep them separate, because they solve different problems.
   calculation would be too expensive.
 \end{itemize}
 
-Figure~\ref{fig:s10:dft} places both of these on the self-consistency loop, which is the fastest way
+The Hohenberg-Kohn reduction is very asymmetric on purpose, since going from the many-body ground
+state to the density is a $3N\to3$ integral that anyone can do, while going back is guaranteed to
+be possible but has no formula, and this missing formula is where machine learning can enter.
+Figure~\ref{fig:s10:dft} places both routes on the self-consistency loop, which is the fastest way
 to see why only the second one changes which systems we can compute.
 
 \input{figures/s10f04_dftml}

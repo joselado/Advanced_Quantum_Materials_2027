@@ -1,111 +1,13 @@
-% Session 10 -- the neural network as a parametric function, its training loop, and the four
-% places the very same template is reused later in the session.
+% Session 10 -- the neural network as a parametric function, and its training loop.
 % Placement: sec. "Neural networks as function approximators", after equation (10.1) and the
 % cat-versus-dog paragraph.
-\begin{aqmfigure}{fig:s10:template}{The construction that the rest of this session uses again and again.
-\textbf{Left.} A deep network is a parametric function $f_\theta$. The architecture, which is the
-number of layers and their width, fixes which functions it \emph{can} represent, and the weights
-and biases $\theta$ fix which one it \emph{does} represent at a given moment. \textbf{Right.}
-Training is the loop of (10.1). We evaluate the output, compare it with the label through a loss,
-obtain $\partial\mathcal{L}/\partial\theta$ exactly with backpropagation, take a gradient step and
-repeat. \textbf{Bottom.} Every later construction in this session is the same loop with a different
-choice of input, output and loss, and nothing else changes. Each row should be read together with
-the section that it names, since the physics is only in the three columns and never in the
-training method.}
-
-\begin{tikzpicture}[
-  unit/.style={aqm, circle, draw=black, fill=white, minimum size=5.5pt, inner sep=0pt},
-  unitin/.style={unit, fill=aqmfill, draw=aqmaccent},
-  unitout/.style={unit, fill=aqmfill, draw=aqmaccent, minimum size=7pt},
-  wire/.style={draw=aqmmuted, line width=0.22pt},
-  tbox/.style={aqmbox, text width=5.0cm, font=\footnotesize, anchor=north west},
-  hdr/.style={font=\footnotesize\bfseries, anchor=north west, inner sep=1pt},
-  cell/.style={font=\footnotesize, anchor=north west, inner sep=1pt, align=left},
-]
-
-% ===================== LEFT: the network itself ==============================
-\draw[aqmcell] (0.30,0.55) rectangle (7.95,3.95);
-\node[aqmlabsmall, anchor=south west, text=aqmmuted] at (0.42,0.60) {$f_\theta$};
-
-% input thumbnail
-\begin{scope}[shift={(0.70,1.90)}]
-  \foreach \i in {0,1,2,3} \foreach \j in {0,1,2,3}
-     \draw[aqm, draw=aqmmuted, line width=0.3pt, fill=aqmfill]
-        (\i*0.16,\j*0.16) rectangle (\i*0.16+0.16,\j*0.16+0.16);
-\end{scope}
-\node[aqmlabsmall, anchor=north, align=center, text width=1.2cm] at (1.02,1.68) {$N\times N$\\[-2pt] image};
-
-% layers
-\foreach \j in {0,...,4} \node[unitin] (I\j) at (2.05,0.42*\j+1.32) {};
-\foreach \j in {0,...,5} \node[unit]   (A\j) at (3.35,0.42*\j+1.11) {};
-\foreach \j in {0,...,5} \node[unit]   (B\j) at (4.65,0.42*\j+1.11) {};
-\node[unitout] (O0) at (5.95,2.46) {};
-\node[unitout] (O1) at (5.95,1.86) {};
-
-\begin{scope}[on background layer]
-  \foreach \a in {0,...,4} \foreach \b in {0,...,5} \draw[wire] (I\a) -- (A\b);
-  \foreach \a in {0,...,5} \foreach \b in {0,...,5} \draw[wire] (A\a) -- (B\b);
-  \foreach \a in {0,...,5} \foreach \b in {0,1}     \draw[wire] (B\a) -- (O\b);
-\end{scope}
-
-\draw[aqmarrow, line width=0.6pt] (1.45,2.22) -- (1.86,2.22);
-
-\node[aqmlabsmall, anchor=north] at (2.10,1.00) {input $x$};
-\node[aqmlabsmall, anchor=north] at (3.90,1.00) {hidden layers};
-\node[aqmlabsmall, anchor=north] at (6.15,1.00) {output $f_\theta(x)$};
-\node[aqmlabsmall, anchor=west] at (6.20,2.46) {``cat'' $(1,0)$};
-\node[aqmlabsmall, anchor=west] at (6.20,1.86) {``dog'' $(0,1)$};
-
-\node[aqmlabsmall, anchor=north, align=center, text=aqmmuted] at (4.10,3.90)
-   {one weight per wire, one bias per node: together $\theta$};
-
-% ===================== RIGHT: the training loop ==============================
-\node[aqmlabsmall, anchor=north west] (tset) at (9.55,4.85)
-   {labelled training set $\{(x_n,y_n)\}$};
-\node[tbox] (loss) at (9.55,4.05)
-   {$\mathcal{L}(\theta)=\sum_n\big\|f_\theta(x_n)-y_n\big\|^2$\ \ (10.1)\\[1pt]
-    how far the output sits from the label};
-\node[tbox] (grad) at (9.55,2.55)
-   {\textbf{backpropagation}: $\partial\mathcal{L}/\partial\theta_k$ for every parameter at
-    once, exactly, by the chain rule};
-\node[tbox, draw=aqmaccent, fill=aqmfill] (upd) at (9.55,1.15)
-   {$\theta \longrightarrow \theta - \eta\,\nabla_\theta\mathcal{L}(\theta)$\\[1pt]
-    one gradient-descent step, learning rate $\eta$};
-
-\draw[aqmarrow] (tset.south) -- (loss.north -| tset.south);
-\draw[aqmarrow] (7.95,2.16) -- (8.75,2.16) -- (8.75,3.55) -- (loss.west);
-\node[aqmlabsmall, anchor=north west] at (8.02,2.10) {$f_\theta(x_n)$};
-\draw[aqmarrow] (loss.south -| 10.40,0) -- (grad.north -| 10.40,0);
-\draw[aqmarrow] (grad.south -| 10.40,0) -- (upd.north -| 10.40,0);
-
-\draw[aqmarrowaccent] (upd.south -| 10.40,0) -- (10.40,-0.62) -- (3.90,-0.62) -- (3.90,0.55);
-\node[aqmlabsmall, anchor=south, text=aqmaccent, fill=white, inner sep=2.5pt] at (7.15,-0.60)
-   {every weight and bias is nudged, and the whole loop runs again};
-
-% ===================== FOOTER: the same loop, four times =====================
-\draw[aqm, draw=black, line width=0.6pt] (0,-1.35) -- (15.0,-1.35);
-\node[anchor=south west, font=\small\bfseries] at (0,-1.27)
-   {The same loop, four more times in this session --- only the three columns change};
-
-\draw[aqm, draw=aqmmuted, line width=0.4pt] (0,-2.05) -- (15.0,-2.05);
-\node[hdr] at (0.00,-1.45) {construction};
-\node[hdr] at (4.60,-1.45) {input};
-\node[hdr] at (7.85,-1.45) {output};
-\node[hdr] at (11.20,-1.45) {loss, minimized over $\theta$};
-
-\foreach \y/\a/\b/\c/\d in {%
-  -2.15/{NNQS ground state \S10.3}/{a spin configuration $s$}/{the coefficient $C_\theta(s)$}/{the variational energy $E[\theta]$, (10.3)},
-  -3.00/{state tomography \S10.3}/{a spin configuration $s$}/{modulus and phase of $C_\theta(s)$}/{$-\sum_s n(s)\ln p_\theta(s)$},
-  -3.85/{phase classification \S10.6}/{a spin snapshot}/{a one-hot phase label}/{(10.1), entirely unchanged},
-  -4.70/{Hamiltonian learning \S10.7}/{an observable $\mathcal{O}$}/{the parameters $\lambda$}/{$\sum_n\|\mathcal{N}_\theta(\mathcal{O}_n)-\lambda_n\|^2$, (10.12)}%
-} {
-  \node[cell, text width=4.35cm] at (0.00,\y) {\a};
-  \node[cell, text width=3.10cm] at (4.60,\y) {\b};
-  \node[cell, text width=3.20cm] at (7.85,\y) {\c};
-  \node[cell, text width=3.85cm] at (11.20,\y) {\d};
-}
-\draw[aqm, draw=black, line width=0.6pt] (0,-5.60) -- (15.0,-5.60);
-
-\end{tikzpicture}
-
+% Rendered by figures/blender/s10f01_networktemplate.py, labels in figures/overlays/s10f01_networktemplate.tex.
+\begin{aqmfigure}{fig:s10:template}{The construction that the rest of this session uses again and
+again. \textbf{Left.} A deep network is a parametric function $f_\theta$. The architecture, which is
+the number of layers and their width, fixes which functions it \emph{can} represent, and the weights
+and biases $\theta$ fix which one it \emph{does} represent at a given moment. Here the input is a
+small picture and the output is a one-hot label. \textbf{Right.} Training is the loop of (10.1). We
+evaluate the output, compare it with the label through a loss, obtain
+$\partial\mathcal{L}/\partial\theta$ exactly with backpropagation, take a gradient step and repeat.}
+\includegraphics{figures/pdf/s10f01_networktemplate.pdf}
 \end{aqmfigure}

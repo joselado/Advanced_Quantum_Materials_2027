@@ -1,0 +1,36 @@
+% Figure s10f04_dftml (Session 10): where machine learning enters density functional theory.
+% The image is rendered by figures/blender/s10f04_dftml.py; the coordinates of the labels come from
+% figures/blender/out/s10f04_dftml*_anchors.tex. Build with figures/blender/build_figure.sh s10f04_dftml.
+\documentclass[11pt,tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx,bm}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,calc}
+\input{aqmcolors.tex}
+\input{aqmstyles.tex}
+\newlength{\figw}\setlength{\figw}{15.60cm}   % the text width of the notes (A4, 2.7 cm margins)
+
+\begin{document}
+\begin{tikzpicture}[lbl/.style={font=\small, inner sep=1.5pt}, pnl/.style={font=\small\bfseries, inner sep=1.5pt}]
+  \begin{scope}[shift={(0.00cm,0.00cm)}]
+    \setlength{\figw}{15.60cm}
+    \node[anchor=south west, inner sep=0pt] at (0,0)
+      {\includegraphics[width=\figw]{../blender/out/s10f04_dftml.jpg}};
+    \input{../blender/out/s10f04_dftml_anchors.tex}
+    \node[lbl, anchor=north] at ([yshift=-0.35cm]n) {$n(\mathbf r)$};
+    \node[lbl, anchor=south east] at ([xshift=0.2cm,yshift=0.25cm]v) {$v_{\rm eff}=v_{\rm ext}+v_{\rm H}+v_{\rm xc}$};
+    \node[lbl, anchor=north] at ([yshift=-0.4cm]diag) {diagonalize};
+    \node[lbl, anchor=north] at ([yshift=-0.35cm]new) {new $n(\mathbf r)$};
+    \draw[axarrow, line width=0.8pt, shorten <=0.75cm, shorten >=0.75cm] (n) to[bend left=30] (v);
+    \draw[axarrow, line width=0.8pt, shorten <=0.75cm, shorten >=0.75cm] (v) to[bend left=30] (diag);
+    \draw[axarrow, line width=0.8pt, shorten <=0.75cm, shorten >=0.75cm] (diag) to[bend left=30] (new);
+    \draw[axarrow, line width=0.8pt, shorten <=0.75cm, shorten >=0.75cm] (new) to[bend left=30] (n);
+    \node[lbl, anchor=west, text=aqmaccent, align=left] at ([xshift=0.45cm,yshift=-0.3cm]r1) {\textbf{route 1}\\learn $v_{\rm xc}$};
+    \node[lbl, anchor=north] at (vext) {$v_{\rm ext}$, input};
+    \node[lbl, anchor=north] at (nout) {$n$, output};
+    \draw[axarrow, aqmbroken, line width=0.8pt] (r2in) to[out=-90, in=180] (r2a);
+    \draw[axarrow, aqmbroken, line width=0.8pt] (r2b) to[out=0, in=-90] (r2out);
+    \node[lbl, anchor=north, text=aqmbroken] at (r2) {\textbf{route 2}, learn $v_{\rm ext}\mapsto n$, no loop};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

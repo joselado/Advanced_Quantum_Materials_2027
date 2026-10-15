@@ -1,8 +1,8 @@
 % Session 10 -- Hamiltonian learning: the forward arrow of the whole course, its inverse, and
-% the synthetic-data strategy that makes the inverse trainable.
 % Placement: sec. "Hamiltonian learning", after equation (10.12).
-\begin{aqmfigure}{fig:s10:hamlearning}{Hamiltonian learning, and why it closes the loop of the course
-instead of going outside it. \textbf{Top.} The forward arrow $H\mapsto\mathcal{O}$ of (10.11)
+% Rendered by figures/blender/s10f06_hamiltonianlearning.py, labels in figures/overlays/s10f06_hamiltonianlearning.tex.
+\begin{aqmfigure}{fig:s10:hamlearning}{Hamiltonian learning, and why it closes the loop of the
+course instead of going outside it. \textbf{Top.} The forward arrow $H\mapsto\mathcal{O}$ of (10.11)
 is what sessions 1 to 9 built during all their time. The arrow that an experiment needs goes in the
 other direction, and there is no closed-form inversion of it. \textbf{(a)} The solution to the lack
 of experimental training data is to produce the data. We simulate $\mathcal{O}$ from many
@@ -11,67 +11,5 @@ construction, and we fit the network with (10.12). \textbf{(b)} Only after this 
 network is applied to a real measurement. Note what the training set is made of, which is the
 forward methods of the whole course, run many times. The final method of the course and its first
 method are the same method, applied in opposite directions.}
-
-\begin{tikzpicture}[
-  pbox/.style={aqmbox, font=\footnotesize, minimum height=2.00cm, anchor=north west},
-  tag/.style={font=\small\bfseries, anchor=south west, inner sep=1pt},
-]
-
-% ================= TOP: the forward arrow and its inverse ====================
-\node[aqmbox, text width=2.9cm, font=\footnotesize] (Hb) at (1.85,3.05)
-   {the Hamiltonian\\[1pt] $H(\lambda,\mu)$};
-\node[aqmbox, text width=4.4cm, font=\footnotesize] (Ob) at (11.90,3.05)
-   {an observable $\mathcal{O}$: a density, a conductivity, an ARPES map, a structure factor};
-
-\draw[aqmarrow] ([yshift=9pt]Hb.east) -- ([yshift=9pt]Ob.west);
-\node[aqmlabsmall, anchor=south, align=center, text width=8.6cm] at (6.87,3.95)
-   {\emph{forward}, (10.11): mean field, Bloch, invariants, Landau levels, Nambu, magnons,
-    tensor networks, partons, response};
-
-\draw[aqmarrowaccent, line width=1.6pt] ([yshift=-9pt]Ob.west) -- ([yshift=-9pt]Hb.east);
-\node[aqmlabsmall, anchor=north, align=center, text width=8.6cm, text=aqmaccent] at (6.87,2.52)
-   {\textbf{inverse}: $\mathcal{O}\mapsto\lambda$, the arrow session 1 never drew, and one with
-    no closed-form formula};
-
-\node[aqmlabsmall, anchor=north, align=center, text=aqmmuted] at (7.30,1.75)
-   {$\lambda$ = the parameters we want: fields, hoppings, interaction strengths\\[1pt]
-    $\mu$ = nuisance variables (disorder, method artifacts), marginalized over rather than fitted};
-
-% ================= (a) training on synthetic data ============================
-\node[tag] at (0,0.65) {(a) a training set manufactured from theory};
-
-\node[pbox, text width=3.0cm] (b1) at (0,0.40)
-   {pick known parameters $\lambda_n$ spanning the physically interesting range};
-\node[pbox, text width=3.0cm] (b2) at (3.72,0.40)
-   {build $H(\lambda_n)$ and simulate $\mathcal{O}_n=\mathcal{O}[H(\lambda_n)]$ ---
-    the forward machinery of sessions 1--9};
-\node[pbox, text width=3.0cm] (b3) at (7.44,0.40)
-   {synthetic pairs $(\mathcal{O}_n,\lambda_n)$, the answer known by construction};
-\node[pbox, text width=3.0cm, draw=aqmaccent, fill=aqmfill] (b4) at (11.16,0.40)
-   {train $\mathcal{N}_\theta$ on those pairs by minimizing the loss (10.12)};
-
-\draw[aqmarrow] (b1.east) -- (b2.west);
-\draw[aqmarrow] (b2.east) -- (b3.west);
-\draw[aqmarrow] (b3.east) -- (b4.west);
-
-% ================= (b) deployment on a real measurement ======================
-\node[tag] at (0,-2.30) {(b) deployment on a real measurement};
-
-\node[pbox, text width=3.6cm] (c1) at (0.55,-2.55)
-   {$\mathcal{O}_{\rm exp}$: a two-dimensional spectroscopy of a real quantum magnet};
-\node[pbox, text width=2.8cm, draw=aqmaccent, fill=aqmfill] (c2) at (5.55,-2.55)
-   {the trained network $\mathcal{N}_\theta$};
-\node[pbox, text width=4.0cm] (c3) at (9.65,-2.55)
-   {$\hat\lambda=\mathcal{N}_\theta(\mathcal{O}_{\rm exp})$: the exchange couplings $J_1$, $J_2$,
-    $J_3$ of that magnet};
-
-\draw[aqmarrow] (c1.east) -- (c2.west);
-\draw[aqmarrow] (c2.east) -- (c3.west);
-
-\draw[aqmarrowaccent, dashed] (b4.south) -- ++(0,-0.45) -| (c2.north);
-\node[aqmlabsmall, anchor=south, text=aqmaccent, fill=white, inner sep=2pt] at (9.95,-2.01)
-   {the same network, now used in earnest};
-
-\end{tikzpicture}
-
+\includegraphics{figures/pdf/s10f06_hamiltonianlearning.pdf}
 \end{aqmfigure}
