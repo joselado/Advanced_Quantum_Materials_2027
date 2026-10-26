@@ -9,9 +9,10 @@ V = [("v1  10-15", "First films: mind palace, voice as narrator,\ncaptions in a 
      ("v5  10-21", "Partial overlap of old formulas allowed,\ncaptions and preflight made for builders"),
      ("v6  10-22 am", "Frames per world, majestic themed gates,\nphotoreal worlds, layout screen checks"),
      ("v7  10-22 noon", "Essence dialogue, distant mist, photoreal\nhorizon, 2D winding world with hills"),
-     ("v8  10-23", "Uniform sound matched to session 6,\nrecording pipeline with per-film options")]
-done = {3: 0, 4: 0, 6: 2, 7: 2, 2: 4, 1: 6, 10: 6, 8: 7, 9: 7, 5: 7}   # session -> version index of its latest full render
-prep = {2: 7}                                        # being made now, target version
+     ("v8  10-23", "Uniform sound matched to session 6,\nrecording pipeline with per-film options"),
+     ("v9  10-25", "Overture of the session's schematics, silent\npre-roll, index check, floating formulas")]
+done = {3: 0, 4: 0, 6: 2, 7: 8, 2: 4, 1: 6, 10: 6, 8: 7, 9: 7, 5: 7}   # session -> version index of its latest full render
+prep = {2: 8}                                        # being made now, target version
 sound = {1, 2, 3, 4, 6, 7, 10}                             # finished films remuxed with the uniform sound of v8
 SOUND = 7
 ink, muted, grid, fill, surf = '#1f2328', '#6b7280', '#d8dce2', '#2a6fdb', '#ffffff'
