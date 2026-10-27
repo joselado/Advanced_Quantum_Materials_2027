@@ -18,6 +18,10 @@ The folder `slides_prerecordings` contains the slides of the prerecorded lecture
 Films of the prerecorded lectures, with the recorded voice of the lecture over animations of its physics. The video files are attached to the [films release](https://github.com/joselado/Advanced_Quantum_Materials_2027/releases/tag/films) and not stored in the git history
 - [Lecture films](https://joselado.github.io/Advanced_Quantum_Materials_2027/)
 
+## Lectures
+The prerecorded lectures with their recorded voice over dense slides, where the formulas appear as they are said and a schematic or a computed plot of the physics stays beside them. The video files are attached to the [lectures release](https://github.com/joselado/Advanced_Quantum_Materials_2027/releases/tag/lectures) and not stored in the git history
+- [Lectures](https://joselado.github.io/Advanced_Quantum_Materials_2027/lectures.html)
+
 ## Lecture notes
 Lecture notes covering the ten topics of the course, in `lecture_notes` (LaTeX sources in `lecture_notes/src`)
 - [Lecture notes (PDF)](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/lecture_notes/main.pdf)
