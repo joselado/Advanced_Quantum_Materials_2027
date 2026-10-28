@@ -166,7 +166,7 @@ where every dot on the screen is a single atom. It shows how precisely such mode
 
 \textbf{The infinite chain.} Now we let the ring grow without limit, so that it becomes an infinite
 one-dimensional chain with nearest-neighbour hopping. The relevant symmetry is a translation by one
-site, $T: c_n \to c_{n+1}$, and $[H,T]=0$ for any Hamiltonian that only has hoppings that depend on
+site, $T: c_n^\dagger \to c_{n-1}^\dagger$, which shifts a wavefunction $\psi_n$ on the sites to $\psi_{n+1}$, and $[H,T]=0$ for any Hamiltonian that only has hoppings that depend on
 the distance between sites and not on the absolute position. By Section 2.3, $H$ and $T$ have a
 common eigenbasis, and by (2.2) the eigenvalue of $T$ in this common eigenbasis is a pure phase
 $e^{i\varphi}$. This $\varphi$ is called the \textbf{Bloch phase}. The statement that $H$ and $T$
@@ -574,7 +574,7 @@ physical principle, but to see the measured data itself one needs the figure.
 \item We derived the band structure of the one-dimensional chain explicitly,
   $\epsilon_\varphi=-2t\cos\varphi$ in (2.8). We generalized the same method to second-neighbour
   hopping (2.9), to several orbitals per unit cell with the matrix Bloch Hamiltonian
-  $H(\varphi)=t+\gamma e^{i\varphi}+\text{h.c.}$ in (2.12)-(2.13), and to higher spatial dimensions,
+  $H(\varphi)=t+\gamma e^{i\varphi}+\gamma^\dagger e^{-i\varphi}$ in (2.12)-(2.13), and to higher spatial dimensions,
   (2.14) and (2.15).
 \item A dispersion $E(\mathbf{k})$ directly determines the measurable properties of a material, which
   are the density of states (2.16), the group velocity (2.17), the effective mass (2.18) and the Fermi

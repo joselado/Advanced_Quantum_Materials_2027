@@ -102,7 +102,7 @@ rotational symmetry,
 \end{equation}
 
 This is the model that we obtain from a half-filled Hubbard model with strong interactions in the
-large-$U$ limit, as we derived in Session 1. When we solve it with $\mathbf S_0, \mathbf S_1$ as
+large-$U$ limit, as we derived in Session 6. When we solve it with $\mathbf S_0, \mathbf S_1$ as
 real spin-$1/2$ operators, the two spin-$1/2$'s combine into a singlet ($S=0$) and a triplet
 ($S=1$). The value is $\mathbf S_0\cdot\mathbf S_1 = -3/4$ for the singlet and $+1/4$ for the
 triplet, so the unique ground state is the \textbf{singlet},
@@ -126,8 +126,8 @@ Before we build a macroscopic version of (8.3), we need to know when the ground 
 Heisenberg model stays time-reversal symmetric in this way, instead of ordering spontaneously as
 the magnets of Session 1 and Session 6 did. The general rule is \textbf{frustration}. The standard
 example is a triangular plaquette with antiferromagnetic coupling on all three bonds. Any two spins
-can point in opposite directions, but then the third bond is between two spins that are already
-antiparallel to each other, so no spin configuration can satisfy all three bonds at the same time.
+can point in opposite directions, but then the third spin is parallel to one of the two, so one of the two
+remaining bonds is not satisfied, and no spin configuration can satisfy all three bonds at the same time.
 This geometric frustration gives many classical ground states that are degenerate, which means that
 they have the same energy and different spin configurations. When we add quantum fluctuations, they
 mix these degenerate configurations into one quantum superposition, which in general does not break
@@ -481,7 +481,7 @@ f_{j\alpha}^\dagger \boldsymbol\sigma_{\alpha\beta} f_{j\beta}$, with the same s
 constraint (8.11), which we write here in the equivalent traceless form
 
 \begin{equation}
-S_{\alpha\beta}(j) = f^\dagger_{j\alpha}f_{j\beta} - \frac{n_f(j)}{N}\delta_{\alpha\beta}.
+S_{\alpha\beta}(j) = f^\dagger_{j\alpha}f_{j\beta} - \frac{n_f(j)}{2}\delta_{\alpha\beta}.
 \end{equation}
 
 When we insert this into (8.18), the Kondo coupling becomes a real quartic interaction. Now it does

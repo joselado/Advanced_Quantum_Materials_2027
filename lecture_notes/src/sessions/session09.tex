@@ -262,13 +262,13 @@ which is an infinite ladder of terms. The most efficient way to include all of t
 series term by term, but to write the self-consistent equation that the full response must satisfy,
 
 \begin{equation*}
-\chi(q,\omega) = \chi_0(q,\omega) + \chi_0(q,\omega)\, U\, \chi(q,\omega),
+\chi(q,\omega) = \chi_0(q,\omega) - \chi_0(q,\omega)\, U\, \chi(q,\omega),
 \end{equation*}
 
 and its algebraic solution gives the \textbf{random phase approximation (RPA)},
 
 \begin{equation}
-\chi(q,\omega) = \frac{\chi_0(q,\omega)}{1 - U\,\chi_0(q,\omega)}.
+\chi(q,\omega) = \frac{\chi_0(q,\omega)}{1 + U\,\chi_0(q,\omega)}.
 \end{equation}
 
 Equation (9.6) has a mixed character. It is derived order by order in $U$, so it is perturbative,
@@ -282,7 +282,7 @@ quasiparticles.
 \emph{From $\chi_0$ itself}, as in Section 9.4. This is an electron-hole excitation, which is a
 single-particle process that moves one electron from an occupied state to an empty state.
 
-\emph{From the RPA denominator}, $1-U\chi_0=0$, which is a new collective phenomenon that comes from
+\emph{From the RPA denominator}, $1+U\chi_0=0$, which is a new collective phenomenon that comes from
 the interaction. For a long-range Coulomb interaction, $U \to v(q)$, which depends strongly on $q$
 and diverges as $q\to0$. The pole of (9.6) as a function of $\omega$ at fixed $q$ then defines a new
 quasiparticle, the \textbf{plasmon}, which is a collective charge oscillation of the whole electron
@@ -304,7 +304,10 @@ pole exists and no single-particle excitation exists.
 
 \textbf{The Stoner criterion as an instability of the response function.} Now we use the same RPA logic
 in the \emph{spin} channel of an interaction of Hubbard type, so that $\chi_0$ in (9.6) becomes the
-non-interacting spin susceptibility. The interacting spin response diverges when
+non-interacting spin susceptibility. The sign is the opposite of the density channel, because
+$U n_\uparrow n_\downarrow = \tfrac{U}{4}(n^2 - m^2)$ is repulsive for the density and attractive for the
+magnetization, so the same $U$ screens the charge response and enhances the spin response, and the
+denominator of (9.6) becomes $1-U\chi_0$. The interacting spin response diverges when
 
 \begin{equation}
 U\, \chi_0(q,0) = 1.
@@ -323,7 +326,7 @@ at a smaller value of $U$ than the simple Stoner estimate predicts.
 
 This is the connection that the course has been preparing. In Sessions 1 and 6 we obtained magnetism by writing the Hubbard model, applying mean-field
 theory directly to the \emph{ordered} state, and solving self-consistently for a non-zero
-magnetization $m$, as in Equation 1.7 of Section 1.13. In this session we have obtained the
+magnetization $m$, as in Equation 1.7 of Section 1.14. In this session we have obtained the
 \emph{same physics}, with the same threshold $U\,D(E_F)=1$ and the same preference for
 antiferromagnetism at half filling, without writing any ordered mean-field ansatz. Instead, we asked
 when the \emph{paramagnetic}, disordered response function develops a divergence, which is the same

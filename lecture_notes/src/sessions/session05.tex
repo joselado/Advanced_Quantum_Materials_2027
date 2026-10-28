@@ -331,8 +331,7 @@ $|\Delta(\mathbf
 k)|$ evaluated on that Fermi surface. Nothing in this argument depends on the details of
 $\varepsilon(\mathbf k)$, such as the range of the hopping, the lattice geometry or the position of
 the chemical potential. For concreteness, let us take the single-orbital square lattice with
-$\varepsilon(\mathbf k) =
-\cos k_x + \cos k_y$ (units where $t=1$) and a chemical potential such that the physical red band
+$\varepsilon(\mathbf k) = -2t\left(\cos k_x + \cos k_y\right) - \mu$, as in (2.14), and a chemical potential such that the physical red band
 and the spurious blue mirror band cross. When we turn on a constant $\Delta$, a gap of size
 $2|\Delta|$ opens at every such crossing, for \emph{any} choice of the chemical potential along this
 dispersion. The same statement holds if we do the calculation on the triangular lattice instead of
@@ -380,7 +379,7 @@ and the triangular lattice.
 
 \begin{notebookbox}{\texttt{session5.ipynb}, ``Unconventional singlet superconducting orders'' (Challenge), and ``Gapped and nodal superconducting orders'' (Core)}
 Build a $\Delta(\mathbf k)$ that depends on momentum and vanishes along a line in the Brillouin
-zone, for example the d-wave form of section 5.12 below. Then check numerically with (5.9) that the
+zone, for example the d-wave form of section 5.13 below. Then check numerically with (5.9) that the
 gap closes exactly where the Fermi surface crosses this nodal line, which is different from the
 uniformly gapped case of section 5.9.
 \end{notebookbox}
@@ -396,7 +395,7 @@ k} = \begin{pmatrix}\Delta_{\mathbf k,\uparrow\uparrow} & \Delta_{\mathbf k,\upa
 it is built from a general mean-field Hamiltonian
 
 \begin{equation}
-H_{\text{pair}} = -\frac{1}{2}\sum_{\mathbf k}{}^{\prime}\, \sum_{\sigma_1\sigma_2} \left[\Delta_{\mathbf k,\sigma_1\sigma_2}\, c_{\mathbf k\sigma_1}^\dagger c_{-\mathbf k\sigma_2}^\dagger + \Delta_{\mathbf k,\sigma_1\sigma_2}^*\, c_{\mathbf k\sigma_1} c_{-\mathbf k\sigma_2}\right],
+H_{\text{pair}} = -\frac{1}{2}\sum_{\mathbf k}{}^{\prime}\, \sum_{\sigma_1\sigma_2} \left[\Delta_{\mathbf k,\sigma_1\sigma_2}\, c_{\mathbf k\sigma_1}^\dagger c_{-\mathbf k\sigma_2}^\dagger + \Delta_{\mathbf k,\sigma_1\sigma_2}^*\, c_{-\mathbf k\sigma_2} c_{\mathbf k\sigma_1}\right].
 \end{equation}
 
 The real-space and reciprocal-space pictures of $\Delta$ are related by a Fourier transform, so we
