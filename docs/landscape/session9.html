@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Session 9, landscape lectures</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+</style>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../index.html">All lectures</a></p>
+  <nav class="tabs"><a class="" href="../lectures/session9.html">Video lectures</a><a class="on" href="../landscape/session9.html">Landscape lectures</a></nav>
+  <nav class="sub"><a class="" href="session1.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="session2.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="session3.html" title="Topological band structure theory">3</a><a class="" href="session4.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="session5.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="session6.html" title="Classical magnetism and magnons">6</a><a class="" href="session7.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="session8.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="on" href="session9.html" title="Excitations and defects in quantum materials">9</a><a class="" href="session10.html" title="Machine learning quantum materials">10</a></nav>
+  <h1>Session 9. Excitations and defects in quantum materials</h1>
+  <video controls playsinline preload="metadata" src="https://github.com/joselado/Advanced_Quantum_Materials_2027/releases/download/films/session9.mp4#t=0.1"></video>
+  <h3>Learning outcomes</h3>
+  <ul><li>Explain what a response function measures, a kick at one point and a measurement at another</li><li>Use the susceptibility above T_c to predict the order of a classical magnet</li><li>Compute the Lindhard response of a metal and relate its divergences to nesting and instabilities</li><li>Derive the random phase approximation and obtain the plasmon and the Stoner criterion from it</li><li>Relate the state bound to an impurity to the ground state: Friedel oscillations, Yu-Shiba-Rusinov states, topology</li><li>Explain Anderson localization and measure it with the inverse participation ratio</li></ul>
+  <h3>Contents</h3>
+  <ul><li>Responses in materials and the response function</li><li>The susceptibility of a classical magnet</li><li>Linear response, and where perturbation theory breaks down</li><li>The Fermi sea and the Lindhard response</li><li>Divergences, the dynamical response, the square lattice and nesting</li><li>The random phase approximation, plasmons and the Stoner criterion</li><li>Impurities in metals, Friedel oscillations</li><li>Magnetic impurities in superconductors, Yu-Shiba-Rusinov states</li><li>Vacancies in topological matter, and impurities in S = 1/2 and S = 1 chains</li><li>Quasi-periodicity, disorder and Anderson localization</li></ul>
+  <h3>Simulations shown</h3>
+  <ul><li>Density response of a tight-binding ring after a local kick, spreading in a light cone</li><li>Mean-field susceptibility of the Ising ferromagnet, paramagnet and antiferromagnet against temperature</li><li>Lindhard response of a chain and a square lattice, peak at 2k_F and divergence by nesting at half filling</li><li>Friedel oscillations around one impurity in a chain and in a square lattice</li><li>Yu-Shiba-Rusinov state of a magnetic impurity in an s-wave superconductor, crossing zero energy as J grows</li><li>In-gap states at a vacancy in a Chern insulator and in a p + ip superconductor</li><li>Moment around an impurity in Heisenberg chains with DMRG, power law for S = 1/2, exponential for S = 1</li><li>Inverse participation ratio of the Aubry-André chain, localization transition as the quasi-periodic potential grows</li></ul>
+  <h2 id="floating">With floating formulas</h2>
+  <p class="note">A second version of the same film. When the voice talks over a still picture, short formulas and steps of the derivation float in the landscape.</p>
+  <video controls playsinline preload="metadata" src="https://github.com/joselado/Advanced_Quantum_Materials_2027/releases/download/films-floating/session9.mp4#t=0.1"></video>
+  <p class="note">Slides of this session: <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/slides_prerecordings/lecture9.pdf">lecture9.pdf</a> · exercises: <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb">session9.ipynb</a> · <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/lecture_notes/main.pdf">lecture notes</a></p>
+  <nav class="pager"><a href="session8.html">Session 8</a><a href="session10.html">Session 10</a></nav>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Session 2, video lectures</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+</style>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../index.html">All lectures</a></p>
+  <nav class="tabs"><a class="on" href="../lectures/session2.html">Video lectures</a><a class="" href="../landscape/session2.html">Landscape lectures</a></nav>
+  <nav class="sub"><a class="off" href="session1.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="on" href="session2.html" title="Symmetries, band structure theory and effective models">2</a><a class="off" href="session3.html" title="Topological band structure theory">3</a><a class="off" href="session4.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="session5.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="session6.html" title="Classical magnetism and magnons">6</a><a class="" href="session7.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="session8.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="session9.html" title="Excitations and defects in quantum materials">9</a><a class="" href="session10.html" title="Machine learning quantum materials">10</a></nav>
+  <h1>Session 2. Symmetries, band structure theory and effective models</h1>
+  <div class="pending">The video lecture of this session is not ready yet. The landscape lecture of this session is in the other tab.</div>
+  <h3>Learning outcomes</h3>
+  <ul><li>Explain why the eigenstates of H can be chosen as eigenstates of a symmetry that commutes with it</li><li>Derive Bloch&#x27;s theorem from translational symmetry, with the quasi-momentum as the phase of the translation</li><li>Compute the band structure of single-orbital and multi-orbital tight-binding chains</li><li>Relate the density of states, group velocity, effective mass and Fermi surface to the band structure</li><li>Recognize parabolic, Dirac and flat dispersions in the square, honeycomb, Lieb and kagome lattices</li><li>Relate the band structure to what ARPES measures</li></ul>
+  <h3>Contents</h3>
+  <ul><li>Symmetries to simplify a quantum many-body problem</li><li>Symmetry operators, unitarity and their eigenvalues</li><li>Symmetries commuting with H, the rings of three and five sites</li><li>Translational symmetry and Bloch&#x27;s theorem</li><li>The Brillouin zone, and bands beyond electrons</li><li>Single-orbital and multi-orbital band structures, the dimerized chain</li><li>Band structures in two and three dimensions</li><li>Density of states, group velocity, effective mass and Fermi surface</li><li>Parabolic, Dirac and flat dispersions in the honeycomb, Lieb and kagome lattices</li><li>Measuring band structures with ARPES</li></ul>
+  <h3>Simulations shown</h3>
+  <ul><li>Levels of rings of three, five and six sites, labeled by the eigenvalue of the rotation</li><li>Band 2t cos φ of the tight-binding chain, checked against a ring of 101 sites</li><li>Bands of a two-leg ladder, two cosines split by the rung hopping</li><li>Bands of a three-orbital chain and of the dimerized chain, with the gap at φ = π</li><li>Band structure of the square and cubic lattices, with the saddle points of the square lattice</li><li>Density of states of the chain and of the square lattice, with its log peak at E = 0</li><li>Honeycomb bands with the Dirac cones at K and K&#x27;, and flat bands of the Lieb and kagome lattices</li><li>ARPES spectral function of the honeycomb lattice, with a broadening of 0.1t</li></ul>
+  <p class="note">Slides of this session: <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/slides_prerecordings/lecture2.pdf">lecture2.pdf</a> · exercises: <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session2.ipynb">session2.ipynb</a> · <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/lecture_notes/main.pdf">lecture notes</a></p>
+  <nav class="pager"><a href="session1.html">Session 1</a><a href="session3.html">Session 3</a></nav>
+
+</main>
+</body>
+</html>

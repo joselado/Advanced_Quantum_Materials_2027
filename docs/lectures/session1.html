@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Session 1, video lectures</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+</style>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../index.html">All lectures</a></p>
+  <nav class="tabs"><a class="on" href="../lectures/session1.html">Video lectures</a><a class="" href="../landscape/session1.html">Landscape lectures</a></nav>
+  <nav class="sub"><a class="on" href="session1.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="off" href="session2.html" title="Symmetries, band structure theory and effective models">2</a><a class="off" href="session3.html" title="Topological band structure theory">3</a><a class="off" href="session4.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="session5.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="session6.html" title="Classical magnetism and magnons">6</a><a class="" href="session7.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="session8.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="session9.html" title="Excitations and defects in quantum materials">9</a><a class="" href="session10.html" title="Machine learning quantum materials">10</a></nav>
+  <h1>Session 1. Second quantization, mean field and spontaneous symmetry breaking</h1>
+  <div class="pending">The video lecture of this session is not ready yet. The landscape lecture of this session is in the other tab.</div>
+  <h3>Learning outcomes</h3>
+  <ul><li>Write a single-particle and a quartic Hamiltonian with creation and annihilation operators</li><li>Explain why the many-body problem grows as 2^L while the single-particle one grows as L</li><li>Recognize a symmetry-broken state and the symmetry it breaks, for magnets, ferroelectrics and superconductors</li><li>Explain why a magnet breaks time-reversal symmetry, and how the Hall conductivity or the Kerr effect detects it</li><li>Derive the mean-field decoupling of an interaction and solve it self-consistently</li><li>Relate the charge density wave, magnetism and superconductivity to the sign and form of the interaction</li></ul>
+  <h3>Contents</h3>
+  <ul><li>Quantum materials and the exotic phenomena they show</li><li>Emergent excitations, from atoms to materials</li><li>First and second quantization, the particle in a box</li><li>Creation and annihilation operators and fermionic statistics</li><li>The fermionic many-body problem and its 2^L states</li><li>Interactions and correlated states</li><li>Single-particle Hamiltonians on graphene islands</li><li>Spontaneous symmetry breaking and the classification of matter by broken symmetries</li><li>Magnets and time-reversal symmetry</li><li>Mean field for the charge density wave, the Hubbard model and superconductivity</li></ul>
+  <h3>Simulations shown</h3>
+  <ul><li>Acoustic phonon branch of a chain of masses and springs, gapless at k = 0</li><li>Levels and wavefunctions of a chain of 200 sites, the particle in a box with levels 1 : 4 : 9</li><li>Ring of five sites diagonalized in first and in second quantization, giving the same levels</li><li>Eight states of three interacting sites and the 2^L growth of the many-body Hilbert space</li><li>Electronic states of triangular, hexagonal and rectangular graphene islands, the |ψ|² that STM maps</li><li>Charge density wave of a spinless chain in mean field, the gap and the charge imbalance growing with V</li><li>Néel state of the Hubbard chain in mean field, the gap U·M approaching U at large U</li><li>Onsite pairing Δ of the attractive Hubbard chain, solved self-consistently</li></ul>
+  <p class="note">Slides of this session: <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/slides_prerecordings/lecture1.pdf">lecture1.pdf</a> · exercises: <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session1.ipynb">session1.ipynb</a> · <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/lecture_notes/main.pdf">lecture notes</a></p>
+  <nav class="pager"><span></span><a href="session2.html">Session 2</a></nav>
+
+</main>
+</body>
+</html>

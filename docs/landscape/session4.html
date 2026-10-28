@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Session 4, landscape lectures</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+</style>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../index.html">All lectures</a></p>
+  <nav class="tabs"><a class="" href="../lectures/session4.html">Video lectures</a><a class="on" href="../landscape/session4.html">Landscape lectures</a></nav>
+  <nav class="sub"><a class="" href="session1.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="session2.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="session3.html" title="Topological band structure theory">3</a><a class="on" href="session4.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="session5.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="session6.html" title="Classical magnetism and magnons">6</a><a class="" href="session7.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="session8.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="session9.html" title="Excitations and defects in quantum materials">9</a><a class="" href="session10.html" title="Machine learning quantum materials">10</a></nav>
+  <h1>Session 4. Electrons in magnetic fields, the quantum Hall effect and Landau levels</h1>
+  <video controls playsinline preload="metadata" src="https://github.com/joselado/Advanced_Quantum_Materials_2027/releases/download/films/session4.mp4#t=0.1"></video>
+  <h3>Learning outcomes</h3>
+  <ul><li>Relate the quantized Hall conductivity to the Chern number of the filled Landau levels</li><li>Derive the Landau levels of Schrödinger and Dirac electrons, linear in B and in √B</li><li>Explain why a ribbon in a magnetic field has flat bulk levels and chiral edge states</li><li>Construct the filled lowest Landau level in the symmetric gauge as a uniform droplet</li><li>Explain how the Laughlin wavefunction gives fractional charge e/m and anyonic statistics</li><li>Recognize the Haldane model as a quantum Hall state without Landau levels</li></ul>
+  <h3>Contents</h3>
+  <ul><li>Where the quantum Hall state appears</li><li>Hall conductivity, Chern number and quantized plateaus</li><li>Electrons coupled to a magnetic field, Landau levels and gauge choice</li><li>Landau levels of Schrödinger and Dirac electrons, and on the lattice</li><li>Ladder operators for Landau levels</li><li>Symmetric gauge, angular momentum and the filled lowest Landau level</li><li>The Laughlin wavefunction</li><li>Quasiholes, fractional charge and anyons</li><li>The Haldane model, and real Chern insulators</li></ul>
+  <h3>Simulations shown</h3>
+  <ul><li>Landau levels of the Hofstadter model on the square lattice, each with Chern number 1</li><li>Square-lattice ribbon in a magnetic field, flat Landau levels bending into chiral edge states</li><li>Hall resistivity against field at fixed density, with plateaus at h/(νe²)</li><li>Landau fan against field, levels linear in B for Schrödinger and in √B for Dirac electrons</li><li>Armchair graphene ribbon in a magnetic field, the Dirac Landau levels and their edge states</li><li>Density of the filled lowest Landau level and of the Laughlin state at ν = 1/3</li><li>Quasihole in the Laughlin droplet with a missing charge 1/3, and the phase of winding it</li><li>Haldane model, its bands, Berry curvature and ribbon edge states, deformed to the quantum Hall state without closing the gap</li></ul>
+  <p class="note">Slides of this session: <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/slides_prerecordings/lecture4.pdf">lecture4.pdf</a> · exercises: <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session4.ipynb">session4.ipynb</a> · <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/lecture_notes/main.pdf">lecture notes</a></p>
+  <nav class="pager"><a href="session3.html">Session 3</a><a href="session5.html">Session 5</a></nav>
+
+</main>
+</body>
+</html>

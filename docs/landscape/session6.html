@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Session 6, landscape lectures</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+</style>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../index.html">All lectures</a></p>
+  <nav class="tabs"><a class="" href="../lectures/session6.html">Video lectures</a><a class="on" href="../landscape/session6.html">Landscape lectures</a></nav>
+  <nav class="sub"><a class="" href="session1.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="session2.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="session3.html" title="Topological band structure theory">3</a><a class="" href="session4.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="session5.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="on" href="session6.html" title="Classical magnetism and magnons">6</a><a class="" href="session7.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="session8.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="session9.html" title="Excitations and defects in quantum materials">9</a><a class="" href="session10.html" title="Machine learning quantum materials">10</a></nav>
+  <h1>Session 6. Classical magnetism and magnons</h1>
+  <video controls playsinline preload="metadata" src="https://github.com/joselado/Advanced_Quantum_Materials_2027/releases/download/films/session6.mp4#t=0.1"></video>
+  <h3>Learning outcomes</h3>
+  <ul><li>Explain how a repulsive Hubbard U breaks spin rotation symmetry in mean-field theory</li><li>Compute the exchange splitting and the antiferromagnetic gap of a self-consistent Hubbard chain</li><li>Use the Stoner criterion U D(E_F) &gt; 1 to say which metals become magnetic</li><li>Derive the exchange J = 4t²/U of the Hubbard dimer with second-order perturbation theory</li><li>Recognize collinear order on bipartite lattices and 120 degree order on frustrated ones</li><li>Derive magnons as spin-1 bosons with the Holstein-Primakoff transformation</li></ul>
+  <h3>Contents</h3>
+  <ul><li>Symmetry-broken magnets and quantum magnets, magnons and spinons</li><li>Symmetry breaking by interactions, and where the interactions come from</li><li>The Hubbard model and its mean-field decoupling, collinear and non-collinear</li><li>Exchange splitting and an antiferromagnetic gap in a mean-field chain</li><li>Ferromagnet against antiferromagnet, and the critical interaction for magnetism</li><li>The strongly localized limit and the Hubbard dimer</li><li>J from second-order perturbation theory and the Heisenberg model on any lattice</li><li>Bipartite and frustrated lattices</li><li>Ferromagnetic coupling through a ligand and anisotropic exchange</li><li>Magnons, the Holstein-Primakoff transformation and topological magnons</li></ul>
+  <h3>Simulations shown</h3>
+  <ul><li>Mean-field Hubbard chain at filling 0.2, spin-split bands, exchange splitting 3.2t at U = 8t</li><li>Two-site Hubbard chain at half filling, antiferromagnetic gap U m opening at X</li><li>Energy of the ferromagnet minus the antiferromagnet against U, decaying as 4t²/U at large U</li><li>Self-consistent moment of a chain at filling 0.1 against U, zero below the Stoner threshold</li><li>Moment of the half-filled chain against U, going to one Bohr magneton at large U</li><li>Exact levels of the Hubbard dimer against U, singlet-triplet splitting J going to 4t²/U</li><li>Mean-field moments of square, honeycomb, kagome and triangular Hubbard models at U = 8t</li><li>Magnon bands of a honeycomb ferromagnet with spin-orbit coupling, Chern number and chiral edge magnons</li></ul>
+  <p class="note">Slides of this session: <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/slides_prerecordings/lecture6.pdf">lecture6.pdf</a> · exercises: <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb">session6.ipynb</a> · <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/lecture_notes/main.pdf">lecture notes</a></p>
+  <nav class="pager"><a href="session5.html">Session 5</a><a href="session7.html">Session 7</a></nav>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,371 @@
+[
+ {
+  "session": 1,
+  "title": "Second quantization, mean field and spontaneous symmetry breaking",
+  "lecture": false,
+  "floating": false,
+  "notebook": true,
+  "outcomes": [
+   "Write a single-particle and a quartic Hamiltonian with creation and annihilation operators",
+   "Explain why the many-body problem grows as 2^L while the single-particle one grows as L",
+   "Recognize a symmetry-broken state and the symmetry it breaks, for magnets, ferroelectrics and superconductors",
+   "Explain why a magnet breaks time-reversal symmetry, and how the Hall conductivity or the Kerr effect detects it",
+   "Derive the mean-field decoupling of an interaction and solve it self-consistently",
+   "Relate the charge density wave, magnetism and superconductivity to the sign and form of the interaction"
+  ],
+  "contents": [
+   "Quantum materials and the exotic phenomena they show",
+   "Emergent excitations, from atoms to materials",
+   "First and second quantization, the particle in a box",
+   "Creation and annihilation operators and fermionic statistics",
+   "The fermionic many-body problem and its 2^L states",
+   "Interactions and correlated states",
+   "Single-particle Hamiltonians on graphene islands",
+   "Spontaneous symmetry breaking and the classification of matter by broken symmetries",
+   "Magnets and time-reversal symmetry",
+   "Mean field for the charge density wave, the Hubbard model and superconductivity"
+  ],
+  "simulations": [
+   "Acoustic phonon branch of a chain of masses and springs, gapless at k = 0",
+   "Levels and wavefunctions of a chain of 200 sites, the particle in a box with levels 1 : 4 : 9",
+   "Ring of five sites diagonalized in first and in second quantization, giving the same levels",
+   "Eight states of three interacting sites and the 2^L growth of the many-body Hilbert space",
+   "Electronic states of triangular, hexagonal and rectangular graphene islands, the |ψ|² that STM maps",
+   "Charge density wave of a spinless chain in mean field, the gap and the charge imbalance growing with V",
+   "Néel state of the Hubbard chain in mean field, the gap U·M approaching U at large U",
+   "Onsite pairing Δ of the attractive Hubbard chain, solved self-consistently"
+  ]
+ },
+ {
+  "session": 2,
+  "title": "Symmetries, band structure theory and effective models",
+  "lecture": false,
+  "floating": true,
+  "notebook": true,
+  "outcomes": [
+   "Explain why the eigenstates of H can be chosen as eigenstates of a symmetry that commutes with it",
+   "Derive Bloch's theorem from translational symmetry, with the quasi-momentum as the phase of the translation",
+   "Compute the band structure of single-orbital and multi-orbital tight-binding chains",
+   "Relate the density of states, group velocity, effective mass and Fermi surface to the band structure",
+   "Recognize parabolic, Dirac and flat dispersions in the square, honeycomb, Lieb and kagome lattices",
+   "Relate the band structure to what ARPES measures"
+  ],
+  "contents": [
+   "Symmetries to simplify a quantum many-body problem",
+   "Symmetry operators, unitarity and their eigenvalues",
+   "Symmetries commuting with H, the rings of three and five sites",
+   "Translational symmetry and Bloch's theorem",
+   "The Brillouin zone, and bands beyond electrons",
+   "Single-orbital and multi-orbital band structures, the dimerized chain",
+   "Band structures in two and three dimensions",
+   "Density of states, group velocity, effective mass and Fermi surface",
+   "Parabolic, Dirac and flat dispersions in the honeycomb, Lieb and kagome lattices",
+   "Measuring band structures with ARPES"
+  ],
+  "simulations": [
+   "Levels of rings of three, five and six sites, labeled by the eigenvalue of the rotation",
+   "Band 2t cos φ of the tight-binding chain, checked against a ring of 101 sites",
+   "Bands of a two-leg ladder, two cosines split by the rung hopping",
+   "Bands of a three-orbital chain and of the dimerized chain, with the gap at φ = π",
+   "Band structure of the square and cubic lattices, with the saddle points of the square lattice",
+   "Density of states of the chain and of the square lattice, with its log peak at E = 0",
+   "Honeycomb bands with the Dirac cones at K and K', and flat bands of the Lieb and kagome lattices",
+   "ARPES spectral function of the honeycomb lattice, with a broadening of 0.1t"
+  ]
+ },
+ {
+  "session": 3,
+  "title": "Topological band structure theory",
+  "lecture": false,
+  "floating": false,
+  "notebook": true,
+  "outcomes": [
+   "Explain why perturbation theory fails for the ground state, even for a small impurity",
+   "Relate the Hall conductivity σ_xy to the Berry curvature and the Chern number, σ_xy = C e²/h",
+   "Explain the bulk-boundary correspondence, a gapped bulk with C gapless chiral modes at the edge",
+   "Compute the Zak phase and the end modes of the SSH chain",
+   "Recognize chiral and helical edge states, and the symmetry that protects the quantum spin Hall state",
+   "Recognize the same topological physics in photonic and mechanical systems"
+  ],
+  "contents": [
+   "Band structures and the zoo of topological materials",
+   "Linear response",
+   "Where perturbation theory breaks down",
+   "Transverse conductivity and Berry curvature",
+   "Chern numbers and the chiral edge",
+   "The idea of topology and bulk-boundary correspondence",
+   "Three topological classes",
+   "The SSH chain and its Zak phase",
+   "Chiral and helical states, Chern insulators from a gapped Dirac cone",
+   "The quantum spin Hall state, and topology beyond electrons"
+  ],
+  "simulations": [
+   "Density response of the square lattice to a local potential, oscillating with the Fermi wavelength",
+   "Overlap of the ground states of a chain with and without an impurity, going to zero with the size",
+   "Berry curvature of the Qi-Wu-Zhang model over the Brillouin zone, integrating to C = 1",
+   "Landau levels of the Hofstadter model, each with C = 1, and a ribbon with chiral edge states",
+   "Interface between a trivial and a C = 1 insulator, with a gapless mode around an impurity",
+   "Spectrum of the SSH chain, the two end modes at zero energy and the Zak phase in each phase",
+   "Quantum spin Hall ribbon with C↑ = +1 and C↓ = -1, the helical edge surviving Rashba coupling",
+   "Coupled photonic rings at flux 1/4 and a mechanical SSH chain of pendula, both with edge modes"
+  ]
+ },
+ {
+  "session": 4,
+  "title": "Electrons in magnetic fields, the quantum Hall effect and Landau levels",
+  "lecture": false,
+  "floating": false,
+  "notebook": true,
+  "outcomes": [
+   "Relate the quantized Hall conductivity to the Chern number of the filled Landau levels",
+   "Derive the Landau levels of Schrödinger and Dirac electrons, linear in B and in √B",
+   "Explain why a ribbon in a magnetic field has flat bulk levels and chiral edge states",
+   "Construct the filled lowest Landau level in the symmetric gauge as a uniform droplet",
+   "Explain how the Laughlin wavefunction gives fractional charge e/m and anyonic statistics",
+   "Recognize the Haldane model as a quantum Hall state without Landau levels"
+  ],
+  "contents": [
+   "Where the quantum Hall state appears",
+   "Hall conductivity, Chern number and quantized plateaus",
+   "Electrons coupled to a magnetic field, Landau levels and gauge choice",
+   "Landau levels of Schrödinger and Dirac electrons, and on the lattice",
+   "Ladder operators for Landau levels",
+   "Symmetric gauge, angular momentum and the filled lowest Landau level",
+   "The Laughlin wavefunction",
+   "Quasiholes, fractional charge and anyons",
+   "The Haldane model, and real Chern insulators"
+  ],
+  "simulations": [
+   "Landau levels of the Hofstadter model on the square lattice, each with Chern number 1",
+   "Square-lattice ribbon in a magnetic field, flat Landau levels bending into chiral edge states",
+   "Hall resistivity against field at fixed density, with plateaus at h/(νe²)",
+   "Landau fan against field, levels linear in B for Schrödinger and in √B for Dirac electrons",
+   "Armchair graphene ribbon in a magnetic field, the Dirac Landau levels and their edge states",
+   "Density of the filled lowest Landau level and of the Laughlin state at ν = 1/3",
+   "Quasihole in the Laughlin droplet with a missing charge 1/3, and the phase of winding it",
+   "Haldane model, its bands, Berry curvature and ribbon edge states, deformed to the quantum Hall state without closing the gap"
+  ]
+ },
+ {
+  "session": 5,
+  "title": "Superconductivity, Nambu representation and Majorana physics",
+  "lecture": true,
+  "floating": false,
+  "notebook": true,
+  "outcomes": [
+   "Derive the mean-field pairing term from an attractive Hubbard interaction, and why it breaks gauge symmetry",
+   "Write the Bogoliubov-de Gennes Hamiltonian with the Nambu spinor, and read its electron and hole bands",
+   "Explain why an s-wave pairing opens a gap at the Fermi level regardless of the dispersion and of μ",
+   "Recognize s-wave, p-wave and d-wave, singlet and triplet, gapped and nodal superconductors",
+   "Relate the topology of the pairing to Majorana modes, at the edge in 2D and at the ends of the Kitaev chain",
+   "Explain how braiding Majorana zero modes gives a gate for topological quantum computing"
+  ],
+  "contents": [
+   "Symmetry breaking and correlated matter in mean field",
+   "Macroscopic quantum phenomena, zero resistance and the Meissner effect",
+   "Attractive interactions and the pairing term",
+   "The Nambu spinor and the Bogoliubov-de Gennes Hamiltonian",
+   "Electron and hole bands, gapped and nodal superconductors",
+   "Unconventional pairing, spin-singlet and spin-triplet",
+   "Triplet superconductivity from a ferromagnet, s-wave, p-wave and d-wave",
+   "Same gap with a different topology",
+   "Majorana fermions and the Kitaev chain",
+   "Majorana platforms and topological quantum computing"
+  ],
+  "simulations": [
+   "Self-consistent pairing Δ of the attractive Hubbard chain, growing with |U|",
+   "Bogoliubov-de Gennes bands of a single-orbital superconductor, gapped where electron and hole bands cross",
+   "s-wave and nodal d-wave superconductors on the square and triangular lattices, gap for every μ against nodes",
+   "Singlet and triplet pairing with disorder, the singlet gap surviving and the triplet gap closing",
+   "Triplet superconductor from a ferromagnet, gapped bulk and edge states with Chern number 1",
+   "s-wave against chiral p-wave on a ribbon, the same bulk gap but edge modes only for chiral p-wave",
+   "Open Kitaev chain, two Majorana zero modes at the ends, and the levels against μ closing the gap at |μ| = 2t",
+   "Two Kitaev wires, the degenerate ground states used for braiding"
+  ]
+ },
+ {
+  "session": 6,
+  "title": "Classical magnetism and magnons",
+  "lecture": true,
+  "floating": false,
+  "notebook": true,
+  "outcomes": [
+   "Explain how a repulsive Hubbard U breaks spin rotation symmetry in mean-field theory",
+   "Compute the exchange splitting and the antiferromagnetic gap of a self-consistent Hubbard chain",
+   "Use the Stoner criterion U D(E_F) > 1 to say which metals become magnetic",
+   "Derive the exchange J = 4t²/U of the Hubbard dimer with second-order perturbation theory",
+   "Recognize collinear order on bipartite lattices and 120 degree order on frustrated ones",
+   "Derive magnons as spin-1 bosons with the Holstein-Primakoff transformation"
+  ],
+  "contents": [
+   "Symmetry-broken magnets and quantum magnets, magnons and spinons",
+   "Symmetry breaking by interactions, and where the interactions come from",
+   "The Hubbard model and its mean-field decoupling, collinear and non-collinear",
+   "Exchange splitting and an antiferromagnetic gap in a mean-field chain",
+   "Ferromagnet against antiferromagnet, and the critical interaction for magnetism",
+   "The strongly localized limit and the Hubbard dimer",
+   "J from second-order perturbation theory and the Heisenberg model on any lattice",
+   "Bipartite and frustrated lattices",
+   "Ferromagnetic coupling through a ligand and anisotropic exchange",
+   "Magnons, the Holstein-Primakoff transformation and topological magnons"
+  ],
+  "simulations": [
+   "Mean-field Hubbard chain at filling 0.2, spin-split bands, exchange splitting 3.2t at U = 8t",
+   "Two-site Hubbard chain at half filling, antiferromagnetic gap U m opening at X",
+   "Energy of the ferromagnet minus the antiferromagnet against U, decaying as 4t²/U at large U",
+   "Self-consistent moment of a chain at filling 0.1 against U, zero below the Stoner threshold",
+   "Moment of the half-filled chain against U, going to one Bohr magneton at large U",
+   "Exact levels of the Hubbard dimer against U, singlet-triplet splitting J going to 4t²/U",
+   "Mean-field moments of square, honeycomb, kagome and triangular Hubbard models at U = 8t",
+   "Magnon bands of a honeycomb ferromagnet with spin-orbit coupling, Chern number and chiral edge magnons"
+  ]
+ },
+ {
+  "session": 7,
+  "title": "Quantum entanglement and tensor networks",
+  "lecture": true,
+  "floating": true,
+  "notebook": true,
+  "outcomes": [
+   "Map fermionic Hamiltonians to spin Hamiltonians with the Jordan-Wigner transformation",
+   "Explain why storing a many-body wave function costs 2^L numbers",
+   "Compute the entanglement entropy of a product state and of a singlet",
+   "Relate the area law of gapped ground states to the success of matrix product states",
+   "Recognize when matrix product states fail: higher dimensions, long time evolution, excited states",
+   "Explain how the density matrix renormalization group finds a ground state one tensor at a time"
+  ],
+  "contents": [
+   "Weakly and strongly correlated matter",
+   "Fermionic and spin Hamiltonians, the Jordan-Wigner transformation",
+   "Storing the many-body wave function",
+   "From the Heisenberg dimer to a Hilbert space growing as 2^L",
+   "The matrix product state ansatz",
+   "Product states, entangled states and the entanglement entropy",
+   "Dimerized chain and dimerized square lattice, the area law",
+   "Matrix product states as area-law states, and where they fail",
+   "Tensor-network diagrams, and ground states with DMRG",
+   "Beyond matrix product states, MERA and PEPS"
+  ],
+  "simulations": [
+   "Ground state of a 10-site Heisenberg chain by exact diagonalization, its 1024 coefficients as a map",
+   "Matrix product state of a 14-site Heisenberg chain, numbers stored and error against bond dimension m",
+   "Entanglement entropy of a two-site state going from a product state to the singlet, up to log 2",
+   "Block entropy of the dimerized chain, 2 log 2 regardless of the block length",
+   "Entropy of square partitions of a tetramer lattice, growing with the boundary",
+   "Half-chain entropy of a 16-site Heisenberg chain after a quench, growing linearly in time",
+   "DMRG sweep on a 10-site Heisenberg chain, energy converging to the exact one",
+   "Block entropy of the transverse-field Ising chain, growing as log ℓ at criticality, saturating when gapped"
+  ]
+ },
+ {
+  "session": 8,
+  "title": "Quantum magnetism, spinons and Kondo physics",
+  "lecture": true,
+  "floating": true,
+  "notebook": true,
+  "outcomes": [
+   "Explain the difference between a classical magnet that breaks time reversal and a quantum magnet",
+   "Recognize magnons as spin-1 excitations and spinons as spin-1/2 excitations",
+   "Relate frustration on triangular and kagome lattices to quantum spin liquids",
+   "Use the parton transformation to write a spin liquid as a mean-field Hamiltonian of spinons",
+   "Explain the emergent gauge symmetry of the spinons and the vison as its defect",
+   "Explain how the Kondo hybridization opens a gap in a Kondo lattice"
+  ],
+  "contents": [
+   "Classical and quantum magnets, and the materials that realize them",
+   "Magnons and spinons",
+   "The Ising and the Heisenberg dimer",
+   "Frustration, triangular and kagome lattices",
+   "Valence bond solid and resonating valence bond state",
+   "Why magnons fail, and the parton transformation",
+   "Spinon mean-field Hamiltonian and spinon dispersions",
+   "Emergent gauge symmetry and the vison",
+   "The Kondo impurity and the Kondo lattice",
+   "The heavy-fermion gap and the Kondo insulator"
+  ],
+  "simulations": [
+   "Ising and Heisenberg dimers by exact diagonalization, singlet at -3J/4 below the triplet at J/4",
+   "Dimerized Heisenberg ring of 12 sites, triplon gap staying open as the coupling between dimers grows",
+   "Six-site ring, amplitudes of the singlet coverings and weight of the projected BCS state",
+   "Spinon bands for three choices of χ: gapless chain, gapped dimerized chain, Dirac honeycomb",
+   "Spinons on a 4 x 4 square lattice, levels unchanged by a gauge transformation, changed by a vison",
+   "Kondo impurity in a 3 x 3 electron cluster by exact diagonalization, singlet and screening cloud",
+   "Mean-field bands of a Kondo lattice chain, f level and conduction band anti-crossing into a gap",
+   "Indirect gap of the Kondo insulator against the hybridization γ_K"
+  ]
+ },
+ {
+  "session": 9,
+  "title": "Excitations and defects in quantum materials",
+  "lecture": true,
+  "floating": true,
+  "notebook": true,
+  "outcomes": [
+   "Explain what a response function measures, a kick at one point and a measurement at another",
+   "Use the susceptibility above T_c to predict the order of a classical magnet",
+   "Compute the Lindhard response of a metal and relate its divergences to nesting and instabilities",
+   "Derive the random phase approximation and obtain the plasmon and the Stoner criterion from it",
+   "Relate the state bound to an impurity to the ground state: Friedel oscillations, Yu-Shiba-Rusinov states, topology",
+   "Explain Anderson localization and measure it with the inverse participation ratio"
+  ],
+  "contents": [
+   "Responses in materials and the response function",
+   "The susceptibility of a classical magnet",
+   "Linear response, and where perturbation theory breaks down",
+   "The Fermi sea and the Lindhard response",
+   "Divergences, the dynamical response, the square lattice and nesting",
+   "The random phase approximation, plasmons and the Stoner criterion",
+   "Impurities in metals, Friedel oscillations",
+   "Magnetic impurities in superconductors, Yu-Shiba-Rusinov states",
+   "Vacancies in topological matter, and impurities in S = 1/2 and S = 1 chains",
+   "Quasi-periodicity, disorder and Anderson localization"
+  ],
+  "simulations": [
+   "Density response of a tight-binding ring after a local kick, spreading in a light cone",
+   "Mean-field susceptibility of the Ising ferromagnet, paramagnet and antiferromagnet against temperature",
+   "Lindhard response of a chain and a square lattice, peak at 2k_F and divergence by nesting at half filling",
+   "Friedel oscillations around one impurity in a chain and in a square lattice",
+   "Yu-Shiba-Rusinov state of a magnetic impurity in an s-wave superconductor, crossing zero energy as J grows",
+   "In-gap states at a vacancy in a Chern insulator and in a p + ip superconductor",
+   "Moment around an impurity in Heisenberg chains with DMRG, power law for S = 1/2, exponential for S = 1",
+   "Inverse participation ratio of the Aubry-André chain, localization transition as the quasi-periodic potential grows"
+  ]
+ },
+ {
+  "session": 10,
+  "title": "Machine learning quantum materials",
+  "lecture": true,
+  "floating": false,
+  "notebook": false,
+  "outcomes": [
+   "Explain how a neural network is trained by minimizing a loss function",
+   "Use a neural network as a variational many-body wave function, with the energy as the loss",
+   "Explain how quantum state tomography gives a wave function from projective measurements",
+   "Use a tensor network as a classifier for supervised learning",
+   "Relate the Hohenberg-Kohn theorem to learning the density functional with machine learning",
+   "Recognize phase classification and Hamiltonian learning as supervised learning on simulated data"
+  ],
+  "contents": [
+   "Machine learning and its three kinds of task",
+   "Neural networks and supervised learning",
+   "Neural-network quantum states",
+   "Variational states and quantum state tomography",
+   "The many-body wave function as a matrix product state",
+   "Supervised learning with tensor networks",
+   "Density functional theory, Hohenberg-Kohn and Kohn-Sham",
+   "Machine learning the functional",
+   "Phase classification in the Ising model and the Ising gauge theory",
+   "Hamiltonian learning"
+  ],
+  "simulations": [
+   "Neural network classifying Ising snapshots, probability of the ordered phase against T, sharper for bigger L",
+   "Restricted Boltzmann machine for a 10-site Heisenberg ring, energy going down by gradient descent",
+   "Tomography of a transverse-field Ising ring from snapshots, fidelity against the number of snapshots",
+   "Matrix product state of a 16-site Heisenberg chain, error against the bond dimension",
+   "Tree tensor network telling a bag from a shirt in Fashion-MNIST, accuracy against bond dimension",
+   "Hubbard chain of 10 sites, exact density against Kohn-Sham, and a learned exchange-correlation functional",
+   "Ising gauge theory snapshots, a size-dependent crossover captured by a convolutional network",
+   "Hoppings t1, t2, t3 of a square lattice learned from its density of states, predicted against true"
+  ]
+ }
+]

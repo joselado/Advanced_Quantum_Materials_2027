@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Session 10, video lectures</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+</style>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../index.html">All lectures</a></p>
+  <nav class="tabs"><a class="on" href="../lectures/session10.html">Video lectures</a><a class="" href="../landscape/session10.html">Landscape lectures</a></nav>
+  <nav class="sub"><a class="off" href="session1.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="off" href="session2.html" title="Symmetries, band structure theory and effective models">2</a><a class="off" href="session3.html" title="Topological band structure theory">3</a><a class="off" href="session4.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="session5.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="session6.html" title="Classical magnetism and magnons">6</a><a class="" href="session7.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="session8.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="session9.html" title="Excitations and defects in quantum materials">9</a><a class="on" href="session10.html" title="Machine learning quantum materials">10</a></nav>
+  <h1>Session 10. Machine learning quantum materials</h1>
+  <video controls playsinline preload="metadata" src="https://github.com/joselado/Advanced_Quantum_Materials_2027/releases/download/lectures/session10.mp4#t=0.1"></video>
+  <h3>Learning outcomes</h3>
+  <ul><li>Explain how a neural network is trained by minimizing a loss function</li><li>Use a neural network as a variational many-body wave function, with the energy as the loss</li><li>Explain how quantum state tomography gives a wave function from projective measurements</li><li>Use a tensor network as a classifier for supervised learning</li><li>Relate the Hohenberg-Kohn theorem to learning the density functional with machine learning</li><li>Recognize phase classification and Hamiltonian learning as supervised learning on simulated data</li></ul>
+  <h3>Contents</h3>
+  <ul><li>Machine learning and its three kinds of task</li><li>Neural networks and supervised learning</li><li>Neural-network quantum states</li><li>Variational states and quantum state tomography</li><li>The many-body wave function as a matrix product state</li><li>Supervised learning with tensor networks</li><li>Density functional theory, Hohenberg-Kohn and Kohn-Sham</li><li>Machine learning the functional</li><li>Phase classification in the Ising model and the Ising gauge theory</li><li>Hamiltonian learning</li></ul>
+  <h3>Simulations shown</h3>
+  <ul><li>Neural network classifying Ising snapshots, probability of the ordered phase against T, sharper for bigger L</li><li>Restricted Boltzmann machine for a 10-site Heisenberg ring, energy going down by gradient descent</li><li>Tomography of a transverse-field Ising ring from snapshots, fidelity against the number of snapshots</li><li>Matrix product state of a 16-site Heisenberg chain, error against the bond dimension</li><li>Tree tensor network telling a bag from a shirt in Fashion-MNIST, accuracy against bond dimension</li><li>Hubbard chain of 10 sites, exact density against Kohn-Sham, and a learned exchange-correlation functional</li><li>Ising gauge theory snapshots, a size-dependent crossover captured by a convolutional network</li><li>Hoppings t1, t2, t3 of a square lattice learned from its density of states, predicted against true</li></ul>
+  <p class="note">Slides of this session: <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/slides_prerecordings/lecture10.pdf">lecture10.pdf</a> · <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/lecture_notes/main.pdf">lecture notes</a></p>
+  <nav class="pager"><a href="session9.html">Session 9</a><span></span></nav>
+
+</main>
+</body>
+</html>
