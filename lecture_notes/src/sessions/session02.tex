@@ -295,11 +295,13 @@ and to the nearest-neighbouring cell, and longer-range couplings work with the s
 with more terms. The most general bilinear Hamiltonian built from these operators is then
 
 \begin{equation}H = \sum_{n,\alpha,\beta} t_{\alpha\beta}\, c_{n,\alpha}^\dagger c_{n,\beta}
-+ \sum_{n,\alpha,\beta} \gamma_{\alpha\beta}\, c_{n,\alpha}^\dagger c_{n+1,\beta} + \text{h.c.},
++ \sum_{n,\alpha,\beta} \left(\gamma_{\alpha\beta}\, c_{n,\alpha}^\dagger c_{n+1,\beta} + \text{h.c.}\right),
 \end{equation}
 
 where $t_{\alpha\beta}$ are the intracell hoppings and $\gamma_{\alpha\beta}$ are the intercell
-hoppings.
+hoppings. The intracell term already contains both directions of each bond, so $t$ is a Hermitian
+matrix, $t_{\alpha\beta}=t_{\beta\alpha}^*$, and the Hermitian conjugate is only added to the
+intercell term.
 
 The symmetry that diagonalizes (2.11) is a slightly richer version of a pure translation. It shifts
 the unit-cell index $n\to n+1$ \emph{and} applies a unitary rotation among the orbitals within each
