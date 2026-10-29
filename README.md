@@ -19,6 +19,10 @@ These are the prerecorded lectures with slides that follow the voice. Each step 
 - [All video lectures](https://joselado.github.io/Advanced_Quantum_Materials_2027/#lectures)
 
 The lectures one by one
+- [Lecture 1: Second quantization, mean field and spontaneous symmetry breaking](https://joselado.github.io/Advanced_Quantum_Materials_2027/lectures/session1.html)
+- [Lecture 2: Symmetries, band structure theory and effective models](https://joselado.github.io/Advanced_Quantum_Materials_2027/lectures/session2.html)
+- [Lecture 3: Topological band structure theory](https://joselado.github.io/Advanced_Quantum_Materials_2027/lectures/session3.html)
+- [Lecture 4: Electrons in magnetic fields, the quantum Hall effect and Landau levels](https://joselado.github.io/Advanced_Quantum_Materials_2027/lectures/session4.html)
 - [Lecture 5: Superconductivity, Nambu representation and Majorana physics](https://joselado.github.io/Advanced_Quantum_Materials_2027/lectures/session5.html)
 - [Lecture 6: Classical magnetism and magnons](https://joselado.github.io/Advanced_Quantum_Materials_2027/lectures/session6.html)
 - [Lecture 7: Quantum entanglement and tensor networks](https://joselado.github.io/Advanced_Quantum_Materials_2027/lectures/session7.html)
