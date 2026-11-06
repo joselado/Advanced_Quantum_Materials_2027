@@ -36,6 +36,8 @@
   li { margin: 2px 0; }
   .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .cols.three { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  @media (max-width: 900px) { .cols.three { grid-template-columns: 1fr; } }
   .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
   .half h2 { margin-top: 14px; }
   .half ol { padding-left: 1.6em; margin: 8px 0; }
@@ -85,8 +87,8 @@
 <p>Within this class, we will see the following systems in this session and in the next one.</p>
 <ul>
 <li><p>The <strong>quantum Hall effect</strong>, which appears in two-dimensional electron gases and in graphene under a strong perpendicular magnetic field. It is the simplest topological state, and it is our starting point.</p></li>
-<li><p>The <strong>quantum anomalous Hall effect</strong>, which is the same physics without any external magnetic field, and which we will construct explicitly in Section <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#sec-3-10">3.10</a></p></li>
-<li><p><strong>Quantum spin Hall insulators</strong>, which are in practice two copies of a quantum Hall state related by time reversal and put together, as we will see in Section <a href="11-quantum-spin-hall-insulators.html#sec-3-11">3.11</a></p></li>
+<li><p>The <strong>quantum anomalous Hall effect</strong>, which is the same physics without any external magnetic field, and which we will construct explicitly in Section <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#sec-3-10">3.10</a>.</p></li>
+<li><p><strong>Quantum spin Hall insulators</strong>, which are in practice two copies of a quantum Hall state related by time reversal and put together, as we will see in Section <a href="11-quantum-spin-hall-insulators.html#sec-3-11">3.11</a>.</p></li>
 <li><p><strong>Topological superconductors</strong>, whose surface excitations are Majorana modes. They are the basis of one route to topological quantum computing, and we will come back to them in detail in session 5.</p></li>
 <li><p><strong>Topological semimetals</strong>, including Weyl semimetals, whose low-energy quasiparticles are Weyl fermions.</p></li>
 <li><p><strong>Topological Kondo insulators</strong>, which are the example given in the lecture this year of topology that survives in a strongly correlated many-body system, “and many others that do not fit on this slide.”</p></li>

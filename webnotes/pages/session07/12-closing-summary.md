@@ -1,6 +1,6 @@
 ## Closing summary {#sec-7-12 number="7.12"}
 
-- Strongly correlated matter, including quantum spin liquids and fractional Chern insulators, is the regime where the mean-field methods of sessions 1 to 6 have no order parameter to converge to, as we saw with [(7.1)](#eq-7-1) and in Section [7.1](#sec-7-1)
+- Strongly correlated matter, including quantum spin liquids and fractional Chern insulators, is the regime where the mean-field methods of sessions 1 to 6 have no order parameter to converge to, as we saw with [(7.1)](#eq-7-1) and in Section [7.1](#sec-7-1).
 
 - The **Jordan-Wigner transformation** [(7.2)](#eq-7-2) is an exact mapping between fermionic and spin-1/2 Hamiltonians, summarized as "spin equals fermion times string." It is the link between the fermionic language of sessions 1-5 and the spin language of sessions 6 and 8, and it is the reason why we can work in the spin representation for the rest of the session.
 

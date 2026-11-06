@@ -17,5 +17,5 @@ Figure [5.2](#fig:s05:fsgap) shows the three cases next to each other, in the B
 ::: notebookbox
 **Notebook check-in:** [`session5.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb), "Unconventional singlet superconducting orders" (Challenge), and "Gapped and nodal superconducting orders" (Core)
 
-Build a $\Delta(\mathbf k)$ that depends on momentum and vanishes along a line in the Brillouin zone, for example the d-wave form of section [5.13](#sec-5-13) below. Then check numerically with [(5.9)](#eq-5-9) that the gap closes exactly where the Fermi surface crosses this nodal line, which is different from the uniformly gapped case of section [5.9](#sec-5-9)
+Build a $\Delta(\mathbf k)$ that depends on momentum and vanishes along a line in the Brillouin zone, for example the d-wave form of section [5.13](#sec-5-13) below. Then check numerically with [(5.9)](#eq-5-9) that the gap closes exactly where the Fermi surface crosses this nodal line, which is different from the uniformly gapped case of section [5.9](#sec-5-9).
 :::

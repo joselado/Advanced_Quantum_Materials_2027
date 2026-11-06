@@ -36,6 +36,8 @@
   li { margin: 2px 0; }
   .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .cols.three { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  @media (max-width: 900px) { .cols.three { grid-template-columns: 1fr; } }
   .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
   .half h2 { margin-top: 14px; }
   .half ol { padding-left: 1.6em; margin: 8px 0; }
@@ -82,7 +84,7 @@
   <p class="crumb"><a href="index.html">Session 7. Quantum Many-Body Entanglement and Tensor Networks</a></p>
 <h1 id="sec-7-12"><span class="num">7.12</span> Closing summary</h1>
 <ul>
-<li><p>Strongly correlated matter, including quantum spin liquids and fractional Chern insulators, is the regime where the mean-field methods of sessions 1 to 6 have no order parameter to converge to, as we saw with <a href="01-two-regimes-of-many-body-physics.html#eq-7-1">(7.1)</a> and in Section <a href="01-two-regimes-of-many-body-physics.html#sec-7-1">7.1</a></p></li>
+<li><p>Strongly correlated matter, including quantum spin liquids and fractional Chern insulators, is the regime where the mean-field methods of sessions 1 to 6 have no order parameter to converge to, as we saw with <a href="01-two-regimes-of-many-body-physics.html#eq-7-1">(7.1)</a> and in Section <a href="01-two-regimes-of-many-body-physics.html#sec-7-1">7.1</a>.</p></li>
 <li><p>The <strong>Jordan-Wigner transformation</strong> <a href="02-fermions-spins-and-the-jordan-wigner-transformation.html#eq-7-2">(7.2)</a> is an exact mapping between fermionic and spin-1/2 Hamiltonians, summarized as “spin equals fermion times string.” It is the link between the fermionic language of sessions 1-5 and the spin language of sessions 6 and 8, and it is the reason why we can work in the spin representation for the rest of the session.</p></li>
 <li><p>The real obstruction to solving many-body Hamiltonians is <strong>storage</strong>, since a system of <span class="math inline">\(L\)</span> spins needs <span class="math inline">\(2^L\)</span> coefficients <a href="03-storing-the-wave-function-as-the-main-bottleneck.html#eq-7-4">(7.4)</a> to describe its wave function exactly.</p></li>
 <li><p>The <strong>matrix product state</strong> ansatz <a href="04-the-matrix-product-state-ansatz.html#eq-7-5">(7.5)</a> replaces these <span class="math inline">\(2^L\)</span> coefficients with <span class="math inline">\(O(LM^2)\)</span> parameters, so we give up exactness in exchange for an approximation that we control with the bond dimension <span class="math inline">\(M\)</span>.</p></li>

@@ -13,7 +13,7 @@ where $H_K$ is the **Kondo coupling**. To solve this problem exactly is hard. Ho
 $$|GS\rangle \sim \frac{1}{\sqrt2}\Big(|{\Uparrow\downarrow}\rangle -
 |{\Downarrow\uparrow}\rangle\Big),$$
 
-and the rest of the electron gas behaves as a Fermi sea without interactions. This is a good approximation to the many-body ground state. The resulting state has total spin zero and does not break time-reversal symmetry, so even if it has a real local moment, it is already a quantum magnet in the sense of Section [8.1](#sec-8-1)
+and the rest of the electron gas behaves as a Fermi sea without interactions. This is a good approximation to the many-body ground state. The resulting state has total spin zero and does not break time-reversal symmetry, so even if it has a real local moment, it is already a quantum magnet in the sense of Section [8.1](#sec-8-1).
 
 Let us now generalize this to a whole **lattice** of magnetic impurities, with one impurity per site, where each impurity is coupled to the same bath of conduction electrons,
 

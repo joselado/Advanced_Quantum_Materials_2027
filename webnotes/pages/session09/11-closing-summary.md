@@ -18,7 +18,7 @@
 
 - A vacancy in a topological superconductor or in a Chern insulator gives an in-gap mode only because of the bulk-boundary correspondence. This is a diagnostic for topology that a clean and fully gapped bulk spectrum alone cannot give (Section [9.8](#sec-9-8)).
 
-- The screening of a magnetic impurity in a quantum spin liquid uses directly the Abrikosov-fermion mean-field construction of session 8, and it has the same mathematics as the impurity in a metal of Section [9.6](#sec-9-6) The induced spin correlation [(9.11)](#eq-9-11) decays as a power law for the gapless spin-1/2 chain and exponentially for the gapped spin-1 chain. This gives a fully general diagnostic of gapped and gapless states from the impurity response alone.
+- The screening of a magnetic impurity in a quantum spin liquid uses directly the Abrikosov-fermion mean-field construction of session 8, and it has the same mathematics as the impurity in a metal of Section [9.6](#sec-9-6). The induced spin correlation [(9.11)](#eq-9-11) decays as a power law for the gapless spin-1/2 chain and exponentially for the gapped spin-1 chain. This gives a fully general diagnostic of gapped and gapless states from the impurity response alone.
 
 - Many impurities at the same time can break translational symmetry in the whole system, which gives rise to Anderson localization. In $d\geq3$ there is a real mobility edge, which we diagnose with the inverse participation ratio [(9.12)](#eq-9-12), and an Anderson insulator, which has no spectral gap but has a transport gap. In one dimension an arbitrarily weak disorder localizes every state, and the localization length diverges as the disorder strength goes to zero (Section [9.10](#sec-9-10)).
 

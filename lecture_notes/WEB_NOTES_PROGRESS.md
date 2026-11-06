@@ -1,15 +1,17 @@
 # Progress of the lecture notes as web pages
 
 The plan is `lecture_notes/WEB_NOTES_PLAN.md`. This file is the tracker that each session
-updates at its end, one line per phase and one per session. Last update 2026-11-06, phase 2, first half.
+updates at its end, one line per phase and one per session. Last update 2026-11-06, phase 2.
 
-Start here. The first half of phase 2 is done: the toolkit handles all ten sessions and the Markdown of
-sessions 1 and 3 to 10 is converted (session 2 is the pilot). The full build gives 156 pages, 0 errors, an empty
-pending list, and a second build writes nothing. What is left is the proofreading of the Markdown against the
-PDF, group by group, then the math check (`mathcheck/`), the notes column of the landing page and the link in
-the README. Read `webnotes/README.md` and the section "What phase 1 found" of the plan first. The Markdown of
-sessions 1 and 3 to 10 is still as converted, so a toolkit fix can still be applied with `--force`, but only
-until the first hand edit of a session.
+Start here. Phase 2 is done apart from one step: the lecturer opens the pages and says what to change.
+All ten sessions are converted and proofread against the .tex, and the Markdown in `webnotes/pages/` is now
+the master, with hand edits in it, so `convert.py --force` must not be used any more. The full build gives
+156 pages, 0 errors, an empty pending list, and the math check gives 2162 fragments with 0 errors
+(`python3 webnotes/build.py --math`). The proofreading found one fault class, the period lost after a
+Section link, 43 times. It is fixed in the pages and in `filters/tex2md.lua`. The landing page has the
+notes column, and the root README links the notes. Nothing is pushed yet. The next session starts phase 3,
+`texdiff.py` and the first web-only edits, after the lecturer has looked at the pages. One point for the
+lecturer: figure 3.3 (`s03f03_ssh`) shows panel (b) above (a), while the caption says "In front (a)".
 
 ## Phases
 
@@ -17,7 +19,7 @@ until the first hand edit of a session.
 |---|---|---|
 | 0 | Plan, tracker, prototype in the scratchpad, conversion test, decisions | done 2026-11-06 |
 | 1 | Pilot on session 2, convert once to Markdown, toolkit stage 1, link from the video pages | done 2026-11-06 |
-| 2 | Convert all ten sessions, cross-session links, course contents, math check | in progress, conversion done 2026-11-06 |
+| 2 | Convert all ten sessions, cross-session links, course contents, math check | done 2026-11-06 except the lecturer's look at the pages |
 | 3 | `texdiff` and `SYNC`, the checks on numbers and sources, first web-only edits | not started |
 | 4 | Quizzes of sessions 1 to 5, quiz renderer | not started |
 | 5 | Quizzes of sessions 6 to 10, try-it boxes, Colab and Binder links | not started |
@@ -77,3 +79,8 @@ honeycomb lattice.
   built (session 1: 16 sections, 3: 13, 4: 21, 5: 20, 6: 17, 7: 12, 8: 14, 9: 11, 10: 8, with the
   introductions), 0 errors, no pending reference, no `??`, a second build writes nothing. Nobody has edited the
   Markdown of these sessions yet.
+- 2026-11-06. Phase 2, toolkit part. `webnotes/mathcheck/` built (MathJax 3.2.2 in node, `build.py --math`),
+  2162 fragments of the 156 pages checked with 0 errors. Third column "Lecture notes" on the landing page,
+  link in the root `README.md`, notes links on the video and landscape pages of sessions 1 and 3 to 10.
+  Phase 2 stays in progress until the proofreading of the Markdown of the ten sessions is finished and the
+  lecturer has opened the pages.

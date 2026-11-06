@@ -1,0 +1,6 @@
+{
+  "name": "aqm-mathcheck",
+  "private": true,
+  "description": "Renders every math fragment of docs/notes/ with MathJax 3.2.2 and lists the errors",
+  "dependencies": { "mathjax-full": "3.2.2" }
+}

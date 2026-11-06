@@ -36,6 +36,8 @@
   li { margin: 2px 0; }
   .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .cols.three { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  @media (max-width: 900px) { .cols.three { grid-template-columns: 1fr; } }
   .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
   .half h2 { margin-top: 14px; }
   .half ol { padding-left: 1.6em; margin: 8px 0; }
@@ -90,7 +92,7 @@
 <p>Let us look at a concrete model. We take a tight-binding square lattice with a perpendicular magnetic field and cut it into a ribbon of finite width, which has translational invariance along the ribbon but is finite across it. When we diagonalize this ribbon, we find the structure described above. There are flat bulk bands similar to Landau levels, and there are dispersive edge branches that cross the gap, with one branch confined to each edge and propagating in only one direction. If we look at the low-energy region close to zero energy, the spacing between the flat bands approaches the equal spacing of a continuum two-dimensional electron gas in a magnetic field, so the tight-binding model reproduces the standard Landau problem in the appropriate limit. This computed band structure, with the bulk flat bands in green and the two edge branches that propagate in opposite directions, is shown on the slides but was only described qualitatively in the lecture. To reproduce it numerically is what the notebook box below asks you to do.</p>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session3.ipynb"><code>session3.ipynb</code></a>, “From electrons in a ribbon to the quantum Hall state” (Core), “The quantum Hall effect in graphene” (Core), and “Localization of the edge states in the quantum Hall effect” (Challenge)</p>
-<p>Build a square-lattice ribbon, and then a honeycomb-lattice ribbon, with a magnetic field and reproduce the figure described above, with flat Landau-level bulk bands and chiral edge branches. Check the propagation direction of the edge states at positive and at negative energy on each edge, which is the chirality argument of Section <a href="#sec-3-6">3.6</a> Then look at how the edge states localize in real space as a function of energy, and how this localization changes for a weaker field or a narrower ribbon.</p>
+<p>Build a square-lattice ribbon, and then a honeycomb-lattice ribbon, with a magnetic field and reproduce the figure described above, with flat Landau-level bulk bands and chiral edge branches. Check the propagation direction of the edge states at positive and at negative energy on each edge, which is the chirality argument of Section <a href="#sec-3-6">3.6</a>. Then look at how the edge states localize in real space as a function of energy, and how this localization changes for a weaker field or a narrower ribbon.</p>
 </div>
 
   <nav class="pager"><a href="05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html">3.5 The Berry curvature, and why the Hall conductivity is an integer</a><a href="07-what-topology-means-for-a-hamiltonian-and-the-bulk-boundary-correspondence.html">3.7 What topology means for a Hamiltonian, and the bulk-boundary correspondence</a></nav>

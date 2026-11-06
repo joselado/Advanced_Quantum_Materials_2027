@@ -36,6 +36,8 @@
   li { margin: 2px 0; }
   .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .cols.three { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  @media (max-width: 900px) { .cols.three { grid-template-columns: 1fr; } }
   .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
   .half h2 { margin-top: 14px; }
   .half ol { padding-left: 1.6em; margin: 8px 0; }
@@ -84,7 +86,7 @@
 <p>We can now state the problem that this whole session leads to. The Hamiltonians that we are interested in have the generic form</p>
 <p><span id="eq-1-5" class="eq"><span class="math display">\[H = \sum_{ij} t_{ij}\, c_i^\dagger c_j \;+\; \sum_{ijkl} V_{ijkl}\, c_i^\dagger c_j^\dagger c_k c_l, \tag{1.5}\]</span></span></p>
 <p>which is a free part, single-particle and exactly solvable, plus a quartic interaction. The interaction itself can come from the plain electrostatic Coulomb repulsion, or from an effective interaction mediated by some other quasiparticle, such as phonons, magnons or plasmons, which can make the total interaction attractive instead of repulsive. We will treat these interactions in a phenomenological way, as given effective models, and we will not derive them microscopically from first principles.</p>
-<p>To solve <a href="#eq-1-5">(1.5)</a> exactly is in general impossible, for the exponential reason of Section <a href="09-where-the-two-formalisms-differ-and-the-exponential-growth-of-the-many-body-problem.html#sec-1-9">1.9</a> <strong>Mean-field theory</strong> is the tool that still allows us to obtain systematic solutions from it, even if they are approximate, and it can predict a wide range of symmetry-broken states. In this session we will study three of them, which are the same three cases that we classified in Section <a href="11-spontaneous-symmetry-breaking-and-why-a-symmetric-hamiltonian-can-have-an-asymmetric-ground-state.html#sec-1-11">1.11</a></p>
+<p>To solve <a href="#eq-1-5">(1.5)</a> exactly is in general impossible, for the exponential reason of Section <a href="09-where-the-two-formalisms-differ-and-the-exponential-growth-of-the-many-body-problem.html#sec-1-9">1.9</a>. <strong>Mean-field theory</strong> is the tool that still allows us to obtain systematic solutions from it, even if they are approximate, and it can predict a wide range of symmetry-broken states. In this session we will study three of them, which are the same three cases that we classified in Section <a href="11-spontaneous-symmetry-breaking-and-why-a-symmetric-hamiltonian-can-have-an-asymmetric-ground-state.html#sec-1-11">1.11</a>.</p>
 <ol type="1">
 <li><p><strong>Broken time-reversal symmetry</strong>, which is magnetism. If we run the movie of the system backward, it looks different from the original.</p></li>
 <li><p><strong>Broken (lattice translational) symmetry</strong>, which is the charge density wave. A Hamiltonian that is the same at every site at the start ends up with charge on some sites and not on others.</p></li>

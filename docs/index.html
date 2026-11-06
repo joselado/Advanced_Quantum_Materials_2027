@@ -36,6 +36,8 @@
   li { margin: 2px 0; }
   .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .cols.three { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  @media (max-width: 900px) { .cols.three { grid-template-columns: 1fr; } }
   .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
   .half h2 { margin-top: 14px; }
   .half ol { padding-left: 1.6em; margin: 8px 0; }
@@ -49,8 +51,8 @@
 <main>
   <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Course repository on GitHub</a></p>
   <h1>Advanced Quantum Materials 2027</h1>
-  <p>The ten lectures of the course are here in two versions, with the same recorded voice. The video lectures write every step of the calculations. The landscape lectures show the same physics with less on the screen. Each session has its own page, with the learning outcomes, the contents and the simulations of the lecture.</p>
-  <div class="cols">
+  <p>The ten lectures of the course are here as two recorded versions with the same voice, and as written notes. The video lectures write every step of the calculations. The landscape lectures show the same physics with less on the screen. Each session has its own page, with the learning outcomes, the contents and the simulations of the lecture. The lecture notes give one web page per section, with the same equation numbers as the PDF, so the whole course can be studied from this site.</p>
+  <div class="cols three">
   <section class="half" id="lectures">
     <h2>Video lectures</h2>
     <p class="note">The prerecorded lectures with slides that follow the voice. Each step of a calculation is written when it is said. Next to the formulas there is a schematic or a plot, computed with the codes of the course.</p>
@@ -82,6 +84,23 @@
       <li value="9"><a href="landscape/session9.html">Excitations and defects in quantum materials</a></li>
       <li value="10"><a href="landscape/session10.html">Machine learning quantum materials</a></li>
     </ol>
+  </section>
+  <section class="half" id="notes">
+    <h2>Lecture notes</h2>
+    <p class="note">The written version of the lectures, with the equations of the PDF. Each session is split in pages of one section, and the boxes point to the notebook of the session.</p>
+    <ol>
+      <li value="1"><a href="notes/session1/index.html">Second quantization, mean field and spontaneous symmetry breaking</a></li>
+      <li value="2"><a href="notes/session2/index.html">Symmetries, band structure theory and effective models</a></li>
+      <li value="3"><a href="notes/session3/index.html">Topological band structure theory</a></li>
+      <li value="4"><a href="notes/session4/index.html">Electrons in magnetic fields, the quantum Hall effect and Landau levels</a></li>
+      <li value="5"><a href="notes/session5/index.html">Superconductivity, Nambu representation and Majorana physics</a></li>
+      <li value="6"><a href="notes/session6/index.html">Classical magnetism and magnons</a></li>
+      <li value="7"><a href="notes/session7/index.html">Quantum entanglement and tensor networks</a></li>
+      <li value="8"><a href="notes/session8/index.html">Quantum magnetism, spinons and Kondo physics</a></li>
+      <li value="9"><a href="notes/session9/index.html">Excitations and defects in quantum materials</a></li>
+      <li value="10"><a href="notes/session10/index.html">Machine learning quantum materials</a></li>
+    </ol>
+    <p class="note"><a href="notes/index.html">Contents of the notes</a> · <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/lecture_notes/main.pdf">PDF</a></p>
   </section>
   </div>
   <section id="versions">

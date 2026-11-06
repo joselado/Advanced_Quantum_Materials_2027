@@ -7,5 +7,5 @@ k)|$ evaluated on that Fermi surface. Nothing in this argument depends on the de
 ::: notebookbox
 **Notebook check-in:** [`session5.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb), "Superconductivity, full spectral function and electron spectral function" (Core), and "The impact of superconductivity in an electronic structure" (Challenge)
 
-Reproduce the square-lattice example above. Plot the spectral function of the electron sector with $\Delta = 0$, where there are two crossing copies, and then with $\Delta \ne 0$, where a gap of size $2|\Delta|$ opens at the crossing, as in eq. [5.9](#eq-5-9) Repeat this for the triangular-lattice dispersion and check that the gap opens regardless of where you put the chemical potential.
+Reproduce the square-lattice example above. Plot the spectral function of the electron sector with $\Delta = 0$, where there are two crossing copies, and then with $\Delta \ne 0$, where a gap of size $2|\Delta|$ opens at the crossing, as in eq. [5.9](#eq-5-9). Repeat this for the triangular-lattice dispersion and check that the gap opens regardless of where you put the chemical potential.
 :::

@@ -36,6 +36,8 @@
   li { margin: 2px 0; }
   .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .cols.three { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  @media (max-width: 900px) { .cols.three { grid-template-columns: 1fr; } }
   .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
   .half h2 { margin-top: 14px; }
   .half ol { padding-left: 1.6em; margin: 8px 0; }
@@ -96,7 +98,7 @@ k\)</span> goes around the Fermi surface. Both <a href="08-the-nambu-spinor-and-
 </figure>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb"><code>session5.ipynb</code></a>, “Trivial and topological superconducting order parameters, bulk spectra” (Core), and “...edge spectra” (Core)</p>
-<p>Build the s-wave and chiral p-wave BdG Hamiltonians next to each other, and check that their bulk spectra look similar, since both are gapped with a comparable gap size. Then move to a ribbon geometry and check that only the p-wave case has gapless chiral edge states, with branches of opposite velocity on the two edges of the ribbon, which is the distinction driven by the Chern number of section <a href="#sec-5-14">5.14</a></p>
+<p>Build the s-wave and chiral p-wave BdG Hamiltonians next to each other, and check that their bulk spectra look similar, since both are gapped with a comparable gap size. Then move to a ribbon geometry and check that only the p-wave case has gapless chiral edge states, with branches of opposite velocity on the two edges of the ribbon, which is the distinction driven by the Chern number of section <a href="#sec-5-14">5.14</a>.</p>
 </div>
 
   <nav class="pager"><a href="13-nodal-singlet-order-d-wave-pairing-in-the-cuprates-and-the-angular-momentum-expansion.html">5.13 Nodal singlet order, d-wave pairing in the cuprates and the angular-momentum expansion</a><a href="15-majorana-bound-states-and-how-to-split-an-electron-into-two-majoranas.html">5.15 Majorana bound states and how to split an electron into two Majoranas</a></nav>

@@ -36,6 +36,8 @@
   li { margin: 2px 0; }
   .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .cols.three { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  @media (max-width: 900px) { .cols.three { grid-template-columns: 1fr; } }
   .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
   .half h2 { margin-top: 14px; }
   .half ol { padding-left: 1.6em; margin: 8px 0; }
@@ -98,7 +100,7 @@
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb"><code>session6.ipynb</code></a>, “(Exercise) Magnetism in flat bands”</p>
 <p>In principle, a flat band has a divergent density of states at <span class="math inline">\(E_F\)</span>, so the Stoner product <span class="math inline">\(U D(E_F)\)</span> in <a href="#eq-6-3">(6.3)</a> is above the threshold for practically any <span class="math inline">\(U&gt;0\)</span>. This exercise is not narrated in the transcript, but it is the natural numerical extension of Section <a href="#sec-6-6">6.6</a>, since a flat-band system is the case where it is easiest for magnetism to appear.</p>
 </div>
-<p>One important consequence ends this section and starts the next one. From <a href="#eq-6-3">(6.3)</a>, magnetism in general needs <span class="math inline">\(U D(E_F) \gtrsim 1\)</span>, and for a reasonable bandwidth this usually means that <span class="math inline">\(U\)</span> has to be comparable to <span class="math inline">\(t\)</span> or larger, and not smaller. However, mean-field theory itself is only reliable for <span class="math inline">\(U \ll t\)</span>, as we saw in Section <a href="03-the-hubbard-model-and-mean-field-magnetism-revisited.html#sec-6-3">6.3</a> So the regime where magnetism appears is, in general, the same regime where the method that we have been using stops working. We need a different approach for <span class="math inline">\(U \gg t\)</span>, and we construct it in the rest of this session.</p>
+<p>One important consequence ends this section and starts the next one. From <a href="#eq-6-3">(6.3)</a>, magnetism in general needs <span class="math inline">\(U D(E_F) \gtrsim 1\)</span>, and for a reasonable bandwidth this usually means that <span class="math inline">\(U\)</span> has to be comparable to <span class="math inline">\(t\)</span> or larger, and not smaller. However, mean-field theory itself is only reliable for <span class="math inline">\(U \ll t\)</span>, as we saw in Section <a href="03-the-hubbard-model-and-mean-field-magnetism-revisited.html#sec-6-3">6.3</a>. So the regime where magnetism appears is, in general, the same regime where the method that we have been using stops working. We need a different approach for <span class="math inline">\(U \gg t\)</span>, and we construct it in the rest of this session.</p>
 
   <nav class="pager"><a href="05-competition-between-the-ferromagnet-and-the-antiferromagnet.html">6.5 Competition between the ferromagnet and the antiferromagnet</a><a href="07-the-strongly-localized-limit-where-mean-field-breaks-down.html">6.7 The strongly localized limit, where mean field breaks down</a></nav>
 

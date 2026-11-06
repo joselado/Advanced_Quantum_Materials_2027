@@ -1,6 +1,6 @@
 """Renders the web Markdown master in webnotes/pages/ to docs/notes/ and runs the checks.
 
-    python3 webnotes/build.py [--session N] [--serve] [--check-only]
+    python3 webnotes/build.py [--session N] [--serve] [--check-only] [--math]
 
 Two passes. The first reads every page of every converted session and writes labels.json, the map from
 each anchor (section, numbered equation, figure) to the page that holds it. The second renders each page
@@ -240,15 +240,27 @@ def build(only=None):
     print(f'{len(outputs)} pages, {written} written, {nfig} figures converted, labels.json has {len(anchors)} anchors')
 
 
+def mathcheck():
+    """Runs mathcheck/check.js on docs/notes/. Skipped with a warning when node or its packages are missing."""
+    d = os.path.join(HERE, 'mathcheck')
+    if not shutil.which('node') or not os.path.isdir(os.path.join(d, 'node_modules', 'mathjax-full')):
+        print('math check skipped: needs node and `npm install` in webnotes/mathcheck/')
+        return True
+    return subprocess.run(['node', os.path.join(d, 'check.js'), os.path.join(DOCS, 'notes')]).returncode == 0
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('--session', type=int, help='build the pages of this session only')
     ap.add_argument('--serve', action='store_true', help='serve docs/ on localhost:8000 after the build')
     ap.add_argument('--check-only', action='store_true', help='run the checks on docs/notes/ without building')
+    ap.add_argument('--math', action='store_true', help='also render every math fragment with MathJax (mathcheck/)')
     a = ap.parse_args()
     if not a.check_only:
         build(a.session)
     ok = check.run(DOCS, HERE)
+    if a.math:
+        ok = mathcheck() and ok
     if a.serve:
         print('serving docs/ at http://localhost:8000/notes/index.html')
         os.chdir(DOCS)

@@ -2,7 +2,7 @@
 
 This toolkit builds the lecture notes as web pages in `docs/notes/`. The plan is
 `lecture_notes/WEB_NOTES_PLAN.md` and the tracker is `lecture_notes/WEB_NOTES_PROGRESS.md`. It needs
-pandoc 3, python3 and `pdftocairo`, and nothing else.
+pandoc 3, python3 and `pdftocairo`. The math check also needs node, as we will now see.
 
 ## How to run it
 
@@ -15,6 +15,31 @@ python3 webnotes/build.py
 The keyword `--session N` builds only the pages of one session, `--check-only` runs the checks on the
 existing `docs/notes/`, and `--serve` serves `docs/` on `localhost:8000` after the build. The build is
 idempotent, so a second run changes nothing in `docs/`.
+
+## The math check
+
+The pages render the math in the browser with MathJax 3.2.2. The math check renders every fragment of
+`docs/notes/` with the same version and the same TeX configuration, in node, and lists each fragment that
+gives an error, with its page and its text. It needs node and one local package, installed once with the
+command below. The packages stay in `webnotes/mathcheck/node_modules/`, which git ignores.
+
+```
+cd webnotes/mathcheck && npm install
+```
+
+After a build we run it with the command below, which is the same as `node webnotes/mathcheck/check.js`
+plus the other checks. Without node or without the package, `build.py` skips the math check and says so.
+
+```
+python3 webnotes/build.py --check-only --math
+```
+
+The check does not load the `noundefined` package of the page, so an unknown macro is an error here, while
+on the page it would show in red. A macro that is missing is fixed in `MATHJAX` of `template.py`, and a
+mistake in the TeX of a fragment is fixed in the Markdown of the page. KaTeX is not checked, since the pages
+use only MathJax.
+
+## Converting a session
 
 The conversion of a session from the LaTeX is done once, with the command below. It writes the Markdown of
 the session in `pages/sessionNN/`, its frozen list of pages in `manifest/sessionNN.json` and its line in
@@ -55,4 +80,5 @@ they do not move when the file is edited.
 - `labels.json`, the map from anchor to page, written by the first pass of the build.
 - `pages/`, `manifest/`, `SYNC`, the Markdown master, the frozen URLs and the commit of the `.tex` each
   session was last synced to.
+- `mathcheck/check.js`, `mathcheck/package.json`, the math check above.
 - `widgets/notes.js`, the shared script of the pages, copied to `docs/notes/notes.js`.

@@ -49,6 +49,7 @@ The lectures one by one
 ## Lecture notes
 Lecture notes covering the ten topics of the course, in `lecture_notes` (LaTeX sources in `lecture_notes/src`)
 - [Lecture notes (PDF)](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/lecture_notes/main.pdf)
+- [Lecture notes as web pages](https://joselado.github.io/Advanced_Quantum_Materials_2027/notes/index.html), one page per section, with the same equation numbers as the PDF
 
 
 

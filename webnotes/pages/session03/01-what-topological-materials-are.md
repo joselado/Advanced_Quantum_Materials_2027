@@ -6,9 +6,9 @@ Within this class, we will see the following systems in this session and in the 
 
 - The **quantum Hall effect**, which appears in two-dimensional electron gases and in graphene under a strong perpendicular magnetic field. It is the simplest topological state, and it is our starting point.
 
-- The **quantum anomalous Hall effect**, which is the same physics without any external magnetic field, and which we will construct explicitly in Section [3.10](#sec-3-10)
+- The **quantum anomalous Hall effect**, which is the same physics without any external magnetic field, and which we will construct explicitly in Section [3.10](#sec-3-10).
 
-- **Quantum spin Hall insulators**, which are in practice two copies of a quantum Hall state related by time reversal and put together, as we will see in Section [3.11](#sec-3-11)
+- **Quantum spin Hall insulators**, which are in practice two copies of a quantum Hall state related by time reversal and put together, as we will see in Section [3.11](#sec-3-11).
 
 - **Topological superconductors**, whose surface excitations are Majorana modes. They are the basis of one route to topological quantum computing, and we will come back to them in detail in session 5.
 

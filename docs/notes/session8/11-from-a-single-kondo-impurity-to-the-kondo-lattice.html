@@ -36,6 +36,8 @@
   li { margin: 2px 0; }
   .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .cols.three { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  @media (max-width: 900px) { .cols.three { grid-template-columns: 1fr; } }
   .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
   .half h2 { margin-top: 14px; }
   .half ol { padding-left: 1.6em; margin: 8px 0; }
@@ -89,7 +91,7 @@ c_{0\alpha}\Big)\cdot \mathbf S, \tag{8.17}\]</span></span></p>
 <p>where <span class="math inline">\(H_K\)</span> is the <strong>Kondo coupling</strong>. To solve this problem exactly is hard. However, we can describe the ground state in a simple way, even without the full solution. The spin of the impurity forms a singlet, which has the same structure as <a href="03-two-minimal-dimers-a-classical-order-parameter-and-a-quantum-singlet.html#eq-8-3">(8.3)</a>, with an effective conduction electron close to it,</p>
 <p><span class="math display">\[|GS\rangle \sim \frac{1}{\sqrt2}\Big(|{\Uparrow\downarrow}\rangle -
 |{\Downarrow\uparrow}\rangle\Big),\]</span></p>
-<p>and the rest of the electron gas behaves as a Fermi sea without interactions. This is a good approximation to the many-body ground state. The resulting state has total spin zero and does not break time-reversal symmetry, so even if it has a real local moment, it is already a quantum magnet in the sense of Section <a href="01-two-classes-of-magnets-and-where-we-find-them.html#sec-8-1">8.1</a></p>
+<p>and the rest of the electron gas behaves as a Fermi sea without interactions. This is a good approximation to the many-body ground state. The resulting state has total spin zero and does not break time-reversal symmetry, so even if it has a real local moment, it is already a quantum magnet in the sense of Section <a href="01-two-classes-of-magnets-and-where-we-find-them.html#sec-8-1">8.1</a>.</p>
 <p>Let us now generalize this to a whole <strong>lattice</strong> of magnetic impurities, with one impurity per site, where each impurity is coupled to the same bath of conduction electrons,</p>
 <p><span id="eq-8-18" class="eq"><span class="math display">\[H = -t\sum_{\langle ij\rangle,\sigma}\Big(c^\dagger_{i\sigma}c_{j\sigma} + \text{h.c.}\Big) +
 J_K\sum_{j,\alpha\beta}\Big(c^\dagger_{j\beta}\,\boldsymbol\sigma_{\beta\alpha}\,c_{j\alpha}\Big)\cdot

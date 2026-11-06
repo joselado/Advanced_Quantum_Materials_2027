@@ -60,6 +60,8 @@ STYLE = """
   li { margin: 2px 0; }
   .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .cols.three { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  @media (max-width: 900px) { .cols.three { grid-template-columns: 1fr; } }
   .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
   .half h2 { margin-top: 14px; }
   .half ol { padding-left: 1.6em; margin: 8px 0; }
@@ -160,11 +162,12 @@ def session_page(fmt, sessions, s):
 
 def landing(sessions):
     b = '  <h1>Advanced Quantum Materials 2027</h1>\n'
-    b += ('  <p>The ten lectures of the course are here in two versions, with the same recorded voice. The video '
-          'lectures write every step of the calculations. The landscape lectures show the same physics with less '
-          'on the screen. Each session has its own page, with the learning outcomes, the contents and the '
-          'simulations of the lecture.</p>\n')
-    b += '  <div class="cols">\n'
+    b += ('  <p>The ten lectures of the course are here as two recorded versions with the same voice, and as written '
+          'notes. The video lectures write every step of the calculations. The landscape lectures show the same '
+          'physics with less on the screen. Each session has its own page, with the learning outcomes, the '
+          'contents and the simulations of the lecture. The lecture notes give one web page per section, with '
+          'the same equation numbers as the PDF, so the whole course can be studied from this site.</p>\n')
+    b += '  <div class="cols three">\n'
     for fmt, F in FORMATS.items():
         b += f'  <section class="half" id="{fmt}">\n    <h2>{F["name"]}</h2>\n    <p class="note">{F["blurb"]}</p>\n    <ol>\n'
         for s in sessions:
@@ -174,6 +177,17 @@ def landing(sessions):
             else:
                 b += f'      <li value="{n}"><a class="soon" href="{fmt}/session{n}.html">{esc(s["title"])}</a> <span class="soon">(not ready yet)</span></li>\n'
         b += '    </ol>\n  </section>\n'
+    b += ('  <section class="half" id="notes">\n    <h2>Lecture notes</h2>\n'
+          '    <p class="note">The written version of the lectures, with the equations of the PDF. Each session is split '
+          'in pages of one section, and the boxes point to the notebook of the session.</p>\n    <ol>\n')
+    for s in sessions:
+        n = s['session']
+        if has_notes(n):
+            b += f'      <li value="{n}"><a href="notes/session{n}/index.html">{esc(s["title"])}</a></li>\n'
+        else:
+            b += f'      <li value="{n}"><span class="soon">{esc(s["title"])} (not ready yet)</span></li>\n'
+    b += ('    </ol>\n    <p class="note"><a href="notes/index.html">Contents of the notes</a> · '
+          f'<a href="{REPO}/blob/main/lecture_notes/main.pdf">PDF</a></p>\n  </section>\n')
     b += '  </div>\n'
     b += ('  <section id="versions">\n    <h2>The rules each landscape film follows</h2>\n'
           '    <p class="note">The way we make the films changes from one film to the next. The chart shows which '

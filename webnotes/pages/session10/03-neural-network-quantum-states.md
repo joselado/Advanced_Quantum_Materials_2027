@@ -1,6 +1,6 @@
 ## Neural network quantum states {#sec-10-3 number="10.3"}
 
-In this section we meet neural network quantum states (NNQS) for the first time in the course, and we treat them directly with the machine-learning methods of Section [10.2](#sec-10-2) The idea in one sentence is that a neural network can take the place of the exponentially many coefficients of a many-body wavefunction. In this way it has its own place in the hierarchy of variational many-body states that this course has been building since the matrix product states of session 7. In this section we make this idea precise. We will see what the network computes, which loss function is used to train it, and how it is related to the ansätze that we already know.
+In this section we meet neural network quantum states (NNQS) for the first time in the course, and we treat them directly with the machine-learning methods of Section [10.2](#sec-10-2). The idea in one sentence is that a neural network can take the place of the exponentially many coefficients of a many-body wavefunction. In this way it has its own place in the hierarchy of variational many-body states that this course has been building since the matrix product states of session 7. In this section we make this idea precise. We will see what the network computes, which loss function is used to train it, and how it is related to the ansätze that we already know.
 
 We start from a difficulty that we have met before, most recently in the discussion of entanglement growth in session 7. A wavefunction for $L$ spins,
 

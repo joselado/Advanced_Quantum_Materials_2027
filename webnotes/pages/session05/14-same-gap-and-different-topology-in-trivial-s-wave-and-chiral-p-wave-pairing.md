@@ -19,5 +19,5 @@ This has the consequence that we expect from the bulk-boundary correspondence. I
 ::: notebookbox
 **Notebook check-in:** [`session5.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb), "Trivial and topological superconducting order parameters, bulk spectra" (Core), and "\...edge spectra" (Core)
 
-Build the s-wave and chiral p-wave BdG Hamiltonians next to each other, and check that their bulk spectra look similar, since both are gapped with a comparable gap size. Then move to a ribbon geometry and check that only the p-wave case has gapless chiral edge states, with branches of opposite velocity on the two edges of the ribbon, which is the distinction driven by the Chern number of section [5.14](#sec-5-14)
+Build the s-wave and chiral p-wave BdG Hamiltonians next to each other, and check that their bulk spectra look similar, since both are gapped with a comparable gap size. Then move to a ribbon geometry and check that only the p-wave case has gapless chiral edge states, with branches of opposite velocity on the two edges of the ribbon, which is the distinction driven by the Chern number of section [5.14](#sec-5-14).
 :::

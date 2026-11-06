@@ -36,6 +36,8 @@
   li { margin: 2px 0; }
   .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .cols.three { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  @media (max-width: 900px) { .cols.three { grid-template-columns: 1fr; } }
   .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
   .half h2 { margin-top: 14px; }
   .half ol { padding-left: 1.6em; margin: 8px 0; }
@@ -93,7 +95,7 @@
 <p>This is also where the lecture of this year ends. In contrast with some previous editions of this course, the recording of this year stops after MERA and PEPS, and it does not continue with neural network quantum states. The single mention in Section <a href="03-storing-the-wave-function-as-the-main-bottleneck.html#sec-7-3">7.3</a> is all that we say about this topic in this session. The tensor-network methods built in Sections <a href="04-the-matrix-product-state-ansatz.html#sec-7-4">7.4</a> to <a href="#sec-7-11">7.11</a> are still important, since in session 10 we will use the same MPS, MERA and PEPS architectures directly as machine-learning classifiers, and we will come back to neural network quantum states in detail, from the point of view of machine learning.</p>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb"><code>session7.ipynb</code></a>, “The entanglement entropy as a signal for phase transitions” (Challenge)</p>
-<p>In this exercise you follow the entanglement entropy of the ground state of the transverse-field Ising chain while you change the transverse field across its quantum critical point, using the MPS methods of <code>dmrgpy</code>. Away from criticality you should see the area-law saturation of Section <a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#sec-7-8">7.8</a> Close to the transition, you should see that the entropy does not saturate, as predicted by <a href="#eq-7-12">(7.12)</a>. The quiz also asks which regime is the hardest for MPS, and this question asks you to connect back to the reason why MERA exists.</p>
+<p>In this exercise you follow the entanglement entropy of the ground state of the transverse-field Ising chain while you change the transverse field across its quantum critical point, using the MPS methods of <code>dmrgpy</code>. Away from criticality you should see the area-law saturation of Section <a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#sec-7-8">7.8</a>. Close to the transition, you should see that the entropy does not saturate, as predicted by <a href="#eq-7-12">(7.12)</a>. The quiz also asks which regime is the hardest for MPS, and this question asks you to connect back to the reason why MERA exists.</p>
 </div>
 
   <nav class="pager"><a href="10-the-variational-principle-and-dmrg-for-the-ground-state.html">7.10 The variational principle and DMRG for the ground state</a><a href="12-closing-summary.html">7.12 Closing summary</a></nav>

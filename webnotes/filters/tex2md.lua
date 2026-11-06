@@ -156,10 +156,14 @@ end
 
 -- a number token of a chain: "4.17", "4.17,", "4.17-4.18", "4.17)." ; kind is 'sec' or 'eq'
 local function link_numtoken(text, kind)
-  local c1, k1, dash, c2, k2, rest = text:match('^(%d+)%.(%d+)([-\u{2013}]?)(%d*)%.?(%d*)(.*)$')
+  -- a range "4.17-4.18" first, then a single number; a single pattern with an optional "%.?" swallowed the
+  -- sentence-final period of "Section 6.5."
+  local c1, k1, dash, c2, k2, rest = text:match('^(%d+)%.(%d+)([-\u{2013}])(%d+)%.(%d+)(.*)$')
+  if not c1 then
+    c1, k1, rest = text:match('^(%d+)%.(%d+)(.*)$')
+    dash, c2, k2 = '', '', ''
+  end
   if not c1 then return nil end
-  if dash == '' and (c2 ~= '' or k2 ~= '') then return nil end
-  if dash ~= '' and (c2 == '' or k2 == '') then return nil end
   if not (rest == '' or rest:match('^[%.,;:%)]+$')) then return nil end
   local max = (kind == 'sec') and secmax or eqmax
   local function ok(c, k) c, k = tonumber(c), tonumber(k); return max[c] and k >= 1 and k <= max[c] end

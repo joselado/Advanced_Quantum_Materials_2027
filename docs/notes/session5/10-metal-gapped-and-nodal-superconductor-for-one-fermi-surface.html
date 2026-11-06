@@ -36,6 +36,8 @@
   li { margin: 2px 0; }
   .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .cols.three { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  @media (max-width: 900px) { .cols.three { grid-template-columns: 1fr; } }
   .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
   .half h2 { margin-top: 14px; }
   .half ol { padding-left: 1.6em; margin: 8px 0; }
@@ -96,7 +98,7 @@ k)^2+|\Delta(\mathbf k)|^2}\)</span> as we go once around it. Since <span class=
 <p>Figure <a href="#fig:s05:fsgap">5.2</a> shows the three cases next to each other, in the Brillouin zone and also as the gap along the Fermi surface itself, which is the only place where the gap can be read at all. The high-temperature cuprate superconductors are the standard example of scenario 3 in real materials. They are real superconductors, but their gap function has nodes, so parts of their Fermi surface stay gapless even in the superconducting state. This division into three cases holds for any lattice geometry, and the lecture shows it explicitly for the Fermi surfaces of both the square and the triangular lattice.</p>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb"><code>session5.ipynb</code></a>, “Unconventional singlet superconducting orders” (Challenge), and “Gapped and nodal superconducting orders” (Core)</p>
-<p>Build a <span class="math inline">\(\Delta(\mathbf k)\)</span> that depends on momentum and vanishes along a line in the Brillouin zone, for example the d-wave form of section <a href="13-nodal-singlet-order-d-wave-pairing-in-the-cuprates-and-the-angular-momentum-expansion.html#sec-5-13">5.13</a> below. Then check numerically with <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#eq-5-9">(5.9)</a> that the gap closes exactly where the Fermi surface crosses this nodal line, which is different from the uniformly gapped case of section <a href="09-an-example-of-a-gap-that-opens-independently-of-the-dispersion.html#sec-5-9">5.9</a></p>
+<p>Build a <span class="math inline">\(\Delta(\mathbf k)\)</span> that depends on momentum and vanishes along a line in the Brillouin zone, for example the d-wave form of section <a href="13-nodal-singlet-order-d-wave-pairing-in-the-cuprates-and-the-angular-momentum-expansion.html#sec-5-13">5.13</a> below. Then check numerically with <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#eq-5-9">(5.9)</a> that the gap closes exactly where the Fermi surface crosses this nodal line, which is different from the uniformly gapped case of section <a href="09-an-example-of-a-gap-that-opens-independently-of-the-dispersion.html#sec-5-9">5.9</a>.</p>
 </div>
 
   <nav class="pager"><a href="09-an-example-of-a-gap-that-opens-independently-of-the-dispersion.html">5.9 An example of a gap that opens independently of the dispersion</a><a href="11-the-general-pairing-hamiltonian-and-its-symmetry-classification.html">5.11 The general pairing Hamiltonian and its symmetry classification</a></nav>

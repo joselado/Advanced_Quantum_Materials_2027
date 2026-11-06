@@ -308,7 +308,7 @@ boxes.
 
 The toolkit lives in `webnotes/` at the root of the repository, not in `docs/`, since `docs/`
 is served. It depends on pandoc 3, python3, `pdftocairo` from poppler, and git. The math check
-needs node with `katex` and `mathjax-full` installed in `webnotes/mathcheck/` by `npm install`,
+needs node with `mathjax-full` (KaTeX was dropped, the pages use MathJax only) installed in `webnotes/mathcheck/` by `npm install`,
 and it is skipped with a warning when node or the packages are missing. It is built in stages,
 one per phase, and the first stage is the smallest thing that builds the pages of one session in
 one command.
@@ -333,7 +333,7 @@ webnotes/
   widgets/               notes.js, the Pyodide loader, precompute.py and its JSON data
   check.py               dangling anchors, missing images, "??", numbers used twice, pages
                          changed outside docs/notes/, pages in docs/notes/ with no source
-  mathcheck/check.js     every math fragment through MathJax and KaTeX, with package.json
+  mathcheck/check.js     every math fragment through MathJax 3.2.2, with package.json
   texdiff.py             git diff of the .tex of a session since its commit in SYNC
   SYNC                   one line per session, the commit of lecture_notes/src its Markdown
                          was last brought in line with
@@ -497,6 +497,18 @@ The conversion of the other nine sessions needed these changes to the toolkit.
 - The count of the equation numbers against `main.pdf` is the same as the sequence of `\tag` in the Markdown
   for all ten sessions. The right-hand numbers that `pdftotext` finds also contain in-text numbers, so the
   comparison is that the `\tag` sequence is a subsequence of them.
+
+## What phase 2 found, toolkit part, 2026-11-06
+
+- `webnotes/mathcheck/check.js` reads every `<span class="math">` of `docs/notes/`, and renders it with
+  `mathjax-full` 3.2.2 and the TeX packages of the `tex-chtml` bundle, without `noundefined`, so an unknown
+  macro is an error. A test with a bad macro is reported with its page and text. `build.py --math` runs it
+  after the checks, and skips it with a warning when node or `npm install` is missing.
+- Result on the 156 pages of the ten converted sessions: 2162 fragments, 0 errors. No change of the
+  MathJax configuration of `template.py` was needed.
+- The landing page has a third column, "Lecture notes", with the ten sessions and the link to the contents
+  and the PDF, and the root `README.md` links the web notes. The video and landscape pages got the link
+  "Notes of this session" for sessions 1 and 3 to 10.
 
 ## Decisions taken on 2026-11-06
 

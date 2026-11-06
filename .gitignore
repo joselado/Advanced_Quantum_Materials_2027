@@ -37,3 +37,6 @@ transcripts/
 
 # Python bytecode of the Blender figure scripts
 __pycache__/
+
+# MathJax check of the web notes
+webnotes/mathcheck/node_modules/

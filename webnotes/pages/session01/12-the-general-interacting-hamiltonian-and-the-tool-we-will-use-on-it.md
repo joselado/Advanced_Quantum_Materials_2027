@@ -6,7 +6,7 @@ $$H = \sum_{ij} t_{ij}\, c_i^\dagger c_j \;+\; \sum_{ijkl} V_{ijkl}\, c_i^\dagge
 
 which is a free part, single-particle and exactly solvable, plus a quartic interaction. The interaction itself can come from the plain electrostatic Coulomb repulsion, or from an effective interaction mediated by some other quasiparticle, such as phonons, magnons or plasmons, which can make the total interaction attractive instead of repulsive. We will treat these interactions in a phenomenological way, as given effective models, and we will not derive them microscopically from first principles.
 
-To solve [(1.5)](#eq-1-5) exactly is in general impossible, for the exponential reason of Section [1.9](#sec-1-9) **Mean-field theory** is the tool that still allows us to obtain systematic solutions from it, even if they are approximate, and it can predict a wide range of symmetry-broken states. In this session we will study three of them, which are the same three cases that we classified in Section [1.11](#sec-1-11)
+To solve [(1.5)](#eq-1-5) exactly is in general impossible, for the exponential reason of Section [1.9](#sec-1-9). **Mean-field theory** is the tool that still allows us to obtain systematic solutions from it, even if they are approximate, and it can predict a wide range of symmetry-broken states. In this session we will study three of them, which are the same three cases that we classified in Section [1.11](#sec-1-11).
 
 1.  **Broken time-reversal symmetry**, which is magnetism. If we run the movie of the system backward, it looks different from the original.
 
