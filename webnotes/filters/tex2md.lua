@@ -13,6 +13,7 @@ local chapter = 0
 local sec, subsec, eq, fig = 0, 0, 0, 0
 local figures = {}
 local eqmax, secmax = {}, {}
+local figmap = {}
 local REPO = 'https://github.com/joselado/Advanced_Quantum_Materials_2027'
 local stats = { eqrefs = 0, secrefs = 0, secwords = 0 }
 
@@ -26,6 +27,10 @@ function Meta(m)
   chapter = tonumber(pandoc.utils.stringify(m.chapter or '0'))
   eqmax = numlist(pandoc.utils.stringify(m.eqmax or ''))
   secmax = numlist(pandoc.utils.stringify(m.secmax or ''))
+  for pair in pandoc.utils.stringify(m.figmap or ''):gmatch('[^;]+') do
+    local k, v = pair:match('^(.-)=(.*)$')
+    if k then figmap[k] = v end
+  end
 end
 
 local function number_figures(doc)
@@ -73,11 +78,10 @@ end
 function Link(l)
   if l.attributes['reference-type'] == 'ref' then
     local label = l.attributes['reference']
-    local n = figures[label]
+    -- a figure of another session is numbered from the map of the ten sessions that convert.py passes
+    local n = figures[label] or figmap[label]
     if not n then
-      -- a figure of another session: the number is in the label, s06f03 is the third of session 6
-      local s, f = label:match('^fig:s(%d+):')
-      io.stderr:write('cross-session or unresolved reference ' .. label .. '\n')
+      io.stderr:write('unresolved figure reference ' .. label .. '\n')
       n = '??'
     end
     return pandoc.Link({ pandoc.Str(n) }, ref_anchor(label))
@@ -150,6 +154,37 @@ local function link_eqrefs(str)
   return out
 end
 
+-- a number token of a chain: "4.17", "4.17,", "4.17-4.18", "4.17)." ; kind is 'sec' or 'eq'
+local function link_numtoken(text, kind)
+  local c1, k1, dash, c2, k2, rest = text:match('^(%d+)%.(%d+)([-\u{2013}]?)(%d*)%.?(%d*)(.*)$')
+  if not c1 then return nil end
+  if dash == '' and (c2 ~= '' or k2 ~= '') then return nil end
+  if dash ~= '' and (c2 == '' or k2 == '') then return nil end
+  if not (rest == '' or rest:match('^[%.,;:%)]+$')) then return nil end
+  local max = (kind == 'sec') and secmax or eqmax
+  local function ok(c, k) c, k = tonumber(c), tonumber(k); return max[c] and k >= 1 and k <= max[c] end
+  local function lnk(c, k)
+    c, k = tonumber(c), tonumber(k)
+    if kind == 'sec' then stats.secrefs = stats.secrefs + 1 else stats.eqrefs = stats.eqrefs + 1 end
+    return pandoc.Link({ pandoc.Str(string.format('%d.%d', c, k)) }, string.format('#%s-%d-%d', kind, c, k))
+  end
+  if not ok(c1, k1) then return nil end
+  local out = { lnk(c1, k1) }
+  if dash ~= '' then
+    if not ok(c2, k2) then return nil end
+    out[#out + 1] = pandoc.Str(dash)
+    out[#out + 1] = lnk(c2, k2)
+  end
+  if rest ~= '' then out[#out + 1] = pandoc.Str(rest) end
+  return out, rest
+end
+
+local function trigger_kind(w)
+  if w:match('[Ss]ections?$') then return 'sec' end
+  if w:match('[Ee]quations?$') or w:match('[Ee]qs?%.$') then return 'eq' end
+  return nil
+end
+
 function Inlines(inl)
   local out, i, changed = {}, 1, false
   while i <= #inl do
@@ -162,25 +197,26 @@ function Inlines(inl)
         for _, y in ipairs(r) do out[#out + 1] = y end
         changed = true
       else
-        if w:match('[Ss]ections?$') then
-          -- "Section 2.5", "Sections 2.4 and 2.5": link every number of the chain
+        local kind = trigger_kind(w)
+        if kind then
+          -- "Section 2.5", "Sections 4.7, 4.11 and 4.19", "Sections 4.17-4.18", "Equation 1.7", "eq. 5.9"
           local j, did = i + 1, false
           out[#out + 1] = x
           while true do
             local sp, num = inl[j], inl[j + 1]
             if not (sp and (sp.t == 'Space' or sp.t == 'SoftBreak') and num and num.t == 'Str') then break end
-            local c, k, rest = num.text:match('^(%d+)%.(%d+)(.*)$')
-            c, k = tonumber(c), tonumber(k)
-            if not (c and secmax[c] and k >= 1 and k <= secmax[c] and (rest == '' or rest:match('^[%.,;:%)]+$'))) then break end
+            local links, rest = link_numtoken(num.text, kind)
+            if not links then break end
             out[#out + 1] = sp
-            out[#out + 1] = pandoc.Link({ pandoc.Str(string.format('%d.%d', c, k)) }, string.format('#sec-%d-%d', c, k))
-            if rest ~= '' then out[#out + 1] = pandoc.Str(rest) end
-            stats.secrefs = stats.secrefs + 1
+            for _, y in ipairs(links) do out[#out + 1] = y end
             did = true
             j = j + 2
-            -- a chain continues after "and" or "to"
+            -- a chain continues after a comma, or after "and", "or" and "to"
             local a, b = inl[j], inl[j + 1]
-            if rest == '' and a and a.t == 'Space' and b and b.t == 'Str' and (b.text == 'and' or b.text == 'to') and inl[j + 2] and inl[j + 2].t == 'Space' then
+            if rest:match(',$') then
+              -- the next number follows directly
+            elseif rest == '' and a and a.t == 'Space' and b and b.t == 'Str'
+                and (b.text == 'and' or b.text == 'to' or b.text == 'or') and inl[j + 2] and inl[j + 2].t == 'Space' then
               out[#out + 1] = a; out[#out + 1] = b
               j = j + 2
             else

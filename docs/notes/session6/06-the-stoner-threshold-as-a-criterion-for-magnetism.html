@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>6.6 The Stoner threshold as a criterion for magnetism, session 6</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+
+  main { max-width: 860px; }
+  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
+              border-radius: 6px; color: var(--muted); }
+  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
+  .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
+  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
+  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
+  figure { margin: 24px 0; }
+  figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
+  figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
+  .eq { display: block; }
+  .math.display { overflow-x: auto; overflow-y: hidden; }
+  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
+                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
+  .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
+           margin: 20px 0; font-size: 0.95rem; }
+  .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
+  table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
+  div.center { overflow-x: auto; }
+  div.center table { margin-left: auto; margin-right: auto; }
+  th { border-bottom: 2px solid var(--rule); }
+  .coursecontents h2 { margin-top: 28px; }
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script src="../../notes/notes.js" defer></script>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
+  <nav class="tabs"><a href="../../lectures/session6.html">Video lectures</a><a href="../../landscape/session6.html">Landscape lectures</a><a class="on" href="../../notes/session6/index.html">Lecture notes</a></nav>
+  <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="on" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
+  <p class="crumb"><a href="index.html">Session 6. Classical Magnetism and Magnons</a></p>
+<h1 id="sec-6-6"><span class="num">6.6</span> The Stoner threshold as a criterion for magnetism</h1>
+<p>A natural question is whether <em>any</em> repulsive <span class="math inline">\(U&gt;0\)</span> gives magnetism, or if there is a threshold. We write the mean-field bands as <span class="math inline">\(E_\sigma(\mathbf{k}) = E(\mathbf{k}) - \sigma\, \tfrac{U}{2}m\)</span> for <span class="math inline">\(\sigma=\pm1\)</span>, meaning spin up and down, where <span class="math inline">\(m\)</span> is the self-consistent magnetization of <a href="03-the-hubbard-model-and-mean-field-magnetism-revisited.html#eq-6-2">(6.2)</a>. At zero temperature, the self-consistency condition is</p>
+<p><span class="math display">\[m = \sum_{\mathbf k}\Big[n_F\big(E(\mathbf k)-\tfrac{U}{2}m\big) - n_F\big(E(\mathbf k)+\tfrac{U}{2}m\big)\Big].\]</span></p>
+<p>If we expand the right-hand side for small <span class="math inline">\(m\)</span> we obtain <span class="math inline">\(m \approx U\,m\,D(E_F)\)</span>, where <span class="math inline">\(D(E_F)\)</span> is the density of states at the Fermi level. The trivial solution <span class="math inline">\(m=0\)</span> always exists, but a <em>nontrivial</em> solution appears when the linear coefficient reaches one, which gives the condition</p>
+<p><span id="eq-6-3" class="eq"><span class="math display">\[U\, D(E_F) \geq 1. \tag{6.3}\]</span></span></p>
+<p>This condition is called the Stoner criterion. Below the threshold only <span class="math inline">\(m=0\)</span> is stable, and the system stays nonmagnetic for any perturbation. Above the threshold the nonmagnetic solution becomes unstable, and a finite <span class="math inline">\(m\)</span> appears spontaneously. This is the reason why some metals with a sizable Coulomb repulsion, such as aluminum or lead, stay nonmagnetic, since their density of states at the Fermi level is too small for the product in <a href="#eq-6-3">(6.3)</a> to reach one. Iron and cobalt, on the other hand, have a large density of states from their narrow <span class="math inline">\(d\)</span> bands together with a sizable effective <span class="math inline">\(U\)</span>, so they are clearly above the threshold. In the numerics we see what <a href="#eq-6-3">(6.3)</a> predicts. The self-consistent magnetization of the chain stays at zero below a critical <span class="math inline">\(U\)</span>, and it grows continuously once <span class="math inline">\(U\)</span> is above this threshold. Figure <a href="#fig:s06:stoner">6.1</a> shows both parts of this statement together. It shows why a nontrivial solution of the self-consistency condition only exists above the threshold, and how the resulting magnetization curve looks.</p>
+<figure id="fig:s06:stoner">
+<img src="../figures/s06f01_stoner.svg" loading="lazy" alt="A graphical reading of the Stoner criterion (6.3)." />
+<figcaption><strong>Figure 6.1.</strong> A graphical reading of the Stoner criterion <a href="#eq-6-3">(6.3)</a>. (a) The self-consistency condition <span class="math inline">\(m=f(m)\)</span>, where <span class="math inline">\(f\)</span> is the right-hand side of the zero-temperature gap equation, drawn here with the shape <span class="math inline">\(\tanh\)</span> for two values of the slope. It is an odd function that saturates once the bands are fully polarized, and its slope at the origin is exactly <span class="math inline">\(U D(E_F)\)</span>. If this slope is below one, the only crossing with <span class="math inline">\(y=m\)</span> is the trivial solution <span class="math inline">\(m=0\)</span>. Once the slope is above one, a pair of nontrivial solutions <span class="math inline">\(\pm m_0\)</span> appears and the nonmagnetic state becomes unstable. (b) The resulting order parameter, which stays at zero until <span class="math inline">\(U D(E_F)\)</span> reaches one and then grows continuously. For this reason, whether a metal becomes magnetic is not decided by <span class="math inline">\(U\)</span> alone but by the <em>product</em> of <span class="math inline">\(U\)</span> with the density of states at the Fermi level. This is why aluminium and lead stay nonmagnetic even with a sizeable Coulomb repulsion, while the narrow <span class="math inline">\(d\)</span> bands of iron and cobalt are clearly above the threshold.</figcaption>
+</figure>
+<div class="notebookbox">
+<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb"><code>session6.ipynb</code></a>, “(Exercise) Intermediate coupling regime and Stoner instability”</p>
+<p>Reproduce the threshold behavior of <a href="#eq-6-3">(6.3)</a> directly. Compute the self-consistent magnetization as a function of <span class="math inline">\(U\)</span>, and find the critical interaction at which <span class="math inline">\(m\)</span> first becomes nonzero.</p>
+</div>
+<div class="notebookbox">
+<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb"><code>session6.ipynb</code></a>, “(Exercise) Magnetism in flat bands”</p>
+<p>In principle, a flat band has a divergent density of states at <span class="math inline">\(E_F\)</span>, so the Stoner product <span class="math inline">\(U D(E_F)\)</span> in <a href="#eq-6-3">(6.3)</a> is above the threshold for practically any <span class="math inline">\(U&gt;0\)</span>. This exercise is not narrated in the transcript, but it is the natural numerical extension of Section <a href="#sec-6-6">6.6</a>, since a flat-band system is the case where it is easiest for magnetism to appear.</p>
+</div>
+<p>One important consequence ends this section and starts the next one. From <a href="#eq-6-3">(6.3)</a>, magnetism in general needs <span class="math inline">\(U D(E_F) \gtrsim 1\)</span>, and for a reasonable bandwidth this usually means that <span class="math inline">\(U\)</span> has to be comparable to <span class="math inline">\(t\)</span> or larger, and not smaller. However, mean-field theory itself is only reliable for <span class="math inline">\(U \ll t\)</span>, as we saw in Section <a href="03-the-hubbard-model-and-mean-field-magnetism-revisited.html#sec-6-3">6.3</a> So the regime where magnetism appears is, in general, the same regime where the method that we have been using stops working. We need a different approach for <span class="math inline">\(U \gg t\)</span>, and we construct it in the rest of this session.</p>
+
+  <nav class="pager"><a href="05-competition-between-the-ferromagnet-and-the-antiferromagnet.html">6.5 Competition between the ferromagnet and the antiferromagnet</a><a href="07-the-strongly-localized-limit-where-mean-field-breaks-down.html">6.7 The strongly localized limit, where mean field breaks down</a></nav>
+
+</main>
+</body>
+</html>

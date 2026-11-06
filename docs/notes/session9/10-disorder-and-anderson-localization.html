@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9.10 Disorder and Anderson localization, session 9</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+
+  main { max-width: 860px; }
+  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
+              border-radius: 6px; color: var(--muted); }
+  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
+  .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
+  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
+  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
+  figure { margin: 24px 0; }
+  figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
+  figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
+  .eq { display: block; }
+  .math.display { overflow-x: auto; overflow-y: hidden; }
+  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
+                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
+  .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
+           margin: 20px 0; font-size: 0.95rem; }
+  .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
+  table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
+  div.center { overflow-x: auto; }
+  div.center table { margin-left: auto; margin-right: auto; }
+  th { border-bottom: 2px solid var(--rule); }
+  .coursecontents h2 { margin-top: 28px; }
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script src="../../notes/notes.js" defer></script>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
+  <nav class="tabs"><a href="../../lectures/session9.html">Video lectures</a><a href="../../landscape/session9.html">Landscape lectures</a><a class="on" href="../../notes/session9/index.html">Lecture notes</a></nav>
+  <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="on" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
+  <p class="crumb"><a href="index.html">Session 9. Excitations and Defects in Quantum Materials</a></p>
+<h1 id="sec-9-10"><span class="num">9.10</span> Disorder and Anderson localization</h1>
+<p>So far we have only discussed a <em>single</em> impurity. What happens when we put many impurities in the whole material? A single impurity changes the ground state only a little. Many impurities, in particular when they are placed at random, can change it completely, because they break translational symmetry in the whole system and not only locally. It is useful to list all the possibilities, since there are three different regimes of translational symmetry to consider, and not only the symmetric and the non-symmetric ones.</p>
+<ol type="1">
+<li><p><strong>Periodic.</strong> There is full translational symmetry. Every eigenstate is extended, with weight <span class="math inline">\(\sim 1/N\)</span> on each of <span class="math inline">\(N\)</span> sites.</p></li>
+<li><p><strong>Quasiperiodic.</strong> The system is not periodic, since there is no repeating unit cell, but it is not random either, since the potential follows a fixed and deterministic rule that never repeats. Here the eigenstates can be extended, critical, or fully localized, depending on the strength of the potential. Critical means localized with a power law, so that the state is not even normalizable in the strict sense.</p></li>
+<li><p><strong>Strongly (randomly) disordered.</strong> The eigenstates are localized, and each of them has a finite localization length.</p></li>
+</ol>
+<p><strong>Quasiperiodic case.</strong> The standard model here is a 1D tight-binding chain with an onsite modulation at an irrational wavevector. It belongs to the Aubry-André-Harper family, although it is not named in this way in the transcript.</p>
+<p><span class="math display">\[H = -t\sum_n \left(c_n^\dagger c_{n+1} + \text{h.c.}\right) + V_0 \sum_n \cos(2\pi q\, n + \phi)\, c_n^\dagger c_n, \qquad q \notin \mathbb{Q}.\]</span></p>
+<p>Since <span class="math inline">\(q\)</span> is irrational, the potential never repeats exactly, so the chain has no translational symmetry at all. However, it is not random either, because the value of the potential at every site is completely fixed once we fix <span class="math inline">\(q\)</span> and <span class="math inline">\(\phi\)</span>. As we increase <span class="math inline">\(V_0\)</span> from zero, the eigenstates change from extended to a marginal, critical behavior with a power law close to the self-dual point of the model, which is <span class="math inline">\(V_0 = 2t\)</span> in the plain Aubry-André model, and then to exponentially localized states for <span class="math inline">\(V_0\)</span> well above it.</p>
+<p>The tool that we use to distinguish these regimes is the <strong>inverse participation ratio (IPR)</strong>,</p>
+<p><span id="eq-9-12" class="eq"><span class="math display">\[\mathrm{IPR}(\psi) = \sum_i |\psi_i|^4, \qquad \sum_i |\psi_i|^2 = 1. \tag{9.12}\]</span></span></p>
+<p>An extended state with weight <span class="math inline">\(\sim 1/N\)</span> per site gives <span class="math inline">\(\mathrm{IPR} \sim N\cdot(1/N)^2 = 1/N\)</span>, which vanishes as the system grows. A localized state, with <span class="math inline">\(O(1)\)</span> weight on <span class="math inline">\(O(1)\)</span> sites, gives <span class="math inline">\(\mathrm{IPR} \sim O(1)\)</span>, which does not depend on the system size. A critical state is between the two, and its <span class="math inline">\(\mathrm{IPR}\)</span> follows a non-trivial power law in <span class="math inline">\(N\)</span>. This is a multifractal signature, which is different from both of the two clean limits. Figure <a href="#fig:s09:localization">9.6</a> shows the three eigenstates side by side, together with the scaling of <a href="#eq-9-12">(9.12)</a> with <span class="math inline">\(N\)</span>, which separates them in a quantitative way.</p>
+<figure id="fig:s09:localization">
+<img src="../figures/s09f06_localization.svg" loading="lazy" alt="The three regimes of Section 9.10, shown through their effect on an eigenstate of a chain of N=89 sites, with the weight |\psi_i|^2 of each site as a column." />
+<figcaption><strong>Figure 9.6.</strong> The three regimes of Section <a href="#sec-9-10">9.10</a>, shown through their effect on an eigenstate of a chain of <span class="math inline">\(N=89\)</span> sites, with the weight <span class="math inline">\(|\psi_i|^2\)</span> of each site as a column. (a) With a periodic potential every eigenstate is a Bloch wave, with weight exactly <span class="math inline">\(1/N\)</span> on every site, and this height becomes smaller as the chain grows. (b) At the self-dual point of the quasiperiodic model the state is neither extended nor localized. It has structure on every length scale at the same time, with large peaks and smaller copies of the same pattern between them, and this state is called critical, or multifractal. (c) With really random disorder the state is concentrated on a few sites and it is strictly zero, to numerical precision, over most of the chain. <em>Note the three different vertical scales.</em> For this reason we need a number and not a visual check, and this number is the inverse participation ratio <a href="#eq-9-12">(9.12)</a>. (d) The IPR separates the three regimes clearly by how it scales with system size, with <span class="math inline">\(\mathrm{IPR}\sim 1/N\)</span> for extended states, <span class="math inline">\(\mathrm{IPR}\sim O(1)\)</span> for localized ones, and an anomalous power <span class="math inline">\(N^{-\tau}\)</span> with <span class="math inline">\(0&lt;\tau&lt;1\)</span> for the critical state between them, here computed for <span class="math inline">\(N=34\)</span> to <span class="math inline">\(610\)</span>. On a log-log plot these are three straight lines with three different slopes.</figcaption>
+</figure>
+<p><strong>Fully disordered case.</strong> Now we take an onsite potential that is really random, with strength <span class="math inline">\(W\)</span>, <span class="math inline">\(H = -t\sum_n (c_n^\dagger c_{n+1} + \text{h.c.}) + \sum_n w_n\, c_n^\dagger c_n\)</span>, where <span class="math inline">\(w_n\)</span> is taken uniformly from <span class="math inline">\([-W,W]\)</span>. At <span class="math inline">\(W=0\)</span> this is an ordinary clean metal, with the band structure of the periodic hopping alone, and as <span class="math inline">\(W\to\infty\)</span> every eigenstate becomes concentrated on a single site. In dimension <span class="math inline">\(d\geq 3\)</span> there is a real <strong>Anderson localization transition</strong> at a finite critical disorder <span class="math inline">\(W_c\)</span>. There is a real mobility edge that separates extended metallic states from localized states, which is the kind of “critical point” described on the slides. Below the transition, or at any energy on the extended side of a mobility edge, the system conducts. Above it, there are states at every energy, so there is <em>no spectral gap</em> in the density of states, but these states cannot carry current, so there <em>is</em> a transport gap. This means that the <strong>Anderson insulator</strong> is an insulator with no gap at all in its spectrum, which is a very unusual state of matter compared with every band insulator or Mott insulator that we have seen so far in this course.</p>
+<p><strong>The special role of one dimension.</strong> In <span class="math inline">\(d=1\)</span>, and in a marginal way also in <span class="math inline">\(d=2\)</span> according to the scaling theory of localization, no real metallic phase survives at any non-zero disorder in the thermodynamic limit, since an arbitrarily small <span class="math inline">\(W&gt;0\)</span> localizes every state at long enough distances. What survives is a finite localization length <span class="math inline">\(\xi(W)\)</span>. For weak disorder close to the band center of the 1D model, it scales as <span class="math inline">\(\xi(W) \propto (t/W)^2\)</span>, which diverges as <span class="math inline">\(W\to 0\)</span>. A finite sample that is shorter than <span class="math inline">\(\xi(W)\)</span> still looks metallic in practice, and only when the length of the sample is larger than <span class="math inline">\(\xi(W)\)</span> do we see the localized, insulating behavior in transport. This is the exact sense in which “weak disorder in 1D” and “genuinely metallic” are never the same statement, although they can look the same at short length scales.</p>
+<div class="notebookbox">
+<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb"><code>session9.ipynb</code></a>, “The impact of disorder in different systems” (Core), “Extended and localized states in quasicrystals” (Challenge), and “Localization due to random disorder” (Core)</p>
+<p>Change the strength of the quasiperiodic modulation, and separately the strength <span class="math inline">\(W\)</span> of the random disorder, and compute <a href="#eq-9-12">(9.12)</a> for the eigenstates that you obtain in each case. Look at how the <span class="math inline">\(\mathrm{IPR}\)</span> changes from a behavior like <span class="math inline">\(1/N\)</span> to a behavior like <span class="math inline">\(O(1)\)</span> as you increase the strength of the potential. Try to find by eye where the change from extended to localized states happens in each of the two models, and compare it with the language of critical points and mobility edges above.</p>
+</div>
+
+  <nav class="pager"><a href="09-impurities-as-diagnostics-iv-screening-in-quantum-magnets.html">9.9 Impurities as diagnostics IV, screening in quantum magnets</a><a href="11-closing-summary.html">9.11 Closing summary</a></nav>
+
+</main>
+</body>
+</html>

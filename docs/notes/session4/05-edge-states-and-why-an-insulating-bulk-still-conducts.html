@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>4.5 Edge states and why an insulating bulk still conducts, session 4</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+
+  main { max-width: 860px; }
+  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
+              border-radius: 6px; color: var(--muted); }
+  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
+  .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
+  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
+  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
+  figure { margin: 24px 0; }
+  figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
+  figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
+  .eq { display: block; }
+  .math.display { overflow-x: auto; overflow-y: hidden; }
+  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
+                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
+  .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
+           margin: 20px 0; font-size: 0.95rem; }
+  .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
+  table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
+  div.center { overflow-x: auto; }
+  div.center table { margin-left: auto; margin-right: auto; }
+  th { border-bottom: 2px solid var(--rule); }
+  .coursecontents h2 { margin-top: 28px; }
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script src="../../notes/notes.js" defer></script>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
+  <nav class="tabs"><a href="../../lectures/session4.html">Video lectures</a><a href="../../landscape/session4.html">Landscape lectures</a><a class="on" href="../../notes/session4/index.html">Lecture notes</a></nav>
+  <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="on" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
+  <p class="crumb"><a href="index.html">Session 4. Electrons in a Magnetic Field, Quantum Hall Effect and Landau Levels</a></p>
+<h1 id="sec-4-5"><span class="num">4.5</span> Edge states and why an insulating bulk still conducts</h1>
+<p>There is an obvious puzzle. If the chemical potential is in a gap between two Landau levels, the bulk of the sample is by definition an insulator, since there is no partially filled band and there are no bulk states at the Fermi energy. So how can such a system carry a finite, quantized current?</p>
+<p>The answer is the same as in the general bulk-boundary argument of session 3. A nonzero Chern number cannot end without consequences. At any interface where the Chern number changes, which here is the boundary between a sample with Chern number <span class="math inline">\(N\)</span> and the vacuum, which has <span class="math inline">\(C=0\)</span>, there must be <span class="math inline">\(N\)</span> protected, gapless and chiral edge modes. A chiral mode propagates in only one direction, and the number of edge modes at an interface is equal to the difference in Chern number across it. Every real sample is finite, so it always has an edge, and the edge states are always there, even when we do not think about them. When we apply a voltage between the top edge and the bottom edge of the sample, we create an imbalance between the edge electrons that move to the right and the ones that move to the left, and this imbalance is the quantized Hall current.</p>
+<p>The band structure of a ribbon, which is a sample that is infinite in <span class="math inline">\(y\)</span> and finite in <span class="math inline">\(x\)</span>, shows this picture in a completely explicit way. Next to the flat bulk Landau levels without dispersion, we find a set of dispersive states localized at the left edge, which all propagate in one direction, and a mirror set localized at the right edge, which propagate in the opposite direction. Each propagation direction is tied to a <em>location</em>, the left edge or the right edge, so an impurity on the left edge cannot scatter a left-moving electron into a right-moving one, because the right edge is at a macroscopic distance. There is no available final state, so there is no backscattering, and the edge transport has no dissipation. Figure <a href="#fig:s04:ribbon">4.1</a> shows the ribbon spectrum next to its real-space picture, together with the chiral modes that cross the chemical potential.</p>
+<figure id="fig:s04:ribbon">
+<img src="../figures/s04f01_ribbon.svg" loading="lazy" alt="The quantum Hall ribbon." />
+<figcaption><strong>Figure 4.1.</strong> The quantum Hall ribbon. (a) The spectrum of a strip that is infinite along <span class="math inline">\(y\)</span> and finite along <span class="math inline">\(x\)</span>, computed for a width of <span class="math inline">\(12\,\ell_B\)</span> with hard walls. In the bulk the Landau levels <a href="09-landau-levels-of-schrodinger-electrons.html#eq-4-6">(4.6)</a> are exactly flat, so they carry no current at all, but near each boundary the guiding centre <span class="math inline">\(x_0=\hbar k_y/B\)</span> is pushed into the wall and the level bends up strongly. These bending branches are the edge states, and each of them crosses the chemical potential, the translucent plane, exactly once per edge, at the balls, so the number of chiral modes at a given edge is equal to the number <span class="math inline">\(N\)</span> of filled Landau levels, here <span class="math inline">\(N=2\)</span>. (b) The same statement in real space, seen from above. The branches with <span class="math inline">\(k_y&gt;0\)</span> have <span class="math inline">\(v_y=\hbar^{-1}\partial_{k_y}E&gt;0\)</span> and live on the right edge, and the branches with <span class="math inline">\(k_y&lt;0\)</span> move in the opposite direction and live on the left edge. To reverse the velocity of an electron we would therefore have to move it to the other side of the sample, which no local impurity can do, and this is why the edge transport has no dissipation.</figcaption>
+</figure>
+<div class="notebookbox">
+<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session4.ipynb"><code>session4.ipynb</code></a>, “Localization of the edge states in the quantum Hall effect in a ribbon” (Challenge), and “Localization of the edge states in the quantum Hall effect in an island” (Challenge)</p>
+<p>Build a finite ribbon and a finite island in a magnetic field and look directly at where the edge-state wavefunctions are in real space. This confirms the separation between the left and the right edge, or along the perimeter of the island, which is the basis of the argument above for the absence of backscattering.</p>
+</div>
+
+  <nav class="pager"><a href="04-landau-levels-as-chern-number-one-flat-bands.html">4.4 Landau levels as Chern-number-one flat bands</a><a href="06-quantized-hall-plateaus-in-experiment.html">4.6 Quantized Hall plateaus in experiment</a></nav>
+
+</main>
+</body>
+</html>

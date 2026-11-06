@@ -1,0 +1,7 @@
+## The Heisenberg model on a general lattice {#sec-6-9 number="6.9"}
+
+The argument of Section [6.8](#sec-6-8) did not use the fact that we had only two sites. For a generic lattice with hopping $t_{ij}$ between sites $i$ and $j$ and a local interaction $U$, the same second-order argument applies to every connected pair independently in the limit $U\gg t_{ij}$, and it gives the generalized Heisenberg Hamiltonian
+
+$$H_\text{Heis} = \sum_{\langle ij\rangle} J_{ij}\, \mathbf S_i\cdot\mathbf S_j, \qquad J_{ij} = \frac{4t_{ij}^2}{U}. \tag{6.5}$$
+
+Since $J_{ij}\propto t_{ij}^2$, this superexchange coupling, derived directly from a single-orbital Hubbard model, is always positive and antiferromagnetic, regardless of the sign or the geometry of $t_{ij}$. More general microscopic models, which are not Hubbard models or have several orbitals, can give couplings of both signs, and they do. In Section [6.11](#sec-6-11) we will see explicitly how a ferromagnetic coupling appears when a second, intermediate orbital takes part. In all of this session we use the following sign convention. A coupling $J_{ij}>0$ favors antiparallel neighboring spins, which is antiferromagnetic, and $J_{ij}<0$ favors parallel neighboring spins, which is ferromagnetic. If we treat the spins in [(6.5)](#eq-6-5) as classical vectors, we already obtain both classical ground states on a bond between two sites, which are antiparallel for $J>0$ and parallel for $J<0$.

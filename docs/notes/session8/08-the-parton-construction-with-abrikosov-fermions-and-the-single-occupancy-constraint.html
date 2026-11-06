@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>8.8 The parton construction with Abrikosov fermions and the single-occupancy constraint, session 8</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+
+  main { max-width: 860px; }
+  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
+              border-radius: 6px; color: var(--muted); }
+  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
+  .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
+  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
+  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
+  figure { margin: 24px 0; }
+  figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
+  figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
+  .eq { display: block; }
+  .math.display { overflow-x: auto; overflow-y: hidden; }
+  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
+                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
+  .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
+           margin: 20px 0; font-size: 0.95rem; }
+  .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
+  table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
+  div.center { overflow-x: auto; }
+  div.center table { margin-left: auto; margin-right: auto; }
+  th { border-bottom: 2px solid var(--rule); }
+  .coursecontents h2 { margin-top: 28px; }
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script src="../../notes/notes.js" defer></script>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
+  <nav class="tabs"><a href="../../lectures/session8.html">Video lectures</a><a href="../../landscape/session8.html">Landscape lectures</a><a class="on" href="../../notes/session8/index.html">Lecture notes</a></nav>
+  <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="on" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
+  <p class="crumb"><a href="index.html">Session 8. Quantum Magnetism, Spinons and Kondo Physics</a></p>
+<h1 id="sec-8-8"><span class="num">8.8</span> The parton construction with Abrikosov fermions and the single-occupancy constraint</h1>
+<p>The construction that allows us to treat QSL excitations does not write each spin as a bosonic fluctuation around an ordered reference state. Instead, it writes each spin with an auxiliary <strong>fermion</strong> field <span class="math inline">\(f_{i\sigma}\)</span> (<span class="math inline">\(\sigma=\uparrow,\downarrow\)</span>) on every site. This is a particle with spin <span class="math inline">\(1/2\)</span> and no electric charge, which is the spinon of Section <a href="02-two-emergent-excitations-magnons-and-spinons.html#sec-8-2">8.2</a>, now written in a formal way. These particles are called <strong>Abrikosov fermions</strong>, and the operator identity that defines the parton transformation is</p>
+<p><span id="eq-8-10" class="eq"><span class="math display">\[\mathbf S_i = \frac12 \sum_{\alpha\beta} f_{i\alpha}^\dagger\, \boldsymbol\sigma_{\alpha\beta}\,
+f_{i\beta}, \tag{8.10}\]</span></span></p>
+<p>where <span class="math inline">\(\boldsymbol\sigma\)</span> is the vector of Pauli matrices. One can check directly, from the anticommutation relations of the fermions, that <a href="#eq-8-10">(8.10)</a> gives the correct <span class="math inline">\(SU(2)\)</span> spin algebra <span class="math inline">\([S_i^a,S_i^b] = i\varepsilon^{abc}S_i^c\)</span> on the full Fock space of <span class="math inline">\(f_{i\uparrow},f_{i\downarrow}\)</span>, which has four states, namely empty, singly occupied with spin up, singly occupied with spin down and doubly occupied. No extra input is needed for this. The problem is that this transformation makes the local Hilbert space <em>artificially larger</em>, since a physical spin-<span class="math inline">\(1/2\)</span> has only two states, while <span class="math inline">\(f_{i\uparrow},f_{i\downarrow}\)</span> give four. We remove the two extra unphysical states, which are the empty and the doubly occupied ones and which <a href="#eq-8-10">(8.10)</a> maps to <span class="math inline">\(\mathbf S_i=0\)</span> in any case. We do this by imposing by hand the <strong>single-occupancy constraint</strong></p>
+<p><span id="eq-8-11" class="eq"><span class="math display">\[\sum_\sigma f_{i\sigma}^\dagger f_{i\sigma} = 1 \qquad \text{at every site } i. \tag{8.11}\]</span></span></p>
+<p>This is the fermionic analogue of the Gutzwiller projection <a href="06-the-resonating-valence-bond-wavefunction-as-the-qsl-ground-state.html#eq-8-7">(8.7)</a> that we applied before to the many-body wavefunction. To project the many-body state onto the singly-occupied subspace and to fix the fermion filling to one per site are the same statement, the first one seen from the side of the wavefunction and the second one from the side of the operators. Figure <a href="09-the-mean-field-spinon-hamiltonian-and-its-dispersion-classes.html#fig:s08:parton">8.4</a>a shows which two states the constraint has to remove, and why they were never spin states in the first place.</p>
+<p>When <a href="#eq-8-11">(8.11)</a> holds, <a href="#eq-8-10">(8.10)</a> is an <em>exact</em> way to write a spin-<span class="math inline">\(1/2\)</span> operator in the language of fermions, and we can put it directly into the Heisenberg Hamiltonian <span class="math inline">\(\mathcal H=\sum_{\langle
+ij\rangle}J_{ij}\,\mathbf S_i\cdot\mathbf S_j\)</span>. With the Fierz identity for Pauli matrices <span class="math inline">\(\sum_a \sigma^a_{\alpha\beta}\sigma^a_{\gamma\delta} = 2\delta_{\alpha\delta}\delta_{\beta\gamma} -
+\delta_{\alpha\beta}\delta_{\gamma\delta}\)</span> and the constraint <a href="#eq-8-11">(8.11)</a> on both sites, we obtain the simple identity</p>
+<p><span id="eq-8-12" class="eq"><span class="math display">\[\mathbf S_i \cdot \mathbf S_j = \frac14 - \frac12\, \chi_{ij}^\dagger \chi_{ij}, \qquad \chi_{ij}
+\equiv \sum_\sigma f_{i\sigma}^\dagger f_{j\sigma}, \tag{8.12}\]</span></span></p>
+<p>where <span class="math inline">\(\chi_{ij}\)</span> is the spinon bond operator, or hopping operator, between sites <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>. When we insert <a href="#eq-8-12">(8.12)</a>, the original Heisenberg Hamiltonian, which is bilinear in the spins, becomes a Hamiltonian that is <em>quartic</em> in the auxiliary fermions,</p>
+<p><span id="eq-8-13" class="eq"><span class="math display">\[\mathcal H = \sum_{\langle ij\rangle} J_{ij}\left(\frac14 - \frac12\,\chi_{ij}^\dagger\chi_{ij}\right)
+= \text{const} - \frac12\sum_{\langle ij\rangle} J_{ij}\, \chi_{ij}^\dagger \chi_{ij}. \tag{8.13}\]</span></span></p>
+<p>This is the same problem that we had in Sessions 1 and 6 with the Hubbard interaction, which is a quartic term that we cannot diagonalize directly. We treat it in the same way, with a <strong>mean-field decoupling</strong>,</p>
+<p><span id="eq-8-14" class="eq"><span class="math display">\[\chi_{ij}^\dagger\chi_{ij} \;\approx\; \langle\chi_{ij}^\dagger\rangle\,\chi_{ij} +
+\chi_{ij}^\dagger\,\langle\chi_{ij}\rangle - |\langle\chi_{ij}\rangle|^2. \tag{8.14}\]</span></span></p>
+
+  <nav class="pager"><a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html">8.7 Why the Holstein-Primakoff magnon approach fails for QSL excitations</a><a href="09-the-mean-field-spinon-hamiltonian-and-its-dispersion-classes.html">8.9 The mean-field spinon Hamiltonian and its dispersion classes</a></nav>
+
+</main>
+</body>
+</html>

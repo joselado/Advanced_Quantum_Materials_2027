@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>10.2 Neural networks as function approximators, session 10</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+
+  main { max-width: 860px; }
+  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
+              border-radius: 6px; color: var(--muted); }
+  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
+  .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
+  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
+  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
+  figure { margin: 24px 0; }
+  figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
+  figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
+  .eq { display: block; }
+  .math.display { overflow-x: auto; overflow-y: hidden; }
+  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
+                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
+  .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
+           margin: 20px 0; font-size: 0.95rem; }
+  .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
+  table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
+  div.center { overflow-x: auto; }
+  div.center table { margin-left: auto; margin-right: auto; }
+  th { border-bottom: 2px solid var(--rule); }
+  .coursecontents h2 { margin-top: 28px; }
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script src="../../notes/notes.js" defer></script>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
+  <nav class="tabs"><a href="../../lectures/session10.html">Video lectures</a><a href="../../landscape/session10.html">Landscape lectures</a><a class="on" href="../../notes/session10/index.html">Lecture notes</a></nav>
+  <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="on" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
+  <p class="crumb"><a href="index.html">Session 10. Machine Learning Quantum Materials</a></p>
+<h1 id="sec-10-2"><span class="num">10.2</span> Neural networks as function approximators</h1>
+<p>Machine learning is a large field, and we should say clearly which part of it we use in this session. There are three broad types of task. <strong>Supervised learning</strong> maps labeled inputs to outputs, and the standard example is image classification. This is the type that we will use in the rest of the session. <strong>Generative learning</strong> models a probability distribution directly, so that one can <em>sample</em> new instances from it. For instance, a generative adversarial network that is trained on photographs of cats can produce realistic images of cats that never existed. <strong>Reinforcement learning</strong> trains an agent to choose the actions that maximize a cumulative reward, given the state of its environment. In this session we will not develop generative or reinforcement learning further, even though both of them have real uses in other parts of quantum materials. We keep the GAN example with cat faces in mind only to remember that supervised learning is not the whole field, even if it is all that we use in this session.</p>
+<p>We can think of a deep neural network as a very flexible function with parameters. It takes an input, which is an array of numbers, passes it through a sequence of layers, and gives an output, which is another array of numbers. Inside a layer, the value of each node is a nonlinear function of the values of all the nodes in the previous layer, combined with a set of free parameters. These parameters are the <em>weights</em>, one for each connection, and the <em>biases</em>, one for each node. The architecture, which is the number and the width of the layers, fixes how complex a function the network <em>can</em> represent. The specific values of the weights and biases, which we call together <span class="math inline">\(\theta\)</span>, fix which function it <em>does</em> represent at a given moment. To train a network means to search over <span class="math inline">\(\theta\)</span> for the values that make the network give the function that we want. In practice, we define a <strong>loss function</strong> <span class="math inline">\(\mathcal{L}(\theta)\)</span> that measures how far the output of the network is from the desired one, and we minimize it. This is usually done with backpropagation, which is an efficient and exact way to compute <span class="math inline">\(\partial
+\mathcal{L}/\partial\theta\)</span> with the chain rule, together with gradient descent,</p>
+<p><span id="eq-10-1" class="eq"><span class="math display">\[\mathcal{L}(\theta) = \sum_n \left\| f_\theta(x_n) - y_n \right\|^2, \qquad \theta \;\longrightarrow\; \theta - \eta\, \nabla_\theta \mathcal{L}(\theta), \tag{10.1}\]</span></span></p>
+<p>where <span class="math inline">\(\{(x_n, y_n)\}\)</span> is a set of labeled training examples and <span class="math inline">\(\eta\)</span> is the learning rate. Every use of a neural network in this session is a variation of <a href="#eq-10-1">(10.1)</a>, even when the physics attached to it is exotic. We have to choose the right input, the right output and the right loss, and then the training procedure is always the same gradient descent.</p>
+<p>The concrete example that we keep in mind is the classification of images of cats and dogs, since we will use the same architecture two more times in this session. An image is an <span class="math inline">\(N\times N\)</span> matrix of pixel values. We flatten it into the input layer of the network, and the output layer has only two nodes, with the target <span class="math inline">\((1,0)\)</span> for “cat” and <span class="math inline">\((0,1)\)</span> for “dog.” We train on a labeled set of images by minimizing <a href="#eq-10-1">(10.1)</a>, with <span class="math inline">\(f_\theta\)</span> the output of the network and <span class="math inline">\(y_n\)</span> the one-hot label. Once the network is trained, it classifies new images that have no label. This template can be used in many cases, since nothing in it depends on the input being a photograph. It only needs the input to be an array of numbers with a categorical label. We will see the same structure, an input matrix and a one-hot output, again in Section <a href="06-phase-classification-with-local-order-parameters-and-topological-order.html#sec-10-6">10.6</a>, where a spin configuration takes the place of the photograph. Figure <a href="#fig:s10:template">10.1</a> shows the template once, and the four later constructions of this session use it without change except for the choice of input, output and loss.</p>
+<figure id="fig:s10:template">
+<img src="../figures/s10f01_networktemplate.svg" loading="lazy" alt="The construction that the rest of this session uses again and again." />
+<figcaption><strong>Figure 10.1.</strong> The construction that the rest of this session uses again and again. <strong>Left.</strong> A deep network is a parametric function <span class="math inline">\(f_\theta\)</span>. The architecture, which is the number of layers and their width, fixes which functions it <em>can</em> represent, and the weights and biases <span class="math inline">\(\theta\)</span> fix which one it <em>does</em> represent at a given moment. Here the input is a small picture and the output is a one-hot label. <strong>Right.</strong> Training is the loop of <a href="#eq-10-1">(10.1)</a>. We evaluate the output, compare it with the label through a loss, obtain <span class="math inline">\(\partial\mathcal{L}/\partial\theta\)</span> exactly with backpropagation, take a gradient step and repeat.</figcaption>
+</figure>
+
+  <nav class="pager"><a href="01-machine-learning-and-many-body-physics-in-two-directions.html">10.1 Machine learning and many-body physics in two directions</a><a href="03-neural-network-quantum-states.html">10.3 Neural network quantum states</a></nav>
+
+</main>
+</body>
+</html>

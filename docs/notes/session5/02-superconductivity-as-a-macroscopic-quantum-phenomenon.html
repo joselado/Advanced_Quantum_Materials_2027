@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>5.2 Superconductivity as a macroscopic quantum phenomenon, session 5</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+
+  main { max-width: 860px; }
+  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
+              border-radius: 6px; color: var(--muted); }
+  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
+  .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
+  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
+  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
+  figure { margin: 24px 0; }
+  figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
+  figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
+  .eq { display: block; }
+  .math.display { overflow-x: auto; overflow-y: hidden; }
+  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
+                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
+  .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
+           margin: 20px 0; font-size: 0.95rem; }
+  .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
+  table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
+  div.center { overflow-x: auto; }
+  div.center table { margin-left: auto; margin-right: auto; }
+  th { border-bottom: 2px solid var(--rule); }
+  .coursecontents h2 { margin-top: 28px; }
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script src="../../notes/notes.js" defer></script>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
+  <nav class="tabs"><a href="../../lectures/session5.html">Video lectures</a><a href="../../landscape/session5.html">Landscape lectures</a><a class="on" href="../../notes/session5/index.html">Lecture notes</a></nav>
+  <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="on" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
+  <p class="crumb"><a href="index.html">Session 5. Superconductivity, Nambu Representation and Majorana Physics</a></p>
+<h1 id="sec-5-2"><span class="num">5.2</span> Superconductivity as a macroscopic quantum phenomenon</h1>
+<p>Before we write the Hamiltonian, let us see why superconductivity is one of the clearest ways that we have to observe quantum mechanics at the macroscopic scale. A superconductor is made of trillions of atoms, and still a measurement on the bulk sample can give, essentially exactly, the microscopic constants <span class="math inline">\(\hbar\)</span> and <span class="math inline">\(e\)</span>. This works because gauge symmetry breaking gives the many-body wave function a single well-defined phase <span class="math inline">\(\theta(\mathbf{r})\)</span>, and the condition that this phase is single-valued around a closed loop is a very strong constraint.</p>
+<p>Let us take a superconducting ring threaded by magnetic flux, or in the same way a hole in a bulk superconductor, and let us take the loop deep enough inside the superconductor that the supercurrent density vanishes there because of Meissner screening. The supercurrent of Cooper pairs, which have charge <span class="math inline">\(2e\)</span> since a pair is made of two electrons, is proportional to the gauge-invariant combination <span class="math inline">\(\hbar\nabla\theta -
+2e\mathbf{A}\)</span>. If we set the current to zero on our loop, we obtain</p>
+<p><span class="math display">\[\oint \nabla\theta \cdot d\boldsymbol\ell = \frac{2e}{\hbar}\oint \mathbf{A}\cdot d\boldsymbol\ell = \frac{2e}{\hbar}\Phi.\]</span></p>
+<p>However, <span class="math inline">\(\theta\)</span> is the phase of a single-valued wave function, so after one turn around the loop it can only change by an integer multiple of <span class="math inline">\(2\pi\)</span>, which means that <span class="math inline">\(\oint \nabla\theta\cdot
+d\boldsymbol\ell = 2\pi n\)</span> for integer <span class="math inline">\(n\)</span>. If we combine the two equations, we obtain flux quantization,</p>
+<p><span id="eq-5-1" class="eq"><span class="math display">\[\Phi = n\,\Phi_0, \qquad \Phi_0 = \frac{h}{2e}. \tag{5.1}\]</span></span></p>
+<p>Figure <a href="#fig:s05:flux">5.1</a> shows the geometry and the argument based on the winding of the phase. The same physics is behind the precision of Josephson junctions. In the AC Josephson effect, a voltage <span class="math inline">\(V\)</span> across the junction gives a current that oscillates with frequency <span class="math inline">\(2eV/h\)</span>, which is a direct macroscopic readout of <span class="math inline">\(h/2e\)</span>, and this is possible only because gauge symmetry is broken. Note the parallel with the quantum Hall state from earlier in the course. There, a macroscopic measurement also gives a ratio of the same two constants, which is the Hall conductance, quantized in units of <span class="math inline">\(e^2/h\)</span> by the Chern number. However, the mechanism is completely different, since it is the quantization of a single-particle topological invariant and not the breaking of a continuous symmetry. In fact, if we combine the two measurements, the flux quantum and the conductance quantum of the Hall effect, we have one of the most precise ways to obtain <span class="math inline">\(h\)</span> and <span class="math inline">\(e\)</span> separately. This is a concrete example of the emergence that we keep coming back to in this course, where macroscopic measurements on billions of atoms give us exact microscopic constants.</p>
+<figure id="fig:s05:flux">
+<img src="../figures/s05f01_flux.svg" loading="lazy" alt="A drawing of flux quantization." />
+<figcaption><strong>Figure 5.1.</strong> A drawing of flux quantization. On the left there is a superconducting ring. Deep in the bulk the Meissner effect has already removed the supercurrent, so on the dashed contour the gauge-invariant combination <span class="math inline">\(\hbar\nabla\theta-2e\mathbf A\)</span> vanishes and the phase gradient is locked to the vector potential. On the right, the arrows are the condensate phase <span class="math inline">\(\theta\)</span> at points of this contour. When we move once around it, the phase must come back to itself, so it can only wind by an integer number of turns. Together, the two statements give <span class="math inline">\(\Phi=n\,h/2e\)</span>, which means that the flux through the hole is quantized, and the <span class="math inline">\(2\)</span> in the denominator is the charge <span class="math inline">\(2e\)</span> of a Cooper pair. None of this is a property of a single electron. It is a macroscopic sample that gives back a ratio of microscopic constants, only because gauge symmetry is broken.</figcaption>
+</figure>
+
+  <nav class="pager"><a href="01-weakly-versus-strongly-correlated-matter-revisited.html">5.1 Weakly versus strongly correlated matter, revisited</a><a href="03-zero-resistance-and-the-meissner-effect-in-a-superconductor.html">5.3 Zero resistance and the Meissner effect in a superconductor</a></nav>
+
+</main>
+</body>
+</html>

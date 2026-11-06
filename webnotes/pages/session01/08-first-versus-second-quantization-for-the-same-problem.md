@@ -1,0 +1,3 @@
+## First versus second quantization for the same problem {#sec-1-8 number="1.8"}
+
+For a tight-binding Hamiltonian that is purely single-particle, first and second quantization need in practice the same amount of work. Let us write the first-quantized Hamiltonian with hopping matrix elements $t_{ij}$ between orbitals $i,j$. The second-quantized version has the same $t_{ij}$, multiplied by $c_i^\dagger c_j$. To diagonalize either of them we use the same unitary transformation $U$, and we obtain the same eigenvalues. The only formal difference is that in first quantization the coefficients that diagonalize the Hamiltonian form a vector, while in second quantization they become operators. The physics is the same in both cases.

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>6.15 Magnon dispersions in ferromagnets and antiferromagnets, session 6</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+
+  main { max-width: 860px; }
+  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
+              border-radius: 6px; color: var(--muted); }
+  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
+  .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
+  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
+  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
+  figure { margin: 24px 0; }
+  figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
+  figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
+  .eq { display: block; }
+  .math.display { overflow-x: auto; overflow-y: hidden; }
+  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
+                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
+  .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
+           margin: 20px 0; font-size: 0.95rem; }
+  .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
+  table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
+  div.center { overflow-x: auto; }
+  div.center table { margin-left: auto; margin-right: auto; }
+  th { border-bottom: 2px solid var(--rule); }
+  .coursecontents h2 { margin-top: 28px; }
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script src="../../notes/notes.js" defer></script>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
+  <nav class="tabs"><a href="../../lectures/session6.html">Video lectures</a><a href="../../landscape/session6.html">Landscape lectures</a><a class="on" href="../../notes/session6/index.html">Lecture notes</a></nav>
+  <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="on" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
+  <p class="crumb"><a href="index.html">Session 6. Classical Magnetism and Magnons</a></p>
+<h1 id="sec-6-15"><span class="num">6.15</span> Magnon dispersions in ferromagnets and antiferromagnets</h1>
+<p>We Fourier transform the bosonic Hamiltonian of Section <a href="14-the-holstein-primakoff-transformation.html#sec-6-14">6.14</a> on a Bravais lattice with coordination number <span class="math inline">\(z\)</span> and first-neighbor structure factor <span class="math inline">\(\gamma(\mathbf k) = \tfrac1z\sum_{\boldsymbol\delta}
+e^{i\mathbf k\cdot\boldsymbol\delta}\)</span>. For the <strong>ferromagnet</strong>, with <span class="math inline">\(J&lt;0\)</span> and <span class="math inline">\(|J|=-J\)</span>, this gives a diagonal magnon Hamiltonian with dispersion</p>
+<p><span id="eq-6-8" class="eq"><span class="math display">\[E_\text{FM}(\mathbf k) = |J|\,S\,z\big(1-\gamma(\mathbf k)\big). \tag{6.8}\]</span></span></p>
+<p>This dispersion is zero at <span class="math inline">\(\mathbf k=0\)</span>, as it has to be. A uniform rotation of all the spins costs no energy, and this is the Goldstone mode of the broken spin-rotation symmetry. If we expand <span class="math inline">\(\gamma(\mathbf k)\)</span> for small <span class="math inline">\(\mathbf k\)</span> we obtain <span class="math inline">\(E_\text{FM}(\mathbf k)\propto k^2\)</span>, which is a <strong>quadratic</strong> magnon dispersion, and this is the “gapless, quadratic” ferromagnetic magnon that the lecture points out.</p>
+<p>The <strong>antiferromagnetic</strong> case needs one more step, because the ground state is not “all spins up.” On a bipartite lattice, we apply the Holstein-Primakoff transformation <a href="14-the-holstein-primakoff-transformation.html#eq-6-7">(6.7)</a> separately on the two sublattices, and on the <span class="math inline">\(B\)</span> sublattice the roles of <span class="math inline">\(S^+\)</span> and <span class="math inline">\(S^-\)</span> are exchanged, since these spins point in the opposite direction. We have <span class="math inline">\(S_i^z=S-a_i^\dagger a_i\)</span> on <span class="math inline">\(A\)</span>, but <span class="math inline">\(S_j^z=-S+b_j^\dagger b_j\)</span> on <span class="math inline">\(B\)</span>. If we insert this into <span class="math inline">\(\mathbf S_i\cdot\mathbf S_j\)</span> for a bond between the two sublattices, we obtain not only density terms <span class="math inline">\(a^\dagger a\)</span> and <span class="math inline">\(b^\dagger b\)</span>, but also <em>anomalous</em> terms <span class="math inline">\(a_i b_j\)</span> and <span class="math inline">\(a_i^\dagger b_j^\dagger\)</span>, which do not conserve the particle number. This tells us that the magnon vacuum on top of the Néel state is not the bosonic vacuum, and that to diagonalize the Hamiltonian we need a Bogoliubov transformation and not only a Fourier transform. If we do this, we obtain the antiferromagnetic magnon dispersion</p>
+<p><span id="eq-6-9" class="eq"><span class="math display">\[E_\text{AFM}(\mathbf k) = J\,S\,z\,\sqrt{1-\gamma(\mathbf k)^2}. \tag{6.9}\]</span></span></p>
+<p>Close to <span class="math inline">\(\mathbf k=0\)</span> we have <span class="math inline">\(1-\gamma(\mathbf k)^2 \propto k^2\)</span>, so <span class="math inline">\(E_\text{AFM}(\mathbf k)\propto |k|\)</span>. This is a <strong>linear</strong> dispersion similar to a Dirac cone, which is gapless at the same point but linear and not quadratic. This is the rule “quadratic in ferromagnets, linear in antiferromagnets” from the lecture, which we have now derived and not only stated. It is also one more example, together with the Dirac cones of session 2 and 3, of a linear dispersion that comes from the structure of a symmetry and is not put in by hand. Figure <a href="#fig:s06:dispersion">6.6</a> shows <a href="#eq-6-8">(6.8)</a> and <a href="#eq-6-9">(6.9)</a> together, with a magnified view of the zone center, so that the parabola and the cone can be distinguished.</p>
+<figure id="fig:s06:dispersion">
+<img src="../figures/s06f06_dispersion.svg" loading="lazy" alt="Magnon dispersions (6.8) and (6.9) for a chain (z=2, \gamma(\mathbf k)=\cos ka), both in units of |J|Sz." />
+<figcaption><strong>Figure 6.6.</strong> Magnon dispersions <a href="#eq-6-8">(6.8)</a> and <a href="#eq-6-9">(6.9)</a> for a chain (<span class="math inline">\(z=2\)</span>, <span class="math inline">\(\gamma(\mathbf k)=\cos ka\)</span>), both in units of <span class="math inline">\(|J|Sz\)</span>. Both are zero at <span class="math inline">\(\mathbf k=0\)</span>, since a uniform rotation of all the spins costs no energy. So the magnon is the Goldstone mode of the broken spin-rotation symmetry, and no value of the exchange can open a gap in it. The difference is <em>how</em> the two dispersions go to zero. The factor <span class="math inline">\(1-\gamma(\mathbf k)\)</span> of the ferromagnet is quadratic in <span class="math inline">\(k\)</span>. The factor <span class="math inline">\(\sqrt{1-\gamma(\mathbf k)^2}\)</span> of the antiferromagnet is the square root of the same quantity, so it is linear and gives a Dirac-like cone instead of a parabola. The right panel magnifies the zone centre, where the difference is clear. This extra square root comes from the Bogoliubov transformation that the Néel state requires, since the anomalous <span class="math inline">\(a_ib_j\)</span> terms are what change a parabola into a cone.</figcaption>
+</figure>
+
+  <nav class="pager"><a href="14-the-holstein-primakoff-transformation.html">6.14 The Holstein-Primakoff transformation</a><a href="16-topological-magnons.html">6.16 Topological magnons</a></nav>
+
+</main>
+</body>
+</html>

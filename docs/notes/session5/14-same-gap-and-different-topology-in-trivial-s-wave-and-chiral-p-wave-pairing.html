@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>5.14 Same gap and different topology in trivial s-wave and chiral p-wave pairing, session 5</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+
+  main { max-width: 860px; }
+  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
+              border-radius: 6px; color: var(--muted); }
+  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
+  .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
+  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
+  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
+  figure { margin: 24px 0; }
+  figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
+  figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
+  .eq { display: block; }
+  .math.display { overflow-x: auto; overflow-y: hidden; }
+  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
+                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
+  .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
+           margin: 20px 0; font-size: 0.95rem; }
+  .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
+  table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
+  div.center { overflow-x: auto; }
+  div.center table { margin-left: auto; margin-right: auto; }
+  th { border-bottom: 2px solid var(--rule); }
+  .coursecontents h2 { margin-top: 28px; }
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script src="../../notes/notes.js" defer></script>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
+  <nav class="tabs"><a href="../../lectures/session5.html">Video lectures</a><a href="../../landscape/session5.html">Landscape lectures</a><a class="on" href="../../notes/session5/index.html">Lecture notes</a></nav>
+  <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="on" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
+  <p class="crumb"><a href="index.html">Session 5. Superconductivity, Nambu Representation and Majorana Physics</a></p>
+<h1 id="sec-5-14"><span class="num">5.14</span> Same gap and different topology in trivial s-wave and chiral p-wave pairing</h1>
+<p>This is the central point of the whole session. Two superconducting gaps can have completely identical <em>spectral</em> properties, where both fully gap the Fermi surface with, for example, the same minimum gap, and still be topologically different. Let us compare plain s-wave pairing, <span class="math inline">\(\Delta(\mathbf k) =
+\Delta_0\)</span>, with <strong>chiral p-wave</strong> pairing,</p>
+<p><span id="eq-5-15" class="eq"><span class="math display">\[\Delta_{p+ip}(\mathbf k) = \Delta_0\left(\sin k_x + i \sin k_y\right), \tag{5.15}\]</span></span></p>
+<p>which is an odd-parity, spin-triplet order, in agreement with <a href="11-the-general-pairing-hamiltonian-and-its-symmetry-classification.html#eq-5-12">(5.12)</a> since <span class="math inline">\(\Delta_{p+ip}(-\mathbf
+k) =
+-\Delta_{p+ip}(\mathbf k)\)</span>, and which winds once around the origin of the complex plane as <span class="math inline">\(\mathbf
+k\)</span> goes around the Fermi surface. Both <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#eq-5-9">(5.9)</a> with <span class="math inline">\(\Delta_0\)</span> and <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#eq-5-9">(5.9)</a> with <span class="math inline">\(\Delta_{p+ip}\)</span> can fully gap the same Fermi surface, so a measurement of the bulk gap alone cannot distinguish them. However, in the same way as for the Chern-number classification of gapped bands in the topological-band-structure session, we can compute the Chern number of the occupied BdG bands for each case, and the two results are completely different. The trivial s-wave state has Chern number <span class="math inline">\(0\)</span>, while the chiral p-wave state has Chern number <span class="math inline">\(\pm 2\)</span>, where the sign is set by the chirality, <span class="math inline">\(p_x + ip_y\)</span> or <span class="math inline">\(p_x - ip_y\)</span>.</p>
+<p>What distinguishes them, as shown in figure <a href="#fig:s05:topology">5.4</a>, is the winding of the <em>phase</em> of <span class="math inline">\(\Delta(\mathbf k)\)</span> when <span class="math inline">\(\mathbf k\)</span> goes once around the Fermi surface. This phase is constant for s-wave, and it makes one full turn for <span class="math inline">\(p+ip\)</span>.</p>
+<p>This has the consequence that we expect from the bulk-boundary correspondence. In a finite system, the s-wave superconductor stays gapped everywhere, both in the bulk and at the edge, in the same way as a trivial insulator with Chern number zero. The chiral p-wave superconductor, on the other hand, is gapped in the bulk but has gapless <em>chiral</em> edge modes. On one edge there are <span class="math inline">\(|C|\)</span> branches that all propagate in the same direction, here two, one from each of the two identical spin blocks, and the opposite edge has the same number of branches that propagate in the opposite direction, as a state with Chern number <span class="math inline">\(\pm 2\)</span> must have. So on a ribbon we see two sets of branches that propagate in opposite directions, but they are localized on opposite edges and do not share one edge. These edge modes turn out to be fractions of an electron in a very specific and exact sense, since they are Majorana modes, and the rest of this session is about what this means.</p>
+<figure id="fig:s05:topology">
+<img src="../figures/s05f04_topology.svg" loading="lazy" alt="Two gaps that a spectroscopy experiment cannot distinguish, seen from above." />
+<figcaption><strong>Figure 5.4.</strong> Two gaps that a spectroscopy experiment cannot distinguish, seen from above. Each dial is the phase of <span class="math inline">\(\Delta(\mathbf k)\)</span>, an arrow in the complex plane, drawn at the point of the Fermi pocket where it is evaluated. (a) For <span class="math inline">\(s\)</span>-wave pairing this phase is the same everywhere, so as <span class="math inline">\(\mathbf k\)</span> goes once around the pocket the value of <span class="math inline">\(\Delta\)</span> stays at a single point of the complex plane, with winding number zero and Chern number zero. (b) For chiral <span class="math inline">\(p\)</span>-wave pairing <a href="#eq-5-15">(5.15)</a> the phase instead follows the direction of <span class="math inline">\(\mathbf k\)</span>, so <span class="math inline">\(\Delta\)</span> draws a loop that encircles the origin once. The modulus is essentially the same in both cases, so both fully gap the same pocket by the same amount. Only the winding is different, and the winding is what the Chern number counts. (c) The consequence in a finite sample. The trivial state is gapped at its boundary as well as in its bulk, while the chiral state must have <span class="math inline">\(|C|\)</span> gapless branches on each edge, all going in the same direction, and in the opposite direction on the opposite edge. Here <span class="math inline">\(C=\pm 2\)</span>, with one branch from each of the two identical spin blocks of <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#eq-5-8">(5.8)</a>.</figcaption>
+</figure>
+<div class="notebookbox">
+<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb"><code>session5.ipynb</code></a>, “Trivial and topological superconducting order parameters, bulk spectra” (Core), and “...edge spectra” (Core)</p>
+<p>Build the s-wave and chiral p-wave BdG Hamiltonians next to each other, and check that their bulk spectra look similar, since both are gapped with a comparable gap size. Then move to a ribbon geometry and check that only the p-wave case has gapless chiral edge states, with branches of opposite velocity on the two edges of the ribbon, which is the distinction driven by the Chern number of section <a href="#sec-5-14">5.14</a></p>
+</div>
+
+  <nav class="pager"><a href="13-nodal-singlet-order-d-wave-pairing-in-the-cuprates-and-the-angular-momentum-expansion.html">5.13 Nodal singlet order, d-wave pairing in the cuprates and the angular-momentum expansion</a><a href="15-majorana-bound-states-and-how-to-split-an-electron-into-two-majoranas.html">5.15 Majorana bound states and how to split an electron into two Majoranas</a></nav>
+
+</main>
+</body>
+</html>

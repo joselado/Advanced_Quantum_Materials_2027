@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>5.8 The Nambu spinor and the Bogoliubov-de Gennes Hamiltonian, session 5</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+
+  main { max-width: 860px; }
+  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
+              border-radius: 6px; color: var(--muted); }
+  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
+  .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
+  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
+  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
+  figure { margin: 24px 0; }
+  figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
+  figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
+  .eq { display: block; }
+  .math.display { overflow-x: auto; overflow-y: hidden; }
+  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
+                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
+  .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
+           margin: 20px 0; font-size: 0.95rem; }
+  .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
+  table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
+  div.center { overflow-x: auto; }
+  div.center table { margin-left: auto; margin-right: auto; }
+  th { border-bottom: 2px solid var(--rule); }
+  .coursecontents h2 { margin-top: 28px; }
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script src="../../notes/notes.js" defer></script>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
+  <nav class="tabs"><a href="../../lectures/session5.html">Video lectures</a><a href="../../landscape/session5.html">Landscape lectures</a><a class="on" href="../../notes/session5/index.html">Lecture notes</a></nav>
+  <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="on" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
+  <p class="crumb"><a href="index.html">Session 5. Superconductivity, Nambu Representation and Majorana Physics</a></p>
+<h1 id="sec-5-8"><span class="num">5.8</span> The Nambu spinor and the Bogoliubov-de Gennes Hamiltonian</h1>
+<p>The pairing term creates a technical problem. We cannot diagonalize <a href="05-the-mean-field-pairing-hamiltonian-in-detail.html#eq-5-4">(5.4)</a> with an ordinary vector of orbital operators, because the anomalous term mixes creation and annihilation operators, instead of pairing them up in the way of every Hamiltonian that we diagonalized in sessions 1-4. The solution is to <em>enlarge</em> the operator basis, so that both the creation and the annihilation operators of the original problem become entries of a bigger spinor that behave like annihilation operators. We work in momentum space, with a single orbital and both spins, and we define the <strong>Nambu spinor</strong></p>
+<p><span id="eq-5-6" class="eq"><span class="math display">\[\Psi_{\mathbf{k}} = \begin{pmatrix} c_{\mathbf{k}\uparrow} \\ c_{\mathbf{k}\downarrow} \\ c_{-\mathbf{k}\downarrow}^\dagger \\ -c_{-\mathbf{k}\uparrow}^\dagger \end{pmatrix}, \tag{5.6}\]</span></span></p>
+<p>which has an electron sector, formed by the first two components and containing ordinary annihilation operators, and a hole sector, formed by the last two components and containing creation operators at <span class="math inline">\(-\mathbf{k}\)</span>, with the spins exchanged and with an extra minus sign on the last entry. This sign has a real role. It is what is needed so that, when we write <span class="math inline">\(H_{\text{MF}}\)</span> in terms of <span class="math inline">\(\Psi_{\mathbf k}\)</span>, the pairing term gives two identical and decoupled copies of the same <span class="math inline">\(2\times 2\)</span> problem, instead of mixing the two spin blocks through a Pauli matrix. For a spin-singlet pairing <span class="math inline">\(\Delta(\mathbf k)\)</span>, which does not depend on momentum and is equal to <span class="math inline">\(\Delta\)</span> for the Fourier transform of the onsite case of <a href="05-the-mean-field-pairing-hamiltonian-in-detail.html#eq-5-4">(5.4)</a>, one can check directly, using the fermionic anticommutation relations to reorder operators where needed, that the mean-field Hamiltonian can be written exactly as</p>
+<p><span id="eq-5-7" class="eq"><span class="math display">\[H_{\text{MF}} = \frac{1}{2}\sum_{\mathbf{k}} \Psi_{\mathbf{k}}^\dagger\, H_{\text{BdG}}(\mathbf{k})\, \Psi_{\mathbf{k}} + \text{const.}, \qquad H_{\text{BdG}}(\mathbf{k}) = \begin{pmatrix} \varepsilon(\mathbf{k}) &amp; 0 &amp; \Delta(\mathbf k) &amp; 0 \\ 0 &amp; \varepsilon(\mathbf k) &amp; 0 &amp; \Delta(\mathbf k) \\ \Delta(\mathbf k)^* &amp; 0 &amp; -\varepsilon(\mathbf{k}) &amp; 0 \\ 0 &amp; \Delta(\mathbf k)^* &amp; 0 &amp; -\varepsilon(\mathbf k) \end{pmatrix}, \tag{5.7}\]</span></span></p>
+<p>where <span class="math inline">\(\varepsilon(\mathbf k) = -2t(\cos k_x + \cos k_y) - \mu\)</span> is the ordinary band dispersion, which we assume to be inversion symmetric, <span class="math inline">\(\varepsilon(-\mathbf k) = \varepsilon(\mathbf k)\)</span>. This <span class="math inline">\(4\times 4\)</span> matrix is called the <strong>Bogoliubov-de Gennes (BdG) Hamiltonian</strong>, and in a concrete sense it is the most important object to describe the excitations of a superconductor. Note that the two diagonal entries in the lower-right part have <span class="math inline">\(-\varepsilon(\mathbf k)\)</span> and not <span class="math inline">\(+\varepsilon(\mathbf k)\)</span>. This comes directly from writing <span class="math inline">\(c_{-\mathbf k\sigma}^\dagger
+c_{-\mathbf k\sigma}\)</span> in terms of <span class="math inline">\(c_{-\mathbf k\sigma}c_{-\mathbf k\sigma}^\dagger = 1 -
+c_{-\mathbf k\sigma}^\dagger c_{-\mathbf
+k\sigma}\)</span> with the anticommutation relations. This is also where the name hole comes from, since a missing electron at <span class="math inline">\(-\mathbf k\)</span> behaves like a particle with opposite energy.</p>
+<p>Since the spinor <a href="#eq-5-6">(5.6)</a> was built with this extra minus sign, the <span class="math inline">\(4\times 4\)</span> problem in <a href="#eq-5-7">(5.7)</a> is already block-diagonal. There is one <span class="math inline">\(2\times 2\)</span> block built from <span class="math inline">\((c_{\mathbf k\uparrow},
+c_{-\mathbf k\downarrow}^\dagger)\)</span> and an identical one built from <span class="math inline">\((c_{\mathbf k\downarrow},
+-c_{-\mathbf
+k\uparrow}^\dagger)\)</span>, and each of them has the reduced BdG matrix</p>
+<p><span id="eq-5-8" class="eq"><span class="math display">\[h_{\text{BdG}}(\mathbf k) = \begin{pmatrix} \varepsilon(\mathbf k) &amp; \Delta(\mathbf k) \\ \Delta(\mathbf k)^* &amp; -\varepsilon(\mathbf k)\end{pmatrix}. \tag{5.8}\]</span></span></p>
+<p>This is the structure that is shown on the slides and quoted in the lecture, a <span class="math inline">\(4\times 4\)</span> matrix for a single orbital with two spins, with diagonal entries <span class="math inline">\(\varepsilon(\mathbf k)\)</span>, <span class="math inline">\(\varepsilon(\mathbf k)\)</span>, <span class="math inline">\(-\varepsilon(\mathbf k)\)</span>, <span class="math inline">\(-\varepsilon(\mathbf k)\)</span> and off-diagonal entries <span class="math inline">\(\Delta\)</span>, but now we have derived it instead of only stating it. If we diagonalize <a href="#eq-5-8">(5.8)</a>, we obtain the standard BCS quasiparticle dispersion</p>
+<p><span id="eq-5-9" class="eq"><span class="math display">\[E(\mathbf k) = \pm\sqrt{\varepsilon(\mathbf k)^2 + |\Delta(\mathbf k)|^2}. \tag{5.9}\]</span></span></p>
+<div class="notebookbox">
+<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb"><code>session5.ipynb</code></a>, “Nambu electronic structure without superconductivity” and “Nambu electronic structure with superconductivity” (both Reminder)</p>
+<p>First build the Nambu-doubled Hamiltonian of <a href="#eq-5-6">(5.6)</a>-<a href="#eq-5-7">(5.7)</a> with <span class="math inline">\(\Delta = 0\)</span>, and check that you get exactly two copies of the same band structure. One is the physical copy, which is the electron sector, and the other is a spurious mirror copy, which is the hole sector, with dispersion <span class="math inline">\(-\varepsilon(\mathbf k)\)</span>. Then turn on <span class="math inline">\(\Delta\)</span> and look at how the gap in <a href="#eq-5-9">(5.9)</a> opens at every crossing between the two copies.</p>
+</div>
+
+  <nav class="pager"><a href="07-the-gauge-transformation-in-explicit-form.html">5.7 The gauge transformation in explicit form</a><a href="09-an-example-of-a-gap-that-opens-independently-of-the-dispersion.html">5.9 An example of a gap that opens independently of the dispersion</a></nav>
+
+</main>
+</body>
+</html>

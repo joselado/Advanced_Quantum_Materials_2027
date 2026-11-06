@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Session 3, lecture notes</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+
+  main { max-width: 860px; }
+  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
+              border-radius: 6px; color: var(--muted); }
+  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
+  .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
+  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
+  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
+  figure { margin: 24px 0; }
+  figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
+  figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
+  .eq { display: block; }
+  .math.display { overflow-x: auto; overflow-y: hidden; }
+  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
+                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
+  .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
+           margin: 20px 0; font-size: 0.95rem; }
+  .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
+  table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
+  div.center { overflow-x: auto; }
+  div.center table { margin-left: auto; margin-right: auto; }
+  th { border-bottom: 2px solid var(--rule); }
+  .coursecontents h2 { margin-top: 28px; }
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script src="../../notes/notes.js" defer></script>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
+  <nav class="tabs"><a href="../../lectures/session3.html">Video lectures</a><a href="../../landscape/session3.html">Landscape lectures</a><a class="on" href="../../notes/session3/index.html">Lecture notes</a></nav>
+  <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="on" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
+  <h1>Session 3. Topological Band Structure Theory</h1>
+  <p class="links"><a href="../../lectures/session3.html">Video lecture</a> · <a href="../../landscape/session3.html">Landscape lecture</a> · <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session3.ipynb">session3.ipynb</a> · <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/lecture_notes/main.pdf">PDF of the notes</a></p>
+<p>In the last session we ended with the most important feature of the honeycomb lattice. Close to the corners of its Brillouin zone, the tight-binding band structure is not parabolic anymore and becomes linear, which is the Dirac cone. This is one of the three types of dispersion that we chose to organize the rest of the course, which are parabolic, Dirac and flat. We also saw that this is not only a convenient theoretical picture, since ARPES measures this linear dispersion directly in real graphene. The question for this whole session is what happens if we open a gap at this Dirac point. A Dirac cone with a gap turns a metal into an insulator, but this insulator is not always an ordinary one. Depending on <em>how</em> the gap opens, the insulator can have a hidden invariant, which is called a topological invariant. This invariant does not appear anywhere in the bulk spectrum, but it forces the material to have conducting states at its edge, and no local disorder can remove these states. To reach this statement in an exact way we need several steps. First, we need linear response theory as a tool. Then we need the Hall conductivity, which is the observable where the invariant first appears, and the Chern number, which is the invariant itself. Finally, we need the general bulk-boundary correspondence, which connects the invariant to the physics of the edge. We will build all of this with the quantum Hall state, which is the simplest example. Then we will use the same tools for a purely one-dimensional model, the SSH chain. At the end, in Section <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#sec-3-10">3.10</a>, we will come back to the Dirac cone of the honeycomb lattice, open a gap in it, and see a real Chern insulator appear without any magnetic field.</p>
+
+  <h2>Contents</h2>
+  <nav class="toc"><ol><li><span class="n">3.1</span><a href="01-what-topological-materials-are.html">What topological materials are</a></li><li><span class="n">3.2</span><a href="02-linear-response-theory-and-how-a-measurement-reads-the-wavefunctions.html">Linear response theory and how a measurement reads the wavefunctions</a></li><li><span class="n">3.3</span><a href="03-where-perturbation-theory-breaks-down.html">Where perturbation theory breaks down</a></li><li><span class="n">3.4</span><a href="04-the-hall-conductivity-from-linear-response.html">The Hall conductivity from linear response</a></li><li><span class="n">3.5</span><a href="05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html">The Berry curvature, and why the Hall conductivity is an integer</a></li><li><span class="n">3.6</span><a href="06-landau-levels-and-chiral-edge-states-in-the-quantum-hall-state.html">Landau levels and chiral edge states in the quantum Hall state</a></li><li><span class="n">3.7</span><a href="07-what-topology-means-for-a-hamiltonian-and-the-bulk-boundary-correspondence.html">What topology means for a Hamiltonian, and the bulk-boundary correspondence</a></li><li><span class="n">3.8</span><a href="08-three-topological-material-classes.html">Three topological material classes</a></li><li><span class="n">3.9</span><a href="09-the-ssh-model-as-a-minimal-one-dimensional-topological-insulator.html">The SSH model as a minimal one-dimensional topological insulator</a></li><li><span class="n">3.10</span><a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html">Chern insulators without Landau levels from a gapped Dirac cone</a></li><li><span class="n">3.11</span><a href="11-quantum-spin-hall-insulators.html">Quantum spin Hall insulators</a></li><li><span class="n">3.12</span><a href="12-topology-beyond-electrons.html">Topology beyond electrons</a></li><li><span class="n">3.13</span><a href="13-closing-summary.html">Closing summary</a></li></ol></nav>
+  <nav class="pager"><a href="../index.html">Lecture notes</a><a href="01-what-topological-materials-are.html">3.1 What topological materials are</a></nav>
+
+</main>
+</body>
+</html>

@@ -10,6 +10,7 @@ Markdown is the master and may carry edits that exist only on the web. --force r
 import argparse
 import json
 import os
+import unicodedata
 import re
 import subprocess
 import sys
@@ -40,8 +41,22 @@ def counts():
     return eq, sec
 
 
+def figure_numbers():
+    """Label to number of every figure of the ten sessions, in the order of the file: the figure 3 of session 6 is 6.3."""
+    out = []
+    for n in range(1, NSESSIONS + 1):
+        with open(session_tex(n)) as f:
+            t = f.read()
+        # the figures live in their own files, read where the session inputs them
+        t = re.sub(r'\\input\{(figures/[^}]*)\}', lambda m: open(os.path.join(SRC, m.group(1) + '.tex')).read(), t)
+        for k, m in enumerate(re.finditer(r'\\begin\{aqmfigure\}\{([^}]*)\}', t), 1):
+            out.append(f'{m.group(1)}={n}.{k}')
+    return out
+
+
 def slugify(title):
-    t = re.sub(r'\$[^$]*\$', ' ', title).lower()
+    t = re.sub(r'\$[^$]*\$', ' ', title)
+    t = unicodedata.normalize('NFKD', t).encode('ascii', 'ignore').decode().lower()
     t = re.sub(r"[^a-z0-9\s-]", '', t)
     return re.sub(r'[\s-]+', '-', t).strip('-')
 
@@ -73,7 +88,8 @@ def main():
     r = subprocess.run(['pandoc', '--resource-path=' + SRC, '-f', 'latex', '-t', 'json', '--wrap=none',
                         '--lua-filter', os.path.join(HERE, 'filters', 'tex2md.lua'),
                         '-M', f'chapter={n}', '-M', 'eqmax=' + ','.join(map(str, eq)),
-                        '-M', 'secmax=' + ','.join(map(str, sec))],
+                        '-M', 'secmax=' + ','.join(map(str, sec)),
+                        '-M', 'figmap=' + ';'.join(figure_numbers())],
                        input=wrap, capture_output=True, text=True, cwd=SRC)
     if r.returncode:
         sys.exit('pandoc failed: ' + r.stderr[:2000])
@@ -88,6 +104,9 @@ def main():
         cur.append(b)
     groups.append(cur)
     os.makedirs(pdir, exist_ok=True)
+    for old in os.listdir(pdir):  # a forced run leaves no page of an earlier slug behind
+        if old.endswith('.md'):
+            os.remove(os.path.join(pdir, old))
     os.makedirs(os.path.dirname(mpath), exist_ok=True)
     pages = []
     for i, g in enumerate(groups):

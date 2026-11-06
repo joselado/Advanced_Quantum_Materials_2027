@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>10.8 Closing summary, session 10</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+
+  main { max-width: 860px; }
+  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
+              border-radius: 6px; color: var(--muted); }
+  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
+  .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
+  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
+  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
+  figure { margin: 24px 0; }
+  figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
+  figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
+  .eq { display: block; }
+  .math.display { overflow-x: auto; overflow-y: hidden; }
+  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
+                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
+  .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
+           margin: 20px 0; font-size: 0.95rem; }
+  .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
+  table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
+  div.center { overflow-x: auto; }
+  div.center table { margin-left: auto; margin-right: auto; }
+  th { border-bottom: 2px solid var(--rule); }
+  .coursecontents h2 { margin-top: 28px; }
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script src="../../notes/notes.js" defer></script>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
+  <nav class="tabs"><a href="../../lectures/session10.html">Video lectures</a><a href="../../landscape/session10.html">Landscape lectures</a><a class="on" href="../../notes/session10/index.html">Lecture notes</a></nav>
+  <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="on" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
+  <p class="crumb"><a href="index.html">Session 10. Machine Learning Quantum Materials</a></p>
+<h1 id="sec-10-8"><span class="num">10.8</span> Closing summary</h1>
+<ul>
+<li><p>A deep neural network is a parametric function that is trained by minimizing a loss function with gradient descent, equation <a href="02-neural-networks-as-function-approximators.html#eq-10-1">(10.1)</a>. Every other construction in this session is a specific choice of input, output and loss built on top of this one template.</p></li>
+<li><p><strong>Neural network quantum states</strong> replace the explicit storage of the <span class="math inline">\(2^L\)</span> coefficients of a wavefunction with a network <span class="math inline">\(C_\theta(s)\)</span>, equation <a href="03-neural-network-quantum-states.html#eq-10-2">(10.2)</a>, which is trained by using the variational energy as the loss function, equations <a href="03-neural-network-quantum-states.html#eq-10-3">(10.3)</a>-<a href="03-neural-network-quantum-states.html#eq-10-5">(10.5)</a>. NNQS is above matrix product states and PEPS in the variational hierarchy, and it imposes the least structure of all the ansätze of this course. The same ansatz, fitted by maximum likelihood instead of energy minimization, solves quantum state tomography with far fewer than <span class="math inline">\(2^L\)</span> measurements.</p></li>
+<li><p><strong>Tensor networks</strong>, built from the matrix product state ansatz <a href="04-tensor-networks-for-machine-learning-and-the-many-body-wavefunction-as-a-big-data-problem.html#eq-10-6">(10.6)</a> and its generalizations to trees, MERA and PEPS, can be used in the reverse direction as machine-learning architectures. For image classification on Fashion-MNIST, this reaches 95.38% training accuracy and 88.97% test accuracy, which is comparable with conventional neural networks.</p></li>
+<li><p><strong>Density functional theory</strong> is based on the Hohenberg-Kohn functional <a href="05-machine-learning-in-density-functional-theory.html#eq-10-7">(10.7)</a> and the Kohn-Sham self-consistency loop <a href="05-machine-learning-in-density-functional-theory.html#eq-10-8">(10.8)</a>. Machine learning enters in two ways. It can learn the unknown exchange-correlation part of <a href="05-machine-learning-in-density-functional-theory.html#eq-10-8">(10.8)</a>, and then the self-consistency loop stays the same, or it can learn the whole map from potential to density directly, and then the self-consistency loop is removed completely.</p></li>
+<li><p><strong>Phase classification</strong> uses one more time the split of this course between local order parameters and topological order. The Ising model <a href="06-phase-classification-with-local-order-parameters-and-topological-order.html#eq-10-9">(10.9)</a> is the easy case, which can be detected locally and follows the logic of sessions 1, 5 and 6. The Ising gauge theory <a href="06-phase-classification-with-local-order-parameters-and-topological-order.html#eq-10-10">(10.10)</a> is the hard case, where no local order parameter distinguishes the low-temperature and high-temperature regimes, which are separated only by a crossover, and it follows the logic of sessions 3 and 4. A trained network succeeds where the naive order parameter fails.</p></li>
+<li><p><strong>Hamiltonian learning</strong> treats the inference of a Hamiltonian from measured observables, equation <a href="07-hamiltonian-learning-as-the-inverse-of-the-first-step-of-session-1.html#eq-10-11">(10.11)</a>, as the inverse of the first step of session 1. We train a network on synthetic forward data, equation <a href="07-hamiltonian-learning-as-the-inverse-of-the-first-step-of-session-1.html#eq-10-12">(10.12)</a>, and apply it to real experimental observables, and in this way we close the loop in practice and not only in principle.</p></li>
+</ul>
+<p>We started this course by asking how a small number of identical atoms, arranged in a lattice, can give rise to a phenomenology as rich as the one that we studied in ten sessions. This includes charge density waves, magnets, superconductors, topological insulators, fractional excitations, spin liquids and more, and none of it can be seen in a single atom alone. To answer this question we went through second quantization and mean-field theory, through Bloch’s theorem and topological invariants, through Nambu spinors and magnon spectra, through tensor networks and parton constructions, and through linear response as a diagnostic for all of them. This session closed the arc in two ways. First, it showed that a neural network can take the place of the many-body wavefunction itself. Second, it showed that all the forward methods of the course, with a Hamiltonian as input and an observable as output, can be run backward to infer the Hamiltonians of real materials. This is a good place to end the course, not with a final answer, but with a general method to ask the question again, for the next quantum material that we want to understand.</p>
+
+  <nav class="pager"><a href="07-hamiltonian-learning-as-the-inverse-of-the-first-step-of-session-1.html">10.7 Hamiltonian learning as the inverse of the first step of session 1</a><span></span></nav>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9.5 Interactions as a perturbation, with RPA, plasmons and the Stoner instability, session 9</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+
+  main { max-width: 860px; }
+  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
+              border-radius: 6px; color: var(--muted); }
+  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
+  .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
+  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
+  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
+  figure { margin: 24px 0; }
+  figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
+  figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
+  .eq { display: block; }
+  .math.display { overflow-x: auto; overflow-y: hidden; }
+  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
+                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
+  .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
+           margin: 20px 0; font-size: 0.95rem; }
+  .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
+  table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
+  div.center { overflow-x: auto; }
+  div.center table { margin-left: auto; margin-right: auto; }
+  th { border-bottom: 2px solid var(--rule); }
+  .coursecontents h2 { margin-top: 28px; }
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script src="../../notes/notes.js" defer></script>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
+  <nav class="tabs"><a href="../../lectures/session9.html">Video lectures</a><a href="../../landscape/session9.html">Landscape lectures</a><a class="on" href="../../notes/session9/index.html">Lecture notes</a></nav>
+  <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="on" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
+  <p class="crumb"><a href="index.html">Session 9. Excitations and Defects in Quantum Materials</a></p>
+<h1 id="sec-9-5"><span class="num">9.5</span> Interactions as a perturbation, with RPA, plasmons and the Stoner instability</h1>
+<p>So far the perturbation has been an external impurity. However, we can also treat the electron-electron interaction <em>itself</em> as the perturbation. We use <span class="math inline">\(\chi_0\)</span>, the non-interacting response that we just built, as input, and we ask for the response <span class="math inline">\(\chi\)</span> of the full interacting system. For this we need two things. The first is a rule that connects <span class="math inline">\(\chi\)</span> to <span class="math inline">\(\chi_0\)</span>, and the second is a criterion to find instabilities from <span class="math inline">\(\chi\)</span>.</p>
+<p><strong>From <span class="math inline">\(\chi_0\)</span> to <span class="math inline">\(\chi\)</span> with the random phase approximation.</strong> Let us take a contact interaction, of Hubbard type, with strength <span class="math inline">\(U\)</span>, which couples to the density. The physical picture is a diagrammatic one. The response to a probe is the bare response <span class="math inline">\(\chi_0\)</span>, plus the bare response followed by one interaction event and another bare response, plus two interaction events, and so on, which is an infinite ladder of terms. The most efficient way to include all of them is not to sum the series term by term, but to write the self-consistent equation that the full response must satisfy,</p>
+<p><span class="math display">\[\chi(q,\omega) = \chi_0(q,\omega) - \chi_0(q,\omega)\, U\, \chi(q,\omega),\]</span></p>
+<p>and its algebraic solution gives the <strong>random phase approximation (RPA)</strong>,</p>
+<p><span id="eq-9-6" class="eq"><span class="math display">\[\chi(q,\omega) = \frac{\chi_0(q,\omega)}{1 + U\,\chi_0(q,\omega)}. \tag{9.6}\]</span></span></p>
+<p>Equation <a href="#eq-9-6">(9.6)</a> has a mixed character. It is derived order by order in <span class="math inline">\(U\)</span>, so it is perturbative, but since we sum the whole geometric series it becomes non-perturbative. In this way it includes physics that no finite order in <span class="math inline">\(U\)</span> can give, which is a real pole, meaning a real phase transition.</p>
+<p><strong>Two different sources of divergence.</strong> The interacting response <a href="#eq-9-6">(9.6)</a> can diverge for two quite different reasons. It is useful to separate them, because they correspond to two different emergent quasiparticles.</p>
+<p><em>From <span class="math inline">\(\chi_0\)</span> itself</em>, as in Section <a href="04-the-fermi-sea-and-the-lindhard-function.html#sec-9-4">9.4</a> This is an electron-hole excitation, which is a single-particle process that moves one electron from an occupied state to an empty state.</p>
+<p><em>From the RPA denominator</em>, <span class="math inline">\(1+U\chi_0=0\)</span>, which is a new collective phenomenon that comes from the interaction. For a long-range Coulomb interaction, <span class="math inline">\(U \to v(q)\)</span>, which depends strongly on <span class="math inline">\(q\)</span> and diverges as <span class="math inline">\(q\to0\)</span>. The pole of <a href="#eq-9-6">(9.6)</a> as a function of <span class="math inline">\(\omega\)</span> at fixed <span class="math inline">\(q\)</span> then defines a new quasiparticle, the <strong>plasmon</strong>, which is a collective charge oscillation of the whole electron gas. Its dispersion depends on the screening and on the dimensionality of the system. In the standard RPA treatment of the three-dimensional electron gas, which is the Bohm-Pines treatment, at long wavelength the dispersion has the form</p>
+<p><span id="eq-9-7" class="eq"><span class="math display">\[\omega_{\rm pl}(q)^2 = \omega_p^2 + \tfrac{3}{5} v_F^2\, q^2 + O(q^4), \tag{9.7}\]</span></span></p>
+<p>where <span class="math inline">\(\omega_p\)</span> is the classical plasma frequency. The plasmon exists even at <span class="math inline">\(q=0\)</span>, which is different from the particle-hole continuum, because it is a collective mode of the whole charge density and not a single-particle excitation. Figure <a href="#fig:s09:plasmon">9.2</a> shows both kinds of divergence in the same <span class="math inline">\((q,\omega)\)</span> plane, and it shows explicitly the window at small <span class="math inline">\(q\)</span> where the pole exists and no single-particle excitation exists.</p>
+<figure id="fig:s09:plasmon">
+<img src="../figures/s09f02_plasmon.svg" loading="lazy" alt="The two divergences of the RPA response (9.6), drawn in the (q,\omega) plane for the three-dimensional electron gas." />
+<figcaption><strong>Figure 9.2.</strong> The two divergences of the RPA response <a href="#eq-9-6">(9.6)</a>, drawn in the <span class="math inline">\((q,\omega)\)</span> plane for the three-dimensional electron gas. The shaded region is where <span class="math inline">\(\mathrm{Im}\,\chi_0(q,\omega)\neq 0\)</span>, which is the <em>particle-hole continuum</em>, the set of all <span class="math inline">\((q,\omega)\)</span> at which a single electron can be moved from an occupied state <span class="math inline">\(k\)</span> to an empty state <span class="math inline">\(k+q\)</span>. Its upper boundary is <span class="math inline">\(\hbar\omega_+=\hbar v_Fq+\hbar^2q^2/2m\)</span>, and beyond <span class="math inline">\(2k_F\)</span> a lower boundary <span class="math inline">\(\hbar\omega_-=\hbar^2q^2/2m-\hbar v_Fq\)</span> appears. Both follow from the energy denominator of <a href="04-the-fermi-sea-and-the-lindhard-function.html#eq-9-5">(9.5)</a>, and for <span class="math inline">\(q&lt;2k_F\)</span> the continuum goes all the way down to <span class="math inline">\(\omega=0\)</span>, which is the same statement as saying that <span class="math inline">\(\chi_0\)</span> is built only from states on the two sides of the Fermi surface. The plasmon <a href="#eq-9-7">(9.7)</a> is a different object. It is a zero of the RPA <em>denominator</em> <span class="math inline">\(1-v(q)\chi_0\)</span>, so it exists at <span class="math inline">\(\omega_p\)</span> even as <span class="math inline">\(q\to 0\)</span>, in a window where no single-particle excitation exists at all. This window, marked in the figure, is the full meaning of the phrase “collective mode, not a particle-hole pair”. Once the branch meets the continuum it can decay into particle-hole pairs, and it is Landau damped (dashed).</figcaption>
+</figure>
+<p><strong>The Stoner criterion as an instability of the response function.</strong> Now we use the same RPA logic in the <em>spin</em> channel of an interaction of Hubbard type, so that <span class="math inline">\(\chi_0\)</span> in <a href="#eq-9-6">(9.6)</a> becomes the non-interacting spin susceptibility. The sign is the opposite of the density channel, because <span class="math inline">\(U n_\uparrow n_\downarrow = \tfrac{U}{4}(n^2 - m^2)\)</span> is repulsive for the density and attractive for the magnetization, so the same <span class="math inline">\(U\)</span> screens the charge response and enhances the spin response, and the denominator of <a href="#eq-9-6">(9.6)</a> becomes <span class="math inline">\(1-U\chi_0\)</span>. The interacting spin response diverges when</p>
+<p><span id="eq-9-8" class="eq"><span class="math display">\[U\, \chi_0(q,0) = 1. \tag{9.8}\]</span></span></p>
+<p>At <span class="math inline">\(q=0\)</span> we use the limit <span class="math inline">\(q\to0\)</span> of <a href="04-the-fermi-sea-and-the-lindhard-function.html#eq-9-4">(9.4)</a>, <span class="math inline">\(\chi_0(0,0) = D(E_F)\)</span>, so <a href="#eq-9-8">(9.8)</a> becomes <span class="math inline">\(U\,D(E_F) = 1\)</span>. This is exactly the <strong>Stoner criterion</strong> for itinerant ferromagnetism, which says that an interacting metal becomes magnetic once the product of the density of states at the Fermi level and the interaction strength is larger than one. However, <a href="#eq-9-8">(9.8)</a> is more general than the special case <span class="math inline">\(q=0\)</span>. For a Fermi surface with strong nesting, such as the half-filled square lattice of Section <a href="04-the-fermi-sea-and-the-lindhard-function.html#sec-9-4">9.4</a>, <span class="math inline">\(\chi_0(q,0)\)</span> has its <em>maximum</em> not at <span class="math inline">\(q=0\)</span> but at the nesting vector <span class="math inline">\(Q=(\pi,\pi)\)</span>, where it is already logarithmically enhanced. The instability threshold in <a href="#eq-9-8">(9.8)</a> is then reached first at <span class="math inline">\(Q=(\pi,\pi)\)</span> and not at <span class="math inline">\(q=0\)</span>. As a result, the system develops a <em>staggered</em> antiferromagnetic instability and not a uniform ferromagnetic one, and this happens at a smaller value of <span class="math inline">\(U\)</span> than the simple Stoner estimate predicts.</p>
+<p>This is the connection that the course has been preparing. In Sessions 1 and 6 we obtained magnetism by writing the Hubbard model, applying mean-field theory directly to the <em>ordered</em> state, and solving self-consistently for a non-zero magnetization <span class="math inline">\(m\)</span>, as in Equation <a href="../session1/14-worked-example-2-magnetism.html#eq-1-7">1.7</a> of Section <a href="../session1/14-worked-example-2-magnetism.html#sec-1-14">1.14</a> In this session we have obtained the <em>same physics</em>, with the same threshold <span class="math inline">\(U\,D(E_F)=1\)</span> and the same preference for antiferromagnetism at half filling, without writing any ordered mean-field ansatz. Instead, we asked when the <em>paramagnetic</em>, disordered response function develops a divergence, which is the same logic as the classical susceptibility of Section <a href="02-the-response-of-a-classical-magnet-as-a-first-example.html#sec-9-2">9.2</a> Mean-field theory and the response function are two ways to reach the same instability. The first one computes it from the side where the symmetry is broken, and the second one computes it only from the symmetric side, by following how this state becomes unstable.</p>
+<p>The same method, applied to different response channels and to different signs of the interaction, classifies a whole family of instabilities, which we write here explicitly. On the slides this classification into three cases is presented as a clear summary table, in a more systematic way than in the spoken lecture, which mainly worked out the magnetic case in detail.</p>
+<div class="center">
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Instability</th>
+<th style="text-align: left;">Response channel</th>
+<th style="text-align: left;">Interaction sign</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Magnetism</td>
+<td style="text-align: left;">spin response</td>
+<td style="text-align: left;">repulsive</td>
+</tr>
+<tr>
+<td style="text-align: left;">Dimerization / charge density wave</td>
+<td style="text-align: left;">charge-phonon response</td>
+<td style="text-align: left;">repulsive</td>
+</tr>
+<tr>
+<td style="text-align: left;">Superconductivity</td>
+<td style="text-align: left;">electron-electron scattering response</td>
+<td style="text-align: left;">attractive</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="notebookbox">
+<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb"><code>session9.ipynb</code></a>, “The charge-charge response function” (Challenge)</p>
+<p>The same notebook section that we used above for nesting is extended, in its second part, to the interacting case. You add a Hubbard interaction <span class="math inline">\(U\)</span> and an external staggered, antiferromagnetic field to a dimerized chain, and you look at what happens to the response as <span class="math inline">\(U\)</span> increases. This is the version of equation <a href="#eq-9-8">(9.8)</a> on the scale of a notebook, where the Stoner instability appears when <span class="math inline">\(U\)</span> goes above the threshold set by <span class="math inline">\(\chi_0\)</span>.</p>
+</div>
+
+  <nav class="pager"><a href="04-the-fermi-sea-and-the-lindhard-function.html">9.4 The Fermi sea and the Lindhard function</a><a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html">9.6 Impurities as diagnostics I, Friedel oscillations in a metal</a></nav>
+
+</main>
+</body>
+</html>

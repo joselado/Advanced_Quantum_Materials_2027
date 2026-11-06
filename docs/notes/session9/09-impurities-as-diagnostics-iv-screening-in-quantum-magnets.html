@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9.9 Impurities as diagnostics IV, screening in quantum magnets, session 9</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+
+  main { max-width: 860px; }
+  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
+              border-radius: 6px; color: var(--muted); }
+  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
+  .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
+  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
+  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
+  figure { margin: 24px 0; }
+  figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
+  figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
+  .eq { display: block; }
+  .math.display { overflow-x: auto; overflow-y: hidden; }
+  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
+                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
+  .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
+           margin: 20px 0; font-size: 0.95rem; }
+  .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
+  table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
+  div.center { overflow-x: auto; }
+  div.center table { margin-left: auto; margin-right: auto; }
+  th { border-bottom: 2px solid var(--rule); }
+  .coursecontents h2 { margin-top: 28px; }
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script src="../../notes/notes.js" defer></script>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
+  <nav class="tabs"><a href="../../lectures/session9.html">Video lectures</a><a href="../../landscape/session9.html">Landscape lectures</a><a class="on" href="../../notes/session9/index.html">Lecture notes</a></nav>
+  <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="on" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
+  <p class="crumb"><a href="index.html">Session 9. Excitations and Defects in Quantum Materials</a></p>
+<h1 id="sec-9-9"><span class="num">9.9</span> Impurities as diagnostics IV, screening in quantum magnets</h1>
+<p>The last case study brings us directly back to the construction of session 8. We take a frustrated Heisenberg model with a ground state similar to a quantum spin liquid. This ground state has zero net magnetization on every site, and it does not break time-reversal symmetry. We add one local magnetic perturbation, and we ask how the spins around it screen it.</p>
+<p>For <span class="math inline">\(S=1/2\)</span> we do not need to repeat the construction from the beginning, since session 8 already built the tool that we need. We write each spin with a pair of auxiliary (Abrikosov) fermions, <span class="math inline">\(S_i =
+\tfrac{1}{2}\sum_{\alpha\beta} f_{i\alpha}^\dagger \boldsymbol{\sigma}_{\alpha\beta} f_{i\beta}\)</span>, with the single-occupancy constraint <span class="math inline">\(\sum_\sigma f_{i\sigma}^\dagger f_{i\sigma} = 1\)</span> at every site, and we make a mean-field decoupling of the quartic Hamiltonian that we obtain. As we derived in session 8, this turns the Heisenberg model with a local magnetic perturbation into a bilinear Hamiltonian for the spinons, similar to a tight-binding one, with an effective onsite term at the impurity site that mixes with the spinon band. We will not derive this mapping again here, and the notes of session 8, in the part on the Abrikosov-fermion construction, give the full mean-field decoupling.</p>
+<p>What matters for us in this session is what this mapping gives us. It turns the problem of screening a magnetic moment inside a quantum spin liquid into <em>exactly</em> the same mathematical problem as the impurity in a one-dimensional electron gas of Section <a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html#sec-9-6">9.6</a>, where the electrons are replaced by spinons. The induced spin correlation <span class="math inline">\(\langle S_0 \cdot S_n\rangle\)</span>, as a function of the distance <span class="math inline">\(n\)</span> from the impurity, therefore has the same structure as <a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html#eq-9-9">(9.9)</a>. It has an oscillation set by the antiferromagnetic exchange, and it decays with distance in a way that depends on whether the spinon band is gapped or gapless.</p>
+<p>Here the comparison between the <span class="math inline">\(S=1/2\)</span> and <span class="math inline">\(S=1\)</span> Heisenberg chains becomes clear. Both have a ground state similar to a spin liquid, with zero onsite magnetization when there is no impurity, and both develop an oscillating induced moment once the impurity is switched on. However, the decay is qualitatively different in the two cases.</p>
+<p><span id="eq-9-11" class="eq"><span class="math display">\[\langle S_0 \cdot S_n \rangle \;\sim\;
+\begin{cases}
+\dfrac{(-1)^n}{n} &amp; S = 1/2 \quad \text{(power-law, gapless)}, \\[6pt]
+(-1)^n\, e^{-n/\xi} &amp; S = 1 \quad \text{(exponential, gapped)}.
+\end{cases} \tag{9.11}\]</span></span></p>
+<p>The reason is the same reasoning as for <a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html#eq-9-9">(9.9)</a>. Through the Abrikosov-fermion construction, the spin-<span class="math inline">\(1/2\)</span> Heisenberg chain maps onto a gapless tight-binding chain of spinons, with a real Fermi surface of two points, as for the 1D metal of Section <a href="04-the-fermi-sea-and-the-lindhard-function.html#sec-9-4">9.4</a> So the impurity response must decay algebraically, in the same way as the Friedel oscillations of a metal. The spin-1 chain, on the other hand, has an excitation gap. This is the Haldane gap, which is not named explicitly in the transcript, but it is the gap that opens for antiferromagnetic chains with integer spin. This gap sets a finite correlation length <span class="math inline">\(\xi\)</span>, and it forces the impurity response to decay exponentially, in the same way as charge screening inside a band insulator.</p>
+<p>This gives us a completely general diagnostic, which connects all the case studies of this session, namely that <em>a power-law decay of an impurity response signals a gapless ground state, and an exponential decay signals a gapped one, where the decay length in the exponent is the correlation length.</em> The metal of Section <a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html#sec-9-6">9.6</a>, which has a power law, the insulating chain at the end of that section, which has an exponential, and the two quantum-magnet cases here are all examples of the same statement, and they are drawn side by side in figure <a href="#fig:s09:decay">9.5</a>.</p>
+<figure id="fig:s09:decay">
+<img src="../figures/s09f05_decay.svg" loading="lazy" alt="The diagnostic that connects the whole session, drawn for the two Heisenberg chains of (9.11)." />
+<figcaption><strong>Figure 9.5.</strong> The diagnostic that connects the whole session, drawn for the two Heisenberg chains of <a href="#eq-9-11">(9.11)</a>. Close to the impurity both look the same, with an induced moment that changes sign from site to site, because the exchange is antiferromagnetic. The only difference between them is how the envelope decays. (a) The <span class="math inline">\(S=1/2\)</span> chain maps, through the Abrikosov-fermion construction of session 8, onto a <em>gapless</em> spinon band with a real Fermi surface of two points, so its envelope decays as the power law <span class="math inline">\(1/n\)</span>. This is the same mathematics, and the same reason, as for the Friedel oscillations <a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html#eq-9-9">(9.9)</a> of a metal. (b) The <span class="math inline">\(S=1\)</span> chain has the Haldane gap, which fixes a finite correlation length <span class="math inline">\(\xi\)</span> and gives an exponential envelope <span class="math inline">\(e^{-n/\xi}\)</span>, drawn for <span class="math inline">\(\xi=2.5\)</span>, in the same way as charge screening decays inside a band insulator. (c) On a logarithmic vertical scale the two are easy to distinguish, since an exponential is a straight line of slope <span class="math inline">\(-1/\xi\)</span> and a power law is not. The statement can be read in both directions, so a measured decay law is a measurement of whether the ground state is gapped.</figcaption>
+</figure>
+<p>This specific topic, the screening in quantum magnets, is only in the slides and in the lecture, and it has no direct counterpart in <code>session9.ipynb</code>. None of the sections of the notebook build a chain of spinons or Abrikosov fermions, so there is no hands-on exercise that reproduces <a href="#eq-9-11">(9.11)</a> itself.</p>
+<div class="notebookbox">
+<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb"><code>session9.ipynb</code></a>, “The impact of a strong impurity” (Core)</p>
+<p>This is not a spin model, but it is the closest exercise in its logic. It compares how a dimerized chain, with a stronger or a weaker gap, responds to a strong local impurity. Run it with <a href="#eq-9-11">(9.11)</a> in mind, and check the same principle in the fermionic language, where the chain with the stronger gap screens the impurity over a shorter length.</p>
+</div>
+
+  <nav class="pager"><a href="08-impurities-as-diagnostics-iii-vacancies-in-topological-matter.html">9.8 Impurities as diagnostics III, vacancies in topological matter</a><a href="10-disorder-and-anderson-localization.html">9.10 Disorder and Anderson localization</a></nav>
+
+</main>
+</body>
+</html>

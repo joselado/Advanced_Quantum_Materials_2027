@@ -478,6 +478,26 @@ Where reality differed from the plan.
 - Headless Chrome with the jsDelivr MathJax rendered the page of Section 2.5 with the equation numbers,
   the boxed band, the figure and the notebook boxes in the dark mode.
 
+## What phase 2 found, first half, 2026-11-06
+
+The conversion of the other nine sessions needed these changes to the toolkit.
+
+- Tables. The tables of session 1 (six columns, centered ones) and session 9 (three columns) came out as clean
+  pandoc tables inside `::: center`, so no filter change was needed. `template.py` got CSS to center the table
+  and a heavier rule under the header.
+- `\subsection`. A level 3 heading is numbered `C.K.J` with the anchor `sec-C-K-J`. Session 1 has two and
+  session 10 has one. Subsections have no page of their own, they stay inside the page of their section.
+- Cross-session figure references. `convert.py` reads the figure files that each session inputs, counts the
+  `aqmfigure` of the ten sessions in order and passes the map label to number to the filter as `figmap`.
+  Session 8 now links figure 6.1 and 6.3 and has no `??`.
+- Other forms of reference. The filter links `Equation 1.7`, `eq. 5.9`, `Sections 4.17-4.18`, and chains with
+  commas, as in `Sections 4.10, 4.11 and 4.19`, besides the forms of phase 1.
+- Slugs. A title with an accent lost the letter (`schrdinger`). `slugify` now folds the accents to ASCII, so
+  it gives `schrodinger`. `--force` now removes the old `.md` files of the session before writing.
+- The count of the equation numbers against `main.pdf` is the same as the sequence of `\tag` in the Markdown
+  for all ten sessions. The right-hand numbers that `pdftotext` finds also contain in-text numbers, so the
+  comparison is that the `\tag` sequence is a subsequence of them.
+
 ## Decisions taken on 2026-11-06
 
 The lecturer answered the eight open decisions of the first version of this plan, and the

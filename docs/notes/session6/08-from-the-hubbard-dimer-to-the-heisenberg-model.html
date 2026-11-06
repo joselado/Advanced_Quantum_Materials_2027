@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>6.8 From the Hubbard dimer to the Heisenberg model, session 6</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+
+  main { max-width: 860px; }
+  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
+              border-radius: 6px; color: var(--muted); }
+  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
+  .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
+  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
+  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
+  figure { margin: 24px 0; }
+  figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
+  figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
+  .eq { display: block; }
+  .math.display { overflow-x: auto; overflow-y: hidden; }
+  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
+                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
+  .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
+           margin: 20px 0; font-size: 0.95rem; }
+  .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
+  table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
+  div.center { overflow-x: auto; }
+  div.center table { margin-left: auto; margin-right: auto; }
+  th { border-bottom: 2px solid var(--rule); }
+  .coursecontents h2 { margin-top: 28px; }
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script src="../../notes/notes.js" defer></script>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
+  <nav class="tabs"><a href="../../lectures/session6.html">Video lectures</a><a href="../../landscape/session6.html">Landscape lectures</a><a class="on" href="../../notes/session6/index.html">Lecture notes</a></nav>
+  <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="on" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
+  <p class="crumb"><a href="index.html">Session 6. Classical Magnetism and Magnons</a></p>
+<h1 id="sec-6-8"><span class="num">6.8</span> From the Hubbard dimer to the Heisenberg model</h1>
+<p>Let us make this precise in the smallest possible example. We take two sites, <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>, with a hopping <span class="math inline">\(t\)</span> between them, a local repulsion <span class="math inline">\(U\)</span> on each of them, and exactly two electrons in total, which is half filling. The Fock space at this filling has <span class="math inline">\(\binom{4}{2}=6\)</span> states. Four of them have one electron on each site, where the electron of each site can be up or down independently. The other two have both electrons on the same site, with one electron up and one down because of Pauli exclusion.</p>
+<p>Let us group these states by energy in the atomic limit (<span class="math inline">\(t=0\)</span>). The four configurations with single occupation, <span class="math inline">\(|\!\uparrow,\uparrow\rangle\)</span>, <span class="math inline">\(|\!\downarrow,\downarrow\rangle\)</span>, <span class="math inline">\(|\!\uparrow,\downarrow\rangle\)</span> and <span class="math inline">\(|\!\downarrow,\uparrow\rangle\)</span>, have no interaction energy. We call them the <strong>low-energy manifold</strong>, at energy <span class="math inline">\(0\)</span>. The two configurations with double occupation, <span class="math inline">\(|\!\uparrow\downarrow,0\rangle\)</span> and <span class="math inline">\(|0,\uparrow\downarrow\rangle\)</span>, each have the full charging energy <span class="math inline">\(U\)</span>, and they form the <strong>high-energy manifold</strong>. In the low-energy manifold every state has exactly one electron per site, so the charge degree of freedom is completely frozen and only the spin on each site can still fluctuate. For this reason the natural low-energy effective Hamiltonian is a Hamiltonian for the spin only, and rotational invariance fixes its form up to an overall coupling, <span class="math inline">\(H_\text{eff} = J\,
+\mathbf S_0\cdot\mathbf S_1\)</span>, which is the two-site Heisenberg Hamiltonian. What remains is to obtain <span class="math inline">\(J\)</span> from the microscopic <span class="math inline">\(t\)</span> and <span class="math inline">\(U\)</span>.</p>
+<p>The hopping, which is the perturbation, conserves the total spin, so for the <em>parallel</em>-spin states it cannot connect the low-energy manifold to the high-energy one at all. If we apply <span class="math inline">\(H_t\)</span> to <span class="math inline">\(|\!\uparrow,\uparrow\rangle\)</span>, we would need to move a spin-up electron onto a site that already has one, and Pauli exclusion forbids this completely. The three parallel or triplet-like states, <span class="math inline">\(|\!\uparrow,\uparrow\rangle\)</span>, <span class="math inline">\(|\!\downarrow,\downarrow\rangle\)</span> and the symmetric combination <span class="math inline">\(\tfrac{1}{\sqrt2}(|\!\uparrow,\downarrow\rangle+|\!\downarrow,\uparrow\rangle)\)</span>, are therefore exact eigenstates of the <em>full</em> Hamiltonian at energy exactly <span class="math inline">\(E_T=0\)</span>, since the hopping does not act on them at any order. The antiparallel or singlet combination <span class="math inline">\(|S\rangle=\tfrac{1}{\sqrt2}(|\!\uparrow,\downarrow\rangle-|\!\downarrow,\uparrow\rangle)\)</span> is different. The hopping <em>can</em> connect it to the symmetric combination with double occupation, <span class="math inline">\(|D\rangle=\tfrac{1}{\sqrt2}(|\!\uparrow\downarrow,0\rangle+|0,\uparrow\downarrow\rangle)\)</span>, with matrix element <span class="math inline">\(\langle D|H_t|S\rangle = -2t\)</span>. In the two-dimensional subspace <span class="math inline">\(\{|S\rangle,|D\rangle\}\)</span>, the Hamiltonian is exactly</p>
+<p><span class="math display">\[H = \begin{pmatrix} 0 &amp; -2t \\ -2t &amp; U\end{pmatrix},\]</span></p>
+<p>with exact eigenvalues <span class="math inline">\(E_\pm = \tfrac{U}{2}\pm\sqrt{(U/2)^2+4t^2}\)</span>. The energy of the singlet ground state is the lower root, <span class="math inline">\(E_S = \tfrac{U}{2}-\sqrt{(U/2)^2+4t^2}\)</span>, and if we expand it for <span class="math inline">\(U\gg t\)</span> we obtain</p>
+<p><span class="math display">\[E_S \;\approx\; -\frac{4t^2}{U} + O(t^4/U^3), \qquad E_T = 0 \text{ exactly.}\]</span></p>
+<p>We compare this with the exact spectrum of the Heisenberg dimer, <span class="math inline">\(E_\text{singlet}=-\tfrac34 J\)</span> and <span class="math inline">\(E_\text{triplet}=+\tfrac14 J\)</span>, where the singlet-triplet gap is <span class="math inline">\(\Delta E = E_T-E_S = J\)</span>, and we obtain</p>
+<p><span id="eq-6-4" class="eq"><span class="math display">\[J = \frac{4t^2}{U}. \tag{6.4}\]</span></span></p>
+<p>We have <span class="math inline">\(J&gt;0\)</span>, which is antiferromagnetic, and the singlet is below the triplet. This confirms, with the correct numerical prefactor, the second-order perturbation theory that the lecture sketches, where the unperturbed Hamiltonian is the Hubbard term, the perturbation is the hopping, the matrix element is <span class="math inline">\(t\)</span> and the energy denominator is <span class="math inline">\(U\)</span>. It also reproduces exactly the <span class="math inline">\(1/U\)</span> scaling that we found numerically for the energy difference between the ferromagnet and the antiferromagnet in Section <a href="05-competition-between-the-ferromagnet-and-the-antiferromagnet.html#sec-6-5">6.5</a> That mean-field energy difference per bond <em>is</em> one half of the exchange coupling <a href="#eq-6-4">(6.4)</a>, so the two completely different calculations, the mean-field numerics and the many-body perturbation theory, agree. Figure <a href="#fig:s06:dimer">6.2</a> shows the whole argument. It shows the Pauli blockade that protects the triplet, the virtual process that lowers the energy of the singlet, and the exact spectrum, whose splitting is <span class="math inline">\(J\)</span>.</p>
+<figure id="fig:s06:dimer">
+<img src="../figures/s06f02_dimer.svg" loading="lazy" alt="Superexchange in the two-site Hubbard model, and the reason why it is always antiferromagnetic." />
+<figcaption><strong>Figure 6.2.</strong> Superexchange in the two-site Hubbard model, and the reason why it is always antiferromagnetic. (a) With parallel spins, the only possible hop would put two <span class="math inline">\(\uparrow\)</span> electrons on one site, and Pauli exclusion forbids this completely. As a result the triplet states cannot lower their energy at any order, and stay at exactly <span class="math inline">\(E_T=0\)</span>. With antiparallel spins the hop is allowed, so the singlet goes through a virtual double occupation of energy <span class="math inline">\(U\)</span>, the glow, and comes back, and gains a second-order energy <span class="math inline">\(-4t^2/U\)</span>. Here the magnetic order is a purely kinetic effect, since antiparallel spins have lower energy because only they can move. (b) The exact singlet energy <span class="math inline">\(E_S=\tfrac{U}{2}-\sqrt{(U/2)^2+4t^2}\)</span> as a function of <span class="math inline">\(U/t\)</span>, with <span class="math inline">\(E_T=0\)</span> exact for every <span class="math inline">\(U\)</span>. The singlet-triplet splitting <em>is</em> the Heisenberg coupling <span class="math inline">\(J\)</span> of <a href="#eq-6-4">(6.4)</a>, and it decays as <span class="math inline">\(4t^2/U\)</span>, the grey curve. This is the same <span class="math inline">\(1/U\)</span> law that we found numerically for the mean-field energy difference between the ferromagnet and the antiferromagnet in Section <a href="05-competition-between-the-ferromagnet-and-the-antiferromagnet.html#sec-6-5">6.5</a></figcaption>
+</figure>
+<div class="notebookbox">
+<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb"><code>session6.ipynb</code></a>, “(Reminder) The spectra of a dimer,” “(Exercise) The interacting Hubbard dimer,” “Gap opening in the Hubbard model,” and “(Exercise) The strongly interacting limit”</p>
+<p>Diagonalize the Hubbard dimer with six states directly, and check that the singlet-triplet splitting agrees with <a href="#eq-6-4">(6.4)</a>. Then take large values of <span class="math inline">\(U/t\)</span> and check that the gap and the low-energy spectrum converge to the prediction of the Heisenberg model. This compares the exact result of this section with a direct numerical diagonalization.</p>
+</div>
+
+  <nav class="pager"><a href="07-the-strongly-localized-limit-where-mean-field-breaks-down.html">6.7 The strongly localized limit, where mean field breaks down</a><a href="09-the-heisenberg-model-on-a-general-lattice.html">6.9 The Heisenberg model on a general lattice</a></nav>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9.7 Impurities as diagnostics II, magnetic impurities in a superconductor, session 9</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+
+  main { max-width: 860px; }
+  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
+              border-radius: 6px; color: var(--muted); }
+  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
+  .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
+  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
+  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
+  figure { margin: 24px 0; }
+  figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
+  figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
+  .eq { display: block; }
+  .math.display { overflow-x: auto; overflow-y: hidden; }
+  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
+                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
+  .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
+           margin: 20px 0; font-size: 0.95rem; }
+  .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
+  table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
+  div.center { overflow-x: auto; }
+  div.center table { margin-left: auto; margin-right: auto; }
+  th { border-bottom: 2px solid var(--rule); }
+  .coursecontents h2 { margin-top: 28px; }
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script src="../../notes/notes.js" defer></script>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
+  <nav class="tabs"><a href="../../lectures/session9.html">Video lectures</a><a href="../../landscape/session9.html">Landscape lectures</a><a class="on" href="../../notes/session9/index.html">Lecture notes</a></nav>
+  <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="on" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
+  <p class="crumb"><a href="index.html">Session 9. Excitations and Defects in Quantum Materials</a></p>
+<h1 id="sec-9-7"><span class="num">9.7</span> Impurities as diagnostics II, magnetic impurities in a superconductor</h1>
+<p>Superconductors behave in a completely different way under a local perturbation, because for single-particle excitations a superconductor is an insulator in the bulk. There is a finite gap <span class="math inline">\(\Delta\)</span>, so there is no Fermi surface that can give oscillations of the Friedel type. The interesting physics is instead the difference between magnetic and non-magnetic impurities.</p>
+<p>Let us remember that an s-wave Cooper pair binds one spin-up electron and one spin-down electron. A <strong>non-magnetic</strong> impurity, which is an ordinary local potential, does not distinguish spin up from spin down. So it does not break time-reversal symmetry, and it cannot lower the energy needed to break any specific Cooper pair. In practice, the density of states of a conventional s-wave superconductor is almost the same with and without a non-magnetic impurity, including the gap, and the slides show the two spectra on top of each other.</p>
+<p>A <strong>magnetic</strong> impurity is completely different. It couples with strength <span class="math inline">\(J\)</span> to the local spin, it distinguishes up from down, and so it <em>does</em> break time-reversal symmetry. This lowers the energy needed to break one specific Cooper pair and gives a real bound state inside the gap. In the approximation of a classical spin, in the Born approximation, this is the <strong>Yu-Shiba-Rusinov</strong> problem, which is not named in the transcript, but the setup is the same. With <span class="math inline">\(\alpha \equiv \pi
+\nu_0 J S\)</span>, where <span class="math inline">\(\nu_0\)</span> is the density of states of the normal state at the Fermi level and <span class="math inline">\(S\)</span> is the impurity spin, the energy of the bound state in the gap is</p>
+<p><span id="eq-9-10" class="eq"><span class="math display">\[E_b(J) = \Delta\, \frac{1-\alpha^2}{1+\alpha^2}. \tag{9.10}\]</span></span></p>
+<p>Equation <a href="#eq-9-10">(9.10)</a> gives the qualitative curve that the slides show as a function of <span class="math inline">\(J\)</span>. At <span class="math inline">\(J=0\)</span> (<span class="math inline">\(\alpha=0\)</span>), <span class="math inline">\(E_b = \Delta\)</span>, which is at the gap edge, meaning that there is no real bound state yet. As <span class="math inline">\(J\)</span> increases, <span class="math inline">\(\alpha\)</span> grows and <span class="math inline">\(E_b\)</span> moves down through the gap. At <span class="math inline">\(\alpha = 1\)</span>, which is <span class="math inline">\(\pi\nu_0 J S = 1\)</span>, the state crosses zero energy exactly, and for <span class="math inline">\(\alpha&gt;1\)</span> the numerator of <a href="#eq-9-10">(9.10)</a> becomes negative, so the bound state appears again on the other side of zero. This crossing is a real quantum phase transition, where the fermion parity of the electronic ground state changes. Below it the electronic ground state is even, with total electron spin <span class="math inline">\(S_{\rm
+tot}=0\)</span>, where every Cooper pair is intact and the impurity spin is not screened. Above it the electronic ground state has <span class="math inline">\(S_{\rm tot}=1/2\)</span>, since one quasiparticle is bound to the impurity and partially screens its spin. So a superconductor with a single magnetic impurity that we can tune is a minimal, exactly solvable model of a quantum phase transition, which is driven only by a local perturbation. Both parts of this picture are drawn in figure <a href="#fig:s09:ysr">9.3</a>. It shows the in-gap states that a magnetic impurity adds to a BCS spectrum that is otherwise unchanged, and the path that <a href="#eq-9-10">(9.10)</a> follows across the gap as <span class="math inline">\(\alpha\)</span> grows.</p>
+<figure id="fig:s09:ysr">
+<img src="../figures/s09f03_ysr.svg" loading="lazy" alt="A magnetic impurity in an s-wave superconductor." />
+<figcaption><strong>Figure 9.3.</strong> A magnetic impurity in an s-wave superconductor. (a) The single-particle density of states. The BCS continuum, with a gap <span class="math inline">\(\Delta\)</span> and coherence peaks at the gap edges, is almost unchanged by a <em>non-magnetic</em> impurity. Such an impurity does not distinguish up from down, so it cannot lower the energy needed to break any specific Cooper pair. A <em>magnetic</em> impurity distinguishes them, breaks time-reversal symmetry, and creates a pair of bound states inside the gap at <span class="math inline">\(\pm E_b\)</span>, the red peaks, drawn for <span class="math inline">\(\alpha=0.6\)</span>. (b) The energy of these states, from <a href="#eq-9-10">(9.10)</a>, as a function of <span class="math inline">\(\alpha=\pi\nu_0JS\)</span>. At <span class="math inline">\(\alpha=0\)</span> they are exactly at the gap edges, meaning that there is no bound state yet. As the exchange grows they move across the gap and cross at <span class="math inline">\(\alpha=1\)</span>. The crossing is not a level repulsion that did not open. It is a real quantum phase transition of the electronic ground state, with a change of fermion parity, and the electron spin goes from <span class="math inline">\(S_{\rm tot}=0\)</span>, where every Cooper pair is intact and the impurity spin is not screened, to <span class="math inline">\(S_{\rm tot}=1/2\)</span>, where one quasiparticle is bound to the impurity and partially screens its spin. So a single impurity that we can tune is an exactly solvable quantum phase transition.</figcaption>
+</figure>
+<div class="notebookbox">
+<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb"><code>session9.ipynb</code></a>, “Magnetic impurities in a conventional superconductor” (Core) and “Single magnetic impurity in a superconductor” (Challenge)</p>
+<p>Build a 1D superconducting chain with a magnetic impurity with an exchange <span class="math inline">\(J\)</span> that you can change, and follow the energy of the in-gap state as in <a href="#eq-9-10">(9.10)</a>. Check the change of sign at the crossing. Check also that a non-magnetic impurity, where you set <span class="math inline">\(J=0\)</span> and change only the local potential, leaves the gap edges almost unchanged, as the qualitative argument above predicts.</p>
+</div>
+
+  <nav class="pager"><a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html">9.6 Impurities as diagnostics I, Friedel oscillations in a metal</a><a href="08-impurities-as-diagnostics-iii-vacancies-in-topological-matter.html">9.8 Impurities as diagnostics III, vacancies in topological matter</a></nav>
+
+</main>
+</body>
+</html>

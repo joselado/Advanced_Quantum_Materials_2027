@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Session 7, lecture notes</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+
+  main { max-width: 860px; }
+  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
+              border-radius: 6px; color: var(--muted); }
+  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
+  .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
+  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
+  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
+  figure { margin: 24px 0; }
+  figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
+  figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
+  .eq { display: block; }
+  .math.display { overflow-x: auto; overflow-y: hidden; }
+  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
+                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
+  .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
+           margin: 20px 0; font-size: 0.95rem; }
+  .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
+  table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
+  div.center { overflow-x: auto; }
+  div.center table { margin-left: auto; margin-right: auto; }
+  th { border-bottom: 2px solid var(--rule); }
+  .coursecontents h2 { margin-top: 28px; }
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script src="../../notes/notes.js" defer></script>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
+  <nav class="tabs"><a href="../../lectures/session7.html">Video lectures</a><a href="../../landscape/session7.html">Landscape lectures</a><a class="on" href="../../notes/session7/index.html">Lecture notes</a></nav>
+  <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="on" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
+  <h1>Session 7. Quantum Many-Body Entanglement and Tensor Networks</h1>
+  <p class="links"><a href="../../lectures/session7.html">Video lecture</a> · <a href="../../landscape/session7.html">Landscape lecture</a> · <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb">session7.ipynb</a> · <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/lecture_notes/main.pdf">PDF of the notes</a></p>
+<p>In session 6 we studied the magnetism of the Hubbard model of session 1 in full numerical detail. We derived the Heisenberg model as the strong-coupling limit, we introduced Holstein-Primakoff magnons, and we used the topological methods of sessions 3 and 4 for a third time, now for magnon bands. In that session we also mentioned the Kitaev interaction as an important ingredient for quantum spin liquids, and we mentioned materials such as herbertsmithite, where the local moments sit on a kagome lattice and do not order even at zero temperature. That session ended with “topological magnons,” without a final summary. This was not a transition into the present session, since that session had reached the end of its material, but the open topic is the one we continue with now. In contrast with a ferromagnet or an antiferromagnet, a quantum spin liquid does not break time-reversal symmetry. Its spins keep fluctuating locally for any low temperature, and the ground state is one large entangled object and not a simple pattern of arrows. All the tools that we have built in this course so far fail for this kind of Hamiltonian. Mean-field theory, which we have used since session 1, looks for an order parameter that breaks a symmetry, such as a nonzero magnetization, a nonzero charge imbalance or a nonzero pairing amplitude. By definition, a quantum spin liquid has none of these, so the self-consistent calculation has nothing to converge to and gives back zero, which tells us nothing about the real ground state. The same problem appears in a second family of materials, the fractional Chern insulators, where the interactions are again too strong to be described by any effective single-particle model.</p>
+<p>In this session we will build a tool that works directly in this regime and does not assume that a symmetry is broken. This tool is tensor networks, and in particular matrix product states (MPS). This method is well developed, and today it gives the best quantitative evidence for spin liquid physics on the triangular and kagome lattices, which are the Hamiltonians mentioned in session 6. To get there, we first point out something that was present in the last sessions without being said explicitly, which is that fermionic and spin Hamiltonians describe the same physics in two languages, and the link between them is the Jordan-Wigner transformation. Then we will ask a question which is not “how do we diagonalize a huge matrix” but “how do we <em>store</em> a many-body wave function in the first place.” To answer this question we will use entanglement and a quantity called the entanglement entropy, and this is the main part of this session.</p>
+
+  <h2>Contents</h2>
+  <nav class="toc"><ol><li><span class="n">7.1</span><a href="01-two-regimes-of-many-body-physics.html">Two regimes of many-body physics</a></li><li><span class="n">7.2</span><a href="02-fermions-spins-and-the-jordan-wigner-transformation.html">Fermions, spins and the Jordan-Wigner transformation</a></li><li><span class="n">7.3</span><a href="03-storing-the-wave-function-as-the-main-bottleneck.html">Storing the wave function as the main bottleneck</a></li><li><span class="n">7.4</span><a href="04-the-matrix-product-state-ansatz.html">The matrix product state ansatz</a></li><li><span class="n">7.5</span><a href="05-measuring-entanglement-with-the-entanglement-entropy.html">Measuring entanglement with the entanglement entropy</a></li><li><span class="n">7.6</span><a href="06-entanglement-entropy-of-a-solvable-dimerized-chain.html">Entanglement entropy of a solvable dimerized chain</a></li><li><span class="n">7.7</span><a href="07-two-dimensions-and-the-area-law.html">Two dimensions and the area law</a></li><li><span class="n">7.8</span><a href="08-why-mps-work-in-1d-and-where-they-stop-working.html">Why MPS work in 1D, and where they stop working</a></li><li><span class="n">7.9</span><a href="09-tensor-diagrams-as-notation-for-networks-and-operators.html">Tensor diagrams as notation for networks and operators</a></li><li><span class="n">7.10</span><a href="10-the-variational-principle-and-dmrg-for-the-ground-state.html">The variational principle and DMRG for the ground state</a></li><li><span class="n">7.11</span><a href="11-mera-and-peps-beyond-mps.html">MERA and PEPS beyond MPS</a></li><li><span class="n">7.12</span><a href="12-closing-summary.html">Closing summary</a></li></ol></nav>
+  <nav class="pager"><a href="../index.html">Lecture notes</a><a href="01-two-regimes-of-many-body-physics.html">7.1 Two regimes of many-body physics</a></nav>
+
+</main>
+</body>
+</html>

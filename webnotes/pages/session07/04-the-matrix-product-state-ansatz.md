@@ -1,0 +1,10 @@
+## The matrix product state ansatz {#sec-7-4 number="7.4"}
+
+The idea that solves this problem is very simple. Instead of storing $C(s_1,\dots,s_L)$ as one large array of $2^L$ numbers, we write it as a product of matrices, with one matrix for each possible value of each local spin.
+
+$$C(s_1,s_2,\dots,s_L) \;\approx\; M^{s_1}_{1}\, M^{s_2}_{2}\, \cdots\, M^{s_L}_{L}, \tag{7.5}$$
+
+Here each $M^{s_i}_i$ is an $M\times M$ matrix, except at the two ends of a finite open chain where it is a vector, and $M$ is the **bond dimension**, which is a free parameter that we choose. For a spin-1/2 chain there are two matrices per site, one for $s_i=\uparrow$ and one for $s_i=\downarrow$. Therefore the total number of parameters of the state is proportional to $L\times
+M^2$, which is linear in the system size, in strong contrast with the $2^L$ of the exact representation [(7.4)](#eq-7-4). This is called the **matrix product state** (MPS) ansatz. At first sight, it is only a choice, and one that looks rather arbitrary. In Sections [7.5](#sec-7-5) to [7.8](#sec-7-8) we will answer two questions about it. First, why it is a *good* choice. Second, what exactly it captures, and what it does not capture, about the physical state.
+
+We should know from the start that this is not a toy model. Today matrix product states give the most accurate results for two of the central hard problems in quantum materials. The first one is the doped two-dimensional Hubbard model with second-neighbor hopping, which is related to unconventional superconductivity. The second one is the two-dimensional frustrated Heisenberg model on the triangular and kagome lattices, and this is where the strongest numerical evidence for real quantum spin liquid physics comes from, which is the herbertsmithite example of session 6. Both examples are shown as labeled figure panels on slide 15 of the deck, with the titles "Solving the 2D Hubbard model at finite doping" and "Solving the 2D Heisenberg model in frustrated lattices." This shows that MPS are a working tool for the strongly correlated regime, and not only a formal construction.

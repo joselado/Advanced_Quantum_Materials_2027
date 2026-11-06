@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>10.4 Tensor networks for machine learning and the many-body wavefunction as a big-data problem, session 10</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+
+  main { max-width: 860px; }
+  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
+              border-radius: 6px; color: var(--muted); }
+  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
+  .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
+  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
+  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
+  figure { margin: 24px 0; }
+  figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
+  figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
+  .eq { display: block; }
+  .math.display { overflow-x: auto; overflow-y: hidden; }
+  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
+                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
+  .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
+           margin: 20px 0; font-size: 0.95rem; }
+  .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
+  table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
+  div.center { overflow-x: auto; }
+  div.center table { margin-left: auto; margin-right: auto; }
+  th { border-bottom: 2px solid var(--rule); }
+  .coursecontents h2 { margin-top: 28px; }
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script src="../../notes/notes.js" defer></script>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
+  <nav class="tabs"><a href="../../lectures/session10.html">Video lectures</a><a href="../../landscape/session10.html">Landscape lectures</a><a class="on" href="../../notes/session10/index.html">Lecture notes</a></nav>
+  <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="on" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
+  <p class="crumb"><a href="index.html">Session 10. Machine Learning Quantum Materials</a></p>
+<h1 id="sec-10-4"><span class="num">10.4</span> Tensor networks for machine learning and the many-body wavefunction as a big-data problem</h1>
+<p>We now follow the logic of the previous section in the reverse direction. Instead of using a machine-learning architecture to solve a many-body problem, we treat the many-body wavefunction itself as a big-data problem, and we use a many-body compression technique, which is tensor networks, as a machine-learning architecture.</p>
+<p>Let us recall the matrix product state (MPS) ansatz, which we already know from session 7. Instead of storing all the <span class="math inline">\(2^L\)</span> coefficients of <a href="03-neural-network-quantum-states.html#eq-10-2">(10.2)</a> independently, we assume that they factorize into a product of matrices, one for each site,</p>
+<p><span id="eq-10-6" class="eq"><span class="math display">\[C(s_1,\dots,s_L) = \mathrm{Tr}\left[A^{s_1} A^{s_2}\cdots A^{s_L}\right], \tag{10.6}\]</span></span></p>
+<p>where for each physical value of <span class="math inline">\(s_i\)</span>, for example spin up or spin down, there is a different <span class="math inline">\(D\times D\)</span> matrix <span class="math inline">\(A^{s_i}\)</span>, and <span class="math inline">\(D\)</span>, which is called the <em>bond dimension</em>, is a free parameter that we choose. The number of free parameters in <a href="#eq-10-6">(10.6)</a> scales as <span class="math inline">\(L \times d \times
+D^2\)</span>, with <span class="math inline">\(d\)</span> the dimension of the local Hilbert space, so it is linear in the system size and not exponential. This is the same compression idea as the NNQS of Section <a href="03-neural-network-quantum-states.html#sec-10-3">10.3</a>, but the parameters are matrix elements instead of network weights. The same compression can be generalized beyond the one-dimensional geometry of the MPS. A <em>tree tensor network</em> puts the same matrices in a tree instead of a chain. The <em>multiscale entanglement renormalization ansatz</em> (MERA) adds extra layers of coarse-graining on top of a tree structure. <em>Projected entangled pair states</em> (PEPS) generalize the whole construction to a two-dimensional grid. For a ground-state search these architectures are not equivalent, since an MPS is much easier to optimize than a PEPS, and this is the reason why MPS works well for one-dimensional problems while two-dimensional problems are often still hard. However, if we only want a flexible function of a high-dimensional input with an efficient parameterization, as in machine learning, the difference between the architectures matters much less, and any of them can be used.</p>
+<p>This is a direct reuse of the architectures of session 7, and not only an analogy. The same matrix product states, tree tensor networks, MERA and PEPS that we built there to compress ground-state wavefunctions are used here without change as function approximators. This approach has a name, which is “quantum-many-body-inspired machine learning,” and a clear example of it is image classification with tensor networks. We map each pixel of an image with <span class="math inline">\(N\)</span> pixels to a two-dimensional vector, for example white <span class="math inline">\(\to\)</span> spin up and black <span class="math inline">\(\to\)</span> some other reference direction. Then we take the tensor product of all the <span class="math inline">\(N\)</span> pixel vectors and obtain a single vector in a <span class="math inline">\(2^N\)</span>-dimensional space, which is the same exponentially large space where a many-body wavefunction with <span class="math inline">\(N\)</span> spins lives. The classification task then becomes the search for a <em>linear</em> operator on this <span class="math inline">\(2^N\)</span>-dimensional space that maps each image to its one-hot label. A tensor network, and here a tree tensor network works well, is the efficient and structured parameterization of such a linear operator that <a href="#eq-10-6">(10.6)</a> and its generalizations already gave us. We apply the tensor network to the tensor-product image, and then a final small tensor that projects down to two output numbers. This gives the same structure as the classification of cats and dogs in Section <a href="02-neural-networks-as-function-approximators.html#sec-10-2">10.2</a>, where now the worked example is “purse versus shirt” and the tensor product of the pixels takes the place of the flattened input matrix. Figure <a href="#fig:s10:tnml">10.3</a> shows the four geometries as tensor diagrams, and then the classifier built from one of them.</p>
+<figure id="fig:s10:tnml">
+<img src="../figures/s10f03_tnml.svg" loading="lazy" alt="Tensor networks used in the reverse direction." />
+<figcaption><strong>Figure 10.3.</strong> Tensor networks used in the reverse direction. <strong>(a)</strong> The four geometries that the text names, drawn as tensor diagrams. Every block is a tensor, every rod is an index that is summed over, and the open legs are the physical indices. The bond dimension <span class="math inline">\(D\)</span> of the internal lines is what <a href="#eq-10-6">(10.6)</a> calls a free parameter. For a ground-state search these geometries are not equivalent, since an MPS is easy to optimize and a PEPS is not. However, as flexible functions of a high-dimensional input with parameters, which is all that a classifier needs, any of them can be used. <strong>(b)</strong> Image classification with a tree tensor network. Each pixel becomes a vector with two components, and their tensor product is a single vector in a <span class="math inline">\(2^N\)</span>-dimensional space, which is the same space where an <span class="math inline">\(N\)</span>-spin wavefunction of <a href="03-neural-network-quantum-states.html#eq-10-2">(10.2)</a> lives. Classification is then a <em>linear</em> map from this space down to two numbers, the red leg, and the tensor network is the efficient and structured parameterization of such a map that <a href="#eq-10-6">(10.6)</a> already gave us. Note what changes and what does not change with respect to figure <a href="02-neural-networks-as-function-approximators.html#fig:s10:template">10.1</a>. The input is still an array with a categorical label and the output is still one-hot, and only the function between them is now built from matrices instead of layers of nodes.</figcaption>
+</figure>
+<p>This is not a toy result. On the Fashion-MNIST dataset, which is a standard benchmark of images of clothes, this tensor-network classifier reaches <strong>95.38% accuracy on the training set and 88.97% on the test set</strong>, which is comparable with conventional neural network architectures on the same task. These numbers appear only on the slides, and in the recording they are only described as “very high accuracy.” They are the kind of concrete result that we want to have in the written notes and not leave implicit. The general point is the same as in Section <a href="03-neural-network-quantum-states.html#sec-10-3">10.3</a>, in the other direction. A variational architecture that was built to compress many-body wavefunctions is, in mathematical terms, one more kind of neural network, and we can use it directly as one.</p>
+
+  <nav class="pager"><a href="03-neural-network-quantum-states.html">10.3 Neural network quantum states</a><a href="05-machine-learning-in-density-functional-theory.html">10.5 Machine learning in density functional theory</a></nav>
+
+</main>
+</body>
+</html>

@@ -34,6 +34,9 @@ NOTES_STYLE = """
   .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
   table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
   th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
+  div.center { overflow-x: auto; }
+  div.center table { margin-left: auto; margin-right: auto; }
+  th { border-bottom: 2px solid var(--rule); }
   .coursecontents h2 { margin-top: 28px; }
 """
 
