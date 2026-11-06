@@ -13,6 +13,10 @@ $$\nu = \frac{1}{m}, \tag{4.13}$$
 which we can also see directly by counting. The maximum power of any single coordinate in the fully expanded polynomial [(4.12)](#eq-4-12) is $m(N-1)$, so the wavefunction uses the angular-momentum orbitals up to $m(N-1)$. This means that $N$ electrons are spread over $\approx m(N-1)+1 \approx
 mN$ available LLL orbitals, which gives a filling fraction of $N/(mN)=1/m$, in agreement with [(4.13)](#eq-4-13). So we start only from the single-particle LLL orbitals, the Pauli exclusion principle and a heuristic argument about correlations, and we arrive at the exact ground state of a strongly interacting many-body problem, which will give us fractional charge in the next section.
 
+The statement that a larger $m$ keeps the electrons apart can be seen already for two electrons, in [](#sch:s04:laughlin_pair).
+
+![The probability of the distance $|z_1-z_2|$ of two electrons in the state $(z_1-z_2)^m e^{-(|z_1|^2+|z_2|^2)/4\ell_B^2}$, for $m=1,3,5$. It is proportional to $r^{2m+1}e^{-r^2/4\ell_B^2}$, normalized to one, and the dotted lines mark the maximum at $r=\sqrt{2(2m+1)}\,\ell_B$. The formula was checked against a direct integral of $|\Psi|^2$. Look at how the curve is pushed away from $r=0$ when $m$ grows, since this is the correlation that the exponent builds in.](figures/web/session04/laughlin_pair.svg){#sch:s04:laughlin_pair alt="Three bell-shaped curves of the probability of the distance between two electrons, which move to larger distance and start more slowly from zero when the exponent grows."}
+
 ::: quiz
 Why must the exponent $m$ of the Laughlin wavefunction [(4.12)](#eq-4-12) be an odd integer?
 

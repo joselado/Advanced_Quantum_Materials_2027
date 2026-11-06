@@ -5,6 +5,7 @@ command left in the text outside the math, an equation number used twice, a page
 the manifest does not list, a link that the filter could not resolve, an image without alt text, a retired URL
 (listed in manifest/frozen_urls.txt) that has neither a page nor a redirect, a redirect that points to a page or
 an anchor that does not exist, a quiz with feedback that has not exactly 3 options or no correct option.
+A figure inside a quiz is checked like any other (it exists, it has alt text). An SVG over 200 kB is a warning.
 A quiz in the old form (no feedback per option) is only counted. External links (http) are not fetched.
 Pending: references to a session that is not converted yet. They stay as text and are listed, not an error.
 """
@@ -17,6 +18,8 @@ from html.parser import HTMLParser
 from urllib.parse import unquote, urldefrag
 
 ERRORS = []
+WARNINGS = []
+BIG_SVG = 200 * 1024   # an SVG over this size is a warning, a figure in a quiz should be light
 PENDING = set()
 OLD_QUIZZES = [0, 0]   # quizzes without feedback per option, and of them those that do not have 3 options
 
@@ -27,6 +30,7 @@ class Page(HTMLParser):
         self.ids, self.hrefs, self.imgs, self.alts, self.text = set(), [], [], [], []
         self.math = 0          # depth inside a span of class math or inside mjx-container
         self.stack = []
+        self.qimgs = []        # images inside a quiz (question or feedback)
         self.skip = 0
         self.quizzes = []      # per quiz: [options, marked correct, has feedback]
         self.inq = None        # the quiz being read
@@ -48,6 +52,8 @@ class Page(HTMLParser):
             self.hrefs.append(a['href'])
         if tag == 'img' and 'src' in a:
             self.imgs.append(a['src'])
+            if self.inq is not None:
+                self.qimgs.append(a['src'])
             if not (a.get('alt') or '').strip():
                 self.alts.append(a['src'])
         ismath = tag == 'span' and 'math' in (a.get('class') or '').split()
@@ -56,6 +62,12 @@ class Page(HTMLParser):
             self.stack.append((tag, ismath, isskip))
             self.math += ismath
             self.skip += isskip
+
+    def handle_startendtag(self, tag, attrs):
+        # <img ... /> is not pushed on the stack by handle_starttag, so it must not pop anything either
+        self.handle_starttag(tag, attrs)
+        if tag not in ('img', 'br', 'meta', 'link', 'hr', 'input'):
+            self.handle_endtag(tag)
 
     def handle_endtag(self, tag):
         while self.stack:
@@ -111,7 +123,12 @@ def run(docs, webnotes, notes=None, skip_sessions=()):
             if not os.path.exists(os.path.normpath(os.path.join(os.path.dirname(f), s))):
                 ERRORS.append(f'{rel(f)}: missing image {s}')
         for s in p.alts:
-            ERRORS.append(f'{rel(f)}: image without alt text, {s}')
+            ERRORS.append(f'{rel(f)}: image without alt text, {s}' + (' (in a quiz)' if s in p.qimgs else ''))
+        for s in sorted(set(p.imgs)):
+            t = os.path.normpath(os.path.join(os.path.dirname(f), s))
+            if t.endswith('.svg') and os.path.exists(t) and os.path.getsize(t) > BIG_SVG:
+                WARNINGS.append(f'{rel(f)}: the SVG {s} is {os.path.getsize(t) // 1024} kB, over {BIG_SVG // 1024} kB'
+                                + (' and sits in a quiz' if s in p.qimgs else ''))
         for n, ok, fb, _ in p.quizzes:
             if not ok:
                 ERRORS.append(f'{rel(f)}: a quiz with no correct option')
@@ -159,6 +176,8 @@ def run(docs, webnotes, notes=None, skip_sessions=()):
     npages = len(pages)
     for e in sorted(set(ERRORS)):
         print('ERROR', e)
+    for w in sorted(set(WARNINGS)):
+        print('WARNING', w)
     if PENDING:
         print(f'pending, {len(PENDING)} references to sessions that are not converted yet (kept as text):',
               ', '.join(sorted(PENDING)))

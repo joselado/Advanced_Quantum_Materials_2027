@@ -21,7 +21,9 @@ $$H = -t\sum_{\langle ij\rangle,\sigma}\Big(c^\dagger_{i\sigma}c_{j\sigma} + \te
 J_K\sum_{j,\alpha\beta}\Big(c^\dagger_{j\beta}\,\boldsymbol\sigma_{\beta\alpha}\,c_{j\alpha}\Big)\cdot
 \mathbf S_j. \tag{8.18}$$
 
-Every impurity again tends to form a singlet with a conduction electron close to it. Since many impurities compete for the same sea of electrons, the electrons that screen the impurities are shared, in a fractional way, between the singlets of different impurities. The result is a state with a large entanglement over the whole lattice, between all the magnetic sites and the electron gas, while the total spin stays exactly zero.
+Every impurity again tends to form a singlet with a conduction electron close to it. Since many impurities compete for the same sea of electrons, the electrons that screen the impurities are shared, in a fractional way, between the singlets of different impurities. The result is a state with a large entanglement over the whole lattice, between all the magnetic sites and the electron gas, while the total spin stays exactly zero. [](#sch:s08:kondo_screening) sketches the two cases.
+
+![A sketch of the Kondo screening. Left, a magnetic impurity forms a singlet with one conduction electron close to it. Right, in a lattice every impurity wants such a singlet, and the clouds overlap, so the same electrons serve several impurities. Look at the overlaps in the right panel, which are the reason why the screening is shared. The drawing is schematic and no number is computed.](figures/web/session08/kondo_screening.svg){#sch:s08:kondo_screening alt="A magnetic impurity with a bound conduction electron in a sea of electrons, and a lattice of impurities whose screening clouds overlap."}
 
 ::: notebookbox
 **Notebook check-in:** [`session8.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session8.ipynb), "Magnetization of a large Heisenberg model with a magnetic impurity" (Challenge) and "Magnetization of a dimerized Heisenberg model with a magnetic impurity" (Challenge)

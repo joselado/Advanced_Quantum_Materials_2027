@@ -45,6 +45,8 @@ Charge cannot propagate in a Mott insulator. Why can a magnetic Mott insulator s
 
     This is false. For $U=10t$, putting a second electron on a site costs $10t$. At a temperature well below this, which is the regime of the question, the electrons stay on their sites, and still the magnons carry spin.
 
+    ![The cost $U$ of a second electron on a site. A hop that puts two electrons on one site pays $U$, and a hop between parallel spins is blocked by the Pauli principle.](figures/s06f02_dimer.svg){panel="a" alt="Two sites with parallel spins and a blocked hop, and two sites with antiparallel spins and an allowed hop that costs the energy U."}
+
 - [ ] The phonons of the lattice carry the spin.
 
     This is false. Phonons are vibrations of the atoms and they carry no spin. In a Heisenberg model with the atoms fixed there are no phonons at all, and spin still propagates as a magnon.

@@ -10,6 +10,10 @@ with $\lambda = \pm 1$ fixed by the chirality of the lattice at this Dirac point
 
 $$C_{\text{Dirac}} = \frac{1}{2}\,\mathrm{sgn}(m)\,\mathrm{sgn}(\lambda). \tag{3.8}$$
 
+Let us see what [(3.8)](#eq-3-8) means for one cone, in [](#sch:s03:dirac_mass). The bands do not know the sign of $m$, but the Berry curvature does.
+
+![A single gapped Dirac cone $H=k_x\sigma_x+\lambda k_y\sigma_y+m\sigma_z$ of [(3.7)](#eq-3-7) with $\lambda=+1$, in units of $|m|$. In (a) the bands are $\pm\sqrt{k^2+m^2}$, the same for both signs of $m$, and the dotted lines are the massless cone. In (b) the Berry curvature of the lower band is $\Omega=\lambda m/2(k^2+m^2)^{3/2}$, and its integral over the plane divided by $2\pi$ is $\pm\tfrac12$, as in [(3.8)](#eq-3-8). Look at how the same bands give opposite curvature, since the sign of $C$ is in the wavefunctions and not in the energies.](figures/web/session03/dirac_mass.svg){#sch:s03:dirac_mass alt="Left, the two bands of a gapped Dirac cone. Right, the Berry curvature of the lower band, a positive peak for positive mass and a negative peak for negative mass."}
+
 The half-integer in [(3.8)](#eq-3-8) is not an inconsistency. A real lattice always has an even number of Dirac points related by time-reversal symmetry, and the honeycomb lattice has two, which are usually called $K$ and $K'$. Only the *sum* of their contributions needs to be an integer.
 
 ::: quiz

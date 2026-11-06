@@ -45,6 +45,9 @@ At the crossing the energy of the conduction band is zero, as for the flat band.
 - [x] It doubles, since the two levels split into $\pm\gamma_K$.
 
     This is true. At $\varepsilon_{\mathbf k}=0$ the two-by-two Hamiltonian has the eigenvalues $\pm\gamma_K$, so the direct gap is $2\gamma_K$. This is the sense in which a larger Kondo coupling gives a larger gap.
+
+    ![The two bands of [(8.21)](#eq-8-21) for $\gamma_K=0.5$ and $\gamma_K=1$ with $t=1$. The direct gap at the crossing, the arrow, is $2\gamma_K$, so it doubles.](figures/web/session08/hybrid_gap.svg){alt="Two panels of a cosine band and a flat band repelled by a hybridization, with an arrow at the crossing that is twice as long for the larger hybridization."}
+
 :::
 
 ::: {.tryit notebook="session8.ipynb" cell="Spinon dispersion in the Kondo lattice"}

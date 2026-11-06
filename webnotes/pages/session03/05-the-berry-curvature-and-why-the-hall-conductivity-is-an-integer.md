@@ -46,6 +46,8 @@ We integrate the Berry curvature of a gapped band over the Brillouin zone on a c
 
     This is true. For this model the mass at $\Gamma$ is only $0.1$, so the curvature is concentrated there. The sum is $1.00$ on a 100 by 100 mesh, and the integral is exactly an integer.
 
+    ![The model $\mathbf d=(\sin k_x,\sin k_y,m+\cos k_x+\cos k_y)$ with $m=-1.9$ of the options. In (a) the curvature on the line $k_y=0$ has a narrow peak at $\Gamma$, and the dots are the points of the mesh 8 by 8, where one point sits on the peak. In (b) the sum of the curvature divided by $2\pi$ against the number of points $n_k$ in each direction.](figures/web/session03/chern_mesh.svg){alt="Left, a narrow peak of the Berry curvature at the center of the zone with the points of a coarse mesh. Right, the sum over the mesh falling to one as the mesh grows."}
+
 - [ ] The Brillouin zone is not a torus.
 
     This is false. The Brillouin zone of a lattice is periodic in both directions, so it is a torus for every model. The same model gives exactly $1$ on a fine mesh, so the non-integer value comes from the sampling.

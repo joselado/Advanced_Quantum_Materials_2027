@@ -127,7 +127,11 @@ Question
 <li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
 <p>This is true. The sign change turns <span class="math inline">\(\epsilon_\varphi=-2t\cos\varphi\)</span> into <span class="math inline">\(+2t\cos\varphi\)</span>, which is the same curve upside down. The minimum then moves from <span class="math inline">\(\varphi=0\)</span> to <span class="math inline">\(\varphi=\pi\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
-<p>This is false. For <span class="math inline">\(t=-1\)</span> the energy at <span class="math inline">\(\varphi=0\)</span> is <span class="math inline">\(+2\)</span>, which is the top of the band. The bottom is <span class="math inline">\(-2\)</span>, at <span class="math inline">\(\varphi=\pi\)</span>.</p></li>
+<p>This is false. For <span class="math inline">\(t=-1\)</span> the energy at <span class="math inline">\(\varphi=0\)</span> is <span class="math inline">\(+2\)</span>, which is the top of the band. The bottom is <span class="math inline">\(-2\)</span>, at <span class="math inline">\(\varphi=\pi\)</span>.</p>
+<figure class="quiz-fig schematic">
+<img src="../figures/web/session02/band_sign_t.svg" loading="lazy" alt="Two cosine bands, one with its minimum at phi equal to zero and one with its maximum there." />
+<figcaption>The band <span class="math inline">\(-2t\cos\varphi\)</span> for <span class="math inline">\(t=+1\)</span> and for <span class="math inline">\(t=-1\)</span>. The second curve is the first one turned upside down, so the energy at <span class="math inline">\(\varphi=0\)</span> is <span class="math inline">\(-2\)</span> for the first and <span class="math inline">\(+2\)</span> for the second.</figcaption>
+</figure></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
 <p>This is false. At <span class="math inline">\(\varphi=\pi/2\)</span> the energy is <span class="math inline">\(0\)</span> for either sign of <span class="math inline">\(t\)</span>, since <span class="math inline">\(\cos(\pi/2)=0\)</span>. This is the middle of the band and not its bottom.</p></li>
 </ul>
@@ -144,6 +148,11 @@ Question
 <p>A natural extension, which we do in class, is to check that the same method also works beyond nearest-neighbour hopping. We add a second-neighbour hopping term <span class="math inline">\(-\eta\sum_n(c_n^\dagger
 c_{n+2}+\text{h.c.})\)</span> to <a href="#eq-2-5">(2.5)</a>. This term has the same translational symmetry as before, so the eigenstates <a href="#eq-2-6">(2.6)</a> do not change at all, and we only need to compute the eigenvalues again. We repeat the Fourier substitution for the new term, which couples <span class="math inline">\(c_n^\dagger\)</span> with <span class="math inline">\(c_{n+2}\)</span> and so gives a phase <span class="math inline">\(e^{\pm2i\varphi}\)</span> instead of <span class="math inline">\(e^{\pm i\varphi}\)</span>, and we obtain</p>
 <p><span id="eq-2-9" class="eq"><span class="math display">\[\epsilon_\varphi = -2t\cos\varphi - 2\eta\cos(2\varphi). \tag{2.9}\]</span></span></p>
+<p><a href="#sch:s02:chain_eta">Schematic 2.3</a> shows the chain with its two hoppings, and the band of <a href="#eq-2-9">(2.9)</a> for three values of <span class="math inline">\(\eta\)</span>.</p>
+<figure id="sch:s02:chain_eta" class="schematic">
+<img src="../figures/web/session02/chain_eta.svg" loading="lazy" alt="A chain with straight bonds between neighbors and arcs between second neighbors, and three cosine bands where the one with the largest second-neighbor hopping has an extra dip at the zone edge." />
+<figcaption><strong>Schematic 2.3.</strong> The chain with a second-neighbor hopping. On the left, the first-neighbor hopping <span class="math inline">\(t\)</span> is the straight bond, and the second-neighbor hopping <span class="math inline">\(\eta\)</span> is an arc over one site. On the right, the band of <a href="#eq-2-9">(2.9)</a> for <span class="math inline">\(t=1\)</span>. For <span class="math inline">\(\eta=0.2\)</span> the band has one minimum and one maximum, as for <span class="math inline">\(\eta=0\)</span>. For <span class="math inline">\(\eta=0.5\)</span>, which is above <span class="math inline">\(t/4\)</span>, the point <span class="math inline">\(\varphi=\pi\)</span> becomes a local minimum and two new maxima appear next to it.</figcaption>
+</figure>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question

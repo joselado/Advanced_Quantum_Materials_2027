@@ -43,6 +43,8 @@ Many different values of $\lambda$ give nearly the same observable $\mathcal{O}$
 
     This is true. A chain with $t$ and a chain with $-t$ have the same density of states. The network cannot give the sign, so it gives an estimate with an uncertainty and we must cover $\mu$ in training.
 
+    ![The bands of the chains with $t=1$ and $t=-1$ are upside down with respect to each other, and the density of states $1/(\pi\sqrt{4t^2-E^2})$ is the same.](figures/web/session10/dos_sign.svg){alt="Two cosine bands that are upside down with respect to each other, next to one density of states curve that is the same for both."}
+
 - [ ] The network must always give the exact $\lambda$, since the loss [(10.12)](#eq-10-12) is zero for the training pairs.
 
     This is false. The pairs $(\mathcal O,t)$ and $(\mathcal O,-t)$ have the same input and different labels. The mean-square loss is minimal when the network gives the mean of the two labels, which is $0$, and then the loss is $t^2$ and not zero.

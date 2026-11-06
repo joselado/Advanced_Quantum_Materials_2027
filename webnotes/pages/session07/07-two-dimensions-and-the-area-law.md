@@ -25,6 +25,8 @@ In the tetramer model of two dimensions we double the linear size of the region 
 
     This is false. The square of side 2 has 4 sites and the one of side 4 has 16, but the clusters inside the square are not cut. Only the perimeter, 8 and then 16, counts, so the factor is 2 and not 4.
 
+    ![A square of side 2 and one of side 4 on a square lattice. The red bonds are cut, and their number follows the perimeter.](figures/web/session07/square_regions.svg){alt="Two square regions on a lattice of dots, with 4 and 16 sites inside, and the bonds that cross their boundary in red, 8 and 16 of them."}
+
 - [ ] It does not change, since the state is gapped.
 
     This is false. In one dimension the boundary is two points and the entropy is constant. In two dimensions the boundary grows with the size, so a gapped state still has an entropy that grows.

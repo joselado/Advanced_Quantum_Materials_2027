@@ -90,10 +90,10 @@
 <p>and, when we apply the same argument a third time, for a cubic lattice with a single orbital,</p>
 <p><span id="eq-2-15" class="eq"><span class="math display">\[\epsilon(\varphi_x,\varphi_y,\varphi_z) = -2t\left(\cos\varphi_x+\cos\varphi_y+\cos\varphi_z\right). \tag{2.15}\]</span></span></p>
 <p>The same method extends in a systematic way to four, five or more dimensions, since nothing in the argument depends on being in three-dimensional space. Equations <a href="#eq-2-14">(2.14)</a> and <a href="#eq-2-15">(2.15)</a> come from the slides and the transcript, and there is no counterpart for them in <code>session2.ipynb</code>. The two-dimensional example of the notebook goes directly to the honeycomb lattice of Section <a href="11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#sec-2-11">2.11</a> and does not treat the plain square lattice, and there is no section on the three-dimensional cubic lattice. If you want to check <a href="#eq-2-14">(2.14)</a> or <a href="#eq-2-15">(2.15)</a> numerically, the same construction that we use for the honeycomb lattice in the box below can be extended directly, with a square or cubic Bravais lattice with a single orbital instead.</p>
-<p><a href="#sch:s02:square_bands">Schematic 2.3</a> shows the band of <a href="#eq-2-14">(2.14)</a>.</p>
+<p><a href="#sch:s02:square_bands">Schematic 2.5</a> shows the band of <a href="#eq-2-14">(2.14)</a>.</p>
 <figure id="sch:s02:square_bands" class="schematic">
 <img src="../figures/web/session02/square_bands.svg" loading="lazy" alt="The energy of the square lattice along a path of the Brillouin zone, and its contour lines over the zone." />
-<figcaption><strong>Schematic 2.3.</strong> The band of the square lattice from <a href="#eq-2-14">(2.14)</a>. On the left, the energy along the path from <span class="math inline">\(\Gamma\)</span> to <span class="math inline">\(X\)</span> to <span class="math inline">\(M\)</span> and back, which goes from <span class="math inline">\(-4t\)</span> to <span class="math inline">\(4t\)</span>. On the right, the contour lines of the same band over the Brillouin zone, with the line <span class="math inline">\(\epsilon=0\)</span> in red. The contours continue across the dashed border, so the zone is a torus.</figcaption>
+<figcaption><strong>Schematic 2.5.</strong> The band of the square lattice from <a href="#eq-2-14">(2.14)</a>. On the left, the energy along the path from <span class="math inline">\(\Gamma\)</span> to <span class="math inline">\(X\)</span> to <span class="math inline">\(M\)</span> and back, which goes from <span class="math inline">\(-4t\)</span> to <span class="math inline">\(4t\)</span>. On the right, the contour lines of the same band over the Brillouin zone, with the line <span class="math inline">\(\epsilon=0\)</span> in red. The contours continue across the dashed border, so the zone is a torus.</figcaption>
 </figure>
 <div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
@@ -143,7 +143,11 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
-<p>This is true. Without hopping along <span class="math inline">\(y\)</span> the lattice is a set of decoupled chains. Each chain has the band of <a href="05-blochs-theorem-and-the-first-band-structure.html#eq-2-8">(2.8)</a>, and nothing depends on <span class="math inline">\(\varphi_y\)</span>.</p></li>
+<p>This is true. Without hopping along <span class="math inline">\(y\)</span> the lattice is a set of decoupled chains. Each chain has the band of <a href="05-blochs-theorem-and-the-first-band-structure.html#eq-2-8">(2.8)</a>, and nothing depends on <span class="math inline">\(\varphi_y\)</span>.</p>
+<figure class="quiz-fig schematic">
+<img src="../figures/web/session02/decoupled_chains.svg" loading="lazy" alt="Four decoupled horizontal chains, and a map of the Brillouin zone with vertical stripes of constant energy." />
+<figcaption>A square lattice without hopping along <span class="math inline">\(y\)</span>. On the left, the dashed lines are the bonds that are switched off, so the lattice is a set of chains. On the right, the energy <span class="math inline">\(-2t\cos\varphi_x\)</span> over the zone, where the colors form stripes that do not change along <span class="math inline">\(\varphi_y\)</span>.</figcaption>
+</figure></li>
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
 <p>This is false. Fix <span class="math inline">\(\varphi_y=0\)</span>. Then <span class="math inline">\(\epsilon=-2t\cos\varphi_x\)</span> gives <span class="math inline">\(-2t\)</span> at <span class="math inline">\(\varphi_x=0\)</span> and <span class="math inline">\(+2t\)</span> at <span class="math inline">\(\varphi_x=\pi\)</span>, so the energy does change with <span class="math inline">\(\varphi_x\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>

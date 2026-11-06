@@ -10,6 +10,10 @@ Before we use [(3.1)](#eq-3-1), we should say when it fails, because several of 
 
 - **Superconductivity** is also non-perturbative, since the BCS gap does not appear at any finite order in the interaction strength if we start from the normal state. We will work this out in detail in session 5.
 
+We can see the first of these cases in a small calculation. We take a ring at half filling, we add an impurity on one site, and we compute the overlap between the two ground states. For a metal the overlap keeps falling when the ring grows, and for the same impurity in an insulator it does not, as we see in [](#sch:s03:orthogonality).
+
+![The overlap between the ground state of a ring at half filling and the ground state with an impurity of strength $V$ on one site, against the number of sites $N$. The hopping is $1$, and the gapped ring has a staggered potential $\pm1$. In the metal the overlap keeps decreasing as a power law, with an exponent $0.05$ for $V=3$ and $0.01$ for $V=1$ from the last points. The decay is slow, so only the trend matters. In the gapped ring the overlap is constant already for the smallest ring, $N=10$. Look at the two groups of lines, since the metal has no value of $N$ where the overlap stops changing.](figures/web/session03/orthogonality.svg){#sch:s03:orthogonality alt="Overlap of the ground states with and without an impurity against the size of a ring, falling slowly for a metal and flat for a gapped ring."}
+
 In this lecture, and for every model that we build in this session, we stay inside the regime where [(3.1)](#eq-3-1) holds. For now, it is enough to know that this is not always the case.
 
 ::: quiz

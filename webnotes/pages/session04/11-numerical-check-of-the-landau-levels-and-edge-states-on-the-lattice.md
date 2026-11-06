@@ -15,6 +15,8 @@ In the spectrum of the ribbon, a Landau level bends up when its guiding center $
 
     This is true. A state with the guiding center at the wall has part of its wavefunction removed. A squeezed wavefunction has a larger kinetic energy, and this is what gives the dispersive edge branches.
 
+    ![The lowest level of the oscillator of one $k_y$ with a hard wall at $x=0$. The energy grows from $0.50$ to $0.73$ and to $1.50$ as the center of the well goes to the wall.](figures/web/session04/wall_squeeze.svg){alt="Three oscillator wells with a wall at the left, the wavefunction squeezed against the wall as the center of the well comes closer, and the energy of the level growing."}
+
 - [ ] The wall changes the cyclotron frequency in the bulk.
 
     This is false. The flat levels far from the wall stay at $\hbar\omega_c(n+\tfrac12)$ in a ribbon that is wider than a few $\ell_B$. Only the states within about $\ell_B$ of the wall move.

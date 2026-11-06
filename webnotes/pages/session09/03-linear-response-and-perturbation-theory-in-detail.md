@@ -40,6 +40,8 @@ Two levels of $H_0$ are exactly degenerate and $V$ couples them. What happens to
 
     This is false. Take $H_0=0$ and a coupling $v$ between the two levels. The eigenstates are $(|1\rangle\pm|2\rangle)/\sqrt2$ with energies $\pm v$, so the levels mix completely.
 
+    ![Two degenerate levels coupled by $v$ split into $\pm v$, and the new states are the equal mixtures of the two.](figures/web/session09/degenerate.svg){alt="Two levels at the same energy, and after the coupling a level at plus v and one at minus v with their mixed states."}
+
 - [x] It diverges, so we must diagonalize $V$ inside the degenerate subspace first.
 
     This is true. If the levels are split by $\delta$, the coefficient is $v/\delta$. For $v=0.01t$ and $\delta=10^{-4}t$ it is $100$, which is meaningless for a small correction, and it grows without bound as $\delta\to0$.

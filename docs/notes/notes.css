@@ -73,6 +73,14 @@ figure.panel { text-align: center; }
 figure.panel img { width: auto; max-width: 100%; margin: 0 auto; }
 figure.panel figcaption { text-align: left; }
 
+/* a figure inside a quiz, in the question or in the feedback of an option: small, centred, no number */
+.quiz figure.quiz-fig { max-width: 360px; margin: 10px auto; font-weight: 400; }
+.quiz figure.quiz-fig img { margin: 0 auto; }
+.quiz figure.quiz-fig figcaption { font-size: 0.88rem; line-height: 1.4; margin-top: 6px; }
+.quiz-q figure.quiz-fig figcaption { color: var(--muted); }
+.quiz-fb figure.quiz-fig { max-width: 340px; }
+.quiz-fb figure.quiz-fig figcaption p, .quiz-q figure.quiz-fig figcaption p { margin: 0; }
+
 /* a page that holds several sections: the next one starts with a rule */
 .sec-next { border-top: 1px solid var(--rule); padding-top: 28px; margin-top: 52px; }
 

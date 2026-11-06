@@ -24,6 +24,8 @@ We add a hidden layer to a network that has none, and then we train it with [(10
 
     This is true. A linear network cannot represent XOR, and a network with one hidden layer can. The architecture sets the set of functions, and $\theta$ chooses one inside it.
 
+    ![No straight line separates the two classes of XOR (left). One hidden layer with two neurons gives two lines and selects the band between them (right).](figures/web/session10/xor.svg){alt="The four corners of a square with opposite corners in the same class, and two parallel lines that enclose the corners of one class."}
+
 - [ ] Training changes the architecture, so the number of layers is fixed by the data.
 
     This is false. The same Ising snapshots can be fitted with two layers or with ten. The number of layers is our choice, and gradient descent changes only $\theta$.
@@ -39,6 +41,8 @@ In the update $\theta\to\theta-\eta\nabla_\theta\mathcal{L}$ the learning rate $
 - [x] The steps overshoot the minimum, and the loss can oscillate or grow.
 
     This is true. For $\mathcal L=\theta^2/2$ with $\eta=2.5$ we get $\theta\to-1.5\theta$, so the loss grows by $2.25$ at every step. For $\eta=2$ the point oscillates between $\pm\theta$.
+
+    ![The update $\theta\to(1-\eta)\theta$ from $\theta=1$. For $\eta=0.5$ the points fall to zero, for $\eta=2$ they jump between $\pm1$, and for $\eta=2.5$ they grow by the factor $1.5$ at every step.](figures/web/session10/lrate.svg){alt="The parameter against the step for three learning rates, one decaying to zero, one jumping between plus and minus one and one growing with alternating sign."}
 
 - [ ] The gradient vanishes, so the loss stays constant.
 

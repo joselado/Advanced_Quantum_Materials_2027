@@ -32,6 +32,10 @@ This has the consequence that we expect from the bulk-boundary correspondence. I
 
 ![Two gaps that a spectroscopy experiment cannot distinguish, seen from above. Each dial is the phase of $\Delta(\mathbf k)$, an arrow in the complex plane, drawn at the point of the Fermi pocket where it is evaluated. (a) For $s$-wave pairing this phase is the same everywhere, so as $\mathbf k$ goes once around the pocket the value of $\Delta$ stays at a single point of the complex plane, with winding number zero and Chern number zero. (b) For chiral $p$-wave pairing [(5.15)](#eq-5-15) the phase instead follows the direction of $\mathbf k$, so $\Delta$ draws a loop that encircles the origin once. The modulus is essentially the same in both cases, so both fully gap the same pocket by the same amount. Only the winding is different, and the winding is what the Chern number counts. (c) The consequence in a finite sample. The trivial state is gapped at its boundary as well as in its bulk, while the chiral state must have $|C|$ gapless branches on each edge, all going in the same direction, and in the opposite direction on the opposite edge. Here $C=\pm 2$, with one branch from each of the two identical spin blocks of [(5.8)](#eq-5-8).](figures/s05f04_topology.svg){#fig:s05:topology number="5.4"}
 
+The edge of a Chern insulator, from the quantum Hall and topological sessions, is the model for what we expect here. The figure below shows it again.
+
+![The chiral edge states of a Chern insulator. The chiral $p$-wave superconductor has the same structure, with Majorana branches instead of electron branches.](figures/s03f01_chiraledge.svg){alt="A gapped bulk with a chiral channel running along its edge, and a channel that goes around an impurity."}
+
 ::: quiz
 We replace $p_x+ip_y$ by $p_x-ip_y$, and the bulk gap does not change. What happens to the edge modes of a ribbon?
 

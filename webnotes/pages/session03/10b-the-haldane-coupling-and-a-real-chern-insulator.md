@@ -21,6 +21,10 @@ We keep the Haldane coupling fixed and increase a staggered potential until it i
 
 :::
 
+We can follow this cancellation on the lattice. In [](#sch:s03:haldane_phase) we keep the Haldane coupling fixed and we increase the staggered potential $M$.
+
+![The honeycomb lattice with the Haldane coupling $t_2=0.1$ and a staggered potential $M$, computed on the lattice. At the top is the gap of the bulk. At the bottom is the Chern number of the lower band, from a grid of 60 by 60 points. The gap closes at $M=\pm m_H$, with $m_H=3\sqrt{3}\,t_2\approx0.52$, which is where the mass of one valley changes sign, and $|C|$ jumps from $1$ to $0$ there. Look at the zeros of the gap, since a Chern number can change only where the gap closes.](figures/web/session03/haldane_phase.svg){#sch:s03:haldane_phase alt="The bulk gap against the staggered potential, with two zeros, and below it the Chern number, equal to one between the zeros and to zero outside."}
+
 ::: notebookbox
 **Notebook check-in:** [`session3.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session3.ipynb), "The quantum anomalous Hall effect" (Core), "Edge states of the quantum anomalous Hall state" (Core), "Topological states and topological invariants" (Challenge), "Topological phase transitions in the bulk" (Challenge), and "Topological phase transitions in the edge" (Core)
 

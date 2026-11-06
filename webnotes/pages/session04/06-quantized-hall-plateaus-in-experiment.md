@@ -52,6 +52,8 @@ A gauge change $\mathbf{A}\to\mathbf{A}+\nabla\chi$ changes the phase of every b
 
     This is true. The sum of the phases around a loop is the flux through it, which is $\mathbf{B}$ and not $\mathbf{A}$. The electrons respond only to this flux.
 
+    ![One plaquette in the Landau gauge $\mathbf A=(0,Bx)$ and in the symmetric gauge $\mathbf A=\tfrac{B}{2}(-y,x)$, for the lower left corner $(x,y)=(2,1)$ and with the phases in units of the flux $\varphi$ of the plaquette. The bonds differ, and the sum around the loop is $\varphi$ in both.](figures/web/session04/plaquette_gauge.svg){alt="One square plaquette drawn twice with an arrow and a phase on each bond, for the Landau gauge and for the symmetric gauge, with the same sum around the loop."}
+
 :::
 
 ::: {.tryit notebook="session4.ipynb" cell="Bands in the conventional quantum Hall state"}

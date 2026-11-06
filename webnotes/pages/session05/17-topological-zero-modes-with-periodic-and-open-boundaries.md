@@ -1,6 +1,8 @@
 ## Topological zero modes with periodic and open boundaries {#sec-5-17 number="5.17"}
 
-If we diagonalize [(5.19)](#eq-5-19) on a *periodic* chain, we obtain a fully gapped spectrum, with a superconducting gap set by $\Delta$ and a nontrivial topological invariant of the bulk. This is the same kind of $\mathbb{Z}_2$ or winding invariant that classified the two phases of the SSH model through the Zak phase in the topological-band-structure session, now computed from the BdG bands instead of an ordinary Bloch Hamiltonian. On an *open* chain, for example with $N=100$ sites and the two ends disconnected, the bulk spectrum keeps essentially the same gap, but two extra states appear, pinned exactly at zero energy and localized at the left end and at the right end of the chain. These are the unpaired Majoranas $\gamma_1$ and $\gamma_{2N}$ from [(5.21)](#eq-5-21), which we now see as real mid-gap states of the open chain.
+If we diagonalize [(5.19)](#eq-5-19) on a *periodic* chain, we obtain a fully gapped spectrum, with a superconducting gap set by $\Delta$ and a nontrivial topological invariant of the bulk. This is the same kind of $\mathbb{Z}_2$ or winding invariant that classified the two phases of the SSH model through the Zak phase in the topological-band-structure session, now computed from the BdG bands instead of an ordinary Bloch Hamiltonian. On an *open* chain, for example with $N=100$ sites and the two ends disconnected, the bulk spectrum keeps essentially the same gap, but two extra states appear, pinned exactly at zero energy and localized at the left end and at the right end of the chain. These are the unpaired Majoranas $\gamma_1$ and $\gamma_{2N}$ from [(5.21)](#eq-5-21), which we now see as real mid-gap states of the open chain. Schematic [](#sch:s05:zero_mode_profile) shows where the lowest state sits. In the topological phase its weight is at the two ends, and in the trivial phase it is spread over the chain.
+
+![The weight of the lowest state of an open Kitaev chain with $N=40$, $\Delta=0.5t$ and two values of $\mu$. (a) For $\mu=t$ the weight is at the two ends and decays into the bulk. (b) For $\mu=2.5t$ the state is spread over the chain, and its energy is $0.51t$.](figures/web/session05/zero_mode_profile.svg){#sch:s05:zero_mode_profile alt="Two bar plots of the weight of the lowest state on each site. In the first the weight is at both ends of the chain, and in the second it is spread over the middle."}
 
 These zero modes are very robust. When we move away from the fine-tuned point, with $\Delta \ne t$ and finite $\mu$, the zero modes survive as long as we stay in the same topological phase. The standard criterion for the general Kitaev chain [(5.19)](#eq-5-19) with $\Delta \ne 0$ is
 
@@ -36,6 +38,8 @@ A Kitaev chain with $N=8$ sites, $\Delta=0.5t$ and $\mu=t$ is in the topological
 - [x] No, they sit at a small energy that decreases exponentially with $N$.
 
     This is true. The end modes have a finite localization length, so for a short chain they overlap and hybridize. For $\Delta=0.5t$ and $\mu=t$ the splitting is $0.011t$ at $N=8$ and $2\times10^{-5}t$ at $N=20$.
+
+    ![The lowest level of the open chain against its length, for $\Delta=0.5t$ and $\mu=t$. It falls roughly exponentially with oscillations, and the first bulk level stays near $0.8t$.](figures/web/session05/majorana_splitting.svg){alt="The lowest energy of a Kitaev chain on a logarithmic scale against the number of sites, falling by many orders of magnitude, and a flat line for the first bulk level."}
 
 - [ ] No, they sit at the energy of the bulk gap.
 

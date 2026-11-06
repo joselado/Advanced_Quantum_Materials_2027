@@ -16,6 +16,10 @@ When we diagonalize [(8.15)](#eq-8-15) on a given lattice, we obtain a real spin
 
 - **Dirac spinons**, with a linear relation between energy and momentum at isolated points in the Brillouin zone.
 
+[](#sch:s08:spinon_bands) shows one example of each class. The gapped example uses the alternating bonds of the valence bond solid of Section [8.5](#sec-8-5).
+
+![One example of each class of spinon bands from [(8.15)](#eq-8-15) with one spin species, for $\chi=1$ on a grid of 401 values of $k$. Left, the uniform chain, where the band crosses the Fermi level at two points. Center, the chain with alternating hoppings $1$ and $0.6$, where the gap is $0.8$. Right, the $\pi$-flux square lattice along $k_y=\pi/2$, where the two bands touch linearly in a Dirac point. Look at the grey line at zero, which the half filling puts at the Fermi level.](figures/web/session08/spinon_bands.svg){#sch:s08:spinon_bands alt="Three panels of spinon bands against momentum, a cosine band crossing the Fermi level, two bands separated by a gap, and two bands touching linearly at one point."}
+
 ::: notebookbox
 **Notebook check-in:** [`session8.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session8.ipynb), "Spinon Fermi surface in gapless quantum spin liquids" (Core)
 

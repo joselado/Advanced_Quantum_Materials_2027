@@ -21,7 +21,15 @@ $$\left(\frac{1}{m^\ast}\right)_{ij} = \frac{1}{\hbar^2}\,
 
 is the curvature of the dispersion, and it is the mass that is measured in essentially every transport or cyclotron-resonance experiment, since the bare electron mass cannot be observed directly inside a solid. Depending on the band, $m^\ast$ can go from nearly zero to very large values. For a Dirac dispersion, as we will see soon, it is formally not defined at the point where the bands touch.
 
+For the chain band of [(2.8)](#eq-2-8) we can draw the three quantities one next to the other, in [](#sch:s02:cos_velocity_mass). The velocity is largest in the middle of the band, where the effective mass changes sign.
+
+![The chain band, its group velocity and its inverse effective mass, for $t=1$ and in units of $\hbar=a=1$. The velocity $2t\sin\varphi$ is zero at the band edges and largest at $\varphi=\pm\pi/2$. The inverse mass $2t\cos\varphi$ is positive at the bottom of the band, in light blue, negative at the top, in red, and it changes sign at $\varphi=\pm\pi/2$, which is the inflection point of the band.](figures/web/session02/cos_velocity_mass.svg){#sch:s02:cos_velocity_mass alt="Three curves against the phase. The cosine band, its slope that is largest at plus and minus pi over two, and its curvature that is positive at the bottom and negative at the top."}
+
 Finally, the **Fermi surface** is the set of $\mathbf{k}$-points that have the same energy as the highest occupied state. Its shape controls which electronic instabilities are favoured and how a material responds to an external magnetic field, and it is one of the quantities that ARPES (Section [2.12](#sec-2-12)) can map directly.
+
+For the square lattice of [(2.14)](#eq-2-14) at half filling the Fermi surface is the square $|\varphi_x|+|\varphi_y|=\pi$. Its flat pieces map onto each other when we shift them by $Q=(\pi,\pi)$, which is called nesting, and the figure below shows it. In the chain the same role is played by the two Fermi points, which are $2k_F=\pi$ apart at half filling.
+
+![The Fermi surface of the square lattice at half filling, drawn in session 9. The surface is a square, and the red vectors of the shift $Q=(\pi,\pi)$ join each flat piece to the opposite one.](figures/s09f01_nesting.svg){panel="c" alt="A square Fermi surface in the Brillouin zone with red arrows joining opposite flat pieces."}
 
 ::: quiz
 For the band $\epsilon_\varphi=-2t\cos\varphi$, where is the group velocity largest?

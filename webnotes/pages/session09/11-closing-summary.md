@@ -33,6 +33,8 @@ We put a single vacancy in a clean material, and we see a density oscillation th
 
     This is false. A gapped state gives $e^{-x/\xi}$. For $\xi=2.5$ sites the response at $x=10$ is $0.02$ of the starting value, while $1/x$ gives $0.1$.
 
+    ![An impurity response in a gapless chain, with a power-law envelope (upper), and in a gapped chain, with an exponential envelope (lower).](figures/s09f05_decay.svg){panel="chains" alt="Two chains of arrows with alternating signs around an impurity, the upper one decaying slowly and the lower one decaying faster."}
+
 - [x] It is gapless, with a Fermi surface that sets the wavevector of the oscillation.
 
     This is true. A $1/|x|$ envelope shows a non-analytic point of $\chi_0$, which in a metal is $2k_F$. The oscillation wavevector then gives the Fermi surface, as a Friedel oscillation does.

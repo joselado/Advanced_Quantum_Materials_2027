@@ -51,6 +51,8 @@ We describe the uniform chain with a unit cell of three sites. How many bands do
 
     This is true. The Bloch Hamiltonian is a $3\times 3$ matrix, so we get three bands. The cell is three times longer, so the zone is three times narrower, and the single band of [(2.8)](#eq-2-8) folds into it.
 
+    ![The chain with a cell of three sites. The three eigenvalues of the $3\times3$ Bloch Hamiltonian are the branches $-2t\cos[(\varphi+2\pi m)/3]$ with $m=0,1,2$, drawn for $t=1$, where $\varphi$ is the phase per cell of three sites. At $\varphi=0$ they are $-2t$, $t$ and $t$.](figures/web/session02/fold_three.svg){alt="A chain with dashed boxes of three sites, and three bands that fold the cosine band into a zone three times narrower."}
+
 - [ ] One band, in the same zone.
 
     This is false. At $\varphi=0$ the folded energies $-2t\cos(2\pi m/3)$ with $m=0,1,2$ are $-2t$, $t$ and $t$. A $3\times 3$ matrix has three eigenvalues at each $\varphi$, so one band is not enough.

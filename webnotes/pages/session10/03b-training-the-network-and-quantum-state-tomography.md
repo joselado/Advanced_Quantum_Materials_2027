@@ -6,11 +6,13 @@ To compute [(10.3)](#eq-10-3) without a sum over all the $2^L$ configurations, o
 
 $$E_{\rm loc}(s) = \sum_{s'} H_{s s'}\, \frac{C_\theta(s')}{C_\theta(s)}, \qquad E[\theta] = \big\langle E_{\rm loc}(s)\big\rangle_{s\sim p}, \tag{10.4}$$
 
-which only needs $H$ between the configurations that are connected by the Hamiltonian, which is usually sparse, and not the full $2^L\times 2^L$ matrix. The training is then done in the same way as in [(10.1)](#eq-10-1). We compute the energy and its gradient with respect to the parameters of the network,
+which only needs $H$ between the configurations that are connected by the Hamiltonian, which is usually sparse and is drawn in [](#sch:s10:local_energy), and not the full $2^L\times 2^L$ matrix. The training is then done in the same way as in [(10.1)](#eq-10-1). We compute the energy and its gradient with respect to the parameters of the network,
 
 $$\frac{\partial E}{\partial \theta_k} = 2\,\mathrm{Re}\Big[\big\langle E_{\rm loc}(s)\, O_k^*(s)\big\rangle - \big\langle E_{\rm loc}(s)\big\rangle\big\langle O_k^*(s)\big\rangle\Big], \qquad O_k(s) \equiv \frac{\partial \ln C_\theta(s)}{\partial \theta_k}, \tag{10.5}$$
 
 and we update $\theta_k \to \theta_k - \eta\, \partial E/\partial\theta_k$ many times, with a learning rate $\eta$ as in any other training of a neural network, until the gradient vanishes and the energy has converged to its variational minimum.
+
+![A configuration $s$ of six spins and the configurations $s'$ with $H_{ss'}\neq0$ for the Heisenberg chain. Each antiparallel bond gives one new $s'$, with the swapped pair in the dashed box, and a parallel bond only returns $s$. The sum over $s'$ has at most $L$ terms and not $2^L$.](figures/web/session10/local_energy.svg){#sch:s10:local_energy alt="A row of six spins and three rows below it, each with one pair of neighboring antiparallel spins swapped and marked by a dashed box."}
 
 We should now say clearly how NNQS is related to the other variational ansätze of this course. The slides show this as a set of nested regions. The full many-body Hilbert space is one region, and inside it there is a smaller region with all the states that an NNQS with a given architecture can reach. Projected entangled pair states are inside this NNQS region, and matrix product states, which we built in session 7, are inside the PEPS region. The parameterizations of gapped one-dimensional systems are in the innermost region, since a matrix product state is a particular and highly structured choice of "network." NNQS is therefore the most expressive of the variational families of this course, because it imposes the least structure on how the coefficients depend on the configuration. Equation [(10.3)](#eq-10-3) is the loss function, and [(10.4)](#eq-10-4)-[(10.5)](#eq-10-5) are the training procedure, and together they make this picture a working method and not only a structure. Figure [10.2](#fig:s10:nnqs) shows all three parts, which are what the network computes, how the sampled estimate of the energy is built, and the nested picture.
 
@@ -49,6 +51,8 @@ In tomography we measure only the spin of every site along $z$, and we fit $\the
 - [x] The phase of $C(s)$.
 
     This is true. The states $(|\uparrow\rangle\pm|\downarrow\rangle)/\sqrt2$ both give $50\%$ and $50\%$ along $z$, and they differ in the phase. We need other bases to fix it.
+
+    ![The two states give the same probabilities along $z$ (left) and different ones along $x$ (right), so only the second basis sees the phase.](figures/web/session10/tomo_phase.svg){alt="Two pairs of bars, equal for the two states when measured along z, and one bar each in opposite places when measured along x."}
 
 - [ ] The relative weight of two configurations.
 

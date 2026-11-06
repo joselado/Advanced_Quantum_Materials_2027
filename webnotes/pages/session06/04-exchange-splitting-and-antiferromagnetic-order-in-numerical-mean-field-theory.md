@@ -2,7 +2,9 @@
 
 Let us now see the method of Section [6.3](#sec-6-3) in a real calculation. First we take the one-dimensional chain [(6.1)](#eq-6-1) with a unit cell of one site at 20% filling, and we solve it self-consistently. The resulting band structure shows an exchange splitting. The spin-up band, which is occupied up to the chemical potential, is at lower energy than the spin-down band, which is empty at this filling. The splitting between them is called the **exchange splitting**, and it grows with $U$. Only spin-up states are occupied, so this is a fully polarized ferromagnetic solution with $m\neq 0$.
 
-Now we take a unit cell with two sites, and we work at half filling. At $U=0$ there are two bands, one per site in the cell, and they cross at one point, so the system is metallic. When we turn on $U>0$ a mean-field gap opens, and in real space the two sublattices get opposite spin polarization, with one site mostly up and its neighbor mostly down. The *net* magnetization is zero, but the *staggered* magnetization is not, and this is antiferromagnetic order. As always when a mean-field gap opens, it lowers the total electronic energy with respect to the state without a gap, because the states that the gap pushes down in energy are the occupied ones.
+Now we take a unit cell with two sites, and we work at half filling. At $U=0$ there are two bands, one per site in the cell, and they cross at one point, so the system is metallic. When we turn on $U>0$ a mean-field gap opens, and in real space the two sublattices get opposite spin polarization, with one site mostly up and its neighbor mostly down. The *net* magnetization is zero, but the *staggered* magnetization is not, and this is antiferromagnetic order. As always when a mean-field gap opens, it lowers the total electronic energy with respect to the state without a gap, because the states that the gap pushes down in energy are the occupied ones. Schematic [](#sch:s06:fm_afm_chain) shows the two solutions.
+
+![The two solutions of the chain at $U=4t$. (a) The ferromagnet at $n=0.2$, where the spin-down band is shifted up by $Um=0.8t$ and is empty, and the spin-up band is filled up to $\mu$. (b) The antiferromagnet at half filling, with a moment $|m|=0.77$ on every site and opposite signs on the two sublattices. The arrows are proportional to the local moment.](figures/web/session06/fm_afm_chain.svg){#sch:s06:fm_afm_chain alt="Two bands of a chain shifted in energy with only the lower one occupied, and a chain of sites with arrows that alternate up and down."}
 
 ::: notebookbox
 **Notebook check-in:** [`session6.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb), "(Reminder) Bandstructure of a tight binding chain with two sites" and "(Exercise) Magnetic order driven by interactions in a chain"
@@ -28,6 +30,8 @@ At large $U$ the energy difference $E_\text{FM}-E_\text{AFM}$ of the half-filled
 - [x] It is halved.
 
     This is true. A $1/U$ law gives half the value when $U$ doubles. It comes from $J=4t^2/U$ of Section [6.8](#sec-6-8), which is $0.2t$ at $U=20t$ and $0.1t$ at $U=40t$ for the cell of two sites. A mean-field calculation gives $0.1995t$ and $0.0999t$.
+
+    ![The energy difference $E_\mathrm{FM}-E_\mathrm{AFM}$ per cell of two sites from the mean-field chain, on logarithmic axes, with the line $4t^2/U$. The two points are $U=20t$ and $U=40t$.](figures/web/session06/ufactor.svg){alt="A straight line of slope minus one on logarithmic axes with two marked points, one at the energy 0.1995 and one at 0.0999."}
 
 - [ ] It is divided by four.
 

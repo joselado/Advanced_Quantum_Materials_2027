@@ -28,6 +28,8 @@ The curvature of the cone is zero along the radial direction, and [(2.18)](#eq-2
 
     This is true. Massless refers to the Dirac mass, which is a term that opens a gap at the touching point. It does not refer to the curvature of the band.
 
+    ![The cone $E=\pm\hbar v_F|\mathbf q|$ and the same cone with a mass term $m\sigma_z$, which gives $\pm\sqrt{m^2+\hbar^2v_F^2q^2}$. Here $\hbar v_F=1$ and $m=0.5$. The mass opens a gap $2m$ at the tip, and without it the bands touch.](figures/web/session02/dirac_mass.svg){alt="A linear cone with its tip at zero energy, and a hyperbola with a gap at the tip drawn dashed on top of it."}
+
 - [ ] Because the effective mass of [(2.18)](#eq-2-18) is zero at the tip.
 
     This is false. For $E=\hbar v_F q$ the second derivative along $q$ is zero, so $1/m^\ast=0$ and $m^\ast$ is infinite. A zero mass would need an infinite curvature.

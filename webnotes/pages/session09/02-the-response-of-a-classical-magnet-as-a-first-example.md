@@ -18,6 +18,8 @@ The physical picture behind [(9.1)](#eq-9-1) is important, because we will find 
 ::: quiz
 We measure the susceptibility of a magnet at high temperature. A plot of $1/\chi$ against $T$ is a straight line that reaches zero at $T=-30$ K when we extrapolate it. What do we expect when we cool the sample?
 
+![The measured line, which reaches zero at $-30$ K, and the line of a paramagnet. At $T=60$ K the measured line gives $90$ and the paramagnet gives $60$.](figures/web/session09/curie_quiz.svg){alt="The inverse susceptibility against temperature, a straight line that starts at minus thirty kelvin, above the line of a paramagnet through the origin."}
+
 - [ ] Ferromagnetic order below a positive critical temperature.
 
     This is false. For a ferromagnet with $T_c=+30$ K the line $1/\chi\propto T-30$ reaches zero at $30$ K, and $\chi$ diverges there. Our line reaches zero only at $-30$ K, so it never does at a positive temperature.

@@ -11,7 +11,9 @@ A QSL is in the opposite limit. Its defining property, $\langle \mathbf S_i\rang
 
 $$\langle a_i^\dagger a_i \rangle = S, \tag{8.9}$$
 
-which is the regime where the condition of a small boson density, the basis of the linearized Holstein-Primakoff mapping, fails completely. For a QSL there is no ordered reference state that it is "close to" and around which we can expand. As a result, the magnon method that worked for the ordered magnets of Session 6 is not the right tool here, and we need a different approximation for the excitations of a quantum spin liquid.
+which is the regime where the condition of a small boson density, the basis of the linearized Holstein-Primakoff mapping, fails completely. For a QSL there is no ordered reference state that it is "close to" and around which we can expand. As a result, the magnon method that worked for the ordered magnets of Session 6 is not the right tool here, and we need a different approximation for the excitations of a quantum spin liquid. [](#sch:s08:hp_boson_density) shows the counting for one site.
+
+![The number of Holstein-Primakoff bosons $n=S-S^z$ on one site with $S=1/2$. In the ferromagnet every site is up, so $n=0$. In the singlet a site is up or down with the same probability, so $\langle n\rangle=\tfrac12=S$. Look at the right panel, where the boson density is as large as $S$ and not small compared with it.](figures/web/session08/hp_boson_density.svg){#sch:s08:hp_boson_density alt="Two bar charts of the probability of zero or one boson on a site, one bar at zero for the ferromagnet and two equal bars for the singlet."}
 
 ![The Holstein-Primakoff expansion needs a reference direction. In the top chain all spins point the same way, and in the bottom chain a magnon makes every spin move on a cone around this direction. A quantum spin liquid has no such direction, since $\langle\mathbf S_i\rangle=0$ on every site.](figures/s06f05_magnon.svg){panel="side" alt="A chain of parallel spins above a chain of spins that move on cones around the same direction."}
 

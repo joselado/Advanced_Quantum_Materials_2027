@@ -28,6 +28,8 @@ Spins sit on the sites of a triangular lattice, and the coupling is ferromagneti
 - [ ] No, since classical spins cannot be frustrated.
 
     This is false. For $J>0$ on one triangle, three classical spins at $120^\circ$ give $-JS^2/2$ per bond. A bipartite lattice would give $-JS^2$, so the triangle is frustrated even for classical spins.
+
+    ![One triangle of classical spins. For $J<0$ (a) all bonds are satisfied. For $J>0$ (b) the best choice is $120^\circ$, and each bond gets only half of the possible energy.](figures/web/session06/triangle_bonds.svg){alt="Two triangles with a spin on each corner. In the first all spins are parallel. In the second they point at 120 degrees from each other."}
 :::
 
 ::: notebookbox

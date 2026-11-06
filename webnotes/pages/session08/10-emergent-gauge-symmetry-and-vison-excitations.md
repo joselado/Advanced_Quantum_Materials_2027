@@ -38,6 +38,8 @@ We rotate the phase of the fermions on the four sites of a plaquette with arbitr
 
     This is true. Going around the plaquette we pick up $\theta_i-\theta_j$ on each link, and the sum telescopes to zero. The flux is physical, and this is why the vison, which is a plaquette with $\Phi=-1$, cannot be removed.
 
+    ![The phases that the four links of a plaquette pick up under the gauge rotation add up to zero, since every $\theta_i$ appears once with each sign.](figures/web/session08/plaquette_phases.svg){alt="A square plaquette with a phase on each corner and the differences of two phases on each link, whose sum is zero."}
+
 - [ ] It changes sign.
 
     This is false. Take $\theta_1=\pi/2$ and the other angles zero. The link $12$ gets $e^{i\pi/2}=i$ and the link $41$ gets $e^{-i\pi/2}=-i$, and the product is $1$, so $\Phi$ keeps its sign.

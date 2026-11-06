@@ -22,6 +22,9 @@ A quantum spin liquid has no order parameter. What does a self-consistent mean-f
 - [ ] The exact ground state energy, but not the wave function.
 
     This is false. Mean field is a product-like trial state, so its energy is only an upper bound. For the singlet of two spins the best mean-field energy is $-1/4$ while the exact one is $-3/4$.
+
+    ![Two spins in a product state against the singlet. The best product state has the energy $-\frac14$ and the singlet has $-\frac34$.](figures/web/session07/singlet_vs_product.svg){alt="The energy of two spins in a product state against the angle between them, with a minimum of minus one quarter, and a dashed line for the singlet at minus three quarters."}
+
 :::
 
 ## Fermions and spins, two languages for the same physics {#sec-7-2 number="7.2a"}

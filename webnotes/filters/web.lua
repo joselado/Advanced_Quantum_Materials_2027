@@ -130,9 +130,18 @@ local function strong_prefix(cap, inlines)
   return cap
 end
 
+-- A figure inside a quiz, in the question or in the feedback of an option, is small, centred and has no number
+-- of its own (class quiz-fig). The first stage of the filter marks them, since a Figure is visited before the
+-- quiz Div that holds it.
+function MarkQuizFigures(d)
+  if not d.classes:includes('quiz') then return nil end
+  return d:walk({ Figure = function(f) f.classes:insert('quiz-fig'); return f end })
+end
+
 function Figure(f)
   local img = find_img(f)
   if not img then return nil end
+  local inquiz = f.classes:includes('quiz-fig')
   local number = img.attributes['number'] or f.attributes['number'] or ''
   local cap = pandoc.utils.blocks_to_inlines(f.caption.long)
   local capstr = pandoc.utils.stringify(cap)
@@ -144,13 +153,18 @@ function Figure(f)
   local where = id ~= '' and id or src
   if src:match('^figures/web/') then
     -- a web schematic, with its own counter
-    local n = numbers[id]
-    if not n then
-      io.stderr:write('the schematic ' .. src .. ' has no usable id\n')
-      n = '?'
+    if not explicit then io.stderr:write('the schematic ' .. (inquiz and src or id) .. ' has no alt text, add alt="..." to the image\n') end
+    if inquiz then
+      -- in a quiz: no number, no id, the caption as written
+      f.identifier = ''
+    else
+      local n = numbers[id]
+      if not n then
+        io.stderr:write('the schematic ' .. src .. ' has no usable id\n')
+        n = '?'
+      end
+      cap = strong_prefix(cap, { pandoc.Str('Schematic ' .. n .. '.') })
     end
-    if not explicit then io.stderr:write('the schematic ' .. id .. ' has no alt text, add alt="..." to the image\n') end
-    cap = strong_prefix(cap, { pandoc.Str('Schematic ' .. n .. '.') })
     f.classes:insert('schematic')
   elseif id == '' then
     -- a PDF figure shown again, here or in another session
@@ -178,9 +192,10 @@ function Figure(f)
       src = 'figures/panel/' .. name .. '_' .. panel .. '.svg'
     end
   else
+    if inquiz then io.stderr:write('the figure ' .. src .. ' is inside a quiz and has an id, a quiz can only show a figure again or a schematic without id\n') end
     cap = strong_prefix(cap, { pandoc.Str('Figure ' .. number .. '.') })
   end
-  f.caption.long = { pandoc.Plain(cap) }
+  if #cap > 0 then f.caption.long = { pandoc.Plain(cap) } else f.caption.long = {} end
   img.src = '../' .. src
   img.caption = { pandoc.Str(alt) }
   img.attributes = pandoc.AttributeList({ { 'loading', 'lazy' } })
@@ -316,5 +331,6 @@ end
 
 return {
   { Meta = Meta },
+  { Div = MarkQuizFigures },
   { Math = Math, Link = Link, Header = Header, Figure = Figure, Div = Div },
 }

@@ -10,7 +10,9 @@ $$|\Psi\rangle \sim \bigotimes_n \Big(|{\uparrow_{2n}\downarrow_{2n+1}}\rangle -
 |{\downarrow_{2n}\uparrow_{2n+1}}\rangle\Big), \qquad \langle \mathbf S_i\rangle = 0 \text{ on every
 site}. \tag{8.5}$$
 
-In one sense this is a trivial Hamiltonian, a collection of independent zero-dimensional problems. But it already shows something important. A macroscopic Heisenberg Hamiltonian *can* have a ground state that does not break time-reversal symmetry, and this state is the direct generalization of the two-site singlet [(8.3)](#eq-8-3) to an extensive system. If we add small couplings between the dimers, the state changes smoothly and it still does not break time-reversal symmetry.
+In one sense this is a trivial Hamiltonian, a collection of independent zero-dimensional problems. But it already shows something important. A macroscopic Heisenberg Hamiltonian *can* have a ground state that does not break time-reversal symmetry, and this state is the direct generalization of the two-site singlet [(8.3)](#eq-8-3) to an extensive system. If we add small couplings between the dimers, the state changes smoothly and it still does not break time-reversal symmetry. In a small chain we can follow this directly, and [](#sch:s08:dimerized_levels) does so for four sites.
+
+![The lowest levels of the open chain of four sites with the bonds $J$, $J'$ and $J$, from exact diagonalization, against $J'/J$. The ground state is a nondegenerate singlet for every $J'$ shown, and the gap to the lowest triplet is $0.97J$ at $J'=0.1J$ and $0.66J$ at $J'=J$. Look at the vertical line at $J'=0.1J$, where the two lowest energies are $-1.501J$ and $-0.527J$. With four sites this is a finite-size result.](figures/web/session08/dimerized_levels.svg){#sch:s08:dimerized_levels alt="The lowest energy levels of a four-site chain against the coupling between the dimers, with a nondegenerate singlet ground state well below a threefold triplet."}
 
 There is, however, an important difference to make here, because this state is *not yet* a quantum spin liquid. Its fundamental excitations still have spin $1$. If we turn one singlet into its triplet partner, we obtain a **triplon**, which is a local transition from singlet to triplet, and it has the same structure as a magnon, with only a different name. A state that is built in this way, from a fixed and static pattern of singlets, is called a **valence bond solid (VBS)**. To obtain a real quantum spin liquid, with spin-$1/2$ excitations instead of spin-$1$ triplons, we need more than a static dimer covering. We need the singlets to fluctuate and to resonate over the whole lattice, and this is the frustrated case that we study in the next section. Figure [8.3](#fig:s08:vbsrvb) shows this difference explicitly.
 
@@ -46,6 +48,9 @@ We add a weak coupling between the dimers of [(8.4)](#eq-8-4). What happens to t
 - [ ] It becomes degenerate.
 
     This is false. For four sites with $J=1$ and $J'=0.1$ the lowest energy is $-1.501$ and the next one is $-0.527$. The ground state is unique and the gap is about $0.97$.
+
+    ![The lowest levels of the four-site chain against $J'/J$. The vertical line marks $J'=0.1J$.](figures/web/session08/dimerized_levels.svg){alt="The lowest energy levels of a four-site chain against the coupling between the dimers, with a nondegenerate singlet ground state well below a threefold triplet."}
+
 :::
 
 ::: {.tryit notebook="session8.ipynb" cell="Magnetization of a dimerized Heisenberg model with a magnetic impurity"}

@@ -36,6 +36,8 @@ The chemical potential moves from the gap above the first Landau level to the ga
 
     This is true. The number of chiral modes at an edge is equal to the Chern number of the bulk, which counts the filled Landau levels. The Hall conductance is this number times $e^2/h$.
 
+    ![The chemical potential in the gap above the third Landau level. Each edge has three crossings, marked by the circles, which are the three chiral modes.](figures/web/session04/ribbon_three.svg){alt="Ribbon spectrum with flat Landau levels that bend up at both walls, and the chemical potential above the third level with three crossings at each edge."}
+
 - [ ] From one to two, and from $e^2/h$ to $2e^2/h$.
 
     This is false. Two modes and $2e^2/h$ belong to the gap above the second level. The gap above the third level has three filled levels, so three modes.

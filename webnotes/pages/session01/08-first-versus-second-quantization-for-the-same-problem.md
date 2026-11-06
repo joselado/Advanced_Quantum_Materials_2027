@@ -39,6 +39,8 @@ We make a finite island larger and diagonalize it again. What happens to the spa
 
     This is false. For a chain with $N$ sites, the levels are $-2t\cos(n\pi/(N+1))$. The spacing at the center is $0.57t$ for $N=10$ and $0.062t$ for $N=100$, so it is smaller for the larger island.
 
+    ![The levels of an open chain for $N=10$ and $N=100$. Both fill the same window from $-2t$ to $2t$, so the spacing at the center is smaller for the larger chain.](figures/web/session01/levels_vs_size.svg){alt="Two rows of vertical lines, ten levels for N equal to 10 and a hundred levels for N equal to 100, in the same energy window."}
+
 - [x] It shrinks, since more levels share the same range of energy.
 
     This is true. The band has a fixed width, $4t$ for a chain. More sites put more levels in this window, so the levels become denser and approach the continuum.

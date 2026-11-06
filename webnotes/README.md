@@ -175,6 +175,45 @@ quiz is written with the feedback and the 3 options together.
 On a screen of 480 px or less the verdict of an option goes under its text. The math inside an option is not a
 tab stop (`notes.js` sets its tabindex to -1 after MathJax), so Tab goes from option to option.
 
+### A figure inside a quiz
+
+A quiz can hold a figure in its question and in the feedback of any option, of every kind: a new schematic, a
+figure shown again, one panel of a Blender figure. The figure is written like any other, alone in its paragraph,
+and in the feedback it is indented by 4 spaces with the text of the option. It is drawn at most 360 px wide and
+centred, and it keeps its `alt`, which is required and checked. The caption is short and optional.
+
+A figure in a quiz has no number of its own and takes no `id`. A schematic shows its caption as written, with no
+"Schematic N.", so that the text never refers to a figure that is hidden until a click. A figure shown again keeps
+"Figure 2.2, shown again." and its link to the original, and a figure with an id inside a quiz is an error, since
+the first display of a figure belongs in the body of the page. A feedback figure is loaded only when its option
+is opened, since the images are lazy and the feedback is hidden. Without JavaScript the `<details>` lists the
+feedback, and its figures load when it is opened. `check.py` gives a warning for an SVG over 200 kB, and a figure
+of a quiz should be a few tens of kB.
+
+```
+::: quiz
+At which phase would the minimum be if the hopping had the opposite sign?
+
+![The band for $t>0$.](figures/s02f02_cosband.svg){alt="A cosine band with its density of states."}
+
+- [x] At $\varphi=\pi$.
+
+    This is true. The sign change turns the band upside down.
+
+- [ ] At $\varphi=0$.
+
+    This is false. For $t=-1$ the energy at $\varphi=0$ is the top of the band.
+
+    ![The mirror argument.](figures/web/session02/mirror_field.svg){alt="A charged plane with a mirror line."}
+
+- [ ] At $\varphi=\pi/2$.
+
+    This is false. The energy is $0$ for either sign.
+
+    ![Panel c.](figures/s02f04_dirac.svg){panel="c" alt="A hexagonal zone with a Dirac cone."}
+:::
+```
+
 ### Try it
 
 A short task that points to a notebook of `jupyter-notebooks/`. The build writes the links to GitHub, Colab and
@@ -276,3 +315,13 @@ reported as not found means the text is new or was reworded on the web.
 - `widgets/defs/`, `widgets/data/`, `widgets/blocks/`, `widgets/precompute.py`, the ten widgets, see `widgets/README.md`.
 - `figures/style.py`, `figures/sessionNN/NAME.py`, the web schematics and their common look.
 - `manifest/frozen_urls.txt`, the URLs that must not disappear.
+
+## State of the figures (2026-11-06)
+
+The ten sessions hold 233 figures in 171 pages. On the pages there are 59 PDF figures and 51 figures shown again
+(Blender panels included), and 69 schematics drawn for the web. In the quizzes there are 47 new schematics
+and 7 figures shown again, in the question or in the feedback of one option. Of the 116 scripts in
+`webnotes/figures/sessionNN/`, the ones with a figure in a quiz are named by the quiz that uses them.
+The default build gives 0 errors, 5435 math fragments with 0 errors, and a second build writes nothing.
+The only SVG warnings are the files over 200 kB, and the largest is `figures/web/session05/nambu_bands.svg`
+with 560 kB, which is a candidate for a lighter plot.

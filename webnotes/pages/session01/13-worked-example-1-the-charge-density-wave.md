@@ -40,6 +40,8 @@ The charge density wave of the chain has charges that alternate from site to sit
 
     This is false. A translation by one site maps the charges $(0.8,0.2,0.8,0.2)$ to $(0.2,0.8,0.2,0.8)$. This is a different state with the same energy, so there are at least two.
 
+    ![A translation by one site exchanges the two patterns. The area of the dark disc on each site is the charge $\langle n_i\rangle$, and the two chains have the same energy.](figures/web/session01/cdw_patterns.svg){alt="Two chains of six sites, with large and small charges alternating, where the second is the first shifted by one site."}
+
 - [x] Two.
 
     This is true. The charge can sit on the even sites or on the odd sites. These two patterns are exchanged by a translation of one site, so they have the same energy and the translational symmetry is broken.

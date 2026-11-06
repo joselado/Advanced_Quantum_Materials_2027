@@ -1,7 +1,9 @@
 ## The interacting Hamiltonian and the origin of attractive interactions {#sec-5-4 number="5.4"}
 
 As in session 1, we start from the general interacting Hamiltonian $H = \sum_{ij}t_{ij}c_i^\dagger
-c_j + \sum_{ijkl}V_{ijkl}c_i^\dagger c_j^\dagger c_k c_l$. The interaction $V_{ijkl}$ can come from the plain electrostatic Coulomb repulsion, which is repulsive, but it can also be an *effective* interaction mediated by another quasiparticle in the material. Examples are phonons, which are lattice vibrations, magnons, which are fluctuations of a magnetic moment, plasmons, which are collective charge fluctuations, and even more exotic mediators such as skyrmion fluctuations or valence fluctuations. For superconductivity, what matters is not the microscopic origin of $V_{ijkl}$ but its net sign in the channel that turns out to be relevant, and superconductivity requires this channel to be effectively *attractive*.
+c_j + \sum_{ijkl}V_{ijkl}c_i^\dagger c_j^\dagger c_k c_l$. The interaction $V_{ijkl}$ can come from the plain electrostatic Coulomb repulsion, which is repulsive, but it can also be an *effective* interaction mediated by another quasiparticle in the material. Examples are phonons, which are lattice vibrations, magnons, which are fluctuations of a magnetic moment, plasmons, which are collective charge fluctuations, and even more exotic mediators such as skyrmion fluctuations or valence fluctuations. For superconductivity, what matters is not the microscopic origin of $V_{ijkl}$ but its net sign in the channel that turns out to be relevant, and superconductivity requires this channel to be effectively *attractive*. Schematic [](#sch:s05:phonon_exchange) shows the simplest case, where two electrons interact through a phonon. At frequencies below the phonon frequency $\omega_0$ the phonon term is attractive, and above it the term is repulsive.
+
+![Interaction mediated by a phonon. (a) One electron deforms the lattice, and the second one feels it. (b) The effective interaction $V_\mathrm{eff}(\omega)=V_c-(2g^2/\omega_0)/[1-(\omega/\omega_0)^2]$ is plotted in units of $2g^2/\omega_0$, with $V_c=0.5$. It is negative for $\omega<\omega_0$, so the net sign of the channel is attractive.](figures/web/session05/phonon_exchange.svg){#sch:s05:phonon_exchange alt="Two electron lines joined by a wavy phonon line, and the effective interaction against frequency, which is negative below the phonon frequency and positive above it."}
 
 This is the natural point to distinguish the two families of superconductors.
 
@@ -45,6 +47,8 @@ We start the loop for the attractive chain [(5.2)](#eq-5-2) with a small guess $
 - [ ] The loop keeps the guess, since [(5.3)](#eq-5-3) does not depend on the sign of $U$.
 
     This is false. The sign of $U$ enters [(5.3)](#eq-5-3) as a prefactor. If $Ug=0.5$ at $U>0$, the loop gives $\Delta_\text{new}=-0.5\,\Delta$ in each step, so the guess does not stay.
+
+    ![The loop for $Ug=0.5$ and $\Delta_0=1$. Each step flips the sign and halves the guess, so the iteration goes to zero.](figures/web/session05/pairing_cobweb.svg){alt="A staircase between a line of slope minus one half and the diagonal, which spirals into the origin."}
 :::
 
 ::: notebookbox

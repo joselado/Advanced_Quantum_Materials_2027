@@ -27,6 +27,8 @@ A quantum spin liquid has an even number of spin-1/2 sites, and its ground state
 
     This is false. Take four spin-1/2 sites. The total spin can be $0$, $1$ or $2$ and never $1/2$, so the state with one spinon does not exist.
 
+    ![The total spins that $N$ spin-$1/2$ sites can have, with the number of times each one appears, checked against $\mathbf S^2$ for $N\le7$. Even $N$ gives an integer spin and odd $N$ gives a half-integer spin.](figures/web/session08/total_spin_ladder.svg){alt="Dots for the allowed total spin of two to seven spins one half, whole numbers for even numbers of sites and half numbers for odd ones, each with its multiplicity."}
+
 - [ ] Yes, but only if a magnetic field is applied.
 
     This is false. A field changes the energies but not the possible values of the total spin. With four sites in a field, $S^z_\text{tot}$ is still an integer, from $-2$ to $2$.

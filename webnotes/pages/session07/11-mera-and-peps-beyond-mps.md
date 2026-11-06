@@ -6,7 +6,9 @@ The **multi-scale entanglement renormalization ansatz (MERA)** organizes its ten
 
 $$S(\ell) \;=\; \frac{c}{3}\log \ell \;+\; \text{const.}, \tag{7.12}$$
 
-where $c$ is the central charge of the CFT. This is a weak but real violation of the strict area law [(7.9)](#eq-7-9), and the extra hierarchical structure of MERA is built to describe this kind of weak violation. For this reason MERA is the tensor network that is used at criticality.
+where $c$ is the central charge of the CFT. This is a weak but real violation of the strict area law [(7.9)](#eq-7-9), and the extra hierarchical structure of MERA is built to describe this kind of weak violation. For this reason MERA is the tensor network that is used at criticality. We can see the growth in an exactly solvable chain, and [](#sch:s07:critical_entropy) compares a critical chain with a gapped one.
+
+![The entropy of a block of $\ell$ sites of an infinite chain of free fermions at half filling, which is the XX spin chain after the Jordan-Wigner transformation. Blue is the uniform chain with hopping $1$ and red is the dimerized chain with hoppings $1$ and $0.6$, both from the correlation matrix of the block. The blue points follow $\tfrac13\log\ell+0.73$, as [(7.12)](#eq-7-12) says for $c=1$, and go from $1.49$ at $\ell=10$ to $3.03$ at $\ell=1000$. Look at the red points, which saturate at about $0.5$ after a few sites.](figures/web/session07/critical_entropy.svg){#sch:s07:critical_entropy alt="The entropy of a block against its length on a logarithmic axis, a straight rising line for the critical chain and a flat curve for the dimerized chain."}
 
 **Projected entangled pair states (PEPS)** are the direct 2D generalization of the MPS idea. Instead of tensors coupled in a line, the tensors sit on the nodes of a real 2D lattice, and they are coupled to all their lattice neighbors. This is a natural and promising architecture for 2D quantum many-body problems, but it has a real cost. For PEPS there is no analogue of the simple local eigenvalue problem for a single tensor that we have in DMRG, because the contraction of a general 2D tensor network is itself a hard computational problem. This is different from the 1D contraction, which is what made the local eigenvalue problem of Section [7.10](#sec-7-10) possible to solve. The optimization of PEPS is still an open and harder problem. Figure [7.6](#fig:s07:merapeps) shows both architectures, where the extra structure of each one comes from and what it costs.
 
@@ -17,7 +19,9 @@ A critical chain has $S(\ell)=\tfrac c3\log\ell$ with $c=1$. By how much does $S
 
 - [ ] By zero, since the entropy saturates.
 
-    This is false. Saturation is the behavior of a gapped chain. For $c=1$ the entropy is $0.77$ at $\ell=10$ and $2.3$ at $\ell=1000$, so it grows.
+    This is false. Saturation is the behavior of a gapped chain. For $c=1$ the term $\tfrac13\log\ell$ is $0.77$ at $\ell=10$ and $2.3$ at $\ell=1000$, so the entropy grows.
+
+    ![The entropy of a block of free fermions. The critical chain grows by $1.5$ between $\ell=10$ and $\ell=1000$ and the dimerized chain saturates, and the constant $0.73$ only shifts the curve.](figures/web/session07/critical_entropy.svg){alt="The entropy of a block against its length on a logarithmic axis, a straight rising line for the critical chain and a flat curve for the dimerized chain."}
 
 - [x] By about $1.5$, which is $\tfrac13\log100$.
 

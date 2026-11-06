@@ -24,6 +24,8 @@ What is the radius of the maximum of $|\psi_m|^2$ for $m=8$, in units of $\ell_B
 
     This is true. The maximum is at $r_m=\sqrt{2m}\,\ell_B$, which is $\sqrt{16}\,\ell_B=4\,\ell_B$ for $m=8$. The ring encloses $m$ flux quanta.
 
+    ![The density $|\psi_m|^2$ for $m=4$, $8$ and $32$, each divided by its maximum. The radius $2\sqrt{2}\,\ell_B$ of the first option belongs to $m=4$, and $8\,\ell_B$ of the third option belongs to $m=32$.](figures/web/session04/lll_radius.svg){alt="Three bell-shaped curves of the density against the radius, with maxima at 2 times the square root of 2, at 4 and at 8 for three values of the angular momentum."}
+
 - [ ] $8$.
 
     This is false. A ring of radius $8\ell_B$ encloses $r^2/(2\ell_B^2)=32$ flux quanta, which would be the state $m=32$ and not $m=8$.

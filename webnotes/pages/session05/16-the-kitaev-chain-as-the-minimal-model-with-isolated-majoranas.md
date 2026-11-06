@@ -18,6 +18,10 @@ Every Majorana operator $\gamma_2, \gamma_3, \gamma_4, \dots, \gamma_{2N-1}$ app
 
 ![The Kitaev chain in terms of Majorana variables, for $N=5$ sites (so $\gamma_{2N}=\gamma_{10}$), seen from above. Each site carries two balls, its two Majorana halves, and a translucent capsule binds two halves together. Splitting every electron into its two Majorana halves [(5.17)](#eq-5-17) has no physical content by itself, and what matters is which halves the Hamiltonian binds together. In the trivial phase, at the top, the binding is inside each site. The two halves of each electron stay bound to each other, as they were in the vacuum, and every mode costs energy. In the topological phase, at the bottom, the binding is between sites, $\gamma_{2n}$ with $\gamma_{2n+1}$, and the pattern has one bond missing at each end. So $\gamma_1$ and $\gamma_{2N}$ do not appear in [(5.21)](#eq-5-21), cost no energy and are at opposite ends of the sample. The ordinary fermion that they would form together has been split into two halves, which are now separated by the length of the chain, and this is what *deconfined* means here. This is the fully dimerized SSH chain of the topological-band-structure session with its two remaining end sites, with new labels, so the counting is the same and only the operators are new.](figures/s05f05_kitaev.svg){#fig:s05:kitaev number="5.5"}
 
+For comparison, the SSH chain in its two limits is shown again below. The strong intercell hopping leaves one free site at each end, as the Majorana variables do here.
+
+![The SSH chain in the two limits of the hopping, shown again as the model of the Kitaev chain.](figures/s03f03_ssh.svg){alt="Two dimerized chains. When the hopping inside the cell dominates there is no end state. When the hopping between cells dominates there is a state at each end."}
+
 ::: quiz
 At $\Delta=t$ and $\mu=0$ the chain has the dispersion $E(k)=\sqrt{\varepsilon(k)^2+|\Delta(k)|^2}$ with [(5.20)](#eq-5-20). How does the bulk energy depend on $k$?
 

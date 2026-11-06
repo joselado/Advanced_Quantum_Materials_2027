@@ -108,7 +108,11 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
-<p>This is true. Each bond of the result carries one index of the state and one of the operator, so the dimensions multiply. This growth is the reason why a truncation by singular value decomposition follows each operation.</p></li>
+<p>This is true. Each bond of the result carries one index of the state and one of the operator, so the dimensions multiply. This growth is the reason why a truncation by singular value decomposition follows each operation.</p>
+<figure class="quiz-fig schematic">
+<img src="../figures/web/session07/mpo_on_mps.svg" loading="lazy" alt="A row of squares joined to a row of circles by their physical legs, then one row of tensors whose bonds are labelled M times D." />
+<figcaption>An MPO acts on an MPS. Each bond of the result joins one bond of the MPO and one of the MPS, so it has the dimension <span class="math inline">\(M\cdot D\)</span>.</figcaption>
+</figure></li>
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
 <p>This is false. Take a product state, <span class="math inline">\(M=1\)</span>, and a product operator, <span class="math inline">\(D=1\)</span>. The sum gives 2, but the result is again a product state with bond dimension 1.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>

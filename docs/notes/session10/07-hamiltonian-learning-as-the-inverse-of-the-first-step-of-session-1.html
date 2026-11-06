@@ -143,7 +143,11 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
 <p>This is false. For a chain with <span class="math inline">\(t&gt;0\)</span> the bandwidth is <span class="math inline">\(4t\)</span>, so <span class="math inline">\(\mathcal O\)</span> fixes <span class="math inline">\(t\)</span> and the inverse map exists. It is not defined only where the observable is not enough.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. A chain with <span class="math inline">\(t\)</span> and a chain with <span class="math inline">\(-t\)</span> have the same density of states. The network cannot give the sign, so it gives an estimate with an uncertainty and we must cover <span class="math inline">\(\mu\)</span> in training.</p></li>
+<p>This is true. A chain with <span class="math inline">\(t\)</span> and a chain with <span class="math inline">\(-t\)</span> have the same density of states. The network cannot give the sign, so it gives an estimate with an uncertainty and we must cover <span class="math inline">\(\mu\)</span> in training.</p>
+<figure class="quiz-fig schematic">
+<img src="../figures/web/session10/dos_sign.svg" loading="lazy" alt="Two cosine bands that are upside down with respect to each other, next to one density of states curve that is the same for both." />
+<figcaption>The bands of the chains with <span class="math inline">\(t=1\)</span> and <span class="math inline">\(t=-1\)</span> are upside down with respect to each other, and the density of states <span class="math inline">\(1/(\pi\sqrt{4t^2-E^2})\)</span> is the same.</figcaption>
+</figure></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
 <p>This is false. The pairs <span class="math inline">\((\mathcal O,t)\)</span> and <span class="math inline">\((\mathcal O,-t)\)</span> have the same input and different labels. The mean-square loss is minimal when the network gives the mean of the two labels, which is <span class="math inline">\(0\)</span>, and then the loss is <span class="math inline">\(t^2\)</span> and not zero.</p></li>
 </ul>

@@ -128,8 +128,15 @@ def collect_labels(mans):
             url = page_url(n, p)
             ast = json.loads(r.stdout)
 
+            inquiz = set()      # the figures inside a quiz: no number, no id
+
             def visit(d):
                 t = d.get('t')
+                if t == 'Div' and 'quiz' in d['c'][0][1]:
+                    def mark(x):
+                        if x.get('t') == 'Figure':
+                            inquiz.add(id(x))
+                    walk(d['c'][1], mark)
                 if t in ('Header', 'Figure'):
                     ident = d['c'][1][0] if t == 'Header' else d['c'][0][0]
                     if ident:
@@ -145,6 +152,9 @@ def collect_labels(mans):
                     iid, icls, ikv = attrs(img['c'][0])
                     ident = d['c'][0][0]
                     mm = re.match(r'figures/web/(session\d+/[A-Za-z0-9_]+)\.svg$', src)
+                    if mm and id(d) in inquiz:
+                        webfigs.add(src)      # a schematic in a quiz has no number and needs no id
+                        return
                     if mm:
                         webfigs.add(src)
                         if not re.match(r'sch:s\d+:[A-Za-z0-9_]+$', ident):
@@ -160,6 +170,9 @@ def collect_labels(mans):
                         return
                     name = mm.group(1)
                     pdffigs.add(name)
+                    if id(d) in inquiz and ident:
+                        check.ERRORS.append(f'{url}: the figure {ident} is inside a quiz, where a figure is only shown again (no id)')
+                        return
                     if ident:
                         figsrc[name] = ident
                         numbers.setdefault('~' + ident, ikv.get('number') or kv.get('number') or '')

@@ -14,6 +14,8 @@ Three Ising spins sit on a triangle with antiferromagnetic bonds. How many of th
 
     This is false. There is no Néel configuration on a triangle. The state $\uparrow\downarrow\uparrow$ has one unsatisfied bond, with energy $-1/4$, and so do its five partners, so there are six degenerate states and not two.
 
+    ![The eight Ising configurations of an antiferromagnetic triangle. A red bond joins two parallel spins and costs energy. Six configurations have one red bond and the lowest energy.](figures/web/session08/triangle_configs.svg){alt="Eight triangles with an arrow up or down on each corner, red bonds between parallel spins, and the energies minus one quarter for six of them and plus three quarters for two."}
+
 - [x] 6, the ones with exactly one unsatisfied bond.
 
     This is true. The two fully aligned configurations have three unsatisfied bonds and energy $+3/4$. Each of the other six has one unsatisfied bond and energy $-1/4$, which is the minimum, so the ground state is sixfold degenerate.
@@ -29,6 +31,8 @@ Why is the square lattice with antiferromagnetic Heisenberg coupling not a good 
 - [x] It is bipartite, so the Néel state satisfies every bond and breaks time-reversal symmetry.
 
     This is true. On a bipartite lattice all bonds are satisfied at the same time by two sublattices of opposite spin. There is then no frustration and no macroscopic degeneracy for the quantum fluctuations to mix.
+
+    ![Look at panel (a), where all bonds of the bipartite plaquette are satisfied.](figures/s06f03_frustration.svg){alt="Three plaquettes, a bipartite one where every bond is satisfied, a frustrated triangle, and the 120 degree state."}
 
 - [ ] It has too many neighbors for singlets to form.
 

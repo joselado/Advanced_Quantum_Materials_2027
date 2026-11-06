@@ -22,6 +22,10 @@ Every case of spontaneous symmetry breaking also comes with its own emergent qua
 
 Note that magnons and the Higgs mode both have zero charge but very different spin, and that only the phonon is gapless in every material. Magnons are gapless when the broken spin-rotational symmetry is continuous, and they become gapped when a magnetic anisotropy breaks this symmetry explicitly. The Higgs mode, which is an oscillation of the amplitude of the order parameter, is always gapped.
 
+[](#sch:s01:gapless_gapped) draws the dispersion of the three quasiparticles of the table.
+
+![The quasiparticle of each broken symmetry. The phonon is gapless, since it goes to zero at $k=0$. The magnon is gapless as well, and an easy-axis anisotropy lifts it by a gap, shown in red. The Higgs mode is gapped by the size of the order parameter. The curves are $\omega=2|\sin(k/2)|$, $\omega=1-\cos k$ plus $0.45$ for the red one, and $\omega=\sqrt{1.2^2+k^2}$, in arbitrary units.](figures/web/session01/gapless_gapped.svg){#sch:s01:gapless_gapped alt="Three dispersions against k. A phonon that reaches zero at k equal to zero, a magnon that reaches zero and a copy shifted up by a gap, and a Higgs mode that stays above a gap."}
+
 ![The magnon of a ferromagnet, one panel shown again from session 6. In the ordered state every spin points the same way. A magnon is a precession wave of all the spins, which is the low-energy fluctuation of the order.](figures/s06f05_magnon.svg){panel="side" alt="A row of parallel spins, and below it a row of spins that precess with a phase that advances from site to site."}
 
 ::: quiz

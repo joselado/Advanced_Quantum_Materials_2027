@@ -118,3 +118,11 @@ Result, the live path works, so every widget has the button "Run live in the bro
   one quiz per session was shot at 1400 and 390 px, light and dark, unanswered, with the correct click and with a
   wrong click. At 390 px the verdict now goes under the option text, and the math in an option is no longer a
   second tab stop. The no-JS view is not tested in a browser. The lecturer has not looked at the quizzes yet.
+- 2026-11-06. More schematics, also in quizzes. The lecturer asked for more schematics in the notes, in the
+  questions and in the answers. Ten agents added 69 schematics on the pages and 47 in quizzes (7 more figures shown
+  again in quizzes), five verifiers rendered each one and recomputed the curves, and corrected 3 wrong-physics or
+  mislabelled figures, 8 caption mismatches and 10 unreadable labels. Default build: 171 pages, 0 errors,
+  5435 math fragments with 0 errors, a second build writes nothing, `docs/build_site.py` runs. `docs/notes/` weighs 19 MB.
+  Checked in headless Chrome at 1400 and 390 px, light and dark: one page per session and three quizzes with a figure,
+  before and after the click. Not done: the SVGs over 200 kB (the largest is `nambu_bands.svg`, 560 kB), and the
+  small text of some schematics at 390 px. Nothing committed.

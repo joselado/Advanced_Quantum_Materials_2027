@@ -45,4 +45,6 @@ A square lattice has $z=4$ and $\gamma(\mathbf k)=\tfrac12(\cos k_x+\cos k_y)$. 
 - [x] $8|J|S$
 
     This is true. At $(\pi,\pi)$ we have $\gamma=-1$, so $1-\gamma=2$. Then [(6.8)](#eq-6-8) gives $2|J|Sz=8|J|S$ for $z=4$, which is the top of the band.
+
+    ![The ferromagnetic magnon of the square lattice, $E=4|J|S[1-(\cos k_x+\cos k_y)/2]$, along the path $\Gamma$, $X$, $M$, $\Gamma$. It is $0$ at $\Gamma$, $4|J|S$ at $X$ and $8|J|S$ at $M$.](figures/web/session06/square_magnon.svg){alt="A band that rises from zero at the center of the zone to a maximum at the corner and goes back to zero, with the values 4 and 8 marked."}
 :::

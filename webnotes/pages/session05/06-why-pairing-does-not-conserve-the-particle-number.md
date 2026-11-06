@@ -16,6 +16,8 @@ The mean-field ground state of [(5.4)](#eq-5-4) is measured many times, and the 
 
     This is true. The pairing terms of [(5.4)](#eq-5-4) change $N$ by two, so the parity of $N$ is fixed and several values of one parity appear. In the one-site example only $N=0$ and $N=2$ occur.
 
+    ![Probability of $N$ electrons in the ground state of one site with $\Delta=0.5$. The weights of $N=0$ and $N=2$ change with $\mu$, and $N=1$ never appears.](figures/web/session05/particle_number_weights.svg){alt="Bars for the probability of zero, one and two electrons. The bar for one electron is empty."}
+
 - [ ] Even and odd values mixed at random.
 
     This is false. In the one-site example the state $(|0\rangle-|2\rangle)/\sqrt2$ never gives $N=1$. Every term of $H_\text{MF}$ changes $N$ by $0$ or $\pm2$, so the parity is conserved.

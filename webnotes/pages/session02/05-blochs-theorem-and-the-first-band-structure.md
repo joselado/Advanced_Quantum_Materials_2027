@@ -45,6 +45,8 @@ In this session $t>0$ in [(2.8)](#eq-2-8). At which phase would the minimum of t
 
     This is false. For $t=-1$ the energy at $\varphi=0$ is $+2$, which is the top of the band. The bottom is $-2$, at $\varphi=\pi$.
 
+    ![The band $-2t\cos\varphi$ for $t=+1$ and for $t=-1$. The second curve is the first one turned upside down, so the energy at $\varphi=0$ is $-2$ for the first and $+2$ for the second.](figures/web/session02/band_sign_t.svg){alt="Two cosine bands, one with its minimum at phi equal to zero and one with its maximum there."}
+
 - [ ] At $\varphi=\pi/2$.
 
     This is false. At $\varphi=\pi/2$ the energy is $0$ for either sign of $t$, since $\cos(\pi/2)=0$. This is the middle of the band and not its bottom.
@@ -62,6 +64,10 @@ A natural extension, which we do in class, is to check that the same method also
 c_{n+2}+\text{h.c.})$ to [(2.5)](#eq-2-5). This term has the same translational symmetry as before, so the eigenstates [(2.6)](#eq-2-6) do not change at all, and we only need to compute the eigenvalues again. We repeat the Fourier substitution for the new term, which couples $c_n^\dagger$ with $c_{n+2}$ and so gives a phase $e^{\pm2i\varphi}$ instead of $e^{\pm i\varphi}$, and we obtain
 
 $$\epsilon_\varphi = -2t\cos\varphi - 2\eta\cos(2\varphi). \tag{2.9}$$
+
+[](#sch:s02:chain_eta) shows the chain with its two hoppings, and the band of [(2.9)](#eq-2-9) for three values of $\eta$.
+
+![The chain with a second-neighbor hopping. On the left, the first-neighbor hopping $t$ is the straight bond, and the second-neighbor hopping $\eta$ is an arc over one site. On the right, the band of [(2.9)](#eq-2-9) for $t=1$. For $\eta=0.2$ the band has one minimum and one maximum, as for $\eta=0$. For $\eta=0.5$, which is above $t/4$, the point $\varphi=\pi$ becomes a local minimum and two new maxima appear next to it.](figures/web/session02/chain_eta.svg){#sch:s02:chain_eta alt="A chain with straight bonds between neighbors and arcs between second neighbors, and three cosine bands where the one with the largest second-neighbor hopping has an extra dip at the zone edge."}
 
 ::: quiz
 What is the energy of [(2.9)](#eq-2-9) at $\varphi=\pi/2$?

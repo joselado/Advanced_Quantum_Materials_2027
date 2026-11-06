@@ -28,6 +28,8 @@ Why do we apply the Gutzwiller projector $P_G$ to the BCS state [(8.6)](#eq-8-6)
 
     This is true. In the BCS state of [(8.6)](#eq-8-6) the number of fermions on a site fluctuates between zero and two. Projecting onto single occupancy leaves only the spin degrees of freedom.
 
+    ![Look at the two crossed states, the empty and the doubly occupied one.](figures/s08f04_parton.svg){alt="The four fermionic states of one site, with the two singly occupied states as the spin doublet and the other two crossed out."}
+
 - [ ] The projector makes the state a superconductor.
 
     This is false. With exactly one fermion on each site the charge cannot move or fluctuate, so the projected state is a Mott insulator. The projection removes the charge degrees of freedom.

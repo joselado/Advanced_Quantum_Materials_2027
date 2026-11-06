@@ -31,6 +31,10 @@ The Landau level spacing of GaAs grows as $B$ and that of graphene as $\sqrt{B}$
 
 The experiment itself is simple to describe. We take a two-dimensional system, apply a voltage along one in-plane direction, which we call $y$, and measure the current that flows along the perpendicular in-plane direction, $x$. The ratio of this transverse current to the applied voltage is the Hall conductance, and this is the quantity that becomes quantized in the quantum Hall regime.
 
+The geometry that we have in mind is the one in [](#sch:s04:hall_setup), a square sample with four contacts.
+
+![The geometry of the measurement, for a square sample with four contacts and a field into the page. A voltage $V_y$ is applied between the top and the bottom contact, and the current $I_x$ is read in the left contact. With $N$ filled Landau levels the current is carried by the $N$ chiral channels of the edge, which circulate around the sample in one sense. The channels that leave the top contact end in the next contact, so $I_x=N(e^2/h)V_y$. Look at the sense of the arrows, which reverses when the field reverses.](figures/web/session04/hall_setup.svg){#sch:s04:hall_setup alt="A square sample with four contacts, a voltage applied between the top and the bottom contact, a current leaving the left contact and arrows that circulate along the edge."}
+
 A real device for this measurement is a two-dimensional electron gas (2DEG) with several finger gates in contact with it. A voltage is applied between a top gate and a bottom gate, and the current is measured between two gates placed along $x$, with all the connections made through metallic leads. The geometry of the device does not add new physics beyond what we need for the concepts, so we will not discuss it further. The device figures in the slides are useful to see how a real experiment looks, but from here on the notes work with the ideal two-dimensional system.
 
 ::: quiz

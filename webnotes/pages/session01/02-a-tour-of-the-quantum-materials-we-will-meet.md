@@ -14,6 +14,10 @@ Let us first give a short preview of the materials that this formalism will allo
 
 - **Fractional quantum matter.** Here the fundamental excitations are real fractions of an electron. The fractional quantum Hall state is the best established example, and it has been observed for decades in materials such as gallium arsenide. Fractional Chern insulators are a newer and more accessible way to obtain the same physics, and they are a promising building block for new quantum devices.
 
+The first two items of this list differ only in how the bands of a single electron are filled, and [](#sch:s01:filling_bands) shows this for an insulator and a doped semiconductor, next to a metal.
+
+![Four fillings of a band. In a metal the Fermi level $E_F$ cuts a band, so there are empty states next to the occupied ones. In an insulator the valence band is full and the conduction band is empty. Doping leaves the bands as they are and moves $E_F$, so that a few electrons, the red dots, sit in the conduction band, or a few holes, the red segment, in the valence band. The metal is the band $-2t\cos k$, and the other three are the bands $\pm\sqrt{m^2+(2t\sin q)^2}$ of a chain with two sites per cell, for $m=0.6t$, with $q$ measured from the zone edge.](figures/web/session01/filling_bands.svg){#sch:s01:filling_bands alt="Four band diagrams side by side. A metal with a half-filled band, an insulator with a gap, an n-doped semiconductor with a few electrons at the bottom of the conduction band, and a p-doped semiconductor with a few holes at the top of the valence band."}
+
 ![The Dirac cone of graphene. The two bands touch at one point and rise linearly around it, which is why the electrons behave as massless particles. We derive this cone in session 2.](figures/s02f04_dirac.svg){panel="c" alt="A hexagonal Brillouin zone with a Dirac cone at two of its corners."}
 
 ::: quiz
@@ -26,6 +30,8 @@ A topological insulator and an ordinary insulator both have a gap in the bulk. H
 - [ ] By the size of the bulk gap, which is always larger in the topological case.
 
     This is false. Take a chain with alternating hoppings $t_1=1,t_2=2$ and another with $t_1=2,t_2=1$. Both have the same bulk bands and the same gap $2$, but only one has states at the end. The bulk density of states is also identical in the two chains.
+
+    ![Two chains with the same bulk gap. In chain A the weak bond is at the ends, and the open chain has two states at $E\approx0$, inside the gap. The chains are drawn with six sites, and the spectra are for 20 sites. In chain B the strong bond is at the ends, and the gap is empty.](figures/web/session01/ssh_pair.svg){alt="Two chains of six sites with bonds 1, 2, 1, 2, 1 and 2, 1, 2, 1, 2, and their spectra, where only the first has a level at zero energy inside the gap."}
 
 - [ ] By the atoms of the material, since only heavy atoms give a topological insulator.
 

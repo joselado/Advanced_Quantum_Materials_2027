@@ -10,7 +10,9 @@ and its algebraic solution gives the **random phase approximation (RPA)**,
 
 $$\chi(q,\omega) = \frac{\chi_0(q,\omega)}{1 + U\,\chi_0(q,\omega)}. \tag{9.6}$$
 
-Equation [(9.6)](#eq-9-6) has a mixed character. It is derived order by order in $U$, so it is perturbative, but since we sum the whole geometric series it becomes non-perturbative. In this way it includes physics that no finite order in $U$ can give, which is a real pole, meaning a real phase transition.
+Equation [(9.6)](#eq-9-6) has a mixed character. It is derived order by order in $U$, so it is perturbative, but since we sum the whole geometric series it becomes non-perturbative. In this way it includes physics that no finite order in $U$ can give, which is a real pole, meaning a real phase transition. The first terms of the series are drawn in [](#sch:s09:bubbles).
+
+![The series behind [(9.6)](#eq-9-6). Each bubble is a bare response $\chi_0$ and each dashed line is one interaction event $U$. Every extra bubble with its dashed line adds the factor $-U\chi_0$, so the sum is a geometric series that gives $\chi_0/(1+U\chi_0)$.](figures/web/session09/bubbles.svg){#sch:s09:bubbles alt="A bubble, then two bubbles joined by a dashed line, then three bubbles joined by two dashed lines, with alternating signs."}
 
 **Two different sources of divergence.** The interacting response [(9.6)](#eq-9-6) can diverge for two quite different reasons. It is useful to separate them, because they correspond to two different emergent quasiparticles.
 

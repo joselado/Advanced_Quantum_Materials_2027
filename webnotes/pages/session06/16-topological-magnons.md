@@ -6,6 +6,10 @@ $$C = \frac{1}{2\pi}\int_\text{BZ} \Omega(\mathbf k)\, d^2k, \tag{6.10}$$
 
 and this is the third time that we apply it, now to the bosonic Bogoliubov Hamiltonian of Section [6.15](#sec-6-15) instead of an electronic tight-binding Hamiltonian. We add to the plain Heisenberg exchange a spin-orbit coupling of the Dzyaloshinskii-Moriya type of Section [6.12](#sec-6-12). This term plays the same role as the complex second-neighbor hopping of the Haldane model for electrons in session 4. It introduces complex phases in the magnon hopping amplitudes, which can open a gap in the magnon band structure at finite energy and give the bands on both sides of this gap a nonzero Chern number [(6.10)](#eq-6-10). When we put such a topological magnon Hamiltonian on a ribbon, the bulk-boundary correspondence guarantees chiral magnon edge modes inside the gap. These modes propagate in only one direction along each edge, and they are the magnon analogue of the chiral electronic edge states of a Chern insulator. They carry spin and energy and not charge, but they are topologically protected in the same sense as their electronic counterparts. It is the same tool that we used for electrons in sessions 3 and 4, now applied to magnon bands.
 
+Schematic [](#sch:s06:dm_honeycomb) shows this on the honeycomb lattice. The magnon hops between first neighbors with $t=JS$, and the Dzyaloshinskii-Moriya term gives a second-neighbor hopping with phase $\pm\pi/2$, with opposite signs on the two sublattices. This is the Haldane model, up to a constant, so the gap at $K$ is $6\sqrt3\,t_2$.
+
+![The honeycomb lattice with the phases of the Dzyaloshinskii-Moriya term, and the magnon bands. (a) Second-neighbor hopping $t_2=DS$ with phase $+\pi/2$ on the $A$ sites and $-\pi/2$ on the $B$ sites. (b) The bands along $\Gamma$, $K$, $M$ for $t=1$ and $t_2=0.1$, where the gap at $K$ is $1.04$. The grey dashed bands are the case $t_2=0$, where the bands touch at $K$.](figures/web/session06/dm_honeycomb.svg){#sch:s06:dm_honeycomb alt="A honeycomb lattice with arrows on the second neighbors around one hexagon, and a magnon band structure with a gap at the K point."}
+
 ![The chiral edge states of a Chern insulator, seen from above. The topological magnon bands have the same edge structure, with spin and energy carried by the magnons instead of charge.](figures/s03f01_chiraledge.svg){alt="A sample with arrows that skip along the edge in one direction on each edge, and an impurity that the edge mode goes around."}
 
 ::: quiz
@@ -34,6 +38,8 @@ We reverse the sign of the Dzyaloshinskii-Moriya vector. What happens to the top
 - [x] The Chern numbers change sign, and the edge branches run the other way.
 
     This is true. This term plays the role of the complex hopping of the Haldane model, and reversing its sign reverses the phases. The Berry curvature changes sign, so the Chern numbers change sign too.
+
+    ![The edge states of a magnon ribbon, zigzag edges and $24$ cells wide, for $t=1$ and $t_2=\pm0.1$. The branch of the lower edge rises for one sign and falls for the other, and the upper edge does the opposite.](figures/web/session06/ribbon_magnons.svg){alt="Two band structures of a ribbon. In each a branch of the lower edge and a branch of the upper edge cross the gap in opposite directions, and the directions are exchanged between the two panels."}
 
 - [ ] Nothing, since the term is quadratic.
 

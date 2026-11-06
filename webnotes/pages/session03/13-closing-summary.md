@@ -34,6 +34,8 @@ What decides whether the two Dirac points of the honeycomb lattice give Chern nu
 
     This is true. A staggered potential is even under time reversal and gives the same mass at both valleys, so the half-integers cancel. The Haldane coupling is odd under time reversal, so the half-integers add.
 
+    ![The two lattices. Left, the staggered potential, which is even under time reversal. Right, the Haldane second-neighbor hopping, which is odd.](figures/s03f05_masses.svg){panel="lat" alt="Two honeycomb lattices, one with a staggered onsite potential plus and minus m, and one with the imaginary second-neighbor hopping of the Haldane coupling."}
+
 :::
 
 ::: quiz

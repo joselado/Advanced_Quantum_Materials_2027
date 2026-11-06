@@ -21,7 +21,9 @@ This is the model that we obtain from a half-filled Hubbard model with strong in
 $$|GS\rangle = \frac{1}{\sqrt2}\Big(|{\uparrow\downarrow}\rangle -
 |{\downarrow\uparrow}\rangle\Big), \qquad \langle \mathbf S_i \rangle = 0. \tag{8.3}$$
 
-This ground state is different from the Ising case in three ways, and these three points are important for the rest of the session. First, it is the *unique* ground state, so there is no degeneracy and no spontaneous choice between states. Second, it is *time-reversal symmetric*, since its net magnetization is exactly zero and time reversal maps $|GS\rangle$ to itself. Third, it is *maximally entangled*, since the two terms in [(8.3)](#eq-8-3) have the same weight, which is the largest entanglement that two qubits can have. Can we have a macroscopic version of this ground state? This question is the origin of quantum spin liquids.
+This ground state is different from the Ising case in three ways, and these three points are important for the rest of the session. First, it is the *unique* ground state, so there is no degeneracy and no spontaneous choice between states. Second, it is *time-reversal symmetric*, since its net magnetization is exactly zero and time reversal maps $|GS\rangle$ to itself. Third, it is *maximally entangled*, since the two terms in [(8.3)](#eq-8-3) have the same weight, which is the largest entanglement that two qubits can have. Can we have a macroscopic version of this ground state? This question is the origin of quantum spin liquids. Before we go on, [](#sch:s08:dimer_levels) puts the levels of the two dimers side by side.
+
+![The levels of the Ising dimer [(8.1)](#eq-8-1) and of the Heisenberg dimer [(8.2)](#eq-8-2), from the $4\times4$ matrices with $J=1$. The Ising dimer has two degenerate ground states, and each one breaks time reversal. Look at the Heisenberg dimer, where the ground state is a single singlet and the triplet lies one unit above it.](figures/web/session08/dimer_levels.svg){#sch:s08:dimer_levels alt="Two columns of energy levels, the Ising dimer with two levels of two states each and the Heisenberg dimer with a singlet below a triplet."}
 
 ![Where the Heisenberg dimer comes from. With parallel spins the hop of an electron is blocked by the Pauli principle, which the cross shows. With antiparallel spins the electron can hop to the neighbor and come back, and this virtual process lowers the energy of the singlet. Look at the lower part of the figure, since this process is the origin of the antiferromagnetic coupling $J$ of [(8.2)](#eq-8-2).](figures/s06f02_dimer.svg){panel="a" alt="Two sites with parallel spins, where the hop is forbidden, and with antiparallel spins, where the hop is allowed."}
 
@@ -47,6 +49,8 @@ We change the sign of the coupling, $H=J\,\mathbf S_0\cdot\mathbf S_1$ with $J<0
 - [ ] The singlet, as for $J>0$.
 
     This is false. Take $J=-1$. The singlet has energy $-3J/4=+3/4$ and the triplet has $J/4=-1/4$, so the triplet is lower.
+
+    ![The levels of $H=J\,\mathbf S_0\cdot\mathbf S_1$ for $J=1$ and $J=-1$. The sign of $J$ turns the levels upside down, and the triplet becomes the ground level.](figures/web/session08/dimer_levels_signs.svg){alt="Two columns of levels, for J equal to 1 with the singlet below the triplet and for J equal to minus 1 with the triplet below the singlet."}
 
 - [ ] A single state $|{\uparrow\uparrow}\rangle$ that breaks time-reversal symmetry.
 

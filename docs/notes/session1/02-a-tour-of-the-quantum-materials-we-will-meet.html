@@ -93,6 +93,11 @@
 <li><p><strong>Superconductors.</strong> These go from conventional superconductors mediated by phonons, such as aluminum, to <em>correlated</em> superconductors such as the cuprates and the pnictides, whose mechanism is still one of the biggest open problems in the field.</p></li>
 <li><p><strong>Fractional quantum matter.</strong> Here the fundamental excitations are real fractions of an electron. The fractional quantum Hall state is the best established example, and it has been observed for decades in materials such as gallium arsenide. Fractional Chern insulators are a newer and more accessible way to obtain the same physics, and they are a promising building block for new quantum devices.</p></li>
 </ul>
+<p>The first two items of this list differ only in how the bands of a single electron are filled, and <a href="#sch:s01:filling_bands">Schematic 1.2</a> shows this for an insulator and a doped semiconductor, next to a metal.</p>
+<figure id="sch:s01:filling_bands" class="schematic">
+<img src="../figures/web/session01/filling_bands.svg" loading="lazy" alt="Four band diagrams side by side. A metal with a half-filled band, an insulator with a gap, an n-doped semiconductor with a few electrons at the bottom of the conduction band, and a p-doped semiconductor with a few holes at the top of the valence band." />
+<figcaption><strong>Schematic 1.2.</strong> Four fillings of a band. In a metal the Fermi level <span class="math inline">\(E_F\)</span> cuts a band, so there are empty states next to the occupied ones. In an insulator the valence band is full and the conduction band is empty. Doping leaves the bands as they are and moves <span class="math inline">\(E_F\)</span>, so that a few electrons, the red dots, sit in the conduction band, or a few holes, the red segment, in the valence band. The metal is the band <span class="math inline">\(-2t\cos k\)</span>, and the other three are the bands <span class="math inline">\(\pm\sqrt{m^2+(2t\sin q)^2}\)</span> of a chain with two sites per cell, for <span class="math inline">\(m=0.6t\)</span>, with <span class="math inline">\(q\)</span> measured from the zone edge.</figcaption>
+</figure>
 <figure class="again panel">
 <img src="../figures/panel/s02f04_dirac_c.svg" loading="lazy" alt="A hexagonal Brillouin zone with a Dirac cone at two of its corners." />
 <figcaption><strong><a href="../session2/11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#fig:s02:dirac">Figure 2.5</a>, one panel shown again.</strong> The Dirac cone of graphene. The two bands touch at one point and rise linearly around it, which is why the electrons behave as massless particles. We derive this cone in session 2.</figcaption>
@@ -117,7 +122,11 @@ Question
 <li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
 <p>This is true. The bulk gap is present in both cases, so the bulk does not decide. Only the topological insulator has states inside the gap at its edge that carry current.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
-<p>This is false. Take a chain with alternating hoppings <span class="math inline">\(t_1=1,t_2=2\)</span> and another with <span class="math inline">\(t_1=2,t_2=1\)</span>. Both have the same bulk bands and the same gap <span class="math inline">\(2\)</span>, but only one has states at the end. The bulk density of states is also identical in the two chains.</p></li>
+<p>This is false. Take a chain with alternating hoppings <span class="math inline">\(t_1=1,t_2=2\)</span> and another with <span class="math inline">\(t_1=2,t_2=1\)</span>. Both have the same bulk bands and the same gap <span class="math inline">\(2\)</span>, but only one has states at the end. The bulk density of states is also identical in the two chains.</p>
+<figure class="quiz-fig schematic">
+<img src="../figures/web/session01/ssh_pair.svg" loading="lazy" alt="Two chains of six sites with bonds 1, 2, 1, 2, 1 and 2, 1, 2, 1, 2, and their spectra, where only the first has a level at zero energy inside the gap." />
+<figcaption>Two chains with the same bulk gap. In chain A the weak bond is at the ends, and the open chain has two states at <span class="math inline">\(E\approx0\)</span>, inside the gap. The chains are drawn with six sites, and the spectra are for 20 sites. In chain B the strong bond is at the ends, and the gap is empty.</figcaption>
+</figure></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
 <p>This is false. In the Kane-Mele model of graphene, any small spin-orbit coupling opens a topological gap, even though carbon is a light atom. At the same time, an ordinary insulator can be made of heavy atoms.</p></li>
 </ul>

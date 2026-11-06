@@ -111,7 +111,11 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
 <p>This is false. A network with no hidden layer is linear and cannot represent XOR. One hidden layer can, so adding a layer changes the set of functions.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. A linear network cannot represent XOR, and a network with one hidden layer can. The architecture sets the set of functions, and <span class="math inline">\(\theta\)</span> chooses one inside it.</p></li>
+<p>This is true. A linear network cannot represent XOR, and a network with one hidden layer can. The architecture sets the set of functions, and <span class="math inline">\(\theta\)</span> chooses one inside it.</p>
+<figure class="quiz-fig schematic">
+<img src="../figures/web/session10/xor.svg" loading="lazy" alt="The four corners of a square with opposite corners in the same class, and two parallel lines that enclose the corners of one class." />
+<figcaption>No straight line separates the two classes of XOR (left). One hidden layer with two neurons gives two lines and selects the band between them (right).</figcaption>
+</figure></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
 <p>This is false. The same Ising snapshots can be fitted with two layers or with ten. The number of layers is our choice, and gradient descent changes only <span class="math inline">\(\theta\)</span>.</p></li>
 </ul>
@@ -138,7 +142,11 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
 <p>This is false. Take <span class="math inline">\(\mathcal L=\theta^2/2\)</span>, so the update is <span class="math inline">\(\theta\to(1-\eta)\theta\)</span>. For <span class="math inline">\(\eta=1\)</span> the minimum is reached in one step, and for <span class="math inline">\(\eta=2.5\)</span> the factor is <span class="math inline">\(-1.5\)</span>, which diverges.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. For <span class="math inline">\(\mathcal L=\theta^2/2\)</span> with <span class="math inline">\(\eta=2.5\)</span> we get <span class="math inline">\(\theta\to-1.5\theta\)</span>, so the loss grows by <span class="math inline">\(2.25\)</span> at every step. For <span class="math inline">\(\eta=2\)</span> the point oscillates between <span class="math inline">\(\pm\theta\)</span>.</p></li>
+<p>This is true. For <span class="math inline">\(\mathcal L=\theta^2/2\)</span> with <span class="math inline">\(\eta=2.5\)</span> we get <span class="math inline">\(\theta\to-1.5\theta\)</span>, so the loss grows by <span class="math inline">\(2.25\)</span> at every step. For <span class="math inline">\(\eta=2\)</span> the point oscillates between <span class="math inline">\(\pm\theta\)</span>.</p>
+<figure class="quiz-fig schematic">
+<img src="../figures/web/session10/lrate.svg" loading="lazy" alt="The parameter against the step for three learning rates, one decaying to zero, one jumping between plus and minus one and one growing with alternating sign." />
+<figcaption>The update <span class="math inline">\(\theta\to(1-\eta)\theta\)</span> from <span class="math inline">\(\theta=1\)</span>. For <span class="math inline">\(\eta=0.5\)</span> the points fall to zero, for <span class="math inline">\(\eta=2\)</span> they jump between <span class="math inline">\(\pm1\)</span>, and for <span class="math inline">\(\eta=2.5\)</span> they grow by the factor <span class="math inline">\(1.5\)</span> at every step.</figcaption>
+</figure></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
 <p>This is false. For <span class="math inline">\(\mathcal L=\theta^2/2\)</span> the gradient is <span class="math inline">\(\theta\)</span>. A large <span class="math inline">\(\eta\)</span> makes <span class="math inline">\(|\theta|\)</span> larger, so the gradient grows and does not vanish until <span class="math inline">\(\theta=0\)</span>.</p></li>
 </ul>

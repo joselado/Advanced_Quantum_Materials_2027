@@ -19,6 +19,8 @@ Why is spontaneous symmetry breaking strictly a statement about infinite systems
 
     This is true. The system can cross the barrier between the two minima, and the true ground state is the symmetric superposition of both. The barrier grows with the system size, and in the thermodynamic limit it cannot be crossed.
 
+    ![The two lowest states of a double well, with $\hbar^2/2m=1$ and $V=8(x^2-1)^2$. The lower one is even and has weight in both wells, and the odd one is $2\Delta=0.92$ higher. A higher barrier makes $\Delta$ smaller.](figures/web/session01/tunnel_split.svg){alt="A double well with its even ground state, its odd first excited state and the small energy splitting between them."}
+
 - [ ] A finite system has no ground state.
 
     This is false. The matrix $\begin{pmatrix}0&-\Delta\\-\Delta&0\end{pmatrix}$ of the two minima has the ground state $(1,1)/\sqrt2$ with energy $-\Delta$. A finite matrix always has a lowest level, and here it is symmetric.

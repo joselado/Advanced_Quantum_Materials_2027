@@ -44,6 +44,8 @@ A chain has four dimers with the intracell hopping $t$ and no hopping between di
 
     This is true. Each dimer has a bonding level at $-t$ and an antibonding level at $+t$. Four dimers give four levels at each energy, and no site is left uncoupled.
 
+    ![The dimerized chain, lower row, with the levels at $\pm t$ and a gap around zero.](figures/s03f03_ssh.svg){alt="Two chains of eight sites with their spectra, one with strong intracell bonds and a gap around zero, and one with strong intercell bonds and two levels at zero energy."}
+
 - [ ] Four at $+t$ and two at zero energy.
 
     This is false. Each dimer gives one level at $+t$ and one at $-t$, so the number at $+t$ equals the number at $-t$. Four dimers use all eight sites, so with four levels at $+t$ the other four are at $-t$ and none is left at zero.

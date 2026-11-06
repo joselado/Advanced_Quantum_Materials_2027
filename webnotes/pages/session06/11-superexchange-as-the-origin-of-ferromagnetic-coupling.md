@@ -13,7 +13,9 @@ S_j$, which is what the rotational spin symmetry requires when there is no spin-
 
 **Antisymmetric, or Dzyaloshinskii-Moriya, exchange**,
 $$H_\text{DM} = \sum_{\langle ij\rangle} \mathbf D_{ij}\cdot\big(\mathbf S_i\times\mathbf S_j\big),$$
-which is a cross product and not a dot product. It requires broken mirror symmetry, which is the reason why it is strong at surfaces and interfaces, where the substrate itself breaks this mirror symmetry. It favors neighboring spins rotated by roughly $90^\circ$ with respect to each other, so it favors noncollinear order, which is often a spiral.
+which is a cross product and not a dot product. It requires broken mirror symmetry, which is the reason why it is strong at surfaces and interfaces, where the substrate itself breaks this mirror symmetry. It favors neighboring spins rotated by roughly $90^\circ$ with respect to each other, so it favors noncollinear order, which is often a spiral. Schematic [](#sch:s06:dm_spiral) shows how the angle between neighbors depends on the strength of the term.
+
+![Classical spins on a chain with $J>0$ and a vector $\mathbf{D}$ along $z$, seen along $z$. The angle between neighbors is $\arccos[-J/\sqrt{J^2+D^2}]$, which is $180^\circ$ for $D=0$, $135^\circ$ for $D=J$ and $101^\circ$ for $D=5J$. It goes to $90^\circ$ when $D$ is much larger than $J$.](figures/web/session06/dm_spiral.svg){#sch:s06:dm_spiral alt="Three rows of arrows on a chain. In the first the arrows alternate up and down. In the next two each arrow is rotated by a fixed smaller angle from its neighbor, so they form a spiral."}
 
 **Anisotropic, or Ising-like, exchange**, which is a coupling of a single component such as $\Lambda\, S_i^z S_j^z$. It favors an easy axis, or an easy plane for the opposite sign, which means that the system magnetizes more easily along one direction than along another.
 

@@ -25,6 +25,8 @@ A ring has $L=6$ sites and a rotation $R$ with $R^6=\mathbb{1}$. How many Bloch 
 
     This is false. The phase $\varphi=\pi/6$ gives $\lambda^6=e^{i\pi}=-1$, which is not $1$. So this phase is not allowed on a ring of six sites.
 
+    ![The twelve phases with spacing $\pi/6$. On a ring of six sites only the six dots satisfy $\lambda^6=1$, and the crosses give $\lambda^6=-1$.](figures/web/session02/ring_six_phases.svg){alt="A circle with twelve marks, six dots at multiples of pi over three and six crosses between them."}
+
 The number of allowed phases equals the number of sites of the ring.
 :::
 

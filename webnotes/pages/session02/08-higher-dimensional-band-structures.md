@@ -41,6 +41,8 @@ We switch off the hopping along $y$ in the square lattice. What does the energy 
 
     This is true. Without hopping along $y$ the lattice is a set of decoupled chains. Each chain has the band of [(2.8)](#eq-2-8), and nothing depends on $\varphi_y$.
 
+    ![A square lattice without hopping along $y$. On the left, the dashed lines are the bonds that are switched off, so the lattice is a set of chains. On the right, the energy $-2t\cos\varphi_x$ over the zone, where the colors form stripes that do not change along $\varphi_y$.](figures/web/session02/decoupled_chains.svg){alt="Four decoupled horizontal chains, and a map of the Brillouin zone with vertical stripes of constant energy."}
+
 - [ ] Only on $\varphi_y$.
 
     This is false. Fix $\varphi_y=0$. Then $\epsilon=-2t\cos\varphi_x$ gives $-2t$ at $\varphi_x=0$ and $+2t$ at $\varphi_x=\pi$, so the energy does change with $\varphi_x$.

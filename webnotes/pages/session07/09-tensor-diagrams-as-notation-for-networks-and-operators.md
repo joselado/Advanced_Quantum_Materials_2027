@@ -13,6 +13,8 @@ An MPS of bond dimension $M$ is acted on by an MPO of bond dimension $D$, and we
 
     This is true. Each bond of the result carries one index of the state and one of the operator, so the dimensions multiply. This growth is the reason why a truncation by singular value decomposition follows each operation.
 
+    ![An MPO acts on an MPS. Each bond of the result joins one bond of the MPO and one of the MPS, so it has the dimension $M\cdot D$.](figures/web/session07/mpo_on_mps.svg){alt="A row of squares joined to a row of circles by their physical legs, then one row of tensors whose bonds are labelled M times D."}
+
 - [ ] $M+D$.
 
     This is false. Take a product state, $M=1$, and a product operator, $D=1$. The sum gives 2, but the result is again a product state with bond dimension 1.

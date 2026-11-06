@@ -13,6 +13,10 @@ meaning that the symmetry eigenvalue is directly the crystal momentum $k=p/\hbar
 
 ![The allowed phases of the ring, shown again. The balls fill the circle as the ring grows, and the circle is the range $\varphi\in(-\pi,\pi]$ of the quasi-momentum.](figures/s02f01_ringmodes.svg){alt="Rings with three sites, and phase circles with balls at the allowed phases for three and five sites."}
 
+The reason why $\varphi$ is defined only up to $2\pi$ can be seen directly on the sites of the chain, as we will now see in [](#sch:s02:aliasing).
+
+![Two waves with $k=0.5/a$ and $k+2\pi/a$, for $a=1$. They take the same value on every site, which are the dots, so on the lattice they are one state. The wave with the larger $k$ oscillates between the sites, where there are no atoms.](figures/web/session02/aliasing.svg){#sch:s02:aliasing alt="A slow cosine and a fast cosine that pass through the same dots at the integer positions of the chain."}
+
 ::: quiz
 A wave $e^{ikx}$ is sampled on the sites $x=na$. How do the eigenvalues of the translation $T$ compare for $k$ and for $k+2\pi/a$?
 

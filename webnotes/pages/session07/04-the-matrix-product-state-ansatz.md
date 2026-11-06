@@ -7,6 +7,10 @@ $$C(s_1,s_2,\dots,s_L) \;\approx\; M^{s_1}_{1}\, M^{s_2}_{2}\, \cdots\, M^{s_L}_
 Here each $M^{s_i}_i$ is an $M\times M$ matrix, except at the two ends of a finite open chain where it is a vector, and $M$ is the **bond dimension**, which is a free parameter that we choose. For a spin-1/2 chain there are two matrices per site, one for $s_i=\uparrow$ and one for $s_i=\downarrow$. Therefore the total number of parameters of the state is proportional to $L\times
 M^2$, which is linear in the system size, in strong contrast with the $2^L$ of the exact representation [(7.4)](#eq-7-4). This is called the **matrix product state** (MPS) ansatz. At first sight, it is only a choice, and one that looks rather arbitrary. In Sections [7.5](#sec-7-5) to [7.8](#sec-7-8) we will answer two questions about it. First, why it is a *good* choice. Second, what exactly it captures, and what it does not capture, about the physical state.
 
+Let us read the product [(7.5)](#eq-7-5) for one configuration of the spins. Each site holds two matrices, and the value of the spin on that site selects one of them. The chosen matrices are multiplied in order, and the result is the coefficient $C$ of that configuration, as [](#sch:s07:mps_product) shows.
+
+![The coefficient of one configuration of five spins as a product of matrices. Each site has one matrix for up and one for down, and the spin value selects the filled one. Look at the red line, which follows the choices from the first site to the last one. The matrices at the two ends are vectors, so the product is a single number.](figures/web/session07/mps_product.svg){#sch:s07:mps_product alt="Five sites, each with an up and a down matrix, where the spin value selects one of them, and a red line joins the chosen matrices into a product."}
+
 ![The ansatz [(7.5)](#eq-7-5) drawn as a chain of small tensors. Look at panel (b), where every block has one physical leg and virtual legs of dimension $M$ that link it to its neighbors. Section [7.9](#sec-7-9) explains this notation.](figures/s07f04_tensordiagram.svg){alt="A chain of small tensors with one physical leg each, compared with a single large tensor with one leg per site."}
 
 ::: quiz
@@ -52,6 +56,10 @@ which is a maximally mixed single-site density matrix, with two eigenvalues both
 $$S = -\left(\tfrac12\log\tfrac12 + \tfrac12\log\tfrac12\right) = \log 2. \tag{7.7}$$
 
 This is the maximum entanglement entropy that a single spin-1/2 can have, since a local Hilbert space of dimension $d$ can have at most $\log d$. This is the meaning of the statement that the singlet is "maximally entangled," since it uses all the capacity of the local Hilbert space for entanglement.
+
+Let us see how the entropy depends on the state. We take $\cos\vartheta\,|{\uparrow\downarrow}\rangle+\sin\vartheta\,|{\downarrow\uparrow}\rangle$, which is a product state for $\vartheta=0$ and has the weights of the singlet for $\vartheta=\pi/4$. The reduced density matrix has the eigenvalues $\cos^2\vartheta$ and $\sin^2\vartheta$, and [](#sch:s07:singlet_entropy) shows the entropy [(7.6)](#eq-7-6) that follows from them.
+
+![The entropy of one site for the two-spin state $\cos\vartheta\,|{\uparrow\downarrow}\rangle+\sin\vartheta\,|{\downarrow\uparrow}\rangle$, from the eigenvalues $\cos^2\vartheta$ and $\sin^2\vartheta$ of $\rho_A$. The entropy is zero for the two product states and it has its maximum $\log 2$ at $\vartheta=\pi/4$. Look at the maximum, which the singlet shares with the state that has a plus sign, since the entropy depends only on the weights. The singlet itself, with a minus sign, would sit at $\vartheta=-\pi/4$.](figures/web/session07/singlet_entropy.svg){#sch:s07:singlet_entropy alt="The entropy of one spin against the angle of a two-spin state, zero at the two product states and with the maximum log 2 in the middle."}
 
 ::: quiz
 The spin state $(|{\uparrow\downarrow}\rangle+|{\downarrow\uparrow}\rangle)/\sqrt2$ differs from the singlet [(7.3)](#eq-7-3) only by a sign. What is the entanglement entropy of one site?

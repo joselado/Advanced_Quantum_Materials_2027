@@ -12,7 +12,9 @@ which is smooth everywhere except for a logarithmic non-analyticity exactly at $
 
 $$\delta n(x) \;\xrightarrow{|x|\to\infty}\; A(v_0)\, \frac{\cos\!\big(2k_F |x| + \varphi_0\big)}{|x|^{\,d}} \qquad (d = 1,2,3), \tag{9.9}$$
 
-The oscillation has a universal wavevector that is fixed only by the Fermi surface, which is $2k_F$ in 1D, or more generally the diameter of the Fermi surface. It has an algebraic envelope, whose power depends on the dimensionality $d$, and it has an amplitude and a phase that are not universal and are set by the impurity strength and by microscopic details. This closes the argument that we started in Section [9.4](#sec-9-4). The same singularity at $q=2k_F$ in $\chi_0(q)$, which we found there as an instability channel, gives here a long-ranged real-space oscillation with a power-law decay, and not a real instability. The reason is that a single local impurity is a perturbation that is much too weak to reorganize the whole Fermi sea. The divergence in $\chi_0(q)$ only makes its Fourier partner decay slowly instead of exponentially.
+The oscillation has a universal wavevector that is fixed only by the Fermi surface, which is $2k_F$ in 1D, or more generally the diameter of the Fermi surface. It has an algebraic envelope, whose power depends on the dimensionality $d$, and it has an amplitude and a phase that are not universal and are set by the impurity strength and by microscopic details. This closes the argument that we started in Section [9.4](#sec-9-4). The same singularity at $q=2k_F$ in $\chi_0(q)$, which we found there as an instability channel, gives here a long-ranged real-space oscillation with a power-law decay, and not a real instability. The reason is that a single local impurity is a perturbation that is much too weak to reorganize the whole Fermi sea. The divergence in $\chi_0(q)$ only makes its Fourier partner decay slowly instead of exponentially. The two-dimensional case is drawn in [](#sch:s09:friedel2d).
+
+![The change of the local density of states at $E=-3.4t$ caused by one impurity of strength $v_0=3t$ in a square lattice of $61\times61$ sites, from exact diagonalization with a broadening of $0.12t$. On the left the Fermi contour has $k_F=0.80$ along the axes. On the right the ripples are circles that repeat with the period $\pi/k_F\approx4$ sites, and the impurity site is left out.](figures/web/session09/friedel2d.svg){#sch:s09:friedel2d alt="A small circular Fermi contour with its diameter marked, next to a map of concentric red and blue rings around the impurity."}
 
 ![The singularity that gives the Friedel oscillation. In panel (a) the vector $2k_F$ connects the two Fermi points of the chain, and in panel (b) the static Lindhard function has its logarithmic peak at that vector.](figures/s09f01_nesting.svg){panel="ab" alt="A one-dimensional band with its two Fermi points and the static Lindhard function with a logarithmic peak at twice the Fermi wavevector."}
 
@@ -26,6 +28,8 @@ A chain has the Fermi wavevector $k_F=\pi/4$. What is the period of the Friedel 
 - [x] $4$, since the wavevector of the oscillation is $2k_F=\pi/2$.
 
     This is true. The singularity of $\chi_0$ is at $q=2k_F=\pi/2$, so the density goes as $\cos(\pi x/2)$. This repeats every $4$ lattice constants.
+
+    ![The function $\cos(2k_Fx)$ for $k_F=\pi/4$ on the sites of the chain. The pattern $1,0,-1,0$ repeats after $4$ sites.](figures/web/session09/period.svg){alt="Values of a cosine on integer sites, one, zero, minus one, zero, repeating every four sites."}
 
 - [ ] $2$, since the oscillation follows the lattice.
 

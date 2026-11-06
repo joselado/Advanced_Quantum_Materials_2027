@@ -22,9 +22,13 @@ Let us take a small subsystem $A$ whose two ends cut through two dimers, one on 
 ::: quiz
 The dimers are the pairs of sites $(0,1)$, $(2,3)$, $(4,5)$ and so on. Which block of sites has exactly zero entanglement entropy in the state [(7.8)](#eq-7-8)?
 
+![The singlets of [(7.8)](#eq-7-8) on eight sites. A block cuts a singlet when it contains only one of its two sites.](figures/web/session07/dimer_chain.svg){alt="A chain of eight numbered sites joined in pairs by four singlet arcs."}
+
 - [ ] Sites 1 to 4.
 
     This is false. The block contains the dimer $(2,3)$ but it cuts $(0,1)$ at site 1 and $(4,5)$ at site 4. Two singlets are cut and the entropy is $2\log2$.
+
+    ![Sites 1 to 4 cut the two red singlets.](figures/web/session07/dimer_block_14.svg){alt="The eight sites with sites 1 to 4 shaded and the singlets (0,1) and (4,5) drawn in red."}
 
 - [x] Sites 2 to 5.
 
@@ -33,6 +37,9 @@ The dimers are the pairs of sites $(0,1)$, $(2,3)$, $(4,5)$ and so on. Which blo
 - [ ] Sites 3 to 6.
 
     This is false. The block cuts the dimer $(2,3)$ at site 3 and the dimer $(6,7)$ at site 6. Two singlets are cut and the entropy is $2\log2$, not zero.
+
+    ![Sites 3 to 6 cut the two red singlets.](figures/web/session07/dimer_block_36.svg){alt="The eight sites with sites 3 to 6 shaded and the singlets (2,3) and (6,7) drawn in red."}
+
 :::
 
 ::: quiz
@@ -41,6 +48,8 @@ A block of sites 1 to 3 is taken from the same state. What is its entropy?
 - [ ] $0$, since the block contains one full dimer.
 
     This is false. The site 1 is paired with site 0, which is outside the block. This singlet is cut and it adds $\log2$, even if the dimer $(2,3)$ is inside.
+
+    ![Sites 1 to 3 cut one singlet, the red one.](figures/web/session07/dimer_block_13.svg){alt="The eight sites with sites 1 to 3 shaded and the singlet (0,1) drawn in red."}
 
 - [ ] $2\log 2$, since the block has two boundaries.
 

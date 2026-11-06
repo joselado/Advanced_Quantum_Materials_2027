@@ -27,6 +27,8 @@ Which choices define every construction of this session, from the cat-and-dog cl
 
     This is true. The classifier uses a spin array, a label and the loss of [(10.1)](#eq-10-1). The neural network quantum state uses a configuration, a coefficient and the energy, with the same gradient descent.
 
+    ![The template that every construction uses, with an input, an output and a loss.](figures/s10f01_networktemplate.svg){alt="A deep network with an input picture, hidden layers and a one-hot output, next to the training loop of evaluation, loss, gradient and update."}
+
 - [ ] The physical system only, since the network is always a tensor network.
 
     This is false. The same spin chain is used for the NQS, with the energy as the loss, and for tomography, with the likelihood. The system is the same and the construction differs, and the NQS can be a Boltzmann machine and not a tensor network.
