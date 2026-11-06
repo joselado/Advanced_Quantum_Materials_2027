@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>9.10 Disorder and Anderson localization, session 9</title>
+<title>9.10a Disorder and Anderson localization, session 9</title>
 <style>
   :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
           --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -82,7 +83,7 @@
   <nav class="tabs"><a href="../../lectures/session9.html">Video lectures</a><a href="../../landscape/session9.html">Landscape lectures</a><a class="on" href="../../notes/session9/index.html">Lecture notes</a></nav>
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="on" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 9. Excitations and Defects in Quantum Materials</a></p>
-<h1 id="sec-9-10"><span class="num">9.10</span> Disorder and Anderson localization</h1>
+<h1 id="sec-9-10"><span class="num">9.10a</span> Disorder and Anderson localization</h1>
 <p>So far we have only discussed a <em>single</em> impurity. What happens when we put many impurities in the whole material? A single impurity changes the ground state only a little. Many impurities, in particular when they are placed at random, can change it completely, because they break translational symmetry in the whole system and not only locally. It is useful to list all the possibilities, since there are three different regimes of translational symmetry to consider, and not only the symmetric and the non-symmetric ones.</p>
 <ol type="1">
 <li><p><strong>Periodic.</strong> There is full translational symmetry. Every eigenstate is extended, with weight <span class="math inline">\(\sim 1/N\)</span> on each of <span class="math inline">\(N\)</span> sites.</p></li>
@@ -99,14 +100,53 @@
 <img src="../figures/s09f06_localization.svg" loading="lazy" alt="The three regimes of Section 9.10, shown through their effect on an eigenstate of a chain of N=89 sites, with the weight |\psi_i|^2 of each site as a column." />
 <figcaption><strong>Figure 9.6.</strong> The three regimes of Section <a href="#sec-9-10">9.10</a>, shown through their effect on an eigenstate of a chain of <span class="math inline">\(N=89\)</span> sites, with the weight <span class="math inline">\(|\psi_i|^2\)</span> of each site as a column. (a) With a periodic potential every eigenstate is a Bloch wave, with weight exactly <span class="math inline">\(1/N\)</span> on every site, and this height becomes smaller as the chain grows. (b) At the self-dual point of the quasiperiodic model the state is neither extended nor localized. It has structure on every length scale at the same time, with large peaks and smaller copies of the same pattern between them, and this state is called critical, or multifractal. (c) With really random disorder the state is concentrated on a few sites and it is strictly zero, to numerical precision, over most of the chain. <em>Note the three different vertical scales.</em> For this reason we need a number and not a visual check, and this number is the inverse participation ratio <a href="#eq-9-12">(9.12)</a>. (d) The IPR separates the three regimes clearly by how it scales with system size, with <span class="math inline">\(\mathrm{IPR}\sim 1/N\)</span> for extended states, <span class="math inline">\(\mathrm{IPR}\sim O(1)\)</span> for localized ones, and an anomalous power <span class="math inline">\(N^{-\tau}\)</span> with <span class="math inline">\(0&lt;\tau&lt;1\)</span> for the critical state between them, here computed for <span class="math inline">\(N=34\)</span> to <span class="math inline">\(610\)</span>. On a log-log plot these are three straight lines with three different slopes.</figcaption>
 </figure>
-<p><strong>Fully disordered case.</strong> Now we take an onsite potential that is really random, with strength <span class="math inline">\(W\)</span>, <span class="math inline">\(H = -t\sum_n (c_n^\dagger c_{n+1} + \text{h.c.}) + \sum_n w_n\, c_n^\dagger c_n\)</span>, where <span class="math inline">\(w_n\)</span> is taken uniformly from <span class="math inline">\([-W,W]\)</span>. At <span class="math inline">\(W=0\)</span> this is an ordinary clean metal, with the band structure of the periodic hopping alone, and as <span class="math inline">\(W\to\infty\)</span> every eigenstate becomes concentrated on a single site. In dimension <span class="math inline">\(d\geq 3\)</span> there is a real <strong>Anderson localization transition</strong> at a finite critical disorder <span class="math inline">\(W_c\)</span>. There is a real mobility edge that separates extended metallic states from localized states, which is the kind of “critical point” described on the slides. Below the transition, or at any energy on the extended side of a mobility edge, the system conducts. Above it, there are states at every energy, so there is <em>no spectral gap</em> in the density of states, but these states cannot carry current, so there <em>is</em> a transport gap. This means that the <strong>Anderson insulator</strong> is an insulator with no gap at all in its spectrum, which is a very unusual state of matter compared with every band insulator or Mott insulator that we have seen so far in this course.</p>
-<p><strong>The special role of one dimension.</strong> In <span class="math inline">\(d=1\)</span>, and in a marginal way also in <span class="math inline">\(d=2\)</span> according to the scaling theory of localization, no real metallic phase survives at any non-zero disorder in the thermodynamic limit, since an arbitrarily small <span class="math inline">\(W&gt;0\)</span> localizes every state at long enough distances. What survives is a finite localization length <span class="math inline">\(\xi(W)\)</span>. For weak disorder close to the band center of the 1D model, it scales as <span class="math inline">\(\xi(W) \propto (t/W)^2\)</span>, which diverges as <span class="math inline">\(W\to 0\)</span>. A finite sample that is shorter than <span class="math inline">\(\xi(W)\)</span> still looks metallic in practice, and only when the length of the sample is larger than <span class="math inline">\(\xi(W)\)</span> do we see the localized, insulating behavior in transport. This is the exact sense in which “weak disorder in 1D” and “genuinely metallic” are never the same statement, although they can look the same at short length scales.</p>
-<div class="notebookbox">
-<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb"><code>session9.ipynb</code></a>, “The impact of disorder in different systems” (Core), “Extended and localized states in quasicrystals” (Challenge), and “Localization due to random disorder” (Core)</p>
-<p>Change the strength of the quasiperiodic modulation, and separately the strength <span class="math inline">\(W\)</span> of the random disorder, and compute <a href="#eq-9-12">(9.12)</a> for the eigenstates that you obtain in each case. Look at how the <span class="math inline">\(\mathrm{IPR}\)</span> changes from a behavior like <span class="math inline">\(1/N\)</span> to a behavior like <span class="math inline">\(O(1)\)</span> as you increase the strength of the potential. Try to find by eye where the change from extended to localized states happens in each of the two models, and compare it with the language of critical points and mobility edges above.</p>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
 </div>
+<div class="quiz-q">
+<p>A normalized state has the same weight on <span class="math inline">\(10\)</span> sites of a chain and zero weight elsewhere. What is its <span class="math inline">\(\mathrm{IPR}\)</span> of <a href="#eq-9-12">(9.12)</a>, and how does it change if the chain grows?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(1/N\)</span>, and it decreases as the chain grows.</li>
+<li><span class="math inline">\(1/10\)</span>, and it does not change as the chain grows.</li>
+<li><span class="math inline">\(10/N\)</span>, and it decreases as the chain grows.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>Each of the <span class="math inline">\(10\)</span> sites has <span class="math inline">\(|\psi_i|^2=1/10\)</span>, so <span class="math inline">\(\sum_i|\psi_i|^4=10/100=1/10\)</span>. The state does not know about the rest of the chain, which is what a localized state means.</p>
+</details>
+</div>
+<div class="quiz" data-correct="C">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>We double the size of the chain, and the <span class="math inline">\(\mathrm{IPR}\)</span> of a state changes by a factor <span class="math inline">\(0.7\)</span>. Which regime is this?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>Extended, since the <span class="math inline">\(\mathrm{IPR}\)</span> decreases.</li>
+<li>Localized, since the <span class="math inline">\(\mathrm{IPR}\)</span> is finite.</li>
+<li>Critical, with <span class="math inline">\(N^{-\tau}\)</span> and <span class="math inline">\(\tau\approx0.5\)</span>.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>C</strong>.</p>
+<p>An extended state gives a factor <span class="math inline">\(0.5\)</span> and a localized state gives a factor <span class="math inline">\(1\)</span>. A factor <span class="math inline">\(2^{-\tau}=0.7\)</span> means <span class="math inline">\(\tau\approx0.5\)</span>, which is between the two, and this is the multifractal signature.</p>
+</details>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> Run the cell and look at the average of <span class="math inline">\(1/\lambda\)</span> on the left. It stays close to zero up to <span class="math inline">\(v\approx2\)</span> and then grows fast. This is the self-dual point <span class="math inline">\(V_0=2t\)</span> of the model. Change <code>np.sqrt(2)</code> to another irrational number and check that the point stays at <span class="math inline">\(v\approx2\)</span>.</p>
+<div class="tryit-links">
+Notebook <code>session9.ipynb</code>, cell “Extended and localized states in quasicrystals”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession9.ipynb">Binder</a>.
+</div>
+</div>
+<p>The second regime, with random disorder, is the content of the next part.</p>
 
-  <nav class="pager"><a href="09-impurities-as-diagnostics-iv-screening-in-quantum-magnets.html">9.9 Impurities as diagnostics IV, screening in quantum magnets</a><a href="11-closing-summary.html">9.11 Closing summary</a></nav>
+  <nav class="pager"><a href="09-impurities-as-diagnostics-iv-screening-in-quantum-magnets.html">9.9 Impurities as diagnostics IV, screening in quantum magnets</a><a href="10b-random-disorder-and-the-special-role-of-one-dimension.html">9.10b Random disorder and the special role of one dimension</a></nav>
 
 </main>
 </body>

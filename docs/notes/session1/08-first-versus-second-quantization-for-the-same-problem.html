@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -84,8 +85,75 @@
   <p class="crumb"><a href="index.html">Session 1. Second Quantization, Mean-Field, and Spontaneous Symmetry Breaking</a></p>
 <h1 id="sec-1-8"><span class="num">1.8</span> First versus second quantization for the same problem</h1>
 <p>For a tight-binding Hamiltonian that is purely single-particle, first and second quantization need in practice the same amount of work. Let us write the first-quantized Hamiltonian with hopping matrix elements <span class="math inline">\(t_{ij}\)</span> between orbitals <span class="math inline">\(i,j\)</span>. The second-quantized version has the same <span class="math inline">\(t_{ij}\)</span>, multiplied by <span class="math inline">\(c_i^\dagger c_j\)</span>. To diagonalize either of them we use the same unitary transformation <span class="math inline">\(U\)</span>, and we obtain the same eigenvalues. The only formal difference is that in first quantization the coefficients that diagonalize the Hamiltonian form a vector, while in second quantization they become operators. The physics is the same in both cases.</p>
+<h1 class="sec-next" id="sec-1-9"><span class="num">1.9</span> Where the two formalisms differ and the exponential growth of the many-body problem</h1>
+<p>The difference between the two languages appears as soon as we add real many-body interactions, and it grows very fast. Let us take only three sites, with a generic quartic interaction term, which has four operators, added to the kinetic Hamiltonian. We can no longer restrict ourselves to single-particle states, and we need the full Fock space. This contains the empty state, three states with one electron, three states with two electrons and one state with all three sites occupied, which gives a total of <span class="math inline">\(2^3 = 8\)</span> many-body states. Figure <a href="#fig:s01:fockspace">1.1</a> shows the two sides of this comparison explicitly.</p>
+<figure id="fig:s01:fockspace">
+<img src="../figures/s01f01_fockspace.svg" loading="lazy" alt="The exponential growth of the Fock space for three sites." />
+<figcaption><strong>Figure 1.1.</strong> The exponential growth of the Fock space for three sites. A single-particle tight-binding problem is an <span class="math inline">\(L\times L\)</span> matrix, on the left, where the raised dark entries are the first-neighbor hoppings of the chain in front of it. The interacting problem needs the full Fock space, on the right, where every site is empty or occupied. Each plate is one many-body state with a ball on every occupied site, and the <span class="math inline">\(2^L\)</span> states are ordered in columns by particle number. For <span class="math inline">\(L=3\)</span> this is <span class="math inline">\(8\)</span>, and for <span class="math inline">\(L\approx 20\)</span> it is already about a million, which is the limit of brute-force diagonalization.</figcaption>
+</figure>
+<p>In general, for <span class="math inline">\(L\)</span> sites the single-particle problem is an <span class="math inline">\(L \times L\)</span> matrix, while the many-body problem is a <span class="math inline">\(2^L \times 2^L\)</span> matrix, and we need <span class="math inline">\(2^L\)</span> coefficients only to write the ground-state wave function. This is the reason why <span class="math inline">\(L \approx 20\)</span> is already close to the practical limit of what we can do by brute force. The exact rate of growth depends on the kind of site that we have. Spinful fermions have four states per site, which are empty, up, down and doubly occupied. Spinless fermions have two, and they are relevant when a single spin species is isolated by strong magnetism or a strong field. Pure spin sites, which we will need later in the course for quantum magnets and Kondo systems, also give an exponential growth, but with a different underlying algebra.</p>
+<div class="quiz" data-correct="C">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>We take three sites of spinful fermions, with four states per site. How many many-body states does the Fock space have?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(8\)</span></li>
+<li><span class="math inline">\(12\)</span></li>
+<li><span class="math inline">\(64\)</span></li>
+<li><span class="math inline">\(6\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>C</strong>.</p>
+<p>Each site has four states, which are empty, up, down and doubly occupied. Three sites give <span class="math inline">\(4^3=64\)</span> states, while the single-particle matrix is only <span class="math inline">\(6\times 6\)</span>.</p>
+</details>
+</div>
+<h1 class="sec-next" id="sec-1-10"><span class="num">1.10</span> A first look at eigenstates in finite tight-binding islands</h1>
+<p>Before we go to interactions, let us look at what a purely single-particle Hamiltonian already gives us, because this is something that we can compare directly with experiment. Let us take a tight-binding Hamiltonian <span class="math inline">\(H = \sum_{ij} t_{ij}\, c_i^\dagger c_j\)</span> on a honeycomb lattice, cut into a finite island that is triangular, hexagonal or rectangular, and let us diagonalize it. The probability density of a given eigenvector in real space can be compared directly with what a scanning tunneling microscope measures. Qualitatively, these states look like the finite-size states of a “particle in a box”. The lowest-energy state has its maximum close to the center of the island, and the higher states have more and more nodes. This is a good first check, since single-particle diagonalization, with nothing more, already gives a structure that we can recognize and that we can measure in experiments.</p>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>We make a finite island larger and diagonalize it again. What happens to the spacing between the levels?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>It grows, since the island has more sites.</li>
+<li>It shrinks, since more levels share the same range of energy.</li>
+<li>It stays the same, since the hopping is fixed.</li>
+<li>It vanishes at once for any larger size.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The band has a fixed width, which is <span class="math inline">\(4t\)</span> for a chain. More sites put more levels in this window, so the levels become denser and approach the continuum.</p>
+</details>
+</div>
+<div class="notebookbox">
+<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session1.ipynb"><code>session1.ipynb</code></a>, “Finite sized chains” (Core), and “Density of states of a finite system as a function of the system size” (Challenge)</p>
+<p>Diagonalize a finite chain or island, and look at how the spatial profiles of the eigenstates and the density of states change when you make the system larger. This is the numerical version of the particle-in-a-box argument above, and it is a good place to build intuition for how we approach an infinite periodic system, which we treat in session 2, starting from the finite-size case.</p>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> Run the loop over the lengths and look at the energy panel. Check that the levels fill the window from <span class="math inline">\(-2t\)</span> to <span class="math inline">\(2t\)</span>. Then plot the distance between the two levels closest to zero on a log scale, and check that it falls as <span class="math inline">\(1/L\)</span>.</p>
+<div class="tryit-links">
+Notebook <code>session1.ipynb</code>, cell “Finite sized chains”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session1.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session1.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession1.ipynb">Binder</a>.
+</div>
+</div>
+<p>We will use two software tools in all sessions. The first one is <strong>PyQula</strong>, which is a Python library for tight-binding and mean-field calculations, topological properties and spectral functions, and which we use through the Jupyter notebooks of the course. The second one is <strong>Quantum Lattice</strong>, which is a graphical interface built on PyQula that does not need any coding. Both are open source, and it is useful to have both open next to these notes.</p>
+<div class="widget" data-widget="island">
+<div class="widget-label">
+Interactive
+</div>
+<p>Move the number of sites <span class="math inline">\(N\)</span> of the finite chain. The lowest state has no node, and each higher state has one node more, as for a particle in a box. The dashed curve is the box wavefunction, and the PyQula result lies exactly on top of it. Note that the level spacing shrinks when <span class="math inline">\(N\)</span> grows, which is how the band of the infinite chain emerges in Session 2.</p>
+<noscript><p class="widget-nojs">This widget needs JavaScript.</p></noscript>
+</div>
 
-  <nav class="pager"><a href="07-enforcing-fermionic-statistics.html">1.7 Enforcing fermionic statistics</a><a href="09-where-the-two-formalisms-differ-and-the-exponential-growth-of-the-many-body-problem.html">1.9 Where the two formalisms differ and the exponential growth of the many-body problem</a></nav>
+  <nav class="pager"><a href="05-a-warm-up-in-first-quantization-and-the-puzzle-that-breaks-it.html">1.5 A warm-up in first quantization, and the puzzle that breaks it</a><a href="11-spontaneous-symmetry-breaking-and-why-a-symmetric-hamiltonian-can-have-an-asymmetric-ground-state.html">1.11a Spontaneous symmetry breaking and why a symmetric Hamiltonian can have an asymmetric ground state</a></nav>
 
 </main>
 </body>

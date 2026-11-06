@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2.11b Flat bands from the geometry of the lattice, session 2</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .cols.three { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  @media (max-width: 900px) { .cols.three { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+
+  main { max-width: 860px; }
+  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
+              border-radius: 6px; color: var(--muted); }
+  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
+  .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
+  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
+  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
+  figure { margin: 24px 0; }
+  figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
+  figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
+  .eq { display: block; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
+                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
+  .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
+           margin: 20px 0; font-size: 0.95rem; }
+  .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
+  table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
+  div.center { overflow-x: auto; }
+  div.center table { margin-left: auto; margin-right: auto; }
+  th { border-bottom: 2px solid var(--rule); }
+  .coursecontents h2 { margin-top: 28px; }
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
+<script src="../../notes/notes.js" defer></script>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
+  <nav class="tabs"><a href="../../lectures/session2.html">Video lectures</a><a href="../../landscape/session2.html">Landscape lectures</a><a class="on" href="../../notes/session2/index.html">Lecture notes</a></nav>
+  <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="on" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
+  <p class="crumb"><a href="index.html">Session 2. Symmetries, Tight-Binding Band Structure Theory, and Effective Models</a></p>
+<h1 id="sec-2-11b"><span class="num">2.11b</span> Flat bands from the geometry of the lattice, the Lieb and the kagome lattices</h1>
+<p>Two standard lattices realize truly flat bands only from their geometry in real space, and not from a fine-tuning of hopping parameters to zero. The <strong>Lieb lattice</strong> is built from a square lattice where one site out of every four is removed in a regular pattern. Its dispersion has two dispersive bands, which come from the bands of the square lattice <a href="08-higher-dimensional-band-structures.html#eq-2-14">(2.14)</a>, and in addition one exactly flat band at zero energy. Near the corner <span class="math inline">\(M\)</span> of the Brillouin zone the two dispersive bands form a linear, Dirac-like cone, and the flat band goes through the tip of this cone. The <strong>kagome lattice</strong> is built instead from a triangular lattice where one site out of every four is removed. Its dispersion is closer to the one of the honeycomb lattice, with linear crossings similar to Dirac cones, and in addition it has a flat band at the edge of the spectrum. With the sign convention of <a href="05-blochs-theorem-and-the-first-band-structure.html#eq-2-5">(2.5)</a> this flat band is at the top, at <span class="math inline">\(\epsilon=2t\)</span>, and it would be at the bottom for the opposite sign of <span class="math inline">\(t\)</span>. In both cases the flat band comes from destructive interference between hopping paths in real space. This is a purely geometric effect and not an effect of interactions, and the physics of strong correlations only enters once electrons are placed into these bands, which are already flat. Figure <a href="#fig:s02:flatbands">2.6</a> shows both lattices, both dispersions, and the localized state where the hopping paths cancel.</p>
+<figure id="fig:s02:flatbands">
+<img src="../figures/s02f05_flatbands.svg" loading="lazy" alt="Flat bands that come only from geometry, with the bands computed from the Bloch Hamiltonian of each lattice and the flat band drawn as the red tube." />
+<figcaption><strong>Figure 2.6.</strong> Flat bands that come only from geometry, with the bands computed from the Bloch Hamiltonian of each lattice and the flat band drawn as the red tube. <strong>(a)</strong> The Lieb lattice, which is a square lattice with one site in four removed, and <strong>(b)</strong> its bands. There are two dispersive bands and a band that is exactly flat at <span class="math inline">\(\epsilon=0\)</span>, and all three touch at <span class="math inline">\(M\)</span>. <strong>(c)</strong> The kagome lattice, made of triangles that share corners, and <strong>(d)</strong> its bands, with a Dirac-like crossing at <span class="math inline">\(K\)</span> and a flat band at <span class="math inline">\(\epsilon=2t\)</span>. <strong>(e)</strong> The reason why the flat band exists. An eigenstate can be confined to a single kagome hexagon, with amplitudes of alternating sign around it, the filled and the ghost balls. Every path by which it could hop onto a site outside arrives twice with opposite sign, the two arrows, so the two contributions cancel at the cross. Nothing is fine-tuned to zero, since the flatness is a property of the geometry of the lattice, and by <a href="09-properties-of-an-electronic-dispersion.html#eq-2-16">(2.16)</a> it makes the density of states diverge.</figcaption>
+</figure>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>We change the value of the hopping <span class="math inline">\(t\)</span> of the kagome lattice. Where is the flat band?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>At <span class="math inline">\(\epsilon=2t\)</span>, so its energy changes with <span class="math inline">\(t\)</span> but it stays flat.</li>
+<li>At zero energy, for any <span class="math inline">\(t\)</span>.</li>
+<li>It becomes dispersive.</li>
+<li>It disappears.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>The flat band comes from interference between hopping paths, which works for any value of the hopping. So the band scales with <span class="math inline">\(t\)</span>, and it stays flat.</p>
+</details>
+</div>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>Why does the state on one hexagon of the kagome lattice not spread to the sites outside?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>Every outside site is reached by two paths with opposite signs, so the amplitudes cancel.</li>
+<li>The hopping to the outside sites is zero.</li>
+<li>The outside sites have a much higher energy.</li>
+<li>The state is localized by the interaction.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>The alternating amplitudes around the hexagon make the two contributions to each outside site equal and opposite. Nothing is tuned to zero, since this is a property of the geometry.</p>
+</details>
+</div>
+<p>This material is only on the slides and has no counterpart in <code>session2.ipynb</code>. The notebook treats the honeycomb lattice in depth, but it has no section on the Lieb lattice or on the kagome lattice. The band-structure plots for both lattices are shown directly on the slides. The description above gives their qualitative structure, but to see the actual flat-band dispersion one needs the figure itself.</p>
+<div class="tryit">
+<p><strong>Try it.</strong> In the cell with the bands, replace the honeycomb lattice by <code>lieb_lattice()</code> or by <code>kagome_lattice()</code>. Find the band that does not disperse. With the sign of the hopping of the notebook, the Lieb flat band is at zero energy and the kagome one is at the bottom.</p>
+<div class="tryit-links">
+Notebook <code>session2.ipynb</code>, cell “Infinite two-dimensional graphene”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session2.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session2.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession2.ipynb">Binder</a>.
+</div>
+</div>
+
+  <nav class="pager"><a href="11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html">2.11a The Dirac cone of the honeycomb lattice of graphene</a><a href="12-measuring-band-structures-with-arpes.html">2.12 Measuring band structures with ARPES</a></nav>
+
+</main>
+</body>
+</html>

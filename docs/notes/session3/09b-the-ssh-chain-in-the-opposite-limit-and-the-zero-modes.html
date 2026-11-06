@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3.9b The SSH chain in the opposite limit and the zero modes, session 3</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .cols.three { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  @media (max-width: 900px) { .cols.three { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+
+  main { max-width: 860px; }
+  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
+              border-radius: 6px; color: var(--muted); }
+  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
+  .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
+  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
+  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
+  figure { margin: 24px 0; }
+  figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
+  figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
+  .eq { display: block; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
+                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
+  .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
+           margin: 20px 0; font-size: 0.95rem; }
+  .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
+  table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
+  div.center { overflow-x: auto; }
+  div.center table { margin-left: auto; margin-right: auto; }
+  th { border-bottom: 2px solid var(--rule); }
+  .coursecontents h2 { margin-top: 28px; }
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
+<script src="../../notes/notes.js" defer></script>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
+  <nav class="tabs"><a href="../../lectures/session3.html">Video lectures</a><a href="../../landscape/session3.html">Landscape lectures</a><a class="on" href="../../notes/session3/index.html">Lecture notes</a></nav>
+  <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="on" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
+  <p class="crumb"><a href="index.html">Session 3. Topological Band Structure Theory</a></p>
+<h1 id="sec-3-9b"><span class="num">3.9b</span> The SSH chain in the opposite limit and the zero modes</h1>
+<p>In the first limit the strong bonds are the intracell ones. Now let us take the opposite limit, <span class="math inline">\(t \to 0\)</span>, in which the strong bonds are the intercell ones and the dimer pattern is shifted by one site. We leave the first site uncoupled, so that it is a dangling site, we couple <span class="math inline">\((1,2)\)</span>, <span class="math inline">\((3,4)\)</span>, …, and we also leave the last site dangling. In the bulk this looks the same as the previous chain, since it has the same alternating dimer pattern shifted by one site, but the two ends are qualitatively different, because each end now has a site that is not coupled at all. When we diagonalize this chain, we obtain the same bonding and antibonding pairs at <span class="math inline">\(\pm 1\)</span> in the bulk, and also <strong>two states pinned exactly at zero energy</strong>, one localized at each end. Figure <a href="#fig:s03:ssh">3.3</a> shows the two chains side by side together with their spectra.</p>
+<figure id="fig:s03:ssh">
+<img src="../figures/s03f03_ssh.svg" loading="lazy" alt="The Su-Schrieffer-Heeger chain, drawn with the same eight sites and the same unit cells in both rows, which are the translucent slabs, so that the only difference is which of the two bonds is the strong one, drawn as the thick rod." />
+<figcaption><strong>Figure 3.3.</strong> The Su-Schrieffer-Heeger chain, drawn with the same eight sites and the same unit cells in both rows, which are the translucent slabs, so that the only difference is which of the two bonds is the strong one, drawn as the thick rod. Next to each chain is its spectrum, the eigenvalues of the open chain in units of the strong hopping. (a) In front, the intracell hopping dominates, <span class="math inline">\(t\gg 1\)</span> (here <span class="math inline">\(t=4\)</span>). Every site is paired into a dimer, and the levels form two groups around <span class="math inline">\(\pm t\)</span>, spread a little by the weak hopping, with a clear gap around zero, which is the trivial phase. (b) Behind, the intercell hopping dominates, <span class="math inline">\(t\to 0\)</span> (here <span class="math inline">\(t=1/4\)</span>). The dimer pattern is shifted by one site and the first and last sites, the two glowing ones, are left uncoupled. The same bulk spectrum now has two extra states at <span class="math inline">\(E=0\)</span>, the two short rods in the gap, one localized at each end, which is the topological phase. The two chains cannot be distinguished in the bulk, and the difference is only at the ends, which is what a bulk invariant has to predict. At small but finite <span class="math inline">\(t\)</span> the two end states hybridize through the chain, and their splitting away from zero is only exponential in the chain length. For <span class="math inline">\(t=1/4\)</span> and eight sites the two levels sit at <span class="math inline">\(\pm 0.004\)</span>, which is too small to see at this scale.</figcaption>
+</figure>
+<div class="quiz" data-correct="D">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>In the limit <span class="math inline">\(t\to 0\)</span> a chain of eight sites has the dimers <span class="math inline">\((1,2)\)</span>, <span class="math inline">\((3,4)\)</span> and <span class="math inline">\((5,6)\)</span>, counting the sites from <span class="math inline">\(0\)</span> to <span class="math inline">\(7\)</span>. How many states are at exactly zero energy?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>One, at the center of the chain.</li>
+<li>None, since every site is bound in a dimer.</li>
+<li>Four, one for each unpaired hopping.</li>
+<li>Two, one at each end.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>D</strong>.</p>
+<p>The sites <span class="math inline">\(0\)</span> and <span class="math inline">\(7\)</span> are not coupled to anything, so each one is an isolated level at zero energy. The three dimers give the levels at <span class="math inline">\(\pm 1\)</span>.</p>
+</details>
+</div>
+<p>This is the minimal example of a topological phase. The fully dimerized chain of the first case is the <strong>trivial phase</strong>, which is gapped everywhere, including at the ends. The shifted chain of the second case is the <strong>topological phase</strong>, which is gapped in the bulk but has gapless modes at exactly zero energy at the edges. This construction looks very fine-tuned, and it is, since real chains have hopping between every pair of neighboring sites. The important part is what survives when we remove the fine-tuning. If we turn on a small coupling <span class="math inline">\(t\)</span> between the sites at the two ends that were decoupled, the zero modes are <em>not</em> removed, as long as <span class="math inline">\(t\)</span> stays below the bulk hopping strength. Intuitively, for <span class="math inline">\(t \ll 1\)</span> we weakly couple an isolated zero-energy level to a gapped bulk, and a weak coupling cannot push a level all the way across a finite gap. In a more exact way, this is the deformation argument of Section <a href="07-what-topology-means-for-a-hamiltonian-and-the-bulk-boundary-correspondence.html#sec-3-7">3.7</a>. The Hamiltonians at different small <span class="math inline">\(t\)</span> are topologically equivalent, since they are connected without closing the bulk gap, so the invariant that protects the zero mode at <span class="math inline">\(t=0\)</span> also protects it when the coupling is finite.</p>
+<div class="quiz" data-correct="D">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>For <span class="math inline">\(t=1/4\)</span> and eight sites the two end states sit at <span class="math inline">\(\pm 0.004\)</span>. What is the splitting for sixteen sites?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>About <span class="math inline">\(0.01\)</span>, since the end states hybridize more in a longer chain.</li>
+<li>About the same, <span class="math inline">\(0.004\)</span>, since it depends only on <span class="math inline">\(t\)</span>.</li>
+<li>About half of it, since there are twice as many sites.</li>
+<li>About <span class="math inline">\(10^{-5}\)</span>, since it decreases exponentially with the length.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>D</strong>.</p>
+<p>Each end state decays by a factor <span class="math inline">\(t\)</span> every two sites. The overlap between the two ends then scales as <span class="math inline">\(t^{N/2}\)</span>, which is <span class="math inline">\(4^{-8}\approx 1.5\times 10^{-5}\)</span> for sixteen sites.</p>
+</details>
+</div>
+
+  <nav class="pager"><a href="08-three-topological-material-classes.html">3.8 Three topological material classes</a><a href="09c-the-ssh-model-the-bloch-hamiltonian-and-the-zak-phase.html">3.9c The SSH model, the Bloch Hamiltonian and the Zak phase</a></nav>
+
+</main>
+</body>
+</html>

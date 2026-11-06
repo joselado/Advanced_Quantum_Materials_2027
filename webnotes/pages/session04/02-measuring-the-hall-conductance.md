@@ -1,5 +1,0 @@
-## Measuring the Hall conductance {#sec-4-2 number="4.2"}
-
-The experiment itself is simple to describe. We take a two-dimensional system, apply a voltage along one in-plane direction, which we call $y$, and measure the current that flows along the perpendicular in-plane direction, $x$. The ratio of this transverse current to the applied voltage is the Hall conductance, and this is the quantity that becomes quantized in the quantum Hall regime.
-
-A real device for this measurement is a two-dimensional electron gas (2DEG) with several finger gates in contact with it. A voltage is applied between a top gate and a bottom gate, and the current is measured between two gates placed along $x$, with all the connections made through metallic leads. The geometry of the device does not add new physics beyond what we need for the concepts, so we will not discuss it further. The device figures in the slides are useful to see how a real experiment looks, but from here on the notes work with the ideal two-dimensional system.

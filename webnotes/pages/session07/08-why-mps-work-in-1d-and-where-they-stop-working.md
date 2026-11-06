@@ -1,4 +1,4 @@
-## Why MPS work in 1D, and where they stop working {#sec-7-8 number="7.8"}
+## Why MPS work in 1D {#sec-7-8 number="7.8a"}
 
 The area law is the missing piece that explains why the ansatz [(7.5)](#eq-7-5) is a good one. Let us take an MPS at a given bond, and use it to build the Schmidt decomposition of the state for a division of the system at that bond.
 
@@ -14,7 +14,27 @@ In other words, an MPS with bond dimension $M$ can have an entanglement entropy 
 
 ![The bond dimension is an upper limit on the entanglement, and this determines when matrix product states work. An MPS with bond dimension $M$ has at most $M$ Schmidt terms across any bond, so by [(7.10)](#eq-7-10) it can have at most $S=\log M$ there, which is shown by the two horizontal bars, for $M=4$ and $M=16$. A gapped one-dimensional ground state follows the area law of Section [7.6](#sec-7-6), and its entropy saturates at a value set by the correlation length and not by the subsystem size, so it stays below a fixed and moderate limit for any chain length. A critical chain violates the area law logarithmically, [(7.12)](#eq-7-12), so it goes above any fixed limit at some point, here the lower bar, and $M$ must be increased as the system grows, slowly but without bound. A general state of the Hilbert space of dimension $2^L$ follows a volume law, $S=\ell\log 2$, and it goes above any usable $M$ after a few sites. This is why time evolution over long times, highly excited states and two-dimensional systems are all out of reach. The entropy is drawn in bits, $S/\log 2$, with central charge $c=1$, and the curves are schematic and not fits to a specific model.](figures/s07f03_entropyceiling.svg){#fig:s07:ceiling number="7.3"}
 
-The same argument tells us directly where MPS must fail, which is whenever the true entanglement entropy is larger than what a practical bond dimension can give through [(7.10)](#eq-7-10). In practice this happens in four cases. The first case is dynamics over long times, since after a quench the entanglement grows *linearly* with time and not logarithmically. The second case is systems in more than one dimension, where the length of the boundary in the area law grows with the system size, as we saw in Section [7.7](#sec-7-7), so $M$ has to grow too, often exponentially in the linear size of the subsystem. The third case is highly excited states, since the area law is a statement about ground states and not about general eigenstates. The fourth case is, more generally, states far from equilibrium. However, when the physics stays close to a gapped 1D ground state, MPS can be used for more than the ground-state problem. With a higher cost, they can be used for time evolution, excited states and open quantum systems, routinely in 1D and in some cases in 2D.
+::: quiz
+A gapped chain of 50 sites is described accurately with a bond dimension $M$. What do we need for a gapped chain of 500 sites in the same phase?
+
+- [ ] About ten times larger $M$.
+- [x] About the same $M$, since the entropy saturates.
+- [ ] An $M$ that is exponentially larger.
+- [ ] A smaller $M$, since the chain is longer.
+
+In a gapped state the entropy across a bond is set by the correlation length and not by the length of the chain. The bound [(7.10)](#eq-7-10) then asks for the same $M$.
+:::
+
+::: quiz
+An MPS has $M=16$. What is the largest entanglement entropy that it can hold across one bond, in units of $\log 2$?
+
+- [ ] $16$, since there are 16 terms.
+- [ ] $8$, since it is half of $M$.
+- [x] $4$, since $\log 16=4\log 2$.
+- [ ] $2$, since it is the square root of $M$.
+
+The bound [(7.10)](#eq-7-10) is $S\le\log M$, and $\log 16=4\log 2$. The number of Schmidt terms is $16$ but the entropy grows only as its logarithm.
+:::
 
 ::: notebookbox
 **Notebook check-in:** [`session7.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb), "Near linear scaling with system size with matrix product states" (Core) and "The role of the bond dimension in tensor networks" (Core)
@@ -22,8 +42,6 @@ The same argument tells us directly where MPS must fail, which is whenever the t
 In the first exercise you check directly that the cost of the DMRG ground-state calculation in `dmrgpy` grows linearly with the system size, which is the $L\times M^2$ scaling of [(7.5)](#eq-7-5) and not the $2^L$ scaling of [(7.4)](#eq-7-4). In the second exercise you change the bond dimension and see how the fluctuation of the ground-state energy becomes smaller and then saturates. The point where it saturates is where $M$ is large enough to satisfy the bound [(7.10)](#eq-7-10) for that state.
 :::
 
-::: notebookbox
-**Notebook check-in:** [`session7.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb), "Entanglement entropy of the ground state" (Core), "Size dependence of the entanglement entropy" (Challenge), and "Bond dimension dependence of the entanglement entropy" (Challenge)
-
-With these three exercises you can reproduce Sections [7.5](#sec-7-5) to [7.8](#sec-7-8) numerically. First, you compute the entanglement entropy at each bond for the MPS ground state of a Heisenberg chain. Then you check that it grows very little with the system size, which is the 1D area-law saturation of Section [7.6](#sec-7-6), but this time in a gapless chain and not in a gapped one. Finally, you check that it saturates once the bond dimension is large enough to satisfy [(7.10)](#eq-7-10). The quiz of the first exercise also asks you to replace the model with an Ising model and to see how the entropy changes. This is a quick way to see how the area law responds to a really different ground state, which in this case is classical and has zero entanglement.
+::: {.tryit notebook="session7.ipynb" cell="Entanglement entropy of the ground state"}
+Run the loop over `maxm` in `[2,4,8,20]` and look at the bond entropy. For `maxm=2` the curve cannot go above $\ln 2\approx0.69$, while for `maxm=20` it follows the true ground state. Check that the central bonds have the largest entropy.
 :::

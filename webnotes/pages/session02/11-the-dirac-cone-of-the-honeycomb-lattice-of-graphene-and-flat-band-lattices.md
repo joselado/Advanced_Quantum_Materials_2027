@@ -1,4 +1,4 @@
-## The Dirac cone of the honeycomb lattice of graphene, and flat-band lattices {#sec-2-11 number="2.11"}
+## The Dirac cone of the honeycomb lattice of graphene {#sec-2-11 number="2.11a"}
 
 The honeycomb lattice of graphene has two orbitals per unit cell, one on each of two triangular sublattices, which are usually called $A$ and $B$, and which sit on an underlying triangular Bravais lattice. Nearest-neighbour hopping only connects $A$ with $B$, and never $A$ with $A$ or $B$ with $B$, so by the method of Section [2.7](#sec-2-7) the Bloch Hamiltonian [(2.12)](#eq-2-12) is purely off-diagonal,
 
@@ -21,14 +21,34 @@ $$E_\pm(\mathbf{q}) = \pm \hbar v_F |\mathbf{q}|, \tag{2.21}$$
 
 which is a strictly linear dispersion with the shape of a cone around $K$, and the same calculation gives the same result around $K'$. This is what is called the **Dirac cone**. Note that the curvature of the cone along the radial direction vanishes, so [(2.18)](#eq-2-18) gives an infinite effective mass in this direction, and at the tip of the cone the effective mass is not defined at all. When we say that the electrons of graphene are "massless", which is the phenomenology for which graphene is famous, we refer to the Dirac mass term, which is the gap, and not to the curvature of the band. This is the low-energy physics of every material with a honeycomb lattice, and of graphene in the first place. There is much more structure at $K$ and $K'$, namely a Berry phase and with it a topological classification, which we leave for the topology lecture right after this one.
 
+::: quiz
+The curvature of the cone is zero along the radial direction, and [(2.18)](#eq-2-18) gives an infinite mass. Why do we still call the electrons of graphene massless?
+
+- [x] Because the Dirac Hamiltonian has no mass term, which would be a gap at the Dirac point.
+- [ ] Because the effective mass of [(2.18)](#eq-2-18) is zero at the tip.
+- [ ] Because the electrons of graphene have no charge.
+- [ ] Because the lattice constant drops out of the cone.
+
+Massless refers to the Dirac mass, which is a term that opens a gap at the touching point. It does not refer to the curvature of the band, which is not the relevant quantity here.
+:::
+
 ::: notebookbox
 **Notebook check-in:** [`session2.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session2.ipynb), "Infinite two-dimensional graphene" (Core)
 
 Build the two-dimensional honeycomb Bloch Hamiltonian [(2.19)](#eq-2-19) directly and diagonalize it across the Brillouin zone. Zoom in on $K$ and $K'$ and check numerically that the dispersion there is really linear, which means that it agrees with [(2.21)](#eq-2-21) once you are close enough to the Dirac point.
 :::
 
-Two standard lattices realize truly flat bands only from their geometry in real space, and not from a fine-tuning of hopping parameters to zero. The **Lieb lattice** is built from a square lattice where one site out of every four is removed in a regular pattern. Its dispersion has two dispersive bands, which come from the bands of the square lattice [(2.14)](#eq-2-14), and in addition one exactly flat band at zero energy. Near the corner $M$ of the Brillouin zone the two dispersive bands form a linear, Dirac-like cone, and the flat band goes through the tip of this cone. The **kagome lattice** is built instead from a triangular lattice where one site out of every four is removed. Its dispersion is closer to the one of the honeycomb lattice, with linear crossings similar to Dirac cones, and in addition it has a flat band at the edge of the spectrum. With the sign convention of [(2.5)](#eq-2-5) this flat band is at the top, at $\epsilon=2t$, and it would be at the bottom for the opposite sign of $t$. In both cases the flat band comes from destructive interference between hopping paths in real space. This is a purely geometric effect and not an effect of interactions, and the physics of strong correlations only enters once electrons are placed into these bands, which are already flat. Figure [2.6](#fig:s02:flatbands) shows both lattices, both dispersions, and the localized state where the hopping paths cancel.
+::: {.tryit notebook="session2.ipynb" cell="Infinite two-dimensional graphene"}
+Run the cell and zoom in on the bands near $K$. Check that the two bands touch at zero energy and that they are straight lines close to this point. Then change the hopping in `tij`, and check that the slope of the lines changes with $t$.
+:::
 
-![Flat bands that come only from geometry, with the bands computed from the Bloch Hamiltonian of each lattice and the flat band drawn as the red tube. **(a)** The Lieb lattice, which is a square lattice with one site in four removed, and **(b)** its bands. There are two dispersive bands and a band that is exactly flat at $\epsilon=0$, and all three touch at $M$. **(c)** The kagome lattice, made of triangles that share corners, and **(d)** its bands, with a Dirac-like crossing at $K$ and a flat band at $\epsilon=2t$. **(e)** The reason why the flat band exists. An eigenstate can be confined to a single kagome hexagon, with amplitudes of alternating sign around it, the filled and the ghost balls. Every path by which it could hop onto a site outside arrives twice with opposite sign, the two arrows, so the two contributions cancel at the cross. Nothing is fine-tuned to zero, since the flatness is a property of the geometry of the lattice, and by [(2.16)](#eq-2-16) it makes the density of states diverge.](figures/s02f05_flatbands.svg){#fig:s02:flatbands number="2.6"}
+::: quiz
+The hopping $t$ of graphene is doubled. What happens to the Dirac cone of [(2.20)](#eq-2-20) and [(2.21)](#eq-2-21)?
 
-This material is only on the slides and has no counterpart in `session2.ipynb`. The notebook treats the honeycomb lattice in depth, but it has no section on the Lieb lattice or on the kagome lattice. The band-structure plots for both lattices are shown directly on the slides. The description above gives their qualitative structure, but to see the actual flat-band dispersion one needs the figure itself.
+- [x] The cone stays at the same point and becomes twice as steep.
+- [ ] The cone moves to another point of the zone.
+- [ ] A gap of size $2t$ opens at the tip.
+- [ ] The dispersion stops being linear.
+
+The velocity $v_F=3ta/2\hbar$ is proportional to $t$, so the slope doubles. The touching point is fixed by the geometry of the lattice and not by the value of $t$.
+:::

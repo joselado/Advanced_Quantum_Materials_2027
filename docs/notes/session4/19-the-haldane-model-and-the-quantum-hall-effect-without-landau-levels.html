@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -85,10 +86,60 @@
 <h1 id="sec-4-19"><span class="num">4.19</span> The Haldane model and the quantum Hall effect without Landau levels</h1>
 <p>This last section goes back on purpose to a model that we already know, and it is not new material. In session 3 we already built the Haldane model, as an example of a Chern insulator obtained by opening a gap in a Dirac cone without any external field. We come back to it here because it closes the argument that we started in this session. Everything above needed a real magnetic field to give Landau levels, so we want to confirm explicitly that the quantized Hall conductance itself never needed one.</p>
 <p>Let us recall the construction. We start from the honeycomb lattice with first-neighbor hopping only, which has a Dirac cone without a gap at <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span>, and we add a second-neighbor hopping that is purely imaginary, which breaks time-reversal symmetry. In the Bloch Hamiltonian this term appears as a mass at <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span>. An ordinary staggered onsite potential also gives a mass at both valleys, but the two masses enter with opposite relative sign between the valleys. For the staggered potential the Berry curvatures of the two valleys have opposite sign and cancel, which gives <span class="math inline">\(C=0\)</span>. For the Haldane term, the imaginary second-neighbor hopping, the Berry curvatures of the two valleys have the <em>same</em> sign, so when we integrate over the Brillouin zone the two valley contributions add and do not cancel, which gives <span class="math inline">\(C=\pm1\)</span>. The result is a net nonzero Chern number, an insulating bulk gap and a chiral edge state, all with <span class="math inline">\(B=0\)</span>.</p>
+<figure class="again panel">
+<img src="../figures/panel/s03f05_masses_spec.svg" loading="lazy" alt="Two ribbon spectra, one with an empty gap and one with a branch from each edge crossing the gap." />
+<figcaption><strong><a href="../session3/10b-the-haldane-coupling-and-a-real-chern-insulator.html#fig:s03:masses">Figure 3.5</a>, one panel shown again.</strong> The ribbon spectra of the two gapped honeycomb lattices of session 3. On the left a staggered potential gives a gap with nothing inside. On the right the Haldane coupling gives one branch per edge that crosses the gap, with no magnetic field. Look at the dark and the light branch, which live on opposite edges.</figcaption>
+</figure>
 <p>What is really new in our version of this story is the explicit <strong>adiabatic connection</strong> between the Haldane model and the ordinary quantum Hall state of this session, which is driven by the field. We start in the Haldane model, with imaginary second-neighbor hopping and no field. Then we switch on a real magnetic field while we keep the Haldane coupling, and Landau levels develop from the bands that were dispersive before. Finally we switch off the Haldane coupling, and the system is left in the ordinary quantum Hall state built only from Landau levels. At every step of this path the bulk gap stays open and the chiral edge state never disappears. Since we can connect the two end points without closing the gap, the Chern insulator of the Haldane model and the quantum Hall state of the Landau levels are <em>topologically equivalent</em>. They are the same phase of matter, reached by two completely different physical routes, one that needs a magnetic field and one that does not.</p>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>Along the path from the Haldane model to the quantum Hall state, which condition has to hold at every step?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>The bulk gap stays open.</li>
+<li>The number of electrons doubles.</li>
+<li>The magnetic field is zero.</li>
+<li>The Haldane coupling stays at the same value.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>The Chern number can change only if the gap closes. If the gap stays open all along the path, the two end points have the same Chern number.</p>
+</details>
+</div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session4.ipynb"><code>session4.ipynb</code></a>, “Topological equivalence between the Quantum Hall state and a Chern insulator” (Challenge), and “Topological domains in the quantum Hall state” (Challenge)</p>
 <p>Build the Haldane model, switch a magnetic field on and off numerically together with the Haldane coupling, and follow the bulk gap and the Chern number along the adiabatic path described above. The “topological domains” exercise lets you study spatial regions where the two couplings compete directly, which is a practical version of the equivalence argument that we just gave.</p>
+</div>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>One system has a field and Landau levels, and the other has no field. Why do we call them the same phase?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>Because they are connected without closing the bulk gap, so they have the same Chern number and the same chiral edge state.</li>
+<li>Because both have the same edge velocity.</li>
+<li>Because the magnetic field is only a gauge choice.</li>
+<li>Because both have Landau levels.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>A phase is defined by what cannot change without closing the gap. The Chern number is the same for both, and the field is only one of the two routes to it.</p>
+</details>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> Run the cell, which interpolates between the Chern insulator at <code>nu = 0</code> and the quantum Hall state at <code>nu = 1</code>. Follow the branch that crosses the gap in the first panel. It stays connected to the edge branch of the last panel, and it does not disappear at any step of the path.</p>
+<div class="tryit-links">
+Notebook <code>session4.ipynb</code>, cell “Topological equivalence between the Quantum Hall state and a Chern insulator”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session4.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session4.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession4.ipynb">Binder</a>.
+</div>
 </div>
 
   <nav class="pager"><a href="18-berry-phase-fractional-charge-and-anyonic-statistics.html">4.18 Berry phase, fractional charge, and anyonic statistics</a><a href="20-real-materials-realizing-chern-and-fractional-chern-physics.html">4.20 Real materials realizing Chern and fractional Chern physics</a></nav>

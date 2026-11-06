@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -87,10 +88,34 @@
 <ul>
 <li><p>We constructed again the magnetism of the Hubbard model numerically and in full detail. This includes the direct competition between the ferromagnetic and the antiferromagnetic self-consistent solutions, and the Stoner threshold <a href="06-the-stoner-threshold-as-a-criterion-for-magnetism.html#eq-6-3">(6.3)</a> that decides whether magnetism appears at all.</p></li>
 <li><p>We derived the Heisenberg model exactly from the strongly correlated limit of the Hubbard model, and we obtained the exact coefficient <span class="math inline">\(J=4t^2/U\)</span> <a href="08-from-the-hubbard-dimer-to-the-heisenberg-model.html#eq-6-4">(6.4)</a> and its generalization to a lattice <a href="09-the-heisenberg-model-on-a-general-lattice.html#eq-6-5">(6.5)</a>. We also saw how frustration and superexchange modify this simple picture.</p></li>
-<li><p>We constructed the magnon spectrum from first principles with the Holstein-Primakoff transformation <a href="14-the-holstein-primakoff-transformation.html#eq-6-6">(6.6)</a>–<a href="14-the-holstein-primakoff-transformation.html#eq-6-7">(6.7)</a>. We obtained the quadratic ferromagnetic dispersion <a href="15-magnon-dispersions-in-ferromagnets-and-antiferromagnets.html#eq-6-8">(6.8)</a> and the linear antiferromagnetic dispersion <a href="15-magnon-dispersions-in-ferromagnets-and-antiferromagnets.html#eq-6-9">(6.9)</a>, and then we applied the topological methods of sessions 3 and 4 a third time to show that magnon bands can also be topological.</p></li>
+<li><p>We constructed the magnon spectrum from first principles with the Holstein-Primakoff transformation <a href="13-magnons-as-fluctuations-of-the-order-parameter.html#eq-6-6">(6.6)</a>–<a href="13-magnons-as-fluctuations-of-the-order-parameter.html#eq-6-7">(6.7)</a>. We obtained the quadratic ferromagnetic dispersion <a href="15-magnon-dispersions-in-ferromagnets-and-antiferromagnets.html#eq-6-8">(6.8)</a> and the linear antiferromagnetic dispersion <a href="15-magnon-dispersions-in-ferromagnets-and-antiferromagnets.html#eq-6-9">(6.9)</a>, and then we applied the topological methods of sessions 3 and 4 a third time to show that magnon bands can also be topological.</p></li>
 </ul>
+<figure class="again panel">
+<img src="../figures/panel/s06f06_dispersion_main.svg" loading="lazy" alt="Two curves of the magnon energy against the wave vector, a parabola and a curve with a linear rise, both starting at zero." />
+<figcaption><strong><a href="15-magnon-dispersions-in-ferromagnets-and-antiferromagnets.html#fig:s06:dispersion">Figure 6.6</a>, one panel shown again.</strong> The two magnon dispersions of the session for a chain. The ferromagnet is quadratic and the antiferromagnet is linear near <span class="math inline">\(k=0\)</span>, and both are gapless.</figcaption>
+</figure>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>Both magnon dispersions of this session go to zero at <span class="math inline">\(k=0\)</span>. What is the common reason?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>A continuous spin-rotation symmetry is broken spontaneously, so the magnon is a Goldstone mode.</li>
+<li>The Heisenberg coupling has no energy scale at <span class="math inline">\(k=0\)</span>.</li>
+<li>Magnons carry no charge.</li>
+<li>Mean-field theory fails at <span class="math inline">\(k=0\)</span>.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>A uniform rotation of all the spins costs no energy, because the Hamiltonian is invariant under it. The ordered state breaks this symmetry, so a long wavelength rotation costs an energy that goes to zero with <span class="math inline">\(k\)</span>.</p>
+</details>
+</div>
 <p>This is the point where the live lecture ends, right after topological magnons and without a narrated summary slide. This is a real feature of this year’s recording and not something missing in these notes, so we also end here, and we do not add a summary sentence that the lecture does not say. Every magnet that we have constructed in this session, from the mean-field exchange field to the topological magnon edge states, is a state that breaks time-reversal symmetry. It is a net, staggered or noncollinear spin arrangement that looks different when we run time backwards than when we run it forwards.</p>
-<p>Two topics are left open on purpose, and both were pointed out along the way without being resolved here. The Kitaev interaction of Section <a href="12-anisotropic-exchange-with-dzyaloshinskii-moriya-ising-and-kitaev-terms.html#sec-6-12">6.12</a>, which the lecture points out explicitly as “important for quantum spin liquids,” comes back from two different directions in the next sessions. Session 7 treats the frustrated Hamiltonians of kagome type, to which it belongs, as the paradigm case where mean-field theory fails. Session 8 comes back to the Kitaev model itself as a way to obtain an exactly solvable quantum spin liquid. The spinon was previewed in Section <a href="01-two-classes-of-magnets-and-their-excitations.html#sec-6-1">6.1</a> only by name and by its spin-<span class="math inline">\(1/2\)</span> and charge-neutral quantum numbers. It will get the same full treatment that magnons got in this session, but only in session 8, when we move from magnets that break time-reversal symmetry to quantum magnets that do not.</p>
+<p>Two topics are left open on purpose, and both were pointed out along the way without being resolved here. The Kitaev interaction of Section <a href="11-superexchange-as-the-origin-of-ferromagnetic-coupling.html#sec-6-12">6.12</a>, which the lecture points out explicitly as “important for quantum spin liquids,” comes back from two different directions in the next sessions. Session 7 treats the frustrated Hamiltonians of kagome type, to which it belongs, as the paradigm case where mean-field theory fails. Session 8 comes back to the Kitaev model itself as a way to obtain an exactly solvable quantum spin liquid. The spinon was previewed in Section <a href="01-two-classes-of-magnets-and-their-excitations.html#sec-6-1">6.1</a> only by name and by its spin-<span class="math inline">\(1/2\)</span> and charge-neutral quantum numbers. It will get the same full treatment that magnons got in this session, but only in session 8, when we move from magnets that break time-reversal symmetry to quantum magnets that do not.</p>
 
   <nav class="pager"><a href="16-topological-magnons.html">6.16 Topological magnons</a><a href="../session7/index.html">Session 7. Quantum entanglement and tensor networks</a></nav>
 

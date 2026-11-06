@@ -8,4 +8,19 @@ This has a direct and strong consequence. Let us build a Hamiltonian that change
 
 ![The bulk-boundary correspondence, as an argument about an integer. A Hamiltonian changes slowly in space from $H_1$ on the left to $H_2$ on the right, which is the color of the backdrop. In the top row, the Chern number is an integer, so it cannot change continuously from $C_1=1$ to $C_2=0$ and it can only jump. In the middle row, a jump is only allowed where the quantization argument itself fails, which is where the gap closes, so the local gap must go to zero somewhere in the interface region, at the cross. This is drawn schematically, in the local-gap approximation. In the bottom row, the state that appears there is a gapless state bound to the interface. This argument does not use any detail of how the interface is built, and only $C_1$ and $C_2$ enter, which is why the edge state survives rough boundaries and impurities. If we take $H_2$ to be the vacuum, $C_2=0$, we obtain the chiral edge state of figure [3.1](#fig:s03:chiraledge) from a completely general argument.](figures/s03f02_bulkboundary.svg){#fig:s03:bulkboundary number="3.2"}
 
+::: quiz
+Why must the gap close somewhere in an interface between a region with $C=1$ and a region with $C=0$?
+
+- [ ] Because a gapless state is needed for the current to flow in a gapped bulk.
+- [x] Because $C$ is an integer, and it can change only where the quantization argument fails, which is where the gap closes.
+- [ ] Because the vacuum has no states and so it cannot have a gap.
+- [ ] Because energy has to be conserved across the interface.
+
+A quantized quantity cannot change continuously while the gap is open. Any interface that goes from $C=1$ to $C=0$ must therefore pass through a point where the local gap is zero. This is the gapless state.
+:::
+
 The same argument explains the robustness that we used before. Let us put a local impurity at the edge of a quantum Hall sample. This only changes the microscopic details of the interface between the vacuum and the quantum Hall state. Since the topological excitation of the interface must exist for any such details, the edge state reorganizes itself around the impurity and is not scattered by it. This is a general mechanism, which is not special to the quantum Hall case, and it will appear again for every topological invariant that we see from now on.
+
+::: {.tryit notebook="session3.ipynb" cell="Topological edge states in irregular geometries"}
+In the cell with the Haldane coupling on an island, change `rot=np.pi/6.` or `n=8` so that the shape of the edge changes. At the energies inside the gap, the local density of states still sits on the whole boundary, whatever its shape. This is the argument of [](#fig:s03:bulkboundary), which does not use any detail of the edge.
+:::

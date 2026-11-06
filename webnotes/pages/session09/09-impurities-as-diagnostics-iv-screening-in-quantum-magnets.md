@@ -21,6 +21,30 @@ This gives us a completely general diagnostic, which connects all the case studi
 
 ![The diagnostic that connects the whole session, drawn for the two Heisenberg chains of [(9.11)](#eq-9-11). Close to the impurity both look the same, with an induced moment that changes sign from site to site, because the exchange is antiferromagnetic. The only difference between them is how the envelope decays. (a) The $S=1/2$ chain maps, through the Abrikosov-fermion construction of session 8, onto a *gapless* spinon band with a real Fermi surface of two points, so its envelope decays as the power law $1/n$. This is the same mathematics, and the same reason, as for the Friedel oscillations [(9.9)](#eq-9-9) of a metal. (b) The $S=1$ chain has the Haldane gap, which fixes a finite correlation length $\xi$ and gives an exponential envelope $e^{-n/\xi}$, drawn for $\xi=2.5$, in the same way as charge screening decays inside a band insulator. (c) On a logarithmic vertical scale the two are easy to distinguish, since an exponential is a straight line of slope $-1/\xi$ and a power law is not. The statement can be read in both directions, so a measured decay law is a measurement of whether the ground state is gapped.](figures/s09f05_decay.svg){#fig:s09:decay number="9.5"}
 
+::: quiz
+An impurity response in a spin chain is measured, and it looks like $(-1)^n e^{-n/\xi}$ with $\xi\approx2.5$ sites. What do we conclude about the spin excitations?
+
+- [ ] They are gapless, as in the $S=1/2$ chain.
+- [x] They are gapped, and the correlation length is about 2.5 sites.
+- [ ] We cannot say, since the sign alternation only reflects the lattice.
+
+An exponential envelope needs a finite correlation length, and this only exists when the spectrum has a gap. The alternating sign is the antiferromagnetic exchange, and it appears in both cases of [(9.11)](#eq-9-11).
+:::
+
+::: quiz
+In panel (c) of figure [9.5](#fig:s09:decay) the vertical axis is logarithmic. How do the two envelopes look there?
+
+- [x] The exponential is a straight line of slope $-1/\xi$, and the power law is a curve.
+- [ ] Both are straight lines, with different slopes.
+- [ ] The power law is a straight line, and the exponential is a curve.
+
+The logarithm of $e^{-n/\xi}$ is $-n/\xi$, which is linear in $n$. The logarithm of $1/n$ is $-\ln n$, which bends. This is how a measured decay law is read as gapped or gapless.
+:::
+
+::: {.tryit notebook="session9.ipynb" cell="Impurity in an electronic insulator"}
+Run the cell, which compares a gap of `0.1` with a gap of `0.3`. The LDOS reaches its bulk value after about 25 sites for the smaller gap and after about 10 sites for the larger one. The decay length is set by the gap, in the same way as $\xi$ in [(9.11)](#eq-9-11).
+:::
+
 This specific topic, the screening in quantum magnets, is only in the slides and in the lecture, and it has no direct counterpart in `session9.ipynb`. None of the sections of the notebook build a chain of spinons or Abrikosov fermions, so there is no hands-on exercise that reproduces [(9.11)](#eq-9-11) itself.
 
 ::: notebookbox

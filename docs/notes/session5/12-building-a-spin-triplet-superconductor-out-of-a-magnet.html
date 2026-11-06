@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -86,10 +87,40 @@
 <p>Since spin-triplet order is so fragile, how could we ever build one on purpose? One way is a toy model that has both a ferromagnetic exchange field and an attractive interaction in the same Hamiltonian,</p>
 <p><span class="math display">\[H = -t\sum_{\langle ij\rangle,\sigma}c_{i\sigma}^\dagger c_{j\sigma} \;\underbrace{-\, h\sum_i \left(c_{i\uparrow}^\dagger c_{i\uparrow} - c_{i\downarrow}^\dagger c_{i\downarrow}\right)}_{\text{exchange field}} \;+\; \underbrace{U\sum_{\langle ij\rangle} c_{i\sigma}^\dagger c_{j\sigma&#39;}^\dagger c_{j\sigma&#39;}c_{i\sigma}}_{\text{attractive interaction}}, \qquad U&lt;0.\]</span></p>
 <p>If we solve it self-consistently at the mean-field level, both order parameters, the ferromagnetic exchange field and the pairing amplitude, can be nonzero at the same time. The ground state then breaks both time-reversal symmetry, since it is magnetic, <em>and</em> gauge symmetry, since it is superconducting. The pairing that survives is necessarily spin-triplet, because the exchange field explicitly splits the <span class="math inline">\(\uparrow\)</span> and <span class="math inline">\(\downarrow\)</span> Fermi surfaces, and in this way it suppresses the singlet channel, which needs them to be degenerate. Physically, s-wave singlet pairing is usually the leading instability because it can gap the <em>entire</em> Fermi surface, which gives the largest condensation energy. When the exchange field suppresses this channel, a different pairing channel becomes the leading instability instead, which here is the odd-parity, spin-triplet channel, which is effectively p-wave.</p>
+<figure id="sch:s05:spin_split_pairing" class="schematic">
+<img src="../figures/web/session05/spin_split_pairing.svg" loading="lazy" alt="Two cosine bands for spin up and spin down, shifted in energy, with the Fermi points of each marked and an arrow of size 2h between the two bands at the Fermi momentum of spin up." />
+<figcaption><strong>Schematic 5.2.</strong> A chain with an exchange field <span class="math inline">\(h\)</span>. The bands of the two spins are shifted by <span class="math inline">\(\mp h\)</span>, so their Fermi momenta differ. A pair of two <span class="math inline">\(\uparrow\)</span> electrons sits on one Fermi surface, while the <span class="math inline">\(\downarrow\)</span> partner of an <span class="math inline">\(\uparrow\)</span> electron at <span class="math inline">\(k_{F\uparrow}\)</span> sits <span class="math inline">\(2h\)</span> above the Fermi level.</figcaption>
+</figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>In the model of this section, why does the exchange field suppress <span class="math inline">\(s\)</span>-wave singlet pairing but not the pairing of two <span class="math inline">\(\uparrow\)</span> electrons?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>The exchange field breaks gauge symmetry explicitly.</li>
+<li>An <span class="math inline">\(\uparrow\downarrow\)</span> pair at <span class="math inline">\(\mathbf k\)</span> and <span class="math inline">\(-\mathbf k\)</span> has an energy mismatch of <span class="math inline">\(2h\)</span>, while an <span class="math inline">\(\uparrow\uparrow\)</span> pair does not.</li>
+<li>The exchange field turns the interaction repulsive.</li>
+<li>The <span class="math inline">\(\uparrow\)</span> electrons have no kinetic energy in a field.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>A pair at the Fermi level needs both electrons at zero energy. The field shifts the two spins by opposite amounts, so the partners of an <span class="math inline">\(\uparrow\downarrow\)</span> pair cannot both sit on their Fermi surfaces. Two <span class="math inline">\(\uparrow\)</span> electrons share one band, and they can.</p>
+</details>
+</div>
 <p>The most interesting feature of this state appears when we put it on a finite ribbon instead of an infinite plane. The bulk spectrum is gapped, as we expect for a superconductor, but the edges of the ribbon have gapless excitations. A superconductor that is fully gapped in the bulk and gapless at the edge is a signature that we already know from the topological-band-structure and quantum-Hall sessions. Indeed, these edge modes have a topological origin, and they are tied to a finite Chern number of the underlying BdG band structure, in the same way as the edge states of a Chern insulator were tied to its Chern number.</p>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb"><code>session5.ipynb</code></a>, “The impact of a spin splitting in an electronic structure” (Reminder), “A spin triplet superconductor” (Core), “Majorana modes in a spin triplet superconductor” (Challenge), “Interaction-induced spin-triplet superconductivity” (Challenge), and “Topological modes in interaction-driven spin triplet superconductors”</p>
 <p>Start from the plain spin-split band structure, with only an exchange field, to build intuition. Then run the self-consistency loop for the model above and check that a spin-triplet <span class="math inline">\(\Delta\)</span> emerges. Move to a ribbon geometry and find the gapless edge modes described here, and then, in the later challenge sections of the notebook, connect them to the Majorana physics of sections <a href="15-majorana-bound-states-and-how-to-split-an-electron-into-two-majoranas.html#sec-5-15">5.15</a>-<a href="17-topological-zero-modes-with-periodic-and-open-boundaries.html#sec-5-17">5.17</a>.</p>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> In the cell, the line <code>h.add_exchange([0.,0.,1.0])</code> splits the two spin bands of the chain. Change <code>1.0</code> to <code>2.0</code>. The two bands move apart from 2 to 4 at a fixed momentum, so each spin has its own Fermi momentum.</p>
+<div class="tryit-links">
+Notebook <code>session5.ipynb</code>, cell “The impact of a spin splitting in an electronic structure”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession5.ipynb">Binder</a>.
+</div>
 </div>
 
   <nav class="pager"><a href="11-the-general-pairing-hamiltonian-and-its-symmetry-classification.html">5.11 The general pairing Hamiltonian and its symmetry classification</a><a href="13-nodal-singlet-order-d-wave-pairing-in-the-cuprates-and-the-angular-momentum-expansion.html">5.13 Nodal singlet order, d-wave pairing in the cuprates and the angular-momentum expansion</a></nav>

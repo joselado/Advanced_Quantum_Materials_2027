@@ -34,6 +34,17 @@ Some features of this dispersion should be discussed explicitly, since they appe
 
 ![The one-dimensional band $\epsilon_\varphi=-2t\cos\varphi$ of [(2.8)](#eq-2-8), drawn for $t=1$, with the grey tubes showing its local forms. Near the band bottom the dispersion is an upward parabola, and quasiparticles behave as ordinary electrons with positive mass. Near the top the curvature has the opposite sign and they behave as holes. Near midband it is locally linear, which is a first sign of the Dirac physics of Section [2.11](#sec-2-11). The slope is the group velocity [(2.17)](#eq-2-17) and the curvature is the inverse effective mass [(2.18)](#eq-2-18), and both are read from this one curve. On the right is the resulting density of states [(2.16)](#eq-2-16), cut at the top of the drawing, which diverges at both band edges, at the same points where the group velocity vanishes.](figures/s02f02_cosband.svg){#fig:s02:cosband number="2.2"}
 
+::: quiz
+In this session $t>0$ in [(2.8)](#eq-2-8). At which phase would the minimum of the band be if the hopping had the opposite sign?
+
+- [x] At $\varphi=\pi$.
+- [ ] At $\varphi=0$, as before.
+- [ ] At $\varphi=\pi/2$.
+- [ ] The band would have no minimum.
+
+The sign change turns $\epsilon_\varphi=-2t\cos\varphi$ into $+2t\cos\varphi$, which is the same curve upside down. The minimum then moves from $\varphi=0$ to $\varphi=\pi$.
+:::
+
 ::: notebookbox
 **Notebook check-in:** [`session2.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session2.ipynb), "One dimensional chain" (Core)
 
@@ -45,10 +56,30 @@ c_{n+2}+\text{h.c.})$ to [(2.5)](#eq-2-5). This term has the same translational 
 
 $$\epsilon_\varphi = -2t\cos\varphi - 2\eta\cos(2\varphi). \tag{2.9}$$
 
+::: quiz
+What is the energy of [(2.9)](#eq-2-9) at $\varphi=\pi/2$?
+
+- [ ] $0$
+- [x] $2\eta$
+- [ ] $-2\eta$
+- [ ] $-2t-2\eta$
+
+The nearest-neighbor term vanishes, since $\cos(\pi/2)=0$. The second-neighbor term gives $-2\eta\cos\pi=+2\eta$.
+:::
+
 ::: notebookbox
 **Notebook check-in:** [`session2.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session2.ipynb), "One dimensional chain, with longer range hopping" (Core)
 
 Add the second-neighbour hopping $\eta$ to the chain from the previous box, and check that the band you compute numerically agrees with [(2.9)](#eq-2-9). It is also useful to check the density of states here (Section [2.9](#sec-2-9)), since $\eta$ can create a second local extremum in $\epsilon_\varphi$, and with it an additional feature of Van Hove type in the spectrum.
 :::
 
+::: {.tryit notebook="session2.ipynb" cell="One dimensional chain, with longer range hopping"}
+Put the second neighbor hopping in the second place of `tij`, for example `tij=[1.0,0.3,0.0]`, and compare the band with [(2.9)](#eq-2-9). Increase it to $0.5$, and check that the band gets an extra extremum and the density of states an extra peak. The notebook uses the opposite sign of the hopping, so its band is turned upside down.
+:::
+
 We also mention `pyqula` by name here, which is a Python package that computes band structures such as this one in 1D, 2D, 3D and higher dimensions, and which is the computational tool we use in the whole course. Here we only give its name. The slides show an explicit installation guide (`pip install pyqula`) and example scripts for a 1D chain and for a 1D "ladder" with two sites per cell, together with the band plots that these scripts produce. This installation guide and the screenshots of its code are only on the slides, and they are not narrated in the transcript nor reproduced here. The notebook is the place where you run the equivalent code yourself.
+
+::: {.widget name="chainband"}
+Move the second-neighbor hopping $t_2$ of [(2.9)](#eq-2-9). For small $t_2$ the band keeps one minimum and one maximum, as for $t_2=0$ (dashed). Above $t_2=t/4$ the point $\varphi=\pi$ becomes a local minimum, and two new maxima appear next to it. Each extremum gives a Van Hove singularity in the density of states of Section [2.9](#sec-2-9).
+:::
+

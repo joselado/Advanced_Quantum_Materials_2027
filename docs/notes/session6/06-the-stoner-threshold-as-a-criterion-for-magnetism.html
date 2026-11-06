@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -83,7 +84,7 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="on" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 6. Classical Magnetism and Magnons</a></p>
 <h1 id="sec-6-6"><span class="num">6.6</span> The Stoner threshold as a criterion for magnetism</h1>
-<p>A natural question is whether <em>any</em> repulsive <span class="math inline">\(U&gt;0\)</span> gives magnetism, or if there is a threshold. We write the mean-field bands as <span class="math inline">\(E_\sigma(\mathbf{k}) = E(\mathbf{k}) - \sigma\, \tfrac{U}{2}m\)</span> for <span class="math inline">\(\sigma=\pm1\)</span>, meaning spin up and down, where <span class="math inline">\(m\)</span> is the self-consistent magnetization of <a href="03-the-hubbard-model-and-mean-field-magnetism-revisited.html#eq-6-2">(6.2)</a>. At zero temperature, the self-consistency condition is</p>
+<p>A natural question is whether <em>any</em> repulsive <span class="math inline">\(U&gt;0\)</span> gives magnetism, or if there is a threshold. We write the mean-field bands as <span class="math inline">\(E_\sigma(\mathbf{k}) = E(\mathbf{k}) - \sigma\, \tfrac{U}{2}m\)</span> for <span class="math inline">\(\sigma=\pm1\)</span>, meaning spin up and down, where <span class="math inline">\(m\)</span> is the self-consistent magnetization of <a href="02-a-recap-of-symmetry-breaking-and-the-mean-field-philosophy.html#eq-6-2">(6.2)</a>. At zero temperature, the self-consistency condition is</p>
 <p><span class="math display">\[m = \sum_{\mathbf k}\Big[n_F\big(E(\mathbf k)-\tfrac{U}{2}m\big) - n_F\big(E(\mathbf k)+\tfrac{U}{2}m\big)\Big].\]</span></p>
 <p>If we expand the right-hand side for small <span class="math inline">\(m\)</span> we obtain <span class="math inline">\(m \approx U\,m\,D(E_F)\)</span>, where <span class="math inline">\(D(E_F)\)</span> is the density of states at the Fermi level. The trivial solution <span class="math inline">\(m=0\)</span> always exists, but a <em>nontrivial</em> solution appears when the linear coefficient reaches one, which gives the condition</p>
 <p><span id="eq-6-3" class="eq"><span class="math display">\[U\, D(E_F) \geq 1. \tag{6.3}\]</span></span></p>
@@ -92,6 +93,26 @@
 <img src="../figures/s06f01_stoner.svg" loading="lazy" alt="A graphical reading of the Stoner criterion (6.3)." />
 <figcaption><strong>Figure 6.1.</strong> A graphical reading of the Stoner criterion <a href="#eq-6-3">(6.3)</a>. (a) The self-consistency condition <span class="math inline">\(m=f(m)\)</span>, where <span class="math inline">\(f\)</span> is the right-hand side of the zero-temperature gap equation, drawn here with the shape <span class="math inline">\(\tanh\)</span> for two values of the slope. It is an odd function that saturates once the bands are fully polarized, and its slope at the origin is exactly <span class="math inline">\(U D(E_F)\)</span>. If this slope is below one, the only crossing with <span class="math inline">\(y=m\)</span> is the trivial solution <span class="math inline">\(m=0\)</span>. Once the slope is above one, a pair of nontrivial solutions <span class="math inline">\(\pm m_0\)</span> appears and the nonmagnetic state becomes unstable. (b) The resulting order parameter, which stays at zero until <span class="math inline">\(U D(E_F)\)</span> reaches one and then grows continuously. For this reason, whether a metal becomes magnetic is not decided by <span class="math inline">\(U\)</span> alone but by the <em>product</em> of <span class="math inline">\(U\)</span> with the density of states at the Fermi level. This is why aluminium and lead stay nonmagnetic even with a sizeable Coulomb repulsion, while the narrow <span class="math inline">\(d\)</span> bands of iron and cobalt are clearly above the threshold.</figcaption>
 </figure>
+<div class="quiz" data-correct="C">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>A flat band has a very large density of states at the Fermi level. According to the Stoner criterion <a href="#eq-6-3">(6.3)</a>, how large must <span class="math inline">\(U\)</span> be for magnetism?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>Larger than <span class="math inline">\(4t\)</span>, which is the bandwidth of the chain.</li>
+<li>Magnetism is impossible, since the bands do not disperse.</li>
+<li>Very small, since <span class="math inline">\(U D(E_F)\)</span> is already above one.</li>
+<li>It has to be negative, an attractive interaction.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>C</strong>.</p>
+<p>The condition is <span class="math inline">\(U D(E_F)\geq 1\)</span>. When <span class="math inline">\(D(E_F)\)</span> is large, a small <span class="math inline">\(U\)</span> reaches the threshold. This is why flat bands are good places to look for magnetism.</p>
+</details>
+</div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb"><code>session6.ipynb</code></a>, “(Exercise) Intermediate coupling regime and Stoner instability”</p>
 <p>Reproduce the threshold behavior of <a href="#eq-6-3">(6.3)</a> directly. Compute the self-consistent magnetization as a function of <span class="math inline">\(U\)</span>, and find the critical interaction at which <span class="math inline">\(m\)</span> first becomes nonzero.</p>
@@ -100,9 +121,19 @@
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb"><code>session6.ipynb</code></a>, “(Exercise) Magnetism in flat bands”</p>
 <p>In principle, a flat band has a divergent density of states at <span class="math inline">\(E_F\)</span>, so the Stoner product <span class="math inline">\(U D(E_F)\)</span> in <a href="#eq-6-3">(6.3)</a> is above the threshold for practically any <span class="math inline">\(U&gt;0\)</span>. This exercise is not narrated in the transcript, but it is the natural numerical extension of Section <a href="#sec-6-6">6.6</a>, since a flat-band system is the case where it is easiest for magnetism to appear.</p>
 </div>
-<p>One important consequence ends this section and starts the next one. From <a href="#eq-6-3">(6.3)</a>, magnetism in general needs <span class="math inline">\(U D(E_F) \gtrsim 1\)</span>, and for a reasonable bandwidth this usually means that <span class="math inline">\(U\)</span> has to be comparable to <span class="math inline">\(t\)</span> or larger, and not smaller. However, mean-field theory itself is only reliable for <span class="math inline">\(U \ll t\)</span>, as we saw in Section <a href="03-the-hubbard-model-and-mean-field-magnetism-revisited.html#sec-6-3">6.3</a>. So the regime where magnetism appears is, in general, the same regime where the method that we have been using stops working. We need a different approach for <span class="math inline">\(U \gg t\)</span>, and we construct it in the rest of this session.</p>
+<p>One important consequence ends this section and starts the next one. From <a href="#eq-6-3">(6.3)</a>, magnetism in general needs <span class="math inline">\(U D(E_F) \gtrsim 1\)</span>, and for a reasonable bandwidth this usually means that <span class="math inline">\(U\)</span> has to be comparable to <span class="math inline">\(t\)</span> or larger, and not smaller. However, mean-field theory itself is only reliable for <span class="math inline">\(U \ll t\)</span>, as we saw in Section <a href="02-a-recap-of-symmetry-breaking-and-the-mean-field-philosophy.html#sec-6-3">6.3</a>. So the regime where magnetism appears is, in general, the same regime where the method that we have been using stops working. We need a different approach for <span class="math inline">\(U \gg t\)</span>, and we construct it in the rest of this session.</p>
+<div class="widget" data-widget="stoner">
+<div class="widget-label">
+Interactive
+</div>
+<p>Move the interaction <span class="math inline">\(U\)</span>. We use a half-filled band with a semicircular density of states, for which <span class="math inline">\(D(E_F)=1/\pi t\)</span>, so that the threshold of <a href="#eq-6-3">(6.3)</a> is <span class="math inline">\(U=\pi t\)</span>. Below it the curve <span class="math inline">\(f(m)\)</span> starts under the diagonal, and the only solution is <span class="math inline">\(m=0\)</span>. Above it the curve starts over the diagonal, and a magnetized solution appears. The magnetization rises steeply because this density of states is flat close to <span class="math inline">\(E_F\)</span>.</p>
+<noscript><p class="widget-nojs">This widget needs JavaScript.</p></noscript>
+</div>
+<h1 class="sec-next" id="sec-6-7"><span class="num">6.7</span> The strongly localized limit, where mean field breaks down</h1>
+<p>Let us look again at the half-filled chain of Section <a href="04-exchange-splitting-and-antiferromagnetic-order-in-numerical-mean-field-theory.html#sec-6-4">6.4</a>, but now we follow the magnetization per site as <span class="math inline">\(U\)</span> grows from zero to very large values. At <span class="math inline">\(U=0\)</span> there is no interaction and <span class="math inline">\(m=0\)</span>. When <span class="math inline">\(U\)</span> increases, <span class="math inline">\(m\)</span> grows, and for <span class="math inline">\(U\to\infty\)</span> it saturates at exactly one Bohr magneton per site. This is a full localized spin-<span class="math inline">\(1/2\)</span> moment on every site, and the moments point in alternating directions on the two sublattices, which is the “Ising-like” antiferromagnetic state to which the numerics converge.</p>
+<p>This saturation tells us something physical, which is that in the large-<span class="math inline">\(U\)</span> limit the electrons stop moving completely. If an electron hops onto a neighboring site that is already occupied, this costs an energy <span class="math inline">\(U\)</span>. When <span class="math inline">\(U\gg t\)</span> this cost is too large, so each site keeps its one localized electron, and only its spin can still fluctuate. For this reason, in this limit perturbation theory should <em>not</em> be organized around the kinetic term, as mean field does implicitly, but around the localized state. We take the interacting and localized configuration as the ground state at zeroth order, and we treat the hopping as a small perturbation on top of it.</p>
 
-  <nav class="pager"><a href="05-competition-between-the-ferromagnet-and-the-antiferromagnet.html">6.5 Competition between the ferromagnet and the antiferromagnet</a><a href="07-the-strongly-localized-limit-where-mean-field-breaks-down.html">6.7 The strongly localized limit, where mean field breaks down</a></nav>
+  <nav class="pager"><a href="04-exchange-splitting-and-antiferromagnetic-order-in-numerical-mean-field-theory.html">6.4 Exchange splitting and antiferromagnetic order in numerical mean-field theory</a><a href="08-from-the-hubbard-dimer-to-the-heisenberg-model.html">6.8 From the Hubbard dimer to the Heisenberg model</a></nav>
 
 </main>
 </body>

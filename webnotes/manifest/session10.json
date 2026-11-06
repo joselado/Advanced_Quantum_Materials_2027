@@ -11,19 +11,26 @@
    "file": "01-machine-learning-and-many-body-physics-in-two-directions.md",
    "id": "sec-10-1",
    "number": "10.1",
-   "title": "Machine learning and many-body physics in two directions"
-  },
-  {
-   "file": "02-neural-networks-as-function-approximators.md",
-   "id": "sec-10-2",
-   "number": "10.2",
-   "title": "Neural networks as function approximators"
+   "title": "Machine learning and many-body physics in two directions",
+   "also": [
+    {
+     "id": "sec-10-2",
+     "number": "10.2",
+     "title": "Neural networks as function approximators"
+    }
+   ]
   },
   {
    "file": "03-neural-network-quantum-states.md",
    "id": "sec-10-3",
-   "number": "10.3",
+   "number": "10.3a",
    "title": "Neural network quantum states"
+  },
+  {
+   "file": "03b-training-the-network-and-quantum-state-tomography.md",
+   "id": "sec-10-3b",
+   "number": "10.3b",
+   "title": "Training the network and quantum state tomography"
   },
   {
    "file": "04-tensor-networks-for-machine-learning-and-the-many-body-wavefunction-as-a-big-data-problem.md",
@@ -40,8 +47,14 @@
   {
    "file": "06-phase-classification-with-local-order-parameters-and-topological-order.md",
    "id": "sec-10-6",
-   "number": "10.6",
+   "number": "10.6a",
    "title": "Phase classification with local order parameters and topological order"
+  },
+  {
+   "file": "06b-the-hard-case-the-ising-gauge-theory.md",
+   "id": "sec-10-6b",
+   "number": "10.6b",
+   "title": "The hard case, the Ising gauge theory"
   },
   {
    "file": "07-hamiltonian-learning-as-the-inverse-of-the-first-step-of-session-1.md",
@@ -54,6 +67,12 @@
    "id": "sec-10-8",
    "number": "10.8",
    "title": "Closing summary"
+  }
+ ],
+ "redirects": [
+  {
+   "from": "02-neural-networks-as-function-approximators.html",
+   "to": "01-machine-learning-and-many-body-physics-in-two-directions.html#sec-10-2"
   }
  ]
 }

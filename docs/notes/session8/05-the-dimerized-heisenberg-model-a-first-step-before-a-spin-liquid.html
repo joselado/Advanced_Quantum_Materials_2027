@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -91,6 +92,56 @@
 site}. \tag{8.5}\]</span></span></p>
 <p>In one sense this is a trivial Hamiltonian, a collection of independent zero-dimensional problems. But it already shows something important. A macroscopic Heisenberg Hamiltonian <em>can</em> have a ground state that does not break time-reversal symmetry, and this state is the direct generalization of the two-site singlet <a href="03-two-minimal-dimers-a-classical-order-parameter-and-a-quantum-singlet.html#eq-8-3">(8.3)</a> to an extensive system. If we add small couplings between the dimers, the state changes smoothly and it still does not break time-reversal symmetry.</p>
 <p>There is, however, an important difference to make here, because this state is <em>not yet</em> a quantum spin liquid. Its fundamental excitations still have spin <span class="math inline">\(1\)</span>. If we turn one singlet into its triplet partner, we obtain a <strong>triplon</strong>, which is a local transition from singlet to triplet, and it has the same structure as a magnon, with only a different name. A state that is built in this way, from a fixed and static pattern of singlets, is called a <strong>valence bond solid (VBS)</strong>. To obtain a real quantum spin liquid, with spin-<span class="math inline">\(1/2\)</span> excitations instead of spin-<span class="math inline">\(1\)</span> triplons, we need more than a static dimer covering. We need the singlets to fluctuate and to resonate over the whole lattice, and this is the frustrated case that we study in the next section. Figure <a href="06-the-resonating-valence-bond-wavefunction-as-the-qsl-ground-state.html#fig:s08:vbsrvb">8.3</a> shows this difference explicitly.</p>
+<figure class="again">
+<img src="../figures/s08f03_vbs_rvb.svg" loading="lazy" alt="A valence bond solid with its two unpaired spins confined, and a resonating valence bond state with free spin one-half excitations." />
+<figcaption><strong><a href="06-the-resonating-valence-bond-wavefunction-as-the-qsl-ground-state.html#fig:s08:vbsrvb">Figure 8.3</a>, shown again.</strong> The frozen dimer covering of this section and its excitation. Look at the left panels (a1) and (a2), where separating the two unpaired spins breaks every singlet between them, so the pair stays bound as a triplon. The right panels show what the next section adds, a superposition of many coverings.</figcaption>
+</figure>
+<div class="quiz" data-correct="C">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>We turn one singlet of <a href="#eq-8-5">(8.5)</a> into a triplet. What is the spin of this excitation?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(1/2\)</span>, so it is a spinon.</li>
+<li><span class="math inline">\(0\)</span>, since the state is still a product of dimers.</li>
+<li><span class="math inline">\(1\)</span>, so it is a triplon and not a spinon.</li>
+<li><span class="math inline">\(3/2\)</span>, since two spins are involved.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>C</strong>.</p>
+<p>The two spins of the dimer are in a triplet, which has <span class="math inline">\(S=1\)</span>. Both spins stay on the same bond, so this excitation has the structure of a magnon.</p>
+</details>
+</div>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>We add a weak coupling between the dimers of <a href="#eq-8-4">(8.4)</a>. What happens to the ground state?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>It breaks time-reversal symmetry immediately.</li>
+<li>It changes smoothly and it still does not break time-reversal symmetry.</li>
+<li>It becomes a quantum spin liquid immediately.</li>
+<li>It becomes degenerate.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The singlet-triplet gap protects the state, so a small perturbation changes it only a little. The state remains a valence bond solid until the coupling is of the order of the gap.</p>
+</details>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> Run the dimerized chain with <span class="math inline">\(J=1\pm0.2\)</span> and compare the profile with the uniform chain. The magnetization induced by the local field should decay much faster along the dimerized chain. Change 0.2 to 0.05 and see how the decay length grows when the dimerization is weaker.</p>
+<div class="tryit-links">
+Notebook <code>session8.ipynb</code>, cell “Magnetization of a dimerized Heisenberg model with a magnetic impurity”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session8.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session8.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession8.ipynb">Binder</a>.
+</div>
+</div>
 
   <nav class="pager"><a href="04-frustration-as-the-route-to-a-quantum-spin-liquid.html">8.4 Frustration as the route to a quantum spin liquid</a><a href="06-the-resonating-valence-bond-wavefunction-as-the-qsl-ground-state.html">8.6 The resonating valence bond wavefunction as the QSL ground state</a></nav>
 

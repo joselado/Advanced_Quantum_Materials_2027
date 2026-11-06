@@ -13,3 +13,16 @@ This is the final recap of the lecture, with the equations that it refers to.
 - Quantum entanglement that mixes spin and fermion degrees of freedom also appears in **Kondo systems**. The same parton method, applied to a lattice of local moments inside a metal, [(8.17)](#eq-8-17)-[(8.21)](#eq-8-21), turns the Kondo exchange coupling into a mean-field **hybridization** $\gamma_K$. This hybridization opens a gap in the conduction band at the anti-crossing and turns a metal into a **Kondo insulator**, also called a heavy-fermion insulator, and the gap grows monotonically with the strength of the Kondo coupling (Section [8.13](#sec-8-13)).
 
 Session 9 continues directly from this construction. The method of Abrikosov fermions and spinons that we built here is used again, now for a single magnetic impurity in a metal that is otherwise ordinary, with an explicit reference to a result on Friedel oscillations that is derived earlier in that same session.
+
+![The central difference of the session. Look at the counting of $\Delta S$ in panel (a) and in panel (b), which is the reason why the excitations of a quantum spin liquid are spinons and not magnons.](figures/s08f01_magnon_spinon.svg){alt="A magnet with one flipped spin, and a pattern of singlets with one broken pair that leaves two unpaired spins."}
+
+::: quiz
+Which excitation carries spin $1/2$, no charge, and appears in the parton construction of a quantum spin liquid?
+
+- [x] The spinon.
+- [ ] The magnon.
+- [ ] The vison.
+- [ ] The triplon.
+
+The magnon and the triplon have spin $1$, and the vison is a flux of the gauge field with no spin. The spinon is the fermion of the parton construction, which carries the spin of the electron.
+:::

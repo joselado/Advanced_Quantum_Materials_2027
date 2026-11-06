@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -89,7 +90,58 @@
 <p>and, when we apply the same argument a third time, for a cubic lattice with a single orbital,</p>
 <p><span id="eq-2-15" class="eq"><span class="math display">\[\epsilon(\varphi_x,\varphi_y,\varphi_z) = -2t\left(\cos\varphi_x+\cos\varphi_y+\cos\varphi_z\right). \tag{2.15}\]</span></span></p>
 <p>The same method extends in a systematic way to four, five or more dimensions, since nothing in the argument depends on being in three-dimensional space. Equations <a href="#eq-2-14">(2.14)</a> and <a href="#eq-2-15">(2.15)</a> come from the slides and the transcript, and there is no counterpart for them in <code>session2.ipynb</code>. The two-dimensional example of the notebook goes directly to the honeycomb lattice of Section <a href="11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#sec-2-11">2.11</a> and does not treat the plain square lattice, and there is no section on the three-dimensional cubic lattice. If you want to check <a href="#eq-2-14">(2.14)</a> or <a href="#eq-2-15">(2.15)</a> numerically, the same construction that we use for the honeycomb lattice in the box below can be extended directly, with a square or cubic Bravais lattice with a single orbital instead.</p>
+<p><a href="#sch:s02:square_bands">Schematic 2.3</a> shows the band of <a href="#eq-2-14">(2.14)</a>.</p>
+<figure id="sch:s02:square_bands" class="schematic">
+<img src="../figures/web/session02/square_bands.svg" loading="lazy" alt="The energy of the square lattice along a path of the Brillouin zone, and its contour lines over the zone." />
+<figcaption><strong>Schematic 2.3.</strong> The band of the square lattice from <a href="#eq-2-14">(2.14)</a>. On the left, the energy along the path from <span class="math inline">\(\Gamma\)</span> to <span class="math inline">\(X\)</span> to <span class="math inline">\(M\)</span> and back, which goes from <span class="math inline">\(-4t\)</span> to <span class="math inline">\(4t\)</span>. On the right, the contour lines of the same band over the Brillouin zone, with the line <span class="math inline">\(\epsilon=0\)</span> in red. The contours continue across the dashed border, so the zone is a torus.</figcaption>
+</figure>
+<div class="quiz" data-correct="C">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>What is the width of the band of the cubic lattice in <a href="#eq-2-15">(2.15)</a>, from the lowest to the highest energy?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(4t\)</span></li>
+<li><span class="math inline">\(8t\)</span></li>
+<li><span class="math inline">\(12t\)</span></li>
+<li><span class="math inline">\(6t\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>C</strong>.</p>
+<p>The lowest energy is at <span class="math inline">\(\varphi_x=\varphi_y=\varphi_z=0\)</span>, where all three cosines are <span class="math inline">\(1\)</span> and the energy is <span class="math inline">\(-6t\)</span>. The highest is at <span class="math inline">\(\pi\)</span> in every direction, which gives <span class="math inline">\(+6t\)</span>, so the width is <span class="math inline">\(12t\)</span>.</p>
+</details>
+</div>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>We switch off the hopping along <span class="math inline">\(y\)</span> in the square lattice. What does the energy depend on?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>Only on <span class="math inline">\(\varphi_x\)</span>, so the band is flat along <span class="math inline">\(\varphi_y\)</span>.</li>
+<li>Only on <span class="math inline">\(\varphi_y\)</span>.</li>
+<li>On <span class="math inline">\(\varphi_x+\varphi_y\)</span>.</li>
+<li>It does not depend on either.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>Without hopping along <span class="math inline">\(y\)</span> the lattice is a set of decoupled chains. Each chain has the band of <a href="05-blochs-theorem-and-the-first-band-structure.html#eq-2-8">(2.8)</a>, and nothing depends on <span class="math inline">\(\varphi_y\)</span>.</p>
+</details>
+</div>
 <p>Before we continue, let us say explicitly that everything above applies far beyond electrons. The same Bloch-Hamiltonian method diagonalizes phonon bands, magnon bands and the bands of Bogoliubov-de Gennes quasiparticles in a superconductor. It applies in the same way to artificial lattices that are engineered and have no relation to real crystals, such as cold atoms trapped in optical lattices. We will focus on electronic bands for concreteness, but this generality is the reason why the same method appears again for magnons, and for Bogoliubov quasiparticles, later in the course. The physics that single-particle band theory gives in this way is very rich. It includes Dirac fermions with zero Dirac mass, Weyl semimetals, which are Dirac points generalized to higher dimensions, quantum spin Hall insulators, Chern insulators, crystalline topological phases and topological superconductors. All of this is built only on the Bloch Hamiltonian <span class="math inline">\(H(\mathbf{k})\)</span> that we constructed here.</p>
+<div class="tryit">
+<p><strong>Try it.</strong> In the cell of the band structure, replace the honeycomb lattice by <code>geometry.square_lattice()</code>. Check that the band goes from <span class="math inline">\(-4t\)</span> to <span class="math inline">\(4t\)</span>, which is the range of <a href="#eq-2-14">(2.14)</a>. The notebook uses the opposite sign of the hopping, so the two extremes are exchanged.</p>
+<div class="tryit-links">
+Notebook <code>session2.ipynb</code>, cell “Infinite two-dimensional graphene”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session2.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session2.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession2.ipynb">Binder</a>.
+</div>
+</div>
 
   <nav class="pager"><a href="07-multi-orbital-band-structures.html">2.7 Multi-orbital band structures</a><a href="09-properties-of-an-electronic-dispersion.html">2.9 Properties of an electronic dispersion</a></nav>
 

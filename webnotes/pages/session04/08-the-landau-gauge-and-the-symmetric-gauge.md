@@ -9,3 +9,25 @@ For a uniform field $\mathbf{B} = B\hat{z}$, there are two gauges that will be i
 Figure [4.2](#fig:s04:gauge) shows the difference in a concrete way, by writing both gauges as Peierls phases [(4.4)](#eq-4-4) on a square lattice. The phases of the single bonds are completely different in the two gauges, but the sum around any plaquette is the same flux in both. This sum is the only gauge-invariant combination, and it is the only thing that the electrons respond to.
 
 ![Two gauges for the same magnetic field, written as Peierls phases [(4.4)](#eq-4-4) on a square lattice, with a dial on every bond whose needle points at the angle of its phase, drawn for $\varphi=\pi/4$. (a) In the Landau gauge the horizontal bonds have no phase at all and the vertical bond in column $x$ has the phase $x\varphi$. The phase pattern depends on $x$ but not on $y$, so translations along $y$ are still an exact symmetry and a band structure in $k_y$ still exists. (b) In the symmetric gauge every bond has a phase and none of them is the same as in (a), so no translation survives, but the pattern is invariant under rotation about the centre of the plaquette. There is no physical difference between the two. When we go once around any plaquette, such as the shaded one, the phases of the single bonds add up to the same $\varphi$, which is the flux through that plaquette. The bond phases are a choice of gauge and the loop sum is not, and the electrons respond only to the loop sum.](figures/s04f02_gauge.svg){#fig:s04:gauge number="4.2"}
+
+::: quiz
+In the Landau gauge $\mathbf{A}=(0,Bx,0)$, which momentum is a good quantum number and can label the eigenstates?
+
+- [ ] Both $p_x$ and $p_y$.
+- [x] $p_y$.
+- [ ] $p_x$.
+- [ ] Neither of them.
+
+The vector potential does not depend on $y$, so $[H,p_y]=0$. It depends on $x$, so $p_x$ does not commute with $H$.
+:::
+
+::: quiz
+Why is the Landau gauge the natural choice for the band structure of a ribbon, and not the symmetric gauge?
+
+- [ ] The Landau gauge gives a different physical field.
+- [x] The symmetric gauge breaks both translations, so there is no momentum along the ribbon and no band structure.
+- [ ] The Landau gauge has a larger gap.
+- [ ] The symmetric gauge has no flux through the plaquettes.
+
+The physics is the same in both gauges. The Landau gauge keeps the translation along the ribbon, which is what we need to plot energy against momentum.
+:::

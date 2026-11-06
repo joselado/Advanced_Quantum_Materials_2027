@@ -2,6 +2,7 @@
 import html
 import importlib.util
 import os
+import re
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DOCS = os.path.join(os.path.dirname(HERE), 'docs')
@@ -11,6 +12,11 @@ site = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(site)
 
 REPO = site.REPO
+PRIVATE = False      # a private build (build.py --out DIR) has notes.js and notes.css one folder up, not in notes/
+CSS_LINK = 'notes.css">'
+# the blocks and figures added for the web carry these classes, and only a page that has one links notes.css,
+# so a page without them is the same file as before
+NEW_BLOCKS = re.compile(r'class="[^"]*\b(quiz|tryit|schematic|again|panel|sec-next|widget)\b')
 
 NOTES_STYLE = """
   main { max-width: 860px; }
@@ -25,7 +31,7 @@ NOTES_STYLE = """
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -52,6 +58,8 @@ def esc(s):
 def shell(title, body, depth):
     """A page of the notes. depth is the number of folders below docs/, 2 for notes/session2/x.html."""
     up = '../' * depth
+    assets = '../' * (depth - 1) if PRIVATE else f'{up}notes/'
+    css = f'<link rel="stylesheet" href="{assets}{CSS_LINK}\n' if NEW_BLOCKS.search(body) else ''
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -60,7 +68,7 @@ def shell(title, body, depth):
 <title>{esc(title)}</title>
 <style>{site.STYLE}{NOTES_STYLE}</style>
 {MATHJAX}
-<script src="{up}notes/notes.js" defer></script>
+{css}<script src="{assets}notes.js" defer></script>
 </head>
 <body>
 <main>

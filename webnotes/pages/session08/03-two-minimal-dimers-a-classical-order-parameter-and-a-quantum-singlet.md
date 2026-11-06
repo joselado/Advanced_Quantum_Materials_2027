@@ -22,3 +22,27 @@ $$|GS\rangle = \frac{1}{\sqrt2}\Big(|{\uparrow\downarrow}\rangle -
 |{\downarrow\uparrow}\rangle\Big), \qquad \langle \mathbf S_i \rangle = 0. \tag{8.3}$$
 
 This ground state is different from the Ising case in three ways, and these three points are important for the rest of the session. First, it is the *unique* ground state, so there is no degeneracy and no spontaneous choice between states. Second, it is *time-reversal symmetric*, since its net magnetization is exactly zero and time reversal maps $|GS\rangle$ to itself. Third, it is *maximally entangled*, since the two terms in [(8.3)](#eq-8-3) have the same weight, which is the largest entanglement that two qubits can have. Can we have a macroscopic version of this ground state? This question is the origin of quantum spin liquids.
+
+![Where the Heisenberg dimer comes from. With parallel spins the hop of an electron is blocked by the Pauli principle, which the cross shows. With antiparallel spins the electron can hop to the neighbor and come back, and this virtual process lowers the energy of the singlet. Look at the lower part of the figure, since this process is the origin of the antiferromagnetic coupling $J$ of [(8.2)](#eq-8-2).](figures/s06f02_dimer.svg){panel="a" alt="Two sites with parallel spins, where the hop is forbidden, and with antiparallel spins, where the hop is allowed."}
+
+::: quiz
+What is the energy of the state $|{\uparrow\downarrow}\rangle$ of the Ising dimer [(8.1)](#eq-8-1)?
+
+- [ ] $-3/4$, which is the energy of the singlet.
+- [x] $-1/4$, since $S^z_0S^z_1=(\tfrac12)(-\tfrac12)$.
+- [ ] $0$, since the spins point in opposite directions.
+- [ ] $+1/4$, since the spins are antiparallel.
+
+The product of the two $z$ components is $-1/4$ for antiparallel spins and $+1/4$ for parallel ones. The two antiparallel states are degenerate, and each symmetry-broken state chooses one of them.
+:::
+
+::: quiz
+We change the sign of the coupling, $H=J\,\mathbf S_0\cdot\mathbf S_1$ with $J<0$. What is the ground state of the dimer?
+
+- [ ] The singlet, as for $J>0$.
+- [ ] The singlet, but with a smaller gap.
+- [ ] A single state $|{\uparrow\uparrow}\rangle$ that breaks time-reversal symmetry.
+- [x] The triplet, which is threefold degenerate.
+
+The value of $\mathbf S_0\cdot\mathbf S_1$ is $-3/4$ for the singlet and $+1/4$ for the triplet. For $J<0$ the energy $J/4$ of the triplet is below $-3J/4$ of the singlet, and the three triplet states are degenerate.
+:::

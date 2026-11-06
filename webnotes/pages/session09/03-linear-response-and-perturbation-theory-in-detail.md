@@ -15,6 +15,28 @@ $$|n(\lambda)\rangle = |n\rangle + \lambda \sum_{m \neq n} \frac{\langle m|V|n\r
 
 The structure of [(9.3)](#eq-9-3) is the basis of every derivation in the rest of this session. A perturbation mixes a state $|n\rangle$ with every other state $|m\rangle$. The weight of the mixing is the matrix element of $V$ between the two states, and it is suppressed by the inverse of the energy gap between them. States that are close in energy mix strongly, and states that are far apart in energy almost do not mix. Once we have [(9.3)](#eq-9-3), we can write any observable, in particular any density or magnetization, to first order in $\lambda$ by using the perturbed states.
 
+![The mixing of [(9.3)](#eq-9-3) for one fixed matrix element $\langle m|V|n\rangle=0.1$. On the left we see the levels of $H_0$ around $|n\rangle$, and on the right the coefficient of each level in the perturbed state. The closest level, $|m_1\rangle$, mixes the most, and the sign of the coefficient follows the sign of $E_n^{(0)}-E_m^{(0)}$, so that a level above $|n\rangle$ enters with a negative sign.](figures/web/session09/mixing.svg){#sch:s09:mixing alt="Four energy levels around a central level, and horizontal bars that show the mixing coefficient of each level, largest for the closest one."}
+
+::: quiz
+A state $|n\rangle$ is coupled by $V$ to two other states with the same matrix element. One of them is $0.1t$ away in energy and the other is $1.0t$ away. How do the two mixing coefficients of [(9.3)](#eq-9-3) compare?
+
+- [x] The closer state has a coefficient ten times larger.
+- [ ] They are equal, since the matrix element is the same.
+- [ ] The farther state has the larger coefficient, since it carries more energy.
+
+The coefficient is the matrix element divided by the energy difference. With equal matrix elements, the ratio of the coefficients is the inverse ratio of the gaps, which is ten.
+:::
+
+::: quiz
+Two levels of $H_0$ are exactly degenerate and $V$ couples them. What happens to the first-order coefficient of [(9.3)](#eq-9-3) between them?
+
+- [ ] It becomes zero, so the two levels do not mix.
+- [x] It diverges, so we must diagonalize $V$ inside the degenerate subspace first.
+- [ ] It stays finite, because the matrix element is finite.
+
+The denominator $E_n^{(0)}-E_m^{(0)}$ vanishes, so the expansion in $\lambda$ breaks down. This is why the formula holds only away from degeneracy, as we said before the equation.
+:::
+
 **When does this break down?** The construction in [(9.3)](#eq-9-3) assumes that $A(\lambda)$ is an analytic function of $\lambda$ close to $\lambda=0$, and this assumption is not always true. There are three paradigmatic quantum states that are known to be intrinsically non-perturbative in this sense, and we mention them explicitly since they mark the limit of everything that we derive below.
 
 - **An impurity in a metal, the orthogonality catastrophe.** In the thermodynamic limit, the full many-body wavefunction of a metal with the impurity switched on becomes exactly orthogonal to the wavefunction with the impurity switched off, for any strength of the impurity potential, even a very weak one.

@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -84,9 +85,44 @@
   <p class="crumb"><a href="index.html">Session 6. Classical Magnetism and Magnons</a></p>
 <h1 id="sec-6-2"><span class="num">6.2</span> A recap of symmetry breaking and the mean-field philosophy</h1>
 <p>We have already used this idea twice in this course, first in a small form in session 1 and then in full detail for superconductivity in session 5. Let us state it once more, in a short way, before we apply it to magnetism. Many-body interactions can spontaneously break a symmetry that the Hamiltonian itself has. Three cases appear in the whole course. Magnets break time-reversal symmetry, and they also break spin-rotation symmetry, since a magnetic moment breaks both. Charge density waves break the translational symmetry of the lattice. Superconductors break gauge symmetry. All three emerge from the same generic starting point, which is a kinetic term that is single-particle and exactly solvable, plus a quartic many-body interaction. All three are also obtained in the same way. Mean-field theory factorizes the quartic term by replacing part of it with its expectation value, which turns a many-body problem that we cannot solve into a single-particle problem that we can solve, and we solve it self-consistently.</p>
+<figure class="again">
+<img src="../figures/s01f02_ssb.svg" loading="lazy" alt="Two double-well curves of the energy against an order parameter, a small system on the left and a large one on the right, with a ball in one minimum." />
+<figcaption><strong><a href="../session1/11-spontaneous-symmetry-breaking-and-why-a-symmetric-hamiltonian-can-have-an-asymmetric-ground-state.html#fig:s01:ssb">Figure 1.2</a>, shown again.</strong> Spontaneous symmetry breaking, as in session 1. The energy is symmetric in the order parameter, and the ground state sits in one of the two minima. The barrier between them grows with the system size.</figcaption>
+</figure>
 <p>Where do the interactions themselves come from? There are two sources. The electrostatic, or Coulomb, repulsion between electrons is the classical contribution, and it is always present. Interactions can also be mediated by other quasiparticles, such as phonons, magnons or plasmons, and these can change the <em>net</em> effective interaction from repulsive to attractive. Magnetism needs a net interaction that is repulsive. The bare Coulomb repulsion is already repulsive, so this case is easy to realize, which is one of the reasons why magnetism is so common in nature.</p>
+<h1 class="sec-next" id="sec-6-3"><span class="num">6.3</span> The Hubbard model and mean-field magnetism, revisited</h1>
+<p>The minimal Hamiltonian for all of this is the one-dimensional Hubbard chain that we first saw in session 1,</p>
+<p><span id="eq-6-1" class="eq"><span class="math display">\[H = -t\sum_{n,\sigma}\left(c_{n\sigma}^\dagger c_{n+1,\sigma} + \text{h.c.}\right) + U\sum_n c_{n\uparrow}^\dagger c_{n\uparrow}\, c_{n\downarrow}^\dagger c_{n\downarrow}, \tag{6.1}\]</span></span></p>
+<p>which is the hopping <span class="math inline">\(t\)</span> plus a purely local onsite density-density interaction between opposite spins, called the Hubbard term. A negative <span class="math inline">\(U\)</span>, which is attractive, gives rise to superconductivity, which was the topic of session 5. A positive <span class="math inline">\(U\)</span>, which is repulsive, gives rise to magnetism, which is our topic in this session.</p>
+<p>The mean-field decoupling is done in the same way as before. We replace <span class="math inline">\(c_{n\uparrow}^\dagger c_{n\uparrow}\)</span> and <span class="math inline">\(c_{n\downarrow}^\dagger c_{n\downarrow}\)</span> by their expectation values, and we obtain a bilinear Hamiltonian with onsite energies that depend on the spin. Nothing forces these two expectation values to be equal, and the difference between them is the magnetization,</p>
+<p><span id="eq-6-2" class="eq"><span class="math display">\[m = \langle c_\uparrow^\dagger c_\uparrow\rangle - \langle c_\downarrow^\dagger c_\downarrow\rangle, \tag{6.2}\]</span></span></p>
+<p>which plays the role of an exchange field. In a schematic form, the resulting mean-field Hamiltonian is <span class="math inline">\(H_\text{MF} \sim -\tfrac{U}{2}\, m\, \boldsymbol\sigma\cdot c\)</span>, where <span class="math inline">\(\boldsymbol\sigma\)</span> is the vector of Pauli matrices. Self-consistency gives <span class="math inline">\(m=0\)</span> for <span class="math inline">\(U&lt;0\)</span> and a magnetic solution with <span class="math inline">\(m\neq 0\)</span> for <span class="math inline">\(U&gt;0\)</span>, as in session 1.</p>
+<p>There is a more careful point here, which the slides show but the spoken explanation only mentions. Nothing in this construction chooses the <span class="math inline">\(z\)</span> axis. For a single site, the Hubbard interaction can be rewritten exactly in terms of the local spin operator <span class="math inline">\(\mathbf{S} = \tfrac12 c_\alpha^\dagger \boldsymbol\sigma_{\alpha\beta} c_\beta\)</span> and the total occupation <span class="math inline">\(n = n_\uparrow + n_\downarrow\)</span>, as <span class="math inline">\(U\, n_\uparrow n_\downarrow = \tfrac{U}{2}n - \tfrac{2U}{3}\mathbf{S}^2\)</span>, where we used that a single site has <span class="math inline">\(\mathbf{S}^2=\tfrac34(n-2n_\uparrow n_\downarrow)\)</span>, since only a singly occupied site has a spin. Mean-field theory then factorizes the quadratic operator <span class="math inline">\(\mathbf{S}^2\)</span> in the same way as any product of two operators, <span class="math inline">\(\mathbf{S}^2 \approx
+2\langle\mathbf{S}\rangle\cdot\mathbf{S} - \langle\mathbf{S}\rangle^2\)</span>, and the resulting exchange field points along <span class="math inline">\(\mathbf{m} \equiv \langle\mathbf{S}\rangle\)</span>, in <em>any</em> direction where this expectation value is nonzero. If we choose <span class="math inline">\(\langle c_\uparrow^\dagger c_\uparrow\rangle \neq
+\langle c_\downarrow^\dagger c_\downarrow\rangle\)</span>, as in <a href="#eq-6-2">(6.2)</a>, we select <span class="math inline">\(m_z\neq 0\)</span>. If we choose instead <span class="math inline">\(\langle c_\uparrow^\dagger c_\downarrow\rangle \neq 0\)</span>, we select <span class="math inline">\(m_x\)</span> or <span class="math inline">\(m_y\)</span>. For this reason mean-field magnetism is not restricted to the <span class="math inline">\(z\)</span> axis. It gives magnets with a magnetization along any direction in space, and this includes noncollinear arrangements where <span class="math inline">\(\mathbf{m}\)</span> points in different directions on different sites. This is the “non-collinear mean-field Hamiltonian” figure on the slides, which the spoken lecture only names briefly.</p>
+<p>Mean field can only be trusted when <span class="math inline">\(U \ll t\)</span>. We will see in Section <a href="06-the-stoner-threshold-as-a-criterion-for-magnetism.html#sec-6-6">6.6</a> that magnetism usually needs the opposite regime, and this is the reason why the strongly localized limit, from Section <a href="06-the-stoner-threshold-as-a-criterion-for-magnetism.html#sec-6-7">6.7</a> on, is so important.</p>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>In the mean-field treatment of the Hubbard interaction, which expectation value gives a magnetization along the <span class="math inline">\(x\)</span> axis?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(\langle c_\uparrow^\dagger c_\uparrow\rangle-\langle c_\downarrow^\dagger c_\downarrow\rangle\)</span></li>
+<li>A real <span class="math inline">\(\langle c_\uparrow^\dagger c_\downarrow\rangle\)</span></li>
+<li><span class="math inline">\(\langle c_\uparrow c_\downarrow\rangle\)</span></li>
+<li><span class="math inline">\(\langle c_\uparrow^\dagger c_\uparrow\rangle+\langle c_\downarrow^\dagger c_\downarrow\rangle\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The spin component <span class="math inline">\(S^x\)</span> is <span class="math inline">\(\tfrac12(c_\uparrow^\dagger c_\downarrow+c_\downarrow^\dagger c_\uparrow)\)</span>, so a real <span class="math inline">\(\langle c_\uparrow^\dagger c_\downarrow\rangle\)</span> gives <span class="math inline">\(m_x\)</span>. The difference of the two densities gives <span class="math inline">\(m_z\)</span>, and the pair amplitude <span class="math inline">\(\langle c_\uparrow c_\downarrow\rangle\)</span> is the superconducting order.</p>
+</details>
+</div>
 
-  <nav class="pager"><a href="01-two-classes-of-magnets-and-their-excitations.html">6.1 Two classes of magnets and their excitations</a><a href="03-the-hubbard-model-and-mean-field-magnetism-revisited.html">6.3 The Hubbard model and mean-field magnetism, revisited</a></nav>
+  <nav class="pager"><a href="01-two-classes-of-magnets-and-their-excitations.html">6.1 Two classes of magnets and their excitations</a><a href="04-exchange-splitting-and-antiferromagnetic-order-in-numerical-mean-field-theory.html">6.4 Exchange splitting and antiferromagnetic order in numerical mean-field theory</a></nav>
 
 </main>
 </body>

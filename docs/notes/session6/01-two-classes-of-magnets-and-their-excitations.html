@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -87,6 +88,30 @@
 <p>The first class contains the magnets that break time-reversal symmetry. These materials have a net magnetization on every site, or a staggered one, and a finite spin angular momentum is what makes a system look different when we play its “movie” backwards, which is the definition of broken time-reversal symmetry. Ferromagnets, antiferromagnets and noncollinear spin spirals are in this class. Iron and cobalt are the two materials that the lecture names, several times, as concrete examples of this family. In this session we spend all our time on this class.</p>
 <p>The second class contains the magnets that do <em>not</em> break time-reversal symmetry, at least not classically. These are quantum magnets, and quantum spin liquids are among them. They have a local moment on every site, but the spins are in a quantum superposition and do not form a static classical arrangement, so time-reversal symmetry does not need to be broken overall. A related case, which is also mentioned only briefly in this lecture, is the heavy-fermion Kondo system. It is a combination of local moments in a quantum superposition with a sea of itinerant metallic electrons. The “Classical and quantum magnetism” slide shows the three families with photographs of materials, which are iron for the ferromagnet and antiferromagnet family, herbertsmithite for quantum spin liquids and samarium hexaboride SmB<span class="math inline">\(_6\)</span> for heavy-fermion insulators. None of these three compound names is said in this year’s narration. They are only labels on the slide, which are good to know but which the lecture does not say out loud.</p>
 <p>Each class has its own emergent excitation. Magnets that break time-reversal symmetry have <strong>magnons</strong>, which are spin-1 and charge-neutral fluctuations of the order parameter, and they are the direct magnetic analogue of a phonon. Magnons have no charge, so electric fields do not affect them at all, and they can propagate in materials that are electronic insulators. A ferromagnetic or antiferromagnetic Mott insulator does not let any current through, but a magnon can still carry spin and heat across it. Quantum magnets have instead <strong>spinons</strong>, which are spin-<span class="math inline">\(1/2\)</span> and charge-neutral excitations. They are sometimes described informally as “half an electron,” since the spin and the charge degrees of freedom of the electron have in practice separated. In the rest of this session we will construct magnons in detail. Spinons and the Kondo lattice model only appear here as a name and a spin quantum number. Their full construction is the material of a later session, session 8, and this lecture does not come back to them.</p>
+<figure class="again">
+<img src="../figures/s08f01_magnon_spinon.svg" loading="lazy" alt="At the top a row of arrows with one flipped spin, and at the bottom pairs of sites bound in capsules with two unpaired sites." />
+<figcaption><strong><a href="../session8/01-two-classes-of-magnets-and-where-we-find-them.html#fig:s08:magnonspinon">Figure 8.1</a>, shown again.</strong> The two kinds of excitation of a magnet. (a) A magnon changes the spin by <span class="math inline">\(\Delta S=1\)</span>. (b) A spinon is an unpaired site of <span class="math inline">\(S=1/2\)</span>, so it is half a magnon. Spinons are the subject of session 8.</figcaption>
+</figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>A Mott insulator carries no charge current. Which statement about magnons in it is correct?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>Magnons cannot exist, since they need free charge carriers.</li>
+<li>Magnons are neutral spin-1 excitations, so they carry spin and heat but no charge.</li>
+<li>Magnons carry spin <span class="math inline">\(1/2\)</span> and charge <span class="math inline">\(e\)</span>.</li>
+<li>Magnons carry charge, but they are blocked by the Mott gap.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>A magnon is a fluctuation of the order parameter and has no charge, so electric fields do not act on it and the Mott gap does not block it. It carries one unit of spin and the energy of the excitation.</p>
+</details>
+</div>
 
   <nav class="pager"><a href="index.html">Session 6</a><a href="02-a-recap-of-symmetry-breaking-and-the-mean-field-philosophy.html">6.2 A recap of symmetry breaking and the mean-field philosophy</a></nav>
 

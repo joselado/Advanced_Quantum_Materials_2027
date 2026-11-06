@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -84,8 +85,56 @@
   <p class="crumb"><a href="index.html">Session 6. Classical Magnetism and Magnons</a></p>
 <h1 id="sec-6-11"><span class="num">6.11</span> Superexchange as the origin of ferromagnetic coupling</h1>
 <p>The direct <span class="math inline">\(t^2/U\)</span> mechanism of Section <a href="09-the-heisenberg-model-on-a-general-lattice.html#sec-6-9">6.9</a> is always antiferromagnetic, but many real magnetic materials are ferromagnets. So a ferromagnetic coupling needs a different microscopic mechanism, and it usually requires an intermediate atom, called a ligand, between the two magnetic ions, instead of a single direct hop. Let us take two transition-metal ions, for example cobalt, iron or nickel, connected by a ligand such as oxygen. As before, electrons can hop directly between the two metal sites, and this channel is antiferromagnetic as in Section <a href="09-the-heisenberg-model-on-a-general-lattice.html#sec-6-9">6.9</a>. However, there is a second virtual process. An electron hops from the ligand onto one metal ion, and another electron hops from the ligand onto the other one. The two electrons are now on the metal ions, and this leaves a virtual state with two holes in the <span class="math inline">\(p\)</span> shell of the ligand, which was full before. Depending on which <span class="math inline">\(d\)</span> orbitals take part and on the metal-ligand-metal bond angle, the energy correction from this virtual channel with two holes on the ligand can favor the ferromagnetic configuration over the antiferromagnetic one, and in this way it changes the net sign of the effective coupling. The systematic version of this argument is given by the <strong>Goodenough-Kanamori rules</strong>, which predict the sign of the exchange coupling from the orbital filling and the bond geometry. These rules can also be derived systematically from self-consistent multi-orbital calculations, for instance with density functional theory. This material comes from the slides and the transcript, and there is no dedicated notebook exercise for it in this session, since the exercises of the notebook stay within the single-orbital Hubbard model.</p>
+<figure class="again panel">
+<img src="../figures/panel/s06f02_dimer_a.svg" loading="lazy" alt="Two sites with parallel spins that cannot hop and two sites with antiparallel spins that hop to a virtual doubly occupied state." />
+<figcaption><strong><a href="08-from-the-hubbard-dimer-to-the-heisenberg-model.html#fig:s06:dimer">Figure 6.2</a>, one panel shown again.</strong> The direct mechanism of Section <a href="08-from-the-hubbard-dimer-to-the-heisenberg-model.html#sec-6-8">6.8</a> for comparison. Parallel spins cannot hop because of Pauli exclusion, and the antiparallel pair gains energy through the virtual doubly occupied state.</figcaption>
+</figure>
+<figure id="sch:s06:ligand_exchange" class="schematic">
+<img src="../figures/web/session06/ligand_exchange.svg" loading="lazy" alt="Left, two ions with a ligand between them and a full p shell. Right, the same ions after two hops, with two holes on the ligand." />
+<figcaption><strong>Schematic 6.2.</strong> The second virtual process. Two electrons hop from the filled ligand shell to the two ions, which leaves two holes on the ligand. The energy of this state depends on the orbitals and on the bond angle, and it can favor the ferromagnetic alignment.</figcaption>
+</figure>
+<h1 class="sec-next" id="sec-6-12"><span class="num">6.12</span> Anisotropic exchange with Dzyaloshinskii-Moriya, Ising and Kitaev terms</h1>
+<p>In <a href="09-the-heisenberg-model-on-a-general-lattice.html#eq-6-5">(6.5)</a> we assumed that the coupling is an isotropic scalar product, <span class="math inline">\(\mathbf S_i\cdot\mathbf
+S_j\)</span>, which is what the rotational spin symmetry requires when there is no spin-orbit coupling. Once spin-orbit coupling is included in the underlying electronic Hamiltonian, other spin couplings with lower symmetry become allowed. Three of them appear often in real materials, and we list them now.</p>
+<p><strong>Antisymmetric, or Dzyaloshinskii-Moriya, exchange</strong>, <span class="math display">\[H_\text{DM} = \sum_{\langle ij\rangle} \mathbf D_{ij}\cdot\big(\mathbf S_i\times\mathbf S_j\big),\]</span> which is a cross product and not a dot product. It requires broken mirror symmetry, which is the reason why it is strong at surfaces and interfaces, where the substrate itself breaks this mirror symmetry. It favors neighboring spins rotated by roughly <span class="math inline">\(90^\circ\)</span> with respect to each other, so it favors noncollinear order, which is often a spiral.</p>
+<p><strong>Anisotropic, or Ising-like, exchange</strong>, which is a coupling of a single component such as <span class="math inline">\(\Lambda\, S_i^z S_j^z\)</span>. It favors an easy axis, or an easy plane for the opposite sign, which means that the system magnetizes more easily along one direction than along another.</p>
+<p><strong>Kitaev interaction</strong>, which is a coupling that depends on the bond, on a lattice of honeycomb type. It has an <span class="math inline">\(S^x_iS^x_j\)</span> term on one bond direction, <span class="math inline">\(S^y_iS^y_j\)</span> on a second one and <span class="math inline">\(S^z_iS^z_j\)</span> on a third one, <span class="math display">\[H_\text{Kitaev} = \sum_{\langle ij\rangle \in x\text{-bonds}}\! K\, S_i^xS_j^x \;+\!\!\sum_{\langle ij\rangle \in y\text{-bonds}}\!\! K\, S_i^yS_j^y \;+\!\!\sum_{\langle ij\rangle \in z\text{-bonds}}\!\! K\, S_i^zS_j^z.\]</span> Even on a bipartite honeycomb lattice, where the geometry alone would not give any frustration, this dependence on the bond is frustrating by itself, since no single spin orientation can satisfy the three types of bonds at the same time (figure <a href="#fig:s06:kitaev">6.4</a>). This interaction is what makes the Kitaev model a paradigm for quantum spin liquids, and this is why we point it out here explicitly, as an important preparation for the material on frustrated magnets in sessions 7 and 8.</p>
+<figure id="fig:s06:kitaev">
+<img src="../figures/s06f04_kitaev.svg" loading="lazy" alt="The Kitaev interaction and the second kind of frustration." />
+<figcaption><strong>Figure 6.4.</strong> The Kitaev interaction and the second kind of frustration. The honeycomb lattice is bipartite, and its sites can be coloured with two colours, dark and light, as in figure <a href="09-the-heisenberg-model-on-a-general-lattice.html#fig:s06:frustration">6.3</a>(a). For this reason an ordinary Heisenberg antiferromagnet on this lattice is not frustrated at all. The Kitaev coupling gives frustration anyway, because each of the three bond directions, drawn in three styles, couples only <em>one</em> spin component. The <span class="math inline">\(x\)</span>-bond only depends on <span class="math inline">\(S^x\)</span>, so it favors both of its spins along <span class="math inline">\(\pm\hat x\)</span>, the <span class="math inline">\(y\)</span>-bond favors <span class="math inline">\(\pm\hat y\)</span>, and the <span class="math inline">\(z\)</span>-bond favors <span class="math inline">\(\pm\hat z\)</span>. Every site belongs to one bond of each type, and no single orientation can satisfy three mutually orthogonal conditions at the same time, which the three ghost arrows on the highlighted site show. Here the frustration comes from the interaction and not from the geometry, and this is what makes the Kitaev model a paradigm for quantum spin liquids in sessions 7 and 8.</figcaption>
+</figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>The underlying electronic Hamiltonian has no spin-orbit coupling. Which exchange couplings between neighboring spins does the spin-rotation symmetry allow?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>The Dzyaloshinskii-Moriya term and the Heisenberg term.</li>
+<li>Only the isotropic scalar product <span class="math inline">\(\mathbf S_i\cdot\mathbf S_j\)</span>.</li>
+<li>All the terms of this section.</li>
+<li>Only the Kitaev term, since it is bond dependent.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>Without spin-orbit coupling the spin space can be rotated freely, so only the rotation-invariant scalar product survives. The terms of this section need spin-orbit coupling, which ties the spin to the lattice.</p>
+</details>
+</div>
+<div class="notebookbox">
+<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb"><code>session6.ipynb</code></a>, “(Exercise) Non-collinear magnetism from spin-orbit coupling”</p>
+<p>Add a term of Dzyaloshinskii-Moriya type to the mean-field Hamiltonian, and see how the ground state tilts away from collinear order. This is the electronic counterpart of the statement above for the spin model.</p>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> In the cell, the chain gets <code>h.add_rashba(1.)</code> at <code>U=10.</code>. Run it with and without that line. Without it, neighboring spins are antiparallel, and with it the angle between neighbors moves away from 180 degrees.</p>
+<div class="tryit-links">
+Notebook <code>session6.ipynb</code>, cell “Non-collinear magnetism from spin-orbit coupling”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession6.ipynb">Binder</a>.
+</div>
+</div>
 
-  <nav class="pager"><a href="10-bipartite-order-versus-geometric-frustration.html">6.10 Bipartite order versus geometric frustration</a><a href="12-anisotropic-exchange-with-dzyaloshinskii-moriya-ising-and-kitaev-terms.html">6.12 Anisotropic exchange with Dzyaloshinskii-Moriya, Ising and Kitaev terms</a></nav>
+  <nav class="pager"><a href="09-the-heisenberg-model-on-a-general-lattice.html">6.9 The Heisenberg model on a general lattice</a><a href="13-magnons-as-fluctuations-of-the-order-parameter.html">6.13 Magnons as fluctuations of the order parameter</a></nav>
 
 </main>
 </body>

@@ -11,13 +11,14 @@
    "file": "01-motivation-and-recap.md",
    "id": "sec-2-1",
    "number": "2.1",
-   "title": "Motivation and recap"
-  },
-  {
-   "file": "02-simplifying-problems-with-symmetry-in-simple-examples.md",
-   "id": "sec-2-2",
-   "number": "2.2",
-   "title": "Simplifying problems with symmetry in simple examples"
+   "title": "Motivation and recap",
+   "also": [
+    {
+     "id": "sec-2-2",
+     "number": "2.2",
+     "title": "Simplifying problems with symmetry in simple examples"
+    }
+   ]
   },
   {
    "file": "03-symmetry-operators-in-a-formal-way.md",
@@ -59,31 +60,53 @@
    "file": "09-properties-of-an-electronic-dispersion.md",
    "id": "sec-2-9",
    "number": "2.9",
-   "title": "Properties of an electronic dispersion"
-  },
-  {
-   "file": "10-three-types-of-dispersion-which-are-parabolic-dirac-and-flat.md",
-   "id": "sec-2-10",
-   "number": "2.10",
-   "title": "Three types of dispersion, which are parabolic, Dirac and flat"
+   "title": "Properties of an electronic dispersion",
+   "also": [
+    {
+     "id": "sec-2-10",
+     "number": "2.10",
+     "title": "Three types of dispersion, which are parabolic, Dirac and flat"
+    }
+   ]
   },
   {
    "file": "11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.md",
    "id": "sec-2-11",
-   "number": "2.11",
-   "title": "The Dirac cone of the honeycomb lattice of graphene, and flat-band lattices"
+   "number": "2.11a",
+   "title": "The Dirac cone of the honeycomb lattice of graphene"
+  },
+  {
+   "file": "11b-flat-bands-from-the-geometry-of-the-lattice.md",
+   "id": "sec-2-11b",
+   "number": "2.11b",
+   "title": "Flat bands from the geometry of the lattice"
   },
   {
    "file": "12-measuring-band-structures-with-arpes.md",
    "id": "sec-2-12",
    "number": "2.12",
-   "title": "Measuring band structures with ARPES"
+   "title": "Measuring band structures with ARPES",
+   "also": [
+    {
+     "id": "sec-2-13",
+     "number": "2.13",
+     "title": "Closing summary"
+    }
+   ]
+  }
+ ],
+ "redirects": [
+  {
+   "from": "02-simplifying-problems-with-symmetry-in-simple-examples.html",
+   "to": "01-motivation-and-recap.html#sec-2-2"
   },
   {
-   "file": "13-closing-summary.md",
-   "id": "sec-2-13",
-   "number": "2.13",
-   "title": "Closing summary"
+   "from": "10-three-types-of-dispersion-which-are-parabolic-dirac-and-flat.html",
+   "to": "09-properties-of-an-electronic-dispersion.html#sec-2-10"
+  },
+  {
+   "from": "13-closing-summary.html",
+   "to": "12-measuring-band-structures-with-arpes.html#sec-2-13"
   }
  ]
 }

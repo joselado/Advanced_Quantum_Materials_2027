@@ -8,4 +8,17 @@ When the electrons can be treated as independent of each other, we can describe 
 
 ### Second quantization {#sec-1-4-2 number="1.4.2"}
 
-First quantization assumes that the number of particles is fixed, and this assumption fails for a whole class of quantum materials. It fails for any system where the electrons are not independent, and also, which is more surprising, for systems where the *number* of electrons is itself not fixed. For these systems we need *second quantization*, which is a formalism that is not built around the question of "how many electrons are present" but around how electrons are created and destroyed. This formalism is essential for superconductors, superfluids and correlated materials in general, and it is what makes phenomena such as spinon fractionalization straightforward to describe at all.
+First quantization assumes that the number of particles is fixed, and this assumption fails for a whole class of quantum materials. It fails for any system where the electrons are not independent, and also, which is more surprising, for systems where the *number* of electrons is itself not fixed. For these systems we need *second quantization*, which is a formalism that is not built around the question of "how many electrons are present" but around how electrons are created and destroyed. This formalism is essential for superconductors, superfluids and correlated materials in general, and it is what makes phenomena such as spinon fractionalization straightforward to describe at all. [](#sch:s01:fixed_vs_free_number) shows this difference for a small dot.
+
+![A dot with two levels and its Fock states sorted by the number of electrons. First quantization stays inside one column, here the one with a single electron. Second quantization also allows states that mix columns, such as an equal superposition of zero and two electrons.](figures/web/session01/fixed_vs_free_number.svg){#sch:s01:fixed_vs_free_number alt="States of a dot with two levels, with zero, one and two electrons, and an arrow that links the empty and the full dot."}
+
+::: quiz
+Which of these states can we write as an ordinary wave function with a fixed number of coordinates?
+
+- [x] One electron in a superposition of the lower and the upper level.
+- [ ] An equal superposition of zero electrons and two electrons.
+- [ ] A state with one electron half of the time and two electrons the other half.
+- [ ] An equal superposition of the empty dot and the dot with three electrons.
+
+A wave function needs a fixed number of coordinates, and one electron in two levels keeps this number. The other states mix different numbers of electrons, and for them we need second quantization.
+:::

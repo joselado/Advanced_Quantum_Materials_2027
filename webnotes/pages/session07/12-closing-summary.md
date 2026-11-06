@@ -15,3 +15,16 @@
 - Ground states are found variationally, by minimizing [(7.11)](#eq-7-11) one tensor at a time, and this sweeping procedure is the **DMRG** algorithm. **MERA** and **PEPS** extend the idea of tensor networks to criticality, through the logarithmic correction to the entropy [(7.12)](#eq-7-12), and to real 2D lattices, respectively. MERA can still be optimized tensor by tensor, while for PEPS the contraction is the hard step, so the simple local optimization of DMRG is lost.
 
 - Neural network quantum states were mentioned once, together with tensor networks, as a second answer to the same storage problem, but they were not developed in this session. In session 10 we will study them in detail from the point of view of machine learning, and we will also come back to the MPS, MERA and PEPS methods of this session as architectures for machine-learning classifiers.
+
+![The summary of the session in one picture. Look at where the gapped curve, the critical curve and the volume law meet the horizontal bars set by $M$, since this is where an MPS of that bond dimension stops being enough.](figures/s07f03_entropyceiling.svg){alt="Entropy against the size of the subsystem for a gapped, a critical and a generic state, with horizontal bars for two bond dimensions."}
+
+::: quiz
+An MPS with $M=20$ describes a gapped chain of 200 sites very well. We now move to a gapped model on a $20\times20$ lattice. What do we expect?
+
+- [ ] The same $M$ is enough, since the model is gapped.
+- [x] The same $M$ is not enough, since the boundary grows with the width.
+- [ ] A smaller $M$ is enough, since there are more neighbors.
+- [ ] The MPS fails only because there are more sites.
+
+A gapped state obeys the area law in both cases, but in two dimensions the boundary has 20 bonds and not one. The entropy grows in proportion, and the bond dimension that it needs grows exponentially.
+:::

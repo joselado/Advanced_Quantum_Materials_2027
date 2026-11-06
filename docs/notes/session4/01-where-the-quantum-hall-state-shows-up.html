@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -89,8 +90,55 @@
 <li><p><strong>Two-dimensional materials</strong>, and graphene above all, realize the same physics but with Dirac electrons instead of parabolic ones. As we will derive explicitly below, the energy scale then grows as the square root of the field and not linearly. The slides give the concrete numbers, which are roughly two orders of magnitude larger, around 100 millielectronvolts. This is high enough that the quantum Hall plateaus of graphene survive up to about 100 K, and in the best samples up to almost room temperature.</p></li>
 </ul>
 <p>For all these platforms the common point is the one we already saw in the last session. An observable, the Hall conductance, is exactly quantized, and this quantization comes from topology and not from the chemistry of a specific material.</p>
+<figure class="again">
+<img src="../figures/s04f04_ladders.svg" loading="lazy" alt="Two fans of Landau levels against the magnetic field, straight lines for parabolic electrons and square-root curves for Dirac electrons." />
+<figcaption><strong><a href="10-landau-levels-of-dirac-electrons.html#fig:s04:ladders">Figure 4.4</a>, shown again.</strong> The two platforms of this section, seen through the energy scale of their Landau levels. In (a) the levels of parabolic electrons grow linearly with the field. In (b) the levels of Dirac electrons grow as the square root of the field, and the level at zero energy does not move. Look at how the levels of (b) are more widely spaced than a straight line would give at small field. We derive both ladders in Sections <a href="09-landau-levels-of-schrodinger-electrons.html#sec-4-9">4.9</a> and <a href="10-landau-levels-of-dirac-electrons.html#sec-4-10">4.10</a>.</figcaption>
+</figure>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>The Landau level spacing of GaAs grows as <span class="math inline">\(B\)</span> and that of graphene as <span class="math inline">\(\sqrt{B}\)</span>. By which factors do the two spacings grow if we multiply the field by 4?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>By 4 for GaAs and by 2 for graphene.</li>
+<li>By 2 for GaAs and by 2 for graphene.</li>
+<li>By 4 for GaAs and by 4 for graphene.</li>
+<li>By 2 for GaAs and by 4 for graphene.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>A linear law multiplies the spacing by the same factor as the field. A square-root law multiplies it by the square root of that factor.</p>
+</details>
+</div>
+<h1 class="sec-next" id="sec-4-2"><span class="num">4.2</span> Measuring the Hall conductance</h1>
+<p>The experiment itself is simple to describe. We take a two-dimensional system, apply a voltage along one in-plane direction, which we call <span class="math inline">\(y\)</span>, and measure the current that flows along the perpendicular in-plane direction, <span class="math inline">\(x\)</span>. The ratio of this transverse current to the applied voltage is the Hall conductance, and this is the quantity that becomes quantized in the quantum Hall regime.</p>
+<p>A real device for this measurement is a two-dimensional electron gas (2DEG) with several finger gates in contact with it. A voltage is applied between a top gate and a bottom gate, and the current is measured between two gates placed along <span class="math inline">\(x\)</span>, with all the connections made through metallic leads. The geometry of the device does not add new physics beyond what we need for the concepts, so we will not discuss it further. The device figures in the slides are useful to see how a real experiment looks, but from here on the notes work with the ideal two-dimensional system.</p>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>Why do the quantum Hall plateaus of graphene survive to a much higher temperature than those of a GaAs quantum well?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>The spacing between its Landau levels is about two orders of magnitude larger. A much higher thermal energy is then needed to mix the levels.</li>
+<li>The Hall conductance of graphene is larger.</li>
+<li>Graphene has more Landau levels below the chemical potential.</li>
+<li>Graphene has no disorder.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>A plateau needs the thermal energy to be small compared with the gap between Landau levels. The larger gap of graphene, around 100 meV, keeps this true up to about 100 K.</p>
+</details>
+</div>
 
-  <nav class="pager"><a href="index.html">Session 4</a><a href="02-measuring-the-hall-conductance.html">4.2 Measuring the Hall conductance</a></nav>
+  <nav class="pager"><a href="index.html">Session 4</a><a href="03-from-the-kubo-formula-to-the-chern-number-briefly.html">4.3 From the Kubo formula to the Chern number, briefly</a></nav>
 
 </main>
 </body>

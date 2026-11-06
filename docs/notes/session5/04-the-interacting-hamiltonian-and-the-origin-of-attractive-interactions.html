@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -90,8 +91,54 @@ c_j + \sum_{ijkl}V_{ijkl}c_i^\dagger c_j^\dagger c_k c_l\)</span>. The interacti
 <li><p><strong>Conventional superconductors</strong>, where the attractive channel is mediated by phonons. This is the case that we understand best. Mean-field theory, which is called BCS theory, works well at the quantitative level, and the critical temperatures of simple conventional superconductors such as aluminum or lead can be predicted from theory.</p></li>
 <li><p><strong>Unconventional superconductors</strong>, where the attraction is mediated by anything that is not a phonon, such as antiferromagnetic or ferromagnetic magnons, plasmons, valence fluctuations, charge fluctuations and others. Here we do not have a predictive theory that is equally reliable. Even to identify <em>which</em> quasiparticle mediates the attraction in a given unconventional superconductor is often still an open research question, and it is one of the major unsolved problems that the field is working on today.</p></li>
 </ul>
+<h1 class="sec-next" id="sec-5-5"><span class="num">5.5</span> The mean-field pairing Hamiltonian in detail</h1>
+<p>Let us now build the mean-field pairing Hamiltonian with the same care that we used in session 1 for the charge-density-wave and magnetic examples, instead of only pointing at <span class="math inline">\(\Delta = \langle
+cc\rangle\)</span>. We take the simplest interacting Hamiltonian that can give superconductivity, which is a one-dimensional tight-binding chain with an attractive onsite interaction between opposite spins,</p>
+<p><span id="eq-5-2" class="eq"><span class="math display">\[H = -t\sum_{n,\sigma}\left(c_{n\sigma}^\dagger c_{n+1,\sigma} + \text{h.c.}\right) - \mu\sum_{n\sigma}c_{n\sigma}^\dagger c_{n\sigma} + U\sum_n c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger c_{n\downarrow} c_{n\uparrow}, \qquad U&lt;0. \tag{5.2}\]</span></span></p>
+<p>This is exactly eq. <a href="../session1/14-worked-example-2-magnetism.html#eq-1-7">1.7</a> of session 1, now with <span class="math inline">\(U = -|U| &lt; 0\)</span>. It is the attractive branch of the same Hamiltonian, and its repulsive branch gives rise to magnetism, which is the topic of session 6. This time we do the mean-field decoupling of the quartic term in the <em>pairing</em> channel, also called the particle-particle channel, instead of the density channel. We define the order parameter</p>
+<p><span id="eq-5-3" class="eq"><span class="math display">\[\Delta_n \equiv U\langle c_{n\downarrow}c_{n\uparrow}\rangle, \tag{5.3}\]</span></span></p>
+<p>and we factorize <span class="math inline">\(c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger c_{n\downarrow}c_{n\uparrow} \approx
+\langle c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger\rangle c_{n\downarrow}c_{n\uparrow} +
+c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger \langle c_{n\downarrow}c_{n\uparrow}\rangle - \langle
+c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger\rangle\langle c_{n\downarrow}c_{n\uparrow}\rangle\)</span>. This is the same Wick-type factorization that we used in all of session 1, now applied to a different pair of operators. The resulting mean-field Hamiltonian is</p>
+<p><span id="eq-5-4" class="eq"><span class="math display">\[H_{\text{MF}} = -t\sum_{n\sigma}\left(c_{n\sigma}^\dagger c_{n+1,\sigma}+\text{h.c.}\right) - \mu\sum_{n\sigma}c_{n\sigma}^\dagger c_{n\sigma} + \sum_n\left(\Delta_n\, c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger + \Delta_n^*\, c_{n\downarrow}c_{n\uparrow}\right) - \sum_n\frac{|\Delta_n|^2}{U}. \tag{5.4}\]</span></span></p>
+<p>When we solve it self-consistently, <span class="math inline">\(\Delta_n\)</span> is exactly zero for <span class="math inline">\(U&gt;0\)</span>, the repulsive case, and it can become nonzero for <span class="math inline">\(U&lt;0\)</span>, the attractive case. This is the superconducting order parameter, and it is the term that breaks gauge symmetry.</p>
+<figure class="again">
+<img src="../figures/s01f05_selfconsistency.svg" loading="lazy" alt="A loop of four stations, a guess of the expectation values, the mean-field Hamiltonian, its diagonalization and the new expectation values, with a return arrow until the result stops changing." />
+<figcaption><strong><a href="../session1/13-worked-example-1-the-charge-density-wave.html#fig:s01:mfloop">Figure 1.4</a>, shown again.</strong> The mean-field loop of session 1, drawn there for a charge density wave. For the pairing channel of <a href="#eq-5-4">(5.4)</a> the guess is <span class="math inline">\(\Delta_n\)</span>, and the new expectation value is <span class="math inline">\(\langle c_{n\downarrow}c_{n\uparrow}\rangle\)</span>.</figcaption>
+</figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>We start the loop for the attractive chain <a href="#eq-5-2">(5.2)</a> with a small guess <span class="math inline">\(\Delta_n\neq0\)</span>, but now with <span class="math inline">\(U&gt;0\)</span>. What does the loop do?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>It converges to a finite <span class="math inline">\(\Delta_n\)</span>, since any pair amplitude sustains itself.</li>
+<li>It drives <span class="math inline">\(\Delta_n\)</span> to zero.</li>
+<li>It keeps the guess, since <a href="#eq-5-3">(5.3)</a> does not depend on the sign of <span class="math inline">\(U\)</span>.</li>
+<li>It turns <span class="math inline">\(\Delta_n\)</span> into a complex number with a random phase.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>Two electrons on the same site cost the energy <span class="math inline">\(U\)</span>. For <span class="math inline">\(U&gt;0\)</span> the loop lowers this cost by reducing the pair amplitude, so only <span class="math inline">\(\Delta_n=0\)</span> survives. For <span class="math inline">\(U&lt;0\)</span> the pair gains energy, and a finite <span class="math inline">\(\Delta_n\)</span> can be self-consistent.</p>
+</details>
+</div>
+<div class="notebookbox">
+<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb"><code>session5.ipynb</code></a>, “s-wave superconductivity driven by attractive interactions” (Core), and “Dependence on the strength of the attractive interaction” (Challenge)</p>
+<p>Build the attractive-Hubbard chain of <a href="#eq-5-2">(5.2)</a>, run the pairing self-consistency loop that gives <span class="math inline">\(\Delta\)</span> in <a href="#eq-5-3">(5.3)</a>-<a href="#eq-5-4">(5.4)</a>, and look at how <span class="math inline">\(\Delta\)</span> grows from zero as you make <span class="math inline">\(U\)</span> more negative. This is the same behavior as in session 1, where the charge imbalance grew with <span class="math inline">\(V\)</span> and the magnetization grew with <span class="math inline">\(U&gt;0\)</span>.</p>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> Run the loop with <code>U=-1.0</code>, <code>-1.5</code> and <code>-2.0</code> at <code>filling=0.1</code>. The smallest energy of the electron bands is <span class="math inline">\(|\Delta|\)</span>, and it grows from about 0.1 to 0.2 and 0.4. The gap grows fast with <span class="math inline">\(|U|\)</span>.</p>
+<div class="tryit-links">
+Notebook <code>session5.ipynb</code>, cell “Dependence on the strength of the attractive interaction”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession5.ipynb">Binder</a>.
+</div>
+</div>
 
-  <nav class="pager"><a href="03-zero-resistance-and-the-meissner-effect-in-a-superconductor.html">5.3 Zero resistance and the Meissner effect in a superconductor</a><a href="05-the-mean-field-pairing-hamiltonian-in-detail.html">5.5 The mean-field pairing Hamiltonian in detail</a></nav>
+  <nav class="pager"><a href="02-superconductivity-as-a-macroscopic-quantum-phenomenon.html">5.2 Superconductivity as a macroscopic quantum phenomenon</a><a href="06-why-pairing-does-not-conserve-the-particle-number.html">5.6 Why pairing does not conserve the particle number</a></nav>
 
 </main>
 </body>

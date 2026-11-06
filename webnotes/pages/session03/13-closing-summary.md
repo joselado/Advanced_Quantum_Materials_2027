@@ -1,5 +1,7 @@
 ## Closing summary {#sec-3-13 number="3.13"}
 
+![The argument of the bulk-boundary correspondence in one picture. A quantized invariant cannot change continuously, so an interface between two bulk phases with different invariants has a gapless state.](figures/s03f02_bulkboundary.svg){alt="Three rows that show a Hamiltonian that changes in space, the local gap that closes at the interface and the gapless state bound to it."}
+
 - The Hall conductivity, computed with linear response theory from the wavefunction expansion [(3.1)](#eq-3-1), becomes an integral of the Berry curvature over the Brillouin zone. For any gapped system it is quantized to an integer, the **Chern number**, so that $\sigma_{xy} = C\,e^2/h$ [(3.4)](#eq-3-4).
 
 - The quantum Hall state realizes this with flat Landau-level bands, and each of them gives Chern number $1$. The bulk gap forces the current onto **chiral** edge states, with one direction per edge, which is why they cannot backscatter and why the plateaus are quantized so sharply, as we saw in Section [3.6](#sec-3-6).
@@ -16,3 +18,25 @@
 - The same invariants apply beyond electrons, to magnons and spinons in sessions 6 and 8, and also beyond quantum mechanics, to any system with a dispersion relation.
 
 In the next session we come back to the flat-band case from session 2 and study it in detail. We will see the full quantum Hall effect, Landau levels from first principles, and the fractional quantum Hall state.
+
+::: quiz
+What decides whether the two Dirac points of the honeycomb lattice give Chern numbers that cancel or that add?
+
+- [ ] The lattice constant.
+- [ ] The size of the mass.
+- [ ] The temperature.
+- [x] How the mass term transforms under time reversal.
+
+A staggered potential is even under time reversal and gives the same mass at both valleys, so the half-integers cancel. The Haldane coupling is odd under time reversal, so the half-integers add.
+:::
+
+::: quiz
+Which symmetry protects the helical edge states of the quantum spin Hall insulator?
+
+- [x] Time-reversal symmetry, through the Kramers degeneracy.
+- [ ] Particle-hole symmetry.
+- [ ] Spin conservation.
+- [ ] Translational symmetry and gauge invariance.
+
+Translational symmetry and gauge invariance protect the Chern number. The helical edge is protected by time reversal, and it holds even when spin is not conserved.
+:::

@@ -11,4 +11,16 @@ $$\chi(T) \;\propto\;
 \dfrac{1}{T + T_c} & \text{antiferromagnet, apparent divergence at a negative temperature.}
 \end{cases} \tag{9.1}$$
 
+![The inverse susceptibility of [(9.1)](#eq-9-1) is a straight line in each case. The line of the paramagnet goes through the origin, the ferromagnet extrapolates to zero at the positive temperature $T_c$, and the antiferromagnet at the negative temperature $-T_c$. The dashed parts are extrapolations, since the disordered phase does not reach them.](figures/web/session09/curie_weiss.svg){#sch:s09:curie_weiss alt="Three straight lines of the inverse susceptibility against temperature, crossing the temperature axis at zero, at a positive temperature and at a negative temperature."}
+
 The physical picture behind [(9.1)](#eq-9-1) is important, because we will find it again in a fully quantum form in Section [9.5](#sec-9-5). In the paramagnetic regime the thermal fluctuations dominate, and the susceptibility stays finite at any $T>0$, since nothing in the system tends to order. In the ferromagnetic case the fluctuations *reinforce* the applied field, so as $T\to T_c^+$ the system becomes polarized more and more easily, and $\chi$ really diverges at the transition. In the antiferromagnetic case the fluctuations *oppose* the applied field, since they favor staggered order and not uniform order, and this appears as the opposite sign in the denominator. The susceptibility then seems to go towards a divergence at a temperature below absolute zero. Of course it never reaches it, but the sign alone already tells us that the system tends to antiferromagnetic order and not to ferromagnetic order. In experiments this is a practical diagnostic. We plot $\chi^{-1}(T)$, and if the straight line extrapolates to a positive intercept, the system is close to a ferromagnet, while a negative intercept means that the system is close to an antiferromagnet. All of this is measured in the disordered phase at high temperature. This is the model for the whole session, which is that **the response of the disordered/uniform state, computed without ever solving for the ordered state itself, already contains the information about which ordered state is coming.**
+
+::: quiz
+We measure the susceptibility of a magnet at high temperature. A plot of $1/\chi$ against $T$ is a straight line that reaches zero at $T=-30$ K when we extrapolate it. What do we expect when we cool the sample?
+
+- [ ] Ferromagnetic order below a positive critical temperature.
+- [x] Antiferromagnetic order, although the susceptibility never diverges at a positive temperature.
+- [ ] No order at all, since a paramagnet has the intercept at zero.
+
+The line $1/\chi\propto T+T_c$ is the antiferromagnetic case of [(9.1)](#eq-9-1), with $T_c=30$ K. The exchange favors staggered order, so the uniform susceptibility only reaches the apparent divergence at a negative temperature. A paramagnet would give an intercept at $T=0$.
+:::

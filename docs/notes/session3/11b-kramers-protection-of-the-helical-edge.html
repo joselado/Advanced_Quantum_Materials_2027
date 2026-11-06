@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3.11b Kramers protection of the helical edge, session 3</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .cols.three { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  @media (max-width: 900px) { .cols.three { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+
+  main { max-width: 860px; }
+  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
+              border-radius: 6px; color: var(--muted); }
+  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
+  .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
+  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
+  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
+  figure { margin: 24px 0; }
+  figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
+  figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
+  .eq { display: block; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
+                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
+  .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
+           margin: 20px 0; font-size: 0.95rem; }
+  .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
+  table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
+  div.center { overflow-x: auto; }
+  div.center table { margin-left: auto; margin-right: auto; }
+  th { border-bottom: 2px solid var(--rule); }
+  .coursecontents h2 { margin-top: 28px; }
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
+<script src="../../notes/notes.js" defer></script>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
+  <nav class="tabs"><a href="../../lectures/session3.html">Video lectures</a><a href="../../landscape/session3.html">Landscape lectures</a><a class="on" href="../../notes/session3/index.html">Lecture notes</a></nav>
+  <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="on" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
+  <p class="crumb"><a href="index.html">Session 3. Topological Band Structure Theory</a></p>
+<h1 id="sec-3-11b"><span class="num">3.11b</span> Kramers protection of the helical edge</h1>
+<p>So far we have treated the two spin sectors as independent. There is a subtle point that we should state precisely. If spin were perfectly conserved, we could speak separately of the Chern number for spin-up and the Chern number for spin-down. Real materials have terms that mix spin, and spin-orbit coupling itself mixes spin to some degree, so one may worry that these terms could smoothly remove the protection of the helical edge states. They cannot, as long as time-reversal symmetry survives, and the reason is Kramers’ theorem. For spin-1/2 electrons the time-reversal operator squares to <span class="math inline">\(-1\)</span>, which forces an exact twofold degeneracy at every momentum that is its own time-reversal partner. These are the time-reversal-invariant momenta, which are <span class="math inline">\(\Gamma\)</span> and <span class="math inline">\(X\)</span> in this setup. This degeneracy exists with or without spin-mixing terms, so the crossing of the edge states at these momenta cannot be gapped by any perturbation that respects time-reversal symmetry, but only by one that breaks it. This protection mechanism is different from, and stronger than, what the picture of two independent Chern insulators would suggest by itself. Figure <a href="#fig:s03:helical">3.6</a> compares the chiral and helical edge dispersions and shows what a term that breaks time-reversal symmetry does to the protected crossing.</p>
+<figure id="fig:s03:helical">
+<img src="../figures/s03f06_helical.svg" loading="lazy" alt="Schematic edge dispersions for the two topological classes of Section 3.8." />
+<figcaption><strong>Figure 3.6.</strong> Schematic edge dispersions for the two topological classes of Section <a href="08-three-topological-material-classes.html#sec-3-8">3.8</a>. The grey slabs are the bulk bands, and the branches that cross the bulk gap are the edge states, plotted as a function of the momentum along the edge. (a) A Chern insulator has a single branch per edge. At any energy in the gap there is one state and it moves in one direction, so a scatterer has no state to send it back into. (b) A quantum spin Hall insulator has two branches, one for each spin, drawn in a warm and a cold color, which propagate in opposite directions on the <em>same</em> edge, and this is what <strong>helical</strong> means. The total Chern number vanishes, but the spin Chern number does not <a href="11-quantum-spin-hall-insulators.html#eq-3-9">(3.9)</a>. (c) The crossing is not protected because the two spin sectors are separately conserved. It is protected by Kramers’ theorem, since the crossing is at a time-reversal-invariant momentum, where a twofold degeneracy is guaranteed for spin-<span class="math inline">\(1/2\)</span> electrons for any perturbation that respects time reversal. Disorder that preserves time reversal can therefore deform the branches but cannot gap them. Only a perturbation that breaks time reversal opens the gap <span class="math inline">\(\Delta\)</span> in (c), and then the protection is lost.</figcaption>
+</figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>Which perturbation can open a gap at the crossing of the helical edge states of a wide ribbon?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>A spin-mixing term such as Rashba spin-orbit coupling.</li>
+<li>A magnetic field or a magnetic impurity that breaks time-reversal symmetry.</li>
+<li>A random potential that is the same for both spins.</li>
+<li>A shift of the chemical potential.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>Kramers theorem protects the crossing as long as time-reversal symmetry holds, with or without spin mixing. Only a term that breaks time reversal can open the gap <span class="math inline">\(\Delta\)</span> of panel (c).</p>
+</details>
+</div>
+<p>Disorder makes this difference concrete. Helical edge states survive disorder that preserves time-reversal symmetry, since the band structure changes but the gapless crossing at the edge remains. On the other hand, disorder that breaks time-reversal symmetry opens a real gap in the edge spectrum and removes the protection completely.</p>
+<div class="notebookbox">
+<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session3.ipynb"><code>session3.ipynb</code></a>, “The quantum spin Hall state” (Core), “The robustness of the quantum spin Hall state” (Core), “Topological invariant of the quantum spin Hall state”, and “Finite size effects in topological systems” (Challenge, using exchange coupling plus Rashba spin-orbit coupling)</p>
+<p>Build the model with two copies of a Chern insulator and identify the helical pair of edge states by their spin projection and their propagation direction, which is the pattern in <a href="11-quantum-spin-hall-insulators.html#eq-3-9">(3.9)</a>. Then add disorder that preserves or breaks time-reversal symmetry, and check that the gap only opens in the second case. The note “in the lab” in this notebook section points to the measurement in 1T<span class="math inline">\(&#39;\)</span>-WTe<span class="math inline">\(_2\)</span> that we mentioned above.</p>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> Run the three panels, without disorder, with non-magnetic disorder and with magnetic disorder. Change the amplitude <code>1.</code> in <code>hd.add_onsite(lambda r: 1.*(np.random.random()-0.5))</code> to <code>1.5</code>. The crossing at the center stays gapless. In the third panel the amplitude <code>1.</code> of <code>add_exchange</code> opens a gap at zero energy.</p>
+<div class="tryit-links">
+Notebook <code>session3.ipynb</code>, cell “The robustness of the quantum spin Hall state”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session3.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session3.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession3.ipynb">Binder</a>.
+</div>
+</div>
+
+  <nav class="pager"><a href="11-quantum-spin-hall-insulators.html">3.11a Quantum spin Hall insulators</a><a href="12-topology-beyond-electrons.html">3.12 Topology beyond electrons</a></nav>
+
+</main>
+</body>
+</html>

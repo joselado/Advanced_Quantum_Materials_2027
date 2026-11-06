@@ -14,3 +14,25 @@ $$E_\text{AFM}(\mathbf k) = J\,S\,z\,\sqrt{1-\gamma(\mathbf k)^2}. \tag{6.9}$$
 Close to $\mathbf k=0$ we have $1-\gamma(\mathbf k)^2 \propto k^2$, so $E_\text{AFM}(\mathbf k)\propto |k|$. This is a **linear** dispersion similar to a Dirac cone, which is gapless at the same point but linear and not quadratic. This is the rule "quadratic in ferromagnets, linear in antiferromagnets" from the lecture, which we have now derived and not only stated. It is also one more example, together with the Dirac cones of session 2 and 3, of a linear dispersion that comes from the structure of a symmetry and is not put in by hand. Figure [6.6](#fig:s06:dispersion) shows [(6.8)](#eq-6-8) and [(6.9)](#eq-6-9) together, with a magnified view of the zone center, so that the parabola and the cone can be distinguished.
 
 ![Magnon dispersions [(6.8)](#eq-6-8) and [(6.9)](#eq-6-9) for a chain ($z=2$, $\gamma(\mathbf k)=\cos ka$), both in units of $|J|Sz$. Both are zero at $\mathbf k=0$, since a uniform rotation of all the spins costs no energy. So the magnon is the Goldstone mode of the broken spin-rotation symmetry, and no value of the exchange can open a gap in it. The difference is *how* the two dispersions go to zero. The factor $1-\gamma(\mathbf k)$ of the ferromagnet is quadratic in $k$. The factor $\sqrt{1-\gamma(\mathbf k)^2}$ of the antiferromagnet is the square root of the same quantity, so it is linear and gives a Dirac-like cone instead of a parabola. The right panel magnifies the zone centre, where the difference is clear. This extra square root comes from the Bogoliubov transformation that the Néel state requires, since the anomalous $a_ib_j$ terms are what change a parabola into a cone.](figures/s06f06_dispersion.svg){#fig:s06:dispersion number="6.6"}
+
+::: quiz
+At small $k$ we double the wave vector. How do the magnon energies [(6.8)](#eq-6-8) and [(6.9)](#eq-6-9) of a chain change?
+
+- [ ] Both double.
+- [ ] Both grow by a factor of four.
+- [x] The ferromagnetic one grows by four and the antiferromagnetic one doubles.
+- [ ] The ferromagnetic one doubles and the antiferromagnetic one grows by four.
+
+For small $k$ we have $1-\gamma(\mathbf k)\propto k^2$. So [(6.8)](#eq-6-8) is quadratic, while [(6.9)](#eq-6-9) is the square root of a quantity proportional to $k^2$, which is linear.
+:::
+
+::: quiz
+A square lattice has $z=4$ and $\gamma(\mathbf k)=\tfrac12(\cos k_x+\cos k_y)$. What is the ferromagnetic magnon energy at $\mathbf k=(\pi,\pi)$?
+
+- [ ] Zero.
+- [ ] $4|J|S$
+- [x] $8|J|S$
+- [ ] $16|J|S$
+
+At $(\pi,\pi)$ we have $\gamma=-1$, so $1-\gamma=2$. Then [(6.8)](#eq-6-8) gives $2|J|Sz=8|J|S$ for $z=4$, which is the top of the band.
+:::

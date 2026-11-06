@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>10.3 Neural network quantum states, session 10</title>
+<title>10.3a Neural network quantum states, session 10</title>
 <style>
   :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
           --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -82,30 +83,59 @@
   <nav class="tabs"><a href="../../lectures/session10.html">Video lectures</a><a href="../../landscape/session10.html">Landscape lectures</a><a class="on" href="../../notes/session10/index.html">Lecture notes</a></nav>
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="on" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 10. Machine Learning Quantum Materials</a></p>
-<h1 id="sec-10-3"><span class="num">10.3</span> Neural network quantum states</h1>
-<p>In this section we meet neural network quantum states (NNQS) for the first time in the course, and we treat them directly with the machine-learning methods of Section <a href="02-neural-networks-as-function-approximators.html#sec-10-2">10.2</a>. The idea in one sentence is that a neural network can take the place of the exponentially many coefficients of a many-body wavefunction. In this way it has its own place in the hierarchy of variational many-body states that this course has been building since the matrix product states of session 7. In this section we make this idea precise. We will see what the network computes, which loss function is used to train it, and how it is related to the ansätze that we already know.</p>
+<h1 id="sec-10-3"><span class="num">10.3a</span> Neural network quantum states</h1>
+<p>In this section we meet neural network quantum states (NNQS) for the first time in the course, and we treat them directly with the machine-learning methods of Section <a href="01-machine-learning-and-many-body-physics-in-two-directions.html#sec-10-2">10.2</a>. The idea in one sentence is that a neural network can take the place of the exponentially many coefficients of a many-body wavefunction. In this way it has its own place in the hierarchy of variational many-body states that this course has been building since the matrix product states of session 7. In this section we make this idea precise. We will see what the network computes, which loss function is used to train it, and how it is related to the ansätze that we already know.</p>
 <p>We start from a difficulty that we have met before, most recently in the discussion of entanglement growth in session 7. A wavefunction for <span class="math inline">\(L\)</span> spins,</p>
 <p><span id="eq-10-2" class="eq"><span class="math display">\[|\psi\rangle = \sum_{s_1,\dots,s_L} C(s_1,\dots,s_L)\, |s_1,\dots,s_L\rangle, \tag{10.2}\]</span></span></p>
 <p>is given by <span class="math inline">\(2^L\)</span> coefficients, and it is not possible to store them explicitly once <span class="math inline">\(L\)</span> is much bigger than 30 or 40. The idea of a neural network quantum state (NNQS) is to not store <span class="math inline">\(C(s_1,\dots,s_L)\)</span>, and instead to <em>generate</em> it. We build a neural network <span class="math inline">\(C_\theta\)</span> that takes a spin configuration <span class="math inline">\((s_1,\dots,s_L)\)</span> as input, which is formally an <span class="math inline">\(L\)</span>-pixel “image,” and returns the coefficient. For a wavefunction that is complex, it returns its real and imaginary parts as two output numbers, or in an equivalent way its modulus and phase. This is the same idea as the matrix product state of Section <a href="04-tensor-networks-for-machine-learning-and-the-many-body-wavefunction-as-a-big-data-problem.html#sec-10-4">10.4</a> below, where a compact generator takes the place of exponentially many numbers, but here it is built from the parameters of a neural network and not from a chain of matrices.</p>
-<p>The question is then how to find the right <span class="math inline">\(\theta\)</span> for the ground state, and here the methods of Section <a href="02-neural-networks-as-function-approximators.html#sec-10-2">10.2</a> appear again with almost no change. The variational principle tells us that</p>
+<p>The question is then how to find the right <span class="math inline">\(\theta\)</span> for the ground state, and here the methods of Section <a href="01-machine-learning-and-many-body-physics-in-two-directions.html#sec-10-2">10.2</a> appear again with almost no change. The variational principle tells us that</p>
 <p><span id="eq-10-3" class="eq"><span class="math display">\[E[\theta] \;=\; \frac{\langle \psi_\theta | H | \psi_\theta\rangle}{\langle \psi_\theta|\psi_\theta\rangle} \;=\; \frac{\sum_{s,s&#39;} C_\theta^*(s)\, H_{s s&#39;}\, C_\theta(s&#39;)}{\sum_s |C_\theta(s)|^2} \;\geq\; E_0, \tag{10.3}\]</span></span></p>
-<p>where the equality holds only when <span class="math inline">\(|\psi_\theta\rangle\)</span> is the true ground state, or in practice the closest state that the ansatz can reach. Equation <a href="#eq-10-3">(10.3)</a> <em>is</em> the loss function of <a href="02-neural-networks-as-function-approximators.html#eq-10-1">(10.1)</a>, meaning that the “observable output” that the network is trained to minimize is the energy of the system. To compute <a href="#eq-10-3">(10.3)</a> without a sum over all the <span class="math inline">\(2^L\)</span> configurations, one samples <span class="math inline">\(s\)</span> from the Born distribution <span class="math inline">\(p(s) = |C_\theta(s)|^2/\sum_{s&#39;}|C_\theta(s&#39;)|^2\)</span> and evaluates the energy as an average of the sampled local energy,</p>
-<p><span id="eq-10-4" class="eq"><span class="math display">\[E_{\rm loc}(s) = \sum_{s&#39;} H_{s s&#39;}\, \frac{C_\theta(s&#39;)}{C_\theta(s)}, \qquad E[\theta] = \big\langle E_{\rm loc}(s)\big\rangle_{s\sim p}, \tag{10.4}\]</span></span></p>
-<p>which only needs <span class="math inline">\(H\)</span> between the configurations that are connected by the Hamiltonian, which is usually sparse, and not the full <span class="math inline">\(2^L\times 2^L\)</span> matrix. The training is then done in the same way as in <a href="02-neural-networks-as-function-approximators.html#eq-10-1">(10.1)</a>. We compute the energy and its gradient with respect to the parameters of the network,</p>
-<p><span id="eq-10-5" class="eq"><span class="math display">\[\frac{\partial E}{\partial \theta_k} = 2\,\mathrm{Re}\Big[\big\langle E_{\rm loc}(s)\, O_k^*(s)\big\rangle - \big\langle E_{\rm loc}(s)\big\rangle\big\langle O_k^*(s)\big\rangle\Big], \qquad O_k(s) \equiv \frac{\partial \ln C_\theta(s)}{\partial \theta_k}, \tag{10.5}\]</span></span></p>
-<p>and we update <span class="math inline">\(\theta_k \to \theta_k - \eta\, \partial E/\partial\theta_k\)</span> many times, with a learning rate <span class="math inline">\(\eta\)</span> as in any other training of a neural network, until the gradient vanishes and the energy has converged to its variational minimum.</p>
-<p>We should now say clearly how NNQS is related to the other variational ansätze of this course. The slides show this as a set of nested regions. The full many-body Hilbert space is one region, and inside it there is a smaller region with all the states that an NNQS with a given architecture can reach. Projected entangled pair states are inside this NNQS region, and matrix product states, which we built in session 7, are inside the PEPS region. The parameterizations of gapped one-dimensional systems are in the innermost region, since a matrix product state is a particular and highly structured choice of “network.” NNQS is therefore the most expressive of the variational families of this course, because it imposes the least structure on how the coefficients depend on the configuration. Equation <a href="#eq-10-3">(10.3)</a> is the loss function, and <a href="#eq-10-4">(10.4)</a>-<a href="#eq-10-5">(10.5)</a> are the training procedure, and together they make this picture a working method and not only a structure. Figure <a href="#fig:s10:nnqs">10.2</a> shows all three parts, which are what the network computes, how the sampled estimate of the energy is built, and the nested picture.</p>
-<figure id="fig:s10:nnqs">
-<img src="../figures/s10f02_nnqs.svg" loading="lazy" alt="Neural network quantum states." />
-<figcaption><strong>Figure 10.2.</strong> Neural network quantum states. <strong>(a)</strong> What the ansatz is. The exponentially long table of coefficients in <a href="#eq-10-2">(10.2)</a> is not compressed, it is never written down at all. The configuration <span class="math inline">\(s\)</span> is given as an <span class="math inline">\(L\)</span>-pixel “image,” here a row of up and down spins, and the network returns the one coefficient <span class="math inline">\(C_\theta(s)\)</span> that we ask for. This is the same structure as in figure <a href="02-neural-networks-as-function-approximators.html#fig:s10:template">10.1</a>, where only the input and the output have a new label. <strong>(b)</strong> Training. The variational energy <a href="#eq-10-3">(10.3)</a> is the loss, and we estimate it by sampling configurations from the Born distribution and averaging the local energy <a href="#eq-10-4">(10.4)</a>, the bars and their mean. This is what makes the method possible, since <span class="math inline">\(E_{\rm loc}(s)\)</span> only needs the few matrix elements <span class="math inline">\(H_{ss&#39;}\)</span> that a sparse Hamiltonian connects to <span class="math inline">\(s\)</span>, and never the full <span class="math inline">\(2^L\times 2^L\)</span> matrix. <strong>(c)</strong> The nested regions drawn on the slides. A matrix product state is a highly structured special case of a PEPS, a PEPS is in turn a state that a large enough NNQS can represent, and NNQS is the outer region because it imposes the least structure of all on how <span class="math inline">\(C\)</span> depends on <span class="math inline">\(s\)</span>. This picture organizes the lecture and is not a theorem, since the outer inclusion is a statement about networks that are expressive enough and not about every architecture. Note also that expressiveness has a cost, because the order is the opposite one for how easy each family is to optimize.</figcaption>
+<p>where the equality holds only when <span class="math inline">\(|\psi_\theta\rangle\)</span> is the true ground state, or in practice the closest state that the ansatz can reach. Equation <a href="#eq-10-3">(10.3)</a> <em>is</em> the loss function of <a href="01-machine-learning-and-many-body-physics-in-two-directions.html#eq-10-1">(10.1)</a>, meaning that the “observable output” that the network is trained to minimize is the energy of the system.</p>
+<figure class="again">
+<img src="../figures/s10f01_networktemplate.svg" loading="lazy" alt="A deep network with an input picture, hidden layers and a one-hot output, next to the training loop of evaluation, loss, gradient and update." />
+<figcaption><strong><a href="01-machine-learning-and-many-body-physics-in-two-directions.html#fig:s10:template">Figure 10.1</a>, shown again.</strong> The template of Section <a href="01-machine-learning-and-many-body-physics-in-two-directions.html#sec-10-2">10.2</a>, now used for a wavefunction. The picture on the input becomes a spin configuration <span class="math inline">\(s\)</span>, the output becomes the single coefficient <span class="math inline">\(C_\theta(s)\)</span>, and the loss of the training loop is the variational energy <a href="#eq-10-3">(10.3)</a> in place of the squared error of <a href="01-machine-learning-and-many-body-physics-in-two-directions.html#eq-10-1">(10.1)</a>.</figcaption>
 </figure>
-<h2 id="sec-10-3-1"><span class="num">10.3.1</span> Quantum state tomography</h2>
-<p>A second and different use of the same NNQS ansatz is <strong>quantum state tomography</strong>. Let us take a real experimental system in some unknown state <span class="math inline">\(|\psi\rangle\)</span>, and let us say that the only access that we have to it is through projective measurements. We measure the state of every spin, and the system collapses to one configuration <span class="math inline">\(s\)</span> with probability <span class="math inline">\(|C(s)|^2\)</span>. If we repeat the measurement many times, we obtain a set of observed configurations that are distributed according to <span class="math inline">\(|C(s)|^2\)</span>. However, we never observe <span class="math inline">\(C(s)\)</span> itself but only its modulus squared, and to do this for all the <span class="math inline">\(2^L\)</span> configurations one by one is the same exponential problem that we started with.</p>
-<p>The solution has the same structure as the ground-state search above. We parameterize the unknown amplitude and phase with a network, for instance a restricted Boltzmann machine, or with two separate networks, one for <span class="math inline">\(|C_\theta(s)|\)</span> and one for its phase. Then we fit <span class="math inline">\(\theta\)</span> by <strong>maximum likelihood</strong> to the observed measurement outcomes, instead of minimizing an energy. In practice, one maximizes <span class="math inline">\(\sum_{s} n(s) \ln p_\theta(s)\)</span> over <span class="math inline">\(\theta\)</span>, where <span class="math inline">\(n(s)\)</span> counts how many times the configuration <span class="math inline">\(s\)</span> was observed and <span class="math inline">\(p_\theta(s) =
-|C_\theta(s)|^2/\sum_{s&#39;}|C_\theta(s&#39;)|^2\)</span> is the probability predicted by the network. This reconstructs a full approximation to the unknown wavefunction with far fewer than <span class="math inline">\(2^L\)</span> measurements, and this is what makes it useful as an experimental tool, since nobody can run a tomography experiment that needs an exponential number of measurements.</p>
-<p>This part comes from the slides and the transcript and has no notebook counterpart, in line with the fact that this session has no companion notebook. There is no <code>sessionN.ipynb</code> cell to point you to here, so <a href="#eq-10-3">(10.3)</a>-<a href="#eq-10-5">(10.5)</a> and the tomography likelihood above are the complete and self-contained derivation.</p>
+<div class="quiz" data-correct="C">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>A wavefunction of <span class="math inline">\(L=40\)</span> spins is stored as a table of complex coefficients in double precision. How much memory does the table need?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>About <span class="math inline">\(40^2\)</span> numbers, which is a few kilobytes.</li>
+<li>About <span class="math inline">\(10^6\)</span> numbers, which is a few megabytes.</li>
+<li>About <span class="math inline">\(10^{12}\)</span> numbers, which is roughly <span class="math inline">\(16\)</span> terabytes.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>C</strong>.</p>
+<p>The table has <span class="math inline">\(2^{40}\approx1.1\times10^{12}\)</span> coefficients, and each one takes <span class="math inline">\(16\)</span> bytes. A network with a few thousand parameters generates the same coefficients on demand and never stores the table.</p>
+</details>
+</div>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>For a spin chain whose ground-state energy we know exactly, a student finds <span class="math inline">\(E[\theta]\)</span> clearly below it, well beyond the statistical error. What should we conclude?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>The network has found a state that is better than the ground state.</li>
+<li>There is a mistake, since <span class="math inline">\(E[\theta]\geq E_0\)</span> for any state in <a href="#eq-10-3">(10.3)</a>.</li>
+<li>The network is too small, so it should be made larger.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The variational energy is bounded from below by the true ground-state energy for every state, whatever the architecture. A value below it signals an error in the Hamiltonian, in the local energy or in the sampling.</p>
+</details>
+</div>
+<p>Next we will see how to evaluate this energy without a sum over all the configurations.</p>
 
-  <nav class="pager"><a href="02-neural-networks-as-function-approximators.html">10.2 Neural networks as function approximators</a><a href="04-tensor-networks-for-machine-learning-and-the-many-body-wavefunction-as-a-big-data-problem.html">10.4 Tensor networks for machine learning and the many-body wavefunction as a big-data problem</a></nav>
+  <nav class="pager"><a href="01-machine-learning-and-many-body-physics-in-two-directions.html">10.1 Machine learning and many-body physics in two directions</a><a href="03b-training-the-network-and-quantum-state-tomography.html">10.3b Training the network and quantum state tomography</a></nav>
 
 </main>
 </body>

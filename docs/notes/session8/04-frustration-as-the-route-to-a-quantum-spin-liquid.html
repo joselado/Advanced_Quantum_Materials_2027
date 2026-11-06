@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -84,12 +85,52 @@
   <p class="crumb"><a href="index.html">Session 8. Quantum Magnetism, Spinons and Kondo Physics</a></p>
 <h1 id="sec-8-4"><span class="num">8.4</span> Frustration as the route to a quantum spin liquid</h1>
 <p>Before we build a macroscopic version of <a href="03-two-minimal-dimers-a-classical-order-parameter-and-a-quantum-singlet.html#eq-8-3">(8.3)</a>, we need to know when the ground state of a Heisenberg model stays time-reversal symmetric in this way, instead of ordering spontaneously as the magnets of Session 1 and Session 6 did. The general rule is <strong>frustration</strong>. The standard example is a triangular plaquette with antiferromagnetic coupling on all three bonds. Any two spins can point in opposite directions, but then the third spin is parallel to one of the two, so one of the two remaining bonds is not satisfied, and no spin configuration can satisfy all three bonds at the same time. This geometric frustration gives many classical ground states that are degenerate, which means that they have the same energy and different spin configurations. When we add quantum fluctuations, they mix these degenerate configurations into one quantum superposition, which in general does not break time-reversal symmetry.</p>
-<p>This is the reason why the <strong>triangular</strong> and <strong>kagome</strong> lattices, which are both built only from triangles, are the standard place to look for quantum spin liquid physics. An antiferromagnetic Heisenberg model on either lattice is a real candidate for a QSL ground state, in the right range of couplings. This is also the reason why herbertsmithite, a compound with spin-<span class="math inline">\(1/2\)</span> sites on a kagome lattice, is the best-known real candidate material. Figure <a href="#fig:s08:frustration">8.2</a> shows the geometry behind the whole argument, which is a frustrated triangle with its degenerate configurations and the kagome lattice that is built only from such triangles, while the plaquette without frustration and the single frustrated triangle are the ones of figure <a href="../session6/10-bipartite-order-versus-geometric-frustration.html#fig:s06:frustration">6.3</a>.</p>
+<p>This is the reason why the <strong>triangular</strong> and <strong>kagome</strong> lattices, which are both built only from triangles, are the standard place to look for quantum spin liquid physics. An antiferromagnetic Heisenberg model on either lattice is a real candidate for a QSL ground state, in the right range of couplings. This is also the reason why herbertsmithite, a compound with spin-<span class="math inline">\(1/2\)</span> sites on a kagome lattice, is the best-known real candidate material. Figure <a href="#fig:s08:frustration">8.2</a> shows the geometry behind the whole argument, which is a frustrated triangle with its degenerate configurations and the kagome lattice that is built only from such triangles, while the plaquette without frustration and the single frustrated triangle are the ones of figure <a href="../session6/09-the-heisenberg-model-on-a-general-lattice.html#fig:s06:frustration">6.3</a>.</p>
 <figure id="fig:s08:frustration">
 <img src="../figures/s08f02_frustration.svg" loading="lazy" alt="Frustration, with the spins drawn as Ising (collinear) variables, which is how the argument in the text is written." />
-<figcaption><strong>Figure 8.2.</strong> Frustration, with the spins drawn as Ising (collinear) variables, which is how the argument in the text is written. If the spins can rotate freely, the triangle goes instead into the <span class="math inline">\(120^\circ\)</span> noncollinear state of figure <a href="../session6/10-bipartite-order-versus-geometric-frustration.html#fig:s06:frustration">6.3</a>, and the degeneracy that we discuss here is the Ising one. The plaquette without frustration and the single frustrated triangle are panels (a) and (b) of figure <a href="../session6/10-bipartite-order-versus-geometric-frustration.html#fig:s06:frustration">6.3</a>. On a bipartite plaquette every antiferromagnetic bond can be satisfied at the same time, and the ground state is the Néel state, with two configurations related by a global flip, each of which breaks time-reversal symmetry. On a triangle this is not possible, since once two spins are antiparallel the third bond cannot be satisfied for both directions of the last spin. (a) The frustrated bond, in red, can be on any of the three edges, so the classical ground state is degenerate and not unique. Quantum fluctuations mix the degenerate configurations into one superposition with <span class="math inline">\(\langle\mathbf
+<figcaption><strong>Figure 8.2.</strong> Frustration, with the spins drawn as Ising (collinear) variables, which is how the argument in the text is written. If the spins can rotate freely, the triangle goes instead into the <span class="math inline">\(120^\circ\)</span> noncollinear state of figure <a href="../session6/09-the-heisenberg-model-on-a-general-lattice.html#fig:s06:frustration">6.3</a>, and the degeneracy that we discuss here is the Ising one. The plaquette without frustration and the single frustrated triangle are panels (a) and (b) of figure <a href="../session6/09-the-heisenberg-model-on-a-general-lattice.html#fig:s06:frustration">6.3</a>. On a bipartite plaquette every antiferromagnetic bond can be satisfied at the same time, and the ground state is the Néel state, with two configurations related by a global flip, each of which breaks time-reversal symmetry. On a triangle this is not possible, since once two spins are antiparallel the third bond cannot be satisfied for both directions of the last spin. (a) The frustrated bond, in red, can be on any of the three edges, so the classical ground state is degenerate and not unique. Quantum fluctuations mix the degenerate configurations into one superposition with <span class="math inline">\(\langle\mathbf
 S_i\rangle=\mathbf 0\)</span>, which does <em>not</em> break time-reversal symmetry. (b) The kagome lattice of herbertsmithite is built only from corner-sharing triangles, so all of them are frustrated at the same time, here with one frustrated bond on every triangle, and the classical degeneracy becomes macroscopic. This is why triangular and kagome lattices are the standard place to look for quantum spin liquids.</figcaption>
 </figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>Three Ising spins sit on a triangle with antiferromagnetic bonds. How many of the 8 configurations are classical ground states?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>2, the two Néel-like configurations.</li>
+<li>6, the ones with exactly one unsatisfied bond.</li>
+<li>3, one for each bond.</li>
+<li>8, since all configurations have the same energy.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The two fully aligned configurations have three unsatisfied bonds. Each of the other six has one unsatisfied bond, which is the minimum, so the ground state is sixfold degenerate.</p>
+</details>
+</div>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>Why is the square lattice with antiferromagnetic Heisenberg coupling not a good place to look for a spin liquid?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>It is bipartite, so the Néel state satisfies every bond and breaks time-reversal symmetry.</li>
+<li>It has too many neighbors for singlets to form.</li>
+<li>It has no antiferromagnetic coupling.</li>
+<li>It is two-dimensional, and spin liquids need three dimensions.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>On a bipartite lattice all bonds are satisfied at the same time by two sublattices of opposite spin. There is then no frustration and no macroscopic degeneracy for the quantum fluctuations to mix.</p>
+</details>
+</div>
 
   <nav class="pager"><a href="03-two-minimal-dimers-a-classical-order-parameter-and-a-quantum-singlet.html">8.3 Two minimal dimers, a classical order parameter and a quantum singlet</a><a href="05-the-dimerized-heisenberg-model-a-first-step-before-a-spin-liquid.html">8.5 The dimerized Heisenberg model, a first step before a spin liquid</a></nav>
 

@@ -11,13 +11,14 @@
    "file": "01-two-classes-of-magnets-and-where-we-find-them.md",
    "id": "sec-8-1",
    "number": "8.1",
-   "title": "Two classes of magnets and where we find them"
-  },
-  {
-   "file": "02-two-emergent-excitations-magnons-and-spinons.md",
-   "id": "sec-8-2",
-   "number": "8.2",
-   "title": "Two emergent excitations, magnons and spinons"
+   "title": "Two classes of magnets and where we find them",
+   "also": [
+    {
+     "id": "sec-8-2",
+     "number": "8.2",
+     "title": "Two emergent excitations, magnons and spinons"
+    }
+   ]
   },
   {
    "file": "03-two-minimal-dimers-a-classical-order-parameter-and-a-quantum-singlet.md",
@@ -47,13 +48,14 @@
    "file": "07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.md",
    "id": "sec-8-7",
    "number": "8.7",
-   "title": "Why the Holstein-Primakoff magnon approach fails for QSL excitations"
-  },
-  {
-   "file": "08-the-parton-construction-with-abrikosov-fermions-and-the-single-occupancy-constraint.md",
-   "id": "sec-8-8",
-   "number": "8.8",
-   "title": "The parton construction with Abrikosov fermions and the single-occupancy constraint"
+   "title": "Why the Holstein-Primakoff magnon approach fails for QSL excitations",
+   "also": [
+    {
+     "id": "sec-8-8",
+     "number": "8.8",
+     "title": "The parton construction with Abrikosov fermions and the single-occupancy constraint"
+    }
+   ]
   },
   {
    "file": "09-the-mean-field-spinon-hamiltonian-and-its-dispersion-classes.md",
@@ -71,13 +73,14 @@
    "file": "11-from-a-single-kondo-impurity-to-the-kondo-lattice.md",
    "id": "sec-8-11",
    "number": "8.11",
-   "title": "From a single Kondo impurity to the Kondo lattice"
-  },
-  {
-   "file": "12-solving-the-kondo-lattice-with-the-parton-method-and-a-hybridization.md",
-   "id": "sec-8-12",
-   "number": "8.12",
-   "title": "Solving the Kondo lattice with the parton method and a hybridization"
+   "title": "From a single Kondo impurity to the Kondo lattice",
+   "also": [
+    {
+     "id": "sec-8-12",
+     "number": "8.12",
+     "title": "Solving the Kondo lattice with the parton method and a hybridization"
+    }
+   ]
   },
   {
    "file": "13-electronic-structure-of-the-kondo-lattice-and-the-kondo-insulator.md",
@@ -90,6 +93,20 @@
    "id": "sec-8-14",
    "number": "8.14",
    "title": "Closing summary"
+  }
+ ],
+ "redirects": [
+  {
+   "from": "02-two-emergent-excitations-magnons-and-spinons.html",
+   "to": "01-two-classes-of-magnets-and-where-we-find-them.html#sec-8-2"
+  },
+  {
+   "from": "08-the-parton-construction-with-abrikosov-fermions-and-the-single-occupancy-constraint.html",
+   "to": "07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#sec-8-8"
+  },
+  {
+   "from": "12-solving-the-kondo-lattice-with-the-parton-method-and-a-hybridization.html",
+   "to": "11-from-a-single-kondo-impurity-to-the-kondo-lattice.html#sec-8-12"
   }
  ]
 }

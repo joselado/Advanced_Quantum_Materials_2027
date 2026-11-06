@@ -8,6 +8,19 @@ So far in this session we have done the following.
 
 - We constructed the magnon spectrum from first principles with the Holstein-Primakoff transformation [(6.6)](#eq-6-6)--[(6.7)](#eq-6-7). We obtained the quadratic ferromagnetic dispersion [(6.8)](#eq-6-8) and the linear antiferromagnetic dispersion [(6.9)](#eq-6-9), and then we applied the topological methods of sessions 3 and 4 a third time to show that magnon bands can also be topological.
 
+![The two magnon dispersions of the session for a chain. The ferromagnet is quadratic and the antiferromagnet is linear near $k=0$, and both are gapless.](figures/s06f06_dispersion.svg){panel="main" alt="Two curves of the magnon energy against the wave vector, a parabola and a curve with a linear rise, both starting at zero."}
+
+::: quiz
+Both magnon dispersions of this session go to zero at $k=0$. What is the common reason?
+
+- [x] A continuous spin-rotation symmetry is broken spontaneously, so the magnon is a Goldstone mode.
+- [ ] The Heisenberg coupling has no energy scale at $k=0$.
+- [ ] Magnons carry no charge.
+- [ ] Mean-field theory fails at $k=0$.
+
+A uniform rotation of all the spins costs no energy, because the Hamiltonian is invariant under it. The ordered state breaks this symmetry, so a long wavelength rotation costs an energy that goes to zero with $k$.
+:::
+
 This is the point where the live lecture ends, right after topological magnons and without a narrated summary slide. This is a real feature of this year's recording and not something missing in these notes, so we also end here, and we do not add a summary sentence that the lecture does not say. Every magnet that we have constructed in this session, from the mean-field exchange field to the topological magnon edge states, is a state that breaks time-reversal symmetry. It is a net, staggered or noncollinear spin arrangement that looks different when we run time backwards than when we run it forwards.
 
 Two topics are left open on purpose, and both were pointed out along the way without being resolved here. The Kitaev interaction of Section [6.12](#sec-6-12), which the lecture points out explicitly as "important for quantum spin liquids," comes back from two different directions in the next sessions. Session 7 treats the frustrated Hamiltonians of kagome type, to which it belongs, as the paradigm case where mean-field theory fails. Session 8 comes back to the Kitaev model itself as a way to obtain an exactly solvable quantum spin liquid. The spinon was previewed in Section [6.1](#sec-6-1) only by name and by its spin-$1/2$ and charge-neutral quantum numbers. It will get the same full treatment that magnons got in this session, but only in session 8, when we move from magnets that break time-reversal symmetry to quantum magnets that do not.

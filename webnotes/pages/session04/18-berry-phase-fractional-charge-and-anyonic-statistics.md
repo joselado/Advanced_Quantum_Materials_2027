@@ -16,3 +16,25 @@ $$\theta_{\text{stat}} = \frac{2\pi}{m}. \tag{4.16}$$
 To compare with the familiar cases, note that to move one quasiparticle all the way around another is *two* exchanges, one after the other, so the exchange phase is half of [(4.16)](#eq-4-16), which is $\pi/m$. For ordinary fermions the exchange of two particles gives a phase $\pi$, and for bosons it gives a phase $0$. The exchange phase $\pi/m$ is neither of the two, and it goes from one familiar case to the other as $m$ grows, as shown in figure [4.6](#fig:s04:quasihole). These quasiparticles are what are called **anyons**, which are excitations with exchange statistics that go continuously from the fermionic to the bosonic case, and they are labeled by the same integer $m$ that fixed the filling fraction. We started from a many-body wavefunction built only from ordinary electrons, which are real fermions, and from the correlations of this wavefunction we obtained excitations that are neither fermions nor bosons. This is the simplest example of fractionalization in a quantum many-body system that we will meet in this course.
 
 ![Fractional charge and fractional statistics, both obtained from a Berry phase. (a) When we multiply the Laughlin state by $\prod_i(z_i-w)$, equation [(4.14)](#eq-4-14), the angular momentum of every electron about $w$ increases by one, which by figure [4.5](#fig:s04:droplet) moves charge radially outward and leaves a region with less charge behind, the dimple. If we do this $m$ times we remove exactly the charge of one electron, so one quasihole has the charge of an electron divided by $m$, which is $q=e/m$. (b) When we move one quasihole once around another, along the loop, and follow the Berry phase, it separates into two parts. The first is an Aharonov-Bohm part, proportional to the enclosed flux, and its prefactor is what fixes $q=e/m$ in [(4.15)](#eq-4-15). The second is a remaining part $2\pi/m$, which depends only on the fact that one quasiparticle went around the other. A full loop is two exchanges, so the exchange phase itself is $\pi/m$, drawn at the bottom for $m=3$. For every odd $m>1$ it is strictly between the bosonic $0$ and the fermionic $\pi$, and this is what makes these excitations anyons.](figures/s04f06_quasihole.svg){#fig:s04:quasihole number="4.6"}
+
+::: quiz
+For $m=3$ what are the statistical phase of a full braid of one quasihole around another and the exchange phase?
+
+- [ ] $2\pi$ and $\pi$.
+- [ ] $\pi/3$ and $2\pi/3$.
+- [ ] $2\pi/3$ and $2\pi/3$.
+- [x] $2\pi/3$ and $\pi/3$.
+
+A full braid is two exchanges, so the exchange phase is half of the braid phase $2\pi/m$, which is $\pi/m=\pi/3$.
+:::
+
+::: quiz
+The exchange phase is $\pi/m$. Which familiar particles do we recover for $m=1$ and for very large $m$?
+
+- [ ] Bosons for $m=1$ and fermions for large $m$.
+- [ ] Fermions for both.
+- [x] Fermions for $m=1$ and bosons for large $m$.
+- [ ] Bosons for both.
+
+For $m=1$ the phase is $\pi$, which is the fermion, and the Laughlin state is the filled Landau level. For large $m$ the phase goes to $0$, which is the boson.
+:::

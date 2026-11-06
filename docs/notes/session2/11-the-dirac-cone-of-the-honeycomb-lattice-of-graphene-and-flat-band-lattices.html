@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>2.11 The Dirac cone of the honeycomb lattice of graphene, and flat-band lattices, session 2</title>
+<title>2.11a The Dirac cone of the honeycomb lattice of graphene, session 2</title>
 <style>
   :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
           --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -82,7 +83,7 @@
   <nav class="tabs"><a href="../../lectures/session2.html">Video lectures</a><a href="../../landscape/session2.html">Landscape lectures</a><a class="on" href="../../notes/session2/index.html">Lecture notes</a></nav>
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="on" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 2. Symmetries, Tight-Binding Band Structure Theory, and Effective Models</a></p>
-<h1 id="sec-2-11"><span class="num">2.11</span> The Dirac cone of the honeycomb lattice of graphene, and flat-band lattices</h1>
+<h1 id="sec-2-11"><span class="num">2.11a</span> The Dirac cone of the honeycomb lattice of graphene</h1>
 <p>The honeycomb lattice of graphene has two orbitals per unit cell, one on each of two triangular sublattices, which are usually called <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, and which sit on an underlying triangular Bravais lattice. Nearest-neighbour hopping only connects <span class="math inline">\(A\)</span> with <span class="math inline">\(B\)</span>, and never <span class="math inline">\(A\)</span> with <span class="math inline">\(A\)</span> or <span class="math inline">\(B\)</span> with <span class="math inline">\(B\)</span>, so by the method of Section <a href="07-multi-orbital-band-structures.html#sec-2-7">2.7</a> the Bloch Hamiltonian <a href="07-multi-orbital-band-structures.html#eq-2-12">(2.12)</a> is purely off-diagonal,</p>
 <p><span id="eq-2-19" class="eq"><span class="math display">\[H(\mathbf{k}) = \begin{pmatrix} 0 &amp; f(\mathbf{k}) \\ f^\ast(\mathbf{k}) &amp; 0 \end{pmatrix},
 \qquad f(\mathbf{k}) = t\sum_{j=1}^{3} e^{i\mathbf{k}\cdot\boldsymbol{\delta}_j}, \tag{2.19}\]</span></span></p>
@@ -98,18 +99,58 @@ v_F = \frac{3ta}{2\hbar}, \tag{2.20}\]</span></span></p>
 <p>where <span class="math inline">\(\sigma_x,\sigma_y\)</span> are the Pauli matrices that act on the <span class="math inline">\(A/B\)</span> sublattice space and <span class="math inline">\(a\)</span> is the nearest-neighbour bond length. When we diagonalize <a href="#eq-2-20">(2.20)</a> we obtain</p>
 <p><span id="eq-2-21" class="eq"><span class="math display">\[E_\pm(\mathbf{q}) = \pm \hbar v_F |\mathbf{q}|, \tag{2.21}\]</span></span></p>
 <p>which is a strictly linear dispersion with the shape of a cone around <span class="math inline">\(K\)</span>, and the same calculation gives the same result around <span class="math inline">\(K&#39;\)</span>. This is what is called the <strong>Dirac cone</strong>. Note that the curvature of the cone along the radial direction vanishes, so <a href="09-properties-of-an-electronic-dispersion.html#eq-2-18">(2.18)</a> gives an infinite effective mass in this direction, and at the tip of the cone the effective mass is not defined at all. When we say that the electrons of graphene are “massless”, which is the phenomenology for which graphene is famous, we refer to the Dirac mass term, which is the gap, and not to the curvature of the band. This is the low-energy physics of every material with a honeycomb lattice, and of graphene in the first place. There is much more structure at <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span>, namely a Berry phase and with it a topological classification, which we leave for the topology lecture right after this one.</p>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>The curvature of the cone is zero along the radial direction, and <a href="09-properties-of-an-electronic-dispersion.html#eq-2-18">(2.18)</a> gives an infinite mass. Why do we still call the electrons of graphene massless?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>Because the Dirac Hamiltonian has no mass term, which would be a gap at the Dirac point.</li>
+<li>Because the effective mass of <a href="09-properties-of-an-electronic-dispersion.html#eq-2-18">(2.18)</a> is zero at the tip.</li>
+<li>Because the electrons of graphene have no charge.</li>
+<li>Because the lattice constant drops out of the cone.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>Massless refers to the Dirac mass, which is a term that opens a gap at the touching point. It does not refer to the curvature of the band, which is not the relevant quantity here.</p>
+</details>
+</div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session2.ipynb"><code>session2.ipynb</code></a>, “Infinite two-dimensional graphene” (Core)</p>
 <p>Build the two-dimensional honeycomb Bloch Hamiltonian <a href="#eq-2-19">(2.19)</a> directly and diagonalize it across the Brillouin zone. Zoom in on <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span> and check numerically that the dispersion there is really linear, which means that it agrees with <a href="#eq-2-21">(2.21)</a> once you are close enough to the Dirac point.</p>
 </div>
-<p>Two standard lattices realize truly flat bands only from their geometry in real space, and not from a fine-tuning of hopping parameters to zero. The <strong>Lieb lattice</strong> is built from a square lattice where one site out of every four is removed in a regular pattern. Its dispersion has two dispersive bands, which come from the bands of the square lattice <a href="08-higher-dimensional-band-structures.html#eq-2-14">(2.14)</a>, and in addition one exactly flat band at zero energy. Near the corner <span class="math inline">\(M\)</span> of the Brillouin zone the two dispersive bands form a linear, Dirac-like cone, and the flat band goes through the tip of this cone. The <strong>kagome lattice</strong> is built instead from a triangular lattice where one site out of every four is removed. Its dispersion is closer to the one of the honeycomb lattice, with linear crossings similar to Dirac cones, and in addition it has a flat band at the edge of the spectrum. With the sign convention of <a href="05-blochs-theorem-and-the-first-band-structure.html#eq-2-5">(2.5)</a> this flat band is at the top, at <span class="math inline">\(\epsilon=2t\)</span>, and it would be at the bottom for the opposite sign of <span class="math inline">\(t\)</span>. In both cases the flat band comes from destructive interference between hopping paths in real space. This is a purely geometric effect and not an effect of interactions, and the physics of strong correlations only enters once electrons are placed into these bands, which are already flat. Figure <a href="#fig:s02:flatbands">2.6</a> shows both lattices, both dispersions, and the localized state where the hopping paths cancel.</p>
-<figure id="fig:s02:flatbands">
-<img src="../figures/s02f05_flatbands.svg" loading="lazy" alt="Flat bands that come only from geometry, with the bands computed from the Bloch Hamiltonian of each lattice and the flat band drawn as the red tube." />
-<figcaption><strong>Figure 2.6.</strong> Flat bands that come only from geometry, with the bands computed from the Bloch Hamiltonian of each lattice and the flat band drawn as the red tube. <strong>(a)</strong> The Lieb lattice, which is a square lattice with one site in four removed, and <strong>(b)</strong> its bands. There are two dispersive bands and a band that is exactly flat at <span class="math inline">\(\epsilon=0\)</span>, and all three touch at <span class="math inline">\(M\)</span>. <strong>(c)</strong> The kagome lattice, made of triangles that share corners, and <strong>(d)</strong> its bands, with a Dirac-like crossing at <span class="math inline">\(K\)</span> and a flat band at <span class="math inline">\(\epsilon=2t\)</span>. <strong>(e)</strong> The reason why the flat band exists. An eigenstate can be confined to a single kagome hexagon, with amplitudes of alternating sign around it, the filled and the ghost balls. Every path by which it could hop onto a site outside arrives twice with opposite sign, the two arrows, so the two contributions cancel at the cross. Nothing is fine-tuned to zero, since the flatness is a property of the geometry of the lattice, and by <a href="09-properties-of-an-electronic-dispersion.html#eq-2-16">(2.16)</a> it makes the density of states diverge.</figcaption>
-</figure>
-<p>This material is only on the slides and has no counterpart in <code>session2.ipynb</code>. The notebook treats the honeycomb lattice in depth, but it has no section on the Lieb lattice or on the kagome lattice. The band-structure plots for both lattices are shown directly on the slides. The description above gives their qualitative structure, but to see the actual flat-band dispersion one needs the figure itself.</p>
+<div class="tryit">
+<p><strong>Try it.</strong> Run the cell and zoom in on the bands near <span class="math inline">\(K\)</span>. Check that the two bands touch at zero energy and that they are straight lines close to this point. Then change the hopping in <code>tij</code>, and check that the slope of the lines changes with <span class="math inline">\(t\)</span>.</p>
+<div class="tryit-links">
+Notebook <code>session2.ipynb</code>, cell “Infinite two-dimensional graphene”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session2.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session2.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession2.ipynb">Binder</a>.
+</div>
+</div>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>The hopping <span class="math inline">\(t\)</span> of graphene is doubled. What happens to the Dirac cone of <a href="#eq-2-20">(2.20)</a> and <a href="#eq-2-21">(2.21)</a>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>The cone stays at the same point and becomes twice as steep.</li>
+<li>The cone moves to another point of the zone.</li>
+<li>A gap of size <span class="math inline">\(2t\)</span> opens at the tip.</li>
+<li>The dispersion stops being linear.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>The velocity <span class="math inline">\(v_F=3ta/2\hbar\)</span> is proportional to <span class="math inline">\(t\)</span>, so the slope doubles. The touching point is fixed by the geometry of the lattice and not by the value of <span class="math inline">\(t\)</span>.</p>
+</details>
+</div>
 
-  <nav class="pager"><a href="10-three-types-of-dispersion-which-are-parabolic-dirac-and-flat.html">2.10 Three types of dispersion, which are parabolic, Dirac and flat</a><a href="12-measuring-band-structures-with-arpes.html">2.12 Measuring band structures with ARPES</a></nav>
+  <nav class="pager"><a href="09-properties-of-an-electronic-dispersion.html">2.9 Properties of an electronic dispersion</a><a href="11b-flat-bands-from-the-geometry-of-the-lattice.html">2.11b Flat bands from the geometry of the lattice</a></nav>
 
 </main>
 </body>

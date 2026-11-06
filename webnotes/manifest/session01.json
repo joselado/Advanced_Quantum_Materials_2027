@@ -35,43 +35,49 @@
    "file": "05-a-warm-up-in-first-quantization-and-the-puzzle-that-breaks-it.md",
    "id": "sec-1-5",
    "number": "1.5",
-   "title": "A warm-up in first quantization, and the puzzle that breaks it"
-  },
-  {
-   "file": "06-building-second-quantization-with-creation-and-annihilation-operators.md",
-   "id": "sec-1-6",
-   "number": "1.6",
-   "title": "Building second quantization with creation and annihilation operators"
-  },
-  {
-   "file": "07-enforcing-fermionic-statistics.md",
-   "id": "sec-1-7",
-   "number": "1.7",
-   "title": "Enforcing fermionic statistics"
+   "title": "A warm-up in first quantization, and the puzzle that breaks it",
+   "also": [
+    {
+     "id": "sec-1-6",
+     "number": "1.6",
+     "title": "Building second quantization with creation and annihilation operators"
+    },
+    {
+     "id": "sec-1-7",
+     "number": "1.7",
+     "title": "Enforcing fermionic statistics"
+    }
+   ]
   },
   {
    "file": "08-first-versus-second-quantization-for-the-same-problem.md",
    "id": "sec-1-8",
    "number": "1.8",
-   "title": "First versus second quantization for the same problem"
-  },
-  {
-   "file": "09-where-the-two-formalisms-differ-and-the-exponential-growth-of-the-many-body-problem.md",
-   "id": "sec-1-9",
-   "number": "1.9",
-   "title": "Where the two formalisms differ and the exponential growth of the many-body problem"
-  },
-  {
-   "file": "10-a-first-look-at-eigenstates-in-finite-tight-binding-islands.md",
-   "id": "sec-1-10",
-   "number": "1.10",
-   "title": "A first look at eigenstates in finite tight-binding islands"
+   "title": "First versus second quantization for the same problem",
+   "also": [
+    {
+     "id": "sec-1-9",
+     "number": "1.9",
+     "title": "Where the two formalisms differ and the exponential growth of the many-body problem"
+    },
+    {
+     "id": "sec-1-10",
+     "number": "1.10",
+     "title": "A first look at eigenstates in finite tight-binding islands"
+    }
+   ]
   },
   {
    "file": "11-spontaneous-symmetry-breaking-and-why-a-symmetric-hamiltonian-can-have-an-asymmetric-ground-state.md",
    "id": "sec-1-11",
-   "number": "1.11",
+   "number": "1.11a",
    "title": "Spontaneous symmetry breaking and why a symmetric Hamiltonian can have an asymmetric ground state"
+  },
+  {
+   "file": "11b-classifying-states-of-matter-by-the-symmetry-they-break.md",
+   "id": "sec-1-11b",
+   "number": "1.11b",
+   "title": "Classifying states of matter by the symmetry that they break"
   },
   {
    "file": "12-the-general-interacting-hamiltonian-and-the-tool-we-will-use-on-it.md",
@@ -89,19 +95,42 @@
    "file": "14-worked-example-2-magnetism.md",
    "id": "sec-1-14",
    "number": "1.14",
-   "title": "Worked example 2, magnetism"
-  },
-  {
-   "file": "15-worked-example-3-superconductivity-and-broken-gauge-symmetry.md",
-   "id": "sec-1-15",
-   "number": "1.15",
-   "title": "Worked example 3, superconductivity and broken gauge symmetry"
+   "title": "Worked example 2, magnetism",
+   "also": [
+    {
+     "id": "sec-1-15",
+     "number": "1.15",
+     "title": "Worked example 3, superconductivity and broken gauge symmetry"
+    }
+   ]
   },
   {
    "file": "16-closing-summary.md",
    "id": "sec-1-16",
    "number": "1.16",
    "title": "Closing summary"
+  }
+ ],
+ "redirects": [
+  {
+   "from": "06-building-second-quantization-with-creation-and-annihilation-operators.html",
+   "to": "05-a-warm-up-in-first-quantization-and-the-puzzle-that-breaks-it.html#sec-1-6"
+  },
+  {
+   "from": "07-enforcing-fermionic-statistics.html",
+   "to": "05-a-warm-up-in-first-quantization-and-the-puzzle-that-breaks-it.html#sec-1-7"
+  },
+  {
+   "from": "09-where-the-two-formalisms-differ-and-the-exponential-growth-of-the-many-body-problem.html",
+   "to": "08-first-versus-second-quantization-for-the-same-problem.html#sec-1-9"
+  },
+  {
+   "from": "10-a-first-look-at-eigenstates-in-finite-tight-binding-islands.html",
+   "to": "08-first-versus-second-quantization-for-the-same-problem.html#sec-1-10"
+  },
+  {
+   "from": "15-worked-example-3-superconductivity-and-broken-gauge-symmetry.html",
+   "to": "14-worked-example-2-magnetism.html#sec-1-15"
   }
  ]
 }

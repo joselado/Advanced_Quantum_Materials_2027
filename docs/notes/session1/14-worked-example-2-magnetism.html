@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -85,19 +86,76 @@
 <h1 id="sec-1-14"><span class="num">1.14</span> Worked example 2, magnetism</h1>
 <p>Let us now include again the spin degree of freedom, and let us change the interaction to an onsite Hubbard term between spin-up and spin-down electrons,</p>
 <p><span id="eq-1-7" class="eq"><span class="math display">\[H = -t\sum_{n,\sigma}\left(c_{n\sigma}^\dagger c_{n+1,\sigma} + \text{h.c.}\right) + U\sum_n c_{n\uparrow}^\dagger c_{n\uparrow}\, c_{n\downarrow}^\dagger c_{n\downarrow}. \tag{1.7}\]</span></span></p>
-<p>The sign of <span class="math inline">\(U\)</span> alone decides the physics. An attractive <span class="math inline">\(U&lt;0\)</span> drives superconductivity, which we discuss in Section <a href="15-worked-example-3-superconductivity-and-broken-gauge-symmetry.html#sec-1-15">1.15</a>, and a repulsive <span class="math inline">\(U&gt;0\)</span> drives magnetism, which is the topic of this section.</p>
+<p>The sign of <span class="math inline">\(U\)</span> alone decides the physics. An attractive <span class="math inline">\(U&lt;0\)</span> drives superconductivity, which we discuss in Section <a href="#sec-1-15">1.15</a>, and a repulsive <span class="math inline">\(U&gt;0\)</span> drives magnetism, which is the topic of this section.</p>
 <p>The mean-field decoupling is done in the same way as before, but now we apply it separately to <span class="math inline">\(\langle c_{\uparrow}^\dagger c_\uparrow\rangle\)</span> and <span class="math inline">\(\langle c_\downarrow^\dagger
 c_\downarrow\rangle\)</span>, and we obtain a bilinear Hamiltonian with onsite energies that depend on the spin. Let us define the magnetization</p>
 <p><span id="eq-1-8" class="eq"><span class="math display">\[m = \langle c_\uparrow^\dagger c_\uparrow\rangle - \langle c_\downarrow^\dagger c_\downarrow\rangle. \tag{1.8}\]</span></span></p>
 <p>Self-consistency gives <span class="math inline">\(m=0\)</span> automatically for <span class="math inline">\(U&lt;0\)</span>, and a finite <span class="math inline">\(m\)</span> for <span class="math inline">\(U&gt;0\)</span>, which is a real magnetic solution.</p>
-<p>Let us say precisely <em>which</em> symmetry is broken here, using the formal definition in <a href="11-spontaneous-symmetry-breaking-and-why-a-symmetric-hamiltonian-can-have-an-asymmetric-ground-state.html#eq-1-4">(1.4)</a>. Time-reversal symmetry reverses the direction of time and, together with it, every angular momentum in the system, including the spin. On the fermionic operators this means that it exchanges <span class="math inline">\(c_\uparrow^\dagger c_\uparrow \leftrightarrow c_\downarrow^\dagger c_\downarrow\)</span>. Since <span class="math inline">\(m\)</span> in <a href="#eq-1-8">(1.8)</a> changes sign under this exchange, a nonzero <span class="math inline">\(m\)</span> means that the ground state does not pass the invariance test in <a href="11-spontaneous-symmetry-breaking-and-why-a-symmetric-hamiltonian-can-have-an-asymmetric-ground-state.html#eq-1-4">(1.4)</a>, so it is a magnet by definition. More generally, this is a breaking of the <em>continuous</em> spin-rotational symmetry, and this continuous symmetry breaking is what gives rise to the gapless magnon excitations that appear in the table of Section <a href="11-spontaneous-symmetry-breaking-and-why-a-symmetric-hamiltonian-can-have-an-asymmetric-ground-state.html#sec-1-11">1.11</a>. We will study them in detail in a later session, and in this session we only need the mean-field ground state itself.</p>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>For an attractive <span class="math inline">\(U&lt;0\)</span> the self-consistent solution has <span class="math inline">\(m=0\)</span>. Why does a finite <span class="math inline">\(m\)</span> not lower the energy?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>An attractive interaction favors double occupation of a site, which has no net spin, so a local moment does not help.</li>
+<li>The hopping becomes imaginary for <span class="math inline">\(U&lt;0\)</span>, which forbids a magnetization.</li>
+<li>Time reversal is broken explicitly by the sign of <span class="math inline">\(U\)</span>.</li>
+<li>The spin is not conserved for <span class="math inline">\(U&lt;0\)</span>.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>A negative <span class="math inline">\(U\)</span> rewards a site that holds one electron of each spin. A moment would move electrons away from this configuration, so the energy goes up and not down.</p>
+</details>
+</div>
+<p>Let us say precisely <em>which</em> symmetry is broken here, using the formal definition in <a href="11b-classifying-states-of-matter-by-the-symmetry-they-break.html#eq-1-4">(1.4)</a>. Time-reversal symmetry reverses the direction of time and, together with it, every angular momentum in the system, including the spin. On the fermionic operators this means that it exchanges <span class="math inline">\(c_\uparrow^\dagger c_\uparrow \leftrightarrow c_\downarrow^\dagger c_\downarrow\)</span>. Since <span class="math inline">\(m\)</span> in <a href="#eq-1-8">(1.8)</a> changes sign under this exchange, a nonzero <span class="math inline">\(m\)</span> means that the ground state does not pass the invariance test in <a href="11b-classifying-states-of-matter-by-the-symmetry-they-break.html#eq-1-4">(1.4)</a>, so it is a magnet by definition. More generally, this is a breaking of the <em>continuous</em> spin-rotational symmetry, and this continuous symmetry breaking is what gives rise to the gapless magnon excitations that appear in the table of Section <a href="11-spontaneous-symmetry-breaking-and-why-a-symmetric-hamiltonian-can-have-an-asymmetric-ground-state.html#sec-1-11">1.11</a>. We will study them in detail in a later session, and in this session we only need the mean-field ground state itself.</p>
 <p>Numerically, when we increase <span class="math inline">\(U\)</span> a <strong>Mott gap</strong> opens in the spectrum, which grows linearly with <span class="math inline">\(U\)</span> at large <span class="math inline">\(U\)</span> and is associated with the formation of a real local moment on every site.</p>
+<figure class="again panel">
+<img src="../figures/panel/s06f02_dimer_a.svg" loading="lazy" alt="Two sites with parallel spins and a blocked hop, and two sites with antiparallel spins and an allowed hop." />
+<figcaption><strong><a href="../session6/08-from-the-hubbard-dimer-to-the-heisenberg-model.html#fig:s06:dimer">Figure 6.2</a>, one panel shown again.</strong> The two-site Hubbard problem, one panel shown again from session 6. With parallel spins the hop is forbidden by the Pauli principle. With antiparallel spins an electron can hop, and it pays the energy <span class="math inline">\(U\)</span> on the doubly occupied site.</figcaption>
+</figure>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session1.ipynb"><code>session1.ipynb</code></a>, “The interacting Hubbard dimer” (Core), “Magnetic order driven by interactions in a chain” (Core), “Gap opening of the Hubbard model in a chain” (Challenge), and “Gap opening in the Hubbard model on the honeycomb lattice” (Challenge)</p>
-<p>Start with the two-site case, the dimer, to see how the self-consistency loop converges in a small system that you can check by hand. Then go to the extended chain and finally to the honeycomb lattice, which uses the same finite-island geometries of Section <a href="10-a-first-look-at-eigenstates-in-finite-tight-binding-islands.html#sec-1-10">1.10</a> but now with interactions, and look at how the Mott gap opens and grows with <span class="math inline">\(U\)</span>.</p>
+<p>Start with the two-site case, the dimer, to see how the self-consistency loop converges in a small system that you can check by hand. Then go to the extended chain and finally to the honeycomb lattice, which uses the same finite-island geometries of Section <a href="08-first-versus-second-quantization-for-the-same-problem.html#sec-1-10">1.10</a> but now with interactions, and look at how the Mott gap opens and grows with <span class="math inline">\(U\)</span>.</p>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> Run the dimer for <span class="math inline">\(U\)</span> from <span class="math inline">\(0\)</span> to <span class="math inline">\(10\)</span> and read the value of <span class="math inline">\(U\)</span> where the magnetization leaves zero. It is close to <span class="math inline">\(U=2t\)</span>. Check that the gap is already <span class="math inline">\(2t\)</span> at <span class="math inline">\(U=0\)</span>, since the two levels are at <span class="math inline">\(\pm t\)</span>.</p>
+<div class="tryit-links">
+Notebook <code>session1.ipynb</code>, cell “The interacting Hubbard dimer”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session1.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session1.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession1.ipynb">Binder</a>.
+</div>
+</div>
+<h1 class="sec-next" id="sec-1-15"><span class="num">1.15</span> Worked example 3, superconductivity and broken gauge symmetry</h1>
+<p>Let us go back to <a href="#eq-1-7">(1.7)</a> with <span class="math inline">\(U&lt;0\)</span>. The mean-field decoupling that we used above always keeps one creation operator and one annihilation operator together, but nothing forces this choice. We can also take an expectation value of two creation operators, or of two annihilation operators,</p>
+<p><span id="eq-1-9" class="eq"><span class="math display">\[\Delta = \langle c_i c_j\rangle. \tag{1.9}\]</span></span></p>
+<p>This anomalous term, which is called a “pairing” term, looks qualitatively different from all the terms that we wrote so far, but it is a valid mean-field term. In the self-consistent solution, <span class="math inline">\(\Delta\)</span> is zero for repulsive interactions and can become nonzero for attractive ones, and this is the superconducting order parameter. This worked example is only in the slides, and there is no notebook section for it in this session. The pairing formalism, which is the Bogoliubov-de Gennes formalism that we need to solve it numerically, is left for the session on superconductivity.</p>
+<p>Why does this order break gauge symmetry? A gauge transformation acts on the operators as</p>
+<p><span id="eq-1-10" class="eq"><span class="math display">\[c \to c\, e^{i\varphi}, \qquad c^\dagger \to c^\dagger e^{-i\varphi}. \tag{1.10}\]</span></span></p>
+<p>Any term built from one creation operator and one annihilation operator, <span class="math inline">\(c^\dagger c\)</span>, is invariant under <a href="#eq-1-10">(1.10)</a>, since the two phases cancel. However, the pairing term in <a href="#eq-1-9">(1.9)</a> is built from <em>two</em> annihilation operators, or two creation operators, so under the same transformation it gets a phase <span class="math inline">\(e^{2i\varphi}\)</span>, or <span class="math inline">\(e^{-2i\varphi}\)</span>, which does not cancel. For this reason a superconductor with <span class="math inline">\(\Delta \neq 0\)</span> breaks the gauge symmetry of the Hamiltonian spontaneously, which is the “broken gauge symmetry” case in the classification of Section <a href="11-spontaneous-symmetry-breaking-and-why-a-symmetric-hamiltonian-can-have-an-asymmetric-ground-state.html#sec-1-11">1.11</a>. This is directly connected to the puzzle of Section <a href="05-a-warm-up-in-first-quantization-and-the-puzzle-that-breaks-it.html#sec-1-5">1.5</a> about a fluctuating number of electrons. To break gauge symmetry and to lose a fixed number of particles are, physically, the same statement. A mean-field superconductor does not have a fixed number of electrons, only a fixed parity.</p>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>Under a gauge transformation with <span class="math inline">\(\varphi=\pi/2\)</span>, by which factor does the pairing term <span class="math inline">\(c_ic_j\)</span> change?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(1\)</span></li>
+<li><span class="math inline">\(-1\)</span></li>
+<li><span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(-i\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>Each operator gets a factor <span class="math inline">\(e^{i\varphi}\)</span>, so the product gets <span class="math inline">\(e^{2i\varphi}=e^{i\pi}=-1\)</span>. Only the values of <span class="math inline">\(\varphi\)</span> that are multiples of <span class="math inline">\(\pi\)</span> leave the term unchanged, and for this reason the pairing term is not gauge invariant.</p>
+</details>
 </div>
 
-  <nav class="pager"><a href="13-worked-example-1-the-charge-density-wave.html">1.13 Worked example 1, the charge density wave</a><a href="15-worked-example-3-superconductivity-and-broken-gauge-symmetry.html">1.15 Worked example 3, superconductivity and broken gauge symmetry</a></nav>
+  <nav class="pager"><a href="13-worked-example-1-the-charge-density-wave.html">1.13 Worked example 1, the charge density wave</a><a href="16-closing-summary.html">1.16 Closing summary</a></nav>
 
 </main>
 </body>

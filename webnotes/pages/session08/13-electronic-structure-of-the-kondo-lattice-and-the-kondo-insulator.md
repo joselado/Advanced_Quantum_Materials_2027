@@ -14,3 +14,34 @@ Note that there is a similarity with a quite different construction of Session 5
 
 The first exercise builds [(8.21)](#eq-8-21) directly on a lattice of van der Waals type. You identify the flat band of the Kondo sites and the anti-crossing with the conduction band, and you check what happens to the gap when you change the chemical potential. The second exercise adds a direct exchange coupling between the Kondo sites, which gives a dispersion to the spinon band that would otherwise be flat. This is the lattice version of the Doniach picture. The Kondo coupling $J_K$ favors a local screened singlet, while the direct exchange $J$ favors magnetic correlations between the local moments, and the competition between them decides which regime is stable, the screened one or the magnetic one.
 :::
+
+::: quiz
+In [(8.21)](#eq-8-21) we have one $f$ fermion per site and a half-filled conduction band. How many particles per $\mathbf k$ point and spin fill the two bands?
+
+- [ ] One half, so the lower band is half full.
+- [x] One, so the lower hybridized band is exactly full.
+- [ ] Two, so both bands are full.
+- [ ] Three halves, so the upper band is half full.
+
+The conduction band gives one half and the $f$ level gives one half, so there is one particle for the two states at each $\mathbf k$ and spin. The lower band is full, and the Fermi level lies in the gap.
+:::
+
+::: quiz
+At the crossing the energy of the conduction band is zero, as for the flat band. If we double $\gamma_K$, what happens to the direct gap there?
+
+- [ ] It does not change.
+- [ ] It becomes four times larger.
+- [ ] It is cut in half.
+- [x] It doubles, since the two levels split into $\pm\gamma_K$.
+
+At $\varepsilon_{\mathbf k}=0$ the two-by-two Hamiltonian has the eigenvalues $\pm\gamma_K$, so the direct gap is $2\gamma_K$. This is the sense in which a larger Kondo coupling gives a larger gap.
+:::
+
+::: {.tryit notebook="session8.ipynb" cell="Spinon dispersion in the Kondo lattice"}
+Increase the exchange `J` between the Kondo sites in the three panels. The flat band of the local moments should acquire a dispersion, and the gap should become smaller. Then increase `JK` and check that the gapped regime is more stable.
+:::
+
+::: {.widget name="kondobands"}
+Move the hybridization $\gamma_K$ of [(8.21)](#eq-8-21) for a one-dimensional chain, per spin. The conduction band is $-2t\cos k$ and the $f$ level is flat at zero energy. At $\gamma_K=0$ the two bands cross at the Fermi level, and the system is a metal. For $\gamma_K>0$ the bands repel, the lower band is full, and for small $\gamma_K$ the indirect gap grows roughly as $\gamma_K^2/t$.
+:::
+

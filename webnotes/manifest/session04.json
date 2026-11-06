@@ -11,25 +11,27 @@
    "file": "01-where-the-quantum-hall-state-shows-up.md",
    "id": "sec-4-1",
    "number": "4.1",
-   "title": "Where the quantum Hall state shows up"
-  },
-  {
-   "file": "02-measuring-the-hall-conductance.md",
-   "id": "sec-4-2",
-   "number": "4.2",
-   "title": "Measuring the Hall conductance"
+   "title": "Where the quantum Hall state shows up",
+   "also": [
+    {
+     "id": "sec-4-2",
+     "number": "4.2",
+     "title": "Measuring the Hall conductance"
+    }
+   ]
   },
   {
    "file": "03-from-the-kubo-formula-to-the-chern-number-briefly.md",
    "id": "sec-4-3",
    "number": "4.3",
-   "title": "From the Kubo formula to the Chern number, briefly"
-  },
-  {
-   "file": "04-landau-levels-as-chern-number-one-flat-bands.md",
-   "id": "sec-4-4",
-   "number": "4.4",
-   "title": "Landau levels as Chern-number-one flat bands"
+   "title": "From the Kubo formula to the Chern number, briefly",
+   "also": [
+    {
+     "id": "sec-4-4",
+     "number": "4.4",
+     "title": "Landau levels as Chern-number-one flat bands"
+    }
+   ]
   },
   {
    "file": "05-edge-states-and-why-an-insulating-bulk-still-conducts.md",
@@ -41,13 +43,14 @@
    "file": "06-quantized-hall-plateaus-in-experiment.md",
    "id": "sec-4-6",
    "number": "4.6",
-   "title": "Quantized Hall plateaus in experiment"
-  },
-  {
-   "file": "07-coupling-electrons-to-a-magnetic-field-with-minimal-coupling-and-the-peierls-substitution.md",
-   "id": "sec-4-7",
-   "number": "4.7",
-   "title": "Coupling electrons to a magnetic field with minimal coupling and the Peierls substitution"
+   "title": "Quantized Hall plateaus in experiment",
+   "also": [
+    {
+     "id": "sec-4-7",
+     "number": "4.7",
+     "title": "Coupling electrons to a magnetic field with minimal coupling and the Peierls substitution"
+    }
+   ]
   },
   {
    "file": "08-the-landau-gauge-and-the-symmetric-gauge.md",
@@ -71,43 +74,45 @@
    "file": "11-numerical-check-of-the-landau-levels-and-edge-states-on-the-lattice.md",
    "id": "sec-4-11",
    "number": "4.11",
-   "title": "Numerical check of the Landau levels and edge states on the lattice"
-  },
-  {
-   "file": "12-ladder-operators-and-the-many-body-landau-hamiltonian.md",
-   "id": "sec-4-12",
-   "number": "4.12",
-   "title": "Ladder operators and the many-body Landau Hamiltonian"
+   "title": "Numerical check of the Landau levels and edge states on the lattice",
+   "also": [
+    {
+     "id": "sec-4-12",
+     "number": "4.12",
+     "title": "Ladder operators and the many-body Landau Hamiltonian"
+    }
+   ]
   },
   {
    "file": "13-the-symmetric-gauge-and-the-lowest-landau-level-wavefunctions.md",
    "id": "sec-4-13",
    "number": "4.13",
-   "title": "The symmetric gauge and the lowest-Landau-level wavefunctions"
-  },
-  {
-   "file": "14-the-many-body-wavefunction-of-the-filled-lowest-landau-level.md",
-   "id": "sec-4-14",
-   "number": "4.14",
-   "title": "The many-body wavefunction of the filled lowest Landau level"
-  },
-  {
-   "file": "15-angular-momentum-enclosed-flux-and-the-uniform-electron-gas.md",
-   "id": "sec-4-15",
-   "number": "4.15",
-   "title": "Angular momentum, enclosed flux, and the uniform electron gas"
+   "title": "The symmetric gauge and the lowest-Landau-level wavefunctions",
+   "also": [
+    {
+     "id": "sec-4-14",
+     "number": "4.14",
+     "title": "The many-body wavefunction of the filled lowest Landau level"
+    },
+    {
+     "id": "sec-4-15",
+     "number": "4.15",
+     "title": "Angular momentum, enclosed flux, and the uniform electron gas"
+    }
+   ]
   },
   {
    "file": "16-fractional-filling-and-the-laughlin-wavefunction.md",
    "id": "sec-4-16",
    "number": "4.16",
-   "title": "Fractional filling and the Laughlin wavefunction"
-  },
-  {
-   "file": "17-quasiholes-and-quasielectrons.md",
-   "id": "sec-4-17",
-   "number": "4.17",
-   "title": "Quasiholes and quasielectrons"
+   "title": "Fractional filling and the Laughlin wavefunction",
+   "also": [
+    {
+     "id": "sec-4-17",
+     "number": "4.17",
+     "title": "Quasiholes and quasielectrons"
+    }
+   ]
   },
   {
    "file": "18-berry-phase-fractional-charge-and-anyonic-statistics.md",
@@ -125,13 +130,48 @@
    "file": "20-real-materials-realizing-chern-and-fractional-chern-physics.md",
    "id": "sec-4-20",
    "number": "4.20",
-   "title": "Real materials realizing Chern and fractional Chern physics"
+   "title": "Real materials realizing Chern and fractional Chern physics",
+   "also": [
+    {
+     "id": "sec-4-21",
+     "number": "4.21",
+     "title": "Closing summary"
+    }
+   ]
+  }
+ ],
+ "redirects": [
+  {
+   "from": "02-measuring-the-hall-conductance.html",
+   "to": "01-where-the-quantum-hall-state-shows-up.html#sec-4-2"
   },
   {
-   "file": "21-closing-summary.md",
-   "id": "sec-4-21",
-   "number": "4.21",
-   "title": "Closing summary"
+   "from": "04-landau-levels-as-chern-number-one-flat-bands.html",
+   "to": "03-from-the-kubo-formula-to-the-chern-number-briefly.html#sec-4-4"
+  },
+  {
+   "from": "07-coupling-electrons-to-a-magnetic-field-with-minimal-coupling-and-the-peierls-substitution.html",
+   "to": "06-quantized-hall-plateaus-in-experiment.html#sec-4-7"
+  },
+  {
+   "from": "12-ladder-operators-and-the-many-body-landau-hamiltonian.html",
+   "to": "11-numerical-check-of-the-landau-levels-and-edge-states-on-the-lattice.html#sec-4-12"
+  },
+  {
+   "from": "14-the-many-body-wavefunction-of-the-filled-lowest-landau-level.html",
+   "to": "13-the-symmetric-gauge-and-the-lowest-landau-level-wavefunctions.html#sec-4-14"
+  },
+  {
+   "from": "15-angular-momentum-enclosed-flux-and-the-uniform-electron-gas.html",
+   "to": "13-the-symmetric-gauge-and-the-lowest-landau-level-wavefunctions.html#sec-4-15"
+  },
+  {
+   "from": "17-quasiholes-and-quasielectrons.html",
+   "to": "16-fractional-filling-and-the-laughlin-wavefunction.html#sec-4-17"
+  },
+  {
+   "from": "21-closing-summary.html",
+   "to": "20-real-materials-realizing-chern-and-fractional-chern-physics.html#sec-4-21"
   }
  ]
 }

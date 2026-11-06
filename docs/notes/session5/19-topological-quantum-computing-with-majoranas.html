@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -85,9 +86,53 @@
 <h1 id="sec-5-19"><span class="num">5.19</span> Topological quantum computing with Majoranas</h1>
 <p>Majorana modes get so much attention, beyond their own unusual properties, because of their proposed use in fault-tolerant quantum computing. Majoranas are <strong>non-Abelian anyons</strong>. Exchanging, or braiding, one Majorana around another does not only multiply the many-body ground state by a phase. It acts as a unitary matrix on a degenerate ground-state manifold, so the <em>order</em> in which different braiding operations are done matters, which means that the algebra does not commute, and this is what is called non-Abelian. This follows directly from the structure of the BdG Hamiltonian when more than two Majoranas are present.</p>
 <p>For concreteness, four Majorana operators <span class="math inline">\(\gamma_1,\gamma_2,\gamma_3,\gamma_4\)</span> can be combined again, with pairings of the type of <a href="15-majorana-bound-states-and-how-to-split-an-electron-into-two-majoranas.html#eq-5-18">(5.18)</a>, into two ordinary fermionic operators, which we can call artificial fermions, so a system with four Majoranas encodes two ordinary fermionic modes. The resulting many-body ground-state manifold, with the states empty, one mode filled, the other mode filled and both filled, is four-fold degenerate. All four states cost zero energy, by the same argument that made <span class="math inline">\(\gamma_1\)</span> and <span class="math inline">\(\gamma_{2N}\)</span> zero-energy modes in the Kitaev chain, and this degenerate manifold is the proposed computational basis for a topological qubit.</p>
+<figure id="sch:s05:four_majoranas" class="schematic">
+<img src="../figures/web/session05/four_majoranas.svg" loading="lazy" alt="Four circles for the Majoranas grouped in two pairs on the left, and four short lines at zero energy on the right, two colored for even parity and two for odd parity." />
+<figcaption><strong>Schematic 5.5.</strong> Four Majoranas make two ordinary fermion modes. The four states of the two modes sit at <span class="math inline">\(E=0\)</span>, and the total fermion parity splits them into two even and two odd states. A braid of two Majoranas keeps the parity.</figcaption>
+</figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>Four Majoranas form two ordinary fermion modes. With the total fermion parity fixed to even, how many ground states are available?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>One.</li>
+<li>Two.</li>
+<li>Four.</li>
+<li>Eight.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>Two modes give <span class="math inline">\(2\times2=4\)</span> states, and all of them sit at zero energy. Half of them have even parity, which are <span class="math inline">\(|00\rangle\)</span> and <span class="math inline">\(|11\rangle\)</span>, so two states remain for a fixed parity.</p>
+</details>
+</div>
 <p>Braiding two Majoranas, for example <span class="math inline">\(\gamma_1\)</span> around <span class="math inline">\(\gamma_2\)</span>, acts on the ground-state manifold as a unitary</p>
 <p><span id="eq-5-23" class="eq"><span class="math display">\[U_{12} = \exp\left(\frac{\pi}{4}\,\gamma_1\gamma_2\right), \tag{5.23}\]</span></span></p>
 <p>which multiplies states by a relative phase built from <span class="math inline">\(e^{i\pi/4}\)</span> times the Majorana product. The exact form is less important than what it implies. Two exchanges that share a Majorana do not commute. Braiding the pair <span class="math inline">\((1,2)\)</span> and then the pair <span class="math inline">\((2,3)\)</span> gives a different final state than braiding <span class="math inline">\((2,3)\)</span> first and <span class="math inline">\((1,2)\)</span> second, since <span class="math inline">\(\gamma_1\gamma_2\)</span> and <span class="math inline">\(\gamma_2\gamma_3\)</span> anticommute. Exchanges of disjoint pairs, such as <span class="math inline">\((1,2)\)</span> and <span class="math inline">\((3,4)\)</span>, commute instead. This braid algebra that does not commute is what allows sequences of purely topological and geometric moves, which physically means moving Majoranas around one another, to implement non-trivial quantum logic gates. Since the resulting qubit is stored non-locally, divided between spatially separated Majoranas instead of being in one local degree of freedom, it is intrinsically resistant to local decoherence and to weak local disorder, and this robustness is the main reason for the interest in topological quantum computing. This material on braiding and quantum computing appears only in the slides and the transcript and has no counterpart in <code>session5.ipynb</code>. None of the sections of the notebook implement braiding dynamics or a qubit manifold, which is reasonable, since this is far from a static tight-binding diagonalization and it is a separate dynamical calculation.</p>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>Which two braiding operations give the same final state in either order?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>The exchange of Majoranas <span class="math inline">\((1,2)\)</span> and the exchange of <span class="math inline">\((2,3)\)</span>.</li>
+<li>The exchange of <span class="math inline">\((1,2)\)</span> and the exchange of <span class="math inline">\((3,4)\)</span>.</li>
+<li>The exchange of <span class="math inline">\((2,3)\)</span> and the exchange of <span class="math inline">\((3,4)\)</span>.</li>
+<li>None, since braiding of Majoranas never commutes.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>Braids that share a Majorana, such as <span class="math inline">\(\gamma_1\gamma_2\)</span> and <span class="math inline">\(\gamma_2\gamma_3\)</span>, anticommute, so their order matters. The braids of <span class="math inline">\((1,2)\)</span> and <span class="math inline">\((3,4)\)</span> share no Majorana, and they commute.</p>
+</details>
+</div>
 
   <nav class="pager"><a href="18-engineering-a-topological-superconductor-from-a-quantum-spin-hall-insulator.html">5.18 Engineering a topological superconductor from a quantum spin Hall insulator</a><a href="20-closing-summary.html">5.20 Closing summary</a></nav>
 

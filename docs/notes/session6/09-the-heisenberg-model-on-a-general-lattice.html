@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -86,8 +87,45 @@
 <p>The argument of Section <a href="08-from-the-hubbard-dimer-to-the-heisenberg-model.html#sec-6-8">6.8</a> did not use the fact that we had only two sites. For a generic lattice with hopping <span class="math inline">\(t_{ij}\)</span> between sites <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> and a local interaction <span class="math inline">\(U\)</span>, the same second-order argument applies to every connected pair independently in the limit <span class="math inline">\(U\gg t_{ij}\)</span>, and it gives the generalized Heisenberg Hamiltonian</p>
 <p><span id="eq-6-5" class="eq"><span class="math display">\[H_\text{Heis} = \sum_{\langle ij\rangle} J_{ij}\, \mathbf S_i\cdot\mathbf S_j, \qquad J_{ij} = \frac{4t_{ij}^2}{U}. \tag{6.5}\]</span></span></p>
 <p>Since <span class="math inline">\(J_{ij}\propto t_{ij}^2\)</span>, this superexchange coupling, derived directly from a single-orbital Hubbard model, is always positive and antiferromagnetic, regardless of the sign or the geometry of <span class="math inline">\(t_{ij}\)</span>. More general microscopic models, which are not Hubbard models or have several orbitals, can give couplings of both signs, and they do. In Section <a href="11-superexchange-as-the-origin-of-ferromagnetic-coupling.html#sec-6-11">6.11</a> we will see explicitly how a ferromagnetic coupling appears when a second, intermediate orbital takes part. In all of this session we use the following sign convention. A coupling <span class="math inline">\(J_{ij}&gt;0\)</span> favors antiparallel neighboring spins, which is antiferromagnetic, and <span class="math inline">\(J_{ij}&lt;0\)</span> favors parallel neighboring spins, which is ferromagnetic. If we treat the spins in <a href="#eq-6-5">(6.5)</a> as classical vectors, we already obtain both classical ground states on a bond between two sites, which are antiparallel for <span class="math inline">\(J&gt;0\)</span> and parallel for <span class="math inline">\(J&lt;0\)</span>.</p>
+<h1 class="sec-next" id="sec-6-10"><span class="num">6.10</span> Bipartite order versus geometric frustration</h1>
+<p>On a <strong>bipartite</strong> lattice, such as the square or the honeycomb lattice, the sites split into two sublattices <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> so that every bond connects an <span class="math inline">\(A\)</span> site with a <span class="math inline">\(B\)</span> site. On such a lattice the antiferromagnetic Heisenberg model <a href="#eq-6-5">(6.5)</a> has an obvious classical ground state. All spins on <span class="math inline">\(A\)</span> point in one direction and all spins on <span class="math inline">\(B\)</span> point in the opposite direction, and in this way every bond has antiparallel neighbors at the same time, which is what it prefers. This is the collinear antiferromagnetic order with two sublattices that we already saw at the mean-field level in Section <a href="04-exchange-splitting-and-antiferromagnetic-order-in-numerical-mean-field-theory.html#sec-6-4">6.4</a>, and <a href="#eq-6-5">(6.5)</a> explains <em>why</em> it appears. In the large-<span class="math inline">\(U\)</span> limit, the mean-field Hubbard model on a bipartite lattice reduces exactly to this Heisenberg model.</p>
+<p>Frustrated lattices are different. On a <strong>non-bipartite</strong> lattice, of which the kagome and the triangular lattices are the standard examples, it is not possible to color the sites with two colors so that every bond connects opposite colors. For instance, a triangular plaquette has three sites that are all neighbors of each other, and no choice of up and down spins makes all three bonds antiparallel at the same time. The antiferromagnetic tendency of <span class="math inline">\(J_{ij}&gt;0\)</span> is still present on every single bond, but it cannot be satisfied everywhere at the same time, and this is what is called <strong>geometric frustration</strong>. The best compromise for the system is usually a noncollinear arrangement, and the standard case is spins at <span class="math inline">\(120^\circ\)</span> from each other on a triangular plaquette. This arrangement maximizes the total antiferromagnetic character bond by bond, without fully satisfying any single bond. This noncollinear character also appears directly in the mean-field solution of the corresponding electronic Hamiltonian, and not only in the spin model. Figure <a href="#fig:s06:frustration">6.3</a> shows next to each other the bipartite case, the frustrated collinear attempt and the <span class="math inline">\(120^\circ\)</span> compromise, together with the classical bond energies that decide between the last two.</p>
+<figure id="fig:s06:frustration">
+<img src="../figures/s06f03_frustration.svg" loading="lazy" alt="How the geometry decides if an antiferromagnet can order." />
+<figcaption><strong>Figure 6.3.</strong> How the geometry decides if an antiferromagnet can order. (a) On a bipartite lattice the sites can be coloured with two colours, here dark and light, every bond joins the two colours, and the Néel state of Section <a href="#sec-6-10">6.10</a> satisfies all bonds at the same time. (b) On a triangle it is not possible to use two colours. If we fix two spins antiparallel, the third one is parallel to one of its neighbours for any choice, the two ghost arrows, and one bond stays frustrated. For classical spins, this collinear compromise costs <span class="math inline">\(+JS^2\)</span> on the frustrated bond, and the total is <span class="math inline">\(-JS^2\)</span> per triangle. (c) The energy is lower if no single bond is fully satisfied. Three spins at <span class="math inline">\(120^\circ\)</span> in the plane give <span class="math inline">\(\mathbf S_i\cdot\mathbf S_j=-S^2/2\)</span> on <em>every</em> bond and a total of <span class="math inline">\(-\tfrac 32 JS^2\)</span>, which is lower than (b) by half of its value. This is the origin of the noncollinear order to which the mean-field solution of the corresponding electronic Hamiltonian also converges.</figcaption>
+</figure>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>Spins sit on the sites of a triangular lattice, and the coupling is ferromagnetic, <span class="math inline">\(J&lt;0\)</span> in the convention of <a href="#eq-6-5">(6.5)</a>. Is there geometric frustration?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>No, since all spins parallel satisfy every bond.</li>
+<li>Yes, since the triangle is not bipartite.</li>
+<li>Yes, but only on the kagome lattice.</li>
+<li>No, since classical spins cannot be frustrated.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>Frustration needs an antiferromagnetic coupling, because only then do neighbors want opposite directions. For <span class="math inline">\(J&lt;0\)</span> one common direction satisfies all bonds, whatever the lattice is.</p>
+</details>
+</div>
+<div class="notebookbox">
+<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb"><code>session6.ipynb</code></a>, “(Exercise) Magnetic instabilities of the square lattice” and “(Exercise) Non-collinear magnetic order from geometric frustration”</p>
+<p>Compare at the mean-field level a bipartite lattice, the square lattice, with a frustrated one, the triangular or kagome lattice. The square lattice should converge to the collinear order with two sublattices of Section <a href="#sec-6-10">6.10</a>, and the frustrated lattice should converge to a noncollinear compromise. Both results can be traced back to the sign convention of <a href="#eq-6-5">(6.5)</a> on each bond.</p>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> In the cell, run the bipartite square lattice with <code>U=3.0</code>. The antiferromagnetic guess gives <span class="math inline">\(M_z\)</span> of equal size and alternating sign on neighboring sites, and its total energy is about 0.3 lower than that of the ferromagnetic guess. Then run the triangular lattice of the frustration cell, where neighboring spins are neither parallel nor antiparallel.</p>
+<div class="tryit-links">
+Notebook <code>session6.ipynb</code>, cell “Magnetic instabilities of the square lattice”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession6.ipynb">Binder</a>.
+</div>
+</div>
 
-  <nav class="pager"><a href="08-from-the-hubbard-dimer-to-the-heisenberg-model.html">6.8 From the Hubbard dimer to the Heisenberg model</a><a href="10-bipartite-order-versus-geometric-frustration.html">6.10 Bipartite order versus geometric frustration</a></nav>
+  <nav class="pager"><a href="08-from-the-hubbard-dimer-to-the-heisenberg-model.html">6.8 From the Hubbard dimer to the Heisenberg model</a><a href="11-superexchange-as-the-origin-of-ferromagnetic-coupling.html">6.11 Superexchange as the origin of ferromagnetic coupling</a></nav>
 
 </main>
 </body>

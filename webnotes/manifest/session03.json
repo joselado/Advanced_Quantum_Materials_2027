@@ -23,13 +23,14 @@
    "file": "03-where-perturbation-theory-breaks-down.md",
    "id": "sec-3-3",
    "number": "3.3",
-   "title": "Where perturbation theory breaks down"
-  },
-  {
-   "file": "04-the-hall-conductivity-from-linear-response.md",
-   "id": "sec-3-4",
-   "number": "3.4",
-   "title": "The Hall conductivity from linear response"
+   "title": "Where perturbation theory breaks down",
+   "also": [
+    {
+     "id": "sec-3-4",
+     "number": "3.4",
+     "title": "The Hall conductivity from linear response"
+    }
+   ]
   },
   {
    "file": "05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.md",
@@ -40,8 +41,14 @@
   {
    "file": "06-landau-levels-and-chiral-edge-states-in-the-quantum-hall-state.md",
    "id": "sec-3-6",
-   "number": "3.6",
+   "number": "3.6a",
    "title": "Landau levels and chiral edge states in the quantum Hall state"
+  },
+  {
+   "file": "06b-the-quantum-hall-ribbon-on-the-lattice.md",
+   "id": "sec-3-6b",
+   "number": "3.6b",
+   "title": "The quantum Hall ribbon on the lattice"
   },
   {
    "file": "07-what-topology-means-for-a-hamiltonian-and-the-bulk-boundary-correspondence.md",
@@ -53,25 +60,50 @@
    "file": "08-three-topological-material-classes.md",
    "id": "sec-3-8",
    "number": "3.8",
-   "title": "Three topological material classes"
+   "title": "Three topological material classes",
+   "also": [
+    {
+     "id": "sec-3-9",
+     "number": "3.9a",
+     "title": "The SSH model as a minimal one-dimensional topological insulator"
+    }
+   ]
   },
   {
-   "file": "09-the-ssh-model-as-a-minimal-one-dimensional-topological-insulator.md",
-   "id": "sec-3-9",
-   "number": "3.9",
-   "title": "The SSH model as a minimal one-dimensional topological insulator"
+   "file": "09b-the-ssh-chain-in-the-opposite-limit-and-the-zero-modes.md",
+   "id": "sec-3-9b",
+   "number": "3.9b",
+   "title": "The SSH chain in the opposite limit and the zero modes"
+  },
+  {
+   "file": "09c-the-ssh-model-the-bloch-hamiltonian-and-the-zak-phase.md",
+   "id": "sec-3-9c",
+   "number": "3.9c",
+   "title": "The SSH model, the Bloch Hamiltonian and the Zak phase"
   },
   {
    "file": "10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.md",
    "id": "sec-3-10",
-   "number": "3.10",
+   "number": "3.10a",
    "title": "Chern insulators without Landau levels from a gapped Dirac cone"
+  },
+  {
+   "file": "10b-the-haldane-coupling-and-a-real-chern-insulator.md",
+   "id": "sec-3-10b",
+   "number": "3.10b",
+   "title": "The Haldane coupling and a real Chern insulator"
   },
   {
    "file": "11-quantum-spin-hall-insulators.md",
    "id": "sec-3-11",
-   "number": "3.11",
+   "number": "3.11a",
    "title": "Quantum spin Hall insulators"
+  },
+  {
+   "file": "11b-kramers-protection-of-the-helical-edge.md",
+   "id": "sec-3-11b",
+   "number": "3.11b",
+   "title": "Kramers protection of the helical edge"
   },
   {
    "file": "12-topology-beyond-electrons.md",
@@ -84,6 +116,16 @@
    "id": "sec-3-13",
    "number": "3.13",
    "title": "Closing summary"
+  }
+ ],
+ "redirects": [
+  {
+   "from": "04-the-hall-conductivity-from-linear-response.html",
+   "to": "03-where-perturbation-theory-breaks-down.html#sec-3-4"
+  },
+  {
+   "from": "09-the-ssh-model-as-a-minimal-one-dimensional-topological-insulator.html",
+   "to": "08-three-topological-material-classes.html#sec-3-9"
   }
  ]
 }

@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -95,12 +96,71 @@
 \frac{\partial^2 E(\mathbf{k})}{\partial k_i\,\partial k_j}, \tag{2.18}\]</span></span></p>
 <p>is the curvature of the dispersion, and it is the mass that is measured in essentially every transport or cyclotron-resonance experiment, since the bare electron mass cannot be observed directly inside a solid. Depending on the band, <span class="math inline">\(m^\ast\)</span> can go from nearly zero to very large values. For a Dirac dispersion, as we will see soon, it is formally not defined at the point where the bands touch.</p>
 <p>Finally, the <strong>Fermi surface</strong> is the set of <span class="math inline">\(\mathbf{k}\)</span>-points that have the same energy as the highest occupied state. Its shape controls which electronic instabilities are favoured and how a material responds to an external magnetic field, and it is one of the quantities that ARPES (Section <a href="12-measuring-band-structures-with-arpes.html#sec-2-12">2.12</a>) can map directly.</p>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>For the band <span class="math inline">\(\epsilon_\varphi=-2t\cos\varphi\)</span>, where is the group velocity largest?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>At <span class="math inline">\(\varphi=0\)</span>.</li>
+<li>At <span class="math inline">\(\varphi=\pm\pi/2\)</span>.</li>
+<li>At <span class="math inline">\(\varphi=\pi\)</span>.</li>
+<li>It is the same everywhere.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The velocity is the slope of the band, which is proportional to <span class="math inline">\(2t\sin\varphi\)</span>. It vanishes at the band edges and it is largest in the middle of the band, at <span class="math inline">\(\pm\pi/2\)</span>.</p>
+</details>
+</div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session2.ipynb"><code>session2.ipynb</code></a>, “Density of states of the honeycomb lattice” (Core), and “Fermi surface of the honeycomb lattice” (Challenge)</p>
 <p>Once you have the honeycomb dispersion of Section <a href="11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#sec-2-11">2.11</a>, these two sections let you compute <a href="#eq-2-16">(2.16)</a> and the Fermi surface directly, and see how both change when the Fermi level is tuned through the Dirac point.</p>
 </div>
+<div class="tryit">
+<p><strong>Try it.</strong> Run the cell and find the V shape at zero energy and the two sharp peaks. Uncomment the triangular lattice and check that the dip at zero energy is gone.</p>
+<div class="tryit-links">
+Notebook <code>session2.ipynb</code>, cell “Density of states of the honeycomb lattice”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session2.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session2.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession2.ipynb">Binder</a>.
+</div>
+</div>
+<h1 class="sec-next" id="sec-2-10"><span class="num">2.10</span> Three types of dispersion, which are parabolic, Dirac and flat</h1>
+<p>Real dispersions are complicated functions of <span class="math inline">\(\mathbf{k}\)</span>, but almost every band structure in this course is built locally from three limiting types.</p>
+<ol type="1">
+<li><p><strong>Parabolic bands</strong>, <span class="math inline">\(E\propto k^2\)</span>, which is the case similar to free electrons, describe most semiconductors and conventional metals. They appear essentially from a Taylor expansion near any extremum of a band. We already saw this explicitly near <span class="math inline">\(\varphi=0\)</span> and <span class="math inline">\(\varphi=\pi\)</span> in <a href="05-blochs-theorem-and-the-first-band-structure.html#eq-2-8">(2.8)</a>, with effective masses of opposite sign at the two extrema.</p></li>
+<li><p><strong>Dirac (linear) dispersions</strong>, <span class="math inline">\(E\propto|k|\)</span>, are realized in graphene and in several topological materials, such as quantum spin Hall insulators, Chern insulators and other symmetry-protected topological phases. They have finite topological invariants, in the form of a Berry phase, and they give rise to a phenomenology that is similar to relativistic physics, even though the electrons themselves are not relativistic at all.</p></li>
+<li><p><strong>Flat bands</strong>, <span class="math inline">\(E(\mathbf{k})=\text{const}\)</span>, may look like the least interesting case, but by <a href="#eq-2-16">(2.16)</a> a flat band gives a <em>divergent</em> density of states. As a result, even weak interactions have a very large effect when a flat band is near the Fermi level. When the flatness has a nontrivial origin, which is destructive interference in real space and not a hopping set to zero, the flat band can also have a finite Chern number, which is central to the quantum Hall effect and to moiré materials.</p></li>
+</ol>
+<p>Figure <a href="#fig:s02:archetypes">2.4</a> shows the three types next to each other, together with the density of states of each one, which decides whether interactions can have an effect on them.</p>
+<figure id="fig:s02:archetypes">
+<img src="../figures/s02f06_archetypes.svg" loading="lazy" alt="The three types of dispersion and the densities of states that they give, all in two dimensions." />
+<figcaption><strong>Figure 2.4.</strong> The three types of dispersion and the densities of states that they give, all in <em>two</em> dimensions. Each band is a surface over the two-dimensional momentum, with its density of states as a slab next to it on the same energy axis. A parabolic band gives a constant density of states, which is a step. A Dirac point makes it vanish linearly, so a finite interaction strength is needed before anything happens. A flat band makes it diverge, drawn here with a small broadening, so an arbitrarily weak interaction can drive the symmetry-broken states of Session 1. Almost every band structure in this course is locally one of these three.</figcaption>
+</figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>A two-dimensional Dirac cone has <span class="math inline">\(E=\hbar v_F|\mathbf q|\)</span>. How does the density of states behave close to the tip?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>It is constant.</li>
+<li>It grows linearly with <span class="math inline">\(|E|\)</span>, so it vanishes at the tip.</li>
+<li>It diverges as <span class="math inline">\(1/\sqrt{|E|}\)</span>.</li>
+<li>It diverges as a delta function.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>In two dimensions the number of states in a ring of radius <span class="math inline">\(q\)</span> grows as <span class="math inline">\(q\,dq\)</span>. With <span class="math inline">\(E\propto q\)</span> this gives a density of states proportional to <span class="math inline">\(|E|\)</span>, which vanishes at the tip.</p>
+</details>
+</div>
+<p>Next we derive the Dirac case explicitly, since it is the defining feature of graphene and the direct link to the topology lecture, and then we look at two lattices that realize flat bands. The tools we use in the whole course to compute such dispersions are <code>pyqula</code>, which we named in Section <a href="05-blochs-theorem-and-the-first-band-structure.html#sec-2-5">2.5</a>, and its graphical companion, which is a second computational tool shown on the slides with the name <strong>Quantum Lattice</strong>. It needs no scripting, and it is not named in the lecture, which only refers to “a user interface we will use at some points”.</p>
 
-  <nav class="pager"><a href="08-higher-dimensional-band-structures.html">2.8 Higher-dimensional band structures</a><a href="10-three-types-of-dispersion-which-are-parabolic-dirac-and-flat.html">2.10 Three types of dispersion, which are parabolic, Dirac and flat</a></nav>
+  <nav class="pager"><a href="08-higher-dimensional-band-structures.html">2.8 Higher-dimensional band structures</a><a href="11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html">2.11a The Dirac cone of the honeycomb lattice of graphene</a></nav>
 
 </main>
 </body>

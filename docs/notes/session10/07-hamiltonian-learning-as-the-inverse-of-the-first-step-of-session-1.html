@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -95,9 +96,47 @@ exp}\)</span>. The concrete example of the lecture was a two-dimensional spectro
 <img src="../figures/s10f06_hamiltonianlearning.svg" loading="lazy" alt="Hamiltonian learning, and why it closes the loop of the course instead of going outside it." />
 <figcaption><strong>Figure 10.6.</strong> Hamiltonian learning, and why it closes the loop of the course instead of going outside it. <strong>Top.</strong> The forward arrow <span class="math inline">\(H\mapsto\mathcal{O}\)</span> of <a href="#eq-10-11">(10.11)</a> is what sessions 1 to 9 built during all their time. The arrow that an experiment needs goes in the other direction, and there is no closed-form inversion of it. <strong>(a)</strong> The solution to the lack of experimental training data is to produce the data. We simulate <span class="math inline">\(\mathcal{O}\)</span> from many <em>known</em> Hamiltonians, so that every training pair comes with its answer <span class="math inline">\(\lambda_n\)</span> by construction, and we fit the network with <a href="#eq-10-12">(10.12)</a>. <strong>(b)</strong> Only after this step the trained network is applied to a real measurement. Note what the training set is made of, which is the forward methods of the whole course, run many times. The final method of the course and its first method are the same method, applied in opposite directions.</figcaption>
 </figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>Why do we train the network of <a href="#eq-10-12">(10.12)</a> on simulated observables, and not on measured ones?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>Simulated data are always more accurate than measurements.</li>
+<li>There are few measurements, and the Hamiltonian that produced them is unknown, while a simulation gives the answer <span class="math inline">\(\lambda_n\)</span> by construction.</li>
+<li>Measured data cannot be written as arrays of numbers.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>A supervised network needs pairs of an input and a known answer. The forward methods of the course give as many pairs as we want, and the real measurement is used only once, at the end.</p>
+</details>
+</div>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>Many different values of <span class="math inline">\(\lambda\)</span> give nearly the same observable <span class="math inline">\(\mathcal{O}\)</span>. What is the consequence for the inverse map?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>The inverse map is not defined for any observable.</li>
+<li>The network gives only an estimate with an uncertainty, and the hidden variables <span class="math inline">\(\mu\)</span> must be covered by the training set.</li>
+<li>The network must always give the exact <span class="math inline">\(\lambda\)</span>, since the loss <a href="#eq-10-12">(10.12)</a> is zero for the training pairs.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>A degenerate map cannot be inverted exactly. We train on data that sample the nuisance variables <span class="math inline">\(\mu\)</span> too, so the network learns to average over them, and the answer is a best estimate.</p>
+</details>
+</div>
 <p>This is the mirror image of the starting point of session 1, and we want to stop for a moment on this symmetry. In nine sessions we built more and more sophisticated ways to go from a Hamiltonian to an observable. These are mean-field decoupling, Bloch’s theorem, topological invariants, Landau levels, Nambu spinors, magnon spectra, tensor-network ground states, parton constructions and response functions. Hamiltonian learning does not leave any of these behind. Instead, it uses the same forward methods, run many times on synthetic data, as the training set to learn how to run the process in reverse. In this sense, the method of the course and the final method of the course are the same method, applied in opposite directions.</p>
 
-  <nav class="pager"><a href="06-phase-classification-with-local-order-parameters-and-topological-order.html">10.6 Phase classification with local order parameters and topological order</a><a href="08-closing-summary.html">10.8 Closing summary</a></nav>
+  <nav class="pager"><a href="06b-the-hard-case-the-ising-gauge-theory.html">10.6b The hard case, the Ising gauge theory</a><a href="08-closing-summary.html">10.8 Closing summary</a></nav>
 
 </main>
 </body>

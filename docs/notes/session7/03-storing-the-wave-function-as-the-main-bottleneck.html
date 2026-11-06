@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -94,12 +95,62 @@
 <p><span id="eq-7-4" class="eq"><span class="math display">\[|\Psi\rangle = \sum_{s_1,\dots,s_L} C(s_1,\dots,s_L)\, |s_1,\dots,s_L\rangle, \qquad
 s_i \in \{\uparrow,\downarrow\}. \tag{7.4}\]</span></span></p>
 <p>For <span class="math inline">\(L=2\)</span> there are four basis states, up-up, up-down, down-up and down-down, so there are four coefficients <span class="math inline">\(C\)</span>, and the Hamiltonian is a <span class="math inline">\(4\times4\)</span> matrix. If we add one site, <span class="math inline">\(L=3\)</span>, the number doubles to eight. If we add one more site, <span class="math inline">\(L=4\)</span>, it doubles again to sixteen. In general, the dimension of the Hilbert space is <span class="math inline">\(d = 2^L\)</span>, and this is also the number of coefficients <span class="math inline">\(C(s_1,\dots,s_L)\)</span> that we need to write the ground state exactly. This exponential growth is the main limitation. Even if we never build the full <span class="math inline">\(2^L\times2^L\)</span> Hamiltonian matrix, and we only compute the matrix elements when we need them, we still have to store the <span class="math inline">\(2^L\)</span> coefficients of the ground state once we have found it. This storage cost, and not the cost of the diagonalization, is the real obstruction, and it is the most important point of the whole session. Tensor networks are one answer to this storage problem. In the lecture, <strong>neural network quantum states</strong> are also mentioned briefly as a second answer to the same problem, which comes from machine learning, but this second tool is not developed in this session. In session 10 we will come back to neural network quantum states in detail, from the point of view of machine learning. The material of this session is only about the first answer, tensor networks, and in particular matrix product states.</p>
+<figure id="sch:s07:memory_scaling" class="schematic">
+<img src="../figures/web/session07/memory_scaling.svg" loading="lazy" alt="The logarithm of the number of coefficients against the number of sites, with a steep straight line for the exact state and two almost flat curves for matrix product states." />
+<figcaption><strong>Schematic 7.2.</strong> The number of coefficients of the exact state <a href="#eq-7-4">(7.4)</a> doubles with every site, so on this logarithmic scale it is a straight line. The matrix product state <a href="04-the-matrix-product-state-ansatz.html#eq-7-5">(7.5)</a> needs only <span class="math inline">\(LM^2\)</span> numbers, which is an almost flat curve. Look at the dashed line, which marks one gigabyte of complex numbers. The exact state crosses it at about <span class="math inline">\(L=26\)</span> and has reached sixteen gigabytes at <span class="math inline">\(L=30\)</span>.</figcaption>
+</figure>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>We store the exact ground state of <span class="math inline">\(L=40\)</span> spin-1/2 sites as complex numbers of 16 bytes each. What memory do we need?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>About 17 terabytes, since <span class="math inline">\(2^{40}\approx 10^{12}\)</span> coefficients are needed.</li>
+<li>About 17 gigabytes, since <span class="math inline">\(2^{40}\)</span> is of the order of <span class="math inline">\(10^9\)</span>.</li>
+<li>About 17 megabytes, since the state is a vector.</li>
+<li>About 640 bytes, since there are 40 sites.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>The number of coefficients is <span class="math inline">\(2^{40}\approx1.1\times10^{12}\)</span> and each one takes 16 bytes. This is already far above the memory of a computer, and the next ten sites would multiply it by one thousand.</p>
+</details>
+</div>
+<div class="quiz" data-correct="C">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>We add one more spin-1/2 site to the chain. How does the storage of the exact state <a href="#eq-7-4">(7.4)</a> change?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>It grows by a fixed number of coefficients.</li>
+<li>It is multiplied by <span class="math inline">\(L\)</span>.</li>
+<li>It doubles.</li>
+<li>It does not change, since the new site is only one spin.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>C</strong>.</p>
+<p>Each new site doubles the dimension of the Hilbert space, so <span class="math inline">\(2^L\)</span> becomes <span class="math inline">\(2^{L+1}\)</span>. This is the exponential wall, and the MPS ansatz replaces it with a growth that is linear in <span class="math inline">\(L\)</span>.</p>
+</details>
+</div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb"><code>session7.ipynb</code></a>, “Energy of the Heisenberg model as a function of the system size” (Core)</p>
 <p>In this exercise you compute the ground-state energy per site of the Heisenberg chain with exact diagonalization, for growing system sizes. For this you use the <code>dmrgpy</code> library, which is new in this session, together with <code>pyqula</code>. You will see how fast exact diagonalization stops being possible, and this limit is the <span class="math inline">\(2^L\)</span> scaling of <a href="#eq-7-4">(7.4)</a> in a concrete calculation.</p>
 </div>
+<div class="tryit">
+<p><strong>Try it.</strong> Increase the sizes in the list <code>Ns</code> and plot the energy per site. For <span class="math inline">\(J=1\)</span> it should approach the value <span class="math inline">\(1/4-\ln 2\approx-0.443\)</span> of the infinite chain. At which size does the calculation become slow, and how does this compare with the <span class="math inline">\(2^L\)</span> of <a href="#eq-7-4">(7.4)</a>?</p>
+<div class="tryit-links">
+Notebook <code>session7.ipynb</code>, cell “Energy of the Heisenberg model as a function of the system size”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession7.ipynb">Binder</a>.
+</div>
+</div>
 
-  <nav class="pager"><a href="02-fermions-spins-and-the-jordan-wigner-transformation.html">7.2 Fermions, spins and the Jordan-Wigner transformation</a><a href="04-the-matrix-product-state-ansatz.html">7.4 The matrix product state ansatz</a></nav>
+  <nav class="pager"><a href="02b-the-jordan-wigner-transformation.html">7.2b The Jordan-Wigner transformation</a><a href="04-the-matrix-product-state-ansatz.html">7.4 The matrix product state ansatz</a></nav>
 
 </main>
 </body>

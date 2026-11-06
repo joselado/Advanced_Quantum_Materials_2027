@@ -1,4 +1,4 @@
-## Impurities as diagnostics I, Friedel oscillations in a metal {#sec-9-6 number="9.6"}
+## Impurities as diagnostics I, Friedel oscillations in a metal {#sec-9-6 number="9.6a"}
 
 We now go to the most physical realization of a perturbation, which is a real local impurity. Four case studies follow, one for each broad class of ground state that we have built in the course. These are metals, superconductors, topological matter and quantum magnets. In each case the diagnostic logic is the same. We perturb the system locally, and we obtain the nature of the ground state from how the effect of the perturbation decays in space.
 
@@ -14,10 +14,35 @@ $$\delta n(x) \;\xrightarrow{|x|\to\infty}\; A(v_0)\, \frac{\cos\!\big(2k_F |x| 
 
 The oscillation has a universal wavevector that is fixed only by the Fermi surface, which is $2k_F$ in 1D, or more generally the diameter of the Fermi surface. It has an algebraic envelope, whose power depends on the dimensionality $d$, and it has an amplitude and a phase that are not universal and are set by the impurity strength and by microscopic details. This closes the argument that we started in Section [9.4](#sec-9-4). The same singularity at $q=2k_F$ in $\chi_0(q)$, which we found there as an instability channel, gives here a long-ranged real-space oscillation with a power-law decay, and not a real instability. The reason is that a single local impurity is a perturbation that is much too weak to reorganize the whole Fermi sea. The divergence in $\chi_0(q)$ only makes its Fourier partner decay slowly instead of exponentially.
 
-For a concrete example, let us take a one-dimensional tight-binding chain with an impurity at site $0$. The local density of states oscillates around the impurity with wavelength $\pi/k_F$, which is half of the Fermi wavelength $\lambda_F=2\pi/k_F$, since the modulation is set by $2k_F$ and not by $k_F$. If we raise the chemical potential, $k_F^{-1}$ becomes shorter and the oscillation becomes faster in the same way. The same phenomenon, with the same physical content, appears in a two-dimensional square lattice. This real-space LDOS modulation around impurities is what an STM measures in practice, and it is quasiparticle interference again, seen this time in real space and not in reciprocal space. The explicit plots of the LDOS as a function of position at two different fillings, for both the 1D and the 2D case, are clearer on the slides than in words. The comparison that shows that the "oscillations get faster as $k_F$ grows" is a visual one, and it is better seen than read from the formula. As a complementary check, the slides and the notebook also show the *insulating* case. An impurity placed in a gapped 1D chain gives an LDOS that converges very quickly to its uniform value, instead of oscillating with a slow power-law envelope. This is a first view of the diagnostic that separates gapped and gapless systems, which we will make fully general in Section [9.9](#sec-9-9) and draw in figure [9.5](#fig:s09:decay).
+![The singularity that gives the Friedel oscillation. In panel (a) the vector $2k_F$ connects the two Fermi points of the chain, and in panel (b) the static Lindhard function has its logarithmic peak at that vector.](figures/s09f01_nesting.svg){panel="ab" alt="A one-dimensional band with its two Fermi points and the static Lindhard function with a logarithmic peak at twice the Fermi wavevector."}
 
-::: notebookbox
-**Notebook check-in:** [`session9.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb), "Impurity in a 1d metal" (Core), "Impurities in a 2d metal" (Core), and "Impurity in an electronic insulator" (Core)
+::: quiz
+A chain has the Fermi wavevector $k_F=\pi/4$. What is the period of the Friedel oscillation of the density around an impurity, in units of the lattice constant?
 
-Place a single impurity in a 1D chain, and then in a 2D square lattice, and look at how the LDOS oscillates as in [(9.9)](#eq-9-9). Change the chemical potential and check that the wavelength of the oscillation follows $\pi/k_F$, as predicted. This is the clearest place in the whole session to see a response formula and a numerical experiment agree digit by digit. The third section repeats the exercise with the chemical potential inside a gap, instead of in a partially filled band. Check that the LDOS now converges to its bulk value within one or two sites, without an oscillating tail that decays slowly. This is the contrast between gapped and gapless systems that Section [9.9](#sec-9-9) makes fully general.
+- [ ] $8$, which is the Fermi wavelength $2\pi/k_F$.
+- [x] $4$, since the wavevector of the oscillation is $2k_F=\pi/2$.
+- [ ] $2$, since the oscillation follows the lattice.
+
+The singularity of $\chi_0(q)$ is at $q=2k_F$, so the density oscillates as $\cos(2k_Fx)$. Its period is $2\pi/2k_F=4$, which is half of the Fermi wavelength $2\pi/k_F=8$.
 :::
+
+::: quiz
+In two dimensions, $d=2$ in [(9.9)](#eq-9-9). We compare the envelope of the oscillation at the distance $x$ and at $2x$. By which factor does it decrease?
+
+- [ ] A factor $2$.
+- [x] A factor $4$.
+- [ ] A factor $8$.
+
+The envelope decays as $1/|x|^{d}$, so doubling the distance divides it by $2^d=4$. It is a power law, and not an exponential, because the singularity in $\chi_0(q)$ is only a non-analyticity and not a gap.
+:::
+
+::: {.tryit notebook="session9.ipynb" cell="Impurities in a 2d metal"}
+Run the cell with `mu = 3.8`, where the Fermi circle is small, and measure the distance between two ripples of the LDOS. Then set `mu = 3.0` and run it again. The Fermi circle is larger, and the ripples become shorter, from about 7 sites to about 3 sites, since the wavelength is $\pi/k_F$.
+:::
+
+To see this in a concrete case, we now take a chain, a plane and an insulator.
+
+::: {.widget name="friedel"}
+Move the number of electrons $N_e$ of a ring with 201 sites and one impurity of strength $1.5t$ at site 0. The density oscillates around the impurity with the period $\pi/k_F$, as in [(9.9)](#eq-9-9), and the dashed envelope decays as $1/x$. This is the pattern that an STM map shows around a single impurity. Note that the period changes with the filling, and that it is the same $2k_F$ that gave the singularity of $\chi_0(q)$.
+:::
+

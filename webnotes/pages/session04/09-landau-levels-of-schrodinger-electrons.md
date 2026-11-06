@@ -18,3 +18,29 @@ $$E_n = \hbar\omega_c\left(n+\frac{1}{2}\right), \qquad n=0,1,2,\dots, \tag{4.6}
 which does not depend on $k_y$ at all. Every value of $k_y$, or in other words every choice of the guiding center $x_0$, gives the same energy. This is the reason why the Landau levels are flat bands, and why each of them has a macroscopic degeneracy that is proportional to the area of the sample. Figure [4.3](#fig:s04:guidingcenter) shows this mechanism directly, with the same well placed at different positions, and with the degeneracy counted as one orbital for each flux quantum through the sample. When we put in the real physical constants for a field typical of GaAs, we obtain the millielectronvolt scale that we gave in Section [4.1](#sec-4-1).
 
 ![Why the Landau levels are flat. (a) In the Landau gauge each $k_y$ reduces [(4.5)](#eq-4-5) to a one-dimensional harmonic oscillator in $x$, which is the same in every respect except that it is centred on the guiding centre $x_0=\hbar k_y/B$. When $k_y$ increases, the whole well moves to the right without changing its curvature. Every well therefore has the same ladder $E_n=\hbar\omega_c(n+\tfrac 12)$, drawn here as the horizontal guides, and the ground-state wavepacket of each well, the red bump, has the same shape at a different position. (b) As a function of $k_y$, this is a set of bands with exactly no dispersion, and the three balls are the three values of $k_y$ of (a). The flatness is not an artefact of the gauge. It means that the energy does not depend on the position of the electron in the sample, and this is also the origin of the very large degeneracy of the Landau levels.](figures/s04f03_guidingcenter.svg){#fig:s04:guidingcenter number="4.3"}
+
+::: quiz
+The energy [(4.6)](#eq-4-6) does not depend on $k_y$. What does $k_y$ fix instead?
+
+- [ ] The cyclotron frequency.
+- [ ] The spin of the electron.
+- [ ] The Landau level index $n$.
+- [x] The position $x_0=\hbar k_y/B$ of the center of the oscillator.
+
+A change of $k_y$ shifts the oscillator well along $x$ and does not change its curvature. The same ladder of levels is then found at every position.
+:::
+
+::: quiz
+A sample has the area $A$. How does the number of states in one Landau level depend on $A$ and $B$?
+
+- [ ] It is proportional to $A$ and independent of $B$.
+- [ ] It is proportional to $A/B$.
+- [x] It is proportional to $AB$, which is one orbital for each flux quantum through the sample.
+- [ ] It is one state for each Landau level, independent of $A$.
+
+A stronger field gives more flux quanta through the same area, and every flux quantum adds one orbital. This is why the degeneracy grows with the area and with the field.
+:::
+
+::: {.tryit notebook="session4.ipynb" cell="Magnetic field dependence of Landau levels"}
+Run the cell, which shows the density of states of the bulk for the three fields. Measure the distance between the first two peaks in each panel. It grows roughly in proportion to `B`, as the cyclotron energy of [(4.6)](#eq-4-6) does.
+:::

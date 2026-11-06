@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -92,9 +93,55 @@
 <figcaption><strong>Figure 7.5.</strong> How DMRG turns an exponentially large minimization into a sequence of small ones. (a) The numerator of the Rayleigh quotient <a href="#eq-7-11">(7.11)</a> is a single closed network, made of the ket MPS, the Hamiltonian as an MPO and the bra MPS, all contracted together. It has no free legs, so it is a number. (b) Every tensor enters that network once in the bra layer and once in the ket layer, so the energy is a quadratic form in each tensor and linear in its bra copy, and the derivative with respect to the bra tensor at site <span class="math inline">\(k\)</span> removes it, which is the ghost. What is left has exactly three open legs, drawn in red, the two virtual bonds and the physical index of site <span class="math inline">\(k\)</span>, which are the indices of the tensor <span class="math inline">\(M_k^{s_k}\)</span> that we want to find. Everything to the left and right of <span class="math inline">\(k\)</span> has been reduced to an environment, and the stationarity condition is a generalized eigenvalue problem, which is an ordinary one in an orthonormal gauge, with the size of a single tensor. (c) We solve it, move one site along, solve again, and sweep back and forth until the energy stops decreasing. This is the density matrix renormalization group, and at no point do we build an object of size <span class="math inline">\(2^L\)</span>.</figcaption>
 </figure>
 <p>This suggests an iterative algorithm. We fix every tensor except the one of site <span class="math inline">\(1\)</span>, solve the local eigenvalue problem there, and update <span class="math inline">\(M_1^{s_1}\)</span> with the resulting eigenvector. Then we move to site <span class="math inline">\(2\)</span>, fix everything else, solve the local eigenvalue problem there, and update. We continue sweeping through the chain, site by site, until the energy stops decreasing. This sweeping procedure is the <strong>density matrix renormalization group (DMRG)</strong> algorithm. Its efficiency comes from the property of <a href="#eq-7-11">(7.11)</a> that we used to build it. At every step we optimize only one matrix at a time, which is a small linear-algebra problem that we can solve, instead of searching for the ground state in the full exponentially large space at once.</p>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>When DMRG updates one tensor with all the others fixed, what happens to the energy <a href="#eq-7-11">(7.11)</a>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>It can increase, and the sweeps compensate it later.</li>
+<li>It cannot increase, since the update is the exact minimum over that tensor.</li>
+<li>It stays the same, since the other tensors are fixed.</li>
+<li>It decreases only if the bond dimension is also increased.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The old tensor is one of the candidates of the local minimization, so the new one is at least as good. The energy goes down or stays the same, and this is why the sweeps converge.</p>
+</details>
+</div>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>The local eigenvalue problem at one bulk site of a spin-1/2 chain has a matrix of size</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(2M^2\)</span>.</li>
+<li><span class="math inline">\(2^L\)</span>.</li>
+<li><span class="math inline">\(M\)</span>.</li>
+<li><span class="math inline">\(2M\)</span>.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>The open legs of the erased tensor are two virtual bonds of dimension <span class="math inline">\(M\)</span> and one physical index of dimension <span class="math inline">\(2\)</span>. The matrix acts on these <span class="math inline">\(2M^2\)</span> numbers, and <span class="math inline">\(L\)</span> does not appear.</p>
+</details>
+</div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb"><code>session7.ipynb</code></a>, “Low energy excitations of a Heisenberg model” (Core)</p>
 <p>In this exercise you look at the matrix elements between the DMRG ground state and the first excited state of a Heisenberg chain, meaning what the sweeping procedure of Section <a href="#sec-7-10">7.10</a> finds one level above the state that directly minimizes <a href="#eq-7-11">(7.11)</a>.</p>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> Plot the matrix element between the ground state and the first excited state along the chain, for <code>L=20</code> and for <code>L=12</code>. Is the excitation localized on a few sites or spread over the chain? Then set <code>Bz=0</code> and see whether the profile changes.</p>
+<div class="tryit-links">
+Notebook <code>session7.ipynb</code>, cell “Low energy excitations of a Heisenberg model”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession7.ipynb">Binder</a>.
+</div>
 </div>
 
   <nav class="pager"><a href="09-tensor-diagrams-as-notation-for-networks-and-operators.html">7.9 Tensor diagrams as notation for networks and operators</a><a href="11-mera-and-peps-beyond-mps.html">7.11 MERA and PEPS beyond MPS</a></nav>

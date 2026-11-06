@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -85,7 +86,7 @@
 <h1 id="sec-8-6"><span class="num">8.6</span> The resonating valence bond wavefunction as the QSL ground state</h1>
 <p>For a frustrated Heisenberg Hamiltonian <span class="math inline">\(\mathcal H = \sum_{ij} J_{ij}\, \mathbf
 S_i\cdot\mathbf S_j\)</span>, we do not expect the ground state to be one fixed dimer covering as in <a href="05-the-dimerized-heisenberg-model-a-first-step-before-a-spin-liquid.html#eq-8-5">(8.5)</a>. Instead, we expect a <strong>linear combination of singlets over every possible pairing of sites</strong>, where each pairing has its own amplitude, which is a complicated many-body wavefunction. We could try to treat this directly, for example by writing it as a tensor network as in Session 7 for the general strongly correlated case. There is, however, a way that is easier to understand physically, which is a variational ansatz based on an analogy with superconductivity.</p>
-<p>The idea is that the singlets in a QSL are similar to the Cooper pairs in an s-wave superconductor, since both are singlet correlations between pairs. A BCS-type wavefunction is easy to write at the mean-field level in the right basis, which is the Nambu space as in Session 5. So we start from a BCS-paired state built from the same auxiliary fermions <span class="math inline">\(f_{i\sigma}\)</span> that we will justify in detail in Section <a href="08-the-parton-construction-with-abrikosov-fermions-and-the-single-occupancy-constraint.html#sec-8-8">8.8</a>,</p>
+<p>The idea is that the singlets in a QSL are similar to the Cooper pairs in an s-wave superconductor, since both are singlet correlations between pairs. A BCS-type wavefunction is easy to write at the mean-field level in the right basis, which is the Nambu space as in Session 5. So we start from a BCS-paired state built from the same auxiliary fermions <span class="math inline">\(f_{i\sigma}\)</span> that we will justify in detail in Section <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#sec-8-8">8.8</a>,</p>
 <p><span id="eq-8-6" class="eq"><span class="math display">\[|\Psi_\text{BCS}\rangle = \prod_{\mathbf k}\Big(u_{\mathbf k} + v_{\mathbf k}\,
 f^\dagger_{\mathbf k\uparrow} f^\dagger_{-\mathbf k\downarrow}\Big)|0\rangle, \tag{8.6}\]</span></span></p>
 <p>where <span class="math inline">\(u_{\mathbf k}, v_{\mathbf k}\)</span> are variational parameters, as in the BCS state of Session 5. By itself, <a href="#eq-8-6">(8.6)</a> is a superposition of states with every possible number of fermions per site, which can be empty, singly occupied or doubly occupied. This is not a physical spin state at all. A QSL has strong local interactions, so we need single occupation on every site, and no charge fluctuations between sites are allowed. We impose this condition with a <strong>Gutzwiller projector</strong> onto the singly-occupied subspace,</p>
@@ -94,8 +95,54 @@ n_i = \sum_\sigma f^\dagger_{i\sigma}f_{i\sigma}, \tag{8.7}\]</span></span></p>
 <p>which gives <span class="math inline">\(1\)</span> for states with exactly one fermion per site and <span class="math inline">\(0\)</span> for all other states. What remains is a real many-body spin wavefunction. It is a superposition over the different ways to pair sites into singlets, in the same spirit as the singlet of a single dimer <a href="03-two-minimal-dimers-a-classical-order-parameter-and-a-quantum-singlet.html#eq-8-3">(8.3)</a>, but now over a whole frustrated lattice. The name of this construction describes what it is, and it is called the <strong>resonating valence bond (RVB)</strong> variational wavefunction. It turns out to be a good description of the physics of quantum spin liquids. Figure <a href="#fig:s08:vbsrvb">8.3</a> shows what makes this resonating state, and the excitations that it has, different from the frozen dimer covering of Section <a href="05-the-dimerized-heisenberg-model-a-first-step-before-a-spin-liquid.html#sec-8-5">8.5</a>.</p>
 <figure id="fig:s08:vbsrvb">
 <img src="../figures/s08f03_vbs_rvb.svg" loading="lazy" alt="The difference between a valence bond solid and a quantum spin liquid is not whether the ground state is built from singlets, since both are, but whether the singlet pattern is frozen." />
-<figcaption><strong>Figure 8.3.</strong> The difference between a valence bond solid and a quantum spin liquid is not whether the ground state is built from singlets, since both are, but whether the singlet pattern is frozen. (a1) The fully dimerized model <a href="05-the-dimerized-heisenberg-model-a-first-step-before-a-spin-liquid.html#eq-8-4">(8.4)</a> has one fixed covering, <a href="05-the-dimerized-heisenberg-model-a-first-step-before-a-spin-liquid.html#eq-8-5">(8.5)</a>. (a2) When we separate the two unpaired spins of figure <a href="02-two-emergent-excitations-magnons-and-spinons.html#fig:s08:magnonspinon">8.1</a>b, every strong bond between them loses its singlet, drawn in red, so the energy cost grows with the separation. The pair is confined, and only the bound object propagates, which is the spin-<span class="math inline">\(1\)</span> triplon. (b1) The RVB state <a href="#eq-8-7">(8.7)</a> is a superposition over <em>all</em> pairings, near and far, drawn as coverings stacked on top of each other. (b2) Now the background pairs again behind the excitations with no cost, the confining string does not form, and the two halves separate as independent spin-<span class="math inline">\(1/2\)</span> spinons. Frustration is the reason why the superposition in (b1), and not a single covering, is the ground state.</figcaption>
+<figcaption><strong>Figure 8.3.</strong> The difference between a valence bond solid and a quantum spin liquid is not whether the ground state is built from singlets, since both are, but whether the singlet pattern is frozen. (a1) The fully dimerized model <a href="05-the-dimerized-heisenberg-model-a-first-step-before-a-spin-liquid.html#eq-8-4">(8.4)</a> has one fixed covering, <a href="05-the-dimerized-heisenberg-model-a-first-step-before-a-spin-liquid.html#eq-8-5">(8.5)</a>. (a2) When we separate the two unpaired spins of figure <a href="01-two-classes-of-magnets-and-where-we-find-them.html#fig:s08:magnonspinon">8.1</a>b, every strong bond between them loses its singlet, drawn in red, so the energy cost grows with the separation. The pair is confined, and only the bound object propagates, which is the spin-<span class="math inline">\(1\)</span> triplon. (b1) The RVB state <a href="#eq-8-7">(8.7)</a> is a superposition over <em>all</em> pairings, near and far, drawn as coverings stacked on top of each other. (b2) Now the background pairs again behind the excitations with no cost, the confining string does not form, and the two halves separate as independent spin-<span class="math inline">\(1/2\)</span> spinons. Frustration is the reason why the superposition in (b1), and not a single covering, is the ground state.</figcaption>
 </figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>Why do we apply the Gutzwiller projector <span class="math inline">\(P_G\)</span> to the BCS state <a href="#eq-8-6">(8.6)</a>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>The BCS state is not normalized.</li>
+<li>The BCS state has empty and doubly occupied sites, and a spin state needs exactly one fermion on every site.</li>
+<li>The BCS state breaks spin-rotation symmetry.</li>
+<li>The projector makes the state a superconductor.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>In the BCS state the number of fermions on a site fluctuates between zero and two. Projecting onto single occupancy leaves only the spin degrees of freedom.</p>
+</details>
+</div>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>We separate the two spinons that come from breaking a singlet. In which state does the energy cost grow with the separation?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>In the valence bond solid, since every singlet between the two is broken.</li>
+<li>In the RVB state, since the singlets are frozen.</li>
+<li>In both states in the same way.</li>
+<li>In neither, since spinons always cost the same energy.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>In the frozen covering the broken singlets between the spinons form a string, and the spinons are confined into a triplon. In the RVB state the background pairs again, so the spinons separate freely.</p>
+</details>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> Run the chain with a local field on site 0 and look at the magnetization along the chain. It should alternate in sign from site to site and decay slowly, as in a critical state. Compare with the dimerized chain of the previous section.</p>
+<div class="tryit-links">
+Notebook <code>session8.ipynb</code>, cell “Magnetization of a large Heisenberg model with a magnetic impurity”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session8.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session8.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession8.ipynb">Binder</a>.
+</div>
+</div>
 
   <nav class="pager"><a href="05-the-dimerized-heisenberg-model-a-first-step-before-a-spin-liquid.html">8.5 The dimerized Heisenberg model, a first step before a spin liquid</a><a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html">8.7 Why the Holstein-Primakoff magnon approach fails for QSL excitations</a></nav>
 

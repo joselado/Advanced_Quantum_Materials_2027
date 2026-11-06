@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -87,6 +88,63 @@
 <p>These zero modes are very robust. When we move away from the fine-tuned point, with <span class="math inline">\(\Delta \ne t\)</span> and finite <span class="math inline">\(\mu\)</span>, the zero modes survive as long as we stay in the same topological phase. The standard criterion for the general Kitaev chain <a href="16-the-kitaev-chain-as-the-minimal-model-with-isolated-majoranas.html#eq-5-19">(5.19)</a> with <span class="math inline">\(\Delta \ne 0\)</span> is</p>
 <p><span id="eq-5-22" class="eq"><span class="math display">\[|\mu| &lt; 2t \quad \Longrightarrow \quad \text{topological phase (unpaired end Majoranas)}, \qquad |\mu| &gt; 2t \quad \Longrightarrow \quad \text{trivial phase.} \tag{5.22}\]</span></span></p>
 <p>In the trivial phase, a large chemical potential effectively fixes each site to be either empty or occupied in the fermionic language, since the chain is spinless, and the two Majoranas that form the electron of each site combine again locally into an ordinary confined fermion, so nothing is left to deconfine. In the topological phase, on the other hand, p-wave pairing dominates over the trivial onsite physics, and the two Majoranas at each site pair with the Majoranas of the neighboring sites instead of with each other, which leaves the two end Majoranas without any partner. This is the same contrast between the dimerized strong-coupling limit and the atomic weak-coupling limit that distinguished the topological and trivial phases of the SSH model. The Kitaev chain reproduces it because, as we saw in section <a href="16-the-kitaev-chain-as-the-minimal-model-with-isolated-majoranas.html#sec-5-16">5.16</a>, it is the SSH model with new labels.</p>
+<figure id="sch:s05:kitaev_spectrum" class="schematic">
+<img src="../figures/web/session05/kitaev_spectrum.svg" loading="lazy" alt="Lowest energy levels of an open Kitaev chain against the chemical potential. A level stays at zero between minus 2t and 2t, and outside this window all levels rise away from zero." />
+<figcaption><strong>Schematic 5.4.</strong> The lowest levels of an open Kitaev chain with <span class="math inline">\(N=60\)</span> sites and <span class="math inline">\(\Delta=0.7t\)</span>, as a function of <span class="math inline">\(\mu\)</span>. For <span class="math inline">\(|\mu|&lt;2t\)</span> a pair of levels sits at zero energy, which belongs to the two end Majoranas, and the bulk levels stay above a gap. At <span class="math inline">\(|\mu|=2t\)</span> the bulk gap closes, as in <a href="#eq-5-22">(5.22)</a>.</figcaption>
+</figure>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>An open Kitaev chain with <span class="math inline">\(\Delta=0.5t\)</span> and <span class="math inline">\(\mu=t\)</span> has two Majoranas at its ends. We change the chemical potential to <span class="math inline">\(\mu=-t\)</span>. What happens to them?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>They stay, since <a href="#eq-5-22">(5.22)</a> depends only on <span class="math inline">\(|\mu|\)</span>.</li>
+<li>They disappear, since the sign of <span class="math inline">\(\mu\)</span> matters.</li>
+<li>They move into the bulk.</li>
+<li>They double, since the band bottom changes.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>In both cases <span class="math inline">\(|\mu|=t&lt;2t\)</span>, so the chain stays in the topological phase. The end Majoranas remain, and only the position of the bulk band moves.</p>
+</details>
+</div>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>A Kitaev chain with <span class="math inline">\(N=8\)</span> sites is in the topological phase. Are its two end modes at exactly zero energy?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>Yes, since the topological phase protects them for any <span class="math inline">\(N\)</span>.</li>
+<li>No, they sit at a small energy that decreases exponentially with <span class="math inline">\(N\)</span>.</li>
+<li>No, they sit at the energy of the bulk gap.</li>
+<li>Yes, but only at <span class="math inline">\(\Delta=t\)</span>.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The end modes have a finite localization length. For a short chain their wave functions overlap, and they hybridize into one ordinary level, split from zero by an energy of order <span class="math inline">\(e^{-N/\xi}\)</span>.</p>
+</details>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> In the cell, the line <code>mu = 0.3</code> sets the chemical potential. With <code>mu = 1.0</code> the two states near zero energy stay. With <code>mu = 2.5</code> they disappear, and for <span class="math inline">\(L=40\)</span> the lowest energy is about 0.5, in line with <a href="#eq-5-22">(5.22)</a>.</p>
+<div class="tryit-links">
+Notebook <code>session5.ipynb</code>, cell “Emergence of Majorana modes as a function of the size of the superconductor”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession5.ipynb">Binder</a>.
+</div>
+</div>
+<div class="widget" data-widget="kitaevbdg">
+<div class="widget-label">
+Interactive
+</div>
+<p>Move the chemical potential <span class="math inline">\(\mu\)</span> of an open Kitaev chain with <span class="math inline">\(t=\Delta=1\)</span> and 30 sites. For <span class="math inline">\(|\mu|&lt;2t\)</span> two levels sit at zero energy inside the gap, and their weight is at the two ends of the chain. For <span class="math inline">\(|\mu|&gt;2t\)</span> no level stays at zero, and the lowest state is spread over the whole chain. At <span class="math inline">\(|\mu|=2t\)</span> the gap closes, which is the topological transition of <a href="#eq-5-22">(5.22)</a>.</p>
+<noscript><p class="widget-nojs">This widget needs JavaScript.</p></noscript>
+</div>
 
   <nav class="pager"><a href="16-the-kitaev-chain-as-the-minimal-model-with-isolated-majoranas.html">5.16 The Kitaev chain as the minimal model with isolated Majoranas</a><a href="18-engineering-a-topological-superconductor-from-a-quantum-spin-hall-insulator.html">5.18 Engineering a topological superconductor from a quantum spin Hall insulator</a></nav>
 

@@ -21,8 +21,23 @@ We have $J>0$, which is antiferromagnetic, and the singlet is below the triplet.
 
 ![Superexchange in the two-site Hubbard model, and the reason why it is always antiferromagnetic. (a) With parallel spins, the only possible hop would put two $\uparrow$ electrons on one site, and Pauli exclusion forbids this completely. As a result the triplet states cannot lower their energy at any order, and stay at exactly $E_T=0$. With antiparallel spins the hop is allowed, so the singlet goes through a virtual double occupation of energy $U$, the glow, and comes back, and gains a second-order energy $-4t^2/U$. Here the magnetic order is a purely kinetic effect, since antiparallel spins have lower energy because only they can move. (b) The exact singlet energy $E_S=\tfrac{U}{2}-\sqrt{(U/2)^2+4t^2}$ as a function of $U/t$, with $E_T=0$ exact for every $U$. The singlet-triplet splitting *is* the Heisenberg coupling $J$ of [(6.4)](#eq-6-4), and it decays as $4t^2/U$, the grey curve. This is the same $1/U$ law that we found numerically for the mean-field energy difference between the ferromagnet and the antiferromagnet in Section [6.5](#sec-6-5).](figures/s06f02_dimer.svg){#fig:s06:dimer number="6.2"}
 
+::: quiz
+At fixed large $U$ the hopping $t$ of the dimer is doubled. How does $J$ of [(6.4)](#eq-6-4) change?
+
+- [ ] It doubles.
+- [x] It grows by a factor of four.
+- [ ] It is halved.
+- [ ] It does not change.
+
+The coupling $J=4t^2/U$ depends on $t^2$, so doubling $t$ gives a factor of four. The process needs two hops, one to the doubly occupied state and one back.
+:::
+
 ::: notebookbox
 **Notebook check-in:** [`session6.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb), "(Reminder) The spectra of a dimer," "(Exercise) The interacting Hubbard dimer," "Gap opening in the Hubbard model," and "(Exercise) The strongly interacting limit"
 
 Diagonalize the Hubbard dimer with six states directly, and check that the singlet-triplet splitting agrees with [(6.4)](#eq-6-4). Then take large values of $U/t$ and check that the gap and the low-energy spectrum converge to the prediction of the Heisenberg model. This compares the exact result of this section with a direct numerical diagonalization.
+:::
+
+::: {.tryit notebook="session6.ipynb" cell="The interacting Hubbard dimer"}
+In the cell, diagonalize the dimer with six states for $U/t$ equal to 4, 8 and 16. The exact splitting $E_T-E_S$ divided by $4t^2/U$ is about 0.83, 0.94 and 0.98, and it approaches one as $U/t$ grows.
 :::

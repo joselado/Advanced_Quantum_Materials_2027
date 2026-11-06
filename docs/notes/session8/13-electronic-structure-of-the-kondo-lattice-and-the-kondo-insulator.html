@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -83,20 +84,73 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="on" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 8. Quantum Magnetism, Spinons and Kondo Physics</a></p>
 <h1 id="sec-8-13"><span class="num">8.13</span> Electronic structure of the Kondo lattice and the Kondo insulator</h1>
-<p>For each spin, Equation <a href="12-solving-the-kondo-lattice-with-the-parton-method-and-a-hybridization.html#eq-8-21">(8.21)</a> is an ordinary two-band Bloch Hamiltonian in the basis <span class="math inline">\((c_{\mathbf
+<p>For each spin, Equation <a href="11-from-a-single-kondo-impurity-to-the-kondo-lattice.html#eq-8-21">(8.21)</a> is an ordinary two-band Bloch Hamiltonian in the basis <span class="math inline">\((c_{\mathbf
 k\alpha}, f_{\mathbf k\alpha})\)</span>. When <span class="math inline">\(\gamma_K = 0\)</span>, there is no mixing at all. The spectrum is then the ordinary dispersive conduction band <span class="math inline">\(\varepsilon_{\mathbf k}\)</span>, together with a completely <strong>flat</strong> band of <span class="math inline">\(f\)</span>-fermion levels at zero energy. This band is flat because the auxiliary fermions have no hopping of their own when the Kondo coupling is zero. When we switch the Kondo coupling on again, <span class="math inline">\(\gamma_K\)</span> becomes finite, and the flat band and the dispersive band have an <strong>anti-crossing</strong>. In every place where the flat spinon band would cross the conduction band, a <strong>gap</strong> opens instead, and the gap is larger when the Kondo coupling is larger. We see this directly when we compare the spectra for increasing <span class="math inline">\(J_K\)</span>. At <span class="math inline">\(J_K=0\)</span> the bands cross. At <span class="math inline">\(J_K=0.25\)</span> there is already a visible gap at the crossing. At <span class="math inline">\(J_K=0.5\)</span> the gap is much larger. Figure <a href="#fig:s08:kondobands">8.6</a> shows the two ends of this comparison, and where the Fermi level is in each case.</p>
 <figure id="fig:s08:kondobands">
 <img src="../figures/s08f06_kondo_bands.svg" loading="lazy" alt="Why a lattice of local moments is an insulator, drawn from (8.21) per spin in one dimension." />
-<figcaption><strong>Figure 8.6.</strong> Why a lattice of local moments is an insulator, drawn from <a href="12-solving-the-kondo-lattice-with-the-parton-method-and-a-hybridization.html#eq-8-21">(8.21)</a> per spin in one dimension. (a) With the Kondo coupling switched off, <a href="12-solving-the-kondo-lattice-with-the-parton-method-and-a-hybridization.html#eq-8-21">(8.21)</a> is a dispersive conduction band <span class="math inline">\(\varepsilon_{\mathbf k}\)</span> together with a completely flat band of <span class="math inline">\(f\)</span> levels, the red line. This band is flat because the auxiliary fermions have no hopping of their own, and the two bands cross at the Fermi level, which gives a metal. (b) A finite hybridization <span class="math inline">\(\gamma_K\)</span> removes the crossing. The bands repel each other, the states close to the crossing become mixtures of conduction electron and local moment, and a gap opens exactly where the crossing was. With one <span class="math inline">\(f\)</span> fermion per site from the constraint <a href="08-the-parton-construction-with-abrikosov-fermions-and-the-single-occupancy-constraint.html#eq-8-11">(8.11)</a> and a half-filled conduction band, the lower hybridized band is exactly full. So the Fermi level is inside the gap, and the metal has become a <strong>Kondo insulator</strong>. The gap grows with <span class="math inline">\(\gamma_K\)</span>, and so with the Kondo coupling <span class="math inline">\(J_K\)</span>, and the nearly flat band edges that remain are the reason why the remaining quasiparticles are heavy.</figcaption>
+<figcaption><strong>Figure 8.6.</strong> Why a lattice of local moments is an insulator, drawn from <a href="11-from-a-single-kondo-impurity-to-the-kondo-lattice.html#eq-8-21">(8.21)</a> per spin in one dimension. (a) With the Kondo coupling switched off, <a href="11-from-a-single-kondo-impurity-to-the-kondo-lattice.html#eq-8-21">(8.21)</a> is a dispersive conduction band <span class="math inline">\(\varepsilon_{\mathbf k}\)</span> together with a completely flat band of <span class="math inline">\(f\)</span> levels, the red line. This band is flat because the auxiliary fermions have no hopping of their own, and the two bands cross at the Fermi level, which gives a metal. (b) A finite hybridization <span class="math inline">\(\gamma_K\)</span> removes the crossing. The bands repel each other, the states close to the crossing become mixtures of conduction electron and local moment, and a gap opens exactly where the crossing was. With one <span class="math inline">\(f\)</span> fermion per site from the constraint <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-11">(8.11)</a> and a half-filled conduction band, the lower hybridized band is exactly full. So the Fermi level is inside the gap, and the metal has become a <strong>Kondo insulator</strong>. The gap grows with <span class="math inline">\(\gamma_K\)</span>, and so with the Kondo coupling <span class="math inline">\(J_K\)</span>, and the nearly flat band edges that remain are the reason why the remaining quasiparticles are heavy.</figcaption>
 </figure>
 <p>Physically, the ground state of this hybridized system is non-magnetic by construction. It has total spin zero and it is time-reversal symmetric, in the same way as for the single impurity <a href="11-from-a-single-kondo-impurity-to-the-kondo-lattice.html#eq-8-17">(8.17)</a> and for the quantum spin liquid of Section <a href="09-the-mean-field-spinon-hamiltonian-and-its-dispersion-classes.html#sec-8-9">8.9</a>. The consequence for the electronic structure, however, is new. A lattice of Kondo impurities turns a system that would otherwise be an ordinary metal into an <strong>insulator</strong>, because every electron at the Fermi surface forms a bound state with a magnetic impurity. This is the <strong>Kondo insulator</strong>, which is also called a heavy-fermion insulator, and SmB<span class="math inline">\(_6\)</span>, which we already introduced in Section <a href="01-two-classes-of-magnets-and-where-we-find-them.html#sec-8-1">8.1</a>, is the standard real material example.</p>
 <p>Note that there is a similarity with a quite different construction of Session 5. Superconductors also open a gap in their quasiparticle spectrum through a hybridization, but there it is between electrons and holes and not between electrons and auxiliary fermions. The two systems are physically very different, but the <em>mechanism</em> that opens a gap in the single-particle spectrum is very similar. The way the effect appears is also similar. The temperature scale at which the gap of the Kondo insulator becomes visible depends on the Kondo coupling in a strongly non-linear way, which is the same kind of non-linear dependence that we know from the dependence of the superconducting gap on the pairing interaction.</p>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session8.ipynb"><code>session8.ipynb</code></a>, “Quantum magnetism in the Kondo lattice” (Core) and “Spinon dispersion in the Kondo lattice” (Challenge)</p>
-<p>The first exercise builds <a href="12-solving-the-kondo-lattice-with-the-parton-method-and-a-hybridization.html#eq-8-21">(8.21)</a> directly on a lattice of van der Waals type. You identify the flat band of the Kondo sites and the anti-crossing with the conduction band, and you check what happens to the gap when you change the chemical potential. The second exercise adds a direct exchange coupling between the Kondo sites, which gives a dispersion to the spinon band that would otherwise be flat. This is the lattice version of the Doniach picture. The Kondo coupling <span class="math inline">\(J_K\)</span> favors a local screened singlet, while the direct exchange <span class="math inline">\(J\)</span> favors magnetic correlations between the local moments, and the competition between them decides which regime is stable, the screened one or the magnetic one.</p>
+<p>The first exercise builds <a href="11-from-a-single-kondo-impurity-to-the-kondo-lattice.html#eq-8-21">(8.21)</a> directly on a lattice of van der Waals type. You identify the flat band of the Kondo sites and the anti-crossing with the conduction band, and you check what happens to the gap when you change the chemical potential. The second exercise adds a direct exchange coupling between the Kondo sites, which gives a dispersion to the spinon band that would otherwise be flat. This is the lattice version of the Doniach picture. The Kondo coupling <span class="math inline">\(J_K\)</span> favors a local screened singlet, while the direct exchange <span class="math inline">\(J\)</span> favors magnetic correlations between the local moments, and the competition between them decides which regime is stable, the screened one or the magnetic one.</p>
+</div>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>In <a href="11-from-a-single-kondo-impurity-to-the-kondo-lattice.html#eq-8-21">(8.21)</a> we have one <span class="math inline">\(f\)</span> fermion per site and a half-filled conduction band. How many particles per <span class="math inline">\(\mathbf k\)</span> point and spin fill the two bands?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>One half, so the lower band is half full.</li>
+<li>One, so the lower hybridized band is exactly full.</li>
+<li>Two, so both bands are full.</li>
+<li>Three halves, so the upper band is half full.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The conduction band gives one half and the <span class="math inline">\(f\)</span> level gives one half, so there is one particle for the two states at each <span class="math inline">\(\mathbf k\)</span> and spin. The lower band is full, and the Fermi level lies in the gap.</p>
+</details>
+</div>
+<div class="quiz" data-correct="D">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>At the crossing the energy of the conduction band is zero, as for the flat band. If we double <span class="math inline">\(\gamma_K\)</span>, what happens to the direct gap there?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>It does not change.</li>
+<li>It becomes four times larger.</li>
+<li>It is cut in half.</li>
+<li>It doubles, since the two levels split into <span class="math inline">\(\pm\gamma_K\)</span>.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>D</strong>.</p>
+<p>At <span class="math inline">\(\varepsilon_{\mathbf k}=0\)</span> the two-by-two Hamiltonian has the eigenvalues <span class="math inline">\(\pm\gamma_K\)</span>, so the direct gap is <span class="math inline">\(2\gamma_K\)</span>. This is the sense in which a larger Kondo coupling gives a larger gap.</p>
+</details>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> Increase the exchange <code>J</code> between the Kondo sites in the three panels. The flat band of the local moments should acquire a dispersion, and the gap should become smaller. Then increase <code>JK</code> and check that the gapped regime is more stable.</p>
+<div class="tryit-links">
+Notebook <code>session8.ipynb</code>, cell “Spinon dispersion in the Kondo lattice”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session8.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session8.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession8.ipynb">Binder</a>.
+</div>
+</div>
+<div class="widget" data-widget="kondobands">
+<div class="widget-label">
+Interactive
+</div>
+<p>Move the hybridization <span class="math inline">\(\gamma_K\)</span> of <a href="11-from-a-single-kondo-impurity-to-the-kondo-lattice.html#eq-8-21">(8.21)</a> for a one-dimensional chain, per spin. The conduction band is <span class="math inline">\(-2t\cos k\)</span> and the <span class="math inline">\(f\)</span> level is flat at zero energy. At <span class="math inline">\(\gamma_K=0\)</span> the two bands cross at the Fermi level, and the system is a metal. For <span class="math inline">\(\gamma_K&gt;0\)</span> the bands repel, the lower band is full, and for small <span class="math inline">\(\gamma_K\)</span> the indirect gap grows roughly as <span class="math inline">\(\gamma_K^2/t\)</span>.</p>
+<noscript><p class="widget-nojs">This widget needs JavaScript.</p></noscript>
 </div>
 
-  <nav class="pager"><a href="12-solving-the-kondo-lattice-with-the-parton-method-and-a-hybridization.html">8.12 Solving the Kondo lattice with the parton method and a hybridization</a><a href="14-closing-summary.html">8.14 Closing summary</a></nav>
+  <nav class="pager"><a href="11-from-a-single-kondo-impurity-to-the-kondo-lattice.html">8.11 From a single Kondo impurity to the Kondo lattice</a><a href="14-closing-summary.html">8.14 Closing summary</a></nav>
 
 </main>
 </body>

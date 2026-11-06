@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>9.6 Impurities as diagnostics I, Friedel oscillations in a metal, session 9</title>
+<title>9.6a Impurities as diagnostics I, Friedel oscillations in a metal, session 9</title>
 <style>
   :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
           --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -82,7 +83,7 @@
   <nav class="tabs"><a href="../../lectures/session9.html">Video lectures</a><a href="../../landscape/session9.html">Landscape lectures</a><a class="on" href="../../notes/session9/index.html">Lecture notes</a></nav>
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="on" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 9. Excitations and Defects in Quantum Materials</a></p>
-<h1 id="sec-9-6"><span class="num">9.6</span> Impurities as diagnostics I, Friedel oscillations in a metal</h1>
+<h1 id="sec-9-6"><span class="num">9.6a</span> Impurities as diagnostics I, Friedel oscillations in a metal</h1>
 <p>We now go to the most physical realization of a perturbation, which is a real local impurity. Four case studies follow, one for each broad class of ground state that we have built in the course. These are metals, superconductors, topological matter and quantum magnets. In each case the diagnostic logic is the same. We perturb the system locally, and we obtain the nature of the ground state from how the effect of the perturbation decays in space.</p>
 <p>Let us start with a metal. An impurity is a local shift of the onsite energy. If we add one to a Hamiltonian with translational symmetry, this symmetry is necessarily broken. Note, however, that perturbation theory itself never needed translational symmetry, since equations <a href="03-linear-response-and-perturbation-theory-in-detail.html#eq-9-2">(9.2)</a> and <a href="03-linear-response-and-perturbation-theory-in-detail.html#eq-9-3">(9.3)</a> are valid for any <span class="math inline">\(H_0\)</span> and any <span class="math inline">\(V\)</span>. If we apply them directly to the local density of states, we obtain a response that is proportional to matrix elements between states at the Fermi surface. For a generic band, close to a parabolic one, the oscillation that results is set only by the Fermi wavevector.</p>
 <p>To see this in an exact way, note that the static Lindhard function of a one-dimensional free-electron gas has the closed form</p>
@@ -90,13 +91,64 @@
 <p>which is smooth everywhere except for a logarithmic non-analyticity exactly at <span class="math inline">\(q = 2k_F\)</span>. This is the same nesting singularity that we found in Section <a href="04-the-fermi-sea-and-the-lindhard-function.html#sec-9-4">9.4</a>. A standard result of Fourier analysis is that a non-analyticity of a function <span class="math inline">\(\chi_0(q)\)</span> at a wavevector <span class="math inline">\(q^\star\)</span> gives an oscillating tail with an algebraic decay in its real-space Fourier transform. The period of this tail is fixed by <span class="math inline">\(q^\star\)</span>, and its envelope is set by the <em>type</em> of the singularity. We apply this to the change of density induced by the impurity, <span class="math inline">\(\delta n(x) = \int \frac{dq}{2\pi}\, e^{iqx}\, \chi_0(q)\, v_0\)</span>, in the Born approximation with impurity strength <span class="math inline">\(v_0\)</span>, and we obtain the <strong>Friedel oscillation</strong>,</p>
 <p><span id="eq-9-9" class="eq"><span class="math display">\[\delta n(x) \;\xrightarrow{|x|\to\infty}\; A(v_0)\, \frac{\cos\!\big(2k_F |x| + \varphi_0\big)}{|x|^{\,d}} \qquad (d = 1,2,3), \tag{9.9}\]</span></span></p>
 <p>The oscillation has a universal wavevector that is fixed only by the Fermi surface, which is <span class="math inline">\(2k_F\)</span> in 1D, or more generally the diameter of the Fermi surface. It has an algebraic envelope, whose power depends on the dimensionality <span class="math inline">\(d\)</span>, and it has an amplitude and a phase that are not universal and are set by the impurity strength and by microscopic details. This closes the argument that we started in Section <a href="04-the-fermi-sea-and-the-lindhard-function.html#sec-9-4">9.4</a>. The same singularity at <span class="math inline">\(q=2k_F\)</span> in <span class="math inline">\(\chi_0(q)\)</span>, which we found there as an instability channel, gives here a long-ranged real-space oscillation with a power-law decay, and not a real instability. The reason is that a single local impurity is a perturbation that is much too weak to reorganize the whole Fermi sea. The divergence in <span class="math inline">\(\chi_0(q)\)</span> only makes its Fourier partner decay slowly instead of exponentially.</p>
-<p>For a concrete example, let us take a one-dimensional tight-binding chain with an impurity at site <span class="math inline">\(0\)</span>. The local density of states oscillates around the impurity with wavelength <span class="math inline">\(\pi/k_F\)</span>, which is half of the Fermi wavelength <span class="math inline">\(\lambda_F=2\pi/k_F\)</span>, since the modulation is set by <span class="math inline">\(2k_F\)</span> and not by <span class="math inline">\(k_F\)</span>. If we raise the chemical potential, <span class="math inline">\(k_F^{-1}\)</span> becomes shorter and the oscillation becomes faster in the same way. The same phenomenon, with the same physical content, appears in a two-dimensional square lattice. This real-space LDOS modulation around impurities is what an STM measures in practice, and it is quasiparticle interference again, seen this time in real space and not in reciprocal space. The explicit plots of the LDOS as a function of position at two different fillings, for both the 1D and the 2D case, are clearer on the slides than in words. The comparison that shows that the “oscillations get faster as <span class="math inline">\(k_F\)</span> grows” is a visual one, and it is better seen than read from the formula. As a complementary check, the slides and the notebook also show the <em>insulating</em> case. An impurity placed in a gapped 1D chain gives an LDOS that converges very quickly to its uniform value, instead of oscillating with a slow power-law envelope. This is a first view of the diagnostic that separates gapped and gapless systems, which we will make fully general in Section <a href="09-impurities-as-diagnostics-iv-screening-in-quantum-magnets.html#sec-9-9">9.9</a> and draw in figure <a href="09-impurities-as-diagnostics-iv-screening-in-quantum-magnets.html#fig:s09:decay">9.5</a>.</p>
-<div class="notebookbox">
-<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb"><code>session9.ipynb</code></a>, “Impurity in a 1d metal” (Core), “Impurities in a 2d metal” (Core), and “Impurity in an electronic insulator” (Core)</p>
-<p>Place a single impurity in a 1D chain, and then in a 2D square lattice, and look at how the LDOS oscillates as in <a href="#eq-9-9">(9.9)</a>. Change the chemical potential and check that the wavelength of the oscillation follows <span class="math inline">\(\pi/k_F\)</span>, as predicted. This is the clearest place in the whole session to see a response formula and a numerical experiment agree digit by digit. The third section repeats the exercise with the chemical potential inside a gap, instead of in a partially filled band. Check that the LDOS now converges to its bulk value within one or two sites, without an oscillating tail that decays slowly. This is the contrast between gapped and gapless systems that Section <a href="09-impurities-as-diagnostics-iv-screening-in-quantum-magnets.html#sec-9-9">9.9</a> makes fully general.</p>
+<figure class="again panel">
+<img src="../figures/panel/s09f01_nesting_ab.svg" loading="lazy" alt="A one-dimensional band with its two Fermi points and the static Lindhard function with a logarithmic peak at twice the Fermi wavevector." />
+<figcaption><strong><a href="04b-nesting-and-the-divergence-of-the-lindhard-function.html#fig:s09:nesting">Figure 9.1</a>, one panel shown again.</strong> The singularity that gives the Friedel oscillation. In panel (a) the vector <span class="math inline">\(2k_F\)</span> connects the two Fermi points of the chain, and in panel (b) the static Lindhard function has its logarithmic peak at that vector.</figcaption>
+</figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>A chain has the Fermi wavevector <span class="math inline">\(k_F=\pi/4\)</span>. What is the period of the Friedel oscillation of the density around an impurity, in units of the lattice constant?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(8\)</span>, which is the Fermi wavelength <span class="math inline">\(2\pi/k_F\)</span>.</li>
+<li><span class="math inline">\(4\)</span>, since the wavevector of the oscillation is <span class="math inline">\(2k_F=\pi/2\)</span>.</li>
+<li><span class="math inline">\(2\)</span>, since the oscillation follows the lattice.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The singularity of <span class="math inline">\(\chi_0(q)\)</span> is at <span class="math inline">\(q=2k_F\)</span>, so the density oscillates as <span class="math inline">\(\cos(2k_Fx)\)</span>. Its period is <span class="math inline">\(2\pi/2k_F=4\)</span>, which is half of the Fermi wavelength <span class="math inline">\(2\pi/k_F=8\)</span>.</p>
+</details>
+</div>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>In two dimensions, <span class="math inline">\(d=2\)</span> in <a href="#eq-9-9">(9.9)</a>. We compare the envelope of the oscillation at the distance <span class="math inline">\(x\)</span> and at <span class="math inline">\(2x\)</span>. By which factor does it decrease?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>A factor <span class="math inline">\(2\)</span>.</li>
+<li>A factor <span class="math inline">\(4\)</span>.</li>
+<li>A factor <span class="math inline">\(8\)</span>.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The envelope decays as <span class="math inline">\(1/|x|^{d}\)</span>, so doubling the distance divides it by <span class="math inline">\(2^d=4\)</span>. It is a power law, and not an exponential, because the singularity in <span class="math inline">\(\chi_0(q)\)</span> is only a non-analyticity and not a gap.</p>
+</details>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> Run the cell with <code>mu = 3.8</code>, where the Fermi circle is small, and measure the distance between two ripples of the LDOS. Then set <code>mu = 3.0</code> and run it again. The Fermi circle is larger, and the ripples become shorter, from about 7 sites to about 3 sites, since the wavelength is <span class="math inline">\(\pi/k_F\)</span>.</p>
+<div class="tryit-links">
+Notebook <code>session9.ipynb</code>, cell “Impurities in a 2d metal”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession9.ipynb">Binder</a>.
+</div>
+</div>
+<p>To see this in a concrete case, we now take a chain, a plane and an insulator.</p>
+<div class="widget" data-widget="friedel">
+<div class="widget-label">
+Interactive
+</div>
+<p>Move the number of electrons <span class="math inline">\(N_e\)</span> of a ring with 201 sites and one impurity of strength <span class="math inline">\(1.5t\)</span> at site 0. The density oscillates around the impurity with the period <span class="math inline">\(\pi/k_F\)</span>, as in <a href="#eq-9-9">(9.9)</a>, and the dashed envelope decays as <span class="math inline">\(1/x\)</span>. This is the pattern that an STM map shows around a single impurity. Note that the period changes with the filling, and that it is the same <span class="math inline">\(2k_F\)</span> that gave the singularity of <span class="math inline">\(\chi_0(q)\)</span>.</p>
+<noscript><p class="widget-nojs">This widget needs JavaScript.</p></noscript>
 </div>
 
-  <nav class="pager"><a href="05-interactions-as-a-perturbation-with-rpa-plasmons-and-the-stoner-instability.html">9.5 Interactions as a perturbation, with RPA, plasmons and the Stoner instability</a><a href="07-impurities-as-diagnostics-ii-magnetic-impurities-in-a-superconductor.html">9.7 Impurities as diagnostics II, magnetic impurities in a superconductor</a></nav>
+  <nav class="pager"><a href="05b-the-stoner-instability.html">9.5b The Stoner instability</a><a href="06b-friedel-oscillations-in-a-chain-and-the-contrast-with-an-insulator.html">9.6b Friedel oscillations in a chain, and the contrast with an insulator</a></nav>
 
 </main>
 </body>

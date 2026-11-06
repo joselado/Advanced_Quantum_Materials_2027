@@ -13,3 +13,27 @@ Let us first give a short preview of the materials that this formalism will allo
 - **Superconductors.** These go from conventional superconductors mediated by phonons, such as aluminum, to *correlated* superconductors such as the cuprates and the pnictides, whose mechanism is still one of the biggest open problems in the field.
 
 - **Fractional quantum matter.** Here the fundamental excitations are real fractions of an electron. The fractional quantum Hall state is the best established example, and it has been observed for decades in materials such as gallium arsenide. Fractional Chern insulators are a newer and more accessible way to obtain the same physics, and they are a promising building block for new quantum devices.
+
+![The Dirac cone of graphene. The two bands touch at one point and rise linearly around it, which is why the electrons behave as massless particles. We derive this cone in session 2.](figures/s02f04_dirac.svg){panel="c" alt="A hexagonal Brillouin zone with a Dirac cone at two of its corners."}
+
+::: quiz
+A topological insulator and an ordinary insulator both have a gap in the bulk. How do we tell them apart in an experiment?
+
+- [x] By the states at the edge, which conduct inside the gap in the topological case.
+- [ ] By the size of the bulk gap, which is always larger in the topological case.
+- [ ] By the density of states of the bulk, which is different in the two cases.
+- [ ] By the atoms of the material, since only heavy atoms give a topological insulator.
+
+The bulk gap is present in both cases, so the bulk does not decide. The difference appears at the edge, where the topological insulator has states inside the gap that carry current.
+:::
+
+::: quiz
+A doped semiconductor conducts, while the undoped one with the same bands does not. What does the doping do?
+
+- [x] It puts a few carriers in the conduction band or removes a few from the valence band.
+- [ ] It closes the band gap, so the material becomes a metal.
+- [ ] It makes the electrons interact strongly, so the material becomes a magnet.
+- [ ] It changes the lattice into a topological one.
+
+The bands stay the same, and only the filling changes. A few free carriers in the conduction band, or a few holes in the valence band, are enough to carry a current.
+:::

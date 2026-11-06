@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -83,9 +84,9 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="on" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 5. Superconductivity, Nambu Representation and Majorana Physics</a></p>
 <h1 id="sec-5-8"><span class="num">5.8</span> The Nambu spinor and the Bogoliubov-de Gennes Hamiltonian</h1>
-<p>The pairing term creates a technical problem. We cannot diagonalize <a href="05-the-mean-field-pairing-hamiltonian-in-detail.html#eq-5-4">(5.4)</a> with an ordinary vector of orbital operators, because the anomalous term mixes creation and annihilation operators, instead of pairing them up in the way of every Hamiltonian that we diagonalized in sessions 1-4. The solution is to <em>enlarge</em> the operator basis, so that both the creation and the annihilation operators of the original problem become entries of a bigger spinor that behave like annihilation operators. We work in momentum space, with a single orbital and both spins, and we define the <strong>Nambu spinor</strong></p>
+<p>The pairing term creates a technical problem. We cannot diagonalize <a href="04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html#eq-5-4">(5.4)</a> with an ordinary vector of orbital operators, because the anomalous term mixes creation and annihilation operators, instead of pairing them up in the way of every Hamiltonian that we diagonalized in sessions 1-4. The solution is to <em>enlarge</em> the operator basis, so that both the creation and the annihilation operators of the original problem become entries of a bigger spinor that behave like annihilation operators. We work in momentum space, with a single orbital and both spins, and we define the <strong>Nambu spinor</strong></p>
 <p><span id="eq-5-6" class="eq"><span class="math display">\[\Psi_{\mathbf{k}} = \begin{pmatrix} c_{\mathbf{k}\uparrow} \\ c_{\mathbf{k}\downarrow} \\ c_{-\mathbf{k}\downarrow}^\dagger \\ -c_{-\mathbf{k}\uparrow}^\dagger \end{pmatrix}, \tag{5.6}\]</span></span></p>
-<p>which has an electron sector, formed by the first two components and containing ordinary annihilation operators, and a hole sector, formed by the last two components and containing creation operators at <span class="math inline">\(-\mathbf{k}\)</span>, with the spins exchanged and with an extra minus sign on the last entry. This sign has a real role. It is what is needed so that, when we write <span class="math inline">\(H_{\text{MF}}\)</span> in terms of <span class="math inline">\(\Psi_{\mathbf k}\)</span>, the pairing term gives two identical and decoupled copies of the same <span class="math inline">\(2\times 2\)</span> problem, instead of mixing the two spin blocks through a Pauli matrix. For a spin-singlet pairing <span class="math inline">\(\Delta(\mathbf k)\)</span>, which does not depend on momentum and is equal to <span class="math inline">\(\Delta\)</span> for the Fourier transform of the onsite case of <a href="05-the-mean-field-pairing-hamiltonian-in-detail.html#eq-5-4">(5.4)</a>, one can check directly, using the fermionic anticommutation relations to reorder operators where needed, that the mean-field Hamiltonian can be written exactly as</p>
+<p>which has an electron sector, formed by the first two components and containing ordinary annihilation operators, and a hole sector, formed by the last two components and containing creation operators at <span class="math inline">\(-\mathbf{k}\)</span>, with the spins exchanged and with an extra minus sign on the last entry. This sign has a real role. It is what is needed so that, when we write <span class="math inline">\(H_{\text{MF}}\)</span> in terms of <span class="math inline">\(\Psi_{\mathbf k}\)</span>, the pairing term gives two identical and decoupled copies of the same <span class="math inline">\(2\times 2\)</span> problem, instead of mixing the two spin blocks through a Pauli matrix. For a spin-singlet pairing <span class="math inline">\(\Delta(\mathbf k)\)</span>, which does not depend on momentum and is equal to <span class="math inline">\(\Delta\)</span> for the Fourier transform of the onsite case of <a href="04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html#eq-5-4">(5.4)</a>, one can check directly, using the fermionic anticommutation relations to reorder operators where needed, that the mean-field Hamiltonian can be written exactly as</p>
 <p><span id="eq-5-7" class="eq"><span class="math display">\[H_{\text{MF}} = \frac{1}{2}\sum_{\mathbf{k}} \Psi_{\mathbf{k}}^\dagger\, H_{\text{BdG}}(\mathbf{k})\, \Psi_{\mathbf{k}} + \text{const.}, \qquad H_{\text{BdG}}(\mathbf{k}) = \begin{pmatrix} \varepsilon(\mathbf{k}) &amp; 0 &amp; \Delta(\mathbf k) &amp; 0 \\ 0 &amp; \varepsilon(\mathbf k) &amp; 0 &amp; \Delta(\mathbf k) \\ \Delta(\mathbf k)^* &amp; 0 &amp; -\varepsilon(\mathbf{k}) &amp; 0 \\ 0 &amp; \Delta(\mathbf k)^* &amp; 0 &amp; -\varepsilon(\mathbf k) \end{pmatrix}, \tag{5.7}\]</span></span></p>
 <p>where <span class="math inline">\(\varepsilon(\mathbf k) = -2t(\cos k_x + \cos k_y) - \mu\)</span> is the ordinary band dispersion, which we assume to be inversion symmetric, <span class="math inline">\(\varepsilon(-\mathbf k) = \varepsilon(\mathbf k)\)</span>. This <span class="math inline">\(4\times 4\)</span> matrix is called the <strong>Bogoliubov-de Gennes (BdG) Hamiltonian</strong>, and in a concrete sense it is the most important object to describe the excitations of a superconductor. Note that the two diagonal entries in the lower-right part have <span class="math inline">\(-\varepsilon(\mathbf k)\)</span> and not <span class="math inline">\(+\varepsilon(\mathbf k)\)</span>. This comes directly from writing <span class="math inline">\(c_{-\mathbf k\sigma}^\dagger
 c_{-\mathbf k\sigma}\)</span> in terms of <span class="math inline">\(c_{-\mathbf k\sigma}c_{-\mathbf k\sigma}^\dagger = 1 -
@@ -98,12 +99,42 @@ k\uparrow}^\dagger)\)</span>, and each of them has the reduced BdG matrix</p>
 <p><span id="eq-5-8" class="eq"><span class="math display">\[h_{\text{BdG}}(\mathbf k) = \begin{pmatrix} \varepsilon(\mathbf k) &amp; \Delta(\mathbf k) \\ \Delta(\mathbf k)^* &amp; -\varepsilon(\mathbf k)\end{pmatrix}. \tag{5.8}\]</span></span></p>
 <p>This is the structure that is shown on the slides and quoted in the lecture, a <span class="math inline">\(4\times 4\)</span> matrix for a single orbital with two spins, with diagonal entries <span class="math inline">\(\varepsilon(\mathbf k)\)</span>, <span class="math inline">\(\varepsilon(\mathbf k)\)</span>, <span class="math inline">\(-\varepsilon(\mathbf k)\)</span>, <span class="math inline">\(-\varepsilon(\mathbf k)\)</span> and off-diagonal entries <span class="math inline">\(\Delta\)</span>, but now we have derived it instead of only stating it. If we diagonalize <a href="#eq-5-8">(5.8)</a>, we obtain the standard BCS quasiparticle dispersion</p>
 <p><span id="eq-5-9" class="eq"><span class="math display">\[E(\mathbf k) = \pm\sqrt{\varepsilon(\mathbf k)^2 + |\Delta(\mathbf k)|^2}. \tag{5.9}\]</span></span></p>
+<figure id="sch:s05:nambu_bands" class="schematic">
+<img src="../figures/web/session05/nambu_bands.svg" loading="lazy" alt="Two panels of a cosine band. On the left an electron band and its mirrored hole band cross at two points. On the right the crossings are replaced by a gap of size two Delta." />
+<figcaption><strong>Schematic 5.1.</strong> The Nambu doubling for a chain. (a) Without pairing the hole band is the mirror image of the electron band, and the two cross at the Fermi points. (b) A nonzero <span class="math inline">\(\Delta\)</span> opens a gap of <span class="math inline">\(2|\Delta|\)</span> at each crossing, and the two new bands mix electron and hole, which the blend of the colors shows.</figcaption>
+</figure>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>In <a href="#eq-5-9">(5.9)</a> the quasiparticle energy is <span class="math inline">\(E=\pm\sqrt{\varepsilon^2+|\Delta|^2}\)</span>. Where is <span class="math inline">\(|E|\)</span> smallest, and how large is it?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>On the original Fermi surface, where <span class="math inline">\(\varepsilon=0\)</span>, and it is <span class="math inline">\(|\Delta|\)</span>.</li>
+<li>At the bottom of the band, and it is <span class="math inline">\(|\Delta|\)</span>.</li>
+<li>On the original Fermi surface, and it is <span class="math inline">\(2|\Delta|\)</span>.</li>
+<li>It has no minimum, since <span class="math inline">\(E\)</span> grows with <span class="math inline">\(\Delta\)</span> everywhere.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>The energy depends on <span class="math inline">\(\varepsilon\)</span> only through <span class="math inline">\(\varepsilon^2\)</span>, so <span class="math inline">\(|E|\)</span> is smallest where <span class="math inline">\(\varepsilon=0\)</span>. There it is <span class="math inline">\(|\Delta|\)</span> in each branch, and the full gap between the two branches is <span class="math inline">\(2|\Delta|\)</span>.</p>
+</details>
+</div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb"><code>session5.ipynb</code></a>, “Nambu electronic structure without superconductivity” and “Nambu electronic structure with superconductivity” (both Reminder)</p>
 <p>First build the Nambu-doubled Hamiltonian of <a href="#eq-5-6">(5.6)</a>-<a href="#eq-5-7">(5.7)</a> with <span class="math inline">\(\Delta = 0\)</span>, and check that you get exactly two copies of the same band structure. One is the physical copy, which is the electron sector, and the other is a spurious mirror copy, which is the hole sector, with dispersion <span class="math inline">\(-\varepsilon(\mathbf k)\)</span>. Then turn on <span class="math inline">\(\Delta\)</span> and look at how the gap in <a href="#eq-5-9">(5.9)</a> opens at every crossing between the two copies.</p>
 </div>
+<div class="tryit">
+<p><strong>Try it.</strong> In the cell, change <code>h.add_swave(0.8)</code> to <code>0.4</code> and then to <code>0.2</code>. The electron and hole bands anticross at the Fermi points. The smallest energy is <span class="math inline">\(|\Delta|\)</span>, so the gap between the two branches is <span class="math inline">\(2|\Delta|\)</span>, as in <a href="#eq-5-9">(5.9)</a>.</p>
+<div class="tryit-links">
+Notebook <code>session5.ipynb</code>, cell “Nambu electronic structure with superconductivity”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession5.ipynb">Binder</a>.
+</div>
+</div>
 
-  <nav class="pager"><a href="07-the-gauge-transformation-in-explicit-form.html">5.7 The gauge transformation in explicit form</a><a href="09-an-example-of-a-gap-that-opens-independently-of-the-dispersion.html">5.9 An example of a gap that opens independently of the dispersion</a></nav>
+  <nav class="pager"><a href="06-why-pairing-does-not-conserve-the-particle-number.html">5.6 Why pairing does not conserve the particle number</a><a href="09-an-example-of-a-gap-that-opens-independently-of-the-dispersion.html">5.9 An example of a gap that opens independently of the dispersion</a></nav>
 
 </main>
 </body>

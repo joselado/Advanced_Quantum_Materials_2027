@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -83,13 +84,17 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="on" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 9. Excitations and Defects in Quantum Materials</a></p>
 <h1 id="sec-9-11"><span class="num">9.11</span> Closing summary</h1>
+<figure class="again panel">
+<img src="../figures/panel/s09f05_decay_log.svg" loading="lazy" alt="The envelope of an impurity response on a logarithmic scale, a straight line for the gapped chain and a bending curve for the gapless chain." />
+<figcaption><strong><a href="09-impurities-as-diagnostics-iv-screening-in-quantum-magnets.html#fig:s09:decay">Figure 9.5</a>, one panel shown again.</strong> The decay laws of <a href="09-impurities-as-diagnostics-iv-screening-in-quantum-magnets.html#eq-9-11">(9.11)</a> on a logarithmic vertical scale, where an exponential is a straight line and a power law bends. This is the diagnostic that the whole session leads to.</figcaption>
+</figure>
 <ul>
 <li><p>A perturbation that is applied to a quantum material and measured at another place defines a <strong>response function</strong>. With translational symmetry and time-translation symmetry, it is most natural to write it in <span class="math inline">\((q,\omega)\)</span>-space (Section <a href="01-response-functions-as-a-probe-of-the-ground-state.html#sec-9-1">9.1</a>).</p></li>
 <li><p>A classical first example already contains the logic of the whole session. The sign of the divergence in the magnetic susceptibility at high temperature <a href="02-the-response-of-a-classical-magnet-as-a-first-example.html#eq-9-1">(9.1)</a> predicts, from the disordered phase alone, whether the order at low temperature will be ferromagnetic or antiferromagnetic.</p></li>
 <li><p>Linear response theory <a href="03-linear-response-and-perturbation-theory-in-detail.html#eq-9-2">(9.2)</a>-<a href="03-linear-response-and-perturbation-theory-in-detail.html#eq-9-3">(9.3)</a> computes the leading effect of any perturbation only from the unperturbed ground state. It fails for the orthogonality catastrophe, the Kondo effect and the BCS gap, since none of them are connected to the unperturbed state in a perturbative way.</p></li>
-<li><p>For a Fermi sea, the static and dynamical Lindhard functions <a href="04-the-fermi-sea-and-the-lindhard-function.html#eq-9-4">(9.4)</a>-<a href="04-the-fermi-sea-and-the-lindhard-function.html#eq-9-5">(9.5)</a> are built only from matrix elements between occupied and empty states close to the Fermi surface. They diverge when a nesting vector connects large parts of that surface, which signals an instability (Section <a href="04-the-fermi-sea-and-the-lindhard-function.html#sec-9-4">9.4</a>).</p></li>
+<li><p>For a Fermi sea, the static and dynamical Lindhard functions <a href="04-the-fermi-sea-and-the-lindhard-function.html#eq-9-4">(9.4)</a>-<a href="04b-nesting-and-the-divergence-of-the-lindhard-function.html#eq-9-5">(9.5)</a> are built only from matrix elements between occupied and empty states close to the Fermi surface. They diverge when a nesting vector connects large parts of that surface, which signals an instability (Section <a href="04-the-fermi-sea-and-the-lindhard-function.html#sec-9-4">9.4</a>).</p></li>
 <li><p>If we sum the interaction to all orders with the random phase approximation <a href="05-interactions-as-a-perturbation-with-rpa-plasmons-and-the-stoner-instability.html#eq-9-6">(9.6)</a>, we find two different sources of divergence. These are electron-hole excitations from <span class="math inline">\(\chi_0\)</span> itself, and collective plasmon excitations <a href="05-interactions-as-a-perturbation-with-rpa-plasmons-and-the-stoner-instability.html#eq-9-7">(9.7)</a> from the RPA denominator.</p></li>
-<li><p>The Stoner criterion <a href="05-interactions-as-a-perturbation-with-rpa-plasmons-and-the-stoner-instability.html#eq-9-8">(9.8)</a>, <span class="math inline">\(U\chi_0(q,0)=1\)</span>, gives again the magnetism of session 1 and session 6 as an <em>instability of the paramagnetic response function</em>, including the preference for antiferromagnetism at a nested (half-filled) Fermi surface, and not as an ordered mean-field ansatz imposed by hand.</p></li>
+<li><p>The Stoner criterion <a href="05b-the-stoner-instability.html#eq-9-8">(9.8)</a>, <span class="math inline">\(U\chi_0(q,0)=1\)</span>, gives again the magnetism of session 1 and session 6 as an <em>instability of the paramagnetic response function</em>, including the preference for antiferromagnetism at a nested (half-filled) Fermi surface, and not as an ordered mean-field ansatz imposed by hand.</p></li>
 <li><p>A local impurity in a metal gives Friedel oscillations <a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html#eq-9-9">(9.9)</a>. These are a density modulation with period set by <span class="math inline">\(2k_F\)</span> and a power-law decay, and they give a direct image of the Fermi surface, which is the same physics that an STM measures with quasiparticle interference.</p></li>
 <li><p>A magnetic impurity in a superconductor creates a Yu-Shiba-Rusinov in-gap bound state <a href="07-impurities-as-diagnostics-ii-magnetic-impurities-in-a-superconductor.html#eq-9-10">(9.10)</a>. Its energy crosses zero at a real quantum phase transition, where the fermion parity of the electrons changes and their spin goes as <span class="math inline">\(S_{\rm tot}=0 \to 1/2\)</span>, while a non-magnetic impurity leaves the spectrum almost unchanged.</p></li>
 <li><p>A vacancy in a topological superconductor or in a Chern insulator gives an in-gap mode only because of the bulk-boundary correspondence. This is a diagnostic for topology that a clean and fully gapped bulk spectrum alone cannot give (Section <a href="08-impurities-as-diagnostics-iii-vacancies-in-topological-matter.html#sec-9-8">9.8</a>).</p></li>
@@ -97,8 +102,27 @@
 <li><p>Many impurities at the same time can break translational symmetry in the whole system, which gives rise to Anderson localization. In <span class="math inline">\(d\geq3\)</span> there is a real mobility edge, which we diagnose with the inverse participation ratio <a href="10-disorder-and-anderson-localization.html#eq-9-12">(9.12)</a>, and an Anderson insulator, which has no spectral gap but has a transport gap. In one dimension an arbitrarily weak disorder localizes every state, and the localization length diverges as the disorder strength goes to zero (Section <a href="10-disorder-and-anderson-localization.html#sec-9-10">9.10</a>).</p></li>
 </ul>
 <p>Every session so far has gone in the same direction. We start from a Hamiltonian, and we compute what it predicts, which can be an observable, a response function or a ground state. Session 10 goes in the opposite direction. In this whole course we computed observables from Hamiltonians, and in the next session we ask the inverse question. Given only the observed data, can we find the Hamiltonian that produced it? We will see that machine learning is the right tool to make this question precise.</p>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>We put a single vacancy in a clean material, and we see a density oscillation that decays as <span class="math inline">\(1/|x|\)</span> in one dimension. What do we conclude about the ground state?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>It is gapped, with a short correlation length.</li>
+<li>It is gapless, with a Fermi surface that sets the wavevector of the oscillation.</li>
+<li>It is an Anderson insulator, since the impurity breaks translational symmetry.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>A power-law envelope means that the response has a non-analytic point, and in a metal this is <span class="math inline">\(2k_F\)</span>. A gapped state would give an exponential envelope, with the gap setting the decay length.</p>
+</details>
+</div>
 
-  <nav class="pager"><a href="10-disorder-and-anderson-localization.html">9.10 Disorder and Anderson localization</a><a href="../session10/index.html">Session 10. Machine learning quantum materials</a></nav>
+  <nav class="pager"><a href="10b-random-disorder-and-the-special-role-of-one-dimension.html">9.10b Random disorder and the special role of one dimension</a><a href="../session10/index.html">Session 10. Machine learning quantum materials</a></nav>
 
 </main>
 </body>

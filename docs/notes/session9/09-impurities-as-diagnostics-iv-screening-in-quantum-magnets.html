@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -99,13 +100,57 @@
 <img src="../figures/s09f05_decay.svg" loading="lazy" alt="The diagnostic that connects the whole session, drawn for the two Heisenberg chains of (9.11)." />
 <figcaption><strong>Figure 9.5.</strong> The diagnostic that connects the whole session, drawn for the two Heisenberg chains of <a href="#eq-9-11">(9.11)</a>. Close to the impurity both look the same, with an induced moment that changes sign from site to site, because the exchange is antiferromagnetic. The only difference between them is how the envelope decays. (a) The <span class="math inline">\(S=1/2\)</span> chain maps, through the Abrikosov-fermion construction of session 8, onto a <em>gapless</em> spinon band with a real Fermi surface of two points, so its envelope decays as the power law <span class="math inline">\(1/n\)</span>. This is the same mathematics, and the same reason, as for the Friedel oscillations <a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html#eq-9-9">(9.9)</a> of a metal. (b) The <span class="math inline">\(S=1\)</span> chain has the Haldane gap, which fixes a finite correlation length <span class="math inline">\(\xi\)</span> and gives an exponential envelope <span class="math inline">\(e^{-n/\xi}\)</span>, drawn for <span class="math inline">\(\xi=2.5\)</span>, in the same way as charge screening decays inside a band insulator. (c) On a logarithmic vertical scale the two are easy to distinguish, since an exponential is a straight line of slope <span class="math inline">\(-1/\xi\)</span> and a power law is not. The statement can be read in both directions, so a measured decay law is a measurement of whether the ground state is gapped.</figcaption>
 </figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>An impurity response in a spin chain is measured, and it looks like <span class="math inline">\((-1)^n e^{-n/\xi}\)</span> with <span class="math inline">\(\xi\approx2.5\)</span> sites. What do we conclude about the spin excitations?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>They are gapless, as in the <span class="math inline">\(S=1/2\)</span> chain.</li>
+<li>They are gapped, and the correlation length is about 2.5 sites.</li>
+<li>We cannot say, since the sign alternation only reflects the lattice.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>An exponential envelope needs a finite correlation length, and this only exists when the spectrum has a gap. The alternating sign is the antiferromagnetic exchange, and it appears in both cases of <a href="#eq-9-11">(9.11)</a>.</p>
+</details>
+</div>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>In panel (c) of figure <a href="#fig:s09:decay">9.5</a> the vertical axis is logarithmic. How do the two envelopes look there?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>The exponential is a straight line of slope <span class="math inline">\(-1/\xi\)</span>, and the power law is a curve.</li>
+<li>Both are straight lines, with different slopes.</li>
+<li>The power law is a straight line, and the exponential is a curve.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>The logarithm of <span class="math inline">\(e^{-n/\xi}\)</span> is <span class="math inline">\(-n/\xi\)</span>, which is linear in <span class="math inline">\(n\)</span>. The logarithm of <span class="math inline">\(1/n\)</span> is <span class="math inline">\(-\ln n\)</span>, which bends. This is how a measured decay law is read as gapped or gapless.</p>
+</details>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> Run the cell, which compares a gap of <code>0.1</code> with a gap of <code>0.3</code>. The LDOS reaches its bulk value after about 25 sites for the smaller gap and after about 10 sites for the larger one. The decay length is set by the gap, in the same way as <span class="math inline">\(\xi\)</span> in <a href="#eq-9-11">(9.11)</a>.</p>
+<div class="tryit-links">
+Notebook <code>session9.ipynb</code>, cell “Impurity in an electronic insulator”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession9.ipynb">Binder</a>.
+</div>
+</div>
 <p>This specific topic, the screening in quantum magnets, is only in the slides and in the lecture, and it has no direct counterpart in <code>session9.ipynb</code>. None of the sections of the notebook build a chain of spinons or Abrikosov fermions, so there is no hands-on exercise that reproduces <a href="#eq-9-11">(9.11)</a> itself.</p>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb"><code>session9.ipynb</code></a>, “The impact of a strong impurity” (Core)</p>
 <p>This is not a spin model, but it is the closest exercise in its logic. It compares how a dimerized chain, with a stronger or a weaker gap, responds to a strong local impurity. Run it with <a href="#eq-9-11">(9.11)</a> in mind, and check the same principle in the fermionic language, where the chain with the stronger gap screens the impurity over a shorter length.</p>
 </div>
 
-  <nav class="pager"><a href="08-impurities-as-diagnostics-iii-vacancies-in-topological-matter.html">9.8 Impurities as diagnostics III, vacancies in topological matter</a><a href="10-disorder-and-anderson-localization.html">9.10 Disorder and Anderson localization</a></nav>
+  <nav class="pager"><a href="08-impurities-as-diagnostics-iii-vacancies-in-topological-matter.html">9.8 Impurities as diagnostics III, vacancies in topological matter</a><a href="10-disorder-and-anderson-localization.html">9.10a Disorder and Anderson localization</a></nav>
 
 </main>
 </body>

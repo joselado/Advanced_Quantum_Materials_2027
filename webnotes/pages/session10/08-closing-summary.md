@@ -1,5 +1,7 @@
 ## Closing summary {#sec-10-8 number="10.8"}
 
+![The loop of the course, closed. The forward arrow from a Hamiltonian to an observable is what sessions 1 to 9 built, and the network of this session runs it backwards, trained on the forward calculations themselves.](figures/s10f06_hamiltonianlearning.svg){alt="The forward arrow from the Hamiltonian to an observable, and the two stages of training on simulated data and applying the network to a measurement."}
+
 - A deep neural network is a parametric function that is trained by minimizing a loss function with gradient descent, equation [(10.1)](#eq-10-1). Every other construction in this session is a specific choice of input, output and loss built on top of this one template.
 
 - **Neural network quantum states** replace the explicit storage of the $2^L$ coefficients of a wavefunction with a network $C_\theta(s)$, equation [(10.2)](#eq-10-2), which is trained by using the variational energy as the loss function, equations [(10.3)](#eq-10-3)-[(10.5)](#eq-10-5). NNQS is above matrix product states and PEPS in the variational hierarchy, and it imposes the least structure of all the ansätze of this course. The same ansatz, fitted by maximum likelihood instead of energy minimization, solves quantum state tomography with far fewer than $2^L$ measurements.
@@ -13,3 +15,13 @@
 - **Hamiltonian learning** treats the inference of a Hamiltonian from measured observables, equation [(10.11)](#eq-10-11), as the inverse of the first step of session 1. We train a network on synthetic forward data, equation [(10.12)](#eq-10-12), and apply it to real experimental observables, and in this way we close the loop in practice and not only in principle.
 
 We started this course by asking how a small number of identical atoms, arranged in a lattice, can give rise to a phenomenology as rich as the one that we studied in ten sessions. This includes charge density waves, magnets, superconductors, topological insulators, fractional excitations, spin liquids and more, and none of it can be seen in a single atom alone. To answer this question we went through second quantization and mean-field theory, through Bloch's theorem and topological invariants, through Nambu spinors and magnon spectra, through tensor networks and parton constructions, and through linear response as a diagnostic for all of them. This session closed the arc in two ways. First, it showed that a neural network can take the place of the many-body wavefunction itself. Second, it showed that all the forward methods of the course, with a Hamiltonian as input and an observable as output, can be run backward to infer the Hamiltonians of real materials. This is a good place to end the course, not with a final answer, but with a general method to ask the question again, for the next quantum material that we want to understand.
+
+::: quiz
+Which choices define every construction of this session, from the cat-and-dog classifier to the neural network quantum state?
+
+- [ ] The architecture only, since the training is always different.
+- [x] The input, the output and the loss, with the training done by gradient descent as in [(10.1)](#eq-10-1).
+- [ ] The physical system only, since the network is always a tensor network.
+
+The neural network quantum state uses a spin configuration, a coefficient and the energy. The phase classifier uses a spin array, a one-hot label and the loss of [(10.1)](#eq-10-1). The training step is the same in every case.
+:::

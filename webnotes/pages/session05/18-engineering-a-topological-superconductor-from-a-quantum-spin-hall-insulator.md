@@ -6,8 +6,23 @@ This isolated segment only has spin-up electrons moving right and spin-down elec
 
 ![How to build the Kitaev chain from parts that exist. The edge of a quantum spin Hall insulator is helical, which means that on the same edge spin-up electrons move in one direction and spin-down electrons in the other, drawn in a warm and a cold color. A ferromagnet placed on a part of this edge breaks time-reversal symmetry locally and removes the Kramers protection there, which opens a gap in the edge below it, where the channels are drawn faded. With two ferromagnets, one short helical segment survives between them. This segment has only one direction of propagation for each spin, so if we count channels it is a *spinless* one-dimensional wire. This is the ingredient that [(5.19)](#eq-5-19) needs, and nature does not give it to us directly. Coupling it by proximity to an ordinary $s$-wave superconductor gives the pairing, and the result is a one-dimensional $p$-wave superconductor with a Majorana zero mode at each end of the segment, which means at the two ferromagnet-superconductor interfaces. Note what was *not* needed. No unconventional superconductor appears in the recipe, only an $s$-wave one, a magnet and a topological insulator.](figures/s05f06_qsh.svg){#fig:s05:qsh number="5.6"}
 
+::: quiz
+The segment of helical edge between the two magnets is called effectively spinless. Why?
+
+- [ ] The magnets remove the spin of the electrons.
+- [x] For each direction of motion only one spin is present, so counting channels gives a single spinless wire.
+- [ ] Spin-up and spin-down electrons move in both directions.
+- [ ] The superconductor removes the spin by pairing.
+
+On a helical edge spin-up moves in one direction and spin-down in the other. Each direction carries one spin, which is the channel count of the spinless chain that [(5.19)](#eq-5-19) needs.
+:::
+
 ::: notebookbox
 **Notebook check-in:** [`session5.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb), "Artificial topological superconductivity" (Challenge), "Edge states of an artificial topological superconductor" (Challenge), and "Topological phase transition as a function of the exchange field"
 
 Build the construction described above, with the QSH edge, the magnets and superconductivity, and check that zero modes localized at the ends emerge as you change the strength of the exchange field. Look at how the system crosses the boundary between the topological and the trivial phase, of the type of [(5.22)](#eq-5-22), as the magnetic gap changes.
+:::
+
+::: {.tryit notebook="session5.ipynb" cell="Topological phase transition as a function of the exchange field"}
+In the cell, the loop runs over `J` from 0 to 0.6 with `add_swave(0.3)`. Follow the lowest energy near $\mathbf k=0$. It starts at $|\Delta|=0.3$, closes close to `J=0.42` and opens again. Above this value the state is the artificial topological superconductor.
 :::

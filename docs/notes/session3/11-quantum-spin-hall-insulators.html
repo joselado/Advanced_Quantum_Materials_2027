@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>3.11 Quantum spin Hall insulators, session 3</title>
+<title>3.11a Quantum spin Hall insulators, session 3</title>
 <style>
   :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
           --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -82,7 +83,7 @@
   <nav class="tabs"><a href="../../lectures/session3.html">Video lectures</a><a href="../../landscape/session3.html">Landscape lectures</a><a class="on" href="../../notes/session3/index.html">Lecture notes</a></nav>
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="on" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 3. Topological Band Structure Theory</a></p>
-<h1 id="sec-3-11"><span class="num">3.11</span> Quantum spin Hall insulators</h1>
+<h1 id="sec-3-11"><span class="num">3.11a</span> Quantum spin Hall insulators</h1>
 <p>A Chern insulator needs broken time-reversal symmetry. The quantum spin Hall insulator is what we obtain if we keep time-reversal symmetry and still want a topological gapped state. We take two copies of the massive Dirac construction <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#eq-3-7">(3.7)</a>, one for each spin, with <strong>opposite</strong> mass for opposite spins, <span class="math inline">\(m_\uparrow = -m_\downarrow\)</span>. From <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#eq-3-8">(3.8)</a>, the two spin sectors then have opposite Chern numbers,</p>
 <p><span id="eq-3-9" class="eq"><span class="math display">\[C_\uparrow = \pm 1, \qquad
 C_\downarrow = -C_\uparrow, \qquad
@@ -90,19 +91,39 @@ C = C_\uparrow + C_\downarrow = 0, \qquad
 C_s \equiv C_\uparrow - C_\downarrow = \pm 2. \tag{3.9}\]</span></span></p>
 <p>Here <span class="math inline">\(C_\uparrow\)</span> is the Chern number of the whole spin-up sector of the lattice. Each Dirac point gives <span class="math inline">\(\tfrac12\)</span> by <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#eq-3-8">(3.8)</a>, and the two Dirac points add for each spin, as in the Haldane case of Section <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#sec-3-10">3.10</a>, so one spin sector has <span class="math inline">\(C_\uparrow=\pm1\)</span>.</p>
 <p>The total Chern number <span class="math inline">\(C\)</span> vanishes, in agreement with the unbroken time-reversal symmetry, but the <strong>spin</strong> Chern number <span class="math inline">\(C_s\)</span> does not vanish, and it is <span class="math inline">\(C_s\)</span> that controls the edge physics. At each edge, spin-up propagates in one direction and spin-down propagates in the other direction, which is a <strong>helical</strong> edge state and not a chiral one.</p>
-<p>The natural mechanism that gives this opposite-sign mass is spin-orbit coupling. The relativistic spin-orbit term has the structure <span class="math inline">\(\mathbf{L}\cdot\mathbf{S}\)</span>, and its <span class="math inline">\(z\)</span>-component, <span class="math inline">\(L_zS_z\)</span>, acts like an effective magnetic field that points in one direction for spin-up electrons and in the opposite direction for spin-down electrons. This is the opposite-sign mass structure that <a href="#eq-3-9">(3.9)</a> needs, and it appears with no net magnetic field and no net breaking of time-reversal symmetry. Graphene itself, when we include its intrinsic spin-orbit coupling, which is very small, is technically a quantum spin Hall insulator through this mechanism. The effect is much larger, and accessible in experiments, in monolayer 1T<span class="math inline">\(&#39;\)</span>-WTe<span class="math inline">\(_2\)</span>, where the quantum spin Hall effect survives up to 100 K.</p>
-<p>There is a subtle point that we should state precisely. If spin were perfectly conserved, we could speak separately of the Chern number for spin-up and the Chern number for spin-down. Real materials have terms that mix spin, and spin-orbit coupling itself mixes spin to some degree, so one may worry that these terms could smoothly remove the protection of the helical edge states. They cannot, as long as time-reversal symmetry survives, and the reason is Kramers’ theorem. For spin-1/2 electrons the time-reversal operator squares to <span class="math inline">\(-1\)</span>, which forces an exact twofold degeneracy at every momentum that is its own time-reversal partner. These are the time-reversal-invariant momenta, which are <span class="math inline">\(\Gamma\)</span> and <span class="math inline">\(X\)</span> in this setup. This degeneracy exists with or without spin-mixing terms, so the crossing of the edge states at these momenta cannot be gapped by any perturbation that respects time-reversal symmetry, but only by one that breaks it. This protection mechanism is different from, and stronger than, what the picture of two independent Chern insulators would suggest by itself. Figure <a href="#fig:s03:helical">3.6</a> compares the chiral and helical edge dispersions and shows what a term that breaks time-reversal symmetry does to the protected crossing.</p>
-<figure id="fig:s03:helical">
-<img src="../figures/s03f06_helical.svg" loading="lazy" alt="Schematic edge dispersions for the two topological classes of Section 3.8." />
-<figcaption><strong>Figure 3.6.</strong> Schematic edge dispersions for the two topological classes of Section <a href="08-three-topological-material-classes.html#sec-3-8">3.8</a>. The grey slabs are the bulk bands, and the branches that cross the bulk gap are the edge states, plotted as a function of the momentum along the edge. (a) A Chern insulator has a single branch per edge. At any energy in the gap there is one state and it moves in one direction, so a scatterer has no state to send it back into. (b) A quantum spin Hall insulator has two branches, one for each spin, drawn in a warm and a cold color, which propagate in opposite directions on the <em>same</em> edge, and this is what <strong>helical</strong> means. The total Chern number vanishes, but the spin Chern number does not <a href="#eq-3-9">(3.9)</a>. (c) The crossing is not protected because the two spin sectors are separately conserved. It is protected by Kramers’ theorem, since the crossing is at a time-reversal-invariant momentum, where a twofold degeneracy is guaranteed for spin-<span class="math inline">\(1/2\)</span> electrons for any perturbation that respects time reversal. Disorder that preserves time reversal can therefore deform the branches but cannot gap them. Only a perturbation that breaks time reversal opens the gap <span class="math inline">\(\Delta\)</span> in (c), and then the protection is lost.</figcaption>
+<figure class="again">
+<img src="../figures/s05f06_qsh.svg" loading="lazy" alt="The edge of a quantum spin Hall insulator with spin-up and spin-down channels moving in opposite directions." />
+<figcaption><strong><a href="../session5/18-engineering-a-topological-superconductor-from-a-quantum-spin-hall-insulator.html#fig:s05:qsh">Figure 5.6</a>, shown again.</strong> A helical edge, from session 5. On the same edge the spin-up electrons move in one direction. The spin-down electrons move in the other, and the two are drawn in a warm and a cold color. This is the pair of branches that follows from <a href="#eq-3-9">(3.9)</a>.</figcaption>
 </figure>
-<p>Disorder makes this difference concrete. Helical edge states survive disorder that preserves time-reversal symmetry, since the band structure changes but the gapless crossing at the edge remains. On the other hand, disorder that breaks time-reversal symmetry opens a real gap in the edge spectrum and removes the protection completely.</p>
-<div class="notebookbox">
-<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session3.ipynb"><code>session3.ipynb</code></a>, “The quantum spin Hall state” (Core), “The robustness of the quantum spin Hall state” (Core), “Topological invariant of the quantum spin Hall state”, and “Finite size effects in topological systems” (Challenge, using exchange coupling plus Rashba spin-orbit coupling)</p>
-<p>Build the model with two copies of a Chern insulator and identify the helical pair of edge states by their spin projection and their propagation direction, which is the pattern in <a href="#eq-3-9">(3.9)</a>. Then add disorder that preserves or breaks time-reversal symmetry, and check that the gap only opens in the second case. The note “in the lab” in this notebook section points to the measurement in 1T<span class="math inline">\(&#39;\)</span>-WTe<span class="math inline">\(_2\)</span> that we mentioned above.</p>
+<div class="quiz" data-correct="C">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>The two spin sectors have <span class="math inline">\(C_\uparrow=+1\)</span> and <span class="math inline">\(C_\downarrow=-1\)</span>. What are the charge Hall conductivity and the edge of this insulator?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(e^2/h\)</span> and one chiral mode at each edge.</li>
+<li><span class="math inline">\(2e^2/h\)</span> and two chiral modes at each edge.</li>
+<li>Zero, and a helical pair of modes at each edge.</li>
+<li>Zero, and no edge states, since the two spins cancel.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>C</strong>.</p>
+<p>The charge Hall conductivity is proportional to <span class="math inline">\(C=0\)</span>. Each spin sector still has its own edge mode. The two propagate in opposite directions on the same edge, which is a helical pair.</p>
+</details>
+</div>
+<p>The natural mechanism that gives this opposite-sign mass is spin-orbit coupling. The relativistic spin-orbit term has the structure <span class="math inline">\(\mathbf{L}\cdot\mathbf{S}\)</span>, and its <span class="math inline">\(z\)</span>-component, <span class="math inline">\(L_zS_z\)</span>, acts like an effective magnetic field that points in one direction for spin-up electrons and in the opposite direction for spin-down electrons. This is the opposite-sign mass structure that <a href="#eq-3-9">(3.9)</a> needs, and it appears with no net magnetic field and no net breaking of time-reversal symmetry. Graphene itself, when we include its intrinsic spin-orbit coupling, which is very small, is technically a quantum spin Hall insulator through this mechanism. The effect is much larger, and accessible in experiments, in monolayer 1T<span class="math inline">\(&#39;\)</span>-WTe<span class="math inline">\(_2\)</span>, where the quantum spin Hall effect survives up to 100 K.</p>
+<div class="tryit">
+<p><strong>Try it.</strong> Run the cell. In the left panel the color gives the edge, top or bottom, and in the right panel it gives the spin. In the gap, take the two branches of one edge. They have opposite slopes and opposite spin, which is the helical pair of <a href="#eq-3-9">(3.9)</a>.</p>
+<div class="tryit-links">
+Notebook <code>session3.ipynb</code>, cell “The quantum spin Hall state”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session3.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session3.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession3.ipynb">Binder</a>.
+</div>
 </div>
 
-  <nav class="pager"><a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html">3.10 Chern insulators without Landau levels from a gapped Dirac cone</a><a href="12-topology-beyond-electrons.html">3.12 Topology beyond electrons</a></nav>
+  <nav class="pager"><a href="10b-the-haldane-coupling-and-a-real-chern-insulator.html">3.10b The Haldane coupling and a real Chern insulator</a><a href="11b-kramers-protection-of-the-helical-edge.html">3.11b Kramers protection of the helical edge</a></nav>
 
 </main>
 </body>

@@ -4,6 +4,8 @@ To see why a bulk band structure can have an invariant at all, we need a tool th
 
 Before we specialize to the Hall conductivity, let us look at two examples. Let us put an impurity in a two-dimensional metal and look at how the electron density, or the local density of states, is modulated around it. Linear response theory shows that this modulation pattern, which is called the Friedel oscillation, directly contains the Fermi wavelength of the electron gas, and this is what scanning tunneling microscopy uses in practice. In a similar way, when we scatter neutrons on a magnetic material, the magnetic moment of the neutron couples to the local moments in the sample. The resulting scattering pattern gives both the magnetic structure and its excitations, in particular magnons. Both examples are illustrations that appear only on the slides, in the sense that the figures of the Friedel oscillation and of neutron scattering were shown on screen without a full explanation. However, the physics of both examples was explained in the lecture, and it is useful to keep it in mind as the general result of the formalism that we build next.
 
+![The origin of the Friedel oscillation, which is the response of a metal to an impurity. In (a) the vector $2k_F$ connects the two Fermi points of a chain. In (b) the static response has its peak at this vector, so the density around the impurity oscillates with the wavevector $2k_F$. We derive this response in session 9.](figures/s09f01_nesting.svg){panel="ab" alt="A one-dimensional band with its two Fermi points and the static response function with a logarithmic peak at twice the Fermi wavevector."}
+
 Formally, we start from an unperturbed Hamiltonian $H_0$ and add a perturbation controlled by a dimensionless parameter $\lambda$,
 
 $$H(\lambda) = H_0 + \lambda V,$$
@@ -14,3 +16,14 @@ $$|n\rangle_\lambda = |n\rangle + \lambda \sum_{m \neq n} \alpha_m\, |m\rangle +
 \qquad \alpha_m = \frac{\langle m|V|n\rangle}{\varepsilon_n - \varepsilon_m}. \tag{3.1}$$
 
 Everything that we do in the rest of this session, which is the Hall conductivity, the Berry curvature and the Chern number, comes directly from putting [(3.1)](#eq-3-1) into the definition of some observable.
+
+::: quiz
+In [(3.1)](#eq-3-1) the state $|m\rangle$ is mixed into $|n\rangle$ with the amplitude $\alpha_m$. What happens to $\alpha_m$ if the level $m$ comes closer to the level $n$ while $V$ stays fixed?
+
+- [x] It grows, and the expansion stops being valid once the amplitude is of order one.
+- [ ] It decreases, since the two states become more similar.
+- [ ] It does not change, since it depends only on $V$.
+- [ ] It changes sign but keeps its size.
+
+The energy difference $\varepsilon_n-\varepsilon_m$ is in the denominator of $\alpha_m$. The first-order result can be trusted only if $\lambda|\langle m|V|n\rangle|$ is small compared with this difference.
+:::

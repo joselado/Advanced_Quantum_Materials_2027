@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -90,9 +91,35 @@
 <img src="../figures/s03f02_bulkboundary.svg" loading="lazy" alt="The bulk-boundary correspondence, as an argument about an integer." />
 <figcaption><strong>Figure 3.2.</strong> The bulk-boundary correspondence, as an argument about an integer. A Hamiltonian changes slowly in space from <span class="math inline">\(H_1\)</span> on the left to <span class="math inline">\(H_2\)</span> on the right, which is the color of the backdrop. In the top row, the Chern number is an integer, so it cannot change continuously from <span class="math inline">\(C_1=1\)</span> to <span class="math inline">\(C_2=0\)</span> and it can only jump. In the middle row, a jump is only allowed where the quantization argument itself fails, which is where the gap closes, so the local gap must go to zero somewhere in the interface region, at the cross. This is drawn schematically, in the local-gap approximation. In the bottom row, the state that appears there is a gapless state bound to the interface. This argument does not use any detail of how the interface is built, and only <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span> enter, which is why the edge state survives rough boundaries and impurities. If we take <span class="math inline">\(H_2\)</span> to be the vacuum, <span class="math inline">\(C_2=0\)</span>, we obtain the chiral edge state of figure <a href="06-landau-levels-and-chiral-edge-states-in-the-quantum-hall-state.html#fig:s03:chiraledge">3.1</a> from a completely general argument.</figcaption>
 </figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>Why must the gap close somewhere in an interface between a region with <span class="math inline">\(C=1\)</span> and a region with <span class="math inline">\(C=0\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>Because a gapless state is needed for the current to flow in a gapped bulk.</li>
+<li>Because <span class="math inline">\(C\)</span> is an integer, and it can change only where the quantization argument fails, which is where the gap closes.</li>
+<li>Because the vacuum has no states and so it cannot have a gap.</li>
+<li>Because energy has to be conserved across the interface.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>A quantized quantity cannot change continuously while the gap is open. Any interface that goes from <span class="math inline">\(C=1\)</span> to <span class="math inline">\(C=0\)</span> must therefore pass through a point where the local gap is zero. This is the gapless state.</p>
+</details>
+</div>
 <p>The same argument explains the robustness that we used before. Let us put a local impurity at the edge of a quantum Hall sample. This only changes the microscopic details of the interface between the vacuum and the quantum Hall state. Since the topological excitation of the interface must exist for any such details, the edge state reorganizes itself around the impurity and is not scattered by it. This is a general mechanism, which is not special to the quantum Hall case, and it will appear again for every topological invariant that we see from now on.</p>
+<div class="tryit">
+<p><strong>Try it.</strong> In the cell with the Haldane coupling on an island, change <code>rot=np.pi/6.</code> or <code>n=8</code> so that the shape of the edge changes. At the energies inside the gap, the local density of states still sits on the whole boundary, whatever its shape. This is the argument of <a href="#fig:s03:bulkboundary"></a>, which does not use any detail of the edge.</p>
+<div class="tryit-links">
+Notebook <code>session3.ipynb</code>, cell “Topological edge states in irregular geometries”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session3.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session3.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession3.ipynb">Binder</a>.
+</div>
+</div>
 
-  <nav class="pager"><a href="06-landau-levels-and-chiral-edge-states-in-the-quantum-hall-state.html">3.6 Landau levels and chiral edge states in the quantum Hall state</a><a href="08-three-topological-material-classes.html">3.8 Three topological material classes</a></nav>
+  <nav class="pager"><a href="06b-the-quantum-hall-ribbon-on-the-lattice.html">3.6b The quantum Hall ribbon on the lattice</a><a href="08-three-topological-material-classes.html">3.8 Three topological material classes</a></nav>
 
 </main>
 </body>

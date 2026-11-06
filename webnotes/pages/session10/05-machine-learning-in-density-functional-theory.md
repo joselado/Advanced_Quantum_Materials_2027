@@ -28,4 +28,24 @@ The Hohenberg-Kohn reduction is very asymmetric on purpose, since going from the
 
 ![Where machine learning enters density functional theory, and why the two entry points are different ideas. The Kohn-Sham loop [(10.8)](#eq-10-8), the ring in the middle, turns the problem into a self-consistent single-particle problem. **Route 1** replaces the unknown exchange-correlation part by a trained network. This is more accurate, but the diagonalization stays inside the loop, and the diagonalization, not $v_{\rm xc}$, is what limits the system size. **Route 2** learns the Hohenberg-Kohn map $v_{\rm ext}\mapsto n$ directly, trained on conventional Kohn-Sham results for small systems, and then does no diagonalization at all, so the whole loop is skipped. Only route 2 changes which systems we can compute, while route 1 only changes how good the answer is.](figures/s10f04_dftml.svg){#fig:s10:dft number="10.4"}
 
+::: quiz
+A network is trained to give the exchange-correlation potential $v_{\rm xc}$ with high accuracy, and it is used inside the Kohn-Sham loop. Does this change the largest system that we can compute?
+
+- [ ] Yes, since the network removes the diagonalization.
+- [x] Not much, since the diagonalization of $H_{\rm KS}$ stays in every iteration.
+- [ ] Yes, since $v_{\rm xc}$ is the most expensive part of the loop.
+
+The cost of the loop is the diagonalization, and a better $v_{\rm xc}$ does not change it. Only the second route, which maps $v_{\rm ext}$ to $n$ directly, skips the loop.
+:::
+
+::: quiz
+In the Hohenberg-Kohn theorem, which of the two arrows is a simple integral?
+
+- [x] From the many-body ground state $\psi_0$ to the density $n(\mathbf{r})$.
+- [ ] From the density $n(\mathbf{r})$ to the many-body ground state $\psi_0$.
+- [ ] Both are integrals, since the density contains the same information as $\psi_0$.
+
+The arrow $\psi_0\to n$ integrates out $N-1$ coordinates. The reverse arrow is guaranteed to exist by the theorem, but it has no formula, and this is where a network can be trained to act.
+:::
+
 This part also comes from the slides and the transcript and has no notebook counterpart. DFT calculations were never part of the numerical tools of this course, since `pyqula` is a tight-binding and mean-field library and not a DFT code, so there is nothing to point you to beyond the derivation above.

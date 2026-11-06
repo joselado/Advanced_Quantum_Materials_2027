@@ -11,13 +11,20 @@
    "file": "01-two-regimes-of-many-body-physics.md",
    "id": "sec-7-1",
    "number": "7.1",
-   "title": "Two regimes of many-body physics"
+   "title": "Two regimes of many-body physics",
+   "also": [
+    {
+     "id": "sec-7-2",
+     "number": "7.2a",
+     "title": "Fermions and spins, two languages for the same physics"
+    }
+   ]
   },
   {
-   "file": "02-fermions-spins-and-the-jordan-wigner-transformation.md",
-   "id": "sec-7-2",
-   "number": "7.2",
-   "title": "Fermions, spins and the Jordan-Wigner transformation"
+   "file": "02b-the-jordan-wigner-transformation.md",
+   "id": "sec-7-2b",
+   "number": "7.2b",
+   "title": "The Jordan-Wigner transformation"
   },
   {
    "file": "03-storing-the-wave-function-as-the-main-bottleneck.md",
@@ -29,13 +36,14 @@
    "file": "04-the-matrix-product-state-ansatz.md",
    "id": "sec-7-4",
    "number": "7.4",
-   "title": "The matrix product state ansatz"
-  },
-  {
-   "file": "05-measuring-entanglement-with-the-entanglement-entropy.md",
-   "id": "sec-7-5",
-   "number": "7.5",
-   "title": "Measuring entanglement with the entanglement entropy"
+   "title": "The matrix product state ansatz",
+   "also": [
+    {
+     "id": "sec-7-5",
+     "number": "7.5",
+     "title": "Measuring entanglement with the entanglement entropy"
+    }
+   ]
   },
   {
    "file": "06-entanglement-entropy-of-a-solvable-dimerized-chain.md",
@@ -52,8 +60,14 @@
   {
    "file": "08-why-mps-work-in-1d-and-where-they-stop-working.md",
    "id": "sec-7-8",
-   "number": "7.8",
-   "title": "Why MPS work in 1D, and where they stop working"
+   "number": "7.8a",
+   "title": "Why MPS work in 1D"
+  },
+  {
+   "file": "08b-where-mps-stop-working.md",
+   "id": "sec-7-8b",
+   "number": "7.8b",
+   "title": "Where MPS stop working"
   },
   {
    "file": "09-tensor-diagrams-as-notation-for-networks-and-operators.md",
@@ -78,6 +92,16 @@
    "id": "sec-7-12",
    "number": "7.12",
    "title": "Closing summary"
+  }
+ ],
+ "redirects": [
+  {
+   "from": "02-fermions-spins-and-the-jordan-wigner-transformation.html",
+   "to": "01-two-regimes-of-many-body-physics.html#sec-7-2"
+  },
+  {
+   "from": "05-measuring-entanglement-with-the-entanglement-entropy.html",
+   "to": "04-the-matrix-product-state-ansatz.html#sec-7-5"
   }
  ]
 }

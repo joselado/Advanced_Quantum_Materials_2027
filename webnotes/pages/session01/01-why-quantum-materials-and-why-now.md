@@ -6,4 +6,17 @@ At the end of this session we should be able to describe what a quantum material
 
 Quantum materials are already the basis of technologies that we use today. Superconductors make MRI machines possible, since they generate the very large magnetic fields that nuclear magnetic resonance needs, and semiconductors are the basis of solar cells, on which a large part of our plan for renewable energy depends. In the future, almost every serious platform for quantum computing, whether it is built from superconductors, semiconductors or a combination of the two, is in the end a quantum materials problem. Let us also mention briefly that this is connected to several of the UN Sustainable Development Goals. Quantum computing is connected to goals 8 and 9, which are economic growth, industry and innovation. Solar energy and superconducting or topological electronics with low power consumption are connected to goals 7 and 13, which are clean energy and climate action. The international and cross-disciplinary character of the field is connected to goal 17, which is partnerships. None of this is mathematics, but it is good to remember why we do the mathematics.
 
-In the course we will see two kinds of examples, and it is useful to compare them. Semiconductors are in some sense the easy case, since their properties follow from single-particle physics, which you have likely seen already in an earlier course on materials. Superconductors are the harder case, because to understand them we have to account for how electrons interact with each other collectively, and this is the many-body formalism that we start to build in this session.
+In the course we will see two kinds of examples, and it is useful to compare them. Semiconductors are in some sense the easy case, since their properties follow from single-particle physics, which you have likely seen already in an earlier course on materials. Superconductors are the harder case, because to understand them we have to account for how electrons interact with each other collectively, and this is the many-body formalism that we start to build in this session. The spectra in [](#sch:s01:gap_two_origins) show a gap of each kind.
+
+![Two gaps that look alike. On the left, a chain with two different sites per cell has a gap $2m$, which single electrons already feel. On the right, the quasiparticles of a superconductor have a gap $2\Delta$, which exists only because the electrons pair. The grey lines are the bands without the gap.](figures/web/session01/gap_two_origins.svg){#sch:s01:gap_two_origins alt="Two band diagrams with a gap at zero energy, one for a semiconductor and one for a superconductor."}
+
+::: quiz
+Both gaps in the figure remove the states around $E=0$. Which statement about their origin is correct?
+
+- [x] The gap of the semiconductor follows from the single-particle Hamiltonian of the lattice, while the superconducting gap needs the electrons to pair collectively.
+- [ ] Both gaps follow from a single-particle Hamiltonian, and they differ only in their size.
+- [ ] The gap of the semiconductor needs interactions between the electrons, and the superconducting gap does not.
+- [ ] Both gaps appear only after second quantization is used, and they have the same origin.
+
+We can diagonalize the lattice of the semiconductor with one electron at a time, so its gap is a single-particle result. The superconducting gap exists because many electrons pair together, and this is why we need the many-body formalism of this session.
+:::

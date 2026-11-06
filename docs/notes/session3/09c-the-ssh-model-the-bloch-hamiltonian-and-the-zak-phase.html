@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3.9c The SSH model, the Bloch Hamiltonian and the Zak phase, session 3</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .cols.three { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  @media (max-width: 900px) { .cols.three { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+
+  main { max-width: 860px; }
+  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
+              border-radius: 6px; color: var(--muted); }
+  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
+  .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
+  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
+  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
+  figure { margin: 24px 0; }
+  figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
+  figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
+  .eq { display: block; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
+                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
+  .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
+           margin: 20px 0; font-size: 0.95rem; }
+  .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
+  table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
+  div.center { overflow-x: auto; }
+  div.center table { margin-left: auto; margin-right: auto; }
+  th { border-bottom: 2px solid var(--rule); }
+  .coursecontents h2 { margin-top: 28px; }
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
+<script src="../../notes/notes.js" defer></script>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
+  <nav class="tabs"><a href="../../lectures/session3.html">Video lectures</a><a href="../../landscape/session3.html">Landscape lectures</a><a class="on" href="../../notes/session3/index.html">Lecture notes</a></nav>
+  <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="on" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
+  <p class="crumb"><a href="index.html">Session 3. Topological Band Structure Theory</a></p>
+<h1 id="sec-3-9c"><span class="num">3.9c</span> The SSH model, the Bloch Hamiltonian and the Zak phase</h1>
+<p>So far the topological phase was defined by the end states of a finite chain. We can make this fully precise with the Bloch Hamiltonian. With intracell hopping <span class="math inline">\(t\)</span> and intercell hopping normalized to <span class="math inline">\(1\)</span>, the Hamiltonian in momentum space in the <span class="math inline">\((A,B)\)</span> basis is the <span class="math inline">\(2\times 2\)</span> matrix</p>
+<p><span id="eq-3-5" class="eq"><span class="math display">\[H(k) = \begin{pmatrix} 0 &amp; d(k) \\ d^*(k) &amp; 0 \end{pmatrix}
+= (t + \cos k)\,\sigma_x - \sin k\,\sigma_y, \qquad d(k) = t + e^{ik}, \tag{3.5}\]</span></span></p>
+<p>with eigenvalues <span class="math inline">\(E_\pm(k) = \pm|d(k)| = \pm\sqrt{1 + t^2 + 2t\cos k}\)</span>. The gap closes exactly when <span class="math inline">\(d(k)=0\)</span>, which requires <span class="math inline">\(t=1\)</span> and <span class="math inline">\(k=\pi\)</span>. This is the topological phase transition point, and it agrees with the qualitative separation between <span class="math inline">\(t&lt;1\)</span> and <span class="math inline">\(t&gt;1\)</span> above, since at <span class="math inline">\(t=0\)</span> the chain is in the limit where the end sites are fully dangling, which is topological, and at <span class="math inline">\(t=1\)</span> it becomes the fully symmetric gapless chain.</p>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>For which value of <span class="math inline">\(t\)</span> and at which momentum does the gap of the SSH chain close?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(t=0\)</span> and <span class="math inline">\(k=0\)</span>.</li>
+<li><span class="math inline">\(t=1\)</span> and <span class="math inline">\(k=\pi\)</span>.</li>
+<li><span class="math inline">\(t=2\)</span> and <span class="math inline">\(k=\pi\)</span>.</li>
+<li><span class="math inline">\(t=1\)</span> and <span class="math inline">\(k=0\)</span>.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The gap closes when <span class="math inline">\(d(k)=t+e^{ik}=0\)</span>. This requires <span class="math inline">\(e^{ik}=-t\)</span>, which has a solution only for <span class="math inline">\(|t|=1\)</span>, and for <span class="math inline">\(t=1\)</span> it is <span class="math inline">\(k=\pi\)</span>.</p>
+</details>
+</div>
+<p>The topological invariant here is the one-dimensional Berry phase that the lower-band Bloch state <span class="math inline">\(|u_-(k)\rangle\)</span> accumulates as <span class="math inline">\(k\)</span> goes once around the Brillouin zone, which is called the <strong>Zak phase</strong>,</p>
+<p><span id="eq-3-6" class="eq"><span class="math display">\[\gamma = i \oint_{\text{BZ}} \langle u_-(k)|\partial_k u_-(k)\rangle\, dk \pmod{2\pi}. \tag{3.6}\]</span></span></p>
+<p>Geometrically, <span class="math inline">\(\gamma/\pi\)</span> counts how many times <span class="math inline">\(d(k)\)</span> winds around the origin as <span class="math inline">\(k\)</span> goes from <span class="math inline">\(0\)</span> to <span class="math inline">\(2\pi\)</span>. From <a href="#eq-3-5">(3.5)</a>, <span class="math inline">\(d(k) = t + e^{ik}\)</span> draws a unit circle centered at <span class="math inline">\((t,0)\)</span> in the complex plane. This circle encloses the origin exactly when <span class="math inline">\(|t|&lt;1\)</span>, and it does not enclose it when <span class="math inline">\(|t|&gt;1\)</span>. This agrees with everything above, since <span class="math inline">\(\gamma = \pm\pi\)</span> for <span class="math inline">\(t&lt;1\)</span>, which means one winding, a topological insulator and gapless edge modes, and <span class="math inline">\(\gamma = 0\)</span> for <span class="math inline">\(t&gt;1\)</span>, which means no winding, a trivial insulator and no edge modes. The value of the Zak phase is in exact one-to-one correspondence with the presence or absence of a zero-energy edge state, and this is the one-dimensional version of the bulk-boundary correspondence of Section <a href="07-what-topology-means-for-a-hamiltonian-and-the-bulk-boundary-correspondence.html#sec-3-7">3.7</a>. Figure <a href="#fig:s03:winding">3.4</a> shows this winding together with the bands that it controls, and it shows that the two insulating phases cannot be distinguished from their spectra alone.</p>
+<figure id="fig:s03:winding">
+<img src="../figures/s03f04_winding.svg" loading="lazy" alt="A drawing of the one-dimensional invariant." />
+<figcaption><strong>Figure 3.4.</strong> A drawing of the one-dimensional invariant. On the left of each panel is the off-diagonal element <span class="math inline">\(d(k)=t+e^{ik}\)</span> of the SSH Bloch Hamiltonian <a href="#eq-3-5">(3.5)</a> in the complex plane, as <span class="math inline">\(k\)</span> goes once through the Brillouin zone, and the arrow shows the direction of increasing <span class="math inline">\(k\)</span>. It is always the unit circle, but centred at <span class="math inline">\((t,0)\)</span>, so it encloses the origin, the ball, for <span class="math inline">\(t&lt;1\)</span> and does not enclose it for <span class="math inline">\(t&gt;1\)</span>. The winding number of this curve around the origin is exactly <span class="math inline">\(\gamma/\pi\)</span>, which is the Zak phase <a href="#eq-3-6">(3.6)</a> in units of <span class="math inline">\(\pi\)</span>. On the right of each panel are the corresponding bands <span class="math inline">\(E_\pm(k)=\pm|d(k)|\)</span>, with gap <span class="math inline">\(2|1-t|\)</span>. The two halves give the same information in two ways. The only way to unwind the curve is to move it across the origin, and <span class="math inline">\(d(k)=0\)</span> is where the gap closes, so the invariant cannot change while the system stays insulating. Note that (a) and (c) have the same gap and look like ordinary spectra. The difference between them cannot be seen in the energies and is only in the wavefunctions, which is the main point of <a href="05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#eq-3-4">(3.4)</a>. By the bulk-boundary correspondence, <span class="math inline">\(\gamma=\pi\)</span> is also exactly the condition for the zero-energy end modes of figure <a href="09b-the-ssh-chain-in-the-opposite-limit-and-the-zero-modes.html#fig:s03:ssh">3.3</a>.</figcaption>
+</figure>
+<p>This material appears only in the lecture and on the slides, and it has no counterpart in the notebook. The notebook <code>session3.ipynb</code> does not have a dedicated section on the SSH chain, and its numerical exercises start directly from two-dimensional ribbons, which are the quantum Hall and quantum anomalous Hall constructions of Sections <a href="06-landau-levels-and-chiral-edge-states-in-the-quantum-hall-state.html#sec-3-6">3.6</a> and <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#sec-3-10">3.10</a>. If you want to see the zero modes and the Zak-phase winding of <a href="#eq-3-6">(3.6)</a> numerically, the direct way is to build by hand the finite chain with <span class="math inline">\(N\)</span> sites from Section <a href="08-three-topological-material-classes.html#sec-3-9">3.9</a>, following the same tight-binding diagonalization method that we used for the finite islands in session 1. Then you can see how the two eigenvalues close to zero move away from zero as <span class="math inline">\(t\)</span> is increased above <span class="math inline">\(1\)</span>.</p>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>The chains with <span class="math inline">\(t=1/2\)</span> and <span class="math inline">\(t=3/2\)</span> have the same gap, <span class="math inline">\(2|1-t|=1\)</span>. What is the difference between them?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>Only the chain with <span class="math inline">\(t=1/2\)</span> has a winding of <span class="math inline">\(d(k)\)</span> around the origin and end states.</li>
+<li>Only the chain with <span class="math inline">\(t=3/2\)</span> is gapless.</li>
+<li>Both have end states, but at different energies.</li>
+<li>Only the chain with <span class="math inline">\(t=3/2\)</span> has end states, since its bonds are stronger.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>The curve <span class="math inline">\(d(k)=t+e^{ik}\)</span> is a unit circle centered at <span class="math inline">\((t,0)\)</span>. It encloses the origin for <span class="math inline">\(t=1/2\)</span> and not for <span class="math inline">\(t=3/2\)</span>. The two gaps look the same in the spectrum, and only the first chain is topological.</p>
+</details>
+</div>
+
+  <nav class="pager"><a href="09b-the-ssh-chain-in-the-opposite-limit-and-the-zero-modes.html">3.9b The SSH chain in the opposite limit and the zero modes</a><a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html">3.10a Chern insulators without Landau levels from a gapped Dirac cone</a></nav>
+
+</main>
+</body>
+</html>

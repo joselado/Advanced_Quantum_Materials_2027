@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -106,6 +107,26 @@ c_n^\dagger = \sum_\varphi e^{-in\varphi}\, \Psi_\varphi^\dagger, \tag{2.7}\]</s
 <img src="../figures/s02f02_cosband.svg" loading="lazy" alt="The one-dimensional band \epsilon_\varphi=-2t\cos\varphi of (2.8), drawn for t=1, with the grey tubes showing its local forms." />
 <figcaption><strong>Figure 2.2.</strong> The one-dimensional band <span class="math inline">\(\epsilon_\varphi=-2t\cos\varphi\)</span> of <a href="#eq-2-8">(2.8)</a>, drawn for <span class="math inline">\(t=1\)</span>, with the grey tubes showing its local forms. Near the band bottom the dispersion is an upward parabola, and quasiparticles behave as ordinary electrons with positive mass. Near the top the curvature has the opposite sign and they behave as holes. Near midband it is locally linear, which is a first sign of the Dirac physics of Section <a href="11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#sec-2-11">2.11</a>. The slope is the group velocity <a href="09-properties-of-an-electronic-dispersion.html#eq-2-17">(2.17)</a> and the curvature is the inverse effective mass <a href="09-properties-of-an-electronic-dispersion.html#eq-2-18">(2.18)</a>, and both are read from this one curve. On the right is the resulting density of states <a href="09-properties-of-an-electronic-dispersion.html#eq-2-16">(2.16)</a>, cut at the top of the drawing, which diverges at both band edges, at the same points where the group velocity vanishes.</figcaption>
 </figure>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>In this session <span class="math inline">\(t&gt;0\)</span> in <a href="#eq-2-8">(2.8)</a>. At which phase would the minimum of the band be if the hopping had the opposite sign?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>At <span class="math inline">\(\varphi=\pi\)</span>.</li>
+<li>At <span class="math inline">\(\varphi=0\)</span>, as before.</li>
+<li>At <span class="math inline">\(\varphi=\pi/2\)</span>.</li>
+<li>The band would have no minimum.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>The sign change turns <span class="math inline">\(\epsilon_\varphi=-2t\cos\varphi\)</span> into <span class="math inline">\(+2t\cos\varphi\)</span>, which is the same curve upside down. The minimum then moves from <span class="math inline">\(\varphi=0\)</span> to <span class="math inline">\(\varphi=\pi\)</span>.</p>
+</details>
+</div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session2.ipynb"><code>session2.ipynb</code></a>, “One dimensional chain” (Core)</p>
 <p>Build the chain of <a href="#eq-2-5">(2.5)</a>, diagonalize it numerically, and check that the numerical spectrum follows <span class="math inline">\(\epsilon_\varphi=-2t\cos\varphi\)</span> from <a href="#eq-2-8">(2.8)</a> when you scan <span class="math inline">\(\varphi\)</span> across the Brillouin zone.</p>
@@ -113,11 +134,44 @@ c_n^\dagger = \sum_\varphi e^{-in\varphi}\, \Psi_\varphi^\dagger, \tag{2.7}\]</s
 <p>A natural extension, which we do in class, is to check that the same method also works beyond nearest-neighbour hopping. We add a second-neighbour hopping term <span class="math inline">\(-\eta\sum_n(c_n^\dagger
 c_{n+2}+\text{h.c.})\)</span> to <a href="#eq-2-5">(2.5)</a>. This term has the same translational symmetry as before, so the eigenstates <a href="#eq-2-6">(2.6)</a> do not change at all, and we only need to compute the eigenvalues again. We repeat the Fourier substitution for the new term, which couples <span class="math inline">\(c_n^\dagger\)</span> with <span class="math inline">\(c_{n+2}\)</span> and so gives a phase <span class="math inline">\(e^{\pm2i\varphi}\)</span> instead of <span class="math inline">\(e^{\pm i\varphi}\)</span>, and we obtain</p>
 <p><span id="eq-2-9" class="eq"><span class="math display">\[\epsilon_\varphi = -2t\cos\varphi - 2\eta\cos(2\varphi). \tag{2.9}\]</span></span></p>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>What is the energy of <a href="#eq-2-9">(2.9)</a> at <span class="math inline">\(\varphi=\pi/2\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(0\)</span></li>
+<li><span class="math inline">\(2\eta\)</span></li>
+<li><span class="math inline">\(-2\eta\)</span></li>
+<li><span class="math inline">\(-2t-2\eta\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The nearest-neighbor term vanishes, since <span class="math inline">\(\cos(\pi/2)=0\)</span>. The second-neighbor term gives <span class="math inline">\(-2\eta\cos\pi=+2\eta\)</span>.</p>
+</details>
+</div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session2.ipynb"><code>session2.ipynb</code></a>, “One dimensional chain, with longer range hopping” (Core)</p>
 <p>Add the second-neighbour hopping <span class="math inline">\(\eta\)</span> to the chain from the previous box, and check that the band you compute numerically agrees with <a href="#eq-2-9">(2.9)</a>. It is also useful to check the density of states here (Section <a href="09-properties-of-an-electronic-dispersion.html#sec-2-9">2.9</a>), since <span class="math inline">\(\eta\)</span> can create a second local extremum in <span class="math inline">\(\epsilon_\varphi\)</span>, and with it an additional feature of Van Hove type in the spectrum.</p>
 </div>
+<div class="tryit">
+<p><strong>Try it.</strong> Put the second neighbor hopping in the second place of <code>tij</code>, for example <code>tij=[1.0,0.3,0.0]</code>, and compare the band with <a href="#eq-2-9">(2.9)</a>. Increase it to <span class="math inline">\(0.5\)</span>, and check that the band gets an extra extremum and the density of states an extra peak. The notebook uses the opposite sign of the hopping, so its band is turned upside down.</p>
+<div class="tryit-links">
+Notebook <code>session2.ipynb</code>, cell “One dimensional chain, with longer range hopping”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session2.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session2.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession2.ipynb">Binder</a>.
+</div>
+</div>
 <p>We also mention <code>pyqula</code> by name here, which is a Python package that computes band structures such as this one in 1D, 2D, 3D and higher dimensions, and which is the computational tool we use in the whole course. Here we only give its name. The slides show an explicit installation guide (<code>pip install pyqula</code>) and example scripts for a 1D chain and for a 1D “ladder” with two sites per cell, together with the band plots that these scripts produce. This installation guide and the screenshots of its code are only on the slides, and they are not narrated in the transcript nor reproduced here. The notebook is the place where you run the equivalent code yourself.</p>
+<div class="widget" data-widget="chainband">
+<div class="widget-label">
+Interactive
+</div>
+<p>Move the second-neighbor hopping <span class="math inline">\(t_2\)</span> of <a href="#eq-2-9">(2.9)</a>. For small <span class="math inline">\(t_2\)</span> the band keeps one minimum and one maximum, as for <span class="math inline">\(t_2=0\)</span> (dashed). Above <span class="math inline">\(t_2=t/4\)</span> the point <span class="math inline">\(\varphi=\pi\)</span> becomes a local minimum, and two new maxima appear next to it. Each extremum gives a Van Hove singularity in the density of states of Section <a href="09-properties-of-an-electronic-dispersion.html#sec-2-9">2.9</a>.</p>
+<noscript><p class="widget-nojs">This widget needs JavaScript.</p></noscript>
+</div>
 
   <nav class="pager"><a href="04-exercises-where-we-guess-eigenstates-from-symmetry-only.html">2.4 Exercises where we guess eigenstates from symmetry only</a><a href="06-the-meaning-of-the-phase-which-is-the-quasi-momentum.html">2.6 The meaning of the phase, which is the quasi-momentum</a></nav>
 

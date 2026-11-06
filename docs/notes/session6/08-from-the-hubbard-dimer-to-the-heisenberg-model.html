@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -92,17 +93,43 @@
 <p><span class="math display">\[E_S \;\approx\; -\frac{4t^2}{U} + O(t^4/U^3), \qquad E_T = 0 \text{ exactly.}\]</span></p>
 <p>We compare this with the exact spectrum of the Heisenberg dimer, <span class="math inline">\(E_\text{singlet}=-\tfrac34 J\)</span> and <span class="math inline">\(E_\text{triplet}=+\tfrac14 J\)</span>, where the singlet-triplet gap is <span class="math inline">\(\Delta E = E_T-E_S = J\)</span>, and we obtain</p>
 <p><span id="eq-6-4" class="eq"><span class="math display">\[J = \frac{4t^2}{U}. \tag{6.4}\]</span></span></p>
-<p>We have <span class="math inline">\(J&gt;0\)</span>, which is antiferromagnetic, and the singlet is below the triplet. This confirms, with the correct numerical prefactor, the second-order perturbation theory that the lecture sketches, where the unperturbed Hamiltonian is the Hubbard term, the perturbation is the hopping, the matrix element is <span class="math inline">\(t\)</span> and the energy denominator is <span class="math inline">\(U\)</span>. It also reproduces exactly the <span class="math inline">\(1/U\)</span> scaling that we found numerically for the energy difference between the ferromagnet and the antiferromagnet in Section <a href="05-competition-between-the-ferromagnet-and-the-antiferromagnet.html#sec-6-5">6.5</a>. That mean-field energy difference per bond <em>is</em> one half of the exchange coupling <a href="#eq-6-4">(6.4)</a>, so the two completely different calculations, the mean-field numerics and the many-body perturbation theory, agree. Figure <a href="#fig:s06:dimer">6.2</a> shows the whole argument. It shows the Pauli blockade that protects the triplet, the virtual process that lowers the energy of the singlet, and the exact spectrum, whose splitting is <span class="math inline">\(J\)</span>.</p>
+<p>We have <span class="math inline">\(J&gt;0\)</span>, which is antiferromagnetic, and the singlet is below the triplet. This confirms, with the correct numerical prefactor, the second-order perturbation theory that the lecture sketches, where the unperturbed Hamiltonian is the Hubbard term, the perturbation is the hopping, the matrix element is <span class="math inline">\(t\)</span> and the energy denominator is <span class="math inline">\(U\)</span>. It also reproduces exactly the <span class="math inline">\(1/U\)</span> scaling that we found numerically for the energy difference between the ferromagnet and the antiferromagnet in Section <a href="04-exchange-splitting-and-antiferromagnetic-order-in-numerical-mean-field-theory.html#sec-6-5">6.5</a>. That mean-field energy difference per bond <em>is</em> one half of the exchange coupling <a href="#eq-6-4">(6.4)</a>, so the two completely different calculations, the mean-field numerics and the many-body perturbation theory, agree. Figure <a href="#fig:s06:dimer">6.2</a> shows the whole argument. It shows the Pauli blockade that protects the triplet, the virtual process that lowers the energy of the singlet, and the exact spectrum, whose splitting is <span class="math inline">\(J\)</span>.</p>
 <figure id="fig:s06:dimer">
 <img src="../figures/s06f02_dimer.svg" loading="lazy" alt="Superexchange in the two-site Hubbard model, and the reason why it is always antiferromagnetic." />
-<figcaption><strong>Figure 6.2.</strong> Superexchange in the two-site Hubbard model, and the reason why it is always antiferromagnetic. (a) With parallel spins, the only possible hop would put two <span class="math inline">\(\uparrow\)</span> electrons on one site, and Pauli exclusion forbids this completely. As a result the triplet states cannot lower their energy at any order, and stay at exactly <span class="math inline">\(E_T=0\)</span>. With antiparallel spins the hop is allowed, so the singlet goes through a virtual double occupation of energy <span class="math inline">\(U\)</span>, the glow, and comes back, and gains a second-order energy <span class="math inline">\(-4t^2/U\)</span>. Here the magnetic order is a purely kinetic effect, since antiparallel spins have lower energy because only they can move. (b) The exact singlet energy <span class="math inline">\(E_S=\tfrac{U}{2}-\sqrt{(U/2)^2+4t^2}\)</span> as a function of <span class="math inline">\(U/t\)</span>, with <span class="math inline">\(E_T=0\)</span> exact for every <span class="math inline">\(U\)</span>. The singlet-triplet splitting <em>is</em> the Heisenberg coupling <span class="math inline">\(J\)</span> of <a href="#eq-6-4">(6.4)</a>, and it decays as <span class="math inline">\(4t^2/U\)</span>, the grey curve. This is the same <span class="math inline">\(1/U\)</span> law that we found numerically for the mean-field energy difference between the ferromagnet and the antiferromagnet in Section <a href="05-competition-between-the-ferromagnet-and-the-antiferromagnet.html#sec-6-5">6.5</a>.</figcaption>
+<figcaption><strong>Figure 6.2.</strong> Superexchange in the two-site Hubbard model, and the reason why it is always antiferromagnetic. (a) With parallel spins, the only possible hop would put two <span class="math inline">\(\uparrow\)</span> electrons on one site, and Pauli exclusion forbids this completely. As a result the triplet states cannot lower their energy at any order, and stay at exactly <span class="math inline">\(E_T=0\)</span>. With antiparallel spins the hop is allowed, so the singlet goes through a virtual double occupation of energy <span class="math inline">\(U\)</span>, the glow, and comes back, and gains a second-order energy <span class="math inline">\(-4t^2/U\)</span>. Here the magnetic order is a purely kinetic effect, since antiparallel spins have lower energy because only they can move. (b) The exact singlet energy <span class="math inline">\(E_S=\tfrac{U}{2}-\sqrt{(U/2)^2+4t^2}\)</span> as a function of <span class="math inline">\(U/t\)</span>, with <span class="math inline">\(E_T=0\)</span> exact for every <span class="math inline">\(U\)</span>. The singlet-triplet splitting <em>is</em> the Heisenberg coupling <span class="math inline">\(J\)</span> of <a href="#eq-6-4">(6.4)</a>, and it decays as <span class="math inline">\(4t^2/U\)</span>, the grey curve. This is the same <span class="math inline">\(1/U\)</span> law that we found numerically for the mean-field energy difference between the ferromagnet and the antiferromagnet in Section <a href="04-exchange-splitting-and-antiferromagnetic-order-in-numerical-mean-field-theory.html#sec-6-5">6.5</a>.</figcaption>
 </figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>At fixed large <span class="math inline">\(U\)</span> the hopping <span class="math inline">\(t\)</span> of the dimer is doubled. How does <span class="math inline">\(J\)</span> of <a href="#eq-6-4">(6.4)</a> change?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>It doubles.</li>
+<li>It grows by a factor of four.</li>
+<li>It is halved.</li>
+<li>It does not change.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The coupling <span class="math inline">\(J=4t^2/U\)</span> depends on <span class="math inline">\(t^2\)</span>, so doubling <span class="math inline">\(t\)</span> gives a factor of four. The process needs two hops, one to the doubly occupied state and one back.</p>
+</details>
+</div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb"><code>session6.ipynb</code></a>, “(Reminder) The spectra of a dimer,” “(Exercise) The interacting Hubbard dimer,” “Gap opening in the Hubbard model,” and “(Exercise) The strongly interacting limit”</p>
 <p>Diagonalize the Hubbard dimer with six states directly, and check that the singlet-triplet splitting agrees with <a href="#eq-6-4">(6.4)</a>. Then take large values of <span class="math inline">\(U/t\)</span> and check that the gap and the low-energy spectrum converge to the prediction of the Heisenberg model. This compares the exact result of this section with a direct numerical diagonalization.</p>
 </div>
+<div class="tryit">
+<p><strong>Try it.</strong> In the cell, diagonalize the dimer with six states for <span class="math inline">\(U/t\)</span> equal to 4, 8 and 16. The exact splitting <span class="math inline">\(E_T-E_S\)</span> divided by <span class="math inline">\(4t^2/U\)</span> is about 0.83, 0.94 and 0.98, and it approaches one as <span class="math inline">\(U/t\)</span> grows.</p>
+<div class="tryit-links">
+Notebook <code>session6.ipynb</code>, cell “The interacting Hubbard dimer”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession6.ipynb">Binder</a>.
+</div>
+</div>
 
-  <nav class="pager"><a href="07-the-strongly-localized-limit-where-mean-field-breaks-down.html">6.7 The strongly localized limit, where mean field breaks down</a><a href="09-the-heisenberg-model-on-a-general-lattice.html">6.9 The Heisenberg model on a general lattice</a></nav>
+  <nav class="pager"><a href="06-the-stoner-threshold-as-a-criterion-for-magnetism.html">6.6 The Stoner threshold as a criterion for magnetism</a><a href="09-the-heisenberg-model-on-a-general-lattice.html">6.9 The Heisenberg model on a general lattice</a></nav>
 
 </main>
 </body>

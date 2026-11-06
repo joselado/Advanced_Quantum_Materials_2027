@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -101,9 +102,35 @@ L=2:\quad &amp;\text{d-wave (spin-singlet, often antiferromagnetic-magnon-driven
 <img src="../figures/s05f03_gapsymmetry.svg" loading="lazy" alt="The sign structure of \Delta(\mathbf k) over the Brillouin zone, ordered by angular momentum L as in (5.14)." />
 <figcaption><strong>Figure 5.3.</strong> The sign structure of <span class="math inline">\(\Delta(\mathbf k)\)</span> over the Brillouin zone, ordered by angular momentum <span class="math inline">\(L\)</span> as in <a href="#eq-5-14">(5.14)</a>. The positive regions are raised and the negative ones are sunk, in two colors, and the nodes are where the two colors meet. A reflection of a panel through its centre sends <span class="math inline">\(\mathbf k\to-\mathbf k\)</span>. Panels with even <span class="math inline">\(L\)</span> do not change and are therefore spin singlets, and panels with odd <span class="math inline">\(L\)</span> come back with every sign flipped and are spin triplets, which is <a href="11-the-general-pairing-hamiltonian-and-its-symmetry-classification.html#eq-5-12">(5.12)</a> seen in a picture. Counting lobes is the fastest way to identify the order. Two lobes mean <span class="math inline">\(L=1\)</span>, four mean <span class="math inline">\(L=2\)</span> and six mean <span class="math inline">\(L=3\)</span>, and any pattern whose lobes alternate an odd number of times in a half turn is necessarily odd in <span class="math inline">\(\mathbf k\)</span>, so it is a triplet. This is why the <span class="math inline">\(f\)</span>-wave state (e), which has six lobes on the hexagonal zone of the triangular lattice, is a spin triplet, even though it is similar to the singlet <span class="math inline">\(d\)</span>-wave state in every other respect. Extended <span class="math inline">\(s\)</span>-wave (b) deserves a second look, since its node is radial and not angular. It has the same even parity and the same point-group symmetry as plain <span class="math inline">\(s\)</span>-wave, and only the position of its node ring relative to the Fermi surface decides whether it is nodal in the spectrum. The overall sign of <span class="math inline">\(\Delta\)</span> is a gauge choice, and only the sign <em>changes</em> are physical.</figcaption>
 </figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>On the triangular lattice a gap has six lobes of alternating sign around the Fermi surface. What are its parity, its angular momentum and its spin?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>Even parity, <span class="math inline">\(L=2\)</span>, spin singlet.</li>
+<li>Odd parity, <span class="math inline">\(L=3\)</span>, spin triplet.</li>
+<li>Even parity, <span class="math inline">\(L=3\)</span>, spin singlet.</li>
+<li>Odd parity, <span class="math inline">\(L=2\)</span>, spin triplet.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>A half turn moves every lobe by three places. Since the sign alternates, an odd number of steps flips it, so <span class="math inline">\(\Delta(-\mathbf k)=-\Delta(\mathbf k)\)</span>. By <a href="11-the-general-pairing-hamiltonian-and-its-symmetry-classification.html#eq-5-12">(5.12)</a> this is odd parity and a spin triplet, and six lobes mean <span class="math inline">\(L=3\)</span>.</p>
+</details>
+</div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb"><code>session5.ipynb</code></a>, “Gapped and nodal superconducting orders” (Core)</p>
 <p>Implement the <span class="math inline">\(d_{x^2-y^2}\)</span> gap of <a href="#eq-5-13">(5.13)</a> on the square lattice, plot <span class="math inline">\(\Delta(\mathbf k)\)</span> over the Brillouin zone, and check the pattern of four lobes with alternating sign and the position of its nodes relative to a given Fermi surface. The nodal <span class="math inline">\(L=3\)</span> (f-wave) case of the triangular lattice discussed above is also in this section of the notebook, if you want to see the pattern of six lobes directly.</p>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> In the cell, compare the bands along the path <code>G</code>, <code>K</code>, <code>M</code>, <code>G</code> for the two orders. The <span class="math inline">\(s\)</span>-wave bands keep a gap of <span class="math inline">\(|\Delta|=0.4\)</span> at the Fermi surface. The nodal <span class="math inline">\(f\)</span>-wave bands touch zero energy, even though <span class="math inline">\(\Delta=0.2\)</span> is nonzero.</p>
+<div class="tryit-links">
+Notebook <code>session5.ipynb</code>, cell “Gapped and nodal superconducting orders”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession5.ipynb">Binder</a>.
+</div>
 </div>
 
   <nav class="pager"><a href="12-building-a-spin-triplet-superconductor-out-of-a-magnet.html">5.12 Building a spin-triplet superconductor out of a magnet</a><a href="14-same-gap-and-different-topology-in-trivial-s-wave-and-chiral-p-wave-pairing.html">5.14 Same gap and different topology in trivial s-wave and chiral p-wave pairing</a></nav>

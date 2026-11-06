@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -89,8 +90,48 @@
 <img src="../figures/s07f04_tensordiagram.svg" loading="lazy" alt="The graphical notation, and the MPS ansatz drawn in it." />
 <figcaption><strong>Figure 7.4.</strong> The graphical notation, and the MPS ansatz drawn in it. (a) A tensor is a block and each of its indices is a leg, so a scalar has no leg, a vector has one leg, a matrix has two, and so on. Joining two legs means summing over the shared index. (b) The exact coefficient tensor of <a href="03-storing-the-wave-function-as-the-main-bottleneck.html#eq-7-4">(7.4)</a> is a single object with one leg per site, and it contains <span class="math inline">\(2^L\)</span> independent numbers. The matrix product state <a href="04-the-matrix-product-state-ansatz.html#eq-7-5">(7.5)</a> replaces it with a chain of small tensors. Each of them has one physical leg pointing down and virtual legs of dimension <span class="math inline">\(M\)</span> that link it to its neighbours, for a total of <span class="math inline">\(\sim 2LM^2\)</span> numbers, so the exponential growth is replaced by a chain that grows linearly. (c) An operator, in particular the Hamiltonian, becomes a matrix product operator, the darker row, with two physical legs per site. To apply it to a state we join the diagrams along the shared physical legs and contract them, which multiplies the two bond dimensions. A singular value decomposition that keeps only the largest singular values then truncates the result back to a usable <span class="math inline">\(M\)</span>. This truncation is the core of every MPS algorithm, including DMRG.</figcaption>
 </figure>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>An MPS of bond dimension <span class="math inline">\(M\)</span> is acted on by an MPO of bond dimension <span class="math inline">\(D\)</span>, and we contract the physical legs without truncating. What is the bond dimension of the result?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(M\cdot D\)</span>.</li>
+<li><span class="math inline">\(M+D\)</span>.</li>
+<li><span class="math inline">\(\max(M,D)\)</span>.</li>
+<li><span class="math inline">\(M^D\)</span>.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>Each bond of the result carries one index of the state and one of the operator, so the dimensions multiply. This growth is the reason why a truncation by singular value decomposition follows each operation.</p>
+</details>
+</div>
+<div class="quiz" data-correct="C">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>A tensor has three legs, and each leg has dimension <span class="math inline">\(4\)</span>. How many numbers does it contain?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(12\)</span>.</li>
+<li><span class="math inline">\(16\)</span>.</li>
+<li><span class="math inline">\(64\)</span>.</li>
+<li><span class="math inline">\(256\)</span>.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>C</strong>.</p>
+<p>The number of entries is the product of the dimensions of the legs, <span class="math inline">\(4\times4\times4=64\)</span>.</p>
+</details>
+</div>
 
-  <nav class="pager"><a href="08-why-mps-work-in-1d-and-where-they-stop-working.html">7.8 Why MPS work in 1D, and where they stop working</a><a href="10-the-variational-principle-and-dmrg-for-the-ground-state.html">7.10 The variational principle and DMRG for the ground state</a></nav>
+  <nav class="pager"><a href="08b-where-mps-stop-working.html">7.8b Where MPS stop working</a><a href="10-the-variational-principle-and-dmrg-for-the-ground-state.html">7.10 The variational principle and DMRG for the ground state</a></nav>
 
 </main>
 </body>

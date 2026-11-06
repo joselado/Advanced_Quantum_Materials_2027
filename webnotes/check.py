@@ -2,7 +2,9 @@
 
 Errors: a link to a file or an anchor that does not exist, an image that does not exist, "??", a LaTeX
 command left in the text outside the math, an equation number used twice, a page in docs/notes/sessionN/ that
-the manifest does not list, a link that the filter could not resolve. External links (http) are not fetched.
+the manifest does not list, a link that the filter could not resolve, an image without alt text, a retired URL
+(listed in manifest/frozen_urls.txt) that has neither a page nor a redirect, a redirect that points to a page or
+an anchor that does not exist. External links (http) are not fetched.
 Pending: references to a session that is not converted yet. They stay as text and are listed, not an error.
 """
 import glob
@@ -20,7 +22,7 @@ PENDING = set()
 class Page(HTMLParser):
     def __init__(self):
         super().__init__(convert_charrefs=True)
-        self.ids, self.hrefs, self.imgs, self.text = set(), [], [], []
+        self.ids, self.hrefs, self.imgs, self.alts, self.text = set(), [], [], [], []
         self.math = 0          # depth inside a span of class math or inside mjx-container
         self.stack = []
         self.skip = 0
@@ -33,6 +35,8 @@ class Page(HTMLParser):
             self.hrefs.append(a['href'])
         if tag == 'img' and 'src' in a:
             self.imgs.append(a['src'])
+            if not (a.get('alt') or '').strip():
+                self.alts.append(a['src'])
         ismath = tag == 'span' and 'math' in (a.get('class') or '').split()
         isskip = tag in ('script', 'style', 'code')
         if tag not in ('img', 'br', 'meta', 'link', 'hr', 'input'):
@@ -60,16 +64,26 @@ def parse(path):
     return p
 
 
-def run(docs, webnotes):
-    notes = os.path.join(docs, 'notes')
+def run(docs, webnotes, notes=None, skip_sessions=()):
+    """Checks the pages of notes (docs/notes by default). For a private build notes is another folder, and a link
+    that leaves it (to the video lectures, to the home page) is looked for in docs/notes/ at the same relative
+    place. skip_sessions are sessions that the build did not write, so that a link to them is not an error."""
+    real = os.path.join(docs, 'notes')
+    notes = notes or real
     pages = {f: parse(f) for f in glob.glob(os.path.join(notes, '**', '*.html'), recursive=True)}
-    rel = lambda f: os.path.relpath(f, docs)
+    rel = lambda f: os.path.relpath(f, notes if notes != real else docs)
+    skipped = lambda t: any(os.path.normpath(t).startswith(os.path.join(notes, f'session{k}') + os.sep)
+                            for k in skip_sessions)
     for f, p in pages.items():
         for h in p.hrefs:
             if re.match(r'^(https?:|mailto:)', h):
                 continue
             base, frag = urldefrag(h)
             target = f if base == '' else os.path.normpath(os.path.join(os.path.dirname(f), unquote(base)))
+            if notes != real and not target.startswith(notes + os.sep) and target != notes:
+                target = os.path.normpath(os.path.join(real, os.path.relpath(target, notes)))
+            if skipped(target):
+                continue
             if not os.path.exists(target):
                 ERRORS.append(f'{rel(f)}: link to a missing file, {h}')
             elif frag and target.endswith('.html'):
@@ -79,6 +93,8 @@ def run(docs, webnotes):
         for s in p.imgs:
             if not os.path.exists(os.path.normpath(os.path.join(os.path.dirname(f), s))):
                 ERRORS.append(f'{rel(f)}: missing image {s}')
+        for s in p.alts:
+            ERRORS.append(f'{rel(f)}: image without alt text, {s}')
         text = ''.join(p.text)
         if '??' in text:
             ERRORS.append(f'{rel(f)}: "??" in the text')
@@ -86,16 +102,35 @@ def run(docs, webnotes):
         if m:
             i = m.start()
             ERRORS.append(f'{rel(f)}: LaTeX left outside math, "{text[max(0, i - 30):i + 40].strip()}"')
-    # pages without a source
-    listed = set()
+    # pages without a source, redirects, and URLs that must not disappear
+    listed, frozen_ok = set(), set()
     for mp in glob.glob(os.path.join(webnotes, 'manifest', 'session*.json')):
         m = json.load(open(mp))
         n = m['session']
+        files = {pg['file'][:-3] + '.html' for pg in m['pages']}
         for pg in m['pages']:
             listed.add(os.path.normpath(os.path.join(notes, f'session{n}', pg['file'][:-3] + '.html')))
+        for r in m.get('redirects', []):
+            old, (new, _, frag) = r['from'], r['to'].partition('#')
+            listed.add(os.path.normpath(os.path.join(notes, f'session{n}', old)))
+            if old in files:
+                ERRORS.append(f'session{n}: the redirect from {old} is also a page of the manifest')
+            tgt = os.path.normpath(os.path.join(notes, f'session{n}', new))
+            if new not in files:
+                ERRORS.append(f'session{n}: the redirect {old} points to {new}, which is not a page of the manifest')
+            elif skipped(tgt):
+                pass
+            elif frag and frag not in (pages.get(tgt) or parse(tgt)).ids:
+                ERRORS.append(f'session{n}: the redirect {old} points to the missing anchor {r["to"]}')
     for f in pages:
         if re.search(r'session\d+', os.path.dirname(f)) and f not in listed:
-            ERRORS.append(f'{rel(f)}: page of docs/notes/ with no source in the manifest')
+            ERRORS.append(f'{rel(f)}: page of the notes with no source in the manifest')
+    fz = os.path.join(webnotes, 'manifest', 'frozen_urls.txt')
+    if os.path.exists(fz):
+        for u in open(fz).read().split():
+            t = os.path.normpath(os.path.join(notes, u))
+            if not os.path.exists(t) and not skipped(t):
+                ERRORS.append(f'{u}: a URL of the site has no page and no redirect (manifest/frozen_urls.txt)')
     npages = len(pages)
     for e in sorted(set(ERRORS)):
         print('ERROR', e)
@@ -108,4 +143,5 @@ def run(docs, webnotes):
 
 if __name__ == '__main__':
     here = os.path.dirname(os.path.abspath(__file__))
-    sys.exit(0 if run(os.path.join(os.path.dirname(here), 'docs'), here) else 1)
+    notes = sys.argv[1] if len(sys.argv) > 1 else None
+    sys.exit(0 if run(os.path.join(os.path.dirname(here), 'docs'), here, notes=notes and os.path.abspath(notes)) else 1)

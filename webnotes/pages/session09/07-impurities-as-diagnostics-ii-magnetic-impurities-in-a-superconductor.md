@@ -14,6 +14,30 @@ tot}=0$, where every Cooper pair is intact and the impurity spin is not screened
 
 ![A magnetic impurity in an s-wave superconductor. (a) The single-particle density of states. The BCS continuum, with a gap $\Delta$ and coherence peaks at the gap edges, is almost unchanged by a *non-magnetic* impurity. Such an impurity does not distinguish up from down, so it cannot lower the energy needed to break any specific Cooper pair. A *magnetic* impurity distinguishes them, breaks time-reversal symmetry, and creates a pair of bound states inside the gap at $\pm E_b$, the red peaks, drawn for $\alpha=0.6$. (b) The energy of these states, from [(9.10)](#eq-9-10), as a function of $\alpha=\pi\nu_0JS$. At $\alpha=0$ they are exactly at the gap edges, meaning that there is no bound state yet. As the exchange grows they move across the gap and cross at $\alpha=1$. The crossing is not a level repulsion that did not open. It is a real quantum phase transition of the electronic ground state, with a change of fermion parity, and the electron spin goes from $S_{\rm tot}=0$, where every Cooper pair is intact and the impurity spin is not screened, to $S_{\rm tot}=1/2$, where one quasiparticle is bound to the impurity and partially screens its spin. So a single impurity that we can tune is an exactly solvable quantum phase transition.](figures/s09f03_ysr.svg){#fig:s09:ysr number="9.3"}
 
+::: quiz
+For $\alpha=0.5$ in [(9.10)](#eq-9-10), what is the energy of the bound state in units of $\Delta$?
+
+- [ ] $0.75$, which is $1-\alpha^2$.
+- [x] $0.6$, which is $(1-\alpha^2)/(1+\alpha^2)$.
+- [ ] $0$, since the state is at the center of the gap.
+
+With $\alpha^2=0.25$ we obtain $0.75/1.25=0.6$. The state crosses the center of the gap only at $\alpha=1$, where the numerator vanishes.
+:::
+
+::: quiz
+The exchange is increased until $\alpha$ is slightly larger than one. What changes in the electronic ground state?
+
+- [ ] Nothing changes, since the bound state only moves through the gap.
+- [ ] The superconducting gap closes.
+- [x] The fermion parity changes, and the total electron spin goes from $0$ to $1/2$.
+
+At $\alpha=1$ the bound state crosses zero energy, so it becomes cheaper to occupy it. One quasiparticle is now bound to the impurity, and it partially screens the impurity spin. The bulk gap stays open.
+:::
+
+::: {.tryit notebook="session9.ipynb" cell="Single magnetic impurity in a superconductor"}
+Run the cell and follow the bright line inside the gap as $J$ grows. Find the value of $J$ where it crosses zero energy. Then change `h.add_onsite(1.8)` to another value and run it again. The crossing moves, since $\alpha=\pi\nu_0JS$ depends on the density of states at the Fermi level.
+:::
+
 ::: notebookbox
 **Notebook check-in:** [`session9.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb), "Magnetic impurities in a conventional superconductor" (Core) and "Single magnetic impurity in a superconductor" (Challenge)
 

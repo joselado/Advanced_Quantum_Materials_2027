@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -84,8 +85,8 @@
   <p class="crumb"><a href="index.html">Session 5. Superconductivity, Nambu Representation and Majorana Physics</a></p>
 <h1 id="sec-5-20"><span class="num">5.20</span> Closing summary</h1>
 <ul>
-<li><p><strong>Superconductivity is a mean-field, attractive-interaction phenomenon.</strong> Starting from an attractive Hubbard chain <a href="05-the-mean-field-pairing-hamiltonian-in-detail.html#eq-5-2">(5.2)</a>, pairing mean-field theory gives the order parameter <span class="math inline">\(\Delta_n = U\langle c_{n\downarrow}c_{n\uparrow}\rangle\)</span> <a href="05-the-mean-field-pairing-hamiltonian-in-detail.html#eq-5-3">(5.3)</a> and the mean-field Hamiltonian <a href="05-the-mean-field-pairing-hamiltonian-in-detail.html#eq-5-4">(5.4)</a>.</p></li>
-<li><p><strong>Pairing breaks particle-number conservation down to parity</strong> (section <a href="06-why-pairing-does-not-conserve-the-particle-number.html#sec-5-6">5.6</a>), and this is the same as the statement that gauge symmetry is spontaneously broken. The pairing term gets a phase <span class="math inline">\(e^{-2i\varphi}\)</span> under the gauge transformation <a href="07-the-gauge-transformation-in-explicit-form.html#eq-5-5">(5.5)</a>, unlike ordinary bilinear terms.</p></li>
+<li><p><strong>Superconductivity is a mean-field, attractive-interaction phenomenon.</strong> Starting from an attractive Hubbard chain <a href="04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html#eq-5-2">(5.2)</a>, pairing mean-field theory gives the order parameter <span class="math inline">\(\Delta_n = U\langle c_{n\downarrow}c_{n\uparrow}\rangle\)</span> <a href="04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html#eq-5-3">(5.3)</a> and the mean-field Hamiltonian <a href="04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html#eq-5-4">(5.4)</a>.</p></li>
+<li><p><strong>Pairing breaks particle-number conservation down to parity</strong> (section <a href="06-why-pairing-does-not-conserve-the-particle-number.html#sec-5-6">5.6</a>), and this is the same as the statement that gauge symmetry is spontaneously broken. The pairing term gets a phase <span class="math inline">\(e^{-2i\varphi}\)</span> under the gauge transformation <a href="06-why-pairing-does-not-conserve-the-particle-number.html#eq-5-5">(5.5)</a>, unlike ordinary bilinear terms.</p></li>
 <li><p><strong>Flux quantization</strong>, <span class="math inline">\(\Phi = n\, h/2e\)</span> <a href="02-superconductivity-as-a-macroscopic-quantum-phenomenon.html#eq-5-1">(5.1)</a>, is a direct and measurable macroscopic consequence of this broken gauge symmetry, at the same level as the conductance quantum of the quantum Hall effect from earlier sessions.</p></li>
 <li><p><strong>The Nambu spinor <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#eq-5-6">(5.6)</a> and the Bogoliubov-de Gennes Hamiltonian <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#eq-5-7">(5.7)</a>-<a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#eq-5-8">(5.8)</a></strong> are the tools that allow us to diagonalize any mean-field superconducting Hamiltonian. They give the quasiparticle dispersion <span class="math inline">\(E(\mathbf k) = \pm\sqrt{\varepsilon(\mathbf k)^2 + |\Delta(\mathbf k)|^2}\)</span> <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#eq-5-9">(5.9)</a>, and a gap opens at the original Fermi surface regardless of the details of the microscopic dispersion.</p></li>
 <li><p><strong>The symmetry of <span class="math inline">\(\Delta(\mathbf k)\)</span> classifies the superconductor.</strong> It can be singlet, even in <span class="math inline">\(\mathbf
@@ -94,7 +95,31 @@ k\)</span>, or triplet, odd in <span class="math inline">\(\mathbf k\)</span>, a
 <li><p><strong>The Kitaev chain <a href="16-the-kitaev-chain-as-the-minimal-model-with-isolated-majoranas.html#eq-5-19">(5.19)</a> is the SSH model in Majorana language.</strong> At the fine-tuned point it reduces to <span class="math inline">\(H = it\sum_n \gamma_{2n}\gamma_{2n+1}\)</span> <a href="16-the-kitaev-chain-as-the-minimal-model-with-isolated-majoranas.html#eq-5-21">(5.21)</a>, which leaves two unpaired end Majoranas with zero energy. These survive away from the fine-tuned point in the whole topological phase <span class="math inline">\(|\mu|&lt;2t\)</span> <a href="17-topological-zero-modes-with-periodic-and-open-boundaries.html#eq-5-22">(5.22)</a>.</p></li>
 <li><p><strong>Majoranas are non-Abelian anyons.</strong> Braiding them acts as a unitary <a href="19-topological-quantum-computing-with-majoranas.html#eq-5-23">(5.23)</a> on a topologically degenerate ground-state manifold, and exchanges that share a Majorana do not commute, which is the basis of the proposed schemes for topological quantum computing. This last part is material from the slides and the transcript, with no counterpart in the notebook.</p></li>
 </ul>
-<p>In this session we followed the topic of superconductivity from session 1, from the bare pairing order parameter to Nambu spinors, Bogoliubov-de Gennes Hamiltonians, the singlet and triplet classification and finally Majorana zero modes in the Kitaev chain. The division that we made in session 1 had a second branch that we have not considered since its first short treatment, which is magnetism, where time-reversal symmetry is broken instead of gauge symmetry. This is where we go next. Session 6 comes back to the same Hubbard Hamiltonian that opened section <a href="05-the-mean-field-pairing-hamiltonian-in-detail.html#sec-5-5">5.5</a> of this session, now on its repulsive (<span class="math inline">\(U&gt;0\)</span>) side, and gives magnetism the same depth of treatment that we have now given to superconductivity.</p>
+<figure class="again">
+<img src="../figures/s05f04_topology.svg" loading="lazy" alt="Phase dials of the pairing function around a Fermi pocket for s-wave and chiral p-wave pairing, and the edge of a ribbon for each." />
+<figcaption><strong><a href="14-same-gap-and-different-topology-in-trivial-s-wave-and-chiral-p-wave-pairing.html#fig:s05:topology">Figure 5.4</a>, shown again.</strong> The two gaps of Section <a href="14-same-gap-and-different-topology-in-trivial-s-wave-and-chiral-p-wave-pairing.html#sec-5-14">5.14</a> once more. The phase of <span class="math inline">\(\Delta(\mathbf k)\)</span> does not wind for <span class="math inline">\(s\)</span>-wave pairing and winds once for <span class="math inline">\(p+ip\)</span> pairing, and the Chern number counts this winding.</figcaption>
+</figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>In a spinless chain the onsite term <span class="math inline">\(c_nc_n\)</span> vanishes. Which pairing is then allowed, and what is its parity?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>Onsite pairing, which is even in <span class="math inline">\(k\)</span>.</li>
+<li>Pairing on the bond <span class="math inline">\(c_nc_{n+1}\)</span>, which is odd in <span class="math inline">\(k\)</span>.</li>
+<li>Pairing on the bond, which is even in <span class="math inline">\(k\)</span>.</li>
+<li>No pairing at all can be written.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>Pauli exclusion gives <span class="math inline">\(c_n^2=0\)</span>, so the pairing has to live on a bond. This term gives <span class="math inline">\(\Delta(k)=2i\Delta\sin k\)</span>, which is odd in <span class="math inline">\(k\)</span>, so by <a href="11-the-general-pairing-hamiltonian-and-its-symmetry-classification.html#eq-5-12">(5.12)</a> it is a spinless <span class="math inline">\(p\)</span>-wave state.</p>
+</details>
+</div>
+<p>In this session we followed the topic of superconductivity from session 1, from the bare pairing order parameter to Nambu spinors, Bogoliubov-de Gennes Hamiltonians, the singlet and triplet classification and finally Majorana zero modes in the Kitaev chain. The division that we made in session 1 had a second branch that we have not considered since its first short treatment, which is magnetism, where time-reversal symmetry is broken instead of gauge symmetry. This is where we go next. Session 6 comes back to the same Hubbard Hamiltonian that opened section <a href="04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html#sec-5-5">5.5</a> of this session, now on its repulsive (<span class="math inline">\(U&gt;0\)</span>) side, and gives magnetism the same depth of treatment that we have now given to superconductivity.</p>
 
   <nav class="pager"><a href="19-topological-quantum-computing-with-majoranas.html">5.19 Topological quantum computing with Majoranas</a><a href="../session6/index.html">Session 6. Classical magnetism and magnons</a></nav>
 

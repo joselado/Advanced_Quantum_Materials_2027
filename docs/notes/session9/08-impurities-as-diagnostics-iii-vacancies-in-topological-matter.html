@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -89,6 +90,50 @@
 <img src="../figures/s09f04_vacancy.svg" loading="lazy" alt="Why a single missing atom detects topology." />
 <figcaption><strong>Figure 9.4.</strong> Why a single missing atom detects topology. Top, seen from above. If we cut a large hole into a topologically non-trivial insulator or superconductor, the bulk-boundary correspondence guarantees gapless modes that run around its edge. Nothing in that argument depends on the size of the hole, so making it smaller does not remove these modes. A vacancy is a boundary of zero size, and it binds an in-gap mode. Bottom, schematic spectra. This is the diagnostic that a clean spectrum cannot give. A trivial and a topological insulator with the same gap have bulk spectra that look the same, so nothing there distinguishes them (left). If we add a vacancy, the trivial spectrum stays as it was (middle), and only the topological one develops a state inside the gap (right). The rule is as direct as it looks. Vacancies produce in-gap modes if and only if the bulk invariant is non-zero, provided that the vacancy itself respects the symmetry that protects that invariant.</figcaption>
 </figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>We remove one site from a Haldane-model Chern insulator, and from a trivial insulator that has the same gap. What do we find inside the gap?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>A bound state in both, since a vacancy is a strong perturbation.</li>
+<li>A bound state only in the Chern insulator.</li>
+<li>A bound state only in the trivial insulator, since its gap is larger.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The vacancy is a boundary of zero size, so the bulk-boundary correspondence applies only if the bulk invariant is not zero. The trivial insulator has no protected boundary mode, and its spectrum stays as it was.</p>
+</details>
+</div>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>A vacancy in a gapped system gives no in-gap mode. Which conclusion is safe?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>The bulk is trivial.</li>
+<li>The bulk is trivial, or the vacancy breaks the symmetry that protects the invariant.</li>
+<li>The gap is too small to host a bound state.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The rule has a proviso. The mode is guaranteed only when the vacancy respects the symmetry behind the invariant. Without a mode we cannot separate the two cases from this one measurement.</p>
+</details>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> Run the cell as it is and look at the right panel for a strong peak of the DOS at an energy <span class="math inline">\(|E/\Delta|&lt;1\)</span>, inside the gap. Then comment the line with <code>chiral_pwave</code> and uncomment the line with <code>mode="swave"</code>. The peak disappears, since the s-wave gap is trivial and the vacancy has no protected mode.</p>
+<div class="tryit-links">
+Notebook <code>session9.ipynb</code>, cell “Single vacancy in a topological superconductor”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession9.ipynb">Binder</a>.
+</div>
+</div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb"><code>session9.ipynb</code></a>, “Non-magnetic impurities in a topological superconductor” (Challenge), “DOS of non-magnetic impurities in a topological superconductor” (Challenge), “Single vacancy in a topological superconductor” (Challenge), “Vacancies in a topological insulator” (Challenge), and “Single vacancy in a topological insulator” (Challenge)</p>
 <p>Build a chiral p-wave superconductor and a Chern insulator of the Haldane model, each with a single vacancy, and check that the in-gap mode appears in both. The check that the notebook itself suggests is a good one. Change the pairing symmetry to conventional s-wave, or change the topological gap to a trivial gap from a sublattice imbalance, and look at how the in-gap mode disappears. It disappears because the bulk invariant, which guaranteed the mode through the bulk-boundary correspondence, is now zero.</p>

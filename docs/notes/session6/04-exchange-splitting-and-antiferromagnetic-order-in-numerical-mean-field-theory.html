@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -83,14 +84,47 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="on" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 6. Classical Magnetism and Magnons</a></p>
 <h1 id="sec-6-4"><span class="num">6.4</span> Exchange splitting and antiferromagnetic order in numerical mean-field theory</h1>
-<p>Let us now see the method of Section <a href="03-the-hubbard-model-and-mean-field-magnetism-revisited.html#sec-6-3">6.3</a> in a real calculation. First we take the one-dimensional chain <a href="03-the-hubbard-model-and-mean-field-magnetism-revisited.html#eq-6-1">(6.1)</a> with a unit cell of one site at 20% filling, and we solve it self-consistently. The resulting band structure shows an exchange splitting. The spin-up band, which is occupied up to the chemical potential, is at lower energy than the spin-down band, which is empty at this filling. The splitting between them is called the <strong>exchange splitting</strong>, and it grows with <span class="math inline">\(U\)</span>. Only spin-up states are occupied, so this is a fully polarized ferromagnetic solution with <span class="math inline">\(m\neq 0\)</span>.</p>
+<p>Let us now see the method of Section <a href="02-a-recap-of-symmetry-breaking-and-the-mean-field-philosophy.html#sec-6-3">6.3</a> in a real calculation. First we take the one-dimensional chain <a href="02-a-recap-of-symmetry-breaking-and-the-mean-field-philosophy.html#eq-6-1">(6.1)</a> with a unit cell of one site at 20% filling, and we solve it self-consistently. The resulting band structure shows an exchange splitting. The spin-up band, which is occupied up to the chemical potential, is at lower energy than the spin-down band, which is empty at this filling. The splitting between them is called the <strong>exchange splitting</strong>, and it grows with <span class="math inline">\(U\)</span>. Only spin-up states are occupied, so this is a fully polarized ferromagnetic solution with <span class="math inline">\(m\neq 0\)</span>.</p>
 <p>Now we take a unit cell with two sites, and we work at half filling. At <span class="math inline">\(U=0\)</span> there are two bands, one per site in the cell, and they cross at one point, so the system is metallic. When we turn on <span class="math inline">\(U&gt;0\)</span> a mean-field gap opens, and in real space the two sublattices get opposite spin polarization, with one site mostly up and its neighbor mostly down. The <em>net</em> magnetization is zero, but the <em>staggered</em> magnetization is not, and this is antiferromagnetic order. As always when a mean-field gap opens, it lowers the total electronic energy with respect to the state without a gap, because the states that the gap pushes down in energy are the occupied ones.</p>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb"><code>session6.ipynb</code></a>, “(Reminder) Bandstructure of a tight binding chain with two sites” and “(Exercise) Magnetic order driven by interactions in a chain”</p>
-<p>Start from the band structure of the two-site chain without interactions, which is the metallic case with a crossing. Then turn on <span class="math inline">\(U\)</span> and see how the mean-field gap opens and how the spin pattern in real space becomes antiferromagnetic, which reproduces the exchange splitting of <a href="03-the-hubbard-model-and-mean-field-magnetism-revisited.html#eq-6-2">(6.2)</a> directly. The ferromagnetic case with one site per cell at 20% filling, from the same section, is the companion calculation.</p>
+<p>Start from the band structure of the two-site chain without interactions, which is the metallic case with a crossing. Then turn on <span class="math inline">\(U\)</span> and see how the mean-field gap opens and how the spin pattern in real space becomes antiferromagnetic, which reproduces the exchange splitting of <a href="02-a-recap-of-symmetry-breaking-and-the-mean-field-philosophy.html#eq-6-2">(6.2)</a> directly. The ferromagnetic case with one site per cell at 20% filling, from the same section, is the companion calculation.</p>
+</div>
+<h1 class="sec-next" id="sec-6-5"><span class="num">6.5</span> Competition between the ferromagnet and the antiferromagnet</h1>
+<p>The Hubbard chain <a href="02-a-recap-of-symmetry-breaking-and-the-mean-field-philosophy.html#eq-6-1">(6.1)</a> has <em>both</em> a uniform self-consistent solution, with one site per cell and without the gap of the doubled cell, which is the paramagnet below <span class="math inline">\(U\approx 4t\)</span> and a fully polarized ferromagnet above it, where the spin-up band is full and the spin-down band is empty, and an antiferromagnetic one, with two sites per cell, insulating and gapped, at the same filling and the same <span class="math inline">\(U\)</span>. Both are real fixed points of the self-consistency loop. Only one of them can be the true ground state, and we decide which one by comparing total energies. Here the gapped antiferromagnetic solution always has the lower energy. Opening a gap pushes the occupied single-particle energies down, so the insulating configuration has a lower total energy than the gapless ferromagnetic one for every <span class="math inline">\(U&gt;0\)</span> that we can reach numerically in this half-filled chain.</p>
+<p>Let us follow how large this energy difference is as a function of <span class="math inline">\(U\)</span>. At <span class="math inline">\(U=0\)</span> the two configurations are the same, so the energy difference is zero. When <span class="math inline">\(U\)</span> grows from zero the gap opens and the energy difference grows with it. However, when <span class="math inline">\(U\)</span> keeps growing, the energy difference starts to <em>decrease</em> again, which is not what one would expect. In the limit <span class="math inline">\(U\to\infty\)</span>, which is the same as the limit where the kinetic energy can be neglected, the two configurations become degenerate. Numerically, this energy difference follows a <span class="math inline">\(1/U\)</span> form. In Section <a href="08-from-the-hubbard-dimer-to-the-heisenberg-model.html#sec-6-8">6.8</a> we will derive this exact <span class="math inline">\(1/U\)</span> scaling analytically from a completely independent calculation, which is a real cross-check between the mean-field numerics and a many-body perturbative treatment.</p>
+<figure id="sch:s06:mf_chain" class="schematic">
+<img src="../figures/web/session06/mf_chain.svg" loading="lazy" alt="Left, two bands separated by a gap with the crossing of the noninteracting bands drawn dashed. Right, a curve of the energy gain against U that rises, jumps at U equal to 4t and then decays as one over U." />
+<figcaption><strong>Schematic 6.1.</strong> The half-filled Hubbard chain in mean field, in units of <span class="math inline">\(t\)</span>. (a) The antiferromagnetic bands at <span class="math inline">\(U=4t\)</span> have a gap <span class="math inline">\(Um\)</span>, and the dashed grey bands are the crossing at <span class="math inline">\(U=0\)</span>. (b) The energy per site that the antiferromagnet gains over the uniform solution. The jump at <span class="math inline">\(4t\)</span> is where the uniform solution changes from the paramagnet to the fully polarized ferromagnet, and above it the curve follows <span class="math inline">\(2t^2/U\)</span>.</figcaption>
+</figure>
+<div class="quiz" data-correct="C">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>At large <span class="math inline">\(U\)</span> the energy difference <span class="math inline">\(E_\text{FM}-E_\text{AFM}\)</span> of the half-filled chain follows a <span class="math inline">\(1/U\)</span> law. What happens to it when <span class="math inline">\(U\)</span> doubles from <span class="math inline">\(20t\)</span> to <span class="math inline">\(40t\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>It doubles, since the exchange energy grows with <span class="math inline">\(U\)</span>.</li>
+<li>It stays constant.</li>
+<li>It is halved.</li>
+<li>It is divided by four.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>C</strong>.</p>
+<p>A <span class="math inline">\(1/U\)</span> law gives half the value when <span class="math inline">\(U\)</span> doubles. It comes from the exchange <span class="math inline">\(J=4t^2/U\)</span> of Section <a href="08-from-the-hubbard-dimer-to-the-heisenberg-model.html#sec-6-8">6.8</a>, since the hopping lifts the degeneracy only at second order.</p>
+</details>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> In the cell, <code>Us</code> runs from 20 to 60. The plot of <span class="math inline">\(E_\text{FE}-E_\text{AF}\)</span> falls as <span class="math inline">\(1/U\)</span>, and the points of the log-log plot follow a line of slope <span class="math inline">\(-1\)</span>. The product <span class="math inline">\(U(E_\text{FE}-E_\text{AF})\)</span> is close to <span class="math inline">\(4t^2\)</span> for the cell of two sites.</p>
+<div class="tryit-links">
+Notebook <code>session6.ipynb</code>, cell “The strongly interacting limit”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession6.ipynb">Binder</a>.
+</div>
 </div>
 
-  <nav class="pager"><a href="03-the-hubbard-model-and-mean-field-magnetism-revisited.html">6.3 The Hubbard model and mean-field magnetism, revisited</a><a href="05-competition-between-the-ferromagnet-and-the-antiferromagnet.html">6.5 Competition between the ferromagnet and the antiferromagnet</a></nav>
+  <nav class="pager"><a href="02-a-recap-of-symmetry-breaking-and-the-mean-field-philosophy.html">6.2 A recap of symmetry breaking and the mean-field philosophy</a><a href="06-the-stoner-threshold-as-a-criterion-for-magnetism.html">6.6 The Stoner threshold as a criterion for magnetism</a></nav>
 
 </main>
 </body>

@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -92,10 +93,56 @@
 <img src="../figures/s07f06_merapeps.svg" loading="lazy" alt="The two tensor networks beyond the chain, and what their geometry gives." />
 <figcaption><strong>Figure 7.6.</strong> The two tensor networks beyond the chain, and what their geometry gives. Left, the multi-scale entanglement renormalization ansatz. Its tensors are stacked in layers. Each layer first removes the short-range entanglement between neighbouring blocks with the disentanglers, the boxes, and then it combines two sites into one with the triangular isometries, so the network describes the state at longer and longer length scales and not at successive positions along a chain. A division of the system, the red plane, now cuts one bond in every layer instead of one bond in total, and this is how MERA can describe the logarithmically growing entropy <a href="#eq-7-12">(7.12)</a> of a critical chain, which an MPS with fixed bond dimension cannot reach. Right, projected entangled pair states, the direct 2D generalization of <a href="04-the-matrix-product-state-ansatz.html#eq-7-5">(7.5)</a>, with one tensor per lattice site that has a physical leg and four virtual bonds. The figure also shows the difficulty. There is no way to sweep along such a network one tensor at a time with the rest reduced to a simple environment, and the exact contraction of the network is itself a hard problem, which is why PEPS have no simple analogue of DMRG.</figcaption>
 </figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>A critical chain has <span class="math inline">\(S(\ell)=\tfrac c3\log\ell\)</span> with <span class="math inline">\(c=1\)</span>. By how much does <span class="math inline">\(S\)</span> grow when the block goes from <span class="math inline">\(\ell=10\)</span> to <span class="math inline">\(\ell=1000\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>By zero, since the entropy saturates.</li>
+<li>By about <span class="math inline">\(1.5\)</span>, which is <span class="math inline">\(\tfrac13\log100\)</span>.</li>
+<li>By about <span class="math inline">\(150\)</span>, since <span class="math inline">\(\ell\)</span> grows by a factor of <span class="math inline">\(100\)</span>.</li>
+<li>By about <span class="math inline">\(3\)</span>, which is <span class="math inline">\(\log 1000-\log 10\)</span>.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The difference is <span class="math inline">\(\tfrac13\log(1000/10)=\tfrac13\log100\approx1.5\)</span>. The growth is real but slow, and this is why MPS with a moderate <span class="math inline">\(M\)</span> still work for a critical chain of moderate length.</p>
+</details>
+</div>
+<div class="quiz" data-correct="C">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>A cut of a MERA crosses one bond in every layer, and the number of layers grows as <span class="math inline">\(\log\ell\)</span> for a block of size <span class="math inline">\(\ell\)</span>. What entropy can the cut hold?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>It is bounded by a constant, as in a gapped chain.</li>
+<li>It grows linearly with <span class="math inline">\(\ell\)</span>, as in a volume law.</li>
+<li>It can grow as <span class="math inline">\(\log\ell\)</span>, which is the critical behavior <a href="#eq-7-12">(7.12)</a>.</li>
+<li>It is zero, since the layers cancel.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>C</strong>.</p>
+<p>Each cut bond can hold at most <span class="math inline">\(\log M\)</span>, so the sum over the layers is of order <span class="math inline">\(\log\ell\)</span> times <span class="math inline">\(\log M\)</span>. An MPS has a single bond at the cut, and it cannot do this.</p>
+</details>
+</div>
 <p>This is also where the lecture of this year ends. In contrast with some previous editions of this course, the recording of this year stops after MERA and PEPS, and it does not continue with neural network quantum states. The single mention in Section <a href="03-storing-the-wave-function-as-the-main-bottleneck.html#sec-7-3">7.3</a> is all that we say about this topic in this session. The tensor-network methods built in Sections <a href="04-the-matrix-product-state-ansatz.html#sec-7-4">7.4</a> to <a href="#sec-7-11">7.11</a> are still important, since in session 10 we will use the same MPS, MERA and PEPS architectures directly as machine-learning classifiers, and we will come back to neural network quantum states in detail, from the point of view of machine learning.</p>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb"><code>session7.ipynb</code></a>, “The entanglement entropy as a signal for phase transitions” (Challenge)</p>
 <p>In this exercise you follow the entanglement entropy of the ground state of the transverse-field Ising chain while you change the transverse field across its quantum critical point, using the MPS methods of <code>dmrgpy</code>. Away from criticality you should see the area-law saturation of Section <a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#sec-7-8">7.8</a>. Close to the transition, you should see that the entropy does not saturate, as predicted by <a href="#eq-7-12">(7.12)</a>. The quiz also asks which regime is the hardest for MPS, and this question asks you to connect back to the reason why MERA exists.</p>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> Run the loop over <code>Bx</code> for <code>L=40</code> and find the field where the entropy has its maximum. In these units the transition of the transverse-field Ising chain is at <span class="math inline">\(B_x=0.5\)</span>, so the peak should sit close to it. Repeat for <code>L=20</code> and see how the peak changes.</p>
+<div class="tryit-links">
+Notebook <code>session7.ipynb</code>, cell “The entanglement entropy as a signal for phase transitions”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession7.ipynb">Binder</a>.
+</div>
 </div>
 
   <nav class="pager"><a href="10-the-variational-principle-and-dmrg-for-the-ground-state.html">7.10 The variational principle and DMRG for the ground state</a><a href="12-closing-summary.html">7.12 Closing summary</a></nav>

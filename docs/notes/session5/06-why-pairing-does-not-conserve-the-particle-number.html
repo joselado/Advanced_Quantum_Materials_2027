@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -83,10 +84,67 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="on" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 5. Superconductivity, Nambu Representation and Majorana Physics</a></p>
 <h1 id="sec-5-6"><span class="num">5.6</span> Why pairing does not conserve the particle number</h1>
-<p>Let us now show in an exact way the statement from session 1 that the electron number fluctuates, instead of only stating it. We take the eigenvalue equation <span class="math inline">\(H_{\text{MF}}|G\rangle = E|G\rangle\)</span> for the Hamiltonian in <a href="05-the-mean-field-pairing-hamiltonian-in-detail.html#eq-5-4">(5.4)</a>, and we expand the ground state in the occupation-number basis, which is the Fock basis, ordered by the total particle number <span class="math inline">\(N\)</span>, as <span class="math inline">\(|G\rangle = \sum_N a_N |N\rangle\)</span>. The hopping and chemical-potential terms in <a href="05-the-mean-field-pairing-hamiltonian-in-detail.html#eq-5-4">(5.4)</a> conserve <span class="math inline">\(N\)</span> exactly, since each of them has one <span class="math inline">\(c^\dagger\)</span> and one <span class="math inline">\(c\)</span>. The pairing terms <span class="math inline">\(\Delta_n
+<p>Let us now show in an exact way the statement from session 1 that the electron number fluctuates, instead of only stating it. We take the eigenvalue equation <span class="math inline">\(H_{\text{MF}}|G\rangle = E|G\rangle\)</span> for the Hamiltonian in <a href="04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html#eq-5-4">(5.4)</a>, and we expand the ground state in the occupation-number basis, which is the Fock basis, ordered by the total particle number <span class="math inline">\(N\)</span>, as <span class="math inline">\(|G\rangle = \sum_N a_N |N\rangle\)</span>. The hopping and chemical-potential terms in <a href="04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html#eq-5-4">(5.4)</a> conserve <span class="math inline">\(N\)</span> exactly, since each of them has one <span class="math inline">\(c^\dagger\)</span> and one <span class="math inline">\(c\)</span>. The pairing terms <span class="math inline">\(\Delta_n
 c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger\)</span> and <span class="math inline">\(\Delta_n^* c_{n\downarrow}c_{n\uparrow}\)</span> change <span class="math inline">\(N\)</span> by <span class="math inline">\(+2\)</span> and <span class="math inline">\(-2\)</span> respectively. The key point is that <em>no term in <span class="math inline">\(H_{\text{MF}}\)</span> ever changes <span class="math inline">\(N\)</span> by <span class="math inline">\(\pm 1\)</span></em>. So <span class="math inline">\(H_{\text{MF}}\)</span> only connects Fock states whose particle numbers differ by an even integer. For <span class="math inline">\(|G\rangle\)</span> to be an eigenstate, <span class="math inline">\(a_N\)</span> can then be nonzero only inside one fixed parity class of <span class="math inline">\(N\)</span>, either all even or all odd. However, this says nothing about which even or odd values of <span class="math inline">\(N\)</span> appear, and in general <span class="math inline">\(a_N \ne 0\)</span> for several values of <span class="math inline">\(N\)</span> in that class, for example <span class="math inline">\(N=0,2,4,\dots\)</span> at the same time. The mean-field ground state is therefore <em>not</em> an eigenstate of the total number operator <span class="math inline">\(\hat N\)</span>, even though it has a well-defined fermion parity. This is the exact meaning of the statement that a superconductor has a fluctuating electron number but a fixed parity, which session 1 pointed out in its discussion of the superposition puzzle of the quantum dot (session 1, section <a href="../session1/05-a-warm-up-in-first-quantization-and-the-puzzle-that-breaks-it.html#sec-1-5">1.5</a>).</p>
+<figure class="again">
+<img src="../figures/s01f01_fockspace.svg" loading="lazy" alt="Eight many-body states of three sites ordered in four columns by the particle number N from 0 to 3." />
+<figcaption><strong><a href="../session1/08-first-versus-second-quantization-for-the-same-problem.html#fig:s01:fockspace">Figure 1.1</a>, shown again.</strong> The Fock space of three sites, in columns of fixed particle number <span class="math inline">\(N\)</span>. The pairing terms of <a href="04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html#eq-5-4">(5.4)</a> connect a column with the one two steps away, and no term connects neighboring columns.</figcaption>
+</figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>The mean-field ground state of <a href="04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html#eq-5-4">(5.4)</a> is measured many times, and the total electron number is read each time. What do we find?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>The same <span class="math inline">\(N\)</span> every time, since <span class="math inline">\(\hat N\)</span> commutes with the hopping.</li>
+<li>Different even values from run to run, or different odd values, but never a mix of both.</li>
+<li>Even and odd values mixed at random.</li>
+<li>No result, since <span class="math inline">\(\hat N\)</span> is not defined in a superconductor.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>No term of <span class="math inline">\(H_\text{MF}\)</span> changes <span class="math inline">\(N\)</span> by one, so the ground state lives in one parity class. The pairing terms change <span class="math inline">\(N\)</span> by two, so several values of <span class="math inline">\(N\)</span> of that class appear with some weight, and the number fluctuates.</p>
+</details>
+</div>
+<h1 class="sec-next" id="sec-5-7"><span class="num">5.7</span> The gauge transformation in explicit form</h1>
+<p>We already wrote the gauge transformation in second quantization in session 1 (eq. <a href="../session1/14-worked-example-2-magnetism.html#eq-1-10">1.10</a>), <span class="math inline">\(c \to
+c\, e^{i\varphi}\)</span>, <span class="math inline">\(c^\dagger \to c^\dagger e^{-i\varphi}\)</span>. It is the second-quantized version of the statement that the phase of a first-quantized wave function has no physical meaning. Let us now check explicitly which terms of a realistic Hamiltonian stay invariant under this transformation and which do not. Ordinary hopping <span class="math inline">\(c_i^\dagger c_j\)</span> is invariant, since the two phases cancel, as <span class="math inline">\(c_i^\dagger c_j \to
+e^{-i\varphi}c_i^\dagger \cdot e^{i\varphi} c_j = c_i^\dagger c_j\)</span>. The same cancellation protects essentially every other bilinear term that we have seen so far, such as magnetic terms that depend on spin, spin-orbit coupling and any density-density interaction term <span class="math inline">\(c_i^\dagger c_i c_j^\dagger
+c_j\)</span>, because all of them are built from the same number of creation and annihilation operators, which pair up index by index.</p>
+<p>The pairing term is the only exception. Under the same transformation,</p>
+<p><span id="eq-5-5" class="eq"><span class="math display">\[\Delta\, c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger \;\longrightarrow\; \Delta\, e^{-2i\varphi}\, c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger, \tag{5.5}\]</span></span></p>
+<p>it gets the phase <em>twice</em>, because both operators are creation operators and not one creation and one annihilation operator. No choice of <span class="math inline">\(\varphi \ne 0 \pmod \pi\)</span> leaves this term invariant, so a Hamiltonian with a nonzero <span class="math inline">\(\Delta\)</span> is not gauge invariant term by term. In an equivalent way, if we write the transformation as acting on the order parameter itself, <span class="math inline">\(\Delta \to \Delta\,
+e^{2i\varphi}\)</span>, then any fixed phase of <span class="math inline">\(\Delta\)</span> is a choice that the ground state makes spontaneously, which is the signature of continuous symmetry breaking. This is the same logic that session 1 used to show the gauge symmetry breaking of eq. <a href="../session1/14-worked-example-2-magnetism.html#eq-1-9">1.9</a>, now applied in full detail, and we have now seen why the factor is <span class="math inline">\(2\varphi\)</span> and not <span class="math inline">\(\varphi\)</span>.</p>
+<figure class="again panel">
+<img src="../figures/panel/s05f01_flux_b.svg" loading="lazy" alt="Arrows around a closed contour that show the phase of the condensate at several points." />
+<figcaption><strong><a href="02-superconductivity-as-a-macroscopic-quantum-phenomenon.html#fig:s05:flux">Figure 5.1</a>, one panel shown again.</strong> The condensate phase at points around the ring. The phase of the pair amplitude <span class="math inline">\(\Delta\)</span> is the same kind of variable, and the superconducting ground state chooses one value of it.</figcaption>
+</figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>Under the gauge transformation of this section the pairing term gets the phase <span class="math inline">\(e^{-2i\varphi}\)</span>. For which angle does <span class="math inline">\(\Delta\, c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger\)</span> stay unchanged?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(\varphi=\pi/2\)</span></li>
+<li><span class="math inline">\(\varphi=\pi\)</span></li>
+<li><span class="math inline">\(\varphi=\pi/4\)</span></li>
+<li>Every <span class="math inline">\(\varphi\)</span>, since the term becomes Hermitian once we add its conjugate.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The factor <span class="math inline">\(e^{-2i\varphi}\)</span> equals one only for <span class="math inline">\(\varphi=0\)</span> and <span class="math inline">\(\pi\)</span>. At <span class="math inline">\(\varphi=\pi/2\)</span> it equals <span class="math inline">\(-1\)</span>, so <span class="math inline">\(\Delta\)</span> changes sign. A generic angle moves <span class="math inline">\(\Delta\)</span> to another phase, and this is why the ground state has to choose one.</p>
+</details>
+</div>
 
-  <nav class="pager"><a href="05-the-mean-field-pairing-hamiltonian-in-detail.html">5.5 The mean-field pairing Hamiltonian in detail</a><a href="07-the-gauge-transformation-in-explicit-form.html">5.7 The gauge transformation in explicit form</a></nav>
+  <nav class="pager"><a href="04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html">5.4 The interacting Hamiltonian and the origin of attractive interactions</a><a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html">5.8 The Nambu spinor and the Bogoliubov-de Gennes Hamiltonian</a></nav>
 
 </main>
 </body>

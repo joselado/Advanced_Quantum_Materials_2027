@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -86,7 +87,31 @@
 <p>Before we start with the mathematics, let us say a few words about why this subject is relevant. Every period of human technology has been named after the material that defined it. There was the stone age, the copper age and, very recently, the silicon age, which gave rise to the whole information revolution in which we live now. If we look ahead, it is plausible that the next period will be a <em>quantum</em> age, in which our technology directly uses quantum mechanical behavior at microscopic scales instead of avoiding it. Quantum materials are the physical platform for this change, since they are the systems that realize quantum matter in the lab.</p>
 <p>At the end of this session we should be able to describe what a quantum material is and to explain why we need quantum mechanics, and not classical physics, to understand it. We should also be able to work with the basics of second quantization, and to rationalize why mean-field theory gives rise to spontaneous symmetry breaking.</p>
 <p>Quantum materials are already the basis of technologies that we use today. Superconductors make MRI machines possible, since they generate the very large magnetic fields that nuclear magnetic resonance needs, and semiconductors are the basis of solar cells, on which a large part of our plan for renewable energy depends. In the future, almost every serious platform for quantum computing, whether it is built from superconductors, semiconductors or a combination of the two, is in the end a quantum materials problem. Let us also mention briefly that this is connected to several of the UN Sustainable Development Goals. Quantum computing is connected to goals 8 and 9, which are economic growth, industry and innovation. Solar energy and superconducting or topological electronics with low power consumption are connected to goals 7 and 13, which are clean energy and climate action. The international and cross-disciplinary character of the field is connected to goal 17, which is partnerships. None of this is mathematics, but it is good to remember why we do the mathematics.</p>
-<p>In the course we will see two kinds of examples, and it is useful to compare them. Semiconductors are in some sense the easy case, since their properties follow from single-particle physics, which you have likely seen already in an earlier course on materials. Superconductors are the harder case, because to understand them we have to account for how electrons interact with each other collectively, and this is the many-body formalism that we start to build in this session.</p>
+<p>In the course we will see two kinds of examples, and it is useful to compare them. Semiconductors are in some sense the easy case, since their properties follow from single-particle physics, which you have likely seen already in an earlier course on materials. Superconductors are the harder case, because to understand them we have to account for how electrons interact with each other collectively, and this is the many-body formalism that we start to build in this session. The spectra in <a href="#sch:s01:gap_two_origins">Schematic 1.1</a> show a gap of each kind.</p>
+<figure id="sch:s01:gap_two_origins" class="schematic">
+<img src="../figures/web/session01/gap_two_origins.svg" loading="lazy" alt="Two band diagrams with a gap at zero energy, one for a semiconductor and one for a superconductor." />
+<figcaption><strong>Schematic 1.1.</strong> Two gaps that look alike. On the left, a chain with two different sites per cell has a gap <span class="math inline">\(2m\)</span>, which single electrons already feel. On the right, the quasiparticles of a superconductor have a gap <span class="math inline">\(2\Delta\)</span>, which exists only because the electrons pair. The grey lines are the bands without the gap.</figcaption>
+</figure>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>Both gaps in the figure remove the states around <span class="math inline">\(E=0\)</span>. Which statement about their origin is correct?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>The gap of the semiconductor follows from the single-particle Hamiltonian of the lattice, while the superconducting gap needs the electrons to pair collectively.</li>
+<li>Both gaps follow from a single-particle Hamiltonian, and they differ only in their size.</li>
+<li>The gap of the semiconductor needs interactions between the electrons, and the superconducting gap does not.</li>
+<li>Both gaps appear only after second quantization is used, and they have the same origin.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>We can diagonalize the lattice of the semiconductor with one electron at a time, so its gap is a single-particle result. The superconducting gap exists because many electrons pair together, and this is why we need the many-body formalism of this session.</p>
+</details>
+</div>
 
   <nav class="pager"><a href="index.html">Session 1</a><a href="02-a-tour-of-the-quantum-materials-we-will-meet.html">1.2 A tour of the quantum materials we will meet</a></nav>
 

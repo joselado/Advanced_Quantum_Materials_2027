@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -87,8 +88,55 @@
 <p><span id="eq-7-1" class="eq"><span class="math display">\[H = \sum_{ij} t_{ij}\, c_i^\dagger c_j \;+\; \sum_{ijkl} V_{ijkl}\, c_i^\dagger c_j c_k^\dagger c_l. \tag{7.1}\]</span></span></p>
 <p>The kinetic term is free and can be solved exactly, and the interaction term in general cannot. In all sessions so far we treated <a href="#eq-7-1">(7.1)</a> in the same way. We decoupled the quartic term with mean field, we replaced it with an effective bilinear Hamiltonian, and we looked at which symmetry is broken by the resulting order parameter. This strategy defines what we can call <strong>weakly correlated matter</strong>. In this sense, magnets, superconductors and charge density waves are all single-particle physics, once we find the right symmetry-broken background.</p>
 <p>In this session we are in the opposite regime, which is <strong>strongly correlated matter</strong>. Here the interactions are so strong that no effective single-particle Hamiltonian gives the ground state, for any choice of the decoupling. Quantum spin liquids and fractional Chern insulators are our two main examples, and more generally, the same problem appears when we want an accurate phase diagram of a truly interacting model. In both cases we cannot solve the problem with an ansatz for the broken symmetry. Instead, we need something close to an exact numerical solution, or at least a controlled approximation that does not assume symmetry breaking from the start. This is what tensor networks give us.</p>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>A quantum spin liquid has no order parameter. What does a self-consistent mean-field calculation give for it?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>A zero order parameter, which tells us nothing about the true ground state.</li>
+<li>A small but finite magnetization that grows with the system size.</li>
+<li>The exact ground state energy, but not the wave function.</li>
+<li>A gap that closes at the critical interaction.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>The mean-field equations look for a symmetry-broken solution. If the true state has none, the self-consistent loop converges to zero, and zero is a valid but empty answer.</p>
+</details>
+</div>
+<h1 class="sec-next" id="sec-7-2"><span class="num">7.2a</span> Fermions and spins, two languages for the same physics</h1>
+<p>Before we build the tool, let us point out something that was present in the last sessions without being said explicitly. We have used two families of many-body Hamiltonians that look different. The first family is the fermionic Hamiltonians of the form <a href="#eq-7-1">(7.1)</a>, with a general two-body interaction <span class="math inline">\(V_{ijkl}\)</span>, where density-density interactions are only a special case, which we used in sessions 1 to 5. The second family is the spin Hamiltonians, mainly the Heisenberg model <span class="math inline">\(H =
+\sum_{ij} J_{ij}\, \mathbf{S}_i \cdot \mathbf{S}_j\)</span>, which we used for the magnons of session 6 and which we use again in this session for quantum spin liquids. These are not two different topics. They are the same physics written in two different languages, and in this section we make this translation precise.</p>
+<figure id="sch:s07:two_languages" class="schematic">
+<img src="../figures/web/session07/two_languages.svg" loading="lazy" alt="Three sites drawn as fermions, empty or full, above the same three sites drawn as spin arrows, with the rules of anticommutation and commutation at the right." />
+<figcaption><strong>Schematic 7.1.</strong> On one site the fermion and the spin-1/2 are the same object, since an empty site is a down spin and an occupied site is an up spin. Between two sites the two languages differ in one sign, because fermion operators anticommute and spin operators commute. Look at the right side of the figure, since this is the sign that the string of the next section has to carry.</figcaption>
+</figure>
+<div class="quiz" data-correct="C">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>We replace <span class="math inline">\(c_1^\dagger\)</span> and <span class="math inline">\(c_2^\dagger\)</span> of two different sites by <span class="math inline">\(S_1^+\)</span> and <span class="math inline">\(S_2^+\)</span> with no extra factor. What goes wrong?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>The spin operators change the number of states on each site.</li>
+<li>The operator <span class="math inline">\(S^z_i=n_i-\tfrac12\)</span> gets the wrong sign.</li>
+<li>The spin operators commute while the fermion operators anticommute, so the relative sign between sites is wrong.</li>
+<li>The resulting Hamiltonian is no longer Hermitian.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>C</strong>.</p>
+<p>On a single site the replacement is exact, as the figure shows. The only difference appears between two sites, where the commutator and the anticommutator differ, and this is the sign that the Jordan-Wigner string will carry.</p>
+</details>
+</div>
 
-  <nav class="pager"><a href="index.html">Session 7</a><a href="02-fermions-spins-and-the-jordan-wigner-transformation.html">7.2 Fermions, spins and the Jordan-Wigner transformation</a></nav>
+  <nav class="pager"><a href="index.html">Session 7</a><a href="02b-the-jordan-wigner-transformation.html">7.2b The Jordan-Wigner transformation</a></nav>
 
 </main>
 </body>

@@ -17,37 +17,40 @@
    "file": "02-a-recap-of-symmetry-breaking-and-the-mean-field-philosophy.md",
    "id": "sec-6-2",
    "number": "6.2",
-   "title": "A recap of symmetry breaking and the mean-field philosophy"
-  },
-  {
-   "file": "03-the-hubbard-model-and-mean-field-magnetism-revisited.md",
-   "id": "sec-6-3",
-   "number": "6.3",
-   "title": "The Hubbard model and mean-field magnetism, revisited"
+   "title": "A recap of symmetry breaking and the mean-field philosophy",
+   "also": [
+    {
+     "id": "sec-6-3",
+     "number": "6.3",
+     "title": "The Hubbard model and mean-field magnetism, revisited"
+    }
+   ]
   },
   {
    "file": "04-exchange-splitting-and-antiferromagnetic-order-in-numerical-mean-field-theory.md",
    "id": "sec-6-4",
    "number": "6.4",
-   "title": "Exchange splitting and antiferromagnetic order in numerical mean-field theory"
-  },
-  {
-   "file": "05-competition-between-the-ferromagnet-and-the-antiferromagnet.md",
-   "id": "sec-6-5",
-   "number": "6.5",
-   "title": "Competition between the ferromagnet and the antiferromagnet"
+   "title": "Exchange splitting and antiferromagnetic order in numerical mean-field theory",
+   "also": [
+    {
+     "id": "sec-6-5",
+     "number": "6.5",
+     "title": "Competition between the ferromagnet and the antiferromagnet"
+    }
+   ]
   },
   {
    "file": "06-the-stoner-threshold-as-a-criterion-for-magnetism.md",
    "id": "sec-6-6",
    "number": "6.6",
-   "title": "The Stoner threshold as a criterion for magnetism"
-  },
-  {
-   "file": "07-the-strongly-localized-limit-where-mean-field-breaks-down.md",
-   "id": "sec-6-7",
-   "number": "6.7",
-   "title": "The strongly localized limit, where mean field breaks down"
+   "title": "The Stoner threshold as a criterion for magnetism",
+   "also": [
+    {
+     "id": "sec-6-7",
+     "number": "6.7",
+     "title": "The strongly localized limit, where mean field breaks down"
+    }
+   ]
   },
   {
    "file": "08-from-the-hubbard-dimer-to-the-heisenberg-model.md",
@@ -59,37 +62,40 @@
    "file": "09-the-heisenberg-model-on-a-general-lattice.md",
    "id": "sec-6-9",
    "number": "6.9",
-   "title": "The Heisenberg model on a general lattice"
-  },
-  {
-   "file": "10-bipartite-order-versus-geometric-frustration.md",
-   "id": "sec-6-10",
-   "number": "6.10",
-   "title": "Bipartite order versus geometric frustration"
+   "title": "The Heisenberg model on a general lattice",
+   "also": [
+    {
+     "id": "sec-6-10",
+     "number": "6.10",
+     "title": "Bipartite order versus geometric frustration"
+    }
+   ]
   },
   {
    "file": "11-superexchange-as-the-origin-of-ferromagnetic-coupling.md",
    "id": "sec-6-11",
    "number": "6.11",
-   "title": "Superexchange as the origin of ferromagnetic coupling"
-  },
-  {
-   "file": "12-anisotropic-exchange-with-dzyaloshinskii-moriya-ising-and-kitaev-terms.md",
-   "id": "sec-6-12",
-   "number": "6.12",
-   "title": "Anisotropic exchange with Dzyaloshinskii-Moriya, Ising and Kitaev terms"
+   "title": "Superexchange as the origin of ferromagnetic coupling",
+   "also": [
+    {
+     "id": "sec-6-12",
+     "number": "6.12",
+     "title": "Anisotropic exchange with Dzyaloshinskii-Moriya, Ising and Kitaev terms"
+    }
+   ]
   },
   {
    "file": "13-magnons-as-fluctuations-of-the-order-parameter.md",
    "id": "sec-6-13",
    "number": "6.13",
-   "title": "Magnons as fluctuations of the order parameter"
-  },
-  {
-   "file": "14-the-holstein-primakoff-transformation.md",
-   "id": "sec-6-14",
-   "number": "6.14",
-   "title": "The Holstein-Primakoff transformation"
+   "title": "Magnons as fluctuations of the order parameter",
+   "also": [
+    {
+     "id": "sec-6-14",
+     "number": "6.14",
+     "title": "The Holstein-Primakoff transformation"
+    }
+   ]
   },
   {
    "file": "15-magnon-dispersions-in-ferromagnets-and-antiferromagnets.md",
@@ -108,6 +114,32 @@
    "id": "sec-6-17",
    "number": "6.17",
    "title": "Closing summary"
+  }
+ ],
+ "redirects": [
+  {
+   "from": "03-the-hubbard-model-and-mean-field-magnetism-revisited.html",
+   "to": "02-a-recap-of-symmetry-breaking-and-the-mean-field-philosophy.html#sec-6-3"
+  },
+  {
+   "from": "05-competition-between-the-ferromagnet-and-the-antiferromagnet.html",
+   "to": "04-exchange-splitting-and-antiferromagnetic-order-in-numerical-mean-field-theory.html#sec-6-5"
+  },
+  {
+   "from": "07-the-strongly-localized-limit-where-mean-field-breaks-down.html",
+   "to": "06-the-stoner-threshold-as-a-criterion-for-magnetism.html#sec-6-7"
+  },
+  {
+   "from": "10-bipartite-order-versus-geometric-frustration.html",
+   "to": "09-the-heisenberg-model-on-a-general-lattice.html#sec-6-10"
+  },
+  {
+   "from": "12-anisotropic-exchange-with-dzyaloshinskii-moriya-ising-and-kitaev-terms.html",
+   "to": "11-superexchange-as-the-origin-of-ferromagnetic-coupling.html#sec-6-12"
+  },
+  {
+   "from": "14-the-holstein-primakoff-transformation.html",
+   "to": "13-magnons-as-fluctuations-of-the-order-parameter.html#sec-6-14"
   }
  ]
 }

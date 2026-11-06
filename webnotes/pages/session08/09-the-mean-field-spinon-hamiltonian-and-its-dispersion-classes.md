@@ -21,3 +21,29 @@ When we diagonalize [(8.15)](#eq-8-15) on a given lattice, we obtain a real spin
 
 Build the spinon tight-binding Hamiltonian [(8.15)](#eq-8-15) on the triangular lattice and look at how its Fermi surface changes when the ratio of hopping amplitudes $t_2/t_1$ changes. In the quiz you repeat this on the square and kagome lattices, and you explain why the effective spinon model must be at half filling. The reason is the single-occupancy constraint [(8.11)](#eq-8-11) at the mean-field level.
 :::
+
+::: quiz
+Why must the spinon tight-binding model [(8.15)](#eq-8-15) be studied at half filling?
+
+- [x] There is one $f$ fermion on every site, which is the constraint [(8.11)](#eq-8-11) on average.
+- [ ] The spinons have charge.
+- [ ] The model has particle-hole symmetry only at half filling.
+- [ ] A Fermi surface exists only at half filling.
+
+Each site holds exactly one $f$ fermion, which is one particle for two spin states. This gives half filling of the spinon bands.
+:::
+
+::: quiz
+We take the same $\chi_{ij}$ for spin up and spin down. What does this choice keep exact?
+
+- [ ] The Fermi surface of the spinons.
+- [x] $\langle\mathbf S_i\rangle=0$, so the state is time-reversal symmetric.
+- [ ] The charge of the spinons.
+- [ ] The value of the exchange coupling $J_{ij}$.
+
+The two spin species see the same band, so no spin direction is selected. The state has zero magnetization by construction.
+:::
+
+::: {.tryit notebook="session8.ipynb" cell="Spinon Fermi surface in gapless quantum spin liquids"}
+Change the values in `t2s` and look at how the spinon Fermi surface of the triangular lattice changes. Then replace `triangular_lattice` by `square_lattice` and see which shape the Fermi surface has at $t_2=0$ and half filling.
+:::

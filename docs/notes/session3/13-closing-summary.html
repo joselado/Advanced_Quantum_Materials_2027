@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -83,17 +84,61 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="on" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 3. Topological Band Structure Theory</a></p>
 <h1 id="sec-3-13"><span class="num">3.13</span> Closing summary</h1>
+<figure class="again">
+<img src="../figures/s03f02_bulkboundary.svg" loading="lazy" alt="Three rows that show a Hamiltonian that changes in space, the local gap that closes at the interface and the gapless state bound to it." />
+<figcaption><strong><a href="07-what-topology-means-for-a-hamiltonian-and-the-bulk-boundary-correspondence.html#fig:s03:bulkboundary">Figure 3.2</a>, shown again.</strong> The argument of the bulk-boundary correspondence in one picture. A quantized invariant cannot change continuously, so an interface between two bulk phases with different invariants has a gapless state.</figcaption>
+</figure>
 <ul>
 <li><p>The Hall conductivity, computed with linear response theory from the wavefunction expansion <a href="02-linear-response-theory-and-how-a-measurement-reads-the-wavefunctions.html#eq-3-1">(3.1)</a>, becomes an integral of the Berry curvature over the Brillouin zone. For any gapped system it is quantized to an integer, the <strong>Chern number</strong>, so that <span class="math inline">\(\sigma_{xy} = C\,e^2/h\)</span> <a href="05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#eq-3-4">(3.4)</a>.</p></li>
 <li><p>The quantum Hall state realizes this with flat Landau-level bands, and each of them gives Chern number <span class="math inline">\(1\)</span>. The bulk gap forces the current onto <strong>chiral</strong> edge states, with one direction per edge, which is why they cannot backscatter and why the plateaus are quantized so sharply, as we saw in Section <a href="06-landau-levels-and-chiral-edge-states-in-the-quantum-hall-state.html#sec-3-6">3.6</a>.</p></li>
 <li><p><strong>Topology</strong> classifies Hamiltonians by whether their band structures can be continuously deformed into each other without closing the gap. The Chern number is the invariant of this classification, and an interface between regions with different Chern numbers must have a gapless state, which is the general <strong>bulk-boundary correspondence</strong> of Section <a href="07-what-topology-means-for-a-hamiltonian-and-the-bulk-boundary-correspondence.html#sec-3-7">3.7</a>.</p></li>
-<li><p>The <strong>SSH model</strong> is the minimal one-dimensional realization. It has a <span class="math inline">\(2\times 2\)</span> Bloch Hamiltonian <a href="09-the-ssh-model-as-a-minimal-one-dimensional-topological-insulator.html#eq-3-5">(3.5)</a> whose lower-band Zak phase <a href="09-the-ssh-model-as-a-minimal-one-dimensional-topological-insulator.html#eq-3-6">(3.6)</a> is <span class="math inline">\(0\)</span> in the trivial phase or <span class="math inline">\(\pi\)</span> in the topological phase, depending on whether the intracell hopping is larger or smaller than the intercell hopping, and the topological phase has protected zero-energy modes at the ends of the chain.</p></li>
+<li><p>The <strong>SSH model</strong> is the minimal one-dimensional realization. It has a <span class="math inline">\(2\times 2\)</span> Bloch Hamiltonian <a href="09c-the-ssh-model-the-bloch-hamiltonian-and-the-zak-phase.html#eq-3-5">(3.5)</a> whose lower-band Zak phase <a href="09c-the-ssh-model-the-bloch-hamiltonian-and-the-zak-phase.html#eq-3-6">(3.6)</a> is <span class="math inline">\(0\)</span> in the trivial phase or <span class="math inline">\(\pi\)</span> in the topological phase, depending on whether the intracell hopping is larger or smaller than the intercell hopping, and the topological phase has protected zero-energy modes at the ends of the chain.</p></li>
 <li><p>A lattice with a <strong>massive Dirac equation</strong> <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#eq-3-7">(3.7)</a> gives Chern number <span class="math inline">\(\tfrac12\,
   \mathrm{sgn}(m)\,\mathrm{sgn}(\lambda)\)</span> for each Dirac point <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#eq-3-8">(3.8)</a>. Whether the contributions of Dirac points related by time reversal cancel or add depends only on how the mass term transforms under time reversal. This is what separates a trivial gap, from a staggered sublattice potential, from a real <strong>Chern insulator</strong>, which is the Haldane model. This is the answer to the opening question of the session, which was what happens when we open a gap in the Dirac cone of the honeycomb lattice.</p></li>
 <li><p>If we put together two copies of <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#eq-3-7">(3.7)</a> with opposite masses, one for each spin, time-reversal symmetry is preserved (<span class="math inline">\(C=0\)</span>) and the spin Chern number <span class="math inline">\(C_s=\pm2\)</span> stays non-trivial <a href="11-quantum-spin-hall-insulators.html#eq-3-9">(3.9)</a>. This is the <strong>quantum spin Hall insulator</strong>, with helical edge states that are protected by Kramers degeneracy and not by a broken symmetry.</p></li>
 <li><p>The same invariants apply beyond electrons, to magnons and spinons in sessions 6 and 8, and also beyond quantum mechanics, to any system with a dispersion relation.</p></li>
 </ul>
 <p>In the next session we come back to the flat-band case from session 2 and study it in detail. We will see the full quantum Hall effect, Landau levels from first principles, and the fractional quantum Hall state.</p>
+<div class="quiz" data-correct="D">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>What decides whether the two Dirac points of the honeycomb lattice give Chern numbers that cancel or that add?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>The lattice constant.</li>
+<li>The size of the mass.</li>
+<li>The temperature.</li>
+<li>How the mass term transforms under time reversal.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>D</strong>.</p>
+<p>A staggered potential is even under time reversal and gives the same mass at both valleys, so the half-integers cancel. The Haldane coupling is odd under time reversal, so the half-integers add.</p>
+</details>
+</div>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>Which symmetry protects the helical edge states of the quantum spin Hall insulator?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>Time-reversal symmetry, through the Kramers degeneracy.</li>
+<li>Particle-hole symmetry.</li>
+<li>Spin conservation.</li>
+<li>Translational symmetry and gauge invariance.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>Translational symmetry and gauge invariance protect the Chern number. The helical edge is protected by time reversal, and it holds even when spin is not conserved.</p>
+</details>
+</div>
 
   <nav class="pager"><a href="12-topology-beyond-electrons.html">3.12 Topology beyond electrons</a><a href="../session4/index.html">Session 4. Electrons in magnetic fields, the quantum Hall effect and Landau levels</a></nav>
 

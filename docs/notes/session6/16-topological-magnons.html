@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -85,10 +86,60 @@
 <h1 id="sec-6-16"><span class="num">6.16</span> Topological magnons</h1>
 <p>Once magnons have a real band structure, which is a dispersion <span class="math inline">\(E(\mathbf k)\)</span> over the Brillouin zone, we can ask about <em>magnon</em> bands the same question that we have already asked twice about <em>electronic</em> bands. Can this band structure have a nontrivial topological invariant? To answer it, we use again the Chern number of sessions 3 and 4, where the Berry curvature <span class="math inline">\(\Omega(\mathbf k)\)</span> of a Bloch band is integrated over the Brillouin zone and gives an integer,</p>
 <p><span id="eq-6-10" class="eq"><span class="math display">\[C = \frac{1}{2\pi}\int_\text{BZ} \Omega(\mathbf k)\, d^2k, \tag{6.10}\]</span></span></p>
-<p>and this is the third time that we apply it, now to the bosonic Bogoliubov Hamiltonian of Section <a href="15-magnon-dispersions-in-ferromagnets-and-antiferromagnets.html#sec-6-15">6.15</a> instead of an electronic tight-binding Hamiltonian. We add to the plain Heisenberg exchange a spin-orbit coupling of the Dzyaloshinskii-Moriya type of Section <a href="12-anisotropic-exchange-with-dzyaloshinskii-moriya-ising-and-kitaev-terms.html#sec-6-12">6.12</a>. This term plays the same role as the complex second-neighbor hopping of the Haldane model for electrons in session 4. It introduces complex phases in the magnon hopping amplitudes, which can open a gap in the magnon band structure at finite energy and give the bands on both sides of this gap a nonzero Chern number <a href="#eq-6-10">(6.10)</a>. When we put such a topological magnon Hamiltonian on a ribbon, the bulk-boundary correspondence guarantees chiral magnon edge modes inside the gap. These modes propagate in only one direction along each edge, and they are the magnon analogue of the chiral electronic edge states of a Chern insulator. They carry spin and energy and not charge, but they are topologically protected in the same sense as their electronic counterparts. It is the same tool that we used for electrons in sessions 3 and 4, now applied to magnon bands.</p>
+<p>and this is the third time that we apply it, now to the bosonic Bogoliubov Hamiltonian of Section <a href="15-magnon-dispersions-in-ferromagnets-and-antiferromagnets.html#sec-6-15">6.15</a> instead of an electronic tight-binding Hamiltonian. We add to the plain Heisenberg exchange a spin-orbit coupling of the Dzyaloshinskii-Moriya type of Section <a href="11-superexchange-as-the-origin-of-ferromagnetic-coupling.html#sec-6-12">6.12</a>. This term plays the same role as the complex second-neighbor hopping of the Haldane model for electrons in session 4. It introduces complex phases in the magnon hopping amplitudes, which can open a gap in the magnon band structure at finite energy and give the bands on both sides of this gap a nonzero Chern number <a href="#eq-6-10">(6.10)</a>. When we put such a topological magnon Hamiltonian on a ribbon, the bulk-boundary correspondence guarantees chiral magnon edge modes inside the gap. These modes propagate in only one direction along each edge, and they are the magnon analogue of the chiral electronic edge states of a Chern insulator. They carry spin and energy and not charge, but they are topologically protected in the same sense as their electronic counterparts. It is the same tool that we used for electrons in sessions 3 and 4, now applied to magnon bands.</p>
+<figure class="again">
+<img src="../figures/s03f01_chiraledge.svg" loading="lazy" alt="A sample with arrows that skip along the edge in one direction on each edge, and an impurity that the edge mode goes around." />
+<figcaption><strong><a href="../session3/06-landau-levels-and-chiral-edge-states-in-the-quantum-hall-state.html#fig:s03:chiraledge">Figure 3.1</a>, shown again.</strong> The chiral edge states of a Chern insulator, seen from above. The topological magnon bands have the same edge structure, with spin and energy carried by the magnons instead of charge.</figcaption>
+</figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>A magnon band gap has bands with Chern numbers <span class="math inline">\(\pm1\)</span>. What do we find on the edges of a ribbon?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>Nothing, since magnons are neutral.</li>
+<li>One chiral magnon branch crosses the gap on each edge, and the two edges have opposite directions.</li>
+<li>Branches in both directions on the same edge.</li>
+<li>A charge current along each edge.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The bulk-boundary correspondence does not need charge. The chiral edge branches carry spin and energy, one per unit of Chern number, and they run in opposite directions on the two edges.</p>
+</details>
+</div>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>We reverse the sign of the Dzyaloshinskii-Moriya vector. What happens to the topological magnon bands?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>The gap closes for good.</li>
+<li>The Chern numbers change sign, and the edge branches run the other way.</li>
+<li>Nothing, since the term is quadratic.</li>
+<li>The Chern numbers double.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>This term plays the role of the complex hopping of the Haldane model, and reversing its sign reverses the phases. The Berry curvature changes sign, so the Chern numbers change sign too.</p>
+</details>
+</div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb"><code>session6.ipynb</code></a>, “(Exercise) Topological magnons in 2D magnets”</p>
 <p>Construct a magnon Hamiltonian with a spin-orbit term of Dzyaloshinskii-Moriya type on top of the Heisenberg exchange, compute its Chern number with <a href="#eq-6-10">(6.10)</a>, and look for chiral magnon edge modes on a ribbon. This reproduces directly, for magnons, the argument of the bulk-boundary correspondence above.</p>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> In the cell, <code>h.add_haldane(0.1)</code> sets the complex hopping that plays the role of the Dzyaloshinskii-Moriya term. Change it to <code>-0.1</code> and compute <code>h.get_chern()</code> before building the ribbon. The Chern number changes sign.</p>
+<div class="tryit-links">
+Notebook <code>session6.ipynb</code>, cell “Topological magnons in 2D magnets”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession6.ipynb">Binder</a>.
+</div>
 </div>
 <p>Before we stop, a short comment on the scope of these notes. The companion notebook goes further than the lecture of this session in a few places. The most visible ones are its exercises on electronic and magnetic symmetry breaking in graphene multilayers, and its last sections on many-body spin response functions. These are real and useful extensions of the material of this session. However, neither the transcript nor the slides of this session narrate them, so we have not included the corresponding derivations in these notes. They should be taken as independent work with the notebook, and not as material that these notes derive.</p>
 

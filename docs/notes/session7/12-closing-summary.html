@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -85,14 +86,38 @@
 <h1 id="sec-7-12"><span class="num">7.12</span> Closing summary</h1>
 <ul>
 <li><p>Strongly correlated matter, including quantum spin liquids and fractional Chern insulators, is the regime where the mean-field methods of sessions 1 to 6 have no order parameter to converge to, as we saw with <a href="01-two-regimes-of-many-body-physics.html#eq-7-1">(7.1)</a> and in Section <a href="01-two-regimes-of-many-body-physics.html#sec-7-1">7.1</a>.</p></li>
-<li><p>The <strong>Jordan-Wigner transformation</strong> <a href="02-fermions-spins-and-the-jordan-wigner-transformation.html#eq-7-2">(7.2)</a> is an exact mapping between fermionic and spin-1/2 Hamiltonians, summarized as “spin equals fermion times string.” It is the link between the fermionic language of sessions 1-5 and the spin language of sessions 6 and 8, and it is the reason why we can work in the spin representation for the rest of the session.</p></li>
+<li><p>The <strong>Jordan-Wigner transformation</strong> <a href="02b-the-jordan-wigner-transformation.html#eq-7-2">(7.2)</a> is an exact mapping between fermionic and spin-1/2 Hamiltonians, summarized as “spin equals fermion times string.” It is the link between the fermionic language of sessions 1-5 and the spin language of sessions 6 and 8, and it is the reason why we can work in the spin representation for the rest of the session.</p></li>
 <li><p>The real obstruction to solving many-body Hamiltonians is <strong>storage</strong>, since a system of <span class="math inline">\(L\)</span> spins needs <span class="math inline">\(2^L\)</span> coefficients <a href="03-storing-the-wave-function-as-the-main-bottleneck.html#eq-7-4">(7.4)</a> to describe its wave function exactly.</p></li>
 <li><p>The <strong>matrix product state</strong> ansatz <a href="04-the-matrix-product-state-ansatz.html#eq-7-5">(7.5)</a> replaces these <span class="math inline">\(2^L\)</span> coefficients with <span class="math inline">\(O(LM^2)\)</span> parameters, so we give up exactness in exchange for an approximation that we control with the bond dimension <span class="math inline">\(M\)</span>.</p></li>
-<li><p>The <strong>entanglement entropy</strong> <a href="05-measuring-entanglement-with-the-entanglement-entropy.html#eq-7-6">(7.6)</a>, which we computed for the singlet in <a href="05-measuring-entanglement-with-the-entanglement-entropy.html#eq-7-7">(7.7)</a>, measures how entangled a state is. Exactly solvable dimer and tetramer models show that gapped ground states follow an <strong>area law</strong> <a href="07-two-dimensions-and-the-area-law.html#eq-7-9">(7.9)</a>, with an entropy set by the length of the boundary and not by the volume of the subsystem.</p></li>
+<li><p>The <strong>entanglement entropy</strong> <a href="04-the-matrix-product-state-ansatz.html#eq-7-6">(7.6)</a>, which we computed for the singlet in <a href="04-the-matrix-product-state-ansatz.html#eq-7-7">(7.7)</a>, measures how entangled a state is. Exactly solvable dimer and tetramer models show that gapped ground states follow an <strong>area law</strong> <a href="07-two-dimensions-and-the-area-law.html#eq-7-9">(7.9)</a>, with an entropy set by the length of the boundary and not by the volume of the subsystem.</p></li>
 <li><p>The entanglement of an MPS is itself bounded, <span class="math inline">\(S \le \log M\)</span> <a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#eq-7-10">(7.10)</a>. This is the reason why MPS work so well in 1D, where the area law saturates, and why they need an exponentially large <span class="math inline">\(M\)</span> in higher dimensions or away from the ground state.</p></li>
 <li><p>Ground states are found variationally, by minimizing <a href="10-the-variational-principle-and-dmrg-for-the-ground-state.html#eq-7-11">(7.11)</a> one tensor at a time, and this sweeping procedure is the <strong>DMRG</strong> algorithm. <strong>MERA</strong> and <strong>PEPS</strong> extend the idea of tensor networks to criticality, through the logarithmic correction to the entropy <a href="11-mera-and-peps-beyond-mps.html#eq-7-12">(7.12)</a>, and to real 2D lattices, respectively. MERA can still be optimized tensor by tensor, while for PEPS the contraction is the hard step, so the simple local optimization of DMRG is lost.</p></li>
 <li><p>Neural network quantum states were mentioned once, together with tensor networks, as a second answer to the same storage problem, but they were not developed in this session. In session 10 we will study them in detail from the point of view of machine learning, and we will also come back to the MPS, MERA and PEPS methods of this session as architectures for machine-learning classifiers.</p></li>
 </ul>
+<figure class="again">
+<img src="../figures/s07f03_entropyceiling.svg" loading="lazy" alt="Entropy against the size of the subsystem for a gapped, a critical and a generic state, with horizontal bars for two bond dimensions." />
+<figcaption><strong><a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#fig:s07:ceiling">Figure 7.3</a>, shown again.</strong> The summary of the session in one picture. Look at where the gapped curve, the critical curve and the volume law meet the horizontal bars set by <span class="math inline">\(M\)</span>, since this is where an MPS of that bond dimension stops being enough.</figcaption>
+</figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>An MPS with <span class="math inline">\(M=20\)</span> describes a gapped chain of 200 sites very well. We now move to a gapped model on a <span class="math inline">\(20\times20\)</span> lattice. What do we expect?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>The same <span class="math inline">\(M\)</span> is enough, since the model is gapped.</li>
+<li>The same <span class="math inline">\(M\)</span> is not enough, since the boundary grows with the width.</li>
+<li>A smaller <span class="math inline">\(M\)</span> is enough, since there are more neighbors.</li>
+<li>The MPS fails only because there are more sites.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>A gapped state obeys the area law in both cases, but in two dimensions the boundary has 20 bonds and not one. The entropy grows in proportion, and the bond dimension that it needs grows exponentially.</p>
+</details>
+</div>
 
   <nav class="pager"><a href="11-mera-and-peps-beyond-mps.html">7.11 MERA and PEPS beyond MPS</a><a href="../session8/index.html">Session 8. Quantum magnetism, spinons and Kondo physics</a></nav>
 

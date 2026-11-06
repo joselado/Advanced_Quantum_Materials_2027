@@ -2,107 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>6.14 The Holstein-Primakoff transformation, session 6</title>
-<style>
-  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
-          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
-            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
-  }
-  * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--fg);
-         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
-  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
-  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
-  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
-  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
-  a { color: var(--link); }
-  .course { color: var(--muted); margin: 0 0 16px; }
-  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
-  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
-  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
-  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
-  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
-           text-decoration: none; color: var(--fg); }
-  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
-  .sub a.off { color: var(--muted); border-style: dashed; }
-  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
-  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
-             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
-  .note { color: var(--muted); font-size: 0.95rem; }
-  ul { padding-left: 1.3em; margin: 4px 0; }
-  li { margin: 2px 0; }
-  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
-  .cols.three { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
-  @media (max-width: 900px) { .cols.three { grid-template-columns: 1fr; } }
-  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
-  .half h2 { margin-top: 14px; }
-  .half ol { padding-left: 1.6em; margin: 8px 0; }
-  .half li { margin: 4px 0; }
-  .soon { color: var(--muted); }
-  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
-           border-top: 1px solid var(--rule); gap: 12px; }
-
-  main { max-width: 860px; }
-  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
-              border-radius: 6px; color: var(--muted); }
-  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
-  .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
-  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
-  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
-  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
-  figure { margin: 24px 0; }
-  figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
-  figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
-  .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
-  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
-  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
-                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
-  .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
-           margin: 20px 0; font-size: 0.95rem; }
-  .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
-  table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
-  th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
-  div.center { overflow-x: auto; }
-  div.center table { margin-left: auto; margin-right: auto; }
-  th { border-bottom: 2px solid var(--rule); }
-  .coursecontents h2 { margin-top: 28px; }
-</style>
-<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
-<script src="../../notes/notes.js" defer></script>
+<title>Moved</title>
+<link rel="canonical" href="https://joselado.github.io/Advanced_Quantum_Materials_2027/notes/session6/13-magnons-as-fluctuations-of-the-order-parameter.html#sec-6-14">
+<meta http-equiv="refresh" content="0; url=13-magnons-as-fluctuations-of-the-order-parameter.html#sec-6-14">
+<meta name="robots" content="noindex">
 </head>
 <body>
-<main>
-  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
-  <nav class="tabs"><a href="../../lectures/session6.html">Video lectures</a><a href="../../landscape/session6.html">Landscape lectures</a><a class="on" href="../../notes/session6/index.html">Lecture notes</a></nav>
-  <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="on" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
-  <p class="crumb"><a href="index.html">Session 6. Classical Magnetism and Magnons</a></p>
-<h1 id="sec-6-14"><span class="num">6.14</span> The Holstein-Primakoff transformation</h1>
-<p>There is an exact mapping between spin operators and bosonic creation and annihilation operators <span class="math inline">\(a_i^\dagger, a_i\)</span> with <span class="math inline">\([a_i,a_j^\dagger]=\delta_{ij}\)</span>, which is called the <strong>Holstein-Primakoff transformation</strong>. For a spin of magnitude <span class="math inline">\(S\)</span> on site <span class="math inline">\(i\)</span>, it reads</p>
-<p><span id="eq-6-6" class="eq"><span class="math display">\[S_i^z = S - a_i^\dagger a_i, \qquad S_i^+ = \sqrt{2S-a_i^\dagger a_i}\;a_i, \qquad S_i^- = a_i^\dagger\sqrt{2S-a_i^\dagger a_i}. \tag{6.6}\]</span></span></p>
-<p>This is an <em>exact</em> rewriting. If we insert <a href="#eq-6-6">(6.6)</a> and use the bosonic commutation relations, we obtain exactly the full <span class="math inline">\(SU(2)\)</span> spin algebra <span class="math inline">\([S_i^z,S_i^\pm]=\pm S_i^\pm\)</span>, <span class="math inline">\([S_i^+,S_i^-]=2S_i^z\)</span>, without any approximation so far. The physical picture is direct. The operator <span class="math inline">\(a_i^\dagger a_i\)</span> counts how many units of spin have been removed from the fully polarized value <span class="math inline">\(S\)</span> on site <span class="math inline">\(i\)</span>, which means that it counts the <strong>magnons</strong> on that site, and <span class="math inline">\(S_i^z=S-a_i^\dagger a_i\)</span> states exactly this. The square-root operators are what make <a href="#eq-6-6">(6.6)</a> exact even far from full polarization. They are also the reason why the Hamiltonian, written in this form, looks more complicated and not simpler.</p>
-<p>The simplification comes from linearizing. When the expectation value of <span class="math inline">\(a_i^\dagger a_i\)</span> stays much smaller than <span class="math inline">\(S\)</span>, which means when we stay close to the fully polarized ground state, we can expand the square roots and keep only the leading term. This is the regime that we want, since we are looking for low-lying excitations above this ground state, and the result is</p>
-<p><span id="eq-6-7" class="eq"><span class="math display">\[S_i^+ \approx \sqrt{2S}\, a_i, \qquad S_i^- \approx \sqrt{2S}\, a_i^\dagger, \qquad S_i^z = S - a_i^\dagger a_i. \tag{6.7}\]</span></span></p>
-<p>This linearized form is the one that is used in practice to compute magnon spectra. The counting that follows from it is the easiest way to remember the whole transformation, so we write it out. The operator <span class="math inline">\(S^+\)</span> <em>raises</em> <span class="math inline">\(S^z\)</span>, meaning that it increases the local magnetization back toward saturation, and it <em>destroys</em> a magnon. The operator <span class="math inline">\(S^-\)</span> lowers the magnetization, and it <em>creates</em> a magnon. The total magnetization of the system is the fully saturated value minus the total number of magnons, <span class="math inline">\(\sum_i \langle S_i^z\rangle = NS - \sum_i\langle a_i^\dagger a_i\rangle\)</span>. Each magnon has exactly one unit of spin, so magnons are <span class="math inline">\(S=1\)</span> excitations, in agreement with what we said about them in Section <a href="01-two-classes-of-magnets-and-their-excitations.html#sec-6-1">6.1</a>. They exist only because the ground state on which they live has already broken spin-rotation symmetry spontaneously. Figure <a href="#fig:s06:magnon">6.5</a> shows the three parts, which are the fully polarized ground state, the delocalized precession wave that carries a single magnon, and this rule for raising and lowering.</p>
-<figure id="fig:s06:magnon">
-<img src="../figures/s06f05_magnon.svg" loading="lazy" alt="The states that (6.6) and (6.7) describe." />
-<figcaption><strong>Figure 6.5.</strong> The states that <a href="#eq-6-6">(6.6)</a> and <a href="#eq-6-7">(6.7)</a> describe. (a) The ferromagnetic ground state, where every spin has its maximal value <span class="math inline">\(S^z=S\)</span>, and so there are no magnons. (b) A single magnon is <em>not</em> one spin flipped on one site. Instead, every spin is tilted slightly out of alignment and precesses on its cone, and the precession phase advances by <span class="math inline">\(\mathbf
-k\cdot\boldsymbol\delta\)</span> from one site to the next. This is seen most clearly in the view from above, where the transverse component turns at a constant rate and comes back to itself after one wavelength. The missing unit of spin is therefore shared coherently by the whole lattice, and <span class="math inline">\(\sum_i\langle S_i^z\rangle=NS-1\)</span>. Since the tilting angle is small, we have <span class="math inline">\(\langle a_i^\dagger
-a_i\rangle\ll S\)</span> everywhere, which is the condition under which we can expand the square roots in <a href="#eq-6-6">(6.6)</a>. In the drawing the tilting angle is much larger than in reality. (c) The counting rule that makes the transformation easy to remember. The boson number counts the spin removed from saturation, so the <em>lowering</em> operator <span class="math inline">\(S^-\)</span> creates a magnon and the <em>raising</em> operator <span class="math inline">\(S^+\)</span> destroys one.</figcaption>
-</figure>
-<p>We insert <a href="#eq-6-7">(6.7)</a> into the ferromagnetic Heisenberg Hamiltonian, <span class="math inline">\(H = J\sum_{\langle ij\rangle}
-\mathbf S_i\cdot\mathbf S_j = J\sum_{\langle ij\rangle}\big[S_i^zS_j^z + \tfrac12(S_i^+S_j^-+S_i^-S_j^+)\big]\)</span>, and we keep the terms up to quadratic order in the bosonic operators,</p>
-<p><span class="math display">\[S_i^zS_j^z \approx S^2 - S\big(a_i^\dagger a_i + a_j^\dagger a_j\big), \qquad
-\tfrac12\big(S_i^+S_j^- + S_i^-S_j^+\big) \approx S\big(a_i^\dagger a_j + a_j^\dagger a_i\big),\]</span></p>
-<p>and in this way the spin Hamiltonian becomes a bosonic tight-binding Hamiltonian for magnons, and its hopping amplitude is set directly by the exchange coupling <span class="math inline">\(J\)</span>, as we said before. The magnon “hops” between sites with an amplitude proportional to <span class="math inline">\(JS\)</span>, in direct analogy with the electronic tight-binding Hamiltonians that we have diagonalized during the whole course.</p>
-
-  <nav class="pager"><a href="13-magnons-as-fluctuations-of-the-order-parameter.html">6.13 Magnons as fluctuations of the order parameter</a><a href="15-magnon-dispersions-in-ferromagnets-and-antiferromagnets.html">6.15 Magnon dispersions in ferromagnets and antiferromagnets</a></nav>
-
-</main>
+<p>This page has moved to <a href="13-magnons-as-fluctuations-of-the-order-parameter.html#sec-6-14">Magnons as fluctuations of the order parameter</a>.</p>
 </body>
 </html>

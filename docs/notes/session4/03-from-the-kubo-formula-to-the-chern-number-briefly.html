@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -87,8 +88,62 @@
 u_\mathbf{k}|\nabla_\mathbf{k}|u_\mathbf{k}\rangle\)</span> and its curl, the Berry curvature <span class="math inline">\(\Omega(\mathbf{k}) = \nabla_\mathbf{k}\times\mathbf{A}(\mathbf{k})\)</span>. The Brillouin zone is a closed, compact manifold, which is a torus, and when we sum over occupied bands and integrate over it we obtain an integer,</p>
 <p><span id="eq-4-1" class="eq"><span class="math display">\[\sigma_{xy} = \frac{e^2}{h}\, C, \qquad C = \frac{1}{2\pi}\sum_{n\,\text{occ.}}\int_{\text{BZ}} \Omega_n(\mathbf{k})\, d^2k \in \mathbb{Z}, \tag{4.1}\]</span></span></p>
 <p>which is the Chern number of the occupied bands. This is the same statement as in session 3. The Hall conductance is not only quantized, it is also a topological invariant, so it does not change under any smooth deformation of the Hamiltonian that does not close the bulk gap. What is new in this session is not this derivation. It is the specific band structure that we will use in it, which is the set of Landau levels of a magnetic field, and everything that follows when we ask how the many-body ground state of a <em>partially filled</em> Landau level looks.</p>
+<h1 class="sec-next" id="sec-4-4"><span class="num">4.4</span> Landau levels as Chern-number-one flat bands</h1>
+<p>A two-dimensional electron gas in a perpendicular magnetic field develops a set of completely flat bands, the Landau levels, with index <span class="math inline">\(n=0,1,2,\dots\)</span>. In this context “flat” means without dispersion, so the energy does not depend on momentum at all, and we will derive the reason for this in Section <a href="09-landau-levels-of-schrodinger-electrons.html#sec-4-9">4.9</a>. Even if they have no dispersion, each Landau level has a finite Chern number, which is also the smallest nonzero value, <span class="math inline">\(C=1\)</span>. If the chemical potential is between the <span class="math inline">\(N\)</span>-th and the <span class="math inline">\((N+1)\)</span>-th Landau level, the total Chern number of the occupied bands is the sum of <span class="math inline">\(N\)</span> contributions equal to <span class="math inline">\(1\)</span>,</p>
+<p><span id="eq-4-2" class="eq"><span class="math display">\[C_{\text{tot}} = \sum_{n=0}^{N-1} C_n = N \quad\Longrightarrow\quad \sigma_{xy} = N\,\frac{e^2}{h}, \tag{4.2}\]</span></span></p>
+<p>which is an integer that counts the number of filled Landau levels. This is the integer quantum Hall effect. It is a state built only from flat bands without dispersion, and still its Hall conductance is an exact integer multiple of <span class="math inline">\(e^2/h\)</span>, with a sharp quantization.</p>
+<figure class="again">
+<img src="../figures/s04f03_guidingcenter.svg" loading="lazy" alt="Harmonic wells with the same ladder of levels at different positions, and flat bands as a function of the momentum." />
+<figcaption><strong><a href="09-landau-levels-of-schrodinger-electrons.html#fig:s04:guidingcenter">Figure 4.3</a>, shown again.</strong> The reason why a Landau level is flat, used here to read its Chern number. Every guiding center <span class="math inline">\(x_0=\hbar k_y/B\)</span> has the same oscillator well, and so the same energy. Look at panel (b), where the bands do not depend on <span class="math inline">\(k_y\)</span> at all. A flat band has no group velocity and still has <span class="math inline">\(C=1\)</span>, since the Chern number depends only on the wavefunctions.</figcaption>
+</figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>Landau levels have no dispersion, so the group velocity of every state is zero. How can such a band have the Chern number <span class="math inline">\(C=1\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>The Chern number comes from the edge states and not from the bulk band.</li>
+<li>The Chern number is built from the wavefunctions across the Brillouin zone, and it does not depend on the energies.</li>
+<li>It cannot, and the Chern number of a Landau level is zero.</li>
+<li>The Chern number of a flat band is <span class="math inline">\(1\)</span> only at zero temperature.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The energies cancel in <a href="#eq-4-1">(4.1)</a>, as we saw in session 3. A flat band can still have wavefunctions that twist across the Brillouin zone, and this twist is counted by <span class="math inline">\(C\)</span>.</p>
+</details>
+</div>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>The chemical potential is in the gap between the third and the fourth Landau level. What is <span class="math inline">\(\sigma_{xy}\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(3e^2/h\)</span>.</li>
+<li><span class="math inline">\(e^2/h\)</span>.</li>
+<li><span class="math inline">\(3.5\,e^2/h\)</span>.</li>
+<li><span class="math inline">\(4e^2/h\)</span>.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>Three Landau levels are filled, each with <span class="math inline">\(C=1\)</span>. By <a href="#eq-4-2">(4.2)</a> the total is <span class="math inline">\(C=3\)</span>, and <span class="math inline">\(\sigma_{xy}=3e^2/h\)</span> is an exact integer multiple.</p>
+</details>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> Run the cell for the three fields. The dots of the bulk bands form horizontal lines, which means that the Landau levels have no dispersion. The lines move apart when you increase <code>B</code>, as expected from the growth of the cyclotron energy with the field.</p>
+<div class="tryit-links">
+Notebook <code>session4.ipynb</code>, cell “Landau levels of conventional electrons”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session4.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session4.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession4.ipynb">Binder</a>.
+</div>
+</div>
 
-  <nav class="pager"><a href="02-measuring-the-hall-conductance.html">4.2 Measuring the Hall conductance</a><a href="04-landau-levels-as-chern-number-one-flat-bands.html">4.4 Landau levels as Chern-number-one flat bands</a></nav>
+  <nav class="pager"><a href="01-where-the-quantum-hall-state-shows-up.html">4.1 Where the quantum Hall state shows up</a><a href="05-edge-states-and-why-an-insulating-bulk-still-conducts.html">4.5 Edge states and why an insulating bulk still conducts</a></nav>
 
 </main>
 </body>

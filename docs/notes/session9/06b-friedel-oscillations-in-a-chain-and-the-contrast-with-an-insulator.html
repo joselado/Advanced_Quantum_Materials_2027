@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9.6b Friedel oscillations in a chain, and the contrast with an insulator, session 9</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .cols.three { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  @media (max-width: 900px) { .cols.three { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+
+  main { max-width: 860px; }
+  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
+              border-radius: 6px; color: var(--muted); }
+  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
+  .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
+  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
+  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
+  figure { margin: 24px 0; }
+  figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
+  figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
+  .eq { display: block; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
+                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
+  .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
+           margin: 20px 0; font-size: 0.95rem; }
+  .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
+  table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
+  div.center { overflow-x: auto; }
+  div.center table { margin-left: auto; margin-right: auto; }
+  th { border-bottom: 2px solid var(--rule); }
+  .coursecontents h2 { margin-top: 28px; }
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
+<script src="../../notes/notes.js" defer></script>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
+  <nav class="tabs"><a href="../../lectures/session9.html">Video lectures</a><a href="../../landscape/session9.html">Landscape lectures</a><a class="on" href="../../notes/session9/index.html">Lecture notes</a></nav>
+  <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="on" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
+  <p class="crumb"><a href="index.html">Session 9. Excitations and Defects in Quantum Materials</a></p>
+<h1 id="sec-9-6b"><span class="num">9.6b</span> Friedel oscillations in a chain, and the contrast with an insulator</h1>
+<p>In the first part we derived the Friedel oscillation from the singularity of <span class="math inline">\(\chi_0(q)\)</span>. Let us now look at it in a chain.</p>
+<p>For a concrete example, let us take a one-dimensional tight-binding chain with an impurity at site <span class="math inline">\(0\)</span>. The local density of states oscillates around the impurity with wavelength <span class="math inline">\(\pi/k_F\)</span>, which is half of the Fermi wavelength <span class="math inline">\(\lambda_F=2\pi/k_F\)</span>, since the modulation is set by <span class="math inline">\(2k_F\)</span> and not by <span class="math inline">\(k_F\)</span>. If we raise the chemical potential, <span class="math inline">\(k_F^{-1}\)</span> becomes shorter and the oscillation becomes faster in the same way. The same phenomenon, with the same physical content, appears in a two-dimensional square lattice. This real-space LDOS modulation around impurities is what an STM measures in practice, and it is quasiparticle interference again, seen this time in real space and not in reciprocal space. The explicit plots of the LDOS as a function of position at two different fillings, for both the 1D and the 2D case, are clearer on the slides than in words. The comparison that shows that the “oscillations get faster as <span class="math inline">\(k_F\)</span> grows” is a visual one, and it is better seen than read from the formula. As a complementary check, the slides and the notebook also show the <em>insulating</em> case. An impurity placed in a gapped 1D chain gives an LDOS that converges very quickly to its uniform value, instead of oscillating with a slow power-law envelope. This is a first view of the diagnostic that separates gapped and gapless systems, which we will make fully general in Section <a href="09-impurities-as-diagnostics-iv-screening-in-quantum-magnets.html#sec-9-9">9.9</a> and draw in figure <a href="09-impurities-as-diagnostics-iv-screening-in-quantum-magnets.html#fig:s09:decay">9.5</a>.</p>
+<figure id="sch:s09:friedel" class="schematic">
+<img src="../figures/web/session09/friedel.svg" loading="lazy" alt="Two plots of the density change along a chain, an oscillation with a decaying envelope, slower in the left plot and faster in the right plot." />
+<figcaption><strong>Schematic 9.6.</strong> The density induced by one impurity of strength <span class="math inline">\(v_0=t\)</span> in a chain of 4001 sites, from exact diagonalization, for two chemical potentials. The period is <span class="math inline">\(\pi/k_F\)</span>, so the lower filling on the left gives the longer period. The grey lines are an envelope <span class="math inline">\(1/x\)</span>, as <a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html#eq-9-9">(9.9)</a> gives for <span class="math inline">\(d=1\)</span>, and the points follow it after the first few sites.</figcaption>
+</figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>In a gapped chain the LDOS around an impurity converges to its bulk value within a few sites. Why is there no slowly decaying oscillation?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>The impurity is screened completely by the electrons at the Fermi level.</li>
+<li>There is no Fermi surface, so <span class="math inline">\(\chi_0(q)\)</span> has no singularity and its Fourier transform decays exponentially.</li>
+<li>A gapped chain has no translational symmetry.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The slow tail comes from a non-analytic point of <span class="math inline">\(\chi_0(q)\)</span> at <span class="math inline">\(2k_F\)</span>. With a gap, the function is smooth for every <span class="math inline">\(q\)</span>, and the real-space response is exponentially short.</p>
+</details>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> The cell uses <code>mus = [1.95,1.7]</code>. The Fermi level is close to the bottom of the band, so <span class="math inline">\(k_F\)</span> is measured from the minimum. The ripples have a period of about 14 sites for <code>1.95</code> and about 5.7 sites for <code>1.7</code>, which is <span class="math inline">\(\pi/k_F\)</span>. Replace <code>1.7</code> by <code>1.0</code> and check that the period becomes 3 sites.</p>
+<div class="tryit-links">
+Notebook <code>session9.ipynb</code>, cell “Impurity in a 1d metal”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession9.ipynb">Binder</a>.
+</div>
+</div>
+<div class="notebookbox">
+<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb"><code>session9.ipynb</code></a>, “Impurity in a 1d metal” (Core), “Impurities in a 2d metal” (Core), and “Impurity in an electronic insulator” (Core)</p>
+<p>Place a single impurity in a 1D chain, and then in a 2D square lattice, and look at how the LDOS oscillates as in <a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html#eq-9-9">(9.9)</a>. Change the chemical potential and check that the wavelength of the oscillation follows <span class="math inline">\(\pi/k_F\)</span>, as predicted. This is the clearest place in the whole session to see a response formula and a numerical experiment agree digit by digit. The third section repeats the exercise with the chemical potential inside a gap, instead of in a partially filled band. Check that the LDOS now converges to its bulk value within one or two sites, without an oscillating tail that decays slowly. This is the contrast between gapped and gapless systems that Section <a href="09-impurities-as-diagnostics-iv-screening-in-quantum-magnets.html#sec-9-9">9.9</a> makes fully general.</p>
+</div>
+
+  <nav class="pager"><a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html">9.6a Impurities as diagnostics I, Friedel oscillations in a metal</a><a href="07-impurities-as-diagnostics-ii-magnetic-impurities-in-a-superconductor.html">9.7 Impurities as diagnostics II, magnetic impurities in a superconductor</a></nav>
+
+</main>
+</body>
+</html>

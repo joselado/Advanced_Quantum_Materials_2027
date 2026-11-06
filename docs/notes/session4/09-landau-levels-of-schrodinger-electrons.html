@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -85,7 +86,7 @@
 <h1 id="sec-4-9"><span class="num">4.9</span> Landau levels of Schrödinger electrons</h1>
 <p>Let us now solve for the spectrum, and let us start with the simplest case. These are free electrons with no lattice and no potential apart from the field itself, and with dispersion <span class="math inline">\(p^2/2m\)</span> before we switch on the field. With minimal coupling and the Landau gauge <span class="math inline">\(\mathbf{A}=(0,Bx,0)\)</span> we have</p>
 <p><span id="eq-4-5" class="eq"><span class="math display">\[H = \frac{\pi_x^2+\pi_y^2}{2m} = \frac{p_x^2}{2m} + \frac{(p_y-Bx)^2}{2m}. \tag{4.5}\]</span></span></p>
-<p>We take the charge of the carriers to be <span class="math inline">\(+e\)</span> in <a href="07-coupling-electrons-to-a-magnetic-field-with-minimal-coupling-and-the-peierls-substitution.html#eq-4-3">(4.3)</a> and we set <span class="math inline">\(e=1\)</span> in all this session, while we keep <span class="math inline">\(\hbar\)</span> explicit. This is a choice of convention, but it has consequences, since it fixes <span class="math inline">\([\pi_x,\pi_y]=+i\hbar^2/\ell_B^2\)</span>. The ladder operators of Section <a href="10-landau-levels-of-dirac-electrons.html#sec-4-10">4.10</a> and the holomorphic wavefunctions of Section <a href="13-the-symmetric-gauge-and-the-lowest-landau-level-wavefunctions.html#sec-4-13">4.13</a> are built on this convention. For an electron, which has charge <span class="math inline">\(-e\)</span>, every cyclotron orbit and every edge current below goes around in the other direction, and nothing else changes.</p>
+<p>We take the charge of the carriers to be <span class="math inline">\(+e\)</span> in <a href="06-quantized-hall-plateaus-in-experiment.html#eq-4-3">(4.3)</a> and we set <span class="math inline">\(e=1\)</span> in all this session, while we keep <span class="math inline">\(\hbar\)</span> explicit. This is a choice of convention, but it has consequences, since it fixes <span class="math inline">\([\pi_x,\pi_y]=+i\hbar^2/\ell_B^2\)</span>. The ladder operators of Section <a href="10-landau-levels-of-dirac-electrons.html#sec-4-10">4.10</a> and the holomorphic wavefunctions of Section <a href="13-the-symmetric-gauge-and-the-lowest-landau-level-wavefunctions.html#sec-4-13">4.13</a> are built on this convention. For an electron, which has charge <span class="math inline">\(-e\)</span>, every cyclotron orbit and every edge current below goes around in the other direction, and nothing else changes.</p>
 <p>Since <span class="math inline">\(\mathbf{A}\)</span> does not depend on <span class="math inline">\(y\)</span>, we have <span class="math inline">\([H,p_y]=0\)</span>, so we can look for eigenstates of the form <span class="math inline">\(\psi(x,y) = e^{ik_y y}\phi(x)\)</span>. With the replacement <span class="math inline">\(p_y\to\hbar k_y\)</span>, the Hamiltonian <a href="#eq-4-5">(4.5)</a> becomes a one-dimensional problem in <span class="math inline">\(x\)</span>,</p>
 <p><span class="math display">\[H\phi(x) = \left[\frac{p_x^2}{2m} + \frac{B^2}{2m}\Big(x-\frac{\hbar k_y}{B}\Big)^2\right]\phi(x),\]</span></p>
 <p>which is exactly the Hamiltonian of a quantum harmonic oscillator centered at <span class="math inline">\(x_0 = \hbar
@@ -96,6 +97,52 @@ k_y/B\)</span>, with frequency <span class="math inline">\(\omega_c = B/m\)</spa
 <img src="../figures/s04f03_guidingcenter.svg" loading="lazy" alt="Why the Landau levels are flat." />
 <figcaption><strong>Figure 4.3.</strong> Why the Landau levels are flat. (a) In the Landau gauge each <span class="math inline">\(k_y\)</span> reduces <a href="#eq-4-5">(4.5)</a> to a one-dimensional harmonic oscillator in <span class="math inline">\(x\)</span>, which is the same in every respect except that it is centred on the guiding centre <span class="math inline">\(x_0=\hbar k_y/B\)</span>. When <span class="math inline">\(k_y\)</span> increases, the whole well moves to the right without changing its curvature. Every well therefore has the same ladder <span class="math inline">\(E_n=\hbar\omega_c(n+\tfrac 12)\)</span>, drawn here as the horizontal guides, and the ground-state wavepacket of each well, the red bump, has the same shape at a different position. (b) As a function of <span class="math inline">\(k_y\)</span>, this is a set of bands with exactly no dispersion, and the three balls are the three values of <span class="math inline">\(k_y\)</span> of (a). The flatness is not an artefact of the gauge. It means that the energy does not depend on the position of the electron in the sample, and this is also the origin of the very large degeneracy of the Landau levels.</figcaption>
 </figure>
+<div class="quiz" data-correct="D">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>The energy <a href="#eq-4-6">(4.6)</a> does not depend on <span class="math inline">\(k_y\)</span>. What does <span class="math inline">\(k_y\)</span> fix instead?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>The cyclotron frequency.</li>
+<li>The spin of the electron.</li>
+<li>The Landau level index <span class="math inline">\(n\)</span>.</li>
+<li>The position <span class="math inline">\(x_0=\hbar k_y/B\)</span> of the center of the oscillator.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>D</strong>.</p>
+<p>A change of <span class="math inline">\(k_y\)</span> shifts the oscillator well along <span class="math inline">\(x\)</span> and does not change its curvature. The same ladder of levels is then found at every position.</p>
+</details>
+</div>
+<div class="quiz" data-correct="C">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>A sample has the area <span class="math inline">\(A\)</span>. How does the number of states in one Landau level depend on <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>It is proportional to <span class="math inline">\(A\)</span> and independent of <span class="math inline">\(B\)</span>.</li>
+<li>It is proportional to <span class="math inline">\(A/B\)</span>.</li>
+<li>It is proportional to <span class="math inline">\(AB\)</span>, which is one orbital for each flux quantum through the sample.</li>
+<li>It is one state for each Landau level, independent of <span class="math inline">\(A\)</span>.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>C</strong>.</p>
+<p>A stronger field gives more flux quanta through the same area, and every flux quantum adds one orbital. This is why the degeneracy grows with the area and with the field.</p>
+</details>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> Run the cell, which shows the density of states of the bulk for the three fields. Measure the distance between the first two peaks in each panel. It grows roughly in proportion to <code>B</code>, as the cyclotron energy of <a href="#eq-4-6">(4.6)</a> does.</p>
+<div class="tryit-links">
+Notebook <code>session4.ipynb</code>, cell “Magnetic field dependence of Landau levels”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session4.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session4.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession4.ipynb">Binder</a>.
+</div>
+</div>
 
   <nav class="pager"><a href="08-the-landau-gauge-and-the-symmetric-gauge.html">4.8 The Landau gauge and the symmetric gauge</a><a href="10-landau-levels-of-dirac-electrons.html">4.10 Landau levels of Dirac electrons</a></nav>
 

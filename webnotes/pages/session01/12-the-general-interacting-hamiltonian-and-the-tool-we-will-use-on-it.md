@@ -19,3 +19,18 @@ Figure [1.3](#fig:s01:channels) shows these three branches next to each other, 
 ![One Hamiltonian and three ordered states. The same generic interacting Hamiltonian [(1.5)](#eq-1-5), on the left, where the glow is the interaction between two electrons on neighboring sites, is decoupled with three different bilinear expectation values. This gives a charge density wave, a magnet or a superconductor, each breaking a different symmetry. The charge is drawn as columns of alternating height, the spin as alternating arrows, and the electrons bound in pairs as two balls inside one capsule. These three branches are the structure on which the rest of the course is organized.](figures/s01f03_threechannels.svg){#fig:s01:channels number="1.3"}
 
 Two of the three cases of this session, which are magnetism and superconductivity, will come back later in the course in their own sessions, where we treat them in much more detail. You can think of what follows as a first pass, whose goal is to set up the mean-field method itself, and not as the final discussion of either of them.
+
+::: quiz
+The quartic term of [(1.5)](#eq-1-5) has four operators, and the mean-field Hamiltonian has only two. What do we do with the other two?
+
+- [ ] We drop them, since they are small.
+- [x] We replace them by their expectation value in the state that we are looking for.
+- [ ] We replace them by their commutator.
+- [ ] We replace them by their value in the vacuum.
+
+The expectation value is a number, so the two operators that remain form a single-particle term. The number comes from the state itself, which is why we have to solve the problem self-consistently.
+:::
+
+::: {.tryit notebook="session1.ipynb" cell="Gap opening of the Hubbard model in a chain"}
+Run the cell with the antiferromagnetic guess and watch the gap open as $U$ grows. Then use the ferromagnetic guess of the commented line. The gap stays closed, so the two guesses end in different solutions of the same Hamiltonian.
+:::

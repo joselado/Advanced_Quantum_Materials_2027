@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -94,12 +95,56 @@ tot}=0\)</span>, where every Cooper pair is intact and the impurity spin is not 
 <img src="../figures/s09f03_ysr.svg" loading="lazy" alt="A magnetic impurity in an s-wave superconductor." />
 <figcaption><strong>Figure 9.3.</strong> A magnetic impurity in an s-wave superconductor. (a) The single-particle density of states. The BCS continuum, with a gap <span class="math inline">\(\Delta\)</span> and coherence peaks at the gap edges, is almost unchanged by a <em>non-magnetic</em> impurity. Such an impurity does not distinguish up from down, so it cannot lower the energy needed to break any specific Cooper pair. A <em>magnetic</em> impurity distinguishes them, breaks time-reversal symmetry, and creates a pair of bound states inside the gap at <span class="math inline">\(\pm E_b\)</span>, the red peaks, drawn for <span class="math inline">\(\alpha=0.6\)</span>. (b) The energy of these states, from <a href="#eq-9-10">(9.10)</a>, as a function of <span class="math inline">\(\alpha=\pi\nu_0JS\)</span>. At <span class="math inline">\(\alpha=0\)</span> they are exactly at the gap edges, meaning that there is no bound state yet. As the exchange grows they move across the gap and cross at <span class="math inline">\(\alpha=1\)</span>. The crossing is not a level repulsion that did not open. It is a real quantum phase transition of the electronic ground state, with a change of fermion parity, and the electron spin goes from <span class="math inline">\(S_{\rm tot}=0\)</span>, where every Cooper pair is intact and the impurity spin is not screened, to <span class="math inline">\(S_{\rm tot}=1/2\)</span>, where one quasiparticle is bound to the impurity and partially screens its spin. So a single impurity that we can tune is an exactly solvable quantum phase transition.</figcaption>
 </figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>For <span class="math inline">\(\alpha=0.5\)</span> in <a href="#eq-9-10">(9.10)</a>, what is the energy of the bound state in units of <span class="math inline">\(\Delta\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(0.75\)</span>, which is <span class="math inline">\(1-\alpha^2\)</span>.</li>
+<li><span class="math inline">\(0.6\)</span>, which is <span class="math inline">\((1-\alpha^2)/(1+\alpha^2)\)</span>.</li>
+<li><span class="math inline">\(0\)</span>, since the state is at the center of the gap.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>With <span class="math inline">\(\alpha^2=0.25\)</span> we obtain <span class="math inline">\(0.75/1.25=0.6\)</span>. The state crosses the center of the gap only at <span class="math inline">\(\alpha=1\)</span>, where the numerator vanishes.</p>
+</details>
+</div>
+<div class="quiz" data-correct="C">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>The exchange is increased until <span class="math inline">\(\alpha\)</span> is slightly larger than one. What changes in the electronic ground state?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>Nothing changes, since the bound state only moves through the gap.</li>
+<li>The superconducting gap closes.</li>
+<li>The fermion parity changes, and the total electron spin goes from <span class="math inline">\(0\)</span> to <span class="math inline">\(1/2\)</span>.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>C</strong>.</p>
+<p>At <span class="math inline">\(\alpha=1\)</span> the bound state crosses zero energy, so it becomes cheaper to occupy it. One quasiparticle is now bound to the impurity, and it partially screens the impurity spin. The bulk gap stays open.</p>
+</details>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> Run the cell and follow the bright line inside the gap as <span class="math inline">\(J\)</span> grows. Find the value of <span class="math inline">\(J\)</span> where it crosses zero energy. Then change <code>h.add_onsite(1.8)</code> to another value and run it again. The crossing moves, since <span class="math inline">\(\alpha=\pi\nu_0JS\)</span> depends on the density of states at the Fermi level.</p>
+<div class="tryit-links">
+Notebook <code>session9.ipynb</code>, cell “Single magnetic impurity in a superconductor”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession9.ipynb">Binder</a>.
+</div>
+</div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb"><code>session9.ipynb</code></a>, “Magnetic impurities in a conventional superconductor” (Core) and “Single magnetic impurity in a superconductor” (Challenge)</p>
 <p>Build a 1D superconducting chain with a magnetic impurity with an exchange <span class="math inline">\(J\)</span> that you can change, and follow the energy of the in-gap state as in <a href="#eq-9-10">(9.10)</a>. Check the change of sign at the crossing. Check also that a non-magnetic impurity, where you set <span class="math inline">\(J=0\)</span> and change only the local potential, leaves the gap edges almost unchanged, as the qualitative argument above predicts.</p>
 </div>
 
-  <nav class="pager"><a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html">9.6 Impurities as diagnostics I, Friedel oscillations in a metal</a><a href="08-impurities-as-diagnostics-iii-vacancies-in-topological-matter.html">9.8 Impurities as diagnostics III, vacancies in topological matter</a></nav>
+  <nav class="pager"><a href="06b-friedel-oscillations-in-a-chain-and-the-contrast-with-an-insulator.html">9.6b Friedel oscillations in a chain, and the contrast with an insulator</a><a href="08-impurities-as-diagnostics-iii-vacancies-in-topological-matter.html">9.8 Impurities as diagnostics III, vacancies in topological matter</a></nav>
 
 </main>
 </body>

@@ -6,6 +6,30 @@ This gives a useful diagnostic, because a fully gapped bulk spectrum alone canno
 
 ![Why a single missing atom detects topology. Top, seen from above. If we cut a large hole into a topologically non-trivial insulator or superconductor, the bulk-boundary correspondence guarantees gapless modes that run around its edge. Nothing in that argument depends on the size of the hole, so making it smaller does not remove these modes. A vacancy is a boundary of zero size, and it binds an in-gap mode. Bottom, schematic spectra. This is the diagnostic that a clean spectrum cannot give. A trivial and a topological insulator with the same gap have bulk spectra that look the same, so nothing there distinguishes them (left). If we add a vacancy, the trivial spectrum stays as it was (middle), and only the topological one develops a state inside the gap (right). The rule is as direct as it looks. Vacancies produce in-gap modes if and only if the bulk invariant is non-zero, provided that the vacancy itself respects the symmetry that protects that invariant.](figures/s09f04_vacancy.svg){#fig:s09:vacancy number="9.4"}
 
+::: quiz
+We remove one site from a Haldane-model Chern insulator, and from a trivial insulator that has the same gap. What do we find inside the gap?
+
+- [ ] A bound state in both, since a vacancy is a strong perturbation.
+- [x] A bound state only in the Chern insulator.
+- [ ] A bound state only in the trivial insulator, since its gap is larger.
+
+The vacancy is a boundary of zero size, so the bulk-boundary correspondence applies only if the bulk invariant is not zero. The trivial insulator has no protected boundary mode, and its spectrum stays as it was.
+:::
+
+::: quiz
+A vacancy in a gapped system gives no in-gap mode. Which conclusion is safe?
+
+- [ ] The bulk is trivial.
+- [x] The bulk is trivial, or the vacancy breaks the symmetry that protects the invariant.
+- [ ] The gap is too small to host a bound state.
+
+The rule has a proviso. The mode is guaranteed only when the vacancy respects the symmetry behind the invariant. Without a mode we cannot separate the two cases from this one measurement.
+:::
+
+::: {.tryit notebook="session9.ipynb" cell="Single vacancy in a topological superconductor"}
+Run the cell as it is and look at the right panel for a strong peak of the DOS at an energy $|E/\Delta|<1$, inside the gap. Then comment the line with `chiral_pwave` and uncomment the line with `mode="swave"`. The peak disappears, since the s-wave gap is trivial and the vacancy has no protected mode.
+:::
+
 ::: notebookbox
 **Notebook check-in:** [`session9.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb), "Non-magnetic impurities in a topological superconductor" (Challenge), "DOS of non-magnetic impurities in a topological superconductor" (Challenge), "Single vacancy in a topological superconductor" (Challenge), "Vacancies in a topological insulator" (Challenge), and "Single vacancy in a topological insulator" (Challenge)
 

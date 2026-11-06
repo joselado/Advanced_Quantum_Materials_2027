@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -90,14 +91,58 @@
 S|\psi\rangle = \langle\psi|\psi\rangle\)</span> gives <span class="math inline">\(|\lambda|^2=1\)</span> for any eigenvalue <span class="math inline">\(\lambda\)</span>. So a symmetry eigenvalue can always be written as a pure phase,</p>
 <p><span id="eq-2-2" class="eq"><span class="math display">\[S|\psi\rangle = e^{i\varphi}|\psi\rangle, \qquad \varphi \in (-\pi,\pi]. \tag{2.2}\]</span></span></p>
 <p>Before we include a Hamiltonian, let us look at two small examples. We take a wavefunction with real, staggered values <span class="math inline">\((+1,-1,+1,-1)\)</span> on four sites on a ring, and we apply a <span class="math inline">\(90^\circ\)</span> rotation that shifts the sites by one in a cyclic way. The transformed wavefunction is <span class="math inline">\((-1,+1,-1,+1)\)</span>, which is <span class="math inline">\(-1\)</span> times the original. So this state is an eigenstate of the rotation with eigenvalue <span class="math inline">\(-1\)</span>, that is <span class="math inline">\(\varphi=\pi\)</span> in <a href="#eq-2-2">(2.2)</a>. Now we take a complex wavefunction <span class="math inline">\((+1,-i,-1,i)\)</span> on the same ring and apply the same rotation. The transformed wavefunction is <span class="math inline">\(i\)</span> times the original, so it is an eigenstate with eigenvalue <span class="math inline">\(i\)</span>, that is <span class="math inline">\(\varphi=\pi/2\)</span>.</p>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>On the four-site ring the rotation moves every amplitude to the next site, as above. What is the eigenvalue of the state <span class="math inline">\((1,i,-1,-i)\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(-i\)</span></li>
+<li><span class="math inline">\(-1\)</span></li>
+<li><span class="math inline">\(1\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The shifted state is <span class="math inline">\((-i,1,i,-1)\)</span>, which is <span class="math inline">\(-i\)</span> times the original. So the state is an eigenstate with eigenvalue <span class="math inline">\(-i\)</span>, that is <span class="math inline">\(\varphi=-\pi/2\)</span>.</p>
+</details>
+</div>
 <p>The next example is less visual but more useful in practice. A two-site tight-binding Hamiltonian with a single hopping <span class="math inline">\(t\)</span> between sites 1 and 2,</p>
 <p><span class="math display">\[H = t\left(c_1^\dagger c_2 + c_2^\dagger c_1\right),\]</span></p>
-<p>has two eigenstates, the bonding and antibonding combinations <span class="math inline">\(c_1^\dagger+c_2^\dagger\)</span> and <span class="math inline">\(c_1^\dagger-c_2^\dagger\)</span>. Under the mirror symmetry that exchanges sites 1 and 2, the bonding state has eigenvalue <span class="math inline">\(+1\)</span> and the antibonding state has eigenvalue <span class="math inline">\(-1\)</span>. This means that different eigenstates of the same Hamiltonian can have different eigenvalues under the same symmetry.</p>
+<p>has two eigenstates, the bonding and antibonding combinations <span class="math inline">\(c_1^\dagger+c_2^\dagger\)</span> and <span class="math inline">\(c_1^\dagger-c_2^\dagger\)</span>. Under the mirror symmetry that exchanges sites 1 and 2, the bonding state has eigenvalue <span class="math inline">\(+1\)</span> and the antibonding state has eigenvalue <span class="math inline">\(-1\)</span>. This means that different eigenstates of the same Hamiltonian can have different eigenvalues under the same symmetry. <a href="#sch:s02:dimer_ring_symmetry">Schematic 2.2</a> shows the eigenvalues of the dimer and of the two rings.</p>
+<figure id="sch:s02:dimer_ring_symmetry" class="schematic">
+<img src="../figures/web/session02/dimer_ring_symmetry.svg" loading="lazy" alt="A level diagram of the dimer with its mirror eigenvalues, and two four-site rings with an arrow on each site." />
+<figcaption><strong>Schematic 2.2.</strong> Eigenvalues of a symmetry operator. In (a), the two states of the dimer have mirror eigenvalues <span class="math inline">\(+1\)</span> and <span class="math inline">\(-1\)</span>, and their energies are <span class="math inline">\(+t\)</span> and <span class="math inline">\(-t\)</span>. In (b) and (c), the arrow on each site of a four-site ring is the complex amplitude. The rotation by <span class="math inline">\(90^\circ\)</span> multiplies the state in (b) by <span class="math inline">\(-1\)</span> and the state in (c) by <span class="math inline">\(i\)</span>.</figcaption>
+</figure>
 <p>We now come to the central fact of this session. Let us assume that a Hamiltonian is invariant under a symmetry operation, <span class="math inline">\(SHS^{-1} = SHS^\dagger = H\)</span>, which is the same as the statement</p>
 <p><span id="eq-2-3" class="eq"><span class="math display">\[[H,S] = 0. \tag{2.3}\]</span></span></p>
 <p>From linear algebra we know that two operators that commute have a common eigenbasis. So whenever <a href="#eq-2-3">(2.3)</a> holds, every eigenstate of <span class="math inline">\(H\)</span> can be chosen so that it is also an eigenstate of <span class="math inline">\(S\)</span>. In the words of the lecturer, this is perhaps the most important idea of this session. The reason for this is that it is very often much easier to classify the eigenstates of a symmetry operator, whose eigenvalue is a simple phase by <a href="#eq-2-2">(2.2)</a>, than to classify the eigenstates of the Hamiltonian directly. In practice, this means that to find all the symmetries of the Hamiltonian is the first step to solve it, and the most useful one, not a side remark. Once we know that a matrix <span class="math inline">\(S\)</span> commutes with <span class="math inline">\(H\)</span>, to classify the eigenstates of <span class="math inline">\(S\)</span> is the same task as to classify the eigenstates of <span class="math inline">\(H\)</span>.</p>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>A Hamiltonian commutes with <span class="math inline">\(S\)</span>, and <span class="math inline">\(\psi\)</span> is a nondegenerate eigenstate of <span class="math inline">\(H\)</span>. What do we know about <span class="math inline">\(S\psi\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>It is proportional to <span class="math inline">\(\psi\)</span>, with a phase as the factor.</li>
+<li>It is orthogonal to <span class="math inline">\(\psi\)</span>.</li>
+<li>It has a different energy than <span class="math inline">\(\psi\)</span>.</li>
+<li>It has no definite energy.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>Since <span class="math inline">\([H,S]=0\)</span>, the state <span class="math inline">\(S\psi\)</span> is an eigenstate with the same energy. The level is nondegenerate, so <span class="math inline">\(S\psi\)</span> can differ from <span class="math inline">\(\psi\)</span> only by a number, which is a phase by <a href="#eq-2-2">(2.2)</a>.</p>
+</details>
+</div>
 
-  <nav class="pager"><a href="02-simplifying-problems-with-symmetry-in-simple-examples.html">2.2 Simplifying problems with symmetry in simple examples</a><a href="04-exercises-where-we-guess-eigenstates-from-symmetry-only.html">2.4 Exercises where we guess eigenstates from symmetry only</a></nav>
+  <nav class="pager"><a href="01-motivation-and-recap.html">2.1 Motivation and recap</a><a href="04-exercises-where-we-guess-eigenstates-from-symmetry-only.html">2.4 Exercises where we guess eigenstates from symmetry only</a></nav>
 
 </main>
 </body>

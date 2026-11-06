@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -87,7 +88,31 @@
 <h2 id="sec-1-4-1"><span class="num">1.4.1</span> First quantization</h2>
 <p>When the electrons can be treated as independent of each other, we can describe the system with a single-particle wave function that lives in an ordinary Hilbert space. This is what is called <em>first quantization</em>, which is the language that you already know from a standard course on quantum mechanics. It is a very capable tool, and it is enough to describe metals, semiconductors, insulators and even topological insulators.</p>
 <h2 id="sec-1-4-2"><span class="num">1.4.2</span> Second quantization</h2>
-<p>First quantization assumes that the number of particles is fixed, and this assumption fails for a whole class of quantum materials. It fails for any system where the electrons are not independent, and also, which is more surprising, for systems where the <em>number</em> of electrons is itself not fixed. For these systems we need <em>second quantization</em>, which is a formalism that is not built around the question of “how many electrons are present” but around how electrons are created and destroyed. This formalism is essential for superconductors, superfluids and correlated materials in general, and it is what makes phenomena such as spinon fractionalization straightforward to describe at all.</p>
+<p>First quantization assumes that the number of particles is fixed, and this assumption fails for a whole class of quantum materials. It fails for any system where the electrons are not independent, and also, which is more surprising, for systems where the <em>number</em> of electrons is itself not fixed. For these systems we need <em>second quantization</em>, which is a formalism that is not built around the question of “how many electrons are present” but around how electrons are created and destroyed. This formalism is essential for superconductors, superfluids and correlated materials in general, and it is what makes phenomena such as spinon fractionalization straightforward to describe at all. <a href="#sch:s01:fixed_vs_free_number">Schematic 1.2</a> shows this difference for a small dot.</p>
+<figure id="sch:s01:fixed_vs_free_number" class="schematic">
+<img src="../figures/web/session01/fixed_vs_free_number.svg" loading="lazy" alt="States of a dot with two levels, with zero, one and two electrons, and an arrow that links the empty and the full dot." />
+<figcaption><strong>Schematic 1.2.</strong> A dot with two levels and its Fock states sorted by the number of electrons. First quantization stays inside one column, here the one with a single electron. Second quantization also allows states that mix columns, such as an equal superposition of zero and two electrons.</figcaption>
+</figure>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>Which of these states can we write as an ordinary wave function with a fixed number of coordinates?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>One electron in a superposition of the lower and the upper level.</li>
+<li>An equal superposition of zero electrons and two electrons.</li>
+<li>A state with one electron half of the time and two electrons the other half.</li>
+<li>An equal superposition of the empty dot and the dot with three electrons.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>A wave function needs a fixed number of coordinates, and one electron in two levels keeps this number. The other states mix different numbers of electrons, and for them we need second quantization.</p>
+</details>
+</div>
 
   <nav class="pager"><a href="03-emergent-quasiparticles-and-what-the-lattice-gives-us.html">1.3 Emergent quasiparticles and what the lattice gives us</a><a href="05-a-warm-up-in-first-quantization-and-the-puzzle-that-breaks-it.html">1.5 A warm-up in first quantization, and the puzzle that breaks it</a></nav>
 

@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -88,14 +89,54 @@
 L_A \sim \partial A\)</span> and <span class="math inline">\(S_{A&#39;} \sim L_{A&#39;} \sim \partial A&#39;\)</span>, so <span class="math inline">\(S_{A&#39;} &gt; S_A\)</span> for the larger region. Figure <a href="#fig:s07:arealaw">7.2</a> shows the two cases next to each other, with the cut bonds marked, so that we can count them by eye in each case.</p>
 <figure id="fig:s07:arealaw">
 <img src="../figures/s07f02_arealaw.svg" loading="lazy" alt="Why the entanglement entropy counts the boundary and not the volume, seen from above." />
-<figcaption><strong>Figure 7.2.</strong> Why the entanglement entropy counts the boundary and not the volume, seen from above. In both panels the ground state is an exact product of the ground states of decoupled clusters, so a cluster that is fully inside <span class="math inline">\(A\)</span> or fully inside <span class="math inline">\(B\)</span> is in a pure state and gives nothing. Only the clusters that are cut by the division contribute, and the cut bonds are the red ones. (a) The dimerized chain. Each cut singlet gives exactly the single-dimer result <span class="math inline">\(\log 2\)</span> of <a href="05-measuring-entanglement-with-the-entanglement-entropy.html#eq-7-7">(7.7)</a>, and the boundary of a block is two points for any length of the block. Each end of <span class="math inline">\(A\)</span> cuts through one dimer, so making <span class="math inline">\(A\)</span> larger, from two interior dimers to five, leaves two cut singlets and <span class="math inline">\(S_A = 2\log 2\)</span> unchanged. The entropy saturates. (b) The same construction with clusters of four sites on a square lattice. Each cluster that crosses the boundary still gives a bounded amount, at most <span class="math inline">\(\log 2\)</span> per cut bond, but now the boundary is a curve whose length grows with the subsystem. When we double the linear size of <span class="math inline">\(A\)</span>, the number of cut bonds doubles, from eight to sixteen, and <span class="math inline">\(S_A\)</span> grows in proportion. This is the area law <a href="#eq-7-9">(7.9)</a>, <span class="math inline">\(S_A \sim
+<figcaption><strong>Figure 7.2.</strong> Why the entanglement entropy counts the boundary and not the volume, seen from above. In both panels the ground state is an exact product of the ground states of decoupled clusters, so a cluster that is fully inside <span class="math inline">\(A\)</span> or fully inside <span class="math inline">\(B\)</span> is in a pure state and gives nothing. Only the clusters that are cut by the division contribute, and the cut bonds are the red ones. (a) The dimerized chain. Each cut singlet gives exactly the single-dimer result <span class="math inline">\(\log 2\)</span> of <a href="04-the-matrix-product-state-ansatz.html#eq-7-7">(7.7)</a>, and the boundary of a block is two points for any length of the block. Each end of <span class="math inline">\(A\)</span> cuts through one dimer, so making <span class="math inline">\(A\)</span> larger, from two interior dimers to five, leaves two cut singlets and <span class="math inline">\(S_A = 2\log 2\)</span> unchanged. The entropy saturates. (b) The same construction with clusters of four sites on a square lattice. Each cluster that crosses the boundary still gives a bounded amount, at most <span class="math inline">\(\log 2\)</span> per cut bond, but now the boundary is a curve whose length grows with the subsystem. When we double the linear size of <span class="math inline">\(A\)</span>, the number of cut bonds doubles, from eight to sixteen, and <span class="math inline">\(S_A\)</span> grows in proportion. This is the area law <a href="#eq-7-9">(7.9)</a>, <span class="math inline">\(S_A \sim
 \alpha\,|\partial A|\)</span>, and the contrast between the two panels is the reason why matrix product states are a one-dimensional tool.</figcaption>
 </figure>
 <p>This behavior is called the <strong>area law</strong>. For the ground state of a gapped and local Hamiltonian, the entanglement entropy of a subsystem scales with the size of the boundary between the subsystem and the rest of the system, which is a fixed number of points in 1D, a length in 2D and an area in 3D,</p>
 <p><span id="eq-7-9" class="eq"><span class="math display">\[S_A \;\sim\; \alpha\, |\partial A|, \tag{7.9}\]</span></span></p>
 <p>and not with the <em>volume</em> of <span class="math inline">\(A\)</span>. This is a strong restriction. A random state taken uniformly from the full Hilbert space of dimension <span class="math inline">\(2^L\)</span> would usually have <span class="math inline">\(S_A\)</span> close to its maximum value, which is <span class="math inline">\(|A|\log 2\)</span> for a spin-1/2 subsystem of size <span class="math inline">\(|A|\)</span>, and this is called a volume law. In this sense, gapped ground states are very far from typical states. They live only in the very small part of the Hilbert space that satisfies the area law. The dimer and tetramer models above are exactly in this part, and realistic gapped Hamiltonians are approximately in it.</p>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>In the tetramer model of two dimensions we double the linear size of the region <span class="math inline">\(A\)</span>. How does <span class="math inline">\(S_A\)</span> change?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>It roughly doubles, since the boundary length doubles.</li>
+<li>It roughly quadruples, since the area quadruples.</li>
+<li>It does not change, since the state is gapped.</li>
+<li>It grows only as the logarithm of the size.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>The entropy counts the cut bonds, and in two dimensions their number is proportional to the length of the boundary. The area of <span class="math inline">\(A\)</span> does not enter.</p>
+</details>
+</div>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>A gapped ground state in three dimensions follows the area law <a href="#eq-7-9">(7.9)</a>. A cube of side <span class="math inline">\(\ell\)</span> has an entropy that grows as</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(\ell\)</span>.</li>
+<li><span class="math inline">\(\ell^2\)</span>.</li>
+<li><span class="math inline">\(\ell^3\)</span>.</li>
+<li>a constant.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The boundary of a cube is made of its faces, which have an area proportional to <span class="math inline">\(\ell^2\)</span>. The volume <span class="math inline">\(\ell^3\)</span> would be the volume law.</p>
+</details>
+</div>
 
-  <nav class="pager"><a href="06-entanglement-entropy-of-a-solvable-dimerized-chain.html">7.6 Entanglement entropy of a solvable dimerized chain</a><a href="08-why-mps-work-in-1d-and-where-they-stop-working.html">7.8 Why MPS work in 1D, and where they stop working</a></nav>
+  <nav class="pager"><a href="06-entanglement-entropy-of-a-solvable-dimerized-chain.html">7.6 Entanglement entropy of a solvable dimerized chain</a><a href="08-why-mps-work-in-1d-and-where-they-stop-working.html">7.8a Why MPS work in 1D</a></nav>
 
 </main>
 </body>

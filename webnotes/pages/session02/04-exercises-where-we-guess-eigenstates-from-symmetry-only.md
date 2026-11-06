@@ -10,7 +10,29 @@ So we know a lot about the eigenstates of $H$ before we write $H$ explicitly. Th
 
 ![Symmetry fixes the eigenstates before we write down the Hamiltonian. On a three-site ring the rotation $R$ can only have eigenvalues $e^{2\pi i n/3}$ by [(2.4)](#eq-2-4), and so the coefficients of the state must change by this same phase from one site to the next. This means that the eigenstates are the discrete Fourier modes, for any values of the hopping amplitudes. The arrow on each site is the complex coefficient $\alpha_j\propto e^{i\varphi_n j}$, which turns by $2\pi n/3$ from one site to the next. On the right, the balls are the allowed phases for $L=3$ and $L=5$. In the limit $L\to\infty$ they fill the circle, and this circle is the first Brillouin zone.](figures/s02f01_ringmodes.svg){#fig:s02:ring number="2.1"}
 
+::: quiz
+A ring has $L=6$ sites and a rotation $R$ with $R^6=\mathbb{1}$. How many Bloch phases $\varphi$ are allowed, and what is their spacing?
+
+- [ ] Three, spaced by $2\pi/3$.
+- [x] Six, spaced by $\pi/3$.
+- [ ] Twelve, spaced by $\pi/6$.
+- [ ] Infinitely many, with no fixed spacing.
+
+The eigenvalue satisfies $\lambda^6=1$, so $\varphi_n=2\pi n/6$ with $n=0,\dots,5$. As $L$ grows the allowed phases come closer and fill the circle.
+:::
+
 **Five sites on a ring.** The same argument on a five-site ring with nearest-neighbour hopping, $H=\sum_{\langle ij\rangle} c_i^\dagger c_j$, gives $\varphi_n=2\pi n/5$, $n=0,\dots,4$, and the eigenstates $|\Psi_n\rangle \propto \sum_{j=0}^4 e^{i\varphi_n j}\,c_j^\dagger|0\rangle$. With this we can already answer a quantitative question without diagonalizing anything. Let us ask what the weight of site 1 is in the lowest-energy eigenstate built from the vacuum $|\Omega\rangle$, in the sense of the overlap $\big|\langle\Omega|c_1\Psi_{\rm GS}^\dagger|\Omega\rangle\big|^2$. Every $|\Psi_n\rangle$ is a superposition over all five sites with the same modulus on each site, so this overlap is $1/5$ for every $n$, for the lowest energy and for all other states. This follows from the symmetry only, and it does not depend on the specific hopping amplitudes. The same argument stays valid if the nearest-neighbour hopping is replaced by any long-range hopping, and a six-site ring with additional long-range couplings shows the same thing. As long as the rotational symmetry of the ring is present, the symmetry eigenvalues, the eigenstates and expectation values such as this one are all fixed by symmetry only, however complicated the Hamiltonian becomes.
+
+::: quiz
+An eigenstate on a ring of $L$ sites is a Fourier mode. What is the weight of one site in it, for any choice of the hopping amplitudes?
+
+- [x] $1/L$
+- [ ] $1/L^2$
+- [ ] It depends on the hopping amplitudes.
+- [ ] It is largest on the site where the state was created.
+
+A Fourier mode has the same modulus on every site, and the weights add up to one. So each site has the weight $1/L$, regardless of the hopping.
+:::
 
 Note that such models with few sites are not only of academic interest. With scanning tunnelling microscopy one can place single atoms with essentially arbitrary precision, and tight-binding rings with few sites like these have been built and measured in this way. There is a famous stop-motion film made only from atoms moved with STM, which is sometimes called "the smallest film ever made," where every dot on the screen is a single atom. It shows how precisely such models can now be realized in the lab.
 

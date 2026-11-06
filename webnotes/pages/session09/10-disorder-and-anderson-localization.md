@@ -1,4 +1,4 @@
-## Disorder and Anderson localization {#sec-9-10 number="9.10"}
+## Disorder and Anderson localization {#sec-9-10 number="9.10a"}
 
 So far we have only discussed a *single* impurity. What happens when we put many impurities in the whole material? A single impurity changes the ground state only a little. Many impurities, in particular when they are placed at random, can change it completely, because they break translational symmetry in the whole system and not only locally. It is useful to list all the possibilities, since there are three different regimes of translational symmetry to consider, and not only the symmetric and the non-symmetric ones.
 
@@ -22,12 +22,28 @@ An extended state with weight $\sim 1/N$ per site gives $\mathrm{IPR} \sim N\cdo
 
 ![The three regimes of Section [9.10](#sec-9-10), shown through their effect on an eigenstate of a chain of $N=89$ sites, with the weight $|\psi_i|^2$ of each site as a column. (a) With a periodic potential every eigenstate is a Bloch wave, with weight exactly $1/N$ on every site, and this height becomes smaller as the chain grows. (b) At the self-dual point of the quasiperiodic model the state is neither extended nor localized. It has structure on every length scale at the same time, with large peaks and smaller copies of the same pattern between them, and this state is called critical, or multifractal. (c) With really random disorder the state is concentrated on a few sites and it is strictly zero, to numerical precision, over most of the chain. *Note the three different vertical scales.* For this reason we need a number and not a visual check, and this number is the inverse participation ratio [(9.12)](#eq-9-12). (d) The IPR separates the three regimes clearly by how it scales with system size, with $\mathrm{IPR}\sim 1/N$ for extended states, $\mathrm{IPR}\sim O(1)$ for localized ones, and an anomalous power $N^{-\tau}$ with $0<\tau<1$ for the critical state between them, here computed for $N=34$ to $610$. On a log-log plot these are three straight lines with three different slopes.](figures/s09f06_localization.svg){#fig:s09:localization number="9.6"}
 
-**Fully disordered case.** Now we take an onsite potential that is really random, with strength $W$, $H = -t\sum_n (c_n^\dagger c_{n+1} + \text{h.c.}) + \sum_n w_n\, c_n^\dagger c_n$, where $w_n$ is taken uniformly from $[-W,W]$. At $W=0$ this is an ordinary clean metal, with the band structure of the periodic hopping alone, and as $W\to\infty$ every eigenstate becomes concentrated on a single site. In dimension $d\geq 3$ there is a real **Anderson localization transition** at a finite critical disorder $W_c$. There is a real mobility edge that separates extended metallic states from localized states, which is the kind of "critical point" described on the slides. Below the transition, or at any energy on the extended side of a mobility edge, the system conducts. Above it, there are states at every energy, so there is *no spectral gap* in the density of states, but these states cannot carry current, so there *is* a transport gap. This means that the **Anderson insulator** is an insulator with no gap at all in its spectrum, which is a very unusual state of matter compared with every band insulator or Mott insulator that we have seen so far in this course.
+::: quiz
+A normalized state has the same weight on $10$ sites of a chain and zero weight elsewhere. What is its $\mathrm{IPR}$ of [(9.12)](#eq-9-12), and how does it change if the chain grows?
 
-**The special role of one dimension.** In $d=1$, and in a marginal way also in $d=2$ according to the scaling theory of localization, no real metallic phase survives at any non-zero disorder in the thermodynamic limit, since an arbitrarily small $W>0$ localizes every state at long enough distances. What survives is a finite localization length $\xi(W)$. For weak disorder close to the band center of the 1D model, it scales as $\xi(W) \propto (t/W)^2$, which diverges as $W\to 0$. A finite sample that is shorter than $\xi(W)$ still looks metallic in practice, and only when the length of the sample is larger than $\xi(W)$ do we see the localized, insulating behavior in transport. This is the exact sense in which "weak disorder in 1D" and "genuinely metallic" are never the same statement, although they can look the same at short length scales.
+- [ ] $1/N$, and it decreases as the chain grows.
+- [x] $1/10$, and it does not change as the chain grows.
+- [ ] $10/N$, and it decreases as the chain grows.
 
-::: notebookbox
-**Notebook check-in:** [`session9.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb), "The impact of disorder in different systems" (Core), "Extended and localized states in quasicrystals" (Challenge), and "Localization due to random disorder" (Core)
-
-Change the strength of the quasiperiodic modulation, and separately the strength $W$ of the random disorder, and compute [(9.12)](#eq-9-12) for the eigenstates that you obtain in each case. Look at how the $\mathrm{IPR}$ changes from a behavior like $1/N$ to a behavior like $O(1)$ as you increase the strength of the potential. Try to find by eye where the change from extended to localized states happens in each of the two models, and compare it with the language of critical points and mobility edges above.
+Each of the $10$ sites has $|\psi_i|^2=1/10$, so $\sum_i|\psi_i|^4=10/100=1/10$. The state does not know about the rest of the chain, which is what a localized state means.
 :::
+
+::: quiz
+We double the size of the chain, and the $\mathrm{IPR}$ of a state changes by a factor $0.7$. Which regime is this?
+
+- [ ] Extended, since the $\mathrm{IPR}$ decreases.
+- [ ] Localized, since the $\mathrm{IPR}$ is finite.
+- [x] Critical, with $N^{-\tau}$ and $\tau\approx0.5$.
+
+An extended state gives a factor $0.5$ and a localized state gives a factor $1$. A factor $2^{-\tau}=0.7$ means $\tau\approx0.5$, which is between the two, and this is the multifractal signature.
+:::
+
+::: {.tryit notebook="session9.ipynb" cell="Extended and localized states in quasicrystals"}
+Run the cell and look at the average of $1/\lambda$ on the left. It stays close to zero up to $v\approx2$ and then grows fast. This is the self-dual point $V_0=2t$ of the model. Change `np.sqrt(2)` to another irrational number and check that the point stays at $v\approx2$.
+:::
+
+The second regime, with random disorder, is the content of the next part.

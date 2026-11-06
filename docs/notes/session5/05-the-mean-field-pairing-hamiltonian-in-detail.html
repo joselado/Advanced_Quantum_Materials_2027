@@ -2,105 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>5.5 The mean-field pairing Hamiltonian in detail, session 5</title>
-<style>
-  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
-          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
-            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
-  }
-  * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--fg);
-         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
-  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
-  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
-  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
-  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
-  a { color: var(--link); }
-  .course { color: var(--muted); margin: 0 0 16px; }
-  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
-  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
-  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
-  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
-  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
-           text-decoration: none; color: var(--fg); }
-  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
-  .sub a.off { color: var(--muted); border-style: dashed; }
-  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
-  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
-             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
-  .note { color: var(--muted); font-size: 0.95rem; }
-  ul { padding-left: 1.3em; margin: 4px 0; }
-  li { margin: 2px 0; }
-  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
-  .cols.three { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
-  @media (max-width: 900px) { .cols.three { grid-template-columns: 1fr; } }
-  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
-  .half h2 { margin-top: 14px; }
-  .half ol { padding-left: 1.6em; margin: 8px 0; }
-  .half li { margin: 4px 0; }
-  .soon { color: var(--muted); }
-  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
-           border-top: 1px solid var(--rule); gap: 12px; }
-
-  main { max-width: 860px; }
-  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
-              border-radius: 6px; color: var(--muted); }
-  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
-  .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
-  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
-  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
-  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
-  figure { margin: 24px 0; }
-  figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
-  figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
-  .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
-  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
-  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
-                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
-  .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
-           margin: 20px 0; font-size: 0.95rem; }
-  .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
-  table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
-  th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
-  div.center { overflow-x: auto; }
-  div.center table { margin-left: auto; margin-right: auto; }
-  th { border-bottom: 2px solid var(--rule); }
-  .coursecontents h2 { margin-top: 28px; }
-</style>
-<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
-<script src="../../notes/notes.js" defer></script>
+<title>Moved</title>
+<link rel="canonical" href="https://joselado.github.io/Advanced_Quantum_Materials_2027/notes/session5/04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html#sec-5-5">
+<meta http-equiv="refresh" content="0; url=04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html#sec-5-5">
+<meta name="robots" content="noindex">
 </head>
 <body>
-<main>
-  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
-  <nav class="tabs"><a href="../../lectures/session5.html">Video lectures</a><a href="../../landscape/session5.html">Landscape lectures</a><a class="on" href="../../notes/session5/index.html">Lecture notes</a></nav>
-  <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="on" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
-  <p class="crumb"><a href="index.html">Session 5. Superconductivity, Nambu Representation and Majorana Physics</a></p>
-<h1 id="sec-5-5"><span class="num">5.5</span> The mean-field pairing Hamiltonian in detail</h1>
-<p>Let us now build the mean-field pairing Hamiltonian with the same care that we used in session 1 for the charge-density-wave and magnetic examples, instead of only pointing at <span class="math inline">\(\Delta = \langle
-cc\rangle\)</span>. We take the simplest interacting Hamiltonian that can give superconductivity, which is a one-dimensional tight-binding chain with an attractive onsite interaction between opposite spins,</p>
-<p><span id="eq-5-2" class="eq"><span class="math display">\[H = -t\sum_{n,\sigma}\left(c_{n\sigma}^\dagger c_{n+1,\sigma} + \text{h.c.}\right) - \mu\sum_{n\sigma}c_{n\sigma}^\dagger c_{n\sigma} + U\sum_n c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger c_{n\downarrow} c_{n\uparrow}, \qquad U&lt;0. \tag{5.2}\]</span></span></p>
-<p>This is exactly eq. <a href="../session1/14-worked-example-2-magnetism.html#eq-1-7">1.7</a> of session 1, now with <span class="math inline">\(U = -|U| &lt; 0\)</span>. It is the attractive branch of the same Hamiltonian, and its repulsive branch gives rise to magnetism, which is the topic of session 6. This time we do the mean-field decoupling of the quartic term in the <em>pairing</em> channel, also called the particle-particle channel, instead of the density channel. We define the order parameter</p>
-<p><span id="eq-5-3" class="eq"><span class="math display">\[\Delta_n \equiv U\langle c_{n\downarrow}c_{n\uparrow}\rangle, \tag{5.3}\]</span></span></p>
-<p>and we factorize <span class="math inline">\(c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger c_{n\downarrow}c_{n\uparrow} \approx
-\langle c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger\rangle c_{n\downarrow}c_{n\uparrow} +
-c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger \langle c_{n\downarrow}c_{n\uparrow}\rangle - \langle
-c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger\rangle\langle c_{n\downarrow}c_{n\uparrow}\rangle\)</span>. This is the same Wick-type factorization that we used in all of session 1, now applied to a different pair of operators. The resulting mean-field Hamiltonian is</p>
-<p><span id="eq-5-4" class="eq"><span class="math display">\[H_{\text{MF}} = -t\sum_{n\sigma}\left(c_{n\sigma}^\dagger c_{n+1,\sigma}+\text{h.c.}\right) - \mu\sum_{n\sigma}c_{n\sigma}^\dagger c_{n\sigma} + \sum_n\left(\Delta_n\, c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger + \Delta_n^*\, c_{n\downarrow}c_{n\uparrow}\right) - \sum_n\frac{|\Delta_n|^2}{U}. \tag{5.4}\]</span></span></p>
-<p>When we solve it self-consistently, <span class="math inline">\(\Delta_n\)</span> is exactly zero for <span class="math inline">\(U&gt;0\)</span>, the repulsive case, and it can become nonzero for <span class="math inline">\(U&lt;0\)</span>, the attractive case. This is the superconducting order parameter, and it is the term that breaks gauge symmetry.</p>
-<div class="notebookbox">
-<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb"><code>session5.ipynb</code></a>, “s-wave superconductivity driven by attractive interactions” (Core), and “Dependence on the strength of the attractive interaction” (Challenge)</p>
-<p>Build the attractive-Hubbard chain of <a href="#eq-5-2">(5.2)</a>, run the pairing self-consistency loop that gives <span class="math inline">\(\Delta\)</span> in <a href="#eq-5-3">(5.3)</a>-<a href="#eq-5-4">(5.4)</a>, and look at how <span class="math inline">\(\Delta\)</span> grows from zero as you make <span class="math inline">\(U\)</span> more negative. This is the same behavior as in session 1, where the charge imbalance grew with <span class="math inline">\(V\)</span> and the magnetization grew with <span class="math inline">\(U&gt;0\)</span>.</p>
-</div>
-
-  <nav class="pager"><a href="04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html">5.4 The interacting Hamiltonian and the origin of attractive interactions</a><a href="06-why-pairing-does-not-conserve-the-particle-number.html">5.6 Why pairing does not conserve the particle number</a></nav>
-
-</main>
+<p>This page has moved to <a href="04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html#sec-5-5">The interacting Hamiltonian and the origin of attractive interactions</a>.</p>
 </body>
 </html>

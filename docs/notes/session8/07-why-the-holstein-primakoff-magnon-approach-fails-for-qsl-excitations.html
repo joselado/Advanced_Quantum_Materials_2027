@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -90,12 +91,84 @@
 <p>A QSL is in the opposite limit. Its defining property, <span class="math inline">\(\langle \mathbf S_i\rangle = 0\)</span> on every site, gives through <a href="#eq-8-8">(8.8)</a></p>
 <p><span id="eq-8-9" class="eq"><span class="math display">\[\langle a_i^\dagger a_i \rangle = S, \tag{8.9}\]</span></span></p>
 <p>which is the regime where the condition of a small boson density, the basis of the linearized Holstein-Primakoff mapping, fails completely. For a QSL there is no ordered reference state that it is “close to” and around which we can expand. As a result, the magnon method that worked for the ordered magnets of Session 6 is not the right tool here, and we need a different approximation for the excitations of a quantum spin liquid.</p>
+<figure class="again panel">
+<img src="../figures/panel/s06f05_magnon_side.svg" loading="lazy" alt="A chain of parallel spins above a chain of spins that move on cones around the same direction." />
+<figcaption><strong><a href="../session6/13-magnons-as-fluctuations-of-the-order-parameter.html#fig:s06:magnon">Figure 6.5</a>, one panel shown again.</strong> The Holstein-Primakoff expansion needs a reference direction. In the top chain all spins point the same way, and in the bottom chain a magnon makes every spin move on a cone around this direction. A quantum spin liquid has no such direction, since <span class="math inline">\(\langle\mathbf S_i\rangle=0\)</span> on every site.</figcaption>
+</figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>In a QSL we have <span class="math inline">\(\langle S^z_i\rangle=0\)</span> with <span class="math inline">\(S=1/2\)</span>. What does <a href="#eq-8-8">(8.8)</a> give for <span class="math inline">\(\langle a_i^\dagger a_i\rangle\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(0\)</span>, since there are no magnons.</li>
+<li><span class="math inline">\(1/2\)</span>, which is equal to <span class="math inline">\(S\)</span> and not small compared with it.</li>
+<li>Much smaller than <span class="math inline">\(S\)</span>.</li>
+<li>Infinite.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>From <span class="math inline">\(S^z_i=S-a_i^\dagger a_i\)</span> and a zero expectation value we find <span class="math inline">\(\langle a_i^\dagger a_i\rangle=S\)</span>. The linearization needs this number to be small compared with <span class="math inline">\(S\)</span>, so it fails.</p>
+</details>
+</div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session8.ipynb"><code>session8.ipynb</code></a>, “Magnetization of a large Heisenberg model” (Core)</p>
 <p>Diagonalize a quantum Heisenberg chain of moderate size and check numerically that the local magnetization stays zero on every site. This also holds with a small external field, as long as the field is weaker than the finite-size gap to the neighboring sector of total spin. This is how the defining property behind <a href="05-the-dimerized-heisenberg-model-a-first-step-before-a-spin-liquid.html#eq-8-5">(8.5)</a> and <a href="#eq-8-9">(8.9)</a> appears in a numerical calculation.</p>
 </div>
+<h1 class="sec-next" id="sec-8-8"><span class="num">8.8</span> The parton construction with Abrikosov fermions and the single-occupancy constraint</h1>
+<p>The construction that allows us to treat QSL excitations does not write each spin as a bosonic fluctuation around an ordered reference state. Instead, it writes each spin with an auxiliary <strong>fermion</strong> field <span class="math inline">\(f_{i\sigma}\)</span> (<span class="math inline">\(\sigma=\uparrow,\downarrow\)</span>) on every site. This is a particle with spin <span class="math inline">\(1/2\)</span> and no electric charge, which is the spinon of Section <a href="01-two-classes-of-magnets-and-where-we-find-them.html#sec-8-2">8.2</a>, now written in a formal way. These particles are called <strong>Abrikosov fermions</strong>, and the operator identity that defines the parton transformation is</p>
+<p><span id="eq-8-10" class="eq"><span class="math display">\[\mathbf S_i = \frac12 \sum_{\alpha\beta} f_{i\alpha}^\dagger\, \boldsymbol\sigma_{\alpha\beta}\,
+f_{i\beta}, \tag{8.10}\]</span></span></p>
+<p>where <span class="math inline">\(\boldsymbol\sigma\)</span> is the vector of Pauli matrices. One can check directly, from the anticommutation relations of the fermions, that <a href="#eq-8-10">(8.10)</a> gives the correct <span class="math inline">\(SU(2)\)</span> spin algebra <span class="math inline">\([S_i^a,S_i^b] = i\varepsilon^{abc}S_i^c\)</span> on the full Fock space of <span class="math inline">\(f_{i\uparrow},f_{i\downarrow}\)</span>, which has four states, namely empty, singly occupied with spin up, singly occupied with spin down and doubly occupied. No extra input is needed for this. The problem is that this transformation makes the local Hilbert space <em>artificially larger</em>, since a physical spin-<span class="math inline">\(1/2\)</span> has only two states, while <span class="math inline">\(f_{i\uparrow},f_{i\downarrow}\)</span> give four. We remove the two extra unphysical states, which are the empty and the doubly occupied ones and which <a href="#eq-8-10">(8.10)</a> maps to <span class="math inline">\(\mathbf S_i=0\)</span> in any case. We do this by imposing by hand the <strong>single-occupancy constraint</strong></p>
+<p><span id="eq-8-11" class="eq"><span class="math display">\[\sum_\sigma f_{i\sigma}^\dagger f_{i\sigma} = 1 \qquad \text{at every site } i. \tag{8.11}\]</span></span></p>
+<p>This is the fermionic analogue of the Gutzwiller projection <a href="06-the-resonating-valence-bond-wavefunction-as-the-qsl-ground-state.html#eq-8-7">(8.7)</a> that we applied before to the many-body wavefunction. To project the many-body state onto the singly-occupied subspace and to fix the fermion filling to one per site are the same statement, the first one seen from the side of the wavefunction and the second one from the side of the operators. Figure <a href="09-the-mean-field-spinon-hamiltonian-and-its-dispersion-classes.html#fig:s08:parton">8.4</a>a shows which two states the constraint has to remove, and why they were never spin states in the first place.</p>
+<p>When <a href="#eq-8-11">(8.11)</a> holds, <a href="#eq-8-10">(8.10)</a> is an <em>exact</em> way to write a spin-<span class="math inline">\(1/2\)</span> operator in the language of fermions, and we can put it directly into the Heisenberg Hamiltonian <span class="math inline">\(\mathcal H=\sum_{\langle
+ij\rangle}J_{ij}\,\mathbf S_i\cdot\mathbf S_j\)</span>. With the Fierz identity for Pauli matrices <span class="math inline">\(\sum_a \sigma^a_{\alpha\beta}\sigma^a_{\gamma\delta} = 2\delta_{\alpha\delta}\delta_{\beta\gamma} -
+\delta_{\alpha\beta}\delta_{\gamma\delta}\)</span> and the constraint <a href="#eq-8-11">(8.11)</a> on both sites, we obtain the simple identity</p>
+<p><span id="eq-8-12" class="eq"><span class="math display">\[\mathbf S_i \cdot \mathbf S_j = \frac14 - \frac12\, \chi_{ij}^\dagger \chi_{ij}, \qquad \chi_{ij}
+\equiv \sum_\sigma f_{i\sigma}^\dagger f_{j\sigma}, \tag{8.12}\]</span></span></p>
+<p>where <span class="math inline">\(\chi_{ij}\)</span> is the spinon bond operator, or hopping operator, between sites <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>. When we insert <a href="#eq-8-12">(8.12)</a>, the original Heisenberg Hamiltonian, which is bilinear in the spins, becomes a Hamiltonian that is <em>quartic</em> in the auxiliary fermions,</p>
+<p><span id="eq-8-13" class="eq"><span class="math display">\[\mathcal H = \sum_{\langle ij\rangle} J_{ij}\left(\frac14 - \frac12\,\chi_{ij}^\dagger\chi_{ij}\right)
+= \text{const} - \frac12\sum_{\langle ij\rangle} J_{ij}\, \chi_{ij}^\dagger \chi_{ij}. \tag{8.13}\]</span></span></p>
+<p>This is the same problem that we had in Sessions 1 and 6 with the Hubbard interaction, which is a quartic term that we cannot diagonalize directly. We treat it in the same way, with a <strong>mean-field decoupling</strong>,</p>
+<p><span id="eq-8-14" class="eq"><span class="math display">\[\chi_{ij}^\dagger\chi_{ij} \;\approx\; \langle\chi_{ij}^\dagger\rangle\,\chi_{ij} +
+\chi_{ij}^\dagger\,\langle\chi_{ij}\rangle - |\langle\chi_{ij}\rangle|^2. \tag{8.14}\]</span></span></p>
+<figure class="again">
+<img src="../figures/s08f04_parton.svg" loading="lazy" alt="The four fermionic states of one site, with the two singly occupied states as the spin doublet and the other two crossed out." />
+<figcaption><strong><a href="09-the-mean-field-spinon-hamiltonian-and-its-dispersion-classes.html#fig:s08:parton">Figure 8.4</a>, shown again.</strong> The four states of a site written with the fermions <span class="math inline">\(f_{i\uparrow}\)</span> and <span class="math inline">\(f_{i\downarrow}\)</span>. Look at panel (a), where the two states with a cross, the empty and the doubly occupied one, are the ones that the constraint <a href="#eq-8-11">(8.11)</a> removes.</figcaption>
+</figure>
+<div class="quiz" data-correct="C">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>For a bond with a singlet we have <span class="math inline">\(\mathbf S_i\cdot\mathbf S_j=-3/4\)</span>. What does <a href="#eq-8-12">(8.12)</a> give for <span class="math inline">\(\chi_{ij}^\dagger\chi_{ij}\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(0\)</span>.</li>
+<li><span class="math inline">\(1\)</span>.</li>
+<li><span class="math inline">\(2\)</span>.</li>
+<li><span class="math inline">\(1/4\)</span>.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>C</strong>.</p>
+<p>From <a href="#eq-8-12">(8.12)</a> we have <span class="math inline">\(\chi^\dagger\chi=2(\tfrac14-\mathbf S_i\cdot\mathbf S_j)=2\)</span> for the singlet. For a triplet it is <span class="math inline">\(0\)</span>, so the bond operator measures how much singlet there is on the bond.</p>
+</details>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> Compute the magnetization of the antiferromagnetic chain with the small field <code>Bz=-0.01</code>. It should vanish on every site, as <a href="#eq-8-9">(8.9)</a> requires. Increase the field until a finite magnetization appears, and compare it with the finite-size gap to the next sector of total spin.</p>
+<div class="tryit-links">
+Notebook <code>session8.ipynb</code>, cell “Magnetization of a large Heisenberg model”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session8.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session8.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession8.ipynb">Binder</a>.
+</div>
+</div>
 
-  <nav class="pager"><a href="06-the-resonating-valence-bond-wavefunction-as-the-qsl-ground-state.html">8.6 The resonating valence bond wavefunction as the QSL ground state</a><a href="08-the-parton-construction-with-abrikosov-fermions-and-the-single-occupancy-constraint.html">8.8 The parton construction with Abrikosov fermions and the single-occupancy constraint</a></nav>
+  <nav class="pager"><a href="06-the-resonating-valence-bond-wavefunction-as-the-qsl-ground-state.html">8.6 The resonating valence bond wavefunction as the QSL ground state</a><a href="09-the-mean-field-spinon-hamiltonian-and-its-dispersion-classes.html">8.9 The mean-field spinon Hamiltonian and its dispersion classes</a></nav>
 
 </main>
 </body>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>7.8 Why MPS work in 1D, and where they stop working, session 7</title>
+<title>7.8a Why MPS work in 1D, session 7</title>
 <style>
   :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
           --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -82,29 +83,70 @@
   <nav class="tabs"><a href="../../lectures/session7.html">Video lectures</a><a href="../../landscape/session7.html">Landscape lectures</a><a class="on" href="../../notes/session7/index.html">Lecture notes</a></nav>
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="on" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 7. Quantum Many-Body Entanglement and Tensor Networks</a></p>
-<h1 id="sec-7-8"><span class="num">7.8</span> Why MPS work in 1D, and where they stop working</h1>
+<h1 id="sec-7-8"><span class="num">7.8a</span> Why MPS work in 1D</h1>
 <p>The area law is the missing piece that explains why the ansatz <a href="04-the-matrix-product-state-ansatz.html#eq-7-5">(7.5)</a> is a good one. Let us take an MPS at a given bond, and use it to build the Schmidt decomposition of the state for a division of the system at that bond.</p>
 <p><span class="math display">\[|\Psi\rangle = \sum_{\alpha=1}^{M} \lambda_\alpha\, |\alpha\rangle_A \otimes |\alpha\rangle_B,\]</span></p>
 <p>This sum has at most <span class="math inline">\(M\)</span> terms, because the internal index, also called virtual index, that runs through that bond only takes <span class="math inline">\(M\)</span> values. Therefore the reduced density matrix <span class="math inline">\(\rho_A = \sum_\alpha
 \lambda_\alpha^2 |\alpha\rangle_A
-\langle\alpha|_A\)</span> has rank at most <span class="math inline">\(M\)</span>. Among all density matrices with rank <span class="math inline">\(\le M\)</span>, the entropy <a href="05-measuring-entanglement-with-the-entanglement-entropy.html#eq-7-6">(7.6)</a> is maximal when all the eigenvalues are equal, <span class="math inline">\(\lambda_\alpha^2 = 1/M\)</span>, which gives</p>
+\langle\alpha|_A\)</span> has rank at most <span class="math inline">\(M\)</span>. Among all density matrices with rank <span class="math inline">\(\le M\)</span>, the entropy <a href="04-the-matrix-product-state-ansatz.html#eq-7-6">(7.6)</a> is maximal when all the eigenvalues are equal, <span class="math inline">\(\lambda_\alpha^2 = 1/M\)</span>, which gives</p>
 <p><span id="eq-7-10" class="eq"><span class="math display">\[S \;\le\; \log M. \tag{7.10}\]</span></span></p>
 <p>In other words, an MPS with bond dimension <span class="math inline">\(M\)</span> can have an entanglement entropy of at most <span class="math inline">\(\log M\)</span> across any bond, which grows only logarithmically with <span class="math inline">\(M\)</span>. Let us compare this with <a href="07-two-dimensions-and-the-area-law.html#eq-7-9">(7.9)</a>. A 1D gapped ground state has an entanglement entropy that <em>saturates</em> at a finite value, which does not depend on the size of the subsystem, so a moderate and fixed bond dimension is already enough to describe it almost exactly. This is the precise and quantitative reason why matrix product states are such a good ansatz in one dimension, since the area law limits the same quantity that the bond dimension limits. Geometrically, we can think of the full many-body Hilbert space as a large set, and MPS describe only a very small part of it, which is the part of area-law states. This part is reached with a bond dimension that stays moderate (<span class="math inline">\(M \sim 10\)</span>, <span class="math inline">\(100\)</span>) as long as we stay in the area-law regime. To reach a general state with a volume law, the bond dimension would have to become very large, <span class="math inline">\(M \sim 2^{L/2}\)</span>, which is exponential in <span class="math inline">\(L\)</span>. Figure <a href="#fig:s07:ceiling">7.3</a> shows this comparison directly. It shows the upper limit <span class="math inline">\(\log M\)</span> given by <a href="#eq-7-10">(7.10)</a> and the entropy that a gapped, a critical and a general state need when the subsystem grows.</p>
 <figure id="fig:s07:ceiling">
 <img src="../figures/s07f03_entropyceiling.svg" loading="lazy" alt="The bond dimension is an upper limit on the entanglement, and this determines when matrix product states work." />
 <figcaption><strong>Figure 7.3.</strong> The bond dimension is an upper limit on the entanglement, and this determines when matrix product states work. An MPS with bond dimension <span class="math inline">\(M\)</span> has at most <span class="math inline">\(M\)</span> Schmidt terms across any bond, so by <a href="#eq-7-10">(7.10)</a> it can have at most <span class="math inline">\(S=\log M\)</span> there, which is shown by the two horizontal bars, for <span class="math inline">\(M=4\)</span> and <span class="math inline">\(M=16\)</span>. A gapped one-dimensional ground state follows the area law of Section <a href="06-entanglement-entropy-of-a-solvable-dimerized-chain.html#sec-7-6">7.6</a>, and its entropy saturates at a value set by the correlation length and not by the subsystem size, so it stays below a fixed and moderate limit for any chain length. A critical chain violates the area law logarithmically, <a href="11-mera-and-peps-beyond-mps.html#eq-7-12">(7.12)</a>, so it goes above any fixed limit at some point, here the lower bar, and <span class="math inline">\(M\)</span> must be increased as the system grows, slowly but without bound. A general state of the Hilbert space of dimension <span class="math inline">\(2^L\)</span> follows a volume law, <span class="math inline">\(S=\ell\log 2\)</span>, and it goes above any usable <span class="math inline">\(M\)</span> after a few sites. This is why time evolution over long times, highly excited states and two-dimensional systems are all out of reach. The entropy is drawn in bits, <span class="math inline">\(S/\log 2\)</span>, with central charge <span class="math inline">\(c=1\)</span>, and the curves are schematic and not fits to a specific model.</figcaption>
 </figure>
-<p>The same argument tells us directly where MPS must fail, which is whenever the true entanglement entropy is larger than what a practical bond dimension can give through <a href="#eq-7-10">(7.10)</a>. In practice this happens in four cases. The first case is dynamics over long times, since after a quench the entanglement grows <em>linearly</em> with time and not logarithmically. The second case is systems in more than one dimension, where the length of the boundary in the area law grows with the system size, as we saw in Section <a href="07-two-dimensions-and-the-area-law.html#sec-7-7">7.7</a>, so <span class="math inline">\(M\)</span> has to grow too, often exponentially in the linear size of the subsystem. The third case is highly excited states, since the area law is a statement about ground states and not about general eigenstates. The fourth case is, more generally, states far from equilibrium. However, when the physics stays close to a gapped 1D ground state, MPS can be used for more than the ground-state problem. With a higher cost, they can be used for time evolution, excited states and open quantum systems, routinely in 1D and in some cases in 2D.</p>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>A gapped chain of 50 sites is described accurately with a bond dimension <span class="math inline">\(M\)</span>. What do we need for a gapped chain of 500 sites in the same phase?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>About ten times larger <span class="math inline">\(M\)</span>.</li>
+<li>About the same <span class="math inline">\(M\)</span>, since the entropy saturates.</li>
+<li>An <span class="math inline">\(M\)</span> that is exponentially larger.</li>
+<li>A smaller <span class="math inline">\(M\)</span>, since the chain is longer.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>In a gapped state the entropy across a bond is set by the correlation length and not by the length of the chain. The bound <a href="#eq-7-10">(7.10)</a> then asks for the same <span class="math inline">\(M\)</span>.</p>
+</details>
+</div>
+<div class="quiz" data-correct="C">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>An MPS has <span class="math inline">\(M=16\)</span>. What is the largest entanglement entropy that it can hold across one bond, in units of <span class="math inline">\(\log 2\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(16\)</span>, since there are 16 terms.</li>
+<li><span class="math inline">\(8\)</span>, since it is half of <span class="math inline">\(M\)</span>.</li>
+<li><span class="math inline">\(4\)</span>, since <span class="math inline">\(\log 16=4\log 2\)</span>.</li>
+<li><span class="math inline">\(2\)</span>, since it is the square root of <span class="math inline">\(M\)</span>.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>C</strong>.</p>
+<p>The bound <a href="#eq-7-10">(7.10)</a> is <span class="math inline">\(S\le\log M\)</span>, and <span class="math inline">\(\log 16=4\log 2\)</span>. The number of Schmidt terms is <span class="math inline">\(16\)</span> but the entropy grows only as its logarithm.</p>
+</details>
+</div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb"><code>session7.ipynb</code></a>, “Near linear scaling with system size with matrix product states” (Core) and “The role of the bond dimension in tensor networks” (Core)</p>
 <p>In the first exercise you check directly that the cost of the DMRG ground-state calculation in <code>dmrgpy</code> grows linearly with the system size, which is the <span class="math inline">\(L\times M^2\)</span> scaling of <a href="04-the-matrix-product-state-ansatz.html#eq-7-5">(7.5)</a> and not the <span class="math inline">\(2^L\)</span> scaling of <a href="03-storing-the-wave-function-as-the-main-bottleneck.html#eq-7-4">(7.4)</a>. In the second exercise you change the bond dimension and see how the fluctuation of the ground-state energy becomes smaller and then saturates. The point where it saturates is where <span class="math inline">\(M\)</span> is large enough to satisfy the bound <a href="#eq-7-10">(7.10)</a> for that state.</p>
 </div>
-<div class="notebookbox">
-<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb"><code>session7.ipynb</code></a>, “Entanglement entropy of the ground state” (Core), “Size dependence of the entanglement entropy” (Challenge), and “Bond dimension dependence of the entanglement entropy” (Challenge)</p>
-<p>With these three exercises you can reproduce Sections <a href="05-measuring-entanglement-with-the-entanglement-entropy.html#sec-7-5">7.5</a> to <a href="#sec-7-8">7.8</a> numerically. First, you compute the entanglement entropy at each bond for the MPS ground state of a Heisenberg chain. Then you check that it grows very little with the system size, which is the 1D area-law saturation of Section <a href="06-entanglement-entropy-of-a-solvable-dimerized-chain.html#sec-7-6">7.6</a>, but this time in a gapless chain and not in a gapped one. Finally, you check that it saturates once the bond dimension is large enough to satisfy <a href="#eq-7-10">(7.10)</a>. The quiz of the first exercise also asks you to replace the model with an Ising model and to see how the entropy changes. This is a quick way to see how the area law responds to a really different ground state, which in this case is classical and has zero entanglement.</p>
+<div class="tryit">
+<p><strong>Try it.</strong> Run the loop over <code>maxm</code> in <code>[2,4,8,20]</code> and look at the bond entropy. For <code>maxm=2</code> the curve cannot go above <span class="math inline">\(\ln 2\approx0.69\)</span>, while for <code>maxm=20</code> it follows the true ground state. Check that the central bonds have the largest entropy.</p>
+<div class="tryit-links">
+Notebook <code>session7.ipynb</code>, cell “Entanglement entropy of the ground state”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession7.ipynb">Binder</a>.
+</div>
 </div>
 
-  <nav class="pager"><a href="07-two-dimensions-and-the-area-law.html">7.7 Two dimensions and the area law</a><a href="09-tensor-diagrams-as-notation-for-networks-and-operators.html">7.9 Tensor diagrams as notation for networks and operators</a></nav>
+  <nav class="pager"><a href="07-two-dimensions-and-the-area-law.html">7.7 Two dimensions and the area law</a><a href="08b-where-mps-stop-working.html">7.8b Where MPS stop working</a></nav>
 
 </main>
 </body>

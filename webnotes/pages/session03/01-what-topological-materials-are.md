@@ -2,6 +2,19 @@
 
 Before we go into the formalism, it is useful to have a rough classification in mind, so that the abstract tools that we are going to build have concrete targets. Topological materials are systems with an excitation gap in the bulk that at the same time have protected excitations at their surface or edge. This combination of a gapped bulk and a gapless boundary will appear again and again in this session, and it is the defining feature of these materials. The point is not that the edge happens to have low-energy states. The point is that the topology of the bulk *forces* them to be there.
 
+![The picture to keep in mind for all the materials of this session. In the bulk the electrons move on closed orbits and the bulk is gapped. At the boundary the orbits skip along the edge, and this edge carries current even though the bulk is an insulator. Look at the arrows, which have opposite directions on the two edges. We study this picture in Section [3.6](#sec-3-6).](figures/s03f01_chiraledge.svg){alt="A sample seen from above with closed orbits in the bulk and orbits that skip along the edge in opposite directions on the two edges."}
+
+::: quiz
+A material has a gapped bulk and edge states inside the gap. A change of the edge potential, which keeps the bulk gap open, removes these states. Is this material topological in the sense of this session?
+
+- [ ] No, because a gapped bulk cannot have edge states.
+- [x] No, because in a topological material the bulk forces the edge states to exist for every edge.
+- [ ] Yes, because the bulk is gapped.
+- [ ] Yes, because any edge state inside a bulk gap signals topology.
+
+Edge states that a change of the edge can remove belong to one particular edge and are not protected. In a topological material the bulk invariant forces them to exist, so a change of the edge can only move them in energy.
+:::
+
 Within this class, we will see the following systems in this session and in the next one.
 
 - The **quantum Hall effect**, which appears in two-dimensional electron gases and in graphene under a strong perpendicular magnetic field. It is the simplest topological state, and it is our starting point.

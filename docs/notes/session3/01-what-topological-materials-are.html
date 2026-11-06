@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -84,6 +85,30 @@
   <p class="crumb"><a href="index.html">Session 3. Topological Band Structure Theory</a></p>
 <h1 id="sec-3-1"><span class="num">3.1</span> What topological materials are</h1>
 <p>Before we go into the formalism, it is useful to have a rough classification in mind, so that the abstract tools that we are going to build have concrete targets. Topological materials are systems with an excitation gap in the bulk that at the same time have protected excitations at their surface or edge. This combination of a gapped bulk and a gapless boundary will appear again and again in this session, and it is the defining feature of these materials. The point is not that the edge happens to have low-energy states. The point is that the topology of the bulk <em>forces</em> them to be there.</p>
+<figure class="again">
+<img src="../figures/s03f01_chiraledge.svg" loading="lazy" alt="A sample seen from above with closed orbits in the bulk and orbits that skip along the edge in opposite directions on the two edges." />
+<figcaption><strong><a href="06-landau-levels-and-chiral-edge-states-in-the-quantum-hall-state.html#fig:s03:chiraledge">Figure 3.1</a>, shown again.</strong> The picture to keep in mind for all the materials of this session. In the bulk the electrons move on closed orbits and the bulk is gapped. At the boundary the orbits skip along the edge, and this edge carries current even though the bulk is an insulator. Look at the arrows, which have opposite directions on the two edges. We study this picture in Section <a href="06-landau-levels-and-chiral-edge-states-in-the-quantum-hall-state.html#sec-3-6">3.6</a>.</figcaption>
+</figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>A material has a gapped bulk and edge states inside the gap. A change of the edge potential, which keeps the bulk gap open, removes these states. Is this material topological in the sense of this session?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>No, because a gapped bulk cannot have edge states.</li>
+<li>No, because in a topological material the bulk forces the edge states to exist for every edge.</li>
+<li>Yes, because the bulk is gapped.</li>
+<li>Yes, because any edge state inside a bulk gap signals topology.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>Edge states that a change of the edge can remove belong to one particular edge and are not protected. In a topological material the bulk invariant forces them to exist, so a change of the edge can only move them in energy.</p>
+</details>
+</div>
 <p>Within this class, we will see the following systems in this session and in the next one.</p>
 <ul>
 <li><p>The <strong>quantum Hall effect</strong>, which appears in two-dimensional electron gases and in graphene under a strong perpendicular magnetic field. It is the simplest topological state, and it is our starting point.</p></li>

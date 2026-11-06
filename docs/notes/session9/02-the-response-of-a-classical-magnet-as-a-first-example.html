@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -91,7 +92,30 @@
 \dfrac{1}{T - T_c} &amp; \text{ferromagnet, diverges at a positive } T_c, \\[4pt]
 \dfrac{1}{T + T_c} &amp; \text{antiferromagnet, apparent divergence at a negative temperature.}
 \end{cases} \tag{9.1}\]</span></span></p>
+<figure id="sch:s09:curie_weiss" class="schematic">
+<img src="../figures/web/session09/curie_weiss.svg" loading="lazy" alt="Three straight lines of the inverse susceptibility against temperature, crossing the temperature axis at zero, at a positive temperature and at a negative temperature." />
+<figcaption><strong>Schematic 9.2.</strong> The inverse susceptibility of <a href="#eq-9-1">(9.1)</a> is a straight line in each case. The line of the paramagnet goes through the origin, the ferromagnet extrapolates to zero at the positive temperature <span class="math inline">\(T_c\)</span>, and the antiferromagnet at the negative temperature <span class="math inline">\(-T_c\)</span>. The dashed parts are extrapolations, since the disordered phase does not reach them.</figcaption>
+</figure>
 <p>The physical picture behind <a href="#eq-9-1">(9.1)</a> is important, because we will find it again in a fully quantum form in Section <a href="05-interactions-as-a-perturbation-with-rpa-plasmons-and-the-stoner-instability.html#sec-9-5">9.5</a>. In the paramagnetic regime the thermal fluctuations dominate, and the susceptibility stays finite at any <span class="math inline">\(T&gt;0\)</span>, since nothing in the system tends to order. In the ferromagnetic case the fluctuations <em>reinforce</em> the applied field, so as <span class="math inline">\(T\to T_c^+\)</span> the system becomes polarized more and more easily, and <span class="math inline">\(\chi\)</span> really diverges at the transition. In the antiferromagnetic case the fluctuations <em>oppose</em> the applied field, since they favor staggered order and not uniform order, and this appears as the opposite sign in the denominator. The susceptibility then seems to go towards a divergence at a temperature below absolute zero. Of course it never reaches it, but the sign alone already tells us that the system tends to antiferromagnetic order and not to ferromagnetic order. In experiments this is a practical diagnostic. We plot <span class="math inline">\(\chi^{-1}(T)\)</span>, and if the straight line extrapolates to a positive intercept, the system is close to a ferromagnet, while a negative intercept means that the system is close to an antiferromagnet. All of this is measured in the disordered phase at high temperature. This is the model for the whole session, which is that <strong>the response of the disordered/uniform state, computed without ever solving for the ordered state itself, already contains the information about which ordered state is coming.</strong></p>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>We measure the susceptibility of a magnet at high temperature. A plot of <span class="math inline">\(1/\chi\)</span> against <span class="math inline">\(T\)</span> is a straight line that reaches zero at <span class="math inline">\(T=-30\)</span> K when we extrapolate it. What do we expect when we cool the sample?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>Ferromagnetic order below a positive critical temperature.</li>
+<li>Antiferromagnetic order, although the susceptibility never diverges at a positive temperature.</li>
+<li>No order at all, since a paramagnet has the intercept at zero.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The line <span class="math inline">\(1/\chi\propto T+T_c\)</span> is the antiferromagnetic case of <a href="#eq-9-1">(9.1)</a>, with <span class="math inline">\(T_c=30\)</span> K. The exchange favors staggered order, so the uniform susceptibility only reaches the apparent divergence at a negative temperature. A paramagnet would give an intercept at <span class="math inline">\(T=0\)</span>.</p>
+</details>
+</div>
 
   <nav class="pager"><a href="01-response-functions-as-a-probe-of-the-ground-state.html">9.1 Response functions as a probe of the ground state</a><a href="03-linear-response-and-perturbation-theory-in-detail.html">9.3 Linear response and perturbation theory in detail</a></nav>
 

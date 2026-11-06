@@ -26,8 +26,34 @@ This chain with alternating hoppings should be remembered by its name, since it 
 
 ![Reading a Bloch Hamiltonian from a lattice, shown as band folding. The number of orbitals per unit cell gives the size of the matrix. An intracell hopping enters the entry of its orbital pair with no phase, and an intercell hopping enters the corresponding entry multiplied by $e^{\pm i\varphi}$. (a) The same chain with one site per cell, behind, and with two sites $A$, $B$ per cell, in front, where the intracell hopping $1$ is the thick bond and the intercell hopping $\eta$ is the thin one. Note that the intracell $A$-$B$ hopping goes *off* the diagonal. For the chain with alternating hoppings [(2.13)](#eq-2-13) this gives the two bands $\epsilon_\pm=\pm|1+\eta e^{-i\varphi}|$. (b) For $\eta=1$ the two descriptions are the same chain, and the band of the one-site cell, the grey tube, folds into the zone of the two-site cell, which is half as wide and ends at the translucent planes at $\varphi=\pm\pi$. The two folded branches are the two bands, which touch at the zone edge. For $\eta=0.6$ they have a gap, and the gap closes exactly at $\eta=1$. This is the Su-Schrieffer-Heeger chain of the topology session.](figures/s02f03_blochrecipe.svg){#fig:s02:recipe number="2.3"}
 
+::: quiz
+In [(2.13)](#eq-2-13) we take $\eta=1$ and $\varphi=\pi$. What is the energy of the two bands?
+
+- [x] $0$ for both, so the bands touch.
+- [ ] $\pm 1$.
+- [ ] $\pm 2$.
+- [ ] $\pm\eta$ with a gap.
+
+At $\varphi=\pi$ the phase factor is $-1$, so $1+\eta e^{-i\pi}=1-\eta$, which vanishes for $\eta=1$. The two bands touch, as the folded band of the uniform chain does at the zone edge.
+:::
+
+::: quiz
+We describe the uniform chain with a unit cell of three sites. How many bands do we get, and how wide is the zone?
+
+- [x] Three bands, in a zone three times narrower.
+- [ ] One band, in the same zone.
+- [ ] Three bands, in a zone three times wider.
+- [ ] Two bands, in a zone twice as narrow.
+
+The Bloch Hamiltonian is a $3\times 3$ matrix, so we get three bands. The cell is three times longer, so the zone is three times narrower, and the single band of [(2.8)](#eq-2-8) folds into it.
+:::
+
 ::: notebookbox
 **Notebook check-in:** [`session2.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session2.ipynb), "One dimensional chain, band folding" (Challenge), and "One dimensional ladder, band folding" (Challenge)
 
 The "band folding" section builds the same picture from the other direction. You take a chain with a single orbital and describe it again with a larger unit cell, which is the same as having more than one site per cell, and you see how a single band from [(2.8)](#eq-2-8) folds into several bands, as [(2.12)](#eq-2-12) predicts. The ladder section then works with a real model with two orbitals per cell, in the same spirit as [(2.13)](#eq-2-13), and there you can check that the numerical bands agree with $\epsilon_\pm(\varphi)$.
+:::
+
+::: {.tryit notebook="session2.ipynb" cell="One dimensional chain, band folding"}
+Change `g.get_supercell(2)` to three and to four sites. Count the bands, and check that their number equals the number of sites in the cell, with each band spanning a smaller zone.
 :::

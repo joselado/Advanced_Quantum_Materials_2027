@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -91,6 +92,48 @@
 <p>and by definition <span class="math inline">\(\chi_A\)</span>, the first-order coefficient, <em>is</em> the response function that we have been talking about in this session. To compute <span class="math inline">\(\chi_A\)</span> for a generic observable, we first need the perturbed wavefunctions. We expand an unperturbed eigenstate <span class="math inline">\(|n\rangle\)</span> of <span class="math inline">\(H_0\)</span>, with energy <span class="math inline">\(E_n^{(0)}\)</span>, in the full basis <span class="math inline">\(\{|m\rangle\}\)</span> of <span class="math inline">\(H_0\)</span>. Standard Rayleigh-Schrödinger perturbation theory then gives, to first order in <span class="math inline">\(\lambda\)</span> and away from any degeneracy,</p>
 <p><span id="eq-9-3" class="eq"><span class="math display">\[|n(\lambda)\rangle = |n\rangle + \lambda \sum_{m \neq n} \frac{\langle m|V|n\rangle}{E_n^{(0)} - E_m^{(0)}} \, |m\rangle + O(\lambda^2). \tag{9.3}\]</span></span></p>
 <p>The structure of <a href="#eq-9-3">(9.3)</a> is the basis of every derivation in the rest of this session. A perturbation mixes a state <span class="math inline">\(|n\rangle\)</span> with every other state <span class="math inline">\(|m\rangle\)</span>. The weight of the mixing is the matrix element of <span class="math inline">\(V\)</span> between the two states, and it is suppressed by the inverse of the energy gap between them. States that are close in energy mix strongly, and states that are far apart in energy almost do not mix. Once we have <a href="#eq-9-3">(9.3)</a>, we can write any observable, in particular any density or magnetization, to first order in <span class="math inline">\(\lambda\)</span> by using the perturbed states.</p>
+<figure id="sch:s09:mixing" class="schematic">
+<img src="../figures/web/session09/mixing.svg" loading="lazy" alt="Four energy levels around a central level, and horizontal bars that show the mixing coefficient of each level, largest for the closest one." />
+<figcaption><strong>Schematic 9.3.</strong> The mixing of <a href="#eq-9-3">(9.3)</a> for one fixed matrix element <span class="math inline">\(\langle m|V|n\rangle=0.1\)</span>. On the left we see the levels of <span class="math inline">\(H_0\)</span> around <span class="math inline">\(|n\rangle\)</span>, and on the right the coefficient of each level in the perturbed state. The closest level, <span class="math inline">\(|m_1\rangle\)</span>, mixes the most, and the sign of the coefficient follows the sign of <span class="math inline">\(E_n^{(0)}-E_m^{(0)}\)</span>, so that a level above <span class="math inline">\(|n\rangle\)</span> enters with a negative sign.</figcaption>
+</figure>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>A state <span class="math inline">\(|n\rangle\)</span> is coupled by <span class="math inline">\(V\)</span> to two other states with the same matrix element. One of them is <span class="math inline">\(0.1t\)</span> away in energy and the other is <span class="math inline">\(1.0t\)</span> away. How do the two mixing coefficients of <a href="#eq-9-3">(9.3)</a> compare?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>The closer state has a coefficient ten times larger.</li>
+<li>They are equal, since the matrix element is the same.</li>
+<li>The farther state has the larger coefficient, since it carries more energy.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>The coefficient is the matrix element divided by the energy difference. With equal matrix elements, the ratio of the coefficients is the inverse ratio of the gaps, which is ten.</p>
+</details>
+</div>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>Two levels of <span class="math inline">\(H_0\)</span> are exactly degenerate and <span class="math inline">\(V\)</span> couples them. What happens to the first-order coefficient of <a href="#eq-9-3">(9.3)</a> between them?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>It becomes zero, so the two levels do not mix.</li>
+<li>It diverges, so we must diagonalize <span class="math inline">\(V\)</span> inside the degenerate subspace first.</li>
+<li>It stays finite, because the matrix element is finite.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The denominator <span class="math inline">\(E_n^{(0)}-E_m^{(0)}\)</span> vanishes, so the expansion in <span class="math inline">\(\lambda\)</span> breaks down. This is why the formula holds only away from degeneracy, as we said before the equation.</p>
+</details>
+</div>
 <p><strong>When does this break down?</strong> The construction in <a href="#eq-9-3">(9.3)</a> assumes that <span class="math inline">\(A(\lambda)\)</span> is an analytic function of <span class="math inline">\(\lambda\)</span> close to <span class="math inline">\(\lambda=0\)</span>, and this assumption is not always true. There are three paradigmatic quantum states that are known to be intrinsically non-perturbative in this sense, and we mention them explicitly since they mark the limit of everything that we derive below.</p>
 <ul>
 <li><p><strong>An impurity in a metal, the orthogonality catastrophe.</strong> In the thermodynamic limit, the full many-body wavefunction of a metal with the impurity switched on becomes exactly orthogonal to the wavefunction with the impurity switched off, for any strength of the impurity potential, even a very weak one.</p></li>
@@ -99,7 +142,7 @@
 </ul>
 <p>In the rest of this session we stay in the regime where perturbation theory <em>does</em> work, which is the regime where <a href="#eq-9-2">(9.2)</a> and <a href="#eq-9-3">(9.3)</a> give a controlled and systematic way to compute responses.</p>
 
-  <nav class="pager"><a href="02-the-response-of-a-classical-magnet-as-a-first-example.html">9.2 The response of a classical magnet as a first example</a><a href="04-the-fermi-sea-and-the-lindhard-function.html">9.4 The Fermi sea and the Lindhard function</a></nav>
+  <nav class="pager"><a href="02-the-response-of-a-classical-magnet-as-a-first-example.html">9.2 The response of a classical magnet as a first example</a><a href="04-the-fermi-sea-and-the-lindhard-function.html">9.4a The Fermi sea and the Lindhard function</a></nav>
 
 </main>
 </body>

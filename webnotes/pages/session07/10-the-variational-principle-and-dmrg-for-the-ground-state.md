@@ -11,8 +11,34 @@ or, in an equivalent way, we introduce a Lagrange multiplier $\lambda$ for the n
 
 This suggests an iterative algorithm. We fix every tensor except the one of site $1$, solve the local eigenvalue problem there, and update $M_1^{s_1}$ with the resulting eigenvector. Then we move to site $2$, fix everything else, solve the local eigenvalue problem there, and update. We continue sweeping through the chain, site by site, until the energy stops decreasing. This sweeping procedure is the **density matrix renormalization group (DMRG)** algorithm. Its efficiency comes from the property of [(7.11)](#eq-7-11) that we used to build it. At every step we optimize only one matrix at a time, which is a small linear-algebra problem that we can solve, instead of searching for the ground state in the full exponentially large space at once.
 
+::: quiz
+When DMRG updates one tensor with all the others fixed, what happens to the energy [(7.11)](#eq-7-11)?
+
+- [ ] It can increase, and the sweeps compensate it later.
+- [x] It cannot increase, since the update is the exact minimum over that tensor.
+- [ ] It stays the same, since the other tensors are fixed.
+- [ ] It decreases only if the bond dimension is also increased.
+
+The old tensor is one of the candidates of the local minimization, so the new one is at least as good. The energy goes down or stays the same, and this is why the sweeps converge.
+:::
+
+::: quiz
+The local eigenvalue problem at one bulk site of a spin-1/2 chain has a matrix of size
+
+- [x] $2M^2$.
+- [ ] $2^L$.
+- [ ] $M$.
+- [ ] $2M$.
+
+The open legs of the erased tensor are two virtual bonds of dimension $M$ and one physical index of dimension $2$. The matrix acts on these $2M^2$ numbers, and $L$ does not appear.
+:::
+
 ::: notebookbox
 **Notebook check-in:** [`session7.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb), "Low energy excitations of a Heisenberg model" (Core)
 
 In this exercise you look at the matrix elements between the DMRG ground state and the first excited state of a Heisenberg chain, meaning what the sweeping procedure of Section [7.10](#sec-7-10) finds one level above the state that directly minimizes [(7.11)](#eq-7-11).
+:::
+
+::: {.tryit notebook="session7.ipynb" cell="Low energy excitations of a Heisenberg model"}
+Plot the matrix element between the ground state and the first excited state along the chain, for `L=20` and for `L=12`. Is the excitation localized on a few sites or spread over the chain? Then set `Bz=0` and see whether the profile changes.
 :::

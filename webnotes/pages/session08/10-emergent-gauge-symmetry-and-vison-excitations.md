@@ -10,3 +10,25 @@ Both the physical spin operator [(8.10)](#eq-8-10) and the single-occupancy cons
 Once we see this gauge structure, $\chi_{ij}$ becomes a dynamical field on the links of the lattice, and it can have its own topological defects. This is in direct analogy with the superconducting order parameter, whose gauge degree of freedom can have vortices. Let us write the mean-field Hamiltonian as $\mathcal H = \sum_{ij,s}|\chi_{ij}|e^{i\theta_{ij}}f^\dagger_{i,s}f_{j,s}$, and let us define the flux through a plaquette as the product of the phases that we pick up when we go around its boundary, $\Phi = \prod e^{i\theta_{ij}}$. For concreteness, let us take a square lattice where the hoppings around every elementary loop pick up the phase $\Phi=+1$, which is a ground state, except for one loop, where the phase is $\Phi=-1$. This single flipped plaquette is an excited state. It is a topological defect in the emergent gauge field, and it is called a **vison**. The vison is the excitation of the gauge sector, and in general it is coupled to the spinon excitations of the matter sector that we built in Section [8.9](#sec-8-9). In this language, a quantum spin liquid is described not only by its spinon dispersion but also by an emergent gauge theory and by the vison excitations of that theory. This is a new organizing principle, and nothing like it exists in the symmetry-broken magnets of Session 6. There is no notebook exercise for this construction, which is a purely conceptual and formal part of the QSL picture. Figure [8.5](#fig:s08:gauge) shows both parts of it, why the flux and not the link variable is the physical quantity, and what a single flipped flux looks like on the lattice.
 
 ![The emergent gauge theory of the parton construction, and its excitation, seen from above. (a) The mean-field bond variable is defined on the links, $\chi_{ij}=|\chi_{ij}|e^{i\theta_{ij}}$, drawn as a dial at the phase $\theta_{ij}$, and the local phase rotation [(8.16)](#eq-8-16) on one site shifts every link phase by $\theta_i-\theta_j$, which changes the two red needles. When we go once around a plaquette, each site phase appears twice with opposite signs, so the flux $\Phi=\prod e^{i\theta_{ij}}$ does not change. The link variables are pure gauge, and the flux is physical. This is the reason why two mean-field solutions related by [(8.16)](#eq-8-16) describe the same spin liquid. (b) As a result, the flux is what labels the state. With $\Phi=+1$ on every plaquette as the ground state, flipping a single plaquette to $\Phi=-1$ costs energy, and no gauge transformation can remove it. This localized defect of the gauge field is a **vison**. Which links have the minus sign is a gauge choice, here a string from the edge, and it can be moved freely, while the shaded plaquette cannot be moved.](figures/s08f05_gauge_vison.svg){#fig:s08:gauge number="8.5"}
+
+::: quiz
+Which of these objects changes under the local phase rotation [(8.16)](#eq-8-16)?
+
+- [ ] The spin operator [(8.10)](#eq-8-10).
+- [ ] The single-occupancy constraint [(8.11)](#eq-8-11).
+- [x] The bond variable $\chi_{ij}$, which gets the phase $e^{i(\theta_i-\theta_j)}$.
+- [ ] The physical spin Hamiltonian.
+
+The phases cancel in every product $f^\dagger_{i\alpha}f_{i\beta}$ on the same site, so the spin operator and the constraint do not change. Only the link variable between two sites picks up a phase, and this is what makes it a gauge field.
+:::
+
+::: quiz
+We rotate the phase of the fermions on the four sites of a plaquette with arbitrary angles $\theta_i$. How does the flux $\Phi$ through it change?
+
+- [ ] It changes by the sum of the four angles.
+- [x] It does not change, since every site phase appears twice with opposite signs.
+- [ ] It changes sign.
+- [ ] It is multiplied by $e^{i\theta_1}$.
+
+Going around the plaquette we pick up $\theta_i-\theta_j$ on each link, and the sum telescopes to zero. The flux is physical, and this is why the vison, which is a plaquette with $\Phi=-1$, cannot be removed.
+:::

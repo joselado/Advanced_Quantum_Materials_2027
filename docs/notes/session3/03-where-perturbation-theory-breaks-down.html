@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -83,15 +84,67 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="on" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 3. Topological Band Structure Theory</a></p>
 <h1 id="sec-3-3"><span class="num">3.3</span> Where perturbation theory breaks down</h1>
-<p>Before we use <a href="02-linear-response-theory-and-how-a-measurement-reads-the-wavefunctions.html#eq-3-1">(3.1)</a>, we should say when it fails, because several of the most important phenomena in this course appear in this failure. The expansion <a href="02-linear-response-theory-and-how-a-measurement-reads-the-wavefunctions.html#eq-3-1">(3.1)</a> assumes that we are in the <em>perturbative regime</em>, where a small change in the input, which is the strength of the perturbation, gives a small change in the output. This is not always the case. We name three cases now, because we will see each of them in detail later in the course.</p>
+<p>Before we use <a href="02-linear-response-theory-and-how-a-measurement-reads-the-wavefunctions.html#eq-3-1">(3.1)</a>, we should say when it fails, because several of the most important phenomena in this course appear in this failure. The expansion <a href="02-linear-response-theory-and-how-a-measurement-reads-the-wavefunctions.html#eq-3-1">(3.1)</a> assumes that we are in the <em>perturbative regime</em>, where a small change in the input, which is the strength of the perturbation, gives a small change in the output. This is not always the case. We name three cases now, because we will see each of them in detail later in the course. The simplest example is a system of two levels, which is shown in <a href="#sch:s03:perturb_gap">Schematic 3.1</a>.</p>
+<figure id="sch:s03:perturb_gap" class="schematic">
+<img src="../figures/web/session03/perturb_gap.svg" loading="lazy" alt="Two curves against the ratio of the perturbation to the level spacing, a straight dashed line for the first order and a curve that bends over and saturates for the exact result." />
+<figcaption><strong>Schematic 3.1.</strong> Two levels at <span class="math inline">\(-\Delta\)</span> and <span class="math inline">\(+\Delta\)</span> that are coupled by a perturbation <span class="math inline">\(\lambda V\)</span>. The red dashed line is the amplitude of the first-order term of <a href="02-linear-response-theory-and-how-a-measurement-reads-the-wavefunctions.html#eq-3-1">(3.1)</a>, which grows linearly with <span class="math inline">\(\lambda V/\Delta\)</span>. The blue line is the exact amplitude of the upper level in the perturbed ground state, which saturates at <span class="math inline">\(1/\sqrt{2}\)</span>. The two agree within a few percent only in the shaded region. Look at where the lines separate, since this is where a finite order of the expansion is not enough.</figcaption>
+</figure>
 <ul>
 <li><p>An impurity in a metal gives rise to the <strong>orthogonality catastrophe</strong>. The many-body ground state after the perturbation becomes exactly orthogonal to the original ground state, even for a very small perturbation, so no Taylor expansion of finite order in <span class="math inline">\(\lambda\)</span> can connect the two.</p></li>
 <li><p>A quantum spin, which is a local magnetic moment, coupled to a metal gives rise to the <strong>Kondo effect</strong>. The relevant energy scale, which is the Kondo temperature, is a non-perturbative function of the coupling constant, and no order of perturbation theory in this coupling gives it. We will study the Kondo lattice model in detail in session 8, and here we only mention it as a first sign that ordinary perturbation theory has a strict limit.</p></li>
 <li><p><strong>Superconductivity</strong> is also non-perturbative, since the BCS gap does not appear at any finite order in the interaction strength if we start from the normal state. We will work this out in detail in session 5.</p></li>
 </ul>
 <p>In this lecture, and for every model that we build in this session, we stay inside the regime where <a href="02-linear-response-theory-and-how-a-measurement-reads-the-wavefunctions.html#eq-3-1">(3.1)</a> holds. For now, it is enough to know that this is not always the case.</p>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>An impurity in a metal changes the ground state so that the new ground state is exactly orthogonal to the old one. Why can no finite order of the expansion in <span class="math inline">\(\lambda\)</span> describe this?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>The impurity breaks the translation symmetry of the metal.</li>
+<li>Every finite order keeps a large overlap with the old ground state when <span class="math inline">\(\lambda\)</span> is small, while the exact overlap is zero.</li>
+<li>All the energy denominators of a metal are exactly zero.</li>
+<li>The perturbation is too strong at every order.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>A truncated expansion differs from <span class="math inline">\(|n\rangle\)</span> only by terms that are small for small <span class="math inline">\(\lambda\)</span>. Its overlap with the old state stays close to one, and so it can never reach a state that is orthogonal to it.</p>
+</details>
+</div>
+<h1 class="sec-next" id="sec-3-4"><span class="num">3.4</span> The Hall conductivity from linear response</h1>
+<p>Now we apply <a href="02-linear-response-theory-and-how-a-measurement-reads-the-wavefunctions.html#eq-3-1">(3.1)</a> to the measurement that will bring us to topology, which is the transverse conductivity, also called the Hall conductivity. We take a two-dimensional material, apply a voltage in the <span class="math inline">\(y\)</span> direction, and ask what current flows in the <span class="math inline">\(x\)</span> direction. In momentum space, a voltage in <span class="math inline">\(y\)</span> enters as a perturbation proportional to <span class="math inline">\(\partial H/\partial k_y\)</span>, since it shifts <span class="math inline">\(k_y\)</span> through the Peierls substitution. The current operator in the <span class="math inline">\(x\)</span> direction is, up to the electron charge, the group-velocity operator <span class="math inline">\(\partial H/\partial k_x\)</span>. Both are the kind of matrix element that appears in <a href="02-linear-response-theory-and-how-a-measurement-reads-the-wavefunctions.html#eq-3-1">(3.1)</a>.</p>
+<p>When we put <a href="02-linear-response-theory-and-how-a-measurement-reads-the-wavefunctions.html#eq-3-1">(3.1)</a> into the definition of the Hall conductivity, we obtain an expression with two velocity operators and an energy denominator, which is the standard Kubo formula for a filled band <span class="math inline">\(n\)</span> and empty bands <span class="math inline">\(m\)</span>,</p>
+<p><span id="eq-3-2" class="eq"><span class="math display">\[\sigma_{xy} \;\propto\; \sum_{n\ \text{filled}} \sum_{m\ \text{empty}} \int_{\text{BZ}}
+\frac{d^2k}{(2\pi)^2}\;
+\frac{\langle n|\partial_{k_x}H|m\rangle\langle m|\partial_{k_y}H|n\rangle - (x\leftrightarrow y)}
+{(\varepsilon_n - \varepsilon_m)^2}. \tag{3.2}\]</span></span></p>
+<p>At this point the expression still depends explicitly on the band energies through the denominator, so it seems that it should depend on all the details of the band structure. This is not the case, and the next section shows why.</p>
+<div class="quiz" data-correct="D">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>The numerator of <a href="#eq-3-2">(3.2)</a> contains the combination <span class="math inline">\(\langle n|\partial_{k_x}H|m\rangle\langle m|\partial_{k_y}H|n\rangle-(x\leftrightarrow y)\)</span>. What happens to <span class="math inline">\(\sigma_{xy}\)</span> if we exchange the roles of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>It doubles.</li>
+<li>It does not change.</li>
+<li>It becomes zero.</li>
+<li>It changes sign.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>D</strong>.</p>
+<p>The combination is antisymmetric under the exchange of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. The Hall conductivity is therefore antisymmetric as well, which means that <span class="math inline">\(\sigma_{yx}=-\sigma_{xy}\)</span>.</p>
+</details>
+</div>
 
-  <nav class="pager"><a href="02-linear-response-theory-and-how-a-measurement-reads-the-wavefunctions.html">3.2 Linear response theory and how a measurement reads the wavefunctions</a><a href="04-the-hall-conductivity-from-linear-response.html">3.4 The Hall conductivity from linear response</a></nav>
+  <nav class="pager"><a href="02-linear-response-theory-and-how-a-measurement-reads-the-wavefunctions.html">3.2 Linear response theory and how a measurement reads the wavefunctions</a><a href="05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html">3.5 The Berry curvature, and why the Hall conductivity is an integer</a></nav>
 
 </main>
 </body>

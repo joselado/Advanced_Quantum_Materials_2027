@@ -2,103 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>7.2 Fermions, spins and the Jordan-Wigner transformation, session 7</title>
-<style>
-  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
-          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
-            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
-  }
-  * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--fg);
-         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
-  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
-  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
-  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
-  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
-  a { color: var(--link); }
-  .course { color: var(--muted); margin: 0 0 16px; }
-  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
-  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
-  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
-  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
-  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
-           text-decoration: none; color: var(--fg); }
-  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
-  .sub a.off { color: var(--muted); border-style: dashed; }
-  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
-  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
-             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
-  .note { color: var(--muted); font-size: 0.95rem; }
-  ul { padding-left: 1.3em; margin: 4px 0; }
-  li { margin: 2px 0; }
-  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
-  .cols.three { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
-  @media (max-width: 900px) { .cols.three { grid-template-columns: 1fr; } }
-  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
-  .half h2 { margin-top: 14px; }
-  .half ol { padding-left: 1.6em; margin: 8px 0; }
-  .half li { margin: 4px 0; }
-  .soon { color: var(--muted); }
-  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
-           border-top: 1px solid var(--rule); gap: 12px; }
-
-  main { max-width: 860px; }
-  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
-              border-radius: 6px; color: var(--muted); }
-  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
-  .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
-  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
-  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
-  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
-  figure { margin: 24px 0; }
-  figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
-  figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
-  .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
-  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
-  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
-                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
-  .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
-           margin: 20px 0; font-size: 0.95rem; }
-  .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
-  table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
-  th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
-  div.center { overflow-x: auto; }
-  div.center table { margin-left: auto; margin-right: auto; }
-  th { border-bottom: 2px solid var(--rule); }
-  .coursecontents h2 { margin-top: 28px; }
-</style>
-<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
-<script src="../../notes/notes.js" defer></script>
+<title>Moved</title>
+<link rel="canonical" href="https://joselado.github.io/Advanced_Quantum_Materials_2027/notes/session7/01-two-regimes-of-many-body-physics.html#sec-7-2">
+<meta http-equiv="refresh" content="0; url=01-two-regimes-of-many-body-physics.html#sec-7-2">
+<meta name="robots" content="noindex">
 </head>
 <body>
-<main>
-  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
-  <nav class="tabs"><a href="../../lectures/session7.html">Video lectures</a><a href="../../landscape/session7.html">Landscape lectures</a><a class="on" href="../../notes/session7/index.html">Lecture notes</a></nav>
-  <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="on" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
-  <p class="crumb"><a href="index.html">Session 7. Quantum Many-Body Entanglement and Tensor Networks</a></p>
-<h1 id="sec-7-2"><span class="num">7.2</span> Fermions, spins and the Jordan-Wigner transformation</h1>
-<p>Before we build the tool, let us point out something that was present in the last sessions without being said explicitly. We have used two families of many-body Hamiltonians that look different. The first family is the fermionic Hamiltonians of the form <a href="01-two-regimes-of-many-body-physics.html#eq-7-1">(7.1)</a>, with a general two-body interaction <span class="math inline">\(V_{ijkl}\)</span>, where density-density interactions are only a special case, which we used in sessions 1 to 5. The second family is the spin Hamiltonians, mainly the Heisenberg model <span class="math inline">\(H =
-\sum_{ij} J_{ij}\, \mathbf{S}_i \cdot \mathbf{S}_j\)</span>, which we used for the magnons of session 6 and which we use again in this session for quantum spin liquids. These are not two different topics. They are the same physics written in two different languages, and in this section we make this translation precise.</p>
-<p>Let us first look at a single site. A spinless fermionic site has a local Hilbert space of dimension two, empty or full, and a spin-1/2 site also has a local Hilbert space of dimension two, down or up. The first guess is <span class="math inline">\(c_i^\dagger \leftrightarrow S_i^+\)</span> and <span class="math inline">\(c_i \leftrightarrow S_i^-\)</span>, and on a single site this guess is exactly right. However, it fails when we have more than one site, since fermion operators on different sites anticommute, while spin operators on different sites commute. As a result, the naive identification gives the wrong relative signs between sites. To fix this, we add to each site an extra phase that depends on the occupations. This phase is a “string” over all the sites to the left, chosen so that the exchange of two fermions gives the minus sign that the spin operators do not have by themselves. This mapping is called the <strong>Jordan-Wigner transformation</strong>, and it reads</p>
-<p><span id="eq-7-2" class="eq"><span class="math display">\[S_i^+ = c_i^\dagger K_i, \qquad S_i^- = c_i K_i, \qquad S_i^z = n_i - \tfrac{1}{2}, \qquad
-K_i = \exp\!\left(i\pi \sum_{j&lt;i} n_j\right), \tag{7.2}\]</span></span></p>
-<p>where <span class="math inline">\(n_j = c_j^\dagger c_j\)</span> is the fermion number operator on site <span class="math inline">\(j\)</span>. The string operator <span class="math inline">\(K_i\)</span> is built only from the occupation numbers to the left of site <span class="math inline">\(i\)</span>. For this reason it commutes with all local operators on sites <span class="math inline">\(j \ge i\)</span>, and it counts, mod 2, how many fermions are to the left. We can check directly that <a href="#eq-7-2">(7.2)</a>, built in this way, gives the full <span class="math inline">\(SU(2)\)</span> commutation algebra of spin-1/2 operators on every site and between every pair of sites. For this check we only need the fermionic anticommutation relations for <span class="math inline">\(c_i,
-c_i^\dagger\)</span> and the string. In the lecture this is summarized as <em>spin equals fermion times string</em>, and this statement is correct. Figure <a href="#fig:s07:jwstring">7.1</a> shows what the string does. It counts the fermions to the left of site <span class="math inline">\(i\)</span> and gives their parity, so a change of a single occupation anywhere in that region changes the sign of <span class="math inline">\(S_i^+\)</span>.</p>
-<figure id="fig:s07:jwstring">
-<img src="../figures/s07f01_jwstring.svg" loading="lazy" alt="Spin equals fermion times string." />
-<figcaption><strong>Figure 7.1.</strong> Spin equals fermion times string. On a single site the mapping is trivial, since an empty site is a down spin and an occupied site is an up spin, <span class="math inline">\(S^z_i = n_i -
-\tfrac 12\)</span>, as the ball and the arrow on each site show. The naive identification gives the wrong <em>relative</em> signs between sites, because fermion operators on different sites anticommute while spin operators on different sites commute. The string <span class="math inline">\(K_i\)</span> of <a href="#eq-7-2">(7.2)</a> corrects exactly this, since it gives a factor <span class="math inline">\(-1\)</span> for every fermion to the left of site <span class="math inline">\(i\)</span>, which is the shaded strip. The two chains in the figure differ only in the occupations to the left of the marked site <span class="math inline">\(i=6\)</span>, with three fermions in the chain behind and two in the chain in front, and this parity alone changes the sign of <span class="math inline">\(S_6^+ = c_6^\dagger K_6\)</span>. The string is nonlocal, and it carries the fermionic exchange sign that spins do not have by themselves.</figcaption>
-</figure>
-<p>This is the one explicit link in the course between the two languages that we have used. The fermionic operators of sessions 1 to 5 and the spin operators of session 6 and, as we will see, of session 8 are related by <a href="#eq-7-2">(7.2)</a>, and they are not only analogous to each other. It also explains a practical choice that we make for the rest of this session. Since interacting fermionic Hamiltonians and interacting spin Hamiltonians are mathematically equivalent, we can work only in the spin representation from now on, and we will do so. The reason is that spin operators on different sites commute, so there is no fermionic sign to keep track of when we cut the chain, and this makes the counting of entanglement below clean.</p>
-
-  <nav class="pager"><a href="01-two-regimes-of-many-body-physics.html">7.1 Two regimes of many-body physics</a><a href="03-storing-the-wave-function-as-the-main-bottleneck.html">7.3 Storing the wave function as the main bottleneck</a></nav>
-
-</main>
+<p>This page has moved to <a href="01-two-regimes-of-many-body-physics.html#sec-7-2">Two regimes of many-body physics</a>.</p>
 </body>
 </html>

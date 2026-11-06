@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -102,9 +103,47 @@
 <img src="../figures/s10f04_dftml.svg" loading="lazy" alt="Where machine learning enters density functional theory, and why the two entry points are different ideas." />
 <figcaption><strong>Figure 10.4.</strong> Where machine learning enters density functional theory, and why the two entry points are different ideas. The Kohn-Sham loop <a href="#eq-10-8">(10.8)</a>, the ring in the middle, turns the problem into a self-consistent single-particle problem. <strong>Route 1</strong> replaces the unknown exchange-correlation part by a trained network. This is more accurate, but the diagonalization stays inside the loop, and the diagonalization, not <span class="math inline">\(v_{\rm xc}\)</span>, is what limits the system size. <strong>Route 2</strong> learns the Hohenberg-Kohn map <span class="math inline">\(v_{\rm ext}\mapsto n\)</span> directly, trained on conventional Kohn-Sham results for small systems, and then does no diagonalization at all, so the whole loop is skipped. Only route 2 changes which systems we can compute, while route 1 only changes how good the answer is.</figcaption>
 </figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>A network is trained to give the exchange-correlation potential <span class="math inline">\(v_{\rm xc}\)</span> with high accuracy, and it is used inside the Kohn-Sham loop. Does this change the largest system that we can compute?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>Yes, since the network removes the diagonalization.</li>
+<li>Not much, since the diagonalization of <span class="math inline">\(H_{\rm KS}\)</span> stays in every iteration.</li>
+<li>Yes, since <span class="math inline">\(v_{\rm xc}\)</span> is the most expensive part of the loop.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The cost of the loop is the diagonalization, and a better <span class="math inline">\(v_{\rm xc}\)</span> does not change it. Only the second route, which maps <span class="math inline">\(v_{\rm ext}\)</span> to <span class="math inline">\(n\)</span> directly, skips the loop.</p>
+</details>
+</div>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>In the Hohenberg-Kohn theorem, which of the two arrows is a simple integral?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>From the many-body ground state <span class="math inline">\(\psi_0\)</span> to the density <span class="math inline">\(n(\mathbf{r})\)</span>.</li>
+<li>From the density <span class="math inline">\(n(\mathbf{r})\)</span> to the many-body ground state <span class="math inline">\(\psi_0\)</span>.</li>
+<li>Both are integrals, since the density contains the same information as <span class="math inline">\(\psi_0\)</span>.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>The arrow <span class="math inline">\(\psi_0\to n\)</span> integrates out <span class="math inline">\(N-1\)</span> coordinates. The reverse arrow is guaranteed to exist by the theorem, but it has no formula, and this is where a network can be trained to act.</p>
+</details>
+</div>
 <p>This part also comes from the slides and the transcript and has no notebook counterpart. DFT calculations were never part of the numerical tools of this course, since <code>pyqula</code> is a tight-binding and mean-field library and not a DFT code, so there is nothing to point you to beyond the derivation above.</p>
 
-  <nav class="pager"><a href="04-tensor-networks-for-machine-learning-and-the-many-body-wavefunction-as-a-big-data-problem.html">10.4 Tensor networks for machine learning and the many-body wavefunction as a big-data problem</a><a href="06-phase-classification-with-local-order-parameters-and-topological-order.html">10.6 Phase classification with local order parameters and topological order</a></nav>
+  <nav class="pager"><a href="04-tensor-networks-for-machine-learning-and-the-many-body-wavefunction-as-a-big-data-problem.html">10.4 Tensor networks for machine learning and the many-body wavefunction as a big-data problem</a><a href="06-phase-classification-with-local-order-parameters-and-topological-order.html">10.6a Phase classification with local order parameters and topological order</a></nav>
 
 </main>
 </body>

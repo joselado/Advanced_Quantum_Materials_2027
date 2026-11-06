@@ -294,9 +294,9 @@ Pyodide from its CDN on the first click, installs pyqula with `micropip` and run
 block in the browser for the value of the slider, so that every parameter is possible and not
 only the precomputed grid. The JSON is the fallback for a widget that turns out too slow or
 that needs a package Pyodide does not have, and for the student without network to the Pyodide
-CDN. Pyodide with pyqula was not tested in this run. Phase 6 starts with that test, the import
-of pyqula in Pyodide, the load time on a first open, and one band structure, and only after it
-passes is the live path built.
+CDN. The test of phase 6 passed (numbers in the tracker, section Pyodide feasibility test), so the
+live path is built. The pyqula wheel of PyPI installs with `micropip` after two stand-in modules for
+`numba` and `jax`, and the widgets are described in `webnotes/widgets/README.md`.
 
 The simplest widgets, such as the band of the chain above, need numpy only and are the pilot.
 The widgets that call pyqula, for instance the bands of the honeycomb lattice along the k-path
@@ -682,3 +682,10 @@ return {
   { Link = Link },
 }
 ```
+
+## What phases 3 to 6 found, 2026-11-06
+
+Reality differed from the plan in four points. The page length rule gave 126 pages instead of 136 sections, since short
+sections were merged and long ones split, with 35 redirect stubs and the URLs frozen in `manifest/frozen_urls.txt`.
+The widgets use numpy, except `island`, since pyqula could not set a second-neighbor hopping in the chain. Binder needs
+a `requirements.txt` that does not exist yet. The display math was wider than a phone screen, which the template now fixes.

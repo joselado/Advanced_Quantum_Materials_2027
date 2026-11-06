@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -95,8 +96,52 @@
 <p><span id="eq-8-3" class="eq"><span class="math display">\[|GS\rangle = \frac{1}{\sqrt2}\Big(|{\uparrow\downarrow}\rangle -
 |{\downarrow\uparrow}\rangle\Big), \qquad \langle \mathbf S_i \rangle = 0. \tag{8.3}\]</span></span></p>
 <p>This ground state is different from the Ising case in three ways, and these three points are important for the rest of the session. First, it is the <em>unique</em> ground state, so there is no degeneracy and no spontaneous choice between states. Second, it is <em>time-reversal symmetric</em>, since its net magnetization is exactly zero and time reversal maps <span class="math inline">\(|GS\rangle\)</span> to itself. Third, it is <em>maximally entangled</em>, since the two terms in <a href="#eq-8-3">(8.3)</a> have the same weight, which is the largest entanglement that two qubits can have. Can we have a macroscopic version of this ground state? This question is the origin of quantum spin liquids.</p>
+<figure class="again panel">
+<img src="../figures/panel/s06f02_dimer_a.svg" loading="lazy" alt="Two sites with parallel spins, where the hop is forbidden, and with antiparallel spins, where the hop is allowed." />
+<figcaption><strong><a href="../session6/08-from-the-hubbard-dimer-to-the-heisenberg-model.html#fig:s06:dimer">Figure 6.2</a>, one panel shown again.</strong> Where the Heisenberg dimer comes from. With parallel spins the hop of an electron is blocked by the Pauli principle, which the cross shows. With antiparallel spins the electron can hop to the neighbor and come back, and this virtual process lowers the energy of the singlet. Look at the lower part of the figure, since this process is the origin of the antiferromagnetic coupling <span class="math inline">\(J\)</span> of <a href="#eq-8-2">(8.2)</a>.</figcaption>
+</figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>What is the energy of the state <span class="math inline">\(|{\uparrow\downarrow}\rangle\)</span> of the Ising dimer <a href="#eq-8-1">(8.1)</a>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(-3/4\)</span>, which is the energy of the singlet.</li>
+<li><span class="math inline">\(-1/4\)</span>, since <span class="math inline">\(S^z_0S^z_1=(\tfrac12)(-\tfrac12)\)</span>.</li>
+<li><span class="math inline">\(0\)</span>, since the spins point in opposite directions.</li>
+<li><span class="math inline">\(+1/4\)</span>, since the spins are antiparallel.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The product of the two <span class="math inline">\(z\)</span> components is <span class="math inline">\(-1/4\)</span> for antiparallel spins and <span class="math inline">\(+1/4\)</span> for parallel ones. The two antiparallel states are degenerate, and each symmetry-broken state chooses one of them.</p>
+</details>
+</div>
+<div class="quiz" data-correct="D">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>We change the sign of the coupling, <span class="math inline">\(H=J\,\mathbf S_0\cdot\mathbf S_1\)</span> with <span class="math inline">\(J&lt;0\)</span>. What is the ground state of the dimer?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>The singlet, as for <span class="math inline">\(J&gt;0\)</span>.</li>
+<li>The singlet, but with a smaller gap.</li>
+<li>A single state <span class="math inline">\(|{\uparrow\uparrow}\rangle\)</span> that breaks time-reversal symmetry.</li>
+<li>The triplet, which is threefold degenerate.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>D</strong>.</p>
+<p>The value of <span class="math inline">\(\mathbf S_0\cdot\mathbf S_1\)</span> is <span class="math inline">\(-3/4\)</span> for the singlet and <span class="math inline">\(+1/4\)</span> for the triplet. For <span class="math inline">\(J&lt;0\)</span> the energy <span class="math inline">\(J/4\)</span> of the triplet is below <span class="math inline">\(-3J/4\)</span> of the singlet, and the three triplet states are degenerate.</p>
+</details>
+</div>
 
-  <nav class="pager"><a href="02-two-emergent-excitations-magnons-and-spinons.html">8.2 Two emergent excitations, magnons and spinons</a><a href="04-frustration-as-the-route-to-a-quantum-spin-liquid.html">8.4 Frustration as the route to a quantum spin liquid</a></nav>
+  <nav class="pager"><a href="01-two-classes-of-magnets-and-where-we-find-them.html">8.1 Two classes of magnets and where we find them</a><a href="04-frustration-as-the-route-to-a-quantum-spin-liquid.html">8.4 Frustration as the route to a quantum spin liquid</a></nav>
 
 </main>
 </body>

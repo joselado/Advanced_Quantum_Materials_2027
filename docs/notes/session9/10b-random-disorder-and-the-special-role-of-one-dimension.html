@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9.10b Random disorder and the special role of one dimension, session 9</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .cols.three { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  @media (max-width: 900px) { .cols.three { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+
+  main { max-width: 860px; }
+  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
+              border-radius: 6px; color: var(--muted); }
+  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
+  .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
+  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
+  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
+  figure { margin: 24px 0; }
+  figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
+  figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
+  .eq { display: block; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
+                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
+  .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
+           margin: 20px 0; font-size: 0.95rem; }
+  .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
+  table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
+  div.center { overflow-x: auto; }
+  div.center table { margin-left: auto; margin-right: auto; }
+  th { border-bottom: 2px solid var(--rule); }
+  .coursecontents h2 { margin-top: 28px; }
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
+<script src="../../notes/notes.js" defer></script>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
+  <nav class="tabs"><a href="../../lectures/session9.html">Video lectures</a><a href="../../landscape/session9.html">Landscape lectures</a><a class="on" href="../../notes/session9/index.html">Lecture notes</a></nav>
+  <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="on" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
+  <p class="crumb"><a href="index.html">Session 9. Excitations and Defects in Quantum Materials</a></p>
+<h1 id="sec-9-10b"><span class="num">9.10b</span> Random disorder and the special role of one dimension</h1>
+<p>In the first part we met extended, critical and localized states, and we saw how the <span class="math inline">\(\mathrm{IPR}\)</span> separates them. Let us now take disorder that is really random.</p>
+<p><strong>Fully disordered case.</strong> Now we take an onsite potential that is really random, with strength <span class="math inline">\(W\)</span>, <span class="math inline">\(H = -t\sum_n (c_n^\dagger c_{n+1} + \text{h.c.}) + \sum_n w_n\, c_n^\dagger c_n\)</span>, where <span class="math inline">\(w_n\)</span> is taken uniformly from <span class="math inline">\([-W,W]\)</span>. At <span class="math inline">\(W=0\)</span> this is an ordinary clean metal, with the band structure of the periodic hopping alone, and as <span class="math inline">\(W\to\infty\)</span> every eigenstate becomes concentrated on a single site. In dimension <span class="math inline">\(d\geq 3\)</span> there is a real <strong>Anderson localization transition</strong> at a finite critical disorder <span class="math inline">\(W_c\)</span>. There is a real mobility edge that separates extended metallic states from localized states, which is the kind of “critical point” described on the slides. Below the transition, or at any energy on the extended side of a mobility edge, the system conducts. Above it, there are states at every energy, so there is <em>no spectral gap</em> in the density of states, but these states cannot carry current, so there <em>is</em> a transport gap. This means that the <strong>Anderson insulator</strong> is an insulator with no gap at all in its spectrum, which is a very unusual state of matter compared with every band insulator or Mott insulator that we have seen so far in this course.</p>
+<p><strong>The special role of one dimension.</strong> In <span class="math inline">\(d=1\)</span>, and in a marginal way also in <span class="math inline">\(d=2\)</span> according to the scaling theory of localization, no real metallic phase survives at any non-zero disorder in the thermodynamic limit, since an arbitrarily small <span class="math inline">\(W&gt;0\)</span> localizes every state at long enough distances. What survives is a finite localization length <span class="math inline">\(\xi(W)\)</span>. For weak disorder close to the band center of the 1D model, it scales as <span class="math inline">\(\xi(W) \propto (t/W)^2\)</span>, which diverges as <span class="math inline">\(W\to 0\)</span>. A finite sample that is shorter than <span class="math inline">\(\xi(W)\)</span> still looks metallic in practice, and only when the length of the sample is larger than <span class="math inline">\(\xi(W)\)</span> do we see the localized, insulating behavior in transport. This is the exact sense in which “weak disorder in 1D” and “genuinely metallic” are never the same statement, although they can look the same at short length scales.</p>
+<figure id="sch:s09:localization_length" class="schematic">
+<img src="../figures/web/session09/localization_length.svg" loading="lazy" alt="Localization length against disorder strength on logarithmic axes, falling along a straight line of slope minus two, with a horizontal line at one hundred sites." />
+<figcaption><strong>Schematic 9.7.</strong> The localization length <span class="math inline">\(\xi\)</span> of the random chain, from a transfer matrix at <span class="math inline">\(E=0\)</span> with <span class="math inline">\(2\times10^5\)</span> sites and <span class="math inline">\(w_n\)</span> uniform in <span class="math inline">\([-W,W]\)</span>, on logarithmic axes. For weak disorder the points follow a line of slope <span class="math inline">\(-2\)</span>, and the fitted slope is <span class="math inline">\(-2.0\)</span>, which is <span class="math inline">\(\xi\propto(t/W)^2\)</span>. The red line is a sample of <span class="math inline">\(100\)</span> sites. For <span class="math inline">\(W\)</span> below about <span class="math inline">\(0.5t\)</span> the localization length is longer than the sample, so the sample still looks metallic.</figcaption>
+</figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>In the one-dimensional chain at weak disorder we reduce <span class="math inline">\(W\)</span> by a factor <span class="math inline">\(2\)</span>. By which factor does the localization length <span class="math inline">\(\xi\)</span> change?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>It doubles.</li>
+<li>It becomes four times larger.</li>
+<li>It does not change, since any disorder localizes every state.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>For weak disorder <span class="math inline">\(\xi\propto(t/W)^2\)</span>, so halving <span class="math inline">\(W\)</span> gives a factor <span class="math inline">\(4\)</span>. The states are still localized, but over a length that grows quickly as <span class="math inline">\(W\to0\)</span>.</p>
+</details>
+</div>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>In <span class="math inline">\(d=3\)</span> the disorder is above <span class="math inline">\(W_c\)</span>, and the Fermi level is in the region of localized states. Which statement describes the Anderson insulator?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>It has a gap in the density of states, as a band insulator has.</li>
+<li>It has states at every energy, but the states cannot carry current.</li>
+<li>It has extended states at the Fermi level, with a small conductivity.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The density of states stays finite across the Fermi level, so there is no spectral gap. The localized states are not connected by transport at zero temperature, and so the system has a transport gap.</p>
+</details>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> Run the cell and look at the left plot, with the average of <span class="math inline">\(1/\lambda\)</span> against the random potential. It is already finite at <span class="math inline">\(v=0.5\)</span> and it grows smoothly, with no threshold, as in the one-dimensional argument above. Compare it with the quasiperiodic plot, which stays near zero up to <span class="math inline">\(v\approx2\)</span>.</p>
+<div class="tryit-links">
+Notebook <code>session9.ipynb</code>, cell “Localization due to random disorder”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession9.ipynb">Binder</a>.
+</div>
+</div>
+<div class="notebookbox">
+<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb"><code>session9.ipynb</code></a>, “The impact of disorder in different systems” (Core), “Extended and localized states in quasicrystals” (Challenge), and “Localization due to random disorder” (Core)</p>
+<p>Change the strength of the quasiperiodic modulation, and separately the strength <span class="math inline">\(W\)</span> of the random disorder, and compute <a href="10-disorder-and-anderson-localization.html#eq-9-12">(9.12)</a> for the eigenstates that you obtain in each case. Look at how the <span class="math inline">\(\mathrm{IPR}\)</span> changes from a behavior like <span class="math inline">\(1/N\)</span> to a behavior like <span class="math inline">\(O(1)\)</span> as you increase the strength of the potential. Try to find by eye where the change from extended to localized states happens in each of the two models, and compare it with the language of critical points and mobility edges above.</p>
+</div>
+
+  <nav class="pager"><a href="10-disorder-and-anderson-localization.html">9.10a Disorder and Anderson localization</a><a href="11-closing-summary.html">9.11 Closing summary</a></nav>
+
+</main>
+</body>
+</html>

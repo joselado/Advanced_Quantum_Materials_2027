@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -91,6 +92,56 @@
 <p>so that <span class="math inline">\(\gamma_A^\dagger = \gamma_A\)</span>, <span class="math inline">\(\gamma_B^\dagger = \gamma_B\)</span>, <span class="math inline">\(\{\gamma_A,\gamma_B\}=0\)</span> and <span class="math inline">\(\gamma_A^2=\gamma_B^2=1\)</span>, where we used <span class="math inline">\(\{c,c^\dagger\}=1\)</span>. If we invert <a href="#eq-5-17">(5.17)</a>, we obtain</p>
 <p><span id="eq-5-18" class="eq"><span class="math display">\[c = \frac{1}{2}\left(\gamma_A + i\gamma_B\right), \qquad c^\dagger = \frac{1}{2}\left(\gamma_A - i\gamma_B\right). \tag{5.18}\]</span></span></p>
 <p>At first this is only a change of variables, a mathematical trick without new physics. Every electron is <em>always</em> made of two Majorana operators that are tightly bound together into an ordinary fermion, and normally there is no way to observe <span class="math inline">\(\gamma_A\)</span> or <span class="math inline">\(\gamma_B\)</span> separately, only their fixed combination <span class="math inline">\(c\)</span>. Superconductors are special because BdG eigenstates are already mixtures of electrons and holes by construction, since the Nambu spinor of section <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#sec-5-8">5.8</a> explicitly combines <span class="math inline">\(c_{\mathbf k\sigma}\)</span> with <span class="math inline">\(c_{-\mathbf k\sigma&#39;}^\dagger\)</span>. So a superconductor is the kind of system where, with the right pairing symmetry and the right geometry, the two Majorana components of an electron can become spatially <em>separated</em>, or deconfined, instead of staying together at one site. This deconfinement is the topic of the rest of this section.</p>
+<figure id="sch:s05:majorana_halves" class="schematic">
+<img src="../figures/web/session05/majorana_halves.svg" loading="lazy" alt="At the top, one electron drawn as a single circle and then as two bound circles. At the bottom, four sites with halves bound across neighboring sites and one free half at each end." />
+<figcaption><strong>Schematic 5.3.</strong> One electron mode and its two Majorana halves. At the top the mode is <span class="math inline">\(\tfrac12(\gamma_A+i\gamma_B)\)</span>, and the halves are bound at one site. At the bottom the halves are bound between neighboring sites, and then one half at each end of the chain stays free, which the stars mark.</figcaption>
+</figure>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>Which statement about the operators <span class="math inline">\(\gamma_A=c+c^\dagger\)</span> and <span class="math inline">\(\gamma_B=-i(c-c^\dagger)\)</span> of <a href="#eq-5-17">(5.17)</a> is correct?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>Each one squares to one, and the two anticommute.</li>
+<li>Each one squares to zero, as the fermion <span class="math inline">\(c\)</span> does.</li>
+<li>They are not Hermitian, since <span class="math inline">\(c\)</span> is not Hermitian.</li>
+<li>They commute, since both are built from the same <span class="math inline">\(c\)</span>.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>Both are Hermitian, and <span class="math inline">\(\{c,c^\dagger\}=1\)</span> gives <span class="math inline">\(\gamma_A^2=\gamma_B^2=1\)</span> and <span class="math inline">\(\{\gamma_A,\gamma_B\}=0\)</span>. A fermion obeys <span class="math inline">\(c^2=0\)</span> instead.</p>
+</details>
+</div>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>The electron mode is empty. What is the value of <span class="math inline">\(i\gamma_A\gamma_B\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(-1\)</span></li>
+<li><span class="math inline">\(+1\)</span></li>
+<li><span class="math inline">\(0\)</span></li>
+<li><span class="math inline">\(i\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>Inserting <a href="#eq-5-17">(5.17)</a> gives <span class="math inline">\(i\gamma_A\gamma_B=2c^\dagger c-1\)</span>. The empty mode has <span class="math inline">\(c^\dagger c=0\)</span>, so the value is <span class="math inline">\(-1\)</span>, and the filled mode gives <span class="math inline">\(+1\)</span>. The product of the two halves measures the occupation of the mode.</p>
+</details>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> In the cell, the density of states is computed on the site <code>0</code>, on <code>L//10</code> and on <code>L//2</code>. The peak at zero energy is large on the end site, small at <code>L//10</code> and negligible in the middle. It is the half of a split electron that sits at that end.</p>
+<div class="tryit-links">
+Notebook <code>session5.ipynb</code>, cell “Majorana modes in a spin triplet superconductor”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession5.ipynb">Binder</a>.
+</div>
+</div>
 
   <nav class="pager"><a href="14-same-gap-and-different-topology-in-trivial-s-wave-and-chiral-p-wave-pairing.html">5.14 Same gap and different topology in trivial s-wave and chiral p-wave pairing</a><a href="16-the-kitaev-chain-as-the-minimal-model-with-isolated-majoranas.html">5.16 The Kitaev chain as the minimal model with isolated Majoranas</a></nav>
 

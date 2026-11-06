@@ -1,7 +1,0 @@
-## The many-body wavefunction of the filled lowest Landau level {#sec-4-14 number="4.14"}
-
-Now we look for the many-body ground state of $N$ electrons in which *every* LLL orbital is occupied. Two conditions fix this state completely. It must be built only from LLL orbitals [(4.10)](#eq-4-10), and it must be antisymmetric under the exchange of any two electrons, as fermion statistics requires. Both conditions are satisfied by
-
-$$\Psi_1(z_1,\dots,z_N) = \prod_{i<j}(z_i-z_j)\; \exp\!\left(-\sum_i \frac{|z_i|^2}{4\ell_B^2}\right). \tag{4.11}$$
-
-The Vandermonde product $\prod_{i<j}(z_i-z_j)$ does two things at the same time. First, it is antisymmetric by construction, since the exchange of two coordinates $z_i\leftrightarrow z_j$ changes the sign of exactly one factor $(z_i-z_j)$, and this gives the overall minus sign that the Pauli principle requires. Second, it is exactly the Slater determinant of the single-particle orbitals $1,z,z^2,\dots,z^{N-1}$, because of the standard identity for the Vandermonde determinant, $\det\!\big(z_i^{\,j-1}\big) = \prod_{i<j}(z_j-z_i)$. So [(4.11)](#eq-4-11) is the Slater determinant of the $N$ lowest LLL orbitals, times their common Gaussian envelope, where the Gaussians of the single electrons combine into the collective exponential shown above. This is the exact many-body ground state of $N$ electrons that fill the lowest Landau level completely, which is the integer quantum Hall state at filling $\nu=1$.

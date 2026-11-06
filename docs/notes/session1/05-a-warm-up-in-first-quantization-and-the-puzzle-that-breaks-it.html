@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -85,8 +86,73 @@
 <h1 id="sec-1-5"><span class="num">1.5</span> A warm-up in first quantization, and the puzzle that breaks it</h1>
 <p>Let us take the simplest single-particle system, which is a lattice of sites with one level each and one electron, that forms a finite island such as a quantum dot. Without many-body interactions this is an ordinary diagonalization problem, in the same way as a particle in a box, with a lowest energy state, a first excited state and so on. In this language, “one electron in the ground level” and “one electron in the first excited level” are two different single-particle states, and we can also take superpositions of the two. In every case, however, there is exactly one electron in the system.</p>
 <p>Now let us say that we want to describe a quantum dot in a coherent superposition of zero electrons and two electrons, each with 50% probability. We cannot write this as an ordinary wave function, because a wave function needs a fixed number of coordinates, and it makes no sense to have zero coordinates and two coordinates “at the same time.” This example is not artificial. This kind of reasoning, about a number of electrons that fluctuates, is what allows us to understand how local magnetic moments couple to each other in real oxides, which is the basis of the Goodenough-Kanamori rules that predict ferromagnetism or antiferromagnetism. It is also part of the definition of a superconductor, whose mean-field order parameter conserves only the <em>parity</em> of the electron number and not the number itself. This description of superconductors, which does not conserve the number of particles, has its own name, the Bogoliubov-de Gennes formalism. The slides introduce it here, but we will only use it in practice when we reach the session on superconductivity.</p>
+<h1 class="sec-next" id="sec-1-6"><span class="num">1.6</span> Building second quantization with creation and annihilation operators</h1>
+<p>To describe systems of this kind we introduce two operators at every site <span class="math inline">\(i\)</span>. The first one is the annihilation operator <span class="math inline">\(c_i\)</span>, which destroys an electron at site <span class="math inline">\(i\)</span>, and the second one is the creation operator <span class="math inline">\(c_i^\dagger\)</span>, which creates one. The Hamiltonian, and all the dynamics of the system, is written only in terms of these operators.</p>
+<p>We define the vacuum state, which is the empty state <span class="math inline">\(|0\rangle\)</span>, by</p>
+<p><span id="eq-1-1" class="eq"><span class="math display">\[c_i|0\rangle = 0 \quad \text{for every site } i. \tag{1.1}\]</span></span></p>
+<p>A hopping term between two sites, which describes an electron that can jump between sites 0 and 1, is then written as</p>
+<p><span id="eq-1-2" class="eq"><span class="math display">\[H_\text{hop} = t\left(c_0^\dagger c_1 + c_1^\dagger c_0\right), \tag{1.2}\]</span></span></p>
+<p>and we read it as “destroy an electron at 1 and create one at 0” plus the reverse process. If we start from the vacuum and apply creation operators, we obtain all the states of the two-site system. These are <span class="math inline">\(|0\rangle\)</span>, then <span class="math inline">\(c_0^\dagger|0\rangle\)</span> with one electron at site 0, then <span class="math inline">\(c_1^\dagger|0\rangle\)</span> with one electron at site 1, and finally <span class="math inline">\(c_0^\dagger c_1^\dagger|0\rangle\)</span> with both sites occupied. <a href="#sch:s01:dimer_fock">Schematic 1.3</a> lists these four states with their energies.</p>
+<figure id="sch:s01:dimer_fock" class="schematic">
+<img src="../figures/web/session01/dimer_fock.svg" loading="lazy" alt="Energy levels of the two-site problem grouped by the number of electrons, with the occupied sites drawn as discs." />
+<figcaption><strong>Schematic 1.3.</strong> The four states of the two-site problem sorted by electron number, with the energies of <a href="#eq-1-2">(1.2)</a>. One electron gives the levels <span class="math inline">\(-t\)</span> and <span class="math inline">\(+t\)</span>, which are the antisymmetric and the symmetric combination of the two sites. With two electrons the hopping cannot move anything, and the energy is <span class="math inline">\((-t)+(+t)=0\)</span>.</figcaption>
+</figure>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>Both sites are occupied, and the state is <span class="math inline">\(c_0^\dagger c_1^\dagger|0\rangle\)</span>. What is its energy for the hopping of <a href="#eq-1-2">(1.2)</a>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(0\)</span></li>
+<li><span class="math inline">\(+t\)</span></li>
+<li><span class="math inline">\(-t\)</span></li>
+<li><span class="math inline">\(2t\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>The hopping needs an empty site to move an electron to, and none is empty here, so <span class="math inline">\(H_\text{hop}\)</span> gives zero on this state. We get the same result by adding the two levels, <span class="math inline">\((-t)+(+t)=0\)</span>.</p>
+</details>
+</div>
+<div class="notebookbox">
+<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session1.ipynb"><code>session1.ipynb</code></a>, “The spectra of a dimer” (Core)</p>
+<p>Build this two-site system and diagonalize it. Check that the Fock states above give the same spectrum that you would obtain from an ordinary two-level treatment in first quantization, before we add any interactions.</p>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> Run the cell and count the eigenvalues of the dimer with spin. Set <code>has_spin=False</code> and check that two remain, at <span class="math inline">\(-t\)</span> and <span class="math inline">\(+t\)</span>. These are the levels of the column with one electron in the figure above.</p>
+<div class="tryit-links">
+Notebook <code>session1.ipynb</code>, cell “The spectra of a dimer”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session1.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session1.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession1.ipynb">Binder</a>.
+</div>
+</div>
+<h1 class="sec-next" id="sec-1-7"><span class="num">1.7</span> Enforcing fermionic statistics</h1>
+<p>Up to now nothing distinguishes fermions from bosons, and everything above applies to both in the same way. The difference is introduced through the algebra of the operators. Fermi statistics requires that the many-body wave function changes sign when we exchange two particles, and a direct consequence is that a given single-particle level can have zero fermions or one fermion, but never two. We impose this with anticommutation relations,</p>
+<p><span id="eq-1-3" class="eq"><span class="math display">\[\{c_i, c_j^\dagger\} = \delta_{ij}, \qquad \{c_i, c_j\} = \{c_i^\dagger, c_j^\dagger\} = 0. \tag{1.3}\]</span></span></p>
+<p>The second relation is the important one. If we take <span class="math inline">\(i=j\)</span> it gives <span class="math inline">\((c_i^\dagger)^2 = 0\)</span>, which means that we cannot create two electrons in the same level. At the same time it imposes the antisymmetry of the wave function, so the Pauli exclusion principle is part of the algebra itself and we do not need to add it by hand.</p>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>Suppose <span class="math inline">\(c_i^\dagger\)</span> and <span class="math inline">\(c_j^\dagger\)</span> commuted instead of anticommuting. What would change?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>The operator <span class="math inline">\((c_i^\dagger)^2\)</span> would not vanish, so two particles could sit in the same level.</li>
+<li>The vacuum would not be annihilated by <span class="math inline">\(c_i\)</span>.</li>
+<li>The hopping term would not be Hermitian.</li>
+<li>The Hamiltonian would not conserve energy.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>The statement <span class="math inline">\((c_i^\dagger)^2=0\)</span> follows only from the anticommutation relation. Without it nothing stops a second particle from entering the same level, and we would describe bosons.</p>
+</details>
+</div>
 
-  <nav class="pager"><a href="04-setting-up-the-formalism-with-the-schrodinger-equation-in-two-ways.html">1.4 Setting up the formalism with the Schrödinger equation in two ways</a><a href="06-building-second-quantization-with-creation-and-annihilation-operators.html">1.6 Building second quantization with creation and annihilation operators</a></nav>
+  <nav class="pager"><a href="04-setting-up-the-formalism-with-the-schrodinger-equation-in-two-ways.html">1.4 Setting up the formalism with the Schrödinger equation in two ways</a><a href="08-first-versus-second-quantization-for-the-same-problem.html">1.8 First versus second quantization for the same problem</a></nav>
 
 </main>
 </body>

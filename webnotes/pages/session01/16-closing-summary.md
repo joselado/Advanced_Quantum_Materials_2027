@@ -12,4 +12,17 @@
 
 - The same procedure, applied to three different interaction channels, gives three different symmetry-broken states. These are a charge density wave from [(1.6)](#eq-1-6), with broken translational symmetry, a magnet from [(1.7)](#eq-1-7)-[(1.8)](#eq-1-8), with broken time-reversal symmetry, and a superconductor from [(1.9)](#eq-1-9)-[(1.10)](#eq-1-10), with broken gauge symmetry. Magnetism and superconductivity each have a full session later in the course, and the versions of this session are a first pass.
 
+![The three channels of this session, shown again. The same Hamiltonian gives a charge density wave, a magnet and a superconductor, and each one breaks a different symmetry.](figures/s01f03_threechannels.svg){alt="One interacting Hamiltonian on the left and three ordered states on the right, a charge density wave, a magnet and a superconductor."}
+
+::: quiz
+Why does a mean-field superconductor not have a fixed number of electrons?
+
+- [x] The order parameter has a physical phase, so the gauge symmetry is broken, and this symmetry is the conservation of the particle number.
+- [ ] The attractive interaction lets electrons escape from the sample.
+- [ ] The hopping is switched off in a superconductor.
+- [ ] A superconductor breaks time-reversal symmetry.
+
+A fixed particle number is the conservation law of the gauge symmetry. Once $\Delta\neq 0$ breaks this symmetry, the number is not fixed anymore, and only its parity survives.
+:::
+
 In the next session we leave interactions aside for some time, and we go back to the single-particle part of the Hamiltonian of this session. We will see how *symmetry*, and in particular translational symmetry, allows us to diagonalize it exactly, without any approximation, using Bloch's theorem. The general framework of symmetry breaking that we built in Section [1.11](#sec-1-11) will not be discussed again there, so it is useful to keep it from here and not to expect a summary of it later.

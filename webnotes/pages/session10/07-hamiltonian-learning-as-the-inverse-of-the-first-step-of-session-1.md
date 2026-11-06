@@ -16,4 +16,24 @@ exp}$. The concrete example of the lecture was a two-dimensional spectroscopy of
 
 ![Hamiltonian learning, and why it closes the loop of the course instead of going outside it. **Top.** The forward arrow $H\mapsto\mathcal{O}$ of [(10.11)](#eq-10-11) is what sessions 1 to 9 built during all their time. The arrow that an experiment needs goes in the other direction, and there is no closed-form inversion of it. **(a)** The solution to the lack of experimental training data is to produce the data. We simulate $\mathcal{O}$ from many *known* Hamiltonians, so that every training pair comes with its answer $\lambda_n$ by construction, and we fit the network with [(10.12)](#eq-10-12). **(b)** Only after this step the trained network is applied to a real measurement. Note what the training set is made of, which is the forward methods of the whole course, run many times. The final method of the course and its first method are the same method, applied in opposite directions.](figures/s10f06_hamiltonianlearning.svg){#fig:s10:hamlearning number="10.6"}
 
+::: quiz
+Why do we train the network of [(10.12)](#eq-10-12) on simulated observables, and not on measured ones?
+
+- [ ] Simulated data are always more accurate than measurements.
+- [x] There are few measurements, and the Hamiltonian that produced them is unknown, while a simulation gives the answer $\lambda_n$ by construction.
+- [ ] Measured data cannot be written as arrays of numbers.
+
+A supervised network needs pairs of an input and a known answer. The forward methods of the course give as many pairs as we want, and the real measurement is used only once, at the end.
+:::
+
+::: quiz
+Many different values of $\lambda$ give nearly the same observable $\mathcal{O}$. What is the consequence for the inverse map?
+
+- [ ] The inverse map is not defined for any observable.
+- [x] The network gives only an estimate with an uncertainty, and the hidden variables $\mu$ must be covered by the training set.
+- [ ] The network must always give the exact $\lambda$, since the loss [(10.12)](#eq-10-12) is zero for the training pairs.
+
+A degenerate map cannot be inverted exactly. We train on data that sample the nuisance variables $\mu$ too, so the network learns to average over them, and the answer is a best estimate.
+:::
+
 This is the mirror image of the starting point of session 1, and we want to stop for a moment on this symmetry. In nine sessions we built more and more sophisticated ways to go from a Hamiltonian to an observable. These are mean-field decoupling, Bloch's theorem, topological invariants, Landau levels, Nambu spinors, magnon spectra, tensor-network ground states, parton constructions and response functions. Hamiltonian learning does not leave any of these behind. Instead, it uses the same forward methods, run many times on synthetic data, as the training set to learn how to run the process in reverse. In this sense, the method of the course and the final method of the course are the same method, applied in opposite directions.

@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -90,8 +91,52 @@ k)|\)</span> evaluated on that Fermi surface. Nothing in this argument depends o
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb"><code>session5.ipynb</code></a>, “Superconductivity, full spectral function and electron spectral function” (Core), and “The impact of superconductivity in an electronic structure” (Challenge)</p>
 <p>Reproduce the square-lattice example above. Plot the spectral function of the electron sector with <span class="math inline">\(\Delta = 0\)</span>, where there are two crossing copies, and then with <span class="math inline">\(\Delta \ne 0\)</span>, where a gap of size <span class="math inline">\(2|\Delta|\)</span> opens at the crossing, as in eq. <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#eq-5-9">5.9</a>. Repeat this for the triangular-lattice dispersion and check that the gap opens regardless of where you put the chemical potential.</p>
 </div>
+<h1 class="sec-next" id="sec-5-10"><span class="num">5.10</span> Metal, gapped and nodal superconductor for one Fermi surface</h1>
+<p>Not every pairing function <span class="math inline">\(\Delta(\mathbf k)\)</span> is independent of momentum, and this gives more interesting cases. For a given electronic dispersion <span class="math inline">\(\varepsilon(\mathbf k)\)</span> there are in general three qualitatively different outcomes.</p>
+<ol type="1">
+<li><p><strong>No superconductivity</strong> (<span class="math inline">\(\Delta = 0\)</span>). This is a metal, which is gapless everywhere on the Fermi surface.</p></li>
+<li><p><strong>Conventional (s-wave) superconductivity.</strong> Here <span class="math inline">\(\Delta(\mathbf k) \ne 0\)</span> everywhere on the Fermi surface, so <span class="math inline">\(E(\mathbf k)\)</span> in <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#eq-5-9">(5.9)</a> stays away from zero everywhere, and there is a full gap.</p></li>
+<li><p><strong>Unconventional, nodal superconductivity.</strong> Here <span class="math inline">\(\Delta(\mathbf k)\)</span> vanishes along some lines or points of the Brillouin zone. Wherever the Fermi surface crosses one of these nodal lines, <span class="math inline">\(E(\mathbf
+k) = 0\)</span> even though <span class="math inline">\(\Delta \ne 0\)</span> nearby. The system is gapped in most of reciprocal space, but it stays gapless, which means metallic, at isolated momenta or along nodal lines.</p></li>
+</ol>
+<figure id="fig:s05:fsgap">
+<img src="../figures/s05f02_fsgap.svg" loading="lazy" alt="One Fermi surface with three outcomes." />
+<figcaption><strong>Figure 5.2.</strong> One Fermi surface with three outcomes. Each panel shows the Brillouin zone with a small Fermi pocket around <span class="math inline">\(\Gamma\)</span>, and the height of the tube standing on the pocket is the minimum of the quasiparticle energy <span class="math inline">\(E(\mathbf k)=\sqrt{\varepsilon(\mathbf
+k)^2+|\Delta(\mathbf k)|^2}\)</span> as we go once around it. Since <span class="math inline">\(\varepsilon=0\)</span> on the Fermi surface, this minimum is <span class="math inline">\(|\Delta|\)</span> evaluated there, which is why the pairing function only matters <em>on</em> the Fermi surface. (a) Without pairing the whole pocket is at zero energy, which is a metal. (b) A constant <span class="math inline">\(\Delta_0\)</span> lifts every point of it by the same amount, which gives a full gap. (c) The <span class="math inline">\(d\)</span>-wave gap <a href="13-nodal-singlet-order-d-wave-pairing-in-the-cuprates-and-the-angular-momentum-expansion.html#eq-5-13">(5.13)</a> vanishes on the zone diagonals, the red lines, and the pocket crosses them in four places, so four gapless points survive in a superconductor that is gapped everywhere else. Nodes in other parts of the zone do not appear in the spectrum, and only nodes that intersect the Fermi surface give gapless quasiparticles.</figcaption>
+</figure>
+<p>Figure <a href="#fig:s05:fsgap">5.2</a> shows the three cases next to each other, in the Brillouin zone and also as the gap along the Fermi surface itself, which is the only place where the gap can be read at all. The high-temperature cuprate superconductors are the standard example of scenario 3 in real materials. They are real superconductors, but their gap function has nodes, so parts of their Fermi surface stay gapless even in the superconducting state. This division into three cases holds for any lattice geometry, and the lecture shows it explicitly for the Fermi surfaces of both the square and the triangular lattice.</p>
+<div class="quiz" data-correct="C">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>The <span class="math inline">\(d\)</span>-wave gap <a href="13-nodal-singlet-order-d-wave-pairing-in-the-cuprates-and-the-angular-momentum-expansion.html#eq-5-13">(5.13)</a> vanishes on the diagonals <span class="math inline">\(k_x=\pm k_y\)</span>. A small Fermi pocket is centered at <span class="math inline">\(X=(\pi,0)\)</span>. Is the superconductor nodal?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>Yes, since every <span class="math inline">\(d\)</span>-wave order has gapless points.</li>
+<li>Yes, with four nodes on the pocket.</li>
+<li>No, since the pocket does not touch a diagonal.</li>
+<li>Only if <span class="math inline">\(\Delta_0\)</span> is larger than the hopping.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>C</strong>.</p>
+<p>Only nodes that cross the Fermi surface give gapless quasiparticles. Near <span class="math inline">\(X\)</span> we have <span class="math inline">\(\cos k_x-\cos k_y\approx-2\)</span>, so <span class="math inline">\(|\Delta|\)</span> is large and <span class="math inline">\(E(\mathbf k)\)</span> in <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#eq-5-9">(5.9)</a> stays finite all around the pocket.</p>
+</details>
+</div>
+<div class="notebookbox">
+<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb"><code>session5.ipynb</code></a>, “Unconventional singlet superconducting orders” (Challenge), and “Gapped and nodal superconducting orders” (Core)</p>
+<p>Build a <span class="math inline">\(\Delta(\mathbf k)\)</span> that depends on momentum and vanishes along a line in the Brillouin zone, for example the d-wave form of section <a href="13-nodal-singlet-order-d-wave-pairing-in-the-cuprates-and-the-angular-momentum-expansion.html#sec-5-13">5.13</a> below. Then check numerically with <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#eq-5-9">(5.9)</a> that the gap closes exactly where the Fermi surface crosses this nodal line, which is different from the uniformly gapped case of section <a href="#sec-5-9">5.9</a>.</p>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> In the cell, the function <code>deltak(mode)</code> plots <span class="math inline">\(\Delta(\mathbf k)\)</span> for each order. At <span class="math inline">\(\mu=0\)</span> the Fermi surface of the square lattice passes through <span class="math inline">\((\pi/2,\pi/2)\)</span>, where <span class="math inline">\(\cos k_x-\cos k_y=0\)</span>. Check that the <span class="math inline">\(d\)</span>-wave map vanishes there and the <span class="math inline">\(s\)</span>-wave map does not.</p>
+<div class="tryit-links">
+Notebook <code>session5.ipynb</code>, cell “Unconventional singlet superconducting orders”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession5.ipynb">Binder</a>.
+</div>
+</div>
 
-  <nav class="pager"><a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html">5.8 The Nambu spinor and the Bogoliubov-de Gennes Hamiltonian</a><a href="10-metal-gapped-and-nodal-superconductor-for-one-fermi-surface.html">5.10 Metal, gapped and nodal superconductor for one Fermi surface</a></nav>
+  <nav class="pager"><a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html">5.8 The Nambu spinor and the Bogoliubov-de Gennes Hamiltonian</a><a href="11-the-general-pairing-hamiltonian-and-its-symmetry-classification.html">5.11 The general pairing Hamiltonian and its symmetry classification</a></nav>
 
 </main>
 </body>

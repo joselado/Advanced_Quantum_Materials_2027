@@ -17,37 +17,40 @@
    "file": "02-superconductivity-as-a-macroscopic-quantum-phenomenon.md",
    "id": "sec-5-2",
    "number": "5.2",
-   "title": "Superconductivity as a macroscopic quantum phenomenon"
-  },
-  {
-   "file": "03-zero-resistance-and-the-meissner-effect-in-a-superconductor.md",
-   "id": "sec-5-3",
-   "number": "5.3",
-   "title": "Zero resistance and the Meissner effect in a superconductor"
+   "title": "Superconductivity as a macroscopic quantum phenomenon",
+   "also": [
+    {
+     "id": "sec-5-3",
+     "number": "5.3",
+     "title": "Zero resistance and the Meissner effect in a superconductor"
+    }
+   ]
   },
   {
    "file": "04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.md",
    "id": "sec-5-4",
    "number": "5.4",
-   "title": "The interacting Hamiltonian and the origin of attractive interactions"
-  },
-  {
-   "file": "05-the-mean-field-pairing-hamiltonian-in-detail.md",
-   "id": "sec-5-5",
-   "number": "5.5",
-   "title": "The mean-field pairing Hamiltonian in detail"
+   "title": "The interacting Hamiltonian and the origin of attractive interactions",
+   "also": [
+    {
+     "id": "sec-5-5",
+     "number": "5.5",
+     "title": "The mean-field pairing Hamiltonian in detail"
+    }
+   ]
   },
   {
    "file": "06-why-pairing-does-not-conserve-the-particle-number.md",
    "id": "sec-5-6",
    "number": "5.6",
-   "title": "Why pairing does not conserve the particle number"
-  },
-  {
-   "file": "07-the-gauge-transformation-in-explicit-form.md",
-   "id": "sec-5-7",
-   "number": "5.7",
-   "title": "The gauge transformation in explicit form"
+   "title": "Why pairing does not conserve the particle number",
+   "also": [
+    {
+     "id": "sec-5-7",
+     "number": "5.7",
+     "title": "The gauge transformation in explicit form"
+    }
+   ]
   },
   {
    "file": "08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.md",
@@ -59,13 +62,14 @@
    "file": "09-an-example-of-a-gap-that-opens-independently-of-the-dispersion.md",
    "id": "sec-5-9",
    "number": "5.9",
-   "title": "An example of a gap that opens independently of the dispersion"
-  },
-  {
-   "file": "10-metal-gapped-and-nodal-superconductor-for-one-fermi-surface.md",
-   "id": "sec-5-10",
-   "number": "5.10",
-   "title": "Metal, gapped and nodal superconductor for one Fermi surface"
+   "title": "An example of a gap that opens independently of the dispersion",
+   "also": [
+    {
+     "id": "sec-5-10",
+     "number": "5.10",
+     "title": "Metal, gapped and nodal superconductor for one Fermi surface"
+    }
+   ]
   },
   {
    "file": "11-the-general-pairing-hamiltonian-and-its-symmetry-classification.md",
@@ -126,6 +130,24 @@
    "id": "sec-5-20",
    "number": "5.20",
    "title": "Closing summary"
+  }
+ ],
+ "redirects": [
+  {
+   "from": "03-zero-resistance-and-the-meissner-effect-in-a-superconductor.html",
+   "to": "02-superconductivity-as-a-macroscopic-quantum-phenomenon.html#sec-5-3"
+  },
+  {
+   "from": "05-the-mean-field-pairing-hamiltonian-in-detail.html",
+   "to": "04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html#sec-5-5"
+  },
+  {
+   "from": "07-the-gauge-transformation-in-explicit-form.html",
+   "to": "06-why-pairing-does-not-conserve-the-particle-number.html#sec-5-7"
+  },
+  {
+   "from": "10-metal-gapped-and-nodal-superconductor-for-one-fermi-surface.html",
+   "to": "09-an-example-of-a-gap-that-opens-independently-of-the-dispersion.html#sec-5-10"
   }
  ]
 }

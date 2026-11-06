@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -101,8 +102,71 @@ J_K\sum_{j,\alpha\beta}\Big(c^\dagger_{j\beta}\,\boldsymbol\sigma_{\beta\alpha}\
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session8.ipynb"><code>session8.ipynb</code></a>, “Magnetization of a large Heisenberg model with a magnetic impurity” (Challenge) and “Magnetization of a dimerized Heisenberg model with a magnetic impurity” (Challenge)</p>
 <p>These exercises show, numerically and in real space, how the local field of a single magnetic impurity decays with the distance in a quantum magnet that is otherwise gapless or dimerized. The gapless chain shows an algebraic and staggered decay, which follows the correlation profile of a critical spin liquid. The dimerized chain of Section <a href="05-the-dimerized-heisenberg-model-a-first-step-before-a-spin-liquid.html#sec-8-5">8.5</a>, which is a valence bond solid, shows instead an exponential decay over a finite correlation length, because its ground state is gapped. This is the same physics of the screening cloud as in <a href="#eq-8-17">(8.17)</a>, seen from the side of a single chain in real space and not from the side of itinerant electrons.</p>
 </div>
+<h1 class="sec-next" id="sec-8-12"><span class="num">8.12</span> Solving the Kondo lattice with the parton method and a hybridization</h1>
+<p>The lecture makes the parallel with Section <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#sec-8-8">8.8</a> explicit, since we solve this problem in the same way as we solved the QSL. We replace every impurity spin by an Abrikosov fermion, <span class="math inline">\(\mathbf S_j = \tfrac12
+f_{j\alpha}^\dagger \boldsymbol\sigma_{\alpha\beta} f_{j\beta}\)</span>, with the same single-occupancy constraint <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-11">(8.11)</a>, which we write here in the equivalent traceless form</p>
+<p><span id="eq-8-19" class="eq"><span class="math display">\[S_{\alpha\beta}(j) = f^\dagger_{j\alpha}f_{j\beta} - \frac{n_f(j)}{2}\delta_{\alpha\beta}. \tag{8.19}\]</span></span></p>
+<p>When we insert this into <a href="#eq-8-18">(8.18)</a>, the Kondo coupling becomes a real quartic interaction. Now it does not couple the auxiliary <span class="math inline">\(f\)</span> fermions to the <span class="math inline">\(f\)</span> fermion of another site, as in <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-13">(8.13)</a>, but to the <em>real</em> conduction electrons <span class="math inline">\(c_{j\sigma}\)</span> on the same site,</p>
+<p><span id="eq-8-20" class="eq"><span class="math display">\[H \sim \sum_{\mathbf k\alpha} \varepsilon_{\mathbf k}\, c^\dagger_{\mathbf k\alpha}c_{\mathbf
+k\alpha} \;-\; J_K\sum_{j,\alpha\beta}\Big(c^\dagger_{j\beta}f_{j\beta}\Big)\Big(f^\dagger_{j\alpha}
+c_{j\alpha}\Big). \tag{8.20}\]</span></span></p>
+<p>As in <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-14">(8.14)</a>, we decouple this quartic term at the mean-field level, with the expectation value <span class="math inline">\(\langle c^\dagger_j f_j\rangle\)</span>, and we do a Fourier transform to momentum space. This gives a bilinear Hamiltonian that mixes real electrons and auxiliary fermions,</p>
+<p><span id="eq-8-21" class="eq"><span class="math display">\[H \sim \sum_{\mathbf k\alpha} \varepsilon_{\mathbf k}\, c^\dagger_{\mathbf k\alpha} c_{\mathbf
+k\alpha} \;-\; \gamma_K \sum_{\mathbf k,\alpha} f^\dagger_{\mathbf k\alpha}c_{\mathbf k\alpha} +
+\text{h.c.}, \tag{8.21}\]</span></span></p>
+<p>where <span class="math inline">\(\varepsilon_{\mathbf k}\)</span> is the <strong>conduction band dispersion</strong> and <span class="math inline">\(\gamma_K\)</span> is the <strong>Kondo hybridization</strong>. The hybridization is the only mean-field parameter, it is determined self-consistently, and it contains all the information about the strength of the original Kondo coupling <span class="math inline">\(J_K\)</span>.</p>
+<figure class="again">
+<img src="../figures/s08f06_kondo_bands.svg" loading="lazy" alt="A dispersive conduction band crossing a flat band without hybridization, and the same bands with a gap at the crossing when the hybridization is finite." />
+<figcaption><strong><a href="13-electronic-structure-of-the-kondo-lattice-and-the-kondo-insulator.html#fig:s08:kondobands">Figure 8.6</a>, shown again.</strong> The result of the parton method for the Kondo lattice, which we obtain in the second part of this page. In panel (a) the flat band of the <span class="math inline">\(f\)</span> levels crosses the conduction band, and in panel (b) the hybridization <span class="math inline">\(\gamma_K\)</span> of <a href="#eq-8-21">(8.21)</a> opens a gap at the crossing.</figcaption>
+</figure>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>In the Kondo lattice <a href="#eq-8-18">(8.18)</a> every impurity wants a singlet with a conduction electron close to it. What is the consequence of having many impurities?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>The screening electrons are shared between the singlets of different impurities.</li>
+<li>Each impurity gets its own electron, so the electron density doubles.</li>
+<li>The impurities form singlets with each other and decouple from the metal.</li>
+<li>The conduction electrons localize.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>The number of conduction electrons is not larger than the number of impurities, and all impurities draw from the same sea. The singlets are then fractional and entangled over the lattice.</p>
+</details>
+</div>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>In <a href="#eq-8-21">(8.21)</a> with <span class="math inline">\(\gamma_K=0\)</span>, what is the energy of the <span class="math inline">\(f\)</span> band?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(\varepsilon_{\mathbf k}\)</span>, the same as the conduction band.</li>
+<li>Zero for every <span class="math inline">\(\mathbf k\)</span>, a flat band.</li>
+<li><span class="math inline">\(-\gamma_K\)</span> for every <span class="math inline">\(\mathbf k\)</span>.</li>
+<li>It does not exist, since the <span class="math inline">\(f\)</span> fermions are removed.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The auxiliary fermions have no hopping of their own, and the only term that involves them is the hybridization. Without it their levels sit at zero energy, which is the chemical potential of the constraint.</p>
+</details>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> Run the three values of <code>JK</code> and follow the flat band. Check that the crossing with the conduction band is replaced by a gap, and that the gap grows from <span class="math inline">\(J_K=0.25\)</span> to <span class="math inline">\(J_K=0.5\)</span>. Then change <code>add_onsite(-2.0)</code> and see if the gap stays at the Fermi level.</p>
+<div class="tryit-links">
+Notebook <code>session8.ipynb</code>, cell “Quantum magnetism in the Kondo lattice”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session8.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session8.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession8.ipynb">Binder</a>.
+</div>
+</div>
 
-  <nav class="pager"><a href="10-emergent-gauge-symmetry-and-vison-excitations.html">8.10 Emergent gauge symmetry and vison excitations</a><a href="12-solving-the-kondo-lattice-with-the-parton-method-and-a-hybridization.html">8.12 Solving the Kondo lattice with the parton method and a hybridization</a></nav>
+  <nav class="pager"><a href="10-emergent-gauge-symmetry-and-vison-excitations.html">8.10 Emergent gauge symmetry and vison excitations</a><a href="13-electronic-structure-of-the-kondo-lattice-and-the-kondo-insulator.html">8.13 Electronic structure of the Kondo lattice and the Kondo insulator</a></nav>
 
 </main>
 </body>

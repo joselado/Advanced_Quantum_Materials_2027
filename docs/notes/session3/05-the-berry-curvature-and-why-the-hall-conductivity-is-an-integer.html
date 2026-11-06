@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -86,14 +87,64 @@
 <p>We take the derivative of the Schrödinger equation <span class="math inline">\(H(k)|u_n(k)\rangle = \varepsilon_n(k)|u_n(k)\rangle\)</span> with respect to <span class="math inline">\(k_\mu\)</span> and project it onto a different band <span class="math inline">\(\langle u_m(k)|\)</span>, with <span class="math inline">\(m \neq n\)</span>, which gives</p>
 <p><span id="eq-3-3" class="eq"><span class="math display">\[\langle u_m|\partial_{k_\mu} H|u_n\rangle
 = \big(\varepsilon_n(k) - \varepsilon_m(k)\big)\,\langle u_m|\partial_{k_\mu} u_n\rangle. \tag{3.3}\]</span></span></p>
-<p>This identity is the piece that we need, since it replaces a matrix element of <span class="math inline">\(\partial_k H\)</span> by a matrix element of the <span class="math inline">\(k\)</span>-derivative of the wavefunction, divided by the energy difference. When we use <a href="#eq-3-3">(3.3)</a> to rewrite the numerator and the denominator of <a href="04-the-hall-conductivity-from-linear-response.html#eq-3-2">(3.2)</a> together, the explicit dependence on the energies cancels completely. What remains is an object built only from overlaps of wavefunctions, which is called the <strong>Berry curvature</strong> of band <span class="math inline">\(n\)</span>,</p>
+<p>This identity is the piece that we need, since it replaces a matrix element of <span class="math inline">\(\partial_k H\)</span> by a matrix element of the <span class="math inline">\(k\)</span>-derivative of the wavefunction, divided by the energy difference. When we use <a href="#eq-3-3">(3.3)</a> to rewrite the numerator and the denominator of <a href="03-where-perturbation-theory-breaks-down.html#eq-3-2">(3.2)</a> together, the explicit dependence on the energies cancels completely. What remains is an object built only from overlaps of wavefunctions, which is called the <strong>Berry curvature</strong> of band <span class="math inline">\(n\)</span>,</p>
 <p><span class="math display">\[\Omega_n(k) = -2\,\mathrm{Im}\, \langle \partial_{k_x} u_n(k)|\partial_{k_y} u_n(k)\rangle,\]</span></p>
 <p>so that the Hall conductivity of a set of filled bands is</p>
 <p><span id="eq-3-4" class="eq"><span class="math display">\[\sigma_{xy} = \frac{e^2}{h}\, C, \qquad
 C = \sum_{n\ \text{filled}} \frac{1}{2\pi}\int_{\text{BZ}} \Omega_n(k)\, d^2k. \tag{3.4}\]</span></span></p>
-<p>This is the central result of the session, and there are two important points about <a href="#eq-3-4">(3.4)</a>. First, <span class="math inline">\(\sigma_{xy}\)</span> depends only on how the wavefunctions change across the Brillouin zone, and not on the energies. We can deform the band structure in any way, and as long as the wavefunctions do not change, the Hall conductivity stays the same. Second, and more surprising, for a gapped system, which is an insulator, <span class="math inline">\(C\)</span> is always an integer, regardless of the number of bands and of the shape of the dispersion. This is a topological statement. The Brillouin zone of a two-dimensional system is a compact manifold, which is a torus since opposite edges of the zone are identified, and the integral of a curvature over a closed surface always gives an integer. The same happens for the Gaussian curvature of an ordinary closed surface in differential geometry. This integer <span class="math inline">\(C\)</span> is the <strong>Chern number</strong>, and <a href="#eq-3-4">(3.4)</a> is the first place in the course where a measurable quantity, the Hall conductivity, is fixed by a topological invariant.</p>
+<p>This is the central result of the session, and there are two important points about <a href="#eq-3-4">(3.4)</a>. First, <span class="math inline">\(\sigma_{xy}\)</span> depends only on how the wavefunctions change across the Brillouin zone, and not on the energies. We can deform the band structure in any way, and as long as the wavefunctions do not change, the Hall conductivity stays the same. Second, and more surprising, for a gapped system, which is an insulator, <span class="math inline">\(C\)</span> is always an integer, regardless of the number of bands and of the shape of the dispersion. This is a topological statement. The Brillouin zone of a two-dimensional system is a compact manifold, which is a torus since opposite edges of the zone are identified, and the integral of a curvature over a closed surface always gives an integer. The same happens for the Gaussian curvature of an ordinary closed surface in differential geometry. This integer <span class="math inline">\(C\)</span> is the <strong>Chern number</strong>, and <a href="#eq-3-4">(3.4)</a> is the first place in the course where a measurable quantity, the Hall conductivity, is fixed by a topological invariant. As an example, <a href="#sch:s03:berry_haldane">Schematic 3.2</a> shows the Berry curvature of two gapped honeycomb lattices, which we build in Section <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#sec-3-10">3.10</a>.</p>
+<figure id="sch:s03:berry_haldane" class="schematic">
+<img src="../figures/web/session03/berry_haldane.svg" loading="lazy" alt="Two color maps of the Brillouin zone, with two red spots for the Haldane coupling and one red and one blue spot for the staggered potential." />
+<figcaption><strong>Schematic 3.2.</strong> The Berry curvature of the lower band over the Brillouin zone of the honeycomb lattice, computed on a grid. In (a) the gap comes from the Haldane coupling, with second-neighbor hopping <span class="math inline">\(0.1\)</span> in units of the first-neighbor one. In (b) it comes from a staggered sublattice potential of <span class="math inline">\(0.5\)</span>. The curvature is concentrated at the two Dirac points, where the gap is smallest. In (a) it has the same sign at both points, and its integral divided by <span class="math inline">\(2\pi\)</span> gives <span class="math inline">\(|C|=1\)</span>. In (b) the two signs are opposite and the integral vanishes. Look at the colors, since the integer comes from the sum of the two red spots.</figcaption>
+</figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>We deform the dispersion of a gapped Chern insulator, so that all the band energies change. The Bloch wavefunctions stay the same and the gap stays open. What happens to <span class="math inline">\(\sigma_{xy}\)</span> in <a href="#eq-3-4">(3.4)</a>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>It changes in proportion to the gap.</li>
+<li>It does not change.</li>
+<li>It becomes zero, since the energies are different.</li>
+<li>It changes in proportion to the bandwidth.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>Equation <a href="#eq-3-4">(3.4)</a> contains only the Berry curvature, which is built from the wavefunctions. The energies canceled when we used <a href="#eq-3-3">(3.3)</a>, and so <span class="math inline">\(\sigma_{xy}\)</span> cannot depend on them.</p>
+</details>
+</div>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>We integrate the Berry curvature of a gapped band over the Brillouin zone on a coarse k-mesh and obtain <span class="math inline">\(C=0.37\)</span>. What is the most likely reason?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>The band has a fractional Chern number.</li>
+<li>The curvature is peaked and the k-mesh is too coarse to resolve it.</li>
+<li>The Hall conductivity of this band is fractional.</li>
+<li>The Brillouin zone is not a torus.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>For an isolated gapped band the integral is exactly an integer. A value like <span class="math inline">\(0.37\)</span> means that the sum is not converged, which happens when the curvature is concentrated near a small gap. The remedy is a finer k-mesh.</p>
+</details>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> In the cell that plots the Berry curvature, replace <code>h.add_sublattice_imbalance(0.5)</code> by <code>h.add_haldane(0.1)</code> and run it again. The map now has the same color around K and K’, as in panel (a) of <a href="#sch:s03:berry_haldane">Schematic 3.2</a>. Then call <code>h.get_chern(nk=60)</code>. It gives 2, which is the value 1 of each of the two spin species of the default Hamiltonian. With the sublattice imbalance it gives 0.</p>
+<div class="tryit-links">
+Notebook <code>session3.ipynb</code>, cell “Topological states and topological invariants”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session3.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session3.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession3.ipynb">Binder</a>.
+</div>
+</div>
 
-  <nav class="pager"><a href="04-the-hall-conductivity-from-linear-response.html">3.4 The Hall conductivity from linear response</a><a href="06-landau-levels-and-chiral-edge-states-in-the-quantum-hall-state.html">3.6 Landau levels and chiral edge states in the quantum Hall state</a></nav>
+  <nav class="pager"><a href="03-where-perturbation-theory-breaks-down.html">3.3 Where perturbation theory breaks down</a><a href="06-landau-levels-and-chiral-edge-states-in-the-quantum-hall-state.html">3.6a Landau levels and chiral edge states in the quantum Hall state</a></nav>
 
 </main>
 </body>

@@ -1,0 +1,36 @@
+## Where MPS stop working {#sec-7-8b number="7.8b"}
+
+The same argument tells us directly where MPS must fail, which is whenever the true entanglement entropy is larger than what a practical bond dimension can give through [(7.10)](#eq-7-10). In practice this happens in four cases. The first case is dynamics over long times, since after a quench the entanglement grows *linearly* with time and not logarithmically. The second case is systems in more than one dimension, where the length of the boundary in the area law grows with the system size, as we saw in Section [7.7](#sec-7-7), so $M$ has to grow too, often exponentially in the linear size of the subsystem. The third case is highly excited states, since the area law is a statement about ground states and not about general eigenstates. The fourth case is, more generally, states far from equilibrium. However, when the physics stays close to a gapped 1D ground state, MPS can be used for more than the ground-state problem. With a higher cost, they can be used for time evolution, excited states and open quantum systems, routinely in 1D and in some cases in 2D.
+
+![In two dimensions the boundary of a region grows with its size, so the number of cut bonds grows too. Look at panel (b), where doubling the linear size of $A$ doubles the number of cut bonds. An MPS that runs through the lattice cuts a line of this length, so its bond dimension must grow exponentially with the width of the system.](figures/s07f02_arealaw.svg){alt="A chain of dimers and a square lattice of tetramers, with the bonds cut by the boundary of a region drawn in red."}
+
+::: quiz
+After a sudden change of the Hamiltonian the entanglement of a chain grows linearly with time. Why is this a problem for an MPS with fixed $M$?
+
+- [ ] The state stops being normalized after a quench.
+- [ ] The Hamiltonian becomes nonlocal after a quench.
+- [ ] The singular values become negative.
+- [x] The entropy soon exceeds $\log M$, so $M$ must grow exponentially with time.
+
+The bound [(7.10)](#eq-7-10) gives $S\le\log M$, and a linear growth of $S$ needs $M\sim e^{S}$ to grow exponentially. For this reason long-time dynamics is hard for MPS.
+:::
+
+::: quiz
+Which of the following ground states is the hardest for an MPS with a fixed bond dimension?
+
+- [ ] A gapped spin chain with 100 sites.
+- [x] A gapped spin model on a $10\times10$ square lattice.
+- [ ] A dimer product state with 100 sites.
+
+On the square lattice an MPS has to pass through the lattice, and its cut crosses a boundary of about ten bonds. The entropy is then ten times the one of a single bond, and the bond dimension that it needs is exponentially larger.
+:::
+
+::: notebookbox
+**Notebook check-in:** [`session7.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb), "Entanglement entropy of the ground state" (Core), "Size dependence of the entanglement entropy" (Challenge), and "Bond dimension dependence of the entanglement entropy" (Challenge)
+
+With these three exercises you can reproduce Sections [7.5](#sec-7-5) to [7.8](#sec-7-8) numerically. First, you compute the entanglement entropy at each bond for the MPS ground state of a Heisenberg chain. Then you check that it grows very little with the system size, which is the 1D area-law saturation of Section [7.6](#sec-7-6), but this time in a gapless chain and not in a gapped one. Finally, you check that it saturates once the bond dimension is large enough to satisfy [(7.10)](#eq-7-10). The quiz of the first exercise also asks you to replace the model with an Ising model and to see how the entropy changes. This is a quick way to see how the area law responds to a really different ground state, which in this case is classical and has zero entanglement.
+:::
+
+::: {.tryit notebook="session7.ipynb" cell="Bond dimension dependence of the entanglement entropy"}
+Compare the curves of $L=10$ and $L=30$ as a function of `maxm`. Both curves follow the bound $\ln\chi$ at small $\chi$ and then saturate. Which chain saturates at the larger bond dimension, and why?
+:::

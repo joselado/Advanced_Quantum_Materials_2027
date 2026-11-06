@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -98,9 +99,55 @@ H^2 = \frac{2\hbar^2v_F^2}{\ell_B^2}\begin{pmatrix}a^\dagger a &amp; 0\\ 0 &amp;
 <img src="../figures/s04f04_ladders.svg" loading="lazy" alt="The same magnetic field with two dispersions gives two completely different ladders, drawn here as functions of the field." />
 <figcaption><strong>Figure 4.4.</strong> The same magnetic field with two dispersions gives two completely different ladders, drawn here as functions of the field. (a) Schrödinger electrons give the harmonic-oscillator spectrum <a href="09-landau-levels-of-schrodinger-electrons.html#eq-4-6">(4.6)</a>, where every level is a constant <span class="math inline">\(\hbar\omega_c=\hbar B/m\)</span> above the one below it, so every level is a straight line through the origin and the whole ladder grows linearly in <span class="math inline">\(B\)</span>. (b) Dirac electrons give the square root of that spectrum, equation <a href="#eq-4-7">(4.7)</a>. The levels come closer together as <span class="math inline">\(\sqrt{n}\)</span>, they come in a particle-hole symmetric pair for every <span class="math inline">\(|n|\ge 1\)</span>, and the overall scale grows only as <span class="math inline">\(\sqrt{B}\)</span>. This is still enough to put the level spacing of graphene about two orders of magnitude above the one of a GaAs quantum well at the same field. The <span class="math inline">\(n=0\)</span> level is the qualitatively new feature. It stays at exactly zero energy for every field strength, which is the flat line, because it is the only solution with no partner in the other spinor component. The translucent plane at the field <span class="math inline">\(B_0\)</span> cuts each fan, and the short rods where it cuts are the ladder of levels at that field, so the ladder at a fixed field is the vertical cut through the fan. The two vertical scales are independent of each other, since what we compare is the pattern of spacings and not the absolute energies.</figcaption>
 </figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>The field of a graphene sample is multiplied by 9. By which factor does the energy of the first Landau level above zero change?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>It does not change.</li>
+<li>By 3.</li>
+<li>By 81.</li>
+<li>By 9.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The energy <a href="#eq-4-7">(4.7)</a> is proportional to <span class="math inline">\(\sqrt{|n|B}\)</span>, so a factor 9 in the field gives a factor 3 in the energy.</p>
+</details>
+</div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session4.ipynb"><code>session4.ipynb</code></a>, “The dispersion of the square lattice” (Reminder), “Bands in the conventional quantum Hall state” (Reminder), “Landau levels of conventional electrons” (Core), “Magnetic field dependence of Landau levels” (Core), and “Imaging the magnetic field dependence in the Landau levels” (Core), together with “The dispersion of the honeycomb lattice” (Reminder), “Bands in the Dirac quantum Hall state” (Reminder), “Landau levels of the Dirac equation” (Core), “Magnetic field dependence of Dirac Landau levels” (Core), and “Imaging the magnetic field dependence in the Dirac Landau levels” (Core)</p>
-<p>Build a ribbon of the square lattice, which has a parabolic band bottom, and an armchair ribbon of the honeycomb lattice, which has a Dirac cone, with the Peierls substitution <a href="07-coupling-electrons-to-a-magnetic-field-with-minimal-coupling-and-the-peierls-substitution.html#eq-4-4">(4.4)</a> switched on, and check both spectra directly. For the square lattice you should find equally spaced flat Landau levels that grow linearly in <span class="math inline">\(B\)</span>, as in <a href="09-landau-levels-of-schrodinger-electrons.html#eq-4-6">(4.6)</a>, and for the honeycomb lattice levels with unequal spacing that grow as <span class="math inline">\(\sqrt{B}\)</span>, as in <a href="#eq-4-7">(4.7)</a>. The “imaging” sections let you follow the energy of each level as a function of the field strength, which is the most direct numerical check of the linear and square-root scaling that we derived above.</p>
+<p>Build a ribbon of the square lattice, which has a parabolic band bottom, and an armchair ribbon of the honeycomb lattice, which has a Dirac cone, with the Peierls substitution <a href="06-quantized-hall-plateaus-in-experiment.html#eq-4-4">(4.4)</a> switched on, and check both spectra directly. For the square lattice you should find equally spaced flat Landau levels that grow linearly in <span class="math inline">\(B\)</span>, as in <a href="09-landau-levels-of-schrodinger-electrons.html#eq-4-6">(4.6)</a>, and for the honeycomb lattice levels with unequal spacing that grow as <span class="math inline">\(\sqrt{B}\)</span>, as in <a href="#eq-4-7">(4.7)</a>. The “imaging” sections let you follow the energy of each level as a function of the field strength, which is the most direct numerical check of the linear and square-root scaling that we derived above.</p>
+</div>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>At a fixed field, what is the ratio <span class="math inline">\(E_4/E_1\)</span> of the Dirac Landau levels of <a href="#eq-4-7">(4.7)</a>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(4\)</span>.</li>
+<li><span class="math inline">\(2\)</span>.</li>
+<li><span class="math inline">\(16\)</span>.</li>
+<li><span class="math inline">\(1/2\)</span>.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The levels go as <span class="math inline">\(\sqrt{n}\)</span>, so <span class="math inline">\(E_4/E_1=\sqrt{4}=2\)</span>. The value <span class="math inline">\(4\)</span> would be the ratio for a linear ladder with no offset, which is what we do not have here.</p>
+</details>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> Run the cell for <code>B = 0.005, 0.01, 0.02</code>. Read the position of the first peak above zero energy in each panel. From the first panel to the last the field grows by a factor 4. The peak moves by a factor close to 2, as in <a href="#eq-4-7">(4.7)</a>.</p>
+<div class="tryit-links">
+Notebook <code>session4.ipynb</code>, cell “Magnetic field dependence of Dirac Landau levels”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session4.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session4.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession4.ipynb">Binder</a>.
+</div>
 </div>
 
   <nav class="pager"><a href="09-landau-levels-of-schrodinger-electrons.html">4.9 Landau levels of Schrödinger electrons</a><a href="11-numerical-check-of-the-landau-levels-and-edge-states-on-the-lattice.html">4.11 Numerical check of the Landau levels and edge states on the lattice</a></nav>

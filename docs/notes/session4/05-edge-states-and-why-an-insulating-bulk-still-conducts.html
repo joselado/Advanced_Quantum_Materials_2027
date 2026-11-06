@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -90,12 +91,58 @@
 <img src="../figures/s04f01_ribbon.svg" loading="lazy" alt="The quantum Hall ribbon." />
 <figcaption><strong>Figure 4.1.</strong> The quantum Hall ribbon. (a) The spectrum of a strip that is infinite along <span class="math inline">\(y\)</span> and finite along <span class="math inline">\(x\)</span>, computed for a width of <span class="math inline">\(12\,\ell_B\)</span> with hard walls. In the bulk the Landau levels <a href="09-landau-levels-of-schrodinger-electrons.html#eq-4-6">(4.6)</a> are exactly flat, so they carry no current at all, but near each boundary the guiding centre <span class="math inline">\(x_0=\hbar k_y/B\)</span> is pushed into the wall and the level bends up strongly. These bending branches are the edge states, and each of them crosses the chemical potential, the translucent plane, exactly once per edge, at the balls, so the number of chiral modes at a given edge is equal to the number <span class="math inline">\(N\)</span> of filled Landau levels, here <span class="math inline">\(N=2\)</span>. (b) The same statement in real space, seen from above. The branches with <span class="math inline">\(k_y&gt;0\)</span> have <span class="math inline">\(v_y=\hbar^{-1}\partial_{k_y}E&gt;0\)</span> and live on the right edge, and the branches with <span class="math inline">\(k_y&lt;0\)</span> move in the opposite direction and live on the left edge. To reverse the velocity of an electron we would therefore have to move it to the other side of the sample, which no local impurity can do, and this is why the edge transport has no dissipation.</figcaption>
 </figure>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>An impurity sits on the left edge of a quantum Hall ribbon. Why can it not backscatter an edge electron?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>The only states that move in the opposite direction at the same energy are on the other edge, which is far away.</li>
+<li>The impurity is always too weak to scatter.</li>
+<li>The bulk Landau levels are full and block the scattering.</li>
+<li>Time-reversal symmetry forbids it.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>On one edge all the modes propagate in the same direction. A state that propagates the other way is on the other side of the sample, and a local impurity cannot connect the two.</p>
+</details>
+</div>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>The chemical potential moves from the gap above the first Landau level to the gap above the third. How do the number of chiral modes at one edge and <span class="math inline">\(\sigma_{xy}\)</span> change?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>The number of modes stays at one, and <span class="math inline">\(\sigma_{xy}\)</span> changes from <span class="math inline">\(e^2/h\)</span> to <span class="math inline">\(3e^2/h\)</span>.</li>
+<li>From one to three, and from <span class="math inline">\(e^2/h\)</span> to <span class="math inline">\(3e^2/h\)</span>.</li>
+<li>From one to two, and from <span class="math inline">\(e^2/h\)</span> to <span class="math inline">\(2e^2/h\)</span>.</li>
+<li>From one to three, and <span class="math inline">\(\sigma_{xy}\)</span> stays at <span class="math inline">\(e^2/h\)</span>.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The number of chiral modes at an edge is equal to the Chern number of the bulk, which counts the filled Landau levels. The Hall conductance is this number times <span class="math inline">\(e^2/h\)</span>.</p>
+</details>
+</div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session4.ipynb"><code>session4.ipynb</code></a>, “Localization of the edge states in the quantum Hall effect in a ribbon” (Challenge), and “Localization of the edge states in the quantum Hall effect in an island” (Challenge)</p>
 <p>Build a finite ribbon and a finite island in a magnetic field and look directly at where the edge-state wavefunctions are in real space. This confirms the separation between the left and the right edge, or along the perimeter of the island, which is the basis of the argument above for the absence of backscattering.</p>
 </div>
+<div class="tryit">
+<p><strong>Try it.</strong> Run the cell and look at the four maps of the local density of states. At the two energies inside the gap above the zero mode, the weight sits at the edges and not in the middle. Change <code>0.01</code> in <code>h.add_orbital_magnetic_field(0.01)</code> to <code>0.02</code>. The gap grows, and the edge weight stays at the boundary.</p>
+<div class="tryit-links">
+Notebook <code>session4.ipynb</code>, cell “Localization of the edge states in the quantum Hall effect in a ribbon”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session4.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session4.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession4.ipynb">Binder</a>.
+</div>
+</div>
 
-  <nav class="pager"><a href="04-landau-levels-as-chern-number-one-flat-bands.html">4.4 Landau levels as Chern-number-one flat bands</a><a href="06-quantized-hall-plateaus-in-experiment.html">4.6 Quantized Hall plateaus in experiment</a></nav>
+  <nav class="pager"><a href="03-from-the-kubo-formula-to-the-chern-number-briefly.html">4.3 From the Kubo formula to the Chern number, briefly</a><a href="06-quantized-hall-plateaus-in-experiment.html">4.6 Quantized Hall plateaus in experiment</a></nav>
 
 </main>
 </body>

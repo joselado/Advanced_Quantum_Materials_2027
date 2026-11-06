@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -88,14 +89,52 @@
 <p><span id="eq-10-6" class="eq"><span class="math display">\[C(s_1,\dots,s_L) = \mathrm{Tr}\left[A^{s_1} A^{s_2}\cdots A^{s_L}\right], \tag{10.6}\]</span></span></p>
 <p>where for each physical value of <span class="math inline">\(s_i\)</span>, for example spin up or spin down, there is a different <span class="math inline">\(D\times D\)</span> matrix <span class="math inline">\(A^{s_i}\)</span>, and <span class="math inline">\(D\)</span>, which is called the <em>bond dimension</em>, is a free parameter that we choose. The number of free parameters in <a href="#eq-10-6">(10.6)</a> scales as <span class="math inline">\(L \times d \times
 D^2\)</span>, with <span class="math inline">\(d\)</span> the dimension of the local Hilbert space, so it is linear in the system size and not exponential. This is the same compression idea as the NNQS of Section <a href="03-neural-network-quantum-states.html#sec-10-3">10.3</a>, but the parameters are matrix elements instead of network weights. The same compression can be generalized beyond the one-dimensional geometry of the MPS. A <em>tree tensor network</em> puts the same matrices in a tree instead of a chain. The <em>multiscale entanglement renormalization ansatz</em> (MERA) adds extra layers of coarse-graining on top of a tree structure. <em>Projected entangled pair states</em> (PEPS) generalize the whole construction to a two-dimensional grid. For a ground-state search these architectures are not equivalent, since an MPS is much easier to optimize than a PEPS, and this is the reason why MPS works well for one-dimensional problems while two-dimensional problems are often still hard. However, if we only want a flexible function of a high-dimensional input with an efficient parameterization, as in machine learning, the difference between the architectures matters much less, and any of them can be used.</p>
-<p>This is a direct reuse of the architectures of session 7, and not only an analogy. The same matrix product states, tree tensor networks, MERA and PEPS that we built there to compress ground-state wavefunctions are used here without change as function approximators. This approach has a name, which is “quantum-many-body-inspired machine learning,” and a clear example of it is image classification with tensor networks. We map each pixel of an image with <span class="math inline">\(N\)</span> pixels to a two-dimensional vector, for example white <span class="math inline">\(\to\)</span> spin up and black <span class="math inline">\(\to\)</span> some other reference direction. Then we take the tensor product of all the <span class="math inline">\(N\)</span> pixel vectors and obtain a single vector in a <span class="math inline">\(2^N\)</span>-dimensional space, which is the same exponentially large space where a many-body wavefunction with <span class="math inline">\(N\)</span> spins lives. The classification task then becomes the search for a <em>linear</em> operator on this <span class="math inline">\(2^N\)</span>-dimensional space that maps each image to its one-hot label. A tensor network, and here a tree tensor network works well, is the efficient and structured parameterization of such a linear operator that <a href="#eq-10-6">(10.6)</a> and its generalizations already gave us. We apply the tensor network to the tensor-product image, and then a final small tensor that projects down to two output numbers. This gives the same structure as the classification of cats and dogs in Section <a href="02-neural-networks-as-function-approximators.html#sec-10-2">10.2</a>, where now the worked example is “purse versus shirt” and the tensor product of the pixels takes the place of the flattened input matrix. Figure <a href="#fig:s10:tnml">10.3</a> shows the four geometries as tensor diagrams, and then the classifier built from one of them.</p>
+<p>This is a direct reuse of the architectures of session 7, and not only an analogy. The same matrix product states, tree tensor networks, MERA and PEPS that we built there to compress ground-state wavefunctions are used here without change as function approximators. This approach has a name, which is “quantum-many-body-inspired machine learning,” and a clear example of it is image classification with tensor networks. We map each pixel of an image with <span class="math inline">\(N\)</span> pixels to a two-dimensional vector, for example white <span class="math inline">\(\to\)</span> spin up and black <span class="math inline">\(\to\)</span> some other reference direction. Then we take the tensor product of all the <span class="math inline">\(N\)</span> pixel vectors and obtain a single vector in a <span class="math inline">\(2^N\)</span>-dimensional space, which is the same exponentially large space where a many-body wavefunction with <span class="math inline">\(N\)</span> spins lives. The classification task then becomes the search for a <em>linear</em> operator on this <span class="math inline">\(2^N\)</span>-dimensional space that maps each image to its one-hot label. A tensor network, and here a tree tensor network works well, is the efficient and structured parameterization of such a linear operator that <a href="#eq-10-6">(10.6)</a> and its generalizations already gave us. We apply the tensor network to the tensor-product image, and then a final small tensor that projects down to two output numbers. This gives the same structure as the classification of cats and dogs in Section <a href="01-machine-learning-and-many-body-physics-in-two-directions.html#sec-10-2">10.2</a>, where now the worked example is “purse versus shirt” and the tensor product of the pixels takes the place of the flattened input matrix. Figure <a href="#fig:s10:tnml">10.3</a> shows the four geometries as tensor diagrams, and then the classifier built from one of them.</p>
 <figure id="fig:s10:tnml">
 <img src="../figures/s10f03_tnml.svg" loading="lazy" alt="Tensor networks used in the reverse direction." />
-<figcaption><strong>Figure 10.3.</strong> Tensor networks used in the reverse direction. <strong>(a)</strong> The four geometries that the text names, drawn as tensor diagrams. Every block is a tensor, every rod is an index that is summed over, and the open legs are the physical indices. The bond dimension <span class="math inline">\(D\)</span> of the internal lines is what <a href="#eq-10-6">(10.6)</a> calls a free parameter. For a ground-state search these geometries are not equivalent, since an MPS is easy to optimize and a PEPS is not. However, as flexible functions of a high-dimensional input with parameters, which is all that a classifier needs, any of them can be used. <strong>(b)</strong> Image classification with a tree tensor network. Each pixel becomes a vector with two components, and their tensor product is a single vector in a <span class="math inline">\(2^N\)</span>-dimensional space, which is the same space where an <span class="math inline">\(N\)</span>-spin wavefunction of <a href="03-neural-network-quantum-states.html#eq-10-2">(10.2)</a> lives. Classification is then a <em>linear</em> map from this space down to two numbers, the red leg, and the tensor network is the efficient and structured parameterization of such a map that <a href="#eq-10-6">(10.6)</a> already gave us. Note what changes and what does not change with respect to figure <a href="02-neural-networks-as-function-approximators.html#fig:s10:template">10.1</a>. The input is still an array with a categorical label and the output is still one-hot, and only the function between them is now built from matrices instead of layers of nodes.</figcaption>
+<figcaption><strong>Figure 10.3.</strong> Tensor networks used in the reverse direction. <strong>(a)</strong> The four geometries that the text names, drawn as tensor diagrams. Every block is a tensor, every rod is an index that is summed over, and the open legs are the physical indices. The bond dimension <span class="math inline">\(D\)</span> of the internal lines is what <a href="#eq-10-6">(10.6)</a> calls a free parameter. For a ground-state search these geometries are not equivalent, since an MPS is easy to optimize and a PEPS is not. However, as flexible functions of a high-dimensional input with parameters, which is all that a classifier needs, any of them can be used. <strong>(b)</strong> Image classification with a tree tensor network. Each pixel becomes a vector with two components, and their tensor product is a single vector in a <span class="math inline">\(2^N\)</span>-dimensional space, which is the same space where an <span class="math inline">\(N\)</span>-spin wavefunction of <a href="03-neural-network-quantum-states.html#eq-10-2">(10.2)</a> lives. Classification is then a <em>linear</em> map from this space down to two numbers, the red leg, and the tensor network is the efficient and structured parameterization of such a map that <a href="#eq-10-6">(10.6)</a> already gave us. Note what changes and what does not change with respect to figure <a href="01-machine-learning-and-many-body-physics-in-two-directions.html#fig:s10:template">10.1</a>. The input is still an array with a categorical label and the output is still one-hot, and only the function between them is now built from matrices instead of layers of nodes.</figcaption>
 </figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>A matrix product state of <a href="#eq-10-6">(10.6)</a> has <span class="math inline">\(L=100\)</span> sites, <span class="math inline">\(d=2\)</span> and bond dimension <span class="math inline">\(D=10\)</span>. How many parameters does it have?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>About <span class="math inline">\(2^{100}\)</span>, as for the full table of coefficients.</li>
+<li>About <span class="math inline">\(L\,d\,D^2=20000\)</span>, which grows only linearly with <span class="math inline">\(L\)</span>.</li>
+<li>About <span class="math inline">\(200\)</span>, since there is one number per site and per spin value.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>Each site has <span class="math inline">\(d\)</span> matrices of size <span class="math inline">\(D\times D\)</span>. The cost is linear in <span class="math inline">\(L\)</span> and quadratic in <span class="math inline">\(D\)</span>, which is why the bond dimension is the control parameter of the compression.</p>
+</details>
+</div>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>Which statement about the classifier of figure <a href="#fig:s10:tnml">10.3</a>b is correct?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>It is nonlinear in the tensor product of the pixels, since it uses activation functions.</li>
+<li>It is linear in the tensor product of the pixels, and the tensor network gives this linear map with few parameters.</li>
+<li>It needs <span class="math inline">\(2^N\)</span> parameters, since the input vector has <span class="math inline">\(2^N\)</span> components.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The classification is a linear map on a space of dimension <span class="math inline">\(2^N\)</span>. A tree tensor network is a structured way to write such a map, so the number of parameters stays small, in the same way as for the matrix product state.</p>
+</details>
+</div>
 <p>This is not a toy result. On the Fashion-MNIST dataset, which is a standard benchmark of images of clothes, this tensor-network classifier reaches <strong>95.38% accuracy on the training set and 88.97% on the test set</strong>, which is comparable with conventional neural network architectures on the same task. These numbers appear only on the slides, and in the recording they are only described as “very high accuracy.” They are the kind of concrete result that we want to have in the written notes and not leave implicit. The general point is the same as in Section <a href="03-neural-network-quantum-states.html#sec-10-3">10.3</a>, in the other direction. A variational architecture that was built to compress many-body wavefunctions is, in mathematical terms, one more kind of neural network, and we can use it directly as one.</p>
 
-  <nav class="pager"><a href="03-neural-network-quantum-states.html">10.3 Neural network quantum states</a><a href="05-machine-learning-in-density-functional-theory.html">10.5 Machine learning in density functional theory</a></nav>
+  <nav class="pager"><a href="03b-training-the-network-and-quantum-state-tomography.html">10.3b Training the network and quantum state tomography</a><a href="05-machine-learning-in-density-functional-theory.html">10.5 Machine learning in density functional theory</a></nav>
 
 </main>
 </body>

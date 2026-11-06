@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -89,8 +90,55 @@
 <li><p><strong>Quantum spin liquids (QSLs)</strong>, which are the first class that we build in detail. The best-known candidate material is herbertsmithite, a compound where the magnetic ions form a kagome lattice of spin-<span class="math inline">\(1/2\)</span> sites.</p></li>
 <li><p><strong>Heavy-fermion Kondo insulators</strong>, which are often rare-earth compounds, and the standard example is samarium hexaboride (SmB<span class="math inline">\(_6\)</span>). We build the theory for this class in the second half of the session.</p></li>
 </ul>
+<h1 class="sec-next" id="sec-8-2"><span class="num">8.2</span> Two emergent excitations, magnons and spinons</h1>
+<p>The strong many-body interactions between electrons are the origin of the emergent collective excitations of magnetic materials. In a symmetry-broken magnet, this collective excitation is the <strong>magnon</strong>, which has spin <span class="math inline">\(1\)</span> and no charge. The reason is that the strong repulsion between electrons freezes the charge degree of freedom completely, so only the spin can fluctuate. In a quantum magnet, the excitation is of a different kind. It is the <strong>spinon</strong>, which has spin <span class="math inline">\(1/2\)</span> and also no charge. It is useful to think of a spinon as the spin half of an electron. If we take this picture one step further, we obtain the standard language of fractionalization for a QSL, where the electron splits into a <strong>chargon</strong>, which has the charge, and a <strong>spinon</strong>, which has the spin.</p>
+<p>There is a simple argument with pictures that shows why the spin of the two excitations differs by exactly a factor of two. Let us take a ferromagnet, where the ground state has all spins up, <span class="math inline">\(|{\uparrow\uparrow\uparrow\cdots}\rangle\)</span>. If we flip one spin to build an excited state, the total spin of the excited state differs from the one of the ground state by <span class="math inline">\(\Delta S = 1\)</span>, and this is a local magnon. Let us now take a quantum spin liquid, where the ground state is a collection of singlets everywhere and no spin points in a specific direction. If we build an excited state by leaving one spin without a partner, instead of putting it in a singlet, the difference in total spin is <span class="math inline">\(\Delta S = 1/2\)</span>, and in this picture this is a spinon. This picture is too simple on purpose, since real spinons are more subtle than “an unpaired spin,” but it is the right first intuition for why symmetry-broken magnets and quantum spin liquids have fundamentally different excitations. Figure <a href="#fig:s08:magnonspinon">8.1</a> shows the two counting arguments next to each other.</p>
+<figure id="fig:s08:magnonspinon">
+<img src="../figures/s08f01_magnon_spinon.svg" loading="lazy" alt="Why the two kinds of magnet have excitations whose spin differs by exactly a factor of two." />
+<figcaption><strong>Figure 8.1.</strong> Why the two kinds of magnet have excitations whose spin differs by exactly a factor of two. (a) In a symmetry-broken magnet every site has a definite spin, shown with arrows. Flipping one costs <span class="math inline">\(\Delta S=1\)</span>, and this excitation is the magnon of session 6. The single flipped spin drawn here, next to the ghost of its old direction, only does the counting of <span class="math inline">\(\Delta S\)</span>, since the real magnon is the delocalized precession of figure <a href="../session6/13-magnons-as-fluctuations-of-the-order-parameter.html#fig:s06:magnon">6.5</a> and not one flipped site. (b) In a quantum magnet no site has a definite spin at all. The sites are paired into singlets <a href="03-two-minimal-dimers-a-classical-order-parameter-and-a-quantum-singlet.html#eq-8-3">(8.3)</a>, drawn as capsules, so <span class="math inline">\(\langle\mathbf S_i\rangle=0\)</span> everywhere and <span class="math inline">\(S_\text{tot}=0\)</span>. When we break one pair, we leave <em>unpaired</em> sites, drawn as open balls, and each one of them has <span class="math inline">\(S=1/2\)</span>. This is a spinon, which is half a magnon. For this reason spinons are always created in pairs, and figure <a href="06-the-resonating-valence-bond-wavefunction-as-the-qsl-ground-state.html#fig:s08:vbsrvb">8.3</a> shows whether the pair stays bound or separates.</figcaption>
+</figure>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>A quantum spin liquid has an even number of spin-1/2 sites, and its ground state has <span class="math inline">\(S_\text{tot}=0\)</span>. Can the lowest excited state contain a single spinon?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>No, since one spinon would give a total spin of <span class="math inline">\(1/2\)</span>, which an even number of spin-1/2 sites cannot have.</li>
+<li>Yes, since the spinon has spin <span class="math inline">\(1/2\)</span> and the ground state has spin <span class="math inline">\(0\)</span>.</li>
+<li>Yes, but only if a magnetic field is applied.</li>
+<li>No, since spinons carry charge.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>The total spin of an even number of spin-1/2 particles is an integer. A spinon with <span class="math inline">\(S=1/2\)</span> must then come together with a second one, and this is why spinons are created in pairs.</p>
+</details>
+</div>
+<div class="quiz" data-correct="C">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>A magnon has spin <span class="math inline">\(1\)</span>. What does this tell us about its relation to spinons?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>A magnon is a single spinon with spin <span class="math inline">\(1\)</span>.</li>
+<li>Four spinons are needed, since each carries a quarter of the spin.</li>
+<li>Two spinons with parallel spins carry the same spin, so a magnon is like a bound pair of spinons.</li>
+<li>A magnon has no relation to spinons, since spinons carry no spin.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>C</strong>.</p>
+<p>Two spin-1/2 excitations can add up to spin <span class="math inline">\(1\)</span>. The magnon of a symmetry-broken magnet is then the bound version of what a quantum spin liquid can split into two free parts.</p>
+</details>
+</div>
 
-  <nav class="pager"><a href="index.html">Session 8</a><a href="02-two-emergent-excitations-magnons-and-spinons.html">8.2 Two emergent excitations, magnons and spinons</a></nav>
+  <nav class="pager"><a href="index.html">Session 8</a><a href="03-two-minimal-dimers-a-classical-order-parameter-and-a-quantum-singlet.html">8.3 Two minimal dimers, a classical order parameter and a quantum singlet</a></nav>
 
 </main>
 </body>

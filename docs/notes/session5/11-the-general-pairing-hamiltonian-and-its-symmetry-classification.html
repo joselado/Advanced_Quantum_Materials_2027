@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -96,9 +97,33 @@ c_{-\mathbf k\sigma&#39;}^\dagger\)</span> anticommute, imposes</p>
 -\mathbf k\)</span>. This combined statement holds for any type of pairing. The classification that has a physical meaning comes from splitting <span class="math inline">\(\Delta_{\sigma\sigma&#39;}(\mathbf k)\)</span> into a part that is symmetric and a part that is antisymmetric under spin exchange alone. Because of <a href="#eq-5-11">(5.11)</a>, this is the same as splitting it by its parity under <span class="math inline">\(\mathbf k \to -\mathbf k\)</span> alone,</p>
 <p><span class="math display">\[\textbf{Spin singlet (even parity):} \quad \Delta(\mathbf k) = \Delta(-\mathbf k), \qquad \Delta_{\sigma\sigma&#39;} = -\Delta_{\sigma&#39;\sigma}\ \text{(spin-antisymmetric)},\]</span></p>
 <p><span id="eq-5-12" class="eq"><span class="math display">\[\textbf{Spin triplet (odd parity):} \quad \Delta(\mathbf k) = -\Delta(-\mathbf k), \qquad \Delta_{\sigma\sigma&#39;} = +\Delta_{\sigma&#39;\sigma}\ \text{(spin-symmetric)}. \tag{5.12}\]</span></span></p>
-<p>For concreteness, onsite s-wave pairing, with <span class="math inline">\(\Delta(\mathbf k) = \Delta\)</span> constant, which comes from a local attractive interaction as in section <a href="05-the-mean-field-pairing-hamiltonian-in-detail.html#sec-5-5">5.5</a>, is even in <span class="math inline">\(\mathbf k\)</span>, and so it is spin-singlet. This symmetry classification has a direct physical consequence. A spin-singlet superconductor is essentially insensitive to non-magnetic disorder, which is called Anderson’s theorem, since the pair wave function only depends on time-reversed partners, and non-magnetic disorder preserves them. A spin-triplet superconductor, on the other hand, is strongly suppressed even by weak non-magnetic disorder, because scattering mixes the different momentum directions between which the order parameter needs to keep coherent phase relations. This is the reason why spin-singlet s-wave superconductors are much more common in nature than spin-triplet ones. Essentially every real material has some level of non-magnetic disorder, and this disorder destroys the triplet channel and leaves the singlet channel intact.</p>
+<p>For concreteness, onsite s-wave pairing, with <span class="math inline">\(\Delta(\mathbf k) = \Delta\)</span> constant, which comes from a local attractive interaction as in section <a href="04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html#sec-5-5">5.5</a>, is even in <span class="math inline">\(\mathbf k\)</span>, and so it is spin-singlet. This symmetry classification has a direct physical consequence. A spin-singlet superconductor is essentially insensitive to non-magnetic disorder, which is called Anderson’s theorem, since the pair wave function only depends on time-reversed partners, and non-magnetic disorder preserves them. A spin-triplet superconductor, on the other hand, is strongly suppressed even by weak non-magnetic disorder, because scattering mixes the different momentum directions between which the order parameter needs to keep coherent phase relations. This is the reason why spin-singlet s-wave superconductors are much more common in nature than spin-triplet ones. Essentially every real material has some level of non-magnetic disorder, and this disorder destroys the triplet channel and leaves the singlet channel intact.</p>
+<figure class="again">
+<img src="../figures/s05f03_gapsymmetry.svg" loading="lazy" alt="Several panels of the sign of the pairing function over the Brillouin zone, with positive regions raised and negative regions sunk." />
+<figcaption><strong><a href="13-nodal-singlet-order-d-wave-pairing-in-the-cuprates-and-the-angular-momentum-expansion.html#fig:s05:gapsymmetry">Figure 5.3</a>, shown again.</strong> The sign structure of <span class="math inline">\(\Delta(\mathbf k)\)</span> for several orders. A half turn of a panel sends <span class="math inline">\(\mathbf k\to-\mathbf k\)</span>, so panels that keep their signs have even parity and panels that flip them have odd parity, as in <a href="#eq-5-12">(5.12)</a>.</figcaption>
+</figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>A pairing function is <span class="math inline">\(\Delta(\mathbf k)=\Delta_0\sin k_x\)</span>, which is odd in <span class="math inline">\(\mathbf k\)</span>. What does <a href="#eq-5-11">(5.11)</a> require of its spin part?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>It has to be antisymmetric, which is a spin singlet.</li>
+<li>It has to be symmetric, which is a spin triplet.</li>
+<li>Nothing, since the spin part is independent of <span class="math inline">\(\mathbf k\)</span>.</li>
+<li>It depends on the lattice.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The condition <a href="#eq-5-11">(5.11)</a> says that the full function changes sign when we exchange the spins and send <span class="math inline">\(\mathbf k\to-\mathbf k\)</span>. Since <span class="math inline">\(\sin k_x\)</span> already changes sign under <span class="math inline">\(\mathbf k\to-\mathbf k\)</span>, the spin part must stay the same, so it is symmetric.</p>
+</details>
+</div>
 
-  <nav class="pager"><a href="10-metal-gapped-and-nodal-superconductor-for-one-fermi-surface.html">5.10 Metal, gapped and nodal superconductor for one Fermi surface</a><a href="12-building-a-spin-triplet-superconductor-out-of-a-magnet.html">5.12 Building a spin-triplet superconductor out of a magnet</a></nav>
+  <nav class="pager"><a href="09-an-example-of-a-gap-that-opens-independently-of-the-dispersion.html">5.9 An example of a gap that opens independently of the dispersion</a><a href="12-building-a-spin-triplet-superconductor-out-of-a-magnet.html">5.12 Building a spin-triplet superconductor out of a magnet</a></nav>
 
 </main>
 </body>

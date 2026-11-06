@@ -24,8 +24,25 @@ This is the structure that is shown on the slides and quoted in the lecture, a $
 
 $$E(\mathbf k) = \pm\sqrt{\varepsilon(\mathbf k)^2 + |\Delta(\mathbf k)|^2}. \tag{5.9}$$
 
+![The Nambu doubling for a chain. (a) Without pairing the hole band is the mirror image of the electron band, and the two cross at the Fermi points. (b) A nonzero $\Delta$ opens a gap of $2|\Delta|$ at each crossing, and the two new bands mix electron and hole, which the blend of the colors shows.](figures/web/session05/nambu_bands.svg){#sch:s05:nambu_bands alt="Two panels of a cosine band. On the left an electron band and its mirrored hole band cross at two points. On the right the crossings are replaced by a gap of size two Delta."}
+
+::: quiz
+In [(5.9)](#eq-5-9) the quasiparticle energy is $E=\pm\sqrt{\varepsilon^2+|\Delta|^2}$. Where is $|E|$ smallest, and how large is it?
+
+- [x] On the original Fermi surface, where $\varepsilon=0$, and it is $|\Delta|$.
+- [ ] At the bottom of the band, and it is $|\Delta|$.
+- [ ] On the original Fermi surface, and it is $2|\Delta|$.
+- [ ] It has no minimum, since $E$ grows with $\Delta$ everywhere.
+
+The energy depends on $\varepsilon$ only through $\varepsilon^2$, so $|E|$ is smallest where $\varepsilon=0$. There it is $|\Delta|$ in each branch, and the full gap between the two branches is $2|\Delta|$.
+:::
+
 ::: notebookbox
 **Notebook check-in:** [`session5.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb), "Nambu electronic structure without superconductivity" and "Nambu electronic structure with superconductivity" (both Reminder)
 
 First build the Nambu-doubled Hamiltonian of [(5.6)](#eq-5-6)-[(5.7)](#eq-5-7) with $\Delta = 0$, and check that you get exactly two copies of the same band structure. One is the physical copy, which is the electron sector, and the other is a spurious mirror copy, which is the hole sector, with dispersion $-\varepsilon(\mathbf k)$. Then turn on $\Delta$ and look at how the gap in [(5.9)](#eq-5-9) opens at every crossing between the two copies.
+:::
+
+::: {.tryit notebook="session5.ipynb" cell="Nambu electronic structure with superconductivity"}
+In the cell, change `h.add_swave(0.8)` to `0.4` and then to `0.2`. The electron and hole bands anticross at the Fermi points. The smallest energy is $|\Delta|$, so the gap between the two branches is $2|\Delta|$, as in [(5.9)](#eq-5-9).
 :::

@@ -1,5 +1,7 @@
 ## Closing summary {#sec-9-11 number="9.11"}
 
+![The decay laws of [(9.11)](#eq-9-11) on a logarithmic vertical scale, where an exponential is a straight line and a power law bends. This is the diagnostic that the whole session leads to.](figures/s09f05_decay.svg){panel="log" alt="The envelope of an impurity response on a logarithmic scale, a straight line for the gapped chain and a bending curve for the gapless chain."}
+
 - A perturbation that is applied to a quantum material and measured at another place defines a **response function**. With translational symmetry and time-translation symmetry, it is most natural to write it in $(q,\omega)$-space (Section [9.1](#sec-9-1)).
 
 - A classical first example already contains the logic of the whole session. The sign of the divergence in the magnetic susceptibility at high temperature [(9.1)](#eq-9-1) predicts, from the disordered phase alone, whether the order at low temperature will be ferromagnetic or antiferromagnetic.
@@ -23,3 +25,13 @@
 - Many impurities at the same time can break translational symmetry in the whole system, which gives rise to Anderson localization. In $d\geq3$ there is a real mobility edge, which we diagnose with the inverse participation ratio [(9.12)](#eq-9-12), and an Anderson insulator, which has no spectral gap but has a transport gap. In one dimension an arbitrarily weak disorder localizes every state, and the localization length diverges as the disorder strength goes to zero (Section [9.10](#sec-9-10)).
 
 Every session so far has gone in the same direction. We start from a Hamiltonian, and we compute what it predicts, which can be an observable, a response function or a ground state. Session 10 goes in the opposite direction. In this whole course we computed observables from Hamiltonians, and in the next session we ask the inverse question. Given only the observed data, can we find the Hamiltonian that produced it? We will see that machine learning is the right tool to make this question precise.
+
+::: quiz
+We put a single vacancy in a clean material, and we see a density oscillation that decays as $1/|x|$ in one dimension. What do we conclude about the ground state?
+
+- [ ] It is gapped, with a short correlation length.
+- [x] It is gapless, with a Fermi surface that sets the wavevector of the oscillation.
+- [ ] It is an Anderson insulator, since the impurity breaks translational symmetry.
+
+A power-law envelope means that the response has a non-analytic point, and in a metal this is $2k_F$. A gapped state would give an exponential envelope, with the gap setting the decay length.
+:::

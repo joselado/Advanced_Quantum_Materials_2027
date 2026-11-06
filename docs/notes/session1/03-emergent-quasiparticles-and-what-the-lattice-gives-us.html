@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -92,6 +93,50 @@
 <li><p><strong>Vortices.</strong> These are topological defects in the phase of a superconductor, and they are dynamical quasiparticles themselves. The same superconducting phase gives rise to flux quantization and to the Josephson effect, and these are the basis of some of our most precise measurements of the ratio between Planck’s constant and the electron charge.</p></li>
 </ul>
 <p>The summary slide of the course for this list also shows Majorana fermions, which we will meet again soon in connection with chiral superconductors, and anyons, next to these five. Anyons in particular are not discussed further in this session, neither in the slides nor in the lecture. They belong to the material on the fractional quantum Hall effect in a later session, and we mention them here only so that the name is familiar.</p>
+<figure class="again">
+<img src="../figures/s08f01_magnon_spinon.svg" loading="lazy" alt="A chain of spins with one flipped spin, and a chain of singlet pairs with two unpaired spins." />
+<figcaption><strong><a href="../session8/01-two-classes-of-magnets-and-where-we-find-them.html#fig:s08:magnonspinon">Figure 8.1</a>, shown again.</strong> A magnon and a spinon, shown again from session 8. A magnon flips one spin of the ordered chain, so the total spin changes by one. A spinon carries only spin one half, and spinons are created in pairs when a singlet breaks.</figcaption>
+</figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>Breaking one singlet pair of a quantum magnet leaves two unpaired sites. What is the spin of each one?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>Zero, since the two spins of the singlet cancel.</li>
+<li>One half, which is half of the spin of a magnon.</li>
+<li>One, the same as a magnon.</li>
+<li>Three halves, since a singlet has three partners.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>Each unpaired site carries the spin of one electron, which is one half. This is why a spinon is a fraction of a magnon, and why spinons appear in pairs.</p>
+</details>
+</div>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>Charge cannot propagate in a Mott insulator. Why can a magnetic Mott insulator still carry spin and heat?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>Magnons are excitations of the magnetic order, and they move without any motion of charge.</li>
+<li>The electrons of a Mott insulator move freely, but only at high temperature.</li>
+<li>The phonons of the lattice carry the spin.</li>
+<li>A Mott insulator is in fact a metal for the spin.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>A magnon is a precession wave of the local moments, so it carries spin and energy while every electron stays on its site.</p>
+</details>
+</div>
 
   <nav class="pager"><a href="02-a-tour-of-the-quantum-materials-we-will-meet.html">1.2 A tour of the quantum materials we will meet</a><a href="04-setting-up-the-formalism-with-the-schrodinger-equation-in-two-ways.html">1.4 Setting up the formalism with the Schrödinger equation in two ways</a></nav>
 

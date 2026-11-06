@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -92,6 +93,50 @@
 <li><p><strong>Superconductors.</strong> These go from conventional superconductors mediated by phonons, such as aluminum, to <em>correlated</em> superconductors such as the cuprates and the pnictides, whose mechanism is still one of the biggest open problems in the field.</p></li>
 <li><p><strong>Fractional quantum matter.</strong> Here the fundamental excitations are real fractions of an electron. The fractional quantum Hall state is the best established example, and it has been observed for decades in materials such as gallium arsenide. Fractional Chern insulators are a newer and more accessible way to obtain the same physics, and they are a promising building block for new quantum devices.</p></li>
 </ul>
+<figure class="again panel">
+<img src="../figures/panel/s02f04_dirac_c.svg" loading="lazy" alt="A hexagonal Brillouin zone with a Dirac cone at two of its corners." />
+<figcaption><strong><a href="../session2/11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#fig:s02:dirac">Figure 2.5</a>, one panel shown again.</strong> The Dirac cone of graphene. The two bands touch at one point and rise linearly around it, which is why the electrons behave as massless particles. We derive this cone in session 2.</figcaption>
+</figure>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>A topological insulator and an ordinary insulator both have a gap in the bulk. How do we tell them apart in an experiment?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>By the states at the edge, which conduct inside the gap in the topological case.</li>
+<li>By the size of the bulk gap, which is always larger in the topological case.</li>
+<li>By the density of states of the bulk, which is different in the two cases.</li>
+<li>By the atoms of the material, since only heavy atoms give a topological insulator.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>The bulk gap is present in both cases, so the bulk does not decide. The difference appears at the edge, where the topological insulator has states inside the gap that carry current.</p>
+</details>
+</div>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>A doped semiconductor conducts, while the undoped one with the same bands does not. What does the doping do?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>It puts a few carriers in the conduction band or removes a few from the valence band.</li>
+<li>It closes the band gap, so the material becomes a metal.</li>
+<li>It makes the electrons interact strongly, so the material becomes a magnet.</li>
+<li>It changes the lattice into a topological one.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>The bands stay the same, and only the filling changes. A few free carriers in the conduction band, or a few holes in the valence band, are enough to carry a current.</p>
+</details>
+</div>
 
   <nav class="pager"><a href="01-why-quantum-materials-and-why-now.html">1.1 Why quantum materials, and why now</a><a href="03-emergent-quasiparticles-and-what-the-lattice-gives-us.html">1.3 Emergent quasiparticles and what the lattice gives us</a></nav>
 

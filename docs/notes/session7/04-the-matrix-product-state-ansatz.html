@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -86,10 +87,76 @@
 <p>The idea that solves this problem is very simple. Instead of storing <span class="math inline">\(C(s_1,\dots,s_L)\)</span> as one large array of <span class="math inline">\(2^L\)</span> numbers, we write it as a product of matrices, with one matrix for each possible value of each local spin.</p>
 <p><span id="eq-7-5" class="eq"><span class="math display">\[C(s_1,s_2,\dots,s_L) \;\approx\; M^{s_1}_{1}\, M^{s_2}_{2}\, \cdots\, M^{s_L}_{L}, \tag{7.5}\]</span></span></p>
 <p>Here each <span class="math inline">\(M^{s_i}_i\)</span> is an <span class="math inline">\(M\times M\)</span> matrix, except at the two ends of a finite open chain where it is a vector, and <span class="math inline">\(M\)</span> is the <strong>bond dimension</strong>, which is a free parameter that we choose. For a spin-1/2 chain there are two matrices per site, one for <span class="math inline">\(s_i=\uparrow\)</span> and one for <span class="math inline">\(s_i=\downarrow\)</span>. Therefore the total number of parameters of the state is proportional to <span class="math inline">\(L\times
-M^2\)</span>, which is linear in the system size, in strong contrast with the <span class="math inline">\(2^L\)</span> of the exact representation <a href="03-storing-the-wave-function-as-the-main-bottleneck.html#eq-7-4">(7.4)</a>. This is called the <strong>matrix product state</strong> (MPS) ansatz. At first sight, it is only a choice, and one that looks rather arbitrary. In Sections <a href="05-measuring-entanglement-with-the-entanglement-entropy.html#sec-7-5">7.5</a> to <a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#sec-7-8">7.8</a> we will answer two questions about it. First, why it is a <em>good</em> choice. Second, what exactly it captures, and what it does not capture, about the physical state.</p>
+M^2\)</span>, which is linear in the system size, in strong contrast with the <span class="math inline">\(2^L\)</span> of the exact representation <a href="03-storing-the-wave-function-as-the-main-bottleneck.html#eq-7-4">(7.4)</a>. This is called the <strong>matrix product state</strong> (MPS) ansatz. At first sight, it is only a choice, and one that looks rather arbitrary. In Sections <a href="#sec-7-5">7.5</a> to <a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#sec-7-8">7.8</a> we will answer two questions about it. First, why it is a <em>good</em> choice. Second, what exactly it captures, and what it does not capture, about the physical state.</p>
+<figure class="again">
+<img src="../figures/s07f04_tensordiagram.svg" loading="lazy" alt="A chain of small tensors with one physical leg each, compared with a single large tensor with one leg per site." />
+<figcaption><strong><a href="09-tensor-diagrams-as-notation-for-networks-and-operators.html#fig:s07:tensors">Figure 7.4</a>, shown again.</strong> The ansatz <a href="#eq-7-5">(7.5)</a> drawn as a chain of small tensors. Look at panel (b), where every block has one physical leg and virtual legs of dimension <span class="math inline">\(M\)</span> that link it to its neighbors. Section <a href="09-tensor-diagrams-as-notation-for-networks-and-operators.html#sec-7-9">7.9</a> explains this notation.</figcaption>
+</figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>A spin-1/2 chain has <span class="math inline">\(L=100\)</span> sites, and we use an MPS with <span class="math inline">\(M=10\)</span>. How many numbers does <a href="#eq-7-5">(7.5)</a> store, roughly?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>About <span class="math inline">\(10^{30}\)</span>, which is <span class="math inline">\(2^{100}\)</span>.</li>
+<li>About <span class="math inline">\(2\times10^4\)</span>, which is two matrices of <span class="math inline">\(10\times10\)</span> entries on each of the 100 sites.</li>
+<li>About <span class="math inline">\(10^2\)</span>, which is one number per site.</li>
+<li>About <span class="math inline">\(10^{10}\)</span>, which is <span class="math inline">\(M^{L}\)</span>.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>Each site has two matrices, one for each spin value, and each matrix has <span class="math inline">\(M^2=100\)</span> entries. The total grows as <span class="math inline">\(LM^2\)</span>, so doubling the chain only doubles the storage.</p>
+</details>
+</div>
 <p>We should know from the start that this is not a toy model. Today matrix product states give the most accurate results for two of the central hard problems in quantum materials. The first one is the doped two-dimensional Hubbard model with second-neighbor hopping, which is related to unconventional superconductivity. The second one is the two-dimensional frustrated Heisenberg model on the triangular and kagome lattices, and this is where the strongest numerical evidence for real quantum spin liquid physics comes from, which is the herbertsmithite example of session 6. Both examples are shown as labeled figure panels on slide 15 of the deck, with the titles “Solving the 2D Hubbard model at finite doping” and “Solving the 2D Heisenberg model in frustrated lattices.” This shows that MPS are a working tool for the strongly correlated regime, and not only a formal construction.</p>
+<h1 class="sec-next" id="sec-7-5"><span class="num">7.5</span> Measuring entanglement with the entanglement entropy</h1>
+<p>To see why <a href="#eq-7-5">(7.5)</a> works, we need a quantitative measure of how entangled a many-body state is. Let us split the system into two complementary parts, subsystem <span class="math inline">\(A\)</span> and subsystem <span class="math inline">\(B\)</span>. A state is <strong>not entangled</strong>, which is also called a product state, if it can be written as <span class="math inline">\(|\Psi\rangle = |\psi_A\rangle
+\otimes
+|\psi_B\rangle\)</span>. Two examples are the state <span class="math inline">\(|{\uparrow\downarrow}\rangle\)</span> and a product of two single-site states that are both polarized along <span class="math inline">\(x\)</span>. The singlet <a href="03-storing-the-wave-function-as-the-main-bottleneck.html#eq-7-3">(7.3)</a> is the opposite case. It cannot be written as a product of this form, and it is our main example of an <strong>entangled</strong> state.</p>
+<p>To turn the question “entangled or not” into a number, we define the full density matrix <span class="math inline">\(\rho =
+|\Psi\rangle
+\langle\Psi|\)</span>, and we trace out subsystem <span class="math inline">\(B\)</span>. This gives the <strong>reduced density matrix</strong> of <span class="math inline">\(A\)</span>, <span class="math inline">\(\rho_A =
+\mathrm{Tr}_B\,\rho\)</span>. The <strong>entanglement entropy</strong> is then the von Neumann entropy of <span class="math inline">\(\rho_A\)</span>,</p>
+<p><span id="eq-7-6" class="eq"><span class="math display">\[S(\rho_A) = -\,\mathrm{Tr}\!\left(\rho_A \log \rho_A\right). \tag{7.6}\]</span></span></p>
+<p>If <span class="math inline">\(|\Psi\rangle\)</span> is a product state, <span class="math inline">\(\rho_A = |\psi_A\rangle\langle\psi_A|\)</span> is a projector of rank one, so its only nonzero eigenvalue is <span class="math inline">\(1\)</span>, and we directly get <span class="math inline">\(S=0\)</span>. This means that there is no entanglement and the entropy is zero, which is what we expect.</p>
+<p>Let us now check <a href="#eq-7-6">(7.6)</a> on the singlet <a href="03-storing-the-wave-function-as-the-main-bottleneck.html#eq-7-3">(7.3)</a>. We write <span class="math inline">\(\rho = |\Psi\rangle\langle\Psi|\)</span> in the product basis and trace over site <span class="math inline">\(1\)</span>, which is our subsystem <span class="math inline">\(B\)</span>, and we obtain</p>
+<p><span class="math display">\[\rho_A = \tfrac{1}{2}\,|{\uparrow}\rangle\langle{\uparrow}| + \tfrac{1}{2}\,
+|{\downarrow}\rangle\langle{\downarrow}|,\]</span></p>
+<p>which is a maximally mixed single-site density matrix, with two eigenvalues both equal to <span class="math inline">\(1/2\)</span>. Then</p>
+<p><span id="eq-7-7" class="eq"><span class="math display">\[S = -\left(\tfrac12\log\tfrac12 + \tfrac12\log\tfrac12\right) = \log 2. \tag{7.7}\]</span></span></p>
+<p>This is the maximum entanglement entropy that a single spin-1/2 can have, since a local Hilbert space of dimension <span class="math inline">\(d\)</span> can have at most <span class="math inline">\(\log d\)</span>. This is the meaning of the statement that the singlet is “maximally entangled,” since it uses all the capacity of the local Hilbert space for entanglement.</p>
+<div class="quiz" data-correct="C">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>The spin state <span class="math inline">\((|{\uparrow\downarrow}\rangle+|{\downarrow\uparrow}\rangle)/\sqrt2\)</span> differs from the singlet <a href="03-storing-the-wave-function-as-the-main-bottleneck.html#eq-7-3">(7.3)</a> only by a sign. What is the entanglement entropy of one site?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(0\)</span>, since the sign makes it a product state.</li>
+<li><span class="math inline">\(\tfrac12\log 2\)</span>, since only the symmetric part counts.</li>
+<li><span class="math inline">\(\log 2\)</span>, the same as for the singlet.</li>
+<li><span class="math inline">\(2\log 2\)</span>, since the two terms add.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>C</strong>.</p>
+<p>Tracing out one site gives again <span class="math inline">\(\tfrac12|{\uparrow}\rangle\langle{\uparrow}|+\tfrac12|{\downarrow}\rangle\langle{\downarrow}|\)</span>, because the cross terms have a different second spin and drop out. The entropy depends on the weights of the two terms and not on their relative sign.</p>
+</details>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> Compute the time of the ground-state calculation for the sizes of <code>Ns</code>, with <code>sc.maxm = 20</code>. The time should grow roughly linearly with the number of sites. Then raise <code>sc.maxm</code> to 40 and check that each time is longer but the curve stays straight, which is the <span class="math inline">\(LM^2\)</span> structure of <a href="#eq-7-5">(7.5)</a>.</p>
+<div class="tryit-links">
+Notebook <code>session7.ipynb</code>, cell “Near linear scaling with system size with matrix product states”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession7.ipynb">Binder</a>.
+</div>
+</div>
 
-  <nav class="pager"><a href="03-storing-the-wave-function-as-the-main-bottleneck.html">7.3 Storing the wave function as the main bottleneck</a><a href="05-measuring-entanglement-with-the-entanglement-entropy.html">7.5 Measuring entanglement with the entanglement entropy</a></nav>
+  <nav class="pager"><a href="03-storing-the-wave-function-as-the-main-bottleneck.html">7.3 Storing the wave function as the main bottleneck</a><a href="06-entanglement-entropy-of-a-solvable-dimerized-chain.html">7.6 Entanglement entropy of a solvable dimerized chain</a></nav>
 
 </main>
 </body>

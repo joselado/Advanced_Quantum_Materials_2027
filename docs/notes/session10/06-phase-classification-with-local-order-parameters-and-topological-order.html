@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>10.6 Phase classification with local order parameters and topological order, session 10</title>
+<title>10.6a Phase classification with local order parameters and topological order, session 10</title>
 <style>
   :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
           --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -82,22 +83,56 @@
   <nav class="tabs"><a href="../../lectures/session10.html">Video lectures</a><a href="../../landscape/session10.html">Landscape lectures</a><a class="on" href="../../notes/session10/index.html">Lecture notes</a></nav>
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="on" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 10. Machine Learning Quantum Materials</a></p>
-<h1 id="sec-10-6"><span class="num">10.6</span> Phase classification with local order parameters and topological order</h1>
+<h1 id="sec-10-6"><span class="num">10.6a</span> Phase classification with local order parameters and topological order</h1>
 <p>We now come to a section that is, in a real sense, a review of the classification scheme of the whole course, seen from the point of view of machine learning. In this course we have used two quite different tools to distinguish phases. Sessions 1, 5, and 6 used a <strong>local order parameter</strong>, which is a quantity built from a simple local expectation value that is zero in one phase and nonzero in the other. Examples are the charge imbalance for the CDW, the magnetization for the magnet and the pairing amplitude for the superconductor. Sessions 3 and 4 instead used a <strong>topological invariant</strong>, such as the Chern number or the Zak phase, because the phases there are <em>not</em> distinguished by any local quantity at all, and the difference can only be seen in a non-local way. The phase-classification example of this session uses this contrast as an “easy” and a “hard” worked example of machine learning, and the lecture itself presents it in this way.</p>
 <p><strong>The easy case, the Ising model.</strong> Let us take classical Ising spins <span class="math inline">\(\sigma_i = \pm 1\)</span> on a square lattice, with the standard nearest-neighbor Hamiltonian and a local order parameter,</p>
 <p><span id="eq-10-9" class="eq"><span class="math display">\[H_{\rm Ising} = -J\sum_{\langle i,j\rangle} \sigma_i \sigma_j, \qquad m = \frac{1}{N}\sum_i \sigma_i, \tag{10.9}\]</span></span></p>
-<p>which has ferromagnetic order (<span class="math inline">\(|m|\to 1\)</span>) below a critical temperature <span class="math inline">\(T_c\)</span> and is disordered (<span class="math inline">\(m\to 0\)</span>) above it. If we only have a single snapshot of the spin configuration, at some unknown temperature, it is easy to see the phase even by eye. We sum the spins and check whether the result is close to <span class="math inline">\(\pm N\)</span> or close to <span class="math inline">\(0\)</span>. Even so, it is a clean and controlled test case for machine learning. We train the same cat-versus-dog architecture of Section <a href="02-neural-networks-as-function-approximators.html#sec-10-2">10.2</a> on labeled snapshots below and above <span class="math inline">\(T_c\)</span>, where the input is the <span class="math inline">\(N\times N\)</span> spin snapshot and the output is a one-hot label for ordered or disordered. The classifier then gives a transition that becomes sharper as the system size grows, where the sweep on the slides goes from <span class="math inline">\(L = 10\)</span> up to <span class="math inline">\(L = 60\)</span>, and this reproduces what we already know analytically.</p>
-<p><strong>The hard case, the Ising gauge theory.</strong> Now we replace the coupling between pairs with a <strong>plaquette</strong> interaction, which is the product of the four spins around each elementary square of the lattice,</p>
-<p><span id="eq-10-10" class="eq"><span class="math display">\[H_{\rm IGT} = -J\sum_{p} \prod_{i \in \partial p} \sigma_i, \tag{10.10}\]</span></span></p>
-<p>where the sum runs over the plaquettes <span class="math inline">\(p\)</span> and the product runs over the four spins on the four bonds around that plaquette. Note that here the spins live on the <em>links</em> of the lattice and not on its sites. At zero temperature the ground state satisfies <span class="math inline">\(\prod_{i\in\partial p}\sigma_i =
-+1\)</span> on <em>every</em> plaquette, but this constraint is satisfied by a macroscopic number of different spin configurations. For instance, if we flip the four spins on the bonds that meet at a single vertex, every plaquette product stays the same, because each of the four plaquettes that touch this vertex contains exactly two of these four bonds and every other plaquette contains none of them. This local gauge transformation is what gives the model its name. At infinite temperature, instead, plaquettes with product <span class="math inline">\(+1\)</span> and <span class="math inline">\(-1\)</span> appear with equal probability. Both the ordered configurations, which satisfy the constraint, and the disordered ones can look, one by one, like a featureless <span class="math inline">\(50/50\)</span> mix of up and down spins. As a result, the naive order parameter <a href="#eq-10-9">(10.9)</a>, which worked perfectly for the Ising model, is <em>useless</em> here. The reason is that no local quantity can distinguish the two regimes, which is the same obstruction that forced sessions 3 and 4 to leave local order parameters and to use Chern numbers and Zak phases. What <a href="#eq-10-10">(10.10)</a> reproduces, in a simple classical model, is this feature of those earlier examples. Note that in two dimensions this model has no true transition and no topological order at finite temperature, and only its ground state at zero temperature has topological order. On a finite system, however, the low-temperature and high-temperature regimes are clearly different, and no local quantity can distinguish them, which is what makes this model a good test for the classifier.</p>
-<p>A convolutional neural network, trained on labeled configurations at low <span class="math inline">\(T\)</span> and high <span class="math inline">\(T\)</span> with the same supervised architecture as before, succeeds where the naive summary statistic fails. In practice, it learns a nonlocal function of the spin configuration, which plays the role that a topological invariant would play analytically. We should state one more physical point carefully, since it is easy to mix up. The two regimes here are separated by a <strong>size-dependent crossover</strong> and not by a true phase transition at finite temperature, so there is no sharp <span class="math inline">\(T_c\)</span> that the result converges to as the system grows, unlike the true Ising transition of <a href="#eq-10-9">(10.9)</a>. What makes the machine-learning result useful is that the trained network has only seen one system size during training, and it still captures this crossover correctly for <em>other</em> sizes and temperatures on which it was never trained. The slides show it trained at a single size and evaluated from <span class="math inline">\(L = 4\)</span> up to <span class="math inline">\(L = 28\)</span>. Figure <a href="#fig:s10:phaseclass">10.5</a> shows the easy and the hard case next to each other in real space, which is where the difference between them can be seen.</p>
-<figure id="fig:s10:phaseclass">
-<img src="../figures/s10f05_phaseclassification.svg" loading="lazy" alt="Why one phase-classification problem is easy and the other is hard, seen from above with \sigma=+1 raised and \sigma=-1 sunk." />
-<figcaption><strong>Figure 10.5.</strong> Why one phase-classification problem is easy and the other is hard, seen from above with <span class="math inline">\(\sigma=+1\)</span> raised and <span class="math inline">\(\sigma=-1\)</span> sunk. <strong>(a,b)</strong> For the Ising model <a href="#eq-10-9">(10.9)</a> the magnetization of a single snapshot already separates the phases, and a network trained on such snapshots only finds again the logic of a local order parameter of sessions 1, 5 and 6. <strong>(c,d)</strong> For the Ising gauge theory <a href="#eq-10-10">(10.10)</a> the spins live on the <em>bonds</em>, and the <span class="math inline">\(T=0\)</span> condition <span class="math inline">\(\prod_{i\in\partial p}\sigma_i = +1\)</span> leaves an exponentially large degenerate manifold. A typical ground state is random from bond to bond, so the magnetization is <span class="math inline">\(\approx 0\)</span> in both columns and no quantity on a single bond can distinguish them. The difference is in the four-spin structure of the plaquettes, which is marked by a cross where the product is <span class="math inline">\(-1\)</span>, and the convolutional network has to find by itself a function of the configuration that is sensitive to it. The shaded star in (c) is a gauge flip of the four bonds at one vertex, which keeps every plaquette product. This is the same obstruction that forced sessions 3 and 4 to go from local order parameters to Chern numbers and Zak phases.</figcaption>
+<p>which has ferromagnetic order (<span class="math inline">\(|m|\to 1\)</span>) below a critical temperature <span class="math inline">\(T_c\)</span> and is disordered (<span class="math inline">\(m\to 0\)</span>) above it. If we only have a single snapshot of the spin configuration, at some unknown temperature, it is easy to see the phase even by eye. We sum the spins and check whether the result is close to <span class="math inline">\(\pm N\)</span> or close to <span class="math inline">\(0\)</span>. Even so, it is a clean and controlled test case for machine learning. We train the same cat-versus-dog architecture of Section <a href="01-machine-learning-and-many-body-physics-in-two-directions.html#sec-10-2">10.2</a> on labeled snapshots below and above <span class="math inline">\(T_c\)</span>, where the input is the <span class="math inline">\(N\times N\)</span> spin snapshot and the output is a one-hot label for ordered or disordered. The classifier then gives a transition that becomes sharper as the system size grows, where the sweep on the slides goes from <span class="math inline">\(L = 10\)</span> up to <span class="math inline">\(L = 60\)</span>, and this reproduces what we already know analytically.</p>
+<figure id="sch:s10:onsager" class="schematic">
+<img src="../figures/web/session10/onsager.svg" loading="lazy" alt="The magnetization of the Ising model against temperature, close to one at low temperature, falling steeply to zero at the critical temperature." />
+<figcaption><strong>Schematic 10.1.</strong> The order parameter of <a href="#eq-10-9">(10.9)</a> from the exact solution of the Ising model on the square lattice, <span class="math inline">\(|m|=(1-\sinh^{-4}(2J/k_BT))^{1/8}\)</span> below <span class="math inline">\(T_c=2J/\ln(1+\sqrt2)\approx2.27J\)</span>. A single snapshot has <span class="math inline">\(|m|\)</span> close to one below <span class="math inline">\(T_c\)</span> and close to zero above it, so a sum over the spins is already a good test. The network of Section <a href="01-machine-learning-and-many-body-physics-in-two-directions.html#sec-10-2">10.2</a> learns this test by itself.</figcaption>
 </figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>A snapshot of the two-dimensional Ising model has <span class="math inline">\(|m|=0.93\)</span>. On which side of <span class="math inline">\(T_c\)</span> was it taken?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>Above <span class="math inline">\(T_c\)</span>, since the spins look random from site to site.</li>
+<li>Below <span class="math inline">\(T_c\)</span>, in the ordered phase.</li>
+<li>We cannot say from one snapshot, since <span class="math inline">\(m\)</span> fluctuates.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>For a large system the fluctuations of <span class="math inline">\(m\)</span> in the disordered phase are of order <span class="math inline">\(1/\sqrt N\)</span>, so a value of <span class="math inline">\(0.93\)</span> cannot appear there. This is why a single snapshot is enough for the local order parameter.</p>
+</details>
+</div>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>We train the classifier of Section <a href="01-machine-learning-and-many-body-physics-in-two-directions.html#sec-10-2">10.2</a> on Ising snapshots. What are the input and the output?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>The <span class="math inline">\(N\times N\)</span> array of spins as input, and a one-hot label for ordered or disordered as output.</li>
+<li>The temperature as input, and the magnetization as output.</li>
+<li>The energy of the snapshot as input, and the critical temperature as output.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>The architecture is the same as for the cats and dogs, since only the array and the categorical label are needed. The label comes from the temperature at which the snapshot was generated.</p>
+</details>
+</div>
+<p>Next we will see a model where this simple test fails.</p>
 
-  <nav class="pager"><a href="05-machine-learning-in-density-functional-theory.html">10.5 Machine learning in density functional theory</a><a href="07-hamiltonian-learning-as-the-inverse-of-the-first-step-of-session-1.html">10.7 Hamiltonian learning as the inverse of the first step of session 1</a></nav>
+  <nav class="pager"><a href="05-machine-learning-in-density-functional-theory.html">10.5 Machine learning in density functional theory</a><a href="06b-the-hard-case-the-ising-gauge-theory.html">10.6b The hard case, the Ising gauge theory</a></nav>
 
 </main>
 </body>

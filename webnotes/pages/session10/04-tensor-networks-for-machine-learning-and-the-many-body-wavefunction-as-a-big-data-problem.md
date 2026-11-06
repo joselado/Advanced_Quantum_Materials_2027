@@ -13,4 +13,24 @@ This is a direct reuse of the architectures of session 7, and not only an analog
 
 ![Tensor networks used in the reverse direction. **(a)** The four geometries that the text names, drawn as tensor diagrams. Every block is a tensor, every rod is an index that is summed over, and the open legs are the physical indices. The bond dimension $D$ of the internal lines is what [(10.6)](#eq-10-6) calls a free parameter. For a ground-state search these geometries are not equivalent, since an MPS is easy to optimize and a PEPS is not. However, as flexible functions of a high-dimensional input with parameters, which is all that a classifier needs, any of them can be used. **(b)** Image classification with a tree tensor network. Each pixel becomes a vector with two components, and their tensor product is a single vector in a $2^N$-dimensional space, which is the same space where an $N$-spin wavefunction of [(10.2)](#eq-10-2) lives. Classification is then a *linear* map from this space down to two numbers, the red leg, and the tensor network is the efficient and structured parameterization of such a map that [(10.6)](#eq-10-6) already gave us. Note what changes and what does not change with respect to figure [10.1](#fig:s10:template). The input is still an array with a categorical label and the output is still one-hot, and only the function between them is now built from matrices instead of layers of nodes.](figures/s10f03_tnml.svg){#fig:s10:tnml number="10.3"}
 
+::: quiz
+A matrix product state of [(10.6)](#eq-10-6) has $L=100$ sites, $d=2$ and bond dimension $D=10$. How many parameters does it have?
+
+- [ ] About $2^{100}$, as for the full table of coefficients.
+- [x] About $L\,d\,D^2=20000$, which grows only linearly with $L$.
+- [ ] About $200$, since there is one number per site and per spin value.
+
+Each site has $d$ matrices of size $D\times D$. The cost is linear in $L$ and quadratic in $D$, which is why the bond dimension is the control parameter of the compression.
+:::
+
+::: quiz
+Which statement about the classifier of figure [10.3](#fig:s10:tnml)b is correct?
+
+- [ ] It is nonlinear in the tensor product of the pixels, since it uses activation functions.
+- [x] It is linear in the tensor product of the pixels, and the tensor network gives this linear map with few parameters.
+- [ ] It needs $2^N$ parameters, since the input vector has $2^N$ components.
+
+The classification is a linear map on a space of dimension $2^N$. A tree tensor network is a structured way to write such a map, so the number of parameters stays small, in the same way as for the matrix product state.
+:::
+
 This is not a toy result. On the Fashion-MNIST dataset, which is a standard benchmark of images of clothes, this tensor-network classifier reaches **95.38% accuracy on the training set and 88.97% on the test set**, which is comparable with conventional neural network architectures on the same task. These numbers appear only on the slides, and in the recording they are only described as "very high accuracy." They are the kind of concrete result that we want to have in the written notes and not leave implicit. The general point is the same as in Section [10.3](#sec-10-3), in the other direction. A variational architecture that was built to compress many-body wavefunctions is, in mathematical terms, one more kind of neural network, and we can use it directly as one.

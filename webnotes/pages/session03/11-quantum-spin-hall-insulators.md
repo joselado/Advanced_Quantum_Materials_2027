@@ -1,4 +1,4 @@
-## Quantum spin Hall insulators {#sec-3-11 number="3.11"}
+## Quantum spin Hall insulators {#sec-3-11 number="3.11a"}
 
 A Chern insulator needs broken time-reversal symmetry. The quantum spin Hall insulator is what we obtain if we keep time-reversal symmetry and still want a topological gapped state. We take two copies of the massive Dirac construction [(3.7)](#eq-3-7), one for each spin, with **opposite** mass for opposite spins, $m_\uparrow = -m_\downarrow$. From [(3.8)](#eq-3-8), the two spin sectors then have opposite Chern numbers,
 
@@ -11,16 +11,21 @@ Here $C_\uparrow$ is the Chern number of the whole spin-up sector of the lattice
 
 The total Chern number $C$ vanishes, in agreement with the unbroken time-reversal symmetry, but the **spin** Chern number $C_s$ does not vanish, and it is $C_s$ that controls the edge physics. At each edge, spin-up propagates in one direction and spin-down propagates in the other direction, which is a **helical** edge state and not a chiral one.
 
+![A helical edge, from session 5. On the same edge the spin-up electrons move in one direction. The spin-down electrons move in the other, and the two are drawn in a warm and a cold color. This is the pair of branches that follows from [(3.9)](#eq-3-9).](figures/s05f06_qsh.svg){alt="The edge of a quantum spin Hall insulator with spin-up and spin-down channels moving in opposite directions."}
+
+::: quiz
+The two spin sectors have $C_\uparrow=+1$ and $C_\downarrow=-1$. What are the charge Hall conductivity and the edge of this insulator?
+
+- [ ] $e^2/h$ and one chiral mode at each edge.
+- [ ] $2e^2/h$ and two chiral modes at each edge.
+- [x] Zero, and a helical pair of modes at each edge.
+- [ ] Zero, and no edge states, since the two spins cancel.
+
+The charge Hall conductivity is proportional to $C=0$. Each spin sector still has its own edge mode. The two propagate in opposite directions on the same edge, which is a helical pair.
+:::
+
 The natural mechanism that gives this opposite-sign mass is spin-orbit coupling. The relativistic spin-orbit term has the structure $\mathbf{L}\cdot\mathbf{S}$, and its $z$-component, $L_zS_z$, acts like an effective magnetic field that points in one direction for spin-up electrons and in the opposite direction for spin-down electrons. This is the opposite-sign mass structure that [(3.9)](#eq-3-9) needs, and it appears with no net magnetic field and no net breaking of time-reversal symmetry. Graphene itself, when we include its intrinsic spin-orbit coupling, which is very small, is technically a quantum spin Hall insulator through this mechanism. The effect is much larger, and accessible in experiments, in monolayer 1T$'$-WTe$_2$, where the quantum spin Hall effect survives up to 100 K.
 
-There is a subtle point that we should state precisely. If spin were perfectly conserved, we could speak separately of the Chern number for spin-up and the Chern number for spin-down. Real materials have terms that mix spin, and spin-orbit coupling itself mixes spin to some degree, so one may worry that these terms could smoothly remove the protection of the helical edge states. They cannot, as long as time-reversal symmetry survives, and the reason is Kramers' theorem. For spin-1/2 electrons the time-reversal operator squares to $-1$, which forces an exact twofold degeneracy at every momentum that is its own time-reversal partner. These are the time-reversal-invariant momenta, which are $\Gamma$ and $X$ in this setup. This degeneracy exists with or without spin-mixing terms, so the crossing of the edge states at these momenta cannot be gapped by any perturbation that respects time-reversal symmetry, but only by one that breaks it. This protection mechanism is different from, and stronger than, what the picture of two independent Chern insulators would suggest by itself. Figure [3.6](#fig:s03:helical) compares the chiral and helical edge dispersions and shows what a term that breaks time-reversal symmetry does to the protected crossing.
-
-![Schematic edge dispersions for the two topological classes of Section [3.8](#sec-3-8). The grey slabs are the bulk bands, and the branches that cross the bulk gap are the edge states, plotted as a function of the momentum along the edge. (a) A Chern insulator has a single branch per edge. At any energy in the gap there is one state and it moves in one direction, so a scatterer has no state to send it back into. (b) A quantum spin Hall insulator has two branches, one for each spin, drawn in a warm and a cold color, which propagate in opposite directions on the *same* edge, and this is what **helical** means. The total Chern number vanishes, but the spin Chern number does not [(3.9)](#eq-3-9). (c) The crossing is not protected because the two spin sectors are separately conserved. It is protected by Kramers' theorem, since the crossing is at a time-reversal-invariant momentum, where a twofold degeneracy is guaranteed for spin-$1/2$ electrons for any perturbation that respects time reversal. Disorder that preserves time reversal can therefore deform the branches but cannot gap them. Only a perturbation that breaks time reversal opens the gap $\Delta$ in (c), and then the protection is lost.](figures/s03f06_helical.svg){#fig:s03:helical number="3.6"}
-
-Disorder makes this difference concrete. Helical edge states survive disorder that preserves time-reversal symmetry, since the band structure changes but the gapless crossing at the edge remains. On the other hand, disorder that breaks time-reversal symmetry opens a real gap in the edge spectrum and removes the protection completely.
-
-::: notebookbox
-**Notebook check-in:** [`session3.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session3.ipynb), "The quantum spin Hall state" (Core), "The robustness of the quantum spin Hall state" (Core), "Topological invariant of the quantum spin Hall state", and "Finite size effects in topological systems" (Challenge, using exchange coupling plus Rashba spin-orbit coupling)
-
-Build the model with two copies of a Chern insulator and identify the helical pair of edge states by their spin projection and their propagation direction, which is the pattern in [(3.9)](#eq-3-9). Then add disorder that preserves or breaks time-reversal symmetry, and check that the gap only opens in the second case. The note "in the lab" in this notebook section points to the measurement in 1T$'$-WTe$_2$ that we mentioned above.
+::: {.tryit notebook="session3.ipynb" cell="The quantum spin Hall state"}
+Run the cell. In the left panel the color gives the edge, top or bottom, and in the right panel it gives the spin. In the gap, take the two branches of one edge. They have opposite slopes and opposite spin, which is the helical pair of [(3.9)](#eq-3-9).
 :::

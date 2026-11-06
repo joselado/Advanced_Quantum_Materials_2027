@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -85,12 +86,36 @@
 <h1 id="sec-3-2"><span class="num">3.2</span> Linear response theory and how a measurement reads the wavefunctions</h1>
 <p>To see why a bulk band structure can have an invariant at all, we need a tool that connects the wavefunctions of a Hamiltonian to something that we can measure. This tool is linear response theory, and the idea behind it is very general. We perturb the system at a position <span class="math inline">\(x\)</span> and time <span class="math inline">\(t\)</span>, and then we measure an observable, such as the charge, the current, the magnetization or the heat, at another position <span class="math inline">\(x&#39;\)</span> and time <span class="math inline">\(t&#39;\)</span>. Linear response theory tells us that this measured response depends only on the electronic structure of the unperturbed material.</p>
 <p>Before we specialize to the Hall conductivity, let us look at two examples. Let us put an impurity in a two-dimensional metal and look at how the electron density, or the local density of states, is modulated around it. Linear response theory shows that this modulation pattern, which is called the Friedel oscillation, directly contains the Fermi wavelength of the electron gas, and this is what scanning tunneling microscopy uses in practice. In a similar way, when we scatter neutrons on a magnetic material, the magnetic moment of the neutron couples to the local moments in the sample. The resulting scattering pattern gives both the magnetic structure and its excitations, in particular magnons. Both examples are illustrations that appear only on the slides, in the sense that the figures of the Friedel oscillation and of neutron scattering were shown on screen without a full explanation. However, the physics of both examples was explained in the lecture, and it is useful to keep it in mind as the general result of the formalism that we build next.</p>
+<figure class="again panel">
+<img src="../figures/panel/s09f01_nesting_ab.svg" loading="lazy" alt="A one-dimensional band with its two Fermi points and the static response function with a logarithmic peak at twice the Fermi wavevector." />
+<figcaption><strong><a href="../session9/04b-nesting-and-the-divergence-of-the-lindhard-function.html#fig:s09:nesting">Figure 9.1</a>, one panel shown again.</strong> The origin of the Friedel oscillation, which is the response of a metal to an impurity. In (a) the vector <span class="math inline">\(2k_F\)</span> connects the two Fermi points of a chain. In (b) the static response has its peak at this vector, so the density around the impurity oscillates with the wavevector <span class="math inline">\(2k_F\)</span>. We derive this response in session 9.</figcaption>
+</figure>
 <p>Formally, we start from an unperturbed Hamiltonian <span class="math inline">\(H_0\)</span> and add a perturbation controlled by a dimensionless parameter <span class="math inline">\(\lambda\)</span>,</p>
 <p><span class="math display">\[H(\lambda) = H_0 + \lambda V,\]</span></p>
 <p>so that <span class="math inline">\(\lambda = 0\)</span> gives the original system and <span class="math inline">\(\lambda = 1\)</span> is the fully perturbed one. Any observable, such as the energy, the density, the magnetic moment, the current, or the wavefunctions themselves, can then be expanded in a Taylor series in <span class="math inline">\(\lambda\)</span>. The derivative of an observable with respect to <span class="math inline">\(\lambda\)</span> at <span class="math inline">\(\lambda = 0\)</span> is what we call the response of the system, and in the case of a magnetic perturbation it is called the susceptibility. Since every observable can be built from the wavefunctions, the most useful object to expand is the ground-state wavefunction itself. For a state <span class="math inline">\(|n\rangle\)</span> of the unperturbed Hamiltonian <span class="math inline">\(H_0\)</span> with energy <span class="math inline">\(\varepsilon_n\)</span>, standard first-order perturbation theory gives</p>
 <p><span id="eq-3-1" class="eq"><span class="math display">\[|n\rangle_\lambda = |n\rangle + \lambda \sum_{m \neq n} \alpha_m\, |m\rangle + \mathcal{O}(\lambda^2),
 \qquad \alpha_m = \frac{\langle m|V|n\rangle}{\varepsilon_n - \varepsilon_m}. \tag{3.1}\]</span></span></p>
 <p>Everything that we do in the rest of this session, which is the Hall conductivity, the Berry curvature and the Chern number, comes directly from putting <a href="#eq-3-1">(3.1)</a> into the definition of some observable.</p>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>In <a href="#eq-3-1">(3.1)</a> the state <span class="math inline">\(|m\rangle\)</span> is mixed into <span class="math inline">\(|n\rangle\)</span> with the amplitude <span class="math inline">\(\alpha_m\)</span>. What happens to <span class="math inline">\(\alpha_m\)</span> if the level <span class="math inline">\(m\)</span> comes closer to the level <span class="math inline">\(n\)</span> while <span class="math inline">\(V\)</span> stays fixed?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>It grows, and the expansion stops being valid once the amplitude is of order one.</li>
+<li>It decreases, since the two states become more similar.</li>
+<li>It does not change, since it depends only on <span class="math inline">\(V\)</span>.</li>
+<li>It changes sign but keeps its size.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>The energy difference <span class="math inline">\(\varepsilon_n-\varepsilon_m\)</span> is in the denominator of <span class="math inline">\(\alpha_m\)</span>. The first-order result can be trusted only if <span class="math inline">\(\lambda|\langle m|V|n\rangle|\)</span> is small compared with this difference.</p>
+</details>
+</div>
 
   <nav class="pager"><a href="01-what-topological-materials-are.html">3.1 What topological materials are</a><a href="03-where-perturbation-theory-breaks-down.html">3.3 Where perturbation theory breaks down</a></nav>
 

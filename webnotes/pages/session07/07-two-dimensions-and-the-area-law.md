@@ -13,3 +13,25 @@ This behavior is called the **area law**. For the ground state of a gapped and l
 $$S_A \;\sim\; \alpha\, |\partial A|, \tag{7.9}$$
 
 and not with the *volume* of $A$. This is a strong restriction. A random state taken uniformly from the full Hilbert space of dimension $2^L$ would usually have $S_A$ close to its maximum value, which is $|A|\log 2$ for a spin-1/2 subsystem of size $|A|$, and this is called a volume law. In this sense, gapped ground states are very far from typical states. They live only in the very small part of the Hilbert space that satisfies the area law. The dimer and tetramer models above are exactly in this part, and realistic gapped Hamiltonians are approximately in it.
+
+::: quiz
+In the tetramer model of two dimensions we double the linear size of the region $A$. How does $S_A$ change?
+
+- [x] It roughly doubles, since the boundary length doubles.
+- [ ] It roughly quadruples, since the area quadruples.
+- [ ] It does not change, since the state is gapped.
+- [ ] It grows only as the logarithm of the size.
+
+The entropy counts the cut bonds, and in two dimensions their number is proportional to the length of the boundary. The area of $A$ does not enter.
+:::
+
+::: quiz
+A gapped ground state in three dimensions follows the area law [(7.9)](#eq-7-9). A cube of side $\ell$ has an entropy that grows as
+
+- [ ] $\ell$.
+- [x] $\ell^2$.
+- [ ] $\ell^3$.
+- [ ] a constant.
+
+The boundary of a cube is made of its faces, which have an area proportional to $\ell^2$. The volume $\ell^3$ would be the volume law.
+:::

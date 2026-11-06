@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -91,7 +92,47 @@
 <img src="../figures/s02f01_ringmodes.svg" loading="lazy" alt="Symmetry fixes the eigenstates before we write down the Hamiltonian." />
 <figcaption><strong>Figure 2.1.</strong> Symmetry fixes the eigenstates before we write down the Hamiltonian. On a three-site ring the rotation <span class="math inline">\(R\)</span> can only have eigenvalues <span class="math inline">\(e^{2\pi i n/3}\)</span> by <a href="#eq-2-4">(2.4)</a>, and so the coefficients of the state must change by this same phase from one site to the next. This means that the eigenstates are the discrete Fourier modes, for any values of the hopping amplitudes. The arrow on each site is the complex coefficient <span class="math inline">\(\alpha_j\propto e^{i\varphi_n j}\)</span>, which turns by <span class="math inline">\(2\pi n/3\)</span> from one site to the next. On the right, the balls are the allowed phases for <span class="math inline">\(L=3\)</span> and <span class="math inline">\(L=5\)</span>. In the limit <span class="math inline">\(L\to\infty\)</span> they fill the circle, and this circle is the first Brillouin zone.</figcaption>
 </figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>A ring has <span class="math inline">\(L=6\)</span> sites and a rotation <span class="math inline">\(R\)</span> with <span class="math inline">\(R^6=\mathbb{1}\)</span>. How many Bloch phases <span class="math inline">\(\varphi\)</span> are allowed, and what is their spacing?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>Three, spaced by <span class="math inline">\(2\pi/3\)</span>.</li>
+<li>Six, spaced by <span class="math inline">\(\pi/3\)</span>.</li>
+<li>Twelve, spaced by <span class="math inline">\(\pi/6\)</span>.</li>
+<li>Infinitely many, with no fixed spacing.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The eigenvalue satisfies <span class="math inline">\(\lambda^6=1\)</span>, so <span class="math inline">\(\varphi_n=2\pi n/6\)</span> with <span class="math inline">\(n=0,\dots,5\)</span>. As <span class="math inline">\(L\)</span> grows the allowed phases come closer and fill the circle.</p>
+</details>
+</div>
 <p><strong>Five sites on a ring.</strong> The same argument on a five-site ring with nearest-neighbour hopping, <span class="math inline">\(H=\sum_{\langle ij\rangle} c_i^\dagger c_j\)</span>, gives <span class="math inline">\(\varphi_n=2\pi n/5\)</span>, <span class="math inline">\(n=0,\dots,4\)</span>, and the eigenstates <span class="math inline">\(|\Psi_n\rangle \propto \sum_{j=0}^4 e^{i\varphi_n j}\,c_j^\dagger|0\rangle\)</span>. With this we can already answer a quantitative question without diagonalizing anything. Let us ask what the weight of site 1 is in the lowest-energy eigenstate built from the vacuum <span class="math inline">\(|\Omega\rangle\)</span>, in the sense of the overlap <span class="math inline">\(\big|\langle\Omega|c_1\Psi_{\rm GS}^\dagger|\Omega\rangle\big|^2\)</span>. Every <span class="math inline">\(|\Psi_n\rangle\)</span> is a superposition over all five sites with the same modulus on each site, so this overlap is <span class="math inline">\(1/5\)</span> for every <span class="math inline">\(n\)</span>, for the lowest energy and for all other states. This follows from the symmetry only, and it does not depend on the specific hopping amplitudes. The same argument stays valid if the nearest-neighbour hopping is replaced by any long-range hopping, and a six-site ring with additional long-range couplings shows the same thing. As long as the rotational symmetry of the ring is present, the symmetry eigenvalues, the eigenstates and expectation values such as this one are all fixed by symmetry only, however complicated the Hamiltonian becomes.</p>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>An eigenstate on a ring of <span class="math inline">\(L\)</span> sites is a Fourier mode. What is the weight of one site in it, for any choice of the hopping amplitudes?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(1/L\)</span></li>
+<li><span class="math inline">\(1/L^2\)</span></li>
+<li>It depends on the hopping amplitudes.</li>
+<li>It is largest on the site where the state was created.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>A Fourier mode has the same modulus on every site, and the weights add up to one. So each site has the weight <span class="math inline">\(1/L\)</span>, regardless of the hopping.</p>
+</details>
+</div>
 <p>Note that such models with few sites are not only of academic interest. With scanning tunnelling microscopy one can place single atoms with essentially arbitrary precision, and tight-binding rings with few sites like these have been built and measured in this way. There is a famous stop-motion film made only from atoms moved with STM, which is sometimes called “the smallest film ever made,” where every dot on the screen is a single atom. It shows how precisely such models can now be realized in the lab.</p>
 <p><strong>The infinite chain.</strong> Now we let the ring grow without limit, so that it becomes an infinite one-dimensional chain with nearest-neighbour hopping. The relevant symmetry is a translation by one site, <span class="math inline">\(T: c_n^\dagger \to c_{n-1}^\dagger\)</span>, which shifts a wavefunction <span class="math inline">\(\psi_n\)</span> on the sites to <span class="math inline">\(\psi_{n+1}\)</span>, and <span class="math inline">\([H,T]=0\)</span> for any Hamiltonian that only has hoppings that depend on the distance between sites and not on the absolute position. By Section <a href="03-symmetry-operators-in-a-formal-way.html#sec-2-3">2.3</a>, <span class="math inline">\(H\)</span> and <span class="math inline">\(T\)</span> have a common eigenbasis, and by <a href="03-symmetry-operators-in-a-formal-way.html#eq-2-2">(2.2)</a> the eigenvalue of <span class="math inline">\(T\)</span> in this common eigenbasis is a pure phase <span class="math inline">\(e^{i\varphi}\)</span>. This <span class="math inline">\(\varphi\)</span> is called the <strong>Bloch phase</strong>. The statement that <span class="math inline">\(H\)</span> and <span class="math inline">\(T\)</span> have a common eigenbasis, when we apply it to a system with translational symmetry, <em>is</em> Bloch’s theorem, which says that if two operators commute, there is a common basis for both of them. The relation between this phase and the corresponding energy of the Hamiltonian is what we call the <strong>dispersion relation</strong> of a periodic system.</p>
 

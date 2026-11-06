@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9.4b Nesting and the divergence of the Lindhard function, session 9</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .cols.three { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  @media (max-width: 900px) { .cols.three { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+
+  main { max-width: 860px; }
+  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
+              border-radius: 6px; color: var(--muted); }
+  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
+  .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
+  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
+  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
+  figure { margin: 24px 0; }
+  figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
+  figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
+  .eq { display: block; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
+                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
+  .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
+           margin: 20px 0; font-size: 0.95rem; }
+  .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
+  table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
+  div.center { overflow-x: auto; }
+  div.center table { margin-left: auto; margin-right: auto; }
+  th { border-bottom: 2px solid var(--rule); }
+  .coursecontents h2 { margin-top: 28px; }
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
+<script src="../../notes/notes.js" defer></script>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
+  <nav class="tabs"><a href="../../lectures/session9.html">Video lectures</a><a href="../../landscape/session9.html">Landscape lectures</a><a class="on" href="../../notes/session9/index.html">Lecture notes</a></nav>
+  <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="on" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
+  <p class="crumb"><a href="index.html">Session 9. Excitations and Defects in Quantum Materials</a></p>
+<h1 id="sec-9-4b"><span class="num">9.4b</span> Nesting and the divergence of the Lindhard function</h1>
+<p>In the first part we built the static Lindhard function and checked its limit at <span class="math inline">\(q\to0\)</span>. Let us now see where it diverges.</p>
+<p><strong>Instabilities and nesting.</strong> Equation <a href="04-the-fermi-sea-and-the-lindhard-function.html#eq-9-4">(9.4)</a> has a strong feature in one dimension. If there is a wavevector <span class="math inline">\(q^\star\)</span> that connects an occupied state at <span class="math inline">\(k\)</span> to an empty state at <span class="math inline">\(k+q^\star\)</span> with the <em>same</em> energy, the denominator in <a href="04-the-fermi-sea-and-the-lindhard-function.html#eq-9-4">(9.4)</a> vanishes for that term, and <span class="math inline">\(\chi_0(q^\star)\)</span> diverges. For a generic 1D band the Fermi surface is only the two points <span class="math inline">\(\pm k_F\)</span>, and the single nesting vector that connects them is <span class="math inline">\(q^\star = 2k_F\)</span> (figure <a href="#fig:s09:nesting">9.1</a>a,b). When we sum <a href="04-the-fermi-sea-and-the-lindhard-function.html#eq-9-4">(9.4)</a> over the whole band we obtain a logarithmic divergence, <span class="math inline">\(\chi_0(2k_F) \sim \ln(W/T)\)</span>, where <span class="math inline">\(W\)</span> is a cutoff given by the bandwidth. This divergence is the Peierls instability, which drives one-dimensional metals to dimerize into a charge density wave. If a response function diverges, an arbitrarily weak perturbation at that wavevector gives an arbitrarily large change of the ground state, meaning that the ground state that we started from is unstable to that specific fluctuation. This is the central strategy of this session. To predict a new phase of matter, we look for the wavevector where the response function of the old phase diverges.</p>
+<p>Everything above can be generalized directly to finite frequency. If we repeat the derivation with a perturbation that depends on time as <span class="math inline">\(\propto e^{-i\omega t}\)</span>, we obtain the retarded <strong>dynamical Lindhard function</strong>,</p>
+<p><span id="eq-9-5" class="eq"><span class="math display">\[\chi_0(q,\omega) = \frac{1}{N} \sum_k \frac{n_F(\varepsilon(k)) - n_F(\varepsilon(k+q))}{\varepsilon(k+q) - \varepsilon(k) - \hbar\omega - i0^+}, \tag{9.5}\]</span></span></p>
+<p>which becomes <a href="04-the-fermi-sea-and-the-lindhard-function.html#eq-9-4">(9.4)</a> at <span class="math inline">\(\omega = 0\)</span>. For a one-dimensional chain, if we plot <span class="math inline">\(\mathrm{Im}\,\chi_0(q,\omega)\)</span> over the whole <span class="math inline">\((q,\omega)\)</span> plane, we obtain a characteristic surface of divergences that follows the particle-hole continuum of the band structure. This <span class="math inline">\(\omega\)</span>-<span class="math inline">\(q\)</span> plot is only on the slides. In the spoken lecture its shape is described in words, as “a whole collection of <span class="math inline">\(\omega\)</span> versus <span class="math inline">\(q\)</span> values where there are divergences”, but it is not drawn, so it is useful to open the slides to see the figure.</p>
+<p>The same logic extends directly to two dimensions. For a square lattice with dispersion <span class="math inline">\(\varepsilon(k) = -2t(\cos k_x + \cos k_y)\)</span>, a low filling gives a small Fermi surface with a shape close to a circle. Then <span class="math inline">\(\chi_0(q,0)\)</span> is large for <span class="math inline">\(q\)</span> inside a circle whose size is set by the diameter of the Fermi surface, and small outside it, so the response function is a direct image of the Fermi surface. This is the physical basis of <strong>quasiparticle interference (QPI)</strong>. In real STM experiments, impurities are put into a 2D metal, the modulation of the local density of states that they create is imaged, and the observed wavelength is inverted to obtain the Fermi surface. At half filling, however, the specific dispersion of the square lattice gives <span class="math inline">\(\varepsilon(k+Q) =
+-\varepsilon(k)\)</span> for <span class="math inline">\(Q=(\pi,\pi)\)</span>. This is a <em>perfect</em> nesting condition, which connects very large parts of the Fermi surface with the same wavevector at the same time, and at half filling the Fermi surface itself is a square made of straight lines and not a circle. Equation <a href="04-the-fermi-sea-and-the-lindhard-function.html#eq-9-4">(9.4)</a> then has a very large divergence at <span class="math inline">\(q=(\pi,\pi)\)</span>, which signals a strong instability there. Figure <a href="#fig:s09:nesting">9.1</a> shows the whole argument in one place. It shows the single 1D nesting vector, the logarithmic divergence that it gives in <span class="math inline">\(\chi_0(q)\)</span>, and the 2D Fermi surface with straight edges that <span class="math inline">\(Q=(\pi,\pi)\)</span> nests all at once. The shape of the Fermi surface at half filling and the explicit nesting vector are shown on the slides in a more concrete way than in the spoken lecture. The figure shows the straight parallel edges that make the <span class="math inline">\((\pi,\pi)\)</span> nesting so effective.</p>
+<figure id="fig:s09:nesting">
+<img src="../figures/s09f01_nesting.svg" loading="lazy" alt="Nesting is what makes a response function diverge." />
+<figcaption><strong>Figure 9.1.</strong> Nesting is what makes a response function diverge. (a) A one-dimensional band <span class="math inline">\(\varepsilon(k)=-2t\cos k\)</span> at partial filling. The occupied states (thick) end at <span class="math inline">\(\pm k_F\)</span>, and the single wavevector <span class="math inline">\(q^\star=2k_F\)</span> connects one Fermi point to the other, so the energy denominator of <a href="04-the-fermi-sea-and-the-lindhard-function.html#eq-9-4">(9.4)</a> vanishes for that term. (b) The static Lindhard function that results, with the closed form given in Section <a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html#sec-9-6">9.6</a>. It is finite and equal to <span class="math inline">\(D(E_F)\)</span> as <span class="math inline">\(q\to 0\)</span>, as the <span class="math inline">\(q\to 0\)</span> check of <a href="04-the-fermi-sea-and-the-lindhard-function.html#eq-9-4">(9.4)</a> requires, and it diverges logarithmically at <span class="math inline">\(q^\star=2k_F\)</span>, which is the Peierls instability. (c) In two dimensions the criterion becomes geometric. At half filling the Fermi surface of the square lattice is the diamond with straight edges <span class="math inline">\(|k_x|+|k_y|=\pi\)</span>, and since <span class="math inline">\(\varepsilon(k+Q)=-\varepsilon(k)\)</span> for <span class="math inline">\(Q=(\pi,\pi)\)</span>, this one vector, the red arrows, maps <em>every</em> point of one edge onto the parallel opposite edge at the same time. For this reason the divergence at <span class="math inline">\((\pi,\pi)\)</span> is much stronger than the one-dimensional one, since whole segments of the Fermi surface nest, and not isolated points. At low filling the same Fermi surface is a small circle, which no single <span class="math inline">\(q\)</span> can nest in this way.</figcaption>
+</figure>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>A spinless chain is at quarter filling, so that the Fermi points are at <span class="math inline">\(\pm\pi/4\)</span>. At which wavevector does the static Lindhard function diverge?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>At <span class="math inline">\(q=\pi/4\)</span>, the Fermi wavevector.</li>
+<li>At <span class="math inline">\(q=\pi/2\)</span>, which is <span class="math inline">\(2k_F\)</span>.</li>
+<li>At <span class="math inline">\(q=\pi\)</span>, as for the half-filled chain.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The divergence comes from the vector that connects the two Fermi points, and this vector is <span class="math inline">\(2k_F=\pi/2\)</span>. The value <span class="math inline">\(q=\pi\)</span> belongs to half filling only, where <span class="math inline">\(k_F=\pi/2\)</span>.</p>
+</details>
+</div>
+<div class="quiz" data-correct="B">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>We move the half-filled square lattice away from half filling. The relation <span class="math inline">\(\varepsilon(k+Q)=-\varepsilon(k)\)</span> with <span class="math inline">\(Q=(\pi,\pi)\)</span> still holds. Why is the divergence of <span class="math inline">\(\chi_0(Q)\)</span> cut off?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>The relation fails, so the vector <span class="math inline">\(Q\)</span> no longer connects any states.</li>
+<li>The vector <span class="math inline">\(Q\)</span> maps the Fermi surface at energy <span class="math inline">\(\mu\)</span> to the one at <span class="math inline">\(-\mu\)</span>, so it no longer maps the Fermi surface onto itself.</li>
+<li>The Fermi surface becomes a point, and a point cannot be nested.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>B</strong>.</p>
+<p>The relation holds at any filling, but at <span class="math inline">\(\mu\neq0\)</span> the Fermi surface is curved and it is sent to a different contour. Only at <span class="math inline">\(\mu=0\)</span> are the two the same square, and whole edges nest at once.</p>
+</details>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> Run the cell with <code>mu = 0.</code> and note the q where the low-energy part of the plot touches zero energy. Then set <code>mu = 1.</code> and run it again. The touching points move from <span class="math inline">\(q=0.5\)</span> to <span class="math inline">\(q=1/3\)</span> and <span class="math inline">\(2/3\)</span>, in units of <span class="math inline">\(2\pi\)</span>, which is <span class="math inline">\(2k_F\)</span> and its mirror image.</p>
+<div class="tryit-links">
+Notebook <code>session9.ipynb</code>, cell “The charge-charge response function”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession9.ipynb">Binder</a>.
+</div>
+</div>
+<div class="notebookbox">
+<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb"><code>session9.ipynb</code></a>, “The charge-charge response function” (Challenge)</p>
+<p>Plot <span class="math inline">\(\mathrm{Im}\,\chi_0(q,\omega)\)</span> for a band structure and a chemical potential <span class="math inline">\(\mu\)</span> that you can change, as in <a href="#eq-9-5">(9.5)</a>. Look at how the divergence follows the Fermi surface when you change <span class="math inline">\(\mu\)</span>, and try to predict from the band structure alone at which <span class="math inline">\(q\)</span>-vector the instability will appear, before you run the calculation.</p>
+</div>
+
+  <nav class="pager"><a href="04-the-fermi-sea-and-the-lindhard-function.html">9.4a The Fermi sea and the Lindhard function</a><a href="05-interactions-as-a-perturbation-with-rpa-plasmons-and-the-stoner-instability.html">9.5a Interactions as a perturbation, with RPA, plasmons and the Stoner instability</a></nav>
+
+</main>
+</body>
+</html>

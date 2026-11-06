@@ -58,7 +58,7 @@
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
   .eq { display: block; }
-  .math.display { overflow-x: auto; overflow-y: hidden; }
+  .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
@@ -74,6 +74,7 @@
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<link rel="stylesheet" href="../../notes/notes.css">
 <script src="../../notes/notes.js" defer></script>
 </head>
 <body>
@@ -87,11 +88,35 @@
 <ul>
 <li><p>Magnetism, in all the forms that we saw in Sessions 1 and 6 and in this session, comes from strong repulsive interactions between electrons.</p></li>
 <li><p>Frustrated magnetic models, such as those on triangular and kagome lattices (Section <a href="04-frustration-as-the-route-to-a-quantum-spin-liquid.html#sec-8-4">8.4</a>), can show <strong>quantum spin liquid</strong> behavior. This is a maximally entangled ground state with zero local spin expectation value on every site <a href="05-the-dimerized-heisenberg-model-a-first-step-before-a-spin-liquid.html#eq-8-5">(8.5)</a>. It generalizes the singlet of the Heisenberg dimer <a href="03-two-minimal-dimers-a-classical-order-parameter-and-a-quantum-singlet.html#eq-8-3">(8.3)</a>, through the valence bond solid state <a href="05-the-dimerized-heisenberg-model-a-first-step-before-a-spin-liquid.html#eq-8-5">(8.5)</a>, to a resonating and frustrated ground state <a href="06-the-resonating-valence-bond-wavefunction-as-the-qsl-ground-state.html#eq-8-6">(8.6)</a>-<a href="06-the-resonating-valence-bond-wavefunction-as-the-qsl-ground-state.html#eq-8-7">(8.7)</a>, and conventional mean-field theory cannot describe it by construction.</p></li>
-<li><p>The zero magnetization of a QSL is the opposite regime from the one that Holstein-Primakoff needs <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-9">(8.9)</a>. For this reason, its fundamental excitations are not magnons but <strong>spinons</strong>, with <span class="math inline">\(S=1/2\)</span>. These are emergent fermions without charge that we obtain from the Abrikosov or parton construction, <a href="08-the-parton-construction-with-abrikosov-fermions-and-the-single-occupancy-constraint.html#eq-8-10">(8.10)</a>-<a href="09-the-mean-field-spinon-hamiltonian-and-its-dispersion-classes.html#eq-8-15">(8.15)</a>, which is the mean-field method for electrons of Sessions 1 and 6 applied to the spin sector. Spinon bands can be gapless, gapped, or of Dirac type (Section <a href="09-the-mean-field-spinon-hamiltonian-and-its-dispersion-classes.html#sec-8-9">8.9</a>).</p></li>
+<li><p>The zero magnetization of a QSL is the opposite regime from the one that Holstein-Primakoff needs <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-9">(8.9)</a>. For this reason, its fundamental excitations are not magnons but <strong>spinons</strong>, with <span class="math inline">\(S=1/2\)</span>. These are emergent fermions without charge that we obtain from the Abrikosov or parton construction, <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-10">(8.10)</a>-<a href="09-the-mean-field-spinon-hamiltonian-and-its-dispersion-classes.html#eq-8-15">(8.15)</a>, which is the mean-field method for electrons of Sessions 1 and 6 applied to the spin sector. Spinon bands can be gapless, gapped, or of Dirac type (Section <a href="09-the-mean-field-spinon-hamiltonian-and-its-dispersion-classes.html#sec-8-9">8.9</a>).</p></li>
 <li><p>The parton construction has an emergent gauge redundancy <a href="10-emergent-gauge-symmetry-and-vison-excitations.html#eq-8-16">(8.16)</a>. The mean-field bond variable is a link field, and its topological defects are gauge excitations called <strong>visons</strong>, which are in general coupled to the spinons (Section <a href="10-emergent-gauge-symmetry-and-vison-excitations.html#sec-8-10">8.10</a>).</p></li>
-<li><p>Quantum entanglement that mixes spin and fermion degrees of freedom also appears in <strong>Kondo systems</strong>. The same parton method, applied to a lattice of local moments inside a metal, <a href="11-from-a-single-kondo-impurity-to-the-kondo-lattice.html#eq-8-17">(8.17)</a>-<a href="12-solving-the-kondo-lattice-with-the-parton-method-and-a-hybridization.html#eq-8-21">(8.21)</a>, turns the Kondo exchange coupling into a mean-field <strong>hybridization</strong> <span class="math inline">\(\gamma_K\)</span>. This hybridization opens a gap in the conduction band at the anti-crossing and turns a metal into a <strong>Kondo insulator</strong>, also called a heavy-fermion insulator, and the gap grows monotonically with the strength of the Kondo coupling (Section <a href="13-electronic-structure-of-the-kondo-lattice-and-the-kondo-insulator.html#sec-8-13">8.13</a>).</p></li>
+<li><p>Quantum entanglement that mixes spin and fermion degrees of freedom also appears in <strong>Kondo systems</strong>. The same parton method, applied to a lattice of local moments inside a metal, <a href="11-from-a-single-kondo-impurity-to-the-kondo-lattice.html#eq-8-17">(8.17)</a>-<a href="11-from-a-single-kondo-impurity-to-the-kondo-lattice.html#eq-8-21">(8.21)</a>, turns the Kondo exchange coupling into a mean-field <strong>hybridization</strong> <span class="math inline">\(\gamma_K\)</span>. This hybridization opens a gap in the conduction band at the anti-crossing and turns a metal into a <strong>Kondo insulator</strong>, also called a heavy-fermion insulator, and the gap grows monotonically with the strength of the Kondo coupling (Section <a href="13-electronic-structure-of-the-kondo-lattice-and-the-kondo-insulator.html#sec-8-13">8.13</a>).</p></li>
 </ul>
 <p>Session 9 continues directly from this construction. The method of Abrikosov fermions and spinons that we built here is used again, now for a single magnetic impurity in a metal that is otherwise ordinary, with an explicit reference to a result on Friedel oscillations that is derived earlier in that same session.</p>
+<figure class="again">
+<img src="../figures/s08f01_magnon_spinon.svg" loading="lazy" alt="A magnet with one flipped spin, and a pattern of singlets with one broken pair that leaves two unpaired spins." />
+<figcaption><strong><a href="01-two-classes-of-magnets-and-where-we-find-them.html#fig:s08:magnonspinon">Figure 8.1</a>, shown again.</strong> The central difference of the session. Look at the counting of <span class="math inline">\(\Delta S\)</span> in panel (a) and in panel (b), which is the reason why the excitations of a quantum spin liquid are spinons and not magnons.</figcaption>
+</figure>
+<div class="quiz" data-correct="A">
+<div class="quiz-label">
+Quick check
+</div>
+<div class="quiz-q">
+<p>Which excitation carries spin <span class="math inline">\(1/2\)</span>, no charge, and appears in the parton construction of a quantum spin liquid?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>The spinon.</li>
+<li>The magnon.</li>
+<li>The vison.</li>
+<li>The triplon.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answer</summary>
+<p>The correct option is <strong>A</strong>.</p>
+<p>The magnon and the triplon have spin <span class="math inline">\(1\)</span>, and the vison is a flux of the gauge field with no spin. The spinon is the fermion of the parton construction, which carries the spin of the electron.</p>
+</details>
+</div>
 
   <nav class="pager"><a href="13-electronic-structure-of-the-kondo-lattice-and-the-kondo-insulator.html">8.13 Electronic structure of the Kondo lattice and the Kondo insulator</a><a href="../session9/index.html">Session 9. Excitations and defects in quantum materials</a></nav>
 
