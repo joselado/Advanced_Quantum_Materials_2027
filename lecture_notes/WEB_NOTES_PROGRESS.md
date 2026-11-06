@@ -1,22 +1,23 @@
 # Progress of the lecture notes as web pages
 
 The plan is `lecture_notes/WEB_NOTES_PLAN.md`. This file is the tracker that each session
-updates at its end, one line per phase and one per session. Last update 2026-11-06.
+updates at its end, one line per phase and one per session. Last update 2026-11-06, phase 1.
 
-Start here. The next session does phase 1, the pilot on session 2, directly, since the lecturer
-answered every open decision on 2026-11-06 and the plan is written to them. It reads the plan,
-in particular "How a change reaches the page", "The toolkit", the phases and the appendix with
-the prototype filter, then creates `webnotes/` with stage 1 of the toolkit, converts session 2
-once into `webnotes/pages/session02/` and builds `docs/notes/session2/`. The first thing to
-check is that `pandoc -t markdown` keeps the math, the tables and the boxes of the notes as
-cleanly as the HTML writer did in the test.
+Start here. The next session does phase 2, all ten sessions. Phase 1 is done, and the toolkit is
+`webnotes/`, read `webnotes/README.md` and the section "What phase 1 found" of the plan first. For each
+session N from 1 and 3 to 10 run `python3 webnotes/convert.py --session N`, then
+`python3 webnotes/build.py` and `python3 docs/build_site.py`. Look at what the conversion log says about
+numbers left as text and about `??`, and at the pending list of `check.py`, which must become empty. The
+things the pilot did not meet and phase 2 has to handle are the tables of session 1 and 9, `\subsection`
+headings, the cross-session figure references of session 8 and the `Equation C.n` forms. Then add the
+notes column to the landing page, the link in the README, and `mathcheck/`.
 
 ## Phases
 
 | Phase | What | Status |
 |---|---|---|
 | 0 | Plan, tracker, prototype in the scratchpad, conversion test, decisions | done 2026-11-06 |
-| 1 | Pilot on session 2, convert once to Markdown, toolkit stage 1, link from the video pages | not started |
+| 1 | Pilot on session 2, convert once to Markdown, toolkit stage 1, link from the video pages | done 2026-11-06 |
 | 2 | Convert all ten sessions, cross-session links, course contents, math check | not started |
 | 3 | `texdiff` and `SYNC`, the checks on numbers and sources, first web-only edits | not started |
 | 4 | Quizzes of sessions 1 to 5, quiz renderer | not started |
@@ -33,7 +34,7 @@ changed after that commit has hunks to carry over, which `texdiff.py` lists.
 | Session | Converted to Markdown | Pages built | Quizzes | Widgets | Synced to |
 |---|---|---|---|---|---|
 | 1 | no | no | no | no | |
-| 2 | no, pilot of phase 1 | no | no | no | |
+| 2 | yes, 2026-11-06 | yes, 2026-11-06 | no | no | 2ee5256 |
 | 3 | no | no | no | no | |
 | 4 | no | no | no | no | |
 | 5 | no | no | no | no | |
@@ -67,3 +68,9 @@ honeycomb lattice.
   mode with `.nojekyll` present, so the build stays local and committed. Plan and tracker
   written, then rewritten to the eight decisions of the lecturer. Nothing built in the
   repository, nothing committed.
+- 2026-11-06. Phase 1, the pilot on session 2. `webnotes/` built with `convert.py`, `build.py`,
+  `check.py`, `template.py`, the two filters and the README. Session 2 converted once to
+  `webnotes/pages/session02/` (the introduction and 13 sections), `docs/notes/` built with the session page,
+  13 section pages, the course index, 6 SVG figures. The link "Notes of this session" is on the video and
+  landscape pages of session 2. The equation numbers 2.1 to 2.21 equal those of `main.pdf`, the edit test
+  passed and was reverted, the check reports 0 errors and one pending reference, `(1.6)`. Nothing committed.

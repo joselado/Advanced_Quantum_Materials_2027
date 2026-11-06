@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2.5 Bloch&#x27;s theorem and the first band structure, session 2</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+
+  main { max-width: 860px; }
+  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
+              border-radius: 6px; color: var(--muted); }
+  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
+  .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
+  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
+  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
+  figure { margin: 24px 0; }
+  figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
+  figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
+  .eq { display: block; }
+  .math.display { overflow-x: auto; overflow-y: hidden; }
+  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
+                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
+  .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
+           margin: 20px 0; font-size: 0.95rem; }
+  .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
+  table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
+  .coursecontents h2 { margin-top: 28px; }
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script src="../../notes/notes.js" defer></script>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
+  <nav class="tabs"><a href="../../lectures/session2.html">Video lectures</a><a href="../../landscape/session2.html">Landscape lectures</a><a class="on" href="../../notes/session2/index.html">Lecture notes</a></nav>
+  <nav class="sub"><span title="Second quantization, mean field and spontaneous symmetry breaking (notes not on the page yet)">1</span><a class="on" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><span title="Topological band structure theory (notes not on the page yet)">3</span><span title="Electrons in magnetic fields, the quantum Hall effect and Landau levels (notes not on the page yet)">4</span><span title="Superconductivity, Nambu representation and Majorana physics (notes not on the page yet)">5</span><span title="Classical magnetism and magnons (notes not on the page yet)">6</span><span title="Quantum entanglement and tensor networks (notes not on the page yet)">7</span><span title="Quantum magnetism, spinons and Kondo physics (notes not on the page yet)">8</span><span title="Excitations and defects in quantum materials (notes not on the page yet)">9</span><span title="Machine learning quantum materials (notes not on the page yet)">10</span></nav>
+  <p class="crumb"><a href="index.html">Session 2. Symmetries, Tight-Binding Band Structure Theory, and Effective Models</a></p>
+<h1 id="sec-2-5"><span class="num">2.5</span> Bloch’s theorem and the first band structure</h1>
+<p>Let us now do this fully explicitly for the one-dimensional tight-binding chain,</p>
+<p><span id="eq-2-5" class="eq"><span class="math display">\[H = -t\sum_n \left(c_n^\dagger c_{n+1} + \text{h.c.}\right). \tag{2.5}\]</span></span></p>
+<p>We take <span class="math inline">\(t&gt;0\)</span> in all of this session, the same sign convention as in (1.6) of the previous session.</p>
+<p>Since <span class="math inline">\([H,T]=0\)</span>, we look for eigenstates that are a superposition over all sites that transforms in a simple way under translation,</p>
+<p><span id="eq-2-6" class="eq"><span class="math display">\[|\Psi_\varphi\rangle = \sum_n e^{in\varphi}\, c_n^\dagger|0\rangle. \tag{2.6}\]</span></span></p>
+<p>It is cleaner to invert this relation and to define new operators that are labelled by <span class="math inline">\(\varphi\)</span> instead of by site,</p>
+<p><span id="eq-2-7" class="eq"><span class="math display">\[\Psi_\varphi^\dagger = \sum_n e^{in\varphi}\, c_n^\dagger, \qquad
+c_n^\dagger = \sum_\varphi e^{-in\varphi}\, \Psi_\varphi^\dagger, \tag{2.7}\]</span></span></p>
+<p>which is an ordinary Fourier transform between real space and the space of Bloch phases. Putting <a href="#eq-2-7">(2.7)</a> into <a href="#eq-2-5">(2.5)</a> gives</p>
+<p><span class="math display">\[\sum_n c_n^\dagger c_{n+1} = \sum_{n,\varphi,\varphi&#39;} e^{-in\varphi}\,e^{i\varphi&#39;(n+1)}\,
+\Psi_\varphi^\dagger \Psi_{\varphi&#39;} = \sum_{\varphi,\varphi&#39;} e^{i\varphi&#39;}\,\delta_{\varphi\varphi&#39;}\,
+\Psi_\varphi^\dagger\Psi_{\varphi&#39;} = \sum_\varphi e^{i\varphi}\, \Psi_\varphi^\dagger\Psi_\varphi,\]</span></p>
+<p>where the sum over <span class="math inline">\(n\)</span> gave the orthogonality relation <span class="math inline">\(\sum_n e^{in(\varphi&#39;-\varphi)} =
+\delta_{\varphi\varphi&#39;}\)</span>. The Hermitian conjugate term gives the complex conjugate phase, so</p>
+<p><span id="eq-2-8" class="eq"><span class="math display">\[H = -t\sum_\varphi \left(e^{i\varphi}+e^{-i\varphi}\right)\Psi_\varphi^\dagger\Psi_\varphi
+= \sum_\varphi \epsilon_\varphi\, \Psi_\varphi^\dagger\Psi_\varphi, \qquad
+\boxed{\epsilon_\varphi = -2t\cos\varphi}. \tag{2.8}\]</span></span></p>
+<p>This is our first band structure, and we obtained it without writing down an infinite matrix, and without diagonalizing it. We only needed the fact that the eigenstates must have a definite phase under translation, and then a single Fourier transform gave the rest.</p>
+<p>Some features of this dispersion should be discussed explicitly, since they appear again and again in the course. Near the bottom of the band (<span class="math inline">\(\varphi=0\)</span>), <span class="math inline">\(\epsilon_\varphi \approx -2t + t\varphi^2\)</span>, which is a parabola that opens upward. Near the top of the band (<span class="math inline">\(\varphi=\pi\)</span>), we write <span class="math inline">\(\varphi=\pi+\delta\)</span> and obtain <span class="math inline">\(\epsilon_\varphi\approx 2t-t\delta^2\)</span>, which is a parabola that opens downward. The two curvatures have <em>opposite</em> sign. Once we define the effective mass properly in Section <a href="09-properties-of-an-electronic-dispersion.html#sec-2-9">2.9</a>, this means that low-energy quasiparticles near the bottom of the band behave like ordinary electrons with positive mass, while those near the top behave like holes with negative mass. Near the middle of the band, at <span class="math inline">\(\varphi=\pi/2\)</span> where <span class="math inline">\(\epsilon_\varphi\)</span> crosses zero, the dispersion is closer to linear than to quadratic, and this is a first sign of the Dirac-like physics that we will see in detail in Section <a href="11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#sec-2-11">2.11</a>. All of this is shown in figure <a href="#fig:s02:cosband">2.2</a>, which also shows the density of states of this band.</p>
+<figure id="fig:s02:cosband">
+<img src="../figures/s02f02_cosband.svg" loading="lazy" alt="The one-dimensional band \epsilon_\varphi=-2t\cos\varphi of (2.8), drawn for t=1, with the grey tubes showing its local forms." />
+<figcaption><strong>Figure 2.2.</strong> The one-dimensional band <span class="math inline">\(\epsilon_\varphi=-2t\cos\varphi\)</span> of <a href="#eq-2-8">(2.8)</a>, drawn for <span class="math inline">\(t=1\)</span>, with the grey tubes showing its local forms. Near the band bottom the dispersion is an upward parabola, and quasiparticles behave as ordinary electrons with positive mass. Near the top the curvature has the opposite sign and they behave as holes. Near midband it is locally linear, which is a first sign of the Dirac physics of Section <a href="11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#sec-2-11">2.11</a>. The slope is the group velocity <a href="09-properties-of-an-electronic-dispersion.html#eq-2-17">(2.17)</a> and the curvature is the inverse effective mass <a href="09-properties-of-an-electronic-dispersion.html#eq-2-18">(2.18)</a>, and both are read from this one curve. On the right is the resulting density of states <a href="09-properties-of-an-electronic-dispersion.html#eq-2-16">(2.16)</a>, cut at the top of the drawing, which diverges at both band edges, at the same points where the group velocity vanishes.</figcaption>
+</figure>
+<div class="notebookbox">
+<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session2.ipynb"><code>session2.ipynb</code></a>, “One dimensional chain” (Core)</p>
+<p>Build the chain of <a href="#eq-2-5">(2.5)</a>, diagonalize it numerically, and check that the numerical spectrum follows <span class="math inline">\(\epsilon_\varphi=-2t\cos\varphi\)</span> from <a href="#eq-2-8">(2.8)</a> when you scan <span class="math inline">\(\varphi\)</span> across the Brillouin zone.</p>
+</div>
+<p>A natural extension, which we do in class, is to check that the same method also works beyond nearest-neighbour hopping. We add a second-neighbour hopping term <span class="math inline">\(-\eta\sum_n(c_n^\dagger
+c_{n+2}+\text{h.c.})\)</span> to <a href="#eq-2-5">(2.5)</a>. This term has the same translational symmetry as before, so the eigenstates <a href="#eq-2-6">(2.6)</a> do not change at all, and we only need to compute the eigenvalues again. We repeat the Fourier substitution for the new term, which couples <span class="math inline">\(c_n^\dagger\)</span> with <span class="math inline">\(c_{n+2}\)</span> and so gives a phase <span class="math inline">\(e^{\pm2i\varphi}\)</span> instead of <span class="math inline">\(e^{\pm i\varphi}\)</span>, and we obtain</p>
+<p><span id="eq-2-9" class="eq"><span class="math display">\[\epsilon_\varphi = -2t\cos\varphi - 2\eta\cos(2\varphi). \tag{2.9}\]</span></span></p>
+<div class="notebookbox">
+<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session2.ipynb"><code>session2.ipynb</code></a>, “One dimensional chain, with longer range hopping” (Core)</p>
+<p>Add the second-neighbour hopping <span class="math inline">\(\eta\)</span> to the chain from the previous box, and check that the band you compute numerically agrees with <a href="#eq-2-9">(2.9)</a>. It is also useful to check the density of states here (Section <a href="09-properties-of-an-electronic-dispersion.html#sec-2-9">2.9</a>), since <span class="math inline">\(\eta\)</span> can create a second local extremum in <span class="math inline">\(\epsilon_\varphi\)</span>, and with it an additional feature of Van Hove type in the spectrum.</p>
+</div>
+<p>We also mention <code>pyqula</code> by name here, which is a Python package that computes band structures such as this one in 1D, 2D, 3D and higher dimensions, and which is the computational tool we use in the whole course. Here we only give its name. The slides show an explicit installation guide (<code>pip install pyqula</code>) and example scripts for a 1D chain and for a 1D “ladder” with two sites per cell, together with the band plots that these scripts produce. This installation guide and the screenshots of its code are only on the slides, and they are not narrated in the transcript nor reproduced here. The notebook is the place where you run the equivalent code yourself.</p>
+
+  <nav class="pager"><a href="04-exercises-where-we-guess-eigenstates-from-symmetry-only.html">2.4 Exercises where we guess eigenstates from symmetry only</a><a href="06-the-meaning-of-the-phase-which-is-the-quasi-momentum.html">2.6 The meaning of the phase, which is the quasi-momentum</a></nav>
+
+</main>
+</body>
+</html>

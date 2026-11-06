@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2.3 Symmetry operators in a formal way, session 2</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+
+  main { max-width: 860px; }
+  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
+              border-radius: 6px; color: var(--muted); }
+  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
+  .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
+  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
+  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
+  figure { margin: 24px 0; }
+  figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
+  figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
+  .eq { display: block; }
+  .math.display { overflow-x: auto; overflow-y: hidden; }
+  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
+                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
+  .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
+           margin: 20px 0; font-size: 0.95rem; }
+  .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
+  table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
+  .coursecontents h2 { margin-top: 28px; }
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script src="../../notes/notes.js" defer></script>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
+  <nav class="tabs"><a href="../../lectures/session2.html">Video lectures</a><a href="../../landscape/session2.html">Landscape lectures</a><a class="on" href="../../notes/session2/index.html">Lecture notes</a></nav>
+  <nav class="sub"><span title="Second quantization, mean field and spontaneous symmetry breaking (notes not on the page yet)">1</span><a class="on" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><span title="Topological band structure theory (notes not on the page yet)">3</span><span title="Electrons in magnetic fields, the quantum Hall effect and Landau levels (notes not on the page yet)">4</span><span title="Superconductivity, Nambu representation and Majorana physics (notes not on the page yet)">5</span><span title="Classical magnetism and magnons (notes not on the page yet)">6</span><span title="Quantum entanglement and tensor networks (notes not on the page yet)">7</span><span title="Quantum magnetism, spinons and Kondo physics (notes not on the page yet)">8</span><span title="Excitations and defects in quantum materials (notes not on the page yet)">9</span><span title="Machine learning quantum materials (notes not on the page yet)">10</span></nav>
+  <p class="crumb"><a href="index.html">Session 2. Symmetries, Tight-Binding Band Structure Theory, and Effective Models</a></p>
+<h1 id="sec-2-3"><span class="num">2.3</span> Symmetry operators in a formal way</h1>
+<p>To make the argument from electromagnetism precise for a quantum system, we need three objects. The first is a wavefunction <span class="math inline">\(\psi\)</span>, the second is the transformed wavefunction <span class="math inline">\(\phi = S\psi\)</span> that we obtain when we apply a symmetry operation, and the third is the operator <span class="math inline">\(S\)</span> itself, which is a linear map from one to the other and a matrix in a finite-dimensional representation. A concrete case makes this clear. If <span class="math inline">\(\psi\)</span> is a <span class="math inline">\(p_x\)</span> orbital and <span class="math inline">\(S\)</span> is a <span class="math inline">\(90^\circ\)</span> rotation, the transformed state <span class="math inline">\(\phi = S\psi\)</span> is a <span class="math inline">\(p_y\)</span> orbital, meaning that the two lobes on the <span class="math inline">\(x\)</span>-axis are rotated into two lobes on the <span class="math inline">\(y\)</span>-axis. Note that this <span class="math inline">\(p_x\)</span> orbital is <em>not</em> an eigenstate of the rotation, since it is mapped to a different state.</p>
+<p>Symmetry operators are always unitary. In physical terms, a symmetry is only a change of labels of our reference frame, for example a rotation of the axes, and any such change of labels must keep the norm of every state in the Hilbert space. In equations,</p>
+<p><span id="eq-2-1" class="eq"><span class="math display">\[S^\dagger S = S S^\dagger = \mathbb{1}, \qquad S^\dagger = S^{-1}. \tag{2.1}\]</span></span></p>
+<p>A direct consequence is that all the eigenvalues of <span class="math inline">\(S\)</span> have unit modulus, since <span class="math inline">\(\langle\psi|S^\dagger
+S|\psi\rangle = \langle\psi|\psi\rangle\)</span> gives <span class="math inline">\(|\lambda|^2=1\)</span> for any eigenvalue <span class="math inline">\(\lambda\)</span>. So a symmetry eigenvalue can always be written as a pure phase,</p>
+<p><span id="eq-2-2" class="eq"><span class="math display">\[S|\psi\rangle = e^{i\varphi}|\psi\rangle, \qquad \varphi \in (-\pi,\pi]. \tag{2.2}\]</span></span></p>
+<p>Before we include a Hamiltonian, let us look at two small examples. We take a wavefunction with real, staggered values <span class="math inline">\((+1,-1,+1,-1)\)</span> on four sites on a ring, and we apply a <span class="math inline">\(90^\circ\)</span> rotation that shifts the sites by one in a cyclic way. The transformed wavefunction is <span class="math inline">\((-1,+1,-1,+1)\)</span>, which is <span class="math inline">\(-1\)</span> times the original. So this state is an eigenstate of the rotation with eigenvalue <span class="math inline">\(-1\)</span>, that is <span class="math inline">\(\varphi=\pi\)</span> in <a href="#eq-2-2">(2.2)</a>. Now we take a complex wavefunction <span class="math inline">\((+1,-i,-1,i)\)</span> on the same ring and apply the same rotation. The transformed wavefunction is <span class="math inline">\(i\)</span> times the original, so it is an eigenstate with eigenvalue <span class="math inline">\(i\)</span>, that is <span class="math inline">\(\varphi=\pi/2\)</span>.</p>
+<p>The next example is less visual but more useful in practice. A two-site tight-binding Hamiltonian with a single hopping <span class="math inline">\(t\)</span> between sites 1 and 2,</p>
+<p><span class="math display">\[H = t\left(c_1^\dagger c_2 + c_2^\dagger c_1\right),\]</span></p>
+<p>has two eigenstates, the bonding and antibonding combinations <span class="math inline">\(c_1^\dagger+c_2^\dagger\)</span> and <span class="math inline">\(c_1^\dagger-c_2^\dagger\)</span>. Under the mirror symmetry that exchanges sites 1 and 2, the bonding state has eigenvalue <span class="math inline">\(+1\)</span> and the antibonding state has eigenvalue <span class="math inline">\(-1\)</span>. This means that different eigenstates of the same Hamiltonian can have different eigenvalues under the same symmetry.</p>
+<p>We now come to the central fact of this session. Let us assume that a Hamiltonian is invariant under a symmetry operation, <span class="math inline">\(SHS^{-1} = SHS^\dagger = H\)</span>, which is the same as the statement</p>
+<p><span id="eq-2-3" class="eq"><span class="math display">\[[H,S] = 0. \tag{2.3}\]</span></span></p>
+<p>From linear algebra we know that two operators that commute have a common eigenbasis. So whenever <a href="#eq-2-3">(2.3)</a> holds, every eigenstate of <span class="math inline">\(H\)</span> can be chosen so that it is also an eigenstate of <span class="math inline">\(S\)</span>. In the words of the lecturer, this is perhaps the most important idea of this session. The reason for this is that it is very often much easier to classify the eigenstates of a symmetry operator, whose eigenvalue is a simple phase by <a href="#eq-2-2">(2.2)</a>, than to classify the eigenstates of the Hamiltonian directly. In practice, this means that to find all the symmetries of the Hamiltonian is the first step to solve it, and the most useful one, not a side remark. Once we know that a matrix <span class="math inline">\(S\)</span> commutes with <span class="math inline">\(H\)</span>, to classify the eigenstates of <span class="math inline">\(S\)</span> is the same task as to classify the eigenstates of <span class="math inline">\(H\)</span>.</p>
+
+  <nav class="pager"><a href="02-simplifying-problems-with-symmetry-in-simple-examples.html">2.2 Simplifying problems with symmetry in simple examples</a><a href="04-exercises-where-we-guess-eigenstates-from-symmetry-only.html">2.4 Exercises where we guess eigenstates from symmetry only</a></nav>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2.8 Higher-dimensional band structures, session 2</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+
+  main { max-width: 860px; }
+  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
+              border-radius: 6px; color: var(--muted); }
+  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
+  .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
+  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
+  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
+  figure { margin: 24px 0; }
+  figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
+  figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
+  .eq { display: block; }
+  .math.display { overflow-x: auto; overflow-y: hidden; }
+  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
+                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
+  .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
+           margin: 20px 0; font-size: 0.95rem; }
+  .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
+  table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
+  .coursecontents h2 { margin-top: 28px; }
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script src="../../notes/notes.js" defer></script>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
+  <nav class="tabs"><a href="../../lectures/session2.html">Video lectures</a><a href="../../landscape/session2.html">Landscape lectures</a><a class="on" href="../../notes/session2/index.html">Lecture notes</a></nav>
+  <nav class="sub"><span title="Second quantization, mean field and spontaneous symmetry breaking (notes not on the page yet)">1</span><a class="on" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><span title="Topological band structure theory (notes not on the page yet)">3</span><span title="Electrons in magnetic fields, the quantum Hall effect and Landau levels (notes not on the page yet)">4</span><span title="Superconductivity, Nambu representation and Majorana physics (notes not on the page yet)">5</span><span title="Classical magnetism and magnons (notes not on the page yet)">6</span><span title="Quantum entanglement and tensor networks (notes not on the page yet)">7</span><span title="Quantum magnetism, spinons and Kondo physics (notes not on the page yet)">8</span><span title="Excitations and defects in quantum materials (notes not on the page yet)">9</span><span title="Machine learning quantum materials (notes not on the page yet)">10</span></nav>
+  <p class="crumb"><a href="index.html">Session 2. Symmetries, Tight-Binding Band Structure Theory, and Effective Models</a></p>
+<h1 id="sec-2-8"><span class="num">2.8</span> Higher-dimensional band structures</h1>
+<p>A two-dimensional lattice has two independent translations that commute with each other, <span class="math inline">\(T_x\)</span> and <span class="math inline">\(T_y\)</span>, so Bloch eigenstates have two independent phases, <span class="math inline">\(\varphi_x\)</span> and <span class="math inline">\(\varphi_y\)</span>, one for each direction. These phases are related to the crystal momentum along the two lattice vectors by the same Taylor-expansion argument as in <a href="06-the-meaning-of-the-phase-which-is-the-quasi-momentum.html#eq-2-10">(2.10)</a>, applied once for each direction. The space of allowed pairs <span class="math inline">\((\varphi_x,\varphi_y)\)</span> is the <strong>Brillouin zone</strong>. Since <span class="math inline">\(\varphi=0\)</span> and <span class="math inline">\(\varphi=2\pi\)</span> give the same translation eigenvalue in both directions, the Brillouin zone is not an open square but a periodic one. When we identify the left and right edges, and the top and bottom edges, it becomes a torus, in the same way as it is a circle in the one-dimensional case of Section <a href="05-blochs-theorem-and-the-first-band-structure.html#sec-2-5">2.5</a>. This compactness of the Brillouin zone will be very important when topological invariants appear in the next session.</p>
+<p>When we apply the Fourier method of Section <a href="05-blochs-theorem-and-the-first-band-structure.html#sec-2-5">2.5</a> once for each spatial direction, we obtain for a square lattice with a single orbital and nearest-neighbour hopping <span class="math inline">\(t\)</span>, with the same sign convention as in <a href="05-blochs-theorem-and-the-first-band-structure.html#eq-2-5">(2.5)</a>,</p>
+<p><span id="eq-2-14" class="eq"><span class="math display">\[\epsilon(\varphi_x,\varphi_y) = -2t\left(\cos\varphi_x + \cos\varphi_y\right), \tag{2.14}\]</span></span></p>
+<p>and, when we apply the same argument a third time, for a cubic lattice with a single orbital,</p>
+<p><span id="eq-2-15" class="eq"><span class="math display">\[\epsilon(\varphi_x,\varphi_y,\varphi_z) = -2t\left(\cos\varphi_x+\cos\varphi_y+\cos\varphi_z\right). \tag{2.15}\]</span></span></p>
+<p>The same method extends in a systematic way to four, five or more dimensions, since nothing in the argument depends on being in three-dimensional space. Equations <a href="#eq-2-14">(2.14)</a> and <a href="#eq-2-15">(2.15)</a> come from the slides and the transcript, and there is no counterpart for them in <code>session2.ipynb</code>. The two-dimensional example of the notebook goes directly to the honeycomb lattice of Section <a href="11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#sec-2-11">2.11</a> and does not treat the plain square lattice, and there is no section on the three-dimensional cubic lattice. If you want to check <a href="#eq-2-14">(2.14)</a> or <a href="#eq-2-15">(2.15)</a> numerically, the same construction that we use for the honeycomb lattice in the box below can be extended directly, with a square or cubic Bravais lattice with a single orbital instead.</p>
+<p>Before we continue, let us say explicitly that everything above applies far beyond electrons. The same Bloch-Hamiltonian method diagonalizes phonon bands, magnon bands and the bands of Bogoliubov-de Gennes quasiparticles in a superconductor. It applies in the same way to artificial lattices that are engineered and have no relation to real crystals, such as cold atoms trapped in optical lattices. We will focus on electronic bands for concreteness, but this generality is the reason why the same method appears again for magnons, and for Bogoliubov quasiparticles, later in the course. The physics that single-particle band theory gives in this way is very rich. It includes Dirac fermions with zero Dirac mass, Weyl semimetals, which are Dirac points generalized to higher dimensions, quantum spin Hall insulators, Chern insulators, crystalline topological phases and topological superconductors. All of this is built only on the Bloch Hamiltonian <span class="math inline">\(H(\mathbf{k})\)</span> that we constructed here.</p>
+
+  <nav class="pager"><a href="07-multi-orbital-band-structures.html">2.7 Multi-orbital band structures</a><a href="09-properties-of-an-electronic-dispersion.html">2.9 Properties of an electronic dispersion</a></nav>
+
+</main>
+</body>
+</html>

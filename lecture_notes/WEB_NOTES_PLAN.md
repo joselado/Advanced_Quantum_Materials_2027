@@ -443,6 +443,41 @@ memory. The feasibility test of phase 6 decides it with numbers before anything 
 it, and every widget keeps its precomputed JSON as the fallback, so a widget that is too slow
 live still shows its curves at once and only loses the slider between the precomputed values.
 
+## What phase 1 found, 2026-11-06
+
+The first check of phase 1 was `pandoc -t markdown` on session 2. Run directly, the Markdown writer is
+not clean enough. It writes `$$\begin{equation}...\end{equation}$$`, it writes each figure as raw
+`<figure>` HTML with the caption as HTML spans and the `adjustbox` junk, and the references are
+`{reference-type="ref"}` attributes. A tables test on session 1 gave a clean pandoc table, inside a
+`::: center` div. So the filter has to do more than in the HTML test, and `filters/tex2md.lua` does it on
+the tree. The result is plain Markdown. Display math is `$$ ... \tag{2.8} $$` with the environment
+stripped, a figure is one implicit-figure image with its caption and `{#fig:... number="2.2"}`, the box is
+`::: notebookbox` with a bold title paragraph that links the notebook, a heading is
+`## Title {#sec-2-5 number="2.5"}`. Pandoc 3.8 gave zero warnings.
+
+Where reality differed from the plan.
+
+- The anchor of an equation is not written in the Markdown. pandoc has no attribute on math, so the
+  anchor `eq-2-8` is derived at build time from the `\tag{2.8}`. The number is still explicit in the file.
+- Headings and captions carry no number in their text. The build writes "2.5" before the heading from the
+  attribute `number`, and "Figure 2.2." before the caption.
+- The label map is built by reading the Markdown of every manifest in the first pass of `build.py`, with
+  pandoc's JSON, and is passed to `web.lua` as `labels.json`. A link to a session that is not built is
+  kept as text and listed as pending by `check.py`. In phase 1 this is `(1.6)` of session 1. It resolves
+  by itself when session 1 is converted, since the Markdown already holds `[(1.6)](#eq-1-6)`.
+- `convert.py` counts the numbered equations and the sections of all ten sessions from the `.tex`, so the
+  filter links only numbers that exist, and it splits the pandoc tree in Python before writing the pages.
+- The equation numbers of session 2 (2.1 to 2.21) were compared with the right-hand numbers that
+  `pdftotext -layout` finds in `main.pdf`, and the two lists are the same, in the same order.
+- `check.py` already has the check for a number used twice and for a page without a source, which the plan
+  placed in phase 3. `mathcheck/` and `texdiff.py` are not built yet.
+- Not done in phase 1 and left for phase 2. `Section C.K` and `(C.n)` links across sessions need the
+  other sessions, the notes column of the landing page and the README link are not added. The `Sections 2.4
+  and 2.5` form is handled, but `Equation 2.x` and `Eq.` forms were not met in session 2 and are not
+  handled. The tab row of the notes pages shows the other sessions as dashed text, not as links.
+- Headless Chrome with the jsDelivr MathJax rendered the page of Section 2.5 with the equation numbers,
+  the boxed band, the figure and the notebook boxes in the dark mode.
+
 ## Decisions taken on 2026-11-06
 
 The lecturer answered the eight open decisions of the first version of this plan, and the

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2.4 Exercises where we guess eigenstates from symmetry only, session 2</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+
+  main { max-width: 860px; }
+  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
+              border-radius: 6px; color: var(--muted); }
+  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
+  .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
+  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
+  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
+  figure { margin: 24px 0; }
+  figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
+  figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
+  .eq { display: block; }
+  .math.display { overflow-x: auto; overflow-y: hidden; }
+  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
+                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
+  .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
+           margin: 20px 0; font-size: 0.95rem; }
+  .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
+  table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
+  .coursecontents h2 { margin-top: 28px; }
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script src="../../notes/notes.js" defer></script>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
+  <nav class="tabs"><a href="../../lectures/session2.html">Video lectures</a><a href="../../landscape/session2.html">Landscape lectures</a><a class="on" href="../../notes/session2/index.html">Lecture notes</a></nav>
+  <nav class="sub"><span title="Second quantization, mean field and spontaneous symmetry breaking (notes not on the page yet)">1</span><a class="on" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><span title="Topological band structure theory (notes not on the page yet)">3</span><span title="Electrons in magnetic fields, the quantum Hall effect and Landau levels (notes not on the page yet)">4</span><span title="Superconductivity, Nambu representation and Majorana physics (notes not on the page yet)">5</span><span title="Classical magnetism and magnons (notes not on the page yet)">6</span><span title="Quantum entanglement and tensor networks (notes not on the page yet)">7</span><span title="Quantum magnetism, spinons and Kondo physics (notes not on the page yet)">8</span><span title="Excitations and defects in quantum materials (notes not on the page yet)">9</span><span title="Machine learning quantum materials (notes not on the page yet)">10</span></nav>
+  <p class="crumb"><a href="index.html">Session 2. Symmetries, Tight-Binding Band Structure Theory, and Effective Models</a></p>
+<h1 id="sec-2-4"><span class="num">2.4</span> Exercises where we guess eigenstates from symmetry only</h1>
+<p>We will now see with a sequence of small examples how much <a href="03-symmetry-operators-in-a-formal-way.html#eq-2-3">(2.3)</a> gives us. In each example we add sites, and at the end we take the infinite limit.</p>
+<p><strong>Three sites on a ring.</strong> We take a tight-binding Hamiltonian on three sites in a triangle, with a symmetry <span class="math inline">\(R\)</span> that rotates <span class="math inline">\(1\to2\to3\to1\)</span> by <span class="math inline">\(120^\circ\)</span>. Since <span class="math inline">\(R^3=\mathbb{1}\)</span>, any eigenvalue <span class="math inline">\(\lambda=e^{i\varphi}\)</span> of <span class="math inline">\(R\)</span> must satisfy <span class="math inline">\(\lambda^3=1\)</span>, so</p>
+<p><span id="eq-2-4" class="eq"><span class="math display">\[\varphi_n = \frac{2\pi n}{3}, \qquad n=0,1,2. \tag{2.4}\]</span></span></p>
+<p>So we know a lot about the eigenstates of <span class="math inline">\(H\)</span> before we write <span class="math inline">\(H\)</span> explicitly. They must have the form <span class="math inline">\(\alpha_1c_1^\dagger+\alpha_2c_2^\dagger+\alpha_3c_3^\dagger\)</span>. Since <span class="math inline">\(R\)</span> permutes the sites in a cyclic way and multiplies the whole state by <span class="math inline">\(e^{i\varphi_n}\)</span>, the coefficients must have the same phase from one site to the next, <span class="math inline">\(\alpha_j\propto e^{i\varphi_n j}\)</span>. The eigenstates of any Hamiltonian with this rotational symmetry are exactly the three discrete Fourier modes on the ring, regardless of the values of the hopping amplitudes. Figure <a href="#fig:s02:ring">2.1</a> shows the three modes explicitly, and it also shows how the set of allowed phases changes when the ring becomes larger.</p>
+<figure id="fig:s02:ring">
+<img src="../figures/s02f01_ringmodes.svg" loading="lazy" alt="Symmetry fixes the eigenstates before we write down the Hamiltonian." />
+<figcaption><strong>Figure 2.1.</strong> Symmetry fixes the eigenstates before we write down the Hamiltonian. On a three-site ring the rotation <span class="math inline">\(R\)</span> can only have eigenvalues <span class="math inline">\(e^{2\pi i n/3}\)</span> by <a href="#eq-2-4">(2.4)</a>, and so the coefficients of the state must change by this same phase from one site to the next. This means that the eigenstates are the discrete Fourier modes, for any values of the hopping amplitudes. The arrow on each site is the complex coefficient <span class="math inline">\(\alpha_j\propto e^{i\varphi_n j}\)</span>, which turns by <span class="math inline">\(2\pi n/3\)</span> from one site to the next. On the right, the balls are the allowed phases for <span class="math inline">\(L=3\)</span> and <span class="math inline">\(L=5\)</span>. In the limit <span class="math inline">\(L\to\infty\)</span> they fill the circle, and this circle is the first Brillouin zone.</figcaption>
+</figure>
+<p><strong>Five sites on a ring.</strong> The same argument on a five-site ring with nearest-neighbour hopping, <span class="math inline">\(H=\sum_{\langle ij\rangle} c_i^\dagger c_j\)</span>, gives <span class="math inline">\(\varphi_n=2\pi n/5\)</span>, <span class="math inline">\(n=0,\dots,4\)</span>, and the eigenstates <span class="math inline">\(|\Psi_n\rangle \propto \sum_{j=0}^4 e^{i\varphi_n j}\,c_j^\dagger|0\rangle\)</span>. With this we can already answer a quantitative question without diagonalizing anything. Let us ask what the weight of site 1 is in the lowest-energy eigenstate built from the vacuum <span class="math inline">\(|\Omega\rangle\)</span>, in the sense of the overlap <span class="math inline">\(\big|\langle\Omega|c_1\Psi_{\rm GS}^\dagger|\Omega\rangle\big|^2\)</span>. Every <span class="math inline">\(|\Psi_n\rangle\)</span> is a superposition over all five sites with the same modulus on each site, so this overlap is <span class="math inline">\(1/5\)</span> for every <span class="math inline">\(n\)</span>, for the lowest energy and for all other states. This follows from the symmetry only, and it does not depend on the specific hopping amplitudes. The same argument stays valid if the nearest-neighbour hopping is replaced by any long-range hopping, and a six-site ring with additional long-range couplings shows the same thing. As long as the rotational symmetry of the ring is present, the symmetry eigenvalues, the eigenstates and expectation values such as this one are all fixed by symmetry only, however complicated the Hamiltonian becomes.</p>
+<p>Note that such models with few sites are not only of academic interest. With scanning tunnelling microscopy one can place single atoms with essentially arbitrary precision, and tight-binding rings with few sites like these have been built and measured in this way. There is a famous stop-motion film made only from atoms moved with STM, which is sometimes called “the smallest film ever made,” where every dot on the screen is a single atom. It shows how precisely such models can now be realized in the lab.</p>
+<p><strong>The infinite chain.</strong> Now we let the ring grow without limit, so that it becomes an infinite one-dimensional chain with nearest-neighbour hopping. The relevant symmetry is a translation by one site, <span class="math inline">\(T: c_n^\dagger \to c_{n-1}^\dagger\)</span>, which shifts a wavefunction <span class="math inline">\(\psi_n\)</span> on the sites to <span class="math inline">\(\psi_{n+1}\)</span>, and <span class="math inline">\([H,T]=0\)</span> for any Hamiltonian that only has hoppings that depend on the distance between sites and not on the absolute position. By Section <a href="03-symmetry-operators-in-a-formal-way.html#sec-2-3">2.3</a>, <span class="math inline">\(H\)</span> and <span class="math inline">\(T\)</span> have a common eigenbasis, and by <a href="03-symmetry-operators-in-a-formal-way.html#eq-2-2">(2.2)</a> the eigenvalue of <span class="math inline">\(T\)</span> in this common eigenbasis is a pure phase <span class="math inline">\(e^{i\varphi}\)</span>. This <span class="math inline">\(\varphi\)</span> is called the <strong>Bloch phase</strong>. The statement that <span class="math inline">\(H\)</span> and <span class="math inline">\(T\)</span> have a common eigenbasis, when we apply it to a system with translational symmetry, <em>is</em> Bloch’s theorem, which says that if two operators commute, there is a common basis for both of them. The relation between this phase and the corresponding energy of the Hamiltonian is what we call the <strong>dispersion relation</strong> of a periodic system.</p>
+
+  <nav class="pager"><a href="03-symmetry-operators-in-a-formal-way.html">2.3 Symmetry operators in a formal way</a><a href="05-blochs-theorem-and-the-first-band-structure.html">2.5 Bloch's theorem and the first band structure</a></nav>
+
+</main>
+</body>
+</html>

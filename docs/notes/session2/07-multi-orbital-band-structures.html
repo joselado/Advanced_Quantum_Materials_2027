@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2.7 Multi-orbital band structures, session 2</title>
+<style>
+  :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
+          --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16171a; --fg: #e8e8ea; --muted: #a0a3a8; --rule: #33363b; --link: #8ab4f8;
+            --card: #1e2024; --tab: #25282d; --accent: #8ab4f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
+  h2 { font-size: 1.25rem; margin: 40px 0 8px; }
+  h3 { font-size: 1.02rem; margin: 24px 0 4px; }
+  a { color: var(--link); }
+  .course { color: var(--muted); margin: 0 0 16px; }
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
+  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
+  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
+  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
+           text-decoration: none; color: var(--fg); }
+  .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .sub a.off { color: var(--muted); border-style: dashed; }
+  video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
+  .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
+             align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  ul { padding-left: 1.3em; margin: 4px 0; }
+  li { margin: 2px 0; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
+  .half h2 { margin-top: 14px; }
+  .half ol { padding-left: 1.6em; margin: 8px 0; }
+  .half li { margin: 4px 0; }
+  .soon { color: var(--muted); }
+  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
+           border-top: 1px solid var(--rule); gap: 12px; }
+
+  main { max-width: 860px; }
+  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
+              border-radius: 6px; color: var(--muted); }
+  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
+  .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
+  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
+  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
+  figure { margin: 24px 0; }
+  figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
+  figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
+  .eq { display: block; }
+  .math.display { overflow-x: auto; overflow-y: hidden; }
+  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
+                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
+  .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
+           margin: 20px 0; font-size: 0.95rem; }
+  .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
+  table { border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 4px 10px; text-align: left; }
+  .coursecontents h2 { margin-top: 28px; }
+</style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<script src="../../notes/notes.js" defer></script>
+</head>
+<body>
+<main>
+  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
+  <nav class="tabs"><a href="../../lectures/session2.html">Video lectures</a><a href="../../landscape/session2.html">Landscape lectures</a><a class="on" href="../../notes/session2/index.html">Lecture notes</a></nav>
+  <nav class="sub"><span title="Second quantization, mean field and spontaneous symmetry breaking (notes not on the page yet)">1</span><a class="on" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><span title="Topological band structure theory (notes not on the page yet)">3</span><span title="Electrons in magnetic fields, the quantum Hall effect and Landau levels (notes not on the page yet)">4</span><span title="Superconductivity, Nambu representation and Majorana physics (notes not on the page yet)">5</span><span title="Classical magnetism and magnons (notes not on the page yet)">6</span><span title="Quantum entanglement and tensor networks (notes not on the page yet)">7</span><span title="Quantum magnetism, spinons and Kondo physics (notes not on the page yet)">8</span><span title="Excitations and defects in quantum materials (notes not on the page yet)">9</span><span title="Machine learning quantum materials (notes not on the page yet)">10</span></nav>
+  <p class="crumb"><a href="index.html">Session 2. Symmetries, Tight-Binding Band Structure Theory, and Effective Models</a></p>
+<h1 id="sec-2-7"><span class="num">2.7</span> Multi-orbital band structures</h1>
+<p>Real unit cells almost never have a single orbital. Graphene has two, one per sublattice, compounds of transition metals often have several <span class="math inline">\(d\)</span>-orbitals per site, and so on. Let <span class="math inline">\(\alpha\)</span> label the orbital within a unit cell and <span class="math inline">\(n\)</span> label the unit cell itself. We keep couplings only within a cell and to the nearest-neighbouring cell, and longer-range couplings work with the same method, only with more terms. The most general bilinear Hamiltonian built from these operators is then</p>
+<p><span id="eq-2-11" class="eq"><span class="math display">\[H = \sum_{n,\alpha,\beta} t_{\alpha\beta}\, c_{n,\alpha}^\dagger c_{n,\beta}
++ \sum_{n,\alpha,\beta} \left(\gamma_{\alpha\beta}\, c_{n,\alpha}^\dagger c_{n+1,\beta} + \text{h.c.}\right), \tag{2.11}\]</span></span></p>
+<p>where <span class="math inline">\(t_{\alpha\beta}\)</span> are the intracell hoppings and <span class="math inline">\(\gamma_{\alpha\beta}\)</span> are the intercell hoppings. The intracell term already contains both directions of each bond, so <span class="math inline">\(t\)</span> is a Hermitian matrix, <span class="math inline">\(t_{\alpha\beta}=t_{\beta\alpha}^*\)</span>, and the Hermitian conjugate is only added to the intercell term.</p>
+<p>The symmetry that diagonalizes <a href="#eq-2-11">(2.11)</a> is a slightly richer version of a pure translation. It shifts the unit-cell index <span class="math inline">\(n\to n+1\)</span> <em>and</em> applies a unitary rotation among the orbitals within each cell. The corresponding eigenstates are</p>
+<p><span class="math display">\[\Psi_{\varphi,\alpha}^\dagger \sim \sum_{n,\beta} e^{in\varphi}\,U_{\alpha\beta}\,c_{n,\beta}^\dagger,\]</span></p>
+<p>for some unitary <span class="math inline">\(U\)</span>. We put this ansatz into <a href="#eq-2-11">(2.11)</a> and repeat the Fourier argument of Section <a href="05-blochs-theorem-and-the-first-band-structure.html#sec-2-5">2.5</a> for each orbital, and we find that the required <span class="math inline">\(U\)</span> is exactly the matrix that diagonalizes the <strong>Bloch Hamiltonian</strong></p>
+<p><span id="eq-2-12" class="eq"><span class="math display">\[H(\varphi) = t + \gamma\, e^{i\varphi} + \gamma^\dagger e^{-i\varphi}, \tag{2.12}\]</span></span></p>
+<p>which is a matrix whose size is the number of orbitals per unit cell. Each entry is labelled by the pair of orbitals <span class="math inline">\((\alpha,\beta)\)</span> that it couples. The intracell hoppings <span class="math inline">\(t_{\alpha\beta}\)</span> enter this entry directly, with no phase, while the intercell hoppings <span class="math inline">\(\gamma_{\alpha\beta}\)</span> enter multiplied by the phase <span class="math inline">\(e^{\pm i\varphi}\)</span> that comes from the symmetry eigenvalue. This is the general method that we will use many times. First we count the orbitals per cell, which gives the size of the matrix. Then we put each hopping in the entry of its pair of orbitals, we multiply the intercell ones by <span class="math inline">\(e^{\pm i\varphi}\)</span>, and we diagonalize. Note that an intracell hopping between <em>different</em> orbitals goes off the diagonal, as the example below shows.</p>
+<p>A concrete example makes this clear, and it will be important again soon. We take a chain with two orbitals (<span class="math inline">\(A,B\)</span>), with a strong intracell coupling of magnitude <span class="math inline">\(1\)</span> between <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, and a weaker intercell coupling <span class="math inline">\(\eta\)</span> between <span class="math inline">\(B\)</span> in one cell and <span class="math inline">\(A\)</span> in the next cell. The Bloch Hamiltonian <a href="#eq-2-12">(2.12)</a> is then purely off-diagonal,</p>
+<p><span id="eq-2-13" class="eq"><span class="math display">\[H(\varphi) = \begin{pmatrix} 0 &amp; 1+\eta\,e^{-i\varphi} \\ 1+\eta\,e^{i\varphi} &amp; 0 \end{pmatrix},
+\qquad \epsilon_\pm(\varphi) = \pm\left|1+\eta\,e^{-i\varphi}\right|. \tag{2.13}\]</span></span></p>
+<p>This chain with alternating hoppings should be remembered by its name, since it is the Hamiltonian of Su-Schrieffer-Heeger type that appears again, now with a topological aspect, in the topology lecture right after this one. Figure <a href="#fig:s02:recipe">2.3</a> shows this chain as the chain of <a href="05-blochs-theorem-and-the-first-band-structure.html#eq-2-8">(2.8)</a> described with a unit cell of two sites, so that its single band folds into the two bands of <a href="#eq-2-13">(2.13)</a>, and it also shows how a gap opens at the zone edge when <span class="math inline">\(\eta\)</span> moves away from <span class="math inline">\(1\)</span>.</p>
+<figure id="fig:s02:recipe">
+<img src="../figures/s02f03_blochrecipe.svg" loading="lazy" alt="Reading a Bloch Hamiltonian from a lattice, shown as band folding." />
+<figcaption><strong>Figure 2.3.</strong> Reading a Bloch Hamiltonian from a lattice, shown as band folding. The number of orbitals per unit cell gives the size of the matrix. An intracell hopping enters the entry of its orbital pair with no phase, and an intercell hopping enters the corresponding entry multiplied by <span class="math inline">\(e^{\pm i\varphi}\)</span>. (a) The same chain with one site per cell, behind, and with two sites <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> per cell, in front, where the intracell hopping <span class="math inline">\(1\)</span> is the thick bond and the intercell hopping <span class="math inline">\(\eta\)</span> is the thin one. Note that the intracell <span class="math inline">\(A\)</span>-<span class="math inline">\(B\)</span> hopping goes <em>off</em> the diagonal. For the chain with alternating hoppings <a href="#eq-2-13">(2.13)</a> this gives the two bands <span class="math inline">\(\epsilon_\pm=\pm|1+\eta e^{-i\varphi}|\)</span>. (b) For <span class="math inline">\(\eta=1\)</span> the two descriptions are the same chain, and the band of the one-site cell, the grey tube, folds into the zone of the two-site cell, which is half as wide and ends at the translucent planes at <span class="math inline">\(\varphi=\pm\pi\)</span>. The two folded branches are the two bands, which touch at the zone edge. For <span class="math inline">\(\eta=0.6\)</span> they have a gap, and the gap closes exactly at <span class="math inline">\(\eta=1\)</span>. This is the Su-Schrieffer-Heeger chain of the topology session.</figcaption>
+</figure>
+<div class="notebookbox">
+<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session2.ipynb"><code>session2.ipynb</code></a>, “One dimensional chain, band folding” (Challenge), and “One dimensional ladder, band folding” (Challenge)</p>
+<p>The “band folding” section builds the same picture from the other direction. You take a chain with a single orbital and describe it again with a larger unit cell, which is the same as having more than one site per cell, and you see how a single band from <a href="05-blochs-theorem-and-the-first-band-structure.html#eq-2-8">(2.8)</a> folds into several bands, as <a href="#eq-2-12">(2.12)</a> predicts. The ladder section then works with a real model with two orbitals per cell, in the same spirit as <a href="#eq-2-13">(2.13)</a>, and there you can check that the numerical bands agree with <span class="math inline">\(\epsilon_\pm(\varphi)\)</span>.</p>
+</div>
+
+  <nav class="pager"><a href="06-the-meaning-of-the-phase-which-is-the-quasi-momentum.html">2.6 The meaning of the phase, which is the quasi-momentum</a><a href="08-higher-dimensional-band-structures.html">2.8 Higher-dimensional band structures</a></nav>
+
+</main>
+</body>
+</html>

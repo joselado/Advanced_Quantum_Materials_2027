@@ -98,6 +98,11 @@ def has_video(s, fmt):
     return s.get('lecture', False) if fmt == 'lectures' else True
 
 
+def has_notes(n):
+    # the notes of a session are on the page once webnotes/convert.py has written its manifest
+    return os.path.exists(os.path.join(HERE, '..', 'webnotes', 'manifest', f'session{n:02d}.json'))
+
+
 def tabs(fmt, n):
     out = []
     for f, F in FORMATS.items():
@@ -142,6 +147,8 @@ def session_page(fmt, sessions, s):
     b += f'  <p class="note">Slides of this session: <a href="{REPO}/blob/main/slides_prerecordings/lecture{n}.pdf">lecture{n}.pdf</a>'
     if s.get('notebook'):
         b += f' · exercises: <a href="{REPO}/blob/main/jupyter-notebooks/session{n}.ipynb">session{n}.ipynb</a>'
+    if has_notes(n):
+        b += f' · <a href="../notes/session{n}/index.html">Notes of this session</a>'
     b += f' · <a href="{REPO}/blob/main/lecture_notes/main.pdf">lecture notes</a></p>\n'
     ns = [x['session'] for x in sessions]
     i = ns.index(n)

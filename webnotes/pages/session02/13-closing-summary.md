@@ -1,0 +1,16 @@
+## Closing summary {#sec-2-13 number="2.13"}
+
+- **Symmetry as a tool to simplify.** When the ground state shares the symmetry of the Hamiltonian, we can use a symmetry operator that commutes with it, $[H,S]=0$ in [(2.3)](#eq-2-3), and find the eigenbasis of $H$ by finding the eigenbasis of $S$ instead. We worked this out explicitly for rings of three and five sites in Section [2.4](#sec-2-4).
+
+- **Bloch's theorem** is this same idea applied to translational symmetry on an infinite lattice. Eigenstates have a definite phase $\varphi$ under translation, which is the quasi-momentum of [(2.10)](#eq-2-10), and this turns one infinite-dimensional diagonalization into a continuous family of finite ones, given by the **Bloch Hamiltonian** $H(\varphi)$.
+
+- We derived the band structure of the one-dimensional chain explicitly, $\epsilon_\varphi=-2t\cos\varphi$ in [(2.8)](#eq-2-8). We generalized the same method to second-neighbour hopping [(2.9)](#eq-2-9), to several orbitals per unit cell with the matrix Bloch Hamiltonian $H(\varphi)=t+\gamma e^{i\varphi}+\gamma^\dagger e^{-i\varphi}$ in [(2.12)](#eq-2-12)-[(2.13)](#eq-2-13), and to higher spatial dimensions, [(2.14)](#eq-2-14) and [(2.15)](#eq-2-15).
+
+- A dispersion $E(\mathbf{k})$ directly determines the measurable properties of a material, which are the density of states [(2.16)](#eq-2-16), the group velocity [(2.17)](#eq-2-17), the effective mass [(2.18)](#eq-2-18) and the Fermi surface. Every real dispersion is built locally from three types, which are parabolic, Dirac and flat.
+
+- The **Dirac cone** of the honeycomb lattice of graphene, $H(\mathbf{q})\approx\hbar v_F(q_x\sigma_x+
+    q_y\sigma_y)$ with $E_\pm=\pm\hbar v_F|\mathbf{q}|$ in [(2.20)](#eq-2-20)-[(2.21)](#eq-2-21), is the most important example of this session. We derived it directly from the vanishing of the off-diagonal Bloch Hamiltonian [(2.19)](#eq-2-19) at the points $K,K'$. The Lieb and kagome lattices realize flat bands with the same kind of interference in real space, and with no fine-tuning.
+
+- All of this band-structure method generalizes directly to phonons, magnons and Bogoliubov-de Gennes quasiparticles, and not only to electrons, and it is tested against real materials in experiments with ARPES.
+
+The main message of this session is the following. The spectra of periodic systems are computed with band-structure theory, by choosing the common eigenbasis of the symmetry operator and the Hamiltonian, and the resulting dispersion relation $E(\mathbf{k})$ alone determines many of the electronic properties of a material, before interactions are included again. The Dirac cone that we derived in Section [2.11](#sec-2-11) is not only a fact about graphene. It is the object that the next session takes up, where we ask what happens when it is gapped open, and this is where topological band structure, Chern numbers and the SSH model, which we already saw in the two-orbital chain of [(2.13)](#eq-2-13), enter the course in detail. The flat bands are also not the end of the topic. The kagome and Lieb constructions of this session lead directly to the flat bands of the Landau levels, which the quantum Hall session builds several sessions from now.
