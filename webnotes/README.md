@@ -132,22 +132,48 @@ A missing script and SVG, a failing script, a missing id and a missing alt are e
 
 ### Quiz
 
-A multiple-choice question with 3 or 4 options. Each option starts with `[x]` for the correct one or `[ ]`,
-with exactly one `[x]`. The text before the list is the question, and the text after the list is the explanation.
-Without JavaScript the options are a list and the answer is in a `<details>`. With `notes.js` the options are
-buttons, a wrong one is marked and can be tried again, and the right one opens the explanation. Math works.
+A multiple-choice question with exactly 3 options, one correct and two wrong. Each option starts with `[x]` for
+the correct one or `[ ]`. The text before the list is the question. Under every option, indented by 4 spaces
+and after an empty line, goes its feedback, in the form of the verdict first. For the correct option it is a
+short reason why it is correct, for a wrong option it is a counterexample, a case with numbers where the option
+fails. If one option has feedback, all three must have it. The explanation after the list is optional and is
+for the general point. Math works everywhere.
 
 ```
 ::: quiz
-Which energy has the state with $\varphi=\pi/2$ in the band of [(2.8)](#eq-2-8)?
+What is the energy of [(2.9)](#eq-2-9) at $\varphi=\pi/2$?
 
-- [ ] $-2t$
-- [x] $0$
-- [ ] $2t$
+- [ ] $0$
 
-At $\varphi=\pi/2$ the cosine vanishes, so $\epsilon_\varphi=0$. This is the middle of the band.
+    This is false. Take $t=1$ and $\eta=0.2$. Then $\epsilon_{\pi/2}=0.4$, which is not zero.
+
+- [x] $2\eta$
+
+    This is true. The term with $t$ vanishes since $\cos(\pi/2)=0$, and the second term gives $+2\eta$.
+
+- [ ] $-2\eta$
+
+    This is false. For $\eta=0.2$ we get $+0.4$, because $\cos\pi=-1$.
+
+Optional, the general point, for example what the energy measures.
 :::
 ```
+
+The student sees a block with the label "Question", the question on a tinted band, and the options as buttons.
+A click marks the option "True" or "False" with a mark and a word, and opens its feedback below it, headed
+"Why it is correct" or "Counterexample". The other options can be tried too, and a second click closes the
+feedback. Tab and Enter or Space work, a hidden status line announces the verdict (`aria-live`), and MathJax
+typesets the feedback when it opens. Without JavaScript a `<details>` lists the three verdicts with their
+feedback.
+
+All 212 quizzes of the ten sessions are in this form, each with exactly 3 options. The old form
+(the options with `[x]` and `[ ]` and the explanation after the list, label "Quick check") still builds, but
+`check.py` counts it, and the build prints the number of quizzes in the old form and of quizzes without 3 options.
+`check.py` makes an error of a quiz with feedback that has not exactly 3 options or no correct option. A new
+quiz is written with the feedback and the 3 options together.
+
+On a screen of 480 px or less the verdict of an option goes under its text. The math inside an option is not a
+tab stop (`notes.js` sets its tabindex to -1 after MathJax), so Tab goes from option to option.
 
 ### Try it
 

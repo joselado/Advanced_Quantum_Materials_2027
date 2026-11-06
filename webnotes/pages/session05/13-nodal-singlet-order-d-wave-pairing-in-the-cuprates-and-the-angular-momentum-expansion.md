@@ -28,11 +28,16 @@ The lecture repeats the same classification into three cases, uniform s-wave, a 
 On the triangular lattice a gap has six lobes of alternating sign around the Fermi surface. What are its parity, its angular momentum and its spin?
 
 - [ ] Even parity, $L=2$, spin singlet.
-- [x] Odd parity, $L=3$, spin triplet.
-- [ ] Even parity, $L=3$, spin singlet.
-- [ ] Odd parity, $L=2$, spin triplet.
 
-A half turn moves every lobe by three places. Since the sign alternates, an odd number of steps flips it, so $\Delta(-\mathbf k)=-\Delta(\mathbf k)$. By [(5.12)](#eq-5-12) this is odd parity and a spin triplet, and six lobes mean $L=3$.
+    This is false. A $d$-wave gap such as $\cos k_x-\cos k_y$ has four lobes. Six lobes of alternating sign cannot be even, because a half turn moves each lobe by three places and flips its sign.
+
+- [x] Odd parity, $L=3$, spin triplet.
+
+    This is true. A half turn moves every lobe by three places, and the sign alternates, so $\Delta(-\mathbf k)=-\Delta(\mathbf k)$. By [(5.12)](#eq-5-12) this is odd parity and a spin triplet, and six lobes mean $L=3$.
+
+- [ ] Even parity, $L=3$, spin singlet.
+
+    This is false. A function $\cos3\theta$ has $L=3$ and six lobes. Under $\theta\to\theta+\pi$ it becomes $\cos(3\theta+3\pi)=-\cos3\theta$, so it is odd and an odd $L$ cannot be a singlet.
 :::
 
 ::: notebookbox

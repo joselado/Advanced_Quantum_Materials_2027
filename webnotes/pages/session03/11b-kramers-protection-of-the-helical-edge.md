@@ -8,11 +8,17 @@ So far we have treated the two spin sectors as independent. There is a subtle po
 Which perturbation can open a gap at the crossing of the helical edge states of a wide ribbon?
 
 - [ ] A spin-mixing term such as Rashba spin-orbit coupling.
-- [x] A magnetic field or a magnetic impurity that breaks time-reversal symmetry.
-- [ ] A random potential that is the same for both spins.
-- [ ] A shift of the chemical potential.
 
-Kramers theorem protects the crossing as long as time-reversal symmetry holds, with or without spin mixing. Only a term that breaks time reversal can open the gap $\Delta$ of panel (c).
+    This is false. Rashba coupling mixes the spins but keeps time-reversal symmetry. The crossing is at $k=0$, a time-reversal invariant momentum, so Kramers theorem keeps the two states degenerate there for any strength of the coupling.
+
+- [x] A magnetic field or a magnetic impurity that breaks time-reversal symmetry.
+
+    This is true. Kramers theorem protects the crossing as long as time-reversal symmetry holds. A term that breaks it can open the gap $\Delta$ of panel (c).
+
+- [ ] A random potential that is the same for both spins.
+
+    This is false. A spin-independent potential $V$ gives $\langle -k,\downarrow|V|k,\uparrow\rangle=0$, so it cannot backscatter between the two partners. The crossing stays closed for any strength of the disorder.
+
 :::
 
 Disorder makes this difference concrete. Helical edge states survive disorder that preserves time-reversal symmetry, since the band structure changes but the gapless crossing at the edge remains. On the other hand, disorder that breaks time-reversal symmetry opens a real gap in the edge spectrum and removes the protection completely.

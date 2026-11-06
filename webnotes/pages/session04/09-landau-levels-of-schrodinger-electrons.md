@@ -23,22 +23,34 @@ which does not depend on $k_y$ at all. Every value of $k_y$, or in other words e
 The energy [(4.6)](#eq-4-6) does not depend on $k_y$. What does $k_y$ fix instead?
 
 - [ ] The cyclotron frequency.
-- [ ] The spin of the electron.
+
+    This is false. The frequency $\omega_c=B/m$ depends on the field and the mass. Two states with $k_y=0$ and $k_y=5/\ell_B$ have the same $\omega_c$.
+
 - [ ] The Landau level index $n$.
+
+    This is false. For a fixed $n$ all the values of $k_y$ give the same energy, which is the degeneracy of the level. Then $k_y$ cannot decide $n$.
+
 - [x] The position $x_0=\hbar k_y/B$ of the center of the oscillator.
 
-A change of $k_y$ shifts the oscillator well along $x$ and does not change its curvature. The same ladder of levels is then found at every position.
+    This is true. A change of $k_y$ shifts the oscillator well along $x$ and does not change its curvature. The same ladder of levels is then found at every position.
+
 :::
 
 ::: quiz
 A sample has the area $A$. How does the number of states in one Landau level depend on $A$ and $B$?
 
 - [ ] It is proportional to $A$ and independent of $B$.
-- [ ] It is proportional to $A/B$.
-- [x] It is proportional to $AB$, which is one orbital for each flux quantum through the sample.
-- [ ] It is one state for each Landau level, independent of $A$.
 
-A stronger field gives more flux quanta through the same area, and every flux quantum adds one orbital. This is why the degeneracy grows with the area and with the field.
+    This is false. For $A=1\,\mu\mathrm{m}^2$ there are about 242 flux quanta at 1 T and about 484 at 2 T. The number of states doubles when the field doubles.
+
+- [ ] It is proportional to $A/B$.
+
+    This is false. This law gives half of the states when the field doubles, about 121 instead of 484 for the sample of $1\,\mu\mathrm{m}^2$ going from 1 T to 2 T. A stronger field gives more flux quanta.
+
+- [x] It is proportional to $AB$, which is one orbital for each flux quantum through the sample.
+
+    This is true. A stronger field gives more flux quanta through the same area, and every flux quantum adds one orbital. This is why the degeneracy grows with the area and with the field.
+
 :::
 
 ::: {.tryit notebook="session4.ipynb" cell="Magnetic field dependence of Landau levels"}

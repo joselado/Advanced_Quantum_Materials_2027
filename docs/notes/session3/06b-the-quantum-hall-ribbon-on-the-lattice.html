@@ -89,9 +89,9 @@
 <img src="../figures/panel/s04f01_ribbon_a.svg" loading="lazy" alt="Flat Landau levels of a ribbon with the edge branches that bend up near the walls and cross the gap." />
 <figcaption><strong><a href="../session4/05-edge-states-and-why-an-insulating-bulk-still-conducts.html#fig:s04:ribbon">Figure 4.1</a>, one panel shown again.</strong> The spectrum of a quantum Hall ribbon, from session 4. The flat bulk levels are the Landau levels. The branches that bend up near the walls are the edge states, one for each edge. This panel is computed in the continuum with hard walls, and the lattice ribbon of the notebook gives the same picture. Look at the number of branches that cross the chemical potential, the translucent plane.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>In the spectrum of the ribbon the bulk Landau levels are flat. What does this say about the current carried by the bulk states?</p>
@@ -100,13 +100,20 @@ Quick check
 <ol type="A">
 <li>They carry a current that is proportional to their energy.</li>
 <li>They carry no current, since their group velocity <span class="math inline">\(\partial E/\partial k\)</span> is zero.</li>
-<li>They carry current in both directions, which cancels at zero temperature.</li>
 <li>They carry the quantized Hall current.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The velocity along the ribbon is the slope of the band. A flat level has zero slope, so the current is carried only by the edge branches that cross the chemical potential.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Compare the first and the fifth Landau level. Both are flat, so both have <span class="math inline">\(\partial E/\partial k=0\)</span>, and neither carries current although their energies differ by a factor of nine.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The velocity along the ribbon is the slope of the band. A flat level has zero slope, so the current is carried only by the edge branches that cross the chemical potential.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. With the chemical potential in a gap, a voltage <span class="math inline">\(V\)</span> between the edges gives the current <span class="math inline">\(C(e^2/h)V\)</span> through the edge branches, which are the only states with a slope. The flat bulk levels have no slope and contribute nothing.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="notebookbox">

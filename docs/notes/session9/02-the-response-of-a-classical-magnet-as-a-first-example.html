@@ -97,9 +97,9 @@
 <figcaption><strong>Schematic 9.2.</strong> The inverse susceptibility of <a href="#eq-9-1">(9.1)</a> is a straight line in each case. The line of the paramagnet goes through the origin, the ferromagnet extrapolates to zero at the positive temperature <span class="math inline">\(T_c\)</span>, and the antiferromagnet at the negative temperature <span class="math inline">\(-T_c\)</span>. The dashed parts are extrapolations, since the disordered phase does not reach them.</figcaption>
 </figure>
 <p>The physical picture behind <a href="#eq-9-1">(9.1)</a> is important, because we will find it again in a fully quantum form in Section <a href="05-interactions-as-a-perturbation-with-rpa-plasmons-and-the-stoner-instability.html#sec-9-5">9.5</a>. In the paramagnetic regime the thermal fluctuations dominate, and the susceptibility stays finite at any <span class="math inline">\(T&gt;0\)</span>, since nothing in the system tends to order. In the ferromagnetic case the fluctuations <em>reinforce</em> the applied field, so as <span class="math inline">\(T\to T_c^+\)</span> the system becomes polarized more and more easily, and <span class="math inline">\(\chi\)</span> really diverges at the transition. In the antiferromagnetic case the fluctuations <em>oppose</em> the applied field, since they favor staggered order and not uniform order, and this appears as the opposite sign in the denominator. The susceptibility then seems to go towards a divergence at a temperature below absolute zero. Of course it never reaches it, but the sign alone already tells us that the system tends to antiferromagnetic order and not to ferromagnetic order. In experiments this is a practical diagnostic. We plot <span class="math inline">\(\chi^{-1}(T)\)</span>, and if the straight line extrapolates to a positive intercept, the system is close to a ferromagnet, while a negative intercept means that the system is close to an antiferromagnet. All of this is measured in the disordered phase at high temperature. This is the model for the whole session, which is that <strong>the response of the disordered/uniform state, computed without ever solving for the ordered state itself, already contains the information about which ordered state is coming.</strong></p>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>We measure the susceptibility of a magnet at high temperature. A plot of <span class="math inline">\(1/\chi\)</span> against <span class="math inline">\(T\)</span> is a straight line that reaches zero at <span class="math inline">\(T=-30\)</span> K when we extrapolate it. What do we expect when we cool the sample?</p>
@@ -111,9 +111,17 @@ Quick check
 <li>No order at all, since a paramagnet has the intercept at zero.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The line <span class="math inline">\(1/\chi\propto T+T_c\)</span> is the antiferromagnetic case of <a href="#eq-9-1">(9.1)</a>, with <span class="math inline">\(T_c=30\)</span> K. The exchange favors staggered order, so the uniform susceptibility only reaches the apparent divergence at a negative temperature. A paramagnet would give an intercept at <span class="math inline">\(T=0\)</span>.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. For a ferromagnet with <span class="math inline">\(T_c=+30\)</span> K the line <span class="math inline">\(1/\chi\propto T-30\)</span> reaches zero at <span class="math inline">\(30\)</span> K, and <span class="math inline">\(\chi\)</span> diverges there. Our line reaches zero only at <span class="math inline">\(-30\)</span> K, so it never does at a positive temperature.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The line <span class="math inline">\(1/\chi\propto T+30\)</span> has the antiferromagnetic form of <a href="#eq-9-1">(9.1)</a>. The exchange favors staggered order, which the uniform <span class="math inline">\(\chi\)</span> does not feel, so it does not diverge for <span class="math inline">\(T&gt;0\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. A paramagnet has <span class="math inline">\(1/\chi\propto T\)</span>, which is <span class="math inline">\(60\)</span> at <span class="math inline">\(T=60\)</span> K. Our line gives <span class="math inline">\(90\)</span> there, so the intercept at <span class="math inline">\(-30\)</span> K is a measured deviation and it signals a finite exchange.</p></li>
+</ul>
+</div>
 </details>
 </div>
 

@@ -17,11 +17,17 @@ mN$ available LLL orbitals, which gives a filling fraction of $N/(mN)=1/m$, in a
 Why must the exponent $m$ of the Laughlin wavefunction [(4.12)](#eq-4-12) be an odd integer?
 
 - [ ] An even power would give a filling factor larger than one.
-- [ ] An odd power makes the electrons repel each other more.
+
+    This is false. The filling factor is $\nu=1/m$. For $m=2$ it is $1/2$, which is smaller than one.
+
 - [ ] An even power would take the wavefunction out of the lowest Landau level.
+
+    This is false. The factor $(z_i-z_j)^2$ is still a polynomial in $z$, so the state stays in the lowest Landau level. It is a valid state for bosons at $\nu=1/2$.
+
 - [x] An even power would make the wavefunction symmetric under exchange, which is not allowed for fermions.
 
-Exchanging two electrons changes the sign of $(z_i-z_j)$, and so $(z_i-z_j)^m$ changes sign only for odd $m$. This is the antisymmetry that fermions need.
+    This is true. Exchanging two electrons changes the sign of $(z_i-z_j)$, and so $(z_i-z_j)^m$ changes sign only for odd $m$. This is the antisymmetry that fermions need.
+
 :::
 
 ## Quasiholes and quasielectrons {#sec-4-17 number="4.17"}
@@ -39,10 +45,16 @@ This extra factor raises by one the effective power of every orbital. With the r
 ::: quiz
 We insert a quasihole three times, at three different places, in the Laughlin state with $m=3$. The total charge removed is that of one electron. What is the charge of one quasihole?
 
-- [ ] $3e$.
-- [ ] $e/9$.
 - [ ] $e$.
+
+    This is false. If one quasihole had the charge $e$, three of them would remove $3e$ and not the charge of one electron.
+
+- [ ] $e/9$.
+
+    This is false. Three quasiholes with $e/9$ remove $e/3$. This is a third of the charge of one electron and not the full charge.
+
 - [x] $e/3$.
 
-Three identical quasiholes remove the charge $e$ together, so each one has $e/3$. This agrees with $q=e/m$, which we confirm with the Berry phase in the next section.
+    This is true. Three identical quasiholes remove the charge $e$ together, so each one has $e/3$. This agrees with $q=e/m$, which we confirm with the Berry phase in the next section.
+
 :::

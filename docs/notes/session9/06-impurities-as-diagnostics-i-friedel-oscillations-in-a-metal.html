@@ -95,9 +95,9 @@
 <img src="../figures/panel/s09f01_nesting_ab.svg" loading="lazy" alt="A one-dimensional band with its two Fermi points and the static Lindhard function with a logarithmic peak at twice the Fermi wavevector." />
 <figcaption><strong><a href="04b-nesting-and-the-divergence-of-the-lindhard-function.html#fig:s09:nesting">Figure 9.1</a>, one panel shown again.</strong> The singularity that gives the Friedel oscillation. In panel (a) the vector <span class="math inline">\(2k_F\)</span> connects the two Fermi points of the chain, and in panel (b) the static Lindhard function has its logarithmic peak at that vector.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>A chain has the Fermi wavevector <span class="math inline">\(k_F=\pi/4\)</span>. What is the period of the Friedel oscillation of the density around an impurity, in units of the lattice constant?</p>
@@ -109,14 +109,22 @@ Quick check
 <li><span class="math inline">\(2\)</span>, since the oscillation follows the lattice.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The singularity of <span class="math inline">\(\chi_0(q)\)</span> is at <span class="math inline">\(q=2k_F\)</span>, so the density oscillates as <span class="math inline">\(\cos(2k_Fx)\)</span>. Its period is <span class="math inline">\(2\pi/2k_F=4\)</span>, which is half of the Fermi wavelength <span class="math inline">\(2\pi/k_F=8\)</span>.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The Fermi wavelength is <span class="math inline">\(2\pi/k_F=8\)</span>, but the density oscillates as <span class="math inline">\(\cos(2k_Fx)\)</span>. The period of this function is <span class="math inline">\(4\)</span>, so <span class="math inline">\(8\)</span> is the period of the wavefunction.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The singularity of <span class="math inline">\(\chi_0\)</span> is at <span class="math inline">\(q=2k_F=\pi/2\)</span>, so the density goes as <span class="math inline">\(\cos(\pi x/2)\)</span>. This repeats every <span class="math inline">\(4\)</span> lattice constants.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. A period of <span class="math inline">\(2\)</span> means <span class="math inline">\(2k_F=\pi\)</span>, which is half filling with <span class="math inline">\(k_F=\pi/2\)</span>. For <span class="math inline">\(k_F=\pi/4\)</span> the oscillation is twice slower.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>In two dimensions, <span class="math inline">\(d=2\)</span> in <a href="#eq-9-9">(9.9)</a>. We compare the envelope of the oscillation at the distance <span class="math inline">\(x\)</span> and at <span class="math inline">\(2x\)</span>. By which factor does it decrease?</p>
@@ -128,9 +136,17 @@ Quick check
 <li>A factor <span class="math inline">\(8\)</span>.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The envelope decays as <span class="math inline">\(1/|x|^{d}\)</span>, so doubling the distance divides it by <span class="math inline">\(2^d=4\)</span>. It is a power law, and not an exponential, because the singularity in <span class="math inline">\(\chi_0(q)\)</span> is only a non-analyticity and not a gap.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. A factor <span class="math inline">\(2\)</span> is the decay <span class="math inline">\(1/|x|\)</span> of <span class="math inline">\(d=1\)</span>. In <span class="math inline">\(d=2\)</span> the envelope falls as <span class="math inline">\(1/|x|^2\)</span>, so doubling <span class="math inline">\(x\)</span> gives <span class="math inline">\(1/4\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. With <span class="math inline">\(d=2\)</span> the envelope is <span class="math inline">\(1/|x|^2\)</span>. At <span class="math inline">\(x\)</span> and <span class="math inline">\(2x\)</span> the ratio is <span class="math inline">\(2^2=4\)</span>, and it is a power law because the Fermi surface makes <span class="math inline">\(\chi_0\)</span> non-analytic.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. A factor <span class="math inline">\(8\)</span> is the decay <span class="math inline">\(1/|x|^3\)</span> of <span class="math inline">\(d=3\)</span>. In <span class="math inline">\(d=2\)</span> the exponent is two, so the decrease is <span class="math inline">\(2^2=4\)</span>.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="tryit">

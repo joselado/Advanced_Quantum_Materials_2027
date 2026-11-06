@@ -96,30 +96,40 @@
 <img src="../figures/web/session02/mirror_field.svg" loading="lazy" alt="A charged plane with a vertical mirror line and a field arrow, and an egg-shaped charge with a point on the mirror axis and a point off it." />
 <figcaption><strong>Schematic 2.1.</strong> The mirror argument for the electric field. In (a), a tilted field turns into a different tilted field under the mirror, so only the field perpendicular to the plane survives. In (b), the same argument works for a point on the mirror axis of an egg-shaped charge, and it fails for a point away from the axis.</figcaption>
 </figure>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>A point sits on the mirror axis of the egg-shaped charge. Which direction can the electric field have there?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li>Along the axis.</li>
 <li>Perpendicular to the axis.</li>
-<li>At <span class="math inline">\(45^\circ\)</span> to the axis.</li>
+<li>Along the axis.</li>
 <li>Any direction, since the charge is not a plane.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>A component perpendicular to the axis is mapped by the mirror to the opposite component. The point lies on the axis, so both are the field at the same point, and this component has to vanish.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Take two equal charges at <span class="math inline">\((0,\pm d)\)</span> and a point <span class="math inline">\((x,0)\)</span> on the axis. The components along <span class="math inline">\(y\)</span> cancel, and the field points along <span class="math inline">\(x\)</span> only.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. A component perpendicular to the axis is mapped by the mirror to the opposite component. The point lies on the axis, so the two are the field at the same point, and this component has to vanish.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The mirror symmetry belongs to the whole charge and does not need a plane. The two point charges above are not a plane, and still the field on the axis is along the axis.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>Only the components that the mirror leaves unchanged can survive on the axis.</p>
+</div>
 </details>
 </div>
 <p>Mirrors are only the simplest case. A circle stays the same under any rotation. A square stays the same only under rotations by <span class="math inline">\(90^\circ\)</span>, <span class="math inline">\(180^\circ\)</span>, and <span class="math inline">\(270^\circ\)</span>, and a shape with less symmetry may stay the same only under a single mirror. Quantum systems can have much richer symmetries, which are also much less obvious than these, and in the following we turn this richer structure into a systematic tool.</p>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>How many rotations, counting the identity, leave a square unchanged?</p>
@@ -129,12 +139,22 @@ Quick check
 <li><span class="math inline">\(2\)</span></li>
 <li><span class="math inline">\(4\)</span></li>
 <li><span class="math inline">\(8\)</span></li>
-<li>Infinitely many.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The rotations by <span class="math inline">\(0^\circ\)</span>, <span class="math inline">\(90^\circ\)</span>, <span class="math inline">\(180^\circ\)</span> and <span class="math inline">\(270^\circ\)</span> map the square to itself, and any other angle does not. A circle, on the other hand, has infinitely many.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. A rotation by <span class="math inline">\(90^\circ\)</span> maps every corner of the square to the next corner, so the square looks the same. We have at least <span class="math inline">\(0^\circ\)</span>, <span class="math inline">\(90^\circ\)</span>, <span class="math inline">\(180^\circ\)</span> and <span class="math inline">\(270^\circ\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The rotations by <span class="math inline">\(0^\circ\)</span>, <span class="math inline">\(90^\circ\)</span>, <span class="math inline">\(180^\circ\)</span> and <span class="math inline">\(270^\circ\)</span> map the square to itself, and any other angle does not.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. A rotation by <span class="math inline">\(45^\circ\)</span> moves a corner to the middle of an edge, so the square becomes a diamond. The number <span class="math inline">\(8\)</span> counts the rotations and the four mirrors together.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>Counting the mirrors too, the square has eight symmetry operations, and four of them are rotations.</p>
+</div>
 </details>
 </div>
 

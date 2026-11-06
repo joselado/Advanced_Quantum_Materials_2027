@@ -24,11 +24,18 @@ Two of the three cases of this session, which are magnetism and superconductivit
 The quartic term of [(1.5)](#eq-1-5) has four operators, and the mean-field Hamiltonian has only two. What do we do with the other two?
 
 - [ ] We drop them, since they are small.
+
+    This is false. Take the Hubbard dimer. If we drop the interaction, the spectrum is $\pm t$ for every $U$, and no magnetic solution can appear. The interaction is what drives the magnetization, so it cannot be dropped.
+
 - [x] We replace them by their expectation value in the state that we are looking for.
-- [ ] We replace them by their commutator.
+
+    This is true. The expectation value is a number, so the two operators that remain form a single-particle term. The number comes from the state itself, which is why we solve the problem self-consistently.
+
 - [ ] We replace them by their value in the vacuum.
 
-The expectation value is a number, so the two operators that remain form a single-particle term. The number comes from the state itself, which is why we have to solve the problem self-consistently.
+    This is false. In the vacuum $\langle c_i^\dagger c_j\rangle=0$ for every pair. The mean field would then vanish, and the chain would have no charge modulation, while the loop of the figure ends with charges that differ from site to site.
+
+The self-consistent loop closes because the expectation values depend on the state that they define.
 :::
 
 ::: {.tryit notebook="session1.ipynb" cell="Gap opening of the Hubbard model in a chain"}

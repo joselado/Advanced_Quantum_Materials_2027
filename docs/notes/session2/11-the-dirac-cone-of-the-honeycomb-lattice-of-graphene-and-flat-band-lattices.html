@@ -99,9 +99,9 @@ v_F = \frac{3ta}{2\hbar}, \tag{2.20}\]</span></span></p>
 <p>where <span class="math inline">\(\sigma_x,\sigma_y\)</span> are the Pauli matrices that act on the <span class="math inline">\(A/B\)</span> sublattice space and <span class="math inline">\(a\)</span> is the nearest-neighbour bond length. When we diagonalize <a href="#eq-2-20">(2.20)</a> we obtain</p>
 <p><span id="eq-2-21" class="eq"><span class="math display">\[E_\pm(\mathbf{q}) = \pm \hbar v_F |\mathbf{q}|, \tag{2.21}\]</span></span></p>
 <p>which is a strictly linear dispersion with the shape of a cone around <span class="math inline">\(K\)</span>, and the same calculation gives the same result around <span class="math inline">\(K&#39;\)</span>. This is what is called the <strong>Dirac cone</strong>. Note that the curvature of the cone along the radial direction vanishes, so <a href="09-properties-of-an-electronic-dispersion.html#eq-2-18">(2.18)</a> gives an infinite effective mass in this direction, and at the tip of the cone the effective mass is not defined at all. When we say that the electrons of graphene are “massless”, which is the phenomenology for which graphene is famous, we refer to the Dirac mass term, which is the gap, and not to the curvature of the band. This is the low-energy physics of every material with a honeycomb lattice, and of graphene in the first place. There is much more structure at <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span>, namely a Berry phase and with it a topological classification, which we leave for the topology lecture right after this one.</p>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>The curvature of the cone is zero along the radial direction, and <a href="09-properties-of-an-electronic-dispersion.html#eq-2-18">(2.18)</a> gives an infinite mass. Why do we still call the electrons of graphene massless?</p>
@@ -110,13 +110,23 @@ Quick check
 <ol type="A">
 <li>Because the Dirac Hamiltonian has no mass term, which would be a gap at the Dirac point.</li>
 <li>Because the effective mass of <a href="09-properties-of-an-electronic-dispersion.html#eq-2-18">(2.18)</a> is zero at the tip.</li>
-<li>Because the electrons of graphene have no charge.</li>
 <li>Because the lattice constant drops out of the cone.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>Massless refers to the Dirac mass, which is a term that opens a gap at the touching point. It does not refer to the curvature of the band, which is not the relevant quantity here.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. Massless refers to the Dirac mass, which is a term that opens a gap at the touching point. It does not refer to the curvature of the band.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. For <span class="math inline">\(E=\hbar v_F q\)</span> the second derivative along <span class="math inline">\(q\)</span> is zero, so <span class="math inline">\(1/m^\ast=0\)</span> and <span class="math inline">\(m^\ast\)</span> is infinite. A zero mass would need an infinite curvature.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The velocity <span class="math inline">\(v_F=3ta/2\hbar\)</span> of <a href="#eq-2-20">(2.20)</a> contains <span class="math inline">\(a\)</span>. A mass term <span class="math inline">\(m\sigma_z\)</span> is absent for any value of <span class="math inline">\(a\)</span>, so the lattice constant does not decide whether the electrons are massless.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>Massless means that there is no gap at the Dirac point.</p>
+</div>
 </details>
 </div>
 <div class="notebookbox">
@@ -129,9 +139,9 @@ Quick check
 Notebook <code>session2.ipynb</code>, cell “Infinite two-dimensional graphene”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session2.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session2.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession2.ipynb">Binder</a>.
 </div>
 </div>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>The hopping <span class="math inline">\(t\)</span> of graphene is doubled. What happens to the Dirac cone of <a href="#eq-2-20">(2.20)</a> and <a href="#eq-2-21">(2.21)</a>?</p>
@@ -141,12 +151,22 @@ Quick check
 <li>The cone stays at the same point and becomes twice as steep.</li>
 <li>The cone moves to another point of the zone.</li>
 <li>A gap of size <span class="math inline">\(2t\)</span> opens at the tip.</li>
-<li>The dispersion stops being linear.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>The velocity <span class="math inline">\(v_F=3ta/2\hbar\)</span> is proportional to <span class="math inline">\(t\)</span>, so the slope doubles. The touching point is fixed by the geometry of the lattice and not by the value of <span class="math inline">\(t\)</span>.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The velocity <span class="math inline">\(v_F=3ta/2\hbar\)</span> is proportional to <span class="math inline">\(t\)</span>, so the slope doubles. The touching point is fixed by the geometry of the lattice and not by the value of <span class="math inline">\(t\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The point <span class="math inline">\(K\)</span> is where the phase factors of the three neighbors add up to zero. This depends only on the angles of the lattice, which are the same for <span class="math inline">\(t=1\)</span> and <span class="math inline">\(t=2\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. Doubling <span class="math inline">\(t\)</span> only doubles <span class="math inline">\(v_F\)</span> in <span class="math inline">\(H=\hbar v_F(q_x\sigma_x+q_y\sigma_y)\)</span>. The energies <span class="math inline">\(\pm\hbar v_F|\mathbf q|\)</span> vanish at <span class="math inline">\(\mathbf q=0\)</span> for <span class="math inline">\(t=1\)</span> and for <span class="math inline">\(t=2\)</span>, so no gap appears.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The hopping sets the energy scale of the cone, and the lattice sets its position.</p>
+</div>
 </details>
 </div>
 

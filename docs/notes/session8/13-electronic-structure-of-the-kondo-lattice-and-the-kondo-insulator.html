@@ -96,9 +96,9 @@ k\alpha}, f_{\mathbf k\alpha})\)</span>. When <span class="math inline">\(\gamma
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session8.ipynb"><code>session8.ipynb</code></a>, “Quantum magnetism in the Kondo lattice” (Core) and “Spinon dispersion in the Kondo lattice” (Challenge)</p>
 <p>The first exercise builds <a href="11-from-a-single-kondo-impurity-to-the-kondo-lattice.html#eq-8-21">(8.21)</a> directly on a lattice of van der Waals type. You identify the flat band of the Kondo sites and the anti-crossing with the conduction band, and you check what happens to the gap when you change the chemical potential. The second exercise adds a direct exchange coupling between the Kondo sites, which gives a dispersion to the spinon band that would otherwise be flat. This is the lattice version of the Doniach picture. The Kondo coupling <span class="math inline">\(J_K\)</span> favors a local screened singlet, while the direct exchange <span class="math inline">\(J\)</span> favors magnetic correlations between the local moments, and the competition between them decides which regime is stable, the screened one or the magnetic one.</p>
 </div>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>In <a href="11-from-a-single-kondo-impurity-to-the-kondo-lattice.html#eq-8-21">(8.21)</a> we have one <span class="math inline">\(f\)</span> fermion per site and a half-filled conduction band. How many particles per <span class="math inline">\(\mathbf k\)</span> point and spin fill the two bands?</p>
@@ -108,17 +108,24 @@ Quick check
 <li>One half, so the lower band is half full.</li>
 <li>One, so the lower hybridized band is exactly full.</li>
 <li>Two, so both bands are full.</li>
-<li>Three halves, so the upper band is half full.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The conduction band gives one half and the <span class="math inline">\(f\)</span> level gives one half, so there is one particle for the two states at each <span class="math inline">\(\mathbf k\)</span> and spin. The lower band is full, and the Fermi level lies in the gap.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. This counts only the conduction band. The <span class="math inline">\(f\)</span> level adds another one half, and the sum is one, which fills the lower band.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The conduction band gives one half and the <span class="math inline">\(f\)</span> level gives one half, so there is one particle for the two states at each <span class="math inline">\(\mathbf k\)</span> and spin. The lower band is full, and the Fermi level lies in the gap.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. Two particles per <span class="math inline">\(\mathbf k\)</span> and spin would need a full conduction band, with two electrons per site, and two <span class="math inline">\(f\)</span> fermions per site. The constraint allows one <span class="math inline">\(f\)</span> fermion and we have one electron per site.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="D">
+<div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>At the crossing the energy of the conduction band is zero, as for the flat band. If we double <span class="math inline">\(\gamma_K\)</span>, what happens to the direct gap there?</p>
@@ -127,13 +134,20 @@ Quick check
 <ol type="A">
 <li>It does not change.</li>
 <li>It becomes four times larger.</li>
-<li>It is cut in half.</li>
 <li>It doubles, since the two levels split into <span class="math inline">\(\pm\gamma_K\)</span>.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>D</strong>.</p>
-<p>At <span class="math inline">\(\varepsilon_{\mathbf k}=0\)</span> the two-by-two Hamiltonian has the eigenvalues <span class="math inline">\(\pm\gamma_K\)</span>, so the direct gap is <span class="math inline">\(2\gamma_K\)</span>. This is the sense in which a larger Kondo coupling gives a larger gap.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. At the crossing the eigenvalues are <span class="math inline">\(\pm\gamma_K\)</span>. For <span class="math inline">\(\gamma_K=0.5\)</span> the gap is <span class="math inline">\(1\)</span>, and for <span class="math inline">\(\gamma_K=1\)</span> it is <span class="math inline">\(2\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The gap <span class="math inline">\(2\gamma_K\)</span> is linear in <span class="math inline">\(\gamma_K\)</span>. Going from <span class="math inline">\(\gamma_K=0.5\)</span> to <span class="math inline">\(1\)</span> the gap goes from <span class="math inline">\(1\)</span> to <span class="math inline">\(2\)</span> and not to <span class="math inline">\(4\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. At <span class="math inline">\(\varepsilon_{\mathbf k}=0\)</span> the two-by-two Hamiltonian has the eigenvalues <span class="math inline">\(\pm\gamma_K\)</span>, so the direct gap is <span class="math inline">\(2\gamma_K\)</span>. This is the sense in which a larger Kondo coupling gives a larger gap.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="tryit">

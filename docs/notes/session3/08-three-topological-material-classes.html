@@ -94,9 +94,9 @@
 <img src="../figures/s03f06_helical.svg" loading="lazy" alt="Edge branches inside the bulk gap, one branch for a Chern insulator and two opposite branches for a quantum spin Hall insulator." />
 <figcaption><strong><a href="11b-kramers-protection-of-the-helical-edge.html#fig:s03:helical">Figure 3.6</a>, shown again.</strong> The edge dispersions of the first two classes, from Section <a href="11-quantum-spin-hall-insulators.html#sec-3-11">3.11</a>. In (a) a Chern insulator has one chiral branch per edge. In (b) a quantum spin Hall insulator has a helical pair, with the two branches propagating in opposite directions. Look at the colors, which are the two spins.</figcaption>
 </figure>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>Which class has time-reversal symmetry, zero total Chern number and edge states with opposite directions for opposite spins?</p>
@@ -106,20 +106,27 @@ Quick check
 <li>A quantum spin Hall insulator.</li>
 <li>A Chern insulator.</li>
 <li>A trivial insulator.</li>
-<li>All three classes of this section.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>The quantum spin Hall insulator is made of two copies of a Chern insulator with opposite Chern numbers. The total Chern number vanishes, and the edge states of the two spins form a helical pair.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. It is made of two copies of a Chern insulator with opposite Chern numbers. The total Chern number vanishes, and the edge states of the two spins form a helical pair.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. A Chern insulator with <span class="math inline">\(C=1\)</span> has one chiral mode at each edge and <span class="math inline">\(\sigma_{xy}=e^2/h\)</span>, and it needs broken time-reversal symmetry. Its total Chern number is not zero.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. A trivial insulator has <span class="math inline">\(C=0\)</span> and time-reversal symmetry, but its ribbon spectrum has a gap with nothing inside, as for the staggered potential in the figure of the honeycomb lattice. It has no edge states.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <h1 class="sec-next" id="sec-3-9"><span class="num">3.9a</span> The SSH model as a minimal one-dimensional topological insulator</h1>
 <p>We now build the simplest model that shows this physics explicitly, which is the Su-Schrieffer-Heeger (SSH) chain. It looks too simple to be useful, but we should take it seriously, also because the simplest model for a topological superconductor, the Kitaev chain, is exactly this model written in terms of Majorana operators.</p>
 <p>We take a one-dimensional lattice with two sites per unit cell, <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, and two hopping amplitudes. The first one is an intracell hopping <span class="math inline">\(t\)</span>, within a unit cell, and the second one is an intercell hopping fixed to <span class="math inline">\(1\)</span>, between neighboring unit cells. Let us first take the extreme limit in which the intracell hopping dominates, <span class="math inline">\(t \gg 1\)</span>, so that the chain is fully dimerized with alternating bonds. Strong bonds of strength <span class="math inline">\(t\)</span> couple the sites <span class="math inline">\((0,1)\)</span>, <span class="math inline">\((2,3)\)</span>, <span class="math inline">\((4,5)\)</span>, … and the coupling between <span class="math inline">\((1,2)\)</span>, <span class="math inline">\((3,4)\)</span>, …is negligible. Each dimer is then an isolated two-level system with bonding and antibonding eigenstates at energies <span class="math inline">\(\pm t\)</span>. The spectrum of the whole chain is this pair of levels repeated once for each dimer, and there is nothing at zero energy.</p>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>A chain has four dimers with the intracell hopping <span class="math inline">\(t\)</span> and no hopping between different dimers. How many levels are at the energy <span class="math inline">\(+t\)</span> and how many are at zero energy?</p>
@@ -129,12 +136,19 @@ Quick check
 <li>Eight at <span class="math inline">\(+t\)</span> and none at zero energy.</li>
 <li>Four at <span class="math inline">\(+t\)</span> and none at zero energy.</li>
 <li>Four at <span class="math inline">\(+t\)</span> and two at zero energy.</li>
-<li>One at <span class="math inline">\(+t\)</span> and seven at zero energy.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>Each dimer has a bonding level at <span class="math inline">\(-t\)</span> and an antibonding level at <span class="math inline">\(+t\)</span>. Four dimers give four levels at each energy, and no site is left uncoupled, so there is nothing at zero energy.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Each dimer is the matrix with <span class="math inline">\(t\)</span> off the diagonal and gives <span class="math inline">\(\pm t\)</span>. The trace of the Hamiltonian is zero, but eight levels at <span class="math inline">\(+t\)</span> would give <span class="math inline">\(8t\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. Each dimer has a bonding level at <span class="math inline">\(-t\)</span> and an antibonding level at <span class="math inline">\(+t\)</span>. Four dimers give four levels at each energy, and no site is left uncoupled.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. Each dimer gives one level at <span class="math inline">\(+t\)</span> and one at <span class="math inline">\(-t\)</span>, so the number at <span class="math inline">\(+t\)</span> equals the number at <span class="math inline">\(-t\)</span>. Four dimers use all eight sites, so with four levels at <span class="math inline">\(+t\)</span> the other four are at <span class="math inline">\(-t\)</span> and none is left at zero.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="widget" data-widget="sshwinding">

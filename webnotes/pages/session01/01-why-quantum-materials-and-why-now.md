@@ -14,9 +14,16 @@ In the course we will see two kinds of examples, and it is useful to compare the
 Both gaps in the figure remove the states around $E=0$. Which statement about their origin is correct?
 
 - [x] The gap of the semiconductor follows from the single-particle Hamiltonian of the lattice, while the superconducting gap needs the electrons to pair collectively.
-- [ ] Both gaps follow from a single-particle Hamiltonian, and they differ only in their size.
-- [ ] The gap of the semiconductor needs interactions between the electrons, and the superconducting gap does not.
-- [ ] Both gaps appear only after second quantization is used, and they have the same origin.
 
-We can diagonalize the lattice of the semiconductor with one electron at a time, so its gap is a single-particle result. The superconducting gap exists because many electrons pair together, and this is why we need the many-body formalism of this session.
+    This is true. The lattice of the semiconductor can be diagonalized one electron at a time, so its gap is a single-particle result. The superconducting gap exists only because many electrons pair together.
+
+- [ ] Both gaps follow from a single-particle Hamiltonian, and they differ only in their size.
+
+    This is false. Take a metal and keep only the single-particle hopping. We get a Fermi surface and no gap at all, however large the attraction between the electrons would be, because the attraction is not in that Hamiltonian.
+
+- [ ] The gap of the semiconductor needs interactions between the electrons, and the superconducting gap does not.
+
+    This is false. A chain with onsite energies $\pm m$ and hopping $t$ has a gap $2m$ at the zone edge with no interaction at all. In contrast, switching off the attraction between the electrons closes the superconducting gap.
+
+We can diagonalize the lattice of the semiconductor with one electron at a time. For the superconductor we need the many-body formalism of this session.
 :::

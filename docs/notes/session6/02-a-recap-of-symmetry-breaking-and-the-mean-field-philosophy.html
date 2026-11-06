@@ -101,9 +101,9 @@
 2\langle\mathbf{S}\rangle\cdot\mathbf{S} - \langle\mathbf{S}\rangle^2\)</span>, and the resulting exchange field points along <span class="math inline">\(\mathbf{m} \equiv \langle\mathbf{S}\rangle\)</span>, in <em>any</em> direction where this expectation value is nonzero. If we choose <span class="math inline">\(\langle c_\uparrow^\dagger c_\uparrow\rangle \neq
 \langle c_\downarrow^\dagger c_\downarrow\rangle\)</span>, as in <a href="#eq-6-2">(6.2)</a>, we select <span class="math inline">\(m_z\neq 0\)</span>. If we choose instead <span class="math inline">\(\langle c_\uparrow^\dagger c_\downarrow\rangle \neq 0\)</span>, we select <span class="math inline">\(m_x\)</span> or <span class="math inline">\(m_y\)</span>. For this reason mean-field magnetism is not restricted to the <span class="math inline">\(z\)</span> axis. It gives magnets with a magnetization along any direction in space, and this includes noncollinear arrangements where <span class="math inline">\(\mathbf{m}\)</span> points in different directions on different sites. This is the “non-collinear mean-field Hamiltonian” figure on the slides, which the spoken lecture only names briefly.</p>
 <p>Mean field can only be trusted when <span class="math inline">\(U \ll t\)</span>. We will see in Section <a href="06-the-stoner-threshold-as-a-criterion-for-magnetism.html#sec-6-6">6.6</a> that magnetism usually needs the opposite regime, and this is the reason why the strongly localized limit, from Section <a href="06-the-stoner-threshold-as-a-criterion-for-magnetism.html#sec-6-7">6.7</a> on, is so important.</p>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>In the mean-field treatment of the Hubbard interaction, which expectation value gives a magnetization along the <span class="math inline">\(x\)</span> axis?</p>
@@ -113,12 +113,19 @@ Quick check
 <li><span class="math inline">\(\langle c_\uparrow^\dagger c_\uparrow\rangle-\langle c_\downarrow^\dagger c_\downarrow\rangle\)</span></li>
 <li>A real <span class="math inline">\(\langle c_\uparrow^\dagger c_\downarrow\rangle\)</span></li>
 <li><span class="math inline">\(\langle c_\uparrow c_\downarrow\rangle\)</span></li>
-<li><span class="math inline">\(\langle c_\uparrow^\dagger c_\uparrow\rangle+\langle c_\downarrow^\dagger c_\downarrow\rangle\)</span></li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The spin component <span class="math inline">\(S^x\)</span> is <span class="math inline">\(\tfrac12(c_\uparrow^\dagger c_\downarrow+c_\downarrow^\dagger c_\uparrow)\)</span>, so a real <span class="math inline">\(\langle c_\uparrow^\dagger c_\downarrow\rangle\)</span> gives <span class="math inline">\(m_x\)</span>. The difference of the two densities gives <span class="math inline">\(m_z\)</span>, and the pair amplitude <span class="math inline">\(\langle c_\uparrow c_\downarrow\rangle\)</span> is the superconducting order.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Take the spinor <span class="math inline">\((1,1)/\sqrt2\)</span>, which points along <span class="math inline">\(x\)</span>. It has <span class="math inline">\(n_\uparrow=n_\downarrow=1/2\)</span>, so this difference is zero, although <span class="math inline">\(m_x=1/2\)</span>. The difference of densities gives <span class="math inline">\(m_z\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The component <span class="math inline">\(S^x=\tfrac12(c_\uparrow^\dagger c_\downarrow+c_\downarrow^\dagger c_\uparrow)\)</span> has this expectation value, which is <span class="math inline">\(1/2\)</span> for the spinor <span class="math inline">\((1,1)/\sqrt2\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. For the same spinor <span class="math inline">\((1,1)/\sqrt2\)</span> the expectation value <span class="math inline">\(\langle c_\uparrow c_\downarrow\rangle\)</span> is zero, since the state has one electron. This is the pair amplitude of a superconductor and it changes <span class="math inline">\(N\)</span> by two.</p></li>
+</ul>
+</div>
 </details>
 </div>
 

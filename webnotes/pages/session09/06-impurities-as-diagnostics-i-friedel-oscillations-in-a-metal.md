@@ -20,20 +20,32 @@ The oscillation has a universal wavevector that is fixed only by the Fermi surfa
 A chain has the Fermi wavevector $k_F=\pi/4$. What is the period of the Friedel oscillation of the density around an impurity, in units of the lattice constant?
 
 - [ ] $8$, which is the Fermi wavelength $2\pi/k_F$.
+
+    This is false. The Fermi wavelength is $2\pi/k_F=8$, but the density oscillates as $\cos(2k_Fx)$. The period of this function is $4$, so $8$ is the period of the wavefunction.
+
 - [x] $4$, since the wavevector of the oscillation is $2k_F=\pi/2$.
+
+    This is true. The singularity of $\chi_0$ is at $q=2k_F=\pi/2$, so the density goes as $\cos(\pi x/2)$. This repeats every $4$ lattice constants.
+
 - [ ] $2$, since the oscillation follows the lattice.
 
-The singularity of $\chi_0(q)$ is at $q=2k_F$, so the density oscillates as $\cos(2k_Fx)$. Its period is $2\pi/2k_F=4$, which is half of the Fermi wavelength $2\pi/k_F=8$.
+    This is false. A period of $2$ means $2k_F=\pi$, which is half filling with $k_F=\pi/2$. For $k_F=\pi/4$ the oscillation is twice slower.
 :::
 
 ::: quiz
 In two dimensions, $d=2$ in [(9.9)](#eq-9-9). We compare the envelope of the oscillation at the distance $x$ and at $2x$. By which factor does it decrease?
 
 - [ ] A factor $2$.
+
+    This is false. A factor $2$ is the decay $1/|x|$ of $d=1$. In $d=2$ the envelope falls as $1/|x|^2$, so doubling $x$ gives $1/4$.
+
 - [x] A factor $4$.
+
+    This is true. With $d=2$ the envelope is $1/|x|^2$. At $x$ and $2x$ the ratio is $2^2=4$, and it is a power law because the Fermi surface makes $\chi_0$ non-analytic.
+
 - [ ] A factor $8$.
 
-The envelope decays as $1/|x|^{d}$, so doubling the distance divides it by $2^d=4$. It is a power law, and not an exponential, because the singularity in $\chi_0(q)$ is only a non-analyticity and not a gap.
+    This is false. A factor $8$ is the decay $1/|x|^3$ of $d=3$. In $d=2$ the exponent is two, so the decrease is $2^2=4$.
 :::
 
 ::: {.tryit notebook="session9.ipynb" cell="Impurities in a 2d metal"}

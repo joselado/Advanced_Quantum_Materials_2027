@@ -20,10 +20,16 @@ Everything that we do in the rest of this session, which is the Hall conductivit
 ::: quiz
 In [(3.1)](#eq-3-1) the state $|m\rangle$ is mixed into $|n\rangle$ with the amplitude $\alpha_m$. What happens to $\alpha_m$ if the level $m$ comes closer to the level $n$ while $V$ stays fixed?
 
-- [x] It grows, and the expansion stops being valid once the amplitude is of order one.
 - [ ] It decreases, since the two states become more similar.
-- [ ] It does not change, since it depends only on $V$.
-- [ ] It changes sign but keeps its size.
 
-The energy difference $\varepsilon_n-\varepsilon_m$ is in the denominator of $\alpha_m$. The first-order result can be trusted only if $\lambda|\langle m|V|n\rangle|$ is small compared with this difference.
+    This is false. Take $\lambda|\langle m|V|n\rangle|=0.1$. At an energy distance $1$ the amplitude is $0.1$, and at a distance $0.1$ it is $1$, so it grew by a factor ten.
+
+- [ ] It does not change, since it depends only on $V$.
+
+    This is false. The energy difference $\varepsilon_n-\varepsilon_m$ is in the denominator of $\alpha_m$. For the same $V$, a distance ten times smaller gives an amplitude ten times larger.
+
+- [x] It grows, and the expansion stops being valid once the amplitude is of order one.
+
+    This is true. The amplitude goes as $1/(\varepsilon_n-\varepsilon_m)$ in [(3.1)](#eq-3-1). With $\lambda|\langle m|V|n\rangle|=0.1$ it reaches $1$ at a distance $0.1$, where the first-order result cannot be trusted.
+
 :::

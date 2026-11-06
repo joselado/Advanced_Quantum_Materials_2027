@@ -20,20 +20,34 @@ The summary slide of the course for this list also shows Majorana fermions, whic
 Breaking one singlet pair of a quantum magnet leaves two unpaired sites. What is the spin of each one?
 
 - [ ] Zero, since the two spins of the singlet cancel.
-- [x] One half, which is half of the spin of a magnon.
-- [ ] One, the same as a magnon.
-- [ ] Three halves, since a singlet has three partners.
 
-Each unpaired site carries the spin of one electron, which is one half. This is why a spinon is a fraction of a magnon, and why spinons appear in pairs.
+    This is false. Breaking a singlet creates a triplet excitation with total spin $1$. Two sites with spin zero would give a total spin of zero, so they cannot account for it.
+
+- [x] One half, which is half of the spin of a magnon.
+
+    This is true. Each unpaired site holds one electron, so its spin is $1/2$. The two of them together give the spin $1$ of the magnon, which is why a spinon is a fraction of a magnon.
+
+- [ ] One, the same as a magnon.
+
+    This is false. A site with one electron has only $S_z=\pm 1/2$, so spin one cannot sit there. Two spinons of spin one would also give a total spin of up to $2$, more than the excitation that we created.
+
+Spinons appear in pairs, since a singlet is broken into two unpaired sites.
 :::
 
 ::: quiz
 Charge cannot propagate in a Mott insulator. Why can a magnetic Mott insulator still carry spin and heat?
 
 - [x] Magnons are excitations of the magnetic order, and they move without any motion of charge.
-- [ ] The electrons of a Mott insulator move freely, but only at high temperature.
-- [ ] The phonons of the lattice carry the spin.
-- [ ] A Mott insulator is in fact a metal for the spin.
 
-A magnon is a precession wave of the local moments, so it carries spin and energy while every electron stays on its site.
+    This is true. A magnon is a precession wave of the local moments. It carries spin and energy while every electron stays on its site.
+
+- [ ] The electrons of a Mott insulator move freely, but only at high temperature.
+
+    This is false. For $U=10t$, putting a second electron on a site costs $10t$. At a temperature well below this, which is the regime of the question, the electrons stay on their sites, and still the magnons carry spin.
+
+- [ ] The phonons of the lattice carry the spin.
+
+    This is false. Phonons are vibrations of the atoms and they carry no spin. In a Heisenberg model with the atoms fixed there are no phonons at all, and spin still propagates as a magnon.
+
+The magnons need no motion of charge, so they exist in an insulator.
 :::

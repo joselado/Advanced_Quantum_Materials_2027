@@ -25,20 +25,32 @@ This gives us a completely general diagnostic, which connects all the case studi
 An impurity response in a spin chain is measured, and it looks like $(-1)^n e^{-n/\xi}$ with $\xi\approx2.5$ sites. What do we conclude about the spin excitations?
 
 - [ ] They are gapless, as in the $S=1/2$ chain.
+
+    This is false. The $S=1/2$ chain has an envelope $1/n$. From $n=10$ to $n=20$ it falls by a factor $2$, but $e^{-n/2.5}$ falls by $e^{-4}\approx0.02$.
+
 - [x] They are gapped, and the correlation length is about 2.5 sites.
+
+    This is true. An envelope $e^{-n/\xi}$ needs a finite $\xi$, so the spectrum has a gap. Here $\xi\approx2.5$, so between $n=10$ and $n=20$ the amplitude falls by a factor $0.02$.
+
 - [ ] We cannot say, since the sign alternation only reflects the lattice.
 
-An exponential envelope needs a finite correlation length, and this only exists when the spectrum has a gap. The alternating sign is the antiferromagnetic exchange, and it appears in both cases of [(9.11)](#eq-9-11).
+    This is false. The alternating sign appears in both cases, but the envelope decides. A $1/n$ envelope falls by $2$ from $n=10$ to $20$, while $e^{-n/2.5}$ falls by $0.02$, and we can tell them apart.
 :::
 
 ::: quiz
 In panel (c) of figure [9.5](#fig:s09:decay) the vertical axis is logarithmic. How do the two envelopes look there?
 
 - [x] The exponential is a straight line of slope $-1/\xi$, and the power law is a curve.
+
+    This is true. The logarithm of $e^{-n/\xi}$ is $-n/\xi$, so $n=0,2.5,5$ give $0,-1,-2$ on a straight line. The logarithm of $1/n$ is $-\ln n$, which bends.
+
 - [ ] Both are straight lines, with different slopes.
+
+    This is false. The power law $1/n$ gives $\ln$ values $0,-0.69,-1.10,-1.39$ for $n=1,2,3,4$. The steps shrink, so it is not a straight line.
+
 - [ ] The power law is a straight line, and the exponential is a curve.
 
-The logarithm of $e^{-n/\xi}$ is $-n/\xi$, which is linear in $n$. The logarithm of $1/n$ is $-\ln n$, which bends. This is how a measured decay law is read as gapped or gapless.
+    This is false. For the exponential the steps are all equal, since $\ln e^{-n/\xi}=-n/\xi$. For $\xi=2.5$ every $2.5$ sites gives $-1$, and it is a straight line, not a curve.
 :::
 
 ::: {.tryit notebook="session9.ipynb" cell="Impurity in an electronic insulator"}

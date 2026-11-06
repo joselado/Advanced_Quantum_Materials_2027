@@ -22,9 +22,14 @@
 An MPS with $M=20$ describes a gapped chain of 200 sites very well. We now move to a gapped model on a $20\times20$ lattice. What do we expect?
 
 - [ ] The same $M$ is enough, since the model is gapped.
+
+    This is false. Being gapped fixes the entropy per bond. The cut of the $20\times20$ lattice crosses 20 bonds, so the entropy is about 20 times larger and the needed $M$ is of the order of $20^{20}\approx10^{26}$.
+
 - [x] The same $M$ is not enough, since the boundary grows with the width.
-- [ ] A smaller $M$ is enough, since there are more neighbors.
+
+    This is true. A gapped state obeys the area law in both cases, but in two dimensions the boundary has 20 bonds and not one. The entropy grows in proportion, and the bond dimension that it needs grows exponentially.
+
 - [ ] The MPS fails only because there are more sites.
 
-A gapped state obeys the area law in both cases, but in two dimensions the boundary has 20 bonds and not one. The entropy grows in proportion, and the bond dimension that it needs grows exponentially.
+    This is false. A gapped chain of 2000 sites needs the same $M=20$ as the one of 200, so the number of sites alone does not matter. A $20\times20$ lattice has just 400 sites.
 :::

@@ -6,8 +6,29 @@
   document.documentElement.classList.add('js');
   var BASE = (document.currentScript && document.currentScript.src || '').replace(/[^\/]*$/, '');
 
-  // Quiz. The page holds <div class="quiz" data-correct="B"> with an <ol> of options in .quiz-options and the
-  // answer in a closed <details>. Without this script the options stay a list and the answer is one click away.
+  // Quiz. The page holds <div class="quiz" data-correct="B"> with an <ol> of options in .quiz-options and a closed
+  // <details>. Without this script the options stay a list and the details gives the answer. In the form with
+  // feedback (data-fb) the details also holds, for every option, its verdict and its feedback (.quiz-fbs). Here the
+  // options become buttons, and a click shows "True" or "False" and the feedback of that option under it.
+  // The math inside a button must not be a second tab stop (the MathJax explorer makes it one, and Enter on it opens
+  // the MathJax menu), so its tabindex is set to -1 after every typeset.
+  function untab() {
+    var m = document.querySelectorAll('.quiz-opt mjx-container');
+    for (var i = 0; i < m.length; i++) m[i].setAttribute('tabindex', '-1');
+  }
+  function typeset(el) {
+    if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([el]).then(untab).catch(function () {});
+  }
+  document.addEventListener('focusin', function (e) {
+    if (e.target && e.target.tagName === 'MJX-CONTAINER' && e.target.closest('.quiz-opt')) {
+      var b = e.target.closest('.quiz-opt'); untab(); b.focus();
+    }
+  });
+  (function wait() {
+    if (window.MathJax && MathJax.startup && MathJax.startup.promise) MathJax.startup.promise.then(untab);
+    else setTimeout(wait, 200);
+  })();
+
   function initQuiz(q) {
     var correct = (q.getAttribute('data-correct') || '').charCodeAt(0) - 65;
     var items = q.querySelectorAll('.quiz-options > ol > li');
@@ -16,8 +37,21 @@
     status.className = 'quiz-status';
     status.setAttribute('role', 'status');
     status.setAttribute('aria-live', 'polite');
+    var withFb = q.hasAttribute('data-fb');
+    var fbs = [];
+    if (withFb) {
+      q.querySelectorAll('.quiz-fbs > ul > li').forEach(function (li) {
+        li.removeChild(li.firstElementChild);          // the verdict line, the script writes its own
+        fbs.push(li);
+      });
+      var det = q.querySelector('details.quiz-answer');
+      var expl = q.querySelector('.quiz-expl');
+      q.querySelector('.quiz-fbs').remove();
+      if (expl) det.querySelector('summary').textContent = 'Show the explanation';
+      else det.remove();
+    }
     var buttons = [];
-    var done = false;
+    var tried = {};
     items.forEach(function (li, i) {
       var b = document.createElement('button');
       b.type = 'button';
@@ -32,10 +66,45 @@
       b.appendChild(body);
       li.appendChild(b);
       buttons.push(b);
+      var fb = null, verdict = null;
+      if (withFb && fbs[i]) {
+        fb = document.createElement('div');
+        fb.className = 'quiz-fb ' + (i === correct ? 'right' : 'wrong');
+        fb.hidden = true;
+        fb.id = 'fb-' + Math.random().toString(36).slice(2, 9);
+        var tag = document.createElement('p');
+        tag.className = 'quiz-tag';
+        tag.textContent = i === correct ? 'Why it is correct' : 'Counterexample';
+        fb.appendChild(tag);
+        while (fbs[i].firstChild) fb.appendChild(fbs[i].firstChild);
+        li.appendChild(fb);
+        b.setAttribute('aria-expanded', 'false');
+        b.setAttribute('aria-controls', fb.id);
+        verdict = document.createElement('span');
+        verdict.className = 'quiz-verdict';
+        b.appendChild(verdict);
+      }
       b.addEventListener('click', function () {
-        if (done) return;
-        if (i === correct) {
-          done = true;
+        var ok = i === correct;
+        if (fb) {
+          var open = fb.hidden;
+          fb.hidden = !open;
+          b.setAttribute('aria-expanded', String(open));
+          b.classList.toggle('right', open && ok);
+          b.classList.toggle('wrong', open && !ok);
+          verdict.textContent = open ? (ok ? '✓ True' : '✗ False') : '';
+          if (open) {
+            typeset(fb);
+            status.textContent = 'Option ' + String.fromCharCode(65 + i) + ' is ' + (ok ? 'true. The reason is below it.'
+                                 : 'false. A counterexample is below it.');
+            if (ok && expl) det.open = true;
+          }
+          return;
+        }
+        // old form: no feedback per option, a wrong option is marked, the right one opens the explanation
+        if (tried.done) return;
+        if (ok) {
+          tried.done = true;
           b.classList.add('right');
           buttons.forEach(function (x) { x.disabled = true; });
           status.textContent = 'This is correct. The explanation is below.';

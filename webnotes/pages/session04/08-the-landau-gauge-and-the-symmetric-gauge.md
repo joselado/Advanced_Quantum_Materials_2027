@@ -14,20 +14,32 @@ Figure [4.2](#fig:s04:gauge) shows the difference in a concrete way, by writing
 In the Landau gauge $\mathbf{A}=(0,Bx,0)$, which momentum is a good quantum number and can label the eigenstates?
 
 - [ ] Both $p_x$ and $p_y$.
-- [x] $p_y$.
-- [ ] $p_x$.
+
+    This is false. The term $(p_y-eBx)^2$ of the Hamiltonian contains $x$, so $[p_x,H]\neq0$. The eigenstates are Gaussians in $x$ and not plane waves.
+
 - [ ] Neither of them.
 
-The vector potential does not depend on $y$, so $[H,p_y]=0$. It depends on $x$, so $p_x$ does not commute with $H$.
+    This is false. The Hamiltonian does not depend on $y$, so $[H,p_y]=0$. The eigenstates can be chosen as $e^{ik_yy}$ times a function of $x$.
+
+- [x] $p_y$.
+
+    This is true. The vector potential does not depend on $y$, so $[H,p_y]=0$. It depends on $x$, so $p_x$ does not commute with $H$.
+
 :::
 
 ::: quiz
 Why is the Landau gauge the natural choice for the band structure of a ribbon, and not the symmetric gauge?
 
 - [ ] The Landau gauge gives a different physical field.
+
+    This is false. Both gauges have the same curl. For $\mathbf{A}=(0,Bx,0)$ and for $\mathbf{A}=(-By,Bx,0)/2$ we get $\nabla\times\mathbf{A}=B\hat z$.
+
 - [x] The symmetric gauge breaks both translations, so there is no momentum along the ribbon and no band structure.
-- [ ] The Landau gauge has a larger gap.
+
+    This is true. The physics is the same in both gauges. The Landau gauge keeps the translation along the ribbon, which is what we need to plot energy against momentum.
+
 - [ ] The symmetric gauge has no flux through the plaquettes.
 
-The physics is the same in both gauges. The Landau gauge keeps the translation along the ribbon, which is what we need to plot energy against momentum.
+    This is false. The flux through a plaquette of area $a^2$ is $Ba^2$ in both gauges, since it is gauge invariant. Only the way it is written in the bond phases differs.
+
 :::

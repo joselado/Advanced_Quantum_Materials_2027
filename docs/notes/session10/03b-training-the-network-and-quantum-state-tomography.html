@@ -99,9 +99,9 @@
 <p>A second and different use of the same NNQS ansatz is <strong>quantum state tomography</strong>. Let us take a real experimental system in some unknown state <span class="math inline">\(|\psi\rangle\)</span>, and let us say that the only access that we have to it is through projective measurements. We measure the state of every spin, and the system collapses to one configuration <span class="math inline">\(s\)</span> with probability <span class="math inline">\(|C(s)|^2\)</span>. If we repeat the measurement many times, we obtain a set of observed configurations that are distributed according to <span class="math inline">\(|C(s)|^2\)</span>. However, we never observe <span class="math inline">\(C(s)\)</span> itself but only its modulus squared, and to do this for all the <span class="math inline">\(2^L\)</span> configurations one by one is the same exponential problem that we started with.</p>
 <p>The solution has the same structure as the ground-state search above. We parameterize the unknown amplitude and phase with a network, for instance a restricted Boltzmann machine, or with two separate networks, one for <span class="math inline">\(|C_\theta(s)|\)</span> and one for its phase. Then we fit <span class="math inline">\(\theta\)</span> by <strong>maximum likelihood</strong> to the observed measurement outcomes, instead of minimizing an energy. In practice, one maximizes <span class="math inline">\(\sum_{s} n(s) \ln p_\theta(s)\)</span> over <span class="math inline">\(\theta\)</span>, where <span class="math inline">\(n(s)\)</span> counts how many times the configuration <span class="math inline">\(s\)</span> was observed and <span class="math inline">\(p_\theta(s) =
 |C_\theta(s)|^2/\sum_{s&#39;}|C_\theta(s&#39;)|^2\)</span> is the probability predicted by the network. This reconstructs a full approximation to the unknown wavefunction with far fewer than <span class="math inline">\(2^L\)</span> measurements, and this is what makes it useful as an experimental tool, since nobody can run a tomography experiment that needs an exponential number of measurements.</p>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>In the local energy <a href="#eq-10-4">(10.4)</a> the sum over <span class="math inline">\(s&#39;\)</span> has only a few terms. What makes this possible?</p>
@@ -113,14 +113,22 @@ Quick check
 <li>The configurations <span class="math inline">\(s\)</span> are sampled, and sampling removes the sum over <span class="math inline">\(s&#39;\)</span>.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>For a local Hamiltonian, a given configuration is connected to a number of others that grows only linearly with <span class="math inline">\(L\)</span>. The sampling replaces the sum over <span class="math inline">\(s\)</span>, and the sparsity limits the sum over <span class="math inline">\(s&#39;\)</span>.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. A network such as the restricted Boltzmann machine gives a non-zero amplitude for every configuration. There are <span class="math inline">\(2^L\)</span> of them, and the sum over <span class="math inline">\(s&#39;\)</span> is short for another reason.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. For the Heisenberg chain of <span class="math inline">\(L=40\)</span> spins, each of the <span class="math inline">\(39\)</span> bonds changes <span class="math inline">\(s\)</span> into at most one other configuration, and not into <span class="math inline">\(2^{40}\)</span>. A dense random <span class="math inline">\(H\)</span> would not have this property.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. Sampling replaces the sum over <span class="math inline">\(s\)</span>, but not the one over <span class="math inline">\(s&#39;\)</span>. For a dense <span class="math inline">\(H\)</span> each sampled <span class="math inline">\(s\)</span> would still need <span class="math inline">\(2^L\)</span> terms of <span class="math inline">\(s&#39;\)</span>.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>In tomography we measure only the spin of every site along <span class="math inline">\(z\)</span>, and we fit <span class="math inline">\(\theta\)</span> by maximum likelihood. Which information about <span class="math inline">\(C(s)\)</span> do these data never contain?</p>
@@ -132,9 +140,17 @@ Quick check
 <li>The relative weight of two configurations.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The counts <span class="math inline">\(n(s)\)</span> follow <span class="math inline">\(|C(s)|^2\)</span>, so the phase drops out. To fix it we need measurements in other bases.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The counts follow <span class="math inline">\(|C(s)|^2\)</span>, so <span class="math inline">\(|C(s)|\)</span> is fixed. Two states <span class="math inline">\(C(s)\)</span> and <span class="math inline">\(C(s)e^{i\phi(s)}\)</span> give the same counts, but they have the same modulus.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The states <span class="math inline">\((|\uparrow\rangle\pm|\downarrow\rangle)/\sqrt2\)</span> both give <span class="math inline">\(50\%\)</span> and <span class="math inline">\(50\%\)</span> along <span class="math inline">\(z\)</span>, and they differ in the phase. We need other bases to fix it.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The ratio of the counts <span class="math inline">\(n(s)/n(s&#39;)\)</span> gives <span class="math inline">\(|C(s)|^2/|C(s&#39;)|^2\)</span> directly. So the relative weight is in the data, and only the phase is missing.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <p>This part comes from the slides and the transcript and has no notebook counterpart, in line with the fact that this session has no companion notebook. There is no <code>sessionN.ipynb</code> cell to point you to here, so <a href="03-neural-network-quantum-states.html#eq-10-3">(10.3)</a>-<a href="#eq-10-5">(10.5)</a> and the tomography likelihood above are the complete and self-contained derivation.</p>

@@ -90,9 +90,9 @@ c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger\)</span> and <span class="math inl
 <img src="../figures/s01f01_fockspace.svg" loading="lazy" alt="Eight many-body states of three sites ordered in four columns by the particle number N from 0 to 3." />
 <figcaption><strong><a href="../session1/08-first-versus-second-quantization-for-the-same-problem.html#fig:s01:fockspace">Figure 1.1</a>, shown again.</strong> The Fock space of three sites, in columns of fixed particle number <span class="math inline">\(N\)</span>. The pairing terms of <a href="04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html#eq-5-4">(5.4)</a> connect a column with the one two steps away, and no term connects neighboring columns.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>The mean-field ground state of <a href="04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html#eq-5-4">(5.4)</a> is measured many times, and the total electron number is read each time. What do we find?</p>
@@ -102,12 +102,19 @@ Quick check
 <li>The same <span class="math inline">\(N\)</span> every time, since <span class="math inline">\(\hat N\)</span> commutes with the hopping.</li>
 <li>Different even values from run to run, or different odd values, but never a mix of both.</li>
 <li>Even and odd values mixed at random.</li>
-<li>No result, since <span class="math inline">\(\hat N\)</span> is not defined in a superconductor.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>No term of <span class="math inline">\(H_\text{MF}\)</span> changes <span class="math inline">\(N\)</span> by one, so the ground state lives in one parity class. The pairing terms change <span class="math inline">\(N\)</span> by two, so several values of <span class="math inline">\(N\)</span> of that class appear with some weight, and the number fluctuates.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. For one site at <span class="math inline">\(\mu=0\)</span> and <span class="math inline">\(\Delta=0.5\)</span>, the ground state is <span class="math inline">\((|0\rangle-|2\rangle)/\sqrt2\)</span>. We find <span class="math inline">\(N=0\)</span> in half of the runs and <span class="math inline">\(N=2\)</span> in the other half, because the pairing term does not commute with <span class="math inline">\(\hat N\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The pairing terms of <a href="04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html#eq-5-4">(5.4)</a> change <span class="math inline">\(N\)</span> by two, so the parity of <span class="math inline">\(N\)</span> is fixed and several values of one parity appear. In the one-site example only <span class="math inline">\(N=0\)</span> and <span class="math inline">\(N=2\)</span> occur.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. In the one-site example the state <span class="math inline">\((|0\rangle-|2\rangle)/\sqrt2\)</span> never gives <span class="math inline">\(N=1\)</span>. Every term of <span class="math inline">\(H_\text{MF}\)</span> changes <span class="math inline">\(N\)</span> by <span class="math inline">\(0\)</span> or <span class="math inline">\(\pm2\)</span>, so the parity is conserved.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <h1 class="sec-next" id="sec-5-7"><span class="num">5.7</span> The gauge transformation in explicit form</h1>
@@ -123,9 +130,9 @@ e^{2i\varphi}\)</span>, then any fixed phase of <span class="math inline">\(\Del
 <img src="../figures/panel/s05f01_flux_b.svg" loading="lazy" alt="Arrows around a closed contour that show the phase of the condensate at several points." />
 <figcaption><strong><a href="02-superconductivity-as-a-macroscopic-quantum-phenomenon.html#fig:s05:flux">Figure 5.1</a>, one panel shown again.</strong> The condensate phase at points around the ring. The phase of the pair amplitude <span class="math inline">\(\Delta\)</span> is the same kind of variable, and the superconducting ground state chooses one value of it.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>Under the gauge transformation of this section the pairing term gets the phase <span class="math inline">\(e^{-2i\varphi}\)</span>. For which angle does <span class="math inline">\(\Delta\, c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger\)</span> stay unchanged?</p>
@@ -135,12 +142,19 @@ Quick check
 <li><span class="math inline">\(\varphi=\pi/2\)</span></li>
 <li><span class="math inline">\(\varphi=\pi\)</span></li>
 <li><span class="math inline">\(\varphi=\pi/4\)</span></li>
-<li>Every <span class="math inline">\(\varphi\)</span>, since the term becomes Hermitian once we add its conjugate.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The factor <span class="math inline">\(e^{-2i\varphi}\)</span> equals one only for <span class="math inline">\(\varphi=0\)</span> and <span class="math inline">\(\pi\)</span>. At <span class="math inline">\(\varphi=\pi/2\)</span> it equals <span class="math inline">\(-1\)</span>, so <span class="math inline">\(\Delta\)</span> changes sign. A generic angle moves <span class="math inline">\(\Delta\)</span> to another phase, and this is why the ground state has to choose one.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. For <span class="math inline">\(\varphi=\pi/2\)</span> the factor is <span class="math inline">\(e^{-i\pi}=-1\)</span>. Then <span class="math inline">\(\Delta\to-\Delta\)</span>, which is a different mean-field state, and we only recover the same term after <span class="math inline">\(\varphi=\pi\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The factor <span class="math inline">\(e^{-2i\varphi}\)</span> is <span class="math inline">\(e^{-2\pi i}=1\)</span>, so the pairing term does not change. The same holds for <span class="math inline">\(\varphi=0\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. For <span class="math inline">\(\varphi=\pi/4\)</span> the factor is <span class="math inline">\(e^{-i\pi/2}=-i\)</span>. Then <span class="math inline">\(\Delta\to-i\Delta\)</span>, which has the phase shifted by a quarter turn.</p></li>
+</ul>
+</div>
 </details>
 </div>
 

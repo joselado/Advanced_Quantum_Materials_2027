@@ -89,9 +89,9 @@
 <img src="../figures/s07f02_arealaw.svg" loading="lazy" alt="A chain of dimers and a square lattice of tetramers, with the bonds cut by the boundary of a region drawn in red." />
 <figcaption><strong><a href="07-two-dimensions-and-the-area-law.html#fig:s07:arealaw">Figure 7.2</a>, shown again.</strong> In two dimensions the boundary of a region grows with its size, so the number of cut bonds grows too. Look at panel (b), where doubling the linear size of <span class="math inline">\(A\)</span> doubles the number of cut bonds. An MPS that runs through the lattice cuts a line of this length, so its bond dimension must grow exponentially with the width of the system.</figcaption>
 </figure>
-<div class="quiz" data-correct="D">
+<div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>After a sudden change of the Hamiltonian the entanglement of a chain grows linearly with time. Why is this a problem for an MPS with fixed <span class="math inline">\(M\)</span>?</p>
@@ -100,18 +100,25 @@ Quick check
 <ol type="A">
 <li>The state stops being normalized after a quench.</li>
 <li>The Hamiltonian becomes nonlocal after a quench.</li>
-<li>The singular values become negative.</li>
 <li>The entropy soon exceeds <span class="math inline">\(\log M\)</span>, so <span class="math inline">\(M\)</span> must grow exponentially with time.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>D</strong>.</p>
-<p>The bound <a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#eq-7-10">(7.10)</a> gives <span class="math inline">\(S\le\log M\)</span>, and a linear growth of <span class="math inline">\(S\)</span> needs <span class="math inline">\(M\sim e^{S}\)</span> to grow exponentially. For this reason long-time dynamics is hard for MPS.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The evolution with a Hamiltonian is unitary, so <span class="math inline">\(\langle\psi|\psi\rangle=1\)</span> at all times. The norm is not what grows after a quench.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. A quench only changes the parameters. For example <span class="math inline">\(J=1\)</span> becomes <span class="math inline">\(J=2\)</span> and the Hamiltonian is still a sum of nearest-neighbor terms.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. The bound <a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#eq-7-10">(7.10)</a> gives <span class="math inline">\(S\le\log M\)</span>, and a linear growth of <span class="math inline">\(S\)</span> needs <span class="math inline">\(M\sim e^{S}\)</span> to grow exponentially. For this reason long-time dynamics is hard for MPS.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>Which of the following ground states is the hardest for an MPS with a fixed bond dimension?</p>
@@ -123,9 +130,17 @@ Quick check
 <li>A dimer product state with 100 sites.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>On the square lattice an MPS has to pass through the lattice, and its cut crosses a boundary of about ten bonds. The entropy is then ten times the one of a single bond, and the bond dimension that it needs is exponentially larger.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The AKLT chain is gapped and its exact ground state is an MPS with <span class="math inline">\(M=2\)</span>, for 100 sites or for 10000. The entropy of a gapped chain saturates.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. An MPS has to pass through the lattice, and its cut crosses a boundary of about ten bonds. The entropy is then ten times the one of a single bond, and the bond dimension that it needs is exponentially larger.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. A product of dimers has a cut that crosses at most one singlet, with entropy <span class="math inline">\(\log2\)</span> at most. It is an exact MPS with <span class="math inline">\(M=2\)</span>.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="notebookbox">

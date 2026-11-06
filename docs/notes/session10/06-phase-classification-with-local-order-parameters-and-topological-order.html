@@ -92,9 +92,9 @@
 <img src="../figures/web/session10/onsager.svg" loading="lazy" alt="The magnetization of the Ising model against temperature, close to one at low temperature, falling steeply to zero at the critical temperature." />
 <figcaption><strong>Schematic 10.1.</strong> The order parameter of <a href="#eq-10-9">(10.9)</a> from the exact solution of the Ising model on the square lattice, <span class="math inline">\(|m|=(1-\sinh^{-4}(2J/k_BT))^{1/8}\)</span> below <span class="math inline">\(T_c=2J/\ln(1+\sqrt2)\approx2.27J\)</span>. A single snapshot has <span class="math inline">\(|m|\)</span> close to one below <span class="math inline">\(T_c\)</span> and close to zero above it, so a sum over the spins is already a good test. The network of Section <a href="01-machine-learning-and-many-body-physics-in-two-directions.html#sec-10-2">10.2</a> learns this test by itself.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>A snapshot of the two-dimensional Ising model has <span class="math inline">\(|m|=0.93\)</span>. On which side of <span class="math inline">\(T_c\)</span> was it taken?</p>
@@ -106,14 +106,22 @@ Quick check
 <li>We cannot say from one snapshot, since <span class="math inline">\(m\)</span> fluctuates.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>For a large system the fluctuations of <span class="math inline">\(m\)</span> in the disordered phase are of order <span class="math inline">\(1/\sqrt N\)</span>, so a value of <span class="math inline">\(0.93\)</span> cannot appear there. This is why a single snapshot is enough for the local order parameter.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Random-looking spins give <span class="math inline">\(m\approx0\)</span>. For <span class="math inline">\(N=64^2=4096\)</span> spins far above <span class="math inline">\(T_c\)</span> the typical value is <span class="math inline">\(1/\sqrt N\approx0.016\)</span>, so <span class="math inline">\(0.93\)</span> is not random-looking.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. For <span class="math inline">\(N=4096\)</span> the fluctuation of <span class="math inline">\(m\)</span> far above <span class="math inline">\(T_c\)</span> is about <span class="math inline">\(0.016\)</span>, so <span class="math inline">\(|m|=0.93\)</span> is more than <span class="math inline">\(50\)</span> standard deviations. The snapshot comes from the ordered phase.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The fluctuations of <span class="math inline">\(m\)</span> are small for a large system, about <span class="math inline">\(0.016\)</span> for <span class="math inline">\(N=4096\)</span> far above <span class="math inline">\(T_c\)</span>. A single snapshot with <span class="math inline">\(0.93\)</span> is therefore enough to decide.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>We train the classifier of Section <a href="01-machine-learning-and-many-body-physics-in-two-directions.html#sec-10-2">10.2</a> on Ising snapshots. What are the input and the output?</p>
@@ -125,9 +133,17 @@ Quick check
 <li>The energy of the snapshot as input, and the critical temperature as output.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>The architecture is the same as for the cats and dogs, since only the array and the categorical label are needed. The label comes from the temperature at which the snapshot was generated.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The network sees the spin array, and the label is the phase at which it was sampled. With this the network can find the transition without being told the local order parameter.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. If the temperature is the input, the answer is a comparison with <span class="math inline">\(T_c\)</span>, which we must already know. The network would learn nothing about the snapshot.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The critical temperature <span class="math inline">\(T_c=2.27J\)</span> is a property of the model and not of a snapshot. An output that is the same constant for every input is not a classifier.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <p>Next we will see a model where this simple test fails.</p>

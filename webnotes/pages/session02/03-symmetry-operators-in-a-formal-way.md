@@ -17,11 +17,18 @@ Before we include a Hamiltonian, let us look at two small examples. We take a wa
 On the four-site ring the rotation moves every amplitude to the next site, as above. What is the eigenvalue of the state $(1,i,-1,-i)$?
 
 - [ ] $i$
+
+    This is false. The shifted state is $(-i,1,i,-1)$. An eigenvalue $i$ would give $(i,-1,-i,1)$, and the first components $-i$ and $i$ differ.
+
 - [x] $-i$
-- [ ] $-1$
+
+    This is true. The shifted state is $(-i,1,i,-1)$, which is $-i$ times the original. So the state is an eigenstate with eigenvalue $-i$, that is $\varphi=-\pi/2$ in [(2.2)](#eq-2-2).
+
 - [ ] $1$
 
-The shifted state is $(-i,1,i,-1)$, which is $-i$ times the original. So the state is an eigenstate with eigenvalue $-i$, that is $\varphi=-\pi/2$.
+    This is false. An eigenvalue $1$ would leave the state unchanged, but the first component goes from $1$ to $-i$. The state with eigenvalue $1$ is $(1,1,1,1)$.
+
+Applying the rotation once and comparing with the original state gives the eigenvalue directly.
 :::
 
 The next example is less visual but more useful in practice. A two-site tight-binding Hamiltonian with a single hopping $t$ between sites 1 and 2,
@@ -42,9 +49,16 @@ From linear algebra we know that two operators that commute have a common eigenb
 A Hamiltonian commutes with $S$, and $\psi$ is a nondegenerate eigenstate of $H$. What do we know about $S\psi$?
 
 - [x] It is proportional to $\psi$, with a phase as the factor.
-- [ ] It is orthogonal to $\psi$.
-- [ ] It has a different energy than $\psi$.
-- [ ] It has no definite energy.
 
-Since $[H,S]=0$, the state $S\psi$ is an eigenstate with the same energy. The level is nondegenerate, so $S\psi$ can differ from $\psi$ only by a number, which is a phase by [(2.2)](#eq-2-2).
+    This is true. Since $[H,S]=0$, the state $S\psi$ is an eigenstate with the same energy. The level is nondegenerate, so $S\psi$ can differ from $\psi$ only by a number, which is a phase by [(2.2)](#eq-2-2).
+
+- [ ] It is orthogonal to $\psi$.
+
+    This is false. Take a ring with nearest-neighbor hopping and the rotation $S$. The state $(1,1,1,1)/2$ is the nondegenerate ground state, and $S\psi=\psi$, so the overlap $\langle\psi|S\psi\rangle=1$ is not zero.
+
+- [ ] It has a different energy than $\psi$.
+
+    This is false. On the ring, $S\psi$ is again a Fourier mode with $\epsilon=-2t\cos\varphi$, the same energy as $\psi$. In general $HS\psi=SH\psi=ES\psi$.
+
+The symmetry maps the eigenstate into the same level, and a single level leaves only a phase.
 :::

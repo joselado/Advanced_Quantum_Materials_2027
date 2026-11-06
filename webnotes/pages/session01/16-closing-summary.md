@@ -18,11 +18,18 @@
 Why does a mean-field superconductor not have a fixed number of electrons?
 
 - [x] The order parameter has a physical phase, so the gauge symmetry is broken, and this symmetry is the conservation of the particle number.
+
+    This is true. Once $\Delta\neq 0$ it changes under the gauge transformation, and the number is not fixed anymore. Only its parity survives.
+
 - [ ] The attractive interaction lets electrons escape from the sample.
-- [ ] The hopping is switched off in a superconductor.
+
+    This is false. An isolated superconducting island has a fixed number of electrons in total, and the mean-field state still has $\Delta\neq 0$. The state is a superposition of $N$, $N+2$ and $N-2$ electrons, with no electrons leaving.
+
 - [ ] A superconductor breaks time-reversal symmetry.
 
-A fixed particle number is the conservation law of the gauge symmetry. Once $\Delta\neq 0$ breaks this symmetry, the number is not fixed anymore, and only its parity survives.
+    This is false. A conventional s-wave superconductor such as aluminum has a real $\Delta$ and keeps time-reversal symmetry. Its number of electrons is still not fixed.
+
+The phase of $\Delta$ and the number of electrons are conjugate, so a fixed phase means an uncertain number.
 :::
 
 In the next session we leave interactions aside for some time, and we go back to the single-particle part of the Hamiltonian of this session. We will see how *symmetry*, and in particular translational symmetry, allows us to diagonalize it exactly, without any approximation, using Bloch's theorem. The general framework of symmetry breaking that we built in Section [1.11](#sec-1-11) will not be discussed again there, so it is useful to keep it from here and not to expect a summary of it later.

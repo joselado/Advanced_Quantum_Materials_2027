@@ -89,9 +89,9 @@
 <img src="../figures/s02f05_flatbands.svg" loading="lazy" alt="Flat bands that come only from geometry, with the bands computed from the Bloch Hamiltonian of each lattice and the flat band drawn as the red tube." />
 <figcaption><strong>Figure 2.6.</strong> Flat bands that come only from geometry, with the bands computed from the Bloch Hamiltonian of each lattice and the flat band drawn as the red tube. <strong>(a)</strong> The Lieb lattice, which is a square lattice with one site in four removed, and <strong>(b)</strong> its bands. There are two dispersive bands and a band that is exactly flat at <span class="math inline">\(\epsilon=0\)</span>, and all three touch at <span class="math inline">\(M\)</span>. <strong>(c)</strong> The kagome lattice, made of triangles that share corners, and <strong>(d)</strong> its bands, with a Dirac-like crossing at <span class="math inline">\(K\)</span> and a flat band at <span class="math inline">\(\epsilon=2t\)</span>. <strong>(e)</strong> The reason why the flat band exists. An eigenstate can be confined to a single kagome hexagon, with amplitudes of alternating sign around it, the filled and the ghost balls. Every path by which it could hop onto a site outside arrives twice with opposite sign, the two arrows, so the two contributions cancel at the cross. Nothing is fine-tuned to zero, since the flatness is a property of the geometry of the lattice, and by <a href="09-properties-of-an-electronic-dispersion.html#eq-2-16">(2.16)</a> it makes the density of states diverge.</figcaption>
 </figure>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>We change the value of the hopping <span class="math inline">\(t\)</span> of the kagome lattice. Where is the flat band?</p>
@@ -101,17 +101,27 @@ Quick check
 <li>At <span class="math inline">\(\epsilon=2t\)</span>, so its energy changes with <span class="math inline">\(t\)</span> but it stays flat.</li>
 <li>At zero energy, for any <span class="math inline">\(t\)</span>.</li>
 <li>It becomes dispersive.</li>
-<li>It disappears.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>The flat band comes from interference between hopping paths, which works for any value of the hopping. So the band scales with <span class="math inline">\(t\)</span>, and it stays flat.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The flat band comes from interference between hopping paths, which works for any value of the hopping. So the band scales with <span class="math inline">\(t\)</span>, and it stays flat.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. Zero energy is the flat band of the Lieb lattice. For the kagome lattice with <span class="math inline">\(t=1\)</span> it is at <span class="math inline">\(2\)</span>, and with <span class="math inline">\(t=2\)</span> it is at <span class="math inline">\(4\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The state on one hexagon obeys <span class="math inline">\(H\psi=2t\psi\)</span> exactly, for any <span class="math inline">\(t\)</span>, since the cancellation does not involve its value. A change of <span class="math inline">\(t\)</span> only moves the energy.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The flatness is a property of the geometry, and <span class="math inline">\(t\)</span> sets only the energy scale.</p>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>Why does the state on one hexagon of the kagome lattice not spread to the sites outside?</p>
@@ -120,13 +130,23 @@ Quick check
 <ol type="A">
 <li>Every outside site is reached by two paths with opposite signs, so the amplitudes cancel.</li>
 <li>The hopping to the outside sites is zero.</li>
-<li>The outside sites have a much higher energy.</li>
 <li>The state is localized by the interaction.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>The alternating amplitudes around the hexagon make the two contributions to each outside site equal and opposite. Nothing is tuned to zero, since this is a property of the geometry.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The alternating amplitudes around the hexagon make the two contributions to each outside site equal and opposite, as in panel (e) of the figure. Nothing is tuned to zero, since this is a property of the geometry.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. Every bond of the kagome lattice has the same hopping <span class="math inline">\(t\)</span>, and an outside site is bonded to two sites of the hexagon. The two terms are <span class="math inline">\(-ta\)</span> and <span class="math inline">\(+ta\)</span>, each of them nonzero, and they add up to zero.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The tight-binding Hamiltonian has no interaction, and the state is still an exact eigenstate with energy <span class="math inline">\(2t\)</span>. The localization comes from the interference alone.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The localization is a single-particle effect of the geometry.</p>
+</div>
 </details>
 </div>
 <p>This material is only on the slides and has no counterpart in <code>session2.ipynb</code>. The notebook treats the honeycomb lattice in depth, but it has no section on the Lieb lattice or on the kagome lattice. The band-structure plots for both lattices are shown directly on the slides. The description above gives their qualitative structure, but to see the actual flat-band dispersion one needs the figure itself.</p>

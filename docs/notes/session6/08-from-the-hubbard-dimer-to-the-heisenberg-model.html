@@ -98,9 +98,9 @@
 <img src="../figures/s06f02_dimer.svg" loading="lazy" alt="Superexchange in the two-site Hubbard model, and the reason why it is always antiferromagnetic." />
 <figcaption><strong>Figure 6.2.</strong> Superexchange in the two-site Hubbard model, and the reason why it is always antiferromagnetic. (a) With parallel spins, the only possible hop would put two <span class="math inline">\(\uparrow\)</span> electrons on one site, and Pauli exclusion forbids this completely. As a result the triplet states cannot lower their energy at any order, and stay at exactly <span class="math inline">\(E_T=0\)</span>. With antiparallel spins the hop is allowed, so the singlet goes through a virtual double occupation of energy <span class="math inline">\(U\)</span>, the glow, and comes back, and gains a second-order energy <span class="math inline">\(-4t^2/U\)</span>. Here the magnetic order is a purely kinetic effect, since antiparallel spins have lower energy because only they can move. (b) The exact singlet energy <span class="math inline">\(E_S=\tfrac{U}{2}-\sqrt{(U/2)^2+4t^2}\)</span> as a function of <span class="math inline">\(U/t\)</span>, with <span class="math inline">\(E_T=0\)</span> exact for every <span class="math inline">\(U\)</span>. The singlet-triplet splitting <em>is</em> the Heisenberg coupling <span class="math inline">\(J\)</span> of <a href="#eq-6-4">(6.4)</a>, and it decays as <span class="math inline">\(4t^2/U\)</span>, the grey curve. This is the same <span class="math inline">\(1/U\)</span> law that we found numerically for the mean-field energy difference between the ferromagnet and the antiferromagnet in Section <a href="04-exchange-splitting-and-antiferromagnetic-order-in-numerical-mean-field-theory.html#sec-6-5">6.5</a>.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>At fixed large <span class="math inline">\(U\)</span> the hopping <span class="math inline">\(t\)</span> of the dimer is doubled. How does <span class="math inline">\(J\)</span> of <a href="#eq-6-4">(6.4)</a> change?</p>
@@ -109,13 +109,20 @@ Quick check
 <ol type="A">
 <li>It doubles.</li>
 <li>It grows by a factor of four.</li>
-<li>It is halved.</li>
 <li>It does not change.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The coupling <span class="math inline">\(J=4t^2/U\)</span> depends on <span class="math inline">\(t^2\)</span>, so doubling <span class="math inline">\(t\)</span> gives a factor of four. The process needs two hops, one to the doubly occupied state and one back.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. For <span class="math inline">\(U=10t\)</span> and <span class="math inline">\(t=1\)</span> we get <span class="math inline">\(J=4/10=0.4\)</span>. For <span class="math inline">\(t=2\)</span> we get <span class="math inline">\(J=16/10=1.6\)</span>, which is four times larger and not <span class="math inline">\(0.8\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The coupling <span class="math inline">\(J=4t^2/U\)</span> depends on <span class="math inline">\(t^2\)</span>, so doubling <span class="math inline">\(t\)</span> gives a factor of four. The process needs two hops, one to the doubly occupied state and one back.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. For <span class="math inline">\(t=0\)</span> the two sites are decoupled and the singlet and triplet are degenerate, so <span class="math inline">\(J=0\)</span>. Then <span class="math inline">\(J\)</span> has to depend on <span class="math inline">\(t\)</span>, and it follows <span class="math inline">\(t^2\)</span> in <a href="#eq-6-4">(6.4)</a>.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="notebookbox">

@@ -100,9 +100,9 @@
 <img src="../figures/s09f05_decay.svg" loading="lazy" alt="The diagnostic that connects the whole session, drawn for the two Heisenberg chains of (9.11)." />
 <figcaption><strong>Figure 9.5.</strong> The diagnostic that connects the whole session, drawn for the two Heisenberg chains of <a href="#eq-9-11">(9.11)</a>. Close to the impurity both look the same, with an induced moment that changes sign from site to site, because the exchange is antiferromagnetic. The only difference between them is how the envelope decays. (a) The <span class="math inline">\(S=1/2\)</span> chain maps, through the Abrikosov-fermion construction of session 8, onto a <em>gapless</em> spinon band with a real Fermi surface of two points, so its envelope decays as the power law <span class="math inline">\(1/n\)</span>. This is the same mathematics, and the same reason, as for the Friedel oscillations <a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html#eq-9-9">(9.9)</a> of a metal. (b) The <span class="math inline">\(S=1\)</span> chain has the Haldane gap, which fixes a finite correlation length <span class="math inline">\(\xi\)</span> and gives an exponential envelope <span class="math inline">\(e^{-n/\xi}\)</span>, drawn for <span class="math inline">\(\xi=2.5\)</span>, in the same way as charge screening decays inside a band insulator. (c) On a logarithmic vertical scale the two are easy to distinguish, since an exponential is a straight line of slope <span class="math inline">\(-1/\xi\)</span> and a power law is not. The statement can be read in both directions, so a measured decay law is a measurement of whether the ground state is gapped.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>An impurity response in a spin chain is measured, and it looks like <span class="math inline">\((-1)^n e^{-n/\xi}\)</span> with <span class="math inline">\(\xi\approx2.5\)</span> sites. What do we conclude about the spin excitations?</p>
@@ -114,14 +114,22 @@ Quick check
 <li>We cannot say, since the sign alternation only reflects the lattice.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>An exponential envelope needs a finite correlation length, and this only exists when the spectrum has a gap. The alternating sign is the antiferromagnetic exchange, and it appears in both cases of <a href="#eq-9-11">(9.11)</a>.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The <span class="math inline">\(S=1/2\)</span> chain has an envelope <span class="math inline">\(1/n\)</span>. From <span class="math inline">\(n=10\)</span> to <span class="math inline">\(n=20\)</span> it falls by a factor <span class="math inline">\(2\)</span>, but <span class="math inline">\(e^{-n/2.5}\)</span> falls by <span class="math inline">\(e^{-4}\approx0.02\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. An envelope <span class="math inline">\(e^{-n/\xi}\)</span> needs a finite <span class="math inline">\(\xi\)</span>, so the spectrum has a gap. Here <span class="math inline">\(\xi\approx2.5\)</span>, so between <span class="math inline">\(n=10\)</span> and <span class="math inline">\(n=20\)</span> the amplitude falls by a factor <span class="math inline">\(0.02\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The alternating sign appears in both cases, but the envelope decides. A <span class="math inline">\(1/n\)</span> envelope falls by <span class="math inline">\(2\)</span> from <span class="math inline">\(n=10\)</span> to <span class="math inline">\(20\)</span>, while <span class="math inline">\(e^{-n/2.5}\)</span> falls by <span class="math inline">\(0.02\)</span>, and we can tell them apart.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>In panel (c) of figure <a href="#fig:s09:decay">9.5</a> the vertical axis is logarithmic. How do the two envelopes look there?</p>
@@ -133,9 +141,17 @@ Quick check
 <li>The power law is a straight line, and the exponential is a curve.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>The logarithm of <span class="math inline">\(e^{-n/\xi}\)</span> is <span class="math inline">\(-n/\xi\)</span>, which is linear in <span class="math inline">\(n\)</span>. The logarithm of <span class="math inline">\(1/n\)</span> is <span class="math inline">\(-\ln n\)</span>, which bends. This is how a measured decay law is read as gapped or gapless.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The logarithm of <span class="math inline">\(e^{-n/\xi}\)</span> is <span class="math inline">\(-n/\xi\)</span>, so <span class="math inline">\(n=0,2.5,5\)</span> give <span class="math inline">\(0,-1,-2\)</span> on a straight line. The logarithm of <span class="math inline">\(1/n\)</span> is <span class="math inline">\(-\ln n\)</span>, which bends.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The power law <span class="math inline">\(1/n\)</span> gives <span class="math inline">\(\ln\)</span> values <span class="math inline">\(0,-0.69,-1.10,-1.39\)</span> for <span class="math inline">\(n=1,2,3,4\)</span>. The steps shrink, so it is not a straight line.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. For the exponential the steps are all equal, since <span class="math inline">\(\ln e^{-n/\xi}=-n/\xi\)</span>. For <span class="math inline">\(\xi=2.5\)</span> every <span class="math inline">\(2.5\)</span> sites gives <span class="math inline">\(-1\)</span>, and it is a straight line, not a curve.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="tryit">

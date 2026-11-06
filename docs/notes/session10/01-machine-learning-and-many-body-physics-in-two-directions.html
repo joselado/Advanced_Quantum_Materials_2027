@@ -91,12 +91,12 @@
 \mathcal{L}/\partial\theta\)</span> with the chain rule, together with gradient descent,</p>
 <p><span id="eq-10-1" class="eq"><span class="math display">\[\mathcal{L}(\theta) = \sum_n \left\| f_\theta(x_n) - y_n \right\|^2, \qquad \theta \;\longrightarrow\; \theta - \eta\, \nabla_\theta \mathcal{L}(\theta), \tag{10.1}\]</span></span></p>
 <p>where <span class="math inline">\(\{(x_n, y_n)\}\)</span> is a set of labeled training examples and <span class="math inline">\(\eta\)</span> is the learning rate. Every use of a neural network in this session is a variation of <a href="#eq-10-1">(10.1)</a>, even when the physics attached to it is exotic. We have to choose the right input, the right output and the right loss, and then the training procedure is always the same gradient descent.</p>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
-<p>We double the number of layers of a network, and then we train it with <a href="#eq-10-1">(10.1)</a>. Which statement is correct?</p>
+<p>We add a hidden layer to a network that has none, and then we train it with <a href="#eq-10-1">(10.1)</a>. Which statement is correct?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -105,14 +105,22 @@ Quick check
 <li>Training changes the architecture, so the number of layers is fixed by the data.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The architecture fixes which functions are possible, and the weights and biases <span class="math inline">\(\theta\)</span> fix which one the network is at a given moment. Gradient descent only moves <span class="math inline">\(\theta\)</span>.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. A network with no hidden layer is linear and cannot represent XOR. One hidden layer can, so adding a layer changes the set of functions.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. A linear network cannot represent XOR, and a network with one hidden layer can. The architecture sets the set of functions, and <span class="math inline">\(\theta\)</span> chooses one inside it.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The same Ising snapshots can be fitted with two layers or with ten. The number of layers is our choice, and gradient descent changes only <span class="math inline">\(\theta\)</span>.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>In the update <span class="math inline">\(\theta\to\theta-\eta\nabla_\theta\mathcal{L}\)</span> the learning rate <span class="math inline">\(\eta\)</span> is made much too large. What do we expect?</p>
@@ -124,9 +132,17 @@ Quick check
 <li>The gradient vanishes, so the loss stays constant.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The gradient only gives the direction in which the loss decreases locally. A step that is too long jumps over the valley to a point where the loss is higher, so the update must be small.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Take <span class="math inline">\(\mathcal L=\theta^2/2\)</span>, so the update is <span class="math inline">\(\theta\to(1-\eta)\theta\)</span>. For <span class="math inline">\(\eta=1\)</span> the minimum is reached in one step, and for <span class="math inline">\(\eta=2.5\)</span> the factor is <span class="math inline">\(-1.5\)</span>, which diverges.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. For <span class="math inline">\(\mathcal L=\theta^2/2\)</span> with <span class="math inline">\(\eta=2.5\)</span> we get <span class="math inline">\(\theta\to-1.5\theta\)</span>, so the loss grows by <span class="math inline">\(2.25\)</span> at every step. For <span class="math inline">\(\eta=2\)</span> the point oscillates between <span class="math inline">\(\pm\theta\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. For <span class="math inline">\(\mathcal L=\theta^2/2\)</span> the gradient is <span class="math inline">\(\theta\)</span>. A large <span class="math inline">\(\eta\)</span> makes <span class="math inline">\(|\theta|\)</span> larger, so the gradient grows and does not vanish until <span class="math inline">\(\theta=0\)</span>.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <p>The concrete example that we keep in mind is the classification of images of cats and dogs, since we will use the same architecture two more times in this session. An image is an <span class="math inline">\(N\times N\)</span> matrix of pixel values. We flatten it into the input layer of the network, and the output layer has only two nodes, with the target <span class="math inline">\((1,0)\)</span> for “cat” and <span class="math inline">\((0,1)\)</span> for “dog.” We train on a labeled set of images by minimizing <a href="#eq-10-1">(10.1)</a>, with <span class="math inline">\(f_\theta\)</span> the output of the network and <span class="math inline">\(y_n\)</span> the one-hot label. Once the network is trained, it classifies new images that have no label. This template can be used in many cases, since nothing in it depends on the input being a photograph. It only needs the input to be an array of numbers with a categorical label. We will see the same structure, an input matrix and a one-hot output, again in Section <a href="06-phase-classification-with-local-order-parameters-and-topological-order.html#sec-10-6">10.6</a>, where a spin configuration takes the place of the photograph. Figure <a href="#fig:s10:template">10.1</a> shows the template once, and the four later constructions of this session use it without change except for the choice of input, output and loss.</p>

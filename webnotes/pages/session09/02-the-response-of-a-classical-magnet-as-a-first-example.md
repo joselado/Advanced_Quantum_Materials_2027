@@ -19,8 +19,14 @@ The physical picture behind [(9.1)](#eq-9-1) is important, because we will find 
 We measure the susceptibility of a magnet at high temperature. A plot of $1/\chi$ against $T$ is a straight line that reaches zero at $T=-30$ K when we extrapolate it. What do we expect when we cool the sample?
 
 - [ ] Ferromagnetic order below a positive critical temperature.
+
+    This is false. For a ferromagnet with $T_c=+30$ K the line $1/\chi\propto T-30$ reaches zero at $30$ K, and $\chi$ diverges there. Our line reaches zero only at $-30$ K, so it never does at a positive temperature.
+
 - [x] Antiferromagnetic order, although the susceptibility never diverges at a positive temperature.
+
+    This is true. The line $1/\chi\propto T+30$ has the antiferromagnetic form of [(9.1)](#eq-9-1). The exchange favors staggered order, which the uniform $\chi$ does not feel, so it does not diverge for $T>0$.
+
 - [ ] No order at all, since a paramagnet has the intercept at zero.
 
-The line $1/\chi\propto T+T_c$ is the antiferromagnetic case of [(9.1)](#eq-9-1), with $T_c=30$ K. The exchange favors staggered order, so the uniform susceptibility only reaches the apparent divergence at a negative temperature. A paramagnet would give an intercept at $T=0$.
+    This is false. A paramagnet has $1/\chi\propto T$, which is $60$ at $T=60$ K. Our line gives $90$ there, so the intercept at $-30$ K is a measured deviation and it signals a finite exchange.
 :::

@@ -97,9 +97,9 @@
 <img src="../figures/panel/s02f04_dirac_c.svg" loading="lazy" alt="A hexagonal Brillouin zone with a Dirac cone at two of its corners." />
 <figcaption><strong><a href="../session2/11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#fig:s02:dirac">Figure 2.5</a>, one panel shown again.</strong> The Dirac cone of graphene. The two bands touch at one point and rise linearly around it, which is why the electrons behave as massless particles. We derive this cone in session 2.</figcaption>
 </figure>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>A topological insulator and an ordinary insulator both have a gap in the bulk. How do we tell them apart in an experiment?</p>
@@ -108,18 +108,28 @@ Quick check
 <ol type="A">
 <li>By the states at the edge, which conduct inside the gap in the topological case.</li>
 <li>By the size of the bulk gap, which is always larger in the topological case.</li>
-<li>By the density of states of the bulk, which is different in the two cases.</li>
 <li>By the atoms of the material, since only heavy atoms give a topological insulator.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>The bulk gap is present in both cases, so the bulk does not decide. The difference appears at the edge, where the topological insulator has states inside the gap that carry current.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The bulk gap is present in both cases, so the bulk does not decide. Only the topological insulator has states inside the gap at its edge that carry current.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. Take a chain with alternating hoppings <span class="math inline">\(t_1=1,t_2=2\)</span> and another with <span class="math inline">\(t_1=2,t_2=1\)</span>. Both have the same bulk bands and the same gap <span class="math inline">\(2\)</span>, but only one has states at the end. The bulk density of states is also identical in the two chains.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. In the Kane-Mele model of graphene, any small spin-orbit coupling opens a topological gap, even though carbon is a light atom. At the same time, an ordinary insulator can be made of heavy atoms.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The difference appears at the edge, where the topological insulator has states inside the gap.</p>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>A doped semiconductor conducts, while the undoped one with the same bands does not. What does the doping do?</p>
@@ -129,12 +139,22 @@ Quick check
 <li>It puts a few carriers in the conduction band or removes a few from the valence band.</li>
 <li>It closes the band gap, so the material becomes a metal.</li>
 <li>It makes the electrons interact strongly, so the material becomes a magnet.</li>
-<li>It changes the lattice into a topological one.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>The bands stay the same, and only the filling changes. A few free carriers in the conduction band, or a few holes in the valence band, are enough to carry a current.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The bands stay the same and only the filling changes. A few electrons in the conduction band, or a few holes in the valence band, are enough to carry a current.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. Silicon doped with phosphorus keeps its gap of about <span class="math inline">\(1.1\)</span> eV, and it conducts. The dopants are one atom in a million, which is too few to change the bands.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. In doped silicon the carriers are so dilute that they are almost free, and the material is not magnetic. The conduction comes from the number of carriers and not from their interaction.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The bands stay the same, and only the filling changes.</p>
+</div>
 </details>
 </div>
 

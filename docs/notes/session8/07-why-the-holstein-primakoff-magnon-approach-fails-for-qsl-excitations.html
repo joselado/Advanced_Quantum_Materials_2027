@@ -95,9 +95,9 @@
 <img src="../figures/panel/s06f05_magnon_side.svg" loading="lazy" alt="A chain of parallel spins above a chain of spins that move on cones around the same direction." />
 <figcaption><strong><a href="../session6/13-magnons-as-fluctuations-of-the-order-parameter.html#fig:s06:magnon">Figure 6.5</a>, one panel shown again.</strong> The Holstein-Primakoff expansion needs a reference direction. In the top chain all spins point the same way, and in the bottom chain a magnon makes every spin move on a cone around this direction. A quantum spin liquid has no such direction, since <span class="math inline">\(\langle\mathbf S_i\rangle=0\)</span> on every site.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>In a QSL we have <span class="math inline">\(\langle S^z_i\rangle=0\)</span> with <span class="math inline">\(S=1/2\)</span>. What does <a href="#eq-8-8">(8.8)</a> give for <span class="math inline">\(\langle a_i^\dagger a_i\rangle\)</span>?</p>
@@ -107,12 +107,19 @@ Quick check
 <li><span class="math inline">\(0\)</span>, since there are no magnons.</li>
 <li><span class="math inline">\(1/2\)</span>, which is equal to <span class="math inline">\(S\)</span> and not small compared with it.</li>
 <li>Much smaller than <span class="math inline">\(S\)</span>.</li>
-<li>Infinite.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>From <span class="math inline">\(S^z_i=S-a_i^\dagger a_i\)</span> and a zero expectation value we find <span class="math inline">\(\langle a_i^\dagger a_i\rangle=S\)</span>. The linearization needs this number to be small compared with <span class="math inline">\(S\)</span>, so it fails.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. If <span class="math inline">\(\langle a_i^\dagger a_i\rangle\)</span> were zero then <span class="math inline">\(\langle S^z_i\rangle=S-0=1/2\)</span>, which is the ferromagnet. A zero magnetization requires a finite number of bosons.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. From <span class="math inline">\(S^z_i=S-a_i^\dagger a_i\)</span> in <a href="#eq-8-8">(8.8)</a> and a zero expectation value we find <span class="math inline">\(\langle a_i^\dagger a_i\rangle=S\)</span>. The linearization needs this number to be small compared with <span class="math inline">\(S\)</span>, so it fails.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. If <span class="math inline">\(\langle a_i^\dagger a_i\rangle=0.05\)</span> then <span class="math inline">\(\langle S^z_i\rangle=0.45\)</span>, which is nearly a full moment and not a zero one. A zero magnetization needs the value <span class="math inline">\(S\)</span>.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="notebookbox">
@@ -141,9 +148,9 @@ ij\rangle}J_{ij}\,\mathbf S_i\cdot\mathbf S_j\)</span>. With the Fierz identity 
 <img src="../figures/s08f04_parton.svg" loading="lazy" alt="The four fermionic states of one site, with the two singly occupied states as the spin doublet and the other two crossed out." />
 <figcaption><strong><a href="09-the-mean-field-spinon-hamiltonian-and-its-dispersion-classes.html#fig:s08:parton">Figure 8.4</a>, shown again.</strong> The four states of a site written with the fermions <span class="math inline">\(f_{i\uparrow}\)</span> and <span class="math inline">\(f_{i\downarrow}\)</span>. Look at panel (a), where the two states with a cross, the empty and the doubly occupied one, are the ones that the constraint <a href="#eq-8-11">(8.11)</a> removes.</figcaption>
 </figure>
-<div class="quiz" data-correct="C">
+<div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>For a bond with a singlet we have <span class="math inline">\(\mathbf S_i\cdot\mathbf S_j=-3/4\)</span>. What does <a href="#eq-8-12">(8.12)</a> give for <span class="math inline">\(\chi_{ij}^\dagger\chi_{ij}\)</span>?</p>
@@ -153,12 +160,19 @@ Quick check
 <li><span class="math inline">\(0\)</span>.</li>
 <li><span class="math inline">\(1\)</span>.</li>
 <li><span class="math inline">\(2\)</span>.</li>
-<li><span class="math inline">\(1/4\)</span>.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>C</strong>.</p>
-<p>From <a href="#eq-8-12">(8.12)</a> we have <span class="math inline">\(\chi^\dagger\chi=2(\tfrac14-\mathbf S_i\cdot\mathbf S_j)=2\)</span> for the singlet. For a triplet it is <span class="math inline">\(0\)</span>, so the bond operator measures how much singlet there is on the bond.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. This is the value for a triplet, since <span class="math inline">\(2(\tfrac14-\tfrac14)=0\)</span> with <span class="math inline">\(\mathbf S_i\cdot\mathbf S_j=+1/4\)</span>. Our bond has <span class="math inline">\(-3/4\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. This needs <span class="math inline">\(\mathbf S_i\cdot\mathbf S_j=-1/4\)</span>, which is not an eigenvalue of two spin-1/2. The only values are <span class="math inline">\(-3/4\)</span> and <span class="math inline">\(+1/4\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. From <a href="#eq-8-12">(8.12)</a> we have <span class="math inline">\(\chi^\dagger\chi=2(\tfrac14-\mathbf S_i\cdot\mathbf S_j)=2\)</span> for the singlet. For a triplet it is <span class="math inline">\(0\)</span>, so the bond operator measures how much singlet there is on the bond.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="tryit">

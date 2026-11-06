@@ -90,9 +90,9 @@
 <img src="../figures/web/session09/friedel.svg" loading="lazy" alt="Two plots of the density change along a chain, an oscillation with a decaying envelope, slower in the left plot and faster in the right plot." />
 <figcaption><strong>Schematic 9.6.</strong> The density induced by one impurity of strength <span class="math inline">\(v_0=t\)</span> in a chain of 4001 sites, from exact diagonalization, for two chemical potentials. The period is <span class="math inline">\(\pi/k_F\)</span>, so the lower filling on the left gives the longer period. The grey lines are an envelope <span class="math inline">\(1/x\)</span>, as <a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html#eq-9-9">(9.9)</a> gives for <span class="math inline">\(d=1\)</span>, and the points follow it after the first few sites.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>In a gapped chain the LDOS around an impurity converges to its bulk value within a few sites. Why is there no slowly decaying oscillation?</p>
@@ -104,9 +104,17 @@ Quick check
 <li>A gapped chain has no translational symmetry.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The slow tail comes from a non-analytic point of <span class="math inline">\(\chi_0(q)\)</span> at <span class="math inline">\(2k_F\)</span>. With a gap, the function is smooth for every <span class="math inline">\(q\)</span>, and the real-space response is exponentially short.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. A metal screens the impurity well, and it still has Friedel oscillations at <span class="math inline">\(2k_F\)</span>. Screening does not remove the tail, and in the gap there are no electrons at the Fermi level to screen.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. A gap makes <span class="math inline">\(\chi_0(q)\)</span> analytic for all <span class="math inline">\(q\)</span>, so its Fourier transform decays as <span class="math inline">\(e^{-x/\xi}\)</span>. For <span class="math inline">\(\xi\approx2.5\)</span> sites the response at ten sites is <span class="math inline">\(e^{-4}\approx0.02\)</span> of its starting value.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. A dimerized chain with hoppings <span class="math inline">\(t_1\neq t_2\)</span> is gapped and has translational symmetry with a two-site cell. Its LDOS around an impurity still decays exponentially.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="tryit">

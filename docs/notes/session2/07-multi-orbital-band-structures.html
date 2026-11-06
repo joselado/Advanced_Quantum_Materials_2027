@@ -101,9 +101,9 @@
 <img src="../figures/s02f03_blochrecipe.svg" loading="lazy" alt="Reading a Bloch Hamiltonian from a lattice, shown as band folding." />
 <figcaption><strong>Figure 2.3.</strong> Reading a Bloch Hamiltonian from a lattice, shown as band folding. The number of orbitals per unit cell gives the size of the matrix. An intracell hopping enters the entry of its orbital pair with no phase, and an intercell hopping enters the corresponding entry multiplied by <span class="math inline">\(e^{\pm i\varphi}\)</span>. (a) The same chain with one site per cell, behind, and with two sites <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> per cell, in front, where the intracell hopping <span class="math inline">\(1\)</span> is the thick bond and the intercell hopping <span class="math inline">\(\eta\)</span> is the thin one. Note that the intracell <span class="math inline">\(A\)</span>-<span class="math inline">\(B\)</span> hopping goes <em>off</em> the diagonal. For the chain with alternating hoppings <a href="#eq-2-13">(2.13)</a> this gives the two bands <span class="math inline">\(\epsilon_\pm=\pm|1+\eta e^{-i\varphi}|\)</span>. (b) For <span class="math inline">\(\eta=1\)</span> the two descriptions are the same chain, and the band of the one-site cell, the grey tube, folds into the zone of the two-site cell, which is half as wide and ends at the translucent planes at <span class="math inline">\(\varphi=\pm\pi\)</span>. The two folded branches are the two bands, which touch at the zone edge. For <span class="math inline">\(\eta=0.6\)</span> they have a gap, and the gap closes exactly at <span class="math inline">\(\eta=1\)</span>. This is the Su-Schrieffer-Heeger chain of the topology session.</figcaption>
 </figure>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>In <a href="#eq-2-13">(2.13)</a> we take <span class="math inline">\(\eta=1\)</span> and <span class="math inline">\(\varphi=\pi\)</span>. What is the energy of the two bands?</p>
@@ -111,19 +111,29 @@ Quick check
 <div class="quiz-options">
 <ol type="A">
 <li><span class="math inline">\(0\)</span> for both, so the bands touch.</li>
-<li><span class="math inline">\(\pm 1\)</span>.</li>
 <li><span class="math inline">\(\pm 2\)</span>.</li>
 <li><span class="math inline">\(\pm\eta\)</span> with a gap.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>At <span class="math inline">\(\varphi=\pi\)</span> the phase factor is <span class="math inline">\(-1\)</span>, so <span class="math inline">\(1+\eta e^{-i\pi}=1-\eta\)</span>, which vanishes for <span class="math inline">\(\eta=1\)</span>. The two bands touch, as the folded band of the uniform chain does at the zone edge.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. At <span class="math inline">\(\varphi=\pi\)</span> the phase factor is <span class="math inline">\(-1\)</span>, so <span class="math inline">\(1+\eta e^{-i\pi}=1-\eta\)</span>, which vanishes for <span class="math inline">\(\eta=1\)</span>. The two bands touch, as the folded band of the uniform chain does at the zone edge.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The value <span class="math inline">\(\pm 2\)</span> is <span class="math inline">\(\pm|1+\eta|\)</span> at <span class="math inline">\(\varphi=0\)</span> for <span class="math inline">\(\eta=1\)</span>, which is the top and the bottom of the two bands. At <span class="math inline">\(\varphi=\pi\)</span> we get <span class="math inline">\(|1-1|=0\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The gap at <span class="math inline">\(\varphi=\pi\)</span> is <span class="math inline">\(2|1-\eta|\)</span>. It is <span class="math inline">\(1\)</span> for <span class="math inline">\(\eta=0.5\)</span>, but it is exactly zero for <span class="math inline">\(\eta=1\)</span>, so the gap closes.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The gap at <span class="math inline">\(\varphi=\pi\)</span> is <span class="math inline">\(2|1-\eta|\)</span>, so it closes only when the two hoppings are equal.</p>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>We describe the uniform chain with a unit cell of three sites. How many bands do we get, and how wide is the zone?</p>
@@ -133,12 +143,22 @@ Quick check
 <li>Three bands, in a zone three times narrower.</li>
 <li>One band, in the same zone.</li>
 <li>Three bands, in a zone three times wider.</li>
-<li>Two bands, in a zone twice as narrow.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>The Bloch Hamiltonian is a <span class="math inline">\(3\times 3\)</span> matrix, so we get three bands. The cell is three times longer, so the zone is three times narrower, and the single band of <a href="05-blochs-theorem-and-the-first-band-structure.html#eq-2-8">(2.8)</a> folds into it.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The Bloch Hamiltonian is a <span class="math inline">\(3\times 3\)</span> matrix, so we get three bands. The cell is three times longer, so the zone is three times narrower, and the single band of <a href="05-blochs-theorem-and-the-first-band-structure.html#eq-2-8">(2.8)</a> folds into it.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. At <span class="math inline">\(\varphi=0\)</span> the folded energies <span class="math inline">\(-2t\cos(2\pi m/3)\)</span> with <span class="math inline">\(m=0,1,2\)</span> are <span class="math inline">\(-2t\)</span>, <span class="math inline">\(t\)</span> and <span class="math inline">\(t\)</span>. A <span class="math inline">\(3\times 3\)</span> matrix has three eigenvalues at each <span class="math inline">\(\varphi\)</span>, so one band is not enough.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The zone has the width <span class="math inline">\(2\pi/(3a)\)</span>, which is smaller than <span class="math inline">\(2\pi/a\)</span>. A wider zone would need a shorter cell, and our cell is three times longer.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>Counting the sites of the cell gives the number of bands, and its length gives the width of the zone.</p>
+</div>
 </details>
 </div>
 <div class="notebookbox">

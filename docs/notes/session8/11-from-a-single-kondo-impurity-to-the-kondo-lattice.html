@@ -119,9 +119,9 @@ k\alpha} \;-\; \gamma_K \sum_{\mathbf k,\alpha} f^\dagger_{\mathbf k\alpha}c_{\m
 <img src="../figures/s08f06_kondo_bands.svg" loading="lazy" alt="A dispersive conduction band crossing a flat band without hybridization, and the same bands with a gap at the crossing when the hybridization is finite." />
 <figcaption><strong><a href="13-electronic-structure-of-the-kondo-lattice-and-the-kondo-insulator.html#fig:s08:kondobands">Figure 8.6</a>, shown again.</strong> The result of the parton method for the Kondo lattice, which we obtain in the second part of this page. In panel (a) the flat band of the <span class="math inline">\(f\)</span> levels crosses the conduction band, and in panel (b) the hybridization <span class="math inline">\(\gamma_K\)</span> of <a href="#eq-8-21">(8.21)</a> opens a gap at the crossing.</figcaption>
 </figure>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>In the Kondo lattice <a href="#eq-8-18">(8.18)</a> every impurity wants a singlet with a conduction electron close to it. What is the consequence of having many impurities?</p>
@@ -131,17 +131,24 @@ Quick check
 <li>The screening electrons are shared between the singlets of different impurities.</li>
 <li>Each impurity gets its own electron, so the electron density doubles.</li>
 <li>The impurities form singlets with each other and decouple from the metal.</li>
-<li>The conduction electrons localize.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>The number of conduction electrons is not larger than the number of impurities, and all impurities draw from the same sea. The singlets are then fractional and entangled over the lattice.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The number of conduction electrons is not larger than the number of impurities, and all impurities draw from the same sea. The singlets are then fractional and entangled over the lattice.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The Kondo coupling does not create electrons. With <span class="math inline">\(0.5\)</span> conduction electrons per site, only half of the impurities could get one, and the density stays <span class="math inline">\(0.5\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. At half filling the <span class="math inline">\(f\)</span> fermions hybridize with the conduction band, which opens a gap <span class="math inline">\(2\gamma_K\)</span> as in the Kondo insulator. Decoupled impurities could not do this.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>In <a href="#eq-8-21">(8.21)</a> with <span class="math inline">\(\gamma_K=0\)</span>, what is the energy of the <span class="math inline">\(f\)</span> band?</p>
@@ -150,13 +157,20 @@ Quick check
 <ol type="A">
 <li><span class="math inline">\(\varepsilon_{\mathbf k}\)</span>, the same as the conduction band.</li>
 <li>Zero for every <span class="math inline">\(\mathbf k\)</span>, a flat band.</li>
-<li><span class="math inline">\(-\gamma_K\)</span> for every <span class="math inline">\(\mathbf k\)</span>.</li>
 <li>It does not exist, since the <span class="math inline">\(f\)</span> fermions are removed.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The auxiliary fermions have no hopping of their own, and the only term that involves them is the hybridization. Without it their levels sit at zero energy, which is the chemical potential of the constraint.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The <span class="math inline">\(f\)</span> fermions have no hopping. At <span class="math inline">\(\mathbf k\)</span> with <span class="math inline">\(\varepsilon_{\mathbf k}=2\)</span>, say, the conduction band is at <span class="math inline">\(2\)</span> and the <span class="math inline">\(f\)</span> level is still at <span class="math inline">\(0\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The auxiliary fermions have no hopping of their own, and the only term that involves them is the hybridization. Without it their levels sit at zero energy, which is the chemical potential of the constraint.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The constraint asks for one <span class="math inline">\(f\)</span> fermion on each site, so there are <span class="math inline">\(N\)</span> of them for <span class="math inline">\(N\)</span> sites. They are still in the Hamiltonian, at energy zero.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="tryit">

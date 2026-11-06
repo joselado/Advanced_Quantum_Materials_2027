@@ -8,22 +8,36 @@ Two standard lattices realize truly flat bands only from their geometry in real 
 We change the value of the hopping $t$ of the kagome lattice. Where is the flat band?
 
 - [x] At $\epsilon=2t$, so its energy changes with $t$ but it stays flat.
-- [ ] At zero energy, for any $t$.
-- [ ] It becomes dispersive.
-- [ ] It disappears.
 
-The flat band comes from interference between hopping paths, which works for any value of the hopping. So the band scales with $t$, and it stays flat.
+    This is true. The flat band comes from interference between hopping paths, which works for any value of the hopping. So the band scales with $t$, and it stays flat.
+
+- [ ] At zero energy, for any $t$.
+
+    This is false. Zero energy is the flat band of the Lieb lattice. For the kagome lattice with $t=1$ it is at $2$, and with $t=2$ it is at $4$.
+
+- [ ] It becomes dispersive.
+
+    This is false. The state on one hexagon obeys $H\psi=2t\psi$ exactly, for any $t$, since the cancellation does not involve its value. A change of $t$ only moves the energy.
+
+The flatness is a property of the geometry, and $t$ sets only the energy scale.
 :::
 
 ::: quiz
 Why does the state on one hexagon of the kagome lattice not spread to the sites outside?
 
 - [x] Every outside site is reached by two paths with opposite signs, so the amplitudes cancel.
+
+    This is true. The alternating amplitudes around the hexagon make the two contributions to each outside site equal and opposite, as in panel (e) of the figure. Nothing is tuned to zero, since this is a property of the geometry.
+
 - [ ] The hopping to the outside sites is zero.
-- [ ] The outside sites have a much higher energy.
+
+    This is false. Every bond of the kagome lattice has the same hopping $t$, and an outside site is bonded to two sites of the hexagon. The two terms are $-ta$ and $+ta$, each of them nonzero, and they add up to zero.
+
 - [ ] The state is localized by the interaction.
 
-The alternating amplitudes around the hexagon make the two contributions to each outside site equal and opposite. Nothing is tuned to zero, since this is a property of the geometry.
+    This is false. The tight-binding Hamiltonian has no interaction, and the state is still an exact eigenstate with energy $2t$. The localization comes from the interference alone.
+
+The localization is a single-particle effect of the geometry.
 :::
 
 This material is only on the slides and has no counterpart in `session2.ipynb`. The notebook treats the honeycomb lattice in depth, but it has no section on the Lieb lattice or on the kagome lattice. The band-structure plots for both lattices are shown directly on the slides. The description above gives their qualitative structure, but to see the actual flat-band dispersion one needs the figure itself.

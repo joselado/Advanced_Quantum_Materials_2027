@@ -8,11 +8,17 @@ The staggered potential gave $C=0$, so it remains to see the second choice of th
 We keep the Haldane coupling fixed and increase a staggered potential until it is larger than the Haldane mass. What happens to the Chern number?
 
 - [ ] It stays at $\pm 1$, since the Haldane coupling is still there.
-- [ ] It goes to $\pm 2$, since both masses add.
-- [x] It goes to $0$, since the gap closes at one valley and the two valleys then cancel.
-- [ ] It changes sign but keeps its size.
 
-The two masses add at one valley and subtract at the other. When the staggered one wins, the net mass changes sign only at one valley. The two half-integers of [(3.8)](#eq-3-8) are then opposite and cancel.
+    This is false. Take a Haldane mass $0.5$ and a staggered mass $1$. The masses at the two valleys are $1.5$ and $0.5$, both positive, so $C=\tfrac12-\tfrac12=0$.
+
+- [ ] It goes to $\pm 2$, since both masses add.
+
+    This is false. The two masses add at one valley and subtract at the other, and each Dirac point gives at most $\pm\tfrac12$.
+
+- [x] It goes to $0$, since the gap closes at one valley and the two valleys then cancel.
+
+    This is true. The net masses of the two valleys are $m_s+m_H$ and $m_s-m_H$. When the staggered one wins both have the same sign, and the two half-integers of [(3.8)](#eq-3-8) are opposite and cancel.
+
 :::
 
 ::: notebookbox
@@ -24,12 +30,18 @@ Build the honeycomb ribbon with the Haldane coupling and without magnetic field,
 ::: quiz
 The Haldane coupling has zero net magnetic flux through the unit cell, and yet it gives $C\neq 0$. Why?
 
-- [ ] The edge states of the ribbon carry a net flux.
 - [ ] A small net flux remains in every hexagon.
+
+    This is false. Take the loop of the six first-neighbor bonds around one hexagon. The hoppings are real, so the phase is exactly zero. The complex phases are on the second-neighbor bonds and add to zero over the unit cell.
+
 - [x] A quantized Hall conductivity needs broken time-reversal symmetry, and the complex hopping does this with local currents and zero net flux.
+
+    This is true. What matters is that time reversal is broken, and not that the field is nonzero. The imaginary second-neighbor hopping gives currents that circulate inside each hexagon and cancel on average.
+
 - [ ] The honeycomb lattice is bipartite.
 
-What matters is that time reversal is broken, and not that the field is nonzero. The imaginary second-neighbor hopping gives currents that circulate inside each hexagon and cancel on average.
+    This is false. The staggered potential lives on the same bipartite honeycomb lattice and gives $C=0$, as in [Figure 3.5](#fig:s03:masses). The lattice alone cannot decide the Chern number.
+
 :::
 
 ::: {.tryit notebook="session3.ipynb" cell="Topological phase transitions in the bulk"}

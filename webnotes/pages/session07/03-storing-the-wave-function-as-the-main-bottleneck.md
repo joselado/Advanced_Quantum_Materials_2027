@@ -24,22 +24,32 @@ For $L=2$ there are four basis states, up-up, up-down, down-up and down-down, so
 We store the exact ground state of $L=40$ spin-1/2 sites as complex numbers of 16 bytes each. What memory do we need?
 
 - [x] About 17 terabytes, since $2^{40}\approx 10^{12}$ coefficients are needed.
+
+    This is true. The number of coefficients is $2^{40}\approx1.1\times10^{12}$ and each one takes 16 bytes. This is already far above the memory of a computer, and ten more sites would multiply it by one thousand.
+
 - [ ] About 17 gigabytes, since $2^{40}$ is of the order of $10^9$.
-- [ ] About 17 megabytes, since the state is a vector.
+
+    This is false. The value $2^{30}\approx10^9$ is the one for a chain of 30 sites, which does need $1.7\times10^{10}$ bytes. For $L=40$ the number is $2^{40}\approx10^{12}$, a thousand times more.
+
 - [ ] About 640 bytes, since there are 40 sites.
 
-The number of coefficients is $2^{40}\approx1.1\times10^{12}$ and each one takes 16 bytes. This is already far above the memory of a computer, and the next ten sites would multiply it by one thousand.
+    This is false. This would be the storage of a product state, one 16-byte number per site. Already for $L=2$ the singlet has two nonzero coefficients that cannot be written as a product of two single-site states.
 :::
 
 ::: quiz
 We add one more spin-1/2 site to the chain. How does the storage of the exact state [(7.4)](#eq-7-4) change?
 
 - [ ] It grows by a fixed number of coefficients.
-- [ ] It is multiplied by $L$.
-- [x] It doubles.
-- [ ] It does not change, since the new site is only one spin.
 
-Each new site doubles the dimension of the Hilbert space, so $2^L$ becomes $2^{L+1}$. This is the exponential wall, and the MPS ansatz replaces it with a growth that is linear in $L$.
+    This is false. Going from $L=2$ to $L=3$ adds 4 coefficients, from $L=3$ to $L=4$ adds 8, and from $L=10$ to $L=11$ adds 1024. The increase is not fixed.
+
+- [ ] It is multiplied by $L$.
+
+    This is false. From $L=2$ to $L=3$ the number of coefficients goes from 4 to 8, and this is a factor 2 and not 3. The factor is 2 for every $L$.
+
+- [x] It doubles.
+
+    This is true. Each new site doubles the dimension of the Hilbert space, so $2^L$ becomes $2^{L+1}$. This is the exponential wall, and the MPS ansatz replaces it with a growth that is linear in $L$.
 :::
 
 ::: notebookbox

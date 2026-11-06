@@ -92,24 +92,31 @@
 <p>where <span class="math inline">\(f(z)\)</span> is an <em>arbitrary holomorphic function</em>, meaning any function built only from powers of <span class="math inline">\(z\)</span> and never from <span class="math inline">\(\bar z\)</span>. This is the precise form of the statement “any power <span class="math inline">\(z^m\)</span> times a Gaussian is a zeroth-Landau-level wavefunction”. Holomorphicity is not an extra assumption, since it follows directly when we solve the LLL condition in the symmetric gauge. The single-particle LLL orbitals are then</p>
 <p><span id="eq-4-10" class="eq"><span class="math display">\[\psi_m(z) = z^m\, e^{-|z|^2/4\ell_B^2}, \qquad m=0,1,2,\dots, \tag{4.10}\]</span></span></p>
 <p>and each of them has an angular momentum <span class="math inline">\(m\)</span>, which is the eigenvalue of <span class="math inline">\(L_z\)</span> in this gauge. All of them have the same Gaussian envelope, but the polynomial prefactor <span class="math inline">\(z^m\)</span> moves the probability density of the orbital further from the origin when <span class="math inline">\(m\)</span> grows. The reason is that <span class="math inline">\(|\psi_m|^2\)</span> has its maximum where <span class="math inline">\(\tfrac{d}{d|z|}\big(|z|^{2m}e^{-|z|^2/2\ell_B^2}\big)=0\)</span>, which is at the radius <span class="math inline">\(r_m = \sqrt{2m}\,\ell_B\)</span>.</p>
-<div class="quiz" data-correct="C">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>What is the radius of the maximum of <span class="math inline">\(|\psi_m|^2\)</span> for <span class="math inline">\(m=8\)</span>, in units of <span class="math inline">\(\ell_B\)</span>?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li><span class="math inline">\(16\)</span>.</li>
 <li><span class="math inline">\(2\sqrt{2}\)</span>.</li>
 <li><span class="math inline">\(4\)</span>.</li>
 <li><span class="math inline">\(8\)</span>.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>C</strong>.</p>
-<p>The maximum is at <span class="math inline">\(r_m=\sqrt{2m}\,\ell_B\)</span>, which is <span class="math inline">\(\sqrt{16}\,\ell_B=4\,\ell_B\)</span> for <span class="math inline">\(m=8\)</span>.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. A ring of radius <span class="math inline">\(2\sqrt2\,\ell_B\)</span> encloses <span class="math inline">\(r^2/(2\ell_B^2)=4\)</span> flux quanta, while the state <span class="math inline">\(m=8\)</span> has the angular momentum of <span class="math inline">\(8\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The maximum is at <span class="math inline">\(r_m=\sqrt{2m}\,\ell_B\)</span>, which is <span class="math inline">\(\sqrt{16}\,\ell_B=4\,\ell_B\)</span> for <span class="math inline">\(m=8\)</span>. The ring encloses <span class="math inline">\(m\)</span> flux quanta.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. A ring of radius <span class="math inline">\(8\ell_B\)</span> encloses <span class="math inline">\(r^2/(2\ell_B^2)=32\)</span> flux quanta, which would be the state <span class="math inline">\(m=32\)</span> and not <span class="math inline">\(m=8\)</span>.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <h1 class="sec-next" id="sec-4-14"><span class="num">4.14</span> The many-body wavefunction of the filled lowest Landau level</h1>
@@ -122,24 +129,31 @@ Quick check
 <img src="../figures/s04f05_droplet.svg" loading="lazy" alt="Angular momentum fixes the radius." />
 <figcaption><strong>Figure 4.5.</strong> Angular momentum fixes the radius. (a) The lowest-Landau-level orbitals <a href="#eq-4-10">(4.10)</a>, <span class="math inline">\(|\psi_m|^2\propto r^{2m}e^{-r^2/2\ell_B^2}\)</span>, for <span class="math inline">\(m=0,2,4,6,8\)</span>, each renormalized here to the same peak height and cut open over half a turn. They are nested rings, and when <span class="math inline">\(m\)</span> increases the ring moves outward, to <span class="math inline">\(r_m=\sqrt{2m}\,\ell_B\)</span>, and encloses more flux. (b) When we add every orbital from <span class="math inline">\(m=0\)</span> to <span class="math inline">\(m=N-1\)</span> we therefore fill a disc, and the rings overlap in such a way that the total density is flat inside the disc and falls off sharply at the edge. The filled lowest Landau level is a uniform electron droplet without structure, with one electron per flux quantum. The Laughlin state <a href="16-fractional-filling-and-the-laughlin-wavefunction.html#eq-4-12">(4.12)</a> at <span class="math inline">\(\nu=1/3\)</span> is the second profile. The same <span class="math inline">\(N\)</span> electrons now use orbitals up to <span class="math inline">\(m=3(N-1)\)</span>, so the radius of the droplet grows by <span class="math inline">\(\sqrt{3}\)</span> and the density becomes a third, while the droplet stays as uniform as before. The Laughlin construction is built to keep this uniformity, and the profiles of (b) are schematic.</figcaption>
 </figure>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>In the filled lowest Landau level the density is flat up to the radius set by <span class="math inline">\(m=N-1\)</span>. How does this radius change if we double the number of electrons?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li>It grows by a factor <span class="math inline">\(\sqrt{2}\)</span>.</li>
-<li>It grows by a factor <span class="math inline">\(4\)</span>.</li>
 <li>It doubles.</li>
+<li>It grows by a factor <span class="math inline">\(\sqrt{2}\)</span>.</li>
 <li>It does not change, since the density is uniform.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>The radius is <span class="math inline">\(r=\sqrt{2(N-1)}\,\ell_B\)</span>, so for large <span class="math inline">\(N\)</span> it grows as <span class="math inline">\(\sqrt{N}\)</span>. The density stays the same, since one electron has the area of one flux quantum.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The radius is <span class="math inline">\(\sqrt{2(N-1)}\,\ell_B\)</span>. It is <span class="math inline">\(7.1\,\ell_B\)</span> for <span class="math inline">\(N=26\)</span> and <span class="math inline">\(10.1\,\ell_B\)</span> for <span class="math inline">\(N=52\)</span>, a factor <span class="math inline">\(1.4\)</span> and not <span class="math inline">\(2\)</span>. A factor <span class="math inline">\(2\)</span> needs four times as many electrons.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The radius is <span class="math inline">\(r=\sqrt{2(N-1)}\,\ell_B\)</span>, so for large <span class="math inline">\(N\)</span> it grows as <span class="math inline">\(\sqrt{N}\)</span>. For <span class="math inline">\(N=100\)</span> and <span class="math inline">\(N=200\)</span> we get <span class="math inline">\(14.1\,\ell_B\)</span> and <span class="math inline">\(20.0\,\ell_B\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. A uniform density means that each electron takes the same area, so more electrons need more area. For <span class="math inline">\(N=100\)</span> the radius is <span class="math inline">\(14.1\,\ell_B\)</span> and for <span class="math inline">\(N=200\)</span> it is <span class="math inline">\(20.0\,\ell_B\)</span>.</p></li>
+</ul>
+</div>
 </details>
 </div>
 

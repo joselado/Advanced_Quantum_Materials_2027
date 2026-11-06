@@ -94,9 +94,9 @@ D^2\)</span>, with <span class="math inline">\(d\)</span> the dimension of the l
 <img src="../figures/s10f03_tnml.svg" loading="lazy" alt="Tensor networks used in the reverse direction." />
 <figcaption><strong>Figure 10.3.</strong> Tensor networks used in the reverse direction. <strong>(a)</strong> The four geometries that the text names, drawn as tensor diagrams. Every block is a tensor, every rod is an index that is summed over, and the open legs are the physical indices. The bond dimension <span class="math inline">\(D\)</span> of the internal lines is what <a href="#eq-10-6">(10.6)</a> calls a free parameter. For a ground-state search these geometries are not equivalent, since an MPS is easy to optimize and a PEPS is not. However, as flexible functions of a high-dimensional input with parameters, which is all that a classifier needs, any of them can be used. <strong>(b)</strong> Image classification with a tree tensor network. Each pixel becomes a vector with two components, and their tensor product is a single vector in a <span class="math inline">\(2^N\)</span>-dimensional space, which is the same space where an <span class="math inline">\(N\)</span>-spin wavefunction of <a href="03-neural-network-quantum-states.html#eq-10-2">(10.2)</a> lives. Classification is then a <em>linear</em> map from this space down to two numbers, the red leg, and the tensor network is the efficient and structured parameterization of such a map that <a href="#eq-10-6">(10.6)</a> already gave us. Note what changes and what does not change with respect to figure <a href="01-machine-learning-and-many-body-physics-in-two-directions.html#fig:s10:template">10.1</a>. The input is still an array with a categorical label and the output is still one-hot, and only the function between them is now built from matrices instead of layers of nodes.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>A matrix product state of <a href="#eq-10-6">(10.6)</a> has <span class="math inline">\(L=100\)</span> sites, <span class="math inline">\(d=2\)</span> and bond dimension <span class="math inline">\(D=10\)</span>. How many parameters does it have?</p>
@@ -108,14 +108,22 @@ Quick check
 <li>About <span class="math inline">\(200\)</span>, since there is one number per site and per spin value.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>Each site has <span class="math inline">\(d\)</span> matrices of size <span class="math inline">\(D\times D\)</span>. The cost is linear in <span class="math inline">\(L\)</span> and quadratic in <span class="math inline">\(D\)</span>, which is why the bond dimension is the control parameter of the compression.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The number <span class="math inline">\(2^{100}\approx1.3\times10^{30}\)</span> is the full table. The MPS with <span class="math inline">\(D=10\)</span> has only <span class="math inline">\(20000\)</span> numbers, which is <span class="math inline">\(26\)</span> orders of magnitude less.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. Each of the <span class="math inline">\(100\)</span> sites has <span class="math inline">\(d=2\)</span> matrices of size <span class="math inline">\(10\times10\)</span>, which gives <span class="math inline">\(100\times2\times100=20000\)</span>. The count is linear in <span class="math inline">\(L\)</span> and quadratic in <span class="math inline">\(D\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The count <span class="math inline">\(L\,d=200\)</span> is the case <span class="math inline">\(D=1\)</span>, which is a product state. It cannot describe an entangled state such as the singlet of two spins, which needs <span class="math inline">\(D=2\)</span>.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>Which statement about the classifier of figure <a href="#fig:s10:tnml">10.3</a>b is correct?</p>
@@ -127,9 +135,17 @@ Quick check
 <li>It needs <span class="math inline">\(2^N\)</span> parameters, since the input vector has <span class="math inline">\(2^N\)</span> components.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The classification is a linear map on a space of dimension <span class="math inline">\(2^N\)</span>. A tree tensor network is a structured way to write such a map, so the number of parameters stays small, in the same way as for the matrix product state.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. There is no activation function in the contraction. Replacing the feature vector <span class="math inline">\(\varphi(x_i)\)</span> of one pixel by <span class="math inline">\(2\varphi(x_i)\)</span> multiplies the output by <span class="math inline">\(2\)</span> exactly, so it is multilinear.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The output is a contraction of the weights with the tensor product of the pixels, so it is linear in it. The tree tensor network writes this map with few parameters.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. For <span class="math inline">\(N=100\)</span> pixels, <span class="math inline">\(2^N\approx10^{30}\)</span> parameters would not fit in any computer. A tree network of bond dimension <span class="math inline">\(10\)</span> has only about <span class="math inline">\(10^4\)</span> to <span class="math inline">\(10^5\)</span> parameters.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <p>This is not a toy result. On the Fashion-MNIST dataset, which is a standard benchmark of images of clothes, this tensor-network classifier reaches <strong>95.38% accuracy on the training set and 88.97% on the test set</strong>, which is comparable with conventional neural network architectures on the same task. These numbers appear only on the slides, and in the recording they are only described as “very high accuracy.” They are the kind of concrete result that we want to have in the written notes and not leave implicit. The general point is the same as in Section <a href="03-neural-network-quantum-states.html#sec-10-3">10.3</a>, in the other direction. A variational architecture that was built to compress many-body wavefunctions is, in mathematical terms, one more kind of neural network, and we can use it directly as one.</p>

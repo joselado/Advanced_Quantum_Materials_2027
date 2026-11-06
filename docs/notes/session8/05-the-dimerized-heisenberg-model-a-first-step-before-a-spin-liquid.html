@@ -96,9 +96,9 @@ site}. \tag{8.5}\]</span></span></p>
 <img src="../figures/s08f03_vbs_rvb.svg" loading="lazy" alt="A valence bond solid with its two unpaired spins confined, and a resonating valence bond state with free spin one-half excitations." />
 <figcaption><strong><a href="06-the-resonating-valence-bond-wavefunction-as-the-qsl-ground-state.html#fig:s08:vbsrvb">Figure 8.3</a>, shown again.</strong> The frozen dimer covering of this section and its excitation. Look at the left panels (a1) and (a2), where separating the two unpaired spins breaks every singlet between them, so the pair stays bound as a triplon. The right panels show what the next section adds, a superposition of many coverings.</figcaption>
 </figure>
-<div class="quiz" data-correct="C">
+<div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>We turn one singlet of <a href="#eq-8-5">(8.5)</a> into a triplet. What is the spin of this excitation?</p>
@@ -108,17 +108,24 @@ Quick check
 <li><span class="math inline">\(1/2\)</span>, so it is a spinon.</li>
 <li><span class="math inline">\(0\)</span>, since the state is still a product of dimers.</li>
 <li><span class="math inline">\(1\)</span>, so it is a triplon and not a spinon.</li>
-<li><span class="math inline">\(3/2\)</span>, since two spins are involved.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>C</strong>.</p>
-<p>The two spins of the dimer are in a triplet, which has <span class="math inline">\(S=1\)</span>. Both spins stay on the same bond, so this excitation has the structure of a magnon.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Both spins stay on the same bond, and two spin-1/2 give <span class="math inline">\(0\)</span> or <span class="math inline">\(1\)</span> and never <span class="math inline">\(1/2\)</span>. The state <span class="math inline">\(|{\uparrow\uparrow}\rangle\)</span> on the bond has <span class="math inline">\(S^z=1\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The product of dimers with one of them in <span class="math inline">\(|{\uparrow\uparrow}\rangle\)</span> has total <span class="math inline">\(S^z=1\)</span>, so it is not a singlet. Being a product state does not fix the spin.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. The two spins of the dimer are in a triplet, which has <span class="math inline">\(S=1\)</span>. Both spins stay on the same bond, so this excitation has the structure of a magnon.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>We add a weak coupling between the dimers of <a href="#eq-8-4">(8.4)</a>. What happens to the ground state?</p>
@@ -127,13 +134,20 @@ Quick check
 <ol type="A">
 <li>It breaks time-reversal symmetry immediately.</li>
 <li>It changes smoothly and it still does not break time-reversal symmetry.</li>
-<li>It becomes a quantum spin liquid immediately.</li>
 <li>It becomes degenerate.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The singlet-triplet gap protects the state, so a small perturbation changes it only a little. The state remains a valence bond solid until the coupling is of the order of the gap.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. For four sites with <span class="math inline">\(J=1\)</span> and <span class="math inline">\(J&#39;=0.1\)</span> between the dimers, the ground state has energy <span class="math inline">\(-1.501\)</span> and it is nondegenerate with <span class="math inline">\(S=0\)</span>. The gap of order <span class="math inline">\(J\)</span> forbids a symmetry-broken state.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The singlet-triplet gap protects the state, so a small perturbation changes it only a little. The state remains a valence bond solid until the coupling is of the order of the gap.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. For four sites with <span class="math inline">\(J=1\)</span> and <span class="math inline">\(J&#39;=0.1\)</span> the lowest energy is <span class="math inline">\(-1.501\)</span> and the next one is <span class="math inline">\(-0.527\)</span>. The ground state is unique and the gap is about <span class="math inline">\(0.97\)</span>.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="tryit">

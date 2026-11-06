@@ -12,9 +12,16 @@ The same logic, in an exact form, is what happens in a classical Ising ferromagn
 Why is spontaneous symmetry breaking strictly a statement about infinite systems?
 
 - [ ] In a finite system the Hamiltonian is not symmetric anymore.
-- [x] In a finite system the barrier is finite, so the system tunnels and the ground state stays symmetric.
-- [ ] A finite system has no ground state.
-- [ ] Fluctuations are absent in a finite system.
 
-In a finite system the system can cross the barrier between the two minima, and the true ground state is the symmetric superposition of both. The barrier grows with the system size, and in the thermodynamic limit it cannot be crossed anymore.
+    This is false. Take two Ising spins with $H=-J\sigma_1\sigma_2$. It is invariant under the flip of both spins for any finite size. The symmetry of $H$ does not depend on the size.
+
+- [x] In a finite system the barrier is finite, so the system tunnels and the ground state stays symmetric.
+
+    This is true. The system can cross the barrier between the two minima, and the true ground state is the symmetric superposition of both. The barrier grows with the system size, and in the thermodynamic limit it cannot be crossed.
+
+- [ ] A finite system has no ground state.
+
+    This is false. The matrix $\begin{pmatrix}0&-\Delta\\-\Delta&0\end{pmatrix}$ of the two minima has the ground state $(1,1)/\sqrt2$ with energy $-\Delta$. A finite matrix always has a lowest level, and here it is symmetric.
+
+Tunneling between the minima restores the symmetry in any finite system.
 :::

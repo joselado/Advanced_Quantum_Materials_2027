@@ -91,9 +91,9 @@
 <img src="../figures/web/session05/spin_split_pairing.svg" loading="lazy" alt="Two cosine bands for spin up and spin down, shifted in energy, with the Fermi points of each marked and an arrow of size 2h between the two bands at the Fermi momentum of spin up." />
 <figcaption><strong>Schematic 5.2.</strong> A chain with an exchange field <span class="math inline">\(h\)</span>. The bands of the two spins are shifted by <span class="math inline">\(\mp h\)</span>, so their Fermi momenta differ. A pair of two <span class="math inline">\(\uparrow\)</span> electrons sits on one Fermi surface, while the <span class="math inline">\(\downarrow\)</span> partner of an <span class="math inline">\(\uparrow\)</span> electron at <span class="math inline">\(k_{F\uparrow}\)</span> sits <span class="math inline">\(2h\)</span> above the Fermi level.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>In the model of this section, why does the exchange field suppress <span class="math inline">\(s\)</span>-wave singlet pairing but not the pairing of two <span class="math inline">\(\uparrow\)</span> electrons?</p>
@@ -102,13 +102,20 @@ Quick check
 <ol type="A">
 <li>The exchange field breaks gauge symmetry explicitly.</li>
 <li>An <span class="math inline">\(\uparrow\downarrow\)</span> pair at <span class="math inline">\(\mathbf k\)</span> and <span class="math inline">\(-\mathbf k\)</span> has an energy mismatch of <span class="math inline">\(2h\)</span>, while an <span class="math inline">\(\uparrow\uparrow\)</span> pair does not.</li>
-<li>The exchange field turns the interaction repulsive.</li>
 <li>The <span class="math inline">\(\uparrow\)</span> electrons have no kinetic energy in a field.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>A pair at the Fermi level needs both electrons at zero energy. The field shifts the two spins by opposite amounts, so the partners of an <span class="math inline">\(\uparrow\downarrow\)</span> pair cannot both sit on their Fermi surfaces. Two <span class="math inline">\(\uparrow\)</span> electrons share one band, and they can.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The exchange field <span class="math inline">\(-h(n_\uparrow-n_\downarrow)\)</span> conserves the particle number, so <span class="math inline">\(c\to e^{i\varphi}c\)</span> is still a symmetry of it. Gauge symmetry is broken only by the pairing itself.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The field shifts the two spin bands by <span class="math inline">\(\mp h\)</span>. The <span class="math inline">\(\downarrow\)</span> partner of an <span class="math inline">\(\uparrow\)</span> electron on its Fermi surface sits <span class="math inline">\(2h\)</span> above the Fermi level, while two <span class="math inline">\(\uparrow\)</span> electrons share one band.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. In the field the <span class="math inline">\(\uparrow\)</span> band is <span class="math inline">\(-2t\cos k-h\)</span>, which still has the bandwidth <span class="math inline">\(4t\)</span>. The <span class="math inline">\(\uparrow\)</span> electrons move normally, and they can form a Fermi surface to pair on.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <p>The most interesting feature of this state appears when we put it on a finite ribbon instead of an infinite plane. The bulk spectrum is gapped, as we expect for a superconductor, but the edges of the ribbon have gapless excitations. A superconductor that is fully gapped in the bulk and gapless at the edge is a signature that we already know from the topological-band-structure and quantum-Hall sessions. Indeed, these edge modes have a topological origin, and they are tied to a finite Chern number of the underlying BdG band structure, in the same way as the edge states of a Chern insulator were tied to its Chern number.</p>

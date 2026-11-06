@@ -103,9 +103,9 @@ S_j\)</span>, which is what the rotational spin symmetry requires when there is 
 <img src="../figures/s06f04_kitaev.svg" loading="lazy" alt="The Kitaev interaction and the second kind of frustration." />
 <figcaption><strong>Figure 6.4.</strong> The Kitaev interaction and the second kind of frustration. The honeycomb lattice is bipartite, and its sites can be coloured with two colours, dark and light, as in figure <a href="09-the-heisenberg-model-on-a-general-lattice.html#fig:s06:frustration">6.3</a>(a). For this reason an ordinary Heisenberg antiferromagnet on this lattice is not frustrated at all. The Kitaev coupling gives frustration anyway, because each of the three bond directions, drawn in three styles, couples only <em>one</em> spin component. The <span class="math inline">\(x\)</span>-bond only depends on <span class="math inline">\(S^x\)</span>, so it favors both of its spins along <span class="math inline">\(\pm\hat x\)</span>, the <span class="math inline">\(y\)</span>-bond favors <span class="math inline">\(\pm\hat y\)</span>, and the <span class="math inline">\(z\)</span>-bond favors <span class="math inline">\(\pm\hat z\)</span>. Every site belongs to one bond of each type, and no single orientation can satisfy three mutually orthogonal conditions at the same time, which the three ghost arrows on the highlighted site show. Here the frustration comes from the interaction and not from the geometry, and this is what makes the Kitaev model a paradigm for quantum spin liquids in sessions 7 and 8.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>The underlying electronic Hamiltonian has no spin-orbit coupling. Which exchange couplings between neighboring spins does the spin-rotation symmetry allow?</p>
@@ -114,13 +114,20 @@ Quick check
 <ol type="A">
 <li>The Dzyaloshinskii-Moriya term and the Heisenberg term.</li>
 <li>Only the isotropic scalar product <span class="math inline">\(\mathbf S_i\cdot\mathbf S_j\)</span>.</li>
-<li>All the terms of this section.</li>
 <li>Only the Kitaev term, since it is bond dependent.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>Without spin-orbit coupling the spin space can be rotated freely, so only the rotation-invariant scalar product survives. The terms of this section need spin-orbit coupling, which ties the spin to the lattice.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Take <span class="math inline">\(\mathbf D\cdot(\mathbf S_i\times\mathbf S_j)\)</span> with <span class="math inline">\(\mathbf D\)</span> along <span class="math inline">\(z\)</span>. After a global rotation of the spins by <span class="math inline">\(90^\circ\)</span> about <span class="math inline">\(x\)</span> it becomes a term along <span class="math inline">\(y\)</span>, so the energy changes and the term is not allowed.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. Without spin-orbit coupling the spin space can be rotated freely, and only the rotation-invariant scalar product survives. The other terms need spin-orbit coupling, which ties the spin to the lattice.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The term <span class="math inline">\(K S_i^zS_j^z\)</span> becomes <span class="math inline">\(K S_i^xS_j^x\)</span> after a rotation of the spins by <span class="math inline">\(90^\circ\)</span> about <span class="math inline">\(y\)</span>. The energy of a given state then changes, so it is not rotation invariant.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="notebookbox">

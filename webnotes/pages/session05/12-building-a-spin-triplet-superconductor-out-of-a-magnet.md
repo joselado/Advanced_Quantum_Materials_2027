@@ -12,11 +12,16 @@ If we solve it self-consistently at the mean-field level, both order parameters,
 In the model of this section, why does the exchange field suppress $s$-wave singlet pairing but not the pairing of two $\uparrow$ electrons?
 
 - [ ] The exchange field breaks gauge symmetry explicitly.
+
+    This is false. The exchange field $-h(n_\uparrow-n_\downarrow)$ conserves the particle number, so $c\to e^{i\varphi}c$ is still a symmetry of it. Gauge symmetry is broken only by the pairing itself.
+
 - [x] An $\uparrow\downarrow$ pair at $\mathbf k$ and $-\mathbf k$ has an energy mismatch of $2h$, while an $\uparrow\uparrow$ pair does not.
-- [ ] The exchange field turns the interaction repulsive.
+
+    This is true. The field shifts the two spin bands by $\mp h$. The $\downarrow$ partner of an $\uparrow$ electron on its Fermi surface sits $2h$ above the Fermi level, while two $\uparrow$ electrons share one band.
+
 - [ ] The $\uparrow$ electrons have no kinetic energy in a field.
 
-A pair at the Fermi level needs both electrons at zero energy. The field shifts the two spins by opposite amounts, so the partners of an $\uparrow\downarrow$ pair cannot both sit on their Fermi surfaces. Two $\uparrow$ electrons share one band, and they can.
+    This is false. In the field the $\uparrow$ band is $-2t\cos k-h$, which still has the bandwidth $4t$. The $\uparrow$ electrons move normally, and they can form a Fermi surface to pair on.
 :::
 
 The most interesting feature of this state appears when we put it on a finite ribbon instead of an infinite plane. The bulk spectrum is gapped, as we expect for a superconductor, but the edges of the ribbon have gapless excitations. A superconductor that is fully gapped in the bulk and gapless at the edge is a signature that we already know from the topological-band-structure and quantum-Hall sessions. Indeed, these edge modes have a topological origin, and they are tied to a finite Chern number of the underlying BdG band structure, in the same way as the edge states of a Chern insulator were tied to its Chern number.

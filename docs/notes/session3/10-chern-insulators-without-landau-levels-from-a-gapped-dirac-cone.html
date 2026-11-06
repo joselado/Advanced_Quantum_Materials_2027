@@ -90,33 +90,40 @@
 <p>with <span class="math inline">\(\lambda = \pm 1\)</span> fixed by the chirality of the lattice at this Dirac point, and <span class="math inline">\(m\)</span> a mass term that opens a gap, <span class="math inline">\(E_\pm(k) = \pm\sqrt{k_x^2+k_y^2+m^2}\)</span>. We compute the Berry curvature of the lower band and integrate it, with the same procedure as in <a href="05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#eq-3-4">(3.4)</a> but now over the small region of momentum space where the curvature is concentrated. This gives the Chern number of this single gapped Dirac cone,</p>
 <p><span id="eq-3-8" class="eq"><span class="math display">\[C_{\text{Dirac}} = \frac{1}{2}\,\mathrm{sgn}(m)\,\mathrm{sgn}(\lambda). \tag{3.8}\]</span></span></p>
 <p>The half-integer in <a href="#eq-3-8">(3.8)</a> is not an inconsistency. A real lattice always has an even number of Dirac points related by time-reversal symmetry, and the honeycomb lattice has two, which are usually called <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span>. Only the <em>sum</em> of their contributions needs to be an integer.</p>
-<div class="quiz" data-correct="D">
+<div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>A massive Dirac cone with <span class="math inline">\(\lambda=+1\)</span> has Chern number <span class="math inline">\(+\tfrac12\)</span> for <span class="math inline">\(m&gt;0\)</span>. What is its Chern number for <span class="math inline">\(m&lt;0\)</span> with the same <span class="math inline">\(\lambda\)</span>?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li><span class="math inline">\(0\)</span>.</li>
 <li><span class="math inline">\(-1\)</span>.</li>
 <li><span class="math inline">\(+\tfrac12\)</span>, since the gap has the same size.</li>
 <li><span class="math inline">\(-\tfrac12\)</span>.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>D</strong>.</p>
-<p>The Chern number <a href="#eq-3-8">(3.8)</a> is <span class="math inline">\(\tfrac12\,\mathrm{sgn}(m)\,\mathrm{sgn}(\lambda)\)</span>. It depends on the sign of the mass and not on its size. A change of sign of <span class="math inline">\(m\)</span> then changes the sign of <span class="math inline">\(C\)</span>.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The jump of <span class="math inline">\(C\)</span> from <span class="math inline">\(m&gt;0\)</span> to <span class="math inline">\(m&lt;0\)</span> is one, since the value goes from <span class="math inline">\(+\tfrac12\)</span> to <span class="math inline">\(-\tfrac12\)</span>. The value of a single cone is never larger than <span class="math inline">\(\tfrac12\)</span> in size.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The curvature is proportional to <span class="math inline">\(m\)</span>, so it is odd in <span class="math inline">\(m\)</span>. The gap <span class="math inline">\(2|m|\)</span> is the same for <span class="math inline">\(m=0.1\)</span> and <span class="math inline">\(m=-0.1\)</span>, but the Berry curvature has the opposite sign and so does <span class="math inline">\(C\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. The Chern number <a href="#eq-3-8">(3.8)</a> is <span class="math inline">\(\tfrac12\,\mathrm{sgn}(m)\,\mathrm{sgn}(\lambda)\)</span>. It depends on the sign of the mass and not on its size, so a change of sign of <span class="math inline">\(m\)</span> changes the sign of <span class="math inline">\(C\)</span>.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <figure class="again panel">
 <img src="../figures/panel/s02f04_dirac_c.svg" loading="lazy" alt="Two Dirac cones at the corners of the hexagonal Brillouin zone of the honeycomb lattice." />
 <figcaption><strong><a href="../session2/11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#fig:s02:dirac">Figure 2.5</a>, one panel shown again.</strong> The two Dirac cones of the honeycomb lattice, at <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span>, drawn over the Brillouin zone. These are the points where a mass term of <a href="#eq-3-7">(3.7)</a> opens a gap. Look at the two cones, since a staggered potential gives the same mass at both, while <span class="math inline">\(\lambda\)</span> has opposite signs.</figcaption>
 </figure>
-<div class="quiz" data-correct="D">
+<div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>A lattice model has a single massive Dirac cone at low energy and no other states close to the gap. Can its filled band have <span class="math inline">\(\sigma_{xy}=e^2/2h\)</span>?</p>
@@ -124,14 +131,21 @@ Quick check
 <div class="quiz-options">
 <ol type="A">
 <li>Yes, since <a href="#eq-3-8">(3.8)</a> gives the value <span class="math inline">\(1/2\)</span>.</li>
-<li>Yes, but only if <span class="math inline">\(m\)</span> is large.</li>
 <li>No, since a single Dirac cone cannot have a gap.</li>
-<li>No, since on a lattice the Dirac points come in sets whose contributions add up to an integer.</li>
+<li>No, since on a lattice the Chern number of a filled band is an integer, so the half of one cone is completed elsewhere in the zone.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>D</strong>.</p>
-<p>The Chern number of a filled band on a lattice is an integer. A lattice has an even number of Dirac points, like <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span>. The half-integers of <a href="#eq-3-8">(3.8)</a> are paired, and only their sum is physical.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Take the two-band model with <span class="math inline">\(\mathbf d=(\sin k_x,\sin k_y,m+\cos k_x+\cos k_y)\)</span> and <span class="math inline">\(m=-1.9\)</span>. It has one cone at <span class="math inline">\(\Gamma\)</span> with mass <span class="math inline">\(0.1\)</span>, and its Chern number is exactly <span class="math inline">\(|C|=1\)</span>. The curvature of the rest of the zone supplies the other half.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The term <span class="math inline">\(m\sigma_z\)</span> gives the spectrum <span class="math inline">\(\pm\sqrt{k^2+m^2}\)</span> with a gap <span class="math inline">\(2|m|\)</span> for a single cone. The reason is not the gap, but the integer quantization of <span class="math inline">\(C\)</span> on a lattice.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. The Chern number of a filled band on a lattice is an integer. The half of <a href="#eq-3-8">(3.8)</a> is completed by the rest of the zone, either by a second cone, like <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span> in the honeycomb lattice, or by the massive part of the band, as in the model above.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <p>This is where the choice of the mass term matters, and we will work out the two natural choices explicitly, because they give qualitatively different physics. At <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span> the chirality <span class="math inline">\(\lambda\)</span> has opposite sign, since the two points are time-reversal partners. Let us first open the gap with a staggered sublattice potential, which raises the onsite energy on one honeycomb sublattice and lowers it on the other. This mass term is an ordinary scalar potential, so it has the <em>same</em> sign <span class="math inline">\(m\)</span> at both <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span>. From <a href="#eq-3-8">(3.8)</a>, the two Dirac points then give Chern numbers of opposite sign, <span class="math inline">\(+\tfrac12\,\mathrm{sgn}(m)\)</span> and <span class="math inline">\(-\tfrac12\,\mathrm{sgn}(m)\)</span>, which cancel. The result is <span class="math inline">\(C=0\)</span>, which is an ordinary insulator that is topologically trivial, and this is the same kind of gap as in boron nitride.</p>

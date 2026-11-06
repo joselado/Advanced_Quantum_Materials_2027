@@ -95,9 +95,9 @@ tot}=0\)</span>, where every Cooper pair is intact and the impurity spin is not 
 <img src="../figures/s09f03_ysr.svg" loading="lazy" alt="A magnetic impurity in an s-wave superconductor." />
 <figcaption><strong>Figure 9.3.</strong> A magnetic impurity in an s-wave superconductor. (a) The single-particle density of states. The BCS continuum, with a gap <span class="math inline">\(\Delta\)</span> and coherence peaks at the gap edges, is almost unchanged by a <em>non-magnetic</em> impurity. Such an impurity does not distinguish up from down, so it cannot lower the energy needed to break any specific Cooper pair. A <em>magnetic</em> impurity distinguishes them, breaks time-reversal symmetry, and creates a pair of bound states inside the gap at <span class="math inline">\(\pm E_b\)</span>, the red peaks, drawn for <span class="math inline">\(\alpha=0.6\)</span>. (b) The energy of these states, from <a href="#eq-9-10">(9.10)</a>, as a function of <span class="math inline">\(\alpha=\pi\nu_0JS\)</span>. At <span class="math inline">\(\alpha=0\)</span> they are exactly at the gap edges, meaning that there is no bound state yet. As the exchange grows they move across the gap and cross at <span class="math inline">\(\alpha=1\)</span>. The crossing is not a level repulsion that did not open. It is a real quantum phase transition of the electronic ground state, with a change of fermion parity, and the electron spin goes from <span class="math inline">\(S_{\rm tot}=0\)</span>, where every Cooper pair is intact and the impurity spin is not screened, to <span class="math inline">\(S_{\rm tot}=1/2\)</span>, where one quasiparticle is bound to the impurity and partially screens its spin. So a single impurity that we can tune is an exactly solvable quantum phase transition.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>For <span class="math inline">\(\alpha=0.5\)</span> in <a href="#eq-9-10">(9.10)</a>, what is the energy of the bound state in units of <span class="math inline">\(\Delta\)</span>?</p>
@@ -109,14 +109,22 @@ Quick check
 <li><span class="math inline">\(0\)</span>, since the state is at the center of the gap.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>With <span class="math inline">\(\alpha^2=0.25\)</span> we obtain <span class="math inline">\(0.75/1.25=0.6\)</span>. The state crosses the center of the gap only at <span class="math inline">\(\alpha=1\)</span>, where the numerator vanishes.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. At <span class="math inline">\(\alpha=0.5\)</span> the expression <span class="math inline">\(1-\alpha^2\)</span> gives <span class="math inline">\(0.75\)</span>, but the full formula gives <span class="math inline">\(0.6\)</span>. The wrong form also fails at <span class="math inline">\(\alpha=2\)</span>, where it gives <span class="math inline">\(-3\Delta\)</span>, which is outside the gap.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. With <span class="math inline">\(\alpha^2=0.25\)</span> the energy is <span class="math inline">\(0.75/1.25=0.6\)</span>. The formula stays between <span class="math inline">\(-\Delta\)</span> and <span class="math inline">\(\Delta\)</span> for every <span class="math inline">\(\alpha\)</span>, for example it gives <span class="math inline">\(-0.6\Delta\)</span> at <span class="math inline">\(\alpha=2\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The bound state reaches zero only when <span class="math inline">\(1-\alpha^2=0\)</span>, so at <span class="math inline">\(\alpha=1\)</span>. At <span class="math inline">\(\alpha=0.5\)</span> the numerator is <span class="math inline">\(0.75\)</span>, and the energy is <span class="math inline">\(0.6\Delta\)</span>.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="C">
+<div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>The exchange is increased until <span class="math inline">\(\alpha\)</span> is slightly larger than one. What changes in the electronic ground state?</p>
@@ -128,9 +136,17 @@ Quick check
 <li>The fermion parity changes, and the total electron spin goes from <span class="math inline">\(0\)</span> to <span class="math inline">\(1/2\)</span>.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>C</strong>.</p>
-<p>At <span class="math inline">\(\alpha=1\)</span> the bound state crosses zero energy, so it becomes cheaper to occupy it. One quasiparticle is now bound to the impurity, and it partially screens the impurity spin. The bulk gap stays open.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. For <span class="math inline">\(\alpha=1.2\)</span> the energy is <span class="math inline">\(-0.44/2.44\,\Delta\approx-0.18\Delta\)</span>, which is negative. The state is now cheaper to fill, so the ground state is not the same.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The bulk gap stays <span class="math inline">\(\Delta\)</span> for every <span class="math inline">\(\alpha\)</span>. At <span class="math inline">\(\alpha=1.2\)</span> the bound state sits at <span class="math inline">\(-0.18\Delta\)</span>, inside the gap, and the continuum at <span class="math inline">\(\pm\Delta\)</span> has not moved.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. At <span class="math inline">\(\alpha=1\)</span> the energy crosses zero, and for <span class="math inline">\(\alpha=1.2\)</span> it is <span class="math inline">\(-0.18\Delta\)</span>, so occupying it lowers the energy. One quasiparticle is bound, which changes the parity and gives spin <span class="math inline">\(1/2\)</span>.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="tryit">

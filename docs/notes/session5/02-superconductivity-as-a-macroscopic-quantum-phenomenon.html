@@ -96,9 +96,9 @@ d\boldsymbol\ell = 2\pi n\)</span> for integer <span class="math inline">\(n\)</
 <img src="../figures/s05f01_flux.svg" loading="lazy" alt="A drawing of flux quantization." />
 <figcaption><strong>Figure 5.1.</strong> A drawing of flux quantization. On the left there is a superconducting ring. Deep in the bulk the Meissner effect has already removed the supercurrent, so on the dashed contour the gauge-invariant combination <span class="math inline">\(\hbar\nabla\theta-2e\mathbf A\)</span> vanishes and the phase gradient is locked to the vector potential. On the right, the arrows are the condensate phase <span class="math inline">\(\theta\)</span> at points of this contour. When we move once around it, the phase must come back to itself, so it can only wind by an integer number of turns. Together, the two statements give <span class="math inline">\(\Phi=n\,h/2e\)</span>, which means that the flux through the hole is quantized, and the <span class="math inline">\(2\)</span> in the denominator is the charge <span class="math inline">\(2e\)</span> of a Cooper pair. None of this is a property of a single electron. It is a macroscopic sample that gives back a ratio of microscopic constants, only because gauge symmetry is broken.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>Experiments find that the trapped flux in a ring comes in steps of <span class="math inline">\(h/2e\)</span>. Which step would <a href="#eq-5-1">(5.1)</a> give if the supercurrent were carried by single electrons of charge <span class="math inline">\(e\)</span>?</p>
@@ -108,12 +108,19 @@ Quick check
 <li><span class="math inline">\(h/2e\)</span>, since the step does not depend on the charge.</li>
 <li><span class="math inline">\(h/e\)</span>, which is twice as large.</li>
 <li><span class="math inline">\(h/4e\)</span>, since one electron carries half of a pair.</li>
-<li>No quantization, since a single electron has no phase.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The loop condition gives <span class="math inline">\((q/\hbar)\Phi=2\pi n\)</span>, so the step is <span class="math inline">\(h/q\)</span>. For <span class="math inline">\(q=2e\)</span> it is <span class="math inline">\(h/2e\)</span>, and for <span class="math inline">\(q=e\)</span> it would be <span class="math inline">\(h/e\)</span>. The measured step <span class="math inline">\(h/2e\)</span> is a direct sign of paired electrons.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The loop condition gives the step <span class="math inline">\(h/q\)</span>, so it depends on the charge. For <span class="math inline">\(q=e\)</span> we get <span class="math inline">\(h/e\approx4.1\times10^{-15}\)</span> Wb, which is twice the measured <span class="math inline">\(h/2e\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The loop condition gives <span class="math inline">\((q/\hbar)\Phi=2\pi n\)</span> and the step <span class="math inline">\(h/q\)</span>. For <span class="math inline">\(q=e\)</span> this is <span class="math inline">\(h/e\)</span>, and the measured step <span class="math inline">\(h/2e\)</span> then shows that the carriers have charge <span class="math inline">\(2e\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. A step <span class="math inline">\(h/4e\)</span> needs the charge <span class="math inline">\(q=4e\)</span>. A single electron has charge <span class="math inline">\(e\)</span>, and a charge <span class="math inline">\(e/2\)</span> would give the larger step <span class="math inline">\(2h/e\)</span>, so this choice goes in the wrong direction.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <h1 class="sec-next" id="sec-5-3"><span class="num">5.3</span> Zero resistance and the Meissner effect in a superconductor</h1>

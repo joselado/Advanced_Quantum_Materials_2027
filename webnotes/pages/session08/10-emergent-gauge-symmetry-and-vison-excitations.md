@@ -14,21 +14,31 @@ Once we see this gauge structure, $\chi_{ij}$ becomes a dynamical field on the l
 ::: quiz
 Which of these objects changes under the local phase rotation [(8.16)](#eq-8-16)?
 
-- [ ] The spin operator [(8.10)](#eq-8-10).
 - [ ] The single-occupancy constraint [(8.11)](#eq-8-11).
-- [x] The bond variable $\chi_{ij}$, which gets the phase $e^{i(\theta_i-\theta_j)}$.
+
+    This is false. The constraint counts $f^\dagger_{i\uparrow}f_{i\uparrow}+f^\dagger_{i\downarrow}f_{i\downarrow}$ on a site. Each term has $e^{-i\theta_i}e^{i\theta_i}=1$, so the count is the same.
+
 - [ ] The physical spin Hamiltonian.
 
-The phases cancel in every product $f^\dagger_{i\alpha}f_{i\beta}$ on the same site, so the spin operator and the constraint do not change. Only the link variable between two sites picks up a phase, and this is what makes it a gauge field.
+    This is false. It is built from $\mathbf S_i\cdot\mathbf S_j$, and each $\mathbf S_i$ is unchanged. For $\theta_i=\pi/2$ on one site, $f^\dagger_{i\uparrow}f_{i\downarrow}$ still gets $(-i)(i)=1$.
+
+- [x] The bond variable $\chi_{ij}$, which gets the phase $e^{i(\theta_i-\theta_j)}$.
+
+    This is true. The phases cancel in every product $f^\dagger_{i\alpha}f_{i\beta}$ on the same site, so the spin operator and the constraint do not change. Only the link variable between two sites picks up a phase, and this is what makes it a gauge field.
 :::
 
 ::: quiz
 We rotate the phase of the fermions on the four sites of a plaquette with arbitrary angles $\theta_i$. How does the flux $\Phi$ through it change?
 
 - [ ] It changes by the sum of the four angles.
-- [x] It does not change, since every site phase appears twice with opposite signs.
-- [ ] It changes sign.
-- [ ] It is multiplied by $e^{i\theta_1}$.
 
-Going around the plaquette we pick up $\theta_i-\theta_j$ on each link, and the sum telescopes to zero. The flux is physical, and this is why the vison, which is a plaquette with $\Phi=-1$, cannot be removed.
+    This is false. Take the same angle $\theta$ on the four sites. Every link gets $\theta-\theta=0$, so nothing changes, while the sum would be $4\theta$.
+
+- [x] It does not change, since every site phase appears twice with opposite signs.
+
+    This is true. Going around the plaquette we pick up $\theta_i-\theta_j$ on each link, and the sum telescopes to zero. The flux is physical, and this is why the vison, which is a plaquette with $\Phi=-1$, cannot be removed.
+
+- [ ] It changes sign.
+
+    This is false. Take $\theta_1=\pi/2$ and the other angles zero. The link $12$ gets $e^{i\pi/2}=i$ and the link $41$ gets $e^{-i\pi/2}=-i$, and the product is $1$, so $\Phi$ keeps its sign.
 :::

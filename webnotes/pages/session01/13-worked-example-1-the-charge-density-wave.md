@@ -15,11 +15,18 @@ c_i^\dagger c_j\rangle$ that define the mean-field Hamiltonian. Since the Hamilt
 In the figure the guessed charges are $0.6$ and $0.4$, and the loop gives $0.82$ and $0.18$. What do we do next?
 
 - [ ] We stop, since the charge is conserved.
+
+    This is false. The total charge is $1$ in both, but the Hamiltonian built from $0.6$ and $0.4$ has a ground state with $0.82$ and $0.18$. The state is not the ground state of its own Hamiltonian, so it is not a solution.
+
 - [x] We use $0.82$ and $0.18$ as the new guess and repeat until the charges do not change.
-- [ ] We average the two numbers of each site and stop.
+
+    This is true. The new charges differ from the guess, so the guess was not self-consistent. We build the Hamiltonian again from the new charges and repeat until the input and the output agree.
+
 - [ ] We change $V$ until the output equals the guess.
 
-The new charges differ from the guess, so the guess was not self-consistent. We build the Hamiltonian again from the new charges, and we repeat until the input and the output agree.
+    This is false. In the figure $V=3t$ is a parameter of the model. If we tune it until the loop closes, we solve a different Hamiltonian, for another $V$, and not the one that we want.
+
+The loop stops when the charges that we put in are the charges that we get out.
 :::
 
 Numerically, at $V=0$ the spectrum is gapless, which is a metal. When $V$ grows, a gap opens in the single-particle spectrum and becomes larger, and at the same time the charge imbalance between even and odd sites grows from zero toward its maximal value, where it is fully polarized. Figure [1.5](#fig:s01:cdw) shows the two limits in real space, together with the spectrum of each one.
@@ -30,11 +37,18 @@ Numerically, at $V=0$ the spectrum is gapless, which is a metal. When $V$ grows,
 The charge density wave of the chain has charges that alternate from site to site. How many degenerate ground states does the mean-field solution have?
 
 - [ ] One.
-- [x] Two.
-- [ ] Four.
-- [ ] Eight.
 
-The charge can sit on the even sites or on the odd sites. These two patterns are exchanged by a translation of one site, so they have the same energy and the translational symmetry is broken.
+    This is false. A translation by one site maps the charges $(0.8,0.2,0.8,0.2)$ to $(0.2,0.8,0.2,0.8)$. This is a different state with the same energy, so there are at least two.
+
+- [x] Two.
+
+    This is true. The charge can sit on the even sites or on the odd sites. These two patterns are exchanged by a translation of one site, so they have the same energy and the translational symmetry is broken.
+
+- [ ] Four.
+
+    This is false. A pattern of period two returns to itself after two translations, so the translations give only two different states. We would need a period of four, such as $(0.9,0.5,0.1,0.5)$, for four states.
+
+The number of degenerate states equals the number of different patterns that the broken symmetry generates.
 :::
 
 ::: notebookbox

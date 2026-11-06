@@ -19,11 +19,16 @@ which is the regime where the condition of a small boson density, the basis of t
 In a QSL we have $\langle S^z_i\rangle=0$ with $S=1/2$. What does [(8.8)](#eq-8-8) give for $\langle a_i^\dagger a_i\rangle$?
 
 - [ ] $0$, since there are no magnons.
-- [x] $1/2$, which is equal to $S$ and not small compared with it.
-- [ ] Much smaller than $S$.
-- [ ] Infinite.
 
-From $S^z_i=S-a_i^\dagger a_i$ and a zero expectation value we find $\langle a_i^\dagger a_i\rangle=S$. The linearization needs this number to be small compared with $S$, so it fails.
+    This is false. If $\langle a_i^\dagger a_i\rangle$ were zero then $\langle S^z_i\rangle=S-0=1/2$, which is the ferromagnet. A zero magnetization requires a finite number of bosons.
+
+- [x] $1/2$, which is equal to $S$ and not small compared with it.
+
+    This is true. From $S^z_i=S-a_i^\dagger a_i$ in [(8.8)](#eq-8-8) and a zero expectation value we find $\langle a_i^\dagger a_i\rangle=S$. The linearization needs this number to be small compared with $S$, so it fails.
+
+- [ ] Much smaller than $S$.
+
+    This is false. If $\langle a_i^\dagger a_i\rangle=0.05$ then $\langle S^z_i\rangle=0.45$, which is nearly a full moment and not a zero one. A zero magnetization needs the value $S$.
 :::
 
 ::: notebookbox
@@ -68,11 +73,16 @@ $$\chi_{ij}^\dagger\chi_{ij} \;\approx\; \langle\chi_{ij}^\dagger\rangle\,\chi_{
 For a bond with a singlet we have $\mathbf S_i\cdot\mathbf S_j=-3/4$. What does [(8.12)](#eq-8-12) give for $\chi_{ij}^\dagger\chi_{ij}$?
 
 - [ ] $0$.
-- [ ] $1$.
-- [x] $2$.
-- [ ] $1/4$.
 
-From [(8.12)](#eq-8-12) we have $\chi^\dagger\chi=2(\tfrac14-\mathbf S_i\cdot\mathbf S_j)=2$ for the singlet. For a triplet it is $0$, so the bond operator measures how much singlet there is on the bond.
+    This is false. This is the value for a triplet, since $2(\tfrac14-\tfrac14)=0$ with $\mathbf S_i\cdot\mathbf S_j=+1/4$. Our bond has $-3/4$.
+
+- [ ] $1$.
+
+    This is false. This needs $\mathbf S_i\cdot\mathbf S_j=-1/4$, which is not an eigenvalue of two spin-1/2. The only values are $-3/4$ and $+1/4$.
+
+- [x] $2$.
+
+    This is true. From [(8.12)](#eq-8-12) we have $\chi^\dagger\chi=2(\tfrac14-\mathbf S_i\cdot\mathbf S_j)=2$ for the singlet. For a triplet it is $0$, so the bond operator measures how much singlet there is on the bond.
 :::
 
 ::: {.tryit notebook="session8.ipynb" cell="Magnetization of a large Heisenberg model"}

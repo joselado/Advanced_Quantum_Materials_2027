@@ -16,11 +16,17 @@ In this lecture, and for every model that we build in this session, we stay insi
 An impurity in a metal changes the ground state so that the new ground state is exactly orthogonal to the old one. Why can no finite order of the expansion in $\lambda$ describe this?
 
 - [ ] The impurity breaks the translation symmetry of the metal.
+
+    This is false. An impurity also breaks the translation symmetry of an insulator with a gap $\Delta$. There the new ground state keeps an overlap close to one with the old one, and perturbation theory works for $\lambda\ll\Delta$.
+
 - [x] Every finite order keeps a large overlap with the old ground state when $\lambda$ is small, while the exact overlap is zero.
-- [ ] All the energy denominators of a metal are exactly zero.
+
+    This is true. A truncated expansion differs from $|n\rangle$ only by terms that are small for small $\lambda$. Its overlap with the old state stays close to one, so it never reaches a state that is orthogonal to it.
+
 - [ ] The perturbation is too strong at every order.
 
-A truncated expansion differs from $|n\rangle$ only by terms that are small for small $\lambda$. Its overlap with the old state stays close to one, and so it can never reach a state that is orthogonal to it.
+    This is false. In the limit of a large metal the overlap vanishes even for $\lambda=10^{-3}$, where every term of the series is small. The problem is the missing gap and not the strength.
+
 :::
 
 ## The Hall conductivity from linear response {#sec-3-4 number="3.4"}
@@ -39,10 +45,16 @@ At this point the expression still depends explicitly on the band energies throu
 ::: quiz
 The numerator of [(3.2)](#eq-3-2) contains the combination $\langle n|\partial_{k_x}H|m\rangle\langle m|\partial_{k_y}H|n\rangle-(x\leftrightarrow y)$. What happens to $\sigma_{xy}$ if we exchange the roles of $x$ and $y$?
 
-- [ ] It doubles.
 - [ ] It does not change.
-- [ ] It becomes zero.
+
+    This is false. For a Chern insulator with $C=1$ we have $\sigma_{xy}=e^2/h$ and $\sigma_{yx}=-e^2/h$. A current along $x$ and a current along $y$ give Hall voltages of opposite sign.
+
 - [x] It changes sign.
 
-The combination is antisymmetric under the exchange of $x$ and $y$. The Hall conductivity is therefore antisymmetric as well, which means that $\sigma_{yx}=-\sigma_{xy}$.
+    This is true. The combination in the numerator of [(3.2)](#eq-3-2) is antisymmetric under the exchange, so $\sigma_{yx}=-\sigma_{xy}$.
+
+- [ ] It becomes zero.
+
+    This is false. For $C=1$ both $\sigma_{xy}=e^2/h$ and $\sigma_{yx}=-e^2/h$ are nonzero. The exchange flips the sign of the Hall conductivity, and it does not remove it.
+
 :::

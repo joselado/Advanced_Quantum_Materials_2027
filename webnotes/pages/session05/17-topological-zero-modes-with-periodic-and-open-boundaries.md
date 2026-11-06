@@ -14,22 +14,32 @@ In the trivial phase, a large chemical potential effectively fixes each site to 
 An open Kitaev chain with $\Delta=0.5t$ and $\mu=t$ has two Majoranas at its ends. We change the chemical potential to $\mu=-t$. What happens to them?
 
 - [x] They stay, since [(5.22)](#eq-5-22) depends only on $|\mu|$.
+
+    This is true. In both cases $|\mu|=t<2t$, so the chain stays in the topological phase of [(5.22)](#eq-5-22). The end Majoranas remain, and only the position of the bulk band changes.
+
 - [ ] They disappear, since the sign of $\mu$ matters.
-- [ ] They move into the bulk.
+
+    This is false. The gap of the chain closes only at $|\mu|=2t$, where $k=0$ or $k=\pi$ has $E=0$. Going from $\mu=t$ to $\mu=-t$ never crosses $\pm2t$, so no transition happens.
+
 - [ ] They double, since the band bottom changes.
 
-In both cases $|\mu|=t<2t$, so the chain stays in the topological phase. The end Majoranas remain, and only the position of the bulk band moves.
+    This is false. Two Majoranas on the same end can couple, since $i\gamma_1\gamma_1'$ is an allowed term, so they would gap out. A single Kitaev chain has one Majorana per end in any case.
 :::
 
 ::: quiz
-A Kitaev chain with $N=8$ sites is in the topological phase. Are its two end modes at exactly zero energy?
+A Kitaev chain with $N=8$ sites, $\Delta=0.5t$ and $\mu=t$ is in the topological phase. Are its two end modes at exactly zero energy?
 
 - [ ] Yes, since the topological phase protects them for any $N$.
-- [x] No, they sit at a small energy that decreases exponentially with $N$.
-- [ ] No, they sit at the energy of the bulk gap.
-- [ ] Yes, but only at $\Delta=t$.
 
-The end modes have a finite localization length. For a short chain their wave functions overlap, and they hybridize into one ordinary level, split from zero by an energy of order $e^{-N/\xi}$.
+    This is false. Take $\Delta=0.5t$ and $\mu=t$ with $N=8$. The BdG spectrum has the lowest level at $E\approx0.011t$ and not at zero. For $N=20$ it falls to $2\times10^{-5}t$.
+
+- [x] No, they sit at a small energy that decreases exponentially with $N$.
+
+    This is true. The end modes have a finite localization length, so for a short chain they overlap and hybridize. For $\Delta=0.5t$ and $\mu=t$ the splitting is $0.011t$ at $N=8$ and $2\times10^{-5}t$ at $N=20$.
+
+- [ ] No, they sit at the energy of the bulk gap.
+
+    This is false. For $\Delta=0.5t$ and $\mu=t$ the bulk gap is $0.82t$, while the end modes of an $N=8$ chain are at $0.011t$. They are inside the gap, close to zero.
 :::
 
 ::: {.tryit notebook="session5.ipynb" cell="Emergence of Majorana modes as a function of the size of the superconductor"}

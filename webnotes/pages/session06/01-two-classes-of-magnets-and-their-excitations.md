@@ -15,9 +15,14 @@ Each class has its own emergent excitation. Magnets that break time-reversal sym
 A Mott insulator carries no charge current. Which statement about magnons in it is correct?
 
 - [ ] Magnons cannot exist, since they need free charge carriers.
-- [x] Magnons are neutral spin-1 excitations, so they carry spin and heat but no charge.
-- [ ] Magnons carry spin $1/2$ and charge $e$.
-- [ ] Magnons carry charge, but they are blocked by the Mott gap.
 
-A magnon is a fluctuation of the order parameter and has no charge, so electric fields do not act on it and the Mott gap does not block it. It carries one unit of spin and the energy of the excitation.
+    This is false. Take the Hubbard dimer at half filling and large $U$. Its triplet lies above the singlet by $J=4t^2/U$, and it is a magnon-like excitation that moves no charge, since every site keeps one electron.
+
+- [x] Magnons are neutral spin-1 excitations, so they carry spin and heat but no charge.
+
+    This is true. A magnon is a fluctuation of the order parameter, created by $S^-$, so the number of electrons does not change. It carries one unit of spin and the energy of the excitation.
+
+- [ ] Magnons carry spin $1/2$ and charge $e$.
+
+    This is false. Applying $S^-$ to one site changes $S^z$ by $1$ and leaves the number of electrons the same. The excitation is therefore neutral with spin $1$, and a charge $e$ would need to add or remove an electron.
 :::

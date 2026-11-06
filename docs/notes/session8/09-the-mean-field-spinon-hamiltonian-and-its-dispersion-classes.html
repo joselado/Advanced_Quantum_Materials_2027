@@ -101,9 +101,9 @@
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session8.ipynb"><code>session8.ipynb</code></a>, “Spinon Fermi surface in gapless quantum spin liquids” (Core)</p>
 <p>Build the spinon tight-binding Hamiltonian <a href="#eq-8-15">(8.15)</a> on the triangular lattice and look at how its Fermi surface changes when the ratio of hopping amplitudes <span class="math inline">\(t_2/t_1\)</span> changes. In the quiz you repeat this on the square and kagome lattices, and you explain why the effective spinon model must be at half filling. The reason is the single-occupancy constraint <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-11">(8.11)</a> at the mean-field level.</p>
 </div>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>Why must the spinon tight-binding model <a href="#eq-8-15">(8.15)</a> be studied at half filling?</p>
@@ -111,19 +111,26 @@ Quick check
 <div class="quiz-options">
 <ol type="A">
 <li>There is one <span class="math inline">\(f\)</span> fermion on every site, which is the constraint <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-11">(8.11)</a> on average.</li>
-<li>The spinons have charge.</li>
 <li>The model has particle-hole symmetry only at half filling.</li>
 <li>A Fermi surface exists only at half filling.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>Each site holds exactly one <span class="math inline">\(f\)</span> fermion, which is one particle for two spin states. This gives half filling of the spinon bands.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. Each site holds exactly one <span class="math inline">\(f\)</span> fermion, which is one particle for two spin states. This gives half filling of the spinon bands.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. Add a second-neighbor hopping to the square lattice. Particle-hole symmetry is lost, but the constraint still asks for one fermion per site, so half filling is still required.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. A tight-binding band with filling <span class="math inline">\(0.3\)</span> has a Fermi surface too. The half filling comes from the constraint and not from the existence of a Fermi surface.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>We take the same <span class="math inline">\(\chi_{ij}\)</span> for spin up and spin down. What does this choice keep exact?</p>
@@ -133,12 +140,19 @@ Quick check
 <li>The Fermi surface of the spinons.</li>
 <li><span class="math inline">\(\langle\mathbf S_i\rangle=0\)</span>, so the state is time-reversal symmetric.</li>
 <li>The charge of the spinons.</li>
-<li>The value of the exchange coupling <span class="math inline">\(J_{ij}\)</span>.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The two spin species see the same band, so no spin direction is selected. The state has zero magnetization by construction.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The same <span class="math inline">\(\chi_{ij}\)</span> for both spins can give a Fermi surface or Dirac points. A uniform <span class="math inline">\(\chi\)</span> on the square lattice has a Fermi surface and the <span class="math inline">\(\pi\)</span>-flux choice has Dirac points.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The two spin species see the same band, so no spin direction is selected. The state has zero magnetization by construction.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. Spinons are neutral for any <span class="math inline">\(\chi_{ij}\)</span>, also a spin-dependent one, since the constraint <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-11">(8.11)</a> fixes one fermion per site. The equal choice for both spins is not what gives this.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="tryit">

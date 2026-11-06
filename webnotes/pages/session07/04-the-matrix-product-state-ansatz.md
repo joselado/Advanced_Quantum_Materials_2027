@@ -13,11 +13,16 @@ M^2$, which is linear in the system size, in strong contrast with the $2^L$ of t
 A spin-1/2 chain has $L=100$ sites, and we use an MPS with $M=10$. How many numbers does [(7.5)](#eq-7-5) store, roughly?
 
 - [ ] About $10^{30}$, which is $2^{100}$.
-- [x] About $2\times10^4$, which is two matrices of $10\times10$ entries on each of the 100 sites.
-- [ ] About $10^2$, which is one number per site.
-- [ ] About $10^{10}$, which is $M^{L}$.
 
-Each site has two matrices, one for each spin value, and each matrix has $M^2=100$ entries. The total grows as $LM^2$, so doubling the chain only doubles the storage.
+    This is false. The number $2^{100}\approx1.3\times10^{30}$ is the number of coefficients of the exact state. The MPS exists to avoid exactly this number, and it stores $2LM^2=2\times10^4$ numbers.
+
+- [x] About $2\times10^4$, which is two matrices of $10\times10$ entries on each of the 100 sites.
+
+    This is true. In [(7.5)](#eq-7-5) each site has two matrices, one for each spin value, and each matrix has $M^2=100$ entries. The total grows as $LM^2$, so doubling the chain only doubles the storage.
+
+- [ ] About $10^2$, which is one number per site.
+
+    This is false. Even the product state, which is the case $M=1$, needs two numbers per site, so $200$ for 100 sites. An MPS with $M=10$ has $10\times10$ matrices on each site and needs more.
 :::
 
 We should know from the start that this is not a toy model. Today matrix product states give the most accurate results for two of the central hard problems in quantum materials. The first one is the doped two-dimensional Hubbard model with second-neighbor hopping, which is related to unconventional superconductivity. The second one is the two-dimensional frustrated Heisenberg model on the triangular and kagome lattices, and this is where the strongest numerical evidence for real quantum spin liquid physics comes from, which is the herbertsmithite example of session 6. Both examples are shown as labeled figure panels on slide 15 of the deck, with the titles "Solving the 2D Hubbard model at finite doping" and "Solving the 2D Heisenberg model in frustrated lattices." This shows that MPS are a working tool for the strongly correlated regime, and not only a formal construction.
@@ -52,11 +57,16 @@ This is the maximum entanglement entropy that a single spin-1/2 can have, since 
 The spin state $(|{\uparrow\downarrow}\rangle+|{\downarrow\uparrow}\rangle)/\sqrt2$ differs from the singlet [(7.3)](#eq-7-3) only by a sign. What is the entanglement entropy of one site?
 
 - [ ] $0$, since the sign makes it a product state.
-- [ ] $\tfrac12\log 2$, since only the symmetric part counts.
-- [x] $\log 2$, the same as for the singlet.
+
+    This is false. A product $(a|{\uparrow}\rangle+b|{\downarrow}\rangle)(c|{\uparrow}\rangle+d|{\downarrow}\rangle)$ with $ac=0$ and $bd=0$ cannot have both $ad$ and $bc$ nonzero. So the state is not a product and its entropy is not zero.
+
 - [ ] $2\log 2$, since the two terms add.
 
-Tracing out one site gives again $\tfrac12|{\uparrow}\rangle\langle{\uparrow}|+\tfrac12|{\downarrow}\rangle\langle{\downarrow}|$, because the cross terms have a different second spin and drop out. The entropy depends on the weights of the two terms and not on their relative sign.
+    This is false. One spin-1/2 has two states, so the entropy of one site cannot exceed $\log 2$. The value $2\log2$ would need four states on the site.
+
+- [x] $\log 2$, the same as for the singlet.
+
+    This is true. Tracing out one site gives $\tfrac12|{\uparrow}\rangle\langle{\uparrow}|+\tfrac12|{\downarrow}\rangle\langle{\downarrow}|$, because the cross terms have a different second spin and drop out. The entropy depends on the weights of the two terms and not on their relative sign.
 :::
 
 ::: {.tryit notebook="session7.ipynb" cell="Near linear scaling with system size with matrix product states"}

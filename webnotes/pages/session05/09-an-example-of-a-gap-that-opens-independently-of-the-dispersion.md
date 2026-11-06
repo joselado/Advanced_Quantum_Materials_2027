@@ -30,11 +30,16 @@ Figure [5.2](#fig:s05:fsgap) shows the three cases next to each other, in the B
 The $d$-wave gap [(5.13)](#eq-5-13) vanishes on the diagonals $k_x=\pm k_y$. A small Fermi pocket is centered at $X=(\pi,0)$. Is the superconductor nodal?
 
 - [ ] Yes, since every $d$-wave order has gapless points.
-- [ ] Yes, with four nodes on the pocket.
-- [x] No, since the pocket does not touch a diagonal.
-- [ ] Only if $\Delta_0$ is larger than the hopping.
 
-Only nodes that cross the Fermi surface give gapless quasiparticles. Near $X$ we have $\cos k_x-\cos k_y\approx-2$, so $|\Delta|$ is large and $E(\mathbf k)$ in [(5.9)](#eq-5-9) stays finite all around the pocket.
+    This is false. Take $\Delta_d=\Delta_0(\cos k_x-\cos k_y)$ and a pocket around $X$. All its points have $k_x\approx\pi$ and $k_y\approx0$, so $|\Delta_d|\approx2\Delta_0$ and $E\geq2\Delta_0$ there. The nodes exist, but they are not on the Fermi surface.
+
+- [ ] Yes, with four nodes on the pocket.
+
+    This is false. Four nodes appear for a pocket around $\Gamma$, as in figure [5.2](#fig:s05:fsgap)c, where the diagonals cross it. A small pocket around $X$ has $|k_x|-|k_y|\approx\pi$, so it is far from the line $k_x=\pm k_y$.
+
+- [x] No, since the pocket does not touch a diagonal.
+
+    This is true. Only nodes that cross the Fermi surface give gapless quasiparticles. Near $X$ we have $\cos k_x-\cos k_y\approx-2$, so $E$ in [(5.9)](#eq-5-9) stays finite all around the pocket.
 :::
 
 ::: notebookbox

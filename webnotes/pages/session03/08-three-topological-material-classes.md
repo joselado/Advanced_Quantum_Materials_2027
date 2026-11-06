@@ -14,11 +14,17 @@ With the general tools in place, let us name three classes of topological matter
 Which class has time-reversal symmetry, zero total Chern number and edge states with opposite directions for opposite spins?
 
 - [x] A quantum spin Hall insulator.
-- [ ] A Chern insulator.
-- [ ] A trivial insulator.
-- [ ] All three classes of this section.
 
-The quantum spin Hall insulator is made of two copies of a Chern insulator with opposite Chern numbers. The total Chern number vanishes, and the edge states of the two spins form a helical pair.
+    This is true. It is made of two copies of a Chern insulator with opposite Chern numbers. The total Chern number vanishes, and the edge states of the two spins form a helical pair.
+
+- [ ] A Chern insulator.
+
+    This is false. A Chern insulator with $C=1$ has one chiral mode at each edge and $\sigma_{xy}=e^2/h$, and it needs broken time-reversal symmetry. Its total Chern number is not zero.
+
+- [ ] A trivial insulator.
+
+    This is false. A trivial insulator has $C=0$ and time-reversal symmetry, but its ribbon spectrum has a gap with nothing inside, as for the staggered potential in the figure of the honeycomb lattice. It has no edge states.
+
 :::
 
 ## The SSH model as a minimal one-dimensional topological insulator {#sec-3-9 number="3.9a"}
@@ -31,11 +37,17 @@ We take a one-dimensional lattice with two sites per unit cell, $A$ and $B$, and
 A chain has four dimers with the intracell hopping $t$ and no hopping between different dimers. How many levels are at the energy $+t$ and how many are at zero energy?
 
 - [ ] Eight at $+t$ and none at zero energy.
-- [x] Four at $+t$ and none at zero energy.
-- [ ] Four at $+t$ and two at zero energy.
-- [ ] One at $+t$ and seven at zero energy.
 
-Each dimer has a bonding level at $-t$ and an antibonding level at $+t$. Four dimers give four levels at each energy, and no site is left uncoupled, so there is nothing at zero energy.
+    This is false. Each dimer is the matrix with $t$ off the diagonal and gives $\pm t$. The trace of the Hamiltonian is zero, but eight levels at $+t$ would give $8t$.
+
+- [x] Four at $+t$ and none at zero energy.
+
+    This is true. Each dimer has a bonding level at $-t$ and an antibonding level at $+t$. Four dimers give four levels at each energy, and no site is left uncoupled.
+
+- [ ] Four at $+t$ and two at zero energy.
+
+    This is false. Each dimer gives one level at $+t$ and one at $-t$, so the number at $+t$ equals the number at $-t$. Four dimers use all eight sites, so with four levels at $+t$ the other four are at $-t$ and none is left at zero.
+
 :::
 
 ::: {.widget name="sshwinding"}

@@ -19,20 +19,30 @@ Close to $\mathbf k=0$ we have $1-\gamma(\mathbf k)^2 \propto k^2$, so $E_\text{
 At small $k$ we double the wave vector. How do the magnon energies [(6.8)](#eq-6-8) and [(6.9)](#eq-6-9) of a chain change?
 
 - [ ] Both double.
-- [ ] Both grow by a factor of four.
-- [x] The ferromagnetic one grows by four and the antiferromagnetic one doubles.
-- [ ] The ferromagnetic one doubles and the antiferromagnetic one grows by four.
 
-For small $k$ we have $1-\gamma(\mathbf k)\propto k^2$. So [(6.8)](#eq-6-8) is quadratic, while [(6.9)](#eq-6-9) is the square root of a quantity proportional to $k^2$, which is linear.
+    This is false. For the ferromagnet of a chain $E\propto1-\cos k$. This is $0.0050$ at $k=0.1$ and $0.0199$ at $k=0.2$, a ratio of about $4$ and not $2$.
+
+- [ ] Both grow by a factor of four.
+
+    This is false. For the antiferromagnet of a chain $E\propto\sqrt{1-\cos^2k}=|\sin k|$. This is $0.0998$ at $k=0.1$ and $0.1987$ at $k=0.2$, a ratio of about $2$ and not $4$.
+
+- [x] The ferromagnetic one grows by four and the antiferromagnetic one doubles.
+
+    This is true. For small $k$ we have $1-\gamma(\mathbf k)\propto k^2$. So [(6.8)](#eq-6-8) is quadratic, while [(6.9)](#eq-6-9) is the square root of a quantity proportional to $k^2$, which is linear.
 :::
 
 ::: quiz
 A square lattice has $z=4$ and $\gamma(\mathbf k)=\tfrac12(\cos k_x+\cos k_y)$. What is the ferromagnetic magnon energy at $\mathbf k=(\pi,\pi)$?
 
 - [ ] Zero.
-- [ ] $4|J|S$
-- [x] $8|J|S$
-- [ ] $16|J|S$
 
-At $(\pi,\pi)$ we have $\gamma=-1$, so $1-\gamma=2$. Then [(6.8)](#eq-6-8) gives $2|J|Sz=8|J|S$ for $z=4$, which is the top of the band.
+    This is false. The energy of [(6.8)](#eq-6-8) is zero only where $\gamma=1$, which is $\mathbf k=(0,0)$. At $(\pi,\pi)$ we have $\gamma=-1$, which is the opposite end of the band.
+
+- [ ] $4|J|S$
+
+    This is false. This value is found at $\mathbf k=(\pi,0)$, where $\gamma=\tfrac12(-1+1)=0$ and $1-\gamma=1$. At $(\pi,\pi)$ we have $\gamma=-1$ and the energy is twice as large.
+
+- [x] $8|J|S$
+
+    This is true. At $(\pi,\pi)$ we have $\gamma=-1$, so $1-\gamma=2$. Then [(6.8)](#eq-6-8) gives $2|J|Sz=8|J|S$ for $z=4$, which is the top of the band.
 :::

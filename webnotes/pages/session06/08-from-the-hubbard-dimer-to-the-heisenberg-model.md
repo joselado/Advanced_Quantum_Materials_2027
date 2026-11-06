@@ -25,11 +25,16 @@ We have $J>0$, which is antiferromagnetic, and the singlet is below the triplet.
 At fixed large $U$ the hopping $t$ of the dimer is doubled. How does $J$ of [(6.4)](#eq-6-4) change?
 
 - [ ] It doubles.
+
+    This is false. For $U=10t$ and $t=1$ we get $J=4/10=0.4$. For $t=2$ we get $J=16/10=1.6$, which is four times larger and not $0.8$.
+
 - [x] It grows by a factor of four.
-- [ ] It is halved.
+
+    This is true. The coupling $J=4t^2/U$ depends on $t^2$, so doubling $t$ gives a factor of four. The process needs two hops, one to the doubly occupied state and one back.
+
 - [ ] It does not change.
 
-The coupling $J=4t^2/U$ depends on $t^2$, so doubling $t$ gives a factor of four. The process needs two hops, one to the doubly occupied state and one back.
+    This is false. For $t=0$ the two sites are decoupled and the singlet and triplet are degenerate, so $J=0$. Then $J$ has to depend on $t$, and it follows $t^2$ in [(6.4)](#eq-6-4).
 :::
 
 ::: notebookbox

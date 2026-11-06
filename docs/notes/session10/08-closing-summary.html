@@ -97,9 +97,9 @@
 <li><p><strong>Hamiltonian learning</strong> treats the inference of a Hamiltonian from measured observables, equation <a href="07-hamiltonian-learning-as-the-inverse-of-the-first-step-of-session-1.html#eq-10-11">(10.11)</a>, as the inverse of the first step of session 1. We train a network on synthetic forward data, equation <a href="07-hamiltonian-learning-as-the-inverse-of-the-first-step-of-session-1.html#eq-10-12">(10.12)</a>, and apply it to real experimental observables, and in this way we close the loop in practice and not only in principle.</p></li>
 </ul>
 <p>We started this course by asking how a small number of identical atoms, arranged in a lattice, can give rise to a phenomenology as rich as the one that we studied in ten sessions. This includes charge density waves, magnets, superconductors, topological insulators, fractional excitations, spin liquids and more, and none of it can be seen in a single atom alone. To answer this question we went through second quantization and mean-field theory, through Bloch’s theorem and topological invariants, through Nambu spinors and magnon spectra, through tensor networks and parton constructions, and through linear response as a diagnostic for all of them. This session closed the arc in two ways. First, it showed that a neural network can take the place of the many-body wavefunction itself. Second, it showed that all the forward methods of the course, with a Hamiltonian as input and an observable as output, can be run backward to infer the Hamiltonians of real materials. This is a good place to end the course, not with a final answer, but with a general method to ask the question again, for the next quantum material that we want to understand.</p>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>Which choices define every construction of this session, from the cat-and-dog classifier to the neural network quantum state?</p>
@@ -111,9 +111,17 @@ Quick check
 <li>The physical system only, since the network is always a tensor network.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The neural network quantum state uses a spin configuration, a coefficient and the energy. The phase classifier uses a spin array, a one-hot label and the loss of <a href="01-machine-learning-and-many-body-physics-in-two-directions.html#eq-10-1">(10.1)</a>. The training step is the same in every case.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The cat-and-dog classifier and the phase classifier can use the same convolutional architecture. They differ in the input, the output and the loss, and the training step is the same.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The classifier uses a spin array, a label and the loss of <a href="01-machine-learning-and-many-body-physics-in-two-directions.html#eq-10-1">(10.1)</a>. The neural network quantum state uses a configuration, a coefficient and the energy, with the same gradient descent.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The same spin chain is used for the NQS, with the energy as the loss, and for tomography, with the likelihood. The system is the same and the construction differs, and the NQS can be a Boltzmann machine and not a tensor network.</p></li>
+</ul>
+</div>
 </details>
 </div>
 

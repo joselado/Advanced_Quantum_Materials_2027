@@ -18,7 +18,7 @@ is the lecturer's look at the pages. Open points are in the section "Open points
 | 1 | Pilot on session 2, convert once to Markdown, toolkit stage 1, link from the video pages | done 2026-11-06 |
 | 2 | Convert all ten sessions, cross-session links, course contents, math check | done 2026-11-06 except the lecturer's look at the pages |
 | 3 | `texdiff` and `SYNC`, the checks on numbers and sources, first web-only edits | done 2026-11-06, `texdiff.py` tested, the page layout reorganized (even lengths, 126 pages) |
-| 4 | Quizzes of sessions 1 to 5, quiz renderer | done 2026-11-06, 113 quizzes |
+| 4 | Quizzes of sessions 1 to 5, quiz renderer | done 2026-11-06, 113 quizzes; renderer with a verdict and a counterexample per option, 2026-11-06 |
 | 5 | Quizzes of sessions 6 to 10, try-it boxes, Colab and Binder links | done 2026-11-06, 99 quizzes, 62 try-it boxes; Binder needs a `requirements.txt` |
 | 6 | Pyodide feasibility test, then the widgets with the JSON fallback | done 2026-11-06, ten widgets placed, live run tested in Chrome |
 | 7 | Polish, page weight, single-page version, alt texts | not started |
@@ -110,3 +110,11 @@ Result, the live path works, so every widget has the button "Run live in the bro
   redirects), added schematics, quizzes and try-it boxes, `texdiff.py` and the ten widgets. The integration inserted the
   widgets at the end of their sections, froze the 171 URLs, set the display math of the template to scroll inside its
   block (the pages were wider than a 390 px screen), and checked the pages in headless Chrome at 1400 and 390 px.
+- 2026-11-06. Quizzes with a verdict per option. The lecturer asked that each answer can be clicked, that a correct
+  answer gives a short reason and that a wrong answer gives a counterexample, with 3 options per question. All 212
+  quizzes were cut to 3 options and given feedback under every option, then five verifiers recomputed the numbers
+  and corrected 37 faults (4 of wrong physics, 19 weak counterexamples, the rest numbers, signs and wording). The
+  full build gives 0 errors, 4946 math fragments with 0 errors, and a second build writes nothing. In headless Chrome
+  one quiz per session was shot at 1400 and 390 px, light and dark, unanswered, with the correct click and with a
+  wrong click. At 390 px the verdict now goes under the option text, and the math in an option is no longer a
+  second tab stop. The no-JS view is not tested in a browser. The lecturer has not looked at the quizzes yet.

@@ -92,9 +92,9 @@
 <img src="../figures/web/session05/kitaev_spectrum.svg" loading="lazy" alt="Lowest energy levels of an open Kitaev chain against the chemical potential. A level stays at zero between minus 2t and 2t, and outside this window all levels rise away from zero." />
 <figcaption><strong>Schematic 5.4.</strong> The lowest levels of an open Kitaev chain with <span class="math inline">\(N=60\)</span> sites and <span class="math inline">\(\Delta=0.7t\)</span>, as a function of <span class="math inline">\(\mu\)</span>. For <span class="math inline">\(|\mu|&lt;2t\)</span> a pair of levels sits at zero energy, which belongs to the two end Majoranas, and the bulk levels stay above a gap. At <span class="math inline">\(|\mu|=2t\)</span> the bulk gap closes, as in <a href="#eq-5-22">(5.22)</a>.</figcaption>
 </figure>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>An open Kitaev chain with <span class="math inline">\(\Delta=0.5t\)</span> and <span class="math inline">\(\mu=t\)</span> has two Majoranas at its ends. We change the chemical potential to <span class="math inline">\(\mu=-t\)</span>. What happens to them?</p>
@@ -103,33 +103,47 @@ Quick check
 <ol type="A">
 <li>They stay, since <a href="#eq-5-22">(5.22)</a> depends only on <span class="math inline">\(|\mu|\)</span>.</li>
 <li>They disappear, since the sign of <span class="math inline">\(\mu\)</span> matters.</li>
-<li>They move into the bulk.</li>
 <li>They double, since the band bottom changes.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>In both cases <span class="math inline">\(|\mu|=t&lt;2t\)</span>, so the chain stays in the topological phase. The end Majoranas remain, and only the position of the bulk band moves.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. In both cases <span class="math inline">\(|\mu|=t&lt;2t\)</span>, so the chain stays in the topological phase of <a href="#eq-5-22">(5.22)</a>. The end Majoranas remain, and only the position of the bulk band changes.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The gap of the chain closes only at <span class="math inline">\(|\mu|=2t\)</span>, where <span class="math inline">\(k=0\)</span> or <span class="math inline">\(k=\pi\)</span> has <span class="math inline">\(E=0\)</span>. Going from <span class="math inline">\(\mu=t\)</span> to <span class="math inline">\(\mu=-t\)</span> never crosses <span class="math inline">\(\pm2t\)</span>, so no transition happens.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. Two Majoranas on the same end can couple, since <span class="math inline">\(i\gamma_1\gamma_1&#39;\)</span> is an allowed term, so they would gap out. A single Kitaev chain has one Majorana per end in any case.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
-<p>A Kitaev chain with <span class="math inline">\(N=8\)</span> sites is in the topological phase. Are its two end modes at exactly zero energy?</p>
+<p>A Kitaev chain with <span class="math inline">\(N=8\)</span> sites, <span class="math inline">\(\Delta=0.5t\)</span> and <span class="math inline">\(\mu=t\)</span> is in the topological phase. Are its two end modes at exactly zero energy?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
 <li>Yes, since the topological phase protects them for any <span class="math inline">\(N\)</span>.</li>
 <li>No, they sit at a small energy that decreases exponentially with <span class="math inline">\(N\)</span>.</li>
 <li>No, they sit at the energy of the bulk gap.</li>
-<li>Yes, but only at <span class="math inline">\(\Delta=t\)</span>.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The end modes have a finite localization length. For a short chain their wave functions overlap, and they hybridize into one ordinary level, split from zero by an energy of order <span class="math inline">\(e^{-N/\xi}\)</span>.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Take <span class="math inline">\(\Delta=0.5t\)</span> and <span class="math inline">\(\mu=t\)</span> with <span class="math inline">\(N=8\)</span>. The BdG spectrum has the lowest level at <span class="math inline">\(E\approx0.011t\)</span> and not at zero. For <span class="math inline">\(N=20\)</span> it falls to <span class="math inline">\(2\times10^{-5}t\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The end modes have a finite localization length, so for a short chain they overlap and hybridize. For <span class="math inline">\(\Delta=0.5t\)</span> and <span class="math inline">\(\mu=t\)</span> the splitting is <span class="math inline">\(0.011t\)</span> at <span class="math inline">\(N=8\)</span> and <span class="math inline">\(2\times10^{-5}t\)</span> at <span class="math inline">\(N=20\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. For <span class="math inline">\(\Delta=0.5t\)</span> and <span class="math inline">\(\mu=t\)</span> the bulk gap is <span class="math inline">\(0.82t\)</span>, while the end modes of an <span class="math inline">\(N=8\)</span> chain are at <span class="math inline">\(0.011t\)</span>. They are inside the gap, close to zero.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="tryit">

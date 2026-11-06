@@ -95,9 +95,9 @@
 <li><p><strong>Superconductivity</strong> is also non-perturbative, since the BCS gap does not appear at any finite order in the interaction strength if we start from the normal state. We will work this out in detail in session 5.</p></li>
 </ul>
 <p>In this lecture, and for every model that we build in this session, we stay inside the regime where <a href="02-linear-response-theory-and-how-a-measurement-reads-the-wavefunctions.html#eq-3-1">(3.1)</a> holds. For now, it is enough to know that this is not always the case.</p>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>An impurity in a metal changes the ground state so that the new ground state is exactly orthogonal to the old one. Why can no finite order of the expansion in <span class="math inline">\(\lambda\)</span> describe this?</p>
@@ -106,13 +106,20 @@ Quick check
 <ol type="A">
 <li>The impurity breaks the translation symmetry of the metal.</li>
 <li>Every finite order keeps a large overlap with the old ground state when <span class="math inline">\(\lambda\)</span> is small, while the exact overlap is zero.</li>
-<li>All the energy denominators of a metal are exactly zero.</li>
 <li>The perturbation is too strong at every order.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>A truncated expansion differs from <span class="math inline">\(|n\rangle\)</span> only by terms that are small for small <span class="math inline">\(\lambda\)</span>. Its overlap with the old state stays close to one, and so it can never reach a state that is orthogonal to it.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. An impurity also breaks the translation symmetry of an insulator with a gap <span class="math inline">\(\Delta\)</span>. There the new ground state keeps an overlap close to one with the old one, and perturbation theory works for <span class="math inline">\(\lambda\ll\Delta\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. A truncated expansion differs from <span class="math inline">\(|n\rangle\)</span> only by terms that are small for small <span class="math inline">\(\lambda\)</span>. Its overlap with the old state stays close to one, so it never reaches a state that is orthogonal to it.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. In the limit of a large metal the overlap vanishes even for <span class="math inline">\(\lambda=10^{-3}\)</span>, where every term of the series is small. The problem is the missing gap and not the strength.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <h1 class="sec-next" id="sec-3-4"><span class="num">3.4</span> The Hall conductivity from linear response</h1>
@@ -123,24 +130,31 @@ Quick check
 \frac{\langle n|\partial_{k_x}H|m\rangle\langle m|\partial_{k_y}H|n\rangle - (x\leftrightarrow y)}
 {(\varepsilon_n - \varepsilon_m)^2}. \tag{3.2}\]</span></span></p>
 <p>At this point the expression still depends explicitly on the band energies through the denominator, so it seems that it should depend on all the details of the band structure. This is not the case, and the next section shows why.</p>
-<div class="quiz" data-correct="D">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>The numerator of <a href="#eq-3-2">(3.2)</a> contains the combination <span class="math inline">\(\langle n|\partial_{k_x}H|m\rangle\langle m|\partial_{k_y}H|n\rangle-(x\leftrightarrow y)\)</span>. What happens to <span class="math inline">\(\sigma_{xy}\)</span> if we exchange the roles of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li>It doubles.</li>
 <li>It does not change.</li>
-<li>It becomes zero.</li>
 <li>It changes sign.</li>
+<li>It becomes zero.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>D</strong>.</p>
-<p>The combination is antisymmetric under the exchange of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. The Hall conductivity is therefore antisymmetric as well, which means that <span class="math inline">\(\sigma_{yx}=-\sigma_{xy}\)</span>.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. For a Chern insulator with <span class="math inline">\(C=1\)</span> we have <span class="math inline">\(\sigma_{xy}=e^2/h\)</span> and <span class="math inline">\(\sigma_{yx}=-e^2/h\)</span>. A current along <span class="math inline">\(x\)</span> and a current along <span class="math inline">\(y\)</span> give Hall voltages of opposite sign.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The combination in the numerator of <a href="#eq-3-2">(3.2)</a> is antisymmetric under the exchange, so <span class="math inline">\(\sigma_{yx}=-\sigma_{xy}\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. For <span class="math inline">\(C=1\)</span> both <span class="math inline">\(\sigma_{xy}=e^2/h\)</span> and <span class="math inline">\(\sigma_{yx}=-e^2/h\)</span> are nonzero. The exchange flips the sign of the Hall conductivity, and it does not remove it.</p></li>
+</ul>
+</div>
 </details>
 </div>
 

@@ -95,9 +95,9 @@ C_s \equiv C_\uparrow - C_\downarrow = \pm 2. \tag{3.9}\]</span></span></p>
 <img src="../figures/s05f06_qsh.svg" loading="lazy" alt="The edge of a quantum spin Hall insulator with spin-up and spin-down channels moving in opposite directions." />
 <figcaption><strong><a href="../session5/18-engineering-a-topological-superconductor-from-a-quantum-spin-hall-insulator.html#fig:s05:qsh">Figure 5.6</a>, shown again.</strong> A helical edge, from session 5. On the same edge the spin-up electrons move in one direction. The spin-down electrons move in the other, and the two are drawn in a warm and a cold color. This is the pair of branches that follows from <a href="#eq-3-9">(3.9)</a>.</figcaption>
 </figure>
-<div class="quiz" data-correct="C">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>The two spin sectors have <span class="math inline">\(C_\uparrow=+1\)</span> and <span class="math inline">\(C_\downarrow=-1\)</span>. What are the charge Hall conductivity and the edge of this insulator?</p>
@@ -105,14 +105,21 @@ Quick check
 <div class="quiz-options">
 <ol type="A">
 <li><span class="math inline">\(e^2/h\)</span> and one chiral mode at each edge.</li>
-<li><span class="math inline">\(2e^2/h\)</span> and two chiral modes at each edge.</li>
 <li>Zero, and a helical pair of modes at each edge.</li>
 <li>Zero, and no edge states, since the two spins cancel.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>C</strong>.</p>
-<p>The charge Hall conductivity is proportional to <span class="math inline">\(C=0\)</span>. Each spin sector still has its own edge mode. The two propagate in opposite directions on the same edge, which is a helical pair.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The charge Hall conductivity adds the two sectors, and gives <span class="math inline">\((e^2/h)(1-1)=0\)</span>. A value <span class="math inline">\(e^2/h\)</span> would need both spins to have <span class="math inline">\(C=+1\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The charge Hall conductivity is proportional to <span class="math inline">\(C=0\)</span>. Each spin sector still has its own edge mode, and the two propagate in opposite directions on the same edge, which is a helical pair.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The cancellation is only in the charge current. Each spin sector alone is a Chern insulator with <span class="math inline">\(|C|=1\)</span> and has one edge mode, and only the sum of the two Hall conductivities vanishes.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <p>The natural mechanism that gives this opposite-sign mass is spin-orbit coupling. The relativistic spin-orbit term has the structure <span class="math inline">\(\mathbf{L}\cdot\mathbf{S}\)</span>, and its <span class="math inline">\(z\)</span>-component, <span class="math inline">\(L_zS_z\)</span>, acts like an effective magnetic field that points in one direction for spin-up electrons and in the opposite direction for spin-down electrons. This is the opposite-sign mass structure that <a href="#eq-3-9">(3.9)</a> needs, and it appears with no net magnetic field and no net breaking of time-reversal symmetry. Graphene itself, when we include its intrinsic spin-orbit coupling, which is very small, is technically a quantum spin Hall insulator through this mechanism. The effect is much larger, and accessible in experiments, in monolayer 1T<span class="math inline">\(&#39;\)</span>-WTe<span class="math inline">\(_2\)</span>, where the quantum spin Hall effect survives up to 100 K.</p>

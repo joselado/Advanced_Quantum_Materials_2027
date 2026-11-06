@@ -90,9 +90,9 @@
 <img src="../figures/panel/s02f04_dirac_c.svg" loading="lazy" alt="A hexagonal Brillouin zone with a Dirac cone at two of its corners." />
 <figcaption><strong><a href="11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#fig:s02:dirac">Figure 2.5</a>, one panel shown again.</strong> The Dirac cone of graphene, one panel shown again. This cone is the band structure that ARPES maps, since the experiment gives the energy and the momentum of the electrons inside the material.</figcaption>
 </figure>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>In ARPES we measure the kinetic energy and the emission angle of the electrons that leave the material. What do we obtain from them?</p>
@@ -101,13 +101,23 @@ Quick check
 <ol type="A">
 <li>The energy and the quasi-momentum of the electron inside the material, which gives <span class="math inline">\(E(\mathbf k)\)</span>.</li>
 <li>Only the density of states, since the angle is averaged out.</li>
-<li>The lattice constant of the crystal.</li>
 <li>The hopping <span class="math inline">\(t\)</span> only, with no information on the momentum.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>Conservation of energy and of the momentum along the surface relates the measured values to the ones inside. Scanning the angle and the energy then maps the band structure directly.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. Conservation of energy and of the momentum along the surface relates the measured values to the ones inside. Scanning the angle and the energy then maps the band structure directly.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The angle is not averaged out. For electrons of <span class="math inline">\(20\)</span> eV, an angle of <span class="math inline">\(10^\circ\)</span> gives <span class="math inline">\(k_\parallel\approx 4.0\ \text{nm}^{-1}\)</span> and <span class="math inline">\(20^\circ\)</span> gives <span class="math inline">\(7.8\ \text{nm}^{-1}\)</span>, so each angle is a different momentum.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. For the chain <span class="math inline">\(\epsilon=-2t\cos(ka)\)</span> the electrons seen at <span class="math inline">\(k=0\)</span> have energy <span class="math inline">\(-2t\)</span>, and at <span class="math inline">\(ka=\pi/2\)</span> they have <span class="math inline">\(0\)</span>. The energy depends on the angle, so we get the momentum too.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The angle gives the momentum along the surface, and the energy gives the band.</p>
+</div>
 </details>
 </div>
 <h1 class="sec-next" id="sec-2-13"><span class="num">2.13</span> Closing summary</h1>
@@ -121,9 +131,9 @@ Quick check
 <li><p>All of this band-structure method generalizes directly to phonons, magnons and Bogoliubov-de Gennes quasiparticles, and not only to electrons, and it is tested against real materials in experiments with ARPES.</p></li>
 </ul>
 <p>The main message of this session is the following. The spectra of periodic systems are computed with band-structure theory, by choosing the common eigenbasis of the symmetry operator and the Hamiltonian, and the resulting dispersion relation <span class="math inline">\(E(\mathbf{k})\)</span> alone determines many of the electronic properties of a material, before interactions are included again. The Dirac cone that we derived in Section <a href="11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#sec-2-11">2.11</a> is not only a fact about graphene. It is the object that the next session takes up, where we ask what happens when it is gapped open, and this is where topological band structure, Chern numbers and the SSH model, which we already saw in the two-orbital chain of <a href="07-multi-orbital-band-structures.html#eq-2-13">(2.13)</a>, enter the course in detail. The flat bands are also not the end of the topic. The kagome and Lieb constructions of this session lead directly to the flat bands of the Landau levels, which the quantum Hall session builds several sessions from now.</p>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>A unit cell has four orbitals. What is the size of <span class="math inline">\(H(\varphi)\)</span>, and how many bands do we get?</p>
@@ -133,12 +143,22 @@ Quick check
 <li>A <span class="math inline">\(4\times 4\)</span> matrix, and four bands.</li>
 <li>A <span class="math inline">\(2\times 2\)</span> matrix, and two bands.</li>
 <li>A <span class="math inline">\(4\times 4\)</span> matrix, and one band.</li>
-<li>An infinite matrix, and infinitely many bands.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>The Bloch Hamiltonian has one row and one column for every orbital of the cell. At each <span class="math inline">\(\varphi\)</span> it has four eigenvalues, and they form the four bands.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The Bloch Hamiltonian has one row and one column for every orbital of the cell. At each <span class="math inline">\(\varphi\)</span> it has four eigenvalues, and they form the four bands.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. A <span class="math inline">\(2\times 2\)</span> matrix describes a cell with two orbitals, such as the chain of <a href="07-multi-orbital-band-structures.html#eq-2-13">(2.13)</a>. With four orbitals, the rows of <span class="math inline">\(H(\varphi)\)</span> run over four orbitals.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. Take the uniform chain with a cell of four sites. At <span class="math inline">\(\varphi=0\)</span> the four eigenvalues are <span class="math inline">\(-2t\)</span>, <span class="math inline">\(0\)</span>, <span class="math inline">\(0\)</span> and <span class="math inline">\(2t\)</span>, so there are four bands and not one.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The size of the Bloch Hamiltonian is the number of orbitals in the cell.</p>
+</div>
 </details>
 </div>
 

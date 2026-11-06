@@ -14,11 +14,16 @@ So far in this session we have done the following.
 Both magnon dispersions of this session go to zero at $k=0$. What is the common reason?
 
 - [x] A continuous spin-rotation symmetry is broken spontaneously, so the magnon is a Goldstone mode.
-- [ ] The Heisenberg coupling has no energy scale at $k=0$.
-- [ ] Magnons carry no charge.
-- [ ] Mean-field theory fails at $k=0$.
 
-A uniform rotation of all the spins costs no energy, because the Hamiltonian is invariant under it. The ordered state breaks this symmetry, so a long wavelength rotation costs an energy that goes to zero with $k$.
+    This is true. A uniform rotation of all the spins costs no energy, because the Hamiltonian is invariant under it. The ordered state breaks this symmetry, so a long wavelength rotation costs an energy that goes to zero with $k$.
+
+- [ ] The Heisenberg coupling has no energy scale at $k=0$.
+
+    This is false. The coupling $J$ sets the energy scale of the whole band, for example $8|J|S$ at $(\pi,\pi)$ for $z=4$. The zero at $k=0$ comes from the symmetry and not from a missing scale.
+
+- [ ] Magnons carry no charge.
+
+    This is false. An easy-axis anisotropy $A\,(S^z)^2$ keeps the magnon neutral but opens a gap of order $A$. So neutrality alone does not give $E(0)=0$, and the missing continuous symmetry does.
 :::
 
 This is the point where the live lecture ends, right after topological magnons and without a narrated summary slide. This is a real feature of this year's recording and not something missing in these notes, so we also end here, and we do not add a summary sentence that the lecture does not say. Every magnet that we have constructed in this session, from the mean-field exchange field to the topological magnon edge states, is a state that breaks time-reversal symmetry. It is a net, staggered or noncollinear spin arrangement that looks different when we run time backwards than when we run it forwards.

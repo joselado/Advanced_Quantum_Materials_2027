@@ -28,20 +28,32 @@ where $\omega_p$ is the classical plasma frequency. The plasmon exists even at $
 In the density channel the interaction is repulsive, $U>0$, and $\chi_0$ is positive. How does the RPA response [(9.6)](#eq-9-6) compare with $\chi_0$ at the same $q$ and $\omega$?
 
 - [x] It is smaller, since the denominator $1+U\chi_0$ is larger than one.
+
+    This is true. For $U=t$ and $\chi_0=0.68/t$ we get $\chi=0.68/1.68=0.40$ in units of $1/t$, which is smaller than $\chi_0$. The repulsion opposes the induced density, which is screening. In the spin channel the sign is opposite.
+
 - [ ] It is larger, since the interaction enhances every response.
+
+    This is false. For $U=t$ and $\chi_0=0.68/t$ the RPA response is $0.68/1.68=0.40$. This is smaller, since a repulsive $U$ enhances only the spin channel and not the density one.
+
 - [ ] It is the same, since the interaction only shifts the poles.
 
-A repulsive interaction opposes the density change that the probe induces, which is screening. The denominator is larger than one, so $\chi<\chi_0$. The opposite happens in the spin channel, as we will see next.
+    This is false. The denominator $1+U\chi_0$ is $1.68$ for $U=t$ and $\chi_0=0.68/t$, so the response changes by this factor. The poles are shifted too, but the weight at fixed $q$ and $\omega$ changes as well.
 :::
 
 ::: quiz
 At small $q$ the particle-hole continuum of figure [9.2](#fig:s09:plasmon) shrinks towards $\omega=0$, while the plasmon of [(9.7)](#eq-9-7) stays near $\omega_p$. Why is the plasmon not damped there?
 
 - [ ] Because the interaction vanishes at $q=0$.
+
+    This is false. For the Coulomb interaction $v(q)\propto1/q^2$ diverges at $q\to0$. The interaction is not zero there, and its divergence is what puts the plasmon at the finite $\omega_p$.
+
 - [x] Because no electron-hole pair exists at that energy, so the mode has nothing to decay into.
+
+    This is true. Landau damping needs a pair with the same $q$ and $\omega$. At small $q$ the continuum is at low $\omega$ and the plasmon is at $\omega_p$, so no pair exists and the mode is sharp.
+
 - [ ] Because the plasmon is a single-particle excitation, which cannot decay.
 
-Landau damping needs a particle-hole pair with the same $q$ and $\omega$. In the window at small $q$ and large $\omega$ there is none, and the mode is sharp. Once its branch enters the continuum, it decays.
+    This is false. The plasmon is a collective mode of all electrons. The same mode does decay when its branch enters the continuum at larger $q$, which shows that it is not protected as a single particle.
 :::
 
 The same denominator, now in the spin channel, gives the Stoner instability, and we treat it next.

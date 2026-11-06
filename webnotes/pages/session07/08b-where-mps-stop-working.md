@@ -8,21 +8,32 @@ The same argument tells us directly where MPS must fail, which is whenever the t
 After a sudden change of the Hamiltonian the entanglement of a chain grows linearly with time. Why is this a problem for an MPS with fixed $M$?
 
 - [ ] The state stops being normalized after a quench.
+
+    This is false. The evolution with a Hamiltonian is unitary, so $\langle\psi|\psi\rangle=1$ at all times. The norm is not what grows after a quench.
+
 - [ ] The Hamiltonian becomes nonlocal after a quench.
-- [ ] The singular values become negative.
+
+    This is false. A quench only changes the parameters. For example $J=1$ becomes $J=2$ and the Hamiltonian is still a sum of nearest-neighbor terms.
+
 - [x] The entropy soon exceeds $\log M$, so $M$ must grow exponentially with time.
 
-The bound [(7.10)](#eq-7-10) gives $S\le\log M$, and a linear growth of $S$ needs $M\sim e^{S}$ to grow exponentially. For this reason long-time dynamics is hard for MPS.
+    This is true. The bound [(7.10)](#eq-7-10) gives $S\le\log M$, and a linear growth of $S$ needs $M\sim e^{S}$ to grow exponentially. For this reason long-time dynamics is hard for MPS.
 :::
 
 ::: quiz
 Which of the following ground states is the hardest for an MPS with a fixed bond dimension?
 
 - [ ] A gapped spin chain with 100 sites.
+
+    This is false. The AKLT chain is gapped and its exact ground state is an MPS with $M=2$, for 100 sites or for 10000. The entropy of a gapped chain saturates.
+
 - [x] A gapped spin model on a $10\times10$ square lattice.
+
+    This is true. An MPS has to pass through the lattice, and its cut crosses a boundary of about ten bonds. The entropy is then ten times the one of a single bond, and the bond dimension that it needs is exponentially larger.
+
 - [ ] A dimer product state with 100 sites.
 
-On the square lattice an MPS has to pass through the lattice, and its cut crosses a boundary of about ten bonds. The entropy is then ten times the one of a single bond, and the bond dimension that it needs is exponentially larger.
+    This is false. A product of dimers has a cut that crosses at most one singlet, with entropy $\log2$ at most. It is an exact MPS with $M=2$.
 :::
 
 ::: notebookbox

@@ -18,22 +18,32 @@ In other words, an MPS with bond dimension $M$ can have an entanglement entropy 
 A gapped chain of 50 sites is described accurately with a bond dimension $M$. What do we need for a gapped chain of 500 sites in the same phase?
 
 - [ ] About ten times larger $M$.
+
+    This is false. The AKLT chain is exact with $M=2$ both for 50 and for 500 sites. The length of the chain does not enter in a gapped state.
+
 - [x] About the same $M$, since the entropy saturates.
-- [ ] An $M$ that is exponentially larger.
+
+    This is true. In a gapped state the entropy across a bond is set by the correlation length and not by the length of the chain. The bound [(7.10)](#eq-7-10) then asks for the same $M$.
+
 - [ ] A smaller $M$, since the chain is longer.
 
-In a gapped state the entropy across a bond is set by the correlation length and not by the length of the chain. The bound [(7.10)](#eq-7-10) then asks for the same $M$.
+    This is false. The central bond of the chain of 500 sites has the same entropy as the one of 50 sites, once both are longer than the correlation length. A smaller $M$ would drop weights that the first calculation had to keep.
 :::
 
 ::: quiz
 An MPS has $M=16$. What is the largest entanglement entropy that it can hold across one bond, in units of $\log 2$?
 
 - [ ] $16$, since there are 16 terms.
-- [ ] $8$, since it is half of $M$.
-- [x] $4$, since $\log 16=4\log 2$.
-- [ ] $2$, since it is the square root of $M$.
 
-The bound [(7.10)](#eq-7-10) is $S\le\log M$, and $\log 16=4\log 2$. The number of Schmidt terms is $16$ but the entropy grows only as its logarithm.
+    This is false. The entropy of 16 equal weights is $\log16=4\log2$. The value $16\log2=\log65536$ would need $65536$ Schmidt terms.
+
+- [ ] $8$, since it is half of $M$.
+
+    This is false. The value $8\log2=\log256$ needs 256 equal Schmidt terms, and the MPS has only 16. The entropy is a logarithm of the number of terms and not a fraction of it.
+
+- [x] $4$, since $\log 16=4\log 2$.
+
+    This is true. The bound [(7.10)](#eq-7-10) is $S\le\log M$, reached when the 16 weights are equal, and $\log 16=4\log 2$. The number of Schmidt terms is 16 but the entropy grows only as its logarithm.
 :::
 
 ::: notebookbox

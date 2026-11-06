@@ -14,23 +14,35 @@ $$\mathcal{L}(\theta) = \sum_n \left\| f_\theta(x_n) - y_n \right\|^2, \qquad \t
 where $\{(x_n, y_n)\}$ is a set of labeled training examples and $\eta$ is the learning rate. Every use of a neural network in this session is a variation of [(10.1)](#eq-10-1), even when the physics attached to it is exotic. We have to choose the right input, the right output and the right loss, and then the training procedure is always the same gradient descent.
 
 ::: quiz
-We double the number of layers of a network, and then we train it with [(10.1)](#eq-10-1). Which statement is correct?
+We add a hidden layer to a network that has none, and then we train it with [(10.1)](#eq-10-1). Which statement is correct?
 
 - [ ] The set of functions that the network can represent stays the same, and only $\theta$ changes.
+
+    This is false. A network with no hidden layer is linear and cannot represent XOR. One hidden layer can, so adding a layer changes the set of functions.
+
 - [x] The set of functions that the network can represent changes, and training chooses one of them through $\theta$.
+
+    This is true. A linear network cannot represent XOR, and a network with one hidden layer can. The architecture sets the set of functions, and $\theta$ chooses one inside it.
+
 - [ ] Training changes the architecture, so the number of layers is fixed by the data.
 
-The architecture fixes which functions are possible, and the weights and biases $\theta$ fix which one the network is at a given moment. Gradient descent only moves $\theta$.
+    This is false. The same Ising snapshots can be fitted with two layers or with ten. The number of layers is our choice, and gradient descent changes only $\theta$.
 :::
 
 ::: quiz
 In the update $\theta\to\theta-\eta\nabla_\theta\mathcal{L}$ the learning rate $\eta$ is made much too large. What do we expect?
 
 - [ ] The training converges faster, since each step is larger.
+
+    This is false. Take $\mathcal L=\theta^2/2$, so the update is $\theta\to(1-\eta)\theta$. For $\eta=1$ the minimum is reached in one step, and for $\eta=2.5$ the factor is $-1.5$, which diverges.
+
 - [x] The steps overshoot the minimum, and the loss can oscillate or grow.
+
+    This is true. For $\mathcal L=\theta^2/2$ with $\eta=2.5$ we get $\theta\to-1.5\theta$, so the loss grows by $2.25$ at every step. For $\eta=2$ the point oscillates between $\pm\theta$.
+
 - [ ] The gradient vanishes, so the loss stays constant.
 
-The gradient only gives the direction in which the loss decreases locally. A step that is too long jumps over the valley to a point where the loss is higher, so the update must be small.
+    This is false. For $\mathcal L=\theta^2/2$ the gradient is $\theta$. A large $\eta$ makes $|\theta|$ larger, so the gradient grows and does not vanish until $\theta=0$.
 :::
 
 The concrete example that we keep in mind is the classification of images of cats and dogs, since we will use the same architecture two more times in this session. An image is an $N\times N$ matrix of pixel values. We flatten it into the input layer of the network, and the output layer has only two nodes, with the target $(1,0)$ for "cat" and $(0,1)$ for "dog." We train on a labeled set of images by minimizing [(10.1)](#eq-10-1), with $f_\theta$ the output of the network and $y_n$ the one-hot label. Once the network is trained, it classifies new images that have no label. This template can be used in many cases, since nothing in it depends on the input being a photograph. It only needs the input to be an array of numbers with a categorical label. We will see the same structure, an input matrix and a one-hot output, again in Section [10.6](#sec-10-6), where a spin configuration takes the place of the photograph. Figure [10.1](#fig:s10:template) shows the template once, and the four later constructions of this session use it without change except for the choice of input, output and loss.

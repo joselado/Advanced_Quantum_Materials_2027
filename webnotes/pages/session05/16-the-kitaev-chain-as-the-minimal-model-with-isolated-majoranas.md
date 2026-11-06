@@ -22,11 +22,16 @@ Every Majorana operator $\gamma_2, \gamma_3, \gamma_4, \dots, \gamma_{2N-1}$ app
 At $\Delta=t$ and $\mu=0$ the chain has the dispersion $E(k)=\sqrt{\varepsilon(k)^2+|\Delta(k)|^2}$ with [(5.20)](#eq-5-20). How does the bulk energy depend on $k$?
 
 - [ ] It is zero at $k=0$ and grows away from it.
+
+    This is false. At $k=0$ we have $\varepsilon=-2t$ and $\Delta(0)=0$, so $E=2t$ and not zero. The same holds at $k=\pi/2$, where $\varepsilon=0$ and $|\Delta|=2t$, so the energy does not grow.
+
 - [x] It is flat, $E=2t$ for every $k$.
-- [ ] It is flat and zero, so the bulk has no gap.
+
+    This is true. Here $\varepsilon=-2t\cos k$ and $|\Delta(k)|=2t|\sin k|$, so $E^2=4t^2(\cos^2k+\sin^2k)=4t^2$. This matches the dimers of [(5.21)](#eq-5-21), where all bulk modes have the same energy.
+
 - [ ] It is flat at $E=t$ for every $k$.
 
-Here $\varepsilon=-2t\cos k$ and $|\Delta(k)|=2t|\sin k|$, so $E^2=4t^2(\cos^2k+\sin^2k)=4t^2$. All bulk modes have the same energy $2t$, which matches the dimers $\gamma_{2n}\gamma_{2n+1}$ of [(5.21)](#eq-5-21).
+    This is false. At $k=\pi/2$ the term $\varepsilon$ vanishes and $|\Delta(k)|=2t|\sin(\pi/2)|=2t$, so $E=2t$. The value $t$ would need $\Delta=t/2$.
 :::
 
 ::: notebookbox

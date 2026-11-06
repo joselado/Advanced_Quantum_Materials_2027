@@ -95,9 +95,9 @@ e^{i\mathbf k\cdot\boldsymbol\delta}\)</span>. For the <strong>ferromagnet</stro
 <img src="../figures/s06f06_dispersion.svg" loading="lazy" alt="Magnon dispersions (6.8) and (6.9) for a chain (z=2, \gamma(\mathbf k)=\cos ka), both in units of |J|Sz." />
 <figcaption><strong>Figure 6.6.</strong> Magnon dispersions <a href="#eq-6-8">(6.8)</a> and <a href="#eq-6-9">(6.9)</a> for a chain (<span class="math inline">\(z=2\)</span>, <span class="math inline">\(\gamma(\mathbf k)=\cos ka\)</span>), both in units of <span class="math inline">\(|J|Sz\)</span>. Both are zero at <span class="math inline">\(\mathbf k=0\)</span>, since a uniform rotation of all the spins costs no energy. So the magnon is the Goldstone mode of the broken spin-rotation symmetry, and no value of the exchange can open a gap in it. The difference is <em>how</em> the two dispersions go to zero. The factor <span class="math inline">\(1-\gamma(\mathbf k)\)</span> of the ferromagnet is quadratic in <span class="math inline">\(k\)</span>. The factor <span class="math inline">\(\sqrt{1-\gamma(\mathbf k)^2}\)</span> of the antiferromagnet is the square root of the same quantity, so it is linear and gives a Dirac-like cone instead of a parabola. The right panel magnifies the zone centre, where the difference is clear. This extra square root comes from the Bogoliubov transformation that the Néel state requires, since the anomalous <span class="math inline">\(a_ib_j\)</span> terms are what change a parabola into a cone.</figcaption>
 </figure>
-<div class="quiz" data-correct="C">
+<div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>At small <span class="math inline">\(k\)</span> we double the wave vector. How do the magnon energies <a href="#eq-6-8">(6.8)</a> and <a href="#eq-6-9">(6.9)</a> of a chain change?</p>
@@ -107,17 +107,24 @@ Quick check
 <li>Both double.</li>
 <li>Both grow by a factor of four.</li>
 <li>The ferromagnetic one grows by four and the antiferromagnetic one doubles.</li>
-<li>The ferromagnetic one doubles and the antiferromagnetic one grows by four.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>C</strong>.</p>
-<p>For small <span class="math inline">\(k\)</span> we have <span class="math inline">\(1-\gamma(\mathbf k)\propto k^2\)</span>. So <a href="#eq-6-8">(6.8)</a> is quadratic, while <a href="#eq-6-9">(6.9)</a> is the square root of a quantity proportional to <span class="math inline">\(k^2\)</span>, which is linear.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. For the ferromagnet of a chain <span class="math inline">\(E\propto1-\cos k\)</span>. This is <span class="math inline">\(0.0050\)</span> at <span class="math inline">\(k=0.1\)</span> and <span class="math inline">\(0.0199\)</span> at <span class="math inline">\(k=0.2\)</span>, a ratio of about <span class="math inline">\(4\)</span> and not <span class="math inline">\(2\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. For the antiferromagnet of a chain <span class="math inline">\(E\propto\sqrt{1-\cos^2k}=|\sin k|\)</span>. This is <span class="math inline">\(0.0998\)</span> at <span class="math inline">\(k=0.1\)</span> and <span class="math inline">\(0.1987\)</span> at <span class="math inline">\(k=0.2\)</span>, a ratio of about <span class="math inline">\(2\)</span> and not <span class="math inline">\(4\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. For small <span class="math inline">\(k\)</span> we have <span class="math inline">\(1-\gamma(\mathbf k)\propto k^2\)</span>. So <a href="#eq-6-8">(6.8)</a> is quadratic, while <a href="#eq-6-9">(6.9)</a> is the square root of a quantity proportional to <span class="math inline">\(k^2\)</span>, which is linear.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="C">
+<div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>A square lattice has <span class="math inline">\(z=4\)</span> and <span class="math inline">\(\gamma(\mathbf k)=\tfrac12(\cos k_x+\cos k_y)\)</span>. What is the ferromagnetic magnon energy at <span class="math inline">\(\mathbf k=(\pi,\pi)\)</span>?</p>
@@ -127,12 +134,19 @@ Quick check
 <li>Zero.</li>
 <li><span class="math inline">\(4|J|S\)</span></li>
 <li><span class="math inline">\(8|J|S\)</span></li>
-<li><span class="math inline">\(16|J|S\)</span></li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>C</strong>.</p>
-<p>At <span class="math inline">\((\pi,\pi)\)</span> we have <span class="math inline">\(\gamma=-1\)</span>, so <span class="math inline">\(1-\gamma=2\)</span>. Then <a href="#eq-6-8">(6.8)</a> gives <span class="math inline">\(2|J|Sz=8|J|S\)</span> for <span class="math inline">\(z=4\)</span>, which is the top of the band.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The energy of <a href="#eq-6-8">(6.8)</a> is zero only where <span class="math inline">\(\gamma=1\)</span>, which is <span class="math inline">\(\mathbf k=(0,0)\)</span>. At <span class="math inline">\((\pi,\pi)\)</span> we have <span class="math inline">\(\gamma=-1\)</span>, which is the opposite end of the band.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. This value is found at <span class="math inline">\(\mathbf k=(\pi,0)\)</span>, where <span class="math inline">\(\gamma=\tfrac12(-1+1)=0\)</span> and <span class="math inline">\(1-\gamma=1\)</span>. At <span class="math inline">\((\pi,\pi)\)</span> we have <span class="math inline">\(\gamma=-1\)</span> and the energy is twice as large.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. At <span class="math inline">\((\pi,\pi)\)</span> we have <span class="math inline">\(\gamma=-1\)</span>, so <span class="math inline">\(1-\gamma=2\)</span>. Then <a href="#eq-6-8">(6.8)</a> gives <span class="math inline">\(2|J|Sz=8|J|S\)</span> for <span class="math inline">\(z=4\)</span>, which is the top of the band.</p></li>
+</ul>
+</div>
 </details>
 </div>
 

@@ -97,24 +97,31 @@
 <img src="../figures/web/session06/mf_chain.svg" loading="lazy" alt="Left, two bands separated by a gap with the crossing of the noninteracting bands drawn dashed. Right, a curve of the energy gain against U that rises, jumps at U equal to 4t and then decays as one over U." />
 <figcaption><strong>Schematic 6.1.</strong> The half-filled Hubbard chain in mean field, in units of <span class="math inline">\(t\)</span>. (a) The antiferromagnetic bands at <span class="math inline">\(U=4t\)</span> have a gap <span class="math inline">\(Um\)</span>, and the dashed grey bands are the crossing at <span class="math inline">\(U=0\)</span>. (b) The energy per site that the antiferromagnet gains over the uniform solution. The jump at <span class="math inline">\(4t\)</span> is where the uniform solution changes from the paramagnet to the fully polarized ferromagnet, and above it the curve follows <span class="math inline">\(2t^2/U\)</span>.</figcaption>
 </figure>
-<div class="quiz" data-correct="C">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
-<p>At large <span class="math inline">\(U\)</span> the energy difference <span class="math inline">\(E_\text{FM}-E_\text{AFM}\)</span> of the half-filled chain follows a <span class="math inline">\(1/U\)</span> law. What happens to it when <span class="math inline">\(U\)</span> doubles from <span class="math inline">\(20t\)</span> to <span class="math inline">\(40t\)</span>?</p>
+<p>At large <span class="math inline">\(U\)</span> the energy difference <span class="math inline">\(E_\text{FM}-E_\text{AFM}\)</span> of the half-filled chain, per cell of two sites, follows a <span class="math inline">\(1/U\)</span> law. What happens to it when <span class="math inline">\(U\)</span> doubles from <span class="math inline">\(20t\)</span> to <span class="math inline">\(40t\)</span>?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
 <li>It doubles, since the exchange energy grows with <span class="math inline">\(U\)</span>.</li>
-<li>It stays constant.</li>
 <li>It is halved.</li>
 <li>It is divided by four.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>C</strong>.</p>
-<p>A <span class="math inline">\(1/U\)</span> law gives half the value when <span class="math inline">\(U\)</span> doubles. It comes from the exchange <span class="math inline">\(J=4t^2/U\)</span> of Section <a href="08-from-the-hubbard-dimer-to-the-heisenberg-model.html#sec-6-8">6.8</a>, since the hopping lifts the degeneracy only at second order.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. With <span class="math inline">\(J=4t^2/U\)</span> and <span class="math inline">\(t=1\)</span> we get <span class="math inline">\(0.2\)</span> at <span class="math inline">\(U=20t\)</span> and <span class="math inline">\(0.1\)</span> at <span class="math inline">\(U=40t\)</span>. Doubling would give <span class="math inline">\(0.4\)</span> at <span class="math inline">\(U=40t\)</span>, while the two states become degenerate at <span class="math inline">\(U\to\infty\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. A <span class="math inline">\(1/U\)</span> law gives half the value when <span class="math inline">\(U\)</span> doubles. It comes from <span class="math inline">\(J=4t^2/U\)</span> of Section <a href="08-from-the-hubbard-dimer-to-the-heisenberg-model.html#sec-6-8">6.8</a>, which is <span class="math inline">\(0.2t\)</span> at <span class="math inline">\(U=20t\)</span> and <span class="math inline">\(0.1t\)</span> at <span class="math inline">\(U=40t\)</span> for the cell of two sites. A mean-field calculation gives <span class="math inline">\(0.1995t\)</span> and <span class="math inline">\(0.0999t\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. A division by four needs a <span class="math inline">\(1/U^2\)</span> law. The product <span class="math inline">\(U(E_\text{FM}-E_\text{AFM})\)</span> is close to <span class="math inline">\(4t^2\)</span> at large <span class="math inline">\(U\)</span>, which gives <span class="math inline">\(0.2t\)</span> and <span class="math inline">\(0.1t\)</span> for the two values, and not <span class="math inline">\(0.05t\)</span>.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="tryit">

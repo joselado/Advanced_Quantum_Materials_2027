@@ -20,20 +20,34 @@ Let us first give a short preview of the materials that this formalism will allo
 A topological insulator and an ordinary insulator both have a gap in the bulk. How do we tell them apart in an experiment?
 
 - [x] By the states at the edge, which conduct inside the gap in the topological case.
+
+    This is true. The bulk gap is present in both cases, so the bulk does not decide. Only the topological insulator has states inside the gap at its edge that carry current.
+
 - [ ] By the size of the bulk gap, which is always larger in the topological case.
-- [ ] By the density of states of the bulk, which is different in the two cases.
+
+    This is false. Take a chain with alternating hoppings $t_1=1,t_2=2$ and another with $t_1=2,t_2=1$. Both have the same bulk bands and the same gap $2$, but only one has states at the end. The bulk density of states is also identical in the two chains.
+
 - [ ] By the atoms of the material, since only heavy atoms give a topological insulator.
 
-The bulk gap is present in both cases, so the bulk does not decide. The difference appears at the edge, where the topological insulator has states inside the gap that carry current.
+    This is false. In the Kane-Mele model of graphene, any small spin-orbit coupling opens a topological gap, even though carbon is a light atom. At the same time, an ordinary insulator can be made of heavy atoms.
+
+The difference appears at the edge, where the topological insulator has states inside the gap.
 :::
 
 ::: quiz
 A doped semiconductor conducts, while the undoped one with the same bands does not. What does the doping do?
 
 - [x] It puts a few carriers in the conduction band or removes a few from the valence band.
-- [ ] It closes the band gap, so the material becomes a metal.
-- [ ] It makes the electrons interact strongly, so the material becomes a magnet.
-- [ ] It changes the lattice into a topological one.
 
-The bands stay the same, and only the filling changes. A few free carriers in the conduction band, or a few holes in the valence band, are enough to carry a current.
+    This is true. The bands stay the same and only the filling changes. A few electrons in the conduction band, or a few holes in the valence band, are enough to carry a current.
+
+- [ ] It closes the band gap, so the material becomes a metal.
+
+    This is false. Silicon doped with phosphorus keeps its gap of about $1.1$ eV, and it conducts. The dopants are one atom in a million, which is too few to change the bands.
+
+- [ ] It makes the electrons interact strongly, so the material becomes a magnet.
+
+    This is false. In doped silicon the carriers are so dilute that they are almost free, and the material is not magnetic. The conduction comes from the number of carriers and not from their interaction.
+
+The bands stay the same, and only the filling changes.
 :::

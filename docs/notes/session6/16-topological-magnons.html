@@ -91,9 +91,9 @@
 <img src="../figures/s03f01_chiraledge.svg" loading="lazy" alt="A sample with arrows that skip along the edge in one direction on each edge, and an impurity that the edge mode goes around." />
 <figcaption><strong><a href="../session3/06-landau-levels-and-chiral-edge-states-in-the-quantum-hall-state.html#fig:s03:chiraledge">Figure 3.1</a>, shown again.</strong> The chiral edge states of a Chern insulator, seen from above. The topological magnon bands have the same edge structure, with spin and energy carried by the magnons instead of charge.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>A magnon band gap has bands with Chern numbers <span class="math inline">\(\pm1\)</span>. What do we find on the edges of a ribbon?</p>
@@ -103,17 +103,24 @@ Quick check
 <li>Nothing, since magnons are neutral.</li>
 <li>One chiral magnon branch crosses the gap on each edge, and the two edges have opposite directions.</li>
 <li>Branches in both directions on the same edge.</li>
-<li>A charge current along each edge.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The bulk-boundary correspondence does not need charge. The chiral edge branches carry spin and energy, one per unit of Chern number, and they run in opposite directions on the two edges.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The bulk-boundary correspondence counts Chern numbers and does not use charge. In the Haldane model with <span class="math inline">\(C=\pm1\)</span> the same counting gives one chiral branch, and for magnons it carries spin and heat.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The chiral edge branches carry spin and energy, one per unit of Chern number. On the two edges of a ribbon they run in opposite directions.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. Two branches of opposite direction on one edge give a net chirality of zero. They could backscatter into each other and gap out, so they cannot be required by <span class="math inline">\(C=\pm1\)</span>.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>We reverse the sign of the Dzyaloshinskii-Moriya vector. What happens to the topological magnon bands?</p>
@@ -123,12 +130,19 @@ Quick check
 <li>The gap closes for good.</li>
 <li>The Chern numbers change sign, and the edge branches run the other way.</li>
 <li>Nothing, since the term is quadratic.</li>
-<li>The Chern numbers double.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>This term plays the role of the complex hopping of the Haldane model, and reversing its sign reverses the phases. The Berry curvature changes sign, so the Chern numbers change sign too.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Reversing the vector is a mirror operation, so the spectrum is the same. In the Haldane model the phases <span class="math inline">\(+\pi/2\)</span> and <span class="math inline">\(-\pi/2\)</span> give identical gaps, and only <span class="math inline">\(C\)</span> changes sign.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. This term plays the role of the complex hopping of the Haldane model, and reversing its sign reverses the phases. The Berry curvature changes sign, so the Chern numbers change sign too.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. In the Haldane model the phase <span class="math inline">\(\varphi=+\pi/2\)</span> gives <span class="math inline">\(C=+1\)</span> and <span class="math inline">\(\varphi=-\pi/2\)</span> gives <span class="math inline">\(C=-1\)</span>. The direction of the edge branch follows this sign, so it does change.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="notebookbox">

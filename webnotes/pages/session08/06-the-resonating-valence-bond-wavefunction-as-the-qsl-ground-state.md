@@ -20,23 +20,33 @@ which gives $1$ for states with exactly one fermion per site and $0$ for all oth
 ::: quiz
 Why do we apply the Gutzwiller projector $P_G$ to the BCS state [(8.6)](#eq-8-6)?
 
-- [ ] The BCS state is not normalized.
-- [x] The BCS state has empty and doubly occupied sites, and a spin state needs exactly one fermion on every site.
 - [ ] The BCS state breaks spin-rotation symmetry.
+
+    This is false. The singlet pairing $\Delta(c^\dagger_\uparrow c^\dagger_\downarrow-c^\dagger_\downarrow c^\dagger_\uparrow)$ has total spin zero, and it is invariant under spin rotations. The projector is not needed for this.
+
+- [x] The BCS state has empty and doubly occupied sites, and a spin state needs exactly one fermion on every site.
+
+    This is true. In the BCS state of [(8.6)](#eq-8-6) the number of fermions on a site fluctuates between zero and two. Projecting onto single occupancy leaves only the spin degrees of freedom.
+
 - [ ] The projector makes the state a superconductor.
 
-In the BCS state the number of fermions on a site fluctuates between zero and two. Projecting onto single occupancy leaves only the spin degrees of freedom.
+    This is false. With exactly one fermion on each site the charge cannot move or fluctuate, so the projected state is a Mott insulator. The projection removes the charge degrees of freedom.
 :::
 
 ::: quiz
 We separate the two spinons that come from breaking a singlet. In which state does the energy cost grow with the separation?
 
 - [x] In the valence bond solid, since every singlet between the two is broken.
-- [ ] In the RVB state, since the singlets are frozen.
-- [ ] In both states in the same way.
-- [ ] In neither, since spinons always cost the same energy.
 
-In the frozen covering the broken singlets between the spinons form a string, and the spinons are confined into a triplon. In the RVB state the background pairs again, so the spinons separate freely.
+    This is true. In the frozen covering the broken singlets between the spinons form a string, and the spinons are confined into a triplon. In the RVB state the background pairs again, so the spinons separate freely.
+
+- [ ] In the RVB state, since the singlets are frozen.
+
+    This is false. The RVB state is a superposition of many coverings, so no pattern is frozen. Moving a spinon by two sites only re-pairs the singlets along its path and leaves no string behind.
+
+- [ ] In both states in the same way.
+
+    This is false. In a dimerized chain a spinon pair at distance $d$ leaves about $d/2$ broken singlets and costs an energy proportional to $d$. In the RVB state the cost does not depend on $d$.
 :::
 
 ::: {.tryit notebook="session8.ipynb" cell="Magnetization of a large Heisenberg model with a magnetic impurity"}

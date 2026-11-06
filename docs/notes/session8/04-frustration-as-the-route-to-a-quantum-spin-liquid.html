@@ -91,9 +91,9 @@
 <figcaption><strong>Figure 8.2.</strong> Frustration, with the spins drawn as Ising (collinear) variables, which is how the argument in the text is written. If the spins can rotate freely, the triangle goes instead into the <span class="math inline">\(120^\circ\)</span> noncollinear state of figure <a href="../session6/09-the-heisenberg-model-on-a-general-lattice.html#fig:s06:frustration">6.3</a>, and the degeneracy that we discuss here is the Ising one. The plaquette without frustration and the single frustrated triangle are panels (a) and (b) of figure <a href="../session6/09-the-heisenberg-model-on-a-general-lattice.html#fig:s06:frustration">6.3</a>. On a bipartite plaquette every antiferromagnetic bond can be satisfied at the same time, and the ground state is the Néel state, with two configurations related by a global flip, each of which breaks time-reversal symmetry. On a triangle this is not possible, since once two spins are antiparallel the third bond cannot be satisfied for both directions of the last spin. (a) The frustrated bond, in red, can be on any of the three edges, so the classical ground state is degenerate and not unique. Quantum fluctuations mix the degenerate configurations into one superposition with <span class="math inline">\(\langle\mathbf
 S_i\rangle=\mathbf 0\)</span>, which does <em>not</em> break time-reversal symmetry. (b) The kagome lattice of herbertsmithite is built only from corner-sharing triangles, so all of them are frustrated at the same time, here with one frustrated bond on every triangle, and the classical degeneracy becomes macroscopic. This is why triangular and kagome lattices are the standard place to look for quantum spin liquids.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>Three Ising spins sit on a triangle with antiferromagnetic bonds. How many of the 8 configurations are classical ground states?</p>
@@ -103,17 +103,24 @@ Quick check
 <li>2, the two Néel-like configurations.</li>
 <li>6, the ones with exactly one unsatisfied bond.</li>
 <li>3, one for each bond.</li>
-<li>8, since all configurations have the same energy.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The two fully aligned configurations have three unsatisfied bonds. Each of the other six has one unsatisfied bond, which is the minimum, so the ground state is sixfold degenerate.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. There is no Néel configuration on a triangle. The state <span class="math inline">\(\uparrow\downarrow\uparrow\)</span> has one unsatisfied bond, with energy <span class="math inline">\(-1/4\)</span>, and so do its five partners, so there are six degenerate states and not two.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The two fully aligned configurations have three unsatisfied bonds and energy <span class="math inline">\(+3/4\)</span>. Each of the other six has one unsatisfied bond and energy <span class="math inline">\(-1/4\)</span>, which is the minimum, so the ground state is sixfold degenerate.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The unsatisfied bond can be any of the three, but for each choice there are two states, the configuration and its spin flip. So <span class="math inline">\(\uparrow\uparrow\downarrow\)</span> and <span class="math inline">\(\downarrow\downarrow\uparrow\)</span> are both ground states, giving 6.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>Why is the square lattice with antiferromagnetic Heisenberg coupling not a good place to look for a spin liquid?</p>
@@ -122,13 +129,20 @@ Quick check
 <ol type="A">
 <li>It is bipartite, so the Néel state satisfies every bond and breaks time-reversal symmetry.</li>
 <li>It has too many neighbors for singlets to form.</li>
-<li>It has no antiferromagnetic coupling.</li>
 <li>It is two-dimensional, and spin liquids need three dimensions.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>On a bipartite lattice all bonds are satisfied at the same time by two sublattices of opposite spin. There is then no frustration and no macroscopic degeneracy for the quantum fluctuations to mix.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. On a bipartite lattice all bonds are satisfied at the same time by two sublattices of opposite spin. There is then no frustration and no macroscopic degeneracy for the quantum fluctuations to mix.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The kagome lattice also has four neighbors, like the square lattice, and it is a leading candidate for a spin liquid. The number of neighbors is not what decides it.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The triangular and kagome lattices are two-dimensional and they are the standard places to look for spin liquids. Frustration and not the dimension is what matters.</p></li>
+</ul>
+</div>
 </details>
 </div>
 

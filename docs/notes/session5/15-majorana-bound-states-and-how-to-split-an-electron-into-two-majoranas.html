@@ -96,9 +96,9 @@
 <img src="../figures/web/session05/majorana_halves.svg" loading="lazy" alt="At the top, one electron drawn as a single circle and then as two bound circles. At the bottom, four sites with halves bound across neighboring sites and one free half at each end." />
 <figcaption><strong>Schematic 5.3.</strong> One electron mode and its two Majorana halves. At the top the mode is <span class="math inline">\(\tfrac12(\gamma_A+i\gamma_B)\)</span>, and the halves are bound at one site. At the bottom the halves are bound between neighboring sites, and then one half at each end of the chain stays free, which the stars mark.</figcaption>
 </figure>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>Which statement about the operators <span class="math inline">\(\gamma_A=c+c^\dagger\)</span> and <span class="math inline">\(\gamma_B=-i(c-c^\dagger)\)</span> of <a href="#eq-5-17">(5.17)</a> is correct?</p>
@@ -107,18 +107,25 @@ Quick check
 <ol type="A">
 <li>Each one squares to one, and the two anticommute.</li>
 <li>Each one squares to zero, as the fermion <span class="math inline">\(c\)</span> does.</li>
-<li>They are not Hermitian, since <span class="math inline">\(c\)</span> is not Hermitian.</li>
 <li>They commute, since both are built from the same <span class="math inline">\(c\)</span>.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>Both are Hermitian, and <span class="math inline">\(\{c,c^\dagger\}=1\)</span> gives <span class="math inline">\(\gamma_A^2=\gamma_B^2=1\)</span> and <span class="math inline">\(\{\gamma_A,\gamma_B\}=0\)</span>. A fermion obeys <span class="math inline">\(c^2=0\)</span> instead.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. Using <span class="math inline">\(\{c,c^\dagger\}=1\)</span> we get <span class="math inline">\(\gamma_A^2=\gamma_B^2=1\)</span> and <span class="math inline">\(\{\gamma_A,\gamma_B\}=0\)</span> from <a href="#eq-5-17">(5.17)</a>. On the empty mode <span class="math inline">\(\gamma_A\gamma_B\)</span> gives <span class="math inline">\(i\)</span> and <span class="math inline">\(\gamma_B\gamma_A\)</span> gives <span class="math inline">\(-i\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. We have <span class="math inline">\(\gamma_A^2=c^2+c^{\dagger2}+cc^\dagger+c^\dagger c=0+0+1=1\)</span>. Applied twice on the empty mode, <span class="math inline">\(\gamma_A|0\rangle=|1\rangle\)</span> and <span class="math inline">\(\gamma_A|1\rangle=|0\rangle\)</span>, which is not zero.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. On the empty mode we get <span class="math inline">\(\gamma_A\gamma_B|0\rangle=i|0\rangle\)</span> and <span class="math inline">\(\gamma_B\gamma_A|0\rangle=-i|0\rangle\)</span>. They differ by a sign, so the two operators anticommute.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>The electron mode is empty. What is the value of <span class="math inline">\(i\gamma_A\gamma_B\)</span>?</p>
@@ -128,12 +135,19 @@ Quick check
 <li><span class="math inline">\(-1\)</span></li>
 <li><span class="math inline">\(+1\)</span></li>
 <li><span class="math inline">\(0\)</span></li>
-<li><span class="math inline">\(i\)</span></li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>Inserting <a href="#eq-5-17">(5.17)</a> gives <span class="math inline">\(i\gamma_A\gamma_B=2c^\dagger c-1\)</span>. The empty mode has <span class="math inline">\(c^\dagger c=0\)</span>, so the value is <span class="math inline">\(-1\)</span>, and the filled mode gives <span class="math inline">\(+1\)</span>. The product of the two halves measures the occupation of the mode.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. Inserting <a href="#eq-5-17">(5.17)</a> gives <span class="math inline">\(i\gamma_A\gamma_B=2c^\dagger c-1\)</span>. The empty mode has <span class="math inline">\(c^\dagger c=0\)</span>, so the value is <span class="math inline">\(-1\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The value <span class="math inline">\(+1\)</span> belongs to the filled mode, where <span class="math inline">\(c^\dagger c=1\)</span> gives <span class="math inline">\(2-1=+1\)</span>. The empty mode has <span class="math inline">\(c^\dagger c=0\)</span> and gives <span class="math inline">\(-1\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The operator <span class="math inline">\(i\gamma_A\gamma_B\)</span> squares to one, since <span class="math inline">\(\gamma_A^2=\gamma_B^2=1\)</span> and they anticommute. Its eigenvalues are therefore <span class="math inline">\(\pm1\)</span>, and zero is never found.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="tryit">

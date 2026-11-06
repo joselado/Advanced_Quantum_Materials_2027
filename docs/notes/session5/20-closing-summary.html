@@ -99,9 +99,9 @@ k\)</span>, or triplet, odd in <span class="math inline">\(\mathbf k\)</span>, a
 <img src="../figures/s05f04_topology.svg" loading="lazy" alt="Phase dials of the pairing function around a Fermi pocket for s-wave and chiral p-wave pairing, and the edge of a ribbon for each." />
 <figcaption><strong><a href="14-same-gap-and-different-topology-in-trivial-s-wave-and-chiral-p-wave-pairing.html#fig:s05:topology">Figure 5.4</a>, shown again.</strong> The two gaps of Section <a href="14-same-gap-and-different-topology-in-trivial-s-wave-and-chiral-p-wave-pairing.html#sec-5-14">5.14</a> once more. The phase of <span class="math inline">\(\Delta(\mathbf k)\)</span> does not wind for <span class="math inline">\(s\)</span>-wave pairing and winds once for <span class="math inline">\(p+ip\)</span> pairing, and the Chern number counts this winding.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>In a spinless chain the onsite term <span class="math inline">\(c_nc_n\)</span> vanishes. Which pairing is then allowed, and what is its parity?</p>
@@ -111,12 +111,19 @@ Quick check
 <li>Onsite pairing, which is even in <span class="math inline">\(k\)</span>.</li>
 <li>Pairing on the bond <span class="math inline">\(c_nc_{n+1}\)</span>, which is odd in <span class="math inline">\(k\)</span>.</li>
 <li>Pairing on the bond, which is even in <span class="math inline">\(k\)</span>.</li>
-<li>No pairing at all can be written.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>Pauli exclusion gives <span class="math inline">\(c_n^2=0\)</span>, so the pairing has to live on a bond. This term gives <span class="math inline">\(\Delta(k)=2i\Delta\sin k\)</span>, which is odd in <span class="math inline">\(k\)</span>, so by <a href="11-the-general-pairing-hamiltonian-and-its-symmetry-classification.html#eq-5-12">(5.12)</a> it is a spinless <span class="math inline">\(p\)</span>-wave state.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The onsite term is <span class="math inline">\(c_nc_n=0\)</span> by the Pauli principle. If we write <span class="math inline">\(\sum_k c_kc_{-k}\)</span> we get zero as well, since <span class="math inline">\(c_kc_{-k}=-c_{-k}c_k\)</span> cancels pairs of terms.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The Pauli principle gives <span class="math inline">\(c_n^2=0\)</span>, so the pairing lives on a bond. It gives <span class="math inline">\(\Delta(k)=2i\Delta\sin k\)</span>, which is odd, so by <a href="11-the-general-pairing-hamiltonian-and-its-symmetry-classification.html#eq-5-12">(5.12)</a> it is a spinless <span class="math inline">\(p\)</span>-wave state.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The bond term <span class="math inline">\(c_nc_{n+1}\)</span> changes sign when we exchange the two fermions, so it can only give <span class="math inline">\(\sin k\)</span>. A <span class="math inline">\(\cos k\)</span> function would multiply <span class="math inline">\(c_kc_{-k}\)</span> and cancel, as the sum vanishes by antisymmetry.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <p>In this session we followed the topic of superconductivity from session 1, from the bare pairing order parameter to Nambu spinors, Bogoliubov-de Gennes Hamiltonians, the singlet and triplet classification and finally Majorana zero modes in the Kitaev chain. The division that we made in session 1 had a second branch that we have not considered since its first short treatment, which is magnetism, where time-reversal symmetry is broken instead of gauge symmetry. This is where we go next. Session 6 comes back to the same Hubbard Hamiltonian that opened section <a href="04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html#sec-5-5">5.5</a> of this session, now on its repulsive (<span class="math inline">\(U&gt;0\)</span>) side, and gives magnetism the same depth of treatment that we have now given to superconductivity.</p>

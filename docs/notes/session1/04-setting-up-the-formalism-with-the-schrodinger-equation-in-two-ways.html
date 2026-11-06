@@ -93,9 +93,9 @@
 <img src="../figures/web/session01/fixed_vs_free_number.svg" loading="lazy" alt="States of a dot with two levels, with zero, one and two electrons, and an arrow that links the empty and the full dot." />
 <figcaption><strong>Schematic 1.2.</strong> A dot with two levels and its Fock states sorted by the number of electrons. First quantization stays inside one column, here the one with a single electron. Second quantization also allows states that mix columns, such as an equal superposition of zero and two electrons.</figcaption>
 </figure>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>Which of these states can we write as an ordinary wave function with a fixed number of coordinates?</p>
@@ -104,13 +104,23 @@ Quick check
 <ol type="A">
 <li>One electron in a superposition of the lower and the upper level.</li>
 <li>An equal superposition of zero electrons and two electrons.</li>
-<li>A state with one electron half of the time and two electrons the other half.</li>
 <li>An equal superposition of the empty dot and the dot with three electrons.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>A wave function needs a fixed number of coordinates, and one electron in two levels keeps this number. The other states mix different numbers of electrons, and for them we need second quantization.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The wave function is <span class="math inline">\(\psi(x)=a\psi_0(x)+b\psi_1(x)\)</span>, and it has one coordinate. The number of electrons is one for both terms.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The mean number of electrons is <span class="math inline">\(1\)</span>, but one term has no coordinate and the other has two, <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span>. No single function <span class="math inline">\(\psi(x_1,x_2)\)</span> describes both terms.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The mean number of electrons is <span class="math inline">\(1.5\)</span>, which is not a number of coordinates at all. The two terms have zero and three coordinates, so we need second quantization.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>A wave function needs a fixed number of coordinates. States that mix different numbers of electrons need second quantization.</p>
+</div>
 </details>
 </div>
 

@@ -10,11 +10,18 @@ The answer is yes, with **angle-resolved photoemission spectroscopy (ARPES)**. T
 In ARPES we measure the kinetic energy and the emission angle of the electrons that leave the material. What do we obtain from them?
 
 - [x] The energy and the quasi-momentum of the electron inside the material, which gives $E(\mathbf k)$.
+
+    This is true. Conservation of energy and of the momentum along the surface relates the measured values to the ones inside. Scanning the angle and the energy then maps the band structure directly.
+
 - [ ] Only the density of states, since the angle is averaged out.
-- [ ] The lattice constant of the crystal.
+
+    This is false. The angle is not averaged out. For electrons of $20$ eV, an angle of $10^\circ$ gives $k_\parallel\approx 4.0\ \text{nm}^{-1}$ and $20^\circ$ gives $7.8\ \text{nm}^{-1}$, so each angle is a different momentum.
+
 - [ ] The hopping $t$ only, with no information on the momentum.
 
-Conservation of energy and of the momentum along the surface relates the measured values to the ones inside. Scanning the angle and the energy then maps the band structure directly.
+    This is false. For the chain $\epsilon=-2t\cos(ka)$ the electrons seen at $k=0$ have energy $-2t$, and at $ka=\pi/2$ they have $0$. The energy depends on the angle, so we get the momentum too.
+
+The angle gives the momentum along the surface, and the energy gives the band.
 :::
 
 ## Closing summary {#sec-2-13 number="2.13"}
@@ -38,9 +45,16 @@ The main message of this session is the following. The spectra of periodic syste
 A unit cell has four orbitals. What is the size of $H(\varphi)$, and how many bands do we get?
 
 - [x] A $4\times 4$ matrix, and four bands.
-- [ ] A $2\times 2$ matrix, and two bands.
-- [ ] A $4\times 4$ matrix, and one band.
-- [ ] An infinite matrix, and infinitely many bands.
 
-The Bloch Hamiltonian has one row and one column for every orbital of the cell. At each $\varphi$ it has four eigenvalues, and they form the four bands.
+    This is true. The Bloch Hamiltonian has one row and one column for every orbital of the cell. At each $\varphi$ it has four eigenvalues, and they form the four bands.
+
+- [ ] A $2\times 2$ matrix, and two bands.
+
+    This is false. A $2\times 2$ matrix describes a cell with two orbitals, such as the chain of [(2.13)](#eq-2-13). With four orbitals, the rows of $H(\varphi)$ run over four orbitals.
+
+- [ ] A $4\times 4$ matrix, and one band.
+
+    This is false. Take the uniform chain with a cell of four sites. At $\varphi=0$ the four eigenvalues are $-2t$, $0$, $0$ and $2t$, so there are four bands and not one.
+
+The size of the Bloch Hamiltonian is the number of orbitals in the cell.
 :::

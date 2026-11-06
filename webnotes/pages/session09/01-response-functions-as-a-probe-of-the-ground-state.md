@@ -20,8 +20,14 @@ Finally, a simplification makes almost everything below possible to compute. Whe
 A perturbation acts on one site of an infinite clean chain, and we measure on a site five lattice constants away. If we move both sites by ten lattice constants, the answer is the same. What does this tell us about the response function?
 
 - [ ] It must vanish at large distance.
+
+    This is false. A response that depends only on $x'-x$ can still be constant at all distances, which translational symmetry allows. Symmetry alone does not fix the decay.
+
 - [x] It depends only on the distance $x'-x$, so each wavevector $q$ is independent of the others.
+
+    This is true. Take the pairs $(x,x')=(0,5)$ and $(10,15)$. Both have $x'-x=5$ and the same response, so $\chi$ is a function of one variable and each $q$ decouples.
+
 - [ ] It depends on $x$ and $x'$ separately, as two independent variables.
 
-Translational symmetry means that only the difference $x'-x$ matters. A function of the difference becomes diagonal after a Fourier transform, meaning that every $q$ responds on its own. This is why the rest of the session works in $(q,\omega)$.
+    This is false. If $\chi$ depended on $x$ and $x'$ separately, the pairs $(0,5)$ and $(10,15)$ would give different values. This happens near a wall or an impurity, but not in the clean infinite chain.
 :::

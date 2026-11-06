@@ -96,9 +96,9 @@
 <img src="../figures/s05f05_kitaev.svg" loading="lazy" alt="The Kitaev chain in terms of Majorana variables, for N=5 sites (so \gamma_{2N}=\gamma_{10}), seen from above." />
 <figcaption><strong>Figure 5.5.</strong> The Kitaev chain in terms of Majorana variables, for <span class="math inline">\(N=5\)</span> sites (so <span class="math inline">\(\gamma_{2N}=\gamma_{10}\)</span>), seen from above. Each site carries two balls, its two Majorana halves, and a translucent capsule binds two halves together. Splitting every electron into its two Majorana halves <a href="15-majorana-bound-states-and-how-to-split-an-electron-into-two-majoranas.html#eq-5-17">(5.17)</a> has no physical content by itself, and what matters is which halves the Hamiltonian binds together. In the trivial phase, at the top, the binding is inside each site. The two halves of each electron stay bound to each other, as they were in the vacuum, and every mode costs energy. In the topological phase, at the bottom, the binding is between sites, <span class="math inline">\(\gamma_{2n}\)</span> with <span class="math inline">\(\gamma_{2n+1}\)</span>, and the pattern has one bond missing at each end. So <span class="math inline">\(\gamma_1\)</span> and <span class="math inline">\(\gamma_{2N}\)</span> do not appear in <a href="#eq-5-21">(5.21)</a>, cost no energy and are at opposite ends of the sample. The ordinary fermion that they would form together has been split into two halves, which are now separated by the length of the chain, and this is what <em>deconfined</em> means here. This is the fully dimerized SSH chain of the topological-band-structure session with its two remaining end sites, with new labels, so the counting is the same and only the operators are new.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>At <span class="math inline">\(\Delta=t\)</span> and <span class="math inline">\(\mu=0\)</span> the chain has the dispersion <span class="math inline">\(E(k)=\sqrt{\varepsilon(k)^2+|\Delta(k)|^2}\)</span> with <a href="#eq-5-20">(5.20)</a>. How does the bulk energy depend on <span class="math inline">\(k\)</span>?</p>
@@ -107,13 +107,20 @@ Quick check
 <ol type="A">
 <li>It is zero at <span class="math inline">\(k=0\)</span> and grows away from it.</li>
 <li>It is flat, <span class="math inline">\(E=2t\)</span> for every <span class="math inline">\(k\)</span>.</li>
-<li>It is flat and zero, so the bulk has no gap.</li>
 <li>It is flat at <span class="math inline">\(E=t\)</span> for every <span class="math inline">\(k\)</span>.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>Here <span class="math inline">\(\varepsilon=-2t\cos k\)</span> and <span class="math inline">\(|\Delta(k)|=2t|\sin k|\)</span>, so <span class="math inline">\(E^2=4t^2(\cos^2k+\sin^2k)=4t^2\)</span>. All bulk modes have the same energy <span class="math inline">\(2t\)</span>, which matches the dimers <span class="math inline">\(\gamma_{2n}\gamma_{2n+1}\)</span> of <a href="#eq-5-21">(5.21)</a>.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. At <span class="math inline">\(k=0\)</span> we have <span class="math inline">\(\varepsilon=-2t\)</span> and <span class="math inline">\(\Delta(0)=0\)</span>, so <span class="math inline">\(E=2t\)</span> and not zero. The same holds at <span class="math inline">\(k=\pi/2\)</span>, where <span class="math inline">\(\varepsilon=0\)</span> and <span class="math inline">\(|\Delta|=2t\)</span>, so the energy does not grow.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. Here <span class="math inline">\(\varepsilon=-2t\cos k\)</span> and <span class="math inline">\(|\Delta(k)|=2t|\sin k|\)</span>, so <span class="math inline">\(E^2=4t^2(\cos^2k+\sin^2k)=4t^2\)</span>. This matches the dimers of <a href="#eq-5-21">(5.21)</a>, where all bulk modes have the same energy.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. At <span class="math inline">\(k=\pi/2\)</span> the term <span class="math inline">\(\varepsilon\)</span> vanishes and <span class="math inline">\(|\Delta(k)|=2t|\sin(\pi/2)|=2t\)</span>, so <span class="math inline">\(E=2t\)</span>. The value <span class="math inline">\(t\)</span> would need <span class="math inline">\(\Delta=t/2\)</span>.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="notebookbox">

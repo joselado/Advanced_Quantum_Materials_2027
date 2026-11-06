@@ -21,22 +21,34 @@ which is an integer that counts the number of filled Landau levels. This is the 
 Landau levels have no dispersion, so the group velocity of every state is zero. How can such a band have the Chern number $C=1$?
 
 - [ ] The Chern number comes from the edge states and not from the bulk band.
-- [x] The Chern number is built from the wavefunctions across the Brillouin zone, and it does not depend on the energies.
-- [ ] It cannot, and the Chern number of a Landau level is zero.
-- [ ] The Chern number of a flat band is $1$ only at zero temperature.
 
-The energies cancel in [(4.1)](#eq-4-1), as we saw in session 3. A flat band can still have wavefunctions that twist across the Brillouin zone, and this twist is counted by $C$.
+    This is false. The Chern number of [(4.1)](#eq-4-1) is computed from the bulk wavefunctions of a periodic system, with no edge at all. The edge states are a consequence, since their number equals $C$.
+
+- [x] The Chern number is built from the wavefunctions across the Brillouin zone, and it does not depend on the energies.
+
+    This is true. The energies cancel in [(4.1)](#eq-4-1), as we saw in session 3. A flat band can still have wavefunctions that twist across the Brillouin zone, and this twist is counted by $C$.
+
+- [ ] It cannot, and the Chern number of a Landau level is zero.
+
+    This is false. If $C$ were zero, a filled Landau level would give $\sigma_{xy}=0$. The measured plateau of a filled lowest Landau level is $e^2/h$, which needs $C=1$.
+
 :::
 
 ::: quiz
 The chemical potential is in the gap between the third and the fourth Landau level. What is $\sigma_{xy}$?
 
-- [x] $3e^2/h$.
 - [ ] $e^2/h$.
-- [ ] $3.5\,e^2/h$.
+
+    This is false. The value $e^2/h$ is the plateau with only the lowest Landau level filled. Three filled levels give three times this value.
+
+- [x] $3e^2/h$.
+
+    This is true. Three Landau levels are filled, each with $C=1$. By [(4.2)](#eq-4-2) the total is $C=3$, and $\sigma_{xy}=3e^2/h$.
+
 - [ ] $4e^2/h$.
 
-Three Landau levels are filled, each with $C=1$. By [(4.2)](#eq-4-2) the total is $C=3$, and $\sigma_{xy}=3e^2/h$ is an exact integer multiple.
+    This is false. The fourth level is above the chemical potential and it is empty, so it adds nothing. The plateau at $4e^2/h$ needs the chemical potential in the gap above the fourth level.
+
 :::
 
 ::: {.tryit notebook="session4.ipynb" cell="Landau levels of conventional electrons"}

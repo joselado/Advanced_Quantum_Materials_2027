@@ -10,20 +10,30 @@ An MPS is then a horizontal chain of such points, with one point per site. Each 
 An MPS of bond dimension $M$ is acted on by an MPO of bond dimension $D$, and we contract the physical legs without truncating. What is the bond dimension of the result?
 
 - [x] $M\cdot D$.
+
+    This is true. Each bond of the result carries one index of the state and one of the operator, so the dimensions multiply. This growth is the reason why a truncation by singular value decomposition follows each operation.
+
 - [ ] $M+D$.
-- [ ] $\max(M,D)$.
+
+    This is false. Take a product state, $M=1$, and a product operator, $D=1$. The sum gives 2, but the result is again a product state with bond dimension 1.
+
 - [ ] $M^D$.
 
-Each bond of the result carries one index of the state and one of the operator, so the dimensions multiply. This growth is the reason why a truncation by singular value decomposition follows each operation.
+    This is false. For a product state, $M=1$, acted on by an operator with $D=5$ the formula gives $1^5=1$. The result has a bond that can be as large as $1\cdot5=5$.
 :::
 
 ::: quiz
 A tensor has three legs, and each leg has dimension $4$. How many numbers does it contain?
 
 - [ ] $12$.
-- [ ] $16$.
+
+    This is false. The sum counts three separate vectors of 4 entries. A tensor has one number for each combination of the indices, and the tensor with legs $2,2,2$ has 8 entries and not 6.
+
 - [x] $64$.
+
+    This is true. The number of entries is the product of the dimensions of the legs, $4\times4\times4=64$.
+
 - [ ] $256$.
 
-The number of entries is the product of the dimensions of the legs, $4\times4\times4=64$.
+    This is false. The value $4^4$ is the number of entries of a tensor with four legs. With three legs the indices $(i,j,k)$ take $4\times4\times4=64$ values.
 :::

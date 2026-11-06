@@ -95,9 +95,9 @@ c_i^\dagger\)</span> and the string. In the lecture this is summarized as <em>sp
 \tfrac 12\)</span>, as the ball and the arrow on each site show. The naive identification gives the wrong <em>relative</em> signs between sites, because fermion operators on different sites anticommute while spin operators on different sites commute. The string <span class="math inline">\(K_i\)</span> of <a href="#eq-7-2">(7.2)</a> corrects exactly this, since it gives a factor <span class="math inline">\(-1\)</span> for every fermion to the left of site <span class="math inline">\(i\)</span>, which is the shaded strip. The two chains in the figure differ only in the occupations to the left of the marked site <span class="math inline">\(i=6\)</span>, with three fermions in the chain behind and two in the chain in front, and this parity alone changes the sign of <span class="math inline">\(S_6^+ = c_6^\dagger K_6\)</span>. The string is nonlocal, and it carries the fermionic exchange sign that spins do not have by themselves.</figcaption>
 </figure>
 <p>This is the one explicit link in the course between the two languages that we have used. The fermionic operators of sessions 1 to 5 and the spin operators of session 6 and, as we will see, of session 8 are related by <a href="#eq-7-2">(7.2)</a>, and they are not only analogous to each other. It also explains a practical choice that we make for the rest of this session. Since interacting fermionic Hamiltonians and interacting spin Hamiltonians are mathematically equivalent, we can work only in the spin representation from now on, and we will do so. The reason is that spin operators on different sites commute, so there is no fermionic sign to keep track of when we cut the chain, and this makes the counting of entanglement below clean.</p>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>In the figure, the chain behind has three fermions to the left of site 6 and the chain in front has two. How do <span class="math inline">\(S_6^+=c_6^\dagger K_6\)</span> of the two chains compare, for the same <span class="math inline">\(c_6^\dagger\)</span>?</p>
@@ -106,18 +106,25 @@ Quick check
 <ol type="A">
 <li>They have opposite signs, since <span class="math inline">\(K_6=(-1)^{N_\text{left}}\)</span> is <span class="math inline">\(-1\)</span> for three fermions and <span class="math inline">\(+1\)</span> for two.</li>
 <li>They are equal, since the string only depends on site 6.</li>
-<li>They have the same sign but a different magnitude.</li>
 <li>Both vanish, since the string kills the operator.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>The string is <span class="math inline">\(\exp(i\pi N_\text{left})\)</span>, which is the parity of the number of fermions to the left. Three fermions give <span class="math inline">\(-1\)</span> and two give <span class="math inline">\(+1\)</span>, so the same <span class="math inline">\(c_6^\dagger\)</span> enters with opposite signs.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The string is the parity of the number of fermions to the left. Three fermions give <span class="math inline">\(-1\)</span> and two give <span class="math inline">\(+1\)</span>, so the same <span class="math inline">\(c_6^\dagger\)</span> enters with opposite signs.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The string is built from the sites <span class="math inline">\(j&lt;6\)</span>. Take one fermion away from the left of the chain behind, and <span class="math inline">\(K_6\)</span> goes from <span class="math inline">\(-1\)</span> to <span class="math inline">\(+1\)</span> while <span class="math inline">\(c_6^\dagger\)</span> stays the same.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The string has the eigenvalues <span class="math inline">\(\pm1\)</span> and it is never zero. For the chain in front, <span class="math inline">\(K_6=+1\)</span> and <span class="math inline">\(S_6^+=c_6^\dagger\)</span>, which creates a fermion with amplitude one.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>What is the string <span class="math inline">\(K_1\)</span> of the first site of a chain, and what does this mean for <span class="math inline">\(S_1^+\)</span>?</p>
@@ -126,13 +133,20 @@ Quick check
 <ol type="A">
 <li><span class="math inline">\(K_1=-1\)</span>, so <span class="math inline">\(S_1^+=-c_1^\dagger\)</span>.</li>
 <li><span class="math inline">\(K_1=1\)</span>, so <span class="math inline">\(S_1^+=c_1^\dagger\)</span> with no sign.</li>
-<li><span class="math inline">\(K_1=e^{i\pi n_1}\)</span>, so it depends on the occupation of site 1 itself.</li>
 <li><span class="math inline">\(K_1=0\)</span>, so <span class="math inline">\(S_1^+\)</span> vanishes.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The sum in <a href="#eq-7-2">(7.2)</a> runs over <span class="math inline">\(j&lt;i\)</span>, which is empty for the first site. An empty sum gives the exponential of zero, which is <span class="math inline">\(1\)</span>.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. For a chain of a single site <span class="math inline">\(S_1^+\)</span> must take <span class="math inline">\(|{\downarrow}\rangle\)</span> to <span class="math inline">\(|{\uparrow}\rangle\)</span> with matrix element <span class="math inline">\(+1\)</span>. The choice <span class="math inline">\(K_1=-1\)</span> would give <span class="math inline">\(-1\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The sum in <a href="#eq-7-2">(7.2)</a> runs over <span class="math inline">\(j&lt;i\)</span>, which is empty for the first site. An empty sum gives the exponential of zero, which is <span class="math inline">\(1\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The string is an exponential, so it is never zero. If <span class="math inline">\(S_1^+\)</span> vanished, a chain of one site could not flip a spin from down to up, which <span class="math inline">\(S^+\)</span> does.</p></li>
+</ul>
+</div>
 </details>
 </div>
 

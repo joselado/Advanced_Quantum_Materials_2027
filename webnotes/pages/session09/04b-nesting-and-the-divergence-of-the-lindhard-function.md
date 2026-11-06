@@ -19,20 +19,32 @@ The same logic extends directly to two dimensions. For a square lattice with dis
 A spinless chain is at quarter filling, so that the Fermi points are at $\pm\pi/4$. At which wavevector does the static Lindhard function diverge?
 
 - [ ] At $q=\pi/4$, the Fermi wavevector.
+
+    This is false. At $q=\pi/4$ the state at $k=-\pi/4$ goes to $k=0$, where $\varepsilon=-2t$ and the Fermi level is at $-\sqrt2\,t$. The vector does not connect the two Fermi points, so nothing diverges.
+
 - [x] At $q=\pi/2$, which is $2k_F$.
+
+    This is true. The vector between the Fermi points $-\pi/4$ and $+\pi/4$ is $2k_F=\pi/2$. Both the state $k$ and the state $k+q$ are then at the Fermi level, which makes the denominator vanish.
+
 - [ ] At $q=\pi$, as for the half-filled chain.
 
-The divergence comes from the vector that connects the two Fermi points, and this vector is $2k_F=\pi/2$. The value $q=\pi$ belongs to half filling only, where $k_F=\pi/2$.
+    This is false. At $q=\pi$ the state $k=\pi/4$ goes to $5\pi/4$. The energy changes from $-\sqrt2\,t$ to $+\sqrt2\,t$, so the two states are far from each other in energy. The value $q=\pi$ is $2k_F$ only at half filling.
 :::
 
 ::: quiz
 We move the half-filled square lattice away from half filling. The relation $\varepsilon(k+Q)=-\varepsilon(k)$ with $Q=(\pi,\pi)$ still holds. Why is the divergence of $\chi_0(Q)$ cut off?
 
 - [ ] The relation fails, so the vector $Q$ no longer connects any states.
-- [x] The vector $Q$ maps the Fermi surface at energy $\mu$ to the one at $-\mu$, so it no longer maps the Fermi surface onto itself.
+
+    This is false. The relation holds at every filling, since it follows from $\varepsilon(k)=-2t(\cos k_x+\cos k_y)$. At $\mu=0.5t$ we still have $\varepsilon(k+Q)=-\varepsilon(k)$ exactly.
+
+- [x] The vector $Q$ maps the Fermi surface at energy $\mu$ to the one at $-\mu$, so it does not map the Fermi surface onto itself.
+
+    This is true. At $\mu\neq0$ the vector $Q$ maps the contour $\varepsilon=\mu$ to $\varepsilon=-\mu$, which is another curve. Only at $\mu=0$ do the two contours coincide as the same square.
+
 - [ ] The Fermi surface becomes a point, and a point cannot be nested.
 
-The relation holds at any filling, but at $\mu\neq0$ the Fermi surface is curved and it is sent to a different contour. Only at $\mu=0$ are the two the same square, and whole edges nest at once.
+    This is false. At $\mu=0.5t$ the Fermi surface is still a closed curve of finite length, and not a point. A curve is not nested by $Q$, but this is because of its shape and not because it has no size.
 :::
 
 ::: {.tryit notebook="session9.ipynb" cell="The charge-charge response function"}

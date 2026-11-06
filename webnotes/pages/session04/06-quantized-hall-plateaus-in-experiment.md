@@ -8,11 +8,17 @@ When we sweep the magnetic field on a real 2DEG, we see this transition directly
 What is the Hall resistance on the plateau with $N=2$ filled Landau levels, in units of $h/e^2$?
 
 - [ ] $1$.
-- [ ] $2$.
-- [ ] $1/4$.
+
+    This is false. The value $h/e^2\approx 25.8\,\mathrm{k}\Omega$ is the plateau with $N=1$. For $N=2$ the resistance is $12.9\,\mathrm{k}\Omega$.
+
 - [x] $1/2$.
 
-The Hall resistance is the inverse of the Hall conductance. With $\sigma_{xy}=Ne^2/h$ we obtain $R_{xy}=h/(Ne^2)$, which is $1/2$ for $N=2$.
+    This is true. The Hall resistance is the inverse of the Hall conductance. With $\sigma_{xy}=Ne^2/h$ we obtain $R_{xy}=h/(Ne^2)$, which is $1/2$ for $N=2$.
+
+- [ ] $1/4$.
+
+    This is false. The value $1/4$, which is $6.45\,\mathrm{k}\Omega$, belongs to the plateau with $N=4$ filled levels.
+
 :::
 
 ## Coupling electrons to a magnetic field with minimal coupling and the Peierls substitution {#sec-4-7 number="4.7"}
@@ -34,12 +40,18 @@ and this is what is called the **Peierls substitution**. It is the tight-binding
 ::: quiz
 A gauge change $\mathbf{A}\to\mathbf{A}+\nabla\chi$ changes the phase of every bond in [(4.4)](#eq-4-4). Which quantity does not change?
 
-- [x] The sum of the phases around a closed loop of bonds.
 - [ ] The phase of any single bond.
-- [ ] None, since the Hamiltonian changes completely.
-- [ ] The phase of the bonds along $x$.
 
-The sum of the phases around a loop is the flux through it, which is $\mathbf{B}$ and not $\mathbf{A}$. The electrons respond only to this flux.
+    This is false. Take $\chi=\theta x/a$. Every bond along $x$ gets the extra phase $e^{i\theta}$, and $\theta$ is arbitrary, so a single bond phase can be set to any value.
+
+- [ ] None, since the Hamiltonian changes completely.
+
+    This is false. Around a plaquette with corners $0,1,2,3$ the added phases are $(\chi_1-\chi_0)+(\chi_2-\chi_1)+(\chi_3-\chi_2)+(\chi_0-\chi_3)=0$. The sum around the loop does not change.
+
+- [x] The sum of the phases around a closed loop of bonds.
+
+    This is true. The sum of the phases around a loop is the flux through it, which is $\mathbf{B}$ and not $\mathbf{A}$. The electrons respond only to this flux.
+
 :::
 
 ::: {.tryit notebook="session4.ipynb" cell="Bands in the conventional quantum Hall state"}

@@ -16,12 +16,18 @@ and each of them has an angular momentum $m$, which is the eigenvalue of $L_z$ i
 ::: quiz
 What is the radius of the maximum of $|\psi_m|^2$ for $m=8$, in units of $\ell_B$?
 
-- [ ] $16$.
 - [ ] $2\sqrt{2}$.
+
+    This is false. A ring of radius $2\sqrt2\,\ell_B$ encloses $r^2/(2\ell_B^2)=4$ flux quanta, while the state $m=8$ has the angular momentum of $8$.
+
 - [x] $4$.
+
+    This is true. The maximum is at $r_m=\sqrt{2m}\,\ell_B$, which is $\sqrt{16}\,\ell_B=4\,\ell_B$ for $m=8$. The ring encloses $m$ flux quanta.
+
 - [ ] $8$.
 
-The maximum is at $r_m=\sqrt{2m}\,\ell_B$, which is $\sqrt{16}\,\ell_B=4\,\ell_B$ for $m=8$.
+    This is false. A ring of radius $8\ell_B$ encloses $r^2/(2\ell_B^2)=32$ flux quanta, which would be the state $m=32$ and not $m=8$.
+
 :::
 
 ## The many-body wavefunction of the filled lowest Landau level {#sec-4-14 number="4.14"}
@@ -41,10 +47,16 @@ In Section [4.13](#sec-4-13) we saw that a larger angular momentum $m$ moves the
 ::: quiz
 In the filled lowest Landau level the density is flat up to the radius set by $m=N-1$. How does this radius change if we double the number of electrons?
 
-- [x] It grows by a factor $\sqrt{2}$.
-- [ ] It grows by a factor $4$.
 - [ ] It doubles.
+
+    This is false. The radius is $\sqrt{2(N-1)}\,\ell_B$. It is $7.1\,\ell_B$ for $N=26$ and $10.1\,\ell_B$ for $N=52$, a factor $1.4$ and not $2$. A factor $2$ needs four times as many electrons.
+
+- [x] It grows by a factor $\sqrt{2}$.
+
+    This is true. The radius is $r=\sqrt{2(N-1)}\,\ell_B$, so for large $N$ it grows as $\sqrt{N}$. For $N=100$ and $N=200$ we get $14.1\,\ell_B$ and $20.0\,\ell_B$.
+
 - [ ] It does not change, since the density is uniform.
 
-The radius is $r=\sqrt{2(N-1)}\,\ell_B$, so for large $N$ it grows as $\sqrt{N}$. The density stays the same, since one electron has the area of one flux quantum.
+    This is false. A uniform density means that each electron takes the same area, so more electrons need more area. For $N=100$ the radius is $14.1\,\ell_B$ and for $N=200$ it is $20.0\,\ell_B$.
+
 :::

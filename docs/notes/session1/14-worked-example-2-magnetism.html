@@ -91,9 +91,9 @@
 c_\downarrow\rangle\)</span>, and we obtain a bilinear Hamiltonian with onsite energies that depend on the spin. Let us define the magnetization</p>
 <p><span id="eq-1-8" class="eq"><span class="math display">\[m = \langle c_\uparrow^\dagger c_\uparrow\rangle - \langle c_\downarrow^\dagger c_\downarrow\rangle. \tag{1.8}\]</span></span></p>
 <p>Self-consistency gives <span class="math inline">\(m=0\)</span> automatically for <span class="math inline">\(U&lt;0\)</span>, and a finite <span class="math inline">\(m\)</span> for <span class="math inline">\(U&gt;0\)</span>, which is a real magnetic solution.</p>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>For an attractive <span class="math inline">\(U&lt;0\)</span> the self-consistent solution has <span class="math inline">\(m=0\)</span>. Why does a finite <span class="math inline">\(m\)</span> not lower the energy?</p>
@@ -101,14 +101,24 @@ Quick check
 <div class="quiz-options">
 <ol type="A">
 <li>An attractive interaction favors double occupation of a site, which has no net spin, so a local moment does not help.</li>
-<li>The hopping becomes imaginary for <span class="math inline">\(U&lt;0\)</span>, which forbids a magnetization.</li>
 <li>Time reversal is broken explicitly by the sign of <span class="math inline">\(U\)</span>.</li>
 <li>The spin is not conserved for <span class="math inline">\(U&lt;0\)</span>.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>A negative <span class="math inline">\(U\)</span> rewards a site that holds one electron of each spin. A moment would move electrons away from this configuration, so the energy goes up and not down.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. A negative <span class="math inline">\(U\)</span> in <a href="#eq-1-7">(1.7)</a> rewards a site that holds one electron of each spin. A moment moves electrons away from this configuration, so the energy goes up.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The Hamiltonian <a href="#eq-1-7">(1.7)</a> is real for both signs of <span class="math inline">\(U\)</span>, so it is invariant under time reversal in both cases. For <span class="math inline">\(U&gt;0\)</span> the same Hamiltonian has <span class="math inline">\(m\neq 0\)</span> as a spontaneous solution.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The hopping does not flip the spin, and the interaction depends only on the densities. So <span class="math inline">\(S_z\)</span> commutes with <span class="math inline">\(H\)</span> for any <span class="math inline">\(U\)</span>, positive or negative.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The sign of <span class="math inline">\(U\)</span> decides whether the spins of a site prefer to be unpaired or paired.</p>
+</div>
 </details>
 </div>
 <p>Let us say precisely <em>which</em> symmetry is broken here, using the formal definition in <a href="11b-classifying-states-of-matter-by-the-symmetry-they-break.html#eq-1-4">(1.4)</a>. Time-reversal symmetry reverses the direction of time and, together with it, every angular momentum in the system, including the spin. On the fermionic operators this means that it exchanges <span class="math inline">\(c_\uparrow^\dagger c_\uparrow \leftrightarrow c_\downarrow^\dagger c_\downarrow\)</span>. Since <span class="math inline">\(m\)</span> in <a href="#eq-1-8">(1.8)</a> changes sign under this exchange, a nonzero <span class="math inline">\(m\)</span> means that the ground state does not pass the invariance test in <a href="11b-classifying-states-of-matter-by-the-symmetry-they-break.html#eq-1-4">(1.4)</a>, so it is a magnet by definition. More generally, this is a breaking of the <em>continuous</em> spin-rotational symmetry, and this continuous symmetry breaking is what gives rise to the gapless magnon excitations that appear in the table of Section <a href="11-spontaneous-symmetry-breaking-and-why-a-symmetric-hamiltonian-can-have-an-asymmetric-ground-state.html#sec-1-11">1.11</a>. We will study them in detail in a later session, and in this session we only need the mean-field ground state itself.</p>
@@ -134,9 +144,9 @@ Notebook <code>session1.ipynb</code>, cell “The interacting Hubbard dimer”. 
 <p>Why does this order break gauge symmetry? A gauge transformation acts on the operators as</p>
 <p><span id="eq-1-10" class="eq"><span class="math display">\[c \to c\, e^{i\varphi}, \qquad c^\dagger \to c^\dagger e^{-i\varphi}. \tag{1.10}\]</span></span></p>
 <p>Any term built from one creation operator and one annihilation operator, <span class="math inline">\(c^\dagger c\)</span>, is invariant under <a href="#eq-1-10">(1.10)</a>, since the two phases cancel. However, the pairing term in <a href="#eq-1-9">(1.9)</a> is built from <em>two</em> annihilation operators, or two creation operators, so under the same transformation it gets a phase <span class="math inline">\(e^{2i\varphi}\)</span>, or <span class="math inline">\(e^{-2i\varphi}\)</span>, which does not cancel. For this reason a superconductor with <span class="math inline">\(\Delta \neq 0\)</span> breaks the gauge symmetry of the Hamiltonian spontaneously, which is the “broken gauge symmetry” case in the classification of Section <a href="11-spontaneous-symmetry-breaking-and-why-a-symmetric-hamiltonian-can-have-an-asymmetric-ground-state.html#sec-1-11">1.11</a>. This is directly connected to the puzzle of Section <a href="05-a-warm-up-in-first-quantization-and-the-puzzle-that-breaks-it.html#sec-1-5">1.5</a> about a fluctuating number of electrons. To break gauge symmetry and to lose a fixed number of particles are, physically, the same statement. A mean-field superconductor does not have a fixed number of electrons, only a fixed parity.</p>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>Under a gauge transformation with <span class="math inline">\(\varphi=\pi/2\)</span>, by which factor does the pairing term <span class="math inline">\(c_ic_j\)</span> change?</p>
@@ -146,12 +156,22 @@ Quick check
 <li><span class="math inline">\(1\)</span></li>
 <li><span class="math inline">\(-1\)</span></li>
 <li><span class="math inline">\(i\)</span></li>
-<li><span class="math inline">\(-i\)</span></li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>Each operator gets a factor <span class="math inline">\(e^{i\varphi}\)</span>, so the product gets <span class="math inline">\(e^{2i\varphi}=e^{i\pi}=-1\)</span>. Only the values of <span class="math inline">\(\varphi\)</span> that are multiples of <span class="math inline">\(\pi\)</span> leave the term unchanged, and for this reason the pairing term is not gauge invariant.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Each operator gets <span class="math inline">\(e^{i\pi/2}=i\)</span>, so the product gets <span class="math inline">\(i^2=-1\)</span>. The factor <span class="math inline">\(1\)</span> appears only for <span class="math inline">\(\varphi=0\)</span> or <span class="math inline">\(\varphi=\pi\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. Each operator gets a factor <span class="math inline">\(e^{i\varphi}\)</span>, so the product gets <span class="math inline">\(e^{2i\varphi}=e^{i\pi}=-1\)</span>. Only multiples of <span class="math inline">\(\pi\)</span> leave the term unchanged, so the pairing term is not gauge invariant.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The factor <span class="math inline">\(i\)</span> is what one operator gets at <span class="math inline">\(\varphi=\pi/2\)</span>. The term has two operators, and for <span class="math inline">\(\varphi=\pi/4\)</span> we would get <span class="math inline">\(e^{i\pi/2}=i\)</span>, and not for <span class="math inline">\(\pi/2\)</span>.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The pairing term changes by <span class="math inline">\(e^{2i\varphi}\)</span>, so its phase is a physical quantity.</p>
+</div>
 </details>
 </div>
 

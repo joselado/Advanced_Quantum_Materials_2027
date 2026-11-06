@@ -30,8 +30,14 @@ Every session so far has gone in the same direction. We start from a Hamiltonian
 We put a single vacancy in a clean material, and we see a density oscillation that decays as $1/|x|$ in one dimension. What do we conclude about the ground state?
 
 - [ ] It is gapped, with a short correlation length.
+
+    This is false. A gapped state gives $e^{-x/\xi}$. For $\xi=2.5$ sites the response at $x=10$ is $0.02$ of the starting value, while $1/x$ gives $0.1$.
+
 - [x] It is gapless, with a Fermi surface that sets the wavevector of the oscillation.
+
+    This is true. A $1/|x|$ envelope shows a non-analytic point of $\chi_0$, which in a metal is $2k_F$. The oscillation wavevector then gives the Fermi surface, as a Friedel oscillation does.
+
 - [ ] It is an Anderson insulator, since the impurity breaks translational symmetry.
 
-A power-law envelope means that the response has a non-analytic point, and in a metal this is $2k_F$. A gapped state would give an exponential envelope, with the gap setting the decay length.
+    This is false. One impurity does not make an Anderson insulator, which needs disorder everywhere. Its states decay exponentially, so $1/|x|$ does not fit, and the rest of the clean chain stays extended.
 :::

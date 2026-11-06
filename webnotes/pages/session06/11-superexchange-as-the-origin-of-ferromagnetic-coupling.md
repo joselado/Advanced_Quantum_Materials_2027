@@ -27,11 +27,16 @@ Even on a bipartite honeycomb lattice, where the geometry alone would not give a
 The underlying electronic Hamiltonian has no spin-orbit coupling. Which exchange couplings between neighboring spins does the spin-rotation symmetry allow?
 
 - [ ] The Dzyaloshinskii-Moriya term and the Heisenberg term.
+
+    This is false. Take $\mathbf D\cdot(\mathbf S_i\times\mathbf S_j)$ with $\mathbf D$ along $z$. After a global rotation of the spins by $90^\circ$ about $x$ it becomes a term along $y$, so the energy changes and the term is not allowed.
+
 - [x] Only the isotropic scalar product $\mathbf S_i\cdot\mathbf S_j$.
-- [ ] All the terms of this section.
+
+    This is true. Without spin-orbit coupling the spin space can be rotated freely, and only the rotation-invariant scalar product survives. The other terms need spin-orbit coupling, which ties the spin to the lattice.
+
 - [ ] Only the Kitaev term, since it is bond dependent.
 
-Without spin-orbit coupling the spin space can be rotated freely, so only the rotation-invariant scalar product survives. The terms of this section need spin-orbit coupling, which ties the spin to the lattice.
+    This is false. The term $K S_i^zS_j^z$ becomes $K S_i^xS_j^x$ after a rotation of the spins by $90^\circ$ about $y$. The energy of a given state then changes, so it is not rotation invariant.
 :::
 
 ::: notebookbox

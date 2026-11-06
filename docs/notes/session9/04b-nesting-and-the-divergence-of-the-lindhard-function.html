@@ -95,9 +95,9 @@
 <img src="../figures/s09f01_nesting.svg" loading="lazy" alt="Nesting is what makes a response function diverge." />
 <figcaption><strong>Figure 9.1.</strong> Nesting is what makes a response function diverge. (a) A one-dimensional band <span class="math inline">\(\varepsilon(k)=-2t\cos k\)</span> at partial filling. The occupied states (thick) end at <span class="math inline">\(\pm k_F\)</span>, and the single wavevector <span class="math inline">\(q^\star=2k_F\)</span> connects one Fermi point to the other, so the energy denominator of <a href="04-the-fermi-sea-and-the-lindhard-function.html#eq-9-4">(9.4)</a> vanishes for that term. (b) The static Lindhard function that results, with the closed form given in Section <a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html#sec-9-6">9.6</a>. It is finite and equal to <span class="math inline">\(D(E_F)\)</span> as <span class="math inline">\(q\to 0\)</span>, as the <span class="math inline">\(q\to 0\)</span> check of <a href="04-the-fermi-sea-and-the-lindhard-function.html#eq-9-4">(9.4)</a> requires, and it diverges logarithmically at <span class="math inline">\(q^\star=2k_F\)</span>, which is the Peierls instability. (c) In two dimensions the criterion becomes geometric. At half filling the Fermi surface of the square lattice is the diamond with straight edges <span class="math inline">\(|k_x|+|k_y|=\pi\)</span>, and since <span class="math inline">\(\varepsilon(k+Q)=-\varepsilon(k)\)</span> for <span class="math inline">\(Q=(\pi,\pi)\)</span>, this one vector, the red arrows, maps <em>every</em> point of one edge onto the parallel opposite edge at the same time. For this reason the divergence at <span class="math inline">\((\pi,\pi)\)</span> is much stronger than the one-dimensional one, since whole segments of the Fermi surface nest, and not isolated points. At low filling the same Fermi surface is a small circle, which no single <span class="math inline">\(q\)</span> can nest in this way.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>A spinless chain is at quarter filling, so that the Fermi points are at <span class="math inline">\(\pm\pi/4\)</span>. At which wavevector does the static Lindhard function diverge?</p>
@@ -109,14 +109,22 @@ Quick check
 <li>At <span class="math inline">\(q=\pi\)</span>, as for the half-filled chain.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The divergence comes from the vector that connects the two Fermi points, and this vector is <span class="math inline">\(2k_F=\pi/2\)</span>. The value <span class="math inline">\(q=\pi\)</span> belongs to half filling only, where <span class="math inline">\(k_F=\pi/2\)</span>.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. At <span class="math inline">\(q=\pi/4\)</span> the state at <span class="math inline">\(k=-\pi/4\)</span> goes to <span class="math inline">\(k=0\)</span>, where <span class="math inline">\(\varepsilon=-2t\)</span> and the Fermi level is at <span class="math inline">\(-\sqrt2\,t\)</span>. The vector does not connect the two Fermi points, so nothing diverges.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The vector between the Fermi points <span class="math inline">\(-\pi/4\)</span> and <span class="math inline">\(+\pi/4\)</span> is <span class="math inline">\(2k_F=\pi/2\)</span>. Both the state <span class="math inline">\(k\)</span> and the state <span class="math inline">\(k+q\)</span> are then at the Fermi level, which makes the denominator vanish.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. At <span class="math inline">\(q=\pi\)</span> the state <span class="math inline">\(k=\pi/4\)</span> goes to <span class="math inline">\(5\pi/4\)</span>. The energy changes from <span class="math inline">\(-\sqrt2\,t\)</span> to <span class="math inline">\(+\sqrt2\,t\)</span>, so the two states are far from each other in energy. The value <span class="math inline">\(q=\pi\)</span> is <span class="math inline">\(2k_F\)</span> only at half filling.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>We move the half-filled square lattice away from half filling. The relation <span class="math inline">\(\varepsilon(k+Q)=-\varepsilon(k)\)</span> with <span class="math inline">\(Q=(\pi,\pi)\)</span> still holds. Why is the divergence of <span class="math inline">\(\chi_0(Q)\)</span> cut off?</p>
@@ -124,13 +132,21 @@ Quick check
 <div class="quiz-options">
 <ol type="A">
 <li>The relation fails, so the vector <span class="math inline">\(Q\)</span> no longer connects any states.</li>
-<li>The vector <span class="math inline">\(Q\)</span> maps the Fermi surface at energy <span class="math inline">\(\mu\)</span> to the one at <span class="math inline">\(-\mu\)</span>, so it no longer maps the Fermi surface onto itself.</li>
+<li>The vector <span class="math inline">\(Q\)</span> maps the Fermi surface at energy <span class="math inline">\(\mu\)</span> to the one at <span class="math inline">\(-\mu\)</span>, so it does not map the Fermi surface onto itself.</li>
 <li>The Fermi surface becomes a point, and a point cannot be nested.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The relation holds at any filling, but at <span class="math inline">\(\mu\neq0\)</span> the Fermi surface is curved and it is sent to a different contour. Only at <span class="math inline">\(\mu=0\)</span> are the two the same square, and whole edges nest at once.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The relation holds at every filling, since it follows from <span class="math inline">\(\varepsilon(k)=-2t(\cos k_x+\cos k_y)\)</span>. At <span class="math inline">\(\mu=0.5t\)</span> we still have <span class="math inline">\(\varepsilon(k+Q)=-\varepsilon(k)\)</span> exactly.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. At <span class="math inline">\(\mu\neq0\)</span> the vector <span class="math inline">\(Q\)</span> maps the contour <span class="math inline">\(\varepsilon=\mu\)</span> to <span class="math inline">\(\varepsilon=-\mu\)</span>, which is another curve. Only at <span class="math inline">\(\mu=0\)</span> do the two contours coincide as the same square.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. At <span class="math inline">\(\mu=0.5t\)</span> the Fermi surface is still a closed curve of finite length, and not a point. A curve is not nested by <span class="math inline">\(Q\)</span>, but this is because of its shape and not because it has no size.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="tryit">

@@ -8,11 +8,17 @@ Let us look at a concrete model. We take a tight-binding square lattice with a p
 In the spectrum of the ribbon the bulk Landau levels are flat. What does this say about the current carried by the bulk states?
 
 - [ ] They carry a current that is proportional to their energy.
+
+    This is false. Compare the first and the fifth Landau level. Both are flat, so both have $\partial E/\partial k=0$, and neither carries current although their energies differ by a factor of nine.
+
 - [x] They carry no current, since their group velocity $\partial E/\partial k$ is zero.
-- [ ] They carry current in both directions, which cancels at zero temperature.
+
+    This is true. The velocity along the ribbon is the slope of the band. A flat level has zero slope, so the current is carried only by the edge branches that cross the chemical potential.
+
 - [ ] They carry the quantized Hall current.
 
-The velocity along the ribbon is the slope of the band. A flat level has zero slope, so the current is carried only by the edge branches that cross the chemical potential.
+    This is false. With the chemical potential in a gap, a voltage $V$ between the edges gives the current $C(e^2/h)V$ through the edge branches, which are the only states with a slope. The flat bulk levels have no slope and contribute nothing.
+
 :::
 
 ::: notebookbox

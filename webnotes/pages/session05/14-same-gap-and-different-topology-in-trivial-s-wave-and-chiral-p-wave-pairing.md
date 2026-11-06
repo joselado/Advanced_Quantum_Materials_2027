@@ -16,11 +16,16 @@ What distinguishes them, as shown in figure [5.4](#fig:s05:topology), is the wi
 Both the $s$-wave and the $p+ip$ gap open the same gap on the same Fermi surface. Which quantity is different?
 
 - [ ] The minimum energy of the bulk bands.
-- [x] The Chern number of the occupied BdG bands.
-- [ ] The number of Fermi pockets.
-- [ ] The charge of the quasiparticles.
 
-The two spectra look the same, and only the winding of the phase of $\Delta(\mathbf k)$ is different. This winding gives the Chern number, which is $0$ for $s$-wave pairing and $\pm2$ for chiral $p$-wave pairing.
+    This is false. Both gaps are the same on the same Fermi surface, since $E=|\Delta|$ there. For $|\Delta|=0.2t$ both give the minimum energy $0.2t$, so spectroscopy of the bulk cannot tell them apart.
+
+- [x] The Chern number of the occupied BdG bands.
+
+    This is true. The winding of the phase of $\Delta(\mathbf k)$ around the Fermi surface gives the Chern number. It is $0$ for $s$-wave pairing and $\pm2$ for chiral $p$-wave pairing.
+
+- [ ] The number of Fermi pockets.
+
+    This is false. The pockets belong to the normal state $\varepsilon(\mathbf k)$, which is the same in both cases. For a single pocket around $\Gamma$ both superconductors have exactly one.
 :::
 
 This has the consequence that we expect from the bulk-boundary correspondence. In a finite system, the s-wave superconductor stays gapped everywhere, both in the bulk and at the edge, in the same way as a trivial insulator with Chern number zero. The chiral p-wave superconductor, on the other hand, is gapped in the bulk but has gapless *chiral* edge modes. On one edge there are $|C|$ branches that all propagate in the same direction, here two, one from each of the two identical spin blocks, and the opposite edge has the same number of branches that propagate in the opposite direction, as a state with Chern number $\pm 2$ must have. So on a ribbon we see two sets of branches that propagate in opposite directions, but they are localized on opposite edges and do not share one edge. These edge modes turn out to be fractions of an electron in a very specific and exact sense, since they are Majorana modes, and the rest of this session is about what this means.
@@ -31,11 +36,16 @@ This has the consequence that we expect from the bulk-boundary correspondence. I
 We replace $p_x+ip_y$ by $p_x-ip_y$, and the bulk gap does not change. What happens to the edge modes of a ribbon?
 
 - [ ] They disappear, since the order is no longer chiral.
-- [ ] They stay the same, since the gap is the same.
-- [x] The number of branches on an edge stays the same, and each of them runs in the opposite direction.
-- [ ] The number of branches on an edge doubles.
 
-The phase of $\Delta(\mathbf k)$ winds the other way, so the Chern number changes from $+2$ to $-2$, or the reverse. The number $|C|$ of branches does not change, and their direction on a given edge flips.
+    This is false. The order $p_x-ip_y$ is chiral too, with the opposite winding. Its Chern number is $-2$ and not $0$, so two edge branches are still required.
+
+- [ ] They stay the same, since the gap is the same.
+
+    This is false. The same gap does not fix the direction. The sign of the Chern number sets it, so a branch that moves right on the top edge now moves left.
+
+- [x] The number of branches on an edge stays the same, and each of them runs in the opposite direction.
+
+    This is true. The Chern number changes from $+2$ to $-2$. The number $|C|=2$ of branches does not change, and their direction on a given edge flips.
 :::
 
 ::: notebookbox

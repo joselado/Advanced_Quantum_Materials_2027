@@ -93,9 +93,9 @@ c_k\)</span>. Its many-body ground state is the Fermi sea, where every single-pa
 <img src="../figures/web/session09/occupation.svg" loading="lazy" alt="A cosine band with the occupied states drawn thick, and a plot with two narrow plateaus at the two Fermi points." />
 <figcaption><strong>Schematic 9.4.</strong> Which states build the static Lindhard function of <a href="#eq-9-4">(9.4)</a> for a chain at half filling. On the left, the band with the occupied states drawn thick, and a wavevector <span class="math inline">\(q\)</span> that moves an electron. On the right, the summand of <a href="#eq-9-4">(9.4)</a> as a function of <span class="math inline">\(k\)</span> for <span class="math inline">\(q=0.5\)</span>. It is different from zero only in two windows of width <span class="math inline">\(q\)</span>, one next to each Fermi point, where one of the two states is occupied and the other is empty.</figcaption>
 </figure>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>For small <span class="math inline">\(q\)</span> the two windows of the figure have width <span class="math inline">\(q\)</span>, and the denominator of <a href="#eq-9-4">(9.4)</a> is roughly <span class="math inline">\(v_F q\)</span>. What is <span class="math inline">\(\chi_0(q\to0)\)</span> for the chain?</p>
@@ -107,9 +107,17 @@ Quick check
 <li>Divergent, since the denominator goes to zero.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>Both the number of contributing states and the denominator are proportional to <span class="math inline">\(q\)</span>, so the factor <span class="math inline">\(q\)</span> cancels. What remains is a finite number, which is <span class="math inline">\(D(E_F)\)</span>, as the check of <a href="#eq-9-4">(9.4)</a> shows.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The number of states in the windows and the denominator <span class="math inline">\(v_Fq\)</span> are both proportional to <span class="math inline">\(q\)</span>. They cancel, and what remains is <span class="math inline">\(1/(\pi v_F)\)</span> for the spinless chain, which is <span class="math inline">\(D(E_F)\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The windows shrink, but the denominator shrinks in the same way. A free chain has a finite Pauli-like response <span class="math inline">\(D(E_F)&gt;0\)</span> at <span class="math inline">\(q\to0\)</span>, so the ratio does not vanish.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. A divergence of <span class="math inline">\(\chi_0(q\to0)\)</span> would mean an infinite compressibility. A free electron gas has the finite value <span class="math inline">\(D(E_F)\)</span>, because the number of states in the window decreases together with the denominator.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <p>In the next part we will see where this function diverges, which is the nesting condition.</p>

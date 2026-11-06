@@ -21,20 +21,32 @@ The structure of [(9.3)](#eq-9-3) is the basis of every derivation in the rest o
 A state $|n\rangle$ is coupled by $V$ to two other states with the same matrix element. One of them is $0.1t$ away in energy and the other is $1.0t$ away. How do the two mixing coefficients of [(9.3)](#eq-9-3) compare?
 
 - [x] The closer state has a coefficient ten times larger.
+
+    This is true. The coefficient is $V/(E_n-E_m)$. For $V=0.01t$ it is $0.1$ for the state at $0.1t$ and $0.01$ for the state at $1.0t$, which is a factor ten.
+
 - [ ] They are equal, since the matrix element is the same.
+
+    This is false. The matrix element is the same, but the denominator is not. For $V=0.01t$ the two coefficients are $0.1$ and $0.01$, so they differ by a factor ten.
+
 - [ ] The farther state has the larger coefficient, since it carries more energy.
 
-The coefficient is the matrix element divided by the energy difference. With equal matrix elements, the ratio of the coefficients is the inverse ratio of the gaps, which is ten.
+    This is false. The energy of the far state enters only through the denominator. With $V=0.01t$ the state at $1.0t$ gives $0.01$, which is smaller than the $0.1$ of the state at $0.1t$.
 :::
 
 ::: quiz
 Two levels of $H_0$ are exactly degenerate and $V$ couples them. What happens to the first-order coefficient of [(9.3)](#eq-9-3) between them?
 
 - [ ] It becomes zero, so the two levels do not mix.
+
+    This is false. Take $H_0=0$ and a coupling $v$ between the two levels. The eigenstates are $(|1\rangle\pm|2\rangle)/\sqrt2$ with energies $\pm v$, so the levels mix completely.
+
 - [x] It diverges, so we must diagonalize $V$ inside the degenerate subspace first.
+
+    This is true. If the levels are split by $\delta$, the coefficient is $v/\delta$. For $v=0.01t$ and $\delta=10^{-4}t$ it is $100$, which is meaningless for a small correction, and it grows without bound as $\delta\to0$.
+
 - [ ] It stays finite, because the matrix element is finite.
 
-The denominator $E_n^{(0)}-E_m^{(0)}$ vanishes, so the expansion in $\lambda$ breaks down. This is why the formula holds only away from degeneracy, as we said before the equation.
+    This is false. The matrix element is finite, but the coefficient is its ratio to the energy difference. For two levels split by $10^{-4}t$ and $v=0.01t$ the ratio is $100$, so it is not finite as the splitting goes to zero.
 :::
 
 **When does this break down?** The construction in [(9.3)](#eq-9-3) assumes that $A(\lambda)$ is an analytic function of $\lambda$ close to $\lambda=0$, and this assumption is not always true. There are three paradigmatic quantum states that are known to be intrinsically non-perturbative in this sense, and we mention them explicitly since they mark the limit of everything that we derive below.

@@ -19,22 +19,32 @@ The first exercise builds [(8.21)](#eq-8-21) directly on a lattice of van der Wa
 In [(8.21)](#eq-8-21) we have one $f$ fermion per site and a half-filled conduction band. How many particles per $\mathbf k$ point and spin fill the two bands?
 
 - [ ] One half, so the lower band is half full.
-- [x] One, so the lower hybridized band is exactly full.
-- [ ] Two, so both bands are full.
-- [ ] Three halves, so the upper band is half full.
 
-The conduction band gives one half and the $f$ level gives one half, so there is one particle for the two states at each $\mathbf k$ and spin. The lower band is full, and the Fermi level lies in the gap.
+    This is false. This counts only the conduction band. The $f$ level adds another one half, and the sum is one, which fills the lower band.
+
+- [x] One, so the lower hybridized band is exactly full.
+
+    This is true. The conduction band gives one half and the $f$ level gives one half, so there is one particle for the two states at each $\mathbf k$ and spin. The lower band is full, and the Fermi level lies in the gap.
+
+- [ ] Two, so both bands are full.
+
+    This is false. Two particles per $\mathbf k$ and spin would need a full conduction band, with two electrons per site, and two $f$ fermions per site. The constraint allows one $f$ fermion and we have one electron per site.
 :::
 
 ::: quiz
 At the crossing the energy of the conduction band is zero, as for the flat band. If we double $\gamma_K$, what happens to the direct gap there?
 
 - [ ] It does not change.
+
+    This is false. At the crossing the eigenvalues are $\pm\gamma_K$. For $\gamma_K=0.5$ the gap is $1$, and for $\gamma_K=1$ it is $2$.
+
 - [ ] It becomes four times larger.
-- [ ] It is cut in half.
+
+    This is false. The gap $2\gamma_K$ is linear in $\gamma_K$. Going from $\gamma_K=0.5$ to $1$ the gap goes from $1$ to $2$ and not to $4$.
+
 - [x] It doubles, since the two levels split into $\pm\gamma_K$.
 
-At $\varepsilon_{\mathbf k}=0$ the two-by-two Hamiltonian has the eigenvalues $\pm\gamma_K$, so the direct gap is $2\gamma_K$. This is the sense in which a larger Kondo coupling gives a larger gap.
+    This is true. At $\varepsilon_{\mathbf k}=0$ the two-by-two Hamiltonian has the eigenvalues $\pm\gamma_K$, so the direct gap is $2\gamma_K$. This is the sense in which a larger Kondo coupling gives a larger gap.
 :::
 
 ::: {.tryit notebook="session8.ipynb" cell="Spinon dispersion in the Kondo lattice"}

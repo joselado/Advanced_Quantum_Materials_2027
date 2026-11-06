@@ -20,11 +20,16 @@ Figure [5.1](#fig:s05:flux) shows the geometry and the argument based on the wi
 Experiments find that the trapped flux in a ring comes in steps of $h/2e$. Which step would [(5.1)](#eq-5-1) give if the supercurrent were carried by single electrons of charge $e$?
 
 - [ ] $h/2e$, since the step does not depend on the charge.
-- [x] $h/e$, which is twice as large.
-- [ ] $h/4e$, since one electron carries half of a pair.
-- [ ] No quantization, since a single electron has no phase.
 
-The loop condition gives $(q/\hbar)\Phi=2\pi n$, so the step is $h/q$. For $q=2e$ it is $h/2e$, and for $q=e$ it would be $h/e$. The measured step $h/2e$ is a direct sign of paired electrons.
+    This is false. The loop condition gives the step $h/q$, so it depends on the charge. For $q=e$ we get $h/e\approx4.1\times10^{-15}$ Wb, which is twice the measured $h/2e$.
+
+- [x] $h/e$, which is twice as large.
+
+    This is true. The loop condition gives $(q/\hbar)\Phi=2\pi n$ and the step $h/q$. For $q=e$ this is $h/e$, and the measured step $h/2e$ then shows that the carriers have charge $2e$.
+
+- [ ] $h/4e$, since one electron carries half of a pair.
+
+    This is false. A step $h/4e$ needs the charge $q=4e$. A single electron has charge $e$, and a charge $e/2$ would give the larger step $2h/e$, so this choice goes in the wrong direction.
 :::
 
 ## Zero resistance and the Meissner effect in a superconductor {#sec-5-3 number="5.3"}

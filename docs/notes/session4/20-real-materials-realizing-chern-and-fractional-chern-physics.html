@@ -90,9 +90,9 @@
 <img src="../figures/s04f06_quasihole.svg" loading="lazy" alt="A dimple in a flat density profile for a quasihole, and a loop of one quasihole around another with the exchange phase." />
 <figcaption><strong><a href="18-berry-phase-fractional-charge-and-anyonic-statistics.html#fig:s04:quasihole">Figure 4.6</a>, shown again.</strong> The fractional charge and the anyon statistics of Section <a href="18-berry-phase-fractional-charge-and-anyonic-statistics.html#sec-4-18">4.18</a>. A fractional Chern state at zero field has to realize the same physics. In (a) the quasihole has the charge <span class="math inline">\(e/m\)</span>. In (b) the exchange phase <span class="math inline">\(\pi/m\)</span> is strictly between the bosonic and the fermionic value. Look at the bottom of (b), where the phase for <span class="math inline">\(m=3\)</span> is drawn.</figcaption>
 </figure>
-<div class="quiz" data-correct="D">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>In twisted bilayers of MoTe<span class="math inline">\(_2\)</span> there is no applied magnetic field. What plays the role of the lowest Landau level?</p>
@@ -100,14 +100,21 @@ Quick check
 <div class="quiz-options">
 <ol type="A">
 <li>The spin-orbit coupling of the substrate.</li>
-<li>A magnetic field of a few tesla from the substrate.</li>
-<li>A superconducting gap.</li>
 <li>A topological flat band with nonzero Chern number that the twisted lattice itself produces.</li>
+<li>A superconducting gap.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>D</strong>.</p>
-<p>The flat band has a Chern number and a structure similar to a Landau level. It comes from the lattice and not from a field. With interactions, a partially filled band can then give fractional states.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Spin-orbit coupling alone keeps time-reversal symmetry, and a time-reversal symmetric band has a zero total Chern number. A Chern band needs time reversal to be broken, for example by valley polarization.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The flat band has a Chern number and a structure similar to a Landau level. It comes from the lattice and not from a field. With interactions, a partially filled band can then give fractional states.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. A superconducting gap gives zero resistance. The fractional Chern state is an insulator in the bulk, with a Hall conductivity that is a fraction of <span class="math inline">\(e^2/h\)</span>, and its flat band with a Chern number is what plays the role of the lowest Landau level.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <h1 class="sec-next" id="sec-4-21"><span class="num">4.21</span> Closing summary</h1>
@@ -121,24 +128,31 @@ Quick check
 <li><p>The Haldane model shows that the quantized Hall conductance never strictly needed a magnetic field, and that it is adiabatically and topologically equivalent to the quantum Hall state driven by the field. This is a return to session 3 and not new theory.</p></li>
 </ul>
 <p>In this session the order was driven only by a magnetic field, which is an external symmetry-breaking parameter that we switched on by hand. In the next session we will see a completely different route to order, which is the attractive interaction between the electrons themselves. This interaction drives the system to become a superconductor without any external field, and we will see that the same classification into trivial and chiral topological states, which we built here and in session 3, comes back to sort superconducting order parameters into conventional and topological classes. It is also useful to keep in mind the form of fractionalization that we just built, since we will soon meet a second example of it, which looks quite different. Here, the correlations inside a partially filled topological flat band split the charge of the electron and made its exchange statistics anyonic. In the next session, pairing correlations in a superconductor will split the electron into two Majorana halves instead. The underlying idea is the same, which is a correlated topological state with excitations that are not the electron itself, but it is reached by two really different mechanisms.</p>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>The Laughlin quasihole of this session and the Majorana halves of session 5 are both fractionalization. What do they share?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li>In both, correlations give excitations that are not the electron, with only a part of its charge or of its degrees of freedom.</li>
 <li>Both need a magnetic field.</li>
+<li>In both, correlations give excitations that are not the electron, with only a part of its charge or of its degrees of freedom.</li>
 <li>Both appear in a system of weakly interacting electrons.</li>
-<li>Both are bosons.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>The mechanisms are different, since one comes from correlations in a flat band and the other from pairing in a superconductor. In both cases the excitations are not the electron itself.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The fractional Chern states of twisted MoTe<span class="math inline">\(_2\)</span> appear at zero applied field. A Kitaev chain in the topological phase needs a p-wave pairing, and the field is only one way to get it.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The mechanisms are different, since one comes from correlations in a flat band and the other from pairing in a superconductor. In both cases the excitations are not the electron itself.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. For electrons without interaction in a partially filled lowest Landau level, there are many degenerate states and no gap, so no Laughlin state. The Laughlin state needs strong interactions.</p></li>
+</ul>
+</div>
 </details>
 </div>
 

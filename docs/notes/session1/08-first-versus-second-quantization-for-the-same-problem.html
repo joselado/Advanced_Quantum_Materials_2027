@@ -92,31 +92,41 @@
 <figcaption><strong>Figure 1.1.</strong> The exponential growth of the Fock space for three sites. A single-particle tight-binding problem is an <span class="math inline">\(L\times L\)</span> matrix, on the left, where the raised dark entries are the first-neighbor hoppings of the chain in front of it. The interacting problem needs the full Fock space, on the right, where every site is empty or occupied. Each plate is one many-body state with a ball on every occupied site, and the <span class="math inline">\(2^L\)</span> states are ordered in columns by particle number. For <span class="math inline">\(L=3\)</span> this is <span class="math inline">\(8\)</span>, and for <span class="math inline">\(L\approx 20\)</span> it is already about a million, which is the limit of brute-force diagonalization.</figcaption>
 </figure>
 <p>In general, for <span class="math inline">\(L\)</span> sites the single-particle problem is an <span class="math inline">\(L \times L\)</span> matrix, while the many-body problem is a <span class="math inline">\(2^L \times 2^L\)</span> matrix, and we need <span class="math inline">\(2^L\)</span> coefficients only to write the ground-state wave function. This is the reason why <span class="math inline">\(L \approx 20\)</span> is already close to the practical limit of what we can do by brute force. The exact rate of growth depends on the kind of site that we have. Spinful fermions have four states per site, which are empty, up, down and doubly occupied. Spinless fermions have two, and they are relevant when a single spin species is isolated by strong magnetism or a strong field. Pure spin sites, which we will need later in the course for quantum magnets and Kondo systems, also give an exponential growth, but with a different underlying algebra.</p>
-<div class="quiz" data-correct="C">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>We take three sites of spinful fermions, with four states per site. How many many-body states does the Fock space have?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li><span class="math inline">\(8\)</span></li>
 <li><span class="math inline">\(12\)</span></li>
 <li><span class="math inline">\(64\)</span></li>
 <li><span class="math inline">\(6\)</span></li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>C</strong>.</p>
-<p>Each site has four states, which are empty, up, down and doubly occupied. Three sites give <span class="math inline">\(4^3=64\)</span> states, while the single-particle matrix is only <span class="math inline">\(6\times 6\)</span>.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Adding <span class="math inline">\(4+4+4\)</span> is wrong, since the states of the sites combine independently. For two sites we already have <span class="math inline">\(4\times 4=16\)</span> states, which are all the pairs of site states.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. Each site has four states, which are empty, up, down and doubly occupied. Three sites give <span class="math inline">\(4^3=64\)</span> states, while the single-particle matrix is only <span class="math inline">\(6\times 6\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The number <span class="math inline">\(6\)</span> is the count of single-particle levels. The many-body states are the ways to fill them, and <span class="math inline">\(\sum_N\binom{6}{N}=2^6=64\)</span>.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The Fock space grows exponentially with the number of sites, while the single-particle matrix grows linearly.</p>
+</div>
 </details>
 </div>
 <h1 class="sec-next" id="sec-1-10"><span class="num">1.10</span> A first look at eigenstates in finite tight-binding islands</h1>
 <p>Before we go to interactions, let us look at what a purely single-particle Hamiltonian already gives us, because this is something that we can compare directly with experiment. Let us take a tight-binding Hamiltonian <span class="math inline">\(H = \sum_{ij} t_{ij}\, c_i^\dagger c_j\)</span> on a honeycomb lattice, cut into a finite island that is triangular, hexagonal or rectangular, and let us diagonalize it. The probability density of a given eigenvector in real space can be compared directly with what a scanning tunneling microscope measures. Qualitatively, these states look like the finite-size states of a “particle in a box”. The lowest-energy state has its maximum close to the center of the island, and the higher states have more and more nodes. This is a good first check, since single-particle diagonalization, with nothing more, already gives a structure that we can recognize and that we can measure in experiments.</p>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>We make a finite island larger and diagonalize it again. What happens to the spacing between the levels?</p>
@@ -125,13 +135,23 @@ Quick check
 <ol type="A">
 <li>It grows, since the island has more sites.</li>
 <li>It shrinks, since more levels share the same range of energy.</li>
-<li>It stays the same, since the hopping is fixed.</li>
 <li>It vanishes at once for any larger size.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The band has a fixed width, which is <span class="math inline">\(4t\)</span> for a chain. More sites put more levels in this window, so the levels become denser and approach the continuum.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. For a chain with <span class="math inline">\(N\)</span> sites, the levels are <span class="math inline">\(-2t\cos(n\pi/(N+1))\)</span>. The spacing at the center is <span class="math inline">\(0.57t\)</span> for <span class="math inline">\(N=10\)</span> and <span class="math inline">\(0.062t\)</span> for <span class="math inline">\(N=100\)</span>, so it is smaller for the larger island.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The band has a fixed width, <span class="math inline">\(4t\)</span> for a chain. More sites put more levels in this window, so the levels become denser and approach the continuum.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. For <span class="math inline">\(N=100\)</span> the spacing at the center is still <span class="math inline">\(0.062t\)</span>, which is finite. It goes as <span class="math inline">\(2\pi t/(N+1)\)</span> and it vanishes only when <span class="math inline">\(N\to\infty\)</span>.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The spacing goes to zero only in the limit of an infinite system, where the levels form a band.</p>
+</div>
 </details>
 </div>
 <div class="notebookbox">

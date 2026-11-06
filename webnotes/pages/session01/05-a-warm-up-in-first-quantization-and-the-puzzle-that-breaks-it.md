@@ -23,12 +23,19 @@ and we read it as "destroy an electron at 1 and create one at 0" plus the revers
 ::: quiz
 Both sites are occupied, and the state is $c_0^\dagger c_1^\dagger|0\rangle$. What is its energy for the hopping of [(1.2)](#eq-1-2)?
 
-- [x] $0$
-- [ ] $+t$
 - [ ] $-t$
+
+    This is false. The energy $-t$ belongs to one electron in the lower level. Here both levels, $-t$ and $+t$, are filled, and the sum is $0$.
+
+- [x] $0$
+
+    This is true. The hopping needs an empty site, and none is empty, so $H_\text{hop}$ gives zero on this state. The same follows from adding the two levels, $(-t)+(+t)=0$.
+
 - [ ] $2t$
 
-The hopping needs an empty site to move an electron to, and none is empty here, so $H_\text{hop}$ gives zero on this state. We get the same result by adding the two levels, $(-t)+(+t)=0$.
+    This is false. It would need both electrons in the level $+t$. The Pauli principle forbids this, since $(c_+^\dagger)^2=0$, so the largest energy of two electrons here is still $0$.
+
+Hopping an electron onto an occupied site gives zero, because $(c_0^\dagger)^2=0$.
 :::
 
 ::: notebookbox
@@ -53,9 +60,16 @@ The second relation is the important one. If we take $i=j$ it gives $(c_i^\dagge
 Suppose $c_i^\dagger$ and $c_j^\dagger$ commuted instead of anticommuting. What would change?
 
 - [x] The operator $(c_i^\dagger)^2$ would not vanish, so two particles could sit in the same level.
-- [ ] The vacuum would not be annihilated by $c_i$.
-- [ ] The hopping term would not be Hermitian.
-- [ ] The Hamiltonian would not conserve energy.
 
-The statement $(c_i^\dagger)^2=0$ follows only from the anticommutation relation. Without it nothing stops a second particle from entering the same level, and we would describe bosons.
+    This is true. The statement $(c_i^\dagger)^2=0$ follows only from the anticommutation relation. Without it, nothing stops a second particle from entering the same level, and we describe bosons.
+
+- [ ] The vacuum would not be annihilated by $c_i$.
+
+    This is false. For bosons the vacuum still satisfies $b_i|0\rangle=0$, since there is no particle to remove. The vacuum condition does not depend on the statistics.
+
+- [ ] The hopping term would not be Hermitian.
+
+    This is false. The term $t(b_0^\dagger b_1+b_1^\dagger b_0)$ of bosons is Hermitian, because it is written with its own Hermitian conjugate. Its levels are $\pm t$ in the one-particle sector, as for fermions.
+
+Bosons and fermions differ in the algebra of the operators, and not in the vacuum or in the Hermiticity.
 :::

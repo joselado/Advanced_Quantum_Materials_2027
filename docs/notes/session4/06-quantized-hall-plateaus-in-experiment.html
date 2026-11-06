@@ -89,9 +89,9 @@
 <img src="../figures/web/session04/plateaus.svg" loading="lazy" alt="A staircase of the Hall resistance against the magnetic field, with plateaus at one, one half, one third and one quarter, and a dashed straight line." />
 <figcaption><strong>Schematic 4.1.</strong> The Hall resistance of an ideal two-dimensional electron gas at fixed density as the field grows, in units of <span class="math inline">\(h/e^2\)</span>. The dashed line is the classical result, which grows linearly with <span class="math inline">\(B\)</span>. The blue line has plateaus at <span class="math inline">\(h/(Ne^2)\)</span>, where <span class="math inline">\(N\)</span> is the number of filled Landau levels. It jumps when the chemical potential goes past a level. The width of the jumps is a broadening that we choose by hand. Look at how every plateau crosses the classical line at its center, and how the plateaus become narrow at low field.</figcaption>
 </figure>
-<div class="quiz" data-correct="D">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>What is the Hall resistance on the plateau with <span class="math inline">\(N=2\)</span> filled Landau levels, in units of <span class="math inline">\(h/e^2\)</span>?</p>
@@ -99,14 +99,21 @@ Quick check
 <div class="quiz-options">
 <ol type="A">
 <li><span class="math inline">\(1\)</span>.</li>
-<li><span class="math inline">\(2\)</span>.</li>
-<li><span class="math inline">\(1/4\)</span>.</li>
 <li><span class="math inline">\(1/2\)</span>.</li>
+<li><span class="math inline">\(1/4\)</span>.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>D</strong>.</p>
-<p>The Hall resistance is the inverse of the Hall conductance. With <span class="math inline">\(\sigma_{xy}=Ne^2/h\)</span> we obtain <span class="math inline">\(R_{xy}=h/(Ne^2)\)</span>, which is <span class="math inline">\(1/2\)</span> for <span class="math inline">\(N=2\)</span>.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The value <span class="math inline">\(h/e^2\approx 25.8\,\mathrm{k}\Omega\)</span> is the plateau with <span class="math inline">\(N=1\)</span>. For <span class="math inline">\(N=2\)</span> the resistance is <span class="math inline">\(12.9\,\mathrm{k}\Omega\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The Hall resistance is the inverse of the Hall conductance. With <span class="math inline">\(\sigma_{xy}=Ne^2/h\)</span> we obtain <span class="math inline">\(R_{xy}=h/(Ne^2)\)</span>, which is <span class="math inline">\(1/2\)</span> for <span class="math inline">\(N=2\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The value <span class="math inline">\(1/4\)</span>, which is <span class="math inline">\(6.45\,\mathrm{k}\Omega\)</span>, belongs to the plateau with <span class="math inline">\(N=4\)</span> filled levels.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <h1 class="sec-next" id="sec-4-7"><span class="num">4.7</span> Coupling electrons to a magnetic field with minimal coupling and the Peierls substitution</h1>
@@ -117,24 +124,31 @@ Quick check
 <p>The minimal-coupling replacement <a href="#eq-4-3">(4.3)</a> is the natural method for continuum models, which are Schrödinger or Dirac electrons, where we write and solve a differential equation directly. For a tight-binding model, which is written in real-space orbitals, the more natural method puts the dependence on the field into the wavefunctions and not into the Hamiltonian, with a local gauge transformation. In concrete terms, the hopping amplitude <span class="math inline">\(t_{ij}\)</span> is by definition an overlap between the orbital wavefunctions at sites <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>. When we include the vector potential in these wavefunctions, every hopping gets multiplied by a complex phase, which is equal to the line integral of <span class="math inline">\(\mathbf{A}\)</span> between the two sites,</p>
 <p><span id="eq-4-4" class="eq"><span class="math display">\[t_{ij} \;\longrightarrow\; t_{ij}\, \exp\!\left(i\int_{\mathbf{R}_j}^{\mathbf{R}_i} \mathbf{A}\cdot d\boldsymbol{\ell}\right), \tag{4.4}\]</span></span></p>
 <p>and this is what is called the <strong>Peierls substitution</strong>. It is the tight-binding version of minimal coupling, and the two give the same physics, since at low energies the expansion of a tight-binding model with the Peierls substitution gives directly the continuum Hamiltonian with minimal coupling.</p>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>A gauge change <span class="math inline">\(\mathbf{A}\to\mathbf{A}+\nabla\chi\)</span> changes the phase of every bond in <a href="#eq-4-4">(4.4)</a>. Which quantity does not change?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li>The sum of the phases around a closed loop of bonds.</li>
 <li>The phase of any single bond.</li>
 <li>None, since the Hamiltonian changes completely.</li>
-<li>The phase of the bonds along <span class="math inline">\(x\)</span>.</li>
+<li>The sum of the phases around a closed loop of bonds.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>The sum of the phases around a loop is the flux through it, which is <span class="math inline">\(\mathbf{B}\)</span> and not <span class="math inline">\(\mathbf{A}\)</span>. The electrons respond only to this flux.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Take <span class="math inline">\(\chi=\theta x/a\)</span>. Every bond along <span class="math inline">\(x\)</span> gets the extra phase <span class="math inline">\(e^{i\theta}\)</span>, and <span class="math inline">\(\theta\)</span> is arbitrary, so a single bond phase can be set to any value.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. Around a plaquette with corners <span class="math inline">\(0,1,2,3\)</span> the added phases are <span class="math inline">\((\chi_1-\chi_0)+(\chi_2-\chi_1)+(\chi_3-\chi_2)+(\chi_0-\chi_3)=0\)</span>. The sum around the loop does not change.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. The sum of the phases around a loop is the flux through it, which is <span class="math inline">\(\mathbf{B}\)</span> and not <span class="math inline">\(\mathbf{A}\)</span>. The electrons respond only to this flux.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="tryit">

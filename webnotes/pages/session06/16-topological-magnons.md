@@ -12,22 +12,32 @@ and this is the third time that we apply it, now to the bosonic Bogoliubov Hamil
 A magnon band gap has bands with Chern numbers $\pm1$. What do we find on the edges of a ribbon?
 
 - [ ] Nothing, since magnons are neutral.
-- [x] One chiral magnon branch crosses the gap on each edge, and the two edges have opposite directions.
-- [ ] Branches in both directions on the same edge.
-- [ ] A charge current along each edge.
 
-The bulk-boundary correspondence does not need charge. The chiral edge branches carry spin and energy, one per unit of Chern number, and they run in opposite directions on the two edges.
+    This is false. The bulk-boundary correspondence counts Chern numbers and does not use charge. In the Haldane model with $C=\pm1$ the same counting gives one chiral branch, and for magnons it carries spin and heat.
+
+- [x] One chiral magnon branch crosses the gap on each edge, and the two edges have opposite directions.
+
+    This is true. The chiral edge branches carry spin and energy, one per unit of Chern number. On the two edges of a ribbon they run in opposite directions.
+
+- [ ] Branches in both directions on the same edge.
+
+    This is false. Two branches of opposite direction on one edge give a net chirality of zero. They could backscatter into each other and gap out, so they cannot be required by $C=\pm1$.
 :::
 
 ::: quiz
 We reverse the sign of the Dzyaloshinskii-Moriya vector. What happens to the topological magnon bands?
 
 - [ ] The gap closes for good.
-- [x] The Chern numbers change sign, and the edge branches run the other way.
-- [ ] Nothing, since the term is quadratic.
-- [ ] The Chern numbers double.
 
-This term plays the role of the complex hopping of the Haldane model, and reversing its sign reverses the phases. The Berry curvature changes sign, so the Chern numbers change sign too.
+    This is false. Reversing the vector is a mirror operation, so the spectrum is the same. In the Haldane model the phases $+\pi/2$ and $-\pi/2$ give identical gaps, and only $C$ changes sign.
+
+- [x] The Chern numbers change sign, and the edge branches run the other way.
+
+    This is true. This term plays the role of the complex hopping of the Haldane model, and reversing its sign reverses the phases. The Berry curvature changes sign, so the Chern numbers change sign too.
+
+- [ ] Nothing, since the term is quadratic.
+
+    This is false. In the Haldane model the phase $\varphi=+\pi/2$ gives $C=+1$ and $\varphi=-\pi/2$ gives $C=-1$. The direction of the edge branch follows this sign, so it does change.
 :::
 
 ::: notebookbox

@@ -22,22 +22,34 @@ This is the central result of the session, and there are two important points ab
 We deform the dispersion of a gapped Chern insulator, so that all the band energies change. The Bloch wavefunctions stay the same and the gap stays open. What happens to $\sigma_{xy}$ in [(3.4)](#eq-3-4)?
 
 - [ ] It changes in proportion to the gap.
-- [x] It does not change.
-- [ ] It becomes zero, since the energies are different.
-- [ ] It changes in proportion to the bandwidth.
 
-Equation [(3.4)](#eq-3-4) contains only the Berry curvature, which is built from the wavefunctions. The energies canceled when we used [(3.3)](#eq-3-3), and so $\sigma_{xy}$ cannot depend on them.
+    This is false. Take two samples with $C=1$ and Landau level gaps of 10 meV and 20 meV. Both give $\sigma_{xy}=e^2/h$, and not values that differ by a factor two.
+
+- [ ] It becomes zero, since the energies are different.
+
+    This is false. Add the same term $0.3\cos k_x$ to both bands. The eigenvectors are the same, so the Berry curvature is the same and $C=1$ stays at $1$.
+
+- [x] It does not change.
+
+    This is true. Equation [(3.4)](#eq-3-4) contains only the Berry curvature, which is built from the wavefunctions. The energies canceled when we used [(3.3)](#eq-3-3).
+
 :::
 
 ::: quiz
 We integrate the Berry curvature of a gapped band over the Brillouin zone on a coarse k-mesh and obtain $C=0.37$. What is the most likely reason?
 
 - [ ] The band has a fractional Chern number.
+
+    This is false. An isolated gapped band has an integer $C$. For $\mathbf d=(\sin k_x,\sin k_y,m+\cos k_x+\cos k_y)$ with $m=-1.9$ the sum of the curvature is $5.4$ on an 8 by 8 mesh and $2.7$ on a 12 by 12 mesh, and it converges to $1$.
+
 - [x] The curvature is peaked and the k-mesh is too coarse to resolve it.
-- [ ] The Hall conductivity of this band is fractional.
+
+    This is true. For this model the mass at $\Gamma$ is only $0.1$, so the curvature is concentrated there. The sum is $1.00$ on a 100 by 100 mesh, and the integral is exactly an integer.
+
 - [ ] The Brillouin zone is not a torus.
 
-For an isolated gapped band the integral is exactly an integer. A value like $0.37$ means that the sum is not converged, which happens when the curvature is concentrated near a small gap. The remedy is a finer k-mesh.
+    This is false. The Brillouin zone of a lattice is periodic in both directions, so it is a torus for every model. The same model gives exactly $1$ on a fine mesh, so the non-integer value comes from the sampling.
+
 :::
 
 ::: {.tryit notebook="session3.ipynb" cell="Topological states and topological invariants"}

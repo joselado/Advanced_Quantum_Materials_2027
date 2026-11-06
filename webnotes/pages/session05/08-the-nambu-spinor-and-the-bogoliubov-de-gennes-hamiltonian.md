@@ -29,12 +29,17 @@ $$E(\mathbf k) = \pm\sqrt{\varepsilon(\mathbf k)^2 + |\Delta(\mathbf k)|^2}. \ta
 ::: quiz
 In [(5.9)](#eq-5-9) the quasiparticle energy is $E=\pm\sqrt{\varepsilon^2+|\Delta|^2}$. Where is $|E|$ smallest, and how large is it?
 
-- [x] On the original Fermi surface, where $\varepsilon=0$, and it is $|\Delta|$.
 - [ ] At the bottom of the band, and it is $|\Delta|$.
-- [ ] On the original Fermi surface, and it is $2|\Delta|$.
-- [ ] It has no minimum, since $E$ grows with $\Delta$ everywhere.
 
-The energy depends on $\varepsilon$ only through $\varepsilon^2$, so $|E|$ is smallest where $\varepsilon=0$. There it is $|\Delta|$ in each branch, and the full gap between the two branches is $2|\Delta|$.
+    This is false. Take $t=1$ and $\Delta=0.2$. At the band bottom $\varepsilon=-4$, so $E=\sqrt{16+0.04}\approx4.0$, which is the largest value of $|E|$ and not the smallest.
+
+- [x] On the original Fermi surface, where $\varepsilon=0$, and it is $|\Delta|$.
+
+    This is true. Since $E^2=\varepsilon^2+|\Delta|^2$ in [(5.9)](#eq-5-9), the smallest $|E|$ is at $\varepsilon=0$, and there $|E|=|\Delta|$.
+
+- [ ] On the original Fermi surface, and it is $2|\Delta|$.
+
+    This is false. For $\Delta=0.2$ at $\varepsilon=0$ we get $E=\pm0.2$ and not $\pm0.4$. The value $2|\Delta|=0.4$ is the full gap between the two branches, and not the smallest $|E|$.
 :::
 
 ::: notebookbox

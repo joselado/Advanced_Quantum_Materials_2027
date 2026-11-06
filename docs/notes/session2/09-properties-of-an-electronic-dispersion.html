@@ -96,9 +96,9 @@
 \frac{\partial^2 E(\mathbf{k})}{\partial k_i\,\partial k_j}, \tag{2.18}\]</span></span></p>
 <p>is the curvature of the dispersion, and it is the mass that is measured in essentially every transport or cyclotron-resonance experiment, since the bare electron mass cannot be observed directly inside a solid. Depending on the band, <span class="math inline">\(m^\ast\)</span> can go from nearly zero to very large values. For a Dirac dispersion, as we will see soon, it is formally not defined at the point where the bands touch.</p>
 <p>Finally, the <strong>Fermi surface</strong> is the set of <span class="math inline">\(\mathbf{k}\)</span>-points that have the same energy as the highest occupied state. Its shape controls which electronic instabilities are favoured and how a material responds to an external magnetic field, and it is one of the quantities that ARPES (Section <a href="12-measuring-band-structures-with-arpes.html#sec-2-12">2.12</a>) can map directly.</p>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>For the band <span class="math inline">\(\epsilon_\varphi=-2t\cos\varphi\)</span>, where is the group velocity largest?</p>
@@ -107,13 +107,23 @@ Quick check
 <ol type="A">
 <li>At <span class="math inline">\(\varphi=0\)</span>.</li>
 <li>At <span class="math inline">\(\varphi=\pm\pi/2\)</span>.</li>
-<li>At <span class="math inline">\(\varphi=\pi\)</span>.</li>
 <li>It is the same everywhere.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The velocity is the slope of the band, which is proportional to <span class="math inline">\(2t\sin\varphi\)</span>. It vanishes at the band edges and it is largest in the middle of the band, at <span class="math inline">\(\pm\pi/2\)</span>.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The velocity is proportional to <span class="math inline">\(2t\sin\varphi\)</span>, which is zero at <span class="math inline">\(\varphi=0\)</span>. The bottom of the band is flat, and the electron there is at rest.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The velocity is the slope of the band, which is proportional to <span class="math inline">\(2t\sin\varphi\)</span>. It vanishes at the band edges and it is largest in the middle of the band.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. A constant velocity needs a linear band, such as a Dirac cone. For the cosine band the slope is <span class="math inline">\(0\)</span> at <span class="math inline">\(\varphi=0\)</span> and <span class="math inline">\(2t\)</span> at <span class="math inline">\(\varphi=\pi/2\)</span>, in units of the lattice constant over <span class="math inline">\(\hbar\)</span>.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The velocity is zero at the extrema of the band and largest where the band crosses the middle.</p>
+</div>
 </details>
 </div>
 <div class="notebookbox">
@@ -138,9 +148,9 @@ Notebook <code>session2.ipynb</code>, cell “Density of states of the honeycomb
 <img src="../figures/s02f06_archetypes.svg" loading="lazy" alt="The three types of dispersion and the densities of states that they give, all in two dimensions." />
 <figcaption><strong>Figure 2.4.</strong> The three types of dispersion and the densities of states that they give, all in <em>two</em> dimensions. Each band is a surface over the two-dimensional momentum, with its density of states as a slab next to it on the same energy axis. A parabolic band gives a constant density of states, which is a step. A Dirac point makes it vanish linearly, so a finite interaction strength is needed before anything happens. A flat band makes it diverge, drawn here with a small broadening, so an arbitrarily weak interaction can drive the symmetry-broken states of Session 1. Almost every band structure in this course is locally one of these three.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>A two-dimensional Dirac cone has <span class="math inline">\(E=\hbar v_F|\mathbf q|\)</span>. How does the density of states behave close to the tip?</p>
@@ -150,12 +160,22 @@ Quick check
 <li>It is constant.</li>
 <li>It grows linearly with <span class="math inline">\(|E|\)</span>, so it vanishes at the tip.</li>
 <li>It diverges as <span class="math inline">\(1/\sqrt{|E|}\)</span>.</li>
-<li>It diverges as a delta function.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>In two dimensions the number of states in a ring of radius <span class="math inline">\(q\)</span> grows as <span class="math inline">\(q\,dq\)</span>. With <span class="math inline">\(E\propto q\)</span> this gives a density of states proportional to <span class="math inline">\(|E|\)</span>, which vanishes at the tip.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. A constant density of states in two dimensions belongs to a parabolic band <span class="math inline">\(E=\hbar^2q^2/2m\)</span>, where <span class="math inline">\(q\,dq=m\,dE/\hbar^2\)</span>. For the cone <span class="math inline">\(q\,dq\propto E\,dE\)</span>, so the density depends on <span class="math inline">\(E\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. In two dimensions the number of states in a ring of radius <span class="math inline">\(q\)</span> grows as <span class="math inline">\(q\,dq\)</span>. With <span class="math inline">\(E\propto q\)</span> this gives a density of states proportional to <span class="math inline">\(|E|\)</span>, which vanishes at the tip.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The divergence <span class="math inline">\(1/\sqrt{E}\)</span> is the band edge of a one-dimensional parabolic band. In the two-dimensional cone the density goes to zero at the tip and does not diverge.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The density of states depends on both the dimension and the dispersion.</p>
+</div>
 </details>
 </div>
 <p>Next we derive the Dirac case explicitly, since it is the defining feature of graphene and the direct link to the topology lecture, and then we look at two lattices that realize flat bands. The tools we use in the whole course to compute such dispersions are <code>pyqula</code>, which we named in Section <a href="05-blochs-theorem-and-the-first-band-structure.html#sec-2-5">2.5</a>, and its graphical companion, which is a second computational tool shown on the slides with the name <strong>Quantum Lattice</strong>. It needs no scripting, and it is not named in the lecture, which only refers to “a user interface we will use at some points”.</p>

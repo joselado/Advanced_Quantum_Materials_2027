@@ -23,11 +23,16 @@
 In a spinless chain the onsite term $c_nc_n$ vanishes. Which pairing is then allowed, and what is its parity?
 
 - [ ] Onsite pairing, which is even in $k$.
-- [x] Pairing on the bond $c_nc_{n+1}$, which is odd in $k$.
-- [ ] Pairing on the bond, which is even in $k$.
-- [ ] No pairing at all can be written.
 
-Pauli exclusion gives $c_n^2=0$, so the pairing has to live on a bond. This term gives $\Delta(k)=2i\Delta\sin k$, which is odd in $k$, so by [(5.12)](#eq-5-12) it is a spinless $p$-wave state.
+    This is false. The onsite term is $c_nc_n=0$ by the Pauli principle. If we write $\sum_k c_kc_{-k}$ we get zero as well, since $c_kc_{-k}=-c_{-k}c_k$ cancels pairs of terms.
+
+- [x] Pairing on the bond $c_nc_{n+1}$, which is odd in $k$.
+
+    This is true. The Pauli principle gives $c_n^2=0$, so the pairing lives on a bond. It gives $\Delta(k)=2i\Delta\sin k$, which is odd, so by [(5.12)](#eq-5-12) it is a spinless $p$-wave state.
+
+- [ ] Pairing on the bond, which is even in $k$.
+
+    This is false. The bond term $c_nc_{n+1}$ changes sign when we exchange the two fermions, so it can only give $\sin k$. A $\cos k$ function would multiply $c_kc_{-k}$ and cancel, as the sum vanishes by antisymmetry.
 :::
 
 In this session we followed the topic of superconductivity from session 1, from the bare pairing order parameter to Nambu spinors, Bogoliubov-de Gennes Hamiltonians, the singlet and triplet classification and finally Majorana zero modes in the Kitaev chain. The division that we made in session 1 had a second branch that we have not considered since its first short treatment, which is magnetism, where time-reversal symmetry is broken instead of gauge symmetry. This is where we go next. Session 6 comes back to the same Hubbard Hamiltonian that opened section [5.5](#sec-5-5) of this session, now on its repulsive ($U>0$) side, and gives magnetism the same depth of treatment that we have now given to superconductivity.

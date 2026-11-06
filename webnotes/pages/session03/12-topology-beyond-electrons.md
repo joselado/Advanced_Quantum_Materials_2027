@@ -7,12 +7,18 @@ We built all the tools of this session, which are the Chern number, the Zak phas
 ::: quiz
 The Chern number needs Bloch eigenvectors over a Brillouin zone. For which excitations can we define it?
 
-- [x] For any wave with a periodic dispersion relation, such as magnons, photons or coupled pendula.
 - [ ] Only for excitations of a two-dimensional metal.
-- [ ] Only for electrons, since it needs a charge.
-- [ ] Only for fermions.
 
-The argument of the session uses only a matrix that describes how a wave propagates in a periodic medium. It does not use charge or the Pauli principle, so it holds for any wave equation.
+    This is false. The Chern number is defined for a band that is separated by a gap from the others, and this is an insulating situation. A metal has a Fermi surface, and the Chern insulators of this session are insulators.
+
+- [x] For any wave with a periodic dispersion relation, such as magnons, photons or coupled pendula.
+
+    This is true. The argument of the session uses only a matrix that describes how a wave propagates in a periodic medium. It does not use charge or the Pauli principle, so it holds for any wave equation.
+
+- [ ] Only for electrons, since it needs a charge.
+
+    This is false. Magnons in a honeycomb ferromagnet and photons in a photonic crystal are neutral, and both have bands with a Chern number and chiral edge modes.
+
 :::
 
 The main message of this session is the following. Topological systems have protected edge modes, and these modes are connected to a non-trivial value of a topological invariant that is computed only from the bulk. This happens in one and in two dimensions, and also in higher dimensions, and it is usually protected by a specific symmetry. For the Chern number this is translational symmetry and gauge invariance, and for the quantum spin Hall state it is time-reversal symmetry.

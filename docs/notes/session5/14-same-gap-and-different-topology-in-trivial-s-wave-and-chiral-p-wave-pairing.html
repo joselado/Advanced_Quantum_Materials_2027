@@ -92,9 +92,9 @@ k) =
 -\Delta_{p+ip}(\mathbf k)\)</span>, and which winds once around the origin of the complex plane as <span class="math inline">\(\mathbf
 k\)</span> goes around the Fermi surface. Both <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#eq-5-9">(5.9)</a> with <span class="math inline">\(\Delta_0\)</span> and <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#eq-5-9">(5.9)</a> with <span class="math inline">\(\Delta_{p+ip}\)</span> can fully gap the same Fermi surface, so a measurement of the bulk gap alone cannot distinguish them. However, in the same way as for the Chern-number classification of gapped bands in the topological-band-structure session, we can compute the Chern number of the occupied BdG bands for each case, and the two results are completely different. The trivial s-wave state has Chern number <span class="math inline">\(0\)</span>, while the chiral p-wave state has Chern number <span class="math inline">\(\pm 2\)</span>, where the sign is set by the chirality, <span class="math inline">\(p_x + ip_y\)</span> or <span class="math inline">\(p_x - ip_y\)</span>.</p>
 <p>What distinguishes them, as shown in figure <a href="#fig:s05:topology">5.4</a>, is the winding of the <em>phase</em> of <span class="math inline">\(\Delta(\mathbf k)\)</span> when <span class="math inline">\(\mathbf k\)</span> goes once around the Fermi surface. This phase is constant for s-wave, and it makes one full turn for <span class="math inline">\(p+ip\)</span>.</p>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>Both the <span class="math inline">\(s\)</span>-wave and the <span class="math inline">\(p+ip\)</span> gap open the same gap on the same Fermi surface. Which quantity is different?</p>
@@ -104,12 +104,19 @@ Quick check
 <li>The minimum energy of the bulk bands.</li>
 <li>The Chern number of the occupied BdG bands.</li>
 <li>The number of Fermi pockets.</li>
-<li>The charge of the quasiparticles.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The two spectra look the same, and only the winding of the phase of <span class="math inline">\(\Delta(\mathbf k)\)</span> is different. This winding gives the Chern number, which is <span class="math inline">\(0\)</span> for <span class="math inline">\(s\)</span>-wave pairing and <span class="math inline">\(\pm2\)</span> for chiral <span class="math inline">\(p\)</span>-wave pairing.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Both gaps are the same on the same Fermi surface, since <span class="math inline">\(E=|\Delta|\)</span> there. For <span class="math inline">\(|\Delta|=0.2t\)</span> both give the minimum energy <span class="math inline">\(0.2t\)</span>, so spectroscopy of the bulk cannot tell them apart.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The winding of the phase of <span class="math inline">\(\Delta(\mathbf k)\)</span> around the Fermi surface gives the Chern number. It is <span class="math inline">\(0\)</span> for <span class="math inline">\(s\)</span>-wave pairing and <span class="math inline">\(\pm2\)</span> for chiral <span class="math inline">\(p\)</span>-wave pairing.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The pockets belong to the normal state <span class="math inline">\(\varepsilon(\mathbf k)\)</span>, which is the same in both cases. For a single pocket around <span class="math inline">\(\Gamma\)</span> both superconductors have exactly one.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <p>This has the consequence that we expect from the bulk-boundary correspondence. In a finite system, the s-wave superconductor stays gapped everywhere, both in the bulk and at the edge, in the same way as a trivial insulator with Chern number zero. The chiral p-wave superconductor, on the other hand, is gapped in the bulk but has gapless <em>chiral</em> edge modes. On one edge there are <span class="math inline">\(|C|\)</span> branches that all propagate in the same direction, here two, one from each of the two identical spin blocks, and the opposite edge has the same number of branches that propagate in the opposite direction, as a state with Chern number <span class="math inline">\(\pm 2\)</span> must have. So on a ribbon we see two sets of branches that propagate in opposite directions, but they are localized on opposite edges and do not share one edge. These edge modes turn out to be fractions of an electron in a very specific and exact sense, since they are Majorana modes, and the rest of this session is about what this means.</p>
@@ -117,9 +124,9 @@ Quick check
 <img src="../figures/s05f04_topology.svg" loading="lazy" alt="Two gaps that a spectroscopy experiment cannot distinguish, seen from above." />
 <figcaption><strong>Figure 5.4.</strong> Two gaps that a spectroscopy experiment cannot distinguish, seen from above. Each dial is the phase of <span class="math inline">\(\Delta(\mathbf k)\)</span>, an arrow in the complex plane, drawn at the point of the Fermi pocket where it is evaluated. (a) For <span class="math inline">\(s\)</span>-wave pairing this phase is the same everywhere, so as <span class="math inline">\(\mathbf k\)</span> goes once around the pocket the value of <span class="math inline">\(\Delta\)</span> stays at a single point of the complex plane, with winding number zero and Chern number zero. (b) For chiral <span class="math inline">\(p\)</span>-wave pairing <a href="#eq-5-15">(5.15)</a> the phase instead follows the direction of <span class="math inline">\(\mathbf k\)</span>, so <span class="math inline">\(\Delta\)</span> draws a loop that encircles the origin once. The modulus is essentially the same in both cases, so both fully gap the same pocket by the same amount. Only the winding is different, and the winding is what the Chern number counts. (c) The consequence in a finite sample. The trivial state is gapped at its boundary as well as in its bulk, while the chiral state must have <span class="math inline">\(|C|\)</span> gapless branches on each edge, all going in the same direction, and in the opposite direction on the opposite edge. Here <span class="math inline">\(C=\pm 2\)</span>, with one branch from each of the two identical spin blocks of <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#eq-5-8">(5.8)</a>.</figcaption>
 </figure>
-<div class="quiz" data-correct="C">
+<div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>We replace <span class="math inline">\(p_x+ip_y\)</span> by <span class="math inline">\(p_x-ip_y\)</span>, and the bulk gap does not change. What happens to the edge modes of a ribbon?</p>
@@ -129,12 +136,19 @@ Quick check
 <li>They disappear, since the order is no longer chiral.</li>
 <li>They stay the same, since the gap is the same.</li>
 <li>The number of branches on an edge stays the same, and each of them runs in the opposite direction.</li>
-<li>The number of branches on an edge doubles.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>C</strong>.</p>
-<p>The phase of <span class="math inline">\(\Delta(\mathbf k)\)</span> winds the other way, so the Chern number changes from <span class="math inline">\(+2\)</span> to <span class="math inline">\(-2\)</span>, or the reverse. The number <span class="math inline">\(|C|\)</span> of branches does not change, and their direction on a given edge flips.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The order <span class="math inline">\(p_x-ip_y\)</span> is chiral too, with the opposite winding. Its Chern number is <span class="math inline">\(-2\)</span> and not <span class="math inline">\(0\)</span>, so two edge branches are still required.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The same gap does not fix the direction. The sign of the Chern number sets it, so a branch that moves right on the top edge now moves left.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. The Chern number changes from <span class="math inline">\(+2\)</span> to <span class="math inline">\(-2\)</span>. The number <span class="math inline">\(|C|=2\)</span> of branches does not change, and their direction on a given edge flips.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="notebookbox">

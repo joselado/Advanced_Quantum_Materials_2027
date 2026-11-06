@@ -11,20 +11,30 @@ S_i\rangle=\mathbf 0$, which does *not* break time-reversal symmetry. (b) The ka
 Three Ising spins sit on a triangle with antiferromagnetic bonds. How many of the 8 configurations are classical ground states?
 
 - [ ] 2, the two Néel-like configurations.
-- [x] 6, the ones with exactly one unsatisfied bond.
-- [ ] 3, one for each bond.
-- [ ] 8, since all configurations have the same energy.
 
-The two fully aligned configurations have three unsatisfied bonds. Each of the other six has one unsatisfied bond, which is the minimum, so the ground state is sixfold degenerate.
+    This is false. There is no Néel configuration on a triangle. The state $\uparrow\downarrow\uparrow$ has one unsatisfied bond, with energy $-1/4$, and so do its five partners, so there are six degenerate states and not two.
+
+- [x] 6, the ones with exactly one unsatisfied bond.
+
+    This is true. The two fully aligned configurations have three unsatisfied bonds and energy $+3/4$. Each of the other six has one unsatisfied bond and energy $-1/4$, which is the minimum, so the ground state is sixfold degenerate.
+
+- [ ] 3, one for each bond.
+
+    This is false. The unsatisfied bond can be any of the three, but for each choice there are two states, the configuration and its spin flip. So $\uparrow\uparrow\downarrow$ and $\downarrow\downarrow\uparrow$ are both ground states, giving 6.
 :::
 
 ::: quiz
 Why is the square lattice with antiferromagnetic Heisenberg coupling not a good place to look for a spin liquid?
 
 - [x] It is bipartite, so the Néel state satisfies every bond and breaks time-reversal symmetry.
+
+    This is true. On a bipartite lattice all bonds are satisfied at the same time by two sublattices of opposite spin. There is then no frustration and no macroscopic degeneracy for the quantum fluctuations to mix.
+
 - [ ] It has too many neighbors for singlets to form.
-- [ ] It has no antiferromagnetic coupling.
+
+    This is false. The kagome lattice also has four neighbors, like the square lattice, and it is a leading candidate for a spin liquid. The number of neighbors is not what decides it.
+
 - [ ] It is two-dimensional, and spin liquids need three dimensions.
 
-On a bipartite lattice all bonds are satisfied at the same time by two sublattices of opposite spin. There is then no frustration and no macroscopic degeneracy for the quantum fluctuations to mix.
+    This is false. The triangular and kagome lattices are two-dimensional and they are the standard places to look for spin liquids. Frustration and not the dimension is what matters.
 :::

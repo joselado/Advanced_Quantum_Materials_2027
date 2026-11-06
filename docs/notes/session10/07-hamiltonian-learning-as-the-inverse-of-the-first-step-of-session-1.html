@@ -96,9 +96,9 @@ exp}\)</span>. The concrete example of the lecture was a two-dimensional spectro
 <img src="../figures/s10f06_hamiltonianlearning.svg" loading="lazy" alt="Hamiltonian learning, and why it closes the loop of the course instead of going outside it." />
 <figcaption><strong>Figure 10.6.</strong> Hamiltonian learning, and why it closes the loop of the course instead of going outside it. <strong>Top.</strong> The forward arrow <span class="math inline">\(H\mapsto\mathcal{O}\)</span> of <a href="#eq-10-11">(10.11)</a> is what sessions 1 to 9 built during all their time. The arrow that an experiment needs goes in the other direction, and there is no closed-form inversion of it. <strong>(a)</strong> The solution to the lack of experimental training data is to produce the data. We simulate <span class="math inline">\(\mathcal{O}\)</span> from many <em>known</em> Hamiltonians, so that every training pair comes with its answer <span class="math inline">\(\lambda_n\)</span> by construction, and we fit the network with <a href="#eq-10-12">(10.12)</a>. <strong>(b)</strong> Only after this step the trained network is applied to a real measurement. Note what the training set is made of, which is the forward methods of the whole course, run many times. The final method of the course and its first method are the same method, applied in opposite directions.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>Why do we train the network of <a href="#eq-10-12">(10.12)</a> on simulated observables, and not on measured ones?</p>
@@ -110,14 +110,22 @@ Quick check
 <li>Measured data cannot be written as arrays of numbers.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>A supervised network needs pairs of an input and a known answer. The forward methods of the course give as many pairs as we want, and the real measurement is used only once, at the end.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. A mean-field simulation of a strongly correlated model can be wrong compared to the experiment. Even so, it gives the exact <span class="math inline">\(\lambda_n\)</span> of its own input, which is what training needs.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. A measurement does not come with its <span class="math inline">\(\lambda_n\)</span>, since this is what we want to find. A simulation gives a pair <span class="math inline">\((\mathcal O,\lambda)\)</span> for each run, so we can make <span class="math inline">\(10^5\)</span> pairs.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. A measured dI/dV is an array, for example <span class="math inline">\(200\)</span> values of the voltage, and it can be the input of the network. At the end it is the input of the trained network.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>Many different values of <span class="math inline">\(\lambda\)</span> give nearly the same observable <span class="math inline">\(\mathcal{O}\)</span>. What is the consequence for the inverse map?</p>
@@ -129,9 +137,17 @@ Quick check
 <li>The network must always give the exact <span class="math inline">\(\lambda\)</span>, since the loss <a href="#eq-10-12">(10.12)</a> is zero for the training pairs.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>A degenerate map cannot be inverted exactly. We train on data that sample the nuisance variables <span class="math inline">\(\mu\)</span> too, so the network learns to average over them, and the answer is a best estimate.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. For a chain with <span class="math inline">\(t&gt;0\)</span> the bandwidth is <span class="math inline">\(4t\)</span>, so <span class="math inline">\(\mathcal O\)</span> fixes <span class="math inline">\(t\)</span> and the inverse map exists. It is not defined only where the observable is not enough.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. A chain with <span class="math inline">\(t\)</span> and a chain with <span class="math inline">\(-t\)</span> have the same density of states. The network cannot give the sign, so it gives an estimate with an uncertainty and we must cover <span class="math inline">\(\mu\)</span> in training.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The pairs <span class="math inline">\((\mathcal O,t)\)</span> and <span class="math inline">\((\mathcal O,-t)\)</span> have the same input and different labels. The mean-square loss is minimal when the network gives the mean of the two labels, which is <span class="math inline">\(0\)</span>, and then the loss is <span class="math inline">\(t^2\)</span> and not zero.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <p>This is the mirror image of the starting point of session 1, and we want to stop for a moment on this symmetry. In nine sessions we built more and more sophisticated ways to go from a Hamiltonian to an observable. These are mean-field decoupling, Bloch’s theorem, topological invariants, Landau levels, Nambu spinors, magnon spectra, tensor-network ground states, parton constructions and response functions. Hamiltonian learning does not leave any of these behind. Instead, it uses the same forward methods, run many times on synthetic data, as the training set to learn how to run the process in reverse. In this sense, the method of the course and the final method of the course are the same method, applied in opposite directions.</p>

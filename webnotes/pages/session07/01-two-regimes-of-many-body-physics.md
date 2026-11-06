@@ -11,12 +11,17 @@ In this session we are in the opposite regime, which is **strongly correlated ma
 ::: quiz
 A quantum spin liquid has no order parameter. What does a self-consistent mean-field calculation give for it?
 
-- [x] A zero order parameter, which tells us nothing about the true ground state.
 - [ ] A small but finite magnetization that grows with the system size.
-- [ ] The exact ground state energy, but not the wave function.
-- [ ] A gap that closes at the critical interaction.
 
-The mean-field equations look for a symmetry-broken solution. If the true state has none, the self-consistent loop converges to zero, and zero is a valid but empty answer.
+    This is false. A finite magnetization is a magnetic order, and a spin liquid has none. For the singlet of two spins we find $\langle S^z_i\rangle=0$ exactly, at every size.
+
+- [x] A zero order parameter, which tells us nothing about the true ground state.
+
+    This is true. The self-consistent loop looks for a symmetry-broken solution. If the true state has none, the loop converges to zero, which is a valid but empty answer.
+
+- [ ] The exact ground state energy, but not the wave function.
+
+    This is false. Mean field is a product-like trial state, so its energy is only an upper bound. For the singlet of two spins the best mean-field energy is $-1/4$ while the exact one is $-3/4$.
 :::
 
 ## Fermions and spins, two languages for the same physics {#sec-7-2 number="7.2a"}
@@ -29,10 +34,15 @@ Before we build the tool, let us point out something that was present in the las
 ::: quiz
 We replace $c_1^\dagger$ and $c_2^\dagger$ of two different sites by $S_1^+$ and $S_2^+$ with no extra factor. What goes wrong?
 
-- [ ] The spin operators change the number of states on each site.
 - [ ] The operator $S^z_i=n_i-\tfrac12$ gets the wrong sign.
+
+    This is false. On one site $S^z=n-\tfrac12$ is exact, since an occupied site is $S^z=+1/2$ and an empty site is $-1/2$. The problem only appears between two sites.
+
 - [x] The spin operators commute while the fermion operators anticommute, so the relative sign between sites is wrong.
+
+    This is true. On a single site the replacement is exact, as the figure shows. Between two sites the commutator and the anticommutator differ, and this is the sign that the Jordan-Wigner string will carry.
+
 - [ ] The resulting Hamiltonian is no longer Hermitian.
 
-On a single site the replacement is exact, as the figure shows. The only difference appears between two sites, where the commutator and the anticommutator differ, and this is the sign that the Jordan-Wigner string will carry.
+    This is false. The hopping term $c_1^\dagger c_2+c_2^\dagger c_1$ is replaced by $S_1^+S_2^-+S_2^+S_1^-$, which is its own Hermitian conjugate. The Hamiltonian stays Hermitian and it is just the wrong one.
 :::

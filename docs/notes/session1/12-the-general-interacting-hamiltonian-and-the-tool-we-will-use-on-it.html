@@ -99,9 +99,9 @@
 <figcaption><strong>Figure 1.3.</strong> One Hamiltonian and three ordered states. The same generic interacting Hamiltonian <a href="#eq-1-5">(1.5)</a>, on the left, where the glow is the interaction between two electrons on neighboring sites, is decoupled with three different bilinear expectation values. This gives a charge density wave, a magnet or a superconductor, each breaking a different symmetry. The charge is drawn as columns of alternating height, the spin as alternating arrows, and the electrons bound in pairs as two balls inside one capsule. These three branches are the structure on which the rest of the course is organized.</figcaption>
 </figure>
 <p>Two of the three cases of this session, which are magnetism and superconductivity, will come back later in the course in their own sessions, where we treat them in much more detail. You can think of what follows as a first pass, whose goal is to set up the mean-field method itself, and not as the final discussion of either of them.</p>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>The quartic term of <a href="#eq-1-5">(1.5)</a> has four operators, and the mean-field Hamiltonian has only two. What do we do with the other two?</p>
@@ -110,13 +110,23 @@ Quick check
 <ol type="A">
 <li>We drop them, since they are small.</li>
 <li>We replace them by their expectation value in the state that we are looking for.</li>
-<li>We replace them by their commutator.</li>
 <li>We replace them by their value in the vacuum.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The expectation value is a number, so the two operators that remain form a single-particle term. The number comes from the state itself, which is why we have to solve the problem self-consistently.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Take the Hubbard dimer. If we drop the interaction, the spectrum is <span class="math inline">\(\pm t\)</span> for every <span class="math inline">\(U\)</span>, and no magnetic solution can appear. The interaction is what drives the magnetization, so it cannot be dropped.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The expectation value is a number, so the two operators that remain form a single-particle term. The number comes from the state itself, which is why we solve the problem self-consistently.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. In the vacuum <span class="math inline">\(\langle c_i^\dagger c_j\rangle=0\)</span> for every pair. The mean field would then vanish, and the chain would have no charge modulation, while the loop of the figure ends with charges that differ from site to site.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The self-consistent loop closes because the expectation values depend on the state that they define.</p>
+</div>
 </details>
 </div>
 <div class="tryit">

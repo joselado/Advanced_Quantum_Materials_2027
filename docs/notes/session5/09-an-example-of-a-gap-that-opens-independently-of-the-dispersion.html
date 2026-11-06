@@ -105,9 +105,9 @@ k) = 0\)</span> even though <span class="math inline">\(\Delta \ne 0\)</span> ne
 k)^2+|\Delta(\mathbf k)|^2}\)</span> as we go once around it. Since <span class="math inline">\(\varepsilon=0\)</span> on the Fermi surface, this minimum is <span class="math inline">\(|\Delta|\)</span> evaluated there, which is why the pairing function only matters <em>on</em> the Fermi surface. (a) Without pairing the whole pocket is at zero energy, which is a metal. (b) A constant <span class="math inline">\(\Delta_0\)</span> lifts every point of it by the same amount, which gives a full gap. (c) The <span class="math inline">\(d\)</span>-wave gap <a href="13-nodal-singlet-order-d-wave-pairing-in-the-cuprates-and-the-angular-momentum-expansion.html#eq-5-13">(5.13)</a> vanishes on the zone diagonals, the red lines, and the pocket crosses them in four places, so four gapless points survive in a superconductor that is gapped everywhere else. Nodes in other parts of the zone do not appear in the spectrum, and only nodes that intersect the Fermi surface give gapless quasiparticles.</figcaption>
 </figure>
 <p>Figure <a href="#fig:s05:fsgap">5.2</a> shows the three cases next to each other, in the Brillouin zone and also as the gap along the Fermi surface itself, which is the only place where the gap can be read at all. The high-temperature cuprate superconductors are the standard example of scenario 3 in real materials. They are real superconductors, but their gap function has nodes, so parts of their Fermi surface stay gapless even in the superconducting state. This division into three cases holds for any lattice geometry, and the lecture shows it explicitly for the Fermi surfaces of both the square and the triangular lattice.</p>
-<div class="quiz" data-correct="C">
+<div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>The <span class="math inline">\(d\)</span>-wave gap <a href="13-nodal-singlet-order-d-wave-pairing-in-the-cuprates-and-the-angular-momentum-expansion.html#eq-5-13">(5.13)</a> vanishes on the diagonals <span class="math inline">\(k_x=\pm k_y\)</span>. A small Fermi pocket is centered at <span class="math inline">\(X=(\pi,0)\)</span>. Is the superconductor nodal?</p>
@@ -117,12 +117,19 @@ Quick check
 <li>Yes, since every <span class="math inline">\(d\)</span>-wave order has gapless points.</li>
 <li>Yes, with four nodes on the pocket.</li>
 <li>No, since the pocket does not touch a diagonal.</li>
-<li>Only if <span class="math inline">\(\Delta_0\)</span> is larger than the hopping.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>C</strong>.</p>
-<p>Only nodes that cross the Fermi surface give gapless quasiparticles. Near <span class="math inline">\(X\)</span> we have <span class="math inline">\(\cos k_x-\cos k_y\approx-2\)</span>, so <span class="math inline">\(|\Delta|\)</span> is large and <span class="math inline">\(E(\mathbf k)\)</span> in <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#eq-5-9">(5.9)</a> stays finite all around the pocket.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Take <span class="math inline">\(\Delta_d=\Delta_0(\cos k_x-\cos k_y)\)</span> and a pocket around <span class="math inline">\(X\)</span>. All its points have <span class="math inline">\(k_x\approx\pi\)</span> and <span class="math inline">\(k_y\approx0\)</span>, so <span class="math inline">\(|\Delta_d|\approx2\Delta_0\)</span> and <span class="math inline">\(E\geq2\Delta_0\)</span> there. The nodes exist, but they are not on the Fermi surface.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. Four nodes appear for a pocket around <span class="math inline">\(\Gamma\)</span>, as in figure <a href="#fig:s05:fsgap">5.2</a>c, where the diagonals cross it. A small pocket around <span class="math inline">\(X\)</span> has <span class="math inline">\(|k_x|-|k_y|\approx\pi\)</span>, so it is far from the line <span class="math inline">\(k_x=\pm k_y\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. Only nodes that cross the Fermi surface give gapless quasiparticles. Near <span class="math inline">\(X\)</span> we have <span class="math inline">\(\cos k_x-\cos k_y\approx-2\)</span>, so <span class="math inline">\(E\)</span> in <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#eq-5-9">(5.9)</a> stays finite all around the pocket.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="notebookbox">

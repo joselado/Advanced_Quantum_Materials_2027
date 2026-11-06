@@ -97,9 +97,9 @@
 <img src="../figures/s08f01_magnon_spinon.svg" loading="lazy" alt="Why the two kinds of magnet have excitations whose spin differs by exactly a factor of two." />
 <figcaption><strong>Figure 8.1.</strong> Why the two kinds of magnet have excitations whose spin differs by exactly a factor of two. (a) In a symmetry-broken magnet every site has a definite spin, shown with arrows. Flipping one costs <span class="math inline">\(\Delta S=1\)</span>, and this excitation is the magnon of session 6. The single flipped spin drawn here, next to the ghost of its old direction, only does the counting of <span class="math inline">\(\Delta S\)</span>, since the real magnon is the delocalized precession of figure <a href="../session6/13-magnons-as-fluctuations-of-the-order-parameter.html#fig:s06:magnon">6.5</a> and not one flipped site. (b) In a quantum magnet no site has a definite spin at all. The sites are paired into singlets <a href="03-two-minimal-dimers-a-classical-order-parameter-and-a-quantum-singlet.html#eq-8-3">(8.3)</a>, drawn as capsules, so <span class="math inline">\(\langle\mathbf S_i\rangle=0\)</span> everywhere and <span class="math inline">\(S_\text{tot}=0\)</span>. When we break one pair, we leave <em>unpaired</em> sites, drawn as open balls, and each one of them has <span class="math inline">\(S=1/2\)</span>. This is a spinon, which is half a magnon. For this reason spinons are always created in pairs, and figure <a href="06-the-resonating-valence-bond-wavefunction-as-the-qsl-ground-state.html#fig:s08:vbsrvb">8.3</a> shows whether the pair stays bound or separates.</figcaption>
 </figure>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>A quantum spin liquid has an even number of spin-1/2 sites, and its ground state has <span class="math inline">\(S_\text{tot}=0\)</span>. Can the lowest excited state contain a single spinon?</p>
@@ -109,17 +109,24 @@ Quick check
 <li>No, since one spinon would give a total spin of <span class="math inline">\(1/2\)</span>, which an even number of spin-1/2 sites cannot have.</li>
 <li>Yes, since the spinon has spin <span class="math inline">\(1/2\)</span> and the ground state has spin <span class="math inline">\(0\)</span>.</li>
 <li>Yes, but only if a magnetic field is applied.</li>
-<li>No, since spinons carry charge.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>The total spin of an even number of spin-1/2 particles is an integer. A spinon with <span class="math inline">\(S=1/2\)</span> must then come together with a second one, and this is why spinons are created in pairs.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The total spin of an even number of spin-1/2 particles is an integer. A spinon with <span class="math inline">\(S=1/2\)</span> must then come together with a second one, and this is why spinons are created in pairs.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. Take four spin-1/2 sites. The total spin can be <span class="math inline">\(0\)</span>, <span class="math inline">\(1\)</span> or <span class="math inline">\(2\)</span> and never <span class="math inline">\(1/2\)</span>, so the state with one spinon does not exist.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. A field changes the energies but not the possible values of the total spin. With four sites in a field, <span class="math inline">\(S^z_\text{tot}\)</span> is still an integer, from <span class="math inline">\(-2\)</span> to <span class="math inline">\(2\)</span>.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="C">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>A magnon has spin <span class="math inline">\(1\)</span>. What does this tell us about its relation to spinons?</p>
@@ -127,14 +134,21 @@ Quick check
 <div class="quiz-options">
 <ol type="A">
 <li>A magnon is a single spinon with spin <span class="math inline">\(1\)</span>.</li>
-<li>Four spinons are needed, since each carries a quarter of the spin.</li>
 <li>Two spinons with parallel spins carry the same spin, so a magnon is like a bound pair of spinons.</li>
 <li>A magnon has no relation to spinons, since spinons carry no spin.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>C</strong>.</p>
-<p>Two spin-1/2 excitations can add up to spin <span class="math inline">\(1\)</span>. The magnon of a symmetry-broken magnet is then the bound version of what a quantum spin liquid can split into two free parts.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. A spinon has spin <span class="math inline">\(1/2\)</span>, since it is created by a single <span class="math inline">\(f^\dagger_\alpha\)</span> that changes <span class="math inline">\(S^z\)</span> by <span class="math inline">\(1/2\)</span>. A single spinon cannot have spin <span class="math inline">\(1\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. Two spin-1/2 excitations can add up to spin <span class="math inline">\(1\)</span>, as in the triplet of the dimer. The magnon of a symmetry-broken magnet is then the bound version of what a quantum spin liquid can split into two free parts.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. In the parton construction <span class="math inline">\(\mathbf S_i=\tfrac12 f^\dagger\boldsymbol\sigma f\)</span>, so each <span class="math inline">\(f\)</span> fermion carries spin <span class="math inline">\(1/2\)</span>. Spinons are neutral but they are not spinless.</p></li>
+</ul>
+</div>
 </details>
 </div>
 

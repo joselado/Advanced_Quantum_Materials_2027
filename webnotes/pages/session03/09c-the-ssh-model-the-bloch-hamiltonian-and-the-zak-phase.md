@@ -10,12 +10,18 @@ with eigenvalues $E_\pm(k) = \pm|d(k)| = \pm\sqrt{1 + t^2 + 2t\cos k}$. The gap 
 ::: quiz
 For which value of $t$ and at which momentum does the gap of the SSH chain close?
 
-- [ ] $t=0$ and $k=0$.
-- [x] $t=1$ and $k=\pi$.
 - [ ] $t=2$ and $k=\pi$.
+
+    This is false. At $k=\pi$ we get $d=t+e^{i\pi}=2-1=1$, which is not zero. The energy there is $\pm1$.
+
+- [x] $t=1$ and $k=\pi$.
+
+    This is true. The gap closes when $d(k)=t+e^{ik}=0$. This requires $e^{ik}=-t$, which has a solution only for $|t|=1$, and for $t=1$ it is $k=\pi$.
+
 - [ ] $t=1$ and $k=0$.
 
-The gap closes when $d(k)=t+e^{ik}=0$. This requires $e^{ik}=-t$, which has a solution only for $|t|=1$, and for $t=1$ it is $k=\pi$.
+    This is false. At $k=0$ we get $d=1+1=2$, so the energy is $\pm2$, which is the top of the band and not a crossing.
+
 :::
 
 The topological invariant here is the one-dimensional Berry phase that the lower-band Bloch state $|u_-(k)\rangle$ accumulates as $k$ goes once around the Brillouin zone, which is called the **Zak phase**,
@@ -32,9 +38,15 @@ This material appears only in the lecture and on the slides, and it has no count
 The chains with $t=1/2$ and $t=3/2$ have the same gap, $2|1-t|=1$. What is the difference between them?
 
 - [x] Only the chain with $t=1/2$ has a winding of $d(k)$ around the origin and end states.
+
+    This is true. The curve $d(k)=t+e^{ik}$ is a unit circle centered at $(t,0)$. It encloses the origin for $t=1/2$ and not for $t=3/2$, and the two gaps look the same in the bulk spectrum.
+
 - [ ] Only the chain with $t=3/2$ is gapless.
-- [ ] Both have end states, but at different energies.
+
+    This is false. For $t=3/2$ the smallest value of $|d|$ is $|1-t|=0.5$, so there are no levels between $-0.5$ and $0.5$. Numerically, the open chain of 40 sites has its lowest levels at $\pm0.53$.
+
 - [ ] Only the chain with $t=3/2$ has end states, since its bonds are stronger.
 
-The curve $d(k)=t+e^{ik}$ is a unit circle centered at $(t,0)$. It encloses the origin for $t=1/2$ and not for $t=3/2$. The two gaps look the same in the spectrum, and only the first chain is topological.
+    This is false. For the open chain of 40 sites we get two levels at $\pm7\times10^{-7}$ for $t=1/2$, inside the gap, and the lowest levels are at $\pm0.53$ for $t=3/2$. The weaker intracell bond gives the end states.
+
 :::

@@ -99,9 +99,9 @@ s_i \in \{\uparrow,\downarrow\}. \tag{7.4}\]</span></span></p>
 <img src="../figures/web/session07/memory_scaling.svg" loading="lazy" alt="The logarithm of the number of coefficients against the number of sites, with a steep straight line for the exact state and two almost flat curves for matrix product states." />
 <figcaption><strong>Schematic 7.2.</strong> The number of coefficients of the exact state <a href="#eq-7-4">(7.4)</a> doubles with every site, so on this logarithmic scale it is a straight line. The matrix product state <a href="04-the-matrix-product-state-ansatz.html#eq-7-5">(7.5)</a> needs only <span class="math inline">\(LM^2\)</span> numbers, which is an almost flat curve. Look at the dashed line, which marks one gigabyte of complex numbers. The exact state crosses it at about <span class="math inline">\(L=26\)</span> and has reached sixteen gigabytes at <span class="math inline">\(L=30\)</span>.</figcaption>
 </figure>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>We store the exact ground state of <span class="math inline">\(L=40\)</span> spin-1/2 sites as complex numbers of 16 bytes each. What memory do we need?</p>
@@ -110,18 +110,25 @@ Quick check
 <ol type="A">
 <li>About 17 terabytes, since <span class="math inline">\(2^{40}\approx 10^{12}\)</span> coefficients are needed.</li>
 <li>About 17 gigabytes, since <span class="math inline">\(2^{40}\)</span> is of the order of <span class="math inline">\(10^9\)</span>.</li>
-<li>About 17 megabytes, since the state is a vector.</li>
 <li>About 640 bytes, since there are 40 sites.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>The number of coefficients is <span class="math inline">\(2^{40}\approx1.1\times10^{12}\)</span> and each one takes 16 bytes. This is already far above the memory of a computer, and the next ten sites would multiply it by one thousand.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The number of coefficients is <span class="math inline">\(2^{40}\approx1.1\times10^{12}\)</span> and each one takes 16 bytes. This is already far above the memory of a computer, and ten more sites would multiply it by one thousand.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The value <span class="math inline">\(2^{30}\approx10^9\)</span> is the one for a chain of 30 sites, which does need <span class="math inline">\(1.7\times10^{10}\)</span> bytes. For <span class="math inline">\(L=40\)</span> the number is <span class="math inline">\(2^{40}\approx10^{12}\)</span>, a thousand times more.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. This would be the storage of a product state, one 16-byte number per site. Already for <span class="math inline">\(L=2\)</span> the singlet has two nonzero coefficients that cannot be written as a product of two single-site states.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="C">
+<div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>We add one more spin-1/2 site to the chain. How does the storage of the exact state <a href="#eq-7-4">(7.4)</a> change?</p>
@@ -131,12 +138,19 @@ Quick check
 <li>It grows by a fixed number of coefficients.</li>
 <li>It is multiplied by <span class="math inline">\(L\)</span>.</li>
 <li>It doubles.</li>
-<li>It does not change, since the new site is only one spin.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>C</strong>.</p>
-<p>Each new site doubles the dimension of the Hilbert space, so <span class="math inline">\(2^L\)</span> becomes <span class="math inline">\(2^{L+1}\)</span>. This is the exponential wall, and the MPS ansatz replaces it with a growth that is linear in <span class="math inline">\(L\)</span>.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Going from <span class="math inline">\(L=2\)</span> to <span class="math inline">\(L=3\)</span> adds 4 coefficients, from <span class="math inline">\(L=3\)</span> to <span class="math inline">\(L=4\)</span> adds 8, and from <span class="math inline">\(L=10\)</span> to <span class="math inline">\(L=11\)</span> adds 1024. The increase is not fixed.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. From <span class="math inline">\(L=2\)</span> to <span class="math inline">\(L=3\)</span> the number of coefficients goes from 4 to 8, and this is a factor 2 and not 3. The factor is 2 for every <span class="math inline">\(L\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. Each new site doubles the dimension of the Hilbert space, so <span class="math inline">\(2^L\)</span> becomes <span class="math inline">\(2^{L+1}\)</span>. This is the exponential wall, and the MPS ansatz replaces it with a growth that is linear in <span class="math inline">\(L\)</span>.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="notebookbox">

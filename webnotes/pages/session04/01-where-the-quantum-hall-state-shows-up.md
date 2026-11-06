@@ -4,7 +4,7 @@ The quantum Hall state is not the property of one specific material. It is a sta
 
 - **Semiconductor quantum wells**, historically gallium arsenide (GaAs), were the first platform. In these systems the electrons are essentially parabolic electrons, with the ordinary quadratic dispersion, and the relevant energy scale grows linearly with the magnetic field. For the fields that we can reach in a laboratory this gives roughly one millielectronvolt, and this is the reason why quantum Hall physics in GaAs needs temperatures of the order of one kelvin.
 
-- **Two-dimensional materials**, and graphene above all, realize the same physics but with Dirac electrons instead of parabolic ones. As we will derive explicitly below, the energy scale then grows as the square root of the field and not linearly. The slides give the concrete numbers, which are roughly two orders of magnitude larger, around 100 millielectronvolts. This is high enough that the quantum Hall plateaus of graphene survive up to about 100 K, and in the best samples up to almost room temperature.
+- **Two-dimensional materials**, and graphene above all, realize the same physics but with Dirac electrons instead of parabolic ones. As we will derive explicitly below, the energy scale then grows as the square root of the field and not linearly. The slides give the concrete numbers, which are roughly one order of magnitude larger, around 100 millielectronvolts at 10 T. This is high enough that the quantum Hall plateaus of graphene survive up to about 100 K, and in the best samples up to almost room temperature.
 
 For all these platforms the common point is the one we already saw in the last session. An observable, the Hall conductance, is exactly quantized, and this quantization comes from topology and not from the chemistry of a specific material.
 
@@ -13,12 +13,18 @@ For all these platforms the common point is the one we already saw in the last s
 ::: quiz
 The Landau level spacing of GaAs grows as $B$ and that of graphene as $\sqrt{B}$. By which factors do the two spacings grow if we multiply the field by 4?
 
-- [x] By 4 for GaAs and by 2 for graphene.
 - [ ] By 2 for GaAs and by 2 for graphene.
-- [ ] By 4 for GaAs and by 4 for graphene.
+
+    This is false. The GaAs spacing $\hbar\omega_c$ is about $1.7$ meV at 1 T and $6.9$ meV at 4 T, which is a factor 4 and not 2.
+
+- [x] By 4 for GaAs and by 2 for graphene.
+
+    This is true. A linear law multiplies the spacing by the same factor as the field, and a square-root law by its square root. For graphene, $E_1$ goes from about 36 meV at 1 T to 73 meV at 4 T.
+
 - [ ] By 2 for GaAs and by 4 for graphene.
 
-A linear law multiplies the spacing by the same factor as the field. A square-root law multiplies it by the square root of that factor.
+    This is false. This swaps the two laws. The graphene level $E_1\approx 36\,\mathrm{meV}\sqrt{B/\mathrm{T}}$, for $v=10^6$ m/s, is 36 meV at 1 T and 73 meV at 4 T, a factor 2 and not 4.
+
 :::
 
 ## Measuring the Hall conductance {#sec-4-2 number="4.2"}
@@ -30,10 +36,16 @@ A real device for this measurement is a two-dimensional electron gas (2DEG) with
 ::: quiz
 Why do the quantum Hall plateaus of graphene survive to a much higher temperature than those of a GaAs quantum well?
 
-- [x] The spacing between its Landau levels is about two orders of magnitude larger. A much higher thermal energy is then needed to mix the levels.
 - [ ] The Hall conductance of graphene is larger.
-- [ ] Graphene has more Landau levels below the chemical potential.
+
+    This is false. The plateau at $2e^2/h$ has the same value in GaAs and in graphene, and the value is an integer times $e^2/h$ in both. What differs is the temperature up to which it survives.
+
+- [x] The spacing between its Landau levels is several times larger. A much higher thermal energy is then needed to mix the levels.
+
+    This is true. At 10 T the GaAs spacing is about 17 meV and the first graphene gap is about 115 meV, roughly seven times larger. The plateau needs the thermal energy to be small compared with the gap.
+
 - [ ] Graphene has no disorder.
 
-A plateau needs the thermal energy to be small compared with the gap between Landau levels. The larger gap of graphene, around 100 meV, keeps this true up to about 100 K.
+    This is false. Graphene on a substrate has charge puddles and impurities, and the plateaus survive anyway. What matters is a large gap to the next level, and not the absence of disorder.
+
 :::

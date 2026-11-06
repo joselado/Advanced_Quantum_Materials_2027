@@ -91,9 +91,9 @@
 S|\psi\rangle = \langle\psi|\psi\rangle\)</span> gives <span class="math inline">\(|\lambda|^2=1\)</span> for any eigenvalue <span class="math inline">\(\lambda\)</span>. So a symmetry eigenvalue can always be written as a pure phase,</p>
 <p><span id="eq-2-2" class="eq"><span class="math display">\[S|\psi\rangle = e^{i\varphi}|\psi\rangle, \qquad \varphi \in (-\pi,\pi]. \tag{2.2}\]</span></span></p>
 <p>Before we include a Hamiltonian, let us look at two small examples. We take a wavefunction with real, staggered values <span class="math inline">\((+1,-1,+1,-1)\)</span> on four sites on a ring, and we apply a <span class="math inline">\(90^\circ\)</span> rotation that shifts the sites by one in a cyclic way. The transformed wavefunction is <span class="math inline">\((-1,+1,-1,+1)\)</span>, which is <span class="math inline">\(-1\)</span> times the original. So this state is an eigenstate of the rotation with eigenvalue <span class="math inline">\(-1\)</span>, that is <span class="math inline">\(\varphi=\pi\)</span> in <a href="#eq-2-2">(2.2)</a>. Now we take a complex wavefunction <span class="math inline">\((+1,-i,-1,i)\)</span> on the same ring and apply the same rotation. The transformed wavefunction is <span class="math inline">\(i\)</span> times the original, so it is an eigenstate with eigenvalue <span class="math inline">\(i\)</span>, that is <span class="math inline">\(\varphi=\pi/2\)</span>.</p>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>On the four-site ring the rotation moves every amplitude to the next site, as above. What is the eigenvalue of the state <span class="math inline">\((1,i,-1,-i)\)</span>?</p>
@@ -102,13 +102,23 @@ Quick check
 <ol type="A">
 <li><span class="math inline">\(i\)</span></li>
 <li><span class="math inline">\(-i\)</span></li>
-<li><span class="math inline">\(-1\)</span></li>
 <li><span class="math inline">\(1\)</span></li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The shifted state is <span class="math inline">\((-i,1,i,-1)\)</span>, which is <span class="math inline">\(-i\)</span> times the original. So the state is an eigenstate with eigenvalue <span class="math inline">\(-i\)</span>, that is <span class="math inline">\(\varphi=-\pi/2\)</span>.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The shifted state is <span class="math inline">\((-i,1,i,-1)\)</span>. An eigenvalue <span class="math inline">\(i\)</span> would give <span class="math inline">\((i,-1,-i,1)\)</span>, and the first components <span class="math inline">\(-i\)</span> and <span class="math inline">\(i\)</span> differ.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The shifted state is <span class="math inline">\((-i,1,i,-1)\)</span>, which is <span class="math inline">\(-i\)</span> times the original. So the state is an eigenstate with eigenvalue <span class="math inline">\(-i\)</span>, that is <span class="math inline">\(\varphi=-\pi/2\)</span> in <a href="#eq-2-2">(2.2)</a>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. An eigenvalue <span class="math inline">\(1\)</span> would leave the state unchanged, but the first component goes from <span class="math inline">\(1\)</span> to <span class="math inline">\(-i\)</span>. The state with eigenvalue <span class="math inline">\(1\)</span> is <span class="math inline">\((1,1,1,1)\)</span>.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>Applying the rotation once and comparing with the original state gives the eigenvalue directly.</p>
+</div>
 </details>
 </div>
 <p>The next example is less visual but more useful in practice. A two-site tight-binding Hamiltonian with a single hopping <span class="math inline">\(t\)</span> between sites 1 and 2,</p>
@@ -121,9 +131,9 @@ Quick check
 <p>We now come to the central fact of this session. Let us assume that a Hamiltonian is invariant under a symmetry operation, <span class="math inline">\(SHS^{-1} = SHS^\dagger = H\)</span>, which is the same as the statement</p>
 <p><span id="eq-2-3" class="eq"><span class="math display">\[[H,S] = 0. \tag{2.3}\]</span></span></p>
 <p>From linear algebra we know that two operators that commute have a common eigenbasis. So whenever <a href="#eq-2-3">(2.3)</a> holds, every eigenstate of <span class="math inline">\(H\)</span> can be chosen so that it is also an eigenstate of <span class="math inline">\(S\)</span>. In the words of the lecturer, this is perhaps the most important idea of this session. The reason for this is that it is very often much easier to classify the eigenstates of a symmetry operator, whose eigenvalue is a simple phase by <a href="#eq-2-2">(2.2)</a>, than to classify the eigenstates of the Hamiltonian directly. In practice, this means that to find all the symmetries of the Hamiltonian is the first step to solve it, and the most useful one, not a side remark. Once we know that a matrix <span class="math inline">\(S\)</span> commutes with <span class="math inline">\(H\)</span>, to classify the eigenstates of <span class="math inline">\(S\)</span> is the same task as to classify the eigenstates of <span class="math inline">\(H\)</span>.</p>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>A Hamiltonian commutes with <span class="math inline">\(S\)</span>, and <span class="math inline">\(\psi\)</span> is a nondegenerate eigenstate of <span class="math inline">\(H\)</span>. What do we know about <span class="math inline">\(S\psi\)</span>?</p>
@@ -133,12 +143,22 @@ Quick check
 <li>It is proportional to <span class="math inline">\(\psi\)</span>, with a phase as the factor.</li>
 <li>It is orthogonal to <span class="math inline">\(\psi\)</span>.</li>
 <li>It has a different energy than <span class="math inline">\(\psi\)</span>.</li>
-<li>It has no definite energy.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>Since <span class="math inline">\([H,S]=0\)</span>, the state <span class="math inline">\(S\psi\)</span> is an eigenstate with the same energy. The level is nondegenerate, so <span class="math inline">\(S\psi\)</span> can differ from <span class="math inline">\(\psi\)</span> only by a number, which is a phase by <a href="#eq-2-2">(2.2)</a>.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. Since <span class="math inline">\([H,S]=0\)</span>, the state <span class="math inline">\(S\psi\)</span> is an eigenstate with the same energy. The level is nondegenerate, so <span class="math inline">\(S\psi\)</span> can differ from <span class="math inline">\(\psi\)</span> only by a number, which is a phase by <a href="#eq-2-2">(2.2)</a>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. Take a ring with nearest-neighbor hopping and the rotation <span class="math inline">\(S\)</span>. The state <span class="math inline">\((1,1,1,1)/2\)</span> is the nondegenerate ground state, and <span class="math inline">\(S\psi=\psi\)</span>, so the overlap <span class="math inline">\(\langle\psi|S\psi\rangle=1\)</span> is not zero.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. On the ring, <span class="math inline">\(S\psi\)</span> is again a Fourier mode with <span class="math inline">\(\epsilon=-2t\cos\varphi\)</span>, the same energy as <span class="math inline">\(\psi\)</span>. In general <span class="math inline">\(HS\psi=SH\psi=ES\psi\)</span>.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The symmetry maps the eigenstate into the same level, and a single level leaves only a phase.</p>
+</div>
 </details>
 </div>
 

@@ -14,20 +14,32 @@ which has ferromagnetic order ($|m|\to 1$) below a critical temperature $T_c$ an
 A snapshot of the two-dimensional Ising model has $|m|=0.93$. On which side of $T_c$ was it taken?
 
 - [ ] Above $T_c$, since the spins look random from site to site.
+
+    This is false. Random-looking spins give $m\approx0$. For $N=64^2=4096$ spins far above $T_c$ the typical value is $1/\sqrt N\approx0.016$, so $0.93$ is not random-looking.
+
 - [x] Below $T_c$, in the ordered phase.
+
+    This is true. For $N=4096$ the fluctuation of $m$ far above $T_c$ is about $0.016$, so $|m|=0.93$ is more than $50$ standard deviations. The snapshot comes from the ordered phase.
+
 - [ ] We cannot say from one snapshot, since $m$ fluctuates.
 
-For a large system the fluctuations of $m$ in the disordered phase are of order $1/\sqrt N$, so a value of $0.93$ cannot appear there. This is why a single snapshot is enough for the local order parameter.
+    This is false. The fluctuations of $m$ are small for a large system, about $0.016$ for $N=4096$ far above $T_c$. A single snapshot with $0.93$ is therefore enough to decide.
 :::
 
 ::: quiz
 We train the classifier of Section [10.2](#sec-10-2) on Ising snapshots. What are the input and the output?
 
 - [x] The $N\times N$ array of spins as input, and a one-hot label for ordered or disordered as output.
+
+    This is true. The network sees the spin array, and the label is the phase at which it was sampled. With this the network can find the transition without being told the local order parameter.
+
 - [ ] The temperature as input, and the magnetization as output.
+
+    This is false. If the temperature is the input, the answer is a comparison with $T_c$, which we must already know. The network would learn nothing about the snapshot.
+
 - [ ] The energy of the snapshot as input, and the critical temperature as output.
 
-The architecture is the same as for the cats and dogs, since only the array and the categorical label are needed. The label comes from the temperature at which the snapshot was generated.
+    This is false. The critical temperature $T_c=2.27J$ is a property of the model and not of a snapshot. An output that is the same constant for every input is not a classifier.
 :::
 
 Next we will see a model where this simple test fails.

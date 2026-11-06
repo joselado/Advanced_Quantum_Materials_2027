@@ -21,12 +21,19 @@ The same argument also works for a less simple shape. Let us replace the infinit
 ::: quiz
 A point sits on the mirror axis of the egg-shaped charge. Which direction can the electric field have there?
 
-- [x] Along the axis.
 - [ ] Perpendicular to the axis.
-- [ ] At $45^\circ$ to the axis.
+
+    This is false. Take two equal charges at $(0,\pm d)$ and a point $(x,0)$ on the axis. The components along $y$ cancel, and the field points along $x$ only.
+
+- [x] Along the axis.
+
+    This is true. A component perpendicular to the axis is mapped by the mirror to the opposite component. The point lies on the axis, so the two are the field at the same point, and this component has to vanish.
+
 - [ ] Any direction, since the charge is not a plane.
 
-A component perpendicular to the axis is mapped by the mirror to the opposite component. The point lies on the axis, so both are the field at the same point, and this component has to vanish.
+    This is false. The mirror symmetry belongs to the whole charge and does not need a plane. The two point charges above are not a plane, and still the field on the axis is along the axis.
+
+Only the components that the mirror leaves unchanged can survive on the axis.
 :::
 
 Mirrors are only the simplest case. A circle stays the same under any rotation. A square stays the same only under rotations by $90^\circ$, $180^\circ$, and $270^\circ$, and a shape with less symmetry may stay the same only under a single mirror. Quantum systems can have much richer symmetries, which are also much less obvious than these, and in the following we turn this richer structure into a systematic tool.
@@ -35,9 +42,16 @@ Mirrors are only the simplest case. A circle stays the same under any rotation. 
 How many rotations, counting the identity, leave a square unchanged?
 
 - [ ] $2$
-- [x] $4$
-- [ ] $8$
-- [ ] Infinitely many.
 
-The rotations by $0^\circ$, $90^\circ$, $180^\circ$ and $270^\circ$ map the square to itself, and any other angle does not. A circle, on the other hand, has infinitely many.
+    This is false. A rotation by $90^\circ$ maps every corner of the square to the next corner, so the square looks the same. We have at least $0^\circ$, $90^\circ$, $180^\circ$ and $270^\circ$.
+
+- [x] $4$
+
+    This is true. The rotations by $0^\circ$, $90^\circ$, $180^\circ$ and $270^\circ$ map the square to itself, and any other angle does not.
+
+- [ ] $8$
+
+    This is false. A rotation by $45^\circ$ moves a corner to the middle of an edge, so the square becomes a diamond. The number $8$ counts the rotations and the four mirrors together.
+
+Counting the mirrors too, the square has eight symmetry operations, and four of them are rotations.
 :::

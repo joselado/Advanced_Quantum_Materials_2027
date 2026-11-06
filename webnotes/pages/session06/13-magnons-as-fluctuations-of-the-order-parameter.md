@@ -25,11 +25,16 @@ a_i\rangle\ll S$ everywhere, which is the condition under which we can expand th
 We create one magnon on top of the saturated ferromagnet. Which operator does it, and how does the total $S^z$ change?
 
 - [x] $S^-$ creates it, and the total $S^z$ decreases by one.
-- [ ] $S^+$ creates it, and the total $S^z$ increases by one.
-- [ ] $S^-$ creates it, and the total $S^z$ does not change.
-- [ ] $S^+$ creates it, and the total $S^z$ decreases by one.
 
-The boson number counts the spin removed from saturation, and $\sum_i\langle S_i^z\rangle=NS-\sum_i\langle a_i^\dagger a_i\rangle$. The lowering operator $S^-$ creates a boson, so the total $S^z$ drops by one unit.
+    This is true. The boson number counts the spin removed from saturation, so $\sum_i\langle S_i^z\rangle=NS-\sum_i\langle a_i^\dagger a_i\rangle$. The lowering operator $S^-$ creates a boson and reduces $S^z$ by one.
+
+- [ ] $S^+$ creates it, and the total $S^z$ increases by one.
+
+    This is false. On the saturated state with all spins up, $S^+_i|\uparrow\rangle=0$. Nothing is created, because $S^z=S$ is already the maximum.
+
+- [ ] $S^-$ creates it, and the total $S^z$ does not change.
+
+    This is false. Take two spin-$1/2$ sites. The state $|\uparrow\uparrow\rangle$ has $S^z=1$, and $S_1^-$ gives $|\downarrow\uparrow\rangle$ with $S^z=0$, so the total changes by one.
 :::
 
 We insert [(6.7)](#eq-6-7) into the ferromagnetic Heisenberg Hamiltonian, $H = J\sum_{\langle ij\rangle}

@@ -20,20 +20,32 @@ exp}$. The concrete example of the lecture was a two-dimensional spectroscopy of
 Why do we train the network of [(10.12)](#eq-10-12) on simulated observables, and not on measured ones?
 
 - [ ] Simulated data are always more accurate than measurements.
+
+    This is false. A mean-field simulation of a strongly correlated model can be wrong compared to the experiment. Even so, it gives the exact $\lambda_n$ of its own input, which is what training needs.
+
 - [x] There are few measurements, and the Hamiltonian that produced them is unknown, while a simulation gives the answer $\lambda_n$ by construction.
+
+    This is true. A measurement does not come with its $\lambda_n$, since this is what we want to find. A simulation gives a pair $(\mathcal O,\lambda)$ for each run, so we can make $10^5$ pairs.
+
 - [ ] Measured data cannot be written as arrays of numbers.
 
-A supervised network needs pairs of an input and a known answer. The forward methods of the course give as many pairs as we want, and the real measurement is used only once, at the end.
+    This is false. A measured dI/dV is an array, for example $200$ values of the voltage, and it can be the input of the network. At the end it is the input of the trained network.
 :::
 
 ::: quiz
 Many different values of $\lambda$ give nearly the same observable $\mathcal{O}$. What is the consequence for the inverse map?
 
 - [ ] The inverse map is not defined for any observable.
+
+    This is false. For a chain with $t>0$ the bandwidth is $4t$, so $\mathcal O$ fixes $t$ and the inverse map exists. It is not defined only where the observable is not enough.
+
 - [x] The network gives only an estimate with an uncertainty, and the hidden variables $\mu$ must be covered by the training set.
+
+    This is true. A chain with $t$ and a chain with $-t$ have the same density of states. The network cannot give the sign, so it gives an estimate with an uncertainty and we must cover $\mu$ in training.
+
 - [ ] The network must always give the exact $\lambda$, since the loss [(10.12)](#eq-10-12) is zero for the training pairs.
 
-A degenerate map cannot be inverted exactly. We train on data that sample the nuisance variables $\mu$ too, so the network learns to average over them, and the answer is a best estimate.
+    This is false. The pairs $(\mathcal O,t)$ and $(\mathcal O,-t)$ have the same input and different labels. The mean-square loss is minimal when the network gives the mean of the two labels, which is $0$, and then the loss is $t^2$ and not zero.
 :::
 
 This is the mirror image of the starting point of session 1, and we want to stop for a moment on this symmetry. In nine sessions we built more and more sophisticated ways to go from a Hamiltonian to an observable. These are mean-field decoupling, Bloch's theorem, topological invariants, Landau levels, Nambu spinors, magnon spectra, tensor-network ground states, parton constructions and response functions. Hamiltonian learning does not leave any of these behind. Instead, it uses the same forward methods, run many times on synthetic data, as the training set to learn how to run the process in reverse. In this sense, the method of the course and the final method of the course are the same method, applied in opposite directions.

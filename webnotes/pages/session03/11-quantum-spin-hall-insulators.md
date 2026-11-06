@@ -17,11 +17,17 @@ The total Chern number $C$ vanishes, in agreement with the unbroken time-reversa
 The two spin sectors have $C_\uparrow=+1$ and $C_\downarrow=-1$. What are the charge Hall conductivity and the edge of this insulator?
 
 - [ ] $e^2/h$ and one chiral mode at each edge.
-- [ ] $2e^2/h$ and two chiral modes at each edge.
+
+    This is false. The charge Hall conductivity adds the two sectors, and gives $(e^2/h)(1-1)=0$. A value $e^2/h$ would need both spins to have $C=+1$.
+
 - [x] Zero, and a helical pair of modes at each edge.
+
+    This is true. The charge Hall conductivity is proportional to $C=0$. Each spin sector still has its own edge mode, and the two propagate in opposite directions on the same edge, which is a helical pair.
+
 - [ ] Zero, and no edge states, since the two spins cancel.
 
-The charge Hall conductivity is proportional to $C=0$. Each spin sector still has its own edge mode. The two propagate in opposite directions on the same edge, which is a helical pair.
+    This is false. The cancellation is only in the charge current. Each spin sector alone is a Chern insulator with $|C|=1$ and has one edge mode, and only the sum of the two Hall conductivities vanishes.
+
 :::
 
 The natural mechanism that gives this opposite-sign mass is spin-orbit coupling. The relativistic spin-orbit term has the structure $\mathbf{L}\cdot\mathbf{S}$, and its $z$-component, $L_zS_z$, acts like an effective magnetic field that points in one direction for spin-up electrons and in the opposite direction for spin-down electrons. This is the opposite-sign mass structure that [(3.9)](#eq-3-9) needs, and it appears with no net magnetic field and no net breaking of time-reversal symmetry. Graphene itself, when we include its intrinsic spin-orbit coupling, which is very small, is technically a quantum spin Hall insulator through this mechanism. The effect is much larger, and accessible in experiments, in monolayer 1T$'$-WTe$_2$, where the quantum spin Hall effect survives up to 100 K.

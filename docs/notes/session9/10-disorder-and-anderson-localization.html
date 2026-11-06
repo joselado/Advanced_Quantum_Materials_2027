@@ -100,9 +100,9 @@
 <img src="../figures/s09f06_localization.svg" loading="lazy" alt="The three regimes of Section 9.10, shown through their effect on an eigenstate of a chain of N=89 sites, with the weight |\psi_i|^2 of each site as a column." />
 <figcaption><strong>Figure 9.6.</strong> The three regimes of Section <a href="#sec-9-10">9.10</a>, shown through their effect on an eigenstate of a chain of <span class="math inline">\(N=89\)</span> sites, with the weight <span class="math inline">\(|\psi_i|^2\)</span> of each site as a column. (a) With a periodic potential every eigenstate is a Bloch wave, with weight exactly <span class="math inline">\(1/N\)</span> on every site, and this height becomes smaller as the chain grows. (b) At the self-dual point of the quasiperiodic model the state is neither extended nor localized. It has structure on every length scale at the same time, with large peaks and smaller copies of the same pattern between them, and this state is called critical, or multifractal. (c) With really random disorder the state is concentrated on a few sites and it is strictly zero, to numerical precision, over most of the chain. <em>Note the three different vertical scales.</em> For this reason we need a number and not a visual check, and this number is the inverse participation ratio <a href="#eq-9-12">(9.12)</a>. (d) The IPR separates the three regimes clearly by how it scales with system size, with <span class="math inline">\(\mathrm{IPR}\sim 1/N\)</span> for extended states, <span class="math inline">\(\mathrm{IPR}\sim O(1)\)</span> for localized ones, and an anomalous power <span class="math inline">\(N^{-\tau}\)</span> with <span class="math inline">\(0&lt;\tau&lt;1\)</span> for the critical state between them, here computed for <span class="math inline">\(N=34\)</span> to <span class="math inline">\(610\)</span>. On a log-log plot these are three straight lines with three different slopes.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>A normalized state has the same weight on <span class="math inline">\(10\)</span> sites of a chain and zero weight elsewhere. What is its <span class="math inline">\(\mathrm{IPR}\)</span> of <a href="#eq-9-12">(9.12)</a>, and how does it change if the chain grows?</p>
@@ -114,14 +114,22 @@ Quick check
 <li><span class="math inline">\(10/N\)</span>, and it decreases as the chain grows.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>Each of the <span class="math inline">\(10\)</span> sites has <span class="math inline">\(|\psi_i|^2=1/10\)</span>, so <span class="math inline">\(\sum_i|\psi_i|^4=10/100=1/10\)</span>. The state does not know about the rest of the chain, which is what a localized state means.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The value <span class="math inline">\(1/N\)</span> is the IPR of an extended state. For <span class="math inline">\(N=100\)</span> our state has <span class="math inline">\(0.1\)</span>, ten times more than <span class="math inline">\(1/N=0.01\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. For ten sites with <span class="math inline">\(|\psi_i|^2=1/10\)</span> the sum is <span class="math inline">\(10\times(1/10)^2=0.1\)</span>. If the chain grows from <span class="math inline">\(N=100\)</span> to <span class="math inline">\(10^4\)</span> sites, the value stays <span class="math inline">\(0.1\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The value <span class="math inline">\(10/N\)</span> would be <span class="math inline">\(0.001\)</span> for <span class="math inline">\(N=10^4\)</span>. The state still sits on ten sites, so its IPR is <span class="math inline">\(0.1\)</span> and not smaller.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="C">
+<div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>We double the size of the chain, and the <span class="math inline">\(\mathrm{IPR}\)</span> of a state changes by a factor <span class="math inline">\(0.7\)</span>. Which regime is this?</p>
@@ -133,9 +141,17 @@ Quick check
 <li>Critical, with <span class="math inline">\(N^{-\tau}\)</span> and <span class="math inline">\(\tau\approx0.5\)</span>.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>C</strong>.</p>
-<p>An extended state gives a factor <span class="math inline">\(0.5\)</span> and a localized state gives a factor <span class="math inline">\(1\)</span>. A factor <span class="math inline">\(2^{-\tau}=0.7\)</span> means <span class="math inline">\(\tau\approx0.5\)</span>, which is between the two, and this is the multifractal signature.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. An extended state has <span class="math inline">\(\mathrm{IPR}=1/N\)</span>, so doubling <span class="math inline">\(N\)</span> gives a factor <span class="math inline">\(0.5\)</span>. A factor <span class="math inline">\(0.7\)</span> is not this, even if the IPR decreases.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. A localized state does not change at all, so its factor is <span class="math inline">\(1\)</span>. The factor <span class="math inline">\(0.7\)</span> is not equal to one, and a finite IPR is not enough.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. The factor is <span class="math inline">\(2^{-\tau}=0.7\)</span>, so <span class="math inline">\(\tau\approx0.5\)</span>. Extended states give <span class="math inline">\(\tau=1\)</span> and a factor <span class="math inline">\(0.5\)</span>, localized states give <span class="math inline">\(\tau=0\)</span> and a factor <span class="math inline">\(1\)</span>, so this is between them.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="tryit">

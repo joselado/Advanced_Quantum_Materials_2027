@@ -103,9 +103,9 @@
 <img src="../figures/s10f04_dftml.svg" loading="lazy" alt="Where machine learning enters density functional theory, and why the two entry points are different ideas." />
 <figcaption><strong>Figure 10.4.</strong> Where machine learning enters density functional theory, and why the two entry points are different ideas. The Kohn-Sham loop <a href="#eq-10-8">(10.8)</a>, the ring in the middle, turns the problem into a self-consistent single-particle problem. <strong>Route 1</strong> replaces the unknown exchange-correlation part by a trained network. This is more accurate, but the diagonalization stays inside the loop, and the diagonalization, not <span class="math inline">\(v_{\rm xc}\)</span>, is what limits the system size. <strong>Route 2</strong> learns the Hohenberg-Kohn map <span class="math inline">\(v_{\rm ext}\mapsto n\)</span> directly, trained on conventional Kohn-Sham results for small systems, and then does no diagonalization at all, so the whole loop is skipped. Only route 2 changes which systems we can compute, while route 1 only changes how good the answer is.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>A network is trained to give the exchange-correlation potential <span class="math inline">\(v_{\rm xc}\)</span> with high accuracy, and it is used inside the Kohn-Sham loop. Does this change the largest system that we can compute?</p>
@@ -117,14 +117,22 @@ Quick check
 <li>Yes, since <span class="math inline">\(v_{\rm xc}\)</span> is the most expensive part of the loop.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The cost of the loop is the diagonalization, and a better <span class="math inline">\(v_{\rm xc}\)</span> does not change it. Only the second route, which maps <span class="math inline">\(v_{\rm ext}\)</span> to <span class="math inline">\(n\)</span> directly, skips the loop.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The Kohn-Sham Hamiltonian <span class="math inline">\(-\nabla^2/2+v_{\rm ext}+v_H+v_{\rm xc}\)</span> is still a matrix. We need its orbitals to build the density, so the diagonalization stays.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. Diagonalization costs about <span class="math inline">\(N^3\)</span>, and a local <span class="math inline">\(v_{\rm xc}(n)\)</span> costs only about <span class="math inline">\(N\)</span> per evaluation. For <span class="math inline">\(N=1000\)</span> orbitals this is <span class="math inline">\(10^9\)</span> against <span class="math inline">\(10^3\)</span>, so a better <span class="math inline">\(v_{\rm xc}\)</span> does not change the limit.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. In LDA the <span class="math inline">\(v_{\rm xc}\)</span> is a function of the local density, and its cost is small compared with the diagonalization. A network does not make this part larger or the limit different.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>In the Hohenberg-Kohn theorem, which of the two arrows is a simple integral?</p>
@@ -136,9 +144,17 @@ Quick check
 <li>Both are integrals, since the density contains the same information as <span class="math inline">\(\psi_0\)</span>.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>The arrow <span class="math inline">\(\psi_0\to n\)</span> integrates out <span class="math inline">\(N-1\)</span> coordinates. The reverse arrow is guaranteed to exist by the theorem, but it has no formula, and this is where a network can be trained to act.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The density is <span class="math inline">\(n(\mathbf r)=N\int|\psi_0|^2\)</span> over <span class="math inline">\(N-1\)</span> coordinates, which is an integral. The reverse needs one to solve for <span class="math inline">\(\psi_0\)</span> in <span class="math inline">\(3N\)</span> dimensions with no formula.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. For one electron <span class="math inline">\(\psi_0=\sqrt n\)</span> up to a phase, but already for <span class="math inline">\(N=2\)</span> no formula exists. The theorem says that <span class="math inline">\(\psi_0\)</span> is unique, and it does not say how to find it.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. An integral loses information, and many functions give the same density. The state <span class="math inline">\(\psi\)</span> and <span class="math inline">\(\psi e^{i\phi(\mathbf r_1,\mathbf r_2)}\)</span> have the same <span class="math inline">\(n\)</span>, so one cannot invert it by integration.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <p>This part also comes from the slides and the transcript and has no notebook counterpart. DFT calculations were never part of the numerical tools of this course, since <code>pyqula</code> is a tight-binding and mean-field library and not a DFT code, so there is nothing to point you to beyond the derivation above.</p>

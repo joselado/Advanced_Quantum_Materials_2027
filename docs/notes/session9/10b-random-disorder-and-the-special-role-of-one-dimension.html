@@ -91,9 +91,9 @@
 <img src="../figures/web/session09/localization_length.svg" loading="lazy" alt="Localization length against disorder strength on logarithmic axes, falling along a straight line of slope minus two, with a horizontal line at one hundred sites." />
 <figcaption><strong>Schematic 9.7.</strong> The localization length <span class="math inline">\(\xi\)</span> of the random chain, from a transfer matrix at <span class="math inline">\(E=0\)</span> with <span class="math inline">\(2\times10^5\)</span> sites and <span class="math inline">\(w_n\)</span> uniform in <span class="math inline">\([-W,W]\)</span>, on logarithmic axes. For weak disorder the points follow a line of slope <span class="math inline">\(-2\)</span>, and the fitted slope is <span class="math inline">\(-2.0\)</span>, which is <span class="math inline">\(\xi\propto(t/W)^2\)</span>. The red line is a sample of <span class="math inline">\(100\)</span> sites. For <span class="math inline">\(W\)</span> below about <span class="math inline">\(0.5t\)</span> the localization length is longer than the sample, so the sample still looks metallic.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>In the one-dimensional chain at weak disorder we reduce <span class="math inline">\(W\)</span> by a factor <span class="math inline">\(2\)</span>. By which factor does the localization length <span class="math inline">\(\xi\)</span> change?</p>
@@ -105,14 +105,22 @@ Quick check
 <li>It does not change, since any disorder localizes every state.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>For weak disorder <span class="math inline">\(\xi\propto(t/W)^2\)</span>, so halving <span class="math inline">\(W\)</span> gives a factor <span class="math inline">\(4\)</span>. The states are still localized, but over a length that grows quickly as <span class="math inline">\(W\to0\)</span>.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. For <span class="math inline">\(\xi\propto(t/W)^2\)</span> the dependence is quadratic. Going from <span class="math inline">\(W=0.5t\)</span> to <span class="math inline">\(0.25t\)</span> gives <span class="math inline">\(\xi\)</span> a factor <span class="math inline">\(4\)</span>, and not <span class="math inline">\(2\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. With <span class="math inline">\(\xi\propto(t/W)^2\)</span>, halving <span class="math inline">\(W\)</span> multiplies <span class="math inline">\(\xi\)</span> by <span class="math inline">\(2^2=4\)</span>. A state with <span class="math inline">\(\xi=100\)</span> sites becomes <span class="math inline">\(400\)</span> sites, and it is still localized.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. Any disorder localizes, but <span class="math inline">\(\xi\)</span> depends on <span class="math inline">\(W\)</span>. For <span class="math inline">\(\xi=100\)</span> sites a chain of <span class="math inline">\(20\)</span> sites looks extended, and reducing <span class="math inline">\(W\)</span> makes <span class="math inline">\(\xi\)</span> larger.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>In <span class="math inline">\(d=3\)</span> the disorder is above <span class="math inline">\(W_c\)</span>, and the Fermi level is in the region of localized states. Which statement describes the Anderson insulator?</p>
@@ -120,13 +128,21 @@ Quick check
 <div class="quiz-options">
 <ol type="A">
 <li>It has a gap in the density of states, as a band insulator has.</li>
-<li>It has states at every energy, but the states cannot carry current.</li>
+<li>It has states at every energy of the band, but the states cannot carry current.</li>
 <li>It has extended states at the Fermi level, with a small conductivity.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The density of states stays finite across the Fermi level, so there is no spectral gap. The localized states are not connected by transport at zero temperature, and so the system has a transport gap.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. A band insulator has no states at the Fermi level. In the Anderson insulator at <span class="math inline">\(W=20t\)</span> the density of states at the band center is about <span class="math inline">\(1/W=0.05/t\)</span> per site, which is finite.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The density of states is finite inside the band, so there is no spectral gap. Localized states at different positions do not connect, so at <span class="math inline">\(T=0\)</span> the conductance falls as <span class="math inline">\(e^{-L/\xi}\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. Above <span class="math inline">\(W_c\)</span> the mobility edges have met at the band center, so no extended state is left at the Fermi level. The conductance of a sample of length <span class="math inline">\(L\)</span> decays as <span class="math inline">\(e^{-L/\xi}\)</span>, so it goes to zero for large <span class="math inline">\(L\)</span>.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="tryit">

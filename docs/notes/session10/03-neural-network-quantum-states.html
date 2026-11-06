@@ -95,9 +95,9 @@
 <img src="../figures/s10f01_networktemplate.svg" loading="lazy" alt="A deep network with an input picture, hidden layers and a one-hot output, next to the training loop of evaluation, loss, gradient and update." />
 <figcaption><strong><a href="01-machine-learning-and-many-body-physics-in-two-directions.html#fig:s10:template">Figure 10.1</a>, shown again.</strong> The template of Section <a href="01-machine-learning-and-many-body-physics-in-two-directions.html#sec-10-2">10.2</a>, now used for a wavefunction. The picture on the input becomes a spin configuration <span class="math inline">\(s\)</span>, the output becomes the single coefficient <span class="math inline">\(C_\theta(s)\)</span>, and the loss of the training loop is the variational energy <a href="#eq-10-3">(10.3)</a> in place of the squared error of <a href="01-machine-learning-and-many-body-physics-in-two-directions.html#eq-10-1">(10.1)</a>.</figcaption>
 </figure>
-<div class="quiz" data-correct="C">
+<div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>A wavefunction of <span class="math inline">\(L=40\)</span> spins is stored as a table of complex coefficients in double precision. How much memory does the table need?</p>
@@ -109,14 +109,22 @@ Quick check
 <li>About <span class="math inline">\(10^{12}\)</span> numbers, which is roughly <span class="math inline">\(16\)</span> terabytes.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>C</strong>.</p>
-<p>The table has <span class="math inline">\(2^{40}\approx1.1\times10^{12}\)</span> coefficients, and each one takes <span class="math inline">\(16\)</span> bytes. A network with a few thousand parameters generates the same coefficients on demand and never stores the table.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. A product state of <span class="math inline">\(40\)</span> spins needs only <span class="math inline">\(80\)</span> numbers, but a generic entangled state has <span class="math inline">\(2^{40}\)</span> independent amplitudes. A table of <span class="math inline">\(40^2\)</span> numbers does not describe it.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. <span class="math inline">\(10^6\)</span> numbers is about <span class="math inline">\(2^{20}\)</span>, so this table is the size for <span class="math inline">\(20\)</span> spins, about <span class="math inline">\(16\)</span> MB. For <span class="math inline">\(40\)</span> spins it is a factor <span class="math inline">\(10^6\)</span> too small.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. There are <span class="math inline">\(2^{40}\approx1.1\times10^{12}\)</span> coefficients of <span class="math inline">\(16\)</span> bytes, which is <span class="math inline">\(1.8\times10^{13}\)</span> bytes, roughly <span class="math inline">\(16\)</span> TiB. A network with a few thousand parameters avoids this table.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>For a spin chain whose ground-state energy we know exactly, a student finds <span class="math inline">\(E[\theta]\)</span> clearly below it, well beyond the statistical error. What should we conclude?</p>
@@ -128,9 +136,17 @@ Quick check
 <li>The network is too small, so it should be made larger.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The variational energy is bounded from below by the true ground-state energy for every state, whatever the architecture. A value below it signals an error in the Hamiltonian, in the local energy or in the sampling.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Expand the state in eigenstates, so <span class="math inline">\(E=\sum_n|c_n|^2E_n\geq E_0\)</span>. For the two-site Heisenberg model <span class="math inline">\(E_0=-3J/4\)</span>, so a value <span class="math inline">\(-0.8J\)</span> cannot be a state energy.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. Every normalized state has <span class="math inline">\(E\geq E_0\)</span> by the variational principle of <a href="#eq-10-3">(10.3)</a>. A value below <span class="math inline">\(E_0\)</span> beyond the error points to a bug in <span class="math inline">\(H\)</span>, in the local energy or in the sampling.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. A larger network also obeys <span class="math inline">\(E\geq E_0\)</span>, since it is a bigger family of states and still states. An energy below <span class="math inline">\(E_0\)</span> is not cured by more parameters.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <p>Next we will see how to evaluate this energy without a sum over all the configurations.</p>

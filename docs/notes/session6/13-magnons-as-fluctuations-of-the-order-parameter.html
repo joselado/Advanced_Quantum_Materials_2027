@@ -99,9 +99,9 @@ S_j\rangle\)</span> further. A <strong>magnon</strong> is a small fluctuation of
 k\cdot\boldsymbol\delta\)</span> from one site to the next. This is seen most clearly in the view from above, where the transverse component turns at a constant rate and comes back to itself after one wavelength. The missing unit of spin is therefore shared coherently by the whole lattice, and <span class="math inline">\(\sum_i\langle S_i^z\rangle=NS-1\)</span>. Since the tilting angle is small, we have <span class="math inline">\(\langle a_i^\dagger
 a_i\rangle\ll S\)</span> everywhere, which is the condition under which we can expand the square roots in <a href="#eq-6-6">(6.6)</a>. In the drawing the tilting angle is much larger than in reality. (c) The counting rule that makes the transformation easy to remember. The boson number counts the spin removed from saturation, so the <em>lowering</em> operator <span class="math inline">\(S^-\)</span> creates a magnon and the <em>raising</em> operator <span class="math inline">\(S^+\)</span> destroys one.</figcaption>
 </figure>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>We create one magnon on top of the saturated ferromagnet. Which operator does it, and how does the total <span class="math inline">\(S^z\)</span> change?</p>
@@ -111,12 +111,19 @@ Quick check
 <li><span class="math inline">\(S^-\)</span> creates it, and the total <span class="math inline">\(S^z\)</span> decreases by one.</li>
 <li><span class="math inline">\(S^+\)</span> creates it, and the total <span class="math inline">\(S^z\)</span> increases by one.</li>
 <li><span class="math inline">\(S^-\)</span> creates it, and the total <span class="math inline">\(S^z\)</span> does not change.</li>
-<li><span class="math inline">\(S^+\)</span> creates it, and the total <span class="math inline">\(S^z\)</span> decreases by one.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>The boson number counts the spin removed from saturation, and <span class="math inline">\(\sum_i\langle S_i^z\rangle=NS-\sum_i\langle a_i^\dagger a_i\rangle\)</span>. The lowering operator <span class="math inline">\(S^-\)</span> creates a boson, so the total <span class="math inline">\(S^z\)</span> drops by one unit.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The boson number counts the spin removed from saturation, so <span class="math inline">\(\sum_i\langle S_i^z\rangle=NS-\sum_i\langle a_i^\dagger a_i\rangle\)</span>. The lowering operator <span class="math inline">\(S^-\)</span> creates a boson and reduces <span class="math inline">\(S^z\)</span> by one.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. On the saturated state with all spins up, <span class="math inline">\(S^+_i|\uparrow\rangle=0\)</span>. Nothing is created, because <span class="math inline">\(S^z=S\)</span> is already the maximum.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. Take two spin-<span class="math inline">\(1/2\)</span> sites. The state <span class="math inline">\(|\uparrow\uparrow\rangle\)</span> has <span class="math inline">\(S^z=1\)</span>, and <span class="math inline">\(S_1^-\)</span> gives <span class="math inline">\(|\downarrow\uparrow\rangle\)</span> with <span class="math inline">\(S^z=0\)</span>, so the total changes by one.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <p>We insert <a href="#eq-6-7">(6.7)</a> into the ferromagnetic Heisenberg Hamiltonian, <span class="math inline">\(H = J\sum_{\langle ij\rangle}

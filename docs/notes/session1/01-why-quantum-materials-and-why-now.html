@@ -92,9 +92,9 @@
 <img src="../figures/web/session01/gap_two_origins.svg" loading="lazy" alt="Two band diagrams with a gap at zero energy, one for a semiconductor and one for a superconductor." />
 <figcaption><strong>Schematic 1.1.</strong> Two gaps that look alike. On the left, a chain with two different sites per cell has a gap <span class="math inline">\(2m\)</span>, which single electrons already feel. On the right, the quasiparticles of a superconductor have a gap <span class="math inline">\(2\Delta\)</span>, which exists only because the electrons pair. The grey lines are the bands without the gap.</figcaption>
 </figure>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>Both gaps in the figure remove the states around <span class="math inline">\(E=0\)</span>. Which statement about their origin is correct?</p>
@@ -104,12 +104,22 @@ Quick check
 <li>The gap of the semiconductor follows from the single-particle Hamiltonian of the lattice, while the superconducting gap needs the electrons to pair collectively.</li>
 <li>Both gaps follow from a single-particle Hamiltonian, and they differ only in their size.</li>
 <li>The gap of the semiconductor needs interactions between the electrons, and the superconducting gap does not.</li>
-<li>Both gaps appear only after second quantization is used, and they have the same origin.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>We can diagonalize the lattice of the semiconductor with one electron at a time, so its gap is a single-particle result. The superconducting gap exists because many electrons pair together, and this is why we need the many-body formalism of this session.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The lattice of the semiconductor can be diagonalized one electron at a time, so its gap is a single-particle result. The superconducting gap exists only because many electrons pair together.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. Take a metal and keep only the single-particle hopping. We get a Fermi surface and no gap at all, however large the attraction between the electrons would be, because the attraction is not in that Hamiltonian.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. A chain with onsite energies <span class="math inline">\(\pm m\)</span> and hopping <span class="math inline">\(t\)</span> has a gap <span class="math inline">\(2m\)</span> at the zone edge with no interaction at all. In contrast, switching off the attraction between the electrons closes the superconducting gap.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>We can diagonalize the lattice of the semiconductor with one electron at a time. For the superconductor we need the many-body formalism of this session.</p>
+</div>
 </details>
 </div>
 

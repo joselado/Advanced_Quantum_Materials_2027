@@ -38,11 +38,18 @@ Some features of this dispersion should be discussed explicitly, since they appe
 In this session $t>0$ in [(2.8)](#eq-2-8). At which phase would the minimum of the band be if the hopping had the opposite sign?
 
 - [x] At $\varphi=\pi$.
-- [ ] At $\varphi=0$, as before.
-- [ ] At $\varphi=\pi/2$.
-- [ ] The band would have no minimum.
 
-The sign change turns $\epsilon_\varphi=-2t\cos\varphi$ into $+2t\cos\varphi$, which is the same curve upside down. The minimum then moves from $\varphi=0$ to $\varphi=\pi$.
+    This is true. The sign change turns $\epsilon_\varphi=-2t\cos\varphi$ into $+2t\cos\varphi$, which is the same curve upside down. The minimum then moves from $\varphi=0$ to $\varphi=\pi$.
+
+- [ ] At $\varphi=0$, as before.
+
+    This is false. For $t=-1$ the energy at $\varphi=0$ is $+2$, which is the top of the band. The bottom is $-2$, at $\varphi=\pi$.
+
+- [ ] At $\varphi=\pi/2$.
+
+    This is false. At $\varphi=\pi/2$ the energy is $0$ for either sign of $t$, since $\cos(\pi/2)=0$. This is the middle of the band and not its bottom.
+
+The sign of the hopping decides which end of the zone has the lowest energy.
 :::
 
 ::: notebookbox
@@ -60,11 +67,18 @@ $$\epsilon_\varphi = -2t\cos\varphi - 2\eta\cos(2\varphi). \tag{2.9}$$
 What is the energy of [(2.9)](#eq-2-9) at $\varphi=\pi/2$?
 
 - [ ] $0$
-- [x] $2\eta$
-- [ ] $-2\eta$
-- [ ] $-2t-2\eta$
 
-The nearest-neighbor term vanishes, since $\cos(\pi/2)=0$. The second-neighbor term gives $-2\eta\cos\pi=+2\eta$.
+    This is false. Take $t=1$ and $\eta=0.2$. The first term vanishes, but the second gives $-0.4\cos\pi=+0.4$, which is not zero.
+
+- [x] $2\eta$
+
+    This is true. The nearest-neighbor term vanishes, since $\cos(\pi/2)=0$. The second-neighbor term gives $-2\eta\cos\pi=+2\eta$.
+
+- [ ] $-2\eta$
+
+    This is false. For $\eta=0.2$ we get $-0.4\cos\pi$, and since $\cos\pi=-1$ the result is $+0.4$ and not $-0.4$.
+
+The second-neighbor term has the phase $2\varphi$, so it is not zero where the first one is.
 :::
 
 ::: notebookbox

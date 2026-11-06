@@ -29,9 +29,14 @@ For concreteness, onsite s-wave pairing, with $\Delta(\mathbf k) = \Delta$ const
 A pairing function is $\Delta(\mathbf k)=\Delta_0\sin k_x$, which is odd in $\mathbf k$. What does [(5.11)](#eq-5-11) require of its spin part?
 
 - [ ] It has to be antisymmetric, which is a spin singlet.
-- [x] It has to be symmetric, which is a spin triplet.
-- [ ] Nothing, since the spin part is independent of $\mathbf k$.
-- [ ] It depends on the lattice.
 
-The condition [(5.11)](#eq-5-11) says that the full function changes sign when we exchange the spins and send $\mathbf k\to-\mathbf k$. Since $\sin k_x$ already changes sign under $\mathbf k\to-\mathbf k$, the spin part must stay the same, so it is symmetric.
+    This is false. Take $\sum_k\sin k_x\,(c_{k\uparrow}c_{-k\downarrow}-c_{k\downarrow}c_{-k\uparrow})$. Relabeling $k\to-k$ in the second term shows that it cancels the first, so this singlet term is exactly zero.
+
+- [x] It has to be symmetric, which is a spin triplet.
+
+    This is true. The condition [(5.11)](#eq-5-11) needs the total function to change sign. Since $\sin k_x$ is already odd, the spin part has to be even, which is the triplet of [(5.12)](#eq-5-12).
+
+- [ ] Nothing, since the spin part is independent of $\mathbf k$.
+
+    This is false. Take a constant $\Delta_0$, which is even in $\mathbf k$. The triplet combination $\sum_k(c_{k\uparrow}c_{-k\downarrow}+c_{k\downarrow}c_{-k\uparrow})$ is exactly zero, so the spin part is fixed by the parity in $\mathbf k$.
 :::

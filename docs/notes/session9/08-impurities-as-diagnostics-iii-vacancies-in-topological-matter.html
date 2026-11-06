@@ -90,9 +90,9 @@
 <img src="../figures/s09f04_vacancy.svg" loading="lazy" alt="Why a single missing atom detects topology." />
 <figcaption><strong>Figure 9.4.</strong> Why a single missing atom detects topology. Top, seen from above. If we cut a large hole into a topologically non-trivial insulator or superconductor, the bulk-boundary correspondence guarantees gapless modes that run around its edge. Nothing in that argument depends on the size of the hole, so making it smaller does not remove these modes. A vacancy is a boundary of zero size, and it binds an in-gap mode. Bottom, schematic spectra. This is the diagnostic that a clean spectrum cannot give. A trivial and a topological insulator with the same gap have bulk spectra that look the same, so nothing there distinguishes them (left). If we add a vacancy, the trivial spectrum stays as it was (middle), and only the topological one develops a state inside the gap (right). The rule is as direct as it looks. Vacancies produce in-gap modes if and only if the bulk invariant is non-zero, provided that the vacancy itself respects the symmetry that protects that invariant.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>We remove one site from a Haldane-model Chern insulator, and from a trivial insulator that has the same gap. What do we find inside the gap?</p>
@@ -104,14 +104,22 @@ Quick check
 <li>A bound state only in the trivial insulator, since its gap is larger.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The vacancy is a boundary of zero size, so the bulk-boundary correspondence applies only if the bulk invariant is not zero. The trivial insulator has no protected boundary mode, and its spectrum stays as it was.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Take a trivial insulator in the atomic limit, with isolated sites of onsite energy <span class="math inline">\(\pm M\)</span> and no hopping. Removing one site removes one level, and no state appears in the gap.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The vacancy is a boundary of zero size, so a bound state needs a non-zero invariant. The Haldane model at <span class="math inline">\(C=1\)</span> has it. For <span class="math inline">\(t_2=0.1t\)</span>, <span class="math inline">\(\varphi=\pi/2\)</span> and <span class="math inline">\(M=0.3t\)</span> the gap edges are at <span class="math inline">\(\pm0.22t\)</span>, and a vacancy gives a state at <span class="math inline">\(-0.14t\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The gap is the same by construction, so it cannot decide. In the atomic limit of the trivial insulator the vacancy removes a level and creates none.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>A vacancy in a gapped system gives no in-gap mode. Which conclusion is safe?</p>
@@ -123,9 +131,17 @@ Quick check
 <li>The gap is too small to host a bound state.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The rule has a proviso. The mode is guaranteed only when the vacancy respects the symmetry behind the invariant. Without a mode we cannot separate the two cases from this one measurement.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Take the topological SSH chain with hoppings <span class="math inline">\(0.5t\)</span> and <span class="math inline">\(t\)</span>, a vacancy and an onsite energy <span class="math inline">\(2t\)</span> on its neighbor, which breaks chiral symmetry. I find no state in the gap <span class="math inline">\(\pm0.5t\)</span>, while without the onsite energy there is a state at zero. So the bulk can be topological.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. We can conclude only one of two cases. The bulk is trivial, as in the s-wave superconductor, or the defect breaks the protecting symmetry, so one measurement does not separate them.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. A small gap does not prevent the mode. The Haldane model with <span class="math inline">\(t_2=0.1t\)</span>, <span class="math inline">\(\varphi=\pi/2\)</span> and <span class="math inline">\(M=0.5t\)</span> has a gap of only <span class="math inline">\(0.04t\)</span>, and a vacancy still gives a state at <span class="math inline">\(-0.016t\)</span>.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="tryit">

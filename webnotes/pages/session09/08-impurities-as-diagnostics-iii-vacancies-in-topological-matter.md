@@ -10,20 +10,32 @@ This gives a useful diagnostic, because a fully gapped bulk spectrum alone canno
 We remove one site from a Haldane-model Chern insulator, and from a trivial insulator that has the same gap. What do we find inside the gap?
 
 - [ ] A bound state in both, since a vacancy is a strong perturbation.
+
+    This is false. Take a trivial insulator in the atomic limit, with isolated sites of onsite energy $\pm M$ and no hopping. Removing one site removes one level, and no state appears in the gap.
+
 - [x] A bound state only in the Chern insulator.
+
+    This is true. The vacancy is a boundary of zero size, so a bound state needs a non-zero invariant. The Haldane model at $C=1$ has it. For $t_2=0.1t$, $\varphi=\pi/2$ and $M=0.3t$ the gap edges are at $\pm0.22t$, and a vacancy gives a state at $-0.14t$.
+
 - [ ] A bound state only in the trivial insulator, since its gap is larger.
 
-The vacancy is a boundary of zero size, so the bulk-boundary correspondence applies only if the bulk invariant is not zero. The trivial insulator has no protected boundary mode, and its spectrum stays as it was.
+    This is false. The gap is the same by construction, so it cannot decide. In the atomic limit of the trivial insulator the vacancy removes a level and creates none.
 :::
 
 ::: quiz
 A vacancy in a gapped system gives no in-gap mode. Which conclusion is safe?
 
 - [ ] The bulk is trivial.
+
+    This is false. Take the topological SSH chain with hoppings $0.5t$ and $t$, a vacancy and an onsite energy $2t$ on its neighbor, which breaks chiral symmetry. I find no state in the gap $\pm0.5t$, while without the onsite energy there is a state at zero. So the bulk can be topological.
+
 - [x] The bulk is trivial, or the vacancy breaks the symmetry that protects the invariant.
+
+    This is true. We can conclude only one of two cases. The bulk is trivial, as in the s-wave superconductor, or the defect breaks the protecting symmetry, so one measurement does not separate them.
+
 - [ ] The gap is too small to host a bound state.
 
-The rule has a proviso. The mode is guaranteed only when the vacancy respects the symmetry behind the invariant. Without a mode we cannot separate the two cases from this one measurement.
+    This is false. A small gap does not prevent the mode. The Haldane model with $t_2=0.1t$, $\varphi=\pi/2$ and $M=0.5t$ has a gap of only $0.04t$, and a vacancy still gives a state at $-0.016t$.
 :::
 
 ::: {.tryit notebook="session9.ipynb" cell="Single vacancy in a topological superconductor"}

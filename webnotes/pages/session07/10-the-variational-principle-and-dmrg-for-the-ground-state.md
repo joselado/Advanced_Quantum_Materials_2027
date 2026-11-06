@@ -15,22 +15,32 @@ This suggests an iterative algorithm. We fix every tensor except the one of site
 When DMRG updates one tensor with all the others fixed, what happens to the energy [(7.11)](#eq-7-11)?
 
 - [ ] It can increase, and the sweeps compensate it later.
+
+    This is false. The old tensor is one of the candidates of the local minimization with energy $E_\text{old}$. The minimum is then $E_\text{new}\le E_\text{old}$, so an increase is impossible at any step.
+
 - [x] It cannot increase, since the update is the exact minimum over that tensor.
-- [ ] It stays the same, since the other tensors are fixed.
+
+    This is true. The old tensor is one of the candidates of the local minimization, so the new one is at least as good. The energy [(7.11)](#eq-7-11) goes down or stays the same, and this is why the sweeps converge.
+
 - [ ] It decreases only if the bond dimension is also increased.
 
-The old tensor is one of the candidates of the local minimization, so the new one is at least as good. The energy goes down or stays the same, and this is why the sweeps converge.
+    This is false. The bond dimension $M$ is fixed during the sweeps. Starting from a random MPS with energy close to zero, the first update already lowers the energy at the same $M$.
 :::
 
 ::: quiz
 The local eigenvalue problem at one bulk site of a spin-1/2 chain has a matrix of size
 
 - [x] $2M^2$.
+
+    This is true. The open legs of the erased tensor are two virtual bonds of dimension $M$ and one physical index of dimension $2$. The matrix acts on these $2M^2$ numbers, and $L$ does not appear.
+
 - [ ] $2^L$.
-- [ ] $M$.
+
+    This is false. This is the exact diagonalization, which needs $2^{40}\approx10^{12}$ numbers for $L=40$. For $M=100$ the local problem has only $2M^2=2\times10^4$ numbers.
+
 - [ ] $2M$.
 
-The open legs of the erased tensor are two virtual bonds of dimension $M$ and one physical index of dimension $2$. The matrix acts on these $2M^2$ numbers, and $L$ does not appear.
+    This is false. This is the size at the end of the chain, where the tensor has one bond and one physical leg. At a bulk site there are two bonds, so for $M=100$ the size is $2\times10^4$ and not $200$.
 :::
 
 ::: notebookbox

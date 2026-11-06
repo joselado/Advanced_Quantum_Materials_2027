@@ -23,20 +23,32 @@ In the next session we come back to the flat-band case from session 2 and study 
 What decides whether the two Dirac points of the honeycomb lattice give Chern numbers that cancel or that add?
 
 - [ ] The lattice constant.
+
+    This is false. The Chern number is a dimensionless integer. Rescaling the lattice constant from $a$ to $2a$ changes neither the staggered potential, with $C=0$, nor the Haldane coupling, with $C=\pm1$.
+
 - [ ] The size of the mass.
-- [ ] The temperature.
+
+    This is false. In [Figure 3.5](#fig:s03:masses) the two gaps are about the same, with $m=0.5$ and a Haldane mass $3\sqrt{3}t_2\approx0.52$ for $t_2=0.1$. One gives $C=0$ and the other gives $C=\pm1$.
+
 - [x] How the mass term transforms under time reversal.
 
-A staggered potential is even under time reversal and gives the same mass at both valleys, so the half-integers cancel. The Haldane coupling is odd under time reversal, so the half-integers add.
+    This is true. A staggered potential is even under time reversal and gives the same mass at both valleys, so the half-integers cancel. The Haldane coupling is odd under time reversal, so the half-integers add.
+
 :::
 
 ::: quiz
 Which symmetry protects the helical edge states of the quantum spin Hall insulator?
 
-- [x] Time-reversal symmetry, through the Kramers degeneracy.
-- [ ] Particle-hole symmetry.
 - [ ] Spin conservation.
+
+    This is false. Rashba coupling breaks the conservation of $S_z$, and the crossing of the helical edge stays closed as long as time-reversal symmetry holds.
+
+- [x] Time-reversal symmetry, through the Kramers degeneracy.
+
+    This is true. The helical edge is protected by time reversal, and it holds even when spin is not conserved.
+
 - [ ] Translational symmetry and gauge invariance.
 
-Translational symmetry and gauge invariance protect the Chern number. The helical edge is protected by time reversal, and it holds even when spin is not conserved.
+    This is false. A random spin-independent potential at the edge breaks the translation symmetry completely, and the crossing at $k=0$ is still protected. Translation and gauge invariance protect the Chern number.
+
 :::

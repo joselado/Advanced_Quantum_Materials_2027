@@ -32,14 +32,19 @@ When we solve it self-consistently, $\Delta_n$ is exactly zero for $U>0$, the re
 ![The mean-field loop of session 1, drawn there for a charge density wave. For the pairing channel of [(5.4)](#eq-5-4) the guess is $\Delta_n$, and the new expectation value is $\langle c_{n\downarrow}c_{n\uparrow}\rangle$.](figures/s01f05_selfconsistency.svg){alt="A loop of four stations, a guess of the expectation values, the mean-field Hamiltonian, its diagonalization and the new expectation values, with a return arrow until the result stops changing."}
 
 ::: quiz
-We start the loop for the attractive chain [(5.2)](#eq-5-2) with a small guess $\Delta_n\neq0$, but now with $U>0$. What does the loop do?
+We start the loop for the attractive chain [(5.2)](#eq-5-2) with a small guess $\Delta_n\neq0$, but now with $U>0$. Which self-consistent solution does the loop find?
 
-- [ ] It converges to a finite $\Delta_n$, since any pair amplitude sustains itself.
-- [x] It drives $\Delta_n$ to zero.
-- [ ] It keeps the guess, since [(5.3)](#eq-5-3) does not depend on the sign of $U$.
-- [ ] It turns $\Delta_n$ into a complex number with a random phase.
+- [ ] A finite $\Delta_n$, since any pair amplitude sustains itself.
 
-Two electrons on the same site cost the energy $U$. For $U>0$ the loop lowers this cost by reducing the pair amplitude, so only $\Delta_n=0$ survives. For $U<0$ the pair gains energy, and a finite $\Delta_n$ can be self-consistent.
+    This is false. For one site with $U=+t$ and $\mu=0$, the doubly occupied state costs $+t$, while the empty and the singly occupied states have energy $0$. The ground states have $\langle c_\downarrow c_\uparrow\rangle=0$, so there is no pair amplitude to sustain.
+
+- [x] Only $\Delta_n=0$.
+
+    This is true. The pair susceptibility $g>0$ of the bands gives $\Delta_\text{new}=-U g\Delta$ in [(5.3)](#eq-5-3). For $U>0$ the factor is negative, so every finite guess comes back with the opposite sign, and no finite $\Delta_n$ reproduces itself. For $U<0$ the factor is positive and a finite $\Delta_n$ can be self-consistent.
+
+- [ ] The loop keeps the guess, since [(5.3)](#eq-5-3) does not depend on the sign of $U$.
+
+    This is false. The sign of $U$ enters [(5.3)](#eq-5-3) as a prefactor. If $Ug=0.5$ at $U>0$, the loop gives $\Delta_\text{new}=-0.5\,\Delta$ in each step, so the guess does not stay.
 :::
 
 ::: notebookbox

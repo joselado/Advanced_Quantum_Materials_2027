@@ -8,11 +8,17 @@ Let us say explicitly how the continuum results of Sections [4.9](#sec-4-9) and 
 In the spectrum of the ribbon, a Landau level bends up when its guiding center $x_0=\hbar k_y/B$ gets close to a wall. Why does its energy increase?
 
 - [ ] The wall adds a magnetic field.
-- [x] The wall cuts the oscillator well, so the state is squeezed and its energy increases.
-- [ ] The wall changes the cyclotron frequency in the bulk.
-- [ ] The wall removes the degeneracy of the Landau level.
 
-A state with the guiding center at the wall has part of its wavefunction removed. A squeezed wavefunction has a larger kinetic energy, and this is what gives the dispersive edge branches.
+    This is false. The flux per plaquette is the same on the last row as in the bulk, since we use the same bond phases. The levels far from the wall stay flat at the same energies.
+
+- [x] The wall cuts the oscillator well, so the state is squeezed and its energy increases.
+
+    This is true. A state with the guiding center at the wall has part of its wavefunction removed. A squeezed wavefunction has a larger kinetic energy, and this is what gives the dispersive edge branches.
+
+- [ ] The wall changes the cyclotron frequency in the bulk.
+
+    This is false. The flat levels far from the wall stay at $\hbar\omega_c(n+\tfrac12)$ in a ribbon that is wider than a few $\ell_B$. Only the states within about $\ell_B$ of the wall move.
+
 :::
 
 ::: {.widget name="landaufan"}
@@ -35,12 +41,18 @@ which is clearly a harmonic oscillator, with eigenvalues that give [(4.6)](#eq-4
 ::: quiz
 Why does the form [(4.8)](#eq-4-8), $H=\hbar\omega_c(a^\dagger a+\tfrac12)$, not depend on the gauge?
 
-- [ ] Because $\mathbf{B}$ is uniform.
 - [ ] Because the Landau gauge is the only allowed gauge.
-- [x] Because it uses only $[\pi_x,\pi_y]=i\hbar^2/\ell_B^2$, which depends on the field and not on the choice of $\mathbf{A}$.
+
+    This is false. The symmetric gauge $\mathbf{A}=(-By,Bx,0)/2$ is equally allowed, and we use it in the section on the lowest Landau level. It gives the same oscillator.
+
 - [ ] Because $H$ commutes with $p_y$.
 
-The ladder operators are built from the canonical momentum $\boldsymbol{\pi}$. Their commutator is fixed by $\mathbf{B}$, so the oscillator structure is the same in every gauge.
+    This is false. In the symmetric gauge $H$ does not commute with $p_y$, since $A_x=-By/2$ depends on $y$. The form $\hbar\omega_c(a^\dagger a+\tfrac12)$ holds there too.
+
+- [x] Because it uses only $[\pi_x,\pi_y]=i\hbar^2/\ell_B^2$, which depends on the field and not on the choice of $\mathbf{A}$.
+
+    This is true. The ladder operators are built from the canonical momentum $\boldsymbol{\pi}$. Their commutator is fixed by $\mathbf{B}$, so the oscillator structure is the same in every gauge.
+
 :::
 
 ::: {.tryit notebook="session4.ipynb" cell="Bands in the conventional quantum Hall state"}

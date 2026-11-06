@@ -93,29 +93,36 @@ f^\dagger_{i\sigma}. \tag{8.16}\]</span></span></p>
 <img src="../figures/s08f05_gauge_vison.svg" loading="lazy" alt="The emergent gauge theory of the parton construction, and its excitation, seen from above." />
 <figcaption><strong>Figure 8.5.</strong> The emergent gauge theory of the parton construction, and its excitation, seen from above. (a) The mean-field bond variable is defined on the links, <span class="math inline">\(\chi_{ij}=|\chi_{ij}|e^{i\theta_{ij}}\)</span>, drawn as a dial at the phase <span class="math inline">\(\theta_{ij}\)</span>, and the local phase rotation <a href="#eq-8-16">(8.16)</a> on one site shifts every link phase by <span class="math inline">\(\theta_i-\theta_j\)</span>, which changes the two red needles. When we go once around a plaquette, each site phase appears twice with opposite signs, so the flux <span class="math inline">\(\Phi=\prod e^{i\theta_{ij}}\)</span> does not change. The link variables are pure gauge, and the flux is physical. This is the reason why two mean-field solutions related by <a href="#eq-8-16">(8.16)</a> describe the same spin liquid. (b) As a result, the flux is what labels the state. With <span class="math inline">\(\Phi=+1\)</span> on every plaquette as the ground state, flipping a single plaquette to <span class="math inline">\(\Phi=-1\)</span> costs energy, and no gauge transformation can remove it. This localized defect of the gauge field is a <strong>vison</strong>. Which links have the minus sign is a gauge choice, here a string from the edge, and it can be moved freely, while the shaded plaquette cannot be moved.</figcaption>
 </figure>
-<div class="quiz" data-correct="C">
+<div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>Which of these objects changes under the local phase rotation <a href="#eq-8-16">(8.16)</a>?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li>The spin operator <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-10">(8.10)</a>.</li>
 <li>The single-occupancy constraint <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-11">(8.11)</a>.</li>
-<li>The bond variable <span class="math inline">\(\chi_{ij}\)</span>, which gets the phase <span class="math inline">\(e^{i(\theta_i-\theta_j)}\)</span>.</li>
 <li>The physical spin Hamiltonian.</li>
+<li>The bond variable <span class="math inline">\(\chi_{ij}\)</span>, which gets the phase <span class="math inline">\(e^{i(\theta_i-\theta_j)}\)</span>.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>C</strong>.</p>
-<p>The phases cancel in every product <span class="math inline">\(f^\dagger_{i\alpha}f_{i\beta}\)</span> on the same site, so the spin operator and the constraint do not change. Only the link variable between two sites picks up a phase, and this is what makes it a gauge field.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The constraint counts <span class="math inline">\(f^\dagger_{i\uparrow}f_{i\uparrow}+f^\dagger_{i\downarrow}f_{i\downarrow}\)</span> on a site. Each term has <span class="math inline">\(e^{-i\theta_i}e^{i\theta_i}=1\)</span>, so the count is the same.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. It is built from <span class="math inline">\(\mathbf S_i\cdot\mathbf S_j\)</span>, and each <span class="math inline">\(\mathbf S_i\)</span> is unchanged. For <span class="math inline">\(\theta_i=\pi/2\)</span> on one site, <span class="math inline">\(f^\dagger_{i\uparrow}f_{i\downarrow}\)</span> still gets <span class="math inline">\((-i)(i)=1\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. The phases cancel in every product <span class="math inline">\(f^\dagger_{i\alpha}f_{i\beta}\)</span> on the same site, so the spin operator and the constraint do not change. Only the link variable between two sites picks up a phase, and this is what makes it a gauge field.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>We rotate the phase of the fermions on the four sites of a plaquette with arbitrary angles <span class="math inline">\(\theta_i\)</span>. How does the flux <span class="math inline">\(\Phi\)</span> through it change?</p>
@@ -125,12 +132,19 @@ Quick check
 <li>It changes by the sum of the four angles.</li>
 <li>It does not change, since every site phase appears twice with opposite signs.</li>
 <li>It changes sign.</li>
-<li>It is multiplied by <span class="math inline">\(e^{i\theta_1}\)</span>.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>Going around the plaquette we pick up <span class="math inline">\(\theta_i-\theta_j\)</span> on each link, and the sum telescopes to zero. The flux is physical, and this is why the vison, which is a plaquette with <span class="math inline">\(\Phi=-1\)</span>, cannot be removed.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Take the same angle <span class="math inline">\(\theta\)</span> on the four sites. Every link gets <span class="math inline">\(\theta-\theta=0\)</span>, so nothing changes, while the sum would be <span class="math inline">\(4\theta\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. Going around the plaquette we pick up <span class="math inline">\(\theta_i-\theta_j\)</span> on each link, and the sum telescopes to zero. The flux is physical, and this is why the vison, which is a plaquette with <span class="math inline">\(\Phi=-1\)</span>, cannot be removed.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. Take <span class="math inline">\(\theta_1=\pi/2\)</span> and the other angles zero. The link <span class="math inline">\(12\)</span> gets <span class="math inline">\(e^{i\pi/2}=i\)</span> and the link <span class="math inline">\(41\)</span> gets <span class="math inline">\(e^{-i\pi/2}=-i\)</span>, and the product is <span class="math inline">\(1\)</span>, so <span class="math inline">\(\Phi\)</span> keeps its sign.</p></li>
+</ul>
+</div>
 </details>
 </div>
 

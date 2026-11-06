@@ -12,20 +12,32 @@ In the first part we met extended, critical and localized states, and we saw how
 In the one-dimensional chain at weak disorder we reduce $W$ by a factor $2$. By which factor does the localization length $\xi$ change?
 
 - [ ] It doubles.
+
+    This is false. For $\xi\propto(t/W)^2$ the dependence is quadratic. Going from $W=0.5t$ to $0.25t$ gives $\xi$ a factor $4$, and not $2$.
+
 - [x] It becomes four times larger.
+
+    This is true. With $\xi\propto(t/W)^2$, halving $W$ multiplies $\xi$ by $2^2=4$. A state with $\xi=100$ sites becomes $400$ sites, and it is still localized.
+
 - [ ] It does not change, since any disorder localizes every state.
 
-For weak disorder $\xi\propto(t/W)^2$, so halving $W$ gives a factor $4$. The states are still localized, but over a length that grows quickly as $W\to0$.
+    This is false. Any disorder localizes, but $\xi$ depends on $W$. For $\xi=100$ sites a chain of $20$ sites looks extended, and reducing $W$ makes $\xi$ larger.
 :::
 
 ::: quiz
 In $d=3$ the disorder is above $W_c$, and the Fermi level is in the region of localized states. Which statement describes the Anderson insulator?
 
 - [ ] It has a gap in the density of states, as a band insulator has.
-- [x] It has states at every energy, but the states cannot carry current.
+
+    This is false. A band insulator has no states at the Fermi level. In the Anderson insulator at $W=20t$ the density of states at the band center is about $1/W=0.05/t$ per site, which is finite.
+
+- [x] It has states at every energy of the band, but the states cannot carry current.
+
+    This is true. The density of states is finite inside the band, so there is no spectral gap. Localized states at different positions do not connect, so at $T=0$ the conductance falls as $e^{-L/\xi}$.
+
 - [ ] It has extended states at the Fermi level, with a small conductivity.
 
-The density of states stays finite across the Fermi level, so there is no spectral gap. The localized states are not connected by transport at zero temperature, and so the system has a transport gap.
+    This is false. Above $W_c$ the mobility edges have met at the band center, so no extended state is left at the Fermi level. The conductance of a sample of length $L$ decays as $e^{-L/\xi}$, so it goes to zero for large $L$.
 :::
 
 ::: {.tryit notebook="session9.ipynb" cell="Localization due to random disorder"}

@@ -89,9 +89,9 @@
 <img src="../figures/s03f06_helical.svg" loading="lazy" alt="Schematic edge dispersions for the two topological classes of Section 3.8." />
 <figcaption><strong>Figure 3.6.</strong> Schematic edge dispersions for the two topological classes of Section <a href="08-three-topological-material-classes.html#sec-3-8">3.8</a>. The grey slabs are the bulk bands, and the branches that cross the bulk gap are the edge states, plotted as a function of the momentum along the edge. (a) A Chern insulator has a single branch per edge. At any energy in the gap there is one state and it moves in one direction, so a scatterer has no state to send it back into. (b) A quantum spin Hall insulator has two branches, one for each spin, drawn in a warm and a cold color, which propagate in opposite directions on the <em>same</em> edge, and this is what <strong>helical</strong> means. The total Chern number vanishes, but the spin Chern number does not <a href="11-quantum-spin-hall-insulators.html#eq-3-9">(3.9)</a>. (c) The crossing is not protected because the two spin sectors are separately conserved. It is protected by Kramers’ theorem, since the crossing is at a time-reversal-invariant momentum, where a twofold degeneracy is guaranteed for spin-<span class="math inline">\(1/2\)</span> electrons for any perturbation that respects time reversal. Disorder that preserves time reversal can therefore deform the branches but cannot gap them. Only a perturbation that breaks time reversal opens the gap <span class="math inline">\(\Delta\)</span> in (c), and then the protection is lost.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>Which perturbation can open a gap at the crossing of the helical edge states of a wide ribbon?</p>
@@ -101,12 +101,19 @@ Quick check
 <li>A spin-mixing term such as Rashba spin-orbit coupling.</li>
 <li>A magnetic field or a magnetic impurity that breaks time-reversal symmetry.</li>
 <li>A random potential that is the same for both spins.</li>
-<li>A shift of the chemical potential.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>Kramers theorem protects the crossing as long as time-reversal symmetry holds, with or without spin mixing. Only a term that breaks time reversal can open the gap <span class="math inline">\(\Delta\)</span> of panel (c).</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Rashba coupling mixes the spins but keeps time-reversal symmetry. The crossing is at <span class="math inline">\(k=0\)</span>, a time-reversal invariant momentum, so Kramers theorem keeps the two states degenerate there for any strength of the coupling.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. Kramers theorem protects the crossing as long as time-reversal symmetry holds. A term that breaks it can open the gap <span class="math inline">\(\Delta\)</span> of panel (c).</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. A spin-independent potential <span class="math inline">\(V\)</span> gives <span class="math inline">\(\langle -k,\downarrow|V|k,\uparrow\rangle=0\)</span>, so it cannot backscatter between the two partners. The crossing stays closed for any strength of the disorder.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <p>Disorder makes this difference concrete. Helical edge states survive disorder that preserves time-reversal symmetry, since the band structure changes but the gapless crossing at the edge remains. On the other hand, disorder that breaks time-reversal symmetry opens a real gap in the edge spectrum and removes the protection completely.</p>

@@ -19,14 +19,19 @@ Let us follow how large this energy difference is as a function of $U$. At $U=0$
 ![The half-filled Hubbard chain in mean field, in units of $t$. (a) The antiferromagnetic bands at $U=4t$ have a gap $Um$, and the dashed grey bands are the crossing at $U=0$. (b) The energy per site that the antiferromagnet gains over the uniform solution. The jump at $4t$ is where the uniform solution changes from the paramagnet to the fully polarized ferromagnet, and above it the curve follows $2t^2/U$.](figures/web/session06/mf_chain.svg){#sch:s06:mf_chain alt="Left, two bands separated by a gap with the crossing of the noninteracting bands drawn dashed. Right, a curve of the energy gain against U that rises, jumps at U equal to 4t and then decays as one over U."}
 
 ::: quiz
-At large $U$ the energy difference $E_\text{FM}-E_\text{AFM}$ of the half-filled chain follows a $1/U$ law. What happens to it when $U$ doubles from $20t$ to $40t$?
+At large $U$ the energy difference $E_\text{FM}-E_\text{AFM}$ of the half-filled chain, per cell of two sites, follows a $1/U$ law. What happens to it when $U$ doubles from $20t$ to $40t$?
 
 - [ ] It doubles, since the exchange energy grows with $U$.
-- [ ] It stays constant.
+
+    This is false. With $J=4t^2/U$ and $t=1$ we get $0.2$ at $U=20t$ and $0.1$ at $U=40t$. Doubling would give $0.4$ at $U=40t$, while the two states become degenerate at $U\to\infty$.
+
 - [x] It is halved.
+
+    This is true. A $1/U$ law gives half the value when $U$ doubles. It comes from $J=4t^2/U$ of Section [6.8](#sec-6-8), which is $0.2t$ at $U=20t$ and $0.1t$ at $U=40t$ for the cell of two sites. A mean-field calculation gives $0.1995t$ and $0.0999t$.
+
 - [ ] It is divided by four.
 
-A $1/U$ law gives half the value when $U$ doubles. It comes from the exchange $J=4t^2/U$ of Section [6.8](#sec-6-8), since the hopping lifts the degeneracy only at second order.
+    This is false. A division by four needs a $1/U^2$ law. The product $U(E_\text{FM}-E_\text{AFM})$ is close to $4t^2$ at large $U$, which gives $0.2t$ and $0.1t$ for the two values, and not $0.05t$.
 :::
 
 ::: {.tryit notebook="session6.ipynb" cell="The strongly interacting limit"}

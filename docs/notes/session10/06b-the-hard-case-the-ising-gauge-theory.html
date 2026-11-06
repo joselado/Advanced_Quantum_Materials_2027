@@ -94,9 +94,9 @@
 <img src="../figures/s10f05_phaseclassification.svg" loading="lazy" alt="Why one phase-classification problem is easy and the other is hard, seen from above with \sigma=+1 raised and \sigma=-1 sunk." />
 <figcaption><strong>Figure 10.5.</strong> Why one phase-classification problem is easy and the other is hard, seen from above with <span class="math inline">\(\sigma=+1\)</span> raised and <span class="math inline">\(\sigma=-1\)</span> sunk. <strong>(a,b)</strong> For the Ising model <a href="06-phase-classification-with-local-order-parameters-and-topological-order.html#eq-10-9">(10.9)</a> the magnetization of a single snapshot already separates the phases, and a network trained on such snapshots only finds again the logic of a local order parameter of sessions 1, 5 and 6. <strong>(c,d)</strong> For the Ising gauge theory <a href="#eq-10-10">(10.10)</a> the spins live on the <em>bonds</em>, and the <span class="math inline">\(T=0\)</span> condition <span class="math inline">\(\prod_{i\in\partial p}\sigma_i = +1\)</span> leaves an exponentially large degenerate manifold. A typical ground state is random from bond to bond, so the magnetization is <span class="math inline">\(\approx 0\)</span> in both columns and no quantity on a single bond can distinguish them. The difference is in the four-spin structure of the plaquettes, which is marked by a cross where the product is <span class="math inline">\(-1\)</span>, and the convolutional network has to find by itself a function of the configuration that is sensitive to it. The shaded star in (c) is a gauge flip of the four bonds at one vertex, which keeps every plaquette product. This is the same obstruction that forced sessions 3 and 4 to go from local order parameters to Chern numbers and Zak phases.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>In the Ising gauge theory we flip the four bonds that meet at one vertex. How does this change the plaquette products?</p>
@@ -108,14 +108,22 @@ Quick check
 <li>All four plaquettes change sign.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>Flipping two spins of a plaquette gives <span class="math inline">\((-1)^2=1\)</span>, so the product stays the same. This local gauge transformation makes the ground state degenerate by a macroscopic number.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. A plaquette changes sign only if one of its bonds is flipped, or three. Each plaquette of the star has exactly two flipped bonds, so none changes sign.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. Two flipped bonds in a plaquette give <span class="math inline">\((-1)^2=+1\)</span>. Each of the four plaquettes at the vertex has two of the four bonds, so no plaquette product changes.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. Take one plaquette of the star. Two of its four bonds are flipped, so its product gets the factor <span class="math inline">\((-1)^2=+1\)</span> and not <span class="math inline">\(-1\)</span>. The same holds for the other three.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="C">
+<div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>The trained classifier for the gauge theory does not give a transition that becomes sharper as <span class="math inline">\(L\)</span> grows. Why?</p>
@@ -127,9 +135,17 @@ Quick check
 <li>The two regimes are separated by a crossover and not by a phase transition at finite temperature.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>C</strong>.</p>
-<p>In two dimensions the gauge theory has order only at <span class="math inline">\(T=0\)</span>. The crossover moves with the size of the system, so there is no sharp <span class="math inline">\(T_c\)</span> to converge to.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The same convolutional network finds a sharp transition for the Ising model as <span class="math inline">\(L\)</span> grows, so its size is not the limit.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. For the gauge theory the magnetization is zero at all temperatures, since a vertex flip reverses the sign of every bond at the vertex and does not change the energy. It cannot be an order parameter at any <span class="math inline">\(L\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. The two-dimensional model has order only at <span class="math inline">\(T=0\)</span>. For an open lattice the plaquette average is <span class="math inline">\(\tanh(J/T)\)</span>, which is smooth, so the crossover does not sharpen.</p></li>
+</ul>
+</div>
 </details>
 </div>
 

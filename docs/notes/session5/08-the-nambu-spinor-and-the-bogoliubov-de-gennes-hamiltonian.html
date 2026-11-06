@@ -103,24 +103,31 @@ k\uparrow}^\dagger)\)</span>, and each of them has the reduced BdG matrix</p>
 <img src="../figures/web/session05/nambu_bands.svg" loading="lazy" alt="Two panels of a cosine band. On the left an electron band and its mirrored hole band cross at two points. On the right the crossings are replaced by a gap of size two Delta." />
 <figcaption><strong>Schematic 5.1.</strong> The Nambu doubling for a chain. (a) Without pairing the hole band is the mirror image of the electron band, and the two cross at the Fermi points. (b) A nonzero <span class="math inline">\(\Delta\)</span> opens a gap of <span class="math inline">\(2|\Delta|\)</span> at each crossing, and the two new bands mix electron and hole, which the blend of the colors shows.</figcaption>
 </figure>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>In <a href="#eq-5-9">(5.9)</a> the quasiparticle energy is <span class="math inline">\(E=\pm\sqrt{\varepsilon^2+|\Delta|^2}\)</span>. Where is <span class="math inline">\(|E|\)</span> smallest, and how large is it?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li>On the original Fermi surface, where <span class="math inline">\(\varepsilon=0\)</span>, and it is <span class="math inline">\(|\Delta|\)</span>.</li>
 <li>At the bottom of the band, and it is <span class="math inline">\(|\Delta|\)</span>.</li>
+<li>On the original Fermi surface, where <span class="math inline">\(\varepsilon=0\)</span>, and it is <span class="math inline">\(|\Delta|\)</span>.</li>
 <li>On the original Fermi surface, and it is <span class="math inline">\(2|\Delta|\)</span>.</li>
-<li>It has no minimum, since <span class="math inline">\(E\)</span> grows with <span class="math inline">\(\Delta\)</span> everywhere.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>The energy depends on <span class="math inline">\(\varepsilon\)</span> only through <span class="math inline">\(\varepsilon^2\)</span>, so <span class="math inline">\(|E|\)</span> is smallest where <span class="math inline">\(\varepsilon=0\)</span>. There it is <span class="math inline">\(|\Delta|\)</span> in each branch, and the full gap between the two branches is <span class="math inline">\(2|\Delta|\)</span>.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Take <span class="math inline">\(t=1\)</span> and <span class="math inline">\(\Delta=0.2\)</span>. At the band bottom <span class="math inline">\(\varepsilon=-4\)</span>, so <span class="math inline">\(E=\sqrt{16+0.04}\approx4.0\)</span>, which is the largest value of <span class="math inline">\(|E|\)</span> and not the smallest.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. Since <span class="math inline">\(E^2=\varepsilon^2+|\Delta|^2\)</span> in <a href="#eq-5-9">(5.9)</a>, the smallest <span class="math inline">\(|E|\)</span> is at <span class="math inline">\(\varepsilon=0\)</span>, and there <span class="math inline">\(|E|=|\Delta|\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. For <span class="math inline">\(\Delta=0.2\)</span> at <span class="math inline">\(\varepsilon=0\)</span> we get <span class="math inline">\(E=\pm0.2\)</span> and not <span class="math inline">\(\pm0.4\)</span>. The value <span class="math inline">\(2|\Delta|=0.4\)</span> is the full gap between the two branches, and not the smallest <span class="math inline">\(|E|\)</span>.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="notebookbox">

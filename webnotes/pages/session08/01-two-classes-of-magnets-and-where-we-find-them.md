@@ -20,20 +20,30 @@ There is a simple argument with pictures that shows why the spin of the two exci
 A quantum spin liquid has an even number of spin-1/2 sites, and its ground state has $S_\text{tot}=0$. Can the lowest excited state contain a single spinon?
 
 - [x] No, since one spinon would give a total spin of $1/2$, which an even number of spin-1/2 sites cannot have.
-- [ ] Yes, since the spinon has spin $1/2$ and the ground state has spin $0$.
-- [ ] Yes, but only if a magnetic field is applied.
-- [ ] No, since spinons carry charge.
 
-The total spin of an even number of spin-1/2 particles is an integer. A spinon with $S=1/2$ must then come together with a second one, and this is why spinons are created in pairs.
+    This is true. The total spin of an even number of spin-1/2 particles is an integer. A spinon with $S=1/2$ must then come together with a second one, and this is why spinons are created in pairs.
+
+- [ ] Yes, since the spinon has spin $1/2$ and the ground state has spin $0$.
+
+    This is false. Take four spin-1/2 sites. The total spin can be $0$, $1$ or $2$ and never $1/2$, so the state with one spinon does not exist.
+
+- [ ] Yes, but only if a magnetic field is applied.
+
+    This is false. A field changes the energies but not the possible values of the total spin. With four sites in a field, $S^z_\text{tot}$ is still an integer, from $-2$ to $2$.
 :::
 
 ::: quiz
 A magnon has spin $1$. What does this tell us about its relation to spinons?
 
 - [ ] A magnon is a single spinon with spin $1$.
-- [ ] Four spinons are needed, since each carries a quarter of the spin.
+
+    This is false. A spinon has spin $1/2$, since it is created by a single $f^\dagger_\alpha$ that changes $S^z$ by $1/2$. A single spinon cannot have spin $1$.
+
 - [x] Two spinons with parallel spins carry the same spin, so a magnon is like a bound pair of spinons.
+
+    This is true. Two spin-1/2 excitations can add up to spin $1$, as in the triplet of the dimer. The magnon of a symmetry-broken magnet is then the bound version of what a quantum spin liquid can split into two free parts.
+
 - [ ] A magnon has no relation to spinons, since spinons carry no spin.
 
-Two spin-1/2 excitations can add up to spin $1$. The magnon of a symmetry-broken magnet is then the bound version of what a quantum spin liquid can split into two free parts.
+    This is false. In the parton construction $\mathbf S_i=\tfrac12 f^\dagger\boldsymbol\sigma f$, so each $f$ fermion carries spin $1/2$. Spinons are neutral but they are not spinless.
 :::

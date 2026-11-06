@@ -16,9 +16,16 @@ First quantization assumes that the number of particles is fixed, and this assum
 Which of these states can we write as an ordinary wave function with a fixed number of coordinates?
 
 - [x] One electron in a superposition of the lower and the upper level.
+
+    This is true. The wave function is $\psi(x)=a\psi_0(x)+b\psi_1(x)$, and it has one coordinate. The number of electrons is one for both terms.
+
 - [ ] An equal superposition of zero electrons and two electrons.
-- [ ] A state with one electron half of the time and two electrons the other half.
+
+    This is false. The mean number of electrons is $1$, but one term has no coordinate and the other has two, $x_1$ and $x_2$. No single function $\psi(x_1,x_2)$ describes both terms.
+
 - [ ] An equal superposition of the empty dot and the dot with three electrons.
 
-A wave function needs a fixed number of coordinates, and one electron in two levels keeps this number. The other states mix different numbers of electrons, and for them we need second quantization.
+    This is false. The mean number of electrons is $1.5$, which is not a number of coordinates at all. The two terms have zero and three coordinates, so we need second quantization.
+
+A wave function needs a fixed number of coordinates. States that mix different numbers of electrons need second quantization.
 :::

@@ -91,29 +91,36 @@
 <img src="../figures/s04f01_ribbon.svg" loading="lazy" alt="The quantum Hall ribbon." />
 <figcaption><strong>Figure 4.1.</strong> The quantum Hall ribbon. (a) The spectrum of a strip that is infinite along <span class="math inline">\(y\)</span> and finite along <span class="math inline">\(x\)</span>, computed for a width of <span class="math inline">\(12\,\ell_B\)</span> with hard walls. In the bulk the Landau levels <a href="09-landau-levels-of-schrodinger-electrons.html#eq-4-6">(4.6)</a> are exactly flat, so they carry no current at all, but near each boundary the guiding centre <span class="math inline">\(x_0=\hbar k_y/B\)</span> is pushed into the wall and the level bends up strongly. These bending branches are the edge states, and each of them crosses the chemical potential, the translucent plane, exactly once per edge, at the balls, so the number of chiral modes at a given edge is equal to the number <span class="math inline">\(N\)</span> of filled Landau levels, here <span class="math inline">\(N=2\)</span>. (b) The same statement in real space, seen from above. The branches with <span class="math inline">\(k_y&gt;0\)</span> have <span class="math inline">\(v_y=\hbar^{-1}\partial_{k_y}E&gt;0\)</span> and live on the right edge, and the branches with <span class="math inline">\(k_y&lt;0\)</span> move in the opposite direction and live on the left edge. To reverse the velocity of an electron we would therefore have to move it to the other side of the sample, which no local impurity can do, and this is why the edge transport has no dissipation.</figcaption>
 </figure>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>An impurity sits on the left edge of a quantum Hall ribbon. Why can it not backscatter an edge electron?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li>The only states that move in the opposite direction at the same energy are on the other edge, which is far away.</li>
 <li>The impurity is always too weak to scatter.</li>
-<li>The bulk Landau levels are full and block the scattering.</li>
+<li>The only states that move in the opposite direction at the same energy are on the other edge, which is far away.</li>
 <li>Time-reversal symmetry forbids it.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>On one edge all the modes propagate in the same direction. A state that propagates the other way is on the other side of the sample, and a local impurity cannot connect the two.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. An impurity much stronger than the Landau level gap also cannot reflect the electron, which goes around it in the same direction. The reason is the missing final state, and not the strength.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. On one edge all the modes propagate in the same direction. A state that propagates the other way is on the other side of the sample, and a local impurity cannot connect the two.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The magnetic field breaks time-reversal symmetry in this system. Time reversal protects the helical edge of the quantum spin Hall insulator of session 3, and here the chirality does the job.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>The chemical potential moves from the gap above the first Landau level to the gap above the third. How do the number of chiral modes at one edge and <span class="math inline">\(\sigma_{xy}\)</span> change?</p>
@@ -123,12 +130,19 @@ Quick check
 <li>The number of modes stays at one, and <span class="math inline">\(\sigma_{xy}\)</span> changes from <span class="math inline">\(e^2/h\)</span> to <span class="math inline">\(3e^2/h\)</span>.</li>
 <li>From one to three, and from <span class="math inline">\(e^2/h\)</span> to <span class="math inline">\(3e^2/h\)</span>.</li>
 <li>From one to two, and from <span class="math inline">\(e^2/h\)</span> to <span class="math inline">\(2e^2/h\)</span>.</li>
-<li>From one to three, and <span class="math inline">\(\sigma_{xy}\)</span> stays at <span class="math inline">\(e^2/h\)</span>.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The number of chiral modes at an edge is equal to the Chern number of the bulk, which counts the filled Landau levels. The Hall conductance is this number times <span class="math inline">\(e^2/h\)</span>.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The number of modes is <span class="math inline">\(C\)</span> and <span class="math inline">\(\sigma_{xy}=Ce^2/h\)</span>. A single chiral mode carries exactly <span class="math inline">\(e^2/h\)</span>, so <span class="math inline">\(3e^2/h\)</span> needs three modes.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The number of chiral modes at an edge is equal to the Chern number of the bulk, which counts the filled Landau levels. The Hall conductance is this number times <span class="math inline">\(e^2/h\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. Two modes and <span class="math inline">\(2e^2/h\)</span> belong to the gap above the second level. The gap above the third level has three filled levels, so three modes.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="notebookbox">

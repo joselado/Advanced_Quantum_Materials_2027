@@ -30,9 +30,14 @@ Mean field can only be trusted when $U \ll t$. We will see in Section [6.6](#sec
 In the mean-field treatment of the Hubbard interaction, which expectation value gives a magnetization along the $x$ axis?
 
 - [ ] $\langle c_\uparrow^\dagger c_\uparrow\rangle-\langle c_\downarrow^\dagger c_\downarrow\rangle$
-- [x] A real $\langle c_\uparrow^\dagger c_\downarrow\rangle$
-- [ ] $\langle c_\uparrow c_\downarrow\rangle$
-- [ ] $\langle c_\uparrow^\dagger c_\uparrow\rangle+\langle c_\downarrow^\dagger c_\downarrow\rangle$
 
-The spin component $S^x$ is $\tfrac12(c_\uparrow^\dagger c_\downarrow+c_\downarrow^\dagger c_\uparrow)$, so a real $\langle c_\uparrow^\dagger c_\downarrow\rangle$ gives $m_x$. The difference of the two densities gives $m_z$, and the pair amplitude $\langle c_\uparrow c_\downarrow\rangle$ is the superconducting order.
+    This is false. Take the spinor $(1,1)/\sqrt2$, which points along $x$. It has $n_\uparrow=n_\downarrow=1/2$, so this difference is zero, although $m_x=1/2$. The difference of densities gives $m_z$.
+
+- [x] A real $\langle c_\uparrow^\dagger c_\downarrow\rangle$
+
+    This is true. The component $S^x=\tfrac12(c_\uparrow^\dagger c_\downarrow+c_\downarrow^\dagger c_\uparrow)$ has this expectation value, which is $1/2$ for the spinor $(1,1)/\sqrt2$.
+
+- [ ] $\langle c_\uparrow c_\downarrow\rangle$
+
+    This is false. For the same spinor $(1,1)/\sqrt2$ the expectation value $\langle c_\uparrow c_\downarrow\rangle$ is zero, since the state has one electron. This is the pair amplitude of a superconductor and it changes $N$ by two.
 :::

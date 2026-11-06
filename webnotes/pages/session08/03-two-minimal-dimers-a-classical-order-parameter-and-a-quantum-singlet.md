@@ -29,20 +29,30 @@ This ground state is different from the Ising case in three ways, and these thre
 What is the energy of the state $|{\uparrow\downarrow}\rangle$ of the Ising dimer [(8.1)](#eq-8-1)?
 
 - [ ] $-3/4$, which is the energy of the singlet.
+
+    This is false. The Ising dimer [(8.1)](#eq-8-1) only has $S^z_0S^z_1=\pm\tfrac14$, so its energies are $\pm1/4$. The value $-3/4$ needs the $x$ and $y$ terms of the Heisenberg dimer.
+
 - [x] $-1/4$, since $S^z_0S^z_1=(\tfrac12)(-\tfrac12)$.
-- [ ] $0$, since the spins point in opposite directions.
+
+    This is true. The product of the two $z$ components is $-1/4$ for antiparallel spins and $+1/4$ for parallel ones. The two antiparallel states are degenerate, and each symmetry-broken state chooses one of them.
+
 - [ ] $+1/4$, since the spins are antiparallel.
 
-The product of the two $z$ components is $-1/4$ for antiparallel spins and $+1/4$ for parallel ones. The two antiparallel states are degenerate, and each symmetry-broken state chooses one of them.
+    This is false. The state $|{\uparrow\uparrow}\rangle$ has $S^z_0S^z_1=+\tfrac14$, and it is the one with energy $+1/4$. For antiparallel spins the product is $(\tfrac12)(-\tfrac12)=-\tfrac14$.
 :::
 
 ::: quiz
 We change the sign of the coupling, $H=J\,\mathbf S_0\cdot\mathbf S_1$ with $J<0$. What is the ground state of the dimer?
 
 - [ ] The singlet, as for $J>0$.
-- [ ] The singlet, but with a smaller gap.
+
+    This is false. Take $J=-1$. The singlet has energy $-3J/4=+3/4$ and the triplet has $J/4=-1/4$, so the triplet is lower.
+
 - [ ] A single state $|{\uparrow\uparrow}\rangle$ that breaks time-reversal symmetry.
+
+    This is false. The Hamiltonian commutes with the total spin, so $|{\downarrow\downarrow}\rangle$ and $(|{\uparrow\downarrow}\rangle+|{\downarrow\uparrow}\rangle)/\sqrt2$ have the same energy $J/4$. The ground state is threefold degenerate and not a single state.
+
 - [x] The triplet, which is threefold degenerate.
 
-The value of $\mathbf S_0\cdot\mathbf S_1$ is $-3/4$ for the singlet and $+1/4$ for the triplet. For $J<0$ the energy $J/4$ of the triplet is below $-3J/4$ of the singlet, and the three triplet states are degenerate.
+    This is true. The value of $\mathbf S_0\cdot\mathbf S_1$ is $-3/4$ for the singlet and $+1/4$ for the triplet. For $J<0$ the energy $J/4$ of the triplet is below $-3J/4$ of the singlet, and the three triplet states are degenerate.
 :::

@@ -99,9 +99,9 @@
 <li><p>The same invariants apply beyond electrons, to magnons and spinons in sessions 6 and 8, and also beyond quantum mechanics, to any system with a dispersion relation.</p></li>
 </ul>
 <p>In the next session we come back to the flat-band case from session 2 and study it in detail. We will see the full quantum Hall effect, Landau levels from first principles, and the fractional quantum Hall state.</p>
-<div class="quiz" data-correct="D">
+<div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>What decides whether the two Dirac points of the honeycomb lattice give Chern numbers that cancel or that add?</p>
@@ -110,33 +110,47 @@ Quick check
 <ol type="A">
 <li>The lattice constant.</li>
 <li>The size of the mass.</li>
-<li>The temperature.</li>
 <li>How the mass term transforms under time reversal.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>D</strong>.</p>
-<p>A staggered potential is even under time reversal and gives the same mass at both valleys, so the half-integers cancel. The Haldane coupling is odd under time reversal, so the half-integers add.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The Chern number is a dimensionless integer. Rescaling the lattice constant from <span class="math inline">\(a\)</span> to <span class="math inline">\(2a\)</span> changes neither the staggered potential, with <span class="math inline">\(C=0\)</span>, nor the Haldane coupling, with <span class="math inline">\(C=\pm1\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. In <a href="10b-the-haldane-coupling-and-a-real-chern-insulator.html#fig:s03:masses">Figure 3.5</a> the two gaps are about the same, with <span class="math inline">\(m=0.5\)</span> and a Haldane mass <span class="math inline">\(3\sqrt{3}t_2\approx0.52\)</span> for <span class="math inline">\(t_2=0.1\)</span>. One gives <span class="math inline">\(C=0\)</span> and the other gives <span class="math inline">\(C=\pm1\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. A staggered potential is even under time reversal and gives the same mass at both valleys, so the half-integers cancel. The Haldane coupling is odd under time reversal, so the half-integers add.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>Which symmetry protects the helical edge states of the quantum spin Hall insulator?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li>Time-reversal symmetry, through the Kramers degeneracy.</li>
-<li>Particle-hole symmetry.</li>
 <li>Spin conservation.</li>
+<li>Time-reversal symmetry, through the Kramers degeneracy.</li>
 <li>Translational symmetry and gauge invariance.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>Translational symmetry and gauge invariance protect the Chern number. The helical edge is protected by time reversal, and it holds even when spin is not conserved.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Rashba coupling breaks the conservation of <span class="math inline">\(S_z\)</span>, and the crossing of the helical edge stays closed as long as time-reversal symmetry holds.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The helical edge is protected by time reversal, and it holds even when spin is not conserved.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. A random spin-independent potential at the edge breaks the translation symmetry completely, and the crossing at <span class="math inline">\(k=0\)</span> is still protected. Translation and gauge invariance protect the Chern number.</p></li>
+</ul>
+</div>
 </details>
 </div>
 

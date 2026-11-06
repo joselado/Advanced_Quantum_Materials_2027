@@ -91,9 +91,9 @@
 <img src="../figures/s01f02_ssb.svg" loading="lazy" alt="Spontaneous symmetry breaking." />
 <figcaption><strong>Figure 1.2.</strong> Spontaneous symmetry breaking. The energy as a function of the order parameter is symmetric under <span class="math inline">\(m\to-m\)</span>, in the same way as the Hamiltonian, but its minima are not, since the system has to be at <span class="math inline">\(+m_0\)</span> or at <span class="math inline">\(-m_0\)</span>. The system is the ball at <span class="math inline">\(+m_0\)</span>, and the ghost ball at <span class="math inline">\(-m_0\)</span> is the minimum with the same energy that it did not choose. The choice is made by fluctuations and not by the Hamiltonian. The barrier between the minima grows with the system size, from the small system on the left to the large one on the right, which is why spontaneous symmetry breaking is strictly a statement about the thermodynamic limit.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>Why is spontaneous symmetry breaking strictly a statement about infinite systems?</p>
@@ -103,12 +103,22 @@ Quick check
 <li>In a finite system the Hamiltonian is not symmetric anymore.</li>
 <li>In a finite system the barrier is finite, so the system tunnels and the ground state stays symmetric.</li>
 <li>A finite system has no ground state.</li>
-<li>Fluctuations are absent in a finite system.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>In a finite system the system can cross the barrier between the two minima, and the true ground state is the symmetric superposition of both. The barrier grows with the system size, and in the thermodynamic limit it cannot be crossed anymore.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Take two Ising spins with <span class="math inline">\(H=-J\sigma_1\sigma_2\)</span>. It is invariant under the flip of both spins for any finite size. The symmetry of <span class="math inline">\(H\)</span> does not depend on the size.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The system can cross the barrier between the two minima, and the true ground state is the symmetric superposition of both. The barrier grows with the system size, and in the thermodynamic limit it cannot be crossed.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The matrix <span class="math inline">\(\begin{pmatrix}0&amp;-\Delta\\-\Delta&amp;0\end{pmatrix}\)</span> of the two minima has the ground state <span class="math inline">\((1,1)/\sqrt2\)</span> with energy <span class="math inline">\(-\Delta\)</span>. A finite matrix always has a lowest level, and here it is symmetric.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>Tunneling between the minima restores the symmetry in any finite system.</p>
+</div>
 </details>
 </div>
 

@@ -95,9 +95,9 @@
 <img src="../figures/web/session02/square_bands.svg" loading="lazy" alt="The energy of the square lattice along a path of the Brillouin zone, and its contour lines over the zone." />
 <figcaption><strong>Schematic 2.3.</strong> The band of the square lattice from <a href="#eq-2-14">(2.14)</a>. On the left, the energy along the path from <span class="math inline">\(\Gamma\)</span> to <span class="math inline">\(X\)</span> to <span class="math inline">\(M\)</span> and back, which goes from <span class="math inline">\(-4t\)</span> to <span class="math inline">\(4t\)</span>. On the right, the contour lines of the same band over the Brillouin zone, with the line <span class="math inline">\(\epsilon=0\)</span> in red. The contours continue across the dashed border, so the zone is a torus.</figcaption>
 </figure>
-<div class="quiz" data-correct="C">
+<div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>What is the width of the band of the cubic lattice in <a href="#eq-2-15">(2.15)</a>, from the lowest to the highest energy?</p>
@@ -107,17 +107,27 @@ Quick check
 <li><span class="math inline">\(4t\)</span></li>
 <li><span class="math inline">\(8t\)</span></li>
 <li><span class="math inline">\(12t\)</span></li>
-<li><span class="math inline">\(6t\)</span></li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>C</strong>.</p>
-<p>The lowest energy is at <span class="math inline">\(\varphi_x=\varphi_y=\varphi_z=0\)</span>, where all three cosines are <span class="math inline">\(1\)</span> and the energy is <span class="math inline">\(-6t\)</span>. The highest is at <span class="math inline">\(\pi\)</span> in every direction, which gives <span class="math inline">\(+6t\)</span>, so the width is <span class="math inline">\(12t\)</span>.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The width <span class="math inline">\(4t\)</span> is the one of the chain in <a href="05-blochs-theorem-and-the-first-band-structure.html#eq-2-8">(2.8)</a>, from <span class="math inline">\(-2t\)</span> to <span class="math inline">\(2t\)</span>. In the cubic lattice, at <span class="math inline">\(\varphi_x=\varphi_y=\varphi_z=0\)</span> the energy is <span class="math inline">\(-6t\)</span>, which is below <span class="math inline">\(-2t\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The width <span class="math inline">\(8t\)</span> is the one of the square lattice, from <span class="math inline">\(-4t\)</span> to <span class="math inline">\(4t\)</span>. The cubic lattice has a third cosine, which gives <span class="math inline">\(-6t\)</span> and <span class="math inline">\(+6t\)</span> at the two ends.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. The lowest energy is at <span class="math inline">\(\varphi_x=\varphi_y=\varphi_z=0\)</span>, where all three cosines are <span class="math inline">\(1\)</span> and the energy is <span class="math inline">\(-6t\)</span>. The highest is at <span class="math inline">\(\pi\)</span> in every direction, which gives <span class="math inline">\(+6t\)</span>, so the width is <span class="math inline">\(12t\)</span>.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The width grows by <span class="math inline">\(4t\)</span> for each new direction of hopping.</p>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>We switch off the hopping along <span class="math inline">\(y\)</span> in the square lattice. What does the energy depend on?</p>
@@ -127,12 +137,22 @@ Quick check
 <li>Only on <span class="math inline">\(\varphi_x\)</span>, so the band is flat along <span class="math inline">\(\varphi_y\)</span>.</li>
 <li>Only on <span class="math inline">\(\varphi_y\)</span>.</li>
 <li>On <span class="math inline">\(\varphi_x+\varphi_y\)</span>.</li>
-<li>It does not depend on either.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>Without hopping along <span class="math inline">\(y\)</span> the lattice is a set of decoupled chains. Each chain has the band of <a href="05-blochs-theorem-and-the-first-band-structure.html#eq-2-8">(2.8)</a>, and nothing depends on <span class="math inline">\(\varphi_y\)</span>.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. Without hopping along <span class="math inline">\(y\)</span> the lattice is a set of decoupled chains. Each chain has the band of <a href="05-blochs-theorem-and-the-first-band-structure.html#eq-2-8">(2.8)</a>, and nothing depends on <span class="math inline">\(\varphi_y\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. Fix <span class="math inline">\(\varphi_y=0\)</span>. Then <span class="math inline">\(\epsilon=-2t\cos\varphi_x\)</span> gives <span class="math inline">\(-2t\)</span> at <span class="math inline">\(\varphi_x=0\)</span> and <span class="math inline">\(+2t\)</span> at <span class="math inline">\(\varphi_x=\pi\)</span>, so the energy does change with <span class="math inline">\(\varphi_x\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The points <span class="math inline">\((0,0)\)</span> and <span class="math inline">\((\pi,-\pi)\)</span> have the same sum, <span class="math inline">\(0\)</span>. Their energies are <span class="math inline">\(-2t\)</span> and <span class="math inline">\(+2t\)</span>, so the energy is not a function of the sum.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The energy depends only on the directions along which the electron can hop.</p>
+</div>
 </details>
 </div>
 <p>Before we continue, let us say explicitly that everything above applies far beyond electrons. The same Bloch-Hamiltonian method diagonalizes phonon bands, magnon bands and the bands of Bogoliubov-de Gennes quasiparticles in a superconductor. It applies in the same way to artificial lattices that are engineered and have no relation to real crystals, such as cold atoms trapped in optical lattices. We will focus on electronic bands for concreteness, but this generality is the reason why the same method appears again for magnons, and for Bogoliubov quasiparticles, later in the course. The physics that single-particle band theory gives in this way is very rich. It includes Dirac fermions with zero Dirac mass, Weyl semimetals, which are Dirac points generalized to higher dimensions, quantum spin Hall insulators, Chern insulators, crystalline topological phases and topological superconductors. All of this is built only on the Bloch Hamiltonian <span class="math inline">\(H(\mathbf{k})\)</span> that we constructed here.</p>

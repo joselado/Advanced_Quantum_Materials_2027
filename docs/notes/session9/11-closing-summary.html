@@ -102,9 +102,9 @@
 <li><p>Many impurities at the same time can break translational symmetry in the whole system, which gives rise to Anderson localization. In <span class="math inline">\(d\geq3\)</span> there is a real mobility edge, which we diagnose with the inverse participation ratio <a href="10-disorder-and-anderson-localization.html#eq-9-12">(9.12)</a>, and an Anderson insulator, which has no spectral gap but has a transport gap. In one dimension an arbitrarily weak disorder localizes every state, and the localization length diverges as the disorder strength goes to zero (Section <a href="10-disorder-and-anderson-localization.html#sec-9-10">9.10</a>).</p></li>
 </ul>
 <p>Every session so far has gone in the same direction. We start from a Hamiltonian, and we compute what it predicts, which can be an observable, a response function or a ground state. Session 10 goes in the opposite direction. In this whole course we computed observables from Hamiltonians, and in the next session we ask the inverse question. Given only the observed data, can we find the Hamiltonian that produced it? We will see that machine learning is the right tool to make this question precise.</p>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>We put a single vacancy in a clean material, and we see a density oscillation that decays as <span class="math inline">\(1/|x|\)</span> in one dimension. What do we conclude about the ground state?</p>
@@ -116,9 +116,17 @@ Quick check
 <li>It is an Anderson insulator, since the impurity breaks translational symmetry.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>A power-law envelope means that the response has a non-analytic point, and in a metal this is <span class="math inline">\(2k_F\)</span>. A gapped state would give an exponential envelope, with the gap setting the decay length.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. A gapped state gives <span class="math inline">\(e^{-x/\xi}\)</span>. For <span class="math inline">\(\xi=2.5\)</span> sites the response at <span class="math inline">\(x=10\)</span> is <span class="math inline">\(0.02\)</span> of the starting value, while <span class="math inline">\(1/x\)</span> gives <span class="math inline">\(0.1\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. A <span class="math inline">\(1/|x|\)</span> envelope shows a non-analytic point of <span class="math inline">\(\chi_0\)</span>, which in a metal is <span class="math inline">\(2k_F\)</span>. The oscillation wavevector then gives the Fermi surface, as a Friedel oscillation does.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. One impurity does not make an Anderson insulator, which needs disorder everywhere. Its states decay exponentially, so <span class="math inline">\(1/|x|\)</span> does not fit, and the rest of the clean chain stays extended.</p></li>
+</ul>
+</div>
 </details>
 </div>
 

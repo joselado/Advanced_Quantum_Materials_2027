@@ -96,9 +96,9 @@
 <img src="../figures/s01f03_threechannels.svg" loading="lazy" alt="One interacting Hamiltonian on the left and three ordered states on the right, a charge density wave, a magnet and a superconductor." />
 <figcaption><strong><a href="12-the-general-interacting-hamiltonian-and-the-tool-we-will-use-on-it.html#fig:s01:channels">Figure 1.3</a>, shown again.</strong> The three channels of this session, shown again. The same Hamiltonian gives a charge density wave, a magnet and a superconductor, and each one breaks a different symmetry.</figcaption>
 </figure>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>Why does a mean-field superconductor not have a fixed number of electrons?</p>
@@ -107,13 +107,23 @@ Quick check
 <ol type="A">
 <li>The order parameter has a physical phase, so the gauge symmetry is broken, and this symmetry is the conservation of the particle number.</li>
 <li>The attractive interaction lets electrons escape from the sample.</li>
-<li>The hopping is switched off in a superconductor.</li>
 <li>A superconductor breaks time-reversal symmetry.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>A fixed particle number is the conservation law of the gauge symmetry. Once <span class="math inline">\(\Delta\neq 0\)</span> breaks this symmetry, the number is not fixed anymore, and only its parity survives.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. Once <span class="math inline">\(\Delta\neq 0\)</span> it changes under the gauge transformation, and the number is not fixed anymore. Only its parity survives.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. An isolated superconducting island has a fixed number of electrons in total, and the mean-field state still has <span class="math inline">\(\Delta\neq 0\)</span>. The state is a superposition of <span class="math inline">\(N\)</span>, <span class="math inline">\(N+2\)</span> and <span class="math inline">\(N-2\)</span> electrons, with no electrons leaving.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. A conventional s-wave superconductor such as aluminum has a real <span class="math inline">\(\Delta\)</span> and keeps time-reversal symmetry. Its number of electrons is still not fixed.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The phase of <span class="math inline">\(\Delta\)</span> and the number of electrons are conjugate, so a fixed phase means an uncertain number.</p>
+</div>
 </details>
 </div>
 <p>In the next session we leave interactions aside for some time, and we go back to the single-particle part of the Hamiltonian of this session. We will see how <em>symmetry</em>, and in particular translational symmetry, allows us to diagonalize it exactly, without any approximation, using Bloch’s theorem. The general framework of symmetry breaking that we built in Section <a href="11-spontaneous-symmetry-breaking-and-why-a-symmetric-hamiltonian-can-have-an-asymmetric-ground-state.html#sec-1-11">1.11</a> will not be discussed again there, so it is useful to keep it from here and not to expect a summary of it later.</p>

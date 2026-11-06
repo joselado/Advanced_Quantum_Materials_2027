@@ -97,9 +97,9 @@
 <img src="../figures/web/session07/dimer_entropy.svg" loading="lazy" alt="The entropy of a block of sites against its length for a dimer product state, which alternates between one and two times log 2, and a dashed straight line for the volume law." />
 <figcaption><strong>Schematic 7.3.</strong> We compute the entropy of a block of <span class="math inline">\(\ell\)</span> sites, starting at site 1, in the dimer product state <a href="#eq-7-8">(7.8)</a>. The chain has 12 sites and the numbers come from the exact state. The entropy alternates between one and two times <span class="math inline">\(\log 2\)</span>, since the block cuts one or two singlets, and it never grows with <span class="math inline">\(\ell\)</span>. The dashed line is the volume law that a generic state would follow. Look at the odd blocks, which cut only the singlet at their left end.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>The dimers are the pairs of sites <span class="math inline">\((0,1)\)</span>, <span class="math inline">\((2,3)\)</span>, <span class="math inline">\((4,5)\)</span> and so on. Which block of sites has exactly zero entanglement entropy in the state <a href="#eq-7-8">(7.8)</a>?</p>
@@ -111,14 +111,22 @@ Quick check
 <li>Sites 3 to 6.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The block of sites 2 to 5 contains the dimers <span class="math inline">\((2,3)\)</span> and <span class="math inline">\((4,5)\)</span> completely, so no singlet is cut. The other two blocks cut two singlets and give <span class="math inline">\(2\log2\)</span>.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The block contains the dimer <span class="math inline">\((2,3)\)</span> but it cuts <span class="math inline">\((0,1)\)</span> at site 1 and <span class="math inline">\((4,5)\)</span> at site 4. Two singlets are cut and the entropy is <span class="math inline">\(2\log2\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The block contains the dimers <span class="math inline">\((2,3)\)</span> and <span class="math inline">\((4,5)\)</span> completely, and its two boundaries fall between dimers. No singlet is cut, so the entropy is zero.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The block cuts the dimer <span class="math inline">\((2,3)\)</span> at site 3 and the dimer <span class="math inline">\((6,7)\)</span> at site 6. Two singlets are cut and the entropy is <span class="math inline">\(2\log2\)</span>, not zero.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="D">
+<div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>A block of sites 1 to 3 is taken from the same state. What is its entropy?</p>
@@ -127,13 +135,20 @@ Quick check
 <ol type="A">
 <li><span class="math inline">\(0\)</span>, since the block contains one full dimer.</li>
 <li><span class="math inline">\(2\log 2\)</span>, since the block has two boundaries.</li>
-<li><span class="math inline">\(3\log 2\)</span>, since the block has three sites.</li>
 <li><span class="math inline">\(\log 2\)</span>, since only the singlet <span class="math inline">\((0,1)\)</span> is cut.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>D</strong>.</p>
-<p>The dimer <span class="math inline">\((2,3)\)</span> is inside the block, and the dimer <span class="math inline">\((0,1)\)</span> is cut at the left end. The right end falls between two dimers and cuts nothing, so there is one cut singlet.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The site 1 is paired with site 0, which is outside the block. This singlet is cut and it adds <span class="math inline">\(\log2\)</span>, even if the dimer <span class="math inline">\((2,3)\)</span> is inside.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The right boundary falls between the dimers <span class="math inline">\((2,3)\)</span> and <span class="math inline">\((4,5)\)</span> and cuts nothing. The block of sites 2 to 5 of the previous question also has two boundaries and its entropy is zero.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. The dimer <span class="math inline">\((2,3)\)</span> is inside the block, and the dimer <span class="math inline">\((0,1)\)</span> is cut at the left end. The right end cuts nothing, so there is one cut singlet.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="widget" data-widget="dimerentropy">

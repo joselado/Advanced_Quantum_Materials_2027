@@ -27,20 +27,32 @@ The solution has the same structure as the ground-state search above. We paramet
 In the local energy [(10.4)](#eq-10-4) the sum over $s'$ has only a few terms. What makes this possible?
 
 - [ ] The network $C_\theta$ is zero for most configurations.
+
+    This is false. A network such as the restricted Boltzmann machine gives a non-zero amplitude for every configuration. There are $2^L$ of them, and the sum over $s'$ is short for another reason.
+
 - [x] The Hamiltonian is sparse, so only a few $s'$ have a non-zero $H_{ss'}$ for a given $s$.
+
+    This is true. For the Heisenberg chain of $L=40$ spins, each of the $39$ bonds changes $s$ into at most one other configuration, and not into $2^{40}$. A dense random $H$ would not have this property.
+
 - [ ] The configurations $s$ are sampled, and sampling removes the sum over $s'$.
 
-For a local Hamiltonian, a given configuration is connected to a number of others that grows only linearly with $L$. The sampling replaces the sum over $s$, and the sparsity limits the sum over $s'$.
+    This is false. Sampling replaces the sum over $s$, but not the one over $s'$. For a dense $H$ each sampled $s$ would still need $2^L$ terms of $s'$.
 :::
 
 ::: quiz
 In tomography we measure only the spin of every site along $z$, and we fit $\theta$ by maximum likelihood. Which information about $C(s)$ do these data never contain?
 
 - [ ] The modulus $|C(s)|$.
+
+    This is false. The counts follow $|C(s)|^2$, so $|C(s)|$ is fixed. Two states $C(s)$ and $C(s)e^{i\phi(s)}$ give the same counts, but they have the same modulus.
+
 - [x] The phase of $C(s)$.
+
+    This is true. The states $(|\uparrow\rangle\pm|\downarrow\rangle)/\sqrt2$ both give $50\%$ and $50\%$ along $z$, and they differ in the phase. We need other bases to fix it.
+
 - [ ] The relative weight of two configurations.
 
-The counts $n(s)$ follow $|C(s)|^2$, so the phase drops out. To fix it we need measurements in other bases.
+    This is false. The ratio of the counts $n(s)/n(s')$ gives $|C(s)|^2/|C(s')|^2$ directly. So the relative weight is in the data, and only the phase is missing.
 :::
 
 This part comes from the slides and the transcript and has no notebook counterpart, in line with the fact that this session has no companion notebook. There is no `sessionN.ipynb` cell to point you to here, so [(10.3)](#eq-10-3)-[(10.5)](#eq-10-5) and the tomography likelihood above are the complete and self-contained derivation.

@@ -30,22 +30,36 @@ This chain with alternating hoppings should be remembered by its name, since it 
 In [(2.13)](#eq-2-13) we take $\eta=1$ and $\varphi=\pi$. What is the energy of the two bands?
 
 - [x] $0$ for both, so the bands touch.
-- [ ] $\pm 1$.
+
+    This is true. At $\varphi=\pi$ the phase factor is $-1$, so $1+\eta e^{-i\pi}=1-\eta$, which vanishes for $\eta=1$. The two bands touch, as the folded band of the uniform chain does at the zone edge.
+
 - [ ] $\pm 2$.
+
+    This is false. The value $\pm 2$ is $\pm|1+\eta|$ at $\varphi=0$ for $\eta=1$, which is the top and the bottom of the two bands. At $\varphi=\pi$ we get $|1-1|=0$.
+
 - [ ] $\pm\eta$ with a gap.
 
-At $\varphi=\pi$ the phase factor is $-1$, so $1+\eta e^{-i\pi}=1-\eta$, which vanishes for $\eta=1$. The two bands touch, as the folded band of the uniform chain does at the zone edge.
+    This is false. The gap at $\varphi=\pi$ is $2|1-\eta|$. It is $1$ for $\eta=0.5$, but it is exactly zero for $\eta=1$, so the gap closes.
+
+The gap at $\varphi=\pi$ is $2|1-\eta|$, so it closes only when the two hoppings are equal.
 :::
 
 ::: quiz
 We describe the uniform chain with a unit cell of three sites. How many bands do we get, and how wide is the zone?
 
 - [x] Three bands, in a zone three times narrower.
-- [ ] One band, in the same zone.
-- [ ] Three bands, in a zone three times wider.
-- [ ] Two bands, in a zone twice as narrow.
 
-The Bloch Hamiltonian is a $3\times 3$ matrix, so we get three bands. The cell is three times longer, so the zone is three times narrower, and the single band of [(2.8)](#eq-2-8) folds into it.
+    This is true. The Bloch Hamiltonian is a $3\times 3$ matrix, so we get three bands. The cell is three times longer, so the zone is three times narrower, and the single band of [(2.8)](#eq-2-8) folds into it.
+
+- [ ] One band, in the same zone.
+
+    This is false. At $\varphi=0$ the folded energies $-2t\cos(2\pi m/3)$ with $m=0,1,2$ are $-2t$, $t$ and $t$. A $3\times 3$ matrix has three eigenvalues at each $\varphi$, so one band is not enough.
+
+- [ ] Three bands, in a zone three times wider.
+
+    This is false. The zone has the width $2\pi/(3a)$, which is smaller than $2\pi/a$. A wider zone would need a shorter cell, and our cell is three times longer.
+
+Counting the sites of the cell gives the number of bands, and its length gives the width of the zone.
 :::
 
 ::: notebookbox

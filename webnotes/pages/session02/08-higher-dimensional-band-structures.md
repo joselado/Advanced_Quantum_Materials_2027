@@ -20,22 +20,36 @@ The same method extends in a systematic way to four, five or more dimensions, si
 What is the width of the band of the cubic lattice in [(2.15)](#eq-2-15), from the lowest to the highest energy?
 
 - [ ] $4t$
-- [ ] $8t$
-- [x] $12t$
-- [ ] $6t$
 
-The lowest energy is at $\varphi_x=\varphi_y=\varphi_z=0$, where all three cosines are $1$ and the energy is $-6t$. The highest is at $\pi$ in every direction, which gives $+6t$, so the width is $12t$.
+    This is false. The width $4t$ is the one of the chain in [(2.8)](#eq-2-8), from $-2t$ to $2t$. In the cubic lattice, at $\varphi_x=\varphi_y=\varphi_z=0$ the energy is $-6t$, which is below $-2t$.
+
+- [ ] $8t$
+
+    This is false. The width $8t$ is the one of the square lattice, from $-4t$ to $4t$. The cubic lattice has a third cosine, which gives $-6t$ and $+6t$ at the two ends.
+
+- [x] $12t$
+
+    This is true. The lowest energy is at $\varphi_x=\varphi_y=\varphi_z=0$, where all three cosines are $1$ and the energy is $-6t$. The highest is at $\pi$ in every direction, which gives $+6t$, so the width is $12t$.
+
+The width grows by $4t$ for each new direction of hopping.
 :::
 
 ::: quiz
 We switch off the hopping along $y$ in the square lattice. What does the energy depend on?
 
 - [x] Only on $\varphi_x$, so the band is flat along $\varphi_y$.
-- [ ] Only on $\varphi_y$.
-- [ ] On $\varphi_x+\varphi_y$.
-- [ ] It does not depend on either.
 
-Without hopping along $y$ the lattice is a set of decoupled chains. Each chain has the band of [(2.8)](#eq-2-8), and nothing depends on $\varphi_y$.
+    This is true. Without hopping along $y$ the lattice is a set of decoupled chains. Each chain has the band of [(2.8)](#eq-2-8), and nothing depends on $\varphi_y$.
+
+- [ ] Only on $\varphi_y$.
+
+    This is false. Fix $\varphi_y=0$. Then $\epsilon=-2t\cos\varphi_x$ gives $-2t$ at $\varphi_x=0$ and $+2t$ at $\varphi_x=\pi$, so the energy does change with $\varphi_x$.
+
+- [ ] On $\varphi_x+\varphi_y$.
+
+    This is false. The points $(0,0)$ and $(\pi,-\pi)$ have the same sum, $0$. Their energies are $-2t$ and $+2t$, so the energy is not a function of the sum.
+
+The energy depends only on the directions along which the electron can hop.
 :::
 
 Before we continue, let us say explicitly that everything above applies far beyond electrons. The same Bloch-Hamiltonian method diagonalizes phonon bands, magnon bands and the bands of Bogoliubov-de Gennes quasiparticles in a superconductor. It applies in the same way to artificial lattices that are engineered and have no relation to real crystals, such as cold atoms trapped in optical lattices. We will focus on electronic bands for concreteness, but this generality is the reason why the same method appears again for magnons, and for Bogoliubov quasiparticles, later in the course. The physics that single-particle band theory gives in this way is very rich. It includes Dirac fermions with zero Dirac mass, Weyl semimetals, which are Dirac points generalized to higher dimensions, quantum spin Hall insulators, Chern insulators, crystalline topological phases and topological superconductors. All of this is built only on the Bloch Hamiltonian $H(\mathbf{k})$ that we constructed here.

@@ -96,9 +96,9 @@ q\Phi/\Phi_0\)</span>, where <span class="math inline">\(\Phi_0\)</span> is the 
 <img src="../figures/s04f06_quasihole.svg" loading="lazy" alt="Fractional charge and fractional statistics, both obtained from a Berry phase." />
 <figcaption><strong>Figure 4.6.</strong> Fractional charge and fractional statistics, both obtained from a Berry phase. (a) When we multiply the Laughlin state by <span class="math inline">\(\prod_i(z_i-w)\)</span>, equation <a href="16-fractional-filling-and-the-laughlin-wavefunction.html#eq-4-14">(4.14)</a>, the angular momentum of every electron about <span class="math inline">\(w\)</span> increases by one, which by figure <a href="13-the-symmetric-gauge-and-the-lowest-landau-level-wavefunctions.html#fig:s04:droplet">4.5</a> moves charge radially outward and leaves a region with less charge behind, the dimple. If we do this <span class="math inline">\(m\)</span> times we remove exactly the charge of one electron, so one quasihole has the charge of an electron divided by <span class="math inline">\(m\)</span>, which is <span class="math inline">\(q=e/m\)</span>. (b) When we move one quasihole once around another, along the loop, and follow the Berry phase, it separates into two parts. The first is an Aharonov-Bohm part, proportional to the enclosed flux, and its prefactor is what fixes <span class="math inline">\(q=e/m\)</span> in <a href="#eq-4-15">(4.15)</a>. The second is a remaining part <span class="math inline">\(2\pi/m\)</span>, which depends only on the fact that one quasiparticle went around the other. A full loop is two exchanges, so the exchange phase itself is <span class="math inline">\(\pi/m\)</span>, drawn at the bottom for <span class="math inline">\(m=3\)</span>. For every odd <span class="math inline">\(m&gt;1\)</span> it is strictly between the bosonic <span class="math inline">\(0\)</span> and the fermionic <span class="math inline">\(\pi\)</span>, and this is what makes these excitations anyons.</figcaption>
 </figure>
-<div class="quiz" data-correct="D">
+<div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>For <span class="math inline">\(m=3\)</span> what are the statistical phase of a full braid of one quasihole around another and the exchange phase?</p>
@@ -106,19 +106,26 @@ Quick check
 <div class="quiz-options">
 <ol type="A">
 <li><span class="math inline">\(2\pi\)</span> and <span class="math inline">\(\pi\)</span>.</li>
-<li><span class="math inline">\(\pi/3\)</span> and <span class="math inline">\(2\pi/3\)</span>.</li>
 <li><span class="math inline">\(2\pi/3\)</span> and <span class="math inline">\(2\pi/3\)</span>.</li>
 <li><span class="math inline">\(2\pi/3\)</span> and <span class="math inline">\(\pi/3\)</span>.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>D</strong>.</p>
-<p>A full braid is two exchanges, so the exchange phase is half of the braid phase <span class="math inline">\(2\pi/m\)</span>, which is <span class="math inline">\(\pi/m=\pi/3\)</span>.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. These are the phases of two fermions, which is the case <span class="math inline">\(m=1\)</span>. For <span class="math inline">\(m=3\)</span> the braid phase <span class="math inline">\(2\pi/m\)</span> is <span class="math inline">\(2\pi/3\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. A full braid is two exchanges. If one exchange gave <span class="math inline">\(2\pi/3\)</span>, two of them would give <span class="math inline">\(4\pi/3\)</span> and not <span class="math inline">\(2\pi/3\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. A full braid is two exchanges, so the exchange phase is half of the braid phase <span class="math inline">\(2\pi/m\)</span>, which is <span class="math inline">\(\pi/m=\pi/3\)</span>.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="C">
+<div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>The exchange phase is <span class="math inline">\(\pi/m\)</span>. Which familiar particles do we recover for <span class="math inline">\(m=1\)</span> and for very large <span class="math inline">\(m\)</span>?</p>
@@ -128,12 +135,19 @@ Quick check
 <li>Bosons for <span class="math inline">\(m=1\)</span> and fermions for large <span class="math inline">\(m\)</span>.</li>
 <li>Fermions for both.</li>
 <li>Fermions for <span class="math inline">\(m=1\)</span> and bosons for large <span class="math inline">\(m\)</span>.</li>
-<li>Bosons for both.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>C</strong>.</p>
-<p>For <span class="math inline">\(m=1\)</span> the phase is <span class="math inline">\(\pi\)</span>, which is the fermion, and the Laughlin state is the filled Landau level. For large <span class="math inline">\(m\)</span> the phase goes to <span class="math inline">\(0\)</span>, which is the boson.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. For <span class="math inline">\(m=1\)</span> the phase is <span class="math inline">\(\pi\)</span>, so the wavefunction gets <span class="math inline">\(e^{i\pi}=-1\)</span>, which is a fermion. This is the filled Landau level.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. For <span class="math inline">\(m=100\)</span> the phase is <span class="math inline">\(\pi/100\)</span>, so the wavefunction gets <span class="math inline">\(e^{i\pi/100}\approx1\)</span> and not <span class="math inline">\(-1\)</span>. This is almost a boson.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. For <span class="math inline">\(m=1\)</span> the phase is <span class="math inline">\(\pi\)</span>, which is the fermion, and the Laughlin state is the filled Landau level. For large <span class="math inline">\(m\)</span> the phase goes to <span class="math inline">\(0\)</span>, which is the boson.</p></li>
+</ul>
+</div>
 </details>
 </div>
 

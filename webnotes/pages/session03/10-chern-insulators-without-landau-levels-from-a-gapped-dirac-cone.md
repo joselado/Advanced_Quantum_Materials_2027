@@ -15,12 +15,18 @@ The half-integer in [(3.8)](#eq-3-8) is not an inconsistency. A real lattice alw
 ::: quiz
 A massive Dirac cone with $\lambda=+1$ has Chern number $+\tfrac12$ for $m>0$. What is its Chern number for $m<0$ with the same $\lambda$?
 
-- [ ] $0$.
 - [ ] $-1$.
+
+    This is false. The jump of $C$ from $m>0$ to $m<0$ is one, since the value goes from $+\tfrac12$ to $-\tfrac12$. The value of a single cone is never larger than $\tfrac12$ in size.
+
 - [ ] $+\tfrac12$, since the gap has the same size.
+
+    This is false. The curvature is proportional to $m$, so it is odd in $m$. The gap $2|m|$ is the same for $m=0.1$ and $m=-0.1$, but the Berry curvature has the opposite sign and so does $C$.
+
 - [x] $-\tfrac12$.
 
-The Chern number [(3.8)](#eq-3-8) is $\tfrac12\,\mathrm{sgn}(m)\,\mathrm{sgn}(\lambda)$. It depends on the sign of the mass and not on its size. A change of sign of $m$ then changes the sign of $C$.
+    This is true. The Chern number [(3.8)](#eq-3-8) is $\tfrac12\,\mathrm{sgn}(m)\,\mathrm{sgn}(\lambda)$. It depends on the sign of the mass and not on its size, so a change of sign of $m$ changes the sign of $C$.
+
 :::
 
 ![The two Dirac cones of the honeycomb lattice, at $K$ and $K'$, drawn over the Brillouin zone. These are the points where a mass term of [(3.7)](#eq-3-7) opens a gap. Look at the two cones, since a staggered potential gives the same mass at both, while $\lambda$ has opposite signs.](figures/s02f04_dirac.svg){panel="c" alt="Two Dirac cones at the corners of the hexagonal Brillouin zone of the honeycomb lattice."}
@@ -29,11 +35,17 @@ The Chern number [(3.8)](#eq-3-8) is $\tfrac12\,\mathrm{sgn}(m)\,\mathrm{sgn}(\l
 A lattice model has a single massive Dirac cone at low energy and no other states close to the gap. Can its filled band have $\sigma_{xy}=e^2/2h$?
 
 - [ ] Yes, since [(3.8)](#eq-3-8) gives the value $1/2$.
-- [ ] Yes, but only if $m$ is large.
-- [ ] No, since a single Dirac cone cannot have a gap.
-- [x] No, since on a lattice the Dirac points come in sets whose contributions add up to an integer.
 
-The Chern number of a filled band on a lattice is an integer. A lattice has an even number of Dirac points, like $K$ and $K'$. The half-integers of [(3.8)](#eq-3-8) are paired, and only their sum is physical.
+    This is false. Take the two-band model with $\mathbf d=(\sin k_x,\sin k_y,m+\cos k_x+\cos k_y)$ and $m=-1.9$. It has one cone at $\Gamma$ with mass $0.1$, and its Chern number is exactly $|C|=1$. The curvature of the rest of the zone supplies the other half.
+
+- [ ] No, since a single Dirac cone cannot have a gap.
+
+    This is false. The term $m\sigma_z$ gives the spectrum $\pm\sqrt{k^2+m^2}$ with a gap $2|m|$ for a single cone. The reason is not the gap, but the integer quantization of $C$ on a lattice.
+
+- [x] No, since on a lattice the Chern number of a filled band is an integer, so the half of one cone is completed elsewhere in the zone.
+
+    This is true. The Chern number of a filled band on a lattice is an integer. The half of [(3.8)](#eq-3-8) is completed by the rest of the zone, either by a second cone, like $K$ and $K'$ in the honeycomb lattice, or by the massive part of the band, as in the model above.
+
 :::
 
 This is where the choice of the mass term matters, and we will work out the two natural choices explicitly, because they give qualitatively different physics. At $K$ and $K'$ the chirality $\lambda$ has opposite sign, since the two points are time-reversal partners. Let us first open the gap with a staggered sublattice potential, which raises the onsite energy on one honeycomb sublattice and lowers it on the other. This mass term is an ordinary scalar potential, so it has the *same* sign $m$ at both $K$ and $K'$. From [(3.8)](#eq-3-8), the two Dirac points then give Chern numbers of opposite sign, $+\tfrac12\,\mathrm{sgn}(m)$ and $-\tfrac12\,\mathrm{sgn}(m)$, which cancel. The result is $C=0$, which is an ordinary insulator that is topologically trivial, and this is the same kind of gap as in boron nitride. 

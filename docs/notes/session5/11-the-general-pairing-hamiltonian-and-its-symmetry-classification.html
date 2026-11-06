@@ -102,9 +102,9 @@ c_{-\mathbf k\sigma&#39;}^\dagger\)</span> anticommute, imposes</p>
 <img src="../figures/s05f03_gapsymmetry.svg" loading="lazy" alt="Several panels of the sign of the pairing function over the Brillouin zone, with positive regions raised and negative regions sunk." />
 <figcaption><strong><a href="13-nodal-singlet-order-d-wave-pairing-in-the-cuprates-and-the-angular-momentum-expansion.html#fig:s05:gapsymmetry">Figure 5.3</a>, shown again.</strong> The sign structure of <span class="math inline">\(\Delta(\mathbf k)\)</span> for several orders. A half turn of a panel sends <span class="math inline">\(\mathbf k\to-\mathbf k\)</span>, so panels that keep their signs have even parity and panels that flip them have odd parity, as in <a href="#eq-5-12">(5.12)</a>.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>A pairing function is <span class="math inline">\(\Delta(\mathbf k)=\Delta_0\sin k_x\)</span>, which is odd in <span class="math inline">\(\mathbf k\)</span>. What does <a href="#eq-5-11">(5.11)</a> require of its spin part?</p>
@@ -114,12 +114,19 @@ Quick check
 <li>It has to be antisymmetric, which is a spin singlet.</li>
 <li>It has to be symmetric, which is a spin triplet.</li>
 <li>Nothing, since the spin part is independent of <span class="math inline">\(\mathbf k\)</span>.</li>
-<li>It depends on the lattice.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The condition <a href="#eq-5-11">(5.11)</a> says that the full function changes sign when we exchange the spins and send <span class="math inline">\(\mathbf k\to-\mathbf k\)</span>. Since <span class="math inline">\(\sin k_x\)</span> already changes sign under <span class="math inline">\(\mathbf k\to-\mathbf k\)</span>, the spin part must stay the same, so it is symmetric.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Take <span class="math inline">\(\sum_k\sin k_x\,(c_{k\uparrow}c_{-k\downarrow}-c_{k\downarrow}c_{-k\uparrow})\)</span>. Relabeling <span class="math inline">\(k\to-k\)</span> in the second term shows that it cancels the first, so this singlet term is exactly zero.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The condition <a href="#eq-5-11">(5.11)</a> needs the total function to change sign. Since <span class="math inline">\(\sin k_x\)</span> is already odd, the spin part has to be even, which is the triplet of <a href="#eq-5-12">(5.12)</a>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. Take a constant <span class="math inline">\(\Delta_0\)</span>, which is even in <span class="math inline">\(\mathbf k\)</span>. The triplet combination <span class="math inline">\(\sum_k(c_{k\uparrow}c_{-k\downarrow}+c_{k\downarrow}c_{-k\uparrow})\)</span> is exactly zero, so the spin part is fixed by the parity in <span class="math inline">\(\mathbf k\)</span>.</p></li>
+</ul>
+</div>
 </details>
 </div>
 

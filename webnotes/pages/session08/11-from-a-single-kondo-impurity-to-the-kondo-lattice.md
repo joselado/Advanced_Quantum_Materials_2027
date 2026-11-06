@@ -56,22 +56,32 @@ where $\varepsilon_{\mathbf k}$ is the **conduction band dispersion** and $\gamm
 In the Kondo lattice [(8.18)](#eq-8-18) every impurity wants a singlet with a conduction electron close to it. What is the consequence of having many impurities?
 
 - [x] The screening electrons are shared between the singlets of different impurities.
-- [ ] Each impurity gets its own electron, so the electron density doubles.
-- [ ] The impurities form singlets with each other and decouple from the metal.
-- [ ] The conduction electrons localize.
 
-The number of conduction electrons is not larger than the number of impurities, and all impurities draw from the same sea. The singlets are then fractional and entangled over the lattice.
+    This is true. The number of conduction electrons is not larger than the number of impurities, and all impurities draw from the same sea. The singlets are then fractional and entangled over the lattice.
+
+- [ ] Each impurity gets its own electron, so the electron density doubles.
+
+    This is false. The Kondo coupling does not create electrons. With $0.5$ conduction electrons per site, only half of the impurities could get one, and the density stays $0.5$.
+
+- [ ] The impurities form singlets with each other and decouple from the metal.
+
+    This is false. At half filling the $f$ fermions hybridize with the conduction band, which opens a gap $2\gamma_K$ as in the Kondo insulator. Decoupled impurities could not do this.
 :::
 
 ::: quiz
 In [(8.21)](#eq-8-21) with $\gamma_K=0$, what is the energy of the $f$ band?
 
 - [ ] $\varepsilon_{\mathbf k}$, the same as the conduction band.
+
+    This is false. The $f$ fermions have no hopping. At $\mathbf k$ with $\varepsilon_{\mathbf k}=2$, say, the conduction band is at $2$ and the $f$ level is still at $0$.
+
 - [x] Zero for every $\mathbf k$, a flat band.
-- [ ] $-\gamma_K$ for every $\mathbf k$.
+
+    This is true. The auxiliary fermions have no hopping of their own, and the only term that involves them is the hybridization. Without it their levels sit at zero energy, which is the chemical potential of the constraint.
+
 - [ ] It does not exist, since the $f$ fermions are removed.
 
-The auxiliary fermions have no hopping of their own, and the only term that involves them is the hybridization. Without it their levels sit at zero energy, which is the chemical potential of the constraint.
+    This is false. The constraint asks for one $f$ fermion on each site, so there are $N$ of them for $N$ sites. They are still in the Hamiltonian, at energy zero.
 :::
 
 ::: {.tryit notebook="session8.ipynb" cell="Quantum magnetism in the Kondo lattice"}

@@ -26,22 +26,32 @@ Build the spinon tight-binding Hamiltonian [(8.15)](#eq-8-15) on the triangular 
 Why must the spinon tight-binding model [(8.15)](#eq-8-15) be studied at half filling?
 
 - [x] There is one $f$ fermion on every site, which is the constraint [(8.11)](#eq-8-11) on average.
-- [ ] The spinons have charge.
+
+    This is true. Each site holds exactly one $f$ fermion, which is one particle for two spin states. This gives half filling of the spinon bands.
+
 - [ ] The model has particle-hole symmetry only at half filling.
+
+    This is false. Add a second-neighbor hopping to the square lattice. Particle-hole symmetry is lost, but the constraint still asks for one fermion per site, so half filling is still required.
+
 - [ ] A Fermi surface exists only at half filling.
 
-Each site holds exactly one $f$ fermion, which is one particle for two spin states. This gives half filling of the spinon bands.
+    This is false. A tight-binding band with filling $0.3$ has a Fermi surface too. The half filling comes from the constraint and not from the existence of a Fermi surface.
 :::
 
 ::: quiz
 We take the same $\chi_{ij}$ for spin up and spin down. What does this choice keep exact?
 
 - [ ] The Fermi surface of the spinons.
-- [x] $\langle\mathbf S_i\rangle=0$, so the state is time-reversal symmetric.
-- [ ] The charge of the spinons.
-- [ ] The value of the exchange coupling $J_{ij}$.
 
-The two spin species see the same band, so no spin direction is selected. The state has zero magnetization by construction.
+    This is false. The same $\chi_{ij}$ for both spins can give a Fermi surface or Dirac points. A uniform $\chi$ on the square lattice has a Fermi surface and the $\pi$-flux choice has Dirac points.
+
+- [x] $\langle\mathbf S_i\rangle=0$, so the state is time-reversal symmetric.
+
+    This is true. The two spin species see the same band, so no spin direction is selected. The state has zero magnetization by construction.
+
+- [ ] The charge of the spinons.
+
+    This is false. Spinons are neutral for any $\chi_{ij}$, also a spin-dependent one, since the constraint [(8.11)](#eq-8-11) fixes one fermion per site. The equal choice for both spins is not what gives this.
 :::
 
 ::: {.tryit notebook="session8.ipynb" cell="Spinon Fermi surface in gapless quantum spin liquids"}

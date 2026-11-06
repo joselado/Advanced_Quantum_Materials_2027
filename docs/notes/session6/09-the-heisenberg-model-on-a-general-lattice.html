@@ -94,9 +94,9 @@
 <img src="../figures/s06f03_frustration.svg" loading="lazy" alt="How the geometry decides if an antiferromagnet can order." />
 <figcaption><strong>Figure 6.3.</strong> How the geometry decides if an antiferromagnet can order. (a) On a bipartite lattice the sites can be coloured with two colours, here dark and light, every bond joins the two colours, and the Néel state of Section <a href="#sec-6-10">6.10</a> satisfies all bonds at the same time. (b) On a triangle it is not possible to use two colours. If we fix two spins antiparallel, the third one is parallel to one of its neighbours for any choice, the two ghost arrows, and one bond stays frustrated. For classical spins, this collinear compromise costs <span class="math inline">\(+JS^2\)</span> on the frustrated bond, and the total is <span class="math inline">\(-JS^2\)</span> per triangle. (c) The energy is lower if no single bond is fully satisfied. Three spins at <span class="math inline">\(120^\circ\)</span> in the plane give <span class="math inline">\(\mathbf S_i\cdot\mathbf S_j=-S^2/2\)</span> on <em>every</em> bond and a total of <span class="math inline">\(-\tfrac 32 JS^2\)</span>, which is lower than (b) by half of its value. This is the origin of the noncollinear order to which the mean-field solution of the corresponding electronic Hamiltonian also converges.</figcaption>
 </figure>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>Spins sit on the sites of a triangular lattice, and the coupling is ferromagnetic, <span class="math inline">\(J&lt;0\)</span> in the convention of <a href="#eq-6-5">(6.5)</a>. Is there geometric frustration?</p>
@@ -105,13 +105,20 @@ Quick check
 <ol type="A">
 <li>No, since all spins parallel satisfy every bond.</li>
 <li>Yes, since the triangle is not bipartite.</li>
-<li>Yes, but only on the kagome lattice.</li>
 <li>No, since classical spins cannot be frustrated.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>Frustration needs an antiferromagnetic coupling, because only then do neighbors want opposite directions. For <span class="math inline">\(J&lt;0\)</span> one common direction satisfies all bonds, whatever the lattice is.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. For <span class="math inline">\(J&lt;0\)</span> each bond has energy <span class="math inline">\(-|J|S^2\)</span> when the two spins are parallel. All spins along one direction give this on every bond of the triangular lattice.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The lattice alone does not decide it. For <span class="math inline">\(J&lt;0\)</span> the three bonds of a triangle give <span class="math inline">\(-3|J|S^2\)</span> with parallel spins, which is the minimum possible, so no bond is frustrated.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. For <span class="math inline">\(J&gt;0\)</span> on one triangle, three classical spins at <span class="math inline">\(120^\circ\)</span> give <span class="math inline">\(-JS^2/2\)</span> per bond. A bipartite lattice would give <span class="math inline">\(-JS^2\)</span>, so the triangle is frustrated even for classical spins.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="notebookbox">

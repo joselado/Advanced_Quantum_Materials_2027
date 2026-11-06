@@ -16,22 +16,32 @@ where $c$ is the central charge of the CFT. This is a weak but real violation of
 A critical chain has $S(\ell)=\tfrac c3\log\ell$ with $c=1$. By how much does $S$ grow when the block goes from $\ell=10$ to $\ell=1000$?
 
 - [ ] By zero, since the entropy saturates.
-- [x] By about $1.5$, which is $\tfrac13\log100$.
-- [ ] By about $150$, since $\ell$ grows by a factor of $100$.
-- [ ] By about $3$, which is $\log 1000-\log 10$.
 
-The difference is $\tfrac13\log(1000/10)=\tfrac13\log100\approx1.5$. The growth is real but slow, and this is why MPS with a moderate $M$ still work for a critical chain of moderate length.
+    This is false. Saturation is the behavior of a gapped chain. For $c=1$ the entropy is $0.77$ at $\ell=10$ and $2.3$ at $\ell=1000$, so it grows.
+
+- [x] By about $1.5$, which is $\tfrac13\log100$.
+
+    This is true. The difference is $\tfrac13\log(1000/10)=\tfrac13\log100\approx1.5$. The growth is real but slow, and this is why MPS with a moderate $M$ still work for a critical chain of moderate length.
+
+- [ ] By about $150$, since $\ell$ grows by a factor of $100$.
+
+    This is false. The entropy grows with the logarithm of $\ell$ and not with $\ell$ itself. The entropy at $\ell=1000$ is $2.3$, about three times the one at $\ell=10$, which is $0.77$.
 :::
 
 ::: quiz
 A cut of a MERA crosses one bond in every layer, and the number of layers grows as $\log\ell$ for a block of size $\ell$. What entropy can the cut hold?
 
 - [ ] It is bounded by a constant, as in a gapped chain.
-- [ ] It grows linearly with $\ell$, as in a volume law.
-- [x] It can grow as $\log\ell$, which is the critical behavior [(7.12)](#eq-7-12).
-- [ ] It is zero, since the layers cancel.
 
-Each cut bond can hold at most $\log M$, so the sum over the layers is of order $\log\ell$ times $\log M$. An MPS has a single bond at the cut, and it cannot do this.
+    This is false. The cut crosses one bond for each of the $\log\ell$ layers, so the bound grows with $\ell$. The critical chain needs this, since its entropy goes from $0.77$ at $\ell=10$ to $2.3$ at $\ell=1000$.
+
+- [ ] It grows linearly with $\ell$, as in a volume law.
+
+    This is false. For $\ell=1024$ there are about 10 layers, so the entropy is at most $10\log M$. A volume law would give about $1000\log2$.
+
+- [x] It can grow as $\log\ell$, which is the critical behavior [(7.12)](#eq-7-12).
+
+    This is true. Each cut bond can hold at most $\log M$, so the sum over the layers is of order $\log\ell$ times $\log M$. An MPS has a single bond at the cut, and it cannot do this.
 :::
 
 This is also where the lecture of this year ends. In contrast with some previous editions of this course, the recording of this year stops after MERA and PEPS, and it does not continue with neural network quantum states. The single mention in Section [7.3](#sec-7-3) is all that we say about this topic in this session. The tensor-network methods built in Sections [7.4](#sec-7-4) to [7.11](#sec-7-11) are still important, since in session 10 we will use the same MPS, MERA and PEPS architectures directly as machine-learning classifiers, and we will come back to neural network quantum states in detail, from the point of view of machine learning.

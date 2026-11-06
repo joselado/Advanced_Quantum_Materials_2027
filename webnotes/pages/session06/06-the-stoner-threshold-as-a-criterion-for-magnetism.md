@@ -16,11 +16,16 @@ This condition is called the Stoner criterion. Below the threshold only $m=0$ is
 A flat band has a very large density of states at the Fermi level. According to the Stoner criterion [(6.3)](#eq-6-3), how large must $U$ be for magnetism?
 
 - [ ] Larger than $4t$, which is the bandwidth of the chain.
-- [ ] Magnetism is impossible, since the bands do not disperse.
-- [x] Very small, since $U D(E_F)$ is already above one.
-- [ ] It has to be negative, an attractive interaction.
 
-The condition is $U D(E_F)\geq 1$. When $D(E_F)$ is large, a small $U$ reaches the threshold. This is why flat bands are good places to look for magnetism.
+    This is false. Take a flat band of width $W=0.1t$, with $D(E_F)\approx10/t$. Then $U=0.1t$ already gives $UD(E_F)=1$, which is far below $4t$.
+
+- [ ] Magnetism is impossible, since the bands do not disperse.
+
+    This is false. The criterion [(6.3)](#eq-6-3) has no condition on dispersion. When $W\to0$ we get $D(E_F)\to\infty$, so any $U>0$ gives $UD(E_F)>1$ and magnetism appears.
+
+- [x] Very small, since $U D(E_F)$ is already above one.
+
+    This is true. The condition [(6.3)](#eq-6-3) is $U D(E_F)\geq1$. When $D(E_F)$ is large, a small $U$ reaches the threshold, and this is why flat bands are good places to look for magnetism.
 :::
 
 ::: notebookbox

@@ -20,8 +20,14 @@ We started this course by asking how a small number of identical atoms, arranged
 Which choices define every construction of this session, from the cat-and-dog classifier to the neural network quantum state?
 
 - [ ] The architecture only, since the training is always different.
+
+    This is false. The cat-and-dog classifier and the phase classifier can use the same convolutional architecture. They differ in the input, the output and the loss, and the training step is the same.
+
 - [x] The input, the output and the loss, with the training done by gradient descent as in [(10.1)](#eq-10-1).
+
+    This is true. The classifier uses a spin array, a label and the loss of [(10.1)](#eq-10-1). The neural network quantum state uses a configuration, a coefficient and the energy, with the same gradient descent.
+
 - [ ] The physical system only, since the network is always a tensor network.
 
-The neural network quantum state uses a spin configuration, a coefficient and the energy. The phase classifier uses a spin array, a one-hot label and the loss of [(10.1)](#eq-10-1). The training step is the same in every case.
+    This is false. The same spin chain is used for the NQS, with the energy as the loss, and for tomography, with the likelihood. The system is the same and the construction differs, and the NQS can be a Boltzmann machine and not a tensor network.
 :::

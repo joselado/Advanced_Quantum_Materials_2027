@@ -24,11 +24,17 @@ with a real mode at exactly zero energy for $n=0$. For this mode the lower spino
 The field of a graphene sample is multiplied by 9. By which factor does the energy of the first Landau level above zero change?
 
 - [ ] It does not change.
-- [x] By 3.
-- [ ] By 81.
+
+    This is false. The first level is $E_1\approx36\,\mathrm{meV}$ at 1 T and $109\,\mathrm{meV}$ at 9 T. It grows with the field.
+
 - [ ] By 9.
 
-The energy [(4.7)](#eq-4-7) is proportional to $\sqrt{|n|B}$, so a factor 9 in the field gives a factor 3 in the energy.
+    This is false. A factor 9 is the law of the parabolic band, where $\hbar\omega_c\propto B$. For graphene it would give $327\,\mathrm{meV}$ at 9 T, and not the $109\,\mathrm{meV}$ of the square-root law.
+
+- [x] By 3.
+
+    This is true. The energy [(4.7)](#eq-4-7) is proportional to $\sqrt{|n|B}$, so a factor 9 in the field gives a factor 3 in the energy.
+
 :::
 
 ::: notebookbox
@@ -41,11 +47,17 @@ Build a ribbon of the square lattice, which has a parabolic band bottom, and an 
 At a fixed field, what is the ratio $E_4/E_1$ of the Dirac Landau levels of [(4.7)](#eq-4-7)?
 
 - [ ] $4$.
-- [x] $2$.
-- [ ] $16$.
-- [ ] $1/2$.
 
-The levels go as $\sqrt{n}$, so $E_4/E_1=\sqrt{4}=2$. The value $4$ would be the ratio for a linear ladder with no offset, which is what we do not have here.
+    This is false. This is the ratio of a linear ladder with no offset. With $E_1=36\,\mathrm{meV}$ at 1 T it would give $E_4=145\,\mathrm{meV}$, while the square-root law gives $73\,\mathrm{meV}$.
+
+- [x] $2$.
+
+    This is true. The levels go as $\sqrt{n}$, so $E_4/E_1=\sqrt{4}=2$.
+
+- [ ] $16$.
+
+    This is false. This would need $E_n\propto n^2$. With $E_1=36\,\mathrm{meV}$ it gives $E_4=580\,\mathrm{meV}$ at 1 T, which is far above the $73\,\mathrm{meV}$ of [(4.7)](#eq-4-7).
+
 :::
 
 ::: {.tryit notebook="session4.ipynb" cell="Magnetic field dependence of Dirac Landau levels"}

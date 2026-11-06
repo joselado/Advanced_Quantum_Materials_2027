@@ -92,9 +92,9 @@ M^2\)</span>, which is linear in the system size, in strong contrast with the <s
 <img src="../figures/s07f04_tensordiagram.svg" loading="lazy" alt="A chain of small tensors with one physical leg each, compared with a single large tensor with one leg per site." />
 <figcaption><strong><a href="09-tensor-diagrams-as-notation-for-networks-and-operators.html#fig:s07:tensors">Figure 7.4</a>, shown again.</strong> The ansatz <a href="#eq-7-5">(7.5)</a> drawn as a chain of small tensors. Look at panel (b), where every block has one physical leg and virtual legs of dimension <span class="math inline">\(M\)</span> that link it to its neighbors. Section <a href="09-tensor-diagrams-as-notation-for-networks-and-operators.html#sec-7-9">7.9</a> explains this notation.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>A spin-1/2 chain has <span class="math inline">\(L=100\)</span> sites, and we use an MPS with <span class="math inline">\(M=10\)</span>. How many numbers does <a href="#eq-7-5">(7.5)</a> store, roughly?</p>
@@ -104,12 +104,19 @@ Quick check
 <li>About <span class="math inline">\(10^{30}\)</span>, which is <span class="math inline">\(2^{100}\)</span>.</li>
 <li>About <span class="math inline">\(2\times10^4\)</span>, which is two matrices of <span class="math inline">\(10\times10\)</span> entries on each of the 100 sites.</li>
 <li>About <span class="math inline">\(10^2\)</span>, which is one number per site.</li>
-<li>About <span class="math inline">\(10^{10}\)</span>, which is <span class="math inline">\(M^{L}\)</span>.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>Each site has two matrices, one for each spin value, and each matrix has <span class="math inline">\(M^2=100\)</span> entries. The total grows as <span class="math inline">\(LM^2\)</span>, so doubling the chain only doubles the storage.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The number <span class="math inline">\(2^{100}\approx1.3\times10^{30}\)</span> is the number of coefficients of the exact state. The MPS exists to avoid exactly this number, and it stores <span class="math inline">\(2LM^2=2\times10^4\)</span> numbers.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. In <a href="#eq-7-5">(7.5)</a> each site has two matrices, one for each spin value, and each matrix has <span class="math inline">\(M^2=100\)</span> entries. The total grows as <span class="math inline">\(LM^2\)</span>, so doubling the chain only doubles the storage.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. Even the product state, which is the case <span class="math inline">\(M=1\)</span>, needs two numbers per site, so <span class="math inline">\(200\)</span> for 100 sites. An MPS with <span class="math inline">\(M=10\)</span> has <span class="math inline">\(10\times10\)</span> matrices on each site and needs more.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <p>We should know from the start that this is not a toy model. Today matrix product states give the most accurate results for two of the central hard problems in quantum materials. The first one is the doped two-dimensional Hubbard model with second-neighbor hopping, which is related to unconventional superconductivity. The second one is the two-dimensional frustrated Heisenberg model on the triangular and kagome lattices, and this is where the strongest numerical evidence for real quantum spin liquid physics comes from, which is the herbertsmithite example of session 6. Both examples are shown as labeled figure panels on slide 15 of the deck, with the titles “Solving the 2D Hubbard model at finite doping” and “Solving the 2D Heisenberg model in frustrated lattices.” This shows that MPS are a working tool for the strongly correlated regime, and not only a formal construction.</p>
@@ -129,9 +136,9 @@ Quick check
 <p>which is a maximally mixed single-site density matrix, with two eigenvalues both equal to <span class="math inline">\(1/2\)</span>. Then</p>
 <p><span id="eq-7-7" class="eq"><span class="math display">\[S = -\left(\tfrac12\log\tfrac12 + \tfrac12\log\tfrac12\right) = \log 2. \tag{7.7}\]</span></span></p>
 <p>This is the maximum entanglement entropy that a single spin-1/2 can have, since a local Hilbert space of dimension <span class="math inline">\(d\)</span> can have at most <span class="math inline">\(\log d\)</span>. This is the meaning of the statement that the singlet is “maximally entangled,” since it uses all the capacity of the local Hilbert space for entanglement.</p>
-<div class="quiz" data-correct="C">
+<div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>The spin state <span class="math inline">\((|{\uparrow\downarrow}\rangle+|{\downarrow\uparrow}\rangle)/\sqrt2\)</span> differs from the singlet <a href="03-storing-the-wave-function-as-the-main-bottleneck.html#eq-7-3">(7.3)</a> only by a sign. What is the entanglement entropy of one site?</p>
@@ -139,14 +146,21 @@ Quick check
 <div class="quiz-options">
 <ol type="A">
 <li><span class="math inline">\(0\)</span>, since the sign makes it a product state.</li>
-<li><span class="math inline">\(\tfrac12\log 2\)</span>, since only the symmetric part counts.</li>
-<li><span class="math inline">\(\log 2\)</span>, the same as for the singlet.</li>
 <li><span class="math inline">\(2\log 2\)</span>, since the two terms add.</li>
+<li><span class="math inline">\(\log 2\)</span>, the same as for the singlet.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>C</strong>.</p>
-<p>Tracing out one site gives again <span class="math inline">\(\tfrac12|{\uparrow}\rangle\langle{\uparrow}|+\tfrac12|{\downarrow}\rangle\langle{\downarrow}|\)</span>, because the cross terms have a different second spin and drop out. The entropy depends on the weights of the two terms and not on their relative sign.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. A product <span class="math inline">\((a|{\uparrow}\rangle+b|{\downarrow}\rangle)(c|{\uparrow}\rangle+d|{\downarrow}\rangle)\)</span> with <span class="math inline">\(ac=0\)</span> and <span class="math inline">\(bd=0\)</span> cannot have both <span class="math inline">\(ad\)</span> and <span class="math inline">\(bc\)</span> nonzero. So the state is not a product and its entropy is not zero.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. One spin-1/2 has two states, so the entropy of one site cannot exceed <span class="math inline">\(\log 2\)</span>. The value <span class="math inline">\(2\log2\)</span> would need four states on the site.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. Tracing out one site gives <span class="math inline">\(\tfrac12|{\uparrow}\rangle\langle{\uparrow}|+\tfrac12|{\downarrow}\rangle\langle{\downarrow}|\)</span>, because the cross terms have a different second spin and drop out. The entropy depends on the weights of the two terms and not on their relative sign.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="tryit">

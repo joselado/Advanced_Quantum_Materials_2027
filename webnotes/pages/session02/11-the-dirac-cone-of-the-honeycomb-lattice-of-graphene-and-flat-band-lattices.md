@@ -25,11 +25,18 @@ which is a strictly linear dispersion with the shape of a cone around $K$, and t
 The curvature of the cone is zero along the radial direction, and [(2.18)](#eq-2-18) gives an infinite mass. Why do we still call the electrons of graphene massless?
 
 - [x] Because the Dirac Hamiltonian has no mass term, which would be a gap at the Dirac point.
+
+    This is true. Massless refers to the Dirac mass, which is a term that opens a gap at the touching point. It does not refer to the curvature of the band.
+
 - [ ] Because the effective mass of [(2.18)](#eq-2-18) is zero at the tip.
-- [ ] Because the electrons of graphene have no charge.
+
+    This is false. For $E=\hbar v_F q$ the second derivative along $q$ is zero, so $1/m^\ast=0$ and $m^\ast$ is infinite. A zero mass would need an infinite curvature.
+
 - [ ] Because the lattice constant drops out of the cone.
 
-Massless refers to the Dirac mass, which is a term that opens a gap at the touching point. It does not refer to the curvature of the band, which is not the relevant quantity here.
+    This is false. The velocity $v_F=3ta/2\hbar$ of [(2.20)](#eq-2-20) contains $a$. A mass term $m\sigma_z$ is absent for any value of $a$, so the lattice constant does not decide whether the electrons are massless.
+
+Massless means that there is no gap at the Dirac point.
 :::
 
 ::: notebookbox
@@ -46,9 +53,16 @@ Run the cell and zoom in on the bands near $K$. Check that the two bands touch a
 The hopping $t$ of graphene is doubled. What happens to the Dirac cone of [(2.20)](#eq-2-20) and [(2.21)](#eq-2-21)?
 
 - [x] The cone stays at the same point and becomes twice as steep.
-- [ ] The cone moves to another point of the zone.
-- [ ] A gap of size $2t$ opens at the tip.
-- [ ] The dispersion stops being linear.
 
-The velocity $v_F=3ta/2\hbar$ is proportional to $t$, so the slope doubles. The touching point is fixed by the geometry of the lattice and not by the value of $t$.
+    This is true. The velocity $v_F=3ta/2\hbar$ is proportional to $t$, so the slope doubles. The touching point is fixed by the geometry of the lattice and not by the value of $t$.
+
+- [ ] The cone moves to another point of the zone.
+
+    This is false. The point $K$ is where the phase factors of the three neighbors add up to zero. This depends only on the angles of the lattice, which are the same for $t=1$ and $t=2$.
+
+- [ ] A gap of size $2t$ opens at the tip.
+
+    This is false. Doubling $t$ only doubles $v_F$ in $H=\hbar v_F(q_x\sigma_x+q_y\sigma_y)$. The energies $\pm\hbar v_F|\mathbf q|$ vanish at $\mathbf q=0$ for $t=1$ and for $t=2$, so no gap appears.
+
+The hopping sets the energy scale of the cone, and the lattice sets its position.
 :::

@@ -9,11 +9,16 @@ c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger$ and $\Delta_n^* c_{n\downarrow}c_
 The mean-field ground state of [(5.4)](#eq-5-4) is measured many times, and the total electron number is read each time. What do we find?
 
 - [ ] The same $N$ every time, since $\hat N$ commutes with the hopping.
-- [x] Different even values from run to run, or different odd values, but never a mix of both.
-- [ ] Even and odd values mixed at random.
-- [ ] No result, since $\hat N$ is not defined in a superconductor.
 
-No term of $H_\text{MF}$ changes $N$ by one, so the ground state lives in one parity class. The pairing terms change $N$ by two, so several values of $N$ of that class appear with some weight, and the number fluctuates.
+    This is false. For one site at $\mu=0$ and $\Delta=0.5$, the ground state is $(|0\rangle-|2\rangle)/\sqrt2$. We find $N=0$ in half of the runs and $N=2$ in the other half, because the pairing term does not commute with $\hat N$.
+
+- [x] Different even values from run to run, or different odd values, but never a mix of both.
+
+    This is true. The pairing terms of [(5.4)](#eq-5-4) change $N$ by two, so the parity of $N$ is fixed and several values of one parity appear. In the one-site example only $N=0$ and $N=2$ occur.
+
+- [ ] Even and odd values mixed at random.
+
+    This is false. In the one-site example the state $(|0\rangle-|2\rangle)/\sqrt2$ never gives $N=1$. Every term of $H_\text{MF}$ changes $N$ by $0$ or $\pm2$, so the parity is conserved.
 :::
 
 ## The gauge transformation in explicit form {#sec-5-7 number="5.7"}
@@ -37,9 +42,14 @@ e^{2i\varphi}$, then any fixed phase of $\Delta$ is a choice that the ground sta
 Under the gauge transformation of this section the pairing term gets the phase $e^{-2i\varphi}$. For which angle does $\Delta\, c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger$ stay unchanged?
 
 - [ ] $\varphi=\pi/2$
-- [x] $\varphi=\pi$
-- [ ] $\varphi=\pi/4$
-- [ ] Every $\varphi$, since the term becomes Hermitian once we add its conjugate.
 
-The factor $e^{-2i\varphi}$ equals one only for $\varphi=0$ and $\pi$. At $\varphi=\pi/2$ it equals $-1$, so $\Delta$ changes sign. A generic angle moves $\Delta$ to another phase, and this is why the ground state has to choose one.
+    This is false. For $\varphi=\pi/2$ the factor is $e^{-i\pi}=-1$. Then $\Delta\to-\Delta$, which is a different mean-field state, and we only recover the same term after $\varphi=\pi$.
+
+- [x] $\varphi=\pi$
+
+    This is true. The factor $e^{-2i\varphi}$ is $e^{-2\pi i}=1$, so the pairing term does not change. The same holds for $\varphi=0$.
+
+- [ ] $\varphi=\pi/4$
+
+    This is false. For $\varphi=\pi/4$ the factor is $e^{-i\pi/2}=-i$. Then $\Delta\to-i\Delta$, which has the phase shifted by a quarter turn.
 :::

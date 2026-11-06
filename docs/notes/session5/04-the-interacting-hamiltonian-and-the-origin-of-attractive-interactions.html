@@ -107,24 +107,31 @@ c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger\rangle\langle c_{n\downarrow}c_{n\
 <img src="../figures/s01f05_selfconsistency.svg" loading="lazy" alt="A loop of four stations, a guess of the expectation values, the mean-field Hamiltonian, its diagonalization and the new expectation values, with a return arrow until the result stops changing." />
 <figcaption><strong><a href="../session1/13-worked-example-1-the-charge-density-wave.html#fig:s01:mfloop">Figure 1.4</a>, shown again.</strong> The mean-field loop of session 1, drawn there for a charge density wave. For the pairing channel of <a href="#eq-5-4">(5.4)</a> the guess is <span class="math inline">\(\Delta_n\)</span>, and the new expectation value is <span class="math inline">\(\langle c_{n\downarrow}c_{n\uparrow}\rangle\)</span>.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
-<p>We start the loop for the attractive chain <a href="#eq-5-2">(5.2)</a> with a small guess <span class="math inline">\(\Delta_n\neq0\)</span>, but now with <span class="math inline">\(U&gt;0\)</span>. What does the loop do?</p>
+<p>We start the loop for the attractive chain <a href="#eq-5-2">(5.2)</a> with a small guess <span class="math inline">\(\Delta_n\neq0\)</span>, but now with <span class="math inline">\(U&gt;0\)</span>. Which self-consistent solution does the loop find?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li>It converges to a finite <span class="math inline">\(\Delta_n\)</span>, since any pair amplitude sustains itself.</li>
-<li>It drives <span class="math inline">\(\Delta_n\)</span> to zero.</li>
-<li>It keeps the guess, since <a href="#eq-5-3">(5.3)</a> does not depend on the sign of <span class="math inline">\(U\)</span>.</li>
-<li>It turns <span class="math inline">\(\Delta_n\)</span> into a complex number with a random phase.</li>
+<li>A finite <span class="math inline">\(\Delta_n\)</span>, since any pair amplitude sustains itself.</li>
+<li>Only <span class="math inline">\(\Delta_n=0\)</span>.</li>
+<li>The loop keeps the guess, since <a href="#eq-5-3">(5.3)</a> does not depend on the sign of <span class="math inline">\(U\)</span>.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>Two electrons on the same site cost the energy <span class="math inline">\(U\)</span>. For <span class="math inline">\(U&gt;0\)</span> the loop lowers this cost by reducing the pair amplitude, so only <span class="math inline">\(\Delta_n=0\)</span> survives. For <span class="math inline">\(U&lt;0\)</span> the pair gains energy, and a finite <span class="math inline">\(\Delta_n\)</span> can be self-consistent.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. For one site with <span class="math inline">\(U=+t\)</span> and <span class="math inline">\(\mu=0\)</span>, the doubly occupied state costs <span class="math inline">\(+t\)</span>, while the empty and the singly occupied states have energy <span class="math inline">\(0\)</span>. The ground states have <span class="math inline">\(\langle c_\downarrow c_\uparrow\rangle=0\)</span>, so there is no pair amplitude to sustain.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The pair susceptibility <span class="math inline">\(g&gt;0\)</span> of the bands gives <span class="math inline">\(\Delta_\text{new}=-U g\Delta\)</span> in <a href="#eq-5-3">(5.3)</a>. For <span class="math inline">\(U&gt;0\)</span> the factor is negative, so every finite guess comes back with the opposite sign, and no finite <span class="math inline">\(\Delta_n\)</span> reproduces itself. For <span class="math inline">\(U&lt;0\)</span> the factor is positive and a finite <span class="math inline">\(\Delta_n\)</span> can be self-consistent.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The sign of <span class="math inline">\(U\)</span> enters <a href="#eq-5-3">(5.3)</a> as a prefactor. If <span class="math inline">\(Ug=0.5\)</span> at <span class="math inline">\(U&gt;0\)</span>, the loop gives <span class="math inline">\(\Delta_\text{new}=-0.5\,\Delta\)</span> in each step, so the guess does not stay.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="notebookbox">

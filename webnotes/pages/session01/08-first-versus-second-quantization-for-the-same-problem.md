@@ -13,12 +13,19 @@ In general, for $L$ sites the single-particle problem is an $L \times L$ matrix,
 ::: quiz
 We take three sites of spinful fermions, with four states per site. How many many-body states does the Fock space have?
 
-- [ ] $8$
 - [ ] $12$
+
+    This is false. Adding $4+4+4$ is wrong, since the states of the sites combine independently. For two sites we already have $4\times 4=16$ states, which are all the pairs of site states.
+
 - [x] $64$
+
+    This is true. Each site has four states, which are empty, up, down and doubly occupied. Three sites give $4^3=64$ states, while the single-particle matrix is only $6\times 6$.
+
 - [ ] $6$
 
-Each site has four states, which are empty, up, down and doubly occupied. Three sites give $4^3=64$ states, while the single-particle matrix is only $6\times 6$.
+    This is false. The number $6$ is the count of single-particle levels. The many-body states are the ways to fill them, and $\sum_N\binom{6}{N}=2^6=64$.
+
+The Fock space grows exponentially with the number of sites, while the single-particle matrix grows linearly.
 :::
 
 ## A first look at eigenstates in finite tight-binding islands {#sec-1-10 number="1.10"}
@@ -29,11 +36,18 @@ Before we go to interactions, let us look at what a purely single-particle Hamil
 We make a finite island larger and diagonalize it again. What happens to the spacing between the levels?
 
 - [ ] It grows, since the island has more sites.
+
+    This is false. For a chain with $N$ sites, the levels are $-2t\cos(n\pi/(N+1))$. The spacing at the center is $0.57t$ for $N=10$ and $0.062t$ for $N=100$, so it is smaller for the larger island.
+
 - [x] It shrinks, since more levels share the same range of energy.
-- [ ] It stays the same, since the hopping is fixed.
+
+    This is true. The band has a fixed width, $4t$ for a chain. More sites put more levels in this window, so the levels become denser and approach the continuum.
+
 - [ ] It vanishes at once for any larger size.
 
-The band has a fixed width, which is $4t$ for a chain. More sites put more levels in this window, so the levels become denser and approach the continuum.
+    This is false. For $N=100$ the spacing at the center is still $0.062t$, which is finite. It goes as $2\pi t/(N+1)$ and it vanishes only when $N\to\infty$.
+
+The spacing goes to zero only in the limit of an infinite system, where the levels form a band.
 :::
 
 ::: notebookbox

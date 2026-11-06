@@ -21,20 +21,32 @@ To compare with the familiar cases, note that to move one quasiparticle all the 
 For $m=3$ what are the statistical phase of a full braid of one quasihole around another and the exchange phase?
 
 - [ ] $2\pi$ and $\pi$.
-- [ ] $\pi/3$ and $2\pi/3$.
+
+    This is false. These are the phases of two fermions, which is the case $m=1$. For $m=3$ the braid phase $2\pi/m$ is $2\pi/3$.
+
 - [ ] $2\pi/3$ and $2\pi/3$.
+
+    This is false. A full braid is two exchanges. If one exchange gave $2\pi/3$, two of them would give $4\pi/3$ and not $2\pi/3$.
+
 - [x] $2\pi/3$ and $\pi/3$.
 
-A full braid is two exchanges, so the exchange phase is half of the braid phase $2\pi/m$, which is $\pi/m=\pi/3$.
+    This is true. A full braid is two exchanges, so the exchange phase is half of the braid phase $2\pi/m$, which is $\pi/m=\pi/3$.
+
 :::
 
 ::: quiz
 The exchange phase is $\pi/m$. Which familiar particles do we recover for $m=1$ and for very large $m$?
 
 - [ ] Bosons for $m=1$ and fermions for large $m$.
-- [ ] Fermions for both.
-- [x] Fermions for $m=1$ and bosons for large $m$.
-- [ ] Bosons for both.
 
-For $m=1$ the phase is $\pi$, which is the fermion, and the Laughlin state is the filled Landau level. For large $m$ the phase goes to $0$, which is the boson.
+    This is false. For $m=1$ the phase is $\pi$, so the wavefunction gets $e^{i\pi}=-1$, which is a fermion. This is the filled Landau level.
+
+- [ ] Fermions for both.
+
+    This is false. For $m=100$ the phase is $\pi/100$, so the wavefunction gets $e^{i\pi/100}\approx1$ and not $-1$. This is almost a boson.
+
+- [x] Fermions for $m=1$ and bosons for large $m$.
+
+    This is true. For $m=1$ the phase is $\pi$, which is the fermion, and the Laughlin state is the filled Landau level. For large $m$ the phase goes to $0$, which is the boson.
+
 :::

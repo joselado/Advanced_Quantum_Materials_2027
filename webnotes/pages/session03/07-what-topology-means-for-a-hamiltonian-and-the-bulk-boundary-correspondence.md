@@ -12,11 +12,17 @@ This has a direct and strong consequence. Let us build a Hamiltonian that change
 Why must the gap close somewhere in an interface between a region with $C=1$ and a region with $C=0$?
 
 - [ ] Because a gapless state is needed for the current to flow in a gapped bulk.
-- [x] Because $C$ is an integer, and it can change only where the quantization argument fails, which is where the gap closes.
-- [ ] Because the vacuum has no states and so it cannot have a gap.
-- [ ] Because energy has to be conserved across the interface.
 
-A quantized quantity cannot change continuously while the gap is open. Any interface that goes from $C=1$ to $C=0$ must therefore pass through a point where the local gap is zero. This is the gapless state.
+    This is false. Two regions that both have $C=1$ can be joined with the gap open everywhere, and the Hall conductivity is the same on both sides. The gapless state is forced by the change of $C$ and not by the presence of a current.
+
+- [x] Because $C$ is an integer, and it can change only where the quantization argument fails, which is where the gap closes.
+
+    This is true. A quantized quantity cannot change continuously while the gap is open, as in [(3.4)](#eq-3-4). An interface from $C=1$ to $C=0$ must then have a point where the local gap is zero.
+
+- [ ] Because the vacuum has no states and so it cannot have a gap.
+
+    This is false. Replace the vacuum by a trivial insulator, such as boron nitride, with $C=0$ and a large gap. The interface with a $C=1$ region still has a gapless state, so the vacuum plays no role.
+
 :::
 
 The same argument explains the robustness that we used before. Let us put a local impurity at the edge of a quantum Hall sample. This only changes the microscopic details of the interface between the vacuum and the quantum Hall state. Since the topological excitation of the interface must exist for any such details, the edge state reorganizes itself around the impurity and is not scattered by it. This is a general mechanism, which is not special to the quantum Hall case, and it will appear again for every topological invariant that we see from now on.

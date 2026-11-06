@@ -11,12 +11,18 @@ What is really new in our version of this story is the explicit **adiabatic conn
 ::: quiz
 Along the path from the Haldane model to the quantum Hall state, which condition has to hold at every step?
 
-- [x] The bulk gap stays open.
-- [ ] The number of electrons doubles.
 - [ ] The magnetic field is zero.
+
+    This is false. The path starts at zero field and then switches on a real magnetic field. At the end of the path the field is not zero.
+
+- [x] The bulk gap stays open.
+
+    This is true. The Chern number can change only if the gap closes. If the gap stays open all along the path, the two end points have the same Chern number.
+
 - [ ] The Haldane coupling stays at the same value.
 
-The Chern number can change only if the gap closes. If the gap stays open all along the path, the two end points have the same Chern number.
+    This is false. The path ends by switching off the Haldane coupling, so at the end it is zero. If it stayed fixed, the end point would not be the ordinary quantum Hall state.
+
 :::
 
 ::: notebookbox
@@ -28,12 +34,18 @@ Build the Haldane model, switch a magnetic field on and off numerically together
 ::: quiz
 One system has a field and Landau levels, and the other has no field. Why do we call them the same phase?
 
-- [x] Because they are connected without closing the bulk gap, so they have the same Chern number and the same chiral edge state.
-- [ ] Because both have the same edge velocity.
 - [ ] Because the magnetic field is only a gauge choice.
+
+    This is false. The flux through a plaquette is gauge invariant, and the field cannot be removed by a gauge change. In the Haldane model the flux through the unit cell is zero while it is finite for the Landau levels, and the phase is the same.
+
+- [x] Because they are connected without closing the bulk gap, so they have the same Chern number and the same chiral edge state.
+
+    This is true. A phase is defined by what cannot change without closing the gap. The Chern number is the same for both, and the field is only one of the two routes to it.
+
 - [ ] Because both have Landau levels.
 
-A phase is defined by what cannot change without closing the gap. The Chern number is the same for both, and the field is only one of the two routes to it.
+    This is false. The Haldane model at zero field has dispersive bands and no flat Landau levels, yet its Chern number is $\pm1$, as the quantum Hall state with one filled level.
+
 :::
 
 ::: {.tryit notebook="session4.ipynb" cell="Topological equivalence between the Quantum Hall state and a Chern insulator"}

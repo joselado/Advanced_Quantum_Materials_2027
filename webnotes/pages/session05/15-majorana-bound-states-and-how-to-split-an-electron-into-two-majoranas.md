@@ -22,22 +22,32 @@ At first this is only a change of variables, a mathematical trick without new ph
 Which statement about the operators $\gamma_A=c+c^\dagger$ and $\gamma_B=-i(c-c^\dagger)$ of [(5.17)](#eq-5-17) is correct?
 
 - [x] Each one squares to one, and the two anticommute.
+
+    This is true. Using $\{c,c^\dagger\}=1$ we get $\gamma_A^2=\gamma_B^2=1$ and $\{\gamma_A,\gamma_B\}=0$ from [(5.17)](#eq-5-17). On the empty mode $\gamma_A\gamma_B$ gives $i$ and $\gamma_B\gamma_A$ gives $-i$.
+
 - [ ] Each one squares to zero, as the fermion $c$ does.
-- [ ] They are not Hermitian, since $c$ is not Hermitian.
+
+    This is false. We have $\gamma_A^2=c^2+c^{\dagger2}+cc^\dagger+c^\dagger c=0+0+1=1$. Applied twice on the empty mode, $\gamma_A|0\rangle=|1\rangle$ and $\gamma_A|1\rangle=|0\rangle$, which is not zero.
+
 - [ ] They commute, since both are built from the same $c$.
 
-Both are Hermitian, and $\{c,c^\dagger\}=1$ gives $\gamma_A^2=\gamma_B^2=1$ and $\{\gamma_A,\gamma_B\}=0$. A fermion obeys $c^2=0$ instead.
+    This is false. On the empty mode we get $\gamma_A\gamma_B|0\rangle=i|0\rangle$ and $\gamma_B\gamma_A|0\rangle=-i|0\rangle$. They differ by a sign, so the two operators anticommute.
 :::
 
 ::: quiz
 The electron mode is empty. What is the value of $i\gamma_A\gamma_B$?
 
 - [x] $-1$
-- [ ] $+1$
-- [ ] $0$
-- [ ] $i$
 
-Inserting [(5.17)](#eq-5-17) gives $i\gamma_A\gamma_B=2c^\dagger c-1$. The empty mode has $c^\dagger c=0$, so the value is $-1$, and the filled mode gives $+1$. The product of the two halves measures the occupation of the mode.
+    This is true. Inserting [(5.17)](#eq-5-17) gives $i\gamma_A\gamma_B=2c^\dagger c-1$. The empty mode has $c^\dagger c=0$, so the value is $-1$.
+
+- [ ] $+1$
+
+    This is false. The value $+1$ belongs to the filled mode, where $c^\dagger c=1$ gives $2-1=+1$. The empty mode has $c^\dagger c=0$ and gives $-1$.
+
+- [ ] $0$
+
+    This is false. The operator $i\gamma_A\gamma_B$ squares to one, since $\gamma_A^2=\gamma_B^2=1$ and they anticommute. Its eigenvalues are therefore $\pm1$, and zero is never found.
 :::
 
 ::: {.tryit notebook="session5.ipynb" cell="Majorana modes in a spin triplet superconductor"}

@@ -32,20 +32,32 @@ The Hohenberg-Kohn reduction is very asymmetric on purpose, since going from the
 A network is trained to give the exchange-correlation potential $v_{\rm xc}$ with high accuracy, and it is used inside the Kohn-Sham loop. Does this change the largest system that we can compute?
 
 - [ ] Yes, since the network removes the diagonalization.
+
+    This is false. The Kohn-Sham Hamiltonian $-\nabla^2/2+v_{\rm ext}+v_H+v_{\rm xc}$ is still a matrix. We need its orbitals to build the density, so the diagonalization stays.
+
 - [x] Not much, since the diagonalization of $H_{\rm KS}$ stays in every iteration.
+
+    This is true. Diagonalization costs about $N^3$, and a local $v_{\rm xc}(n)$ costs only about $N$ per evaluation. For $N=1000$ orbitals this is $10^9$ against $10^3$, so a better $v_{\rm xc}$ does not change the limit.
+
 - [ ] Yes, since $v_{\rm xc}$ is the most expensive part of the loop.
 
-The cost of the loop is the diagonalization, and a better $v_{\rm xc}$ does not change it. Only the second route, which maps $v_{\rm ext}$ to $n$ directly, skips the loop.
+    This is false. In LDA the $v_{\rm xc}$ is a function of the local density, and its cost is small compared with the diagonalization. A network does not make this part larger or the limit different.
 :::
 
 ::: quiz
 In the Hohenberg-Kohn theorem, which of the two arrows is a simple integral?
 
 - [x] From the many-body ground state $\psi_0$ to the density $n(\mathbf{r})$.
+
+    This is true. The density is $n(\mathbf r)=N\int|\psi_0|^2$ over $N-1$ coordinates, which is an integral. The reverse needs one to solve for $\psi_0$ in $3N$ dimensions with no formula.
+
 - [ ] From the density $n(\mathbf{r})$ to the many-body ground state $\psi_0$.
+
+    This is false. For one electron $\psi_0=\sqrt n$ up to a phase, but already for $N=2$ no formula exists. The theorem says that $\psi_0$ is unique, and it does not say how to find it.
+
 - [ ] Both are integrals, since the density contains the same information as $\psi_0$.
 
-The arrow $\psi_0\to n$ integrates out $N-1$ coordinates. The reverse arrow is guaranteed to exist by the theorem, but it has no formula, and this is where a network can be trained to act.
+    This is false. An integral loses information, and many functions give the same density. The state $\psi$ and $\psi e^{i\phi(\mathbf r_1,\mathbf r_2)}$ have the same $n$, so one cannot invert it by integration.
 :::
 
 This part also comes from the slides and the transcript and has no notebook counterpart. DFT calculations were never part of the numerical tools of this course, since `pyqula` is a tight-binding and mean-field library and not a DFT code, so there is nothing to point you to beyond the derivation above.

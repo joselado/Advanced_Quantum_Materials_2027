@@ -89,9 +89,9 @@
 <img src="../figures/panel/s04f01_ribbon_a.svg" loading="lazy" alt="Flat Landau levels of a ribbon with the edge branches that bend up and cross the gap." />
 <figcaption><strong><a href="05-edge-states-and-why-an-insulating-bulk-still-conducts.html#fig:s04:ribbon">Figure 4.1</a>, one panel shown again.</strong> The spectrum of the quantum Hall ribbon, as the numerical check of the continuum result. This panel is computed in the continuum with hard walls. The flat bulk levels are the equally spaced Landau levels of Section <a href="09-landau-levels-of-schrodinger-electrons.html#sec-4-9">4.9</a>. The branches that bend up near the walls and cross the chemical potential are the edge states of Section <a href="05-edge-states-and-why-an-insulating-bulk-still-conducts.html#sec-4-5">4.5</a>. The ribbon of the notebook gives the same picture on the lattice.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>In the spectrum of the ribbon, a Landau level bends up when its guiding center <span class="math inline">\(x_0=\hbar k_y/B\)</span> gets close to a wall. Why does its energy increase?</p>
@@ -101,12 +101,19 @@ Quick check
 <li>The wall adds a magnetic field.</li>
 <li>The wall cuts the oscillator well, so the state is squeezed and its energy increases.</li>
 <li>The wall changes the cyclotron frequency in the bulk.</li>
-<li>The wall removes the degeneracy of the Landau level.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>A state with the guiding center at the wall has part of its wavefunction removed. A squeezed wavefunction has a larger kinetic energy, and this is what gives the dispersive edge branches.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The flux per plaquette is the same on the last row as in the bulk, since we use the same bond phases. The levels far from the wall stay flat at the same energies.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. A state with the guiding center at the wall has part of its wavefunction removed. A squeezed wavefunction has a larger kinetic energy, and this is what gives the dispersive edge branches.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The flat levels far from the wall stay at <span class="math inline">\(\hbar\omega_c(n+\tfrac12)\)</span> in a ribbon that is wider than a few <span class="math inline">\(\ell_B\)</span>. Only the states within about <span class="math inline">\(\ell_B\)</span> of the wall move.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="widget" data-widget="landaufan">
@@ -122,24 +129,31 @@ Interactive
 <p>which satisfy the canonical bosonic commutation relation <span class="math inline">\([a,a^\dagger]=1\)</span>. For this we only use <span class="math inline">\([\pi_x,\pi_y]=i\hbar^2/\ell_B^2\)</span>, which depends on the field and not on the gauge. In terms of these operators the <em>full</em> quantum Hall Hamiltonian for a Schrödinger electron becomes</p>
 <p><span id="eq-4-8" class="eq"><span class="math display">\[H = \hbar\omega_c\left(a^\dagger a + \frac{1}{2}\right), \tag{4.8}\]</span></span></p>
 <p>which is clearly a harmonic oscillator, with eigenvalues that give <a href="09-landau-levels-of-schrodinger-electrons.html#eq-4-6">(4.6)</a> directly, without any reference to a gauge. This is the clearest way to see that the statement “Landau levels behave like a harmonic oscillator” is not an artifact of the Landau gauge. It is a structural property of any electron in a uniform field.</p>
-<div class="quiz" data-correct="C">
+<div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>Why does the form <a href="#eq-4-8">(4.8)</a>, <span class="math inline">\(H=\hbar\omega_c(a^\dagger a+\tfrac12)\)</span>, not depend on the gauge?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li>Because <span class="math inline">\(\mathbf{B}\)</span> is uniform.</li>
 <li>Because the Landau gauge is the only allowed gauge.</li>
-<li>Because it uses only <span class="math inline">\([\pi_x,\pi_y]=i\hbar^2/\ell_B^2\)</span>, which depends on the field and not on the choice of <span class="math inline">\(\mathbf{A}\)</span>.</li>
 <li>Because <span class="math inline">\(H\)</span> commutes with <span class="math inline">\(p_y\)</span>.</li>
+<li>Because it uses only <span class="math inline">\([\pi_x,\pi_y]=i\hbar^2/\ell_B^2\)</span>, which depends on the field and not on the choice of <span class="math inline">\(\mathbf{A}\)</span>.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>C</strong>.</p>
-<p>The ladder operators are built from the canonical momentum <span class="math inline">\(\boldsymbol{\pi}\)</span>. Their commutator is fixed by <span class="math inline">\(\mathbf{B}\)</span>, so the oscillator structure is the same in every gauge.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The symmetric gauge <span class="math inline">\(\mathbf{A}=(-By,Bx,0)/2\)</span> is equally allowed, and we use it in the section on the lowest Landau level. It gives the same oscillator.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. In the symmetric gauge <span class="math inline">\(H\)</span> does not commute with <span class="math inline">\(p_y\)</span>, since <span class="math inline">\(A_x=-By/2\)</span> depends on <span class="math inline">\(y\)</span>. The form <span class="math inline">\(\hbar\omega_c(a^\dagger a+\tfrac12)\)</span> holds there too.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. The ladder operators are built from the canonical momentum <span class="math inline">\(\boldsymbol{\pi}\)</span>. Their commutator is fixed by <span class="math inline">\(\mathbf{B}\)</span>, so the oscillator structure is the same in every gauge.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="tryit">

@@ -20,22 +20,32 @@ There is, however, an important difference to make here, because this state is *
 We turn one singlet of [(8.5)](#eq-8-5) into a triplet. What is the spin of this excitation?
 
 - [ ] $1/2$, so it is a spinon.
-- [ ] $0$, since the state is still a product of dimers.
-- [x] $1$, so it is a triplon and not a spinon.
-- [ ] $3/2$, since two spins are involved.
 
-The two spins of the dimer are in a triplet, which has $S=1$. Both spins stay on the same bond, so this excitation has the structure of a magnon.
+    This is false. Both spins stay on the same bond, and two spin-1/2 give $0$ or $1$ and never $1/2$. The state $|{\uparrow\uparrow}\rangle$ on the bond has $S^z=1$.
+
+- [ ] $0$, since the state is still a product of dimers.
+
+    This is false. The product of dimers with one of them in $|{\uparrow\uparrow}\rangle$ has total $S^z=1$, so it is not a singlet. Being a product state does not fix the spin.
+
+- [x] $1$, so it is a triplon and not a spinon.
+
+    This is true. The two spins of the dimer are in a triplet, which has $S=1$. Both spins stay on the same bond, so this excitation has the structure of a magnon.
 :::
 
 ::: quiz
 We add a weak coupling between the dimers of [(8.4)](#eq-8-4). What happens to the ground state?
 
 - [ ] It breaks time-reversal symmetry immediately.
+
+    This is false. For four sites with $J=1$ and $J'=0.1$ between the dimers, the ground state has energy $-1.501$ and it is nondegenerate with $S=0$. The gap of order $J$ forbids a symmetry-broken state.
+
 - [x] It changes smoothly and it still does not break time-reversal symmetry.
-- [ ] It becomes a quantum spin liquid immediately.
+
+    This is true. The singlet-triplet gap protects the state, so a small perturbation changes it only a little. The state remains a valence bond solid until the coupling is of the order of the gap.
+
 - [ ] It becomes degenerate.
 
-The singlet-triplet gap protects the state, so a small perturbation changes it only a little. The state remains a valence bond solid until the coupling is of the order of the gap.
+    This is false. For four sites with $J=1$ and $J'=0.1$ the lowest energy is $-1.501$ and the next one is $-0.527$. The ground state is unique and the gap is about $0.97$.
 :::
 
 ::: {.tryit notebook="session8.ipynb" cell="Magnetization of a dimerized Heisenberg model with a magnetic impurity"}

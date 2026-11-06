@@ -14,20 +14,32 @@ At $q=0$ we use the limit $q\to0$ of [(9.4)](#eq-9-4), $\chi_0(0,0) = D(E_F)$, s
 For the half-filled square lattice we have $\chi_0(0,0)=0.26/t$ and $\chi_0(\pi,\pi)=0.68/t$ at $T=0.1t$. With [(9.8)](#eq-9-8), where does the first instability appear as we increase $U$?
 
 - [ ] At $U\approx3.8t$, and it is ferromagnetic.
+
+    This is false. The value $U=3.8t$ is $1/0.26t$, which is the threshold for the ferromagnetic channel. At $U=1.5t$ the antiferromagnetic channel already satisfies $U\chi_0(\pi,\pi)=1$, so the instability appears earlier.
+
 - [x] At $U\approx1.5t$, and it is antiferromagnetic.
+
+    This is true. The condition $U\chi_0(q,0)=1$ is first met at the largest $\chi_0$. At $Q=(\pi,\pi)$ we get $U=1/0.68t\approx1.5t$, and the response there is staggered.
+
 - [ ] At $U\approx1.5t$, and it is ferromagnetic.
 
-The condition $U\chi_0(q,0)=1$ is first met where $\chi_0$ is largest. This is at $Q=(\pi,\pi)$, so $U=1/0.68t\approx1.5t$, and the response there is the staggered one.
+    This is false. At $U=1.5t$ the ferromagnetic channel gives $U\chi_0(0,0)=1.5\times0.26=0.39$, which is far from one. The ferromagnetic instability needs a larger $U$.
 :::
 
 ::: quiz
 The same $U$ reduces the charge response and enhances the spin response. Which relation explains this?
 
 - [ ] The charge channel has the denominator $1-U\chi_0$ because it conserves particle number.
+
+    This is false. Particle conservation holds for both channels, so it cannot decide. If the charge denominator were $1-U\chi_0$, then $U=1.5t$ would give a charge divergence at $Q$ for a repulsive $U$, which does not occur.
+
 - [x] The identity $Un_\uparrow n_\downarrow=\tfrac{U}{4}(n^2-m^2)$ makes the interaction repulsive for $n$ and attractive for $m$.
+
+    This is true. The identity gives $+\tfrac U4 n^2$ and $-\tfrac U4 m^2$. The charge denominator is $1+U\chi_0$, which is $1.68$ at $U=t$ and $\chi_0=0.68/t$, and the spin one is $1-U\chi_0=0.32$.
+
 - [ ] The spin response has no interaction contribution, so it stays at $\chi_0$.
 
-The sign in front of $m^2$ is the opposite of the sign in front of $n^2$, so the denominator is $1+U\chi_0$ for the charge and $1-U\chi_0$ for the spin. Only the second one can reach zero.
+    This is false. If the spin response stayed at $\chi_0$, there would be no Stoner instability at any $U$. The ferromagnet that appears above $U=1/\chi_0(0,0)$ would not exist.
 :::
 
 ::: {.tryit notebook="session9.ipynb" cell="The charge-charge response function"}

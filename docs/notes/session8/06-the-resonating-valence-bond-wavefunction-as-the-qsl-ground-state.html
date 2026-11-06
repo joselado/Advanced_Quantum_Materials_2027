@@ -97,29 +97,36 @@ n_i = \sum_\sigma f^\dagger_{i\sigma}f_{i\sigma}, \tag{8.7}\]</span></span></p>
 <img src="../figures/s08f03_vbs_rvb.svg" loading="lazy" alt="The difference between a valence bond solid and a quantum spin liquid is not whether the ground state is built from singlets, since both are, but whether the singlet pattern is frozen." />
 <figcaption><strong>Figure 8.3.</strong> The difference between a valence bond solid and a quantum spin liquid is not whether the ground state is built from singlets, since both are, but whether the singlet pattern is frozen. (a1) The fully dimerized model <a href="05-the-dimerized-heisenberg-model-a-first-step-before-a-spin-liquid.html#eq-8-4">(8.4)</a> has one fixed covering, <a href="05-the-dimerized-heisenberg-model-a-first-step-before-a-spin-liquid.html#eq-8-5">(8.5)</a>. (a2) When we separate the two unpaired spins of figure <a href="01-two-classes-of-magnets-and-where-we-find-them.html#fig:s08:magnonspinon">8.1</a>b, every strong bond between them loses its singlet, drawn in red, so the energy cost grows with the separation. The pair is confined, and only the bound object propagates, which is the spin-<span class="math inline">\(1\)</span> triplon. (b1) The RVB state <a href="#eq-8-7">(8.7)</a> is a superposition over <em>all</em> pairings, near and far, drawn as coverings stacked on top of each other. (b2) Now the background pairs again behind the excitations with no cost, the confining string does not form, and the two halves separate as independent spin-<span class="math inline">\(1/2\)</span> spinons. Frustration is the reason why the superposition in (b1), and not a single covering, is the ground state.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>Why do we apply the Gutzwiller projector <span class="math inline">\(P_G\)</span> to the BCS state <a href="#eq-8-6">(8.6)</a>?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li>The BCS state is not normalized.</li>
-<li>The BCS state has empty and doubly occupied sites, and a spin state needs exactly one fermion on every site.</li>
 <li>The BCS state breaks spin-rotation symmetry.</li>
+<li>The BCS state has empty and doubly occupied sites, and a spin state needs exactly one fermion on every site.</li>
 <li>The projector makes the state a superconductor.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>In the BCS state the number of fermions on a site fluctuates between zero and two. Projecting onto single occupancy leaves only the spin degrees of freedom.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The singlet pairing <span class="math inline">\(\Delta(c^\dagger_\uparrow c^\dagger_\downarrow-c^\dagger_\downarrow c^\dagger_\uparrow)\)</span> has total spin zero, and it is invariant under spin rotations. The projector is not needed for this.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. In the BCS state of <a href="#eq-8-6">(8.6)</a> the number of fermions on a site fluctuates between zero and two. Projecting onto single occupancy leaves only the spin degrees of freedom.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. With exactly one fermion on each site the charge cannot move or fluctuate, so the projected state is a Mott insulator. The projection removes the charge degrees of freedom.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>We separate the two spinons that come from breaking a singlet. In which state does the energy cost grow with the separation?</p>
@@ -129,12 +136,19 @@ Quick check
 <li>In the valence bond solid, since every singlet between the two is broken.</li>
 <li>In the RVB state, since the singlets are frozen.</li>
 <li>In both states in the same way.</li>
-<li>In neither, since spinons always cost the same energy.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>In the frozen covering the broken singlets between the spinons form a string, and the spinons are confined into a triplon. In the RVB state the background pairs again, so the spinons separate freely.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. In the frozen covering the broken singlets between the spinons form a string, and the spinons are confined into a triplon. In the RVB state the background pairs again, so the spinons separate freely.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The RVB state is a superposition of many coverings, so no pattern is frozen. Moving a spinon by two sites only re-pairs the singlets along its path and leaves no string behind.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. In a dimerized chain a spinon pair at distance <span class="math inline">\(d\)</span> leaves about <span class="math inline">\(d/2\)</span> broken singlets and costs an energy proportional to <span class="math inline">\(d\)</span>. In the RVB state the cost does not depend on <span class="math inline">\(d\)</span>.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="tryit">

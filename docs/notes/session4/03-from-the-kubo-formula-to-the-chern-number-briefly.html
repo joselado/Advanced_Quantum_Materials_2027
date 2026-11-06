@@ -96,9 +96,9 @@ u_\mathbf{k}|\nabla_\mathbf{k}|u_\mathbf{k}\rangle\)</span> and its curl, the Be
 <img src="../figures/s04f03_guidingcenter.svg" loading="lazy" alt="Harmonic wells with the same ladder of levels at different positions, and flat bands as a function of the momentum." />
 <figcaption><strong><a href="09-landau-levels-of-schrodinger-electrons.html#fig:s04:guidingcenter">Figure 4.3</a>, shown again.</strong> The reason why a Landau level is flat, used here to read its Chern number. Every guiding center <span class="math inline">\(x_0=\hbar k_y/B\)</span> has the same oscillator well, and so the same energy. Look at panel (b), where the bands do not depend on <span class="math inline">\(k_y\)</span> at all. A flat band has no group velocity and still has <span class="math inline">\(C=1\)</span>, since the Chern number depends only on the wavefunctions.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>Landau levels have no dispersion, so the group velocity of every state is zero. How can such a band have the Chern number <span class="math inline">\(C=1\)</span>?</p>
@@ -108,32 +108,46 @@ Quick check
 <li>The Chern number comes from the edge states and not from the bulk band.</li>
 <li>The Chern number is built from the wavefunctions across the Brillouin zone, and it does not depend on the energies.</li>
 <li>It cannot, and the Chern number of a Landau level is zero.</li>
-<li>The Chern number of a flat band is <span class="math inline">\(1\)</span> only at zero temperature.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The energies cancel in <a href="#eq-4-1">(4.1)</a>, as we saw in session 3. A flat band can still have wavefunctions that twist across the Brillouin zone, and this twist is counted by <span class="math inline">\(C\)</span>.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The Chern number of <a href="#eq-4-1">(4.1)</a> is computed from the bulk wavefunctions of a periodic system, with no edge at all. The edge states are a consequence, since their number equals <span class="math inline">\(C\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The energies cancel in <a href="#eq-4-1">(4.1)</a>, as we saw in session 3. A flat band can still have wavefunctions that twist across the Brillouin zone, and this twist is counted by <span class="math inline">\(C\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. If <span class="math inline">\(C\)</span> were zero, a filled Landau level would give <span class="math inline">\(\sigma_{xy}=0\)</span>. The measured plateau of a filled lowest Landau level is <span class="math inline">\(e^2/h\)</span>, which needs <span class="math inline">\(C=1\)</span>.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>The chemical potential is in the gap between the third and the fourth Landau level. What is <span class="math inline">\(\sigma_{xy}\)</span>?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li><span class="math inline">\(3e^2/h\)</span>.</li>
 <li><span class="math inline">\(e^2/h\)</span>.</li>
-<li><span class="math inline">\(3.5\,e^2/h\)</span>.</li>
+<li><span class="math inline">\(3e^2/h\)</span>.</li>
 <li><span class="math inline">\(4e^2/h\)</span>.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>Three Landau levels are filled, each with <span class="math inline">\(C=1\)</span>. By <a href="#eq-4-2">(4.2)</a> the total is <span class="math inline">\(C=3\)</span>, and <span class="math inline">\(\sigma_{xy}=3e^2/h\)</span> is an exact integer multiple.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The value <span class="math inline">\(e^2/h\)</span> is the plateau with only the lowest Landau level filled. Three filled levels give three times this value.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. Three Landau levels are filled, each with <span class="math inline">\(C=1\)</span>. By <a href="#eq-4-2">(4.2)</a> the total is <span class="math inline">\(C=3\)</span>, and <span class="math inline">\(\sigma_{xy}=3e^2/h\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The fourth level is above the chemical potential and it is empty, so it adds nothing. The plateau at <span class="math inline">\(4e^2/h\)</span> needs the chemical potential in the gap above the fourth level.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="tryit">

@@ -8,11 +8,18 @@ Before we go into the formalism, it is useful to have a rough classification in 
 A material has a gapped bulk and edge states inside the gap. A change of the edge potential, which keeps the bulk gap open, removes these states. Is this material topological in the sense of this session?
 
 - [ ] No, because a gapped bulk cannot have edge states.
+
+    This is false. The SSH chain with $t=1/2$ has a gapped bulk and a state at zero energy at each end, and the ribbon of the Haldane model has edge branches inside the bulk gap. The reason given here fails, even if the answer "No" is right for this material.
+
 - [x] No, because in a topological material the bulk forces the edge states to exist for every edge.
-- [ ] Yes, because the bulk is gapped.
+
+    This is true. The bulk invariant forces the edge states, so a change of the edge can move them in energy but cannot remove them. Here the states disappear, so they belong to this particular edge.
+
 - [ ] Yes, because any edge state inside a bulk gap signals topology.
 
-Edge states that a change of the edge can remove belong to one particular edge and are not protected. In a topological material the bulk invariant forces them to exist, so a change of the edge can only move them in energy.
+    This is false. Take a trivial insulator and change the potential of the last site. A state is pushed out of the valence band into the gap, and it disappears when the potential goes back to zero, as in this question.
+
+Edge states that a change of the edge can remove belong to one particular edge and are not protected.
 :::
 
 Within this class, we will see the following systems in this session and in the next one.

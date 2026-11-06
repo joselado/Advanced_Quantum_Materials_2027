@@ -18,11 +18,16 @@ Frustrated lattices are different. On a **non-bipartite** lattice, of which the 
 Spins sit on the sites of a triangular lattice, and the coupling is ferromagnetic, $J<0$ in the convention of [(6.5)](#eq-6-5). Is there geometric frustration?
 
 - [x] No, since all spins parallel satisfy every bond.
+
+    This is true. For $J<0$ each bond has energy $-|J|S^2$ when the two spins are parallel. All spins along one direction give this on every bond of the triangular lattice.
+
 - [ ] Yes, since the triangle is not bipartite.
-- [ ] Yes, but only on the kagome lattice.
+
+    This is false. The lattice alone does not decide it. For $J<0$ the three bonds of a triangle give $-3|J|S^2$ with parallel spins, which is the minimum possible, so no bond is frustrated.
+
 - [ ] No, since classical spins cannot be frustrated.
 
-Frustration needs an antiferromagnetic coupling, because only then do neighbors want opposite directions. For $J<0$ one common direction satisfies all bonds, whatever the lattice is.
+    This is false. For $J>0$ on one triangle, three classical spins at $120^\circ$ give $-JS^2/2$ per bond. A bipartite lattice would give $-JS^2$, so the triangle is frustrated even for classical spins.
 :::
 
 ::: notebookbox

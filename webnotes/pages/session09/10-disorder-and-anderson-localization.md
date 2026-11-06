@@ -26,20 +26,32 @@ An extended state with weight $\sim 1/N$ per site gives $\mathrm{IPR} \sim N\cdo
 A normalized state has the same weight on $10$ sites of a chain and zero weight elsewhere. What is its $\mathrm{IPR}$ of [(9.12)](#eq-9-12), and how does it change if the chain grows?
 
 - [ ] $1/N$, and it decreases as the chain grows.
+
+    This is false. The value $1/N$ is the IPR of an extended state. For $N=100$ our state has $0.1$, ten times more than $1/N=0.01$.
+
 - [x] $1/10$, and it does not change as the chain grows.
+
+    This is true. For ten sites with $|\psi_i|^2=1/10$ the sum is $10\times(1/10)^2=0.1$. If the chain grows from $N=100$ to $10^4$ sites, the value stays $0.1$.
+
 - [ ] $10/N$, and it decreases as the chain grows.
 
-Each of the $10$ sites has $|\psi_i|^2=1/10$, so $\sum_i|\psi_i|^4=10/100=1/10$. The state does not know about the rest of the chain, which is what a localized state means.
+    This is false. The value $10/N$ would be $0.001$ for $N=10^4$. The state still sits on ten sites, so its IPR is $0.1$ and not smaller.
 :::
 
 ::: quiz
 We double the size of the chain, and the $\mathrm{IPR}$ of a state changes by a factor $0.7$. Which regime is this?
 
 - [ ] Extended, since the $\mathrm{IPR}$ decreases.
+
+    This is false. An extended state has $\mathrm{IPR}=1/N$, so doubling $N$ gives a factor $0.5$. A factor $0.7$ is not this, even if the IPR decreases.
+
 - [ ] Localized, since the $\mathrm{IPR}$ is finite.
+
+    This is false. A localized state does not change at all, so its factor is $1$. The factor $0.7$ is not equal to one, and a finite IPR is not enough.
+
 - [x] Critical, with $N^{-\tau}$ and $\tau\approx0.5$.
 
-An extended state gives a factor $0.5$ and a localized state gives a factor $1$. A factor $2^{-\tau}=0.7$ means $\tau\approx0.5$, which is between the two, and this is the multifractal signature.
+    This is true. The factor is $2^{-\tau}=0.7$, so $\tau\approx0.5$. Extended states give $\tau=1$ and a factor $0.5$, localized states give $\tau=0$ and a factor $1$, so this is between them.
 :::
 
 ::: {.tryit notebook="session9.ipynb" cell="Extended and localized states in quasicrystals"}

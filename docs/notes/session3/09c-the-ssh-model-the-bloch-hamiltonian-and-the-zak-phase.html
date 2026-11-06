@@ -88,24 +88,31 @@
 <p><span id="eq-3-5" class="eq"><span class="math display">\[H(k) = \begin{pmatrix} 0 &amp; d(k) \\ d^*(k) &amp; 0 \end{pmatrix}
 = (t + \cos k)\,\sigma_x - \sin k\,\sigma_y, \qquad d(k) = t + e^{ik}, \tag{3.5}\]</span></span></p>
 <p>with eigenvalues <span class="math inline">\(E_\pm(k) = \pm|d(k)| = \pm\sqrt{1 + t^2 + 2t\cos k}\)</span>. The gap closes exactly when <span class="math inline">\(d(k)=0\)</span>, which requires <span class="math inline">\(t=1\)</span> and <span class="math inline">\(k=\pi\)</span>. This is the topological phase transition point, and it agrees with the qualitative separation between <span class="math inline">\(t&lt;1\)</span> and <span class="math inline">\(t&gt;1\)</span> above, since at <span class="math inline">\(t=0\)</span> the chain is in the limit where the end sites are fully dangling, which is topological, and at <span class="math inline">\(t=1\)</span> it becomes the fully symmetric gapless chain.</p>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>For which value of <span class="math inline">\(t\)</span> and at which momentum does the gap of the SSH chain close?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li><span class="math inline">\(t=0\)</span> and <span class="math inline">\(k=0\)</span>.</li>
-<li><span class="math inline">\(t=1\)</span> and <span class="math inline">\(k=\pi\)</span>.</li>
 <li><span class="math inline">\(t=2\)</span> and <span class="math inline">\(k=\pi\)</span>.</li>
+<li><span class="math inline">\(t=1\)</span> and <span class="math inline">\(k=\pi\)</span>.</li>
 <li><span class="math inline">\(t=1\)</span> and <span class="math inline">\(k=0\)</span>.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The gap closes when <span class="math inline">\(d(k)=t+e^{ik}=0\)</span>. This requires <span class="math inline">\(e^{ik}=-t\)</span>, which has a solution only for <span class="math inline">\(|t|=1\)</span>, and for <span class="math inline">\(t=1\)</span> it is <span class="math inline">\(k=\pi\)</span>.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. At <span class="math inline">\(k=\pi\)</span> we get <span class="math inline">\(d=t+e^{i\pi}=2-1=1\)</span>, which is not zero. The energy there is <span class="math inline">\(\pm1\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The gap closes when <span class="math inline">\(d(k)=t+e^{ik}=0\)</span>. This requires <span class="math inline">\(e^{ik}=-t\)</span>, which has a solution only for <span class="math inline">\(|t|=1\)</span>, and for <span class="math inline">\(t=1\)</span> it is <span class="math inline">\(k=\pi\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. At <span class="math inline">\(k=0\)</span> we get <span class="math inline">\(d=1+1=2\)</span>, so the energy is <span class="math inline">\(\pm2\)</span>, which is the top of the band and not a crossing.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <p>The topological invariant here is the one-dimensional Berry phase that the lower-band Bloch state <span class="math inline">\(|u_-(k)\rangle\)</span> accumulates as <span class="math inline">\(k\)</span> goes once around the Brillouin zone, which is called the <strong>Zak phase</strong>,</p>
@@ -116,9 +123,9 @@ Quick check
 <figcaption><strong>Figure 3.4.</strong> A drawing of the one-dimensional invariant. On the left of each panel is the off-diagonal element <span class="math inline">\(d(k)=t+e^{ik}\)</span> of the SSH Bloch Hamiltonian <a href="#eq-3-5">(3.5)</a> in the complex plane, as <span class="math inline">\(k\)</span> goes once through the Brillouin zone, and the arrow shows the direction of increasing <span class="math inline">\(k\)</span>. It is always the unit circle, but centred at <span class="math inline">\((t,0)\)</span>, so it encloses the origin, the ball, for <span class="math inline">\(t&lt;1\)</span> and does not enclose it for <span class="math inline">\(t&gt;1\)</span>. The winding number of this curve around the origin is exactly <span class="math inline">\(\gamma/\pi\)</span>, which is the Zak phase <a href="#eq-3-6">(3.6)</a> in units of <span class="math inline">\(\pi\)</span>. On the right of each panel are the corresponding bands <span class="math inline">\(E_\pm(k)=\pm|d(k)|\)</span>, with gap <span class="math inline">\(2|1-t|\)</span>. The two halves give the same information in two ways. The only way to unwind the curve is to move it across the origin, and <span class="math inline">\(d(k)=0\)</span> is where the gap closes, so the invariant cannot change while the system stays insulating. Note that (a) and (c) have the same gap and look like ordinary spectra. The difference between them cannot be seen in the energies and is only in the wavefunctions, which is the main point of <a href="05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#eq-3-4">(3.4)</a>. By the bulk-boundary correspondence, <span class="math inline">\(\gamma=\pi\)</span> is also exactly the condition for the zero-energy end modes of figure <a href="09b-the-ssh-chain-in-the-opposite-limit-and-the-zero-modes.html#fig:s03:ssh">3.3</a>.</figcaption>
 </figure>
 <p>This material appears only in the lecture and on the slides, and it has no counterpart in the notebook. The notebook <code>session3.ipynb</code> does not have a dedicated section on the SSH chain, and its numerical exercises start directly from two-dimensional ribbons, which are the quantum Hall and quantum anomalous Hall constructions of Sections <a href="06-landau-levels-and-chiral-edge-states-in-the-quantum-hall-state.html#sec-3-6">3.6</a> and <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#sec-3-10">3.10</a>. If you want to see the zero modes and the Zak-phase winding of <a href="#eq-3-6">(3.6)</a> numerically, the direct way is to build by hand the finite chain with <span class="math inline">\(N\)</span> sites from Section <a href="08-three-topological-material-classes.html#sec-3-9">3.9</a>, following the same tight-binding diagonalization method that we used for the finite islands in session 1. Then you can see how the two eigenvalues close to zero move away from zero as <span class="math inline">\(t\)</span> is increased above <span class="math inline">\(1\)</span>.</p>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>The chains with <span class="math inline">\(t=1/2\)</span> and <span class="math inline">\(t=3/2\)</span> have the same gap, <span class="math inline">\(2|1-t|=1\)</span>. What is the difference between them?</p>
@@ -127,13 +134,20 @@ Quick check
 <ol type="A">
 <li>Only the chain with <span class="math inline">\(t=1/2\)</span> has a winding of <span class="math inline">\(d(k)\)</span> around the origin and end states.</li>
 <li>Only the chain with <span class="math inline">\(t=3/2\)</span> is gapless.</li>
-<li>Both have end states, but at different energies.</li>
 <li>Only the chain with <span class="math inline">\(t=3/2\)</span> has end states, since its bonds are stronger.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>The curve <span class="math inline">\(d(k)=t+e^{ik}\)</span> is a unit circle centered at <span class="math inline">\((t,0)\)</span>. It encloses the origin for <span class="math inline">\(t=1/2\)</span> and not for <span class="math inline">\(t=3/2\)</span>. The two gaps look the same in the spectrum, and only the first chain is topological.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The curve <span class="math inline">\(d(k)=t+e^{ik}\)</span> is a unit circle centered at <span class="math inline">\((t,0)\)</span>. It encloses the origin for <span class="math inline">\(t=1/2\)</span> and not for <span class="math inline">\(t=3/2\)</span>, and the two gaps look the same in the bulk spectrum.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. For <span class="math inline">\(t=3/2\)</span> the smallest value of <span class="math inline">\(|d|\)</span> is <span class="math inline">\(|1-t|=0.5\)</span>, so there are no levels between <span class="math inline">\(-0.5\)</span> and <span class="math inline">\(0.5\)</span>. Numerically, the open chain of 40 sites has its lowest levels at <span class="math inline">\(\pm0.53\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. For the open chain of 40 sites we get two levels at <span class="math inline">\(\pm7\times10^{-7}\)</span> for <span class="math inline">\(t=1/2\)</span>, inside the gap, and the lowest levels are at <span class="math inline">\(\pm0.53\)</span> for <span class="math inline">\(t=3/2\)</span>. The weaker intracell bond gives the end states.</p></li>
+</ul>
+</div>
 </details>
 </div>
 

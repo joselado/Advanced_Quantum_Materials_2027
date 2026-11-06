@@ -97,24 +97,34 @@
 <img src="../figures/web/session01/dimer_fock.svg" loading="lazy" alt="Energy levels of the two-site problem grouped by the number of electrons, with the occupied sites drawn as discs." />
 <figcaption><strong>Schematic 1.3.</strong> The four states of the two-site problem sorted by electron number, with the energies of <a href="#eq-1-2">(1.2)</a>. One electron gives the levels <span class="math inline">\(-t\)</span> and <span class="math inline">\(+t\)</span>, which are the antisymmetric and the symmetric combination of the two sites. With two electrons the hopping cannot move anything, and the energy is <span class="math inline">\((-t)+(+t)=0\)</span>.</figcaption>
 </figure>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>Both sites are occupied, and the state is <span class="math inline">\(c_0^\dagger c_1^\dagger|0\rangle\)</span>. What is its energy for the hopping of <a href="#eq-1-2">(1.2)</a>?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li><span class="math inline">\(0\)</span></li>
-<li><span class="math inline">\(+t\)</span></li>
 <li><span class="math inline">\(-t\)</span></li>
+<li><span class="math inline">\(0\)</span></li>
 <li><span class="math inline">\(2t\)</span></li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>The hopping needs an empty site to move an electron to, and none is empty here, so <span class="math inline">\(H_\text{hop}\)</span> gives zero on this state. We get the same result by adding the two levels, <span class="math inline">\((-t)+(+t)=0\)</span>.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The energy <span class="math inline">\(-t\)</span> belongs to one electron in the lower level. Here both levels, <span class="math inline">\(-t\)</span> and <span class="math inline">\(+t\)</span>, are filled, and the sum is <span class="math inline">\(0\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The hopping needs an empty site, and none is empty, so <span class="math inline">\(H_\text{hop}\)</span> gives zero on this state. The same follows from adding the two levels, <span class="math inline">\((-t)+(+t)=0\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. It would need both electrons in the level <span class="math inline">\(+t\)</span>. The Pauli principle forbids this, since <span class="math inline">\((c_+^\dagger)^2=0\)</span>, so the largest energy of two electrons here is still <span class="math inline">\(0\)</span>.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>Hopping an electron onto an occupied site gives zero, because <span class="math inline">\((c_0^\dagger)^2=0\)</span>.</p>
+</div>
 </details>
 </div>
 <div class="notebookbox">
@@ -131,9 +141,9 @@ Notebook <code>session1.ipynb</code>, cell “The spectra of a dimer”. Open it
 <p>Up to now nothing distinguishes fermions from bosons, and everything above applies to both in the same way. The difference is introduced through the algebra of the operators. Fermi statistics requires that the many-body wave function changes sign when we exchange two particles, and a direct consequence is that a given single-particle level can have zero fermions or one fermion, but never two. We impose this with anticommutation relations,</p>
 <p><span id="eq-1-3" class="eq"><span class="math display">\[\{c_i, c_j^\dagger\} = \delta_{ij}, \qquad \{c_i, c_j\} = \{c_i^\dagger, c_j^\dagger\} = 0. \tag{1.3}\]</span></span></p>
 <p>The second relation is the important one. If we take <span class="math inline">\(i=j\)</span> it gives <span class="math inline">\((c_i^\dagger)^2 = 0\)</span>, which means that we cannot create two electrons in the same level. At the same time it imposes the antisymmetry of the wave function, so the Pauli exclusion principle is part of the algebra itself and we do not need to add it by hand.</p>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>Suppose <span class="math inline">\(c_i^\dagger\)</span> and <span class="math inline">\(c_j^\dagger\)</span> commuted instead of anticommuting. What would change?</p>
@@ -143,12 +153,22 @@ Quick check
 <li>The operator <span class="math inline">\((c_i^\dagger)^2\)</span> would not vanish, so two particles could sit in the same level.</li>
 <li>The vacuum would not be annihilated by <span class="math inline">\(c_i\)</span>.</li>
 <li>The hopping term would not be Hermitian.</li>
-<li>The Hamiltonian would not conserve energy.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>The statement <span class="math inline">\((c_i^\dagger)^2=0\)</span> follows only from the anticommutation relation. Without it nothing stops a second particle from entering the same level, and we would describe bosons.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The statement <span class="math inline">\((c_i^\dagger)^2=0\)</span> follows only from the anticommutation relation. Without it, nothing stops a second particle from entering the same level, and we describe bosons.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. For bosons the vacuum still satisfies <span class="math inline">\(b_i|0\rangle=0\)</span>, since there is no particle to remove. The vacuum condition does not depend on the statistics.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The term <span class="math inline">\(t(b_0^\dagger b_1+b_1^\dagger b_0)\)</span> of bosons is Hermitian, because it is written with its own Hermitian conjugate. Its levels are <span class="math inline">\(\pm t\)</span> in the one-particle sector, as for fermions.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>Bosons and fermions differ in the algebra of the operators, and not in the vacuum or in the Hermiticity.</p>
+</div>
 </details>
 </div>
 

@@ -100,9 +100,9 @@
 <img src="../figures/panel/s06f02_dimer_a.svg" loading="lazy" alt="Two sites with parallel spins, where the hop is forbidden, and with antiparallel spins, where the hop is allowed." />
 <figcaption><strong><a href="../session6/08-from-the-hubbard-dimer-to-the-heisenberg-model.html#fig:s06:dimer">Figure 6.2</a>, one panel shown again.</strong> Where the Heisenberg dimer comes from. With parallel spins the hop of an electron is blocked by the Pauli principle, which the cross shows. With antiparallel spins the electron can hop to the neighbor and come back, and this virtual process lowers the energy of the singlet. Look at the lower part of the figure, since this process is the origin of the antiferromagnetic coupling <span class="math inline">\(J\)</span> of <a href="#eq-8-2">(8.2)</a>.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>What is the energy of the state <span class="math inline">\(|{\uparrow\downarrow}\rangle\)</span> of the Ising dimer <a href="#eq-8-1">(8.1)</a>?</p>
@@ -111,18 +111,25 @@ Quick check
 <ol type="A">
 <li><span class="math inline">\(-3/4\)</span>, which is the energy of the singlet.</li>
 <li><span class="math inline">\(-1/4\)</span>, since <span class="math inline">\(S^z_0S^z_1=(\tfrac12)(-\tfrac12)\)</span>.</li>
-<li><span class="math inline">\(0\)</span>, since the spins point in opposite directions.</li>
 <li><span class="math inline">\(+1/4\)</span>, since the spins are antiparallel.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The product of the two <span class="math inline">\(z\)</span> components is <span class="math inline">\(-1/4\)</span> for antiparallel spins and <span class="math inline">\(+1/4\)</span> for parallel ones. The two antiparallel states are degenerate, and each symmetry-broken state chooses one of them.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The Ising dimer <a href="#eq-8-1">(8.1)</a> only has <span class="math inline">\(S^z_0S^z_1=\pm\tfrac14\)</span>, so its energies are <span class="math inline">\(\pm1/4\)</span>. The value <span class="math inline">\(-3/4\)</span> needs the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> terms of the Heisenberg dimer.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The product of the two <span class="math inline">\(z\)</span> components is <span class="math inline">\(-1/4\)</span> for antiparallel spins and <span class="math inline">\(+1/4\)</span> for parallel ones. The two antiparallel states are degenerate, and each symmetry-broken state chooses one of them.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The state <span class="math inline">\(|{\uparrow\uparrow}\rangle\)</span> has <span class="math inline">\(S^z_0S^z_1=+\tfrac14\)</span>, and it is the one with energy <span class="math inline">\(+1/4\)</span>. For antiparallel spins the product is <span class="math inline">\((\tfrac12)(-\tfrac12)=-\tfrac14\)</span>.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="D">
+<div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>We change the sign of the coupling, <span class="math inline">\(H=J\,\mathbf S_0\cdot\mathbf S_1\)</span> with <span class="math inline">\(J&lt;0\)</span>. What is the ground state of the dimer?</p>
@@ -130,14 +137,21 @@ Quick check
 <div class="quiz-options">
 <ol type="A">
 <li>The singlet, as for <span class="math inline">\(J&gt;0\)</span>.</li>
-<li>The singlet, but with a smaller gap.</li>
 <li>A single state <span class="math inline">\(|{\uparrow\uparrow}\rangle\)</span> that breaks time-reversal symmetry.</li>
 <li>The triplet, which is threefold degenerate.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>D</strong>.</p>
-<p>The value of <span class="math inline">\(\mathbf S_0\cdot\mathbf S_1\)</span> is <span class="math inline">\(-3/4\)</span> for the singlet and <span class="math inline">\(+1/4\)</span> for the triplet. For <span class="math inline">\(J&lt;0\)</span> the energy <span class="math inline">\(J/4\)</span> of the triplet is below <span class="math inline">\(-3J/4\)</span> of the singlet, and the three triplet states are degenerate.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Take <span class="math inline">\(J=-1\)</span>. The singlet has energy <span class="math inline">\(-3J/4=+3/4\)</span> and the triplet has <span class="math inline">\(J/4=-1/4\)</span>, so the triplet is lower.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The Hamiltonian commutes with the total spin, so <span class="math inline">\(|{\downarrow\downarrow}\rangle\)</span> and <span class="math inline">\((|{\uparrow\downarrow}\rangle+|{\downarrow\uparrow}\rangle)/\sqrt2\)</span> have the same energy <span class="math inline">\(J/4\)</span>. The ground state is threefold degenerate and not a single state.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. The value of <span class="math inline">\(\mathbf S_0\cdot\mathbf S_1\)</span> is <span class="math inline">\(-3/4\)</span> for the singlet and <span class="math inline">\(+1/4\)</span> for the triplet. For <span class="math inline">\(J&lt;0\)</span> the energy <span class="math inline">\(J/4\)</span> of the triplet is below <span class="math inline">\(-3J/4\)</span> of the singlet, and the three triplet states are degenerate.</p></li>
+</ul>
+</div>
 </details>
 </div>
 

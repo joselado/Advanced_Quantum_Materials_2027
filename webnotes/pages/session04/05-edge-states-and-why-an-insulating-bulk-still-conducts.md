@@ -11,24 +11,35 @@ The band structure of a ribbon, which is a sample that is infinite in $y$ and fi
 ::: quiz
 An impurity sits on the left edge of a quantum Hall ribbon. Why can it not backscatter an edge electron?
 
+- [ ] The impurity is always too weak to scatter.
+
+    This is false. An impurity much stronger than the Landau level gap also cannot reflect the electron, which goes around it in the same direction. The reason is the missing final state, and not the strength.
 
 - [x] The only states that move in the opposite direction at the same energy are on the other edge, which is far away.
-- [ ] The impurity is always too weak to scatter.
-- [ ] The bulk Landau levels are full and block the scattering.
+
+    This is true. On one edge all the modes propagate in the same direction. A state that propagates the other way is on the other side of the sample, and a local impurity cannot connect the two.
+
 - [ ] Time-reversal symmetry forbids it.
 
-On one edge all the modes propagate in the same direction. A state that propagates the other way is on the other side of the sample, and a local impurity cannot connect the two.
+    This is false. The magnetic field breaks time-reversal symmetry in this system. Time reversal protects the helical edge of the quantum spin Hall insulator of session 3, and here the chirality does the job.
+
 :::
 
 ::: quiz
 The chemical potential moves from the gap above the first Landau level to the gap above the third. How do the number of chiral modes at one edge and $\sigma_{xy}$ change?
 
 - [ ] The number of modes stays at one, and $\sigma_{xy}$ changes from $e^2/h$ to $3e^2/h$.
-- [x] From one to three, and from $e^2/h$ to $3e^2/h$.
-- [ ] From one to two, and from $e^2/h$ to $2e^2/h$.
-- [ ] From one to three, and $\sigma_{xy}$ stays at $e^2/h$.
 
-The number of chiral modes at an edge is equal to the Chern number of the bulk, which counts the filled Landau levels. The Hall conductance is this number times $e^2/h$.
+    This is false. The number of modes is $C$ and $\sigma_{xy}=Ce^2/h$. A single chiral mode carries exactly $e^2/h$, so $3e^2/h$ needs three modes.
+
+- [x] From one to three, and from $e^2/h$ to $3e^2/h$.
+
+    This is true. The number of chiral modes at an edge is equal to the Chern number of the bulk, which counts the filled Landau levels. The Hall conductance is this number times $e^2/h$.
+
+- [ ] From one to two, and from $e^2/h$ to $2e^2/h$.
+
+    This is false. Two modes and $2e^2/h$ belong to the gap above the second level. The gap above the third level has three filled levels, so three modes.
+
 :::
 
 ::: notebookbox

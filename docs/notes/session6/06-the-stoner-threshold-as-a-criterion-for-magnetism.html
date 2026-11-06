@@ -93,9 +93,9 @@
 <img src="../figures/s06f01_stoner.svg" loading="lazy" alt="A graphical reading of the Stoner criterion (6.3)." />
 <figcaption><strong>Figure 6.1.</strong> A graphical reading of the Stoner criterion <a href="#eq-6-3">(6.3)</a>. (a) The self-consistency condition <span class="math inline">\(m=f(m)\)</span>, where <span class="math inline">\(f\)</span> is the right-hand side of the zero-temperature gap equation, drawn here with the shape <span class="math inline">\(\tanh\)</span> for two values of the slope. It is an odd function that saturates once the bands are fully polarized, and its slope at the origin is exactly <span class="math inline">\(U D(E_F)\)</span>. If this slope is below one, the only crossing with <span class="math inline">\(y=m\)</span> is the trivial solution <span class="math inline">\(m=0\)</span>. Once the slope is above one, a pair of nontrivial solutions <span class="math inline">\(\pm m_0\)</span> appears and the nonmagnetic state becomes unstable. (b) The resulting order parameter, which stays at zero until <span class="math inline">\(U D(E_F)\)</span> reaches one and then grows continuously. For this reason, whether a metal becomes magnetic is not decided by <span class="math inline">\(U\)</span> alone but by the <em>product</em> of <span class="math inline">\(U\)</span> with the density of states at the Fermi level. This is why aluminium and lead stay nonmagnetic even with a sizeable Coulomb repulsion, while the narrow <span class="math inline">\(d\)</span> bands of iron and cobalt are clearly above the threshold.</figcaption>
 </figure>
-<div class="quiz" data-correct="C">
+<div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>A flat band has a very large density of states at the Fermi level. According to the Stoner criterion <a href="#eq-6-3">(6.3)</a>, how large must <span class="math inline">\(U\)</span> be for magnetism?</p>
@@ -105,12 +105,19 @@ Quick check
 <li>Larger than <span class="math inline">\(4t\)</span>, which is the bandwidth of the chain.</li>
 <li>Magnetism is impossible, since the bands do not disperse.</li>
 <li>Very small, since <span class="math inline">\(U D(E_F)\)</span> is already above one.</li>
-<li>It has to be negative, an attractive interaction.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>C</strong>.</p>
-<p>The condition is <span class="math inline">\(U D(E_F)\geq 1\)</span>. When <span class="math inline">\(D(E_F)\)</span> is large, a small <span class="math inline">\(U\)</span> reaches the threshold. This is why flat bands are good places to look for magnetism.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Take a flat band of width <span class="math inline">\(W=0.1t\)</span>, with <span class="math inline">\(D(E_F)\approx10/t\)</span>. Then <span class="math inline">\(U=0.1t\)</span> already gives <span class="math inline">\(UD(E_F)=1\)</span>, which is far below <span class="math inline">\(4t\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The criterion <a href="#eq-6-3">(6.3)</a> has no condition on dispersion. When <span class="math inline">\(W\to0\)</span> we get <span class="math inline">\(D(E_F)\to\infty\)</span>, so any <span class="math inline">\(U&gt;0\)</span> gives <span class="math inline">\(UD(E_F)&gt;1\)</span> and magnetism appears.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. The condition <a href="#eq-6-3">(6.3)</a> is <span class="math inline">\(U D(E_F)\geq1\)</span>. When <span class="math inline">\(D(E_F)\)</span> is large, a small <span class="math inline">\(U\)</span> reaches the threshold, and this is why flat bands are good places to look for magnetism.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="notebookbox">

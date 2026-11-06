@@ -15,10 +15,16 @@ Let us first check [(9.4)](#eq-9-4). As $q\to 0$, we expand both the numerator a
 For small $q$ the two windows of the figure have width $q$, and the denominator of [(9.4)](#eq-9-4) is roughly $v_F q$. What is $\chi_0(q\to0)$ for the chain?
 
 - [x] Finite, and equal to the density of states at the Fermi level.
+
+    This is true. The number of states in the windows and the denominator $v_Fq$ are both proportional to $q$. They cancel, and what remains is $1/(\pi v_F)$ for the spinless chain, which is $D(E_F)$.
+
 - [ ] Zero, since the windows shrink to nothing.
+
+    This is false. The windows shrink, but the denominator shrinks in the same way. A free chain has a finite Pauli-like response $D(E_F)>0$ at $q\to0$, so the ratio does not vanish.
+
 - [ ] Divergent, since the denominator goes to zero.
 
-Both the number of contributing states and the denominator are proportional to $q$, so the factor $q$ cancels. What remains is a finite number, which is $D(E_F)$, as the check of [(9.4)](#eq-9-4) shows.
+    This is false. A divergence of $\chi_0(q\to0)$ would mean an infinite compressibility. A free electron gas has the finite value $D(E_F)$, because the number of states in the window decreases together with the denominator.
 :::
 
 In the next part we will see where this function diverges, which is the nesting condition.

@@ -18,20 +18,30 @@ and not with the *volume* of $A$. This is a strong restriction. A random state t
 In the tetramer model of two dimensions we double the linear size of the region $A$. How does $S_A$ change?
 
 - [x] It roughly doubles, since the boundary length doubles.
-- [ ] It roughly quadruples, since the area quadruples.
-- [ ] It does not change, since the state is gapped.
-- [ ] It grows only as the logarithm of the size.
 
-The entropy counts the cut bonds, and in two dimensions their number is proportional to the length of the boundary. The area of $A$ does not enter.
+    This is true. The entropy counts the cut tetramers, and in two dimensions their number is proportional to the length of the boundary. For a square of side 2 or 4 the perimeter is 8 or 16, so the entropy doubles.
+
+- [ ] It roughly quadruples, since the area quadruples.
+
+    This is false. The square of side 2 has 4 sites and the one of side 4 has 16, but the clusters inside the square are not cut. Only the perimeter, 8 and then 16, counts, so the factor is 2 and not 4.
+
+- [ ] It does not change, since the state is gapped.
+
+    This is false. In one dimension the boundary is two points and the entropy is constant. In two dimensions the boundary grows with the size, so a gapped state still has an entropy that grows.
 :::
 
 ::: quiz
 A gapped ground state in three dimensions follows the area law [(7.9)](#eq-7-9). A cube of side $\ell$ has an entropy that grows as
 
-- [ ] $\ell$.
-- [x] $\ell^2$.
 - [ ] $\ell^3$.
+
+    This is false. This is the volume law. For $\ell=100$ the cube has $10^6$ sites but its surface cuts only $6\times10^4$ bonds, and the area law lets each bond carry at most $\log2$.
+
+- [x] $\ell^2$.
+
+    This is true. The boundary of a cube is made of its six faces, which have an area proportional to $\ell^2$. In [(7.9)](#eq-7-9) the entropy follows this area and not the volume $\ell^3$.
+
 - [ ] a constant.
 
-The boundary of a cube is made of its faces, which have an area proportional to $\ell^2$. The volume $\ell^3$ would be the volume law.
+    This is false. A constant is the result in one dimension, where the boundary of a block is two points. For a cube of side 2 and of side 4 the surface cuts 24 and 96 bonds, so the number of cut bonds grows.
 :::

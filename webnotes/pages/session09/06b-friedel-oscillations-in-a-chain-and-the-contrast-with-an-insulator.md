@@ -10,10 +10,16 @@ For a concrete example, let us take a one-dimensional tight-binding chain with a
 In a gapped chain the LDOS around an impurity converges to its bulk value within a few sites. Why is there no slowly decaying oscillation?
 
 - [ ] The impurity is screened completely by the electrons at the Fermi level.
+
+    This is false. A metal screens the impurity well, and it still has Friedel oscillations at $2k_F$. Screening does not remove the tail, and in the gap there are no electrons at the Fermi level to screen.
+
 - [x] There is no Fermi surface, so $\chi_0(q)$ has no singularity and its Fourier transform decays exponentially.
+
+    This is true. A gap makes $\chi_0(q)$ analytic for all $q$, so its Fourier transform decays as $e^{-x/\xi}$. For $\xi\approx2.5$ sites the response at ten sites is $e^{-4}\approx0.02$ of its starting value.
+
 - [ ] A gapped chain has no translational symmetry.
 
-The slow tail comes from a non-analytic point of $\chi_0(q)$ at $2k_F$. With a gap, the function is smooth for every $q$, and the real-space response is exponentially short.
+    This is false. A dimerized chain with hoppings $t_1\neq t_2$ is gapped and has translational symmetry with a two-site cell. Its LDOS around an impurity still decays exponentially.
 :::
 
 ::: {.tryit notebook="session9.ipynb" cell="Impurity in a 1d metal"}

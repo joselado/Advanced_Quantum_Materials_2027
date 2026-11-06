@@ -20,9 +20,14 @@ Session 9 continues directly from this construction. The method of Abrikosov fer
 Which excitation carries spin $1/2$, no charge, and appears in the parton construction of a quantum spin liquid?
 
 - [x] The spinon.
-- [ ] The magnon.
-- [ ] The vison.
-- [ ] The triplon.
 
-The magnon and the triplon have spin $1$, and the vison is a flux of the gauge field with no spin. The spinon is the fermion of the parton construction, which carries the spin of the electron.
+    This is true. The spinon is the fermion of the parton construction, which carries the spin of the electron. The magnon and the triplon have spin $1$, and the vison is a flux of the gauge field with no spin.
+
+- [ ] The magnon.
+
+    This is false. Flipping one spin of a ferromagnet changes $S^z$ by $1$. Its spin is $1$ and not $1/2$.
+
+- [ ] The vison.
+
+    This is false. The vison is a plaquette with flux $\Phi=-1$ and it is a spin singlet. It carries no spin at all.
 :::

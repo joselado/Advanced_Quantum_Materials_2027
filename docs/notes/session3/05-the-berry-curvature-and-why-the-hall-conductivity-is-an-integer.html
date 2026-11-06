@@ -97,9 +97,9 @@ C = \sum_{n\ \text{filled}} \frac{1}{2\pi}\int_{\text{BZ}} \Omega_n(k)\, d^2k. \
 <img src="../figures/web/session03/berry_haldane.svg" loading="lazy" alt="Two color maps of the Brillouin zone, with two red spots for the Haldane coupling and one red and one blue spot for the staggered potential." />
 <figcaption><strong>Schematic 3.2.</strong> The Berry curvature of the lower band over the Brillouin zone of the honeycomb lattice, computed on a grid. In (a) the gap comes from the Haldane coupling, with second-neighbor hopping <span class="math inline">\(0.1\)</span> in units of the first-neighbor one. In (b) it comes from a staggered sublattice potential of <span class="math inline">\(0.5\)</span>. The curvature is concentrated at the two Dirac points, where the gap is smallest. In (a) it has the same sign at both points, and its integral divided by <span class="math inline">\(2\pi\)</span> gives <span class="math inline">\(|C|=1\)</span>. In (b) the two signs are opposite and the integral vanishes. Look at the colors, since the integer comes from the sum of the two red spots.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>We deform the dispersion of a gapped Chern insulator, so that all the band energies change. The Bloch wavefunctions stay the same and the gap stays open. What happens to <span class="math inline">\(\sigma_{xy}\)</span> in <a href="#eq-3-4">(3.4)</a>?</p>
@@ -107,19 +107,26 @@ Quick check
 <div class="quiz-options">
 <ol type="A">
 <li>It changes in proportion to the gap.</li>
-<li>It does not change.</li>
 <li>It becomes zero, since the energies are different.</li>
-<li>It changes in proportion to the bandwidth.</li>
+<li>It does not change.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>Equation <a href="#eq-3-4">(3.4)</a> contains only the Berry curvature, which is built from the wavefunctions. The energies canceled when we used <a href="#eq-3-3">(3.3)</a>, and so <span class="math inline">\(\sigma_{xy}\)</span> cannot depend on them.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Take two samples with <span class="math inline">\(C=1\)</span> and Landau level gaps of 10 meV and 20 meV. Both give <span class="math inline">\(\sigma_{xy}=e^2/h\)</span>, and not values that differ by a factor two.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. Add the same term <span class="math inline">\(0.3\cos k_x\)</span> to both bands. The eigenvectors are the same, so the Berry curvature is the same and <span class="math inline">\(C=1\)</span> stays at <span class="math inline">\(1\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. Equation <a href="#eq-3-4">(3.4)</a> contains only the Berry curvature, which is built from the wavefunctions. The energies canceled when we used <a href="#eq-3-3">(3.3)</a>.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>We integrate the Berry curvature of a gapped band over the Brillouin zone on a coarse k-mesh and obtain <span class="math inline">\(C=0.37\)</span>. What is the most likely reason?</p>
@@ -128,13 +135,20 @@ Quick check
 <ol type="A">
 <li>The band has a fractional Chern number.</li>
 <li>The curvature is peaked and the k-mesh is too coarse to resolve it.</li>
-<li>The Hall conductivity of this band is fractional.</li>
 <li>The Brillouin zone is not a torus.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>For an isolated gapped band the integral is exactly an integer. A value like <span class="math inline">\(0.37\)</span> means that the sum is not converged, which happens when the curvature is concentrated near a small gap. The remedy is a finer k-mesh.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. An isolated gapped band has an integer <span class="math inline">\(C\)</span>. For <span class="math inline">\(\mathbf d=(\sin k_x,\sin k_y,m+\cos k_x+\cos k_y)\)</span> with <span class="math inline">\(m=-1.9\)</span> the sum of the curvature is <span class="math inline">\(5.4\)</span> on an 8 by 8 mesh and <span class="math inline">\(2.7\)</span> on a 12 by 12 mesh, and it converges to <span class="math inline">\(1\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. For this model the mass at <span class="math inline">\(\Gamma\)</span> is only <span class="math inline">\(0.1\)</span>, so the curvature is concentrated there. The sum is <span class="math inline">\(1.00\)</span> on a 100 by 100 mesh, and the integral is exactly an integer.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The Brillouin zone of a lattice is periodic in both directions, so it is a torus for every model. The same model gives exactly <span class="math inline">\(1\)</span> on a fine mesh, so the non-integer value comes from the sampling.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="tryit">

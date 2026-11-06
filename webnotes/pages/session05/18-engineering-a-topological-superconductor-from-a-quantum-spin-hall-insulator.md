@@ -10,11 +10,16 @@ This isolated segment only has spin-up electrons moving right and spin-down elec
 The segment of helical edge between the two magnets is called effectively spinless. Why?
 
 - [ ] The magnets remove the spin of the electrons.
-- [x] For each direction of motion only one spin is present, so counting channels gives a single spinless wire.
-- [ ] Spin-up and spin-down electrons move in both directions.
-- [ ] The superconductor removes the spin by pairing.
 
-On a helical edge spin-up moves in one direction and spin-down in the other. Each direction carries one spin, which is the channel count of the spinless chain that [(5.19)](#eq-5-19) needs.
+    This is false. A magnet only breaks time-reversal symmetry and opens a gap below it. The electrons in the segment between the magnets still carry spin, since spin-up moves right and spin-down moves left.
+
+- [x] For each direction of motion only one spin is present, so counting channels gives a single spinless wire.
+
+    This is true. On a helical edge spin-up moves in one direction and spin-down in the other. Each direction has one channel, as in the spinless chain that [(5.19)](#eq-5-19) needs.
+
+- [ ] Spin-up and spin-down electrons move in both directions.
+
+    This is false. That is an ordinary spinful wire with two channels in each direction. Pairing it with an $s$-wave superconductor gives a trivial gap and no Majoranas, so it is not the helical edge.
 :::
 
 ::: notebookbox

@@ -14,9 +14,14 @@ Note that superconductors and the fractional quantum Hall state are at opposite 
 A superconductor and a fractional quantum Hall state both host excitations that are a fraction of an electron. Which statement separates their origin?
 
 - [ ] Both come from attractive interactions, and only the magnetic field is different.
+
+    This is false. Take the fractional quantum Hall state at filling 1/3. It has no pairing term and no attraction, and the fractional charge $e/3$ appears from strong repulsion alone.
+
 - [x] The superconductor has a mean-field description and needs attraction, while the quantum Hall state has none and needs strong repulsion.
-- [ ] The superconductor needs strong repulsion, and the quantum Hall state needs attraction.
+
+    This is true. In a superconductor the quartic term becomes the bilinear pairing term [(5.4)](#eq-5-4), so a single-particle Hamiltonian describes the state. The quantum Hall state has no such Hamiltonian.
+
 - [ ] Neither of them has a mean-field description, since both host fractional excitations.
 
-In a superconductor the quartic term becomes a bilinear pairing term, so a single-particle Hamiltonian describes the state. The fractional quantum Hall state has no such Hamiltonian, and it needs strong repulsion.
+    This is false. The Bogoliubov quasiparticle of a superconductor is a fraction of an electron, and it is an exact eigenstate of the mean-field Hamiltonian [(5.4)](#eq-5-4). So fractional excitations alone do not rule out a mean-field description.
 :::

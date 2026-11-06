@@ -17,20 +17,32 @@ This is a direct reuse of the architectures of session 7, and not only an analog
 A matrix product state of [(10.6)](#eq-10-6) has $L=100$ sites, $d=2$ and bond dimension $D=10$. How many parameters does it have?
 
 - [ ] About $2^{100}$, as for the full table of coefficients.
+
+    This is false. The number $2^{100}\approx1.3\times10^{30}$ is the full table. The MPS with $D=10$ has only $20000$ numbers, which is $26$ orders of magnitude less.
+
 - [x] About $L\,d\,D^2=20000$, which grows only linearly with $L$.
+
+    This is true. Each of the $100$ sites has $d=2$ matrices of size $10\times10$, which gives $100\times2\times100=20000$. The count is linear in $L$ and quadratic in $D$.
+
 - [ ] About $200$, since there is one number per site and per spin value.
 
-Each site has $d$ matrices of size $D\times D$. The cost is linear in $L$ and quadratic in $D$, which is why the bond dimension is the control parameter of the compression.
+    This is false. The count $L\,d=200$ is the case $D=1$, which is a product state. It cannot describe an entangled state such as the singlet of two spins, which needs $D=2$.
 :::
 
 ::: quiz
 Which statement about the classifier of figure [10.3](#fig:s10:tnml)b is correct?
 
 - [ ] It is nonlinear in the tensor product of the pixels, since it uses activation functions.
+
+    This is false. There is no activation function in the contraction. Replacing the feature vector $\varphi(x_i)$ of one pixel by $2\varphi(x_i)$ multiplies the output by $2$ exactly, so it is multilinear.
+
 - [x] It is linear in the tensor product of the pixels, and the tensor network gives this linear map with few parameters.
+
+    This is true. The output is a contraction of the weights with the tensor product of the pixels, so it is linear in it. The tree tensor network writes this map with few parameters.
+
 - [ ] It needs $2^N$ parameters, since the input vector has $2^N$ components.
 
-The classification is a linear map on a space of dimension $2^N$. A tree tensor network is a structured way to write such a map, so the number of parameters stays small, in the same way as for the matrix product state.
+    This is false. For $N=100$ pixels, $2^N\approx10^{30}$ parameters would not fit in any computer. A tree network of bond dimension $10$ has only about $10^4$ to $10^5$ parameters.
 :::
 
 This is not a toy result. On the Fashion-MNIST dataset, which is a standard benchmark of images of clothes, this tensor-network classifier reaches **95.38% accuracy on the training set and 88.97% on the test set**, which is comparable with conventional neural network architectures on the same task. These numbers appear only on the slides, and in the recording they are only described as "very high accuracy." They are the kind of concrete result that we want to have in the written notes and not leave implicit. The general point is the same as in Section [10.3](#sec-10-3), in the other direction. A variational architecture that was built to compress many-body wavefunctions is, in mathematical terms, one more kind of neural network, and we can use it directly as one.

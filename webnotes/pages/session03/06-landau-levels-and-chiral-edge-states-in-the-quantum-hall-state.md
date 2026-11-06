@@ -6,11 +6,17 @@ The Chern number appears in its simplest form in the quantum Hall state itself, 
 The chemical potential of a quantum Hall sample is in the gap between the second and the third Landau level. What are $\sigma_{xy}$ and the number of chiral modes at one edge?
 
 - [ ] $e^2/h$ and one mode.
+
+    This is false. One mode and $e^2/h$ belong to the gap above the first Landau level. With two levels filled, the ribbon spectrum has two branches that cross the chemical potential at one edge.
+
 - [ ] $2e^2/h$ and four modes, two in each direction.
-- [ ] $3e^2/h$ and three modes.
+
+    This is false. The modes of one edge all go in the same direction, and the ones that go backwards are on the other edge. Four modes on one edge would give $\sigma_{xy}=4e^2/h$, and two modes going back and two going forward could be backscattered by an impurity.
+
 - [x] $2e^2/h$ and two modes.
 
-Each filled Landau level has $C=1$, so two filled levels give $C=2$. The number of chiral modes at one edge is equal to $C$, and all of them propagate in the same direction.
+    This is true. Each filled Landau level has $C=1$, so two filled levels give $C=2$. The number of chiral modes at one edge is equal to $C$, and all of them propagate in the same direction.
+
 :::
 
 This raises a puzzle. We have an insulator, with a gap between Landau levels, but $\sigma_{xy}$ is a *conductivity*, which means that some electron has to move somewhere. The answer is that any real sample has an edge, and at this edge the bulk gap closes. Gapless edge states appear, and they carry the current that [(3.4)](#eq-3-4) predicts. These edge states have another key property, which is that on a given edge the states propagate in only *one* direction. The top edge of a sample carries current in one direction only, and the bottom edge carries it in the opposite direction only. A mode that propagates in a single direction is called **chiral**, and chirality is what protects the quantum Hall state against disorder. An electron in a chiral edge mode cannot backscatter, since there is no state that propagates in the opposite direction at the same edge and the same energy. Without a backscattering channel there is no resistance in this channel. Figure [3.1](#fig:s03:chiraledge) shows both parts of this picture, which are the closed bulk orbits that carry no current and the skipping orbits that carry all of it, and it also shows what happens when an impurity is put in their way.
@@ -21,11 +27,17 @@ This raises a puzzle. We have an insulator, with a gap between Landau levels, bu
 We reverse the direction of the magnetic field in a quantum Hall sample. What happens to the edge states?
 
 - [ ] They disappear, since the field is now opposite.
+
+    This is false. The plateau $|\sigma_{xy}|=e^2/h$ is measured for both signs of the field, and a plateau needs the edge states. Only the sign of the Hall voltage changes.
+
 - [ ] They stay unchanged, since the edge states do not depend on $B$.
-- [ ] They become helical.
+
+    This is false. The Hall conductivity is odd in $B$, so $\sigma_{xy}(-B)=-\sigma_{xy}(B)$. With $\sigma_{xy}=e^2/h$ the chiral mode must go the other way, otherwise the sign could not change.
+
 - [x] They stay, but each one propagates in the opposite direction and $\sigma_{xy}$ changes sign.
 
-All the arrows of the figure are reversed together. The Chern number of every Landau level changes sign, so the number of edge modes is the same and their direction is the opposite.
+    This is true. All the arrows of the figure are reversed together. The Chern number of every Landau level changes sign, so the number of edge modes is the same and their direction is the opposite.
+
 :::
 
 ::: {.tryit notebook="session3.ipynb" cell="From electrons in a ribbon to the quantum Hall state"}

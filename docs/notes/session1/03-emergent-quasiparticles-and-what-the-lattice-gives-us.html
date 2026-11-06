@@ -97,9 +97,9 @@
 <img src="../figures/s08f01_magnon_spinon.svg" loading="lazy" alt="A chain of spins with one flipped spin, and a chain of singlet pairs with two unpaired spins." />
 <figcaption><strong><a href="../session8/01-two-classes-of-magnets-and-where-we-find-them.html#fig:s08:magnonspinon">Figure 8.1</a>, shown again.</strong> A magnon and a spinon, shown again from session 8. A magnon flips one spin of the ordered chain, so the total spin changes by one. A spinon carries only spin one half, and spinons are created in pairs when a singlet breaks.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>Breaking one singlet pair of a quantum magnet leaves two unpaired sites. What is the spin of each one?</p>
@@ -109,17 +109,27 @@ Quick check
 <li>Zero, since the two spins of the singlet cancel.</li>
 <li>One half, which is half of the spin of a magnon.</li>
 <li>One, the same as a magnon.</li>
-<li>Three halves, since a singlet has three partners.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>Each unpaired site carries the spin of one electron, which is one half. This is why a spinon is a fraction of a magnon, and why spinons appear in pairs.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Breaking a singlet creates a triplet excitation with total spin <span class="math inline">\(1\)</span>. Two sites with spin zero would give a total spin of zero, so they cannot account for it.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. Each unpaired site holds one electron, so its spin is <span class="math inline">\(1/2\)</span>. The two of them together give the spin <span class="math inline">\(1\)</span> of the magnon, which is why a spinon is a fraction of a magnon.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. A site with one electron has only <span class="math inline">\(S_z=\pm 1/2\)</span>, so spin one cannot sit there. Two spinons of spin one would also give a total spin of up to <span class="math inline">\(2\)</span>, more than the excitation that we created.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>Spinons appear in pairs, since a singlet is broken into two unpaired sites.</p>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>Charge cannot propagate in a Mott insulator. Why can a magnetic Mott insulator still carry spin and heat?</p>
@@ -129,12 +139,22 @@ Quick check
 <li>Magnons are excitations of the magnetic order, and they move without any motion of charge.</li>
 <li>The electrons of a Mott insulator move freely, but only at high temperature.</li>
 <li>The phonons of the lattice carry the spin.</li>
-<li>A Mott insulator is in fact a metal for the spin.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>A magnon is a precession wave of the local moments, so it carries spin and energy while every electron stays on its site.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. A magnon is a precession wave of the local moments. It carries spin and energy while every electron stays on its site.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. For <span class="math inline">\(U=10t\)</span>, putting a second electron on a site costs <span class="math inline">\(10t\)</span>. At a temperature well below this, which is the regime of the question, the electrons stay on their sites, and still the magnons carry spin.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. Phonons are vibrations of the atoms and they carry no spin. In a Heisenberg model with the atoms fixed there are no phonons at all, and spin still propagates as a magnon.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The magnons need no motion of charge, so they exist in an insulator.</p>
+</div>
 </details>
 </div>
 

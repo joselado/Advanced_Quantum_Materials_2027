@@ -17,20 +17,30 @@ This is the one explicit link in the course between the two languages that we ha
 In the figure, the chain behind has three fermions to the left of site 6 and the chain in front has two. How do $S_6^+=c_6^\dagger K_6$ of the two chains compare, for the same $c_6^\dagger$?
 
 - [x] They have opposite signs, since $K_6=(-1)^{N_\text{left}}$ is $-1$ for three fermions and $+1$ for two.
+
+    This is true. The string is the parity of the number of fermions to the left. Three fermions give $-1$ and two give $+1$, so the same $c_6^\dagger$ enters with opposite signs.
+
 - [ ] They are equal, since the string only depends on site 6.
-- [ ] They have the same sign but a different magnitude.
+
+    This is false. The string is built from the sites $j<6$. Take one fermion away from the left of the chain behind, and $K_6$ goes from $-1$ to $+1$ while $c_6^\dagger$ stays the same.
+
 - [ ] Both vanish, since the string kills the operator.
 
-The string is $\exp(i\pi N_\text{left})$, which is the parity of the number of fermions to the left. Three fermions give $-1$ and two give $+1$, so the same $c_6^\dagger$ enters with opposite signs.
+    This is false. The string has the eigenvalues $\pm1$ and it is never zero. For the chain in front, $K_6=+1$ and $S_6^+=c_6^\dagger$, which creates a fermion with amplitude one.
 :::
 
 ::: quiz
 What is the string $K_1$ of the first site of a chain, and what does this mean for $S_1^+$?
 
 - [ ] $K_1=-1$, so $S_1^+=-c_1^\dagger$.
+
+    This is false. For a chain of a single site $S_1^+$ must take $|{\downarrow}\rangle$ to $|{\uparrow}\rangle$ with matrix element $+1$. The choice $K_1=-1$ would give $-1$.
+
 - [x] $K_1=1$, so $S_1^+=c_1^\dagger$ with no sign.
-- [ ] $K_1=e^{i\pi n_1}$, so it depends on the occupation of site 1 itself.
+
+    This is true. The sum in [(7.2)](#eq-7-2) runs over $j<i$, which is empty for the first site. An empty sum gives the exponential of zero, which is $1$.
+
 - [ ] $K_1=0$, so $S_1^+$ vanishes.
 
-The sum in [(7.2)](#eq-7-2) runs over $j<i$, which is empty for the first site. An empty sum gives the exponential of zero, which is $1$.
+    This is false. The string is an exponential, so it is never zero. If $S_1^+$ vanished, a chain of one site could not flip a spin from down to up, which $S^+$ does.
 :::

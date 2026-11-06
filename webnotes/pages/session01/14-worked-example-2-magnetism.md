@@ -17,11 +17,18 @@ Self-consistency gives $m=0$ automatically for $U<0$, and a finite $m$ for $U>0$
 For an attractive $U<0$ the self-consistent solution has $m=0$. Why does a finite $m$ not lower the energy?
 
 - [x] An attractive interaction favors double occupation of a site, which has no net spin, so a local moment does not help.
-- [ ] The hopping becomes imaginary for $U<0$, which forbids a magnetization.
+
+    This is true. A negative $U$ in [(1.7)](#eq-1-7) rewards a site that holds one electron of each spin. A moment moves electrons away from this configuration, so the energy goes up.
+
 - [ ] Time reversal is broken explicitly by the sign of $U$.
+
+    This is false. The Hamiltonian [(1.7)](#eq-1-7) is real for both signs of $U$, so it is invariant under time reversal in both cases. For $U>0$ the same Hamiltonian has $m\neq 0$ as a spontaneous solution.
+
 - [ ] The spin is not conserved for $U<0$.
 
-A negative $U$ rewards a site that holds one electron of each spin. A moment would move electrons away from this configuration, so the energy goes up and not down.
+    This is false. The hopping does not flip the spin, and the interaction depends only on the densities. So $S_z$ commutes with $H$ for any $U$, positive or negative.
+
+The sign of $U$ decides whether the spins of a site prefer to be unpaired or paired.
 :::
 
 Let us say precisely *which* symmetry is broken here, using the formal definition in [(1.4)](#eq-1-4). Time-reversal symmetry reverses the direction of time and, together with it, every angular momentum in the system, including the spin. On the fermionic operators this means that it exchanges $c_\uparrow^\dagger c_\uparrow \leftrightarrow c_\downarrow^\dagger c_\downarrow$. Since $m$ in [(1.8)](#eq-1-8) changes sign under this exchange, a nonzero $m$ means that the ground state does not pass the invariance test in [(1.4)](#eq-1-4), so it is a magnet by definition. More generally, this is a breaking of the *continuous* spin-rotational symmetry, and this continuous symmetry breaking is what gives rise to the gapless magnon excitations that appear in the table of Section [1.11](#sec-1-11). We will study them in detail in a later session, and in this session we only need the mean-field ground state itself.
@@ -58,9 +65,16 @@ Any term built from one creation operator and one annihilation operator, $c^\dag
 Under a gauge transformation with $\varphi=\pi/2$, by which factor does the pairing term $c_ic_j$ change?
 
 - [ ] $1$
-- [x] $-1$
-- [ ] $i$
-- [ ] $-i$
 
-Each operator gets a factor $e^{i\varphi}$, so the product gets $e^{2i\varphi}=e^{i\pi}=-1$. Only the values of $\varphi$ that are multiples of $\pi$ leave the term unchanged, and for this reason the pairing term is not gauge invariant.
+    This is false. Each operator gets $e^{i\pi/2}=i$, so the product gets $i^2=-1$. The factor $1$ appears only for $\varphi=0$ or $\varphi=\pi$.
+
+- [x] $-1$
+
+    This is true. Each operator gets a factor $e^{i\varphi}$, so the product gets $e^{2i\varphi}=e^{i\pi}=-1$. Only multiples of $\pi$ leave the term unchanged, so the pairing term is not gauge invariant.
+
+- [ ] $i$
+
+    This is false. The factor $i$ is what one operator gets at $\varphi=\pi/2$. The term has two operators, and for $\varphi=\pi/4$ we would get $e^{i\pi/2}=i$, and not for $\pi/2$.
+
+The pairing term changes by $e^{2i\varphi}$, so its phase is a physical quantity.
 :::

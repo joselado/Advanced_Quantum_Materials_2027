@@ -18,20 +18,32 @@ tot}=0$, where every Cooper pair is intact and the impurity spin is not screened
 For $\alpha=0.5$ in [(9.10)](#eq-9-10), what is the energy of the bound state in units of $\Delta$?
 
 - [ ] $0.75$, which is $1-\alpha^2$.
+
+    This is false. At $\alpha=0.5$ the expression $1-\alpha^2$ gives $0.75$, but the full formula gives $0.6$. The wrong form also fails at $\alpha=2$, where it gives $-3\Delta$, which is outside the gap.
+
 - [x] $0.6$, which is $(1-\alpha^2)/(1+\alpha^2)$.
+
+    This is true. With $\alpha^2=0.25$ the energy is $0.75/1.25=0.6$. The formula stays between $-\Delta$ and $\Delta$ for every $\alpha$, for example it gives $-0.6\Delta$ at $\alpha=2$.
+
 - [ ] $0$, since the state is at the center of the gap.
 
-With $\alpha^2=0.25$ we obtain $0.75/1.25=0.6$. The state crosses the center of the gap only at $\alpha=1$, where the numerator vanishes.
+    This is false. The bound state reaches zero only when $1-\alpha^2=0$, so at $\alpha=1$. At $\alpha=0.5$ the numerator is $0.75$, and the energy is $0.6\Delta$.
 :::
 
 ::: quiz
 The exchange is increased until $\alpha$ is slightly larger than one. What changes in the electronic ground state?
 
 - [ ] Nothing changes, since the bound state only moves through the gap.
+
+    This is false. For $\alpha=1.2$ the energy is $-0.44/2.44\,\Delta\approx-0.18\Delta$, which is negative. The state is now cheaper to fill, so the ground state is not the same.
+
 - [ ] The superconducting gap closes.
+
+    This is false. The bulk gap stays $\Delta$ for every $\alpha$. At $\alpha=1.2$ the bound state sits at $-0.18\Delta$, inside the gap, and the continuum at $\pm\Delta$ has not moved.
+
 - [x] The fermion parity changes, and the total electron spin goes from $0$ to $1/2$.
 
-At $\alpha=1$ the bound state crosses zero energy, so it becomes cheaper to occupy it. One quasiparticle is now bound to the impurity, and it partially screens the impurity spin. The bulk gap stays open.
+    This is true. At $\alpha=1$ the energy crosses zero, and for $\alpha=1.2$ it is $-0.18\Delta$, so occupying it lowers the energy. One quasiparticle is bound, which changes the parity and gives spin $1/2$.
 :::
 
 ::: {.tryit notebook="session9.ipynb" cell="Single magnetic impurity in a superconductor"}

@@ -93,9 +93,9 @@ c_i^\dagger c_j\rangle\)</span> that define the mean-field Hamiltonian. Since th
 <img src="../figures/s01f05_selfconsistency.svg" loading="lazy" alt="The mean-field self-consistency loop." />
 <figcaption><strong>Figure 1.4.</strong> The mean-field self-consistency loop. We guess the bilinear expectation values, build the single-particle Hamiltonian that they give, and diagonalize it. Then we compute the new expectation values and repeat until they do not change anymore. The four stations are one pass of the loop, computed for the charge density wave of <a href="#eq-1-6">(1.6)</a> on a periodic chain of four sites with <span class="math inline">\(V=3t\)</span>. The guessed charges <span class="math inline">\(0.6\)</span> and <span class="math inline">\(0.4\)</span>, drawn as columns, raise the onsite energy of the neighboring sites, so the sites of the mean-field Hamiltonian stand at two heights. Filling its two lowest levels gives the new charges <span class="math inline">\(0.82\)</span> and <span class="math inline">\(0.18\)</span>, which are not the guess, so the loop goes round again. The three worked examples of this session and every notebook box in this chapter use this same loop.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>In the figure the guessed charges are <span class="math inline">\(0.6\)</span> and <span class="math inline">\(0.4\)</span>, and the loop gives <span class="math inline">\(0.82\)</span> and <span class="math inline">\(0.18\)</span>. What do we do next?</p>
@@ -104,13 +104,23 @@ Quick check
 <ol type="A">
 <li>We stop, since the charge is conserved.</li>
 <li>We use <span class="math inline">\(0.82\)</span> and <span class="math inline">\(0.18\)</span> as the new guess and repeat until the charges do not change.</li>
-<li>We average the two numbers of each site and stop.</li>
 <li>We change <span class="math inline">\(V\)</span> until the output equals the guess.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The new charges differ from the guess, so the guess was not self-consistent. We build the Hamiltonian again from the new charges, and we repeat until the input and the output agree.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The total charge is <span class="math inline">\(1\)</span> in both, but the Hamiltonian built from <span class="math inline">\(0.6\)</span> and <span class="math inline">\(0.4\)</span> has a ground state with <span class="math inline">\(0.82\)</span> and <span class="math inline">\(0.18\)</span>. The state is not the ground state of its own Hamiltonian, so it is not a solution.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The new charges differ from the guess, so the guess was not self-consistent. We build the Hamiltonian again from the new charges and repeat until the input and the output agree.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. In the figure <span class="math inline">\(V=3t\)</span> is a parameter of the model. If we tune it until the loop closes, we solve a different Hamiltonian, for another <span class="math inline">\(V\)</span>, and not the one that we want.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The loop stops when the charges that we put in are the charges that we get out.</p>
+</div>
 </details>
 </div>
 <p>Numerically, at <span class="math inline">\(V=0\)</span> the spectrum is gapless, which is a metal. When <span class="math inline">\(V\)</span> grows, a gap opens in the single-particle spectrum and becomes larger, and at the same time the charge imbalance between even and odd sites grows from zero toward its maximal value, where it is fully polarized. Figure <a href="#fig:s01:cdw">1.5</a> shows the two limits in real space, together with the spectrum of each one.</p>
@@ -118,9 +128,9 @@ Quick check
 <img src="../figures/s01f04_cdw.svg" loading="lazy" alt="The charge density wave of the chain (1.6), solved in mean field for a periodic chain of eight sites at half filling." />
 <figcaption><strong>Figure 1.5.</strong> The charge density wave of the chain <a href="#eq-1-6">(1.6)</a>, solved in mean field for a periodic chain of eight sites at half filling. The height of the liquid in each cup is the charge <span class="math inline">\(\langle n_i\rangle\)</span>, and next to each chain is its single-particle spectrum, with an electron on every occupied level and degenerate levels side by side. In front, at <span class="math inline">\(V=0\)</span>, every site has the same charge and the spectrum is gapless, since the Fermi level is inside a pair of degenerate levels. Behind, the nearest-neighbor repulsion drives the mean-field instability (here <span class="math inline">\(V=3t\)</span>), and the charge accumulates on alternating sites, which doubles the unit cell, drawn as the translucent slab, and opens a gap in the spectrum. The Hamiltonian is translationally symmetric in both cases, but the ground state behind is not.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>The charge density wave of the chain has charges that alternate from site to site. How many degenerate ground states does the mean-field solution have?</p>
@@ -130,12 +140,22 @@ Quick check
 <li>One.</li>
 <li>Two.</li>
 <li>Four.</li>
-<li>Eight.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The charge can sit on the even sites or on the odd sites. These two patterns are exchanged by a translation of one site, so they have the same energy and the translational symmetry is broken.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. A translation by one site maps the charges <span class="math inline">\((0.8,0.2,0.8,0.2)\)</span> to <span class="math inline">\((0.2,0.8,0.2,0.8)\)</span>. This is a different state with the same energy, so there are at least two.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The charge can sit on the even sites or on the odd sites. These two patterns are exchanged by a translation of one site, so they have the same energy and the translational symmetry is broken.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. A pattern of period two returns to itself after two translations, so the translations give only two different states. We would need a period of four, such as <span class="math inline">\((0.9,0.5,0.1,0.5)\)</span>, for four states.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The number of degenerate states equals the number of different patterns that the broken symmetry generates.</p>
+</div>
 </details>
 </div>
 <div class="notebookbox">

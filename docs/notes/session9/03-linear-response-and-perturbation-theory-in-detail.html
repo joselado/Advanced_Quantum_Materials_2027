@@ -96,9 +96,9 @@
 <img src="../figures/web/session09/mixing.svg" loading="lazy" alt="Four energy levels around a central level, and horizontal bars that show the mixing coefficient of each level, largest for the closest one." />
 <figcaption><strong>Schematic 9.3.</strong> The mixing of <a href="#eq-9-3">(9.3)</a> for one fixed matrix element <span class="math inline">\(\langle m|V|n\rangle=0.1\)</span>. On the left we see the levels of <span class="math inline">\(H_0\)</span> around <span class="math inline">\(|n\rangle\)</span>, and on the right the coefficient of each level in the perturbed state. The closest level, <span class="math inline">\(|m_1\rangle\)</span>, mixes the most, and the sign of the coefficient follows the sign of <span class="math inline">\(E_n^{(0)}-E_m^{(0)}\)</span>, so that a level above <span class="math inline">\(|n\rangle\)</span> enters with a negative sign.</figcaption>
 </figure>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>A state <span class="math inline">\(|n\rangle\)</span> is coupled by <span class="math inline">\(V\)</span> to two other states with the same matrix element. One of them is <span class="math inline">\(0.1t\)</span> away in energy and the other is <span class="math inline">\(1.0t\)</span> away. How do the two mixing coefficients of <a href="#eq-9-3">(9.3)</a> compare?</p>
@@ -110,14 +110,22 @@ Quick check
 <li>The farther state has the larger coefficient, since it carries more energy.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>The coefficient is the matrix element divided by the energy difference. With equal matrix elements, the ratio of the coefficients is the inverse ratio of the gaps, which is ten.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The coefficient is <span class="math inline">\(V/(E_n-E_m)\)</span>. For <span class="math inline">\(V=0.01t\)</span> it is <span class="math inline">\(0.1\)</span> for the state at <span class="math inline">\(0.1t\)</span> and <span class="math inline">\(0.01\)</span> for the state at <span class="math inline">\(1.0t\)</span>, which is a factor ten.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The matrix element is the same, but the denominator is not. For <span class="math inline">\(V=0.01t\)</span> the two coefficients are <span class="math inline">\(0.1\)</span> and <span class="math inline">\(0.01\)</span>, so they differ by a factor ten.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The energy of the far state enters only through the denominator. With <span class="math inline">\(V=0.01t\)</span> the state at <span class="math inline">\(1.0t\)</span> gives <span class="math inline">\(0.01\)</span>, which is smaller than the <span class="math inline">\(0.1\)</span> of the state at <span class="math inline">\(0.1t\)</span>.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>Two levels of <span class="math inline">\(H_0\)</span> are exactly degenerate and <span class="math inline">\(V\)</span> couples them. What happens to the first-order coefficient of <a href="#eq-9-3">(9.3)</a> between them?</p>
@@ -129,9 +137,17 @@ Quick check
 <li>It stays finite, because the matrix element is finite.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The denominator <span class="math inline">\(E_n^{(0)}-E_m^{(0)}\)</span> vanishes, so the expansion in <span class="math inline">\(\lambda\)</span> breaks down. This is why the formula holds only away from degeneracy, as we said before the equation.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Take <span class="math inline">\(H_0=0\)</span> and a coupling <span class="math inline">\(v\)</span> between the two levels. The eigenstates are <span class="math inline">\((|1\rangle\pm|2\rangle)/\sqrt2\)</span> with energies <span class="math inline">\(\pm v\)</span>, so the levels mix completely.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. If the levels are split by <span class="math inline">\(\delta\)</span>, the coefficient is <span class="math inline">\(v/\delta\)</span>. For <span class="math inline">\(v=0.01t\)</span> and <span class="math inline">\(\delta=10^{-4}t\)</span> it is <span class="math inline">\(100\)</span>, which is meaningless for a small correction, and it grows without bound as <span class="math inline">\(\delta\to0\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The matrix element is finite, but the coefficient is its ratio to the energy difference. For two levels split by <span class="math inline">\(10^{-4}t\)</span> and <span class="math inline">\(v=0.01t\)</span> the ratio is <span class="math inline">\(100\)</span>, so it is not finite as the splitting goes to zero.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <p><strong>When does this break down?</strong> The construction in <a href="#eq-9-3">(9.3)</a> assumes that <span class="math inline">\(A(\lambda)\)</span> is an analytic function of <span class="math inline">\(\lambda\)</span> close to <span class="math inline">\(\lambda=0\)</span>, and this assumption is not always true. There are three paradigmatic quantum states that are known to be intrinsically non-perturbative in this sense, and we mention them explicitly since they mark the limit of everything that we derive below.</p>

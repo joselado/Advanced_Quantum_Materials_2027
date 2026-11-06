@@ -4,7 +4,8 @@ Errors: a link to a file or an anchor that does not exist, an image that does no
 command left in the text outside the math, an equation number used twice, a page in docs/notes/sessionN/ that
 the manifest does not list, a link that the filter could not resolve, an image without alt text, a retired URL
 (listed in manifest/frozen_urls.txt) that has neither a page nor a redirect, a redirect that points to a page or
-an anchor that does not exist. External links (http) are not fetched.
+an anchor that does not exist, a quiz with feedback that has not exactly 3 options or no correct option.
+A quiz in the old form (no feedback per option) is only counted. External links (http) are not fetched.
 Pending: references to a session that is not converted yet. They stay as text and are listed, not an error.
 """
 import glob
@@ -17,6 +18,7 @@ from urllib.parse import unquote, urldefrag
 
 ERRORS = []
 PENDING = set()
+OLD_QUIZZES = [0, 0]   # quizzes without feedback per option, and of them those that do not have 3 options
 
 
 class Page(HTMLParser):
@@ -26,9 +28,20 @@ class Page(HTMLParser):
         self.math = 0          # depth inside a span of class math or inside mjx-container
         self.stack = []
         self.skip = 0
+        self.quizzes = []      # per quiz: [options, marked correct, has feedback]
+        self.inq = None        # the quiz being read
+        self.optdepth = None   # stack depth of the div of the options
 
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
+        cls = (a.get('class') or '').split()
+        if tag == 'div' and 'quiz' in cls:
+            self.inq = [0, 1 if a.get('data-correct') else 0, 'data-fb' in a, len(self.stack)]
+            self.quizzes.append(self.inq)
+        if tag == 'div' and 'quiz-options' in cls and self.inq is not None:
+            self.optdepth = len(self.stack)
+        if tag == 'li' and self.optdepth is not None and not any(t == 'li' for t, _, _ in self.stack[self.optdepth:]):
+            self.inq[0] += 1
         if 'id' in a:
             self.ids.add(a['id'])
         if tag == 'a' and 'href' in a:
@@ -47,6 +60,10 @@ class Page(HTMLParser):
     def handle_endtag(self, tag):
         while self.stack:
             t, m, s = self.stack.pop()
+            if self.optdepth is not None and len(self.stack) <= self.optdepth:
+                self.optdepth = None
+            if self.inq is not None and len(self.stack) <= self.inq[3]:
+                self.inq = None
             self.math -= m
             self.skip -= s
             if t == tag:
@@ -95,6 +112,14 @@ def run(docs, webnotes, notes=None, skip_sessions=()):
                 ERRORS.append(f'{rel(f)}: missing image {s}')
         for s in p.alts:
             ERRORS.append(f'{rel(f)}: image without alt text, {s}')
+        for n, ok, fb, _ in p.quizzes:
+            if not ok:
+                ERRORS.append(f'{rel(f)}: a quiz with no correct option')
+            if fb and n != 3:
+                ERRORS.append(f'{rel(f)}: a quiz with feedback has {n} options, it needs exactly 3')
+            if not fb:
+                OLD_QUIZZES[0] += 1
+                OLD_QUIZZES[1] += n != 3
         text = ''.join(p.text)
         if '??' in text:
             ERRORS.append(f'{rel(f)}: "??" in the text')
@@ -137,6 +162,10 @@ def run(docs, webnotes, notes=None, skip_sessions=()):
     if PENDING:
         print(f'pending, {len(PENDING)} references to sessions that are not converted yet (kept as text):',
               ', '.join(sorted(PENDING)))
+    nq = sum(len(p.quizzes) for p in pages.values())
+    if nq:
+        print(f'quizzes: {nq}, of them {OLD_QUIZZES[0]} still in the old form (no feedback per option), '
+              f'{OLD_QUIZZES[1]} without exactly 3 options (kept, not an error)')
     print(f'check: {npages} pages, {len(set(ERRORS))} errors')
     return not ERRORS
 

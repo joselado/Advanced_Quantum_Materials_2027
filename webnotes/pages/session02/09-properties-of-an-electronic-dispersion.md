@@ -27,11 +27,18 @@ Finally, the **Fermi surface** is the set of $\mathbf{k}$-points that have the s
 For the band $\epsilon_\varphi=-2t\cos\varphi$, where is the group velocity largest?
 
 - [ ] At $\varphi=0$.
+
+    This is false. The velocity is proportional to $2t\sin\varphi$, which is zero at $\varphi=0$. The bottom of the band is flat, and the electron there is at rest.
+
 - [x] At $\varphi=\pm\pi/2$.
-- [ ] At $\varphi=\pi$.
+
+    This is true. The velocity is the slope of the band, which is proportional to $2t\sin\varphi$. It vanishes at the band edges and it is largest in the middle of the band.
+
 - [ ] It is the same everywhere.
 
-The velocity is the slope of the band, which is proportional to $2t\sin\varphi$. It vanishes at the band edges and it is largest in the middle of the band, at $\pm\pi/2$.
+    This is false. A constant velocity needs a linear band, such as a Dirac cone. For the cosine band the slope is $0$ at $\varphi=0$ and $2t$ at $\varphi=\pi/2$, in units of the lattice constant over $\hbar$.
+
+The velocity is zero at the extrema of the band and largest where the band crosses the middle.
 :::
 
 ::: notebookbox
@@ -62,11 +69,18 @@ Figure [2.4](#fig:s02:archetypes) shows the three types next to each other, tog
 A two-dimensional Dirac cone has $E=\hbar v_F|\mathbf q|$. How does the density of states behave close to the tip?
 
 - [ ] It is constant.
-- [x] It grows linearly with $|E|$, so it vanishes at the tip.
-- [ ] It diverges as $1/\sqrt{|E|}$.
-- [ ] It diverges as a delta function.
 
-In two dimensions the number of states in a ring of radius $q$ grows as $q\,dq$. With $E\propto q$ this gives a density of states proportional to $|E|$, which vanishes at the tip.
+    This is false. A constant density of states in two dimensions belongs to a parabolic band $E=\hbar^2q^2/2m$, where $q\,dq=m\,dE/\hbar^2$. For the cone $q\,dq\propto E\,dE$, so the density depends on $E$.
+
+- [x] It grows linearly with $|E|$, so it vanishes at the tip.
+
+    This is true. In two dimensions the number of states in a ring of radius $q$ grows as $q\,dq$. With $E\propto q$ this gives a density of states proportional to $|E|$, which vanishes at the tip.
+
+- [ ] It diverges as $1/\sqrt{|E|}$.
+
+    This is false. The divergence $1/\sqrt{E}$ is the band edge of a one-dimensional parabolic band. In the two-dimensional cone the density goes to zero at the tip and does not diverge.
+
+The density of states depends on both the dimension and the dispersion.
 :::
 
 Next we derive the Dirac case explicitly, since it is the defining feature of graphene and the direct link to the topology lecture, and then we look at two lattices that realize flat bands. The tools we use in the whole course to compute such dispersions are `pyqula`, which we named in Section [2.5](#sec-2-5), and its graphical companion, which is a second computational tool shown on the slides with the name **Quantum Lattice**. It needs no scripting, and it is not named in the lecture, which only refers to "a user interface we will use at some points".

@@ -107,9 +107,9 @@ c_n^\dagger = \sum_\varphi e^{-in\varphi}\, \Psi_\varphi^\dagger, \tag{2.7}\]</s
 <img src="../figures/s02f02_cosband.svg" loading="lazy" alt="The one-dimensional band \epsilon_\varphi=-2t\cos\varphi of (2.8), drawn for t=1, with the grey tubes showing its local forms." />
 <figcaption><strong>Figure 2.2.</strong> The one-dimensional band <span class="math inline">\(\epsilon_\varphi=-2t\cos\varphi\)</span> of <a href="#eq-2-8">(2.8)</a>, drawn for <span class="math inline">\(t=1\)</span>, with the grey tubes showing its local forms. Near the band bottom the dispersion is an upward parabola, and quasiparticles behave as ordinary electrons with positive mass. Near the top the curvature has the opposite sign and they behave as holes. Near midband it is locally linear, which is a first sign of the Dirac physics of Section <a href="11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#sec-2-11">2.11</a>. The slope is the group velocity <a href="09-properties-of-an-electronic-dispersion.html#eq-2-17">(2.17)</a> and the curvature is the inverse effective mass <a href="09-properties-of-an-electronic-dispersion.html#eq-2-18">(2.18)</a>, and both are read from this one curve. On the right is the resulting density of states <a href="09-properties-of-an-electronic-dispersion.html#eq-2-16">(2.16)</a>, cut at the top of the drawing, which diverges at both band edges, at the same points where the group velocity vanishes.</figcaption>
 </figure>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>In this session <span class="math inline">\(t&gt;0\)</span> in <a href="#eq-2-8">(2.8)</a>. At which phase would the minimum of the band be if the hopping had the opposite sign?</p>
@@ -119,12 +119,22 @@ Quick check
 <li>At <span class="math inline">\(\varphi=\pi\)</span>.</li>
 <li>At <span class="math inline">\(\varphi=0\)</span>, as before.</li>
 <li>At <span class="math inline">\(\varphi=\pi/2\)</span>.</li>
-<li>The band would have no minimum.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>The sign change turns <span class="math inline">\(\epsilon_\varphi=-2t\cos\varphi\)</span> into <span class="math inline">\(+2t\cos\varphi\)</span>, which is the same curve upside down. The minimum then moves from <span class="math inline">\(\varphi=0\)</span> to <span class="math inline">\(\varphi=\pi\)</span>.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The sign change turns <span class="math inline">\(\epsilon_\varphi=-2t\cos\varphi\)</span> into <span class="math inline">\(+2t\cos\varphi\)</span>, which is the same curve upside down. The minimum then moves from <span class="math inline">\(\varphi=0\)</span> to <span class="math inline">\(\varphi=\pi\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. For <span class="math inline">\(t=-1\)</span> the energy at <span class="math inline">\(\varphi=0\)</span> is <span class="math inline">\(+2\)</span>, which is the top of the band. The bottom is <span class="math inline">\(-2\)</span>, at <span class="math inline">\(\varphi=\pi\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. At <span class="math inline">\(\varphi=\pi/2\)</span> the energy is <span class="math inline">\(0\)</span> for either sign of <span class="math inline">\(t\)</span>, since <span class="math inline">\(\cos(\pi/2)=0\)</span>. This is the middle of the band and not its bottom.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The sign of the hopping decides which end of the zone has the lowest energy.</p>
+</div>
 </details>
 </div>
 <div class="notebookbox">
@@ -134,9 +144,9 @@ Quick check
 <p>A natural extension, which we do in class, is to check that the same method also works beyond nearest-neighbour hopping. We add a second-neighbour hopping term <span class="math inline">\(-\eta\sum_n(c_n^\dagger
 c_{n+2}+\text{h.c.})\)</span> to <a href="#eq-2-5">(2.5)</a>. This term has the same translational symmetry as before, so the eigenstates <a href="#eq-2-6">(2.6)</a> do not change at all, and we only need to compute the eigenvalues again. We repeat the Fourier substitution for the new term, which couples <span class="math inline">\(c_n^\dagger\)</span> with <span class="math inline">\(c_{n+2}\)</span> and so gives a phase <span class="math inline">\(e^{\pm2i\varphi}\)</span> instead of <span class="math inline">\(e^{\pm i\varphi}\)</span>, and we obtain</p>
 <p><span id="eq-2-9" class="eq"><span class="math display">\[\epsilon_\varphi = -2t\cos\varphi - 2\eta\cos(2\varphi). \tag{2.9}\]</span></span></p>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>What is the energy of <a href="#eq-2-9">(2.9)</a> at <span class="math inline">\(\varphi=\pi/2\)</span>?</p>
@@ -146,12 +156,22 @@ Quick check
 <li><span class="math inline">\(0\)</span></li>
 <li><span class="math inline">\(2\eta\)</span></li>
 <li><span class="math inline">\(-2\eta\)</span></li>
-<li><span class="math inline">\(-2t-2\eta\)</span></li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The nearest-neighbor term vanishes, since <span class="math inline">\(\cos(\pi/2)=0\)</span>. The second-neighbor term gives <span class="math inline">\(-2\eta\cos\pi=+2\eta\)</span>.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Take <span class="math inline">\(t=1\)</span> and <span class="math inline">\(\eta=0.2\)</span>. The first term vanishes, but the second gives <span class="math inline">\(-0.4\cos\pi=+0.4\)</span>, which is not zero.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The nearest-neighbor term vanishes, since <span class="math inline">\(\cos(\pi/2)=0\)</span>. The second-neighbor term gives <span class="math inline">\(-2\eta\cos\pi=+2\eta\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. For <span class="math inline">\(\eta=0.2\)</span> we get <span class="math inline">\(-0.4\cos\pi\)</span>, and since <span class="math inline">\(\cos\pi=-1\)</span> the result is <span class="math inline">\(+0.4\)</span> and not <span class="math inline">\(-0.4\)</span>.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The second-neighbor term has the phase <span class="math inline">\(2\varphi\)</span>, so it is not zero where the first one is.</p>
+</div>
 </details>
 </div>
 <div class="notebookbox">

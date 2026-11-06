@@ -20,20 +20,32 @@ where the equality holds only when $|\psi_\theta\rangle$ is the true ground stat
 A wavefunction of $L=40$ spins is stored as a table of complex coefficients in double precision. How much memory does the table need?
 
 - [ ] About $40^2$ numbers, which is a few kilobytes.
+
+    This is false. A product state of $40$ spins needs only $80$ numbers, but a generic entangled state has $2^{40}$ independent amplitudes. A table of $40^2$ numbers does not describe it.
+
 - [ ] About $10^6$ numbers, which is a few megabytes.
+
+    This is false. $10^6$ numbers is about $2^{20}$, so this table is the size for $20$ spins, about $16$ MB. For $40$ spins it is a factor $10^6$ too small.
+
 - [x] About $10^{12}$ numbers, which is roughly $16$ terabytes.
 
-The table has $2^{40}\approx1.1\times10^{12}$ coefficients, and each one takes $16$ bytes. A network with a few thousand parameters generates the same coefficients on demand and never stores the table.
+    This is true. There are $2^{40}\approx1.1\times10^{12}$ coefficients of $16$ bytes, which is $1.8\times10^{13}$ bytes, roughly $16$ TiB. A network with a few thousand parameters avoids this table.
 :::
 
 ::: quiz
 For a spin chain whose ground-state energy we know exactly, a student finds $E[\theta]$ clearly below it, well beyond the statistical error. What should we conclude?
 
 - [ ] The network has found a state that is better than the ground state.
+
+    This is false. Expand the state in eigenstates, so $E=\sum_n|c_n|^2E_n\geq E_0$. For the two-site Heisenberg model $E_0=-3J/4$, so a value $-0.8J$ cannot be a state energy.
+
 - [x] There is a mistake, since $E[\theta]\geq E_0$ for any state in [(10.3)](#eq-10-3).
+
+    This is true. Every normalized state has $E\geq E_0$ by the variational principle of [(10.3)](#eq-10-3). A value below $E_0$ beyond the error points to a bug in $H$, in the local energy or in the sampling.
+
 - [ ] The network is too small, so it should be made larger.
 
-The variational energy is bounded from below by the true ground-state energy for every state, whatever the architecture. A value below it signals an error in the Hamiltonian, in the local energy or in the sampling.
+    This is false. A larger network also obeys $E\geq E_0$, since it is a bigger family of states and still states. An energy below $E_0$ is not cured by more parameters.
 :::
 
 Next we will see how to evaluate this energy without a sum over all the configurations.

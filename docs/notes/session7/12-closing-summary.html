@@ -98,9 +98,9 @@
 <img src="../figures/s07f03_entropyceiling.svg" loading="lazy" alt="Entropy against the size of the subsystem for a gapped, a critical and a generic state, with horizontal bars for two bond dimensions." />
 <figcaption><strong><a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#fig:s07:ceiling">Figure 7.3</a>, shown again.</strong> The summary of the session in one picture. Look at where the gapped curve, the critical curve and the volume law meet the horizontal bars set by <span class="math inline">\(M\)</span>, since this is where an MPS of that bond dimension stops being enough.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>An MPS with <span class="math inline">\(M=20\)</span> describes a gapped chain of 200 sites very well. We now move to a gapped model on a <span class="math inline">\(20\times20\)</span> lattice. What do we expect?</p>
@@ -109,13 +109,20 @@ Quick check
 <ol type="A">
 <li>The same <span class="math inline">\(M\)</span> is enough, since the model is gapped.</li>
 <li>The same <span class="math inline">\(M\)</span> is not enough, since the boundary grows with the width.</li>
-<li>A smaller <span class="math inline">\(M\)</span> is enough, since there are more neighbors.</li>
 <li>The MPS fails only because there are more sites.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>A gapped state obeys the area law in both cases, but in two dimensions the boundary has 20 bonds and not one. The entropy grows in proportion, and the bond dimension that it needs grows exponentially.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Being gapped fixes the entropy per bond. The cut of the <span class="math inline">\(20\times20\)</span> lattice crosses 20 bonds, so the entropy is about 20 times larger and the needed <span class="math inline">\(M\)</span> is of the order of <span class="math inline">\(20^{20}\approx10^{26}\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. A gapped state obeys the area law in both cases, but in two dimensions the boundary has 20 bonds and not one. The entropy grows in proportion, and the bond dimension that it needs grows exponentially.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. A gapped chain of 2000 sites needs the same <span class="math inline">\(M=20\)</span> as the one of 200, so the number of sites alone does not matter. A <span class="math inline">\(20\times20\)</span> lattice has just 400 sites.</p></li>
+</ul>
+</div>
 </details>
 </div>
 

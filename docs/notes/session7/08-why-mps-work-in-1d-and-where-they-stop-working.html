@@ -95,9 +95,9 @@
 <img src="../figures/s07f03_entropyceiling.svg" loading="lazy" alt="The bond dimension is an upper limit on the entanglement, and this determines when matrix product states work." />
 <figcaption><strong>Figure 7.3.</strong> The bond dimension is an upper limit on the entanglement, and this determines when matrix product states work. An MPS with bond dimension <span class="math inline">\(M\)</span> has at most <span class="math inline">\(M\)</span> Schmidt terms across any bond, so by <a href="#eq-7-10">(7.10)</a> it can have at most <span class="math inline">\(S=\log M\)</span> there, which is shown by the two horizontal bars, for <span class="math inline">\(M=4\)</span> and <span class="math inline">\(M=16\)</span>. A gapped one-dimensional ground state follows the area law of Section <a href="06-entanglement-entropy-of-a-solvable-dimerized-chain.html#sec-7-6">7.6</a>, and its entropy saturates at a value set by the correlation length and not by the subsystem size, so it stays below a fixed and moderate limit for any chain length. A critical chain violates the area law logarithmically, <a href="11-mera-and-peps-beyond-mps.html#eq-7-12">(7.12)</a>, so it goes above any fixed limit at some point, here the lower bar, and <span class="math inline">\(M\)</span> must be increased as the system grows, slowly but without bound. A general state of the Hilbert space of dimension <span class="math inline">\(2^L\)</span> follows a volume law, <span class="math inline">\(S=\ell\log 2\)</span>, and it goes above any usable <span class="math inline">\(M\)</span> after a few sites. This is why time evolution over long times, highly excited states and two-dimensional systems are all out of reach. The entropy is drawn in bits, <span class="math inline">\(S/\log 2\)</span>, with central charge <span class="math inline">\(c=1\)</span>, and the curves are schematic and not fits to a specific model.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>A gapped chain of 50 sites is described accurately with a bond dimension <span class="math inline">\(M\)</span>. What do we need for a gapped chain of 500 sites in the same phase?</p>
@@ -106,18 +106,25 @@ Quick check
 <ol type="A">
 <li>About ten times larger <span class="math inline">\(M\)</span>.</li>
 <li>About the same <span class="math inline">\(M\)</span>, since the entropy saturates.</li>
-<li>An <span class="math inline">\(M\)</span> that is exponentially larger.</li>
 <li>A smaller <span class="math inline">\(M\)</span>, since the chain is longer.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>In a gapped state the entropy across a bond is set by the correlation length and not by the length of the chain. The bound <a href="#eq-7-10">(7.10)</a> then asks for the same <span class="math inline">\(M\)</span>.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The AKLT chain is exact with <span class="math inline">\(M=2\)</span> both for 50 and for 500 sites. The length of the chain does not enter in a gapped state.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. In a gapped state the entropy across a bond is set by the correlation length and not by the length of the chain. The bound <a href="#eq-7-10">(7.10)</a> then asks for the same <span class="math inline">\(M\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The central bond of the chain of 500 sites has the same entropy as the one of 50 sites, once both are longer than the correlation length. A smaller <span class="math inline">\(M\)</span> would drop weights that the first calculation had to keep.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="C">
+<div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>An MPS has <span class="math inline">\(M=16\)</span>. What is the largest entanglement entropy that it can hold across one bond, in units of <span class="math inline">\(\log 2\)</span>?</p>
@@ -127,12 +134,19 @@ Quick check
 <li><span class="math inline">\(16\)</span>, since there are 16 terms.</li>
 <li><span class="math inline">\(8\)</span>, since it is half of <span class="math inline">\(M\)</span>.</li>
 <li><span class="math inline">\(4\)</span>, since <span class="math inline">\(\log 16=4\log 2\)</span>.</li>
-<li><span class="math inline">\(2\)</span>, since it is the square root of <span class="math inline">\(M\)</span>.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>C</strong>.</p>
-<p>The bound <a href="#eq-7-10">(7.10)</a> is <span class="math inline">\(S\le\log M\)</span>, and <span class="math inline">\(\log 16=4\log 2\)</span>. The number of Schmidt terms is <span class="math inline">\(16\)</span> but the entropy grows only as its logarithm.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The entropy of 16 equal weights is <span class="math inline">\(\log16=4\log2\)</span>. The value <span class="math inline">\(16\log2=\log65536\)</span> would need <span class="math inline">\(65536\)</span> Schmidt terms.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The value <span class="math inline">\(8\log2=\log256\)</span> needs 256 equal Schmidt terms, and the MPS has only 16. The entropy is a logarithm of the number of terms and not a fraction of it.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. The bound <a href="#eq-7-10">(7.10)</a> is <span class="math inline">\(S\le\log M\)</span>, reached when the 16 weights are equal, and <span class="math inline">\(\log 16=4\log 2\)</span>. The number of Schmidt terms is 16 but the entropy grows only as its logarithm.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="notebookbox">

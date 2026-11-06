@@ -10,11 +10,17 @@ The Chern insulator at zero field is not only a theoretical idea. Chromium-doped
 In twisted bilayers of MoTe$_2$ there is no applied magnetic field. What plays the role of the lowest Landau level?
 
 - [ ] The spin-orbit coupling of the substrate.
-- [ ] A magnetic field of a few tesla from the substrate.
-- [ ] A superconducting gap.
+
+    This is false. Spin-orbit coupling alone keeps time-reversal symmetry, and a time-reversal symmetric band has a zero total Chern number. A Chern band needs time reversal to be broken, for example by valley polarization.
+
 - [x] A topological flat band with nonzero Chern number that the twisted lattice itself produces.
 
-The flat band has a Chern number and a structure similar to a Landau level. It comes from the lattice and not from a field. With interactions, a partially filled band can then give fractional states.
+    This is true. The flat band has a Chern number and a structure similar to a Landau level. It comes from the lattice and not from a field. With interactions, a partially filled band can then give fractional states.
+
+- [ ] A superconducting gap.
+
+    This is false. A superconducting gap gives zero resistance. The fractional Chern state is an insulator in the bulk, with a Hall conductivity that is a fraction of $e^2/h$, and its flat band with a Chern number is what plays the role of the lowest Landau level.
+
 :::
 
 ## Closing summary {#sec-4-21 number="4.21"}
@@ -38,10 +44,16 @@ In this session the order was driven only by a magnetic field, which is an exter
 ::: quiz
 The Laughlin quasihole of this session and the Majorana halves of session 5 are both fractionalization. What do they share?
 
-- [x] In both, correlations give excitations that are not the electron, with only a part of its charge or of its degrees of freedom.
 - [ ] Both need a magnetic field.
-- [ ] Both appear in a system of weakly interacting electrons.
-- [ ] Both are bosons.
 
-The mechanisms are different, since one comes from correlations in a flat band and the other from pairing in a superconductor. In both cases the excitations are not the electron itself.
+    This is false. The fractional Chern states of twisted MoTe$_2$ appear at zero applied field. A Kitaev chain in the topological phase needs a p-wave pairing, and the field is only one way to get it.
+
+- [x] In both, correlations give excitations that are not the electron, with only a part of its charge or of its degrees of freedom.
+
+    This is true. The mechanisms are different, since one comes from correlations in a flat band and the other from pairing in a superconductor. In both cases the excitations are not the electron itself.
+
+- [ ] Both appear in a system of weakly interacting electrons.
+
+    This is false. For electrons without interaction in a partially filled lowest Landau level, there are many degenerate states and no gap, so no Laughlin state. The Laughlin state needs strong interactions.
+
 :::

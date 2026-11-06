@@ -199,10 +199,11 @@ function Quiz(d)
   end
   local where = 'quiz "' .. pandoc.utils.stringify(question[1] or ''):sub(1, 40) .. '"'
   if not items then io.stderr:write(where .. ' has no list of options\n'); return nil end
-  if #items < 3 or #items > 4 then io.stderr:write(where .. ' has ' .. #items .. ' options, it needs 3 or 4\n') end
+  if #items < 3 or #items > 4 then io.stderr:write(where .. ' has ' .. #items .. ' options, it needs 3 (4 only in an old quiz)\n') end
   if #question == 0 then io.stderr:write(where .. ' has no question\n') end
-  if #after == 0 then io.stderr:write(where .. ' has no explanation after the options\n') end
-  local correct, opts = nil, {}
+  -- An option is its first block, with the mark [x] or [ ]. The blocks that follow, indented under it, are the
+  -- feedback of that option: why it is correct, or a counterexample that shows why it is false.
+  local correct, opts, fbs, nfb = nil, {}, {}, 0
   for i, item in ipairs(items) do
     local first = item[1]
     local mark = first and first.content and first.content[1]
@@ -217,18 +218,45 @@ function Quiz(d)
       table.remove(first.content, 1)
       if first.content[1] and first.content[1].t == 'Space' then table.remove(first.content, 1) end
     end
-    opts[i] = item
+    local fb = {}
+    for k = 2, #item do fb[#fb + 1] = item[k] end
+    if #fb > 0 then nfb = nfb + 1 end
+    fbs[i] = fb
+    opts[i] = { pandoc.Plain(first and first.content or {}) }
   end
   if not correct then io.stderr:write(where .. ' has no correct option, mark one with [x]\n'); return nil end
+  local perOption = nfb > 0
+  if perOption and nfb < #items then
+    io.stderr:write(where .. ' has feedback on ' .. nfb .. ' of ' .. #items .. ' options, it needs all or none\n')
+  end
+  if not perOption and #after == 0 then io.stderr:write(where .. ' has no explanation after the options\n') end
   local letter = LETTERS:sub(correct, correct)
   local out = {
-    pandoc.Div({ pandoc.Plain({ pandoc.Str('Quick check') }) }, pandoc.Attr('', { 'quiz-label' })),
+    pandoc.Div({ pandoc.Plain({ pandoc.Str(perOption and 'Question' or 'Quick check') }) },
+               pandoc.Attr('', { 'quiz-label' })),
     pandoc.Div(question, pandoc.Attr('', { 'quiz-q' })),
     pandoc.Div({ pandoc.OrderedList(opts, pandoc.ListAttributes(1, 'UpperAlpha', 'Period')) },
                pandoc.Attr('', { 'quiz-options' })),
-    pandoc.RawBlock('html', '<details class="quiz-answer"><summary>Show the answer</summary>'),
-    pandoc.Para({ pandoc.Str('The correct option is '), pandoc.Strong({ pandoc.Str(letter) }), pandoc.Str('.') }),
   }
+  if perOption then
+    -- With no script this details lists every option with its verdict and its feedback. notes.js takes the
+    -- feedback from here, puts it under its option, and keeps the details only for the general explanation.
+    local rows = {}
+    for i, fb in ipairs(fbs) do
+      local ok = (i == correct)
+      local row = { pandoc.Plain({ pandoc.Span({ pandoc.Str(LETTERS:sub(i, i) .. '. ' .. (ok and '\u{2713} True' or '\u{2717} False')) },
+                                  pandoc.Attr('', { 'quiz-verdict' }, { { 'data-verdict', ok and 'true' or 'false' } })) }) }
+      for _, b in ipairs(fb) do row[#row + 1] = b end
+      rows[#rows + 1] = row
+    end
+    out[#out + 1] = pandoc.RawBlock('html', '<details class="quiz-answer"><summary>Show the answers</summary>')
+    out[#out + 1] = pandoc.Div({ pandoc.BulletList(rows) }, pandoc.Attr('', { 'quiz-fbs' }))
+    if #after > 0 then out[#out + 1] = pandoc.Div(after, pandoc.Attr('', { 'quiz-expl' })) end
+    out[#out + 1] = pandoc.RawBlock('html', '</details>')
+    return pandoc.Div(out, pandoc.Attr('', { 'quiz' }, { { 'data-correct', letter }, { 'data-fb', '1' } }))
+  end
+  out[#out + 1] = pandoc.RawBlock('html', '<details class="quiz-answer"><summary>Show the answer</summary>')
+  out[#out + 1] = pandoc.Para({ pandoc.Str('The correct option is '), pandoc.Strong({ pandoc.Str(letter) }), pandoc.Str('.') })
   for _, b in ipairs(after) do out[#out + 1] = b end
   out[#out + 1] = pandoc.RawBlock('html', '</details>')
   return pandoc.Div(out, pandoc.Attr('', { 'quiz' }, { { 'data-correct', letter } }))

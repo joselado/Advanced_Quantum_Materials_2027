@@ -99,9 +99,9 @@
 <img src="../figures/s09f02_plasmon.svg" loading="lazy" alt="The two divergences of the RPA response (9.6), drawn in the (q,\omega) plane for the three-dimensional electron gas." />
 <figcaption><strong>Figure 9.2.</strong> The two divergences of the RPA response <a href="#eq-9-6">(9.6)</a>, drawn in the <span class="math inline">\((q,\omega)\)</span> plane for the three-dimensional electron gas. The shaded region is where <span class="math inline">\(\mathrm{Im}\,\chi_0(q,\omega)\neq 0\)</span>, which is the <em>particle-hole continuum</em>, the set of all <span class="math inline">\((q,\omega)\)</span> at which a single electron can be moved from an occupied state <span class="math inline">\(k\)</span> to an empty state <span class="math inline">\(k+q\)</span>. Its upper boundary is <span class="math inline">\(\hbar\omega_+=\hbar v_Fq+\hbar^2q^2/2m\)</span>, and beyond <span class="math inline">\(2k_F\)</span> a lower boundary <span class="math inline">\(\hbar\omega_-=\hbar^2q^2/2m-\hbar v_Fq\)</span> appears. Both follow from the energy denominator of <a href="04b-nesting-and-the-divergence-of-the-lindhard-function.html#eq-9-5">(9.5)</a>, and for <span class="math inline">\(q&lt;2k_F\)</span> the continuum goes all the way down to <span class="math inline">\(\omega=0\)</span>, which is the same statement as saying that <span class="math inline">\(\chi_0\)</span> is built only from states on the two sides of the Fermi surface. The plasmon <a href="#eq-9-7">(9.7)</a> is a different object. It is a zero of the RPA <em>denominator</em> <span class="math inline">\(1-v(q)\chi_0\)</span>, so it exists at <span class="math inline">\(\omega_p\)</span> even as <span class="math inline">\(q\to 0\)</span>, in a window where no single-particle excitation exists at all. This window, marked in the figure, is the full meaning of the phrase “collective mode, not a particle-hole pair”. Once the branch meets the continuum it can decay into particle-hole pairs, and it is Landau damped (dashed).</figcaption>
 </figure>
-<div class="quiz" data-correct="A">
+<div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>In the density channel the interaction is repulsive, <span class="math inline">\(U&gt;0\)</span>, and <span class="math inline">\(\chi_0\)</span> is positive. How does the RPA response <a href="#eq-9-6">(9.6)</a> compare with <span class="math inline">\(\chi_0\)</span> at the same <span class="math inline">\(q\)</span> and <span class="math inline">\(\omega\)</span>?</p>
@@ -113,14 +113,22 @@ Quick check
 <li>It is the same, since the interaction only shifts the poles.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>A</strong>.</p>
-<p>A repulsive interaction opposes the density change that the probe induces, which is screening. The denominator is larger than one, so <span class="math inline">\(\chi&lt;\chi_0\)</span>. The opposite happens in the spin channel, as we will see next.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. For <span class="math inline">\(U=t\)</span> and <span class="math inline">\(\chi_0=0.68/t\)</span> we get <span class="math inline">\(\chi=0.68/1.68=0.40\)</span> in units of <span class="math inline">\(1/t\)</span>, which is smaller than <span class="math inline">\(\chi_0\)</span>. The repulsion opposes the induced density, which is screening. In the spin channel the sign is opposite.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. For <span class="math inline">\(U=t\)</span> and <span class="math inline">\(\chi_0=0.68/t\)</span> the RPA response is <span class="math inline">\(0.68/1.68=0.40\)</span>. This is smaller, since a repulsive <span class="math inline">\(U\)</span> enhances only the spin channel and not the density one.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The denominator <span class="math inline">\(1+U\chi_0\)</span> is <span class="math inline">\(1.68\)</span> for <span class="math inline">\(U=t\)</span> and <span class="math inline">\(\chi_0=0.68/t\)</span>, so the response changes by this factor. The poles are shifted too, but the weight at fixed <span class="math inline">\(q\)</span> and <span class="math inline">\(\omega\)</span> changes as well.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>At small <span class="math inline">\(q\)</span> the particle-hole continuum of figure <a href="#fig:s09:plasmon">9.2</a> shrinks towards <span class="math inline">\(\omega=0\)</span>, while the plasmon of <a href="#eq-9-7">(9.7)</a> stays near <span class="math inline">\(\omega_p\)</span>. Why is the plasmon not damped there?</p>
@@ -132,9 +140,17 @@ Quick check
 <li>Because the plasmon is a single-particle excitation, which cannot decay.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>Landau damping needs a particle-hole pair with the same <span class="math inline">\(q\)</span> and <span class="math inline">\(\omega\)</span>. In the window at small <span class="math inline">\(q\)</span> and large <span class="math inline">\(\omega\)</span> there is none, and the mode is sharp. Once its branch enters the continuum, it decays.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. For the Coulomb interaction <span class="math inline">\(v(q)\propto1/q^2\)</span> diverges at <span class="math inline">\(q\to0\)</span>. The interaction is not zero there, and its divergence is what puts the plasmon at the finite <span class="math inline">\(\omega_p\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. Landau damping needs a pair with the same <span class="math inline">\(q\)</span> and <span class="math inline">\(\omega\)</span>. At small <span class="math inline">\(q\)</span> the continuum is at low <span class="math inline">\(\omega\)</span> and the plasmon is at <span class="math inline">\(\omega_p\)</span>, so no pair exists and the mode is sharp.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The plasmon is a collective mode of all electrons. The same mode does decay when its branch enters the continuum at larger <span class="math inline">\(q\)</span>, which shows that it is not protected as a single particle.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <p>The same denominator, now in the spin channel, gives the Stoner instability, and we treat it next.</p>

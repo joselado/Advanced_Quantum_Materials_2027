@@ -17,18 +17,30 @@ A convolutional neural network, trained on labeled configurations at low $T$ and
 In the Ising gauge theory we flip the four bonds that meet at one vertex. How does this change the plaquette products?
 
 - [ ] Two of the four plaquettes change sign.
+
+    This is false. A plaquette changes sign only if one of its bonds is flipped, or three. Each plaquette of the star has exactly two flipped bonds, so none changes sign.
+
 - [x] None of them changes, since each plaquette contains exactly two of the four bonds.
+
+    This is true. Two flipped bonds in a plaquette give $(-1)^2=+1$. Each of the four plaquettes at the vertex has two of the four bonds, so no plaquette product changes.
+
 - [ ] All four plaquettes change sign.
 
-Flipping two spins of a plaquette gives $(-1)^2=1$, so the product stays the same. This local gauge transformation makes the ground state degenerate by a macroscopic number.
+    This is false. Take one plaquette of the star. Two of its four bonds are flipped, so its product gets the factor $(-1)^2=+1$ and not $-1$. The same holds for the other three.
 :::
 
 ::: quiz
 The trained classifier for the gauge theory does not give a transition that becomes sharper as $L$ grows. Why?
 
 - [ ] The network is too small to see the transition.
+
+    This is false. The same convolutional network finds a sharp transition for the Ising model as $L$ grows, so its size is not the limit.
+
 - [ ] The magnetization is a better order parameter at large $L$.
+
+    This is false. For the gauge theory the magnetization is zero at all temperatures, since a vertex flip reverses the sign of every bond at the vertex and does not change the energy. It cannot be an order parameter at any $L$.
+
 - [x] The two regimes are separated by a crossover and not by a phase transition at finite temperature.
 
-In two dimensions the gauge theory has order only at $T=0$. The crossover moves with the size of the system, so there is no sharp $T_c$ to converge to.
+    This is true. The two-dimensional model has order only at $T=0$. For an open lattice the plaquette average is $\tanh(J/T)$, which is smooth, so the crossover does not sharpen.
 :::

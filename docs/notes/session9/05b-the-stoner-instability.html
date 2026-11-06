@@ -92,9 +92,9 @@
 <img src="../figures/web/session09/stoner.svg" loading="lazy" alt="A curve of the static response along a path in the Brillouin zone, with a sharp maximum at the corner M and two horizontal lines at the heights of the ferromagnetic and the antiferromagnetic thresholds." />
 <figcaption><strong>Schematic 9.5.</strong> The static response <span class="math inline">\(\chi_0(q,0)\)</span> of the half-filled square lattice, from <a href="04-the-fermi-sea-and-the-lindhard-function.html#eq-9-4">(9.4)</a> with <span class="math inline">\(T=0.1t\)</span> on a <span class="math inline">\(240\times240\)</span> k-mesh, along the path <span class="math inline">\(\Gamma\)</span>, <span class="math inline">\(X\)</span>, <span class="math inline">\(M\)</span>, <span class="math inline">\(\Gamma\)</span>. The criterion <a href="#eq-9-8">(9.8)</a> is met when <span class="math inline">\(1/U\)</span> reaches the curve. The maximum is at <span class="math inline">\(M=(\pi,\pi)\)</span> with <span class="math inline">\(\chi_0=0.68/t\)</span>, and at <span class="math inline">\(\Gamma\)</span> the value is <span class="math inline">\(D(E_F)\approx0.26/t\)</span>. The red line is met first, so the antiferromagnetic instability appears at <span class="math inline">\(U\approx1.5t\)</span>, and the ferromagnetic one needs <span class="math inline">\(U\approx3.8t\)</span>.</figcaption>
 </figure>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>For the half-filled square lattice we have <span class="math inline">\(\chi_0(0,0)=0.26/t\)</span> and <span class="math inline">\(\chi_0(\pi,\pi)=0.68/t\)</span> at <span class="math inline">\(T=0.1t\)</span>. With <a href="#eq-9-8">(9.8)</a>, where does the first instability appear as we increase <span class="math inline">\(U\)</span>?</p>
@@ -106,14 +106,22 @@ Quick check
 <li>At <span class="math inline">\(U\approx1.5t\)</span>, and it is ferromagnetic.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The condition <span class="math inline">\(U\chi_0(q,0)=1\)</span> is first met where <span class="math inline">\(\chi_0\)</span> is largest. This is at <span class="math inline">\(Q=(\pi,\pi)\)</span>, so <span class="math inline">\(U=1/0.68t\approx1.5t\)</span>, and the response there is the staggered one.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The value <span class="math inline">\(U=3.8t\)</span> is <span class="math inline">\(1/0.26t\)</span>, which is the threshold for the ferromagnetic channel. At <span class="math inline">\(U=1.5t\)</span> the antiferromagnetic channel already satisfies <span class="math inline">\(U\chi_0(\pi,\pi)=1\)</span>, so the instability appears earlier.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The condition <span class="math inline">\(U\chi_0(q,0)=1\)</span> is first met at the largest <span class="math inline">\(\chi_0\)</span>. At <span class="math inline">\(Q=(\pi,\pi)\)</span> we get <span class="math inline">\(U=1/0.68t\approx1.5t\)</span>, and the response there is staggered.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. At <span class="math inline">\(U=1.5t\)</span> the ferromagnetic channel gives <span class="math inline">\(U\chi_0(0,0)=1.5\times0.26=0.39\)</span>, which is far from one. The ferromagnetic instability needs a larger <span class="math inline">\(U\)</span>.</p></li>
+</ul>
+</div>
 </details>
 </div>
-<div class="quiz" data-correct="B">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
-Quick check
+Question
 </div>
 <div class="quiz-q">
 <p>The same <span class="math inline">\(U\)</span> reduces the charge response and enhances the spin response. Which relation explains this?</p>
@@ -125,9 +133,17 @@ Quick check
 <li>The spin response has no interaction contribution, so it stays at <span class="math inline">\(\chi_0\)</span>.</li>
 </ol>
 </div>
-<details class="quiz-answer"><summary>Show the answer</summary>
-<p>The correct option is <strong>B</strong>.</p>
-<p>The sign in front of <span class="math inline">\(m^2\)</span> is the opposite of the sign in front of <span class="math inline">\(n^2\)</span>, so the denominator is <span class="math inline">\(1+U\chi_0\)</span> for the charge and <span class="math inline">\(1-U\chi_0\)</span> for the spin. Only the second one can reach zero.</p>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Particle conservation holds for both channels, so it cannot decide. If the charge denominator were <span class="math inline">\(1-U\chi_0\)</span>, then <span class="math inline">\(U=1.5t\)</span> would give a charge divergence at <span class="math inline">\(Q\)</span> for a repulsive <span class="math inline">\(U\)</span>, which does not occur.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The identity gives <span class="math inline">\(+\tfrac U4 n^2\)</span> and <span class="math inline">\(-\tfrac U4 m^2\)</span>. The charge denominator is <span class="math inline">\(1+U\chi_0\)</span>, which is <span class="math inline">\(1.68\)</span> at <span class="math inline">\(U=t\)</span> and <span class="math inline">\(\chi_0=0.68/t\)</span>, and the spin one is <span class="math inline">\(1-U\chi_0=0.32\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. If the spin response stayed at <span class="math inline">\(\chi_0\)</span>, there would be no Stoner instability at any <span class="math inline">\(U\)</span>. The ferromagnet that appears above <span class="math inline">\(U=1/\chi_0(0,0)\)</span> would not exist.</p></li>
+</ul>
+</div>
 </details>
 </div>
 <div class="tryit">
