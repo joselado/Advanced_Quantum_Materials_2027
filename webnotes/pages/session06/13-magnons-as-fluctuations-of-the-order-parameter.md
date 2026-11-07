@@ -9,13 +9,13 @@ There is an exact mapping between spin operators and bosonic creation and annihi
 
 $$S_i^z = S - a_i^\dagger a_i, \qquad S_i^+ = \sqrt{2S-a_i^\dagger a_i}\;a_i, \qquad S_i^- = a_i^\dagger\sqrt{2S-a_i^\dagger a_i}. \tag{6.6}$$
 
-This is an *exact* rewriting. If we insert [(6.6)](#eq-6-6) and use the bosonic commutation relations, we obtain exactly the full $SU(2)$ spin algebra $[S_i^z,S_i^\pm]=\pm S_i^\pm$, $[S_i^+,S_i^-]=2S_i^z$, without any approximation so far. The physical picture is direct. The operator $a_i^\dagger a_i$ counts how many units of spin have been removed from the fully polarized value $S$ on site $i$, which means that it counts the **magnons** on that site, and $S_i^z=S-a_i^\dagger a_i$ states exactly this. The square-root operators are what make [(6.6)](#eq-6-6) exact even far from full polarization. They are also the reason why the Hamiltonian, written in this form, looks more complicated and not simpler.
+This is an *exact* rewriting. If we insert [(6.6)](#eq-6-6) and use the bosonic commutation relations, we obtain exactly the full $SU(2)$ spin algebra $[S_i^z,S_i^\pm]=\pm S_i^\pm$, $[S_i^+,S_i^-]=2S_i^z$, without any approximation so far. The physical picture is direct. The operator $a_i^\dagger a_i$ counts how many units of spin have been removed from the fully polarized value $S$ on site $i$. This means that it counts the **magnons** on that site, which is what $S_i^z=S-a_i^\dagger a_i$ states. The square-root operators are what make [(6.6)](#eq-6-6) exact even far from full polarization. They are also the reason why the Hamiltonian, written in this form, looks more complicated and not simpler.
 
 The simplification comes from linearizing. When the expectation value of $a_i^\dagger a_i$ stays much smaller than $S$, which means when we stay close to the fully polarized ground state, we can expand the square roots and keep only the leading term. This is the regime that we want, since we are looking for low-lying excitations above this ground state, and the result is
 
 $$S_i^+ \approx \sqrt{2S}\, a_i, \qquad S_i^- \approx \sqrt{2S}\, a_i^\dagger, \qquad S_i^z = S - a_i^\dagger a_i. \tag{6.7}$$
 
-This linearized form is the one that is used in practice to compute magnon spectra. The counting that follows from it is the easiest way to remember the whole transformation, so we write it out. The operator $S^+$ *raises* $S^z$, meaning that it increases the local magnetization back toward saturation, and it *destroys* a magnon. The operator $S^-$ lowers the magnetization, and it *creates* a magnon. The total magnetization of the system is the fully saturated value minus the total number of magnons, $\sum_i \langle S_i^z\rangle = NS - \sum_i\langle a_i^\dagger a_i\rangle$. Each magnon has exactly one unit of spin, so magnons are $S=1$ excitations, in agreement with what we said about them in Section [6.1](#sec-6-1). They exist only because the ground state on which they live has already broken spin-rotation symmetry spontaneously. Figure [6.5](#fig:s06:magnon) shows the three parts, which are the fully polarized ground state, the delocalized precession wave that carries a single magnon, and this rule for raising and lowering.
+This linearized form is the one that is used in practice to compute magnon spectra. The counting that follows from it is the easiest way to remember the whole transformation, so we write it out. The operator $S^+$ *raises* $S^z$, meaning that it increases the local magnetization back toward saturation, and it *destroys* a magnon. The operator $S^-$ lowers the magnetization, and it *creates* a magnon. The total magnetization of the system is the fully saturated value minus the total number of magnons, $\sum_i \langle S_i^z\rangle = NS - \sum_i\langle a_i^\dagger a_i\rangle$. Each magnon has one unit of spin, so magnons are $S=1$ excitations, in agreement with what we said about them in Section [6.1](#sec-6-1). They exist only because the ground state on which they live has already broken spin-rotation symmetry spontaneously. Figure [6.5](#fig:s06:magnon) shows the three parts, which are the fully polarized ground state, the delocalized precession wave that carries a single magnon, and this rule for raising and lowering.
 
 ![The states that [(6.6)](#eq-6-6) and [(6.7)](#eq-6-7) describe. (a) The ferromagnetic ground state, where every spin has its maximal value $S^z=S$, and so there are no magnons. (b) A single magnon is *not* one spin flipped on one site. Instead, every spin is tilted slightly out of alignment and precesses on its cone, and the precession phase advances by $\mathbf
 k\cdot\boldsymbol\delta$ from one site to the next. This is seen most clearly in the view from above, where the transverse component turns at a constant rate and comes back to itself after one wavelength. The missing unit of spin is therefore shared coherently by the whole lattice, and $\sum_i\langle S_i^z\rangle=NS-1$. Since the tilting angle is small, we have $\langle a_i^\dagger
@@ -37,10 +37,21 @@ We create one magnon on top of the saturated ferromagnet. Which operator does it
     This is false. Take two spin-$1/2$ sites. The state $|\uparrow\uparrow\rangle$ has $S^z=1$, and $S_1^-$ gives $|\downarrow\uparrow\rangle$ with $S^z=0$, so the total changes by one.
 :::
 
-We insert [(6.7)](#eq-6-7) into the ferromagnetic Heisenberg Hamiltonian, $H = J\sum_{\langle ij\rangle}
-\mathbf S_i\cdot\mathbf S_j = J\sum_{\langle ij\rangle}\big[S_i^zS_j^z + \tfrac12(S_i^+S_j^-+S_i^-S_j^+)\big]$, and we keep the terms up to quadratic order in the bosonic operators,
+We insert [(6.7)](#eq-6-7) into the ferromagnetic Heisenberg Hamiltonian,
+
+$$H = J\sum_{\langle ij\rangle}\mathbf S_i\cdot\mathbf S_j = J\sum_{\langle ij\rangle}\big[S_i^zS_j^z + \tfrac12(S_i^+S_j^-+S_i^-S_j^+)\big],$$
+
+and we keep the terms up to quadratic order in the bosonic operators,
 
 $$S_i^zS_j^z \approx S^2 - S\big(a_i^\dagger a_i + a_j^\dagger a_j\big), \qquad
 \tfrac12\big(S_i^+S_j^- + S_i^-S_j^+\big) \approx S\big(a_i^\dagger a_j + a_j^\dagger a_i\big),$$
 
-and in this way the spin Hamiltonian becomes a bosonic tight-binding Hamiltonian for magnons, and its hopping amplitude is set directly by the exchange coupling $J$, as we said before. The magnon "hops" between sites with an amplitude proportional to $JS$, in direct analogy with the electronic tight-binding Hamiltonians that we have diagonalized during the whole course.
+and in this way the spin Hamiltonian becomes a bosonic tight-binding Hamiltonian for magnons, and its hopping amplitude is set directly by the exchange coupling $J$, as we said before. The magnon hops between sites with an amplitude proportional to $JS$, in direct analogy with the electronic tight-binding Hamiltonians that we have diagonalized during the whole course.
+
+![The one-magnon states of a ferromagnetic Heisenberg ring, from exact diagonalization, against the band [(6.8)](#eq-6-8) with $z=2$. The circles are a ring of 10 spins $S=\tfrac12$ and the squares a ring of 8 spins $S=1$. The lines are $E=2|J|S(1-\cos k)$. The dots sit on the lines, so the linear form [(6.7)](#eq-6-7) is exact for one magnon. The reason is that with one magnon the square roots of [(6.6)](#eq-6-6) only act on sites with no magnon, where they are exactly $\sqrt{2S}$. The band is twice as wide for $S=1$, since the hopping of the magnon is $JS$.](figures/web/session06/one_magnon.svg){#sch:s06:one_magnon alt="Two cosine-shaped bands that start at zero energy at k equal to zero, the upper one for spin one and the lower one for spin one half, with open circles and squares from exact diagonalization lying on them."}
+
+::: comesback
+- In Section [6.15](#sec-6-15) this bosonic tight-binding Hamiltonian gives the magnon dispersions of the ferromagnet and of the antiferromagnet.
+- In Section [8.5](#sec-8-5) the triplon of a dimerized magnet has the same structure as a magnon, with only a different name.
+- In Section [8.7](#sec-8-7) the Holstein-Primakoff expansion [(8.8)](#eq-8-8) fails for a quantum spin liquid, since there the boson density is as large as $S$.
+:::

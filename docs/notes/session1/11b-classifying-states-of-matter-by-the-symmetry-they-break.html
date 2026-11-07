@@ -52,7 +52,7 @@
   .crumb { margin: 0 0 4px; font-size: 0.95rem; }
   .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
   .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
-  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .toc .n { display: inline-block; min-width: 3.4em; padding-right: .4em; color: var(--muted); }
   .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
   figure { margin: 24px 0; }
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
@@ -88,9 +88,9 @@
 <ul>
 <li><p>Broken <strong>time-reversal symmetry</strong> gives classical magnets. The magnetization is odd under time reversal, so a magnetic ground state is not invariant when we run the movie backward.</p></li>
 <li><p>Broken <strong>inversion symmetry</strong> gives ferroelectrics. These are materials that develop an electric polarization spontaneously, which is the electric analog of a magnetization, and in this way they break the inversion symmetry of the underlying crystal.</p></li>
-<li><p>Broken <strong>gauge symmetry</strong> gives superconductors. The phase of the pairing order parameter, or equivalently the phase of the creation and annihilation operators, becomes physical once the order appears. Many observable superconducting phenomena, such as the Josephson effect, are direct consequences of fluctuations of this broken phase, and we will discuss this in detail in the session on superconductivity.</p></li>
+<li><p>Broken <strong>gauge symmetry</strong> gives superconductors. The phase of the pairing order parameter, or equivalently the phase of the creation and annihilation operators, becomes physical once the order appears. Many observable superconducting phenomena, such as the Josephson effect, are direct consequences of fluctuations of this broken phase, and Section <a href="../session5/02-superconductivity-as-a-macroscopic-quantum-phenomenon.html#sec-5-2">5.2</a> comes back to them.</p></li>
 </ul>
-<p>This classification by symmetry is useful, but it does not capture everything. Topological materials, such as topological insulators and fractional Chern insulators, can have <em>exactly</em> the same broken or unbroken symmetries as an ordinary trivial material and still behave in a completely different way. The reason for this is that they differ in their topological classification and not in their symmetry classification. This difference is the topic of a full session later in the course. For now, we only keep in mind that the question of “which symmetry is broken” does not give the full description of quantum matter.</p>
+<p>This classification by symmetry is useful, but it does not capture everything. Topological materials, such as topological insulators and fractional Chern insulators, can have the same broken or unbroken symmetries as an ordinary trivial material and still behave in a completely different way. The reason for this is that they differ in their topological classification and not in their symmetry classification. This difference is the topic of <a href="../session3/index.html">Session 3</a>. For now, we only keep in mind that the question of “which symmetry is broken” does not give the full description of quantum matter.</p>
 <p>Every case of spontaneous symmetry breaking also comes with its own emergent quasiparticle, which is the low-energy fluctuation of the order that has formed. The following table lists three cases.</p>
 <div class="center">
 <table>
@@ -133,14 +133,14 @@
 </table>
 </div>
 <p>Note that magnons and the Higgs mode both have zero charge but very different spin, and that only the phonon is gapless in every material. Magnons are gapless when the broken spin-rotational symmetry is continuous, and they become gapped when a magnetic anisotropy breaks this symmetry explicitly. The Higgs mode, which is an oscillation of the amplitude of the order parameter, is always gapped.</p>
-<p><a href="#sch:s01:gapless_gapped">Schematic 1.5</a> draws the dispersion of the three quasiparticles of the table.</p>
+<p><a href="#sch:s01:gapless_gapped">Schematic 1.10</a> draws the dispersion of the three quasiparticles of the table.</p>
 <figure id="sch:s01:gapless_gapped" class="schematic">
 <img src="../figures/web/session01/gapless_gapped.svg" loading="lazy" alt="Three dispersions against k. A phonon that reaches zero at k equal to zero, a magnon that reaches zero and a copy shifted up by a gap, and a Higgs mode that stays above a gap." />
-<figcaption><strong>Schematic 1.5.</strong> The quasiparticle of each broken symmetry. The phonon is gapless, since it goes to zero at <span class="math inline">\(k=0\)</span>. The magnon is gapless as well, and an easy-axis anisotropy lifts it by a gap, shown in red. The Higgs mode is gapped by the size of the order parameter. The curves are <span class="math inline">\(\omega=2|\sin(k/2)|\)</span>, <span class="math inline">\(\omega=1-\cos k\)</span> plus <span class="math inline">\(0.45\)</span> for the red one, and <span class="math inline">\(\omega=\sqrt{1.2^2+k^2}\)</span>, in arbitrary units.</figcaption>
+<figcaption><strong>Schematic 1.10.</strong> The quasiparticle of each broken symmetry. The phonon is gapless, since it goes to zero at <span class="math inline">\(k=0\)</span>. The magnon is gapless as well, and an easy-axis anisotropy lifts it by a gap, shown in red. The Higgs mode is gapped by the size of the order parameter. The curves are <span class="math inline">\(\omega=2|\sin(k/2)|\)</span>, <span class="math inline">\(\omega=1-\cos k\)</span> plus <span class="math inline">\(0.45\)</span> for the red one, and <span class="math inline">\(\omega=\sqrt{1.2^2+k^2}\)</span>, in arbitrary units.</figcaption>
 </figure>
 <figure class="again panel">
 <img src="../figures/panel/s06f05_magnon_side.svg" loading="lazy" alt="A row of parallel spins, and below it a row of spins that precess with a phase that advances from site to site." />
-<figcaption><strong><a href="../session6/13-magnons-as-fluctuations-of-the-order-parameter.html#fig:s06:magnon">Figure 6.5</a>, one panel shown again.</strong> The magnon of a ferromagnet, one panel shown again from session 6. In the ordered state every spin points the same way. A magnon is a precession wave of all the spins, which is the low-energy fluctuation of the order.</figcaption>
+<figcaption><strong><a href="../session6/13-magnons-as-fluctuations-of-the-order-parameter.html#fig:s06:magnon">Figure 6.5</a>, one panel shown again.</strong> The magnon of a ferromagnet, one panel shown again from <a href="../session6/index.html">Session 6</a>. In the ordered state every spin points the same way. A magnon is a precession wave of all the spins, which is the low-energy fluctuation of the order.</figcaption>
 </figure>
 <div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
@@ -213,6 +213,16 @@ Question
 <div class="tryit-links">
 Notebook <code>session1.ipynb</code>, cell “Magnetic order driven by interactions in a chain”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session1.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session1.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession1.ipynb">Binder</a>.
 </div>
+</div>
+<div class="comesback">
+<div class="comesback-label">
+Where this comes back
+</div>
+<ul>
+<li>The magnon of the table is built in Section <a href="../session6/13-magnons-as-fluctuations-of-the-order-parameter.html#sec-6-13">6.13</a>, and Section <a href="../session6/15-magnon-dispersions-in-ferromagnets-and-antiferromagnets.html#sec-6-15">6.15</a> shows that it is gapless, since it is the Goldstone mode of the broken spin rotation.</li>
+<li>The materials with the same symmetries and a different topology are the topic of <a href="../session3/index.html">Session 3</a>, with the bulk-boundary correspondence of Section <a href="../session3/07-what-topology-means-for-a-hamiltonian-and-the-bulk-boundary-correspondence.html#sec-3-7">3.7</a>.</li>
+<li>The Hall conductivity comes back in Section <a href="../session3/03-where-perturbation-theory-breaks-down.html#sec-3-4">3.4</a>, where linear response gives it, and in <a href="../session4/index.html">Session 4</a>, where it is quantized.</li>
+</ul>
 </div>
 
   <nav class="pager"><a href="11-spontaneous-symmetry-breaking-and-why-a-symmetric-hamiltonian-can-have-an-asymmetric-ground-state.html">1.11a Spontaneous symmetry breaking and why a symmetric Hamiltonian can have an asymmetric ground state</a><a href="12-the-general-interacting-hamiltonian-and-the-tool-we-will-use-on-it.html">1.12 The general interacting Hamiltonian, and the tool we will use on it</a></nav>

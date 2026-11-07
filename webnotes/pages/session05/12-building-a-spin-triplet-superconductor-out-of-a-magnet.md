@@ -24,14 +24,20 @@ In the model of this section, why does the exchange field suppress $s$-wave sing
     This is false. In the field the $\uparrow$ band is $-2t\cos k-h$, which still has the bandwidth $4t$. The $\uparrow$ electrons move normally, and they can form a Fermi surface to pair on.
 :::
 
-The most interesting feature of this state appears when we put it on a finite ribbon instead of an infinite plane. The bulk spectrum is gapped, as we expect for a superconductor, but the edges of the ribbon have gapless excitations. A superconductor that is fully gapped in the bulk and gapless at the edge is a signature that we already know from the topological-band-structure and quantum-Hall sessions. Indeed, these edge modes have a topological origin, and they are tied to a finite Chern number of the underlying BdG band structure, in the same way as the edge states of a Chern insulator were tied to its Chern number.
+The most interesting feature of this state appears when we put it on a finite ribbon instead of an infinite plane. The bulk spectrum is gapped, as we expect for a superconductor, but the edges of the ribbon have gapless excitations. A superconductor that is fully gapped in the bulk and gapless at the edge is a signature that we already know from Session 3 and Session 4, through the bulk-boundary correspondence of Section [3.7](#sec-3-7). These edge modes have a topological origin. They are tied to a finite Chern number of the BdG band structure, in the same way as the edge states of a Chern insulator are tied to its Chern number [(3.4)](#eq-3-4).
 
 ::: notebookbox
-**Notebook check-in:** [`session5.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb), "The impact of a spin splitting in an electronic structure" (Reminder), "A spin triplet superconductor" (Core), "Majorana modes in a spin triplet superconductor" (Challenge), "Interaction-induced spin-triplet superconductivity" (Challenge), and "Topological modes in interaction-driven spin triplet superconductors"
+**Notebook check-in:** [`session5.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb), "The impact of a spin splitting in an electronic structure" (Reminder), "A spin triplet superconductor" (Core) and "Majorana modes in a spin triplet superconductor" (Challenge). The notebook goes further in "Interaction-induced spin-triplet superconductivity" (Challenge) and "Topological modes in interaction-driven spin triplet superconductors".
 
-Start from the plain spin-split band structure, with only an exchange field, to build intuition. Then run the self-consistency loop for the model above and check that a spin-triplet $\Delta$ emerges. Move to a ribbon geometry and find the gapless edge modes described here, and then, in the later challenge sections of the notebook, connect them to the Majorana physics of sections [5.15](#sec-5-15)-[5.17](#sec-5-17).
+Start from the plain spin-split band structure, with only an exchange field, to build intuition. Then run the self-consistency loop for the model above and check that a spin-triplet $\Delta$ emerges. Move to a ribbon geometry and find the gapless edge modes described here, and then, in the later challenge sections of the notebook, connect them to the Majorana physics of Section [5.15](#sec-5-15) to Section [5.17](#sec-5-17).
 :::
 
 ::: {.tryit notebook="session5.ipynb" cell="The impact of a spin splitting in an electronic structure"}
 In the cell, the line `h.add_exchange([0.,0.,1.0])` splits the two spin bands of the chain. Change `1.0` to `2.0`. The two bands move apart from 2 to 4 at a fixed momentum, so each spin has its own Fermi momentum.
+:::
+
+::: comesback
+- In Section [5.14](#sec-5-14) we compute the Chern number of the BdG bands and see why a chiral $p$-wave superconductor has edge modes.
+- In Section [5.18](#sec-5-18) a magnet and an $s$-wave superconductor are put together again, on the helical edge of a quantum spin Hall insulator, to give Majorana zero modes.
+- In Section [9.8](#sec-9-8) a vacancy in a chiral spin-triplet superconductor hosts a mode inside the gap, because of the same Chern number.
 :::

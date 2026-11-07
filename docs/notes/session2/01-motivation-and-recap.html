@@ -52,7 +52,7 @@
   .crumb { margin: 0 0 4px; font-size: 0.95rem; }
   .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
   .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
-  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .toc .n { display: inline-block; min-width: 3.4em; padding-right: .4em; color: var(--muted); }
   .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
   figure { margin: 24px 0; }
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
@@ -84,17 +84,17 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="on" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 2. Symmetries, Tight-Binding Band Structure Theory, and Effective Models</a></p>
 <h1 id="sec-2-1"><span class="num">2.1</span> Motivation and recap</h1>
-<p>Let us recall the form of a many-body Hamiltonian once it is written in second-quantized, tight-binding form,</p>
+<p>Let us recall the single-particle part of the Hamiltonian <a href="../session1/12-the-general-interacting-hamiltonian-and-the-tool-we-will-use-on-it.html#eq-1-5">(1.5)</a> of <a href="../session1/index.html">Session 1</a>, written in second-quantized, tight-binding form,</p>
 <p><span class="math display">\[H = \sum_{ij} t_{ij}\, c_i^\dagger c_j,\]</span></p>
 <p>where <span class="math inline">\(t_{ij}\)</span> are the hopping matrix elements between sites <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>. In this language, to solve a quantum material means to diagonalize this Hamiltonian, which is to find the unitary transformation that brings it into the diagonal form</p>
 <p><span class="math display">\[H = \sum_n \epsilon_n\, \Psi_n^\dagger \Psi_n, \qquad \Psi_n^\dagger = \sum_i a_{n,i}\, c_i^\dagger.\]</span></p>
 <p>Symmetries allow us to find this diagonal form, or at least strong qualitative and quantitative properties of it, without doing the diagonalization explicitly. This is the motivation for everything in this session. We will use symmetry not to classify order, but to simplify how we solve a quantum many-body problem.</p>
 <h1 class="sec-next" id="sec-2-2"><span class="num">2.2</span> Simplifying problems with symmetry in simple examples</h1>
 <p>We have all used this method before, also outside quantum mechanics. Let us take an infinite plane with a uniform positive charge, and let us ask in which direction the electric field points at some position away from the plane. It can point straight out, or it can be tilted by some angle. We can apply a mirror symmetry that exchanges left and right. The charge distribution does not change under this reflection, so the true field must also map to itself under the same reflection. A tilted field does not pass this test, since its mirror image is tilted in the other direction, while a field that points straight out does pass it. Since the electric field at that point is unique, symmetry alone removes every answer except the one perpendicular to the plane, and we never have to compute the integral from Coulomb’s law.</p>
-<p>The same argument also works for a less simple shape. Let us replace the infinite plane by an ellipse with a uniform charge, which is an egg-shaped charge distribution, and let us ask the same question about the field at some point on its mirror axis. Mirror symmetry again gives the answer without tilt, this time with the reflection axis of the ellipse, and again without any explicit integration. Note that this only works on the mirror axis, since at a point away from it the reflection maps the point to a different point, and symmetry alone does not fix the direction there. <a href="#sch:s02:mirror_field">Schematic 2.1</a> draws both cases.</p>
+<p>The same argument also works for a less simple shape. Let us replace the infinite plane by an ellipse with a uniform charge, which is an egg-shaped charge distribution. We ask the same question about the field at some point on its mirror axis. Mirror symmetry again gives the answer without tilt, this time with the reflection axis of the ellipse, and again without any explicit integration. Note that this only works on the mirror axis. At a point away from it the reflection maps the point to a different point, and symmetry alone does not fix the direction there. <a href="#sch:s02:mirror_field">Schematic 2.2</a> draws both cases.</p>
 <figure id="sch:s02:mirror_field" class="schematic">
 <img src="../figures/web/session02/mirror_field.svg" loading="lazy" alt="A charged plane with a vertical mirror line and a field arrow, and an egg-shaped charge with a point on the mirror axis and a point off it." />
-<figcaption><strong>Schematic 2.1.</strong> The mirror argument for the electric field. In (a), a tilted field turns into a different tilted field under the mirror, so only the field perpendicular to the plane survives. In (b), the same argument works for a point on the mirror axis of an egg-shaped charge, and it fails for a point away from the axis.</figcaption>
+<figcaption><strong>Schematic 2.2.</strong> The mirror argument for the electric field. In (a), a tilted field turns into a different tilted field under the mirror, so only the field perpendicular to the plane survives. In (b), the same argument works for a point on the mirror axis of an egg-shaped charge, and it fails for a point away from the axis.</figcaption>
 </figure>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
@@ -156,6 +156,16 @@ Question
 <p>Counting the mirrors too, the square has eight symmetry operations, and four of them are rotations.</p>
 </div>
 </details>
+</div>
+<div class="comesback">
+<div class="comesback-label">
+Where this comes back
+</div>
+<ul>
+<li>In Section <a href="03-symmetry-operators-in-a-formal-way.html#sec-2-3">2.3</a> the mirror argument becomes a symmetry operator that commutes with the Hamiltonian.</li>
+<li>In Section <a href="../session3/11b-kramers-protection-of-the-helical-edge.html#sec-3-11b">3.11b</a> a symmetry does more than simplify, since time reversal protects the helical edge of a quantum spin Hall insulator.</li>
+<li>Section <a href="../session5/11-the-general-pairing-hamiltonian-and-its-symmetry-classification.html#sec-5-11">5.11</a> classifies the pairing of a superconductor by its symmetry, with the same kind of argument.</li>
+</ul>
 </div>
 
   <nav class="pager"><a href="index.html">Session 2</a><a href="03-symmetry-operators-in-a-formal-way.html">2.3 Symmetry operators in a formal way</a></nav>

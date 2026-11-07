@@ -9,7 +9,7 @@ where $p=-i\hbar\partial_x$ is the momentum operator. If $\psi$ is an eigenstate
 
 $$\varphi = \frac{a\,p}{\hbar} = k\,a, \tag{2.10}$$
 
-meaning that the symmetry eigenvalue is directly the crystal momentum $k=p/\hbar$ times the lattice constant. This is the reason why $\varphi$ is called the *quasi-momentum*. It is directly related to the momentum operator of the original Schrödinger equation, only measured in units where the lattice constant is absorbed, and it takes values in $\varphi\in(-\pi,\pi]$, which is the first Brillouin zone.
+meaning that the symmetry eigenvalue is directly the crystal momentum $k=p/\hbar$ times the lattice constant. This is the reason why $\varphi$ is called the *quasi-momentum*. It is directly related to the momentum operator of the original Schrödinger equation, only measured in units where the lattice constant is absorbed, and it takes values in $\varphi\in(-\pi,\pi]$, which is the first Brillouin zone. From Session 3 on we take $a=1$, and we write the quasi-momentum as $k$.
 
 ![The allowed phases of the ring, shown again. The balls fill the circle as the ring grows, and the circle is the range $\varphi\in(-\pi,\pi]$ of the quasi-momentum.](figures/s02f01_ringmodes.svg){alt="Rings with three sites, and phase circles with balls at the allowed phases for three and five sites."}
 
@@ -35,7 +35,7 @@ A wave $e^{ikx}$ is sampled on the sites $x=na$. How do the eigenvalues of the t
 Two values of $k$ that differ by $2\pi/a$ describe the same state on the lattice.
 :::
 
-This identification also tells us where the orthogonal basis with one orbital per site comes from, which we have used so far without saying it. The atomic orbitals of a real material, $s$, $p$, $d$, and so on, are not orthogonal between neighbouring sites. Before we write a clean tight-binding Hamiltonian, we first go to an orthogonal local basis with one orbital per site, which we obtain in a systematic way with what is called **Löwdin orthogonalization**. The contact session works this construction out properly, and here we only assume it, and the slides also call this basis "Wannier states". In this basis, symmetry alone already tells us that the eigenstates have the form $e^{in\varphi}c_n^\dagger|0\rangle$, which is the ansatz [(2.6)](#eq-2-6). This is true for a finite ring of $7$ sites, for $11$ sites, and for the infinite chain that we want in order to describe a solid. We can build the same intuition by working with finite rings that become larger and larger, before we take the limit $L\to\infty$.
+This identification also tells us where the orthogonal basis with one orbital per site comes from, which we have used so far without saying it. The atomic orbitals of a real material, $s$, $p$, $d$, and so on, are not orthogonal between neighboring sites. Before we write a clean tight-binding Hamiltonian, we first go to an orthogonal local basis with one orbital per site, which we obtain in a systematic way with what is called **Löwdin orthogonalization**. Here we only assume this construction. A basis of this kind is also called a basis of Wannier states. In this basis, symmetry alone already tells us that the eigenstates have the form $e^{in\varphi}c_n^\dagger|0\rangle$, which is the ansatz [(2.6)](#eq-2-6). This is true for a finite ring of $7$ sites, for $11$ sites, and for the infinite chain that we want in order to describe a solid. We can build the same intuition by working with finite rings that become larger and larger, before we take the limit $L\to\infty$.
 
 ::: quiz
 We describe the same chain with a lattice constant $2a$ instead of $a$. What happens to the range of $k$ in the first Brillouin zone?
@@ -53,4 +53,9 @@ We describe the same chain with a lattice constant $2a$ instead of $a$. What hap
     This is false. A ring of $100$ sites has $100$ values of $k$ in the zone of $a$, and only $50$ values in the zone of $2a$. The same number of states must fit in a smaller zone, so the range changed.
 
 A longer unit cell in real space means a smaller zone in reciprocal space.
+:::
+
+::: comesback
+- In Section [2.8](#sec-2-8) the Brillouin zone of a two-dimensional lattice is a torus, and Section [3.5](#sec-3-5) uses this to make the Chern number an integer.
+- From Session 3 on the quasi-momentum is written $k$, as in the Bloch Hamiltonian of the SSH model in Section [3.9c](#sec-3-9c).
 :::

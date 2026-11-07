@@ -84,7 +84,7 @@ they do not move when the file is edited.
 - A reference is a link to an anchor, `[(2.8)](#eq-2-8)`, `Section [2.11](#sec-2-11)`. The build points it
   to the page that holds the anchor, also in another session. If the session of the anchor is not built yet,
   the text stays without the link and `check.py` lists it as pending.
-- The box `notebookbox` is a fenced div as converted. The blocks `quiz`, `tryit`, the schematics, the figures
+- The box `notebookbox` is a fenced div as converted. The blocks `quiz`, `tryit`, `comesback`, the schematics, the figures
   shown again and the merge and split of pages are described in the next sections. The block `widget` is described in
   `widgets/README.md`.
 
@@ -250,6 +250,79 @@ shown again.".
 ![Superexchange between two sites.](figures/s06f02_dimer.svg){panel="a" alt="Two sites with parallel and with antiparallel spins."}
 ```
 
+### Where this comes back
+
+Every page ends with a small box titled "Where this comes back", which links forward to the later pages and
+sessions where the concepts of the page return. Where nothing returns, the box links the next natural step. It
+goes after the last paragraph and the last quiz or try-it box of the page. The shared list of the concepts and
+of the pages that use them is `lecture_notes/WEB_NOTES_CONCEPTS.md`.
+
+```
+::: comesback
+- In Session 4 the Landau levels are flat bands with Chern number one, in Section [4.4](#sec-4-4).
+- In Section [6.6](#sec-6-6) a flat band makes the Stoner criterion true for any interaction $U>0$.
+:::
+```
+
+The content is free Markdown, usually a short list with one sentence per item, or one short paragraph. The build
+adds the title and the class `comesback`, and `notes.css` gives it the look of the other boxes. A box without any
+link is an error of the build. A plain "Session N" counts as a link, since the build links it before it checks
+the box. The example above is on `session02/11b-flat-bands-from-the-geometry-of-the-lattice.md`.
+
+To look at the box, we build privately and take two screenshots, at the width of a laptop and of a phone. The
+window is tall, so that the box at the end of the page is in the picture.
+
+```
+python3 webnotes/build.py --out /tmp/mynotes --session 2
+for w in 1000 390; do
+  google-chrome --headless --no-sandbox --hide-scrollbars --virtual-time-budget=8000 --window-size=$w,16000 \
+    --screenshot=/tmp/box_$w.png file:///tmp/mynotes/session2/11b-flat-bands-from-the-geometry-of-the-lattice.html
+done
+```
+
+## Links to a session
+
+A plain "Session N" in the prose, with N from 1 to 10, is linked by the build to the index page of that session,
+with the right relative path, so the text writes "Session 6" and never a hand-made link. The word must be
+capitalised, and "session 6" in lowercase stays plain text. The link is not made inside a heading, a link, math
+or code, in a quiz option, which is a button, on the index page of the session itself, or for a session that
+has no manifest. "Session 4.2" and "Sessions 6 and 9" are not linked. The pass is `SessionLinks` in `filters/web.lua`, and it runs before the pass
+that resolves the anchors and renders the blocks.
+
+## The lint of the prose
+
+`lint.py` reads the Markdown of the pages and lists what does not follow `lecture_notes/writing_style.md`. It
+changes no file, it prints each hit as `file:line` with its category and a piece of the line, and at the end a
+total per category and per session. It always exits with 0, so it is a list to work through and not a check of
+the build.
+
+```
+python3 webnotes/lint.py --session 6
+python3 webnotes/lint.py --summary
+python3 webnotes/lint.py --session 6 --category residue --category punctuation
+```
+
+The checks run on the prose only. Headings, the fence lines of blocks with their attributes, display and inline
+math, code, link targets, image sources and attribute braces are removed before a line is checked, so a heading
+or an id is never reported, since both are frozen. The text of a link, a caption and the feedback of a quiz option
+are prose and are checked. The categories are the following.
+
+- `residue`, a sentence about the recording and not about the physics, "transcript", "slides", "instructor",
+  "recording", "lecturer", "spoken", "narrated", "this year", "previous editions" and "raw". The sentence is
+  deleted, and a fact that matters is kept as physics.
+- `backslash-quote`, a literal `\"` in prose, left over from the conversion.
+- `banned`, the words of `writing_style.md` and of sections 7 and 8 of `VOICE.md` ("rigorous", "it is easy to
+  see", "notably", "well-known", "today", ...), contractions and exclamation marks.
+- `exactly`, "exactly", "simply" and "precisely", printed as a warning, since they stay when they state a physics
+  fact such as an exact mapping.
+- `long-sentence`, a sentence of more than 35 words, with each math fragment counted as one word.
+- `punctuation`, a colon, a semicolon or an em-dash in prose. The fixed label `**Notebook check-in:**` of a
+  converted notebook box is not reported.
+- `session-case`, "session N" in lowercase, which the build does not link.
+- `ref-format`, "eq. [", "Eq. [", "fig. [" and "section [", which become "equation [(N.M)](#eq-N-M)" and
+  "Section [N.M](#sec-N-M)", as in `lecture_notes/WEB_NOTES_NOTATION.md`.
+- `comesback`, a page without a `::: comesback` block, the index pages included.
+
 ## Merging and splitting pages
 
 The URL of a page is its file name in the manifest, and a URL that existed must keep working.
@@ -304,6 +377,7 @@ reported as not found means the text is new or was reworded on the web.
 
 - `convert.py`, `filters/tex2md.lua`, the one-time conversion from the LaTeX.
 - `build.py`, `filters/web.lua`, `template.py`, the build, with `--out DIR` for a private build. The look is imported from `docs/build_site.py`.
+- `lint.py`, the lint of the prose of `pages/`, read-only, described above.
 - `check.py`, the checks of `docs/notes/`, which are missing files and anchors, missing images, "??", LaTeX
   left outside the math, equation numbers used twice and pages without a source in the manifest.
 - `labels.json`, the map from anchor to page, written by the first pass of the build.

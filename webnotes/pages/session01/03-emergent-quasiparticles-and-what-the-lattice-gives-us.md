@@ -8,13 +8,15 @@ Let us now state the puzzle that motivates everything that follows. All this phe
 
 - **Spinons.** These are spin-1/2 excitations without charge that live in quantum magnets, where time-reversal symmetry is *not* broken. In some sense a spinon is only the spin part of an electron, without its charge part, and this is an example of electron fractionalization that is called spin-charge separation.
 
-- **Dirac fermions.** These are electrons with a linear dispersion that look massless, and they do not come from interactions but from the geometry of the lattice, as in the standard example of the honeycomb lattice of graphene.
+- **Dirac fermions.** These are electrons with a linear dispersion that look massless. They do not come from interactions but from the geometry of the lattice, as in the honeycomb lattice of graphene.
 
-- **Vortices.** These are topological defects in the phase of a superconductor, and they are dynamical quasiparticles themselves. The same superconducting phase gives rise to flux quantization and to the Josephson effect, and these are the basis of some of our most precise measurements of the ratio between Planck's constant and the electron charge.
+- **Vortices.** These are topological defects in the phase of a superconductor, and they are dynamical quasiparticles themselves. The same superconducting phase gives rise to flux quantization and to the Josephson effect. These two effects are the basis of some of our most precise measurements of the ratio between Planck's constant and the electron charge.
 
-The summary slide of the course for this list also shows Majorana fermions, which we will meet again soon in connection with chiral superconductors, and anyons, next to these five. Anyons in particular are not discussed further in this session, neither in the slides nor in the lecture. They belong to the material on the fractional quantum Hall effect in a later session, and we mention them here only so that the name is familiar.
+![The phase of the superconducting order parameter, drawn at each point as an arrow in the complex plane. On the left the phase is the same everywhere. On the right there is one vortex. The amplitude goes to zero at the core, and along the red loop the phase winds by $2\pi$. No smooth change of the arrows can remove this winding, and this is why we call a vortex a topological defect.](figures/web/session01/vortex_phase.svg){#sch:s01:vortex_phase alt="Two square grids of arrows. In the first all arrows point to the right. In the second the arrows turn once around a central point, which is marked by a small circle inside a larger red loop."}
 
-![A magnon and a spinon, shown again from session 8. A magnon flips one spin of the ordered chain, so the total spin changes by one. A spinon carries only spin one half, and spinons are created in pairs when a singlet breaks.](figures/s08f01_magnon_spinon.svg){alt="A chain of spins with one flipped spin, and a chain of singlet pairs with two unpaired spins."}
+Two more emergent particles belong to this list. The first are Majorana fermions, which we meet in Session 5 in connection with chiral superconductors. The second are anyons, which belong to the fractional quantum Hall effect of Session 4, and we mention them here only so that the name is familiar.
+
+![A magnon and a spinon, shown again from Session 8. A magnon flips one spin of the ordered chain, so the total spin changes by one. A spinon carries only spin one half, and spinons are created in pairs when a singlet breaks.](figures/s08f01_magnon_spinon.svg){alt="A chain of spins with one flipped spin, and a chain of singlet pairs with two unpaired spins."}
 
 ::: quiz
 Breaking one singlet pair of a quantum magnet leaves two unpaired sites. What is the spin of each one?
@@ -52,4 +54,11 @@ Charge cannot propagate in a Mott insulator. Why can a magnetic Mott insulator s
     This is false. Phonons are vibrations of the atoms and they carry no spin. In a Heisenberg model with the atoms fixed there are no phonons at all, and spin still propagates as a magnon.
 
 The magnons need no motion of charge, so they exist in an insulator.
+:::
+
+::: comesback
+- Magnons are built as fluctuations of the order parameter in Section [6.13](#sec-6-13), and Section [6.15](#sec-6-15) gives their dispersion.
+- Spinons come back in Section [8.2](#sec-8-2), and the parton construction of Section [8.8](#sec-8-8) writes them as fermions.
+- The Dirac fermions of graphene are derived in Section [2.11](#sec-2-11).
+- Flux quantization and the Josephson effect are in Section [5.2](#sec-5-2), Majorana fermions in Section [5.15](#sec-5-15), and anyons in Section [4.18](#sec-4-18).
 :::

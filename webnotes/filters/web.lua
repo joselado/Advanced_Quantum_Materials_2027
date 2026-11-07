@@ -14,6 +14,10 @@
 --   "tryit"   a fenced div with notebook="..." and optionally cell="...", with the links to GitHub, Colab, Binder.
 --   "widget"  a fenced div with name="NAME" and the introduction of the widget. It becomes <div class="widget"
 --             data-widget="NAME">, and notes.js adds the sliders and the plots from widgets/NAME.json.
+--   "comesback" a fenced div with the pages and sessions where the concepts of the page return. It becomes a
+--             box titled "Where this comes back", and it must hold at least one link.
+-- Plain text "Session N" (N from 1 to 10, a built session) becomes a link to the index page of that session,
+-- except inside a heading, a link, math or code, and on the index page of that session itself.
 --   a figure with src figures/web/... is a web schematic, "Schematic N.", numbered by build.py (labels.numbers),
 --   a figure without an id is the display again of a PDF figure, with a link to the first display, and with
 --   the attribute panel="a" it is one panel of it (build.py writes figures/panel/NAME_a.svg).
@@ -237,7 +241,11 @@ function Quiz(d)
     for k = 2, #item do fb[#fb + 1] = item[k] end
     if #fb > 0 then nfb = nfb + 1 end
     fbs[i] = fb
-    opts[i] = { pandoc.Plain(first and first.content or {}) }
+    -- an option becomes a button in notes.js, so a "Session N" that the build linked stays plain text there
+    local optinl = pandoc.Inlines(first and first.content or {}):walk({ Link = function(l)
+      if l.target:match('^[%./]*session%d+/index%.html$') or l.target == 'index.html' then return l.content end
+    end })
+    opts[i] = { pandoc.Plain(optinl) }
   end
   if not correct then io.stderr:write(where .. ' has no correct option, mark one with [x]\n'); return nil end
   local perOption = nfb > 0
@@ -322,7 +330,68 @@ function Widget(d)
   return pandoc.Div(out, pandoc.Attr('', { 'widget' }, { { 'data-widget', id } }))
 end
 
+function ComesBack(d)
+  local nlinks = 0
+  d:walk({ Link = function(l) nlinks = nlinks + 1 end })
+  if nlinks == 0 then
+    io.stderr:write('a comesback box has no link, it needs at least one link to a later page or session\n')
+  end
+  local out = {
+    pandoc.Div({ pandoc.Plain({ pandoc.Str('Where this comes back') }) }, pandoc.Attr('', { 'comesback-label' })),
+  }
+  for _, b in ipairs(d.content) do out[#out + 1] = b end
+  return pandoc.Div(out, pandoc.Attr('', { 'comesback' }))
+end
+
+-- "Session N" in plain text, as Str "Session", a Space or SoftBreak, and Str "N" with punctuation after it.
+-- The pass is top-down, and a Header or a Link stops the descent, so their text is never linked. Math and Code
+-- hold no Str, so they are never touched.
+local function session_link(n, punct, prefix)
+  if not n or n < 1 or n > 10 or not built[n] then return nil end
+  local target = 'session' .. n .. '/index.html'
+  if target == page then return nil end
+  local out = {}
+  if prefix ~= '' then out[#out + 1] = pandoc.Str(prefix) end
+  out[#out + 1] = pandoc.Link({ pandoc.Str('Session ' .. n) }, relative(page, target))
+  if punct ~= '' then out[#out + 1] = pandoc.Str(punct) end
+  return out
+end
+
+local function autolink(inlines)
+  local out, i, changed = {}, 1, false
+  while i <= #inlines do
+    local a, b, c = inlines[i], inlines[i + 1], inlines[i + 2]
+    local repl = nil
+    if a.t == 'Str' and b and (b.t == 'Space' or b.t == 'SoftBreak') and c and c.t == 'Str' then
+      local prefix = a.text:match('^(%p*)Session$')
+      local num, punct = c.text:match('^(%d%d?)(%p*)$')
+      -- "Session 4.2" or "Session 4-5" is not a session reference
+      if prefix and num and not punct:match('^[%.%-]%d') then
+        repl = session_link(tonumber(num), punct, prefix)
+      end
+    end
+    if repl then
+      for _, x in ipairs(repl) do out[#out + 1] = x end
+      i = i + 3
+      changed = true
+    else
+      out[#out + 1] = a
+      i = i + 1
+    end
+  end
+  if changed then return pandoc.Inlines(out) end
+  return nil
+end
+
+local SessionLinks = {
+  traverse = 'topdown',
+  Header = function(h) return h, false end,
+  Link = function(l) return l, false end,
+  Inlines = autolink,
+}
+
 function Div(d)
+  if d.classes:includes('comesback') then return ComesBack(d) end
   if d.classes:includes('widget') then return Widget(d) end
   if d.classes:includes('quiz') then return Quiz(d) end
   if d.classes:includes('tryit') then return TryIt(d) end
@@ -332,5 +401,6 @@ end
 return {
   { Meta = Meta },
   { Div = MarkQuizFigures },
+  SessionLinks,
   { Math = Math, Link = Link, Header = Header, Figure = Figure, Div = Div },
 }

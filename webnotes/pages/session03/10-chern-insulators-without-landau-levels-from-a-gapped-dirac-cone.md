@@ -2,7 +2,7 @@
 
 Now we come back to the question from the beginning of the session. A Chern insulator needs a broken time-reversal symmetry. In fact, one can show directly from [(3.4)](#eq-3-4) that $\sigma_{xy}\equiv 0$ whenever time-reversal symmetry holds, since time reversal changes the sign of the Berry curvature. However, nothing in the derivation of the Chern number required a magnetic field or Landau levels. So the question is if we can obtain a finite Chern number from an ordinary lattice band structure, using only terms that break time-reversal symmetry and that are entirely inside the lattice itself.
 
-The method is to look for a lattice that has a **massive Dirac equation** in its low-energy expansion. Several two-dimensional lattices have massless Dirac points in their band structure, such as the honeycomb lattice, the kagome lattice and a square lattice with $\pi$-flux, and this is the same Dirac cone that we derived for graphene in session 2. Close to one such point, the low-energy Hamiltonian has the form
+The method is to look for a lattice that has a **massive Dirac equation** in its low-energy expansion. Several two-dimensional lattices have massless Dirac points in their band structure, such as the honeycomb lattice, the kagome lattice and a square lattice with $\pi$-flux. This is the same Dirac cone that we derived for graphene in Section [2.11](#sec-2-11). Close to one such point, the low-energy Hamiltonian has the form
 
 $$H(k) = k_x\,\sigma_x + \lambda\, k_y\,\sigma_y + m\,\sigma_z, \tag{3.7}$$
 
@@ -40,7 +40,7 @@ A lattice model has a single massive Dirac cone at low energy and no other state
 
 - [ ] Yes, since [(3.8)](#eq-3-8) gives the value $1/2$.
 
-    This is false. Take the two-band model with $\mathbf d=(\sin k_x,\sin k_y,m+\cos k_x+\cos k_y)$ and $m=-1.9$. It has one cone at $\Gamma$ with mass $0.1$, and its Chern number is exactly $|C|=1$. The curvature of the rest of the zone supplies the other half.
+    This is false. Take the two-band model with $\mathbf d=(\sin k_x,\sin k_y,m+\cos k_x+\cos k_y)$ and $m=-1.9$. It has one cone at $\Gamma$ with mass $0.1$, and its Chern number is $|C|=1$. The curvature of the rest of the zone supplies the other half.
 
 - [ ] No, since a single Dirac cone cannot have a gap.
 
@@ -48,7 +48,7 @@ A lattice model has a single massive Dirac cone at low energy and no other state
 
 - [x] No, since on a lattice the Chern number of a filled band is an integer, so the half of one cone is completed elsewhere in the zone.
 
-    This is true. The Chern number of a filled band on a lattice is an integer. The half of [(3.8)](#eq-3-8) is completed by the rest of the zone, either by a second cone, like $K$ and $K'$ in the honeycomb lattice, or by the massive part of the band, as in the model above.
+    This is true. The Chern number of a filled band on a lattice is an integer. The half of [(3.8)](#eq-3-8) is completed by the rest of the zone. This is either a second cone, like $K$ and $K'$ in the honeycomb lattice, or the massive part of the band, as in the model above.
 
 :::
 
@@ -56,4 +56,10 @@ This is where the choice of the mass term matters, and we will work out the two 
 
 ::: {.tryit notebook="session3.ipynb" cell="Topological states and topological invariants"}
 Run the cell with `h.add_sublattice_imbalance(0.5)` and look at the Berry curvature, which has opposite colors around K and K'. Change the value to `-0.5`. Both colors are exchanged, and `h.get_chern(nk=60)` still gives 0, as the cancellation of [(3.8)](#eq-3-8) predicts.
+:::
+
+::: comesback
+- In Section [3.10b](#sec-3-10b) the second choice of the mass term, the Haldane coupling, makes the two halves add.
+- In Section [4.10](#sec-4-10) the same Dirac Hamiltonian is put in a magnetic field, and its Landau levels include a level at zero energy.
+- In Section [8.9](#sec-8-9) the square lattice with $\pi$-flux comes back, now for spinons, with Dirac points at half filling.
 :::

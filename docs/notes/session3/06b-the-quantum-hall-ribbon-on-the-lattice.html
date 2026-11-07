@@ -52,7 +52,7 @@
   .crumb { margin: 0 0 4px; font-size: 0.95rem; }
   .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
   .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
-  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .toc .n { display: inline-block; min-width: 3.4em; padding-right: .4em; color: var(--muted); }
   .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
   figure { margin: 24px 0; }
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
@@ -84,10 +84,10 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="on" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 3. Topological Band Structure Theory</a></p>
 <h1 id="sec-3-6b"><span class="num">3.6b</span> The quantum Hall ribbon on the lattice</h1>
-<p>Let us look at a concrete model. We take a tight-binding square lattice with a perpendicular magnetic field and cut it into a ribbon of finite width, which has translational invariance along the ribbon but is finite across it. When we diagonalize this ribbon, we find the structure described above. There are flat bulk bands similar to Landau levels, and there are dispersive edge branches that cross the gap, with one branch confined to each edge and propagating in only one direction. If we look at the low-energy region close to zero energy, the spacing between the flat bands approaches the equal spacing of a continuum two-dimensional electron gas in a magnetic field, so the tight-binding model reproduces the standard Landau problem in the appropriate limit. This computed band structure, with the bulk flat bands in green and the two edge branches that propagate in opposite directions, is shown on the slides but was only described qualitatively in the lecture. To reproduce it numerically is what the notebook box below asks you to do.</p>
+<p>Let us look at a concrete model. We take a tight-binding square lattice with a perpendicular magnetic field and cut it into a ribbon of finite width, which has translational invariance along the ribbon but is finite across it. When we diagonalize this ribbon, we find the structure described above. There are flat bulk bands similar to Landau levels, and there are dispersive edge branches that cross the gap, with one branch confined to each edge and propagating in only one direction. In the low-energy region the spacing between the flat bands approaches the equal spacing of a continuum two-dimensional electron gas in a magnetic field. So the tight-binding model reproduces the Landau problem in this limit, which we solve in Section <a href="../session4/09-landau-levels-of-schrodinger-electrons.html#sec-4-9">4.9</a>. The notebook box below asks you to compute this band structure, with the flat bulk bands and the two edge branches that propagate in opposite directions.</p>
 <figure class="again panel">
 <img src="../figures/panel/s04f01_ribbon_a.svg" loading="lazy" alt="Flat Landau levels of a ribbon with the edge branches that bend up near the walls and cross the gap." />
-<figcaption><strong><a href="../session4/05-edge-states-and-why-an-insulating-bulk-still-conducts.html#fig:s04:ribbon">Figure 4.1</a>, one panel shown again.</strong> The spectrum of a quantum Hall ribbon, from session 4. The flat bulk levels are the Landau levels. The branches that bend up near the walls are the edge states, one for each edge. This panel is computed in the continuum with hard walls, and the lattice ribbon of the notebook gives the same picture. Look at the number of branches that cross the chemical potential, the translucent plane.</figcaption>
+<figcaption><strong><a href="../session4/05-edge-states-and-why-an-insulating-bulk-still-conducts.html#fig:s04:ribbon">Figure 4.1</a>, one panel shown again.</strong> The spectrum of a quantum Hall ribbon, which we compute in Section <a href="../session4/05-edge-states-and-why-an-insulating-bulk-still-conducts.html#sec-4-5">4.5</a>. The flat bulk levels are the Landau levels. The branches that bend up near the walls are the edge states, one for each edge. This panel is computed in the continuum with hard walls, and the lattice ribbon of the notebook gives the same picture. Look at the number of branches that cross the chemical potential, the translucent plane.</figcaption>
 </figure>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
@@ -125,6 +125,16 @@ Question
 <div class="tryit-links">
 Notebook <code>session3.ipynb</code>, cell “The quantum Hall effect in graphene”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session3.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session3.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession3.ipynb">Binder</a>.
 </div>
+</div>
+<div class="comesback">
+<div class="comesback-label">
+Where this comes back
+</div>
+<ul>
+<li>In Section <a href="../session4/11-numerical-check-of-the-landau-levels-and-edge-states-on-the-lattice.html#sec-4-11">4.11</a> we build the same ribbons, on the square lattice and on the honeycomb lattice, with the Peierls substitution <a href="../session4/06-quantized-hall-plateaus-in-experiment.html#eq-4-4">(4.4)</a>.</li>
+<li>In Section <a href="../session4/10-landau-levels-of-dirac-electrons.html#sec-4-10">4.10</a> the honeycomb ribbon gives the Landau levels of Dirac electrons, which grow as <span class="math inline">\(\sqrt{B}\)</span>.</li>
+<li>In Section <a href="../session4/05-edge-states-and-why-an-insulating-bulk-still-conducts.html#sec-4-5">4.5</a> the number of edge branches that cross the chemical potential is the number of filled Landau levels.</li>
+</ul>
 </div>
 
   <nav class="pager"><a href="06-landau-levels-and-chiral-edge-states-in-the-quantum-hall-state.html">3.6a Landau levels and chiral edge states in the quantum Hall state</a><a href="07-what-topology-means-for-a-hamiltonian-and-the-bulk-boundary-correspondence.html">3.7 What topology means for a Hamiltonian, and the bulk-boundary correspondence</a></nav>

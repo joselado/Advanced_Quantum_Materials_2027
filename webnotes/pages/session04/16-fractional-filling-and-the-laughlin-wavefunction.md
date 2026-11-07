@@ -6,12 +6,12 @@ The construction that satisfies the three conditions at the same time is very si
 
 $$\Psi_m(z_1,\dots,z_N) = \prod_{i<j}(z_i-z_j)^m\; \exp\!\left(-\sum_i \frac{|z_i|^2}{4\ell_B^2}\right), \tag{4.12}$$
 
-which is called the **Laughlin wavefunction**. The exponent $m$ must be an odd integer, since an even power would make the wavefunction *symmetric* and not antisymmetric under exchange, and this is not allowed for fermions. A larger exponent makes the electrons avoid each other more, since the wavefunction now vanishes to $m$-th order, and not only linearly, when two electrons are at the same point, and this is the correlation effect that we wanted. When we compute the electron density that follows from it, we obtain the filling factor
+which is called the **Laughlin wavefunction**. The exponent $m$ must be an odd integer, since an even power would make the wavefunction *symmetric* and not antisymmetric under exchange, and this is not allowed for fermions. A larger exponent makes the electrons avoid each other more, since the wavefunction now vanishes to $m$-th order, and not only linearly, when two electrons are at the same point. This is the correlation effect that we wanted. When we compute the electron density that follows from it, we obtain the filling factor
 
 $$\nu = \frac{1}{m}, \tag{4.13}$$
 
 which we can also see directly by counting. The maximum power of any single coordinate in the fully expanded polynomial [(4.12)](#eq-4-12) is $m(N-1)$, so the wavefunction uses the angular-momentum orbitals up to $m(N-1)$. This means that $N$ electrons are spread over $\approx m(N-1)+1 \approx
-mN$ available LLL orbitals, which gives a filling fraction of $N/(mN)=1/m$, in agreement with [(4.13)](#eq-4-13). So we start only from the single-particle LLL orbitals, the Pauli exclusion principle and a heuristic argument about correlations, and we arrive at the exact ground state of a strongly interacting many-body problem, which will give us fractional charge in the next section.
+mN$ available LLL orbitals, which gives a filling fraction of $N/(mN)=1/m$, in agreement with [(4.13)](#eq-4-13). So we start only from the single-particle LLL orbitals, the Pauli exclusion principle and a heuristic argument about correlations. From them we arrive at the exact ground state of a strongly interacting many-body problem, which will give us fractional charge in the next section.
 
 The statement that a larger $m$ keeps the electrons apart can be seen already for two electrons, in [](#sch:s04:laughlin_pair).
 
@@ -36,13 +36,13 @@ Why must the exponent $m$ of the Laughlin wavefunction [(4.12)](#eq-4-12) be an 
 
 ## Quasiholes and quasielectrons {#sec-4-17 number="4.17"}
 
-*From this point to the end of Section [4.18](#sec-4-18), the material has no counterpart in `session4.ipynb`. The part of the notebook for this session stops at the integer quantum Hall state, its Landau levels, and its edge and Chern-insulator physics, which are Sections [4.10](#sec-4-10), [4.11](#sec-4-11) and [4.19](#sec-4-19) below. The Laughlin wavefunction, the quasiholes and quasielectrons, and the Berry-phase argument for fractional charge and anyonic statistics come from the transcript and the slides, and there is no numerical exercise built around them.*
+*From this point to the end of Section [4.18](#sec-4-18), the material has no counterpart in `session4.ipynb`. The notebook of this session stops at the integer quantum Hall state, its Landau levels and its edge and Chern-insulator physics, which are Sections [4.10](#sec-4-10), [4.11](#sec-4-11) and [4.19](#sec-4-19). There is no numerical exercise on the quasiholes, the quasielectrons, the fractional charge or the anyonic statistics.*
 
 The excitations above the Laughlin ground state [(4.12)](#eq-4-12) also have a simple construction in these coordinates. A **quasihole** at the origin is obtained when we multiply the wavefunction by an extra overall factor $z_i$ for every electron. A quasihole at an arbitrary position $w$ is obtained instead when we insert a factor $(z_i-w)$ for each electron,
 
 $$\Psi_{\text{qh}}(w) = \prod_i (z_i-w) \; \Psi_m(z_1,\dots,z_N). \tag{4.14}$$
 
-This extra factor raises by one the effective power of every orbital. With the relation between angular momentum and radius of Section [4.15](#sec-4-15), this moves the charge density outward, away from $w$, and leaves a region with less charge there, which is the quasihole. When we repeat this construction $m$ times, at $m$ different positions, we remove in total exactly the charge of one electron, which is consistent with each quasihole having only a fraction $1/m$ of the electron charge. We will confirm this fraction directly with the Berry phase in Section [4.18](#sec-4-18). In the same language, a **quasielectron** is the inverse operation. Instead of raising the power, which we do when we multiply by $z_i-w$, we lower it, and we do this with the derivative $\partial/\partial z_i$ acting on the polynomial part instead of a multiplication. This moves charge inward instead of outward, and it gives an excitation with the opposite, negative, fractional charge.
+This extra factor raises by one the effective power of every orbital. With the relation between angular momentum and radius of Section [4.15](#sec-4-15), this moves the charge density outward, away from $w$, and leaves a region with less charge there, which is the quasihole. When we repeat this construction $m$ times, at $m$ different positions, we remove in total the charge of one electron. This is consistent with each quasihole having only a fraction $1/m$ of the electron charge. We will confirm this fraction directly with the Berry phase in Section [4.18](#sec-4-18). In the same language, a **quasielectron** is the inverse operation. Instead of raising the power, which we do when we multiply by $z_i-w$, we lower it, and we do this with the derivative $\partial/\partial z_i$ acting on the polynomial part instead of a multiplication. This moves charge inward instead of outward, and it gives an excitation with the opposite, negative, fractional charge.
 
 ![The picture of the droplet used for the quasihole. In (a) every orbital is a ring, and a larger angular momentum moves the ring outward. In (b) the Laughlin state at $\nu=1/3$ is as flat as the filled level, but it uses orbitals up to $m=3(N-1)$. A factor $(z_i-w)$ raises the angular momentum of every electron by one. Look at how this pushes charge outward, which leaves the dimple of the quasihole.](figures/s04f05_droplet.svg){alt="Nested rings of growing radius, and two flat density profiles of different radius for the filled level and for the Laughlin state."}
 
@@ -61,4 +61,10 @@ We insert a quasihole three times, at three different places, in the Laughlin st
 
     This is true. Three identical quasiholes remove the charge $e$ together, so each one has $e/3$. This agrees with $q=e/m$, which we confirm with the Berry phase in the next section.
 
+:::
+
+::: comesback
+- In Section [4.18](#sec-4-18) a Berry phase confirms the charge $e/m$ of the quasihole and gives its anyonic statistics.
+- In Section [4.20](#sec-4-20) fractional Chern states appear at zero field in twisted MoTe$_2$.
+- In Section [5.1](#sec-5-1) the fractional quantum Hall state is contrasted with a superconductor, and in Section [7.1](#sec-7-1) fractional Chern insulators are an example where mean-field theory fails.
 :::

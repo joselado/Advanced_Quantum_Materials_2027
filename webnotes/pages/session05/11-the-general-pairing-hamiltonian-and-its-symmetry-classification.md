@@ -7,7 +7,7 @@ k} = \begin{pmatrix}\Delta_{\mathbf k,\uparrow\uparrow} & \Delta_{\mathbf k,\upa
 
 $$H_{\text{pair}} = -\frac{1}{2}\sum_{\mathbf k}{}^{\prime}\, \sum_{\sigma_1\sigma_2} \left[\Delta_{\mathbf k,\sigma_1\sigma_2}\, c_{\mathbf k\sigma_1}^\dagger c_{-\mathbf k\sigma_2}^\dagger + \Delta_{\mathbf k,\sigma_1\sigma_2}^*\, c_{-\mathbf k\sigma_2} c_{\mathbf k\sigma_1}\right]. \tag{5.10}$$
 
-The real-space and reciprocal-space pictures of $\Delta$ are related by a Fourier transform, so we can also think of this order in terms of how the pair wave function looks as a function of the distance between the two paired electrons in real space. The key step is to classify superconducting order only by the *symmetry* of $\Delta_{\sigma\sigma'}(\mathbf k)$, because this symmetry alone controls how the superconductor responds to perturbations, such as disorder or magnetic fields, independently of the microscopic details.
+The real-space and reciprocal-space pictures of $\Delta$ are related by a Fourier transform. So we can also think of this order in terms of the pair wave function, as a function of the distance between the two paired electrons. The key step is to classify superconducting order only by the *symmetry* of $\Delta_{\sigma\sigma'}(\mathbf k)$. This symmetry alone controls how the superconductor responds to perturbations, such as disorder or magnetic fields, independently of the microscopic details.
 
 Fermionic antisymmetry, which comes from the fact that the operators $c_{\mathbf k\sigma}^\dagger
 c_{-\mathbf k\sigma'}^\dagger$ anticommute, imposes
@@ -21,7 +21,9 @@ $$\textbf{Spin singlet (even parity):} \quad \Delta(\mathbf k) = \Delta(-\mathbf
 
 $$\textbf{Spin triplet (odd parity):} \quad \Delta(\mathbf k) = -\Delta(-\mathbf k), \qquad \Delta_{\sigma\sigma'} = +\Delta_{\sigma'\sigma}\ \text{(spin-symmetric)}. \tag{5.12}$$
 
-For concreteness, onsite s-wave pairing, with $\Delta(\mathbf k) = \Delta$ constant, which comes from a local attractive interaction as in section [5.5](#sec-5-5), is even in $\mathbf k$, and so it is spin-singlet. This symmetry classification has a direct physical consequence. A spin-singlet superconductor is essentially insensitive to non-magnetic disorder, which is called Anderson's theorem, since the pair wave function only depends on time-reversed partners, and non-magnetic disorder preserves them. A spin-triplet superconductor, on the other hand, is strongly suppressed even by weak non-magnetic disorder, because scattering mixes the different momentum directions between which the order parameter needs to keep coherent phase relations. This is the reason why spin-singlet s-wave superconductors are much more common in nature than spin-triplet ones. Essentially every real material has some level of non-magnetic disorder, and this disorder destroys the triplet channel and leaves the singlet channel intact.
+![The pair amplitude $\Delta(r)$ of a chain, as a function of the distance $r$ between the two paired electrons. It is the Fourier transform of the $\Delta(k)$ written in grey, computed on a ring of 64 sites. An even $\Delta(k)$ gives a pair amplitude that is even in $r$. The odd $p$-wave pairing, the one of [(5.20)](#eq-5-20), gives an odd pair amplitude. This one is zero at $r=0$, so the two electrons never sit on the same site, as Pauli exclusion requires for a spin-symmetric pair.](figures/web/session05/pair_function.svg){#sch:s05:pair_function alt="Three small stem plots of the pair amplitude against the distance r. Onsite s-wave has one stem at r equal to zero, extended s-wave has two equal stems at r equal to plus and minus one, and p-wave has two stems of opposite sign at plus and minus one."}
+
+For concreteness, onsite s-wave pairing, with $\Delta(\mathbf k) = \Delta$ constant, which comes from a local attractive interaction as in Section [5.5](#sec-5-5), is even in $\mathbf k$, and so it is spin-singlet. This symmetry classification has a direct physical consequence. A spin-singlet superconductor is essentially insensitive to non-magnetic disorder, which is called Anderson's theorem, since the pair wave function only depends on time-reversed partners, and non-magnetic disorder preserves them. A spin-triplet superconductor, on the other hand, is strongly suppressed even by weak non-magnetic disorder, because scattering mixes the different momentum directions between which the order parameter needs to keep coherent phase relations. This is the reason why spin-singlet s-wave superconductors are much more common in nature than spin-triplet ones. Essentially every real material has some level of non-magnetic disorder, and this disorder destroys the triplet channel and leaves the singlet channel intact.
 
 ![The sign structure of $\Delta(\mathbf k)$ for several orders. A half turn of a panel sends $\mathbf k\to-\mathbf k$, so panels that keep their signs have even parity and panels that flip them have odd parity, as in [(5.12)](#eq-5-12).](figures/s05f03_gapsymmetry.svg){alt="Several panels of the sign of the pairing function over the Brillouin zone, with positive regions raised and negative regions sunk."}
 
@@ -39,4 +41,9 @@ A pairing function is $\Delta(\mathbf k)=\Delta_0\sin k_x$, which is odd in $\ma
 - [ ] Nothing, since the spin part is independent of $\mathbf k$.
 
     This is false. Take a constant $\Delta_0$, which is even in $\mathbf k$. The triplet combination $\sum_k(c_{k\uparrow}c_{-k\downarrow}+c_{k\downarrow}c_{-k\uparrow})$ is exactly zero, so the spin part is fixed by the parity in $\mathbf k$.
+:::
+
+::: comesback
+- In Section [5.12](#sec-5-12) we build a spin-triplet superconductor on purpose, from a magnet and an attractive interaction.
+- In Section [9.7](#sec-9-7) a non-magnetic impurity leaves the density of states of an $s$-wave superconductor almost the same, which is Anderson's theorem seen in a measurement, and a magnetic impurity does not.
 :::

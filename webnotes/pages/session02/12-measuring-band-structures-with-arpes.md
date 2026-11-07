@@ -2,7 +2,7 @@
 
 Once we have all this formalism, a natural question is whether any of it can be observed. The energy eigenvalue $E(\mathbf{k})$ is clearly physical, but the quasi-momentum $\mathbf{k}$ itself was introduced as a symmetry eigenvalue in Section [2.6](#sec-2-6). So we ask whether we can measure it directly, and whether we can measure the *relation* between the two.
 
-The answer is yes, with **angle-resolved photoemission spectroscopy (ARPES)**. The idea is simple in principle. We send photons of known energy and momentum onto a material, and each photon can remove an electron from the material completely, which is the photoelectric effect. Conservation of momentum and energy relates the momentum and kinetic energy of the electron, which are both measured directly outside the material, to its momentum and energy when it was still inside. So when we scan the emission angle and the kinetic energy of the emitted electrons, we map $E(\mathbf{k})$ directly. This is how the band structure and the Fermi surface of graphene are measured in practice, and the measured Dirac cone agrees well with the tight-binding derivation of Section [2.11](#sec-2-11). This material is only on the slides and has no counterpart in the notebook. The actual ARPES images of the measured band structure and Fermi surface of graphene are shown on the slides, and there is no way to reproduce a real photoemission experiment in a tight-binding notebook. The description above gives the physical principle, but to see the measured data itself one needs the figure.
+The answer is yes, with **angle-resolved photoemission spectroscopy (ARPES)**. The idea is simple in principle. We send photons of known energy and momentum onto a material, and each photon can remove an electron from the material completely, which is the photoelectric effect. Conservation of momentum and energy relates the momentum and kinetic energy of the electron, which are both measured directly outside the material, to its momentum and energy when it was still inside. So when we scan the emission angle and the kinetic energy of the emitted electrons, we map $E(\mathbf{k})$ directly. This is how the band structure and the Fermi surface of graphene are measured in practice, and the measured Dirac cone agrees well with the tight-binding derivation of Section [2.11](#sec-2-11).
 
 The component of the momentum along the surface does not change when the electron leaves the material, so $\hbar k_\parallel=\sqrt{2mE_\text{kin}}\,\sin\theta$ for an emission angle $\theta$. [](#sch:s02:arpes_geometry) shows the geometry and this relation.
 
@@ -30,20 +30,22 @@ The angle gives the momentum along the surface, and the energy gives the band.
 
 ## Closing summary {#sec-2-13 number="2.13"}
 
-- **Symmetry as a tool to simplify.** When the ground state shares the symmetry of the Hamiltonian, we can use a symmetry operator that commutes with it, $[H,S]=0$ in [(2.3)](#eq-2-3), and find the eigenbasis of $H$ by finding the eigenbasis of $S$ instead. We worked this out explicitly for rings of three and five sites in Section [2.4](#sec-2-4).
+From Session 1 this session used the single-particle part of the Hamiltonian [(1.5)](#eq-1-5), the hopping of second quantization, with the interactions left aside or already treated in mean field as in Section [1.12](#sec-1-12). With it we saw the following.
 
-- **Bloch's theorem** is this same idea applied to translational symmetry on an infinite lattice. Eigenstates have a definite phase $\varphi$ under translation, which is the quasi-momentum of [(2.10)](#eq-2-10), and this turns one infinite-dimensional diagonalization into a continuous family of finite ones, given by the **Bloch Hamiltonian** $H(\varphi)$.
+- **Symmetry as a tool to simplify.** When the ground state shares the symmetry of the Hamiltonian, we can use a symmetry operator that commutes with it, $[H,S]=0$ in [(2.3)](#eq-2-3). We then find the eigenbasis of $H$ by finding the eigenbasis of $S$ instead, as we did for rings of three and five sites in Section [2.4](#sec-2-4).
 
-- We derived the band structure of the one-dimensional chain explicitly, $\epsilon_\varphi=-2t\cos\varphi$ in [(2.8)](#eq-2-8). We generalized the same method to second-neighbour hopping [(2.9)](#eq-2-9), to several orbitals per unit cell with the matrix Bloch Hamiltonian $H(\varphi)=t+\gamma e^{i\varphi}+\gamma^\dagger e^{-i\varphi}$ in [(2.12)](#eq-2-12)-[(2.13)](#eq-2-13), and to higher spatial dimensions, [(2.14)](#eq-2-14) and [(2.15)](#eq-2-15).
+- **Bloch's theorem** is this same idea applied to translational symmetry on an infinite lattice. Eigenstates have a definite phase $\varphi$ under translation, which is the quasi-momentum of [(2.10)](#eq-2-10). This turns one infinite-dimensional diagonalization into a continuous family of finite ones, given by the **Bloch Hamiltonian** $H(\varphi)$.
+
+- We derived the band structure of the one-dimensional chain explicitly, $\epsilon_\varphi=-2t\cos\varphi$ in [(2.8)](#eq-2-8). We generalized the same method to second-neighbor hopping [(2.9)](#eq-2-9), to several orbitals per unit cell with the matrix Bloch Hamiltonian $H(\varphi)=t+\gamma e^{i\varphi}+\gamma^\dagger e^{-i\varphi}$ in [(2.12)](#eq-2-12) and [(2.13)](#eq-2-13), and to higher spatial dimensions, [(2.14)](#eq-2-14) and [(2.15)](#eq-2-15).
 
 - A dispersion $E(\mathbf{k})$ directly determines the measurable properties of a material, which are the density of states [(2.16)](#eq-2-16), the group velocity [(2.17)](#eq-2-17), the effective mass [(2.18)](#eq-2-18) and the Fermi surface. Every real dispersion is built locally from three types, which are parabolic, Dirac and flat.
 
 - The **Dirac cone** of the honeycomb lattice of graphene, $H(\mathbf{q})\approx\hbar v_F(q_x\sigma_x+
-    q_y\sigma_y)$ with $E_\pm=\pm\hbar v_F|\mathbf{q}|$ in [(2.20)](#eq-2-20)-[(2.21)](#eq-2-21), is the most important example of this session. We derived it directly from the vanishing of the off-diagonal Bloch Hamiltonian [(2.19)](#eq-2-19) at the points $K,K'$. The Lieb and kagome lattices realize flat bands with the same kind of interference in real space, and with no fine-tuning.
+    q_y\sigma_y)$ with $E_\pm=\pm\hbar v_F|\mathbf{q}|$ in [(2.20)](#eq-2-20) and [(2.21)](#eq-2-21), is the most important example of this session. We derived it directly from the vanishing of the off-diagonal Bloch Hamiltonian [(2.19)](#eq-2-19) at the points $K,K'$. The Lieb and kagome lattices realize flat bands with interference in real space, and with no fine-tuning.
 
-- All of this band-structure method generalizes directly to phonons, magnons and Bogoliubov-de Gennes quasiparticles, and not only to electrons, and it is tested against real materials in experiments with ARPES.
+- All of this band-structure method generalizes directly to phonons, magnons and Bogoliubov-de Gennes quasiparticles, and not only to electrons. It is tested against real materials in experiments with ARPES.
 
-The main message of this session is the following. The spectra of periodic systems are computed with band-structure theory, by choosing the common eigenbasis of the symmetry operator and the Hamiltonian, and the resulting dispersion relation $E(\mathbf{k})$ alone determines many of the electronic properties of a material, before interactions are included again. The Dirac cone that we derived in Section [2.11](#sec-2-11) is not only a fact about graphene. It is the object that the next session takes up, where we ask what happens when it is gapped open, and this is where topological band structure, Chern numbers and the SSH model, which we already saw in the two-orbital chain of [(2.13)](#eq-2-13), enter the course in detail. The flat bands are also not the end of the topic. The kagome and Lieb constructions of this session lead directly to the flat bands of the Landau levels, which the quantum Hall session builds several sessions from now.
+The spectra of periodic systems are computed with band-structure theory, by choosing the common eigenbasis of the symmetry operator and the Hamiltonian. The dispersion relation $E(\mathbf{k})$ alone then determines many of the electronic properties of a material, before interactions are included again.
 
 ::: quiz
 A unit cell has four orbitals. What is the size of $H(\varphi)$, and how many bands do we get?
@@ -61,4 +63,12 @@ A unit cell has four orbitals. What is the size of $H(\varphi)$, and how many ba
     This is false. Take the uniform chain with a cell of four sites. At $\varphi=0$ the four eigenvalues are $-2t$, $0$, $0$ and $2t$, so there are four bands and not one.
 
 The size of the Bloch Hamiltonian is the number of orbitals in the cell.
+:::
+
+::: comesback
+- In Session 3 the Dirac cone of Section [2.11](#sec-2-11) is gapped, which gives the Chern insulator of Section [3.10](#sec-3-10). The two-orbital chain of [(2.13)](#eq-2-13) becomes the SSH model of Section [3.9](#sec-3-9).
+- The Bloch Hamiltonian is the object whose Berry curvature gives the Chern number in Section [3.5](#sec-3-5).
+- The flat bands of this session lead to the Landau levels of Session 4, which are flat bands with Chern number one in Section [4.4](#sec-4-4).
+- The density of states at the Fermi level decides the Stoner criterion of Section [6.6](#sec-6-6), and nesting drives the instabilities of Section [9.4b](#sec-9-4b).
+- In Section [10.7](#sec-10-7) an ARPES spectrum is one of the observables from which a Hamiltonian is learned.
 :::

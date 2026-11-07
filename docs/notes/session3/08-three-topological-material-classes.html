@@ -52,7 +52,7 @@
   .crumb { margin: 0 0 4px; font-size: 0.95rem; }
   .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
   .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
-  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .toc .n { display: inline-block; min-width: 3.4em; padding-right: .4em; color: var(--muted); }
   .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
   figure { margin: 24px 0; }
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
@@ -88,7 +88,7 @@
 <ul>
 <li><p><strong>Chern insulators.</strong> They have a bulk Chern number <span class="math inline">\(C \neq 0\)</span> and chiral edge states, and time-reversal symmetry is necessarily broken, since we will see in Section <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#sec-3-10">3.10</a> that time-reversal symmetry forces <span class="math inline">\(\sigma_{xy}=0\)</span>. Without a backscattering channel there are no electrical losses at the edge, which makes them an attractive platform for dissipationless electronics.</p></li>
 <li><p><strong>Quantum spin Hall insulators.</strong> They are two copies of a Chern insulator, one for each spin, with opposite Chern numbers, so the net Chern number vanishes and time-reversal symmetry is preserved. However, the edge states are <strong>helical</strong>, meaning that spin-up and spin-down propagate in opposite directions along the same edge. This is the natural platform for dissipationless spin transport, which is spintronics.</p></li>
-<li><p><strong>Topological superconductors.</strong> They combine a bulk superconducting gap with gapless surface excitations that are their own antiparticle, which are called Majorana excitations. Since the corresponding quantum information is stored non-locally, the usual local decoherence channels do not act on it directly, and this is the basis of topological quantum computing. We will build the minimal model for this case, the Kitaev chain, in session 5, and we will see there that it is exactly the same model as the one that we construct next.</p></li>
+<li><p><strong>Topological superconductors.</strong> They combine a bulk superconducting gap with gapless surface excitations that are their own antiparticle, which are called Majorana excitations. Since the corresponding quantum information is stored non-locally, the usual local decoherence channels do not act on it directly, and this is the basis of topological quantum computing. We will build the minimal model for this case, the Kitaev chain, in Section <a href="../session5/16-the-kitaev-chain-as-the-minimal-model-with-isolated-majoranas.html#sec-5-16">5.16</a>. There we will see that, written with Majorana operators, it has the same form as the chain that we construct next.</p></li>
 </ul>
 <figure class="again">
 <img src="../figures/s03f06_helical.svg" loading="lazy" alt="Edge branches inside the bulk gap, one branch for a Chern insulator and two opposite branches for a quantum spin Hall insulator." />
@@ -122,8 +122,8 @@ Question
 </details>
 </div>
 <h1 class="sec-next" id="sec-3-9"><span class="num">3.9a</span> The SSH model as a minimal one-dimensional topological insulator</h1>
-<p>We now build the simplest model that shows this physics explicitly, which is the Su-Schrieffer-Heeger (SSH) chain. It looks too simple to be useful, but we should take it seriously, also because the simplest model for a topological superconductor, the Kitaev chain, is exactly this model written in terms of Majorana operators.</p>
-<p>We take a one-dimensional lattice with two sites per unit cell, <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, and two hopping amplitudes. The first one is an intracell hopping <span class="math inline">\(t\)</span>, within a unit cell, and the second one is an intercell hopping fixed to <span class="math inline">\(1\)</span>, between neighboring unit cells. Let us first take the extreme limit in which the intracell hopping dominates, <span class="math inline">\(t \gg 1\)</span>, so that the chain is fully dimerized with alternating bonds. Strong bonds of strength <span class="math inline">\(t\)</span> couple the sites <span class="math inline">\((0,1)\)</span>, <span class="math inline">\((2,3)\)</span>, <span class="math inline">\((4,5)\)</span>, … and the coupling between <span class="math inline">\((1,2)\)</span>, <span class="math inline">\((3,4)\)</span>, …is negligible. Each dimer is then an isolated two-level system with bonding and antibonding eigenstates at energies <span class="math inline">\(\pm t\)</span>. The spectrum of the whole chain is this pair of levels repeated once for each dimer, and there is nothing at zero energy.</p>
+<p>We now build the simplest model that shows this physics explicitly, which is the Su-Schrieffer-Heeger (SSH) chain. We already met it as the two-orbital chain of <a href="../session2/07-multi-orbital-band-structures.html#eq-2-13">(2.13)</a> in Section <a href="../session2/07-multi-orbital-band-structures.html#sec-2-7">2.7</a>. It looks too simple to be useful, but we should take it seriously. One reason is that the simplest model for a topological superconductor, the Kitaev chain, has the form of this model when we write it with Majorana operators.</p>
+<p>We take a one-dimensional lattice with two sites per unit cell, <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, and two hopping amplitudes. The first one is an intracell hopping <span class="math inline">\(t\)</span>, within a unit cell, and the second one is an intercell hopping fixed to <span class="math inline">\(1\)</span>, between neighboring unit cells. Let us first take the extreme limit in which the intracell hopping dominates, <span class="math inline">\(t \gg 1\)</span>, so that the chain is fully dimerized with alternating bonds. Strong bonds of strength <span class="math inline">\(t\)</span> couple the sites <span class="math inline">\((0,1)\)</span>, <span class="math inline">\((2,3)\)</span>, <span class="math inline">\((4,5)\)</span>, …, and the coupling between <span class="math inline">\((1,2)\)</span>, <span class="math inline">\((3,4)\)</span>, … is negligible. Each dimer is then an isolated two-level system with bonding and antibonding eigenstates at energies <span class="math inline">\(\pm t\)</span>. The spectrum of the whole chain is this pair of levels repeated once for each dimer, and there is nothing at zero energy.</p>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
@@ -161,6 +161,16 @@ Interactive
 </div>
 <p>Move the intracell hopping <span class="math inline">\(t\)</span> of <a href="09c-the-ssh-model-the-bloch-hamiltonian-and-the-zak-phase.html#eq-3-5">(3.5)</a>, with the intercell hopping equal to one. The left panel shows <span class="math inline">\(d(k)=t+e^{ik}\)</span> in the complex plane, and the right panel shows the levels of an open chain with 20 cells. For <span class="math inline">\(t&lt;1\)</span> the curve encloses the origin, the winding is one, and two levels sit in the gap, one at each end. For <span class="math inline">\(t&gt;1\)</span> the curve does not enclose the origin and the gap is empty. At <span class="math inline">\(t=1\)</span> the curve touches the origin and the gap closes.</p>
 <noscript><p class="widget-nojs">This widget needs JavaScript.</p></noscript>
+</div>
+<div class="comesback">
+<div class="comesback-label">
+Where this comes back
+</div>
+<ul>
+<li>In Section <a href="../session4/20-real-materials-realizing-chern-and-fractional-chern-physics.html#sec-4-20">4.20</a> the Chern insulator at zero field comes back in real materials, Cr-doped (Bi,Sb)<span class="math inline">\(_2\)</span>Te<span class="math inline">\(_3\)</span> and twisted graphene on boron nitride.</li>
+<li>In Section <a href="../session5/16-the-kitaev-chain-as-the-minimal-model-with-isolated-majoranas.html#sec-5-16">5.16</a> the Kitaev chain, written with Majorana operators, has the form of the SSH chain, and in Section <a href="../session5/18-engineering-a-topological-superconductor-from-a-quantum-spin-hall-insulator.html#sec-5-18">5.18</a> a topological superconductor is built from a quantum spin Hall insulator.</li>
+<li>In Section <a href="../session9/08-impurities-as-diagnostics-iii-vacancies-in-topological-matter.html#sec-9-8">9.8</a> a vacancy binds an in-gap mode in a Chern insulator of the Haldane model and in a chiral p-wave superconductor, but not in a trivial insulator with the same gap.</li>
+</ul>
 </div>
 
   <nav class="pager"><a href="07-what-topology-means-for-a-hamiltonian-and-the-bulk-boundary-correspondence.html">3.7 What topology means for a Hamiltonian, and the bulk-boundary correspondence</a><a href="09b-the-ssh-chain-in-the-opposite-limit-and-the-zero-modes.html">3.9b The SSH chain in the opposite limit and the zero modes</a></nav>

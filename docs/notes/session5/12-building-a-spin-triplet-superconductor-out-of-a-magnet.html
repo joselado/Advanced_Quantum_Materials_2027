@@ -52,7 +52,7 @@
   .crumb { margin: 0 0 4px; font-size: 0.95rem; }
   .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
   .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
-  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .toc .n { display: inline-block; min-width: 3.4em; padding-right: .4em; color: var(--muted); }
   .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
   figure { margin: 24px 0; }
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
@@ -89,7 +89,7 @@
 <p>If we solve it self-consistently at the mean-field level, both order parameters, the ferromagnetic exchange field and the pairing amplitude, can be nonzero at the same time. The ground state then breaks both time-reversal symmetry, since it is magnetic, <em>and</em> gauge symmetry, since it is superconducting. The pairing that survives is necessarily spin-triplet, because the exchange field explicitly splits the <span class="math inline">\(\uparrow\)</span> and <span class="math inline">\(\downarrow\)</span> Fermi surfaces, and in this way it suppresses the singlet channel, which needs them to be degenerate. Physically, s-wave singlet pairing is usually the leading instability because it can gap the <em>entire</em> Fermi surface, which gives the largest condensation energy. When the exchange field suppresses this channel, a different pairing channel becomes the leading instability instead, which here is the odd-parity, spin-triplet channel, which is effectively p-wave.</p>
 <figure id="sch:s05:spin_split_pairing" class="schematic">
 <img src="../figures/web/session05/spin_split_pairing.svg" loading="lazy" alt="Two cosine bands for spin up and spin down, shifted in energy, with the Fermi points of each marked and an arrow of size 2h between the two bands at the Fermi momentum of spin up." />
-<figcaption><strong>Schematic 5.5.</strong> A chain with an exchange field <span class="math inline">\(h\)</span>. The bands of the two spins are shifted by <span class="math inline">\(\mp h\)</span>, so their Fermi momenta differ. A pair of two <span class="math inline">\(\uparrow\)</span> electrons sits on one Fermi surface, while the <span class="math inline">\(\downarrow\)</span> partner of an <span class="math inline">\(\uparrow\)</span> electron at <span class="math inline">\(k_{F\uparrow}\)</span> sits <span class="math inline">\(2h\)</span> above the Fermi level.</figcaption>
+<figcaption><strong>Schematic 5.8.</strong> A chain with an exchange field <span class="math inline">\(h\)</span>. The bands of the two spins are shifted by <span class="math inline">\(\mp h\)</span>, so their Fermi momenta differ. A pair of two <span class="math inline">\(\uparrow\)</span> electrons sits on one Fermi surface, while the <span class="math inline">\(\downarrow\)</span> partner of an <span class="math inline">\(\uparrow\)</span> electron at <span class="math inline">\(k_{F\uparrow}\)</span> sits <span class="math inline">\(2h\)</span> above the Fermi level.</figcaption>
 </figure>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
@@ -118,16 +118,26 @@ Question
 </div>
 </details>
 </div>
-<p>The most interesting feature of this state appears when we put it on a finite ribbon instead of an infinite plane. The bulk spectrum is gapped, as we expect for a superconductor, but the edges of the ribbon have gapless excitations. A superconductor that is fully gapped in the bulk and gapless at the edge is a signature that we already know from the topological-band-structure and quantum-Hall sessions. Indeed, these edge modes have a topological origin, and they are tied to a finite Chern number of the underlying BdG band structure, in the same way as the edge states of a Chern insulator were tied to its Chern number.</p>
+<p>The most interesting feature of this state appears when we put it on a finite ribbon instead of an infinite plane. The bulk spectrum is gapped, as we expect for a superconductor, but the edges of the ribbon have gapless excitations. A superconductor that is fully gapped in the bulk and gapless at the edge is a signature that we already know from <a href="../session3/index.html">Session 3</a> and <a href="../session4/index.html">Session 4</a>, through the bulk-boundary correspondence of Section <a href="../session3/07-what-topology-means-for-a-hamiltonian-and-the-bulk-boundary-correspondence.html#sec-3-7">3.7</a>. These edge modes have a topological origin. They are tied to a finite Chern number of the BdG band structure, in the same way as the edge states of a Chern insulator are tied to its Chern number <a href="../session3/05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#eq-3-4">(3.4)</a>.</p>
 <div class="notebookbox">
-<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb"><code>session5.ipynb</code></a>, “The impact of a spin splitting in an electronic structure” (Reminder), “A spin triplet superconductor” (Core), “Majorana modes in a spin triplet superconductor” (Challenge), “Interaction-induced spin-triplet superconductivity” (Challenge), and “Topological modes in interaction-driven spin triplet superconductors”</p>
-<p>Start from the plain spin-split band structure, with only an exchange field, to build intuition. Then run the self-consistency loop for the model above and check that a spin-triplet <span class="math inline">\(\Delta\)</span> emerges. Move to a ribbon geometry and find the gapless edge modes described here, and then, in the later challenge sections of the notebook, connect them to the Majorana physics of sections <a href="15-majorana-bound-states-and-how-to-split-an-electron-into-two-majoranas.html#sec-5-15">5.15</a>-<a href="17-topological-zero-modes-with-periodic-and-open-boundaries.html#sec-5-17">5.17</a>.</p>
+<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb"><code>session5.ipynb</code></a>, “The impact of a spin splitting in an electronic structure” (Reminder), “A spin triplet superconductor” (Core) and “Majorana modes in a spin triplet superconductor” (Challenge). The notebook goes further in “Interaction-induced spin-triplet superconductivity” (Challenge) and “Topological modes in interaction-driven spin triplet superconductors”.</p>
+<p>Start from the plain spin-split band structure, with only an exchange field, to build intuition. Then run the self-consistency loop for the model above and check that a spin-triplet <span class="math inline">\(\Delta\)</span> emerges. Move to a ribbon geometry and find the gapless edge modes described here, and then, in the later challenge sections of the notebook, connect them to the Majorana physics of Section <a href="15-majorana-bound-states-and-how-to-split-an-electron-into-two-majoranas.html#sec-5-15">5.15</a> to Section <a href="17-topological-zero-modes-with-periodic-and-open-boundaries.html#sec-5-17">5.17</a>.</p>
 </div>
 <div class="tryit">
 <p><strong>Try it.</strong> In the cell, the line <code>h.add_exchange([0.,0.,1.0])</code> splits the two spin bands of the chain. Change <code>1.0</code> to <code>2.0</code>. The two bands move apart from 2 to 4 at a fixed momentum, so each spin has its own Fermi momentum.</p>
 <div class="tryit-links">
 Notebook <code>session5.ipynb</code>, cell “The impact of a spin splitting in an electronic structure”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession5.ipynb">Binder</a>.
 </div>
+</div>
+<div class="comesback">
+<div class="comesback-label">
+Where this comes back
+</div>
+<ul>
+<li>In Section <a href="14-same-gap-and-different-topology-in-trivial-s-wave-and-chiral-p-wave-pairing.html#sec-5-14">5.14</a> we compute the Chern number of the BdG bands and see why a chiral <span class="math inline">\(p\)</span>-wave superconductor has edge modes.</li>
+<li>In Section <a href="18-engineering-a-topological-superconductor-from-a-quantum-spin-hall-insulator.html#sec-5-18">5.18</a> a magnet and an <span class="math inline">\(s\)</span>-wave superconductor are put together again, on the helical edge of a quantum spin Hall insulator, to give Majorana zero modes.</li>
+<li>In Section <a href="../session9/08-impurities-as-diagnostics-iii-vacancies-in-topological-matter.html#sec-9-8">9.8</a> a vacancy in a chiral spin-triplet superconductor hosts a mode inside the gap, because of the same Chern number.</li>
+</ul>
 </div>
 
   <nav class="pager"><a href="11-the-general-pairing-hamiltonian-and-its-symmetry-classification.html">5.11 The general pairing Hamiltonian and its symmetry classification</a><a href="13-nodal-singlet-order-d-wave-pairing-in-the-cuprates-and-the-angular-momentum-expansion.html">5.13 Nodal singlet order, d-wave pairing in the cuprates and the angular-momentum expansion</a></nav>

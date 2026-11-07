@@ -52,7 +52,7 @@
   .crumb { margin: 0 0 4px; font-size: 0.95rem; }
   .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
   .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
-  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .toc .n { display: inline-block; min-width: 3.4em; padding-right: .4em; color: var(--muted); }
   .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
   figure { margin: 24px 0; }
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
@@ -89,15 +89,15 @@
 = e^{a\partial_x}\psi(x) = e^{\frac{i}{\hbar}ap}\,\psi(x),\]</span></p>
 <p>where <span class="math inline">\(p=-i\hbar\partial_x\)</span> is the momentum operator. If <span class="math inline">\(\psi\)</span> is an eigenstate of the translation operator with eigenvalue <span class="math inline">\(e^{i\varphi}\)</span>, when we compare the two expressions we find</p>
 <p><span id="eq-2-10" class="eq"><span class="math display">\[\varphi = \frac{a\,p}{\hbar} = k\,a, \tag{2.10}\]</span></span></p>
-<p>meaning that the symmetry eigenvalue is directly the crystal momentum <span class="math inline">\(k=p/\hbar\)</span> times the lattice constant. This is the reason why <span class="math inline">\(\varphi\)</span> is called the <em>quasi-momentum</em>. It is directly related to the momentum operator of the original Schrödinger equation, only measured in units where the lattice constant is absorbed, and it takes values in <span class="math inline">\(\varphi\in(-\pi,\pi]\)</span>, which is the first Brillouin zone.</p>
+<p>meaning that the symmetry eigenvalue is directly the crystal momentum <span class="math inline">\(k=p/\hbar\)</span> times the lattice constant. This is the reason why <span class="math inline">\(\varphi\)</span> is called the <em>quasi-momentum</em>. It is directly related to the momentum operator of the original Schrödinger equation, only measured in units where the lattice constant is absorbed, and it takes values in <span class="math inline">\(\varphi\in(-\pi,\pi]\)</span>, which is the first Brillouin zone. From <a href="../session3/index.html">Session 3</a> on we take <span class="math inline">\(a=1\)</span>, and we write the quasi-momentum as <span class="math inline">\(k\)</span>.</p>
 <figure class="again">
 <img src="../figures/s02f01_ringmodes.svg" loading="lazy" alt="Rings with three sites, and phase circles with balls at the allowed phases for three and five sites." />
 <figcaption><strong><a href="04-exercises-where-we-guess-eigenstates-from-symmetry-only.html#fig:s02:ring">Figure 2.1</a>, shown again.</strong> The allowed phases of the ring, shown again. The balls fill the circle as the ring grows, and the circle is the range <span class="math inline">\(\varphi\in(-\pi,\pi]\)</span> of the quasi-momentum.</figcaption>
 </figure>
-<p>The reason why <span class="math inline">\(\varphi\)</span> is defined only up to <span class="math inline">\(2\pi\)</span> can be seen directly on the sites of the chain, as we will now see in <a href="#sch:s02:aliasing">Schematic 2.4</a>.</p>
+<p>The reason why <span class="math inline">\(\varphi\)</span> is defined only up to <span class="math inline">\(2\pi\)</span> can be seen directly on the sites of the chain, as we will now see in <a href="#sch:s02:aliasing">Schematic 2.7</a>.</p>
 <figure id="sch:s02:aliasing" class="schematic">
 <img src="../figures/web/session02/aliasing.svg" loading="lazy" alt="A slow cosine and a fast cosine that pass through the same dots at the integer positions of the chain." />
-<figcaption><strong>Schematic 2.4.</strong> Two waves with <span class="math inline">\(k=0.5/a\)</span> and <span class="math inline">\(k+2\pi/a\)</span>, for <span class="math inline">\(a=1\)</span>. They take the same value on every site, which are the dots, so on the lattice they are one state. The wave with the larger <span class="math inline">\(k\)</span> oscillates between the sites, where there are no atoms.</figcaption>
+<figcaption><strong>Schematic 2.7.</strong> Two waves with <span class="math inline">\(k=0.5/a\)</span> and <span class="math inline">\(k+2\pi/a\)</span>, for <span class="math inline">\(a=1\)</span>. They take the same value on every site, which are the dots, so on the lattice they are one state. The wave with the larger <span class="math inline">\(k\)</span> oscillates between the sites, where there are no atoms.</figcaption>
 </figure>
 <div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
@@ -129,7 +129,7 @@ Question
 </div>
 </details>
 </div>
-<p>This identification also tells us where the orthogonal basis with one orbital per site comes from, which we have used so far without saying it. The atomic orbitals of a real material, <span class="math inline">\(s\)</span>, <span class="math inline">\(p\)</span>, <span class="math inline">\(d\)</span>, and so on, are not orthogonal between neighbouring sites. Before we write a clean tight-binding Hamiltonian, we first go to an orthogonal local basis with one orbital per site, which we obtain in a systematic way with what is called <strong>Löwdin orthogonalization</strong>. The contact session works this construction out properly, and here we only assume it, and the slides also call this basis “Wannier states”. In this basis, symmetry alone already tells us that the eigenstates have the form <span class="math inline">\(e^{in\varphi}c_n^\dagger|0\rangle\)</span>, which is the ansatz <a href="05-blochs-theorem-and-the-first-band-structure.html#eq-2-6">(2.6)</a>. This is true for a finite ring of <span class="math inline">\(7\)</span> sites, for <span class="math inline">\(11\)</span> sites, and for the infinite chain that we want in order to describe a solid. We can build the same intuition by working with finite rings that become larger and larger, before we take the limit <span class="math inline">\(L\to\infty\)</span>.</p>
+<p>This identification also tells us where the orthogonal basis with one orbital per site comes from, which we have used so far without saying it. The atomic orbitals of a real material, <span class="math inline">\(s\)</span>, <span class="math inline">\(p\)</span>, <span class="math inline">\(d\)</span>, and so on, are not orthogonal between neighboring sites. Before we write a clean tight-binding Hamiltonian, we first go to an orthogonal local basis with one orbital per site, which we obtain in a systematic way with what is called <strong>Löwdin orthogonalization</strong>. Here we only assume this construction. A basis of this kind is also called a basis of Wannier states. In this basis, symmetry alone already tells us that the eigenstates have the form <span class="math inline">\(e^{in\varphi}c_n^\dagger|0\rangle\)</span>, which is the ansatz <a href="05-blochs-theorem-and-the-first-band-structure.html#eq-2-6">(2.6)</a>. This is true for a finite ring of <span class="math inline">\(7\)</span> sites, for <span class="math inline">\(11\)</span> sites, and for the infinite chain that we want in order to describe a solid. We can build the same intuition by working with finite rings that become larger and larger, before we take the limit <span class="math inline">\(L\to\infty\)</span>.</p>
 <div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
 Question
@@ -159,6 +159,15 @@ Question
 <p>A longer unit cell in real space means a smaller zone in reciprocal space.</p>
 </div>
 </details>
+</div>
+<div class="comesback">
+<div class="comesback-label">
+Where this comes back
+</div>
+<ul>
+<li>In Section <a href="08-higher-dimensional-band-structures.html#sec-2-8">2.8</a> the Brillouin zone of a two-dimensional lattice is a torus, and Section <a href="../session3/05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#sec-3-5">3.5</a> uses this to make the Chern number an integer.</li>
+<li>From <a href="../session3/index.html">Session 3</a> on the quasi-momentum is written <span class="math inline">\(k\)</span>, as in the Bloch Hamiltonian of the SSH model in Section <a href="../session3/09c-the-ssh-model-the-bloch-hamiltonian-and-the-zak-phase.html#sec-3-9c">3.9c</a>.</li>
+</ul>
 </div>
 
   <nav class="pager"><a href="05-blochs-theorem-and-the-first-band-structure.html">2.5 Bloch's theorem and the first band structure</a><a href="07-multi-orbital-band-structures.html">2.7 Multi-orbital band structures</a></nav>

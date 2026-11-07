@@ -2,9 +2,9 @@
 
 To see why a bulk band structure can have an invariant at all, we need a tool that connects the wavefunctions of a Hamiltonian to something that we can measure. This tool is linear response theory, and the idea behind it is very general. We perturb the system at a position $x$ and time $t$, and then we measure an observable, such as the charge, the current, the magnetization or the heat, at another position $x'$ and time $t'$. Linear response theory tells us that this measured response depends only on the electronic structure of the unperturbed material.
 
-Before we specialize to the Hall conductivity, let us look at two examples. Let us put an impurity in a two-dimensional metal and look at how the electron density, or the local density of states, is modulated around it. Linear response theory shows that this modulation pattern, which is called the Friedel oscillation, directly contains the Fermi wavelength of the electron gas, and this is what scanning tunneling microscopy uses in practice. In a similar way, when we scatter neutrons on a magnetic material, the magnetic moment of the neutron couples to the local moments in the sample. The resulting scattering pattern gives both the magnetic structure and its excitations, in particular magnons. Both examples are illustrations that appear only on the slides, in the sense that the figures of the Friedel oscillation and of neutron scattering were shown on screen without a full explanation. However, the physics of both examples was explained in the lecture, and it is useful to keep it in mind as the general result of the formalism that we build next.
+Before we specialize to the Hall conductivity, let us look at two examples. Let us put an impurity in a two-dimensional metal and look at how the electron density, or the local density of states, is modulated around it. Linear response theory shows that this modulation pattern, which is called the Friedel oscillation, directly contains the Fermi wavelength of the electron gas, and this is what scanning tunneling microscopy uses in practice. In a similar way, when we scatter neutrons on a magnetic material, the magnetic moment of the neutron couples to the local moments in the sample. The resulting scattering pattern gives both the magnetic structure and its excitations, in particular magnons, which we build in Section [6.13](#sec-6-13). It is useful to keep both examples in mind as the general result of the formalism that we build next.
 
-![The origin of the Friedel oscillation, which is the response of a metal to an impurity. In (a) the vector $2k_F$ connects the two Fermi points of a chain. In (b) the static response has its peak at this vector, so the density around the impurity oscillates with the wavevector $2k_F$. We derive this response in session 9.](figures/s09f01_nesting.svg){panel="ab" alt="A one-dimensional band with its two Fermi points and the static response function with a logarithmic peak at twice the Fermi wavevector."}
+![The origin of the Friedel oscillation, which is the response of a metal to an impurity. In (a) the vector $2k_F$ connects the two Fermi points of a chain. In (b) the static response has its peak at this vector, so the density around the impurity oscillates with the wavevector $2k_F$. We derive this response in Section [9.4](#sec-9-4).](figures/s09f01_nesting.svg){panel="ab" alt="A one-dimensional band with its two Fermi points and the static response function with a logarithmic peak at twice the Fermi wavevector."}
 
 Formally, we start from an unperturbed Hamiltonian $H_0$ and add a perturbation controlled by a dimensionless parameter $\lambda$,
 
@@ -32,4 +32,10 @@ In [(3.1)](#eq-3-1) the state $|m\rangle$ is mixed into $|n\rangle$ with the amp
 
     This is true. The amplitude goes as $1/(\varepsilon_n-\varepsilon_m)$ in [(3.1)](#eq-3-1). With $\lambda|\langle m|V|n\rangle|=0.1$ it reaches $1$ at a distance $0.1$, where the first-order result cannot be trusted.
 
+:::
+
+::: comesback
+- In Section [3.4](#sec-3-4) we put [(3.1)](#eq-3-1) into the Hall conductivity, and in Section [4.3](#sec-4-3) the same Kubo formula gives the Hall conductance of the Landau levels.
+- In Section [9.3](#sec-9-3) linear response and perturbation theory are derived again in detail, and Section [9.6](#sec-9-6) computes the Friedel oscillation around an impurity.
+- In Section [6.13](#sec-6-13) we build the magnons that neutron scattering measures.
 :::

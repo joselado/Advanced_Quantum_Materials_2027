@@ -14,7 +14,7 @@ so that $\gamma_A^\dagger = \gamma_A$, $\gamma_B^\dagger = \gamma_B$, $\{\gamma_
 
 $$c = \frac{1}{2}\left(\gamma_A + i\gamma_B\right), \qquad c^\dagger = \frac{1}{2}\left(\gamma_A - i\gamma_B\right). \tag{5.18}$$
 
-At first this is only a change of variables, a mathematical trick without new physics. Every electron is *always* made of two Majorana operators that are tightly bound together into an ordinary fermion, and normally there is no way to observe $\gamma_A$ or $\gamma_B$ separately, only their fixed combination $c$. Superconductors are special because BdG eigenstates are already mixtures of electrons and holes by construction, since the Nambu spinor of section [5.8](#sec-5-8) explicitly combines $c_{\mathbf k\sigma}$ with $c_{-\mathbf k\sigma'}^\dagger$. So a superconductor is the kind of system where, with the right pairing symmetry and the right geometry, the two Majorana components of an electron can become spatially *separated*, or deconfined, instead of staying together at one site. This deconfinement is the topic of the rest of this section.
+At first this is only a change of variables, a mathematical trick without new physics. Every electron is *always* made of two Majorana operators that are tightly bound together into an ordinary fermion, and normally there is no way to observe $\gamma_A$ or $\gamma_B$ separately, only their fixed combination $c$. Superconductors are special because BdG eigenstates are already mixtures of electrons and holes by construction, since the Nambu spinor of Section [5.8](#sec-5-8) explicitly combines $c_{\mathbf k\sigma}$ with $c_{-\mathbf k\sigma'}^\dagger$. So in a superconductor, with the right pairing symmetry and the right geometry, the two Majorana components of an electron can become spatially *separated*, or deconfined. Then they no longer stay together at one site. This deconfinement is the topic of the rest of this section.
 
 ![One electron mode and its two Majorana halves. At the top the mode is $\tfrac12(\gamma_A+i\gamma_B)$, and the halves are bound at one site. At the bottom the halves are bound between neighboring sites, and then one half at each end of the chain stays free, which the stars mark.](figures/web/session05/majorana_halves.svg){#sch:s05:majorana_halves alt="At the top, one electron drawn as a single circle and then as two bound circles. At the bottom, four sites with halves bound across neighboring sites and one free half at each end."}
 
@@ -52,4 +52,10 @@ The electron mode is empty. What is the value of $i\gamma_A\gamma_B$?
 
 ::: {.tryit notebook="session5.ipynb" cell="Majorana modes in a spin triplet superconductor"}
 In the cell, the density of states is computed on the site `0`, on `L//10` and on `L//2`. The peak at zero energy is large on the end site, small at `L//10` and negligible in the middle. It is the half of a split electron that sits at that end.
+:::
+
+::: comesback
+- In Section [5.16](#sec-5-16) the Kitaev chain binds the Majorana halves of neighboring sites, and one half stays free at each end.
+- In Section [5.19](#sec-5-19) four Majoranas make two ordinary fermion modes, which is the basis of a topological qubit.
+- In Section [9.8](#sec-9-8) a vacancy in a topological superconductor, the class that hosts these Majorana modes, gives a bound state inside the gap.
 :::

@@ -1,6 +1,6 @@
 ## Response functions as a probe of the ground state {#sec-9-1 number="9.1"}
 
-Let us first set up the general experiment, since it will come back in every example of this session. We take a quantum material with a ground state that we understand, or that we think we understand, and we make a small perturbation at position $x$ and time $t$. Then we measure some observable at a different position $x'$ and at a different time $t'$, which is typically later. The relation between what we did at $(x,t)$ and what we observe at $(x',t')$ is contained in a **response function**. Once we know that function completely, we know how the material reacts to a perturbation applied at any place and at any time.
+Let us first set up the general experiment, since it will come back in every example of this session. We take a quantum material with a ground state that we understand, or that we think we understand, and we make a small perturbation at position $x$ and time $t$. Then we measure some observable at a different position $x'$ and at a different time $t'$, which is typically later. The relation between what we did at $(x,t)$ and what we observe at $(x',t')$ is contained in a **response function**. Once we know that function completely, we know how the material reacts to a perturbation applied at any place and at any time. We built a first version of this idea in Section [3.2](#sec-3-2), and in Section [3.4](#sec-3-4) linear response gave the Hall conductivity. In this session we use it for every class of material of the course.
 
 ![The experiment of this section. We perturb the material at one place and one time, and we measure at another place and a later time. The response function is what connects the two. When the ground state has translational symmetry in space and in time, it depends only on the differences $x'-x$ and $t'-t$, which is why we will use $(q,\omega)$.](figures/web/session09/probe.svg){#sch:s09:probe alt="A chain of sites with a red arrow pointing into one site and a blue arrow pointing out of a distant site, joined by an arrow labeled with the response function."}
 
@@ -12,7 +12,7 @@ This point of view does not depend on the observable that we choose, and the sam
 
 - A local change of temperature, measured as a change of temperature at another place, which gives the **thermal conductance**.
 
-There are also two quite different ways to do this experiment in the lab, and we will use both in this session. The first way is a real physical perturbation. If we replace one atom of a metal by an atom of a different element, we have created a real, localized impurity. As we will see in detail in Section [9.6](#sec-9-6), the **Friedel oscillations** that appear in the electronic density show us directly the Fermi surface of the material. In the second way, the measurement itself is the perturbation. We send a neutron, whose magnetic moment couples to the local moments in a magnetic material, and the scattering cross-section that we record gives directly the magnetic fluctuations of the material, which is called inelastic neutron scattering. These two experiments look very different, but the formalism behind them, and the kind of information that we obtain, is the same in both cases.
+There are also two quite different ways to do this experiment in the lab, and we will use both in this session. The first way is a real physical perturbation. If we replace one atom of a metal by an atom of a different element, we have created a real, localized impurity. As we will see in detail in Section [9.6](#sec-9-6), the **Friedel oscillations** that appear in the electronic density show us directly the Fermi surface of the material. In the second way, the measurement itself is the perturbation. We send a neutron, whose magnetic moment couples to the local moments of a magnetic material. The scattering cross-section that we record then gives directly the magnetic fluctuations of the material, and this is called inelastic neutron scattering. These two experiments look very different, but the formalism behind them, and the kind of information that we obtain, is the same in both cases.
 
 Finally, a simplification makes almost everything below possible to compute. When the unperturbed Hamiltonian has translational symmetry in space and does not depend on time, the response function can only depend on $x'-x$ and $t'-t$, and not on $x,t,x',t'$ separately. In this situation the natural language is to Fourier transform to reciprocal space and frequency, $(q,\omega)$, and this is the language that we will use for almost all the rest of this session.
 
@@ -30,4 +30,10 @@ A perturbation acts on one site of an infinite clean chain, and we measure on a 
 - [ ] It depends on $x$ and $x'$ separately, as two independent variables.
 
     This is false. If $\chi$ depended on $x$ and $x'$ separately, the pairs $(0,5)$ and $(10,15)$ would give different values. This happens near a wall or an impurity, but not in the clean infinite chain.
+:::
+
+::: comesback
+- In Section [9.3](#sec-9-3) the response function becomes the first-order coefficient of perturbation theory.
+- In Section [9.6](#sec-9-6) a real impurity is the perturbation, and the Friedel oscillation shows the Fermi surface.
+- In Section [10.7](#sec-10-7) a measured response, such as a neutron-scattering structure factor, is the input from which a network infers the Hamiltonian.
 :::

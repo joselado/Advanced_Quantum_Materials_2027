@@ -126,3 +126,17 @@ Result, the live path works, so every widget has the button "Run live in the bro
   Checked in headless Chrome at 1400 and 390 px, light and dark: one page per session and three quizzes with a figure,
   before and after the click. Not done: the SVGs over 200 kB (the largest is `nambu_bands.svg`, 560 kB), and the
   small text of some schematics at 390 px. Nothing committed.
+- 2026-11-07. Voice and links pass on all ten sessions. The lecturer decided six things for this pass. Every page
+  ends with a "Where this comes back" box that links forward, or links the next natural step when nothing returns.
+  A notation clash keeps the source and gets one bridging sentence with a link. The ten index pages and the ten
+  closing summaries follow one shape, which is what we need from before, what we will see and where it comes back,
+  all linked. Sentences about the recording and the lecture are deleted, and a fact that matters stays as physics.
+  Page 4.19 on the Haldane model is cut to a recap of about 220 words of prose, with links to Sections 3.10 and
+  3.10b. A plain "Session N" is linked by the build, in `SessionLinks` of `filters/web.lua`. The text agents edited
+  the Markdown of the ten sessions, and then the coordinator ran the default build. It gives 171 pages, 137 written,
+  498 anchors in `labels.json`, 0 errors and no pending link, and a second build writes nothing. The math check gives
+  5908 fragments with 0 errors. `lint.py` reads 136 pages and gives 0 hits, with 63 warnings of the category
+  `exactly`, a list to read through, since the word stays when it states a physics fact. Every Markdown page has its box,
+  and the 34 HTML files without one are the redirect stubs. `docs/build_site.py` wrote 22 pages. No mechanical fault needed
+  a fix. Still open are the 7 SVGs at or over 200 kB (9 warnings), with `nambu_bands.svg` at 560 kB the largest, and nobody
+  has read the pages in a browser after this pass. Nothing committed.

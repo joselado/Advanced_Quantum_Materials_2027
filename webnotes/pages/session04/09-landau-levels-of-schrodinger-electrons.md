@@ -11,13 +11,13 @@ Since $\mathbf{A}$ does not depend on $y$, we have $[H,p_y]=0$, so we can look f
 $$H\phi(x) = \left[\frac{p_x^2}{2m} + \frac{B^2}{2m}\Big(x-\frac{\hbar k_y}{B}\Big)^2\right]\phi(x),$$
 
 which is exactly the Hamiltonian of a quantum harmonic oscillator centered at $x_0 = \hbar
-k_y/B$, with frequency $\omega_c = B/m$, the cyclotron frequency. The shift of the center is removed with a change of variable, as it is described in the lecture. When we solve it with the same ladder operators as the ordinary harmonic oscillator we obtain
+k_y/B$, with frequency $\omega_c = B/m$, the cyclotron frequency. The shift of the center is removed with the change of variable $x\to x-x_0$. When we solve it with the same ladder operators as the ordinary harmonic oscillator we obtain
 
 $$E_n = \hbar\omega_c\left(n+\frac{1}{2}\right), \qquad n=0,1,2,\dots, \tag{4.6}$$
 
 which does not depend on $k_y$ at all. Every value of $k_y$, or in other words every choice of the guiding center $x_0$, gives the same energy. This is the reason why the Landau levels are flat bands, and why each of them has a macroscopic degeneracy that is proportional to the area of the sample. Figure [4.3](#fig:s04:guidingcenter) shows this mechanism directly, with the same well placed at different positions, and with the degeneracy counted as one orbital for each flux quantum through the sample. When we put in the real physical constants for a field typical of GaAs, we obtain the millielectronvolt scale that we gave in Section [4.1](#sec-4-1).
 
-![Why the Landau levels are flat. (a) In the Landau gauge each $k_y$ reduces [(4.5)](#eq-4-5) to a one-dimensional harmonic oscillator in $x$, which is the same in every respect except that it is centred on the guiding centre $x_0=\hbar k_y/B$. When $k_y$ increases, the whole well moves to the right without changing its curvature. Every well therefore has the same ladder $E_n=\hbar\omega_c(n+\tfrac 12)$, drawn here as the horizontal guides, and the ground-state wavepacket of each well, the red bump, has the same shape at a different position. (b) As a function of $k_y$, this is a set of bands with exactly no dispersion, and the three balls are the three values of $k_y$ of (a). The flatness is not an artefact of the gauge. It means that the energy does not depend on the position of the electron in the sample, and this is also the origin of the very large degeneracy of the Landau levels.](figures/s04f03_guidingcenter.svg){#fig:s04:guidingcenter number="4.3"}
+![Why the Landau levels are flat. (a) In the Landau gauge each $k_y$ reduces [(4.5)](#eq-4-5) to a one-dimensional harmonic oscillator in $x$, which is the same in every respect except that it is centred on the guiding centre $x_0=\hbar k_y/B$. When $k_y$ increases, the whole well moves to the right without changing its curvature. Every well therefore has the same ladder $E_n=\hbar\omega_c(n+\tfrac 12)$, drawn here as the horizontal guides, and the ground-state wavepacket of each well, the red bump, has the same shape at a different position. (b) As a function of $k_y$, this is a set of bands with no dispersion at all, and the three balls are the three values of $k_y$ of (a). The flatness is not an artefact of the gauge. It means that the energy does not depend on the position of the electron in the sample, and this is also the origin of the very large degeneracy of the Landau levels.](figures/s04f03_guidingcenter.svg){#fig:s04:guidingcenter number="4.3"}
 
 ::: quiz
 The energy [(4.6)](#eq-4-6) does not depend on $k_y$. What does $k_y$ fix instead?
@@ -55,4 +55,10 @@ A sample has the area $A$. How does the number of states in one Landau level dep
 
 ::: {.tryit notebook="session4.ipynb" cell="Magnetic field dependence of Landau levels"}
 Run the cell, which shows the density of states of the bulk for the three fields. Measure the distance between the first two peaks in each panel. It grows roughly in proportion to `B`, as the cyclotron energy of [(4.6)](#eq-4-6) does.
+:::
+
+::: comesback
+- In Section [4.12](#sec-4-12) the same oscillator appears without any choice of gauge, as [(4.8)](#eq-4-8).
+- In Section [4.16](#sec-4-16) the large degeneracy of a Landau level, one orbital per flux quantum, is what lets a fractional filling form the Laughlin state.
+- In Section [6.6](#sec-6-6) a flat band, with its large density of states, makes the Stoner criterion easy to satisfy.
 :::

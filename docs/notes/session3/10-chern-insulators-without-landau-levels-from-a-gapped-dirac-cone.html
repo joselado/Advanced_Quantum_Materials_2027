@@ -52,7 +52,7 @@
   .crumb { margin: 0 0 4px; font-size: 0.95rem; }
   .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
   .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
-  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .toc .n { display: inline-block; min-width: 3.4em; padding-right: .4em; color: var(--muted); }
   .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
   figure { margin: 24px 0; }
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
@@ -85,14 +85,14 @@
   <p class="crumb"><a href="index.html">Session 3. Topological Band Structure Theory</a></p>
 <h1 id="sec-3-10"><span class="num">3.10a</span> Chern insulators without Landau levels from a gapped Dirac cone</h1>
 <p>Now we come back to the question from the beginning of the session. A Chern insulator needs a broken time-reversal symmetry. In fact, one can show directly from <a href="05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#eq-3-4">(3.4)</a> that <span class="math inline">\(\sigma_{xy}\equiv 0\)</span> whenever time-reversal symmetry holds, since time reversal changes the sign of the Berry curvature. However, nothing in the derivation of the Chern number required a magnetic field or Landau levels. So the question is if we can obtain a finite Chern number from an ordinary lattice band structure, using only terms that break time-reversal symmetry and that are entirely inside the lattice itself.</p>
-<p>The method is to look for a lattice that has a <strong>massive Dirac equation</strong> in its low-energy expansion. Several two-dimensional lattices have massless Dirac points in their band structure, such as the honeycomb lattice, the kagome lattice and a square lattice with <span class="math inline">\(\pi\)</span>-flux, and this is the same Dirac cone that we derived for graphene in session 2. Close to one such point, the low-energy Hamiltonian has the form</p>
+<p>The method is to look for a lattice that has a <strong>massive Dirac equation</strong> in its low-energy expansion. Several two-dimensional lattices have massless Dirac points in their band structure, such as the honeycomb lattice, the kagome lattice and a square lattice with <span class="math inline">\(\pi\)</span>-flux. This is the same Dirac cone that we derived for graphene in Section <a href="../session2/11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#sec-2-11">2.11</a>. Close to one such point, the low-energy Hamiltonian has the form</p>
 <p><span id="eq-3-7" class="eq"><span class="math display">\[H(k) = k_x\,\sigma_x + \lambda\, k_y\,\sigma_y + m\,\sigma_z, \tag{3.7}\]</span></span></p>
 <p>with <span class="math inline">\(\lambda = \pm 1\)</span> fixed by the chirality of the lattice at this Dirac point, and <span class="math inline">\(m\)</span> a mass term that opens a gap, <span class="math inline">\(E_\pm(k) = \pm\sqrt{k_x^2+k_y^2+m^2}\)</span>. We compute the Berry curvature of the lower band and integrate it, with the same procedure as in <a href="05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#eq-3-4">(3.4)</a> but now over the small region of momentum space where the curvature is concentrated. This gives the Chern number of this single gapped Dirac cone,</p>
 <p><span id="eq-3-8" class="eq"><span class="math display">\[C_{\text{Dirac}} = \frac{1}{2}\,\mathrm{sgn}(m)\,\mathrm{sgn}(\lambda). \tag{3.8}\]</span></span></p>
-<p>Let us see what <a href="#eq-3-8">(3.8)</a> means for one cone, in <a href="#sch:s03:dirac_mass">Schematic 3.5</a>. The bands do not know the sign of <span class="math inline">\(m\)</span>, but the Berry curvature does.</p>
+<p>Let us see what <a href="#eq-3-8">(3.8)</a> means for one cone, in <a href="#sch:s03:dirac_mass">Schematic 3.8</a>. The bands do not know the sign of <span class="math inline">\(m\)</span>, but the Berry curvature does.</p>
 <figure id="sch:s03:dirac_mass" class="schematic">
 <img src="../figures/web/session03/dirac_mass.svg" loading="lazy" alt="Left, the two bands of a gapped Dirac cone. Right, the Berry curvature of the lower band, a positive peak for positive mass and a negative peak for negative mass." />
-<figcaption><strong>Schematic 3.5.</strong> A single gapped Dirac cone <span class="math inline">\(H=k_x\sigma_x+\lambda k_y\sigma_y+m\sigma_z\)</span> of <a href="#eq-3-7">(3.7)</a> with <span class="math inline">\(\lambda=+1\)</span>, in units of <span class="math inline">\(|m|\)</span>. In (a) the bands are <span class="math inline">\(\pm\sqrt{k^2+m^2}\)</span>, the same for both signs of <span class="math inline">\(m\)</span>, and the dotted lines are the massless cone. In (b) the Berry curvature of the lower band is <span class="math inline">\(\Omega=\lambda m/2(k^2+m^2)^{3/2}\)</span>, and its integral over the plane divided by <span class="math inline">\(2\pi\)</span> is <span class="math inline">\(\pm\tfrac12\)</span>, as in <a href="#eq-3-8">(3.8)</a>. Look at how the same bands give opposite curvature, since the sign of <span class="math inline">\(C\)</span> is in the wavefunctions and not in the energies.</figcaption>
+<figcaption><strong>Schematic 3.8.</strong> A single gapped Dirac cone <span class="math inline">\(H=k_x\sigma_x+\lambda k_y\sigma_y+m\sigma_z\)</span> of <a href="#eq-3-7">(3.7)</a> with <span class="math inline">\(\lambda=+1\)</span>, in units of <span class="math inline">\(|m|\)</span>. In (a) the bands are <span class="math inline">\(\pm\sqrt{k^2+m^2}\)</span>, the same for both signs of <span class="math inline">\(m\)</span>, and the dotted lines are the massless cone. In (b) the Berry curvature of the lower band is <span class="math inline">\(\Omega=\lambda m/2(k^2+m^2)^{3/2}\)</span>, and its integral over the plane divided by <span class="math inline">\(2\pi\)</span> is <span class="math inline">\(\pm\tfrac12\)</span>, as in <a href="#eq-3-8">(3.8)</a>. Look at how the same bands give opposite curvature, since the sign of <span class="math inline">\(C\)</span> is in the wavefunctions and not in the energies.</figcaption>
 </figure>
 <p>The half-integer in <a href="#eq-3-8">(3.8)</a> is not an inconsistency. A real lattice always has an even number of Dirac points related by time-reversal symmetry, and the honeycomb lattice has two, which are usually called <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span>. Only the <em>sum</em> of their contributions needs to be an integer.</p>
 <div class="quiz" data-correct="C" data-fb="1">
@@ -144,11 +144,11 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
-<p>This is false. Take the two-band model with <span class="math inline">\(\mathbf d=(\sin k_x,\sin k_y,m+\cos k_x+\cos k_y)\)</span> and <span class="math inline">\(m=-1.9\)</span>. It has one cone at <span class="math inline">\(\Gamma\)</span> with mass <span class="math inline">\(0.1\)</span>, and its Chern number is exactly <span class="math inline">\(|C|=1\)</span>. The curvature of the rest of the zone supplies the other half.</p></li>
+<p>This is false. Take the two-band model with <span class="math inline">\(\mathbf d=(\sin k_x,\sin k_y,m+\cos k_x+\cos k_y)\)</span> and <span class="math inline">\(m=-1.9\)</span>. It has one cone at <span class="math inline">\(\Gamma\)</span> with mass <span class="math inline">\(0.1\)</span>, and its Chern number is <span class="math inline">\(|C|=1\)</span>. The curvature of the rest of the zone supplies the other half.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
 <p>This is false. The term <span class="math inline">\(m\sigma_z\)</span> gives the spectrum <span class="math inline">\(\pm\sqrt{k^2+m^2}\)</span> with a gap <span class="math inline">\(2|m|\)</span> for a single cone. The reason is not the gap, but the integer quantization of <span class="math inline">\(C\)</span> on a lattice.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
-<p>This is true. The Chern number of a filled band on a lattice is an integer. The half of <a href="#eq-3-8">(3.8)</a> is completed by the rest of the zone, either by a second cone, like <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span> in the honeycomb lattice, or by the massive part of the band, as in the model above.</p></li>
+<p>This is true. The Chern number of a filled band on a lattice is an integer. The half of <a href="#eq-3-8">(3.8)</a> is completed by the rest of the zone. This is either a second cone, like <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span> in the honeycomb lattice, or the massive part of the band, as in the model above.</p></li>
 </ul>
 </div>
 </details>
@@ -159,6 +159,16 @@ Question
 <div class="tryit-links">
 Notebook <code>session3.ipynb</code>, cell “Topological states and topological invariants”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session3.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session3.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession3.ipynb">Binder</a>.
 </div>
+</div>
+<div class="comesback">
+<div class="comesback-label">
+Where this comes back
+</div>
+<ul>
+<li>In Section <a href="10b-the-haldane-coupling-and-a-real-chern-insulator.html#sec-3-10b">3.10b</a> the second choice of the mass term, the Haldane coupling, makes the two halves add.</li>
+<li>In Section <a href="../session4/10-landau-levels-of-dirac-electrons.html#sec-4-10">4.10</a> the same Dirac Hamiltonian is put in a magnetic field, and its Landau levels include a level at zero energy.</li>
+<li>In Section <a href="../session8/09-the-mean-field-spinon-hamiltonian-and-its-dispersion-classes.html#sec-8-9">8.9</a> the square lattice with <span class="math inline">\(\pi\)</span>-flux comes back, now for spinons, with Dirac points at half filling.</li>
+</ul>
 </div>
 
   <nav class="pager"><a href="09c-the-ssh-model-the-bloch-hamiltonian-and-the-zak-phase.html">3.9c The SSH model, the Bloch Hamiltonian and the Zak phase</a><a href="10b-the-haldane-coupling-and-a-real-chern-insulator.html">3.10b The Haldane coupling and a real Chern insulator</a></nav>

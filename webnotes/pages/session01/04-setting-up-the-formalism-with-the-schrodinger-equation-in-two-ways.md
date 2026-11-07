@@ -1,6 +1,6 @@
 ## Setting up the formalism with the Schrödinger equation in two ways {#sec-1-4 number="1.4"}
 
-Every quantum mechanical system is described by the Schrödinger equation, which is built from a Hamiltonian acting on a wave function, where for our purposes we can think of the Hamiltonian as a matrix. If we know the wave function at time zero and the Hamiltonian, in principle we can integrate this equation forward in time and know the state at any later time. This statement is completely general, and it holds both when the wave function describes one particle and when it describes a whole many-body system. In practice, however, the difference is very large. Single-particle problems can always be solved exactly, in every case that is relevant for us. Many-body problems in general cannot, and the difficulty grows very fast with the size of the system, as we will see in a concrete way below. Since most of the quantum matter that we are interested in is truly many-body, we need a systematic way to deal with this difficulty, even if this way is often approximate, and this is what we build in this session.
+Every quantum mechanical system is described by the Schrödinger equation, which is built from a Hamiltonian acting on a wave function, where for our purposes we can think of the Hamiltonian as a matrix. If we know the wave function at time zero and the Hamiltonian, in principle we can integrate this equation forward in time and know the state at any later time. This statement is completely general, and it holds both when the wave function describes one particle and when it describes a whole many-body system. In practice, however, the difference is very large. Single-particle problems can always be solved exactly, in every case that is relevant for us. Many-body problems in general cannot, and the difficulty grows very fast with the size of the system, as we will see in a concrete way below. Most of the quantum matter that we are interested in is truly many-body. So we need a systematic way to deal with this difficulty, even if this way is often approximate, and this is what we build in this session.
 
 ### First quantization {#sec-1-4-1 number="1.4.1"}
 
@@ -28,4 +28,10 @@ Which of these states can we write as an ordinary wave function with a fixed num
     This is false. The mean number of electrons is $1.5$, which is not a number of coordinates at all. The two terms have zero and three coordinates, so we need second quantization.
 
 A wave function needs a fixed number of coordinates. States that mix different numbers of electrons need second quantization.
+:::
+
+::: comesback
+- The fluctuating number of electrons comes back in Section [5.6](#sec-5-6), where the pairing term of a superconductor mixes states with $N$ and $N\pm2$ electrons.
+- In Section [7.2](#sec-7-2) fermions and spins are two languages for the same physics, and the Jordan-Wigner transformation of Section [7.2b](#sec-7-2b) maps one onto the other.
+- In Section [10.7](#sec-10-7) the Schrödinger equation of this section is used in the inverse direction, to learn the Hamiltonian from what we measure.
 :::

@@ -2,7 +2,7 @@
 
 Let us take the simplest single-particle system, which is a lattice of sites with one level each and one electron, that forms a finite island such as a quantum dot. Without many-body interactions this is an ordinary diagonalization problem, in the same way as a particle in a box, with a lowest energy state, a first excited state and so on. In this language, "one electron in the ground level" and "one electron in the first excited level" are two different single-particle states, and we can also take superpositions of the two. In every case, however, there is exactly one electron in the system.
 
-Now let us say that we want to describe a quantum dot in a coherent superposition of zero electrons and two electrons, each with 50% probability. We cannot write this as an ordinary wave function, because a wave function needs a fixed number of coordinates, and it makes no sense to have zero coordinates and two coordinates "at the same time." This example is not artificial. This kind of reasoning, about a number of electrons that fluctuates, is what allows us to understand how local magnetic moments couple to each other in real oxides, which is the basis of the Goodenough-Kanamori rules that predict ferromagnetism or antiferromagnetism. It is also part of the definition of a superconductor, whose mean-field order parameter conserves only the *parity* of the electron number and not the number itself. This description of superconductors, which does not conserve the number of particles, has its own name, the Bogoliubov-de Gennes formalism. The slides introduce it here, but we will only use it in practice when we reach the session on superconductivity.
+Now let us say that we want to describe a quantum dot in a coherent superposition of zero electrons and two electrons, each with 50% probability. We cannot write this as an ordinary wave function. A wave function needs a fixed number of coordinates, and it makes no sense to have zero coordinates and two coordinates at the same time. This example is not artificial. Reasoning about a number of electrons that fluctuates is what allows us to understand how local magnetic moments couple to each other in real oxides. This is the basis of the Goodenough-Kanamori rules, which predict ferromagnetism or antiferromagnetism. It is also part of the definition of a superconductor, whose mean-field order parameter conserves only the *parity* of the electron number and not the number itself. This description of superconductors, which does not conserve the number of particles, has its own name, the Bogoliubov-de Gennes formalism. We use it in practice from Section [5.8](#sec-5-8) on.
 
 ## Building second quantization with creation and annihilation operators {#sec-1-6 number="1.6"}
 
@@ -56,6 +56,8 @@ $$\{c_i, c_j^\dagger\} = \delta_{ij}, \qquad \{c_i, c_j\} = \{c_i^\dagger, c_j^\
 
 The second relation is the important one. If we take $i=j$ it gives $(c_i^\dagger)^2 = 0$, which means that we cannot create two electrons in the same level. At the same time it imposes the antisymmetry of the wave function, so the Pauli exclusion principle is part of the algebra itself and we do not need to add it by hand.
 
+![Two particles on the two sites of [(1.2)](#eq-1-2), from exact diagonalization in the Fock space. For fermions $(c_i^\dagger)^2=0$, so the only state has one particle on each site, and its energy is $0$. Bosons commute, so two of them can also share a site. This gives three states, with the energies $-2t$, $0$ and $+2t$. The Hamiltonian is the same in both cases, and only the algebra of the operators is different.](figures/web/session01/boson_fermion_pair.svg){#sch:s01:boson_fermion_pair alt="Two level diagrams. Two fermions have one level at zero. Two bosons have three levels at minus 2t, zero and plus 2t. Below each diagram are the ways to put two particles on two sites, one way for fermions and three for bosons."}
+
 ::: quiz
 Suppose $c_i^\dagger$ and $c_j^\dagger$ commuted instead of anticommuting. What would change?
 
@@ -72,4 +74,10 @@ Suppose $c_i^\dagger$ and $c_j^\dagger$ commuted instead of anticommuting. What 
     This is false. The term $t(b_0^\dagger b_1+b_1^\dagger b_0)$ of bosons is Hermitian, because it is written with its own Hermitian conjugate. Its levels are $\pm t$ in the one-particle sector, as for fermions.
 
 Bosons and fermions differ in the algebra of the operators, and not in the vacuum or in the Hermiticity.
+:::
+
+::: comesback
+- Section [5.6](#sec-5-6) comes back to the dot in a superposition of zero and two electrons, now for the pairing Hamiltonian of a superconductor.
+- Virtual hops that change the number of electrons on a site give the superexchange of Section [6.8](#sec-6-8) and the Goodenough-Kanamori rules of Section [6.11](#sec-6-11).
+- The anticommutation relations [(1.3)](#eq-1-3) come back in Section [7.2b](#sec-7-2b), where the Jordan-Wigner transformation needs a string to build fermions from spins.
 :::

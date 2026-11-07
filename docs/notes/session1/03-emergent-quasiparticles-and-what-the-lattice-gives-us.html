@@ -52,7 +52,7 @@
   .crumb { margin: 0 0 4px; font-size: 0.95rem; }
   .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
   .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
-  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .toc .n { display: inline-block; min-width: 3.4em; padding-right: .4em; color: var(--muted); }
   .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
   figure { margin: 24px 0; }
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
@@ -89,13 +89,17 @@
 <li><p><strong>Phonons.</strong> These are lattice vibrations, and they are the simplest quasiparticle of all, since they exist also in classical physics.</p></li>
 <li><p><strong>Magnons.</strong> These are spin-1 excitations of a magnetically ordered state, which are small precessions of the local moment that carry energy and spin through the material. Note that magnons can propagate also in a Mott insulator, where charge cannot propagate, so a magnetic insulator can still carry spin and heat.</p></li>
 <li><p><strong>Spinons.</strong> These are spin-1/2 excitations without charge that live in quantum magnets, where time-reversal symmetry is <em>not</em> broken. In some sense a spinon is only the spin part of an electron, without its charge part, and this is an example of electron fractionalization that is called spin-charge separation.</p></li>
-<li><p><strong>Dirac fermions.</strong> These are electrons with a linear dispersion that look massless, and they do not come from interactions but from the geometry of the lattice, as in the standard example of the honeycomb lattice of graphene.</p></li>
-<li><p><strong>Vortices.</strong> These are topological defects in the phase of a superconductor, and they are dynamical quasiparticles themselves. The same superconducting phase gives rise to flux quantization and to the Josephson effect, and these are the basis of some of our most precise measurements of the ratio between Planck’s constant and the electron charge.</p></li>
+<li><p><strong>Dirac fermions.</strong> These are electrons with a linear dispersion that look massless. They do not come from interactions but from the geometry of the lattice, as in the honeycomb lattice of graphene.</p></li>
+<li><p><strong>Vortices.</strong> These are topological defects in the phase of a superconductor, and they are dynamical quasiparticles themselves. The same superconducting phase gives rise to flux quantization and to the Josephson effect. These two effects are the basis of some of our most precise measurements of the ratio between Planck’s constant and the electron charge.</p></li>
 </ul>
-<p>The summary slide of the course for this list also shows Majorana fermions, which we will meet again soon in connection with chiral superconductors, and anyons, next to these five. Anyons in particular are not discussed further in this session, neither in the slides nor in the lecture. They belong to the material on the fractional quantum Hall effect in a later session, and we mention them here only so that the name is familiar.</p>
+<figure id="sch:s01:vortex_phase" class="schematic">
+<img src="../figures/web/session01/vortex_phase.svg" loading="lazy" alt="Two square grids of arrows. In the first all arrows point to the right. In the second the arrows turn once around a central point, which is marked by a small circle inside a larger red loop." />
+<figcaption><strong>Schematic 1.4.</strong> The phase of the superconducting order parameter, drawn at each point as an arrow in the complex plane. On the left the phase is the same everywhere. On the right there is one vortex. The amplitude goes to zero at the core, and along the red loop the phase winds by <span class="math inline">\(2\pi\)</span>. No smooth change of the arrows can remove this winding, and this is why we call a vortex a topological defect.</figcaption>
+</figure>
+<p>Two more emergent particles belong to this list. The first are Majorana fermions, which we meet in <a href="../session5/index.html">Session 5</a> in connection with chiral superconductors. The second are anyons, which belong to the fractional quantum Hall effect of <a href="../session4/index.html">Session 4</a>, and we mention them here only so that the name is familiar.</p>
 <figure class="again">
 <img src="../figures/s08f01_magnon_spinon.svg" loading="lazy" alt="A chain of spins with one flipped spin, and a chain of singlet pairs with two unpaired spins." />
-<figcaption><strong><a href="../session8/01-two-classes-of-magnets-and-where-we-find-them.html#fig:s08:magnonspinon">Figure 8.1</a>, shown again.</strong> A magnon and a spinon, shown again from session 8. A magnon flips one spin of the ordered chain, so the total spin changes by one. A spinon carries only spin one half, and spinons are created in pairs when a singlet breaks.</figcaption>
+<figcaption><strong><a href="../session8/01-two-classes-of-magnets-and-where-we-find-them.html#fig:s08:magnonspinon">Figure 8.1</a>, shown again.</strong> A magnon and a spinon, shown again from <a href="../session8/index.html">Session 8</a>. A magnon flips one spin of the ordered chain, so the total spin changes by one. A spinon carries only spin one half, and spinons are created in pairs when a singlet breaks.</figcaption>
 </figure>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
@@ -160,6 +164,17 @@ Question
 <p>The magnons need no motion of charge, so they exist in an insulator.</p>
 </div>
 </details>
+</div>
+<div class="comesback">
+<div class="comesback-label">
+Where this comes back
+</div>
+<ul>
+<li>Magnons are built as fluctuations of the order parameter in Section <a href="../session6/13-magnons-as-fluctuations-of-the-order-parameter.html#sec-6-13">6.13</a>, and Section <a href="../session6/15-magnon-dispersions-in-ferromagnets-and-antiferromagnets.html#sec-6-15">6.15</a> gives their dispersion.</li>
+<li>Spinons come back in Section <a href="../session8/01-two-classes-of-magnets-and-where-we-find-them.html#sec-8-2">8.2</a>, and the parton construction of Section <a href="../session8/07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#sec-8-8">8.8</a> writes them as fermions.</li>
+<li>The Dirac fermions of graphene are derived in Section <a href="../session2/11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#sec-2-11">2.11</a>.</li>
+<li>Flux quantization and the Josephson effect are in Section <a href="../session5/02-superconductivity-as-a-macroscopic-quantum-phenomenon.html#sec-5-2">5.2</a>, Majorana fermions in Section <a href="../session5/15-majorana-bound-states-and-how-to-split-an-electron-into-two-majoranas.html#sec-5-15">5.15</a>, and anyons in Section <a href="../session4/18-berry-phase-fractional-charge-and-anyonic-statistics.html#sec-4-18">4.18</a>.</li>
+</ul>
 </div>
 
   <nav class="pager"><a href="02-a-tour-of-the-quantum-materials-we-will-meet.html">1.2 A tour of the quantum materials we will meet</a><a href="04-setting-up-the-formalism-with-the-schrodinger-equation-in-two-ways.html">1.4 Setting up the formalism with the Schrödinger equation in two ways</a></nav>

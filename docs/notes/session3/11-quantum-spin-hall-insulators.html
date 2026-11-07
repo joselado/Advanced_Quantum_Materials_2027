@@ -52,7 +52,7 @@
   .crumb { margin: 0 0 4px; font-size: 0.95rem; }
   .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
   .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
-  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .toc .n { display: inline-block; min-width: 3.4em; padding-right: .4em; color: var(--muted); }
   .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
   figure { margin: 24px 0; }
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
@@ -93,7 +93,7 @@ C_s \equiv C_\uparrow - C_\downarrow = \pm 2. \tag{3.9}\]</span></span></p>
 <p>The total Chern number <span class="math inline">\(C\)</span> vanishes, in agreement with the unbroken time-reversal symmetry, but the <strong>spin</strong> Chern number <span class="math inline">\(C_s\)</span> does not vanish, and it is <span class="math inline">\(C_s\)</span> that controls the edge physics. At each edge, spin-up propagates in one direction and spin-down propagates in the other direction, which is a <strong>helical</strong> edge state and not a chiral one.</p>
 <figure class="again">
 <img src="../figures/s05f06_qsh.svg" loading="lazy" alt="The edge of a quantum spin Hall insulator with spin-up and spin-down channels moving in opposite directions." />
-<figcaption><strong><a href="../session5/18-engineering-a-topological-superconductor-from-a-quantum-spin-hall-insulator.html#fig:s05:qsh">Figure 5.6</a>, shown again.</strong> A helical edge, from session 5. On the same edge the spin-up electrons move in one direction. The spin-down electrons move in the other, and the two are drawn in a warm and a cold color. This is the pair of branches that follows from <a href="#eq-3-9">(3.9)</a>.</figcaption>
+<figcaption><strong><a href="../session5/18-engineering-a-topological-superconductor-from-a-quantum-spin-hall-insulator.html#fig:s05:qsh">Figure 5.6</a>, shown again.</strong> A helical edge, which comes back in Section <a href="../session5/18-engineering-a-topological-superconductor-from-a-quantum-spin-hall-insulator.html#sec-5-18">5.18</a>. On the same edge the spin-up electrons move in one direction. The spin-down electrons move in the other, and the two are drawn in a warm and a cold color. This is the pair of branches that follows from <a href="#eq-3-9">(3.9)</a>.</figcaption>
 </figure>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
@@ -123,11 +123,24 @@ Question
 </details>
 </div>
 <p>The natural mechanism that gives this opposite-sign mass is spin-orbit coupling. The relativistic spin-orbit term has the structure <span class="math inline">\(\mathbf{L}\cdot\mathbf{S}\)</span>, and its <span class="math inline">\(z\)</span>-component, <span class="math inline">\(L_zS_z\)</span>, acts like an effective magnetic field that points in one direction for spin-up electrons and in the opposite direction for spin-down electrons. This is the opposite-sign mass structure that <a href="#eq-3-9">(3.9)</a> needs, and it appears with no net magnetic field and no net breaking of time-reversal symmetry. Graphene itself, when we include its intrinsic spin-orbit coupling, which is very small, is technically a quantum spin Hall insulator through this mechanism. The effect is much larger, and accessible in experiments, in monolayer 1T<span class="math inline">\(&#39;\)</span>-WTe<span class="math inline">\(_2\)</span>, where the quantum spin Hall effect survives up to 100 K.</p>
+<figure id="sch:s03:spin_sectors" class="schematic">
+<img src="../figures/web/session03/spin_sectors.svg" loading="lazy" alt="Two band structures of a ribbon against the momentum, each with a blue and a red branch that cross the gap, with the slopes of the two colors reversed between the panels." />
+<figcaption><strong>Schematic 3.10.</strong> The two spin sectors of the quantum spin Hall insulator, computed on a zigzag ribbon with the intrinsic spin-orbit coupling <span class="math inline">\(t_2=0.1\)</span>. Each sector is a Haldane model, with the phase <span class="math inline">\(+\pi/2\)</span> for spin up and <span class="math inline">\(-\pi/2\)</span> for spin down, so the two Chern numbers are opposite as in <a href="#eq-3-9">(3.9)</a>. The branches inside the gap are colored by the edge where they sit. Take the blue branch, which is on the lower edge. It moves to the right for spin up and to the left for spin down, and this is the helical pair of one edge.</figcaption>
+</figure>
 <div class="tryit">
 <p><strong>Try it.</strong> Run the cell. In the left panel the color gives the edge, top or bottom, and in the right panel it gives the spin. In the gap, take the two branches of one edge. They have opposite slopes and opposite spin, which is the helical pair of <a href="#eq-3-9">(3.9)</a>.</p>
 <div class="tryit-links">
 Notebook <code>session3.ipynb</code>, cell “The quantum spin Hall state”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session3.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session3.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession3.ipynb">Binder</a>.
 </div>
+</div>
+<div class="comesback">
+<div class="comesback-label">
+Where this comes back
+</div>
+<ul>
+<li>In Section <a href="11b-kramers-protection-of-the-helical-edge.html#sec-3-11b">3.11b</a> we see that the helical pair is protected by time reversal through Kramers’ theorem, and not by the conservation of spin.</li>
+<li>In Section <a href="../session5/18-engineering-a-topological-superconductor-from-a-quantum-spin-hall-insulator.html#sec-5-18">5.18</a> the helical edge of a quantum spin Hall insulator, together with superconductivity, gives a topological superconductor.</li>
+</ul>
 </div>
 
   <nav class="pager"><a href="10b-the-haldane-coupling-and-a-real-chern-insulator.html">3.10b The Haldane coupling and a real Chern insulator</a><a href="11b-kramers-protection-of-the-helical-edge.html">3.11b Kramers protection of the helical edge</a></nav>

@@ -1,8 +1,8 @@
 ## The quantum Hall ribbon on the lattice {#sec-3-6b number="3.6b"}
 
-Let us look at a concrete model. We take a tight-binding square lattice with a perpendicular magnetic field and cut it into a ribbon of finite width, which has translational invariance along the ribbon but is finite across it. When we diagonalize this ribbon, we find the structure described above. There are flat bulk bands similar to Landau levels, and there are dispersive edge branches that cross the gap, with one branch confined to each edge and propagating in only one direction. If we look at the low-energy region close to zero energy, the spacing between the flat bands approaches the equal spacing of a continuum two-dimensional electron gas in a magnetic field, so the tight-binding model reproduces the standard Landau problem in the appropriate limit. This computed band structure, with the bulk flat bands in green and the two edge branches that propagate in opposite directions, is shown on the slides but was only described qualitatively in the lecture. To reproduce it numerically is what the notebook box below asks you to do.
+Let us look at a concrete model. We take a tight-binding square lattice with a perpendicular magnetic field and cut it into a ribbon of finite width, which has translational invariance along the ribbon but is finite across it. When we diagonalize this ribbon, we find the structure described above. There are flat bulk bands similar to Landau levels, and there are dispersive edge branches that cross the gap, with one branch confined to each edge and propagating in only one direction. In the low-energy region the spacing between the flat bands approaches the equal spacing of a continuum two-dimensional electron gas in a magnetic field. So the tight-binding model reproduces the Landau problem in this limit, which we solve in Section [4.9](#sec-4-9). The notebook box below asks you to compute this band structure, with the flat bulk bands and the two edge branches that propagate in opposite directions.
 
-![The spectrum of a quantum Hall ribbon, from session 4. The flat bulk levels are the Landau levels. The branches that bend up near the walls are the edge states, one for each edge. This panel is computed in the continuum with hard walls, and the lattice ribbon of the notebook gives the same picture. Look at the number of branches that cross the chemical potential, the translucent plane.](figures/s04f01_ribbon.svg){panel="a" alt="Flat Landau levels of a ribbon with the edge branches that bend up near the walls and cross the gap."}
+![The spectrum of a quantum Hall ribbon, which we compute in Section [4.5](#sec-4-5). The flat bulk levels are the Landau levels. The branches that bend up near the walls are the edge states, one for each edge. This panel is computed in the continuum with hard walls, and the lattice ribbon of the notebook gives the same picture. Look at the number of branches that cross the chemical potential, the translucent plane.](figures/s04f01_ribbon.svg){panel="a" alt="Flat Landau levels of a ribbon with the edge branches that bend up near the walls and cross the gap."}
 
 ::: quiz
 In the spectrum of the ribbon the bulk Landau levels are flat. What does this say about the current carried by the bulk states?
@@ -29,4 +29,10 @@ Build a square-lattice ribbon, and then a honeycomb-lattice ribbon, with a magne
 
 ::: {.tryit notebook="session3.ipynb" cell="The quantum Hall effect in graphene"}
 Change `h.add_orbital_magnetic_field(0.01)` to `-0.01` and run the cell again. The color gives the position across the ribbon. Follow the branch that is localized at one edge and crosses zero energy. Its slope changes sign when the field is reversed, as in the figure of Section [3.6](#sec-3-6).
+:::
+
+::: comesback
+- In Section [4.11](#sec-4-11) we build the same ribbons, on the square lattice and on the honeycomb lattice, with the Peierls substitution [(4.4)](#eq-4-4).
+- In Section [4.10](#sec-4-10) the honeycomb ribbon gives the Landau levels of Dirac electrons, which grow as $\sqrt{B}$.
+- In Section [4.5](#sec-4-5) the number of edge branches that cross the chemical potential is the number of filled Landau levels.
 :::

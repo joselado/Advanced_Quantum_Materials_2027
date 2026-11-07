@@ -2,11 +2,11 @@
 
 Let us first give a short preview of the materials that this formalism will allow us to understand, so that the abstract tools of this session have concrete targets.
 
-- **Insulators**, such as magnesium oxide, sodium chloride or boron nitride, where a finite band gap does not allow electrons to propagate. *Topological* insulators look the same in the bulk, but they behave in a completely different way at the edge, and we will need one full session to explain this difference.
+- **Insulators**, such as magnesium oxide, sodium chloride or boron nitride, where a finite band gap does not allow electrons to propagate. *Topological* insulators look the same in the bulk, but they behave in a completely different way at the edge, and Session 3 explains this difference.
 
 - **Semiconductors**, such as gallium nitride, silicon and gallium arsenide, which have the same single-particle description as insulators but are lightly doped. For this reason they have free carriers, and these carriers are the ones that do the work in electronics and solar cells.
 
-- **Magnets.** Ferromagnets, antiferromagnets and spin spirals are all *correlated* materials, in the sense that they exist only because electrons repel each other through the Coulomb interaction. A different and more exotic case is the *quantum magnet*, where there are local moments at every site but they are so strongly entangled with each other that the material has no net magnetization at all at the microscopic level, and every site forms a singlet with its neighbors. We will come back to these systems in detail later in the course.
+- **Magnets.** Ferromagnets, antiferromagnets and spin spirals are all *correlated* materials, in the sense that they exist only because electrons repel each other through the Coulomb interaction. A different and more exotic case is the *quantum magnet*, where there are local moments at every site. These moments are so strongly entangled with each other that the material has no net magnetization at the microscopic level, and every site forms a singlet with its neighbors. We come back to these systems in Session 8.
 
 - **Dirac and topological matter.** The prototype is graphene, which is a single honeycomb layer of carbon, where electrons propagate with a topologically protected phase that is called a Berry phase. The same family includes quantum spin Hall insulators, which have helical edge states, Chern insulators, which have chiral edge states, and chiral superconductors, which host Majorana excitations.
 
@@ -18,7 +18,7 @@ The first two items of this list differ only in how the bands of a single electr
 
 ![Four fillings of a band. In a metal the Fermi level $E_F$ cuts a band, so there are empty states next to the occupied ones. In an insulator the valence band is full and the conduction band is empty. Doping leaves the bands as they are and moves $E_F$, so that a few electrons, the red dots, sit in the conduction band, or a few holes, the red segment, in the valence band. The metal is the band $-2t\cos k$, and the other three are the bands $\pm\sqrt{m^2+(2t\sin q)^2}$ of a chain with two sites per cell, for $m=0.6t$, with $q$ measured from the zone edge.](figures/web/session01/filling_bands.svg){#sch:s01:filling_bands alt="Four band diagrams side by side. A metal with a half-filled band, an insulator with a gap, an n-doped semiconductor with a few electrons at the bottom of the conduction band, and a p-doped semiconductor with a few holes at the top of the valence band."}
 
-![The Dirac cone of graphene. The two bands touch at one point and rise linearly around it, which is why the electrons behave as massless particles. We derive this cone in session 2.](figures/s02f04_dirac.svg){panel="c" alt="A hexagonal Brillouin zone with a Dirac cone at two of its corners."}
+![The Dirac cone of graphene. The two bands touch at one point and rise linearly around it, which is why the electrons behave as massless particles. We derive this cone in Section [2.11](#sec-2-11).](figures/s02f04_dirac.svg){panel="c" alt="A hexagonal Brillouin zone with a Dirac cone at two of its corners."}
 
 ::: quiz
 A topological insulator and an ordinary insulator both have a gap in the bulk. How do we tell them apart in an experiment?
@@ -56,4 +56,11 @@ A doped semiconductor conducts, while the undoped one with the same bands does n
     This is false. In doped silicon the carriers are so dilute that they are almost free, and the material is not magnetic. The conduction comes from the number of carriers and not from their interaction.
 
 The bands stay the same, and only the filling changes.
+:::
+
+::: comesback
+- Session 3 explains why the edge of a topological insulator conducts, with the bulk-boundary correspondence of Section [3.7](#sec-3-7). The two chains of the first quiz are the SSH model of Section [3.9](#sec-3-9).
+- The Berry phase comes back as the Zak phase of the SSH chain in Section [3.9c](#sec-3-9c), and the quantum spin Hall insulator in Section [3.11](#sec-3-11).
+- The quantum magnets without order are the spin liquids of Session 8, starting from the frustration of Section [8.4](#sec-8-4).
+- Chiral superconductors and their Majorana excitations are in Section [5.14](#sec-5-14) and Section [5.15](#sec-5-15), and the fractional quantum Hall state is built in Section [4.16](#sec-4-16).
 :::

@@ -51,12 +51,18 @@ Two levels of $H_0$ are exactly degenerate and $V$ couples them. What happens to
     This is false. The matrix element is finite, but the coefficient is its ratio to the energy difference. For two levels split by $10^{-4}t$ and $v=0.01t$ the ratio is $100$, so it is not finite as the splitting goes to zero.
 :::
 
-**When does this break down?** The construction in [(9.3)](#eq-9-3) assumes that $A(\lambda)$ is an analytic function of $\lambda$ close to $\lambda=0$, and this assumption is not always true. There are three paradigmatic quantum states that are known to be intrinsically non-perturbative in this sense, and we mention them explicitly since they mark the limit of everything that we derive below.
+**When does this break down?** The construction in [(9.3)](#eq-9-3) assumes that $A(\lambda)$ is an analytic function of $\lambda$ close to $\lambda=0$, and this assumption is not always true. There are three paradigmatic quantum states that are known to be intrinsically non-perturbative in this sense, and we mention them explicitly since they mark the limit of everything that we derive below. We met the same three cases in Section [3.3](#sec-3-3).
 
-- **An impurity in a metal, the orthogonality catastrophe.** In the thermodynamic limit, the full many-body wavefunction of a metal with the impurity switched on becomes exactly orthogonal to the wavefunction with the impurity switched off, for any strength of the impurity potential, even a very weak one.
+- **An impurity in a metal, the orthogonality catastrophe.** In the thermodynamic limit, the many-body wavefunction of a metal with the impurity becomes exactly orthogonal to the one without it. This happens for any strength of the impurity potential, even a very weak one.
 
-- **A quantum spin in a metal, the Kondo effect.** The emergent Kondo temperature is a non-perturbative function of the Kondo coupling, since it contains an essential singularity in the coupling constant and not a power series.
+- **A quantum spin in a metal, the Kondo effect.** The Kondo temperature that emerges is non-perturbative in the Kondo coupling. It has an essential singularity in the coupling constant and not a power series, and Section [8.11](#sec-8-11) treats the Kondo impurity in full.
 
-- **Superconductivity in the BCS limit.** In the same way, the superconducting gap is non-perturbative in the attractive coupling constant.
+- **Superconductivity in the BCS limit.** In the same way, the superconducting gap of Session 5 is non-perturbative in the attractive coupling constant.
 
 In the rest of this session we stay in the regime where perturbation theory *does* work, which is the regime where [(9.2)](#eq-9-2) and [(9.3)](#eq-9-3) give a controlled and systematic way to compute responses.
+
+::: comesback
+- In Section [9.4](#sec-9-4) the mixing of [(9.3)](#eq-9-3) for a Fermi sea gives the Lindhard function.
+- In Section [9.5](#sec-9-5) the random phase approximation sums the interaction to all orders, which goes beyond the first order of this page.
+- In Section [9.6](#sec-9-6) a weak impurity in a metal is treated at first order, in the Born approximation, and gives the Friedel oscillation.
+:::

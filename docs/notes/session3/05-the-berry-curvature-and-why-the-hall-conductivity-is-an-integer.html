@@ -52,7 +52,7 @@
   .crumb { margin: 0 0 4px; font-size: 0.95rem; }
   .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
   .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
-  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .toc .n { display: inline-block; min-width: 3.4em; padding-right: .4em; color: var(--muted); }
   .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
   figure { margin: 24px 0; }
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
@@ -92,10 +92,10 @@
 <p>so that the Hall conductivity of a set of filled bands is</p>
 <p><span id="eq-3-4" class="eq"><span class="math display">\[\sigma_{xy} = \frac{e^2}{h}\, C, \qquad
 C = \sum_{n\ \text{filled}} \frac{1}{2\pi}\int_{\text{BZ}} \Omega_n(k)\, d^2k. \tag{3.4}\]</span></span></p>
-<p>This is the central result of the session, and there are two important points about <a href="#eq-3-4">(3.4)</a>. First, <span class="math inline">\(\sigma_{xy}\)</span> depends only on how the wavefunctions change across the Brillouin zone, and not on the energies. We can deform the band structure in any way, and as long as the wavefunctions do not change, the Hall conductivity stays the same. Second, and more surprising, for a gapped system, which is an insulator, <span class="math inline">\(C\)</span> is always an integer, regardless of the number of bands and of the shape of the dispersion. This is a topological statement. The Brillouin zone of a two-dimensional system is a compact manifold, which is a torus since opposite edges of the zone are identified, and the integral of a curvature over a closed surface always gives an integer. The same happens for the Gaussian curvature of an ordinary closed surface in differential geometry. This integer <span class="math inline">\(C\)</span> is the <strong>Chern number</strong>, and <a href="#eq-3-4">(3.4)</a> is the first place in the course where a measurable quantity, the Hall conductivity, is fixed by a topological invariant. As an example, <a href="#sch:s03:berry_haldane">Schematic 3.3</a> shows the Berry curvature of two gapped honeycomb lattices, which we build in Section <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#sec-3-10">3.10</a>.</p>
+<p>This is the central result of the session, and there are two important points about <a href="#eq-3-4">(3.4)</a>. First, <span class="math inline">\(\sigma_{xy}\)</span> depends only on how the wavefunctions change across the Brillouin zone, and not on the energies. We can deform the band structure in any way, and as long as the wavefunctions do not change, the Hall conductivity stays the same. Second, and more surprising, for a gapped system, which is an insulator, <span class="math inline">\(C\)</span> is always an integer, regardless of the number of bands and of the shape of the dispersion. This is a topological statement. The Brillouin zone of a two-dimensional system is a compact manifold. It is a torus, since opposite edges of the zone are identified, and the integral of a curvature over a closed surface always gives an integer. The same happens for the Gaussian curvature of an ordinary closed surface in differential geometry. This integer <span class="math inline">\(C\)</span> is the <strong>Chern number</strong>, and <a href="#eq-3-4">(3.4)</a> is the first place in the course where a measurable quantity, the Hall conductivity, is fixed by a topological invariant. As an example, <a href="#sch:s03:berry_haldane">Schematic 3.5</a> shows the Berry curvature of two gapped honeycomb lattices, which we build in Section <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#sec-3-10">3.10</a>.</p>
 <figure id="sch:s03:berry_haldane" class="schematic">
 <img src="../figures/web/session03/berry_haldane.svg" loading="lazy" alt="Two color maps of the Brillouin zone, with two red spots for the Haldane coupling and one red and one blue spot for the staggered potential." />
-<figcaption><strong>Schematic 3.3.</strong> The Berry curvature of the lower band over the Brillouin zone of the honeycomb lattice, computed on a grid. In (a) the gap comes from the Haldane coupling, with second-neighbor hopping <span class="math inline">\(0.1\)</span> in units of the first-neighbor one. In (b) it comes from a staggered sublattice potential of <span class="math inline">\(0.5\)</span>. The curvature is concentrated at the two Dirac points, where the gap is smallest. In (a) it has the same sign at both points, and its integral divided by <span class="math inline">\(2\pi\)</span> gives <span class="math inline">\(|C|=1\)</span>. In (b) the two signs are opposite and the integral vanishes. Look at the colors, since the integer comes from the sum of the two red spots.</figcaption>
+<figcaption><strong>Schematic 3.5.</strong> The Berry curvature of the lower band over the Brillouin zone of the honeycomb lattice, computed on a grid. In (a) the gap comes from the Haldane coupling, with second-neighbor hopping <span class="math inline">\(0.1\)</span> in units of the first-neighbor one. In (b) it comes from a staggered sublattice potential of <span class="math inline">\(0.5\)</span>. The curvature is concentrated at the two Dirac points, where the gap is smallest. In (a) it has the same sign at both points, and its integral divided by <span class="math inline">\(2\pi\)</span> gives <span class="math inline">\(|C|=1\)</span>. In (b) the two signs are opposite and the integral vanishes. Look at the colors, since the integer comes from the sum of the two red spots.</figcaption>
 </figure>
 <div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
@@ -144,22 +144,33 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
 <p>This is false. An isolated gapped band has an integer <span class="math inline">\(C\)</span>. For <span class="math inline">\(\mathbf d=(\sin k_x,\sin k_y,m+\cos k_x+\cos k_y)\)</span> with <span class="math inline">\(m=-1.9\)</span> the sum of the curvature is <span class="math inline">\(5.4\)</span> on an 8 by 8 mesh and <span class="math inline">\(2.7\)</span> on a 12 by 12 mesh, and it converges to <span class="math inline">\(1\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. For this model the mass at <span class="math inline">\(\Gamma\)</span> is only <span class="math inline">\(0.1\)</span>, so the curvature is concentrated there. The sum is <span class="math inline">\(1.00\)</span> on a 100 by 100 mesh, and the integral is exactly an integer.</p>
+<p>This is true. For this model the mass at <span class="math inline">\(\Gamma\)</span> is only <span class="math inline">\(0.1\)</span>, so the curvature is concentrated there. The sum is <span class="math inline">\(1.00\)</span> on a 100 by 100 mesh, and the integral is an integer.</p>
 <figure class="quiz-fig schematic">
 <img src="../figures/web/session03/chern_mesh.svg" loading="lazy" alt="Left, a narrow peak of the Berry curvature at the center of the zone with the points of a coarse mesh. Right, the sum over the mesh falling to one as the mesh grows." />
 <figcaption>The model <span class="math inline">\(\mathbf d=(\sin k_x,\sin k_y,m+\cos k_x+\cos k_y)\)</span> with <span class="math inline">\(m=-1.9\)</span> of the options. In (a) the curvature on the line <span class="math inline">\(k_y=0\)</span> has a narrow peak at <span class="math inline">\(\Gamma\)</span>, and the dots are the points of the mesh 8 by 8, where one point sits on the peak. In (b) the sum of the curvature divided by <span class="math inline">\(2\pi\)</span> against the number of points <span class="math inline">\(n_k\)</span> in each direction.</figcaption>
 </figure></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. The Brillouin zone of a lattice is periodic in both directions, so it is a torus for every model. The same model gives exactly <span class="math inline">\(1\)</span> on a fine mesh, so the non-integer value comes from the sampling.</p></li>
+<p>This is false. The Brillouin zone of a lattice is periodic in both directions, so it is a torus for every model. The same model gives <span class="math inline">\(1.00\)</span> on a fine mesh, so the non-integer value comes from the sampling.</p></li>
 </ul>
 </div>
 </details>
 </div>
 <div class="tryit">
-<p><strong>Try it.</strong> In the cell that plots the Berry curvature, replace <code>h.add_sublattice_imbalance(0.5)</code> by <code>h.add_haldane(0.1)</code> and run it again. The map now has the same color around K and K’, as in panel (a) of <a href="#sch:s03:berry_haldane">Schematic 3.3</a>. Then call <code>h.get_chern(nk=60)</code>. It gives 2, which is the value 1 of each of the two spin species of the default Hamiltonian. With the sublattice imbalance it gives 0.</p>
+<p><strong>Try it.</strong> In the cell that plots the Berry curvature, replace <code>h.add_sublattice_imbalance(0.5)</code> by <code>h.add_haldane(0.1)</code> and run it again. The map now has the same color around K and K’, as in panel (a) of <a href="#sch:s03:berry_haldane">Schematic 3.5</a>. Then call <code>h.get_chern(nk=60)</code>. It gives 2, which is the value 1 of each of the two spin species of the default Hamiltonian. With the sublattice imbalance it gives 0.</p>
 <div class="tryit-links">
 Notebook <code>session3.ipynb</code>, cell “Topological states and topological invariants”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session3.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session3.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession3.ipynb">Binder</a>.
 </div>
+</div>
+<div class="comesback">
+<div class="comesback-label">
+Where this comes back
+</div>
+<ul>
+<li>In Section <a href="../session4/03-from-the-kubo-formula-to-the-chern-number-briefly.html#sec-4-3">4.3</a> the same integral <a href="../session4/03-from-the-kubo-formula-to-the-chern-number-briefly.html#eq-4-1">(4.1)</a> is applied to the Landau levels, and in Section <a href="../session4/03-from-the-kubo-formula-to-the-chern-number-briefly.html#sec-4-4">4.4</a> each of them has <span class="math inline">\(C=1\)</span>.</li>
+<li>In Section <a href="../session5/14-same-gap-and-different-topology-in-trivial-s-wave-and-chiral-p-wave-pairing.html#sec-5-14">5.14</a> the Chern number of the BdG bands is <span class="math inline">\(0\)</span> for s-wave pairing and <span class="math inline">\(\pm2\)</span> for chiral p-wave pairing.</li>
+<li>In Section <a href="../session6/16-topological-magnons.html#sec-6-16">6.16</a> the same integral of the Berry curvature, now of a magnon band, gives the Chern number <a href="../session6/16-topological-magnons.html#eq-6-10">(6.10)</a>.</li>
+<li>In Section <a href="../session10/06-phase-classification-with-local-order-parameters-and-topological-order.html#sec-10-6">10.6</a> the Chern number is the example of a quantity that separates phases where no local order parameter does.</li>
+</ul>
 </div>
 
   <nav class="pager"><a href="03-where-perturbation-theory-breaks-down.html">3.3 Where perturbation theory breaks down</a><a href="06-landau-levels-and-chiral-edge-states-in-the-quantum-hall-state.html">3.6a Landau levels and chiral edge states in the quantum Hall state</a></nav>

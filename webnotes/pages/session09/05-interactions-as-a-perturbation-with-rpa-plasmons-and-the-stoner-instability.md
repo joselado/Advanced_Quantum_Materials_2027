@@ -2,7 +2,7 @@
 
 So far the perturbation has been an external impurity. However, we can also treat the electron-electron interaction *itself* as the perturbation. We use $\chi_0$, the non-interacting response that we just built, as input, and we ask for the response $\chi$ of the full interacting system. For this we need two things. The first is a rule that connects $\chi$ to $\chi_0$, and the second is a criterion to find instabilities from $\chi$.
 
-**From $\chi_0$ to $\chi$ with the random phase approximation.** Let us take a contact interaction, of Hubbard type, with strength $U$, which couples to the density. The physical picture is a diagrammatic one. The response to a probe is the bare response $\chi_0$, plus the bare response followed by one interaction event and another bare response, plus two interaction events, and so on, which is an infinite ladder of terms. The most efficient way to include all of them is not to sum the series term by term, but to write the self-consistent equation that the full response must satisfy,
+**From $\chi_0$ to $\chi$ with the random phase approximation.** Let us take a contact interaction of the Hubbard type of [(1.7)](#eq-1-7), with strength $U$, which couples to the density. The physical picture is a diagrammatic one. The response to a probe is the bare response $\chi_0$, plus the bare response followed by one interaction event and another bare response. Then come two interaction events and so on, which is an infinite ladder of terms. The most efficient way to include all of them is not to sum the series term by term, but to write the self-consistent equation that the full response must satisfy,
 
 $$\chi(q,\omega) = \chi_0(q,\omega) - \chi_0(q,\omega)\, U\, \chi(q,\omega),$$
 
@@ -24,7 +24,7 @@ $$\omega_{\rm pl}(q)^2 = \omega_p^2 + \tfrac{3}{5} v_F^2\, q^2 + O(q^4), \tag{9.
 
 where $\omega_p$ is the classical plasma frequency. The plasmon exists even at $q=0$, which is different from the particle-hole continuum, because it is a collective mode of the whole charge density and not a single-particle excitation. Figure [9.2](#fig:s09:plasmon) shows both kinds of divergence in the same $(q,\omega)$ plane, and it shows explicitly the window at small $q$ where the pole exists and no single-particle excitation exists.
 
-![The two divergences of the RPA response [(9.6)](#eq-9-6), drawn in the $(q,\omega)$ plane for the three-dimensional electron gas. The shaded region is where $\mathrm{Im}\,\chi_0(q,\omega)\neq 0$, which is the *particle-hole continuum*, the set of all $(q,\omega)$ at which a single electron can be moved from an occupied state $k$ to an empty state $k+q$. Its upper boundary is $\hbar\omega_+=\hbar v_Fq+\hbar^2q^2/2m$, and beyond $2k_F$ a lower boundary $\hbar\omega_-=\hbar^2q^2/2m-\hbar v_Fq$ appears. Both follow from the energy denominator of [(9.5)](#eq-9-5), and for $q<2k_F$ the continuum goes all the way down to $\omega=0$, which is the same statement as saying that $\chi_0$ is built only from states on the two sides of the Fermi surface. The plasmon [(9.7)](#eq-9-7) is a different object. It is a zero of the RPA *denominator* $1-v(q)\chi_0$, so it exists at $\omega_p$ even as $q\to 0$, in a window where no single-particle excitation exists at all. This window, marked in the figure, is the full meaning of the phrase "collective mode, not a particle-hole pair". Once the branch meets the continuum it can decay into particle-hole pairs, and it is Landau damped (dashed).](figures/s09f02_plasmon.svg){#fig:s09:plasmon number="9.2"}
+![The two divergences of the RPA response [(9.6)](#eq-9-6), drawn in the $(q,\omega)$ plane for the three-dimensional electron gas. The shaded region is where $\mathrm{Im}\,\chi_0(q,\omega)\neq 0$, which is the *particle-hole continuum*, the set of all $(q,\omega)$ at which a single electron can be moved from an occupied state $k$ to an empty state $k+q$. Its upper boundary is $\hbar\omega_+=\hbar v_Fq+\hbar^2q^2/2m$, and beyond $2k_F$ a lower boundary $\hbar\omega_-=\hbar^2q^2/2m-\hbar v_Fq$ appears. Both follow from the energy denominator of [(9.5)](#eq-9-5). For $q<2k_F$ the continuum goes all the way down to $\omega=0$, which is the same statement as saying that $\chi_0$ is built only from states on the two sides of the Fermi surface. The plasmon [(9.7)](#eq-9-7) is a different object. It is a zero of the RPA *denominator* $1-v(q)\chi_0$, so it exists at $\omega_p$ even as $q\to 0$, in a window where no single-particle excitation exists at all. This window, marked in the figure, is the full meaning of the phrase "collective mode, not a particle-hole pair". Once the branch meets the continuum it can decay into particle-hole pairs, and it is Landau damped (dashed).](figures/s09f02_plasmon.svg){#fig:s09:plasmon number="9.2"}
 
 ::: quiz
 In the density channel the interaction is repulsive, $U>0$, and $\chi_0$ is positive. How does the RPA response [(9.6)](#eq-9-6) compare with $\chi_0$ at the same $q$ and $\omega$?
@@ -43,7 +43,7 @@ In the density channel the interaction is repulsive, $U>0$, and $\chi_0$ is posi
 :::
 
 ::: quiz
-At small $q$ the particle-hole continuum of figure [9.2](#fig:s09:plasmon) shrinks towards $\omega=0$, while the plasmon of [(9.7)](#eq-9-7) stays near $\omega_p$. Why is the plasmon not damped there?
+At small $q$ the particle-hole continuum of Figure [9.2](#fig:s09:plasmon) shrinks towards $\omega=0$, while the plasmon of [(9.7)](#eq-9-7) stays near $\omega_p$. Why is the plasmon not damped there?
 
 - [ ] Because the interaction vanishes at $q=0$.
 
@@ -59,3 +59,8 @@ At small $q$ the particle-hole continuum of figure [9.2](#fig:s09:plasmon) shrin
 :::
 
 The same denominator, now in the spin channel, gives the Stoner instability, and we treat it next.
+
+::: comesback
+- In Section [9.5b](#sec-9-5b) the same RPA denominator in the spin channel gives the Stoner instability.
+- In Section [9.6](#sec-9-6) we go back to the bare $\chi_0$, now with a real impurity as the perturbation.
+:::

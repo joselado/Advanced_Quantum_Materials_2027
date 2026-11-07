@@ -14,7 +14,7 @@ Start from the band structure of the two-site chain without interactions, which 
 
 ## Competition between the ferromagnet and the antiferromagnet {#sec-6-5 number="6.5"}
 
-The Hubbard chain [(6.1)](#eq-6-1) has *both* a uniform self-consistent solution, with one site per cell and without the gap of the doubled cell, which is the paramagnet below $U\approx 4t$ and a fully polarized ferromagnet above it, where the spin-up band is full and the spin-down band is empty, and an antiferromagnetic one, with two sites per cell, insulating and gapped, at the same filling and the same $U$. Both are real fixed points of the self-consistency loop. Only one of them can be the true ground state, and we decide which one by comparing total energies. Here the gapped antiferromagnetic solution always has the lower energy. Opening a gap pushes the occupied single-particle energies down, so the insulating configuration has a lower total energy than the gapless ferromagnetic one for every $U>0$ that we can reach numerically in this half-filled chain.
+The Hubbard chain [(6.1)](#eq-6-1) has *two* kinds of self-consistent solution at the same filling and the same $U$. The first is a uniform solution, with one site per cell and without the gap of the doubled cell. It is the paramagnet below $U\approx 4t$ and a fully polarized ferromagnet above it, where the spin-up band is full and the spin-down band is empty. The second is an antiferromagnetic solution, with two sites per cell, which is insulating and gapped. Both are real fixed points of the self-consistency loop. Only one of them can be the true ground state, and we decide which one by comparing total energies. Here the gapped antiferromagnetic solution always has the lower energy. Opening a gap pushes the occupied single-particle energies down, so the insulating configuration has a lower total energy than the gapless ferromagnetic one for every $U>0$ that we can reach numerically in this half-filled chain.
 
 Let us follow how large this energy difference is as a function of $U$. At $U=0$ the two configurations are the same, so the energy difference is zero. When $U$ grows from zero the gap opens and the energy difference grows with it. However, when $U$ keeps growing, the energy difference starts to *decrease* again, which is not what one would expect. In the limit $U\to\infty$, which is the same as the limit where the kinetic energy can be neglected, the two configurations become degenerate. Numerically, this energy difference follows a $1/U$ form. In Section [6.8](#sec-6-8) we will derive this exact $1/U$ scaling analytically from a completely independent calculation, which is a real cross-check between the mean-field numerics and a many-body perturbative treatment.
 
@@ -40,4 +40,9 @@ At large $U$ the energy difference $E_\text{FM}-E_\text{AFM}$ of the half-filled
 
 ::: {.tryit notebook="session6.ipynb" cell="The strongly interacting limit"}
 In the cell, `Us` runs from 20 to 60. The plot of $E_\text{FE}-E_\text{AF}$ falls as $1/U$, and the points of the log-log plot follow a line of slope $-1$. The product $U(E_\text{FE}-E_\text{AF})$ is close to $4t^2$ for the cell of two sites.
+:::
+
+::: comesback
+- In Section [6.8](#sec-6-8) the $1/U$ law of the energy difference is derived from the Hubbard dimer, as the exchange coupling $J=4t^2/U$.
+- In Section [9.5b](#sec-9-5b) the competition between the ferromagnet and the antiferromagnet comes back, since nesting makes the antiferromagnetic instability appear at a smaller $U$ than the uniform one.
 :::

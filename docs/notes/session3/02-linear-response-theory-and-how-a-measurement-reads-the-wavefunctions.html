@@ -52,7 +52,7 @@
   .crumb { margin: 0 0 4px; font-size: 0.95rem; }
   .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
   .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
-  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .toc .n { display: inline-block; min-width: 3.4em; padding-right: .4em; color: var(--muted); }
   .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
   figure { margin: 24px 0; }
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
@@ -85,10 +85,10 @@
   <p class="crumb"><a href="index.html">Session 3. Topological Band Structure Theory</a></p>
 <h1 id="sec-3-2"><span class="num">3.2</span> Linear response theory and how a measurement reads the wavefunctions</h1>
 <p>To see why a bulk band structure can have an invariant at all, we need a tool that connects the wavefunctions of a Hamiltonian to something that we can measure. This tool is linear response theory, and the idea behind it is very general. We perturb the system at a position <span class="math inline">\(x\)</span> and time <span class="math inline">\(t\)</span>, and then we measure an observable, such as the charge, the current, the magnetization or the heat, at another position <span class="math inline">\(x&#39;\)</span> and time <span class="math inline">\(t&#39;\)</span>. Linear response theory tells us that this measured response depends only on the electronic structure of the unperturbed material.</p>
-<p>Before we specialize to the Hall conductivity, let us look at two examples. Let us put an impurity in a two-dimensional metal and look at how the electron density, or the local density of states, is modulated around it. Linear response theory shows that this modulation pattern, which is called the Friedel oscillation, directly contains the Fermi wavelength of the electron gas, and this is what scanning tunneling microscopy uses in practice. In a similar way, when we scatter neutrons on a magnetic material, the magnetic moment of the neutron couples to the local moments in the sample. The resulting scattering pattern gives both the magnetic structure and its excitations, in particular magnons. Both examples are illustrations that appear only on the slides, in the sense that the figures of the Friedel oscillation and of neutron scattering were shown on screen without a full explanation. However, the physics of both examples was explained in the lecture, and it is useful to keep it in mind as the general result of the formalism that we build next.</p>
+<p>Before we specialize to the Hall conductivity, let us look at two examples. Let us put an impurity in a two-dimensional metal and look at how the electron density, or the local density of states, is modulated around it. Linear response theory shows that this modulation pattern, which is called the Friedel oscillation, directly contains the Fermi wavelength of the electron gas, and this is what scanning tunneling microscopy uses in practice. In a similar way, when we scatter neutrons on a magnetic material, the magnetic moment of the neutron couples to the local moments in the sample. The resulting scattering pattern gives both the magnetic structure and its excitations, in particular magnons, which we build in Section <a href="../session6/13-magnons-as-fluctuations-of-the-order-parameter.html#sec-6-13">6.13</a>. It is useful to keep both examples in mind as the general result of the formalism that we build next.</p>
 <figure class="again panel">
 <img src="../figures/panel/s09f01_nesting_ab.svg" loading="lazy" alt="A one-dimensional band with its two Fermi points and the static response function with a logarithmic peak at twice the Fermi wavevector." />
-<figcaption><strong><a href="../session9/04b-nesting-and-the-divergence-of-the-lindhard-function.html#fig:s09:nesting">Figure 9.1</a>, one panel shown again.</strong> The origin of the Friedel oscillation, which is the response of a metal to an impurity. In (a) the vector <span class="math inline">\(2k_F\)</span> connects the two Fermi points of a chain. In (b) the static response has its peak at this vector, so the density around the impurity oscillates with the wavevector <span class="math inline">\(2k_F\)</span>. We derive this response in session 9.</figcaption>
+<figcaption><strong><a href="../session9/04b-nesting-and-the-divergence-of-the-lindhard-function.html#fig:s09:nesting">Figure 9.1</a>, one panel shown again.</strong> The origin of the Friedel oscillation, which is the response of a metal to an impurity. In (a) the vector <span class="math inline">\(2k_F\)</span> connects the two Fermi points of a chain. In (b) the static response has its peak at this vector, so the density around the impurity oscillates with the wavevector <span class="math inline">\(2k_F\)</span>. We derive this response in Section <a href="../session9/04-the-fermi-sea-and-the-lindhard-function.html#sec-9-4">9.4</a>.</figcaption>
 </figure>
 <p>Formally, we start from an unperturbed Hamiltonian <span class="math inline">\(H_0\)</span> and add a perturbation controlled by a dimensionless parameter <span class="math inline">\(\lambda\)</span>,</p>
 <p><span class="math display">\[H(\lambda) = H_0 + \lambda V,\]</span></p>
@@ -122,6 +122,16 @@ Question
 </ul>
 </div>
 </details>
+</div>
+<div class="comesback">
+<div class="comesback-label">
+Where this comes back
+</div>
+<ul>
+<li>In Section <a href="03-where-perturbation-theory-breaks-down.html#sec-3-4">3.4</a> we put <a href="#eq-3-1">(3.1)</a> into the Hall conductivity, and in Section <a href="../session4/03-from-the-kubo-formula-to-the-chern-number-briefly.html#sec-4-3">4.3</a> the same Kubo formula gives the Hall conductance of the Landau levels.</li>
+<li>In Section <a href="../session9/03-linear-response-and-perturbation-theory-in-detail.html#sec-9-3">9.3</a> linear response and perturbation theory are derived again in detail, and Section <a href="../session9/06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html#sec-9-6">9.6</a> computes the Friedel oscillation around an impurity.</li>
+<li>In Section <a href="../session6/13-magnons-as-fluctuations-of-the-order-parameter.html#sec-6-13">6.13</a> we build the magnons that neutron scattering measures.</li>
+</ul>
 </div>
 
   <nav class="pager"><a href="01-what-topological-materials-are.html">3.1 What topological materials are</a><a href="03-where-perturbation-theory-breaks-down.html">3.3 Where perturbation theory breaks down</a></nav>

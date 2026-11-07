@@ -52,7 +52,7 @@
   .crumb { margin: 0 0 4px; font-size: 0.95rem; }
   .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
   .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
-  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .toc .n { display: inline-block; min-width: 3.4em; padding-right: .4em; color: var(--muted); }
   .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
   figure { margin: 24px 0; }
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
@@ -91,10 +91,10 @@
 <p><span id="eq-5-17" class="eq"><span class="math display">\[\gamma_A = c + c^\dagger, \qquad \gamma_B = -i\left(c - c^\dagger\right), \tag{5.17}\]</span></span></p>
 <p>so that <span class="math inline">\(\gamma_A^\dagger = \gamma_A\)</span>, <span class="math inline">\(\gamma_B^\dagger = \gamma_B\)</span>, <span class="math inline">\(\{\gamma_A,\gamma_B\}=0\)</span> and <span class="math inline">\(\gamma_A^2=\gamma_B^2=1\)</span>, where we used <span class="math inline">\(\{c,c^\dagger\}=1\)</span>. If we invert <a href="#eq-5-17">(5.17)</a>, we obtain</p>
 <p><span id="eq-5-18" class="eq"><span class="math display">\[c = \frac{1}{2}\left(\gamma_A + i\gamma_B\right), \qquad c^\dagger = \frac{1}{2}\left(\gamma_A - i\gamma_B\right). \tag{5.18}\]</span></span></p>
-<p>At first this is only a change of variables, a mathematical trick without new physics. Every electron is <em>always</em> made of two Majorana operators that are tightly bound together into an ordinary fermion, and normally there is no way to observe <span class="math inline">\(\gamma_A\)</span> or <span class="math inline">\(\gamma_B\)</span> separately, only their fixed combination <span class="math inline">\(c\)</span>. Superconductors are special because BdG eigenstates are already mixtures of electrons and holes by construction, since the Nambu spinor of section <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#sec-5-8">5.8</a> explicitly combines <span class="math inline">\(c_{\mathbf k\sigma}\)</span> with <span class="math inline">\(c_{-\mathbf k\sigma&#39;}^\dagger\)</span>. So a superconductor is the kind of system where, with the right pairing symmetry and the right geometry, the two Majorana components of an electron can become spatially <em>separated</em>, or deconfined, instead of staying together at one site. This deconfinement is the topic of the rest of this section.</p>
+<p>At first this is only a change of variables, a mathematical trick without new physics. Every electron is <em>always</em> made of two Majorana operators that are tightly bound together into an ordinary fermion, and normally there is no way to observe <span class="math inline">\(\gamma_A\)</span> or <span class="math inline">\(\gamma_B\)</span> separately, only their fixed combination <span class="math inline">\(c\)</span>. Superconductors are special because BdG eigenstates are already mixtures of electrons and holes by construction, since the Nambu spinor of Section <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#sec-5-8">5.8</a> explicitly combines <span class="math inline">\(c_{\mathbf k\sigma}\)</span> with <span class="math inline">\(c_{-\mathbf k\sigma&#39;}^\dagger\)</span>. So in a superconductor, with the right pairing symmetry and the right geometry, the two Majorana components of an electron can become spatially <em>separated</em>, or deconfined. Then they no longer stay together at one site. This deconfinement is the topic of the rest of this section.</p>
 <figure id="sch:s05:majorana_halves" class="schematic">
 <img src="../figures/web/session05/majorana_halves.svg" loading="lazy" alt="At the top, one electron drawn as a single circle and then as two bound circles. At the bottom, four sites with halves bound across neighboring sites and one free half at each end." />
-<figcaption><strong>Schematic 5.6.</strong> One electron mode and its two Majorana halves. At the top the mode is <span class="math inline">\(\tfrac12(\gamma_A+i\gamma_B)\)</span>, and the halves are bound at one site. At the bottom the halves are bound between neighboring sites, and then one half at each end of the chain stays free, which the stars mark.</figcaption>
+<figcaption><strong>Schematic 5.10.</strong> One electron mode and its two Majorana halves. At the top the mode is <span class="math inline">\(\tfrac12(\gamma_A+i\gamma_B)\)</span>, and the halves are bound at one site. At the bottom the halves are bound between neighboring sites, and then one half at each end of the chain stays free, which the stars mark.</figcaption>
 </figure>
 <div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
@@ -155,6 +155,16 @@ Question
 <div class="tryit-links">
 Notebook <code>session5.ipynb</code>, cell “Majorana modes in a spin triplet superconductor”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession5.ipynb">Binder</a>.
 </div>
+</div>
+<div class="comesback">
+<div class="comesback-label">
+Where this comes back
+</div>
+<ul>
+<li>In Section <a href="16-the-kitaev-chain-as-the-minimal-model-with-isolated-majoranas.html#sec-5-16">5.16</a> the Kitaev chain binds the Majorana halves of neighboring sites, and one half stays free at each end.</li>
+<li>In Section <a href="19-topological-quantum-computing-with-majoranas.html#sec-5-19">5.19</a> four Majoranas make two ordinary fermion modes, which is the basis of a topological qubit.</li>
+<li>In Section <a href="../session9/08-impurities-as-diagnostics-iii-vacancies-in-topological-matter.html#sec-9-8">9.8</a> a vacancy in a topological superconductor, the class that hosts these Majorana modes, gives a bound state inside the gap.</li>
+</ul>
 </div>
 
   <nav class="pager"><a href="14-same-gap-and-different-topology-in-trivial-s-wave-and-chiral-p-wave-pairing.html">5.14 Same gap and different topology in trivial s-wave and chiral p-wave pairing</a><a href="16-the-kitaev-chain-as-the-minimal-model-with-isolated-majoranas.html">5.16 The Kitaev chain as the minimal model with isolated Majoranas</a></nav>

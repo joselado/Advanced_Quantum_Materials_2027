@@ -8,7 +8,7 @@ The difference between the two languages appears as soon as we add real many-bod
 
 ![The exponential growth of the Fock space for three sites. A single-particle tight-binding problem is an $L\times L$ matrix, on the left, where the raised dark entries are the first-neighbor hoppings of the chain in front of it. The interacting problem needs the full Fock space, on the right, where every site is empty or occupied. Each plate is one many-body state with a ball on every occupied site, and the $2^L$ states are ordered in columns by particle number. For $L=3$ this is $8$, and for $L\approx 20$ it is already about a million, which is the limit of brute-force diagonalization.](figures/s01f01_fockspace.svg){#fig:s01:fockspace number="1.1"}
 
-In general, for $L$ sites the single-particle problem is an $L \times L$ matrix, while the many-body problem is a $2^L \times 2^L$ matrix, and we need $2^L$ coefficients only to write the ground-state wave function. This is the reason why $L \approx 20$ is already close to the practical limit of what we can do by brute force. The exact rate of growth depends on the kind of site that we have. Spinful fermions have four states per site, which are empty, up, down and doubly occupied. Spinless fermions have two, and they are relevant when a single spin species is isolated by strong magnetism or a strong field. Pure spin sites, which we will need later in the course for quantum magnets and Kondo systems, also give an exponential growth, but with a different underlying algebra.
+In general, for $L$ sites the single-particle problem is an $L \times L$ matrix, while the many-body problem is a $2^L \times 2^L$ matrix, and we need $2^L$ coefficients only to write the ground-state wave function. This is the reason why $L \approx 20$ is already close to the practical limit of what we can do by brute force. The exact rate of growth depends on the kind of site that we have. Spinful fermions have four states per site, which are empty, up, down and doubly occupied. Spinless fermions have two, and they are relevant when a single spin species is isolated by strong magnetism or a strong field. Pure spin sites, which we need in Session 8 for quantum magnets and Kondo systems, also give an exponential growth, but with a different underlying algebra.
 
 ::: quiz
 We take three sites of spinful fermions, with four states per site. How many many-body states does the Fock space have?
@@ -31,6 +31,8 @@ The Fock space grows exponentially with the number of sites, while the single-pa
 ## A first look at eigenstates in finite tight-binding islands {#sec-1-10 number="1.10"}
 
 Before we go to interactions, let us look at what a purely single-particle Hamiltonian already gives us, because this is something that we can compare directly with experiment. Let us take a tight-binding Hamiltonian $H = \sum_{ij} t_{ij}\, c_i^\dagger c_j$ on a honeycomb lattice, cut into a finite island that is triangular, hexagonal or rectangular, and let us diagonalize it. The probability density of a given eigenvector in real space can be compared directly with what a scanning tunneling microscope measures. Qualitatively, these states look like the finite-size states of a "particle in a box". The lowest-energy state has its maximum close to the center of the island, and the higher states have more and more nodes. This is a good first check, since single-particle diagonalization, with nothing more, already gives a structure that we can recognize and that we can measure in experiments.
+
+![The first levels of a hexagonal honeycomb island of 96 sites, with $H=-t\sum c_i^\dagger c_j$ over first neighbors. The area of a disc is the density of the level on that site, averaged over the degenerate states of the level, which is proportional to what STM maps at that energy. The lowest level has no node and its maximum at the center. The higher levels have nodes, so their weight moves away from the center, as for the higher states of a particle in a box.](figures/web/session01/island_states.svg){#sch:s01:island_states alt="Three copies of a hexagonal honeycomb island with discs on the sites. In the lowest level the discs are largest at the center. In the second and the sixth level the large discs move away from the center, toward the edge."}
 
 ::: quiz
 We make a finite island larger and diagonalize it again. What happens to the spacing between the levels?
@@ -55,7 +57,7 @@ The spacing goes to zero only in the limit of an infinite system, where the leve
 ::: notebookbox
 **Notebook check-in:** [`session1.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session1.ipynb), "Finite sized chains" (Core), and "Density of states of a finite system as a function of the system size" (Challenge)
 
-Diagonalize a finite chain or island, and look at how the spatial profiles of the eigenstates and the density of states change when you make the system larger. This is the numerical version of the particle-in-a-box argument above, and it is a good place to build intuition for how we approach an infinite periodic system, which we treat in session 2, starting from the finite-size case.
+Diagonalize a finite chain or island, and look at how the spatial profiles of the eigenstates and the density of states change when you make the system larger. This is the numerical version of the particle-in-a-box argument above. It is also a good place to see how we reach an infinite periodic system from the finite-size case, which we do in Session 2.
 :::
 
 ::: {.tryit notebook="session1.ipynb" cell="Finite sized chains"}
@@ -68,3 +70,8 @@ We will use two software tools in all sessions. The first one is **PyQula**, whi
 Move the number of sites $N$ of the finite chain. The lowest state has no node, and each higher state has one node more, as for a particle in a box. The dashed curve is the box wavefunction, and the PyQula result lies exactly on top of it. Note that the level spacing shrinks when $N$ grows, which is how the band of the infinite chain emerges in Session 2.
 :::
 
+::: comesback
+- The growth as $2^L$ is the starting point of Session 7. Section [7.3](#sec-7-3) counts the coefficients of the wave function, and the matrix product states of Section [7.4](#sec-7-4) compress them.
+- Spinless fermions and spin-1/2 sites have the same counting, and the Jordan-Wigner transformation of Section [7.2b](#sec-7-2b) maps one onto the other.
+- The finite chain becomes the infinite chain of Section [2.5](#sec-2-5), where the levels form the band $\epsilon_\varphi=-2t\cos\varphi$.
+:::

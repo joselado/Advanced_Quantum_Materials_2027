@@ -52,7 +52,7 @@
   .crumb { margin: 0 0 4px; font-size: 0.95rem; }
   .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
   .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
-  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .toc .n { display: inline-block; min-width: 3.4em; padding-right: .4em; color: var(--muted); }
   .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
   figure { margin: 24px 0; }
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
@@ -86,12 +86,12 @@
 <h1 id="sec-5-1"><span class="num">5.1</span> Weakly versus strongly correlated matter, revisited</h1>
 <p>Before we specialize, let us state again the general setting, since it is useful to have it clearly in mind. Every interacting Hamiltonian that we consider in this course has the same general form,</p>
 <p><span class="math display">\[H = \sum_{ij} t_{ij}\, c_i^\dagger c_j \;+\; \sum_{ijkl} V_{ijkl}\, c_i^\dagger c_j^\dagger c_k c_l,\]</span></p>
-<p>which is a free bilinear part plus a quartic interaction, and it is exactly eq. <a href="../session1/12-the-general-interacting-hamiltonian-and-the-tool-we-will-use-on-it.html#eq-1-5">1.5</a> of session 1. When mean-field theory can turn the quartic term into a good effective bilinear Hamiltonian, we call the resulting state <em>weakly correlated matter</em>. This includes magnets, charge density waves and superconductors, which are all the states that we built in session 1. When no single-particle mean-field Hamiltonian of this kind describes the physics, we have <em>strongly correlated matter</em>, and we need exact or numerical solutions instead. The fractional quantum Hall state from the quantum-Hall session is our main example of this harder case.</p>
+<p>which is a free bilinear part plus a quartic interaction, and it is equation <a href="../session1/12-the-general-interacting-hamiltonian-and-the-tool-we-will-use-on-it.html#eq-1-5">(1.5)</a> of <a href="../session1/index.html">Session 1</a>. When mean-field theory can turn the quartic term into a good effective bilinear Hamiltonian, we call the resulting state <em>weakly correlated matter</em>. This includes magnets, charge density waves and superconductors, which are all the states that we built in <a href="../session1/index.html">Session 1</a>. When no single-particle mean-field Hamiltonian of this kind describes the physics, we have <em>strongly correlated matter</em>, and we need exact or numerical solutions instead. The fractional quantum Hall state of Section <a href="../session4/16-fractional-filling-and-the-laughlin-wavefunction.html#sec-4-16">4.16</a> is our main example of this harder case.</p>
 <figure class="again">
 <img src="../figures/s01f03_threechannels.svg" loading="lazy" alt="A generic interacting Hamiltonian on the left, and three ordered states on the right, a charge density wave, a magnet and a superconductor." />
-<figcaption><strong><a href="../session1/12-the-general-interacting-hamiltonian-and-the-tool-we-will-use-on-it.html#fig:s01:channels">Figure 1.3</a>, shown again.</strong> The three weakly correlated states of session 1. Each one is a mean-field decoupling of the same quartic interaction, and the superconductor on the right is the one of this session.</figcaption>
+<figcaption><strong><a href="../session1/12-the-general-interacting-hamiltonian-and-the-tool-we-will-use-on-it.html#fig:s01:channels">Figure 1.3</a>, shown again.</strong> The three weakly correlated states of <a href="../session1/index.html">Session 1</a>. Each one is a mean-field decoupling of the same quartic interaction, and the superconductor on the right is the one of this session.</figcaption>
 </figure>
-<p>Note that superconductors and the fractional quantum Hall state are at opposite ends of this classification, even though both of them in the end host fractional excitations. A superconductor has a mean-field description, comes from an <em>attractive</em> interaction, is destroyed by a magnetic field and, as we will see soon, hosts Majorana states. The fractional quantum Hall state has no mean-field description, comes from strong <em>repulsive</em> interactions, usually needs a strong magnetic field and hosts excitations with fractional charge. Roughly speaking, both Majorana excitations and fractional quantum Hall excitations are a fraction of an electron, but these fractions come from completely different mechanisms. This is one of the good examples in this course of how very different microscopic physics can lead to the same qualitative phenomenon, which is emergent fractionalization, while the mechanism behind it is not the same at all.</p>
+<p>Note that superconductors and the fractional quantum Hall state are at opposite ends of this classification, even though both of them in the end host fractional excitations. A superconductor has a mean-field description, comes from an <em>attractive</em> interaction, is destroyed by a magnetic field and, as we will see soon, hosts Majorana states. The fractional quantum Hall state has no mean-field description, comes from strong <em>repulsive</em> interactions, usually needs a strong magnetic field and hosts excitations with fractional charge. Roughly speaking, both Majorana excitations and fractional quantum Hall excitations are a fraction of an electron, but these fractions come from completely different mechanisms. This is a good example of how very different microscopic physics can lead to the same qualitative phenomenon, which is emergent fractionalization. The mechanism behind it is not the same at all.</p>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
@@ -118,6 +118,16 @@ Question
 </ul>
 </div>
 </details>
+</div>
+<div class="comesback">
+<div class="comesback-label">
+Where this comes back
+</div>
+<ul>
+<li>In Section <a href="../session6/02-a-recap-of-symmetry-breaking-and-the-mean-field-philosophy.html#sec-6-3">6.3</a> the same quartic term, decoupled in the density channel with <span class="math inline">\(U&gt;0\)</span>, gives the magnets of <a href="../session6/index.html">Session 6</a>.</li>
+<li>In Section <a href="../session7/01-two-regimes-of-many-body-physics.html#sec-7-1">7.1</a> the same division into weakly and strongly correlated matter opens the study of tensor networks, which are made for the strongly correlated side.</li>
+<li>In Section <a href="../session8/09-the-mean-field-spinon-hamiltonian-and-its-dispersion-classes.html#sec-8-9">8.9</a> a quantum spin liquid, which has no mean-field description in terms of electrons, gets one in terms of spinons.</li>
+</ul>
 </div>
 
   <nav class="pager"><a href="index.html">Session 5</a><a href="02-superconductivity-as-a-macroscopic-quantum-phenomenon.html">5.2 Superconductivity as a macroscopic quantum phenomenon</a></nav>

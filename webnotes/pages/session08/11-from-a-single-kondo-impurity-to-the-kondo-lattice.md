@@ -1,8 +1,8 @@
 ## From a single Kondo impurity to the Kondo lattice {#sec-8-11 number="8.11"}
 
-Now that we have the method for quantum spin liquids, the lecture moves to a second physical system, which is quite different but which can be solved with the same method. This is the **Kondo lattice model**, which appears whenever a metal and a correlated system of local moments exist together.
+Now that we have the method for quantum spin liquids, we move to a second physical system, which is quite different but which can be solved with the same method. This is the **Kondo lattice model**, which appears whenever a metal and a correlated system of local moments exist together.
 
-Let us start with the simplest case, which is a single spin-$1/2$ magnetic impurity in a non-interacting two-dimensional electron gas. The total Hamiltonian is a free kinetic term with a dispersion for the conduction electrons, plus a Heisenberg-like coupling between the spin of the impurity and the local spin density of the conduction electrons at the impurity site,
+Let us start with the simplest case, which is a single spin-$1/2$ magnetic impurity in a non-interacting two-dimensional electron gas. The total Hamiltonian has a free kinetic term for the conduction electrons, with the sign of the hopping of [(1.6)](#eq-1-6). It also has a Heisenberg-like coupling between the spin of the impurity and the local spin density of the conduction electrons at the impurity site,
 
 $$H = -t\sum_{\langle ij\rangle,\sigma}\Big(c^\dagger_{i\sigma}c_{j\sigma} + \text{h.c.}\Big) +
 H_K, \qquad H_K = J_K\sum_{\alpha\beta}\Big(c^\dagger_{0\beta}\,\boldsymbol\sigma_{\beta\alpha}\,
@@ -21,7 +21,7 @@ $$H = -t\sum_{\langle ij\rangle,\sigma}\Big(c^\dagger_{i\sigma}c_{j\sigma} + \te
 J_K\sum_{j,\alpha\beta}\Big(c^\dagger_{j\beta}\,\boldsymbol\sigma_{\beta\alpha}\,c_{j\alpha}\Big)\cdot
 \mathbf S_j. \tag{8.18}$$
 
-Every impurity again tends to form a singlet with a conduction electron close to it. Since many impurities compete for the same sea of electrons, the electrons that screen the impurities are shared, in a fractional way, between the singlets of different impurities. The result is a state with a large entanglement over the whole lattice, between all the magnetic sites and the electron gas, while the total spin stays exactly zero. [](#sch:s08:kondo_screening) sketches the two cases.
+Every impurity again tends to form a singlet with a conduction electron close to it. Since many impurities compete for the same sea of electrons, the electrons that screen the impurities are shared, in a fractional way, between the singlets of different impurities. The result is a state with a large entanglement over the whole lattice, between all the magnetic sites and the electron gas, while the total spin stays zero. [](#sch:s08:kondo_screening) sketches the two cases.
 
 ![A sketch of the Kondo screening. Left, a magnetic impurity forms a singlet with one conduction electron close to it. Right, in a lattice every impurity wants such a singlet, and the clouds overlap, so the same electrons serve several impurities. Look at the overlaps in the right panel, which are the reason why the screening is shared. The drawing is schematic and no number is computed.](figures/web/session08/kondo_screening.svg){#sch:s08:kondo_screening alt="A magnetic impurity with a bound conduction electron in a sea of electrons, and a lattice of impurities whose screening clouds overlap."}
 
@@ -33,7 +33,7 @@ These exercises show, numerically and in real space, how the local field of a si
 
 ## Solving the Kondo lattice with the parton method and a hybridization {#sec-8-12 number="8.12"}
 
-The lecture makes the parallel with Section [8.8](#sec-8-8) explicit, since we solve this problem in the same way as we solved the QSL. We replace every impurity spin by an Abrikosov fermion, $\mathbf S_j = \tfrac12
+We solve this problem in the same way as we solved the QSL in Section [8.8](#sec-8-8). We replace every impurity spin by an Abrikosov fermion, $\mathbf S_j = \tfrac12
 f_{j\alpha}^\dagger \boldsymbol\sigma_{\alpha\beta} f_{j\beta}$, with the same single-occupancy constraint [(8.11)](#eq-8-11), which we write here in the equivalent traceless form
 
 $$S_{\alpha\beta}(j) = f^\dagger_{j\alpha}f_{j\beta} - \frac{n_f(j)}{2}\delta_{\alpha\beta}. \tag{8.19}$$
@@ -88,4 +88,10 @@ In [(8.21)](#eq-8-21) with $\gamma_K=0$, what is the energy of the $f$ band?
 
 ::: {.tryit notebook="session8.ipynb" cell="Quantum magnetism in the Kondo lattice"}
 Run the three values of `JK` and follow the flat band. Check that the crossing with the conduction band is replaced by a gap, and that the gap grows from $J_K=0.25$ to $J_K=0.5$. Then change `add_onsite(-2.0)` and see if the gap stays at the Fermi level.
+:::
+
+::: comesback
+- In Section [8.13](#sec-8-13) the hybridization $\gamma_K$ of [(8.21)](#eq-8-21) opens a gap at the crossing with the flat band, and the metal becomes a Kondo insulator.
+- In Section [9.3](#sec-9-3) the Kondo effect is an example where linear response fails, since the Kondo temperature has an essential singularity in the coupling.
+- In Section [9.9](#sec-9-9) the screening of a single magnetic impurity comes back inside a quantum magnet, with spinons in place of conduction electrons.
 :::

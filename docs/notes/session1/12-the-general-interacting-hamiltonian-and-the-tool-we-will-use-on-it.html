@@ -52,7 +52,7 @@
   .crumb { margin: 0 0 4px; font-size: 0.95rem; }
   .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
   .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
-  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .toc .n { display: inline-block; min-width: 3.4em; padding-right: .4em; color: var(--muted); }
   .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
   figure { margin: 24px 0; }
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
@@ -86,11 +86,11 @@
 <h1 id="sec-1-12"><span class="num">1.12</span> The general interacting Hamiltonian, and the tool we will use on it</h1>
 <p>We can now state the problem that this whole session leads to. The Hamiltonians that we are interested in have the generic form</p>
 <p><span id="eq-1-5" class="eq"><span class="math display">\[H = \sum_{ij} t_{ij}\, c_i^\dagger c_j \;+\; \sum_{ijkl} V_{ijkl}\, c_i^\dagger c_j^\dagger c_k c_l, \tag{1.5}\]</span></span></p>
-<p>which is a free part, single-particle and exactly solvable, plus a quartic interaction. The interaction itself can come from the plain electrostatic Coulomb repulsion, or from an effective interaction mediated by some other quasiparticle, such as phonons, magnons or plasmons, which can make the total interaction attractive instead of repulsive. We will treat these interactions in a phenomenological way, as given effective models, and we will not derive them microscopically from first principles.</p>
-<p>To solve <a href="#eq-1-5">(1.5)</a> exactly is in general impossible, for the exponential reason of Section <a href="08-first-versus-second-quantization-for-the-same-problem.html#sec-1-9">1.9</a>. <strong>Mean-field theory</strong> is the tool that still allows us to obtain systematic solutions from it, even if they are approximate, and it can predict a wide range of symmetry-broken states. In this session we will study three of them, which are the same three cases that we classified in Section <a href="11-spontaneous-symmetry-breaking-and-why-a-symmetric-hamiltonian-can-have-an-asymmetric-ground-state.html#sec-1-11">1.11</a>.</p>
+<p>which is a free part, single-particle and exactly solvable, plus a quartic interaction. The interaction itself can come from the plain electrostatic Coulomb repulsion. It can also be an effective interaction mediated by some other quasiparticle, such as phonons, magnons or plasmons, and this can make the total interaction attractive instead of repulsive. We will treat these interactions in a phenomenological way, as given effective models, and we will not derive them microscopically from first principles.</p>
+<p>To solve <a href="#eq-1-5">(1.5)</a> exactly is in general impossible, for the exponential reason of Section <a href="08-first-versus-second-quantization-for-the-same-problem.html#sec-1-9">1.9</a>. <strong>Mean-field theory</strong> is the tool that still allows us to obtain systematic solutions from it, even if they are approximate, and it can predict a wide range of symmetry-broken states. In this session we will study three of them, which are the same three cases that we classified in Section <a href="11b-classifying-states-of-matter-by-the-symmetry-they-break.html#sec-1-11b">1.11b</a>.</p>
 <ol type="1">
 <li><p><strong>Broken time-reversal symmetry</strong>, which is magnetism. If we run the movie of the system backward, it looks different from the original.</p></li>
-<li><p><strong>Broken (lattice translational) symmetry</strong>, which is the charge density wave. A Hamiltonian that is the same at every site at the start ends up with charge on some sites and not on others.</p></li>
+<li><p><strong>Broken lattice translational symmetry</strong>, which is the charge density wave. A Hamiltonian that is the same at every site at the start ends up with charge on some sites and not on others.</p></li>
 <li><p><strong>Broken gauge symmetry</strong>, which is superconductivity. The system develops an order parameter with a physical phase, which the symmetry of the original Hamiltonian does not allow.</p></li>
 </ol>
 <p>Figure <a href="#fig:s01:channels">1.3</a> shows these three branches next to each other, together with the equation from which each one is developed and the session where it appears again.</p>
@@ -98,7 +98,11 @@
 <img src="../figures/s01f03_threechannels.svg" loading="lazy" alt="One Hamiltonian and three ordered states." />
 <figcaption><strong>Figure 1.3.</strong> One Hamiltonian and three ordered states. The same generic interacting Hamiltonian <a href="#eq-1-5">(1.5)</a>, on the left, where the glow is the interaction between two electrons on neighboring sites, is decoupled with three different bilinear expectation values. This gives a charge density wave, a magnet or a superconductor, each breaking a different symmetry. The charge is drawn as columns of alternating height, the spin as alternating arrows, and the electrons bound in pairs as two balls inside one capsule. These three branches are the structure on which the rest of the course is organized.</figcaption>
 </figure>
-<p>Two of the three cases of this session, which are magnetism and superconductivity, will come back later in the course in their own sessions, where we treat them in much more detail. You can think of what follows as a first pass, whose goal is to set up the mean-field method itself, and not as the final discussion of either of them.</p>
+<p>Two of the three cases of this session come back in their own sessions, where we treat them in much more detail. Superconductivity is the topic of <a href="../session5/index.html">Session 5</a>, and magnetism of <a href="../session6/index.html">Session 6</a>. You can think of what follows as a first pass, whose goal is to set up the mean-field method itself, and not as the final discussion of either of them.</p>
+<figure id="sch:s01:dimer_meanfield" class="schematic">
+<img src="../figures/web/session01/dimer_meanfield.svg" loading="lazy" alt="Two panels against U over t. On the left the exact ground-state energy and the higher mean-field energy, both rising from minus 2t. On the right the mean-field moment, zero up to U equal to 2t and then rising toward one, and the exact moment, zero everywhere." />
+<figcaption><strong>Schematic 1.11.</strong> How good is mean field? The Hubbard dimer, two sites with two electrons, solved by exact diagonalization and in mean field with an antiferromagnetic guess. On the left, the mean-field energy stays above the exact one, since mean field is a variational method. At large <span class="math inline">\(U\)</span> it gains only <span class="math inline">\(-2t^2/U\)</span>, half of the exact <span class="math inline">\(-4t^2/U\)</span>. On the right, mean field gives a local moment <span class="math inline">\(m\)</span> for <span class="math inline">\(U&gt;2t\)</span>, while the exact ground state of two sites is a singlet with <span class="math inline">\(m=0\)</span> for every <span class="math inline">\(U\)</span>. In a system this small the broken symmetry comes from the approximation, as Section <a href="11-spontaneous-symmetry-breaking-and-why-a-symmetric-hamiltonian-can-have-an-asymmetric-ground-state.html#sec-1-11">1.11</a> explains.</figcaption>
+</figure>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
@@ -134,6 +138,16 @@ Question
 <div class="tryit-links">
 Notebook <code>session1.ipynb</code>, cell “Gap opening of the Hubbard model in a chain”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session1.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session1.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession1.ipynb">Binder</a>.
 </div>
+</div>
+<div class="comesback">
+<div class="comesback-label">
+Where this comes back
+</div>
+<ul>
+<li>Section <a href="../session5/04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html#sec-5-4">5.4</a> shows how phonons give an attractive interaction, and it decouples it in the pairing channel with the same method.</li>
+<li>Section <a href="../session6/02-a-recap-of-symmetry-breaking-and-the-mean-field-philosophy.html#sec-6-3">6.3</a> applies mean field to the Hubbard model in more detail, and Section <a href="../session6/06-the-stoner-threshold-as-a-criterion-for-magnetism.html#sec-6-7">6.7</a> shows where mean field breaks down.</li>
+<li>In Section <a href="../session8/09-the-mean-field-spinon-hamiltonian-and-its-dispersion-classes.html#sec-8-9">8.9</a> the same decoupling is applied to the partons of a quantum spin liquid.</li>
+</ul>
 </div>
 
   <nav class="pager"><a href="11b-classifying-states-of-matter-by-the-symmetry-they-break.html">1.11b Classifying states of matter by the symmetry that they break</a><a href="13-worked-example-1-the-charge-density-wave.html">1.13 Worked example 1, the charge density wave</a></nav>

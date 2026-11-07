@@ -52,7 +52,7 @@
   .crumb { margin: 0 0 4px; font-size: 0.95rem; }
   .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
   .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
-  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .toc .n { display: inline-block; min-width: 3.4em; padding-right: .4em; color: var(--muted); }
   .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
   figure { margin: 24px 0; }
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
@@ -86,11 +86,11 @@
 <h1 id="sec-1-1"><span class="num">1.1</span> Why quantum materials, and why now</h1>
 <p>Before we start with the mathematics, let us say a few words about why this subject is relevant. Every period of human technology has been named after the material that defined it. There was the stone age, the copper age and, very recently, the silicon age, which gave rise to the whole information revolution in which we live now. If we look ahead, it is plausible that the next period will be a <em>quantum</em> age, in which our technology directly uses quantum mechanical behavior at microscopic scales instead of avoiding it. Quantum materials are the physical platform for this change, since they are the systems that realize quantum matter in the lab.</p>
 <p>At the end of this session we should be able to describe what a quantum material is and to explain why we need quantum mechanics, and not classical physics, to understand it. We should also be able to work with the basics of second quantization, and to rationalize why mean-field theory gives rise to spontaneous symmetry breaking.</p>
-<p>Quantum materials are already the basis of technologies that we use today. Superconductors make MRI machines possible, since they generate the very large magnetic fields that nuclear magnetic resonance needs, and semiconductors are the basis of solar cells, on which a large part of our plan for renewable energy depends. In the future, almost every serious platform for quantum computing, whether it is built from superconductors, semiconductors or a combination of the two, is in the end a quantum materials problem. Let us also mention briefly that this is connected to several of the UN Sustainable Development Goals. Quantum computing is connected to goals 8 and 9, which are economic growth, industry and innovation. Solar energy and superconducting or topological electronics with low power consumption are connected to goals 7 and 13, which are clean energy and climate action. The international and cross-disciplinary character of the field is connected to goal 17, which is partnerships. None of this is mathematics, but it is good to remember why we do the mathematics.</p>
-<p>In the course we will see two kinds of examples, and it is useful to compare them. Semiconductors are in some sense the easy case, since their properties follow from single-particle physics, which you have likely seen already in an earlier course on materials. Superconductors are the harder case, because to understand them we have to account for how electrons interact with each other collectively, and this is the many-body formalism that we start to build in this session. The spectra in <a href="#sch:s01:gap_two_origins">Schematic 1.1</a> show a gap of each kind.</p>
+<p>Quantum materials are already the basis of technologies that we use every day. Superconductors make MRI machines possible, since they generate the very large magnetic fields that nuclear magnetic resonance needs. Semiconductors are the basis of solar cells, on which a large part of our plan for renewable energy depends. In the future, almost every serious platform for quantum computing, whether it is built from superconductors, semiconductors or a combination of the two, is in the end a quantum materials problem. Let us also mention briefly that this is connected to several of the UN Sustainable Development Goals. Quantum computing is connected to goals 8 and 9, which are economic growth, industry and innovation. Solar energy and superconducting or topological electronics with low power consumption are connected to goals 7 and 13, which are clean energy and climate action. The international and cross-disciplinary character of the field is connected to goal 17, which is partnerships. None of this is mathematics, but it is good to remember why we do the mathematics.</p>
+<p>In the course we will see two kinds of examples, and it is useful to compare them. Semiconductors are in some sense the easy case, since their properties follow from single-particle physics, which you have likely seen already in an earlier course on materials. Superconductors are the harder case, because to understand them we have to account for how electrons interact with each other collectively, and this is the many-body formalism that we start to build in this session. The spectra in <a href="#sch:s01:gap_two_origins">Schematic 1.2</a> show a gap of each kind.</p>
 <figure id="sch:s01:gap_two_origins" class="schematic">
 <img src="../figures/web/session01/gap_two_origins.svg" loading="lazy" alt="Two band diagrams with a gap at zero energy, one for a semiconductor and one for a superconductor." />
-<figcaption><strong>Schematic 1.1.</strong> Two gaps that look alike. On the left, a chain with two different sites per cell has a gap <span class="math inline">\(2m\)</span>, which single electrons already feel. On the right, the quasiparticles of a superconductor have a gap <span class="math inline">\(2\Delta\)</span>, which exists only because the electrons pair. The grey lines are the bands without the gap.</figcaption>
+<figcaption><strong>Schematic 1.2.</strong> Two gaps that look alike. On the left, a chain with two different sites per cell has a gap <span class="math inline">\(2m\)</span>, which single electrons already feel. On the right, the quasiparticles of a superconductor have a gap <span class="math inline">\(2\Delta\)</span>, which exists only because the electrons pair. The grey lines are the bands without the gap.</figcaption>
 </figure>
 <div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
@@ -121,6 +121,16 @@ Question
 <p>We can diagonalize the lattice of the semiconductor with one electron at a time. For the superconductor we need the many-body formalism of this session.</p>
 </div>
 </details>
+</div>
+<div class="comesback">
+<div class="comesback-label">
+Where this comes back
+</div>
+<ul>
+<li>In Section <a href="../session2/07-multi-orbital-band-structures.html#sec-2-7">2.7</a> the Bloch Hamiltonian of a chain with two sites per cell gives a band gap from single-particle physics alone.</li>
+<li>The superconducting gap <span class="math inline">\(2\Delta\)</span> comes from the Bogoliubov-de Gennes Hamiltonian of Section <a href="../session5/08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#sec-5-8">5.8</a>, and Section <a href="../session5/09-an-example-of-a-gap-that-opens-independently-of-the-dispersion.html#sec-5-9">5.9</a> shows that it opens for any dispersion.</li>
+<li>In Section <a href="../session3/10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#sec-3-10">3.10</a> a gap of the first kind, from a staggered potential on the honeycomb lattice, is compared with a topological gap that a single electron also feels.</li>
+</ul>
 </div>
 
   <nav class="pager"><a href="index.html">Session 1</a><a href="02-a-tour-of-the-quantum-materials-we-will-meet.html">1.2 A tour of the quantum materials we will meet</a></nav>

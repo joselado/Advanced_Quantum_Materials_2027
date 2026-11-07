@@ -6,7 +6,7 @@ With the general tools in place, let us name three classes of topological matter
 
 - **Quantum spin Hall insulators.** They are two copies of a Chern insulator, one for each spin, with opposite Chern numbers, so the net Chern number vanishes and time-reversal symmetry is preserved. However, the edge states are **helical**, meaning that spin-up and spin-down propagate in opposite directions along the same edge. This is the natural platform for dissipationless spin transport, which is spintronics.
 
-- **Topological superconductors.** They combine a bulk superconducting gap with gapless surface excitations that are their own antiparticle, which are called Majorana excitations. Since the corresponding quantum information is stored non-locally, the usual local decoherence channels do not act on it directly, and this is the basis of topological quantum computing. We will build the minimal model for this case, the Kitaev chain, in session 5, and we will see there that it is exactly the same model as the one that we construct next.
+- **Topological superconductors.** They combine a bulk superconducting gap with gapless surface excitations that are their own antiparticle, which are called Majorana excitations. Since the corresponding quantum information is stored non-locally, the usual local decoherence channels do not act on it directly, and this is the basis of topological quantum computing. We will build the minimal model for this case, the Kitaev chain, in Section [5.16](#sec-5-16). There we will see that, written with Majorana operators, it has the same form as the chain that we construct next.
 
 ![The edge dispersions of the first two classes, from Section [3.11](#sec-3-11). In (a) a Chern insulator has one chiral branch per edge. In (b) a quantum spin Hall insulator has a helical pair, with the two branches propagating in opposite directions. Look at the colors, which are the two spins.](figures/s03f06_helical.svg){alt="Edge branches inside the bulk gap, one branch for a Chern insulator and two opposite branches for a quantum spin Hall insulator."}
 
@@ -29,9 +29,9 @@ Which class has time-reversal symmetry, zero total Chern number and edge states 
 
 ## The SSH model as a minimal one-dimensional topological insulator {#sec-3-9 number="3.9a"}
 
-We now build the simplest model that shows this physics explicitly, which is the Su-Schrieffer-Heeger (SSH) chain. It looks too simple to be useful, but we should take it seriously, also because the simplest model for a topological superconductor, the Kitaev chain, is exactly this model written in terms of Majorana operators.
+We now build the simplest model that shows this physics explicitly, which is the Su-Schrieffer-Heeger (SSH) chain. We already met it as the two-orbital chain of [(2.13)](#eq-2-13) in Section [2.7](#sec-2-7). It looks too simple to be useful, but we should take it seriously. One reason is that the simplest model for a topological superconductor, the Kitaev chain, has the form of this model when we write it with Majorana operators.
 
-We take a one-dimensional lattice with two sites per unit cell, $A$ and $B$, and two hopping amplitudes. The first one is an intracell hopping $t$, within a unit cell, and the second one is an intercell hopping fixed to $1$, between neighboring unit cells. Let us first take the extreme limit in which the intracell hopping dominates, $t \gg 1$, so that the chain is fully dimerized with alternating bonds. Strong bonds of strength $t$ couple the sites $(0,1)$, $(2,3)$, $(4,5)$, ... and the coupling between $(1,2)$, $(3,4)$, ...is negligible. Each dimer is then an isolated two-level system with bonding and antibonding eigenstates at energies $\pm t$. The spectrum of the whole chain is this pair of levels repeated once for each dimer, and there is nothing at zero energy.
+We take a one-dimensional lattice with two sites per unit cell, $A$ and $B$, and two hopping amplitudes. The first one is an intracell hopping $t$, within a unit cell, and the second one is an intercell hopping fixed to $1$, between neighboring unit cells. Let us first take the extreme limit in which the intracell hopping dominates, $t \gg 1$, so that the chain is fully dimerized with alternating bonds. Strong bonds of strength $t$ couple the sites $(0,1)$, $(2,3)$, $(4,5)$, ..., and the coupling between $(1,2)$, $(3,4)$, ... is negligible. Each dimer is then an isolated two-level system with bonding and antibonding eigenstates at energies $\pm t$. The spectrum of the whole chain is this pair of levels repeated once for each dimer, and there is nothing at zero energy.
 
 ::: quiz
 A chain has four dimers with the intracell hopping $t$ and no hopping between different dimers. How many levels are at the energy $+t$ and how many are at zero energy?
@@ -56,3 +56,8 @@ A chain has four dimers with the intracell hopping $t$ and no hopping between di
 Move the intracell hopping $t$ of [(3.5)](#eq-3-5), with the intercell hopping equal to one. The left panel shows $d(k)=t+e^{ik}$ in the complex plane, and the right panel shows the levels of an open chain with 20 cells. For $t<1$ the curve encloses the origin, the winding is one, and two levels sit in the gap, one at each end. For $t>1$ the curve does not enclose the origin and the gap is empty. At $t=1$ the curve touches the origin and the gap closes.
 :::
 
+::: comesback
+- In Section [4.20](#sec-4-20) the Chern insulator at zero field comes back in real materials, Cr-doped (Bi,Sb)$_2$Te$_3$ and twisted graphene on boron nitride.
+- In Section [5.16](#sec-5-16) the Kitaev chain, written with Majorana operators, has the form of the SSH chain, and in Section [5.18](#sec-5-18) a topological superconductor is built from a quantum spin Hall insulator.
+- In Section [9.8](#sec-9-8) a vacancy binds an in-gap mode in a Chern insulator of the Haldane model and in a chiral p-wave superconductor, but not in a trivial insulator with the same gap.
+:::

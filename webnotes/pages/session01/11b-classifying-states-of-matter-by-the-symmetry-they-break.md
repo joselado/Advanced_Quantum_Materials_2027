@@ -6,9 +6,9 @@ This gives us a useful way to classify states of matter, according to *which* sy
 
 - Broken **inversion symmetry** gives ferroelectrics. These are materials that develop an electric polarization spontaneously, which is the electric analog of a magnetization, and in this way they break the inversion symmetry of the underlying crystal.
 
-- Broken **gauge symmetry** gives superconductors. The phase of the pairing order parameter, or equivalently the phase of the creation and annihilation operators, becomes physical once the order appears. Many observable superconducting phenomena, such as the Josephson effect, are direct consequences of fluctuations of this broken phase, and we will discuss this in detail in the session on superconductivity.
+- Broken **gauge symmetry** gives superconductors. The phase of the pairing order parameter, or equivalently the phase of the creation and annihilation operators, becomes physical once the order appears. Many observable superconducting phenomena, such as the Josephson effect, are direct consequences of fluctuations of this broken phase, and Section [5.2](#sec-5-2) comes back to them.
 
-This classification by symmetry is useful, but it does not capture everything. Topological materials, such as topological insulators and fractional Chern insulators, can have *exactly* the same broken or unbroken symmetries as an ordinary trivial material and still behave in a completely different way. The reason for this is that they differ in their topological classification and not in their symmetry classification. This difference is the topic of a full session later in the course. For now, we only keep in mind that the question of "which symmetry is broken" does not give the full description of quantum matter.
+This classification by symmetry is useful, but it does not capture everything. Topological materials, such as topological insulators and fractional Chern insulators, can have the same broken or unbroken symmetries as an ordinary trivial material and still behave in a completely different way. The reason for this is that they differ in their topological classification and not in their symmetry classification. This difference is the topic of Session 3. For now, we only keep in mind that the question of "which symmetry is broken" does not give the full description of quantum matter.
 
 Every case of spontaneous symmetry breaking also comes with its own emergent quasiparticle, which is the low-energy fluctuation of the order that has formed. The following table lists three cases.
 
@@ -26,7 +26,7 @@ Note that magnons and the Higgs mode both have zero charge but very different sp
 
 ![The quasiparticle of each broken symmetry. The phonon is gapless, since it goes to zero at $k=0$. The magnon is gapless as well, and an easy-axis anisotropy lifts it by a gap, shown in red. The Higgs mode is gapped by the size of the order parameter. The curves are $\omega=2|\sin(k/2)|$, $\omega=1-\cos k$ plus $0.45$ for the red one, and $\omega=\sqrt{1.2^2+k^2}$, in arbitrary units.](figures/web/session01/gapless_gapped.svg){#sch:s01:gapless_gapped alt="Three dispersions against k. A phonon that reaches zero at k equal to zero, a magnon that reaches zero and a copy shifted up by a gap, and a Higgs mode that stays above a gap."}
 
-![The magnon of a ferromagnet, one panel shown again from session 6. In the ordered state every spin points the same way. A magnon is a precession wave of all the spins, which is the low-energy fluctuation of the order.](figures/s06f05_magnon.svg){panel="side" alt="A row of parallel spins, and below it a row of spins that precess with a phase that advances from site to site."}
+![The magnon of a ferromagnet, one panel shown again from Session 6. In the ordered state every spin points the same way. A magnon is a precession wave of all the spins, which is the low-energy fluctuation of the order.](figures/s06f05_magnon.svg){panel="side" alt="A row of parallel spins, and below it a row of spins that precess with a phase that advances from site to site."}
 
 ::: quiz
 A magnet has an easy-axis anisotropy, which breaks the spin-rotational symmetry explicitly. What happens to the magnon?
@@ -77,4 +77,10 @@ Let us now build this general picture explicitly, three times.
 
 ::: {.tryit notebook="session1.ipynb" cell="Magnetic order driven by interactions in a chain"}
 Run the cell and look at the arrows of the magnetization in the panel of the antiferromagnetic guess. Check that they alternate in sign from one site to the next. Time reversal flips every arrow, which gives another state with the same energy.
+:::
+
+::: comesback
+- The magnon of the table is built in Section [6.13](#sec-6-13), and Section [6.15](#sec-6-15) shows that it is gapless, since it is the Goldstone mode of the broken spin rotation.
+- The materials with the same symmetries and a different topology are the topic of Session 3, with the bulk-boundary correspondence of Section [3.7](#sec-3-7).
+- The Hall conductivity comes back in Section [3.4](#sec-3-4), where linear response gives it, and in Session 4, where it is quantized.
 :::

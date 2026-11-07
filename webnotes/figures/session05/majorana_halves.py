@@ -38,7 +38,7 @@ capsule(4.7, 5.7, y)
 style.label(ax, 5.2, y + 0.75, r'bound at one site', fontsize=8)
 style.label(ax, 7.0, y, r'$\gamma_A^\dagger=\gamma_A$, $\gamma_A^2=1$' + '\n' + r'$i\gamma_A\gamma_B=2c^\dagger c-1$', fontsize=8.5, ha='left')
 
-# bottom row, four sites, halves bound between neighbouring sites, two halves left free
+# bottom row, four sites, halves bound between neighboring sites, two halves left free
 y = 0.0
 xs = np.arange(8) * 1.0 + 0.6
 for i, x in enumerate(xs):
@@ -52,6 +52,6 @@ for x in (xs[0], xs[-1]):
     ax.plot([x], [y + 0.52], marker='*', color=style.BROKEN, ms=7, ls='none')
 style.label(ax, xs[0], y + 1.05, 'free', color=style.BROKEN, fontsize=8)
 style.label(ax, xs[-1], y + 1.05, 'free', color=style.BROKEN, fontsize=8)
-style.label(ax, 4.1, y + 1.05, r'halves bound between neighbouring sites', fontsize=8)
+style.label(ax, 4.1, y + 1.05, r'halves bound between neighboring sites', fontsize=8)
 ax.set_xlim(-0.3, 10.4); ax.set_ylim(-1.0, 4.5)
 style.save(fig, __file__)

@@ -52,7 +52,7 @@
   .crumb { margin: 0 0 4px; font-size: 0.95rem; }
   .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
   .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
-  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .toc .n { display: inline-block; min-width: 3.4em; padding-right: .4em; color: var(--muted); }
   .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
   figure { margin: 24px 0; }
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
@@ -86,21 +86,21 @@
 <h1 id="sec-1-2"><span class="num">1.2</span> A tour of the quantum materials we will meet</h1>
 <p>Let us first give a short preview of the materials that this formalism will allow us to understand, so that the abstract tools of this session have concrete targets.</p>
 <ul>
-<li><p><strong>Insulators</strong>, such as magnesium oxide, sodium chloride or boron nitride, where a finite band gap does not allow electrons to propagate. <em>Topological</em> insulators look the same in the bulk, but they behave in a completely different way at the edge, and we will need one full session to explain this difference.</p></li>
+<li><p><strong>Insulators</strong>, such as magnesium oxide, sodium chloride or boron nitride, where a finite band gap does not allow electrons to propagate. <em>Topological</em> insulators look the same in the bulk, but they behave in a completely different way at the edge, and <a href="../session3/index.html">Session 3</a> explains this difference.</p></li>
 <li><p><strong>Semiconductors</strong>, such as gallium nitride, silicon and gallium arsenide, which have the same single-particle description as insulators but are lightly doped. For this reason they have free carriers, and these carriers are the ones that do the work in electronics and solar cells.</p></li>
-<li><p><strong>Magnets.</strong> Ferromagnets, antiferromagnets and spin spirals are all <em>correlated</em> materials, in the sense that they exist only because electrons repel each other through the Coulomb interaction. A different and more exotic case is the <em>quantum magnet</em>, where there are local moments at every site but they are so strongly entangled with each other that the material has no net magnetization at all at the microscopic level, and every site forms a singlet with its neighbors. We will come back to these systems in detail later in the course.</p></li>
+<li><p><strong>Magnets.</strong> Ferromagnets, antiferromagnets and spin spirals are all <em>correlated</em> materials, in the sense that they exist only because electrons repel each other through the Coulomb interaction. A different and more exotic case is the <em>quantum magnet</em>, where there are local moments at every site. These moments are so strongly entangled with each other that the material has no net magnetization at the microscopic level, and every site forms a singlet with its neighbors. We come back to these systems in <a href="../session8/index.html">Session 8</a>.</p></li>
 <li><p><strong>Dirac and topological matter.</strong> The prototype is graphene, which is a single honeycomb layer of carbon, where electrons propagate with a topologically protected phase that is called a Berry phase. The same family includes quantum spin Hall insulators, which have helical edge states, Chern insulators, which have chiral edge states, and chiral superconductors, which host Majorana excitations.</p></li>
 <li><p><strong>Superconductors.</strong> These go from conventional superconductors mediated by phonons, such as aluminum, to <em>correlated</em> superconductors such as the cuprates and the pnictides, whose mechanism is still one of the biggest open problems in the field.</p></li>
 <li><p><strong>Fractional quantum matter.</strong> Here the fundamental excitations are real fractions of an electron. The fractional quantum Hall state is the best established example, and it has been observed for decades in materials such as gallium arsenide. Fractional Chern insulators are a newer and more accessible way to obtain the same physics, and they are a promising building block for new quantum devices.</p></li>
 </ul>
-<p>The first two items of this list differ only in how the bands of a single electron are filled, and <a href="#sch:s01:filling_bands">Schematic 1.2</a> shows this for an insulator and a doped semiconductor, next to a metal.</p>
+<p>The first two items of this list differ only in how the bands of a single electron are filled, and <a href="#sch:s01:filling_bands">Schematic 1.3</a> shows this for an insulator and a doped semiconductor, next to a metal.</p>
 <figure id="sch:s01:filling_bands" class="schematic">
 <img src="../figures/web/session01/filling_bands.svg" loading="lazy" alt="Four band diagrams side by side. A metal with a half-filled band, an insulator with a gap, an n-doped semiconductor with a few electrons at the bottom of the conduction band, and a p-doped semiconductor with a few holes at the top of the valence band." />
-<figcaption><strong>Schematic 1.2.</strong> Four fillings of a band. In a metal the Fermi level <span class="math inline">\(E_F\)</span> cuts a band, so there are empty states next to the occupied ones. In an insulator the valence band is full and the conduction band is empty. Doping leaves the bands as they are and moves <span class="math inline">\(E_F\)</span>, so that a few electrons, the red dots, sit in the conduction band, or a few holes, the red segment, in the valence band. The metal is the band <span class="math inline">\(-2t\cos k\)</span>, and the other three are the bands <span class="math inline">\(\pm\sqrt{m^2+(2t\sin q)^2}\)</span> of a chain with two sites per cell, for <span class="math inline">\(m=0.6t\)</span>, with <span class="math inline">\(q\)</span> measured from the zone edge.</figcaption>
+<figcaption><strong>Schematic 1.3.</strong> Four fillings of a band. In a metal the Fermi level <span class="math inline">\(E_F\)</span> cuts a band, so there are empty states next to the occupied ones. In an insulator the valence band is full and the conduction band is empty. Doping leaves the bands as they are and moves <span class="math inline">\(E_F\)</span>, so that a few electrons, the red dots, sit in the conduction band, or a few holes, the red segment, in the valence band. The metal is the band <span class="math inline">\(-2t\cos k\)</span>, and the other three are the bands <span class="math inline">\(\pm\sqrt{m^2+(2t\sin q)^2}\)</span> of a chain with two sites per cell, for <span class="math inline">\(m=0.6t\)</span>, with <span class="math inline">\(q\)</span> measured from the zone edge.</figcaption>
 </figure>
 <figure class="again panel">
 <img src="../figures/panel/s02f04_dirac_c.svg" loading="lazy" alt="A hexagonal Brillouin zone with a Dirac cone at two of its corners." />
-<figcaption><strong><a href="../session2/11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#fig:s02:dirac">Figure 2.5</a>, one panel shown again.</strong> The Dirac cone of graphene. The two bands touch at one point and rise linearly around it, which is why the electrons behave as massless particles. We derive this cone in session 2.</figcaption>
+<figcaption><strong><a href="../session2/11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#fig:s02:dirac">Figure 2.5</a>, one panel shown again.</strong> The Dirac cone of graphene. The two bands touch at one point and rise linearly around it, which is why the electrons behave as massless particles. We derive this cone in Section <a href="../session2/11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#sec-2-11">2.11</a>.</figcaption>
 </figure>
 <div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
@@ -165,6 +165,17 @@ Question
 <p>The bands stay the same, and only the filling changes.</p>
 </div>
 </details>
+</div>
+<div class="comesback">
+<div class="comesback-label">
+Where this comes back
+</div>
+<ul>
+<li><a href="../session3/index.html">Session 3</a> explains why the edge of a topological insulator conducts, with the bulk-boundary correspondence of Section <a href="../session3/07-what-topology-means-for-a-hamiltonian-and-the-bulk-boundary-correspondence.html#sec-3-7">3.7</a>. The two chains of the first quiz are the SSH model of Section <a href="../session3/08-three-topological-material-classes.html#sec-3-9">3.9</a>.</li>
+<li>The Berry phase comes back as the Zak phase of the SSH chain in Section <a href="../session3/09c-the-ssh-model-the-bloch-hamiltonian-and-the-zak-phase.html#sec-3-9c">3.9c</a>, and the quantum spin Hall insulator in Section <a href="../session3/11-quantum-spin-hall-insulators.html#sec-3-11">3.11</a>.</li>
+<li>The quantum magnets without order are the spin liquids of <a href="../session8/index.html">Session 8</a>, starting from the frustration of Section <a href="../session8/04-frustration-as-the-route-to-a-quantum-spin-liquid.html#sec-8-4">8.4</a>.</li>
+<li>Chiral superconductors and their Majorana excitations are in Section <a href="../session5/14-same-gap-and-different-topology-in-trivial-s-wave-and-chiral-p-wave-pairing.html#sec-5-14">5.14</a> and Section <a href="../session5/15-majorana-bound-states-and-how-to-split-an-electron-into-two-majoranas.html#sec-5-15">5.15</a>, and the fractional quantum Hall state is built in Section <a href="../session4/16-fractional-filling-and-the-laughlin-wavefunction.html#sec-4-16">4.16</a>.</li>
+</ul>
 </div>
 
   <nav class="pager"><a href="01-why-quantum-materials-and-why-now.html">1.1 Why quantum materials, and why now</a><a href="03-emergent-quasiparticles-and-what-the-lattice-gives-us.html">1.3 Emergent quasiparticles and what the lattice gives us</a></nav>

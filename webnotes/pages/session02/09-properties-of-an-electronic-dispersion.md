@@ -6,7 +6,7 @@ The **density of states**,
 
 $$g(\omega) = \int_{\text{BZ}} \frac{d^dk}{(2\pi)^d}\; \delta\!\left(\omega-E(\mathbf{k})\right), \tag{2.16}$$
 
-counts how many states there are at energy $\omega$. It controls how strongly a material responds to interactions. A large or divergent density of states means that even a weak interaction can drive an instability toward magnetism, a charge density wave or superconductivity, which are the three cases of the last session. A vanishing density of states means that interactions can hardly have any effect, however strong they are.
+counts how many states there are at energy $\omega$. It controls how strongly a material responds to interactions. A large or divergent density of states means that even a weak interaction can drive an instability toward magnetism, a charge density wave or superconductivity, which are the three cases of Session 1. In Session 6 and in Session 9 its value at the Fermi level is written $D(E_F)$, and in Section [6.6](#sec-6-6) it gives the Stoner criterion for magnetism. A vanishing density of states means that interactions can hardly have any effect, however strong they are.
 
 The **group velocity**,
 
@@ -19,7 +19,7 @@ The **effective mass**,
 $$\left(\frac{1}{m^\ast}\right)_{ij} = \frac{1}{\hbar^2}\,
 \frac{\partial^2 E(\mathbf{k})}{\partial k_i\,\partial k_j}, \tag{2.18}$$
 
-is the curvature of the dispersion, and it is the mass that is measured in essentially every transport or cyclotron-resonance experiment, since the bare electron mass cannot be observed directly inside a solid. Depending on the band, $m^\ast$ can go from nearly zero to very large values. For a Dirac dispersion, as we will see soon, it is formally not defined at the point where the bands touch.
+is the curvature of the dispersion, and it is the mass that is measured in essentially every transport or cyclotron-resonance experiment, since the bare electron mass cannot be observed directly inside a solid. Depending on the band, $m^\ast$ can go from nearly zero to very large values. For a Dirac dispersion, as we will see in Section [2.11](#sec-2-11), it is formally not defined at the point where the bands touch.
 
 For the chain band of [(2.8)](#eq-2-8) we can draw the three quantities one next to the other, in [](#sch:s02:cos_velocity_mass). The velocity is largest in the middle of the band, where the effective mass changes sign.
 
@@ -27,9 +27,9 @@ For the chain band of [(2.8)](#eq-2-8) we can draw the three quantities one next
 
 Finally, the **Fermi surface** is the set of $\mathbf{k}$-points that have the same energy as the highest occupied state. Its shape controls which electronic instabilities are favoured and how a material responds to an external magnetic field, and it is one of the quantities that ARPES (Section [2.12](#sec-2-12)) can map directly.
 
-For the square lattice of [(2.14)](#eq-2-14) at half filling the Fermi surface is the square $|\varphi_x|+|\varphi_y|=\pi$. Its flat pieces map onto each other when we shift them by $Q=(\pi,\pi)$, which is called nesting, and the figure below shows it. In the chain the same role is played by the two Fermi points, which are $2k_F=\pi$ apart at half filling.
+For the square lattice of [(2.14)](#eq-2-14) at half filling the Fermi surface is the square $|\varphi_x|+|\varphi_y|=\pi$. Its flat pieces map onto each other when we shift them by $Q=(\pi,\pi)$, which is called nesting, and the figure below shows it. In Section [9.4b](#sec-9-4b) we will see that nesting makes the response of the metal diverge. In the chain the same role is played by the two Fermi points, which are $2k_F=\pi$ apart at half filling.
 
-![The Fermi surface of the square lattice at half filling, drawn in session 9. The surface is a square, and the red vectors of the shift $Q=(\pi,\pi)$ join each flat piece to the opposite one.](figures/s09f01_nesting.svg){panel="c" alt="A square Fermi surface in the Brillouin zone with red arrows joining opposite flat pieces."}
+![The Fermi surface of the square lattice at half filling, drawn in Session 9. The surface is a square, and the red vectors of the shift $Q=(\pi,\pi)$ join each flat piece to the opposite one.](figures/s09f01_nesting.svg){panel="c" alt="A square Fermi surface in the Brillouin zone with red arrows joining opposite flat pieces."}
 
 ::: quiz
 For the band $\epsilon_\varphi=-2t\cos\varphi$, where is the group velocity largest?
@@ -52,7 +52,7 @@ The velocity is zero at the extrema of the band and largest where the band cross
 ::: notebookbox
 **Notebook check-in:** [`session2.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session2.ipynb), "Density of states of the honeycomb lattice" (Core), and "Fermi surface of the honeycomb lattice" (Challenge)
 
-Once you have the honeycomb dispersion of Section [2.11](#sec-2-11), these two sections let you compute [(2.16)](#eq-2-16) and the Fermi surface directly, and see how both change when the Fermi level is tuned through the Dirac point.
+Once you have the honeycomb dispersion of Section [2.11](#sec-2-11), these two sections compute [(2.16)](#eq-2-16) and the Fermi surface directly. Look at how both change when the Fermi level is tuned through the Dirac point.
 :::
 
 ::: {.tryit notebook="session2.ipynb" cell="Density of states of the honeycomb lattice"}
@@ -67,7 +67,7 @@ Real dispersions are complicated functions of $\mathbf{k}$, but almost every ban
 
 2.  **Dirac (linear) dispersions**, $E\propto|k|$, are realized in graphene and in several topological materials, such as quantum spin Hall insulators, Chern insulators and other symmetry-protected topological phases. They have finite topological invariants, in the form of a Berry phase, and they give rise to a phenomenology that is similar to relativistic physics, even though the electrons themselves are not relativistic at all.
 
-3.  **Flat bands**, $E(\mathbf{k})=\text{const}$, may look like the least interesting case, but by [(2.16)](#eq-2-16) a flat band gives a *divergent* density of states. As a result, even weak interactions have a very large effect when a flat band is near the Fermi level. When the flatness has a nontrivial origin, which is destructive interference in real space and not a hopping set to zero, the flat band can also have a finite Chern number, which is central to the quantum Hall effect and to moiré materials.
+3.  **Flat bands**, $E(\mathbf{k})=\text{const}$, may look like the least interesting case, but by [(2.16)](#eq-2-16) a flat band gives a *divergent* density of states. As a result, even weak interactions have a very large effect when a flat band is near the Fermi level. The flatness can have a nontrivial origin, which is destructive interference in real space and not a hopping set to zero. Then the flat band can also have a finite Chern number, which is central to the quantum Hall effect of Session 4 and to moiré materials.
 
 Figure [2.4](#fig:s02:archetypes) shows the three types next to each other, together with the density of states of each one, which decides whether interactions can have an effect on them.
 
@@ -91,4 +91,11 @@ A two-dimensional Dirac cone has $E=\hbar v_F|\mathbf q|$. How does the density 
 The density of states depends on both the dimension and the dispersion.
 :::
 
-Next we derive the Dirac case explicitly, since it is the defining feature of graphene and the direct link to the topology lecture, and then we look at two lattices that realize flat bands. The tools we use in the whole course to compute such dispersions are `pyqula`, which we named in Section [2.5](#sec-2-5), and its graphical companion, which is a second computational tool shown on the slides with the name **Quantum Lattice**. It needs no scripting, and it is not named in the lecture, which only refers to "a user interface we will use at some points".
+Next we derive the Dirac case explicitly, since it is the defining feature of graphene and the direct link to the topology of Session 3. Then we look at two lattices that realize flat bands. We compute such dispersions with `pyqula`, which we named in Section [2.5](#sec-2-5), and with its graphical interface **Quantum Lattice**, which needs no scripting.
+
+::: comesback
+- The density of states at the Fermi level decides the Stoner criterion [(6.3)](#eq-6-3) of Section [6.6](#sec-6-6), where it is written $D(E_F)$.
+- The nesting of the square Fermi surface makes the Lindhard function diverge in Section [9.4b](#sec-9-4b).
+- Flat bands with a Chern number are the Landau levels of Section [4.4](#sec-4-4) and the moiré flat bands of Section [4.20](#sec-4-20).
+- The Dirac dispersion with a mass term gives the Chern insulator of Section [3.10](#sec-3-10).
+:::

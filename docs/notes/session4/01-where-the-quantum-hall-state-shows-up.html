@@ -52,7 +52,7 @@
   .crumb { margin: 0 0 4px; font-size: 0.95rem; }
   .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
   .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
-  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .toc .n { display: inline-block; min-width: 3.4em; padding-right: .4em; color: var(--muted); }
   .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
   figure { margin: 24px 0; }
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
@@ -87,9 +87,9 @@
 <p>The quantum Hall state is not the property of one specific material. It is a state of matter that a whole family of two-dimensional electron systems can realize, and each of these systems has its own energy scale and temperature scale.</p>
 <ul>
 <li><p><strong>Semiconductor quantum wells</strong>, historically gallium arsenide (GaAs), were the first platform. In these systems the electrons are essentially parabolic electrons, with the ordinary quadratic dispersion, and the relevant energy scale grows linearly with the magnetic field. For the fields that we can reach in a laboratory this gives roughly one millielectronvolt, and this is the reason why quantum Hall physics in GaAs needs temperatures of the order of one kelvin.</p></li>
-<li><p><strong>Two-dimensional materials</strong>, and graphene above all, realize the same physics but with Dirac electrons instead of parabolic ones. As we will derive explicitly below, the energy scale then grows as the square root of the field and not linearly. The slides give the concrete numbers, which are roughly one order of magnitude larger, around 100 millielectronvolts at 10 T. This is high enough that the quantum Hall plateaus of graphene survive up to about 100 K, and in the best samples up to almost room temperature.</p></li>
+<li><p><strong>Two-dimensional materials</strong>, and graphene above all, realize the same physics but with the Dirac electrons of Section <a href="../session2/11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#sec-2-11">2.11</a> instead of parabolic ones. As we derive in Section <a href="10-landau-levels-of-dirac-electrons.html#sec-4-10">4.10</a>, the energy scale then grows as the square root of the field and not linearly. It is roughly one order of magnitude larger, around 100 millielectronvolts at 10 T. This is high enough that the quantum Hall plateaus of graphene survive up to about 100 K, and in the best samples up to almost room temperature.</p></li>
 </ul>
-<p>For all these platforms the common point is the one we already saw in the last session. An observable, the Hall conductance, is exactly quantized, and this quantization comes from topology and not from the chemistry of a specific material.</p>
+<p>For all these platforms the common point is the one of equation <a href="../session3/05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#eq-3-4">(3.4)</a>. An observable, the Hall conductance, is quantized to an integer times <span class="math inline">\(e^2/h\)</span>, and this quantization comes from topology and not from the chemistry of a specific material.</p>
 <figure class="again">
 <img src="../figures/s04f04_ladders.svg" loading="lazy" alt="Two fans of Landau levels against the magnetic field, straight lines for parabolic electrons and square-root curves for Dirac electrons." />
 <figcaption><strong><a href="10-landau-levels-of-dirac-electrons.html#fig:s04:ladders">Figure 4.4</a>, shown again.</strong> The two platforms of this section, seen through the energy scale of their Landau levels. In (a) the levels of parabolic electrons grow linearly with the field. In (b) the levels of Dirac electrons grow as the square root of the field, and the level at zero energy does not move. Look at how the levels of (b) are more widely spaced than a straight line would give at small field. We derive both ladders in Sections <a href="09-landau-levels-of-schrodinger-electrons.html#sec-4-9">4.9</a> and <a href="10-landau-levels-of-dirac-electrons.html#sec-4-10">4.10</a>.</figcaption>
@@ -123,12 +123,12 @@ Question
 </div>
 <h1 class="sec-next" id="sec-4-2"><span class="num">4.2</span> Measuring the Hall conductance</h1>
 <p>The experiment itself is simple to describe. We take a two-dimensional system, apply a voltage along one in-plane direction, which we call <span class="math inline">\(y\)</span>, and measure the current that flows along the perpendicular in-plane direction, <span class="math inline">\(x\)</span>. The ratio of this transverse current to the applied voltage is the Hall conductance, and this is the quantity that becomes quantized in the quantum Hall regime.</p>
-<p>The geometry that we have in mind is the one in <a href="#sch:s04:hall_setup">Schematic 4.1</a>, a square sample with four contacts.</p>
+<p>The geometry that we have in mind is the one in <a href="#sch:s04:hall_setup">Schematic 4.2</a>, a square sample with four contacts.</p>
 <figure id="sch:s04:hall_setup" class="schematic">
 <img src="../figures/web/session04/hall_setup.svg" loading="lazy" alt="A square sample with four contacts, a voltage applied between the top and the bottom contact, a current leaving the left contact and arrows that circulate along the edge." />
-<figcaption><strong>Schematic 4.1.</strong> The geometry of the measurement, for a square sample with four contacts and a field into the page. A voltage <span class="math inline">\(V_y\)</span> is applied between the top and the bottom contact, and the current <span class="math inline">\(I_x\)</span> is read in the left contact. With <span class="math inline">\(N\)</span> filled Landau levels the current is carried by the <span class="math inline">\(N\)</span> chiral channels of the edge, which circulate around the sample in one sense. The channels that leave the top contact end in the next contact, so <span class="math inline">\(I_x=N(e^2/h)V_y\)</span>. Look at the sense of the arrows, which reverses when the field reverses.</figcaption>
+<figcaption><strong>Schematic 4.2.</strong> The geometry of the measurement, for a square sample with four contacts and a field into the page. A voltage <span class="math inline">\(V_y\)</span> is applied between the top and the bottom contact, and the current <span class="math inline">\(I_x\)</span> is read in the left contact. With <span class="math inline">\(N\)</span> filled Landau levels the current is carried by the <span class="math inline">\(N\)</span> chiral channels of the edge, which circulate around the sample in one sense. The channels that leave the top contact end in the next contact, so <span class="math inline">\(I_x=N(e^2/h)V_y\)</span>. Look at the sense of the arrows, which reverses when the field reverses.</figcaption>
 </figure>
-<p>A real device for this measurement is a two-dimensional electron gas (2DEG) with several finger gates in contact with it. A voltage is applied between a top gate and a bottom gate, and the current is measured between two gates placed along <span class="math inline">\(x\)</span>, with all the connections made through metallic leads. The geometry of the device does not add new physics beyond what we need for the concepts, so we will not discuss it further. The device figures in the slides are useful to see how a real experiment looks, but from here on the notes work with the ideal two-dimensional system.</p>
+<p>A real device for this measurement is a two-dimensional electron gas (2DEG) with several finger gates in contact with it. A voltage is applied between a top gate and a bottom gate, and the current is measured between two gates placed along <span class="math inline">\(x\)</span>, with all the connections made through metallic leads. The geometry of the device does not add new physics beyond what we need for the concepts, so we will not discuss it further. From here on we work with the ideal two-dimensional system.</p>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
@@ -155,6 +155,16 @@ Question
 </ul>
 </div>
 </details>
+</div>
+<div class="comesback">
+<div class="comesback-label">
+Where this comes back
+</div>
+<ul>
+<li>In Sections <a href="09-landau-levels-of-schrodinger-electrons.html#sec-4-9">4.9</a> and <a href="10-landau-levels-of-dirac-electrons.html#sec-4-10">4.10</a> we derive the two ladders of Landau levels, linear in <span class="math inline">\(B\)</span> and as <span class="math inline">\(\sqrt{B}\)</span>.</li>
+<li>In Section <a href="20-real-materials-realizing-chern-and-fractional-chern-physics.html#sec-4-20">4.20</a> the quantized Hall conductance appears at zero field, in real materials.</li>
+<li>In Section <a href="../session5/02-superconductivity-as-a-macroscopic-quantum-phenomenon.html#sec-5-2">5.2</a> the flux quantum <span class="math inline">\(h/2e\)</span> of a superconductor is a second macroscopic readout of <span class="math inline">\(e\)</span> and <span class="math inline">\(h\)</span>, next to the plateaus of this section.</li>
+</ul>
 </div>
 
   <nav class="pager"><a href="index.html">Session 4</a><a href="03-from-the-kubo-formula-to-the-chern-number-briefly.html">4.3 From the Kubo formula to the Chern number, briefly</a></nav>

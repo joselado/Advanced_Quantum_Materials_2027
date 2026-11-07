@@ -4,7 +4,7 @@ Let us go back to the general interacting Hamiltonian that we have used in the w
 
 $$H = \sum_{ij} t_{ij}\, c_i^\dagger c_j \;+\; \sum_{ijkl} V_{ijkl}\, c_i^\dagger c_j c_k^\dagger c_l. \tag{7.1}$$
 
-The kinetic term is free and can be solved exactly, and the interaction term in general cannot. In all sessions so far we treated [(7.1)](#eq-7-1) in the same way. We decoupled the quartic term with mean field, we replaced it with an effective bilinear Hamiltonian, and we looked at which symmetry is broken by the resulting order parameter. This strategy defines what we can call **weakly correlated matter**. In this sense, magnets, superconductors and charge density waves are all single-particle physics, once we find the right symmetry-broken background.
+This is the Hamiltonian [(1.5)](#eq-1-5) of Session 1 with the four operators in another order, which only relabels $V_{ijkl}$ and adds a bilinear term to the hopping. The kinetic term is free and can be solved exactly, and the interaction term in general cannot. In all sessions so far we treated [(7.1)](#eq-7-1) in the same way. We decoupled the quartic term with mean field, as in Section [1.12](#sec-1-12), we replaced it with an effective bilinear Hamiltonian, and we looked at which symmetry is broken by the resulting order parameter. This strategy defines what we can call **weakly correlated matter**. In this sense, the magnets of Session 6, the superconductors of Session 5 and the charge density wave of Section [1.13](#sec-1-13) are all single-particle physics, once we find the right symmetry-broken background.
 
 In this session we are in the opposite regime, which is **strongly correlated matter**. Here the interactions are so strong that no effective single-particle Hamiltonian gives the ground state, for any choice of the decoupling. Quantum spin liquids and fractional Chern insulators are our two main examples, and more generally, the same problem appears when we want an accurate phase diagram of a truly interacting model. In both cases we cannot solve the problem with an ansatz for the broken symmetry. Instead, we need something close to an exact numerical solution, or at least a controlled approximation that does not assume symmetry breaking from the start. This is what tensor networks give us.
 
@@ -29,8 +29,8 @@ A quantum spin liquid has no order parameter. What does a self-consistent mean-f
 
 ## Fermions and spins, two languages for the same physics {#sec-7-2 number="7.2a"}
 
-Before we build the tool, let us point out something that was present in the last sessions without being said explicitly. We have used two families of many-body Hamiltonians that look different. The first family is the fermionic Hamiltonians of the form [(7.1)](#eq-7-1), with a general two-body interaction $V_{ijkl}$, where density-density interactions are only a special case, which we used in sessions 1 to 5. The second family is the spin Hamiltonians, mainly the Heisenberg model $H =
-\sum_{ij} J_{ij}\, \mathbf{S}_i \cdot \mathbf{S}_j$, which we used for the magnons of session 6 and which we use again in this session for quantum spin liquids. These are not two different topics. They are the same physics written in two different languages, and in this section we make this translation precise.
+Before we build the tool, let us point out something that was present in the last sessions without being said explicitly. We have used two families of many-body Hamiltonians that look different. The first family is the fermionic Hamiltonians of the form [(7.1)](#eq-7-1), with a general two-body interaction $V_{ijkl}$, where density-density interactions are only a special case, and we used them in Sessions 1 to 5. The second family is the spin Hamiltonians, mainly the Heisenberg model $H =
+\sum_{ij} J_{ij}\, \mathbf{S}_i \cdot \mathbf{S}_j$ of [(6.5)](#eq-6-5). We used it for the magnons of Section [6.13](#sec-6-13), and we use it again in this session for quantum spin liquids. These are not two different topics. They are the same physics written in two different languages, and in this section we make this translation precise.
 
 ![On one site the fermion and the spin-1/2 are the same object, since an empty site is a down spin and an occupied site is an up spin. Between two sites the two languages differ in one sign, because fermion operators anticommute and spin operators commute. Look at the right side of the figure, since this is the sign that the string of the next section has to carry.](figures/web/session07/two_languages.svg){#sch:s07:two_languages alt="Three sites drawn as fermions, empty or full, above the same three sites drawn as spin arrows, with the rules of anticommutation and commutation at the right."}
 
@@ -48,4 +48,10 @@ We replace $c_1^\dagger$ and $c_2^\dagger$ of two different sites by $S_1^+$ and
 - [ ] The resulting Hamiltonian is no longer Hermitian.
 
     This is false. The hopping term $c_1^\dagger c_2+c_2^\dagger c_1$ is replaced by $S_1^+S_2^-+S_2^+S_1^-$, which is its own Hermitian conjugate. The Hamiltonian stays Hermitian and it is just the wrong one.
+:::
+
+::: comesback
+- In Section [7.2b](#sec-7-2b) the Jordan-Wigner string fixes the sign between sites, and the two languages become one exact mapping.
+- In Section [8.3](#sec-8-3) the singlet of two spins is the starting point of quantum magnetism, and in Section [8.9](#sec-8-9) mean field comes back for spinons without breaking any symmetry.
+- In Section [10.3](#sec-10-3) neural network quantum states are a second tool for the strongly correlated regime.
 :::

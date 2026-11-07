@@ -10,18 +10,18 @@ which couples only the $z$-components of two spin-$1/2$'s. This Hamiltonian has 
 
 $$|GS_1\rangle = |{\uparrow\downarrow}\rangle, \qquad |GS_2\rangle = |{\downarrow\uparrow}\rangle.$$
 
-Both are eigenstates with the same energy, but each one of them *alone* breaks time-reversal symmetry, since time reversal flips every spin and so it turns $|GS_1\rangle$ into $|GS_2\rangle$ and the other way around. Only the degenerate pair of the two states together respects the symmetry. A macroscopic symmetry-broken antiferromagnet, of the same kind as the one we built in Session 6, is the version of this same problem with an infinite number of sites, and the same argument also works for ferromagnets and spin spirals.
+Both are eigenstates with the same energy, but each one of them *alone* breaks time-reversal symmetry, since time reversal flips every spin and so it turns $|GS_1\rangle$ into $|GS_2\rangle$ and the other way around. Only the degenerate pair of the two states together respects the symmetry. A macroscopic symmetry-broken antiferromagnet, of the same kind as the one of Section [6.4](#sec-6-4), is the version of this same problem with an infinite number of sites. The same argument also works for ferromagnets and spin spirals.
 
 Let us now replace the Ising coupling by the full **quantum Heisenberg dimer**, which has rotational symmetry,
 
 $$\mathcal H_\text{Heis} = \mathbf S_0 \cdot \mathbf S_1. \tag{8.2}$$
 
-This is the model that we obtain from a half-filled Hubbard model with strong interactions in the large-$U$ limit, as we derived in Session 6. When we solve it with $\mathbf S_0, \mathbf S_1$ as real spin-$1/2$ operators, the two spin-$1/2$'s combine into a singlet ($S=0$) and a triplet ($S=1$). The value is $\mathbf S_0\cdot\mathbf S_1 = -3/4$ for the singlet and $+1/4$ for the triplet, so the unique ground state is the **singlet**,
+This is the model that we obtain from a half-filled Hubbard model with strong interactions in the large-$U$ limit, as we derived in Section [6.8](#sec-6-8). When we solve it with $\mathbf S_0, \mathbf S_1$ as real spin-$1/2$ operators, the two spin-$1/2$'s combine into a singlet ($S=0$) and a triplet ($S=1$). The value is $\mathbf S_0\cdot\mathbf S_1 = -3/4$ for the singlet and $+1/4$ for the triplet, so the unique ground state is the **singlet**,
 
 $$|GS\rangle = \frac{1}{\sqrt2}\Big(|{\uparrow\downarrow}\rangle -
 |{\downarrow\uparrow}\rangle\Big), \qquad \langle \mathbf S_i \rangle = 0. \tag{8.3}$$
 
-This ground state is different from the Ising case in three ways, and these three points are important for the rest of the session. First, it is the *unique* ground state, so there is no degeneracy and no spontaneous choice between states. Second, it is *time-reversal symmetric*, since its net magnetization is exactly zero and time reversal maps $|GS\rangle$ to itself. Third, it is *maximally entangled*, since the two terms in [(8.3)](#eq-8-3) have the same weight, which is the largest entanglement that two qubits can have. Can we have a macroscopic version of this ground state? This question is the origin of quantum spin liquids. Before we go on, [](#sch:s08:dimer_levels) puts the levels of the two dimers side by side.
+This ground state is different from the Ising case in three ways, and these three points are important for the rest of the session. First, it is the *unique* ground state, so there is no degeneracy and no spontaneous choice between states. Second, it is *time-reversal symmetric*, since its net magnetization is zero and time reversal maps $|GS\rangle$ to itself. Third, it is *maximally entangled*, since the two terms in [(8.3)](#eq-8-3) have the same weight, which is the largest entanglement that two qubits can have. It is the singlet [(7.3)](#eq-7-3) of Session 7, with the entanglement entropy $\log 2$ of [(7.7)](#eq-7-7). Can we have a macroscopic version of this ground state? This question is the origin of quantum spin liquids. Before we go on, [](#sch:s08:dimer_levels) puts the levels of the two dimers side by side.
 
 ![The levels of the Ising dimer [(8.1)](#eq-8-1) and of the Heisenberg dimer [(8.2)](#eq-8-2), from the $4\times4$ matrices with $J=1$. The Ising dimer has two degenerate ground states, and each one breaks time reversal. Look at the Heisenberg dimer, where the ground state is a single singlet and the triplet lies one unit above it.](figures/web/session08/dimer_levels.svg){#sch:s08:dimer_levels alt="Two columns of energy levels, the Ising dimer with two levels of two states each and the Heisenberg dimer with a singlet below a triplet."}
 
@@ -59,4 +59,10 @@ We change the sign of the coupling, $H=J\,\mathbf S_0\cdot\mathbf S_1$ with $J<0
 - [x] The triplet, which is threefold degenerate.
 
     This is true. The value of $\mathbf S_0\cdot\mathbf S_1$ is $-3/4$ for the singlet and $+1/4$ for the triplet. For $J<0$ the energy $J/4$ of the triplet is below $-3J/4$ of the singlet, and the three triplet states are degenerate.
+:::
+
+::: comesback
+- In Section [8.5](#sec-8-5) a product of these singlets is the ground state of a macroscopic magnet that does not break time-reversal symmetry.
+- In Section [8.6](#sec-8-6) the singlets resonate over a frustrated lattice, and this is the resonating valence bond state.
+- In Section [8.11](#sec-8-11) a magnetic impurity forms the same kind of singlet with a conduction electron.
 :::

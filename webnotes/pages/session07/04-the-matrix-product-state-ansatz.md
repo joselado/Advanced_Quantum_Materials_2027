@@ -1,11 +1,11 @@
 ## The matrix product state ansatz {#sec-7-4 number="7.4"}
 
-The idea that solves this problem is very simple. Instead of storing $C(s_1,\dots,s_L)$ as one large array of $2^L$ numbers, we write it as a product of matrices, with one matrix for each possible value of each local spin.
+The idea that solves this problem is simple. Instead of storing $C(s_1,\dots,s_L)$ as one large array of $2^L$ numbers, we write it as a product of matrices, with one matrix for each possible value of each local spin.
 
 $$C(s_1,s_2,\dots,s_L) \;\approx\; M^{s_1}_{1}\, M^{s_2}_{2}\, \cdots\, M^{s_L}_{L}, \tag{7.5}$$
 
-Here each $M^{s_i}_i$ is an $M\times M$ matrix, except at the two ends of a finite open chain where it is a vector, and $M$ is the **bond dimension**, which is a free parameter that we choose. For a spin-1/2 chain there are two matrices per site, one for $s_i=\uparrow$ and one for $s_i=\downarrow$. Therefore the total number of parameters of the state is proportional to $L\times
-M^2$, which is linear in the system size, in strong contrast with the $2^L$ of the exact representation [(7.4)](#eq-7-4). This is called the **matrix product state** (MPS) ansatz. At first sight, it is only a choice, and one that looks rather arbitrary. In Sections [7.5](#sec-7-5) to [7.8](#sec-7-8) we will answer two questions about it. First, why it is a *good* choice. Second, what exactly it captures, and what it does not capture, about the physical state.
+Here each $M^{s_i}_i$ is an $M\times M$ matrix, and $M$ is the **bond dimension**, which is a free parameter that we choose. At the two ends of a finite open chain the matrices are vectors. For a spin-1/2 chain there are two matrices per site, one for $s_i=\uparrow$ and one for $s_i=\downarrow$. Therefore the total number of parameters of the state is proportional to $L\times
+M^2$, which is linear in the system size, in strong contrast with the $2^L$ of the exact representation [(7.4)](#eq-7-4). This is called the **matrix product state** (MPS) ansatz. At first sight, it is only a choice, and one that looks rather arbitrary. In Sections [7.5](#sec-7-5) to [7.8](#sec-7-8) we will answer two questions about it. First, why it is a *good* choice. Second, what it captures, and what it does not capture, about the physical state.
 
 Let us read the product [(7.5)](#eq-7-5) for one configuration of the spins. Each site holds two matrices, and the value of the spin on that site selects one of them. The chosen matrices are multiplied in order, and the result is the coefficient $C$ of that configuration, as [](#sch:s07:mps_product) shows.
 
@@ -18,7 +18,7 @@ A spin-1/2 chain has $L=100$ sites, and we use an MPS with $M=10$. How many numb
 
 - [ ] About $10^{30}$, which is $2^{100}$.
 
-    This is false. The number $2^{100}\approx1.3\times10^{30}$ is the number of coefficients of the exact state. The MPS exists to avoid exactly this number, and it stores $2LM^2=2\times10^4$ numbers.
+    This is false. The number $2^{100}\approx1.3\times10^{30}$ is the number of coefficients of the exact state. The MPS exists to avoid this number, and it stores $2LM^2=2\times10^4$ numbers.
 
 - [x] About $2\times10^4$, which is two matrices of $10\times10$ entries on each of the 100 sites.
 
@@ -29,7 +29,7 @@ A spin-1/2 chain has $L=100$ sites, and we use an MPS with $M=10$. How many numb
     This is false. Even the product state, which is the case $M=1$, needs two numbers per site, so $200$ for 100 sites. An MPS with $M=10$ has $10\times10$ matrices on each site and needs more.
 :::
 
-We should know from the start that this is not a toy model. Today matrix product states give the most accurate results for two of the central hard problems in quantum materials. The first one is the doped two-dimensional Hubbard model with second-neighbor hopping, which is related to unconventional superconductivity. The second one is the two-dimensional frustrated Heisenberg model on the triangular and kagome lattices, and this is where the strongest numerical evidence for real quantum spin liquid physics comes from, which is the herbertsmithite example of session 6. Both examples are shown as labeled figure panels on slide 15 of the deck, with the titles "Solving the 2D Hubbard model at finite doping" and "Solving the 2D Heisenberg model in frustrated lattices." This shows that MPS are a working tool for the strongly correlated regime, and not only a formal construction.
+We should know from the start that this is not a toy model. Matrix product states give the most accurate results that we have for two of the central hard problems in quantum materials. The first one is the doped two-dimensional Hubbard model [(1.7)](#eq-1-7) with second-neighbor hopping, which is related to the unconventional superconductivity of Section [5.13](#sec-5-13). The second one is the frustrated Heisenberg model on the triangular and kagome lattices in two dimensions. This is where the strongest numerical evidence for real quantum spin liquid physics comes from, and the kagome lattice is the one of herbertsmithite. So MPS are a working tool for the strongly correlated regime, and not only a formal construction.
 
 ## Measuring entanglement with the entanglement entropy {#sec-7-5 number="7.5"}
 
@@ -37,7 +37,7 @@ To see why [(7.5)](#eq-7-5) works, we need a quantitative measure of how entangl
 \otimes
 |\psi_B\rangle$. Two examples are the state $|{\uparrow\downarrow}\rangle$ and a product of two single-site states that are both polarized along $x$. The singlet [(7.3)](#eq-7-3) is the opposite case. It cannot be written as a product of this form, and it is our main example of an **entangled** state.
 
-To turn the question "entangled or not" into a number, we define the full density matrix $\rho =
+To measure the entanglement with a number, we define the full density matrix $\rho =
 |\Psi\rangle
 \langle\Psi|$, and we trace out subsystem $B$. This gives the **reduced density matrix** of $A$, $\rho_A =
 \mathrm{Tr}_B\,\rho$. The **entanglement entropy** is then the von Neumann entropy of $\rho_A$,
@@ -55,7 +55,7 @@ which is a maximally mixed single-site density matrix, with two eigenvalues both
 
 $$S = -\left(\tfrac12\log\tfrac12 + \tfrac12\log\tfrac12\right) = \log 2. \tag{7.7}$$
 
-This is the maximum entanglement entropy that a single spin-1/2 can have, since a local Hilbert space of dimension $d$ can have at most $\log d$. This is the meaning of the statement that the singlet is "maximally entangled," since it uses all the capacity of the local Hilbert space for entanglement.
+This is the maximum entanglement entropy that a single spin-1/2 can have, since a local Hilbert space of dimension $d$ can have at most $\log d$. This is why we say that the singlet is maximally entangled, since it uses all the capacity of the local Hilbert space for entanglement.
 
 Let us see how the entropy depends on the state. We take $\cos\vartheta\,|{\uparrow\downarrow}\rangle+\sin\vartheta\,|{\downarrow\uparrow}\rangle$, which is a product state for $\vartheta=0$ and has the weights of the singlet for $\vartheta=\pi/4$. The reduced density matrix has the eigenvalues $\cos^2\vartheta$ and $\sin^2\vartheta$, and [](#sch:s07:singlet_entropy) shows the entropy [(7.6)](#eq-7-6) that follows from them.
 
@@ -79,4 +79,10 @@ The spin state $(|{\uparrow\downarrow}\rangle+|{\downarrow\uparrow}\rangle)/\sqr
 
 ::: {.tryit notebook="session7.ipynb" cell="Near linear scaling with system size with matrix product states"}
 Compute the time of the ground-state calculation for the sizes of `Ns`, with `sc.maxm = 20`. The time should grow roughly linearly with the number of sites. Then raise `sc.maxm` to 40 and check that each time is longer but the curve stays straight, which is the $LM^2$ structure of [(7.5)](#eq-7-5).
+:::
+
+::: comesback
+- In Section [7.8](#sec-7-8) the bond dimension $M$ sets the largest entropy $\log M$ that the ansatz can hold across a bond.
+- In Section [8.4](#sec-8-4) the kagome lattice of herbertsmithite is the frustrated lattice where a spin liquid is expected.
+- In Section [10.4](#sec-10-4) the same ansatz, with the bond dimension called $D$, stores $L\,d\,D^2$ numbers and is used to classify images.
 :::

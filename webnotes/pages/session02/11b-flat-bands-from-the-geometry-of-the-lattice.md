@@ -4,6 +4,8 @@ Two standard lattices realize truly flat bands only from their geometry in real 
 
 ![Flat bands that come only from geometry, with the bands computed from the Bloch Hamiltonian of each lattice and the flat band drawn as the red tube. **(a)** The Lieb lattice, which is a square lattice with one site in four removed, and **(b)** its bands. There are two dispersive bands and a band that is exactly flat at $\epsilon=0$, and all three touch at $M$. **(c)** The kagome lattice, made of triangles that share corners, and **(d)** its bands, with a Dirac-like crossing at $K$ and a flat band at $\epsilon=2t$. **(e)** The reason why the flat band exists. An eigenstate can be confined to a single kagome hexagon, with amplitudes of alternating sign around it, the filled and the ghost balls. Every path by which it could hop onto a site outside arrives twice with opposite sign, the two arrows, so the two contributions cancel at the cross. Nothing is fine-tuned to zero, since the flatness is a property of the geometry of the lattice, and by [(2.16)](#eq-2-16) it makes the density of states diverge.](figures/s02f05_flatbands.svg){#fig:s02:flatbands number="2.6"}
 
+![The bands and the density of states of the kagome lattice, computed on a k-mesh of $600\times600$ points. The flat band at $\epsilon=2t$, in red, holds one third of all the states at a single energy. So in [(2.16)](#eq-2-16) it gives a delta peak, which the plot cuts. The two dispersive bands give a continuous density of states between $-4t$ and $2t$, with two peaks at the energies of the bands at $M$, $-2t$ and $0$.](figures/web/session02/kagome_dos.svg){#sch:s02:kagome_dos alt="On the left the three bands of the kagome lattice along Gamma, K, M and Gamma, with a red flat band at 2t. On the right the density of states, smooth below and with a cut red peak at 2t."}
+
 ::: quiz
 We change the value of the hopping $t$ of the kagome lattice. Where is the flat band?
 
@@ -40,8 +42,15 @@ Why does the state on one hexagon of the kagome lattice not spread to the sites 
 The localization is a single-particle effect of the geometry.
 :::
 
-This material is only on the slides and has no counterpart in `session2.ipynb`. The notebook treats the honeycomb lattice in depth, but it has no section on the Lieb lattice or on the kagome lattice. The band-structure plots for both lattices are shown directly on the slides. The description above gives their qualitative structure, but to see the actual flat-band dispersion one needs the figure itself.
+The notebook `session2.ipynb` treats the honeycomb lattice in depth, but it has no section on the Lieb lattice or on the kagome lattice. The box below builds both from the cell of the honeycomb lattice.
 
 ::: {.tryit notebook="session2.ipynb" cell="Infinite two-dimensional graphene"}
 In the cell with the bands, replace the honeycomb lattice by `lieb_lattice()` or by `kagome_lattice()`. Find the band that does not disperse. With the sign of the hopping of the notebook, the Lieb flat band is at zero energy and the kagome one is at the bottom.
+:::
+
+::: comesback
+- In Session 4 the Landau levels are flat bands with Chern number one, in Section [4.4](#sec-4-4), and Section [4.20](#sec-4-20) shows topological flat bands in real materials.
+- In Section [6.6](#sec-6-6) the flat band of the Lieb lattice makes the Stoner criterion true for any interaction $U>0$.
+- The kagome lattice comes back in Section [8.4](#sec-8-4), where its triangles frustrate a quantum magnet.
+- In Section [8.13](#sec-8-13) the Kondo lattice gives a heavy band that is almost flat.
 :::

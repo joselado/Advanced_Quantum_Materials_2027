@@ -52,7 +52,7 @@
   .crumb { margin: 0 0 4px; font-size: 0.95rem; }
   .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
   .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
-  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .toc .n { display: inline-block; min-width: 3.4em; padding-right: .4em; color: var(--muted); }
   .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
   figure { margin: 24px 0; }
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
@@ -94,7 +94,7 @@
 <p>The structure of <a href="#eq-9-3">(9.3)</a> is the basis of every derivation in the rest of this session. A perturbation mixes a state <span class="math inline">\(|n\rangle\)</span> with every other state <span class="math inline">\(|m\rangle\)</span>. The weight of the mixing is the matrix element of <span class="math inline">\(V\)</span> between the two states, and it is suppressed by the inverse of the energy gap between them. States that are close in energy mix strongly, and states that are far apart in energy almost do not mix. Once we have <a href="#eq-9-3">(9.3)</a>, we can write any observable, in particular any density or magnetization, to first order in <span class="math inline">\(\lambda\)</span> by using the perturbed states.</p>
 <figure id="sch:s09:mixing" class="schematic">
 <img src="../figures/web/session09/mixing.svg" loading="lazy" alt="Four energy levels around a central level, and horizontal bars that show the mixing coefficient of each level, largest for the closest one." />
-<figcaption><strong>Schematic 9.3.</strong> The mixing of <a href="#eq-9-3">(9.3)</a> for one fixed matrix element <span class="math inline">\(\langle m|V|n\rangle=0.1\)</span>. On the left we see the levels of <span class="math inline">\(H_0\)</span> around <span class="math inline">\(|n\rangle\)</span>, and on the right the coefficient of each level in the perturbed state. The closest level, <span class="math inline">\(|m_1\rangle\)</span>, mixes the most, and the sign of the coefficient follows the sign of <span class="math inline">\(E_n^{(0)}-E_m^{(0)}\)</span>, so that a level above <span class="math inline">\(|n\rangle\)</span> enters with a negative sign.</figcaption>
+<figcaption><strong>Schematic 9.4.</strong> The mixing of <a href="#eq-9-3">(9.3)</a> for one fixed matrix element <span class="math inline">\(\langle m|V|n\rangle=0.1\)</span>. On the left we see the levels of <span class="math inline">\(H_0\)</span> around <span class="math inline">\(|n\rangle\)</span>, and on the right the coefficient of each level in the perturbed state. The closest level, <span class="math inline">\(|m_1\rangle\)</span>, mixes the most, and the sign of the coefficient follows the sign of <span class="math inline">\(E_n^{(0)}-E_m^{(0)}\)</span>, so that a level above <span class="math inline">\(|n\rangle\)</span> enters with a negative sign.</figcaption>
 </figure>
 <div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
@@ -154,13 +154,23 @@ Question
 </div>
 </details>
 </div>
-<p><strong>When does this break down?</strong> The construction in <a href="#eq-9-3">(9.3)</a> assumes that <span class="math inline">\(A(\lambda)\)</span> is an analytic function of <span class="math inline">\(\lambda\)</span> close to <span class="math inline">\(\lambda=0\)</span>, and this assumption is not always true. There are three paradigmatic quantum states that are known to be intrinsically non-perturbative in this sense, and we mention them explicitly since they mark the limit of everything that we derive below.</p>
+<p><strong>When does this break down?</strong> The construction in <a href="#eq-9-3">(9.3)</a> assumes that <span class="math inline">\(A(\lambda)\)</span> is an analytic function of <span class="math inline">\(\lambda\)</span> close to <span class="math inline">\(\lambda=0\)</span>, and this assumption is not always true. There are three paradigmatic quantum states that are known to be intrinsically non-perturbative in this sense, and we mention them explicitly since they mark the limit of everything that we derive below. We met the same three cases in Section <a href="../session3/03-where-perturbation-theory-breaks-down.html#sec-3-3">3.3</a>.</p>
 <ul>
-<li><p><strong>An impurity in a metal, the orthogonality catastrophe.</strong> In the thermodynamic limit, the full many-body wavefunction of a metal with the impurity switched on becomes exactly orthogonal to the wavefunction with the impurity switched off, for any strength of the impurity potential, even a very weak one.</p></li>
-<li><p><strong>A quantum spin in a metal, the Kondo effect.</strong> The emergent Kondo temperature is a non-perturbative function of the Kondo coupling, since it contains an essential singularity in the coupling constant and not a power series.</p></li>
-<li><p><strong>Superconductivity in the BCS limit.</strong> In the same way, the superconducting gap is non-perturbative in the attractive coupling constant.</p></li>
+<li><p><strong>An impurity in a metal, the orthogonality catastrophe.</strong> In the thermodynamic limit, the many-body wavefunction of a metal with the impurity becomes exactly orthogonal to the one without it. This happens for any strength of the impurity potential, even a very weak one.</p></li>
+<li><p><strong>A quantum spin in a metal, the Kondo effect.</strong> The Kondo temperature that emerges is non-perturbative in the Kondo coupling. It has an essential singularity in the coupling constant and not a power series, and Section <a href="../session8/11-from-a-single-kondo-impurity-to-the-kondo-lattice.html#sec-8-11">8.11</a> treats the Kondo impurity in full.</p></li>
+<li><p><strong>Superconductivity in the BCS limit.</strong> In the same way, the superconducting gap of <a href="../session5/index.html">Session 5</a> is non-perturbative in the attractive coupling constant.</p></li>
 </ul>
 <p>In the rest of this session we stay in the regime where perturbation theory <em>does</em> work, which is the regime where <a href="#eq-9-2">(9.2)</a> and <a href="#eq-9-3">(9.3)</a> give a controlled and systematic way to compute responses.</p>
+<div class="comesback">
+<div class="comesback-label">
+Where this comes back
+</div>
+<ul>
+<li>In Section <a href="04-the-fermi-sea-and-the-lindhard-function.html#sec-9-4">9.4</a> the mixing of <a href="#eq-9-3">(9.3)</a> for a Fermi sea gives the Lindhard function.</li>
+<li>In Section <a href="05-interactions-as-a-perturbation-with-rpa-plasmons-and-the-stoner-instability.html#sec-9-5">9.5</a> the random phase approximation sums the interaction to all orders, which goes beyond the first order of this page.</li>
+<li>In Section <a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html#sec-9-6">9.6</a> a weak impurity in a metal is treated at first order, in the Born approximation, and gives the Friedel oscillation.</li>
+</ul>
+</div>
 
   <nav class="pager"><a href="02-the-response-of-a-classical-magnet-as-a-first-example.html">9.2 The response of a classical magnet as a first example</a><a href="04-the-fermi-sea-and-the-lindhard-function.html">9.4a The Fermi sea and the Lindhard function</a></nav>
 

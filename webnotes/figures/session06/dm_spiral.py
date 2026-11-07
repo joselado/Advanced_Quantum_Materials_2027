@@ -1,4 +1,4 @@
-"""Session 6, classical spins on a chain, the angle between neighbours with a Dzyaloshinskii-Moriya term."""
+"""Session 6, classical spins on a chain, the angle between neighbors with a Dzyaloshinskii-Moriya term."""
 import os, sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 import numpy as np

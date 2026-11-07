@@ -52,7 +52,7 @@
   .crumb { margin: 0 0 4px; font-size: 0.95rem; }
   .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
   .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
-  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .toc .n { display: inline-block; min-width: 3.4em; padding-right: .4em; color: var(--muted); }
   .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
   figure { margin: 24px 0; }
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
@@ -86,7 +86,7 @@
 <h1 id="sec-7-1"><span class="num">7.1</span> Two regimes of many-body physics</h1>
 <p>Let us go back to the general interacting Hamiltonian that we have used in the whole course,</p>
 <p><span id="eq-7-1" class="eq"><span class="math display">\[H = \sum_{ij} t_{ij}\, c_i^\dagger c_j \;+\; \sum_{ijkl} V_{ijkl}\, c_i^\dagger c_j c_k^\dagger c_l. \tag{7.1}\]</span></span></p>
-<p>The kinetic term is free and can be solved exactly, and the interaction term in general cannot. In all sessions so far we treated <a href="#eq-7-1">(7.1)</a> in the same way. We decoupled the quartic term with mean field, we replaced it with an effective bilinear Hamiltonian, and we looked at which symmetry is broken by the resulting order parameter. This strategy defines what we can call <strong>weakly correlated matter</strong>. In this sense, magnets, superconductors and charge density waves are all single-particle physics, once we find the right symmetry-broken background.</p>
+<p>This is the Hamiltonian <a href="../session1/12-the-general-interacting-hamiltonian-and-the-tool-we-will-use-on-it.html#eq-1-5">(1.5)</a> of <a href="../session1/index.html">Session 1</a> with the four operators in another order, which only relabels <span class="math inline">\(V_{ijkl}\)</span> and adds a bilinear term to the hopping. The kinetic term is free and can be solved exactly, and the interaction term in general cannot. In all sessions so far we treated <a href="#eq-7-1">(7.1)</a> in the same way. We decoupled the quartic term with mean field, as in Section <a href="../session1/12-the-general-interacting-hamiltonian-and-the-tool-we-will-use-on-it.html#sec-1-12">1.12</a>, we replaced it with an effective bilinear Hamiltonian, and we looked at which symmetry is broken by the resulting order parameter. This strategy defines what we can call <strong>weakly correlated matter</strong>. In this sense, the magnets of <a href="../session6/index.html">Session 6</a>, the superconductors of <a href="../session5/index.html">Session 5</a> and the charge density wave of Section <a href="../session1/13-worked-example-1-the-charge-density-wave.html#sec-1-13">1.13</a> are all single-particle physics, once we find the right symmetry-broken background.</p>
 <p>In this session we are in the opposite regime, which is <strong>strongly correlated matter</strong>. Here the interactions are so strong that no effective single-particle Hamiltonian gives the ground state, for any choice of the decoupling. Quantum spin liquids and fractional Chern insulators are our two main examples, and more generally, the same problem appears when we want an accurate phase diagram of a truly interacting model. In both cases we cannot solve the problem with an ansatz for the broken symmetry. Instead, we need something close to an exact numerical solution, or at least a controlled approximation that does not assume symmetry breaking from the start. This is what tensor networks give us.</p>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
@@ -120,11 +120,11 @@ Question
 </details>
 </div>
 <h1 class="sec-next" id="sec-7-2"><span class="num">7.2a</span> Fermions and spins, two languages for the same physics</h1>
-<p>Before we build the tool, let us point out something that was present in the last sessions without being said explicitly. We have used two families of many-body Hamiltonians that look different. The first family is the fermionic Hamiltonians of the form <a href="#eq-7-1">(7.1)</a>, with a general two-body interaction <span class="math inline">\(V_{ijkl}\)</span>, where density-density interactions are only a special case, which we used in sessions 1 to 5. The second family is the spin Hamiltonians, mainly the Heisenberg model <span class="math inline">\(H =
-\sum_{ij} J_{ij}\, \mathbf{S}_i \cdot \mathbf{S}_j\)</span>, which we used for the magnons of session 6 and which we use again in this session for quantum spin liquids. These are not two different topics. They are the same physics written in two different languages, and in this section we make this translation precise.</p>
+<p>Before we build the tool, let us point out something that was present in the last sessions without being said explicitly. We have used two families of many-body Hamiltonians that look different. The first family is the fermionic Hamiltonians of the form <a href="#eq-7-1">(7.1)</a>, with a general two-body interaction <span class="math inline">\(V_{ijkl}\)</span>, where density-density interactions are only a special case, and we used them in Sessions 1 to 5. The second family is the spin Hamiltonians, mainly the Heisenberg model <span class="math inline">\(H =
+\sum_{ij} J_{ij}\, \mathbf{S}_i \cdot \mathbf{S}_j\)</span> of <a href="../session6/09-the-heisenberg-model-on-a-general-lattice.html#eq-6-5">(6.5)</a>. We used it for the magnons of Section <a href="../session6/13-magnons-as-fluctuations-of-the-order-parameter.html#sec-6-13">6.13</a>, and we use it again in this session for quantum spin liquids. These are not two different topics. They are the same physics written in two different languages, and in this section we make this translation precise.</p>
 <figure id="sch:s07:two_languages" class="schematic">
 <img src="../figures/web/session07/two_languages.svg" loading="lazy" alt="Three sites drawn as fermions, empty or full, above the same three sites drawn as spin arrows, with the rules of anticommutation and commutation at the right." />
-<figcaption><strong>Schematic 7.1.</strong> On one site the fermion and the spin-1/2 are the same object, since an empty site is a down spin and an occupied site is an up spin. Between two sites the two languages differ in one sign, because fermion operators anticommute and spin operators commute. Look at the right side of the figure, since this is the sign that the string of the next section has to carry.</figcaption>
+<figcaption><strong>Schematic 7.2.</strong> On one site the fermion and the spin-1/2 are the same object, since an empty site is a down spin and an occupied site is an up spin. Between two sites the two languages differ in one sign, because fermion operators anticommute and spin operators commute. Look at the right side of the figure, since this is the sign that the string of the next section has to carry.</figcaption>
 </figure>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
@@ -152,6 +152,16 @@ Question
 </ul>
 </div>
 </details>
+</div>
+<div class="comesback">
+<div class="comesback-label">
+Where this comes back
+</div>
+<ul>
+<li>In Section <a href="02b-the-jordan-wigner-transformation.html#sec-7-2b">7.2b</a> the Jordan-Wigner string fixes the sign between sites, and the two languages become one exact mapping.</li>
+<li>In Section <a href="../session8/03-two-minimal-dimers-a-classical-order-parameter-and-a-quantum-singlet.html#sec-8-3">8.3</a> the singlet of two spins is the starting point of quantum magnetism, and in Section <a href="../session8/09-the-mean-field-spinon-hamiltonian-and-its-dispersion-classes.html#sec-8-9">8.9</a> mean field comes back for spinons without breaking any symmetry.</li>
+<li>In Section <a href="../session10/03-neural-network-quantum-states.html#sec-10-3">10.3</a> neural network quantum states are a second tool for the strongly correlated regime.</li>
+</ul>
 </div>
 
   <nav class="pager"><a href="index.html">Session 7</a><a href="02b-the-jordan-wigner-transformation.html">7.2b The Jordan-Wigner transformation</a></nav>

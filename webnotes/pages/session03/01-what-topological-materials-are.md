@@ -30,10 +30,18 @@ Within this class, we will see the following systems in this session and in the 
 
 - **Quantum spin Hall insulators**, which are in practice two copies of a quantum Hall state related by time reversal and put together, as we will see in Section [3.11](#sec-3-11).
 
-- **Topological superconductors**, whose surface excitations are Majorana modes. They are the basis of one route to topological quantum computing, and we will come back to them in detail in session 5.
+- **Topological superconductors**, whose surface excitations are Majorana modes. They are the basis of one route to topological quantum computing, and we will come back to them in detail in Session 5.
 
 - **Topological semimetals**, including Weyl semimetals, whose low-energy quasiparticles are Weyl fermions.
 
-- **Topological Kondo insulators**, which are the example given in the lecture this year of topology that survives in a strongly correlated many-body system, "and many others that do not fit on this slide."
+- **Topological Kondo insulators**, which are an example of topology that survives in a strongly correlated many-body system.
 
-This material appears only on the slides and has no counterpart in the notebook. For each entry, the slides name a specific material realization, which is graphene for the quantum Hall effect, Cr-doped (Bi,Sb)$_2$Te$_3$ for the quantum anomalous Hall effect, HgTe/CdTe quantum wells for the quantum spin Hall effect, Fe chains on Pb for a topological superconductor, TaAs for a Weyl semimetal, and SmB$_6$ for the many-body example. These were shown but not explained in detail in the lecture, and the notebook of the course does not simulate any of these specific compounds. The many-body example on the classification slide is the topological Kondo insulator, with SmB$_6$ as the material realization. What we will simulate, with the models that we build in this session, are minimal tight-binding versions of the first three items of the list above.
+Each entry has a material realization. These are graphene for the quantum Hall effect, Cr-doped (Bi,Sb)$_2$Te$_3$ for the quantum anomalous Hall effect and HgTe/CdTe quantum wells for the quantum spin Hall effect. For a topological superconductor one example is a chain of Fe atoms on Pb, for a Weyl semimetal it is TaAs, and for the topological Kondo insulator it is SmB$_6$. The notebook of the course does not simulate any of these compounds. What we will simulate, with the models that we build in this session, are minimal tight-binding versions of the first three items of the list above.
+
+![A gapped bulk with states at its boundary, computed on a finite disk of the honeycomb lattice with about 860 sites. In (a) we compare two flakes with the same bulk gap, which is the grey band. The blue flake has the Haldane hopping $t_2=0.1$ of Section [3.10b](#sec-3-10b), and the grey one has a staggered potential instead. Only the blue spectrum has states inside the gap. In (b) we draw the weight of these states on the sites of the blue flake. About 97 percent of it sits within two lattice constants of the boundary. This is the combination that defines the materials of this session, an insulator in the bulk and a metal at the edge.](figures/web/session03/haldane_flake.svg){#sch:s03:haldane_flake alt="Left, the energies of two finite flakes in increasing order, with a shaded gap that only the blue spectrum crosses. Right, a disk of the honeycomb lattice with blue dots on the sites of its boundary."}
+
+::: comesback
+- In Section [4.20](#sec-4-20) the quantum anomalous Hall state of Cr-doped (Bi,Sb)$_2$Te$_3$ comes back, together with fractional Chern states at zero field.
+- In Section [5.15](#sec-5-15) we build the Majorana modes of a topological superconductor, and in Section [5.14](#sec-5-14) its chiral edge looks like the edge of the figure above.
+- In Section [8.13](#sec-8-13) we see how a Kondo lattice becomes an insulator, with SmB$_6$ as the material.
+:::

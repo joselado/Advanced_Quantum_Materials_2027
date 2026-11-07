@@ -132,3 +132,14 @@ figure.panel figcaption { text-align: left; }
   .quiz-opt .quiz-verdict { flex-basis: 100%; padding-left: calc(1.4em + 0.7em); font-size: 0.82rem; }
   .quiz-fb { margin-left: 0.6em; padding: 4px 8px; font-size: 0.93rem; overflow-x: auto; }
 }
+
+/* where this comes back: a small box at the end of a page, with the later pages that use its concepts */
+.comesback { background: var(--card); border: 1px solid var(--rule); border-left: 3px solid var(--accent);
+             border-radius: 6px; padding: 6px 16px 8px; margin: 24px 0; font-size: 0.93rem; }
+.comesback-label { font-size: 0.78rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--accent);
+                   font-weight: 700; }
+.comesback-label { margin: 4px 0 2px; }
+.comesback p { margin: 0.4em 0; }
+.comesback ul { margin: 0.3em 0; padding-left: 1.3em; }
+.comesback li { margin: 3px 0; }
+@media (max-width: 480px) { .comesback { padding: 6px 12px 8px; } }

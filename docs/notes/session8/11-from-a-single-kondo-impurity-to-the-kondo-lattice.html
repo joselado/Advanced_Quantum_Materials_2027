@@ -52,7 +52,7 @@
   .crumb { margin: 0 0 4px; font-size: 0.95rem; }
   .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
   .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
-  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .toc .n { display: inline-block; min-width: 3.4em; padding-right: .4em; color: var(--muted); }
   .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
   figure { margin: 24px 0; }
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
@@ -84,8 +84,8 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="on" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 8. Quantum Magnetism, Spinons and Kondo Physics</a></p>
 <h1 id="sec-8-11"><span class="num">8.11</span> From a single Kondo impurity to the Kondo lattice</h1>
-<p>Now that we have the method for quantum spin liquids, the lecture moves to a second physical system, which is quite different but which can be solved with the same method. This is the <strong>Kondo lattice model</strong>, which appears whenever a metal and a correlated system of local moments exist together.</p>
-<p>Let us start with the simplest case, which is a single spin-<span class="math inline">\(1/2\)</span> magnetic impurity in a non-interacting two-dimensional electron gas. The total Hamiltonian is a free kinetic term with a dispersion for the conduction electrons, plus a Heisenberg-like coupling between the spin of the impurity and the local spin density of the conduction electrons at the impurity site,</p>
+<p>Now that we have the method for quantum spin liquids, we move to a second physical system, which is quite different but which can be solved with the same method. This is the <strong>Kondo lattice model</strong>, which appears whenever a metal and a correlated system of local moments exist together.</p>
+<p>Let us start with the simplest case, which is a single spin-<span class="math inline">\(1/2\)</span> magnetic impurity in a non-interacting two-dimensional electron gas. The total Hamiltonian has a free kinetic term for the conduction electrons, with the sign of the hopping of <a href="../session1/13-worked-example-1-the-charge-density-wave.html#eq-1-6">(1.6)</a>. It also has a Heisenberg-like coupling between the spin of the impurity and the local spin density of the conduction electrons at the impurity site,</p>
 <p><span id="eq-8-17" class="eq"><span class="math display">\[H = -t\sum_{\langle ij\rangle,\sigma}\Big(c^\dagger_{i\sigma}c_{j\sigma} + \text{h.c.}\Big) +
 H_K, \qquad H_K = J_K\sum_{\alpha\beta}\Big(c^\dagger_{0\beta}\,\boldsymbol\sigma_{\beta\alpha}\,
 c_{0\alpha}\Big)\cdot \mathbf S, \tag{8.17}\]</span></span></p>
@@ -97,17 +97,17 @@ c_{0\alpha}\Big)\cdot \mathbf S, \tag{8.17}\]</span></span></p>
 <p><span id="eq-8-18" class="eq"><span class="math display">\[H = -t\sum_{\langle ij\rangle,\sigma}\Big(c^\dagger_{i\sigma}c_{j\sigma} + \text{h.c.}\Big) +
 J_K\sum_{j,\alpha\beta}\Big(c^\dagger_{j\beta}\,\boldsymbol\sigma_{\beta\alpha}\,c_{j\alpha}\Big)\cdot
 \mathbf S_j. \tag{8.18}\]</span></span></p>
-<p>Every impurity again tends to form a singlet with a conduction electron close to it. Since many impurities compete for the same sea of electrons, the electrons that screen the impurities are shared, in a fractional way, between the singlets of different impurities. The result is a state with a large entanglement over the whole lattice, between all the magnetic sites and the electron gas, while the total spin stays exactly zero. <a href="#sch:s08:kondo_screening">Schematic 8.5</a> sketches the two cases.</p>
+<p>Every impurity again tends to form a singlet with a conduction electron close to it. Since many impurities compete for the same sea of electrons, the electrons that screen the impurities are shared, in a fractional way, between the singlets of different impurities. The result is a state with a large entanglement over the whole lattice, between all the magnetic sites and the electron gas, while the total spin stays zero. <a href="#sch:s08:kondo_screening">Schematic 8.9</a> sketches the two cases.</p>
 <figure id="sch:s08:kondo_screening" class="schematic">
 <img src="../figures/web/session08/kondo_screening.svg" loading="lazy" alt="A magnetic impurity with a bound conduction electron in a sea of electrons, and a lattice of impurities whose screening clouds overlap." />
-<figcaption><strong>Schematic 8.5.</strong> A sketch of the Kondo screening. Left, a magnetic impurity forms a singlet with one conduction electron close to it. Right, in a lattice every impurity wants such a singlet, and the clouds overlap, so the same electrons serve several impurities. Look at the overlaps in the right panel, which are the reason why the screening is shared. The drawing is schematic and no number is computed.</figcaption>
+<figcaption><strong>Schematic 8.9.</strong> A sketch of the Kondo screening. Left, a magnetic impurity forms a singlet with one conduction electron close to it. Right, in a lattice every impurity wants such a singlet, and the clouds overlap, so the same electrons serve several impurities. Look at the overlaps in the right panel, which are the reason why the screening is shared. The drawing is schematic and no number is computed.</figcaption>
 </figure>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session8.ipynb"><code>session8.ipynb</code></a>, “Magnetization of a large Heisenberg model with a magnetic impurity” (Challenge) and “Magnetization of a dimerized Heisenberg model with a magnetic impurity” (Challenge)</p>
 <p>These exercises show, numerically and in real space, how the local field of a single magnetic impurity decays with the distance in a quantum magnet that is otherwise gapless or dimerized. The gapless chain shows an algebraic and staggered decay, which follows the correlation profile of a critical spin liquid. The dimerized chain of Section <a href="05-the-dimerized-heisenberg-model-a-first-step-before-a-spin-liquid.html#sec-8-5">8.5</a>, which is a valence bond solid, shows instead an exponential decay over a finite correlation length, because its ground state is gapped. This is the same physics of the screening cloud as in <a href="#eq-8-17">(8.17)</a>, seen from the side of a single chain in real space and not from the side of itinerant electrons.</p>
 </div>
 <h1 class="sec-next" id="sec-8-12"><span class="num">8.12</span> Solving the Kondo lattice with the parton method and a hybridization</h1>
-<p>The lecture makes the parallel with Section <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#sec-8-8">8.8</a> explicit, since we solve this problem in the same way as we solved the QSL. We replace every impurity spin by an Abrikosov fermion, <span class="math inline">\(\mathbf S_j = \tfrac12
+<p>We solve this problem in the same way as we solved the QSL in Section <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#sec-8-8">8.8</a>. We replace every impurity spin by an Abrikosov fermion, <span class="math inline">\(\mathbf S_j = \tfrac12
 f_{j\alpha}^\dagger \boldsymbol\sigma_{\alpha\beta} f_{j\beta}\)</span>, with the same single-occupancy constraint <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-11">(8.11)</a>, which we write here in the equivalent traceless form</p>
 <p><span id="eq-8-19" class="eq"><span class="math display">\[S_{\alpha\beta}(j) = f^\dagger_{j\alpha}f_{j\beta} - \frac{n_f(j)}{2}\delta_{\alpha\beta}. \tag{8.19}\]</span></span></p>
 <p>When we insert this into <a href="#eq-8-18">(8.18)</a>, the Kondo coupling becomes a real quartic interaction. Now it does not couple the auxiliary <span class="math inline">\(f\)</span> fermions to the <span class="math inline">\(f\)</span> fermion of another site, as in <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-13">(8.13)</a>, but to the <em>real</em> conduction electrons <span class="math inline">\(c_{j\sigma}\)</span> on the same site,</p>
@@ -182,6 +182,16 @@ Question
 <div class="tryit-links">
 Notebook <code>session8.ipynb</code>, cell “Quantum magnetism in the Kondo lattice”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session8.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session8.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession8.ipynb">Binder</a>.
 </div>
+</div>
+<div class="comesback">
+<div class="comesback-label">
+Where this comes back
+</div>
+<ul>
+<li>In Section <a href="13-electronic-structure-of-the-kondo-lattice-and-the-kondo-insulator.html#sec-8-13">8.13</a> the hybridization <span class="math inline">\(\gamma_K\)</span> of <a href="#eq-8-21">(8.21)</a> opens a gap at the crossing with the flat band, and the metal becomes a Kondo insulator.</li>
+<li>In Section <a href="../session9/03-linear-response-and-perturbation-theory-in-detail.html#sec-9-3">9.3</a> the Kondo effect is an example where linear response fails, since the Kondo temperature has an essential singularity in the coupling.</li>
+<li>In Section <a href="../session9/09-impurities-as-diagnostics-iv-screening-in-quantum-magnets.html#sec-9-9">9.9</a> the screening of a single magnetic impurity comes back inside a quantum magnet, with spinons in place of conduction electrons.</li>
+</ul>
 </div>
 
   <nav class="pager"><a href="10-emergent-gauge-symmetry-and-vison-excitations.html">8.10 Emergent gauge symmetry and vison excitations</a><a href="13-electronic-structure-of-the-kondo-lattice-and-the-kondo-insulator.html">8.13 Electronic structure of the Kondo lattice and the Kondo insulator</a></nav>

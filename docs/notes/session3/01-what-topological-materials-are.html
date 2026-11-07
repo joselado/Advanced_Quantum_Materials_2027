@@ -52,7 +52,7 @@
   .crumb { margin: 0 0 4px; font-size: 0.95rem; }
   .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
   .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
-  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .toc .n { display: inline-block; min-width: 3.4em; padding-right: .4em; color: var(--muted); }
   .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
   figure { margin: 24px 0; }
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
@@ -124,11 +124,25 @@ Question
 <li><p>The <strong>quantum Hall effect</strong>, which appears in two-dimensional electron gases and in graphene under a strong perpendicular magnetic field. It is the simplest topological state, and it is our starting point.</p></li>
 <li><p>The <strong>quantum anomalous Hall effect</strong>, which is the same physics without any external magnetic field, and which we will construct explicitly in Section <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#sec-3-10">3.10</a>.</p></li>
 <li><p><strong>Quantum spin Hall insulators</strong>, which are in practice two copies of a quantum Hall state related by time reversal and put together, as we will see in Section <a href="11-quantum-spin-hall-insulators.html#sec-3-11">3.11</a>.</p></li>
-<li><p><strong>Topological superconductors</strong>, whose surface excitations are Majorana modes. They are the basis of one route to topological quantum computing, and we will come back to them in detail in session 5.</p></li>
+<li><p><strong>Topological superconductors</strong>, whose surface excitations are Majorana modes. They are the basis of one route to topological quantum computing, and we will come back to them in detail in <a href="../session5/index.html">Session 5</a>.</p></li>
 <li><p><strong>Topological semimetals</strong>, including Weyl semimetals, whose low-energy quasiparticles are Weyl fermions.</p></li>
-<li><p><strong>Topological Kondo insulators</strong>, which are the example given in the lecture this year of topology that survives in a strongly correlated many-body system, “and many others that do not fit on this slide.”</p></li>
+<li><p><strong>Topological Kondo insulators</strong>, which are an example of topology that survives in a strongly correlated many-body system.</p></li>
 </ul>
-<p>This material appears only on the slides and has no counterpart in the notebook. For each entry, the slides name a specific material realization, which is graphene for the quantum Hall effect, Cr-doped (Bi,Sb)<span class="math inline">\(_2\)</span>Te<span class="math inline">\(_3\)</span> for the quantum anomalous Hall effect, HgTe/CdTe quantum wells for the quantum spin Hall effect, Fe chains on Pb for a topological superconductor, TaAs for a Weyl semimetal, and SmB<span class="math inline">\(_6\)</span> for the many-body example. These were shown but not explained in detail in the lecture, and the notebook of the course does not simulate any of these specific compounds. The many-body example on the classification slide is the topological Kondo insulator, with SmB<span class="math inline">\(_6\)</span> as the material realization. What we will simulate, with the models that we build in this session, are minimal tight-binding versions of the first three items of the list above.</p>
+<p>Each entry has a material realization. These are graphene for the quantum Hall effect, Cr-doped (Bi,Sb)<span class="math inline">\(_2\)</span>Te<span class="math inline">\(_3\)</span> for the quantum anomalous Hall effect and HgTe/CdTe quantum wells for the quantum spin Hall effect. For a topological superconductor one example is a chain of Fe atoms on Pb, for a Weyl semimetal it is TaAs, and for the topological Kondo insulator it is SmB<span class="math inline">\(_6\)</span>. The notebook of the course does not simulate any of these compounds. What we will simulate, with the models that we build in this session, are minimal tight-binding versions of the first three items of the list above.</p>
+<figure id="sch:s03:haldane_flake" class="schematic">
+<img src="../figures/web/session03/haldane_flake.svg" loading="lazy" alt="Left, the energies of two finite flakes in increasing order, with a shaded gap that only the blue spectrum crosses. Right, a disk of the honeycomb lattice with blue dots on the sites of its boundary." />
+<figcaption><strong>Schematic 3.2.</strong> A gapped bulk with states at its boundary, computed on a finite disk of the honeycomb lattice with about 860 sites. In (a) we compare two flakes with the same bulk gap, which is the grey band. The blue flake has the Haldane hopping <span class="math inline">\(t_2=0.1\)</span> of Section <a href="10b-the-haldane-coupling-and-a-real-chern-insulator.html#sec-3-10b">3.10b</a>, and the grey one has a staggered potential instead. Only the blue spectrum has states inside the gap. In (b) we draw the weight of these states on the sites of the blue flake. About 97 percent of it sits within two lattice constants of the boundary. This is the combination that defines the materials of this session, an insulator in the bulk and a metal at the edge.</figcaption>
+</figure>
+<div class="comesback">
+<div class="comesback-label">
+Where this comes back
+</div>
+<ul>
+<li>In Section <a href="../session4/20-real-materials-realizing-chern-and-fractional-chern-physics.html#sec-4-20">4.20</a> the quantum anomalous Hall state of Cr-doped (Bi,Sb)<span class="math inline">\(_2\)</span>Te<span class="math inline">\(_3\)</span> comes back, together with fractional Chern states at zero field.</li>
+<li>In Section <a href="../session5/15-majorana-bound-states-and-how-to-split-an-electron-into-two-majoranas.html#sec-5-15">5.15</a> we build the Majorana modes of a topological superconductor, and in Section <a href="../session5/14-same-gap-and-different-topology-in-trivial-s-wave-and-chiral-p-wave-pairing.html#sec-5-14">5.14</a> its chiral edge looks like the edge of the figure above.</li>
+<li>In Section <a href="../session8/13-electronic-structure-of-the-kondo-lattice-and-the-kondo-insulator.html#sec-8-13">8.13</a> we see how a Kondo lattice becomes an insulator, with SmB<span class="math inline">\(_6\)</span> as the material.</li>
+</ul>
+</div>
 
   <nav class="pager"><a href="index.html">Session 3</a><a href="02-linear-response-theory-and-how-a-measurement-reads-the-wavefunctions.html">3.2 Linear response theory and how a measurement reads the wavefunctions</a></nav>
 

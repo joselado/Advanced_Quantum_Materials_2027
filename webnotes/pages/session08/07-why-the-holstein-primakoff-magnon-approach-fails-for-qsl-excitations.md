@@ -1,17 +1,17 @@
 ## Why the Holstein-Primakoff magnon approach fails for QSL excitations {#sec-8-7 number="8.7"}
 
-It is hard to write the exact QSL ground state, so the natural next step, as in Session 6, is to ask about the excitations *on top of* the ground state, and not about the ground state itself. Up to now, the only tool that we have for this is the **Holstein-Primakoff transformation**, which writes
+It is hard to write the exact QSL ground state. So the natural next step, as in Session 6, is to ask about the excitations *on top of* the ground state, and not about the ground state itself. Up to now, the only tool that we have for this is the **Holstein-Primakoff transformation** of Section [6.14](#sec-6-14), which writes
 
 $$S_i^z = S - a_i^\dagger a_i, \qquad S_i^+ \approx \sqrt{2S}\,a_i, \qquad S_i^- \approx
 \sqrt{2S}\,a_i^\dagger, \tag{8.8}$$
 
-where we linearized under the assumption that the number of bosonic magnons is small, $\langle a_i^\dagger a_i\rangle \ll S$. This is a very good approximation close to a fully or nearly polarized magnet, which is the regime where we used it in Session 6.
+which is the linearized form [(6.7)](#eq-6-7). We linearized under the assumption that the number of bosonic magnons is small, $\langle a_i^\dagger a_i\rangle \ll S$. This is a very good approximation close to a fully or nearly polarized magnet, which is the regime where we used it in Session 6.
 
 A QSL is in the opposite limit. Its defining property, $\langle \mathbf S_i\rangle = 0$ on every site, gives through [(8.8)](#eq-8-8)
 
 $$\langle a_i^\dagger a_i \rangle = S, \tag{8.9}$$
 
-which is the regime where the condition of a small boson density, the basis of the linearized Holstein-Primakoff mapping, fails completely. For a QSL there is no ordered reference state that it is "close to" and around which we can expand. As a result, the magnon method that worked for the ordered magnets of Session 6 is not the right tool here, and we need a different approximation for the excitations of a quantum spin liquid. [](#sch:s08:hp_boson_density) shows the counting for one site.
+which is the regime where the condition of a small boson density, the basis of the linearized Holstein-Primakoff mapping, fails completely. For a QSL there is no ordered reference state close to it, around which we can expand. As a result, the magnon method that worked for the ordered magnets of Session 6 is not the right tool here. We need a different approximation for the excitations of a quantum spin liquid. [](#sch:s08:hp_boson_density) shows the counting for one site.
 
 ![The number of Holstein-Primakoff bosons $n=S-S^z$ on one site with $S=1/2$. In the ferromagnet every site is up, so $n=0$. In the singlet a site is up or down with the same probability, so $\langle n\rangle=\tfrac12=S$. Look at the right panel, where the boson density is as large as $S$ and not small compared with it.](figures/web/session08/hp_boson_density.svg){#sch:s08:hp_boson_density alt="Two bar charts of the probability of zero or one boson on a site, one bar at zero for the ferromagnet and two equal bars for the singlet."}
 
@@ -46,11 +46,11 @@ The construction that allows us to treat QSL excitations does not write each spi
 $$\mathbf S_i = \frac12 \sum_{\alpha\beta} f_{i\alpha}^\dagger\, \boldsymbol\sigma_{\alpha\beta}\,
 f_{i\beta}, \tag{8.10}$$
 
-where $\boldsymbol\sigma$ is the vector of Pauli matrices. One can check directly, from the anticommutation relations of the fermions, that [(8.10)](#eq-8-10) gives the correct $SU(2)$ spin algebra $[S_i^a,S_i^b] = i\varepsilon^{abc}S_i^c$ on the full Fock space of $f_{i\uparrow},f_{i\downarrow}$, which has four states, namely empty, singly occupied with spin up, singly occupied with spin down and doubly occupied. No extra input is needed for this. The problem is that this transformation makes the local Hilbert space *artificially larger*, since a physical spin-$1/2$ has only two states, while $f_{i\uparrow},f_{i\downarrow}$ give four. We remove the two extra unphysical states, which are the empty and the doubly occupied ones and which [(8.10)](#eq-8-10) maps to $\mathbf S_i=0$ in any case. We do this by imposing by hand the **single-occupancy constraint**
+where $\boldsymbol\sigma$ is the vector of Pauli matrices. One can check directly, from the anticommutation relations of the fermions, that [(8.10)](#eq-8-10) gives the correct $SU(2)$ spin algebra $[S_i^a,S_i^b] = i\varepsilon^{abc}S_i^c$ on the full Fock space of $f_{i\uparrow},f_{i\downarrow}$. This Fock space has four states, which are empty, singly occupied with spin up, singly occupied with spin down and doubly occupied. No extra input is needed for this. The problem is that this transformation makes the local Hilbert space *artificially larger*, since a physical spin-$1/2$ has only two states, while $f_{i\uparrow},f_{i\downarrow}$ give four. We remove the two extra unphysical states, which are the empty and the doubly occupied ones and which [(8.10)](#eq-8-10) maps to $\mathbf S_i=0$ in any case. We do this by imposing by hand the **single-occupancy constraint**
 
 $$\sum_\sigma f_{i\sigma}^\dagger f_{i\sigma} = 1 \qquad \text{at every site } i. \tag{8.11}$$
 
-This is the fermionic analogue of the Gutzwiller projection [(8.7)](#eq-8-7) that we applied before to the many-body wavefunction. To project the many-body state onto the singly-occupied subspace and to fix the fermion filling to one per site are the same statement, the first one seen from the side of the wavefunction and the second one from the side of the operators. Figure [8.4](#fig:s08:parton)a shows which two states the constraint has to remove, and why they were never spin states in the first place.
+This is the fermionic analogue of the Gutzwiller projection [(8.7)](#eq-8-7) that we applied before to the many-body wavefunction. To project the many-body state onto the singly-occupied subspace and to fix the fermion filling to one per site are the same statement. The first one is seen from the side of the wavefunction, and the second one from the side of the operators. Figure [8.4](#fig:s08:parton)a shows which two states the constraint has to remove, and why they were never spin states in the first place.
 
 When [(8.11)](#eq-8-11) holds, [(8.10)](#eq-8-10) is an *exact* way to write a spin-$1/2$ operator in the language of fermions, and we can put it directly into the Heisenberg Hamiltonian $\mathcal H=\sum_{\langle
 ij\rangle}J_{ij}\,\mathbf S_i\cdot\mathbf S_j$. With the Fierz identity for Pauli matrices $\sum_a \sigma^a_{\alpha\beta}\sigma^a_{\gamma\delta} = 2\delta_{\alpha\delta}\delta_{\beta\gamma} -
@@ -64,7 +64,7 @@ where $\chi_{ij}$ is the spinon bond operator, or hopping operator, between site
 $$\mathcal H = \sum_{\langle ij\rangle} J_{ij}\left(\frac14 - \frac12\,\chi_{ij}^\dagger\chi_{ij}\right)
 = \text{const} - \frac12\sum_{\langle ij\rangle} J_{ij}\, \chi_{ij}^\dagger \chi_{ij}. \tag{8.13}$$
 
-This is the same problem that we had in Sessions 1 and 6 with the Hubbard interaction, which is a quartic term that we cannot diagonalize directly. We treat it in the same way, with a **mean-field decoupling**,
+This is the same problem that we had in Session 1 and Session 6 with the Hubbard interaction [(1.7)](#eq-1-7), which is a quartic term that we cannot diagonalize directly. We treat it in the same way as in Section [1.12](#sec-1-12), with a **mean-field decoupling**,
 
 $$\chi_{ij}^\dagger\chi_{ij} \;\approx\; \langle\chi_{ij}^\dagger\rangle\,\chi_{ij} +
 \chi_{ij}^\dagger\,\langle\chi_{ij}\rangle - |\langle\chi_{ij}\rangle|^2. \tag{8.14}$$
@@ -89,4 +89,10 @@ For a bond with a singlet we have $\mathbf S_i\cdot\mathbf S_j=-3/4$. What does 
 
 ::: {.tryit notebook="session8.ipynb" cell="Magnetization of a large Heisenberg model"}
 Compute the magnetization of the antiferromagnetic chain with the small field `Bz=-0.01`. It should vanish on every site, as [(8.9)](#eq-8-9) requires. Increase the field until a finite magnetization appears, and compare it with the finite-size gap to the next sector of total spin.
+:::
+
+::: comesback
+- In Section [8.9](#sec-8-9) the decoupled Hamiltonian [(8.15)](#eq-8-15) is a tight-binding model for spinons at half filling.
+- In Section [8.12](#sec-8-12) the same Abrikosov fermions replace the impurity spins of the Kondo lattice.
+- In Section [9.9](#sec-9-9) the same construction maps a magnetic impurity in a quantum magnet onto an impurity in a chain of spinons.
 :::

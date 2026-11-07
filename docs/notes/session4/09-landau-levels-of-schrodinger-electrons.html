@@ -52,7 +52,7 @@
   .crumb { margin: 0 0 4px; font-size: 0.95rem; }
   .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
   .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
-  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .toc .n { display: inline-block; min-width: 3.4em; padding-right: .4em; color: var(--muted); }
   .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
   figure { margin: 24px 0; }
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
@@ -90,12 +90,12 @@
 <p>Since <span class="math inline">\(\mathbf{A}\)</span> does not depend on <span class="math inline">\(y\)</span>, we have <span class="math inline">\([H,p_y]=0\)</span>, so we can look for eigenstates of the form <span class="math inline">\(\psi(x,y) = e^{ik_y y}\phi(x)\)</span>. With the replacement <span class="math inline">\(p_y\to\hbar k_y\)</span>, the Hamiltonian <a href="#eq-4-5">(4.5)</a> becomes a one-dimensional problem in <span class="math inline">\(x\)</span>,</p>
 <p><span class="math display">\[H\phi(x) = \left[\frac{p_x^2}{2m} + \frac{B^2}{2m}\Big(x-\frac{\hbar k_y}{B}\Big)^2\right]\phi(x),\]</span></p>
 <p>which is exactly the Hamiltonian of a quantum harmonic oscillator centered at <span class="math inline">\(x_0 = \hbar
-k_y/B\)</span>, with frequency <span class="math inline">\(\omega_c = B/m\)</span>, the cyclotron frequency. The shift of the center is removed with a change of variable, as it is described in the lecture. When we solve it with the same ladder operators as the ordinary harmonic oscillator we obtain</p>
+k_y/B\)</span>, with frequency <span class="math inline">\(\omega_c = B/m\)</span>, the cyclotron frequency. The shift of the center is removed with the change of variable <span class="math inline">\(x\to x-x_0\)</span>. When we solve it with the same ladder operators as the ordinary harmonic oscillator we obtain</p>
 <p><span id="eq-4-6" class="eq"><span class="math display">\[E_n = \hbar\omega_c\left(n+\frac{1}{2}\right), \qquad n=0,1,2,\dots, \tag{4.6}\]</span></span></p>
 <p>which does not depend on <span class="math inline">\(k_y\)</span> at all. Every value of <span class="math inline">\(k_y\)</span>, or in other words every choice of the guiding center <span class="math inline">\(x_0\)</span>, gives the same energy. This is the reason why the Landau levels are flat bands, and why each of them has a macroscopic degeneracy that is proportional to the area of the sample. Figure <a href="#fig:s04:guidingcenter">4.3</a> shows this mechanism directly, with the same well placed at different positions, and with the degeneracy counted as one orbital for each flux quantum through the sample. When we put in the real physical constants for a field typical of GaAs, we obtain the millielectronvolt scale that we gave in Section <a href="01-where-the-quantum-hall-state-shows-up.html#sec-4-1">4.1</a>.</p>
 <figure id="fig:s04:guidingcenter">
 <img src="../figures/s04f03_guidingcenter.svg" loading="lazy" alt="Why the Landau levels are flat." />
-<figcaption><strong>Figure 4.3.</strong> Why the Landau levels are flat. (a) In the Landau gauge each <span class="math inline">\(k_y\)</span> reduces <a href="#eq-4-5">(4.5)</a> to a one-dimensional harmonic oscillator in <span class="math inline">\(x\)</span>, which is the same in every respect except that it is centred on the guiding centre <span class="math inline">\(x_0=\hbar k_y/B\)</span>. When <span class="math inline">\(k_y\)</span> increases, the whole well moves to the right without changing its curvature. Every well therefore has the same ladder <span class="math inline">\(E_n=\hbar\omega_c(n+\tfrac 12)\)</span>, drawn here as the horizontal guides, and the ground-state wavepacket of each well, the red bump, has the same shape at a different position. (b) As a function of <span class="math inline">\(k_y\)</span>, this is a set of bands with exactly no dispersion, and the three balls are the three values of <span class="math inline">\(k_y\)</span> of (a). The flatness is not an artefact of the gauge. It means that the energy does not depend on the position of the electron in the sample, and this is also the origin of the very large degeneracy of the Landau levels.</figcaption>
+<figcaption><strong>Figure 4.3.</strong> Why the Landau levels are flat. (a) In the Landau gauge each <span class="math inline">\(k_y\)</span> reduces <a href="#eq-4-5">(4.5)</a> to a one-dimensional harmonic oscillator in <span class="math inline">\(x\)</span>, which is the same in every respect except that it is centred on the guiding centre <span class="math inline">\(x_0=\hbar k_y/B\)</span>. When <span class="math inline">\(k_y\)</span> increases, the whole well moves to the right without changing its curvature. Every well therefore has the same ladder <span class="math inline">\(E_n=\hbar\omega_c(n+\tfrac 12)\)</span>, drawn here as the horizontal guides, and the ground-state wavepacket of each well, the red bump, has the same shape at a different position. (b) As a function of <span class="math inline">\(k_y\)</span>, this is a set of bands with no dispersion at all, and the three balls are the three values of <span class="math inline">\(k_y\)</span> of (a). The flatness is not an artefact of the gauge. It means that the energy does not depend on the position of the electron in the sample, and this is also the origin of the very large degeneracy of the Landau levels.</figcaption>
 </figure>
 <div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
@@ -156,6 +156,16 @@ Question
 <div class="tryit-links">
 Notebook <code>session4.ipynb</code>, cell “Magnetic field dependence of Landau levels”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session4.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session4.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession4.ipynb">Binder</a>.
 </div>
+</div>
+<div class="comesback">
+<div class="comesback-label">
+Where this comes back
+</div>
+<ul>
+<li>In Section <a href="11-numerical-check-of-the-landau-levels-and-edge-states-on-the-lattice.html#sec-4-12">4.12</a> the same oscillator appears without any choice of gauge, as <a href="11-numerical-check-of-the-landau-levels-and-edge-states-on-the-lattice.html#eq-4-8">(4.8)</a>.</li>
+<li>In Section <a href="16-fractional-filling-and-the-laughlin-wavefunction.html#sec-4-16">4.16</a> the large degeneracy of a Landau level, one orbital per flux quantum, is what lets a fractional filling form the Laughlin state.</li>
+<li>In Section <a href="../session6/06-the-stoner-threshold-as-a-criterion-for-magnetism.html#sec-6-6">6.6</a> a flat band, with its large density of states, makes the Stoner criterion easy to satisfy.</li>
+</ul>
 </div>
 
   <nav class="pager"><a href="08-the-landau-gauge-and-the-symmetric-gauge.html">4.8 The Landau gauge and the symmetric gauge</a><a href="10-landau-levels-of-dirac-electrons.html">4.10 Landau levels of Dirac electrons</a></nav>

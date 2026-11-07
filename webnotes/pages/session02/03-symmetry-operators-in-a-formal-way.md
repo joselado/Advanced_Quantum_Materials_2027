@@ -1,8 +1,8 @@
 ## Symmetry operators in a formal way {#sec-2-3 number="2.3"}
 
-To make the argument from electromagnetism precise for a quantum system, we need three objects. The first is a wavefunction $\psi$, the second is the transformed wavefunction $\phi = S\psi$ that we obtain when we apply a symmetry operation, and the third is the operator $S$ itself, which is a linear map from one to the other and a matrix in a finite-dimensional representation. A concrete case makes this clear. If $\psi$ is a $p_x$ orbital and $S$ is a $90^\circ$ rotation, the transformed state $\phi = S\psi$ is a $p_y$ orbital, meaning that the two lobes on the $x$-axis are rotated into two lobes on the $y$-axis. Note that this $p_x$ orbital is *not* an eigenstate of the rotation, since it is mapped to a different state.
+To make the argument from electromagnetism precise for a quantum system, we need three objects. The first is a wavefunction $\psi$. The second is the transformed wavefunction $\phi = S\psi$ that we obtain when we apply a symmetry operation. The third is the operator $S$ itself, which is a linear map from one to the other and a matrix in a finite-dimensional representation. A concrete case makes this clear. If $\psi$ is a $p_x$ orbital and $S$ is a $90^\circ$ rotation, the transformed state $\phi = S\psi$ is a $p_y$ orbital. This means that the two lobes on the $x$-axis are rotated into two lobes on the $y$-axis. Note that this $p_x$ orbital is *not* an eigenstate of the rotation, since it is mapped to a different state.
 
-Symmetry operators are always unitary. In physical terms, a symmetry is only a change of labels of our reference frame, for example a rotation of the axes, and any such change of labels must keep the norm of every state in the Hilbert space. In equations,
+Symmetry operators are always unitary. In physical terms, a symmetry is only a change of labels of our reference frame, for example a rotation of the axes. Any such change of labels must keep the norm of every state in the Hilbert space. In equations,
 
 $$S^\dagger S = S S^\dagger = \mathbb{1}, \qquad S^\dagger = S^{-1}. \tag{2.1}$$
 
@@ -41,9 +41,11 @@ has two eigenstates, the bonding and antibonding combinations $c_1^\dagger+c_2^\
 
 We now come to the central fact of this session. Let us assume that a Hamiltonian is invariant under a symmetry operation, $SHS^{-1} = SHS^\dagger = H$, which is the same as the statement
 
+![A Hamiltonian that commutes with a symmetry is block diagonal in the eigenbasis of the symmetry. Here we take a ring of four cells with two orbitals per cell, and the rotation $R$ that moves every cell to the next one. The shade of each square is $|H_{ij}|$. In the basis of the sites, on the left, every cell couples to its neighbors. In the eigenbasis of $R$, on the right, only four blocks of size $2\times2$ remain, one for each eigenvalue $1$, $i$, $-1$ and $-i$. So one $8\times8$ problem becomes four $2\times2$ problems.](figures/web/session02/block_diagonal.svg){#sch:s02:block_diagonal alt="Two grids of 8 by 8 shaded squares. The first has entries along the diagonal and in the corners. The second has only four 2 by 2 blocks on the diagonal, labelled 1, i, minus 1 and minus i."}
+
 $$[H,S] = 0. \tag{2.3}$$
 
-From linear algebra we know that two operators that commute have a common eigenbasis. So whenever [(2.3)](#eq-2-3) holds, every eigenstate of $H$ can be chosen so that it is also an eigenstate of $S$. In the words of the lecturer, this is perhaps the most important idea of this session. The reason for this is that it is very often much easier to classify the eigenstates of a symmetry operator, whose eigenvalue is a simple phase by [(2.2)](#eq-2-2), than to classify the eigenstates of the Hamiltonian directly. In practice, this means that to find all the symmetries of the Hamiltonian is the first step to solve it, and the most useful one, not a side remark. Once we know that a matrix $S$ commutes with $H$, to classify the eigenstates of $S$ is the same task as to classify the eigenstates of $H$.
+From linear algebra we know that two operators that commute have a common eigenbasis. So whenever [(2.3)](#eq-2-3) holds, every eigenstate of $H$ can be chosen so that it is also an eigenstate of $S$. This is the most important idea of this session. The reason for this is that the eigenstates of a symmetry operator are often much easier to classify than those of the Hamiltonian, since their eigenvalue is a phase by [(2.2)](#eq-2-2). In practice, this means that to find all the symmetries of the Hamiltonian is the first step to solve it, and the most useful one, not a side remark. Once we know that a matrix $S$ commutes with $H$, to classify the eigenstates of $S$ is the same task as to classify the eigenstates of $H$.
 
 ::: quiz
 A Hamiltonian commutes with $S$, and $\psi$ is a nondegenerate eigenstate of $H$. What do we know about $S\psi$?
@@ -61,4 +63,9 @@ A Hamiltonian commutes with $S$, and $\psi$ is a nondegenerate eigenstate of $H$
     This is false. On the ring, $S\psi$ is again a Fourier mode with $\epsilon=-2t\cos\varphi$, the same energy as $\psi$. In general $HS\psi=SH\psi=ES\psi$.
 
 The symmetry maps the eigenstate into the same level, and a single level leaves only a phase.
+:::
+
+::: comesback
+- Section [2.4](#sec-2-4) uses [(2.3)](#eq-2-3) to find the eigenstates of rings without diagonalizing, and Section [2.5](#sec-2-5) turns it into Bloch's theorem.
+- In Section [3.11b](#sec-3-11b) the time-reversal operator commutes with the Hamiltonian of a quantum spin Hall insulator, and Kramers' theorem protects its edge states.
 :::

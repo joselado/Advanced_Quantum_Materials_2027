@@ -52,7 +52,7 @@
   .crumb { margin: 0 0 4px; font-size: 0.95rem; }
   .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
   .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
-  .toc .n { display: inline-block; min-width: 2.6em; color: var(--muted); }
+  .toc .n { display: inline-block; min-width: 3.4em; padding-right: .4em; color: var(--muted); }
   .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
   figure { margin: 24px 0; }
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
@@ -89,16 +89,16 @@
 <p><span id="eq-8-1" class="eq"><span class="math display">\[\mathcal H_\text{Ising} = S_0^z S_1^z, \tag{8.1}\]</span></span></p>
 <p>which couples only the <span class="math inline">\(z\)</span>-components of two spin-<span class="math inline">\(1/2\)</span>’s. This Hamiltonian has two degenerate ground states, which are related by time reversal.</p>
 <p><span class="math display">\[|GS_1\rangle = |{\uparrow\downarrow}\rangle, \qquad |GS_2\rangle = |{\downarrow\uparrow}\rangle.\]</span></p>
-<p>Both are eigenstates with the same energy, but each one of them <em>alone</em> breaks time-reversal symmetry, since time reversal flips every spin and so it turns <span class="math inline">\(|GS_1\rangle\)</span> into <span class="math inline">\(|GS_2\rangle\)</span> and the other way around. Only the degenerate pair of the two states together respects the symmetry. A macroscopic symmetry-broken antiferromagnet, of the same kind as the one we built in Session 6, is the version of this same problem with an infinite number of sites, and the same argument also works for ferromagnets and spin spirals.</p>
+<p>Both are eigenstates with the same energy, but each one of them <em>alone</em> breaks time-reversal symmetry, since time reversal flips every spin and so it turns <span class="math inline">\(|GS_1\rangle\)</span> into <span class="math inline">\(|GS_2\rangle\)</span> and the other way around. Only the degenerate pair of the two states together respects the symmetry. A macroscopic symmetry-broken antiferromagnet, of the same kind as the one of Section <a href="../session6/04-exchange-splitting-and-antiferromagnetic-order-in-numerical-mean-field-theory.html#sec-6-4">6.4</a>, is the version of this same problem with an infinite number of sites. The same argument also works for ferromagnets and spin spirals.</p>
 <p>Let us now replace the Ising coupling by the full <strong>quantum Heisenberg dimer</strong>, which has rotational symmetry,</p>
 <p><span id="eq-8-2" class="eq"><span class="math display">\[\mathcal H_\text{Heis} = \mathbf S_0 \cdot \mathbf S_1. \tag{8.2}\]</span></span></p>
-<p>This is the model that we obtain from a half-filled Hubbard model with strong interactions in the large-<span class="math inline">\(U\)</span> limit, as we derived in Session 6. When we solve it with <span class="math inline">\(\mathbf S_0, \mathbf S_1\)</span> as real spin-<span class="math inline">\(1/2\)</span> operators, the two spin-<span class="math inline">\(1/2\)</span>’s combine into a singlet (<span class="math inline">\(S=0\)</span>) and a triplet (<span class="math inline">\(S=1\)</span>). The value is <span class="math inline">\(\mathbf S_0\cdot\mathbf S_1 = -3/4\)</span> for the singlet and <span class="math inline">\(+1/4\)</span> for the triplet, so the unique ground state is the <strong>singlet</strong>,</p>
+<p>This is the model that we obtain from a half-filled Hubbard model with strong interactions in the large-<span class="math inline">\(U\)</span> limit, as we derived in Section <a href="../session6/08-from-the-hubbard-dimer-to-the-heisenberg-model.html#sec-6-8">6.8</a>. When we solve it with <span class="math inline">\(\mathbf S_0, \mathbf S_1\)</span> as real spin-<span class="math inline">\(1/2\)</span> operators, the two spin-<span class="math inline">\(1/2\)</span>’s combine into a singlet (<span class="math inline">\(S=0\)</span>) and a triplet (<span class="math inline">\(S=1\)</span>). The value is <span class="math inline">\(\mathbf S_0\cdot\mathbf S_1 = -3/4\)</span> for the singlet and <span class="math inline">\(+1/4\)</span> for the triplet, so the unique ground state is the <strong>singlet</strong>,</p>
 <p><span id="eq-8-3" class="eq"><span class="math display">\[|GS\rangle = \frac{1}{\sqrt2}\Big(|{\uparrow\downarrow}\rangle -
 |{\downarrow\uparrow}\rangle\Big), \qquad \langle \mathbf S_i \rangle = 0. \tag{8.3}\]</span></span></p>
-<p>This ground state is different from the Ising case in three ways, and these three points are important for the rest of the session. First, it is the <em>unique</em> ground state, so there is no degeneracy and no spontaneous choice between states. Second, it is <em>time-reversal symmetric</em>, since its net magnetization is exactly zero and time reversal maps <span class="math inline">\(|GS\rangle\)</span> to itself. Third, it is <em>maximally entangled</em>, since the two terms in <a href="#eq-8-3">(8.3)</a> have the same weight, which is the largest entanglement that two qubits can have. Can we have a macroscopic version of this ground state? This question is the origin of quantum spin liquids. Before we go on, <a href="#sch:s08:dimer_levels">Schematic 8.1</a> puts the levels of the two dimers side by side.</p>
+<p>This ground state is different from the Ising case in three ways, and these three points are important for the rest of the session. First, it is the <em>unique</em> ground state, so there is no degeneracy and no spontaneous choice between states. Second, it is <em>time-reversal symmetric</em>, since its net magnetization is zero and time reversal maps <span class="math inline">\(|GS\rangle\)</span> to itself. Third, it is <em>maximally entangled</em>, since the two terms in <a href="#eq-8-3">(8.3)</a> have the same weight, which is the largest entanglement that two qubits can have. It is the singlet <a href="../session7/03-storing-the-wave-function-as-the-main-bottleneck.html#eq-7-3">(7.3)</a> of <a href="../session7/index.html">Session 7</a>, with the entanglement entropy <span class="math inline">\(\log 2\)</span> of <a href="../session7/04-the-matrix-product-state-ansatz.html#eq-7-7">(7.7)</a>. Can we have a macroscopic version of this ground state? This question is the origin of quantum spin liquids. Before we go on, <a href="#sch:s08:dimer_levels">Schematic 8.2</a> puts the levels of the two dimers side by side.</p>
 <figure id="sch:s08:dimer_levels" class="schematic">
 <img src="../figures/web/session08/dimer_levels.svg" loading="lazy" alt="Two columns of energy levels, the Ising dimer with two levels of two states each and the Heisenberg dimer with a singlet below a triplet." />
-<figcaption><strong>Schematic 8.1.</strong> The levels of the Ising dimer <a href="#eq-8-1">(8.1)</a> and of the Heisenberg dimer <a href="#eq-8-2">(8.2)</a>, from the <span class="math inline">\(4\times4\)</span> matrices with <span class="math inline">\(J=1\)</span>. The Ising dimer has two degenerate ground states, and each one breaks time reversal. Look at the Heisenberg dimer, where the ground state is a single singlet and the triplet lies one unit above it.</figcaption>
+<figcaption><strong>Schematic 8.2.</strong> The levels of the Ising dimer <a href="#eq-8-1">(8.1)</a> and of the Heisenberg dimer <a href="#eq-8-2">(8.2)</a>, from the <span class="math inline">\(4\times4\)</span> matrices with <span class="math inline">\(J=1\)</span>. The Ising dimer has two degenerate ground states, and each one breaks time reversal. Look at the Heisenberg dimer, where the ground state is a single singlet and the triplet lies one unit above it.</figcaption>
 </figure>
 <figure class="again panel">
 <img src="../figures/panel/s06f02_dimer_a.svg" loading="lazy" alt="Two sites with parallel spins, where the hop is forbidden, and with antiparallel spins, where the hop is allowed." />
@@ -161,6 +161,16 @@ Question
 </ul>
 </div>
 </details>
+</div>
+<div class="comesback">
+<div class="comesback-label">
+Where this comes back
+</div>
+<ul>
+<li>In Section <a href="05-the-dimerized-heisenberg-model-a-first-step-before-a-spin-liquid.html#sec-8-5">8.5</a> a product of these singlets is the ground state of a macroscopic magnet that does not break time-reversal symmetry.</li>
+<li>In Section <a href="06-the-resonating-valence-bond-wavefunction-as-the-qsl-ground-state.html#sec-8-6">8.6</a> the singlets resonate over a frustrated lattice, and this is the resonating valence bond state.</li>
+<li>In Section <a href="11-from-a-single-kondo-impurity-to-the-kondo-lattice.html#sec-8-11">8.11</a> a magnetic impurity forms the same kind of singlet with a conduction electron.</li>
+</ul>
 </div>
 
   <nav class="pager"><a href="01-two-classes-of-magnets-and-where-we-find-them.html">8.1 Two classes of magnets and where we find them</a><a href="04-frustration-as-the-route-to-a-quantum-spin-liquid.html">8.4 Frustration as the route to a quantum spin liquid</a></nav>

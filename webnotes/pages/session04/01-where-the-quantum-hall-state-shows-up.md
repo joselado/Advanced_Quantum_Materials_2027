@@ -4,9 +4,9 @@ The quantum Hall state is not the property of one specific material. It is a sta
 
 - **Semiconductor quantum wells**, historically gallium arsenide (GaAs), were the first platform. In these systems the electrons are essentially parabolic electrons, with the ordinary quadratic dispersion, and the relevant energy scale grows linearly with the magnetic field. For the fields that we can reach in a laboratory this gives roughly one millielectronvolt, and this is the reason why quantum Hall physics in GaAs needs temperatures of the order of one kelvin.
 
-- **Two-dimensional materials**, and graphene above all, realize the same physics but with Dirac electrons instead of parabolic ones. As we will derive explicitly below, the energy scale then grows as the square root of the field and not linearly. The slides give the concrete numbers, which are roughly one order of magnitude larger, around 100 millielectronvolts at 10 T. This is high enough that the quantum Hall plateaus of graphene survive up to about 100 K, and in the best samples up to almost room temperature.
+- **Two-dimensional materials**, and graphene above all, realize the same physics but with the Dirac electrons of Section [2.11](#sec-2-11) instead of parabolic ones. As we derive in Section [4.10](#sec-4-10), the energy scale then grows as the square root of the field and not linearly. It is roughly one order of magnitude larger, around 100 millielectronvolts at 10 T. This is high enough that the quantum Hall plateaus of graphene survive up to about 100 K, and in the best samples up to almost room temperature.
 
-For all these platforms the common point is the one we already saw in the last session. An observable, the Hall conductance, is exactly quantized, and this quantization comes from topology and not from the chemistry of a specific material.
+For all these platforms the common point is the one of equation [(3.4)](#eq-3-4). An observable, the Hall conductance, is quantized to an integer times $e^2/h$, and this quantization comes from topology and not from the chemistry of a specific material.
 
 ![The two platforms of this section, seen through the energy scale of their Landau levels. In (a) the levels of parabolic electrons grow linearly with the field. In (b) the levels of Dirac electrons grow as the square root of the field, and the level at zero energy does not move. Look at how the levels of (b) are more widely spaced than a straight line would give at small field. We derive both ladders in Sections [4.9](#sec-4-9) and [4.10](#sec-4-10).](figures/s04f04_ladders.svg){alt="Two fans of Landau levels against the magnetic field, straight lines for parabolic electrons and square-root curves for Dirac electrons."}
 
@@ -35,7 +35,7 @@ The geometry that we have in mind is the one in [](#sch:s04:hall_setup), a squar
 
 ![The geometry of the measurement, for a square sample with four contacts and a field into the page. A voltage $V_y$ is applied between the top and the bottom contact, and the current $I_x$ is read in the left contact. With $N$ filled Landau levels the current is carried by the $N$ chiral channels of the edge, which circulate around the sample in one sense. The channels that leave the top contact end in the next contact, so $I_x=N(e^2/h)V_y$. Look at the sense of the arrows, which reverses when the field reverses.](figures/web/session04/hall_setup.svg){#sch:s04:hall_setup alt="A square sample with four contacts, a voltage applied between the top and the bottom contact, a current leaving the left contact and arrows that circulate along the edge."}
 
-A real device for this measurement is a two-dimensional electron gas (2DEG) with several finger gates in contact with it. A voltage is applied between a top gate and a bottom gate, and the current is measured between two gates placed along $x$, with all the connections made through metallic leads. The geometry of the device does not add new physics beyond what we need for the concepts, so we will not discuss it further. The device figures in the slides are useful to see how a real experiment looks, but from here on the notes work with the ideal two-dimensional system.
+A real device for this measurement is a two-dimensional electron gas (2DEG) with several finger gates in contact with it. A voltage is applied between a top gate and a bottom gate, and the current is measured between two gates placed along $x$, with all the connections made through metallic leads. The geometry of the device does not add new physics beyond what we need for the concepts, so we will not discuss it further. From here on we work with the ideal two-dimensional system.
 
 ::: quiz
 Why do the quantum Hall plateaus of graphene survive to a much higher temperature than those of a GaAs quantum well?
@@ -52,4 +52,10 @@ Why do the quantum Hall plateaus of graphene survive to a much higher temperatur
 
     This is false. Graphene on a substrate has charge puddles and impurities, and the plateaus survive anyway. What matters is a large gap to the next level, and not the absence of disorder.
 
+:::
+
+::: comesback
+- In Sections [4.9](#sec-4-9) and [4.10](#sec-4-10) we derive the two ladders of Landau levels, linear in $B$ and as $\sqrt{B}$.
+- In Section [4.20](#sec-4-20) the quantized Hall conductance appears at zero field, in real materials.
+- In Section [5.2](#sec-5-2) the flux quantum $h/2e$ of a superconductor is a second macroscopic readout of $e$ and $h$, next to the plateaus of this section.
 :::

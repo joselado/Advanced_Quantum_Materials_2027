@@ -27,15 +27,15 @@ To go beyond this phenomenology and derive the spectrum of the Landau levels, we
 
 $$\boldsymbol{\pi} = \mathbf{p} - e\mathbf{A}, \tag{4.3}$$
 
-which replaces the ordinary momentum $\mathbf{p}$ everywhere it appears, and when we compute the equations of motion that follow from it we recover the Lorentz force law. In this session we set the magnitude of the electron charge and the speed of light to one, as the slides do without saying it, and we keep only $\hbar$ explicit where the spacing of the Landau levels needs it. The same replacement [(4.3)](#eq-4-3) works without changes in quantum mechanics, with $\mathbf{p}\to-i\hbar\nabla$. Minimal coupling turns the free Hamiltonian $p^2/2m$ into $\pi^2/2m$, and in the same way it changes the Dirac Hamiltonian below.
+which replaces the ordinary momentum $\mathbf{p}$ everywhere it appears, and when we compute the equations of motion that follow from it we recover the Lorentz force law. In this session we set the magnitude of the electron charge and the speed of light to one. We keep only $\hbar$ explicit, where the spacing of the Landau levels needs it. The same replacement [(4.3)](#eq-4-3) works without changes in quantum mechanics, with $\mathbf{p}\to-i\hbar\nabla$. Minimal coupling turns the free Hamiltonian $p^2/2m$ into $\pi^2/2m$, and in the same way it changes the Dirac Hamiltonian below.
 
-There is one subtle point that we cannot avoid, which is that $\mathbf{A}$ is never unique. Any change $\mathbf{A}\to\mathbf{A}+\nabla\chi$ with a scalar function $\chi$ gives the same physical field $\mathbf{B}$, so we always have to choose a gauge. We will need two gauges, the Landau gauge and the symmetric gauge, and we will see both in Section [4.8](#sec-4-8). A related point is a bit against intuition. A uniform out-of-plane field does not break the in-plane translational symmetry of the physical system, but *every* choice of $\mathbf{A}$ for this field breaks translational symmetry in a formal way, in one direction or in both. Which symmetry survives, and how much of it, is a choice of gauge and not a physical choice.
+There is one subtle point that we cannot avoid, which is that $\mathbf{A}$ is never unique. Any change $\mathbf{A}\to\mathbf{A}+\nabla\chi$ with a scalar function $\chi$ gives the same physical field $\mathbf{B}$, so we always have to choose a gauge. We will need two gauges, the Landau gauge and the symmetric gauge, and we will see both in Section [4.8](#sec-4-8). A related point is a bit against intuition. A uniform out-of-plane field does not break the in-plane translational symmetry of the physical system. However, *every* choice of $\mathbf{A}$ for this field breaks translational symmetry in a formal way, in one direction or in both. Which symmetry survives, and how much of it, is a choice of gauge and not a physical choice.
 
 The minimal-coupling replacement [(4.3)](#eq-4-3) is the natural method for continuum models, which are Schrödinger or Dirac electrons, where we write and solve a differential equation directly. For a tight-binding model, which is written in real-space orbitals, the more natural method puts the dependence on the field into the wavefunctions and not into the Hamiltonian, with a local gauge transformation. In concrete terms, the hopping amplitude $t_{ij}$ is by definition an overlap between the orbital wavefunctions at sites $i$ and $j$. When we include the vector potential in these wavefunctions, every hopping gets multiplied by a complex phase, which is equal to the line integral of $\mathbf{A}$ between the two sites,
 
 $$t_{ij} \;\longrightarrow\; t_{ij}\, \exp\!\left(i\int_{\mathbf{R}_j}^{\mathbf{R}_i} \mathbf{A}\cdot d\boldsymbol{\ell}\right), \tag{4.4}$$
 
-and this is what is called the **Peierls substitution**. It is the tight-binding version of minimal coupling, and the two give the same physics, since at low energies the expansion of a tight-binding model with the Peierls substitution gives directly the continuum Hamiltonian with minimal coupling.
+and this is what is called the **Peierls substitution**. It is the tight-binding version of minimal coupling. The two give the same physics, since at low energies the expansion of a tight-binding model with the Peierls substitution gives the continuum Hamiltonian with minimal coupling.
 
 ::: quiz
 A gauge change $\mathbf{A}\to\mathbf{A}+\nabla\chi$ changes the phase of every bond in [(4.4)](#eq-4-4). Which quantity does not change?
@@ -58,4 +58,10 @@ A gauge change $\mathbf{A}\to\mathbf{A}+\nabla\chi$ changes the phase of every b
 
 ::: {.tryit notebook="session4.ipynb" cell="Bands in the conventional quantum Hall state"}
 In the cell with the Peierls phases, `B = 0.02` is the flux through a plaquette in units of the flux quantum. Change it to `0.04` and compare the distance between the first two flat levels at the bottom of the band. It is roughly twice as large, in units of the hopping $t$, as the linear growth of the cyclotron energy with the field predicts.
+:::
+
+::: comesback
+- In Section [4.11](#sec-4-11) the Peierls phases [(4.4)](#eq-4-4) give the Landau levels and the edge states of a lattice ribbon.
+- In Section [6.16](#sec-6-16) a Dzyaloshinskii-Moriya interaction puts complex phases on the hoppings of magnons, which open a topological gap.
+- In Section [8.9](#sec-8-9) the spinons hop on a square lattice with a flux $\pi$ per plaquette, and in Section [8.10](#sec-8-10) a plaquette where the product of the bond phases is $-1$ is a vison.
 :::
