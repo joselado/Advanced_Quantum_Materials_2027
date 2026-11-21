@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -84,23 +85,59 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="on" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 2. Symmetries, Tight-Binding Band Structure Theory, and Effective Models</a></p>
 <h1 id="sec-2-12"><span class="num">2.12</span> Measuring band structures with ARPES</h1>
-<p>Once we have all this formalism, a natural question is whether any of it can be observed. The energy eigenvalue <span class="math inline">\(E(\mathbf{k})\)</span> is clearly physical, but the quasi-momentum <span class="math inline">\(\mathbf{k}\)</span> itself was introduced as a symmetry eigenvalue in Section <a href="06-the-meaning-of-the-phase-which-is-the-quasi-momentum.html#sec-2-6">2.6</a>. So we ask whether we can measure it directly, and whether we can measure the <em>relation</em> between the two.</p>
+<p>Can any of this formalism be observed? The energy eigenvalue <span class="math inline">\(E(\mathbf{k})\)</span> is clearly physical, but the quasi-momentum <span class="math inline">\(\mathbf{k}\)</span> itself was introduced as a symmetry eigenvalue in Section <a href="06-the-meaning-of-the-phase-which-is-the-quasi-momentum.html#sec-2-6">2.6</a>. So we ask whether we can measure it directly, and whether we can measure the <em>relation</em> between the two. We will now see that one experiment measures both, since the total energy and the momentum along the surface are kept when a photon removes an electron from the material.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[\varphi = \frac{a\,p}{\hbar} = k\,a. \tag{2.10}\]</span></p>
+</div>
+<p>This is the relation of Section <a href="06-the-meaning-of-the-phase-which-is-the-quasi-momentum.html#sec-2-6">2.6</a> between the phase <span class="math inline">\(\varphi\)</span> of the translation eigenvalue <span class="math inline">\(e^{i\varphi}\)</span> and the momentum. Here <span class="math inline">\(p\)</span> is the momentum, <span class="math inline">\(a\)</span> the lattice constant and <span class="math inline">\(k\)</span> the quasi-momentum, which is defined up to a multiple of <span class="math inline">\(2\pi/a\)</span>.</p>
+</div>
 <p>The answer is yes, with <strong>angle-resolved photoemission spectroscopy (ARPES)</strong>. The idea is simple in principle. We send photons of known energy and momentum onto a material, and each photon can remove an electron from the material completely, which is the photoelectric effect. Conservation of momentum and energy relates the momentum and kinetic energy of the electron, which are both measured directly outside the material, to its momentum and energy when it was still inside. So when we scan the emission angle and the kinetic energy of the emitted electrons, we map <span class="math inline">\(E(\mathbf{k})\)</span> directly. This is how the band structure and the Fermi surface of graphene are measured in practice, and the measured Dirac cone agrees well with the tight-binding derivation of Section <a href="11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#sec-2-11">2.11</a>.</p>
-<p>The component of the momentum along the surface does not change when the electron leaves the material, so <span class="math inline">\(\hbar k_\parallel=\sqrt{2mE_\text{kin}}\,\sin\theta\)</span> for an emission angle <span class="math inline">\(\theta\)</span>. <a href="#sch:s02:arpes_geometry">Schematic 2.13</a> shows the geometry and this relation.</p>
+<p>The component of the momentum along the surface does not change when the electron leaves the material, and this gives the main result of this section.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>An electron that leaves the surface with the kinetic energy <span class="math inline">\(E_\text{kin}\)</span>, at the angle <span class="math inline">\(\theta\)</span> from the normal, has the momentum along the surface</p>
+<p><span class="math display">\[\hbar k_\parallel=\sqrt{2mE_\text{kin}}\,\sin\theta,\]</span></p>
+<p>and this is also the quasi-momentum along the surface of the state that it left, up to a vector of the reciprocal lattice. This neglects the momentum of the photon, which is about <span class="math inline">\(0.1\)</span> nm<span class="math inline">\(^{-1}\)</span> for photons of <span class="math inline">\(20\)</span> to <span class="math inline">\(25\)</span> eV. The kinetic energy, together with the photon energy <span class="math inline">\(h\nu\)</span> and the work function <span class="math inline">\(\phi\)</span>, gives the energy of the occupied state, <span class="math inline">\(E-E_F=E_\text{kin}+\phi-h\nu\)</span>, and the angle gives its momentum. So a scan of both maps <span class="math inline">\(E(\mathbf k)\)</span> below the Fermi level.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the emission angle to the momentum</span></summary>
+<div class="fold-body">
+<p>Outside the material the electron is free, so its energy is all kinetic, <span class="math inline">\(E_\text{kin}=p^2/2m\)</span>, and the size of its momentum is <span class="math inline">\(p=\sqrt{2mE_\text{kin}}\)</span>. The angle <span class="math inline">\(\theta\)</span> is measured from the normal to the surface, so the component of <span class="math inline">\(\mathbf p\)</span> along the surface is</p>
+<p><span class="math display">\[p_\parallel=p\sin\theta=\sqrt{2mE_\text{kin}}\,\sin\theta.\]</span></p>
+<p>The surface keeps the translations along itself, so this component does not change when the electron crosses the surface, and <span class="math inline">\(\hbar k_\parallel=p_\parallel\)</span>. The component along the normal does change, since the surface breaks the translations along the normal. For numbers we use <span class="math inline">\(\hbar^2/2m=3.81\)</span> eV Å<span class="math inline">\(^2\)</span>, which gives</p>
+<p><span class="math display">\[k_\parallel=\sqrt{\frac{E_\text{kin}}{\hbar^2/2m}}\,\sin\theta.\]</span></p>
+<p>For <span class="math inline">\(E_\text{kin}=20\)</span> eV the square root is <span class="math inline">\(\sqrt{20/3.81}\)</span> Å<span class="math inline">\(^{-1}=2.29\)</span> Å<span class="math inline">\(^{-1}\)</span>, which is <span class="math inline">\(22.9\)</span> nm<span class="math inline">\(^{-1}\)</span>. At <span class="math inline">\(\theta=10^\circ\)</span> we get <span class="math inline">\(22.9\times0.174=3.98\)</span> nm<span class="math inline">\(^{-1}\)</span>, the <span class="math inline">\(4.0\)</span> nm<span class="math inline">\(^{-1}\)</span> of <a href="#sch:s02:arpes_geometry">Schematic 2.15</a>.</p>
+<p>The photon also has a momentum, with the wave vector <span class="math inline">\(h\nu/\hbar c\)</span>. With <span class="math inline">\(\hbar c=197.3\)</span> eV nm a photon of <span class="math inline">\(25\)</span> eV has <span class="math inline">\(0.13\)</span> nm<span class="math inline">\(^{-1}\)</span>, which is small next to these <span class="math inline">\(3.98\)</span> nm<span class="math inline">\(^{-1}\)</span>, so we leave it out. The energy follows from the conservation of the energy. The photon brings <span class="math inline">\(h\nu\)</span>, and an electron at the Fermi level needs the work function <span class="math inline">\(\phi\)</span> to leave, so a state at the energy <span class="math inline">\(E\)</span> gives <span class="math inline">\(E_\text{kin}=h\nu-\phi-(E_F-E)\)</span>. This is the relation of the box, and only the occupied states, with <span class="math inline">\(E&lt;E_F\)</span>, are seen.</p>
+</div>
+</details>
+</div>
+<p><a href="#sch:s02:arpes_geometry">Schematic 2.15</a> shows the geometry and this relation.</p>
 <figure id="sch:s02:arpes_geometry" class="schematic">
 <img src="../figures/web/session02/arpes_geometry.svg" loading="lazy" alt="A photon hitting a material and an electron leaving at an angle theta from the normal, and a curve of the parallel momentum against the angle." />
-<figcaption><strong>Schematic 2.13.</strong> The geometry of ARPES. On the left, a photon removes an electron, which leaves at the angle <span class="math inline">\(\theta\)</span> from the normal with the kinetic energy <span class="math inline">\(E_\text{kin}\)</span>, and the momentum <span class="math inline">\(k_\parallel\)</span> along the surface is kept. On the right, <span class="math inline">\(k_\parallel\)</span> against <span class="math inline">\(\theta\)</span> for <span class="math inline">\(E_\text{kin}=20\)</span> eV, with <span class="math inline">\(\hbar^2/2m=3.81\)</span> eV,<span class="math inline">\(^2\)</span>. The angles <span class="math inline">\(10^\circ\)</span> and <span class="math inline">\(20^\circ\)</span> give <span class="math inline">\(4.0\)</span> and <span class="math inline">\(7.8\)</span> nm<span class="math inline">\(^{-1}\)</span>.</figcaption>
+<figcaption><strong>Schematic 2.15.</strong> The geometry of ARPES. On the left, a photon removes an electron, which leaves at the angle <span class="math inline">\(\theta\)</span> from the normal with the kinetic energy <span class="math inline">\(E_\text{kin}\)</span>, and the momentum <span class="math inline">\(k_\parallel\)</span> along the surface is kept. On the right, <span class="math inline">\(k_\parallel\)</span> against <span class="math inline">\(\theta\)</span> for <span class="math inline">\(E_\text{kin}=20\)</span> eV, with <span class="math inline">\(\hbar^2/2m=3.81\)</span> eV Å<span class="math inline">\(^2\)</span>. The angles <span class="math inline">\(10^\circ\)</span> and <span class="math inline">\(20^\circ\)</span> give <span class="math inline">\(4.0\)</span> and <span class="math inline">\(7.8\)</span> nm<span class="math inline">\(^{-1}\)</span>.</figcaption>
 </figure>
 <figure class="again panel">
 <img src="../figures/panel/s02f04_dirac_c.svg" loading="lazy" alt="A hexagonal Brillouin zone with a Dirac cone at two of its corners." />
-<figcaption><strong><a href="11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#fig:s02:dirac">Figure 2.5</a>, one panel shown again.</strong> The Dirac cone of graphene, one panel shown again. This cone is the band structure that ARPES maps, since the experiment gives the energy and the momentum of the electrons inside the material.</figcaption>
+<figcaption><strong><a href="11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#fig:s02:dirac">Figure 2.5</a>, one panel shown again.</strong> The Dirac cone of graphene. This cone is the band structure that ARPES maps, since the experiment gives the energy and the momentum of the electrons inside the material.</figcaption>
 </figure>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>The armchair graphene ribbons of this measurement are nine carbon atoms wide and are made on Au(111). ARPES, together with scanning tunneling spectroscopy with a Fourier transform, gives their band gap of <span class="math inline">\(1.4\)</span> eV and effective masses of about <span class="math inline">\(0.1\,m_e\)</span> for both electrons and holes. Our reading is that this mass is the curvature <a href="09-properties-of-an-electronic-dispersion.html#eq-2-18">(2.18)</a> of the measured bands at their edges. The measurement is in <a href="https://pubs.acs.org/doi/full/10.1021/acsnano.6b06405">this article</a>, which is also the one given in the notebook <code>session2.ipynb</code>.</p>
+</div>
 <div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>In ARPES we measure the kinetic energy and the emission angle of the electrons that leave the material. What do we obtain from them?</p>
+<p>ARPES measures the kinetic energy and the emission angle of each emitted electron. What do we obtain from these two numbers?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -125,6 +162,54 @@ Question
 </div>
 </details>
 </div>
+<div class="quiz" data-correct="A" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>An electron leaves the surface with <span class="math inline">\(E_\text{kin}=20\)</span> eV, at <span class="math inline">\(\theta=10^\circ\)</span> from the normal. Its momentum along the surface is</p>
+<p><span class="math display">\[\hbar k_\parallel=\sqrt{2mE_\text{kin}}\,\sin\theta.\]</span></p>
+<p>Use <span class="math inline">\(\hbar^2/2m=3.81\)</span> eV Å<span class="math inline">\(^2\)</span>. What is <span class="math inline">\(k_\parallel\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(4.0\)</span> nm<span class="math inline">\(^{-1}\)</span></li>
+<li><span class="math inline">\(7.8\)</span> nm<span class="math inline">\(^{-1}\)</span></li>
+<li><span class="math inline">\(0.40\)</span> nm<span class="math inline">\(^{-1}\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The square root gives <span class="math inline">\(\sqrt{20/3.81}\)</span> Å<span class="math inline">\(^{-1}=2.29\)</span> Å<span class="math inline">\(^{-1}\)</span>, which is <span class="math inline">\(22.9\)</span> nm<span class="math inline">\(^{-1}\)</span>. With <span class="math inline">\(\sin10^\circ=0.174\)</span> this is <span class="math inline">\(k_\parallel=3.98\)</span> nm<span class="math inline">\(^{-1}\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. This is the value at <span class="math inline">\(\theta=20^\circ\)</span>, where <span class="math inline">\(\sin20^\circ=0.342\)</span>. At <span class="math inline">\(10^\circ\)</span> the sine is <span class="math inline">\(0.174\)</span>, about half of it, and so is <span class="math inline">\(k_\parallel\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The square root is <span class="math inline">\(2.29\)</span> in units of Å<span class="math inline">\(^{-1}\)</span>, so <span class="math inline">\(k_\parallel=0.398\)</span> Å<span class="math inline">\(^{-1}\)</span>. One Å<span class="math inline">\(^{-1}\)</span> is <span class="math inline">\(10\)</span> nm<span class="math inline">\(^{-1}\)</span>, so this is <span class="math inline">\(3.98\)</span> nm<span class="math inline">\(^{-1}\)</span>, and <span class="math inline">\(0.40\)</span> is the number in Å<span class="math inline">\(^{-1}\)</span> with the wrong unit.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The edge of the Brillouin zone, <span class="math inline">\(\pi/a\)</span>, is <span class="math inline">\(7.85\)</span> nm<span class="math inline">\(^{-1}\)</span> for <span class="math inline">\(a=0.4\)</span> nm, so at <span class="math inline">\(20\)</span> eV ARPES reaches it at an angle of about <span class="math inline">\(20^\circ\)</span>.</p>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>In an ARPES experiment the electrons have <span class="math inline">\(E_\text{kin}=20\)</span> eV, and the crystal has the lattice constant <span class="math inline">\(a=0.4\)</span> nm along the surface. At which angle <span class="math inline">\(\theta\)</span> do we reach the edge of the Brillouin zone, <span class="math inline">\(k_\parallel=\pi/a\)</span>? At which angle for <span class="math inline">\(E_\text{kin}=80\)</span> eV? Use <span class="math inline">\(\hbar^2/2m=3.81\)</span> eV Å<span class="math inline">\(^2\)</span>.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>The edge of the zone is at <span class="math inline">\(\pi/a=\pi/0.4\)</span> nm<span class="math inline">\(^{-1}=7.85\)</span> nm<span class="math inline">\(^{-1}\)</span>. For <span class="math inline">\(20\)</span> eV the size of the momentum is <span class="math inline">\(\sqrt{20/3.81}\)</span> Å<span class="math inline">\(^{-1}=22.9\)</span> nm<span class="math inline">\(^{-1}\)</span>, so</p>
+<p><span class="math display">\[\sin\theta=\frac{7.85}{22.9}=0.343,\qquad \theta\approx20^\circ.\]</span></p>
+<p>For <span class="math inline">\(80\)</span> eV the momentum is twice as large, <span class="math inline">\(45.8\)</span> nm<span class="math inline">\(^{-1}\)</span>, since it grows as <span class="math inline">\(\sqrt{E_\text{kin}}\)</span>. Then <span class="math inline">\(\sin\theta=0.171\)</span> and <span class="math inline">\(\theta\approx9.9^\circ\)</span>. At <span class="math inline">\(80\)</span> eV the photon has about <span class="math inline">\(0.4\)</span> nm<span class="math inline">\(^{-1}\)</span>, five percent of <span class="math inline">\(\pi/a\)</span>, so this angle holds to about half a degree.</p>
+<p>So a higher kinetic energy covers more of the Brillouin zone for the same range of angles. In an experiment the photon energy sets the kinetic energy, and it decides which part of the zone a given range of angles maps.</p>
+</div>
+</details>
+</div>
+</div>
 <h1 class="sec-next" id="sec-2-13"><span class="num">2.13</span> Closing summary</h1>
 <p>From <a href="../session1/index.html">Session 1</a> this session used the single-particle part of the Hamiltonian <a href="../session1/12-the-general-interacting-hamiltonian-and-the-tool-we-will-use-on-it.html#eq-1-5">(1.5)</a>, the hopping of second quantization, with the interactions left aside or already treated in mean field as in Section <a href="../session1/12-the-general-interacting-hamiltonian-and-the-tool-we-will-use-on-it.html#sec-1-12">1.12</a>. With it we saw the following.</p>
 <ul>
@@ -137,6 +222,19 @@ Question
 <li><p>All of this band-structure method generalizes directly to phonons, magnons and Bogoliubov-de Gennes quasiparticles, and not only to electrons. It is tested against real materials in experiments with ARPES.</p></li>
 </ul>
 <p>The spectra of periodic systems are computed with band-structure theory, by choosing the common eigenbasis of the symmetry operator and the Hamiltonian. The dispersion relation <span class="math inline">\(E(\mathbf{k})\)</span> alone then determines many of the electronic properties of a material, before interactions are included again.</p>
+<p>After this session we can do the following.</p>
+<ul>
+<li>Use a symmetry that commutes with <span class="math inline">\(H\)</span> to label the eigenstates by phases, as in Section <a href="03-symmetry-operators-in-a-formal-way.html#sec-2-3">2.3</a>.</li>
+<li>Find the eigenstates and the energies of a ring without a diagonalization, as in Section <a href="04-exercises-where-we-guess-eigenstates-from-symmetry-only.html#sec-2-4">2.4</a>.</li>
+<li>Derive the band of a chain with first- and second-neighbor hopping, and say where its extrema are, as in Section <a href="05-blochs-theorem-and-the-first-band-structure.html#sec-2-5">2.5</a>.</li>
+<li>Say why <span class="math inline">\(k\)</span> is defined up to <span class="math inline">\(2\pi/a\)</span>, and how the zone changes with the cell, as in Section <a href="06-the-meaning-of-the-phase-which-is-the-quasi-momentum.html#sec-2-6">2.6</a>.</li>
+<li>Write the Bloch Hamiltonian of a lattice with several orbitals per cell, and count the bands of a larger cell, as in Section <a href="07-multi-orbital-band-structures.html#sec-2-7">2.7</a>.</li>
+<li>Write the band of the square and the cubic lattices, with their widths <span class="math inline">\(8t\)</span> and <span class="math inline">\(12t\)</span>, as in Section <a href="08-higher-dimensional-band-structures.html#sec-2-8">2.8</a>.</li>
+<li>Read the density of states, the velocity, the effective mass and the Fermi surface from a band, and tell the three types apart by their density of states, as in Sections <a href="09-properties-of-an-electronic-dispersion.html#sec-2-9">2.9</a> and <a href="09-properties-of-an-electronic-dispersion.html#sec-2-10">2.10</a>.</li>
+<li>Derive the Dirac cone of graphene and its velocity, as in Section <a href="11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#sec-2-11">2.11</a>.</li>
+<li>Say why the kagome and the Lieb lattices have a flat band, and at which energy it sits for a given sign of <span class="math inline">\(t\)</span>, as in Section <a href="11b-flat-bands-from-the-geometry-of-the-lattice.html#sec-2-11b">2.11b</a>.</li>
+<li>Turn an emission angle and a kinetic energy into a momentum along the surface, as in Section <a href="#sec-2-12">2.12</a>.</li>
+</ul>
 <div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
 Question
@@ -157,13 +255,47 @@ Question
 <li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
 <p>This is true. The Bloch Hamiltonian has one row and one column for every orbital of the cell. At each <span class="math inline">\(\varphi\)</span> it has four eigenvalues, and they form the four bands.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
-<p>This is false. A <span class="math inline">\(2\times 2\)</span> matrix describes a cell with two orbitals, such as the chain of <a href="07-multi-orbital-band-structures.html#eq-2-13">(2.13)</a>. With four orbitals, the rows of <span class="math inline">\(H(\varphi)\)</span> run over four orbitals.</p></li>
+<p>This is false. A <span class="math inline">\(2\times 2\)</span> matrix describes a cell with two orbitals, such as the chain of <a href="07-multi-orbital-band-structures.html#eq-2-13">(2.13)</a>. With four orbitals, the rows of <span class="math inline">\(H(\varphi)\)</span> run over four orbitals.</p>
+<div class="eq-again">
+<p><span class="math display">\[H(\varphi) = \begin{pmatrix} 0 &amp; 1+\eta\,e^{-i\varphi} \\ 1+\eta\,e^{i\varphi} &amp; 0 \end{pmatrix},
+\qquad \epsilon_\pm(\varphi) = \pm\left|1+\eta\,e^{-i\varphi}\right|. \tag{2.13}\]</span></p>
+</div></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
 <p>This is false. Take the uniform chain with a cell of four sites. At <span class="math inline">\(\varphi=0\)</span> the four eigenvalues are <span class="math inline">\(-2t\)</span>, <span class="math inline">\(0\)</span>, <span class="math inline">\(0\)</span> and <span class="math inline">\(2t\)</span>, so there are four bands and not one.</p></li>
 </ul>
 </div>
 <div class="quiz-expl">
 <p>The size of the Bloch Hamiltonian is the number of orbitals in the cell.</p>
+</div>
+</details>
+</div>
+<div class="quiz quiz-pics" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Each picture shows a density of states <span class="math inline">\(g(E)\)</span> per unit cell. The energy <span class="math inline">\(E\)</span> is in units of the hopping <span class="math inline">\(t\)</span>. Which one belongs to graphene?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session02/g4_quiz_dos_chain.svg" loading="lazy" alt="A density of states with a flat bottom in the middle and two sharp peaks at minus two and two." /></li>
+<li><img src="../figures/web/session02/g4_quiz_dos_honeycomb.svg" loading="lazy" alt="A density of states with a V that dips to about 0.04 at zero energy, two sharp peaks at minus one and one, and edges at minus three and three." /></li>
+<li><img src="../figures/web/session02/g4_quiz_dos_kagome.svg" loading="lazy" alt="A density of states with a V at minus one, two peaks at minus two and zero, and a very high narrow peak at two." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. This is the chain, with <span class="math inline">\(g(E)=1/(\pi\sqrt{4t^2-E^2})\)</span> per site. It is <span class="math inline">\(1/(2\pi t)\approx0.16/t\)</span> at zero energy, it does not vanish there, and it diverges at the band edges <span class="math inline">\(\pm2t\)</span>, as a band in one dimension does. In the picture the broadening of <span class="math inline">\(0.04\,t\)</span> cuts the two peaks to about <span class="math inline">\(0.64/t\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. It vanishes in proportion to <span class="math inline">\(|E|\)</span> at zero energy, where the two Dirac cones are, and the broadening of the calculation rounds the tip of the V. It has two peaks at <span class="math inline">\(\pm t\)</span> from the saddle points at <span class="math inline">\(M\)</span>, and it ends at <span class="math inline">\(\pm3t\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. It also has a V, but at <span class="math inline">\(-t\)</span>, where two bands cross, and it has a narrow peak at <span class="math inline">\(2t\)</span> that goes far above the plot. This peak is a flat band, and this is the kagome lattice with <span class="math inline">\(H=-t\sum c_i^\dagger c_j\)</span>. Graphene has no flat band, and its V is at zero energy.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>Graphene is the only one of the three whose V is at zero energy. Without the broadening its density of states vanishes there.</p>
 </div>
 </details>
 </div>

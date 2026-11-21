@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -105,6 +106,12 @@ Question
 </div>
 <div class="quiz-q">
 <p>At small <span class="math inline">\(k\)</span> we double the wave vector. How do the magnon energies <a href="#eq-6-8">(6.8)</a> and <a href="#eq-6-9">(6.9)</a> of a chain change?</p>
+<div class="eq-again">
+<p><span class="math display">\[E_\text{FM}(\mathbf k) = |J|\,S\,z\big(1-\gamma(\mathbf k)\big). \tag{6.8}\]</span></p>
+</div>
+<div class="eq-again">
+<p><span class="math display">\[E_\text{AFM}(\mathbf k) = J\,S\,z\,\sqrt{1-\gamma(\mathbf k)^2}. \tag{6.9}\]</span></p>
+</div>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -144,7 +151,10 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
-<p>This is false. The energy of <a href="#eq-6-8">(6.8)</a> is zero only where <span class="math inline">\(\gamma=1\)</span>, which is <span class="math inline">\(\mathbf k=(0,0)\)</span>. At <span class="math inline">\((\pi,\pi)\)</span> we have <span class="math inline">\(\gamma=-1\)</span>, which is the opposite end of the band.</p></li>
+<p>This is false. The energy of <a href="#eq-6-8">(6.8)</a> is zero only where <span class="math inline">\(\gamma=1\)</span>, which is <span class="math inline">\(\mathbf k=(0,0)\)</span>. At <span class="math inline">\((\pi,\pi)\)</span> we have <span class="math inline">\(\gamma=-1\)</span>, which is the opposite end of the band.</p>
+<div class="eq-again">
+<p><span class="math display">\[E_\text{FM}(\mathbf k) = |J|\,S\,z\big(1-\gamma(\mathbf k)\big). \tag{6.8}\]</span></p>
+</div></li>
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
 <p>This is false. This value is found at <span class="math inline">\(\mathbf k=(\pi,0)\)</span>, where <span class="math inline">\(\gamma=\tfrac12(-1+1)=0\)</span> and <span class="math inline">\(1-\gamma=1\)</span>. At <span class="math inline">\((\pi,\pi)\)</span> we have <span class="math inline">\(\gamma=-1\)</span> and the energy is twice as large.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
@@ -152,7 +162,10 @@ Question
 <figure class="quiz-fig schematic">
 <img src="../figures/web/session06/square_magnon.svg" loading="lazy" alt="A band that rises from zero at the center of the zone to a maximum at the corner and goes back to zero, with the values 4 and 8 marked." />
 <figcaption>The ferromagnetic magnon of the square lattice, <span class="math inline">\(E=4|J|S[1-(\cos k_x+\cos k_y)/2]\)</span>, along the path <span class="math inline">\(\Gamma\)</span>, <span class="math inline">\(X\)</span>, <span class="math inline">\(M\)</span>, <span class="math inline">\(\Gamma\)</span>. It is <span class="math inline">\(0\)</span> at <span class="math inline">\(\Gamma\)</span>, <span class="math inline">\(4|J|S\)</span> at <span class="math inline">\(X\)</span> and <span class="math inline">\(8|J|S\)</span> at <span class="math inline">\(M\)</span>.</figcaption>
-</figure></li>
+</figure>
+<div class="eq-again">
+<p><span class="math display">\[E_\text{FM}(\mathbf k) = |J|\,S\,z\big(1-\gamma(\mathbf k)\big). \tag{6.8}\]</span></p>
+</div></li>
 </ul>
 </div>
 </details>

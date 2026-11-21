@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -112,9 +113,15 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
 <p>This is false. Take the fractional quantum Hall state at filling 1/3. It has no pairing term and no attraction, and the fractional charge <span class="math inline">\(e/3\)</span> appears from strong repulsion alone.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. In a superconductor the quartic term becomes the bilinear pairing term <a href="04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html#eq-5-4">(5.4)</a>, so a single-particle Hamiltonian describes the state. The quantum Hall state has no such Hamiltonian.</p></li>
+<p>This is true. In a superconductor the quartic term becomes the bilinear pairing term <a href="04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html#eq-5-4">(5.4)</a>, so a single-particle Hamiltonian describes the state. The quantum Hall state has no such Hamiltonian.</p>
+<div class="eq-again">
+<p><span class="math display">\[H_{\text{MF}} = -t\sum_{n\sigma}\left(c_{n\sigma}^\dagger c_{n+1,\sigma}+\text{h.c.}\right) - \mu\sum_{n\sigma}c_{n\sigma}^\dagger c_{n\sigma} + \sum_n\left(\Delta_n\, c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger + \Delta_n^*\, c_{n\downarrow}c_{n\uparrow}\right) - \sum_n\frac{|\Delta_n|^2}{U}. \tag{5.4}\]</span></p>
+</div></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. The Bogoliubov quasiparticle of a superconductor is a fraction of an electron, and it is an exact eigenstate of the mean-field Hamiltonian <a href="04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html#eq-5-4">(5.4)</a>. So fractional excitations alone do not rule out a mean-field description.</p></li>
+<p>This is false. The Bogoliubov quasiparticle of a superconductor is a fraction of an electron, and it is an exact eigenstate of the mean-field Hamiltonian <a href="04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html#eq-5-4">(5.4)</a>. So fractional excitations alone do not rule out a mean-field description.</p>
+<div class="eq-again">
+<p><span class="math display">\[H_{\text{MF}} = -t\sum_{n\sigma}\left(c_{n\sigma}^\dagger c_{n+1,\sigma}+\text{h.c.}\right) - \mu\sum_{n\sigma}c_{n\sigma}^\dagger c_{n\sigma} + \sum_n\left(\Delta_n\, c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger + \Delta_n^*\, c_{n\downarrow}c_{n\uparrow}\right) - \sum_n\frac{|\Delta_n|^2}{U}. \tag{5.4}\]</span></p>
+</div></li>
 </ul>
 </div>
 </details>

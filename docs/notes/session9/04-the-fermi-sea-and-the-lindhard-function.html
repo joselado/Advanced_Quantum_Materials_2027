@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -99,6 +100,9 @@ Question
 </div>
 <div class="quiz-q">
 <p>For small <span class="math inline">\(q\)</span> the two windows of the figure have width <span class="math inline">\(q\)</span>, and the denominator of <a href="#eq-9-4">(9.4)</a> is roughly <span class="math inline">\(v_F q\)</span>. What is <span class="math inline">\(\chi_0(q\to0)\)</span> for the chain?</p>
+<div class="eq-again">
+<p><span class="math display">\[\chi_0(q) = \frac{1}{N} \sum_k \frac{n_F(\varepsilon(k)) - n_F(\varepsilon(k+q))}{\varepsilon(k+q) - \varepsilon(k)}. \tag{9.4}\]</span></p>
+</div>
 </div>
 <div class="quiz-options">
 <ol type="A">

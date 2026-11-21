@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -84,6 +85,7 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="on" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 3. Topological Band Structure Theory</a></p>
 <h1 id="sec-3-8"><span class="num">3.8</span> Three topological material classes</h1>
+<p>Which kinds of topological matter are there, and what makes them different from each other? We will now see three classes. All of them have a gap in the bulk and gapless states at the boundary, and they differ in the symmetry that they keep and in the kind of state that the boundary has.</p>
 <p>With the general tools in place, let us name three classes of topological matter, before we build explicit models for two of them.</p>
 <ul>
 <li><p><strong>Chern insulators.</strong> They have a bulk Chern number <span class="math inline">\(C \neq 0\)</span> and chiral edge states, and time-reversal symmetry is necessarily broken, since we will see in Section <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#sec-3-10">3.10</a> that time-reversal symmetry forces <span class="math inline">\(\sigma_{xy}=0\)</span>. Without a backscattering channel there are no electrical losses at the edge, which makes them an attractive platform for dissipationless electronics.</p></li>
@@ -99,7 +101,7 @@
 Question
 </div>
 <div class="quiz-q">
-<p>Which class has time-reversal symmetry, zero total Chern number and edge states with opposite directions for opposite spins?</p>
+<p>An insulator has time-reversal symmetry and a total Chern number of zero. At each edge the two spins move in opposite directions. Which class is it?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -116,20 +118,87 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
 <p>This is false. A Chern insulator with <span class="math inline">\(C=1\)</span> has one chiral mode at each edge and <span class="math inline">\(\sigma_{xy}=e^2/h\)</span>, and it needs broken time-reversal symmetry. Its total Chern number is not zero.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. A trivial insulator has <span class="math inline">\(C=0\)</span> and time-reversal symmetry, but its ribbon spectrum has a gap with nothing inside, as for the staggered potential in the figure of the honeycomb lattice. It has no edge states.</p></li>
+<p>This is false. A trivial insulator has <span class="math inline">\(C=0\)</span> and time-reversal symmetry, but no state crosses its gap. A ribbon of the honeycomb lattice with a staggered potential of <span class="math inline">\(0.5\,t\)</span> has no level between <span class="math inline">\(-0.5\,t\)</span> and <span class="math inline">\(0.5\,t\)</span>, so it has no edge state that could move in any direction.</p></li>
 </ul>
 </div>
 </details>
 </div>
-<h1 class="sec-next" id="sec-3-9"><span class="num">3.9a</span> The SSH model as a minimal one-dimensional topological insulator</h1>
-<p>We now build the simplest model that shows this physics explicitly, which is the Su-Schrieffer-Heeger (SSH) chain. We already met it as the two-orbital chain of <a href="../session2/07-multi-orbital-band-structures.html#eq-2-13">(2.13)</a> in Section <a href="../session2/07-multi-orbital-band-structures.html#sec-2-7">2.7</a>. It looks too simple to be useful, but we should take it seriously. One reason is that the simplest model for a topological superconductor, the Kitaev chain, has the form of this model when we write it with Majorana operators.</p>
-<p>We take a one-dimensional lattice with two sites per unit cell, <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, and two hopping amplitudes. The first one is an intracell hopping <span class="math inline">\(t\)</span>, within a unit cell, and the second one is an intercell hopping fixed to <span class="math inline">\(1\)</span>, between neighboring unit cells. Let us first take the extreme limit in which the intracell hopping dominates, <span class="math inline">\(t \gg 1\)</span>, so that the chain is fully dimerized with alternating bonds. Strong bonds of strength <span class="math inline">\(t\)</span> couple the sites <span class="math inline">\((0,1)\)</span>, <span class="math inline">\((2,3)\)</span>, <span class="math inline">\((4,5)\)</span>, …, and the coupling between <span class="math inline">\((1,2)\)</span>, <span class="math inline">\((3,4)\)</span>, … is negligible. Each dimer is then an isolated two-level system with bonding and antibonding eigenstates at energies <span class="math inline">\(\pm t\)</span>. The spectrum of the whole chain is this pair of levels repeated once for each dimer, and there is nothing at zero energy.</p>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>A chain has four dimers with the intracell hopping <span class="math inline">\(t\)</span> and no hopping between different dimers. How many levels are at the energy <span class="math inline">\(+t\)</span> and how many are at zero energy?</p>
+<p>The Hall conductivity of a system with two spin sectors is</p>
+<p><span class="math display">\[\sigma_{xy} = \frac{e^2}{h}\,\big(C_\uparrow + C_\downarrow\big),\]</span></p>
+<p>with <span class="math inline">\(C_\uparrow\)</span> and <span class="math inline">\(C_\downarrow\)</span> the Chern numbers of the two spins. A quantum spin Hall insulator has <span class="math inline">\(C_\uparrow=1\)</span> and <span class="math inline">\(C_\downarrow=-1\)</span>. What is its Hall conductivity?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(\sigma_{xy}=2e^2/h\)</span></li>
+<li><span class="math inline">\(\sigma_{xy}=0\)</span></li>
+<li><span class="math inline">\(\sigma_{xy}=e^2/h\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. This is the value for <span class="math inline">\(C_\uparrow=C_\downarrow=1\)</span>, which is two copies with the same sign. That system breaks time-reversal symmetry, and it is a Chern insulator with <span class="math inline">\(C=2\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The two spins give opposite Hall currents, so no net charge flows across the sample. Spin up and spin down still move to opposite sides, which is a spin current, and each edge keeps its pair of states.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. This counts only one of the two spins. We would get it for <span class="math inline">\(C_\uparrow=1\)</span> and <span class="math inline">\(C_\downarrow=0\)</span>, and then the two spins are not related by time reversal.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<h1 class="sec-next" id="sec-3-9"><span class="num">3.9a</span> The SSH model as a minimal one-dimensional topological insulator</h1>
+<p>What is the simplest model of a topological insulator that we can solve on paper? We will now see that it is a chain with two alternating hoppings. In this first part we take the limit in which the chain is a set of separate dimers. It has a gap and no state at zero energy, and it will be our reference for a trivial insulator.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[H(\varphi) = \begin{pmatrix} 0 &amp; 1+\eta\,e^{-i\varphi} \\ 1+\eta\,e^{i\varphi} &amp; 0 \end{pmatrix},
+\qquad \epsilon_\pm(\varphi) = \pm\left|1+\eta\,e^{-i\varphi}\right|. \tag{2.13}\]</span></p>
+</div>
+<p>This is the chain with two orbitals per cell of Section <a href="../session2/07-multi-orbital-band-structures.html#sec-2-7">2.7</a>, with its Bloch Hamiltonian and its two bands, where <span class="math inline">\(\varphi\)</span> is the phase between neighboring cells. There the intracell hopping is <span class="math inline">\(1\)</span> and the intercell hopping is <span class="math inline">\(\eta\)</span>. In this section the intracell hopping is <span class="math inline">\(t\)</span> and the intercell hopping is <span class="math inline">\(1\)</span>, which is the same chain with <span class="math inline">\(\eta=1/t\)</span>, <span class="math inline">\(\varphi=-k\)</span> and all the energies multiplied by <span class="math inline">\(t\)</span>.</p>
+</div>
+<p>We now build the simplest model that shows this physics explicitly, which is the Su-Schrieffer-Heeger (SSH) chain. We already met it as the two-orbital chain of <a href="../session2/07-multi-orbital-band-structures.html#eq-2-13">(2.13)</a> in Section <a href="../session2/07-multi-orbital-band-structures.html#sec-2-7">2.7</a>. It looks too simple to be useful, but we should take it seriously. One reason is that the simplest model for a topological superconductor, the Kitaev chain, has the form of this model when we write it with Majorana operators.</p>
+<p>We take a one-dimensional lattice with two sites per unit cell, <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, and two hopping amplitudes. The first one is an intracell hopping <span class="math inline">\(t\)</span>, within a unit cell, and the second one is an intercell hopping fixed to <span class="math inline">\(1\)</span>, between neighboring unit cells.</p>
+<p>Let us first take the extreme limit in which the intracell hopping dominates, <span class="math inline">\(t \gg 1\)</span>, so that the chain is fully dimerized with alternating bonds. Strong bonds of strength <span class="math inline">\(t\)</span> couple the sites <span class="math inline">\((0,1)\)</span>, <span class="math inline">\((2,3)\)</span>, <span class="math inline">\((4,5)\)</span>, …, and the coupling between <span class="math inline">\((1,2)\)</span>, <span class="math inline">\((3,4)\)</span>, … is negligible. Each dimer is then an isolated two-level system with bonding and antibonding eigenstates at energies <span class="math inline">\(\pm t\)</span>. The spectrum of the whole chain is this pair of levels repeated once for each dimer, and there is nothing at zero energy.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>In the limit <span class="math inline">\(t\gg1\)</span> the chain is a set of separate dimers, and each dimer has the two levels</p>
+<p><span class="math display">\[E_\pm = \pm t .\]</span></p>
+<p>A chain of <span class="math inline">\(N\)</span> dimers has <span class="math inline">\(N\)</span> levels at <span class="math inline">\(+t\)</span> and <span class="math inline">\(N\)</span> levels at <span class="math inline">\(-t\)</span>. The gap is <span class="math inline">\(2t\)</span> and no state is at zero energy, since no site is left without a partner, also at the two ends.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From one dimer to the levels of the dimerized chain</span></summary>
+<div class="fold-body">
+<p>The first step is one dimer. In the basis of its two sites <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> the Hamiltonian is a matrix with the hopping <span class="math inline">\(t\)</span> off the diagonal,</p>
+<p><span class="math display">\[H_{\text{dimer}} = \begin{pmatrix} 0 &amp; t \\ t &amp; 0 \end{pmatrix}, \qquad
+H_{\text{dimer}}\,\frac{1}{\sqrt2}\begin{pmatrix} 1 \\ \pm1 \end{pmatrix} = \pm t\,\frac{1}{\sqrt2}\begin{pmatrix} 1 \\ \pm1 \end{pmatrix}.\]</span></p>
+<p>So the eigenstates are the sum and the difference of the two sites, which are the bonding and the antibonding combination. The hopping enters this matrix with a positive sign, so the sum has the energy <span class="math inline">\(+t\)</span> and the difference has the energy <span class="math inline">\(-t\)</span>. With a hopping <span class="math inline">\(-t\)</span> the two energies would be exchanged, and nothing else would change.</p>
+<p>The second step is the chain of <span class="math inline">\(N\)</span> dimers with no hopping between them. Its Hamiltonian is made of <span class="math inline">\(N\)</span> blocks <span class="math inline">\(H_{\text{dimer}}\)</span> on the diagonal, and the eigenvalues of such a matrix are the eigenvalues of its blocks. So there are <span class="math inline">\(N\)</span> levels at <span class="math inline">\(+t\)</span> and <span class="math inline">\(N\)</span> levels at <span class="math inline">\(-t\)</span>.</p>
+<p>The third step is to put back the intercell hopping <span class="math inline">\(1\)</span>, which is small compared with <span class="math inline">\(t\)</span>. We call <span class="math inline">\(|s_n\rangle=(|A_n\rangle+|B_n\rangle)/\sqrt2\)</span> the state with the energy <span class="math inline">\(+t\)</span> on the dimer <span class="math inline">\(n\)</span>. The intercell hopping joins the site <span class="math inline">\(B_n\)</span> with the site <span class="math inline">\(A_{n+1}\)</span>, and each of them has the amplitude <span class="math inline">\(1/\sqrt2\)</span>, so</p>
+<p><span class="math display">\[\langle s_n|H|s_{n+1}\rangle = \frac{1}{\sqrt2}\cdot 1\cdot\frac{1}{\sqrt2} = \frac12 .\]</span></p>
+<p>The states <span class="math inline">\(|s_n\rangle\)</span> form a chain of their own, with the onsite energy <span class="math inline">\(t\)</span> and the hopping <span class="math inline">\(1/2\)</span>. The same happens for the states at <span class="math inline">\(-t\)</span>, with the hopping <span class="math inline">\(-1/2\)</span>. A chain with one orbital per cell has a cosine band, as in <a href="../session2/05-blochs-theorem-and-the-first-band-structure.html#eq-2-8">(2.8)</a>, so each group of levels becomes a band,</p>
+<p><span class="math display">\[E_\pm(k) \simeq \pm\,(t+\cos k),\]</span></p>
+<p>of width <span class="math inline">\(2\)</span> around <span class="math inline">\(\pm t\)</span>. Here we do not include the coupling between the two groups, which changes the energies by terms of order <span class="math inline">\(1/t\)</span>. For <span class="math inline">\(t=4\)</span> and eight sites the upper levels are <span class="math inline">\(3.22\)</span>, <span class="math inline">\(3.76\)</span>, <span class="math inline">\(4.37\)</span> and <span class="math inline">\(4.83\)</span>, which are inside the band from <span class="math inline">\(3\)</span> to <span class="math inline">\(5\)</span>. The two groups stay far from zero energy, so the weak hopping does not change the conclusion.</p>
+</div>
+</details>
+</div>
+<div class="quiz" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>A dimer of two sites with the hopping <span class="math inline">\(t\)</span> has the Hamiltonian</p>
+<p><span class="math display">\[H_{\text{dimer}} = \begin{pmatrix} 0 &amp; t \\ t &amp; 0 \end{pmatrix}.\]</span></p>
+<p>A chain has four such dimers and no hopping between them. How many levels are at the energy <span class="math inline">\(+t\)</span> and how many are at zero energy?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -144,7 +213,7 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
 <p>This is false. Each dimer is the matrix with <span class="math inline">\(t\)</span> off the diagonal and gives <span class="math inline">\(\pm t\)</span>. The trace of the Hamiltonian is zero, but eight levels at <span class="math inline">\(+t\)</span> would give <span class="math inline">\(8t\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. Each dimer has a bonding level at <span class="math inline">\(-t\)</span> and an antibonding level at <span class="math inline">\(+t\)</span>. Four dimers give four levels at each energy, and no site is left uncoupled.</p>
+<p>This is true. Each dimer has one level at <span class="math inline">\(+t\)</span>, which is the sum of its two sites, and one level at <span class="math inline">\(-t\)</span>, which is their difference. Four dimers give four levels at each energy, and no site is left uncoupled.</p>
 <figure class="quiz-fig again">
 <img src="../figures/s03f03_ssh.svg" loading="lazy" alt="Two chains of eight sites with their spectra, one with strong intracell bonds and a gap around zero, and one with strong intercell bonds and two levels at zero energy." />
 <figcaption><strong><a href="09b-the-ssh-chain-in-the-opposite-limit-and-the-zero-modes.html#fig:s03:ssh">Figure 3.3</a>, shown again.</strong> The dimerized chain, lower row, with the levels at <span class="math inline">\(\pm t\)</span> and a gap around zero.</figcaption>
@@ -154,6 +223,51 @@ Question
 </ul>
 </div>
 </details>
+</div>
+<div class="quiz" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>A chain of dimers has the intracell hopping <span class="math inline">\(t\gg1\)</span>. The state <span class="math inline">\(|s_n\rangle=(|A_n\rangle+|B_n\rangle)/\sqrt2\)</span> of the dimer <span class="math inline">\(n\)</span> has the energy <span class="math inline">\(t\)</span>. We add a weak hopping <span class="math inline">\(1\)</span> between the site <span class="math inline">\(B_n\)</span> and the site <span class="math inline">\(A_{n+1}\)</span>. Which band do the states <span class="math inline">\(|s_n\rangle\)</span> form?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(E(k)\simeq t+2\cos k\)</span></li>
+<li><span class="math inline">\(E(k)\simeq t+\cos k\)</span></li>
+<li><span class="math inline">\(E(k)=t\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. This band would go from <span class="math inline">\(t-2\)</span> to <span class="math inline">\(t+2\)</span>. For <span class="math inline">\(t=4\)</span> and a chain of 40 sites the upper levels go from <span class="math inline">\(3.01\)</span> to <span class="math inline">\(4.99\)</span>, and not from <span class="math inline">\(2\)</span> to <span class="math inline">\(6\)</span>. The hopping between two dimer states is <span class="math inline">\(1/2\)</span> and not <span class="math inline">\(1\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. Each of the two sites that the weak hopping joins has the amplitude <span class="math inline">\(1/\sqrt2\)</span>, so the hopping between neighboring dimer states is <span class="math inline">\(1/2\)</span>. A chain with the hopping <span class="math inline">\(1/2\)</span> has a band of width <span class="math inline">\(2\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. A flat level needs zero hopping between the dimers. For <span class="math inline">\(t=4\)</span> and eight sites the four upper levels are <span class="math inline">\(3.22\)</span>, <span class="math inline">\(3.76\)</span>, <span class="math inline">\(4.37\)</span> and <span class="math inline">\(4.83\)</span>, so they are spread around <span class="math inline">\(t\)</span>.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>We take an open chain of four sites with the bonds <span class="math inline">\(t\)</span>, <span class="math inline">\(1\)</span> and <span class="math inline">\(t\)</span>, which is two dimers joined by the intercell hopping. Find its four energies for any <span class="math inline">\(t\)</span>, with the help of the mirror symmetry of the chain. Then give them for <span class="math inline">\(t\gg1\)</span>.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>The mirror exchanges the sites <span class="math inline">\(1\)</span> and <span class="math inline">\(4\)</span>, and the sites <span class="math inline">\(2\)</span> and <span class="math inline">\(3\)</span>. It commutes with the Hamiltonian, so the eigenstates are even or odd under it, as in Section <a href="../session2/04-exercises-where-we-guess-eigenstates-from-symmetry-only.html#sec-2-4">2.4</a>. We use the states <span class="math inline">\(|e_\pm\rangle=(|1\rangle\pm|4\rangle)/\sqrt2\)</span> of the two end sites and <span class="math inline">\(|c_\pm\rangle=(|2\rangle\pm|3\rangle)/\sqrt2\)</span> of the two central sites. The bonds <span class="math inline">\(t\)</span> join <span class="math inline">\(|e_\pm\rangle\)</span> with <span class="math inline">\(|c_\pm\rangle\)</span>, and the central bond gives <span class="math inline">\(\langle c_\pm|H|c_\pm\rangle=\pm1\)</span>. In each sector the Hamiltonian is then a matrix of size two,</p>
+<p><span class="math display">\[H_\pm = \begin{pmatrix} 0 &amp; t \\ t &amp; \pm1 \end{pmatrix}.\]</span></p>
+<p>Its eigenvalues are the solutions of <span class="math inline">\(E^2\mp E-t^2=0\)</span>, so the even sector and the odd sector give</p>
+<p><span class="math display">\[E = \frac{1\pm\sqrt{1+4t^2}}{2} \qquad\text{and}\qquad E = \frac{-1\pm\sqrt{1+4t^2}}{2} .\]</span></p>
+<p>For <span class="math inline">\(t\gg1\)</span> the square root is <span class="math inline">\(2t\)</span> up to terms of order <span class="math inline">\(1/t\)</span>, and the four levels are <span class="math inline">\(\pm t\pm\tfrac12\)</span>. These are the levels <span class="math inline">\(\pm t\)</span> of the two dimers, split by the hopping <span class="math inline">\(1/2\)</span> between the dimer states. For <span class="math inline">\(t=4\)</span> the exact values are <span class="math inline">\(\pm3.53\)</span> and <span class="math inline">\(\pm4.53\)</span>. The level closest to zero is <span class="math inline">\(\tfrac12\big(\sqrt{1+4t^2}-1\big)\)</span>, which is about <span class="math inline">\(t-\tfrac12\)</span>. So the gap around zero is about <span class="math inline">\(2t-1\)</span>, and no level is close to zero energy.</p>
+<p>For a measurement it means that the tunneling spectrum of such a chain, which is what STM measures, has no peak at zero bias on any site, also at the two ends. For a calculation it is a check with no free parameter, since the diagonalization of the chain of four sites must give these four numbers. The formula holds for any <span class="math inline">\(t\)</span>, and in Section <a href="09b-the-ssh-chain-in-the-opposite-limit-and-the-zero-modes.html#sec-3-9b">3.9b</a> we will see what changes when <span class="math inline">\(t\)</span> is small.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="widget" data-widget="sshwinding">
 <div class="widget-label">

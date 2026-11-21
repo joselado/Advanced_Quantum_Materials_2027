@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -126,7 +127,10 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
 <p>This is false. A factor 9 is the law of the parabolic band, where <span class="math inline">\(\hbar\omega_c\propto B\)</span>. For graphene it would give <span class="math inline">\(327\,\mathrm{meV}\)</span> at 9 T, and not the <span class="math inline">\(109\,\mathrm{meV}\)</span> of the square-root law.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
-<p>This is true. The energy <a href="#eq-4-7">(4.7)</a> is proportional to <span class="math inline">\(\sqrt{|n|B}\)</span>, so a factor 9 in the field gives a factor 3 in the energy.</p></li>
+<p>This is true. The energy <a href="#eq-4-7">(4.7)</a> is proportional to <span class="math inline">\(\sqrt{|n|B}\)</span>, so a factor 9 in the field gives a factor 3 in the energy.</p>
+<div class="eq-again">
+<p><span class="math display">\[E_n = \text{sgn}(n)\, v_F\sqrt{2\hbar B|n|}, \qquad n = 0,\pm1,\pm2,\dots, \tag{4.7}\]</span></p>
+</div></li>
 </ul>
 </div>
 </details>
@@ -141,6 +145,9 @@ Question
 </div>
 <div class="quiz-q">
 <p>At a fixed field, what is the ratio <span class="math inline">\(E_4/E_1\)</span> of the Dirac Landau levels of <a href="#eq-4-7">(4.7)</a>?</p>
+<div class="eq-again">
+<p><span class="math display">\[E_n = \text{sgn}(n)\, v_F\sqrt{2\hbar B|n|}, \qquad n = 0,\pm1,\pm2,\dots, \tag{4.7}\]</span></p>
+</div>
 </div>
 <div class="quiz-options">
 <ol type="A">

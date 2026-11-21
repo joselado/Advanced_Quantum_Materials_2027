@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -109,6 +110,9 @@ Question
 </div>
 <div class="quiz-q">
 <p>In the density channel the interaction is repulsive, <span class="math inline">\(U&gt;0\)</span>, and <span class="math inline">\(\chi_0\)</span> is positive. How does the RPA response <a href="#eq-9-6">(9.6)</a> compare with <span class="math inline">\(\chi_0\)</span> at the same <span class="math inline">\(q\)</span> and <span class="math inline">\(\omega\)</span>?</p>
+<div class="eq-again">
+<p><span class="math display">\[\chi(q,\omega) = \frac{\chi_0(q,\omega)}{1 + U\,\chi_0(q,\omega)}. \tag{9.6}\]</span></p>
+</div>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -136,6 +140,9 @@ Question
 </div>
 <div class="quiz-q">
 <p>At small <span class="math inline">\(q\)</span> the particle-hole continuum of Figure <a href="#fig:s09:plasmon">9.2</a> shrinks towards <span class="math inline">\(\omega=0\)</span>, while the plasmon of <a href="#eq-9-7">(9.7)</a> stays near <span class="math inline">\(\omega_p\)</span>. Why is the plasmon not damped there?</p>
+<div class="eq-again">
+<p><span class="math display">\[\omega_{\rm pl}(q)^2 = \omega_p^2 + \tfrac{3}{5} v_F^2\, q^2 + O(q^4), \tag{9.7}\]</span></p>
+</div>
 </div>
 <div class="quiz-options">
 <ol type="A">

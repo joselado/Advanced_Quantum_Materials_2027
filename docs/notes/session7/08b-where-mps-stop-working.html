@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -119,7 +120,10 @@ Question
 <figure class="quiz-fig schematic">
 <img src="../figures/web/session07/quench_entropy.svg" loading="lazy" alt="The entropy of half of a chain against time after a quench, rising about linearly and crossing horizontal dashed lines for the bond dimensions 2, 4 and 8." />
 <figcaption>The half-chain entropy after a quench passes each limit <span class="math inline">\(\log M\)</span> at a finite time.</figcaption>
-</figure></li>
+</figure>
+<div class="eq-again">
+<p><span class="math display">\[S \;\le\; \log M. \tag{7.10}\]</span></p>
+</div></li>
 </ul>
 </div>
 </details>

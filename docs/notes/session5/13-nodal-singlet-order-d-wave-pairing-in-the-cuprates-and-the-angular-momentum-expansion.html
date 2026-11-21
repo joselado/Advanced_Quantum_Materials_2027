@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -126,7 +127,10 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
 <p>This is false. A <span class="math inline">\(d\)</span>-wave gap such as <span class="math inline">\(\cos k_x-\cos k_y\)</span> has four lobes. Six lobes of alternating sign cannot be even, because a half turn moves each lobe by three places and flips its sign.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. A half turn moves every lobe by three places, and the sign alternates, so <span class="math inline">\(\Delta(-\mathbf k)=-\Delta(\mathbf k)\)</span>. By <a href="11-the-general-pairing-hamiltonian-and-its-symmetry-classification.html#eq-5-12">(5.12)</a> this is odd parity and a spin triplet, and six lobes mean <span class="math inline">\(L=3\)</span>.</p></li>
+<p>This is true. A half turn moves every lobe by three places, and the sign alternates, so <span class="math inline">\(\Delta(-\mathbf k)=-\Delta(\mathbf k)\)</span>. By <a href="11-the-general-pairing-hamiltonian-and-its-symmetry-classification.html#eq-5-12">(5.12)</a> this is odd parity and a spin triplet, and six lobes mean <span class="math inline">\(L=3\)</span>.</p>
+<div class="eq-again">
+<p><span class="math display">\[\textbf{Spin triplet (odd parity):} \quad \Delta(\mathbf k) = -\Delta(-\mathbf k), \qquad \Delta_{\sigma\sigma&#39;} = +\Delta_{\sigma&#39;\sigma}\ \text{(spin-symmetric)}. \tag{5.12}\]</span></p>
+</div></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
 <p>This is false. A function <span class="math inline">\(\cos3\theta\)</span> has <span class="math inline">\(L=3\)</span> and six lobes. Under <span class="math inline">\(\theta\to\theta+\pi\)</span> it becomes <span class="math inline">\(\cos(3\theta+3\pi)=-\cos3\theta\)</span>, so it is odd and an odd <span class="math inline">\(L\)</span> cannot be a singlet.</p></li>
 </ul>

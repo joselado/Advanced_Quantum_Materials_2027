@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -120,7 +121,10 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
 <p>This is false. The onsite term is <span class="math inline">\(c_nc_n=0\)</span> by the Pauli principle. If we write <span class="math inline">\(\sum_k c_kc_{-k}\)</span> we get zero as well, since <span class="math inline">\(c_kc_{-k}=-c_{-k}c_k\)</span> cancels pairs of terms.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. The Pauli principle gives <span class="math inline">\(c_n^2=0\)</span>, so the pairing lives on a bond. It gives <span class="math inline">\(\Delta(k)=2i\Delta\sin k\)</span>, which is odd, so by <a href="11-the-general-pairing-hamiltonian-and-its-symmetry-classification.html#eq-5-12">(5.12)</a> it is a spinless <span class="math inline">\(p\)</span>-wave state.</p></li>
+<p>This is true. The Pauli principle gives <span class="math inline">\(c_n^2=0\)</span>, so the pairing lives on a bond. It gives <span class="math inline">\(\Delta(k)=2i\Delta\sin k\)</span>, which is odd, so by <a href="11-the-general-pairing-hamiltonian-and-its-symmetry-classification.html#eq-5-12">(5.12)</a> it is a spinless <span class="math inline">\(p\)</span>-wave state.</p>
+<div class="eq-again">
+<p><span class="math display">\[\textbf{Spin triplet (odd parity):} \quad \Delta(\mathbf k) = -\Delta(-\mathbf k), \qquad \Delta_{\sigma\sigma&#39;} = +\Delta_{\sigma&#39;\sigma}\ \text{(spin-symmetric)}. \tag{5.12}\]</span></p>
+</div></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
 <p>This is false. The bond term <span class="math inline">\(c_nc_{n+1}\)</span> changes sign when we exchange the two fermions, so it can only give <span class="math inline">\(\sin k\)</span>. A <span class="math inline">\(\cos k\)</span> function would multiply <span class="math inline">\(c_kc_{-k}\)</span> and cancel, as the sum vanishes by antisymmetry.</p></li>
 </ul>

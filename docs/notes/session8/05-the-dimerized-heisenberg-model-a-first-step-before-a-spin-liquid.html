@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -106,6 +107,11 @@ Question
 </div>
 <div class="quiz-q">
 <p>We turn one singlet of <a href="#eq-8-5">(8.5)</a> into a triplet. What is the spin of this excitation?</p>
+<div class="eq-again">
+<p><span class="math display">\[|\Psi\rangle \sim \bigotimes_n \Big(|{\uparrow_{2n}\downarrow_{2n+1}}\rangle -
+|{\downarrow_{2n}\uparrow_{2n+1}}\rangle\Big), \qquad \langle \mathbf S_i\rangle = 0 \text{ on every
+site}. \tag{8.5}\]</span></p>
+</div>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -133,6 +139,9 @@ Question
 </div>
 <div class="quiz-q">
 <p>We add a weak coupling between the dimers of <a href="#eq-8-4">(8.4)</a>. What happens to the ground state?</p>
+<div class="eq-again">
+<p><span class="math display">\[H = \sum_n J\, \mathbf S_{2n}\cdot \mathbf S_{2n+1}, \qquad J&gt;0. \tag{8.4}\]</span></p>
+</div>
 </div>
 <div class="quiz-options">
 <ol type="A">

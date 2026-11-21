@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -84,23 +85,75 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="on" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 3. Topological Band Structure Theory</a></p>
 <h1 id="sec-3-10"><span class="num">3.10a</span> Chern insulators without Landau levels from a gapped Dirac cone</h1>
+<p>Can an ordinary band structure on a lattice have a finite Chern number, with no magnetic field and no Landau levels? We will now see that the answer is in the gapped Dirac cones of the lattice. Each cone gives half an integer, with a sign set by its mass, and the way in which the halves of the two cones add decides whether the lattice is a Chern insulator.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[\sigma_{xy} = \frac{e^2}{h}\, C, \qquad
+C = \sum_{n\ \text{filled}} \frac{1}{2\pi}\int_{\text{BZ}} \Omega_n(k)\, d^2k. \tag{3.4}\]</span></p>
+</div>
+<p>This is the Hall conductivity of Section <a href="05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#sec-3-5">3.5</a>. The integer <span class="math inline">\(C\)</span> is the Chern number, and <span class="math inline">\(\Omega_n(k)=-2\,\mathrm{Im}\,\langle\partial_{k_x}u_n|\partial_{k_y}u_n\rangle\)</span> is the Berry curvature of the filled band <span class="math inline">\(n\)</span>, which is built from its Bloch states <span class="math inline">\(|u_n(k)\rangle\)</span>.</p>
+</div>
 <p>Now we come back to the question from the beginning of the session. A Chern insulator needs a broken time-reversal symmetry. In fact, one can show directly from <a href="05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#eq-3-4">(3.4)</a> that <span class="math inline">\(\sigma_{xy}\equiv 0\)</span> whenever time-reversal symmetry holds, since time reversal changes the sign of the Berry curvature. However, nothing in the derivation of the Chern number required a magnetic field or Landau levels. So the question is if we can obtain a finite Chern number from an ordinary lattice band structure, using only terms that break time-reversal symmetry and that are entirely inside the lattice itself.</p>
 <p>The method is to look for a lattice that has a <strong>massive Dirac equation</strong> in its low-energy expansion. Several two-dimensional lattices have massless Dirac points in their band structure, such as the honeycomb lattice, the kagome lattice and a square lattice with <span class="math inline">\(\pi\)</span>-flux. This is the same Dirac cone that we derived for graphene in Section <a href="../session2/11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#sec-2-11">2.11</a>. Close to one such point, the low-energy Hamiltonian has the form</p>
 <p><span id="eq-3-7" class="eq"><span class="math display">\[H(k) = k_x\,\sigma_x + \lambda\, k_y\,\sigma_y + m\,\sigma_z, \tag{3.7}\]</span></span></p>
-<p>with <span class="math inline">\(\lambda = \pm 1\)</span> fixed by the chirality of the lattice at this Dirac point, and <span class="math inline">\(m\)</span> a mass term that opens a gap, <span class="math inline">\(E_\pm(k) = \pm\sqrt{k_x^2+k_y^2+m^2}\)</span>. We compute the Berry curvature of the lower band and integrate it, with the same procedure as in <a href="05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#eq-3-4">(3.4)</a> but now over the small region of momentum space where the curvature is concentrated. This gives the Chern number of this single gapped Dirac cone,</p>
+<p>with <span class="math inline">\(\lambda = \pm 1\)</span> fixed by the chirality of the lattice at this Dirac point, and <span class="math inline">\(m\)</span> a mass term that opens a gap, <span class="math inline">\(E_\pm(k) = \pm\sqrt{k_x^2+k_y^2+m^2}\)</span>. We compute the Berry curvature of the lower band and integrate it, with the same procedure as in <a href="05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#eq-3-4">(3.4)</a> but now over the small region of momentum space where the curvature is concentrated.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>The Chern number of a single gapped Dirac cone <a href="#eq-3-7">(3.7)</a> is</p>
 <p><span id="eq-3-8" class="eq"><span class="math display">\[C_{\text{Dirac}} = \frac{1}{2}\,\mathrm{sgn}(m)\,\mathrm{sgn}(\lambda). \tag{3.8}\]</span></span></p>
-<p>Let us see what <a href="#eq-3-8">(3.8)</a> means for one cone, in <a href="#sch:s03:dirac_mass">Schematic 3.8</a>. The bands do not know the sign of <span class="math inline">\(m\)</span>, but the Berry curvature does.</p>
+<p>It is half an integer. Its sign is the sign of the mass <span class="math inline">\(m\)</span> times the chirality <span class="math inline">\(\lambda\)</span>, and it does not depend on the size of the gap <span class="math inline">\(2|m|\)</span>.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the massive Dirac Hamiltonian (3.7) to the half-integer (3.8)</span></summary>
+<div class="fold-body">
+<p>The first step is to write the Berry curvature <span class="math inline">\(\Omega=-2\,\mathrm{Im}\,\langle\partial_{k_x}u|\partial_{k_y}u\rangle\)</span> with matrix elements of the derivatives of <span class="math inline">\(H\)</span>. The Hamiltonian <a href="#eq-3-7">(3.7)</a> has two bands, the lower one <span class="math inline">\(|-\rangle\)</span> and the upper one <span class="math inline">\(|+\rangle\)</span>, with the energies <span class="math inline">\(\mp\epsilon\)</span> and <span class="math inline">\(\epsilon=\sqrt{k^2+m^2}\)</span>. We insert the two bands between the two derivatives. The term with the band itself is real, so it drops from the imaginary part, and <a href="05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#eq-3-3">(3.3)</a> turns the other term into matrix elements of <span class="math inline">\(\partial_{k_x}H=\sigma_x\)</span> and <span class="math inline">\(\partial_{k_y}H=\lambda\,\sigma_y\)</span>, divided by the energy difference <span class="math inline">\(2\epsilon\)</span>. The curvature of the lower band is then</p>
+<p><span class="math display">\[\Omega_-(k) = -2\,\mathrm{Im}\,\frac{\langle -|\sigma_x|+\rangle\,\langle +|\lambda\,\sigma_y|-\rangle}{(2\epsilon)^2}.\]</span></p>
+<p>The simplest point is the Dirac point, <span class="math inline">\(k=0\)</span>, with <span class="math inline">\(m&gt;0\)</span>. There <span class="math inline">\(H=m\,\sigma_z\)</span>, so the lower state is <span class="math inline">\(|-\rangle=(0,1)\)</span> and the upper state is <span class="math inline">\(|+\rangle=(1,0)\)</span>. The two matrix elements are <span class="math inline">\(\langle-|\sigma_x|+\rangle=1\)</span> and <span class="math inline">\(\langle+|\sigma_y|-\rangle=-i\)</span>, and</p>
+<p><span class="math display">\[\Omega_-(0) = -2\,\mathrm{Im}\,\frac{\lambda\,(-i)}{4m^2} = \frac{\lambda}{2m^2}.\]</span></p>
+<p>For <span class="math inline">\(m&lt;0\)</span> the two states are exchanged, the second matrix element is <span class="math inline">\(+i\)</span>, and <span class="math inline">\(\Omega_-(0)\)</span> changes sign.</p>
+<p>The second step is a point away from the Dirac point. A rotation of <span class="math inline">\(k\)</span> by any angle is the same as a rotation of the Pauli matrices around the <span class="math inline">\(z\)</span> axis, which does not change <span class="math inline">\(m\,\sigma_z\)</span>. The curvature then depends only on the size of <span class="math inline">\(k\)</span>, and it is enough to take <span class="math inline">\(k=(k,0)\)</span>, where <span class="math inline">\(H=k\,\sigma_x+m\,\sigma_z\)</span> is a real matrix. With the angle <span class="math inline">\(\theta\)</span> defined by <span class="math inline">\(\cos\theta=m/\epsilon\)</span> and <span class="math inline">\(\sin\theta=k/\epsilon\)</span>, its eigenvectors are</p>
+<p><span class="math display">\[|+\rangle = \begin{pmatrix}\cos\frac{\theta}{2}\\[2pt] \sin\frac{\theta}{2}\end{pmatrix}, \qquad
+|-\rangle = \begin{pmatrix}-\sin\frac{\theta}{2}\\[2pt] \cos\frac{\theta}{2}\end{pmatrix}.\]</span></p>
+<p>The two matrix elements are <span class="math inline">\(\langle-|\sigma_x|+\rangle=\cos^2\frac{\theta}{2}-\sin^2\frac{\theta}{2}=\cos\theta\)</span> and <span class="math inline">\(\langle+|\sigma_y|-\rangle=-i\)</span>, which gives</p>
+<p><span class="math display">\[\Omega_-(k) = \frac{\lambda\cos\theta}{2\,\epsilon^2} = \frac{\lambda\,m}{2\,(k^2+m^2)^{3/2}}.\]</span></p>
+<p>This is a peak at the Dirac point, with the height <span class="math inline">\(1/2m^2\)</span>, a width of the order of <span class="math inline">\(|m|\)</span> and the sign of <span class="math inline">\(\lambda m\)</span>.</p>
+<p>The last step is the integral over the plane, with <span class="math inline">\(d^2k=2\pi k\,dk\)</span>,</p>
+<p><span class="math display">\[C_{\text{Dirac}} = \frac{1}{2\pi}\int\Omega_-\,d^2k = \frac{\lambda m}{2}\int_0^\infty\frac{k\,dk}{(k^2+m^2)^{3/2}}
+= \frac{\lambda m}{2}\left[-\frac{1}{\sqrt{k^2+m^2}}\right]_0^\infty = \frac{\lambda\,m}{2\,|m|},\]</span></p>
+<p>which is <a href="#eq-3-8">(3.8)</a>. The same integral up to a finite radius <span class="math inline">\(K\)</span> gives <span class="math inline">\(\tfrac12\,\mathrm{sgn}(\lambda m)\,\big(1-|m|/\sqrt{K^2+m^2}\big)\)</span>. So <span class="math inline">\(90\%\)</span> of the half-integer is inside <span class="math inline">\(K\approx10\,|m|\)</span>, and the Dirac form <a href="#eq-3-7">(3.7)</a> has to hold up to these momenta. This is a small part of the Brillouin zone only when the gap is small compared with the width of the bands.</p>
+</div>
+</details>
+</div>
+<p>Let us see what <a href="#eq-3-8">(3.8)</a> means for one cone, in <a href="#sch:s03:dirac_mass">Schematic 3.12</a>. The bands do not know the sign of <span class="math inline">\(m\)</span>, but the Berry curvature does.</p>
 <figure id="sch:s03:dirac_mass" class="schematic">
 <img src="../figures/web/session03/dirac_mass.svg" loading="lazy" alt="Left, the two bands of a gapped Dirac cone. Right, the Berry curvature of the lower band, a positive peak for positive mass and a negative peak for negative mass." />
-<figcaption><strong>Schematic 3.8.</strong> A single gapped Dirac cone <span class="math inline">\(H=k_x\sigma_x+\lambda k_y\sigma_y+m\sigma_z\)</span> of <a href="#eq-3-7">(3.7)</a> with <span class="math inline">\(\lambda=+1\)</span>, in units of <span class="math inline">\(|m|\)</span>. In (a) the bands are <span class="math inline">\(\pm\sqrt{k^2+m^2}\)</span>, the same for both signs of <span class="math inline">\(m\)</span>, and the dotted lines are the massless cone. In (b) the Berry curvature of the lower band is <span class="math inline">\(\Omega=\lambda m/2(k^2+m^2)^{3/2}\)</span>, and its integral over the plane divided by <span class="math inline">\(2\pi\)</span> is <span class="math inline">\(\pm\tfrac12\)</span>, as in <a href="#eq-3-8">(3.8)</a>. Look at how the same bands give opposite curvature, since the sign of <span class="math inline">\(C\)</span> is in the wavefunctions and not in the energies.</figcaption>
+<figcaption><strong>Schematic 3.12.</strong> A single gapped Dirac cone <span class="math inline">\(H=k_x\sigma_x+\lambda k_y\sigma_y+m\sigma_z\)</span> of <a href="#eq-3-7">(3.7)</a> with <span class="math inline">\(\lambda=+1\)</span>, in units of <span class="math inline">\(|m|\)</span>. In (a) the bands are <span class="math inline">\(\pm\sqrt{k^2+m^2}\)</span>, the same for both signs of <span class="math inline">\(m\)</span>, and the dotted lines are the massless cone. In (b) the Berry curvature of the lower band is <span class="math inline">\(\Omega=\lambda m/2(k^2+m^2)^{3/2}\)</span>, and its integral over the plane divided by <span class="math inline">\(2\pi\)</span> is <span class="math inline">\(\pm\tfrac12\)</span>, as in <a href="#eq-3-8">(3.8)</a>. Look at how the same bands give opposite curvature, since the sign of <span class="math inline">\(C\)</span> is in the wavefunctions and not in the energies.</figcaption>
 </figure>
 <p>The half-integer in <a href="#eq-3-8">(3.8)</a> is not an inconsistency. A real lattice always has an even number of Dirac points related by time-reversal symmetry, and the honeycomb lattice has two, which are usually called <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span>. Only the <em>sum</em> of their contributions needs to be an integer.</p>
+<figure class="again panel">
+<img src="../figures/panel/s02f04_dirac_c.svg" loading="lazy" alt="Two Dirac cones at the corners of the hexagonal Brillouin zone of the honeycomb lattice." />
+<figcaption><strong><a href="../session2/11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#fig:s02:dirac">Figure 2.5</a>, one panel shown again.</strong> The two Dirac cones of the honeycomb lattice, at <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span>, drawn over the Brillouin zone. These are the points where a mass term of <a href="#eq-3-7">(3.7)</a> opens a gap. Look at the two cones, since a staggered potential gives the same mass at both, while <span class="math inline">\(\lambda\)</span> has opposite signs.</figcaption>
+</figure>
+<p>This is where the choice of the mass term matters, and we will work out the two natural choices explicitly, because they give qualitatively different physics. At <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span> the chirality <span class="math inline">\(\lambda\)</span> has opposite sign, since the two points are time-reversal partners. Let us first open the gap with a staggered sublattice potential, which raises the onsite energy on one honeycomb sublattice and lowers it on the other. This mass term is an ordinary scalar potential, so it has the <em>same</em> sign <span class="math inline">\(m\)</span> at both <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span>. From <a href="#eq-3-8">(3.8)</a>, the two Dirac points then give Chern numbers of opposite sign, <span class="math inline">\(+\tfrac12\,\mathrm{sgn}(m)\)</span> and <span class="math inline">\(-\tfrac12\,\mathrm{sgn}(m)\)</span>, which cancel. The result is <span class="math inline">\(C=0\)</span>, which is an ordinary insulator that is topologically trivial, and this is the same kind of gap as in boron nitride.</p>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>A gap of this trivial kind has been reported in graphene itself. In graphene grown epitaxially on a SiC substrate a gap of about <span class="math inline">\(0.26\)</span> eV appears in the electronic spectrum, and it decreases as the number of layers grows. The authors propose that the gap comes from the breaking of the sublattice symmetry by the substrate. This is the staggered potential of this page, and with <a href="#eq-3-7">(3.7)</a> the gap is <span class="math inline">\(2|m|\approx0.26\)</span> eV. Such a gap has <span class="math inline">\(C=0\)</span>, so it gives no quantized Hall conductivity. The measurement is in <a href="https://www.nature.com/articles/nmat2003">this article</a>.</p>
+</div>
 <div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>A massive Dirac cone with <span class="math inline">\(\lambda=+1\)</span> has Chern number <span class="math inline">\(+\tfrac12\)</span> for <span class="math inline">\(m&gt;0\)</span>. What is its Chern number for <span class="math inline">\(m&lt;0\)</span> with the same <span class="math inline">\(\lambda\)</span>?</p>
+<p>A gapped Dirac cone has the Hamiltonian</p>
+<p><span class="math display">\[H(k) = k_x\,\sigma_x + \lambda\, k_y\,\sigma_y + m\,\sigma_z,\]</span></p>
+<p>with the mass <span class="math inline">\(m\)</span> and the chirality <span class="math inline">\(\lambda=\pm1\)</span>. For <span class="math inline">\(\lambda=+1\)</span> and <span class="math inline">\(m&gt;0\)</span> its lower band has the Chern number <span class="math inline">\(+\tfrac12\)</span>. What is the Chern number for <span class="math inline">\(m&lt;0\)</span> and the same <span class="math inline">\(\lambda\)</span>?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -117,27 +170,81 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
 <p>This is false. The curvature is proportional to <span class="math inline">\(m\)</span>, so it is odd in <span class="math inline">\(m\)</span>. The gap <span class="math inline">\(2|m|\)</span> is the same for <span class="math inline">\(m=0.1\)</span> and <span class="math inline">\(m=-0.1\)</span>, but the Berry curvature has the opposite sign and so does <span class="math inline">\(C\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
-<p>This is true. The Chern number <a href="#eq-3-8">(3.8)</a> is <span class="math inline">\(\tfrac12\,\mathrm{sgn}(m)\,\mathrm{sgn}(\lambda)\)</span>. It depends on the sign of the mass and not on its size, so a change of sign of <span class="math inline">\(m\)</span> changes the sign of <span class="math inline">\(C\)</span>.</p></li>
+<p>This is true. The Chern number of one cone is <span class="math inline">\(\tfrac12\,\mathrm{sgn}(m)\,\mathrm{sgn}(\lambda)\)</span>. It depends on the sign of the mass and not on its size, so a change of sign of <span class="math inline">\(m\)</span> changes the sign of <span class="math inline">\(C\)</span>.</p></li>
 </ul>
 </div>
 </details>
 </div>
-<figure class="again panel">
-<img src="../figures/panel/s02f04_dirac_c.svg" loading="lazy" alt="Two Dirac cones at the corners of the hexagonal Brillouin zone of the honeycomb lattice." />
-<figcaption><strong><a href="../session2/11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#fig:s02:dirac">Figure 2.5</a>, one panel shown again.</strong> The two Dirac cones of the honeycomb lattice, at <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span>, drawn over the Brillouin zone. These are the points where a mass term of <a href="#eq-3-7">(3.7)</a> opens a gap. Look at the two cones, since a staggered potential gives the same mass at both, while <span class="math inline">\(\lambda\)</span> has opposite signs.</figcaption>
-</figure>
 <div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>A lattice model has a single massive Dirac cone at low energy and no other states close to the gap. Can its filled band have <span class="math inline">\(\sigma_{xy}=e^2/2h\)</span>?</p>
+<p>The Berry curvature of the lower band of a gapped Dirac cone is</p>
+<p><span class="math display">\[\Omega(k) = \frac{m}{2\,(k^2+m^2)^{3/2}},\]</span></p>
+<p>where <span class="math inline">\(m\)</span> is the mass and <span class="math inline">\(k\)</span> is the distance to the Dirac point. We make the mass ten times smaller, from <span class="math inline">\(m=1\)</span> to <span class="math inline">\(m=0.1\)</span>. What happens to the integral of <span class="math inline">\(\Omega\)</span> over the plane?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li>Yes, since <a href="#eq-3-8">(3.8)</a> gives the value <span class="math inline">\(1/2\)</span>.</li>
+<li>It becomes ten times smaller, as the gap does.</li>
+<li>It becomes a hundred times larger, as the height of the peak does.</li>
+<li>It does not change.</li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. For <span class="math inline">\(m=1\)</span> the peak has the height <span class="math inline">\(0.5\)</span>, and for <span class="math inline">\(m=0.1\)</span> it has the height <span class="math inline">\(50\)</span>. The integral over the plane is <span class="math inline">\(\pi\)</span> for both, which is <span class="math inline">\(C=\tfrac12\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The peak is <span class="math inline">\(100\)</span> times higher, but its width is <span class="math inline">\(|m|\)</span>, so the area where it sits is <span class="math inline">\(100\)</span> times smaller. For both masses one half of the integral is inside the radius <span class="math inline">\(k=\sqrt3\,|m|\)</span>, which is <span class="math inline">\(1.73\)</span> for <span class="math inline">\(m=1\)</span> and <span class="math inline">\(0.173\)</span> for <span class="math inline">\(m=0.1\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. The integral is <span class="math inline">\(\pi\,\mathrm{sgn}(m)\)</span> for any size of the mass. A smaller mass gives a higher and narrower peak with the same area, so a small gap needs a fine k-mesh around the Dirac point.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="quiz" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>One gapped Dirac cone gives the Chern number</p>
+<p><span class="math display">\[C_{\text{Dirac}} = \tfrac12\,\mathrm{sgn}(m)\,\mathrm{sgn}(\lambda),\]</span></p>
+<p>with the mass <span class="math inline">\(m\)</span> and the chirality <span class="math inline">\(\lambda\)</span>. A staggered potential gives <span class="math inline">\(m=0.5\)</span> at both cones of the honeycomb lattice. The two cones have <span class="math inline">\(\lambda=+1\)</span> and <span class="math inline">\(\lambda=-1\)</span>. What is the total Chern number?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(C=\tfrac12+\tfrac12=1\)</span></li>
+<li><span class="math inline">\(C=\tfrac12-\tfrac12=0\)</span></li>
+<li><span class="math inline">\(C=\tfrac12\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The cone with <span class="math inline">\(\lambda=-1\)</span> gives <span class="math inline">\(\tfrac12\cdot(+1)\cdot(-1)=-\tfrac12\)</span> and not <span class="math inline">\(+\tfrac12\)</span>. On the lattice with a staggered potential of <span class="math inline">\(0.5\)</span>, the sum of the Berry curvature over a mesh of 60 by 60 points gives <span class="math inline">\(C=0.000\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The mass has the same sign at both cones and the chirality has opposite signs, so the two halves cancel. This is an ordinary insulator, with the same kind of gap as boron nitride.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. Both cones have a gap, so both give their half, and the Chern number of a filled band of a lattice is an integer. A total of <span class="math inline">\(\tfrac12\)</span> would need the second cone to give <span class="math inline">\(0\)</span>, but a cone with <span class="math inline">\(m=0.5\)</span> gives <span class="math inline">\(\pm\tfrac12\)</span>.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="quiz" data-correct="C" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>A lattice model has one gapped Dirac cone and no other states near the gap. The cone alone gives the Chern number <span class="math inline">\(\tfrac12\)</span>. Can the filled band have <span class="math inline">\(\sigma_{xy}=e^2/2h\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li>Yes, since the cone gives the value <span class="math inline">\(\tfrac12\)</span>.</li>
 <li>No, since a single Dirac cone cannot have a gap.</li>
-<li>No, since on a lattice the Chern number of a filled band is an integer, so the half of one cone is completed elsewhere in the zone.</li>
+<li>No, since the Chern number of a filled band of a lattice is an integer.</li>
 </ol>
 </div>
 <details class="quiz-answer"><summary>Show the answers</summary>
@@ -148,12 +255,29 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
 <p>This is false. The term <span class="math inline">\(m\sigma_z\)</span> gives the spectrum <span class="math inline">\(\pm\sqrt{k^2+m^2}\)</span> with a gap <span class="math inline">\(2|m|\)</span> for a single cone. The reason is not the gap, but the integer quantization of <span class="math inline">\(C\)</span> on a lattice.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
-<p>This is true. The Chern number of a filled band on a lattice is an integer. The half of <a href="#eq-3-8">(3.8)</a> is completed by the rest of the zone. This is either a second cone, like <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span> in the honeycomb lattice, or the massive part of the band, as in the model above.</p></li>
+<p>This is true. The half of the cone is completed by the rest of the zone. This is either a second cone, like <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span> in the honeycomb lattice, or the part of the band far from the cone. An example of the second case is the model with <span class="math inline">\(\mathbf d=(\sin k_x,\sin k_y,m+\cos k_x+\cos k_y)\)</span> and <span class="math inline">\(m=-1.9\)</span>, where one cone with mass <span class="math inline">\(0.1\)</span> comes with <span class="math inline">\(|C|=1\)</span>.</p></li>
 </ul>
 </div>
 </details>
 </div>
-<p>This is where the choice of the mass term matters, and we will work out the two natural choices explicitly, because they give qualitatively different physics. At <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span> the chirality <span class="math inline">\(\lambda\)</span> has opposite sign, since the two points are time-reversal partners. Let us first open the gap with a staggered sublattice potential, which raises the onsite energy on one honeycomb sublattice and lowers it on the other. This mass term is an ordinary scalar potential, so it has the <em>same</em> sign <span class="math inline">\(m\)</span> at both <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span>. From <a href="#eq-3-8">(3.8)</a>, the two Dirac points then give Chern numbers of opposite sign, <span class="math inline">\(+\tfrac12\,\mathrm{sgn}(m)\)</span> and <span class="math inline">\(-\tfrac12\,\mathrm{sgn}(m)\)</span>, which cancel. The result is <span class="math inline">\(C=0\)</span>, which is an ordinary insulator that is topologically trivial, and this is the same kind of gap as in boron nitride.</p>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>For electrons without spin, time-reversal symmetry means that the Bloch Hamiltonian obeys <span class="math inline">\(H(-k)=H(k)^*\)</span>. Show that the Berry curvature of a band is then odd, <span class="math inline">\(\Omega_n(-k)=-\Omega_n(k)\)</span>, and that the Chern number of <a href="05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#eq-3-4">(3.4)</a> vanishes.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>We take the complex conjugate of <span class="math inline">\(H(k)|u_n(k)\rangle=\varepsilon_n(k)|u_n(k)\rangle\)</span> and we use <span class="math inline">\(H(k)^*=H(-k)\)</span>. This gives <span class="math inline">\(H(-k)\,|u_n(k)\rangle^*=\varepsilon_n(k)\,|u_n(k)\rangle^*\)</span>. For a band that is not degenerate, the state at <span class="math inline">\(-k\)</span> is then the complex conjugate of the state at <span class="math inline">\(k\)</span>, with the same energy,</p>
+<p><span class="math display">\[|u_n(-k)\rangle = |u_n(k)\rangle^* ,\]</span></p>
+<p>up to a phase, which does not change the curvature. Now we take the derivative with respect to <span class="math inline">\(k_\mu\)</span>. The left side depends on <span class="math inline">\(k\)</span> through <span class="math inline">\(-k\)</span>, so the chain rule gives a minus sign, and the derivative of the state at <span class="math inline">\(-k\)</span> is <span class="math inline">\(-\big(|\partial_\mu u_n(k)\rangle\big)^*\)</span>. In the overlap of two derivatives the two minus signs cancel and the complex conjugation stays,</p>
+<p><span class="math display">\[\langle\partial_x u_n|\partial_y u_n\rangle\big|_{-k} = \Big(\langle\partial_x u_n|\partial_y u_n\rangle\big|_{k}\Big)^* .\]</span></p>
+<p>The curvature is <span class="math inline">\(-2\)</span> times the imaginary part of this overlap, and the imaginary part changes sign under complex conjugation, so <span class="math inline">\(\Omega_n(-k)=-\Omega_n(k)\)</span>. The Brillouin zone contains <span class="math inline">\(-k\)</span> for every <span class="math inline">\(k\)</span>, so the integral of an odd function over it is zero, and <span class="math inline">\(C=0\)</span> for every band.</p>
+<p>This is the reason why a Chern insulator needs magnetism or a magnetic field, and why a material with time-reversal symmetry has no Hall conductivity at zero field. It is also a check for a calculation. The two Dirac points of the honeycomb lattice are at <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;=-K\)</span>, and a staggered potential is real, so the Berry curvature that we compute at <span class="math inline">\(K&#39;\)</span> must be minus the one at <span class="math inline">\(K\)</span>.</p>
+</div>
+</details>
+</div>
+</div>
 <div class="tryit">
 <p><strong>Try it.</strong> Run the cell with <code>h.add_sublattice_imbalance(0.5)</code> and look at the Berry curvature, which has opposite colors around K and K’. Change the value to <code>-0.5</code>. Both colors are exchanged, and <code>h.get_chern(nk=60)</code> still gives 0, as the cancellation of <a href="#eq-3-8">(3.8)</a> predicts.</p>
 <div class="tryit-links">

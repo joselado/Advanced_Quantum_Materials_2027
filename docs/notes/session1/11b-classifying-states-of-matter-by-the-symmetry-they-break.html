@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -191,7 +192,11 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
-<p>This is true. The Kerr signal is odd under time reversal, so it can be nonzero only if the state is not invariant under <span class="math inline">\(\hat T\)</span>. This is the experimental version of the test in <a href="#eq-1-4">(1.4)</a>.</p></li>
+<p>This is true. The Kerr signal is odd under time reversal, so it can be nonzero only if the state is not invariant under <span class="math inline">\(\hat T\)</span>. This is the experimental version of the test in <a href="#eq-1-4">(1.4)</a>.</p>
+<div class="eq-again">
+<p><span class="math display">\[\hat T|\Psi\rangle = |\Psi\rangle \;\Rightarrow\; \text{not magnetic}, \qquad
+\hat T|\Psi\rangle \neq |\Psi\rangle \;\Rightarrow\; \text{magnetic}. \tag{1.4}\]</span></p>
+</div></li>
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
 <p>This is false. A nonmagnetic crystal without inversion, such as GaAs, breaks inversion and keeps <span class="math inline">\(\hat T\)</span>. It shows no Kerr rotation at zero field.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>

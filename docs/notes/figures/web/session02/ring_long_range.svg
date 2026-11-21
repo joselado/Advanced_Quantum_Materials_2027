@@ -201,36 +201,9 @@ z
     </g>
    </g>
    <g id="text_3">
-    <!-- $+t_2$ -->
-    <g style="fill: #a82a22" transform="translate(8.285138 139.807416) scale(0.105 -0.105)">
+    <!-- $t_2$ -->
+    <g style="fill: #a82a22" transform="translate(12.380138 139.807416) scale(0.105 -0.105)">
      <defs>
-      <path id="Cmr10-4c" d="M 481 1472 
-Q 428 1472 393 1512 
-Q 359 1553 359 1600 
-Q 359 1647 393 1687 
-Q 428 1728 481 1728 
-L 2363 1728 
-L 2363 3616 
-Q 2363 3666 2400 3698 
-Q 2438 3731 2491 3731 
-Q 2538 3731 2578 3698 
-Q 2619 3666 2619 3616 
-L 2619 1728 
-L 4500 1728 
-Q 4547 1728 4581 1687 
-Q 4616 1647 4616 1600 
-Q 4616 1553 4581 1512 
-Q 4547 1472 4500 1472 
-L 2619 1472 
-L 2619 -416 
-Q 2619 -466 2578 -498 
-Q 2538 -531 2491 -531 
-Q 2438 -531 2400 -498 
-Q 2363 -466 2363 -416 
-L 2363 1472 
-L 481 1472 
-z
-" transform="scale(0.015625)"/>
       <path id="Cmr10-31" d="M 319 0 
 L 319 172 
 Q 319 188 331 206 
@@ -273,9 +246,8 @@ L 319 0
 z
 " transform="scale(0.015625)"/>
      </defs>
-     <use xlink:href="#Cmr10-4c" transform="translate(0 0.40625)"/>
-     <use xlink:href="#Cmmi10-30" transform="translate(77.685547 0.40625)"/>
-     <use xlink:href="#Cmr10-31" transform="translate(113.769531 -14.593712) scale(0.7)"/>
+     <use xlink:href="#Cmmi10-30" transform="translate(0 0.40625)"/>
+     <use xlink:href="#Cmr10-31" transform="translate(36.083984 -14.593712) scale(0.7)"/>
     </g>
    </g>
   </g>

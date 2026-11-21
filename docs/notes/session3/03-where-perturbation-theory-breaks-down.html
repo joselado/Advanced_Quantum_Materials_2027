@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -84,11 +85,30 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="on" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 3. Topological Band Structure Theory</a></p>
 <h1 id="sec-3-3"><span class="num">3.3</span> Where perturbation theory breaks down</h1>
+<p>When can we trust the expansion <a href="02-linear-response-theory-and-how-a-measurement-reads-the-wavefunctions.html#eq-3-1">(3.1)</a>? We will now see that the perturbation has to be small compared with the distance between the levels. In three important cases of this course this is not true, and no finite order of the expansion gives the answer.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[|n\rangle_\lambda = |n\rangle + \lambda \sum_{m \neq n} \alpha_m\, |m\rangle + \mathcal{O}(\lambda^2),
+\qquad \alpha_m = \frac{\langle m|V|n\rangle}{\varepsilon_n - \varepsilon_m}. \tag{3.1}\]</span></p>
+</div>
+<p>This is the first-order result of Section <a href="02-linear-response-theory-and-how-a-measurement-reads-the-wavefunctions.html#sec-3-2">3.2</a>. A perturbation <span class="math inline">\(\lambda V\)</span> mixes the other states <span class="math inline">\(|m\rangle\)</span> of the unperturbed Hamiltonian <span class="math inline">\(H_0\)</span> into the state <span class="math inline">\(|n\rangle\)</span>, with the amplitude <span class="math inline">\(\lambda\alpha_m\)</span>. The energies <span class="math inline">\(\varepsilon_n\)</span> and <span class="math inline">\(\varepsilon_m\)</span> are the ones of <span class="math inline">\(H_0\)</span>.</p>
+</div>
 <p>Before we use <a href="02-linear-response-theory-and-how-a-measurement-reads-the-wavefunctions.html#eq-3-1">(3.1)</a>, we should say when it fails, because several of the most important phenomena in this course appear in this failure. The expansion <a href="02-linear-response-theory-and-how-a-measurement-reads-the-wavefunctions.html#eq-3-1">(3.1)</a> assumes that we are in the <em>perturbative regime</em>, where a small change in the input, which is the strength of the perturbation, gives a small change in the output. This is not always the case. We name three cases now, because we will see each of them in detail later in the course. The simplest example is a system of two levels, which is shown in <a href="#sch:s03:perturb_gap">Schematic 3.3</a>.</p>
 <figure id="sch:s03:perturb_gap" class="schematic">
 <img src="../figures/web/session03/perturb_gap.svg" loading="lazy" alt="Two curves against the ratio of the perturbation to the level spacing, a straight dashed line for the first order and a curve that bends over and saturates for the exact result." />
 <figcaption><strong>Schematic 3.3.</strong> Two levels at <span class="math inline">\(-\Delta\)</span> and <span class="math inline">\(+\Delta\)</span> that are coupled by a perturbation <span class="math inline">\(\lambda V\)</span>. The red dashed line is the amplitude of the first-order term of <a href="02-linear-response-theory-and-how-a-measurement-reads-the-wavefunctions.html#eq-3-1">(3.1)</a>, which grows linearly with <span class="math inline">\(\lambda V/\Delta\)</span>. The blue line is the exact amplitude of the upper level in the perturbed ground state, which saturates at <span class="math inline">\(1/\sqrt{2}\)</span>. The two agree within a few percent only in the shaded region. Look at where the lines separate, since this is where a finite order of the expansion is not enough.</figcaption>
 </figure>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>The first-order result <a href="02-linear-response-theory-and-how-a-measurement-reads-the-wavefunctions.html#eq-3-1">(3.1)</a> needs every amplitude in it to be small,</p>
+<p><span class="math display">\[\lambda\,|\langle m|V|n\rangle| \ll |\varepsilon_n-\varepsilon_m| \qquad \text{for every } m\neq n.\]</span></p>
+<p>The perturbation has to be small compared with the distance to every other level, and a gap protects the expansion. In a metal this condition is not enough, since the number of states with a small amplitude grows with the size of the system.</p>
+</div>
 <ul>
 <li><p>An impurity in a metal gives rise to the <strong>orthogonality catastrophe</strong>. In a large metal the many-body ground state after the perturbation becomes orthogonal to the original ground state, even for a very small perturbation. So no Taylor expansion of finite order in <span class="math inline">\(\lambda\)</span> can connect the two.</p></li>
 <li><p>A quantum spin, which is a local magnetic moment, coupled to a metal gives rise to the <strong>Kondo effect</strong>. The relevant energy scale, which is the Kondo temperature, is a non-perturbative function of the coupling constant, and no order of perturbation theory in this coupling gives it. We will study the Kondo impurity and the Kondo lattice in detail in Section <a href="../session8/11-from-a-single-kondo-impurity-to-the-kondo-lattice.html#sec-8-11">8.11</a>, and here we only mention it as a first sign that ordinary perturbation theory has a strict limit.</p></li>
@@ -105,7 +125,7 @@
 Question
 </div>
 <div class="quiz-q">
-<p>An impurity in a large metal changes the ground state so that the new ground state is orthogonal to the old one. Why can no finite order of the expansion in <span class="math inline">\(\lambda\)</span> describe this?</p>
+<p>We put an impurity of strength <span class="math inline">\(\lambda\)</span> in a large metal. The new ground state is orthogonal to the old one. Why can no finite order of the expansion in <span class="math inline">\(\lambda\)</span> describe this?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -118,29 +138,65 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
-<p>This is false. An impurity also breaks the translation symmetry of an insulator with a gap <span class="math inline">\(\Delta\)</span>. There the new ground state keeps an overlap close to one with the old one, and perturbation theory works for <span class="math inline">\(\lambda\ll\Delta\)</span>.</p></li>
+<p>This is false. An impurity also breaks the translation symmetry of an insulator. Take a ring with hopping <span class="math inline">\(1\)</span>, a staggered potential <span class="math inline">\(\pm1\)</span> and an impurity of strength <span class="math inline">\(1\)</span>. The overlap of the two ground states is <span class="math inline">\(0.996\)</span> for <span class="math inline">\(10\)</span> sites and also for <span class="math inline">\(1026\)</span> sites, so perturbation theory works there.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. A truncated expansion differs from <span class="math inline">\(|n\rangle\)</span> only by terms that are small for small <span class="math inline">\(\lambda\)</span>. Its overlap with the old state stays close to one, so it never reaches a state that is orthogonal to it.</p></li>
+<p>This is true. A truncated expansion differs from the old ground state only by terms that are small for small <span class="math inline">\(\lambda\)</span>. Its overlap with the old state stays close to one, so it never reaches a state that is orthogonal to it.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. In the limit of a large metal the overlap vanishes even for <span class="math inline">\(\lambda=10^{-3}\)</span>, where every term of the series is small. The problem is the missing gap and not the strength.</p></li>
+<p>This is false. Take a ring with hopping <span class="math inline">\(1\)</span> and no gap, and an impurity of strength <span class="math inline">\(0.1\)</span>. Every term of the series is small, and the overlap still falls, from <span class="math inline">\(0.9997\)</span> for <span class="math inline">\(10\)</span> sites to <span class="math inline">\(0.9991\)</span> for <span class="math inline">\(1026\)</span> sites, and it does not stop. The problem is the missing gap and not the strength.</p></li>
 </ul>
 </div>
 </details>
 </div>
 <h1 class="sec-next" id="sec-3-4"><span class="num">3.4</span> The Hall conductivity from linear response</h1>
+<p>How does a current that flows across an applied voltage follow from the perturbed states? We will now see that it is given by matrix elements of the velocity between filled and empty bands, divided by the square of their energy difference.</p>
 <p>Now we apply <a href="02-linear-response-theory-and-how-a-measurement-reads-the-wavefunctions.html#eq-3-1">(3.1)</a> to the measurement that will bring us to topology, which is the transverse conductivity, also called the Hall conductivity. We take a two-dimensional material, apply a voltage in the <span class="math inline">\(y\)</span> direction, and ask what current flows in the <span class="math inline">\(x\)</span> direction. In momentum space, a voltage in <span class="math inline">\(y\)</span> enters as a perturbation proportional to <span class="math inline">\(\partial H/\partial k_y\)</span>, since it shifts <span class="math inline">\(k_y\)</span> through the Peierls substitution. The current operator in the <span class="math inline">\(x\)</span> direction is, up to the electron charge, the group-velocity operator <span class="math inline">\(\partial H/\partial k_x\)</span>. Both are the kind of matrix element that appears in <a href="02-linear-response-theory-and-how-a-measurement-reads-the-wavefunctions.html#eq-3-1">(3.1)</a>.</p>
-<p>When we put <a href="02-linear-response-theory-and-how-a-measurement-reads-the-wavefunctions.html#eq-3-1">(3.1)</a> into the definition of the Hall conductivity, we obtain an expression with two velocity operators and an energy denominator. This is the Kubo formula, for filled bands <span class="math inline">\(n\)</span> and empty bands <span class="math inline">\(m\)</span>,</p>
+<p>When we put <a href="02-linear-response-theory-and-how-a-measurement-reads-the-wavefunctions.html#eq-3-1">(3.1)</a> into the definition of the Hall conductivity, we obtain an expression with two velocity operators and an energy denominator. This is the Kubo formula.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>The Hall conductivity for filled bands <span class="math inline">\(n\)</span> and empty bands <span class="math inline">\(m\)</span> is</p>
 <p><span id="eq-3-2" class="eq"><span class="math display">\[\sigma_{xy} \;\propto\; \sum_{n\ \text{filled}} \sum_{m\ \text{empty}} \int_{\text{BZ}}
 \frac{d^2k}{(2\pi)^2}\;
 \frac{\langle n|\partial_{k_x}H|m\rangle\langle m|\partial_{k_y}H|n\rangle - (x\leftrightarrow y)}
 {(\varepsilon_n - \varepsilon_m)^2}. \tag{3.2}\]</span></span></p>
+<p>The states <span class="math inline">\(|n\rangle\)</span> and <span class="math inline">\(|m\rangle\)</span> are the Bloch states at the momentum <span class="math inline">\(k\)</span>, with the energies <span class="math inline">\(\varepsilon_n\)</span> and <span class="math inline">\(\varepsilon_m\)</span>, and <span class="math inline">\(\partial_{k_x}H\)</span> is the velocity operator along <span class="math inline">\(x\)</span>. The numerator changes sign when we exchange <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, and the constant in front has the size <span class="math inline">\(e^2/\hbar\)</span>.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From first-order perturbation theory (3.1) to the Kubo formula (3.2)</span></summary>
+<div class="fold-body">
+<p>We do it first for one filled band <span class="math inline">\(n\)</span> at one momentum <span class="math inline">\(k\)</span>. We write <span class="math inline">\(\partial_\mu\)</span> for <span class="math inline">\(\partial_{k_\mu}\)</span>, with <span class="math inline">\(\mu=x,y\)</span>, and <span class="math inline">\(|n\rangle\)</span> and <span class="math inline">\(|m\rangle\)</span> for the Bloch states at this momentum.</p>
+<p>The first step is the perturbation. An electric field <span class="math inline">\(E\)</span> along <span class="math inline">\(y\)</span> gives an electron the potential energy <span class="math inline">\(eEy\)</span>, so in <a href="02-linear-response-theory-and-how-a-measurement-reads-the-wavefunctions.html#eq-3-1">(3.1)</a> we have <span class="math inline">\(\lambda V=eE\,y\)</span>, and we need the matrix elements of the position <span class="math inline">\(y\)</span> between two bands. The velocity is the rate of change of the position, <span class="math inline">\(v_y=(i/\hbar)[H,y]\)</span>, and for Bloch states <span class="math inline">\(\hbar v_y\)</span> is <span class="math inline">\(\partial_y H\)</span>. Between two eigenstates the commutator gives the energy difference, so</p>
+<p><span class="math display">\[\langle m|\partial_y H|n\rangle = i\,\langle m|[H,y]|n\rangle = i\,(\varepsilon_m-\varepsilon_n)\,\langle m|y|n\rangle,
+\qquad\text{so}\qquad
+\langle m|y|n\rangle = \frac{i\,\langle m|\partial_y H|n\rangle}{\varepsilon_n-\varepsilon_m}.\]</span></p>
+<p>This is the reason why the voltage enters as a perturbation proportional to <span class="math inline">\(\partial H/\partial k_y\)</span>. The relation has its own factor <span class="math inline">\(1/(\varepsilon_n-\varepsilon_m)\)</span> and a factor <span class="math inline">\(i\)</span>.</p>
+<p>The second step is to put this perturbation into <a href="02-linear-response-theory-and-how-a-measurement-reads-the-wavefunctions.html#eq-3-1">(3.1)</a>, which gives the state in the field,</p>
+<p><span class="math display">\[|n\rangle_E = |n\rangle + ieE\sum_{m\neq n}\frac{\langle m|\partial_y H|n\rangle}{(\varepsilon_n-\varepsilon_m)^2}\,|m\rangle.\]</span></p>
+<p>The denominator is now a square. One power is the denominator of <a href="02-linear-response-theory-and-how-a-measurement-reads-the-wavefunctions.html#eq-3-1">(3.1)</a>, and the other one comes from the matrix element of the position.</p>
+<p>The third step is the velocity along <span class="math inline">\(x\)</span> in this state, which is the expectation value of <span class="math inline">\(\partial_x H/\hbar\)</span>. To first order in <span class="math inline">\(E\)</span> we get</p>
+<p><span class="math display">\[\hbar\langle v_x\rangle = \partial_x\varepsilon_n
++ ieE\sum_{m\neq n}\frac{\langle n|\partial_x H|m\rangle\langle m|\partial_y H|n\rangle - \langle n|\partial_y H|m\rangle\langle m|\partial_x H|n\rangle}{(\varepsilon_n-\varepsilon_m)^2}.\]</span></p>
+<p>The first term is <span class="math inline">\(\langle n|\partial_x H|n\rangle\)</span>, the slope of the band, which is the velocity without the field. The second term comes from the two cross terms between <span class="math inline">\(|n\rangle\)</span> and the states that the field mixes in. The two cross terms are complex conjugates of each other. The complex conjugate of the first product is the product with <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> exchanged, and the factor <span class="math inline">\(i\)</span> gives it a minus sign.</p>
+<p>The fourth step is the sum over all the momenta of the filled band. The band is periodic in <span class="math inline">\(k\)</span>, so the integral of the slope <span class="math inline">\(\partial_x\varepsilon_n\)</span> over the Brillouin zone is zero, meaning that a filled band has no current without the field. The current density is the charge times the sum of the velocities,</p>
+<p><span class="math display">\[j_x = -e\int_{\text{BZ}}\frac{d^2k}{(2\pi)^2}\,\langle v_x\rangle,\]</span></p>
+<p>and only the second term is left, which is proportional to <span class="math inline">\(E\)</span>. The Hall conductivity is the ratio <span class="math inline">\(j_x/E\)</span>.</p>
+<p>The last step is to take several filled bands. We sum over the filled bands <span class="math inline">\(n\)</span>, and <span class="math inline">\(m\)</span> runs over all the other bands. When <span class="math inline">\(n\)</span> and <span class="math inline">\(m\)</span> are both filled, the pair appears twice, once as <span class="math inline">\((n,m)\)</span> and once as <span class="math inline">\((m,n)\)</span>. The numerator changes sign when we exchange <span class="math inline">\(n\)</span> and <span class="math inline">\(m\)</span>, and the denominator does not, so these two terms cancel. Only the pairs with <span class="math inline">\(m\)</span> empty are left, which is <a href="#eq-3-2">(3.2)</a>.</p>
+<p>What is left is the constant in front of <a href="#eq-3-2">(3.2)</a>. For the voltage along <span class="math inline">\(y\)</span> and the current along <span class="math inline">\(x\)</span> of this section, the factors above give <span class="math inline">\(-ie^2/\hbar\)</span>. The factor <span class="math inline">\(i\)</span> makes the result real, since the numerator is a number minus its complex conjugate, which is purely imaginary. The sign of the charge does not matter, since the charge enters twice, once in the potential energy and once in the current. The sign of the constant changes when we exchange <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, meaning the current along <span class="math inline">\(y\)</span> for a voltage along <span class="math inline">\(x\)</span>, and this is the only choice here that changes it. Section <a href="05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#sec-3-5">3.5</a> uses this constant together with the Berry curvature.</p>
+</div>
+</details>
+</div>
 <p>At this point the expression still depends explicitly on the band energies through the denominator, so it seems that it should depend on all the details of the band structure. This is not the case, and the next section shows why.</p>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>The numerator of <a href="#eq-3-2">(3.2)</a> contains the combination <span class="math inline">\(\langle n|\partial_{k_x}H|m\rangle\langle m|\partial_{k_y}H|n\rangle-(x\leftrightarrow y)\)</span>. What happens to <span class="math inline">\(\sigma_{xy}\)</span> if we exchange the roles of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>?</p>
+<p>The Hall conductivity for filled bands <span class="math inline">\(n\)</span> and empty bands <span class="math inline">\(m\)</span> is proportional to</p>
+<p><span class="math display">\[\sum_{n,m}\int_{\text{BZ}} d^2k\;
+\frac{\langle n|\partial_{k_x}H|m\rangle\langle m|\partial_{k_y}H|n\rangle - \langle n|\partial_{k_y}H|m\rangle\langle m|\partial_{k_x}H|n\rangle}
+{(\varepsilon_n - \varepsilon_m)^2}.\]</span></p>
+<p>Here <span class="math inline">\(\partial_{k_x}H\)</span> is the velocity along <span class="math inline">\(x\)</span>, and <span class="math inline">\(\varepsilon_n\)</span> are the band energies. We exchange the roles of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. What happens to <span class="math inline">\(\sigma_{xy}\)</span>?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -153,14 +209,65 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
-<p>This is false. For a Chern insulator with <span class="math inline">\(C=1\)</span> we have <span class="math inline">\(\sigma_{xy}=e^2/h\)</span> and <span class="math inline">\(\sigma_{yx}=-e^2/h\)</span>. A current along <span class="math inline">\(x\)</span> and a current along <span class="math inline">\(y\)</span> give Hall voltages of opposite sign.</p></li>
+<p>This is false. For a Chern insulator with <span class="math inline">\(C=1\)</span> both <span class="math inline">\(\sigma_{xy}\)</span> and <span class="math inline">\(\sigma_{yx}\)</span> have the size <span class="math inline">\(e^2/h\)</span>, and they have opposite signs. A current along <span class="math inline">\(x\)</span> and a current along <span class="math inline">\(y\)</span> give Hall voltages of opposite sign.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. The combination in the numerator of <a href="#eq-3-2">(3.2)</a> is antisymmetric under the exchange, so <span class="math inline">\(\sigma_{yx}=-\sigma_{xy}\)</span>.</p></li>
+<p>This is true. The exchange turns the first product of the numerator into the second one and the second into the first. The numerator is antisymmetric under the exchange, so <span class="math inline">\(\sigma_{yx}=-\sigma_{xy}\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. For <span class="math inline">\(C=1\)</span> both <span class="math inline">\(\sigma_{xy}=e^2/h\)</span> and <span class="math inline">\(\sigma_{yx}=-e^2/h\)</span> are nonzero. The exchange flips the sign of the Hall conductivity, and it does not remove it.</p></li>
+<p>This is false. For <span class="math inline">\(C=1\)</span> both <span class="math inline">\(\sigma_{xy}\)</span> and <span class="math inline">\(\sigma_{yx}\)</span> have the size <span class="math inline">\(e^2/h\)</span>, so neither is zero. The exchange flips the sign of the Hall conductivity, and it does not remove it.</p></li>
 </ul>
 </div>
 </details>
+</div>
+<div class="quiz" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>The Hall conductivity for filled bands <span class="math inline">\(n\)</span> and empty bands <span class="math inline">\(m\)</span> is proportional to</p>
+<p><span class="math display">\[\sum_{n,m}\int_{\text{BZ}} d^2k\;
+\frac{\langle n|\partial_{k_x}H|m\rangle\langle m|\partial_{k_y}H|n\rangle - (x\leftrightarrow y)}
+{(\varepsilon_n - \varepsilon_m)^2}.\]</span></p>
+<p>Here <span class="math inline">\(H\)</span> is the Bloch Hamiltonian and <span class="math inline">\(\varepsilon_n\)</span> are its band energies. We multiply the Hamiltonian by two, <span class="math inline">\(H\to 2H\)</span>. What is the new Hall conductivity?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(4\,\sigma_{xy}\)</span></li>
+<li><span class="math inline">\(\sigma_{xy}\)</span></li>
+<li><span class="math inline">\(\dfrac{\sigma_{xy}}{4}\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. This counts only the two velocities of the numerator. Take <span class="math inline">\(H=\sin k_x\,\sigma_x+\sin k_y\,\sigma_y+(\cos k_x+\cos k_y-1)\,\sigma_z\)</span>, where the formula gives <span class="math inline">\(e^2/h\)</span> in size. For <span class="math inline">\(2H\)</span> it gives <span class="math inline">\(e^2/h\)</span> again, and not <span class="math inline">\(4e^2/h\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. Each of the two velocities in the numerator gets a factor <span class="math inline">\(2\)</span>, and each of the two energy differences in the denominator also gets a factor <span class="math inline">\(2\)</span>. The states do not change, so the factor <span class="math inline">\(4\)</span> cancels.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. This counts only the denominator. For <span class="math inline">\(H=\sin k_x\,\sigma_x+\sin k_y\,\sigma_y+(\cos k_x+\cos k_y-1)\,\sigma_z\)</span> the formula gives <span class="math inline">\(e^2/h\)</span> in size for <span class="math inline">\(H\)</span> and for <span class="math inline">\(2H\)</span>, and not <span class="math inline">\(e^2/4h\)</span>.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>For electrons without spin, time-reversal symmetry means that the Bloch Hamiltonian obeys <span class="math inline">\(H(-k)=H(k)^*\)</span>. Show that the Hall conductivity <a href="#eq-3-2">(3.2)</a> is then zero.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>We write <span class="math inline">\(X(k)=\langle n|\partial_x H|m\rangle\langle m|\partial_y H|n\rangle\)</span> for the first product in the numerator of <a href="#eq-3-2">(3.2)</a> at the momentum <span class="math inline">\(k\)</span>, with <span class="math inline">\(\partial_\mu\)</span> for <span class="math inline">\(\partial_{k_\mu}\)</span>. The matrices <span class="math inline">\(\partial_\mu H\)</span> are Hermitian, so the second product, the one with <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> exchanged, is the complex conjugate <span class="math inline">\(X(k)^*\)</span>. The numerator is then</p>
+<p><span class="math display">\[X(k)-X(k)^* = 2i\,\mathrm{Im}\,X(k).\]</span></p>
+<p>Now we use the symmetry. The complex conjugate of <span class="math inline">\(H(k)|n(k)\rangle=\varepsilon_n(k)|n(k)\rangle\)</span> is <span class="math inline">\(H(-k)|n(k)\rangle^*=\varepsilon_n(k)|n(k)\rangle^*\)</span>. So the states at <span class="math inline">\(-k\)</span> are the complex conjugates of the states at <span class="math inline">\(k\)</span>, with the same energies. The derivative of <span class="math inline">\(H(-k)=H(k)^*\)</span> with respect to <span class="math inline">\(k_\mu\)</span> gives</p>
+<p><span class="math display">\[(\partial_\mu H)(-k) = -\big(\partial_\mu H(k)\big)^*.\]</span></p>
+<p>We put both relations into <span class="math inline">\(X(-k)\)</span>. Every factor becomes the complex conjugate of the factor at <span class="math inline">\(k\)</span>, and the two minus signs of the two derivatives cancel, so</p>
+<p><span class="math display">\[X(-k) = X(k)^*, \qquad \mathrm{Im}\,X(-k) = -\,\mathrm{Im}\,X(k).\]</span></p>
+<p>The denominator <span class="math inline">\((\varepsilon_n-\varepsilon_m)^2\)</span> is the same at <span class="math inline">\(k\)</span> and at <span class="math inline">\(-k\)</span>. The contributions of <span class="math inline">\(k\)</span> and of <span class="math inline">\(-k\)</span> to the integral over the Brillouin zone then cancel, and <span class="math inline">\(\sigma_{xy}=0\)</span>.</p>
+<p>This means that a Hall conductivity different from zero needs a broken time-reversal symmetry. A magnetic field does it in Section <a href="06-landau-levels-and-chiral-edge-states-in-the-quantum-hall-state.html#sec-3-6">3.6</a>, and a complex hopping does it in Section <a href="10b-the-haldane-coupling-and-a-real-chern-insulator.html#sec-3-10b">3.10b</a>. It also works in the other direction for a measurement. A Hall conductivity that is not zero without any magnetic field tells us that the material breaks time-reversal symmetry by itself.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="comesback">
 <div class="comesback-label">

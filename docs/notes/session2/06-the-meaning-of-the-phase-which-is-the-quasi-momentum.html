@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -84,20 +85,49 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="on" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 2. Symmetries, Tight-Binding Band Structure Theory, and Effective Models</a></p>
 <h1 id="sec-2-6"><span class="num">2.6</span> The meaning of the phase, which is the quasi-momentum</h1>
-<p>Let us stop here and ask what the phase <span class="math inline">\(\varphi\)</span> in <a href="03-symmetry-operators-in-a-formal-way.html#eq-2-2">(2.2)</a> means physically, and not only formally. We go back to the Schrödinger equation in the continuum and ask how a wavefunction translated by the lattice constant <span class="math inline">\(a\)</span>, <span class="math inline">\(\psi(x+a)\)</span>, is related to <span class="math inline">\(\psi(x)\)</span>. A Taylor expansion gives</p>
+<p>What does the phase <span class="math inline">\(\varphi\)</span> in <a href="03-symmetry-operators-in-a-formal-way.html#eq-2-2">(2.2)</a> mean physically, and not only formally? We will now see that it is the crystal momentum times the lattice constant, <span class="math inline">\(\varphi=ka\)</span>, and that it is defined only up to <span class="math inline">\(2\pi\)</span>, so that <span class="math inline">\(k\)</span> and <span class="math inline">\(k+2\pi/a\)</span> are one state on the lattice.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[S|\psi\rangle = e^{i\varphi}|\psi\rangle, \qquad \varphi \in (-\pi,\pi]. \tag{2.2}\]</span></p>
+</div>
+<p>This is the eigenvalue of a unitary symmetry operator <span class="math inline">\(S\)</span>, which is a phase, as Section <a href="03-symmetry-operators-in-a-formal-way.html#sec-2-3">2.3</a> shows. For the translation <span class="math inline">\(T\)</span> by one lattice constant the phase <span class="math inline">\(\varphi\)</span> is the Bloch phase of Section <a href="04-exercises-where-we-guess-eigenstates-from-symmetry-only.html#sec-2-4">2.4</a>, and the eigenstates are the states <span class="math inline">\(e^{in\varphi}\)</span> of <a href="05-blochs-theorem-and-the-first-band-structure.html#eq-2-6">(2.6)</a>.</p>
+</div>
+<p>We go back to the Schrödinger equation in the continuum and ask how a wavefunction translated by the lattice constant <span class="math inline">\(a\)</span>, <span class="math inline">\(\psi(x+a)\)</span>, is related to <span class="math inline">\(\psi(x)\)</span>. A Taylor expansion gives</p>
 <p><span class="math display">\[\psi(x+a) = \psi(x) + a\,\partial_x\psi(x) + \frac{a^2}{2}\partial_x^2\psi(x) + \cdots
 = e^{a\partial_x}\psi(x) = e^{\frac{i}{\hbar}ap}\,\psi(x),\]</span></p>
-<p>where <span class="math inline">\(p=-i\hbar\partial_x\)</span> is the momentum operator. If <span class="math inline">\(\psi\)</span> is an eigenstate of the translation operator with eigenvalue <span class="math inline">\(e^{i\varphi}\)</span>, when we compare the two expressions we find</p>
-<p><span id="eq-2-10" class="eq"><span class="math display">\[\varphi = \frac{a\,p}{\hbar} = k\,a, \tag{2.10}\]</span></span></p>
-<p>meaning that the symmetry eigenvalue is directly the crystal momentum <span class="math inline">\(k=p/\hbar\)</span> times the lattice constant. This is the reason why <span class="math inline">\(\varphi\)</span> is called the <em>quasi-momentum</em>. It is directly related to the momentum operator of the original Schrödinger equation, only measured in units where the lattice constant is absorbed, and it takes values in <span class="math inline">\(\varphi\in(-\pi,\pi]\)</span>, which is the first Brillouin zone. From <a href="../session3/index.html">Session 3</a> on we take <span class="math inline">\(a=1\)</span>, and we write the quasi-momentum as <span class="math inline">\(k\)</span>.</p>
+<p>where <span class="math inline">\(p=-i\hbar\partial_x\)</span> is the momentum operator. So the translation by <span class="math inline">\(a\)</span> is the operator <span class="math inline">\(e^{iap/\hbar}\)</span>. If <span class="math inline">\(\psi\)</span> is an eigenstate of this operator with the eigenvalue <span class="math inline">\(e^{i\varphi}\)</span>, we compare the two expressions and find what <span class="math inline">\(\varphi\)</span> is.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>The Bloch phase is the crystal momentum <span class="math inline">\(k\)</span> times the lattice constant <span class="math inline">\(a\)</span>,</p>
+<p><span id="eq-2-10" class="eq"><span class="math display">\[\varphi = \frac{a\,p}{\hbar} = k\,a. \tag{2.10}\]</span></span></p>
+<p>A shift of <span class="math inline">\(k\)</span> by <span class="math inline">\(2\pi/a\)</span> changes <span class="math inline">\(\varphi\)</span> by <span class="math inline">\(2\pi\)</span>, so <span class="math inline">\(k\)</span> and <span class="math inline">\(k+2\pi/a\)</span> are the same state on the lattice, and we keep <span class="math inline">\(k\)</span> in the first Brillouin zone <span class="math inline">\(-\pi/a&lt;k\le\pi/a\)</span>.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the Taylor series to the translation operator</span></summary>
+<div class="fold-body">
+<p>Let us take the simplest case first, a plane wave <span class="math inline">\(\psi(x)=e^{ikx}\)</span>, which is an eigenstate of <span class="math inline">\(p\)</span> with the eigenvalue <span class="math inline">\(\hbar k\)</span>. Each derivative gives a factor <span class="math inline">\(ik\)</span>, so the Taylor series is</p>
+<p><span class="math display">\[\psi(x+a) = \sum_{n=0}^{\infty} \frac{a^n}{n!}\,\partial_x^n e^{ikx} = \sum_{n=0}^{\infty} \frac{(ika)^n}{n!}\,e^{ikx} = e^{ika}\,e^{ikx},\]</span></p>
+<p>meaning that the plane wave is an eigenstate of the translation with the eigenvalue <span class="math inline">\(e^{ika}\)</span>, so <span class="math inline">\(\varphi=ka\)</span>.</p>
+<p>For a general <span class="math inline">\(\psi\)</span> the same series is the exponential of the operator <span class="math inline">\(a\,\partial_x\)</span>, and with <span class="math inline">\(\partial_x=ip/\hbar\)</span> it is</p>
+<p><span class="math display">\[\psi(x+a) = \sum_{n=0}^{\infty} \frac{a^n}{n!}\,\partial_x^n\psi(x) = e^{a\partial_x}\psi(x) = e^{iap/\hbar}\,\psi(x).\]</span></p>
+<p>So the translation by <span class="math inline">\(a\)</span> is the operator <span class="math inline">\(e^{iap/\hbar}\)</span>, and its eigenvalue <span class="math inline">\(e^{i\varphi}\)</span> gives <a href="#eq-2-10">(2.10)</a>. The plane waves with <span class="math inline">\(ka=\varphi+2\pi m\)</span>, for any integer <span class="math inline">\(m\)</span>, all have the same eigenvalue. An eigenstate of the translation in a crystal is in general a sum of such plane waves, so <span class="math inline">\(\varphi\)</span> fixes <span class="math inline">\(k\)</span> only up to a multiple of <span class="math inline">\(2\pi/a\)</span>.</p>
+</div>
+</details>
+</div>
+<p>This means that the symmetry eigenvalue is directly the crystal momentum <span class="math inline">\(k=p/\hbar\)</span> times the lattice constant. This is the reason why <span class="math inline">\(\varphi\)</span> is called the <em>quasi-momentum</em>. It is directly related to the momentum operator of the original Schrödinger equation, only measured in units where the lattice constant is absorbed, and it takes values in <span class="math inline">\(\varphi\in(-\pi,\pi]\)</span>, which is the first Brillouin zone. From <a href="../session3/index.html">Session 3</a> on we take <span class="math inline">\(a=1\)</span>, and we write the quasi-momentum as <span class="math inline">\(k\)</span>.</p>
 <figure class="again">
 <img src="../figures/s02f01_ringmodes.svg" loading="lazy" alt="Rings with three sites, and phase circles with balls at the allowed phases for three and five sites." />
 <figcaption><strong><a href="04-exercises-where-we-guess-eigenstates-from-symmetry-only.html#fig:s02:ring">Figure 2.1</a>, shown again.</strong> The allowed phases of the ring, shown again. The balls fill the circle as the ring grows, and the circle is the range <span class="math inline">\(\varphi\in(-\pi,\pi]\)</span> of the quasi-momentum.</figcaption>
 </figure>
 <p>The reason why <span class="math inline">\(\varphi\)</span> is defined only up to <span class="math inline">\(2\pi\)</span> can be seen directly on the sites of the chain, as we will now see in <a href="#sch:s02:aliasing">Schematic 2.7</a>.</p>
 <figure id="sch:s02:aliasing" class="schematic">
-<img src="../figures/web/session02/aliasing.svg" loading="lazy" alt="A slow cosine and a fast cosine that pass through the same dots at the integer positions of the chain." />
-<figcaption><strong>Schematic 2.7.</strong> Two waves with <span class="math inline">\(k=0.5/a\)</span> and <span class="math inline">\(k+2\pi/a\)</span>, for <span class="math inline">\(a=1\)</span>. They take the same value on every site, which are the dots, so on the lattice they are one state. The wave with the larger <span class="math inline">\(k\)</span> oscillates between the sites, where there are no atoms.</figcaption>
+<img src="../figures/web/session02/aliasing.svg" loading="lazy" alt="A slow cosine and a fast cosine against the position, which pass through the same dots at the integer positions of the chain." />
+<figcaption><strong>Schematic 2.7.</strong> Two waves with <span class="math inline">\(k=0.5/a\)</span> and <span class="math inline">\(k+2\pi/a\)</span>, for <span class="math inline">\(a=1\)</span>, against the position <span class="math inline">\(x\)</span> in units of <span class="math inline">\(a\)</span>, where <span class="math inline">\(\psi\)</span> is the value of each wave. They take the same value on every site, which are the dots, so on the lattice they are one state. The wave with the larger <span class="math inline">\(k\)</span> oscillates between the sites, where there are no atoms.</figcaption>
 </figure>
 <div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
@@ -129,7 +159,38 @@ Question
 </div>
 </details>
 </div>
-<p>This identification also tells us where the orthogonal basis with one orbital per site comes from, which we have used so far without saying it. The atomic orbitals of a real material, <span class="math inline">\(s\)</span>, <span class="math inline">\(p\)</span>, <span class="math inline">\(d\)</span>, and so on, are not orthogonal between neighboring sites. Before we write a clean tight-binding Hamiltonian, we first go to an orthogonal local basis with one orbital per site, which we obtain in a systematic way with what is called <strong>Löwdin orthogonalization</strong>. Here we only assume this construction. A basis of this kind is also called a basis of Wannier states. In this basis, symmetry alone already tells us that the eigenstates have the form <span class="math inline">\(e^{in\varphi}c_n^\dagger|0\rangle\)</span>, which is the ansatz <a href="05-blochs-theorem-and-the-first-band-structure.html#eq-2-6">(2.6)</a>. This is true for a finite ring of <span class="math inline">\(7\)</span> sites, for <span class="math inline">\(11\)</span> sites, and for the infinite chain that we want in order to describe a solid. We can build the same intuition by working with finite rings that become larger and larger, before we take the limit <span class="math inline">\(L\to\infty\)</span>.</p>
+<div class="quiz quiz-pics" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>A chain has the sites <span class="math inline">\(x=n\)</span>, with <span class="math inline">\(a=1\)</span>. The dots are the values of the wave <span class="math inline">\(\cos(0.5x)\)</span> on the sites. Each picture shows these dots and one more wave. Which wave is the same state as the dots on the lattice?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session02/g2_quiz_wave_one.svg" loading="lazy" alt="The dots and a slow wave that passes through the first dot and misses most of the others, clearly at x equal to 2." /></li>
+<li><img src="../figures/web/session02/g2_quiz_wave_2pi.svg" loading="lazy" alt="The dots and a fast wave that oscillates between the sites and passes through every dot." /></li>
+<li><img src="../figures/web/session02/g2_quiz_wave_pi.svg" loading="lazy" alt="The dots and a fast wave that passes through the dots at even x and through the opposite values at odd x. At x equal to 3 the value is almost zero, so there the wave is close to the dot." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. This wave is <span class="math inline">\(\cos(1.0\,x)\)</span>. At <span class="math inline">\(x=2\)</span> it gives <span class="math inline">\(\cos2=-0.42\)</span>, while the dot is <span class="math inline">\(\cos1=0.54\)</span>. Neither <span class="math inline">\(1.0-0.5\)</span> nor <span class="math inline">\(1.0+0.5\)</span> is a multiple of <span class="math inline">\(2\pi\)</span>, so the two waves differ on the sites.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. This wave is <span class="math inline">\(\cos[(0.5+2\pi)x]\)</span>. On the sites <span class="math inline">\(\cos[(0.5+2\pi)n]=\cos(0.5n)\)</span>, since the extra phase <span class="math inline">\(2\pi n\)</span> does not change a cosine, so the wave passes through every dot. Between the sites it oscillates, but there are no atoms there.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. This wave is <span class="math inline">\(\cos[(0.5+\pi)x]\)</span>. On the sites it gives <span class="math inline">\((-1)^n\cos(0.5n)\)</span>, so at <span class="math inline">\(x=1\)</span> it is <span class="math inline">\(-0.88\)</span> while the dot is <span class="math inline">\(0.88\)</span>. A shift of <span class="math inline">\(k\)</span> by <span class="math inline">\(\pi/a\)</span> flips the sign on every second site.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>Only a shift of <span class="math inline">\(k\)</span> by a multiple of <span class="math inline">\(2\pi/a\)</span> leaves every site unchanged.</p>
+</div>
+</details>
+</div>
+<p>This identification also tells us where the orthogonal basis with one orbital per site comes from, which we have used so far without saying it. The atomic orbitals of a real material, <span class="math inline">\(s\)</span>, <span class="math inline">\(p\)</span>, <span class="math inline">\(d\)</span>, and so on, are not orthogonal between neighboring sites. Before we write a clean tight-binding Hamiltonian, we first go to an orthogonal local basis with one orbital per site, which we obtain in a systematic way with what is called <strong>Löwdin orthogonalization</strong>. Here we only assume this construction. A basis of this kind is also called a basis of Wannier states. In this basis, symmetry alone already tells us that the eigenstates have the form <span class="math inline">\(e^{in\varphi}c_n^\dagger|0\rangle\)</span>, which is the ansatz <a href="05-blochs-theorem-and-the-first-band-structure.html#eq-2-6">(2.6)</a>.</p>
+<p>This is true for a finite ring of <span class="math inline">\(7\)</span> sites, for <span class="math inline">\(11\)</span> sites, and for the infinite chain that we want in order to describe a solid. We can build the same intuition by working with finite rings that become larger and larger, before we take the limit <span class="math inline">\(L\to\infty\)</span>.</p>
 <div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
 Question
@@ -148,7 +209,7 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
-<p>This is true. The range is <span class="math inline">\((-\pi/a&#39;,\pi/a&#39;]\)</span> with <span class="math inline">\(a&#39;=2a\)</span>, which is half as wide. The bands then fold into the smaller zone, as we will see in the next section.</p></li>
+<p>This is true. The range is <span class="math inline">\((-\pi/a&#39;,\pi/a&#39;]\)</span> with <span class="math inline">\(a&#39;=2a\)</span>, which is half as wide. The single band then folds into two bands in the smaller zone, one for each site of the new cell.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
 <p>This is false. For <span class="math inline">\(a=1\)</span> the zone has the width <span class="math inline">\(2\pi\)</span>, and for <span class="math inline">\(a&#39;=2\)</span> it is <span class="math inline">\((-\pi/2,\pi/2]\)</span>, with the width <span class="math inline">\(\pi\)</span>. A longer cell gives a narrower zone.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
@@ -159,6 +220,21 @@ Question
 <p>A longer unit cell in real space means a smaller zone in reciprocal space.</p>
 </div>
 </details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>A chain has the lattice constant <span class="math inline">\(a=0.3\)</span> nm. Give its first Brillouin zone in nm<span class="math inline">\(^{-1}\)</span>. Which <span class="math inline">\(k\)</span> inside it is the same state as <span class="math inline">\(k=25\)</span> nm<span class="math inline">\(^{-1}\)</span>?</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>The zone is <span class="math inline">\(-\pi/a&lt;k\le\pi/a\)</span>, with <span class="math inline">\(\pi/a=\pi/(0.3\ \text{nm})=10.5\)</span> nm<span class="math inline">\(^{-1}\)</span>. So <span class="math inline">\(k=25\)</span> nm<span class="math inline">\(^{-1}\)</span> is outside the zone. Two values of <span class="math inline">\(k\)</span> are the same state when they differ by a multiple of <span class="math inline">\(2\pi/a=20.94\)</span> nm<span class="math inline">\(^{-1}\)</span>, since then <span class="math inline">\(\varphi=ka\)</span> of <a href="#eq-2-10">(2.10)</a> changes by a multiple of <span class="math inline">\(2\pi\)</span>. One step of <span class="math inline">\(2\pi/a\)</span> brings <span class="math inline">\(k\)</span> into the zone,</p>
+<p><span class="math display">\[k&#39; = 25\ \text{nm}^{-1} - \frac{2\pi}{a} = 25\ \text{nm}^{-1} - 20.94\ \text{nm}^{-1} = 4.06\ \text{nm}^{-1}.\]</span></p>
+<p>On the sites <span class="math inline">\(x=na\)</span> the two waves <span class="math inline">\(e^{ikx}\)</span> and <span class="math inline">\(e^{ik&#39;x}\)</span> take the same values, so they are one state. In Section <a href="12-measuring-band-structures-with-arpes.html#sec-2-12">2.12</a> ARPES measures the momentum along the surface, and a value outside the first zone has the same band energy as the value inside it that we find in this way.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="comesback">
 <div class="comesback-label">

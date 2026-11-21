@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -84,51 +85,178 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="on" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 3. Topological Band Structure Theory</a></p>
 <h1 id="sec-3-11"><span class="num">3.11a</span> Quantum spin Hall insulators</h1>
-<p>A Chern insulator needs broken time-reversal symmetry. The quantum spin Hall insulator is what we obtain if we keep time-reversal symmetry and still want a topological gapped state. We take two copies of the massive Dirac construction <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#eq-3-7">(3.7)</a>, one for each spin, with <strong>opposite</strong> mass for opposite spins, <span class="math inline">\(m_\uparrow = -m_\downarrow\)</span>. From <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#eq-3-8">(3.8)</a>, the two spin sectors then have opposite Chern numbers,</p>
+<p>The quantum Hall state and the Haldane model both break time-reversal symmetry. Can a gapped state in two dimensions be topological when this symmetry holds? We will now see that it can, with two copies of a Chern insulator, one for each spin, that have opposite Chern numbers. The charge Hall conductivity then vanishes, and each edge has a pair of states that move in opposite directions with opposite spin.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[H(k) = k_x\,\sigma_x + \lambda\, k_y\,\sigma_y + m\,\sigma_z, \tag{3.7}\]</span></p>
+</div>
+<div class="eq-again">
+<p><span class="math display">\[C_{\text{Dirac}} = \frac{1}{2}\,\mathrm{sgn}(m)\,\mathrm{sgn}(\lambda). \tag{3.8}\]</span></p>
+</div>
+<p>These are the gapped Dirac cone of Section <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#sec-3-10">3.10</a> and its Chern number. The Pauli matrices <span class="math inline">\(\sigma\)</span> act on the two sublattices, and <span class="math inline">\(m\)</span> is the mass that opens the gap. The sign <span class="math inline">\(\lambda=\pm1\)</span> is the chirality of the Dirac point, which is opposite at the two Dirac points <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span> of the honeycomb lattice.</p>
+</div>
+<p>A Chern insulator needs broken time-reversal symmetry. The quantum spin Hall insulator is what we obtain if we keep time-reversal symmetry and still want a topological gapped state. We take two copies of the massive Dirac construction <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#eq-3-7">(3.7)</a>, one for each spin, with <strong>opposite</strong> mass for opposite spins, <span class="math inline">\(m_\uparrow = -m_\downarrow\)</span>.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>From <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#eq-3-8">(3.8)</a>, the two spin sectors then have opposite Chern numbers,</p>
 <p><span id="eq-3-9" class="eq"><span class="math display">\[C_\uparrow = \pm 1, \qquad
 C_\downarrow = -C_\uparrow, \qquad
 C = C_\uparrow + C_\downarrow = 0, \qquad
 C_s \equiv C_\uparrow - C_\downarrow = \pm 2. \tag{3.9}\]</span></span></p>
+<p>The total Chern number <span class="math inline">\(C\)</span> vanishes, so the charge Hall conductivity is zero, as time-reversal symmetry requires. The spin Chern number <span class="math inline">\(C_s\)</span> does not vanish, and it gives each edge one state of each spin, which move in opposite directions.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the Chern number of one Dirac cone (3.8) to the spin Chern number (3.9)</span></summary>
+<div class="fold-body">
+<p>The first step is one spin alone, and we take spin up. Its mass is the one of the Haldane coupling of Section <a href="10b-the-haldane-coupling-and-a-real-chern-insulator.html#sec-3-10b">3.10b</a>, which has opposite signs at the two Dirac points. We write it as <span class="math inline">\(+m\)</span> at <span class="math inline">\(K\)</span>, where <span class="math inline">\(\lambda=+1\)</span>, and <span class="math inline">\(-m\)</span> at <span class="math inline">\(K&#39;\)</span>, where <span class="math inline">\(\lambda=-1\)</span>. Equation <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#eq-3-8">(3.8)</a> gives one half for each point, and the sum is</p>
+<p><span class="math display">\[C_\uparrow = \tfrac12\,\mathrm{sgn}(m)\,(+1) + \tfrac12\,\mathrm{sgn}(-m)\,(-1) = \mathrm{sgn}(m),\]</span></p>
+<p>so the two halves add, as in the Haldane model.</p>
+<p>The second step is spin down, which has the opposite mass at each Dirac point, <span class="math inline">\(-m\)</span> at <span class="math inline">\(K\)</span> and <span class="math inline">\(+m\)</span> at <span class="math inline">\(K&#39;\)</span>. The same sum is now</p>
+<p><span class="math display">\[C_\downarrow = \tfrac12\,\mathrm{sgn}(-m)\,(+1) + \tfrac12\,\mathrm{sgn}(m)\,(-1) = -\mathrm{sgn}(m).\]</span></p>
+<p>The third step is to add and to subtract the two sectors,</p>
+<p><span class="math display">\[C = C_\uparrow + C_\downarrow = 0, \qquad C_s = C_\uparrow - C_\downarrow = 2\,\mathrm{sgn}(m),\]</span></p>
+<p>which is <a href="#eq-3-9">(3.9)</a>. The sign of <span class="math inline">\(m\)</span> only decides which spin has <span class="math inline">\(+1\)</span>.</p>
+<p>The last step is to see that time reversal is kept. Time reversal flips the spin and it exchanges <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span>. The mass of spin up at <span class="math inline">\(K\)</span> is <span class="math inline">\(+m\)</span>, and the mass of spin down at <span class="math inline">\(K&#39;\)</span> is also <span class="math inline">\(+m\)</span>, so the four masses are mapped onto each other. On the honeycomb lattice with a second-neighbor hopping <span class="math inline">\(t_2\)</span> of phase <span class="math inline">\(\pm\pi/2\)</span>, the mass is <span class="math inline">\(m=3\sqrt3\,t_2\)</span> and the gap is <span class="math inline">\(6\sqrt3\,t_2\)</span>, the same for both spins.</p>
+</div>
+</details>
+</div>
 <p>Here <span class="math inline">\(C_\uparrow\)</span> is the Chern number of the whole spin-up sector of the lattice. Each Dirac point gives <span class="math inline">\(\tfrac12\)</span> by <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#eq-3-8">(3.8)</a>, and the two Dirac points add for each spin, as in the Haldane case of Section <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#sec-3-10">3.10</a>, so one spin sector has <span class="math inline">\(C_\uparrow=\pm1\)</span>.</p>
 <p>The total Chern number <span class="math inline">\(C\)</span> vanishes, in agreement with the unbroken time-reversal symmetry, but the <strong>spin</strong> Chern number <span class="math inline">\(C_s\)</span> does not vanish, and it is <span class="math inline">\(C_s\)</span> that controls the edge physics. At each edge, spin-up propagates in one direction and spin-down propagates in the other direction, which is a <strong>helical</strong> edge state and not a chiral one.</p>
 <figure class="again">
 <img src="../figures/s05f06_qsh.svg" loading="lazy" alt="The edge of a quantum spin Hall insulator with spin-up and spin-down channels moving in opposite directions." />
 <figcaption><strong><a href="../session5/18-engineering-a-topological-superconductor-from-a-quantum-spin-hall-insulator.html#fig:s05:qsh">Figure 5.6</a>, shown again.</strong> A helical edge, which comes back in Section <a href="../session5/18-engineering-a-topological-superconductor-from-a-quantum-spin-hall-insulator.html#sec-5-18">5.18</a>. On the same edge the spin-up electrons move in one direction. The spin-down electrons move in the other, and the two are drawn in a warm and a cold color. This is the pair of branches that follows from <a href="#eq-3-9">(3.9)</a>.</figcaption>
 </figure>
+<p>The natural mechanism that gives this opposite-sign mass is spin-orbit coupling. The relativistic spin-orbit term has the structure <span class="math inline">\(\mathbf{L}\cdot\mathbf{S}\)</span>, and its <span class="math inline">\(z\)</span>-component, <span class="math inline">\(L_zS_z\)</span>, acts like an effective magnetic field that points in one direction for spin-up electrons and in the opposite direction for spin-down electrons. This is the opposite-sign mass structure that <a href="#eq-3-9">(3.9)</a> needs, and it appears with no net magnetic field and no net breaking of time-reversal symmetry. Graphene itself, when we include its intrinsic spin-orbit coupling, which is very small, is technically a quantum spin Hall insulator through this mechanism. The effect is much larger, and accessible in experiments, in monolayer 1T<span class="math inline">\(&#39;\)</span>-WTe<span class="math inline">\(_2\)</span>, where the quantum spin Hall effect survives up to 100 K.</p>
+<figure id="sch:s03:spin_sectors" class="schematic">
+<img src="../figures/web/session03/spin_sectors.svg" loading="lazy" alt="Two band structures of a ribbon against the momentum, each with a blue and a red branch that cross the gap, with the slopes of the two colors reversed between the panels." />
+<figcaption><strong>Schematic 3.14.</strong> The two spin sectors of the quantum spin Hall insulator, computed on a zigzag ribbon with the intrinsic spin-orbit coupling <span class="math inline">\(t_2=0.1\)</span>. Each sector is a Haldane model, with the phase <span class="math inline">\(+\pi/2\)</span> for spin up and <span class="math inline">\(-\pi/2\)</span> for spin down, so the two Chern numbers are opposite as in <a href="#eq-3-9">(3.9)</a>. The branches inside the gap are colored by the edge where they sit. Take the blue branch, which is on the lower edge. It moves to the right for spin up and to the left for spin down, and this is the helical pair of one edge.</figcaption>
+</figure>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>In a transport measurement we do not see this state in the Hall conductivity, which is zero. We see it in the conductance of the edge. Each edge has one state that moves in each direction, so an edge that connects two contacts gives the conductance <span class="math inline">\(e^2/h\)</span>, which is a resistance <span class="math inline">\(h/e^2=25.8\)</span> k<span class="math inline">\(\Omega\)</span>, with no parameter of the material in it. In monolayer WTe<span class="math inline">\(_2\)</span> the measured conductance is about <span class="math inline">\(e^2/h\)</span> per edge when the edge is short, and the effect is observed up to <span class="math inline">\(100\)</span> K. The measurement is in <a href="https://www.science.org/doi/10.1126/science.aan6003">this article</a>, which is also the one given in the notebook <code>session3.ipynb</code>.</p>
+<p><a href="#sch:s03:qsh_conductance">Schematic 3.15</a> shows the conductance of a clean ribbon when the chemical potential is moved through the gap. It is not the full experiment. The calculation has no disorder, no contacts and no temperature, so it gives the same value for any length of the edge, while the article gives the value <span class="math inline">\(e^2/h\)</span> for a short edge.</p>
+<figure id="sch:s03:qsh_conductance" class="schematic has-script">
+<img src="../figures/web/session03/g4_edge_conductance.svg" loading="lazy" alt="Two curves of the conductance against the chemical potential. Inside the gap one curve is flat at two and the other is at zero, and both rise in steps outside the gap." />
+<div class="script-row">
+<a href="../scripts/session03/g4_edge_conductance.py" class="script-dl" download="g4_edge_conductance.py">Download the pyqula script</a> <span class="script-name"><code>g4_edge_conductance.py</code></span>
+</div>
+<figcaption><strong>Schematic 3.15.</strong> The conductance <span class="math inline">\(G\)</span> of a clean honeycomb ribbon against the chemical potential <span class="math inline">\(\mu\)</span>, in units of <span class="math inline">\(e^2/h\)</span> and of the first-neighbor hopping <span class="math inline">\(t\)</span>. The ribbon has zigzag edges and <span class="math inline">\(40\)</span> sites across. The conductance is the transmission between two leads that are made of the same ribbon, so it counts the states that move to the right at the energy <span class="math inline">\(\mu\)</span>. The blue line is the quantum spin Hall insulator, with the intrinsic spin-orbit coupling <span class="math inline">\(0.1\)</span> of the script, which gives the gap <span class="math inline">\(0.9\,t\)</span>, drawn as the grey band. In the convention of the steps above, where the gap is <span class="math inline">\(6\sqrt3\,t_2\)</span>, this is <span class="math inline">\(t_2=0.087\,t\)</span>. The red dashed line is an ordinary insulator with the same gap, from a staggered sublattice potential <span class="math inline">\(0.45\,t\)</span>. Inside the gap the first one gives <span class="math inline">\(2\)</span>, which is <span class="math inline">\(e^2/h\)</span> for each of the two edges of the ribbon, and the second one gives <span class="math inline">\(0\)</span>. Look at the grey band, since the two bulk gaps are the same and only the edge states make the difference.</figcaption>
+</figure>
+</div>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>The two spin sectors have <span class="math inline">\(C_\uparrow=+1\)</span> and <span class="math inline">\(C_\downarrow=-1\)</span>. What are the charge Hall conductivity and the edge of this insulator?</p>
+<p>The charge Hall conductivity adds the Chern numbers of the two spin sectors,</p>
+<p><span class="math display">\[\sigma_{xy} = \frac{e^2}{h}\,\big(C_\uparrow + C_\downarrow\big).\]</span></p>
+<p>An insulator has <span class="math inline">\(C_\uparrow=+1\)</span> and <span class="math inline">\(C_\downarrow=-1\)</span>. What do we find in it?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li><span class="math inline">\(e^2/h\)</span> and one chiral mode at each edge.</li>
-<li>Zero, and a helical pair of modes at each edge.</li>
-<li>Zero, and no edge states, since the two spins cancel.</li>
+<li><span class="math inline">\(\sigma_{xy}=e^2/h\)</span>, and one chiral mode at each edge.</li>
+<li><span class="math inline">\(\sigma_{xy}=0\)</span>, and a helical pair of modes at each edge.</li>
+<li><span class="math inline">\(\sigma_{xy}=0\)</span>, and no edge states, since the two spins cancel.</li>
 </ol>
 </div>
 <details class="quiz-answer"><summary>Show the answers</summary>
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
-<p>This is false. The charge Hall conductivity adds the two sectors, and gives <span class="math inline">\((e^2/h)(1-1)=0\)</span>. A value <span class="math inline">\(e^2/h\)</span> would need both spins to have <span class="math inline">\(C=+1\)</span>.</p></li>
+<p>This is false. The formula gives <span class="math inline">\((e^2/h)(1-1)=0\)</span>. A value <span class="math inline">\(e^2/h\)</span> needs for example <span class="math inline">\(C_\uparrow=1\)</span> and <span class="math inline">\(C_\downarrow=0\)</span>, and two sectors with <span class="math inline">\(C=+1\)</span> give <span class="math inline">\(2e^2/h\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. The charge Hall conductivity is proportional to <span class="math inline">\(C=0\)</span>. Each spin sector still has its own edge mode, and the two propagate in opposite directions on the same edge, which is a helical pair.</p></li>
+<p>This is true. The charge Hall conductivity is proportional to <span class="math inline">\(C_\uparrow+C_\downarrow=0\)</span>. Each spin sector still has its own edge mode, and the two propagate in opposite directions on the same edge, which is a helical pair.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. The cancellation is only in the charge current. Each spin sector alone is a Chern insulator with <span class="math inline">\(|C|=1\)</span> and has one edge mode, and only the sum of the two Hall conductivities vanishes.</p></li>
+<p>This is false. The cancellation is only in the Hall conductivity. Each spin sector alone is a Chern insulator with <span class="math inline">\(|C|=1\)</span> and has one edge mode. A clean ribbon of this insulator has the conductance <span class="math inline">\(2e^2/h\)</span> inside the gap, one <span class="math inline">\(e^2/h\)</span> for each edge, and not zero.</p></li>
 </ul>
 </div>
 </details>
 </div>
-<p>The natural mechanism that gives this opposite-sign mass is spin-orbit coupling. The relativistic spin-orbit term has the structure <span class="math inline">\(\mathbf{L}\cdot\mathbf{S}\)</span>, and its <span class="math inline">\(z\)</span>-component, <span class="math inline">\(L_zS_z\)</span>, acts like an effective magnetic field that points in one direction for spin-up electrons and in the opposite direction for spin-down electrons. This is the opposite-sign mass structure that <a href="#eq-3-9">(3.9)</a> needs, and it appears with no net magnetic field and no net breaking of time-reversal symmetry. Graphene itself, when we include its intrinsic spin-orbit coupling, which is very small, is technically a quantum spin Hall insulator through this mechanism. The effect is much larger, and accessible in experiments, in monolayer 1T<span class="math inline">\(&#39;\)</span>-WTe<span class="math inline">\(_2\)</span>, where the quantum spin Hall effect survives up to 100 K.</p>
-<figure id="sch:s03:spin_sectors" class="schematic">
-<img src="../figures/web/session03/spin_sectors.svg" loading="lazy" alt="Two band structures of a ribbon against the momentum, each with a blue and a red branch that cross the gap, with the slopes of the two colors reversed between the panels." />
-<figcaption><strong>Schematic 3.10.</strong> The two spin sectors of the quantum spin Hall insulator, computed on a zigzag ribbon with the intrinsic spin-orbit coupling <span class="math inline">\(t_2=0.1\)</span>. Each sector is a Haldane model, with the phase <span class="math inline">\(+\pi/2\)</span> for spin up and <span class="math inline">\(-\pi/2\)</span> for spin down, so the two Chern numbers are opposite as in <a href="#eq-3-9">(3.9)</a>. The branches inside the gap are colored by the edge where they sit. Take the blue branch, which is on the lower edge. It moves to the right for spin up and to the left for spin down, and this is the helical pair of one edge.</figcaption>
-</figure>
+<div class="quiz" data-correct="C" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>The honeycomb lattice has four Dirac cones, with the valley <span class="math inline">\(\tau=\pm1\)</span> and the spin <span class="math inline">\(s=\pm1\)</span>. A mass <span class="math inline">\(m_{\tau s}\)</span> opens a gap in each cone. The cone then has the Chern number</p>
+<p><span class="math display">\[C_{\tau s} = \tfrac12\,\mathrm{sgn}(m_{\tau s})\,\tau.\]</span></p>
+<p>The Chern number of one spin is the sum over the two valleys. Which mass gives <span class="math inline">\(C_\uparrow=-C_\downarrow\neq0\)</span>, with <span class="math inline">\(m&gt;0\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(m_{\tau s} = m\)</span></li>
+<li><span class="math inline">\(m_{\tau s} = m\,\tau\)</span></li>
+<li><span class="math inline">\(m_{\tau s} = m\,\tau\,s\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. For each spin the two valleys give <span class="math inline">\(+\tfrac12\)</span> and <span class="math inline">\(-\tfrac12\)</span>, so <span class="math inline">\(C_\uparrow=C_\downarrow=0\)</span>. This mass is a staggered sublattice potential, which gives an ordinary insulator.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. Every cone gives <span class="math inline">\(+\tfrac12\)</span>, so <span class="math inline">\(C_\uparrow=C_\downarrow=1\)</span> and <span class="math inline">\(\sigma_{xy}=2e^2/h\)</span>. This mass is the Haldane coupling for both spins, a Chern insulator that breaks time-reversal symmetry.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. The two cones of spin up give <span class="math inline">\(\tfrac12+\tfrac12=1\)</span>, and those of spin down give <span class="math inline">\(-\tfrac12-\tfrac12=-1\)</span>. The total is <span class="math inline">\(C=0\)</span> and the difference is <span class="math inline">\(C_s=2\)</span>, which is the quantum spin Hall insulator.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="quiz quiz-pics" data-correct="C" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Each picture shows the bands of a ribbon against the momentum <span class="math inline">\(k\)</span> along the ribbon. The states of the lower edge are in color. Red is spin up and blue is spin down. Which ribbon is a quantum spin Hall insulator?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session03/g4_quiz_ribbon_chern.svg" loading="lazy" alt="The bands of a ribbon with a gap. A red and a blue branch cross the gap next to each other, both going up to the right." /></li>
+<li><img src="../figures/web/session03/g4_quiz_ribbon_trivial.svg" loading="lazy" alt="The bands of a ribbon with an empty gap. A short flat red line and a short flat blue line sit at the top of the lower bands." /></li>
+<li><img src="../figures/web/session03/g4_quiz_ribbon_qsh.svg" loading="lazy" alt="The bands of a ribbon with a gap. A red branch and a blue branch cross the gap with opposite slopes and cross each other in the middle." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The red and the blue branch have the same sign of the slope, so both spins move in the same direction on this edge. This edge is chiral, with two channels. The ribbon has the Haldane coupling with the same sign for both spins, so <span class="math inline">\(C_\uparrow=C_\downarrow\)</span> and <span class="math inline">\(|\sigma_{xy}|=2e^2/h\)</span>. A Zeeman field <span class="math inline">\(0.08\,t\)</span> separates the two branches by <span class="math inline">\(0.16\,t\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. No state crosses the gap. The edge has a flat band of each spin, but it stays at the top of the valence band. The ribbon has a staggered sublattice potential <span class="math inline">\(0.45\,t\)</span>, which gives an ordinary insulator with <span class="math inline">\(C_\uparrow=C_\downarrow=0\)</span>. A small Zeeman field separates the two flat bands.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. Inside the gap the lower edge has one red and one blue branch with opposite slopes. At the energy <span class="math inline">\(0.2\,t\)</span> they are <span class="math inline">\(+0.44\)</span> and <span class="math inline">\(-0.44\)</span>, in units of <span class="math inline">\(t\)</span> times the lattice constant. So the two spins move in opposite directions on the same edge, which is a helical pair. The two branches cross at <span class="math inline">\(k=\pi\)</span>. The ribbon has the intrinsic spin-orbit coupling of the notebook, with <span class="math inline">\(C_\uparrow=-C_\downarrow\)</span>.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>Time reversal relates the Bloch Hamiltonians of the two spins by <span class="math inline">\(H_\downarrow(k)=H_\uparrow(-k)^*\)</span>. Show that the Berry curvatures of the two filled bands obey <span class="math inline">\(\Omega_\downarrow(k)=-\Omega_\uparrow(-k)\)</span>, and that <span class="math inline">\(C_\downarrow=-C_\uparrow\)</span> follows.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>We write <span class="math inline">\(|u_\uparrow(k)\rangle\)</span> for the filled state of spin up, with <span class="math inline">\(H_\uparrow(k)|u_\uparrow(k)\rangle=\varepsilon(k)|u_\uparrow(k)\rangle\)</span>. We take this equation at <span class="math inline">\(-k\)</span> and we take its complex conjugate. The energy is real, so</p>
+<p><span class="math display">\[H_\uparrow(-k)^*\,|u_\uparrow(-k)\rangle^* = \varepsilon(-k)\,|u_\uparrow(-k)\rangle^*,\]</span></p>
+<p>meaning that <span class="math inline">\(|u_\downarrow(k)\rangle=|u_\uparrow(-k)\rangle^*\)</span> is the filled state of <span class="math inline">\(H_\downarrow(k)\)</span>, with the energy <span class="math inline">\(\varepsilon(-k)\)</span>. Its derivative has one sign from the argument <span class="math inline">\(-k\)</span>,</p>
+<p><span class="math display">\[|\partial_{k_\mu}u_\downarrow(k)\rangle = -\,|(\partial_{k_\mu}u_\uparrow)(-k)\rangle^*.\]</span></p>
+<p>In the overlap of two derivatives the two signs cancel, and the complex conjugation of both states gives the complex conjugate of the overlap,</p>
+<p><span class="math display">\[\langle\partial_{k_x}u_\downarrow|\partial_{k_y}u_\downarrow\rangle(k) = \Big(\langle\partial_{k_x}u_\uparrow|\partial_{k_y}u_\uparrow\rangle(-k)\Big)^*.\]</span></p>
+<p>The Berry curvature <span class="math inline">\(\Omega=-2\,\mathrm{Im}\,\langle\partial_{k_x}u|\partial_{k_y}u\rangle\)</span> uses the imaginary part, which changes sign under the conjugation, so <span class="math inline">\(\Omega_\downarrow(k)=-\Omega_\uparrow(-k)\)</span>. The integral over the Brillouin zone contains <span class="math inline">\(k\)</span> and <span class="math inline">\(-k\)</span> together, so <span class="math inline">\(C_\downarrow=-C_\uparrow\)</span>.</p>
+<p>This is the reason why the total Chern number vanishes for every system with time-reversal symmetry. So the Hall conductivity cannot detect a quantum spin Hall insulator, and we measure the conductance of its edge instead. It also matters for a calculation. When <span class="math inline">\(s_z\)</span> is conserved it is enough to compute the Chern number of one spin, and the other one is its opposite.</p>
+</div>
+</details>
+</div>
+</div>
 <div class="tryit">
-<p><strong>Try it.</strong> Run the cell. In the left panel the color gives the edge, top or bottom, and in the right panel it gives the spin. In the gap, take the two branches of one edge. They have opposite slopes and opposite spin, which is the helical pair of <a href="#eq-3-9">(3.9)</a>.</p>
+<p><strong>Try it.</strong> Run the cell. In the left panel the color gives the edge, top or bottom, and in the right panel it gives the spin. In the gap, take the two branches of one edge. They have opposite slopes and opposite spin, which is the helical pair of <a href="#eq-3-9">(3.9)</a>. The text of the notebook writes the spin Chern number as <span class="math inline">\((C_\uparrow-C_\downarrow)/2\)</span>, which is half of the <span class="math inline">\(C_s\)</span> of <a href="#eq-3-9">(3.9)</a>.</p>
 <div class="tryit-links">
 Notebook <code>session3.ipynb</code>, cell “The quantum spin Hall state”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session3.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session3.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession3.ipynb">Binder</a>.
 </div>

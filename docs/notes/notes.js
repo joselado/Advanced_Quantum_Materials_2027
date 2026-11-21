@@ -38,6 +38,7 @@
     status.setAttribute('role', 'status');
     status.setAttribute('aria-live', 'polite');
     var withFb = q.hasAttribute('data-fb');
+    var pics = q.classList.contains('quiz-pics');   // picture options: the feedback sits under the row, so it names its option
     var fbs = [];
     if (withFb) {
       q.querySelectorAll('.quiz-fbs > ul > li').forEach(function (li) {
@@ -74,7 +75,7 @@
         fb.id = 'fb-' + Math.random().toString(36).slice(2, 9);
         var tag = document.createElement('p');
         tag.className = 'quiz-tag';
-        tag.textContent = i === correct ? 'Why it is correct' : 'Counterexample';
+        tag.textContent = (pics ? String.fromCharCode(65 + i) + '. ' : '') + (i === correct ? 'Why it is correct' : 'Counterexample');
         fb.appendChild(tag);
         while (fbs[i].firstChild) fb.appendChild(fbs[i].firstChild);
         li.appendChild(fb);

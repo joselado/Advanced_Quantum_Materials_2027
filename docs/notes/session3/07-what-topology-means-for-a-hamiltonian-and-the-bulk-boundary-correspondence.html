@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -84,19 +85,53 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="on" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 3. Topological Band Structure Theory</a></p>
 <h1 id="sec-3-7"><span class="num">3.7</span> What topology means for a Hamiltonian, and the bulk-boundary correspondence</h1>
+<p>Why does a state with a nonzero Chern number always have gapless states at its boundary, for any shape of the boundary? We will now see that this follows from one fact, which is that the Chern number is an integer. An integer cannot change while the gap is open, so at an interface between two different values the gap must close.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[\sigma_{xy} = \frac{e^2}{h}\, C, \qquad
+C = \sum_{n\ \text{filled}} \frac{1}{2\pi}\int_{\text{BZ}} \Omega_n(k)\, d^2k. \tag{3.4}\]</span></p>
+</div>
+<p>This is the Hall conductivity of Section <a href="05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#sec-3-5">3.5</a>. The integer <span class="math inline">\(C\)</span> is the Chern number, which is the integral of the Berry curvature <span class="math inline">\(\Omega_n(k)\)</span> of the filled bands over the Brillouin zone. It is an integer as long as the system has a gap.</p>
+</div>
 <p>We have now seen one topological invariant at work. Let us now step back and say what the word topological means, in the mathematical sense from which the word is taken. Topology classifies objects by whether they can be smoothly deformed into each other without a drastic operation, such as cutting, tearing or gluing. Closed surfaces in three dimensions are classified by their number of holes. A donut and a coffee cup both have one hole and can be continuously deformed into each other, while a sphere has no hole and cannot be deformed into either of them. Closed curves embedded in three dimensions have a similar classification by knots, since curves with different knots cannot be smoothly untangled into each other.</p>
 <p>For a Hamiltonian, the equivalent of a deformation is to change the band structure continuously while the bulk gap stays open. Two Hamiltonians related by such a deformation have the same Chern number, because <span class="math inline">\(C\)</span> in <a href="05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#eq-3-4">(3.4)</a> is quantized and so it cannot change continuously. It can only jump, and a jump requires the gap to close at some point of the deformation. So the Chern number plays the role that the number of holes plays for a surface. Hamiltonians with the same Chern number are topologically equivalent, meaning that they can be deformed into each other without closing the gap, and Hamiltonians with different Chern numbers are not.</p>
-<p>This has a direct and strong consequence. Let us build a Hamiltonian that changes in space and is equal to <span class="math inline">\(H_1\)</span>, with Chern number <span class="math inline">\(C_1\)</span>, far to the left, and to <span class="math inline">\(H_2\)</span>, with Chern number <span class="math inline">\(C_2 \neq C_1\)</span>, far to the right. The Hamiltonians <span class="math inline">\(H_1\)</span> and <span class="math inline">\(H_2\)</span> cannot be deformed into each other without closing the gap, and the Hamiltonian in between goes continuously from one to the other. So the gap <em>must</em> close somewhere in between, for any microscopic construction of the interface. An interface between two bulk phases with different Chern numbers always has a gapless state. Its existence depends only on <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span>, and not on any detail of the interface. This is called the <strong>bulk-boundary correspondence</strong>. The vacuum has <span class="math inline">\(C=0\)</span>, since it is topologically trivial, so a quantum Hall state with <span class="math inline">\(C=1\)</span> always has a gapless edge state at every boundary with the vacuum. This is the edge physics of Section <a href="06-landau-levels-and-chiral-edge-states-in-the-quantum-hall-state.html#sec-3-6">3.6</a>, now obtained from a completely general argument. Figure <a href="#fig:s03:bulkboundary">3.2</a> shows the three steps of this argument in order.</p>
+<p>This has a direct and strong consequence. Let us build a Hamiltonian that changes in space and is equal to <span class="math inline">\(H_1\)</span>, with Chern number <span class="math inline">\(C_1\)</span>, far to the left, and to <span class="math inline">\(H_2\)</span>, with Chern number <span class="math inline">\(C_2 \neq C_1\)</span>, far to the right. The Hamiltonians <span class="math inline">\(H_1\)</span> and <span class="math inline">\(H_2\)</span> cannot be deformed into each other without closing the gap, and the Hamiltonian in between goes continuously from one to the other. So the gap <em>must</em> close somewhere in between, for any microscopic construction of the interface. An interface between two bulk phases with different Chern numbers always has a gapless state. Its existence depends only on <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span>, and not on any detail of the interface. This is called the <strong>bulk-boundary correspondence</strong>.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>An interface between two gapped regions with different Chern numbers <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span> always has gapless states that are bound to it. We count the modes that move one way along the interface, <span class="math inline">\(N_\rightarrow\)</span>, and the ones that move the other way, <span class="math inline">\(N_\leftarrow\)</span>. Their difference is fixed by the bulk,</p>
+<p><span class="math display">\[N_\rightarrow - N_\leftarrow = C_1 - C_2 ,\]</span></p>
+<p>with an overall sign that depends on which direction we call positive. Only <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span> enter, and no detail of the interface. The vacuum has <span class="math inline">\(C=0\)</span>, so the edge of a sample with Chern number <span class="math inline">\(C\)</span> has a net number <span class="math inline">\(|C|\)</span> of chiral modes.</p>
+</div>
+<p>The vacuum has <span class="math inline">\(C=0\)</span>, since it is topologically trivial, so a quantum Hall state with <span class="math inline">\(C=1\)</span> always has a gapless edge state at every boundary with the vacuum. This is the edge physics of Section <a href="06-landau-levels-and-chiral-edge-states-in-the-quantum-hall-state.html#sec-3-6">3.6</a>, now obtained from a completely general argument. Figure <a href="#fig:s03:bulkboundary">3.2</a> shows the three steps of this argument in order.</p>
 <figure id="fig:s03:bulkboundary">
 <img src="../figures/s03f02_bulkboundary.svg" loading="lazy" alt="The bulk-boundary correspondence, as an argument about an integer." />
 <figcaption><strong>Figure 3.2.</strong> The bulk-boundary correspondence, as an argument about an integer. A Hamiltonian changes slowly in space from <span class="math inline">\(H_1\)</span> on the left to <span class="math inline">\(H_2\)</span> on the right, which is the color of the backdrop. In the top row, the Chern number is an integer, so it cannot change continuously from <span class="math inline">\(C_1=1\)</span> to <span class="math inline">\(C_2=0\)</span> and it can only jump. In the middle row, a jump is only allowed where the quantization argument itself fails, which is where the gap closes. So the local gap must go to zero somewhere in the interface region, at the cross. This is drawn schematically, in the local-gap approximation. In the bottom row, the state that appears there is a gapless state bound to the interface. This argument does not use any detail of how the interface is built, and only <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span> enter, which is why the edge state survives rough boundaries and impurities. If we take <span class="math inline">\(H_2\)</span> to be the vacuum, <span class="math inline">\(C_2=0\)</span>, we obtain the chiral edge state of Figure <a href="06-landau-levels-and-chiral-edge-states-in-the-quantum-hall-state.html#fig:s03:chiraledge">3.1</a> from a completely general argument.</figcaption>
 </figure>
+<figure id="sch:s03:interface_modes" class="schematic">
+<img src="../figures/web/session03/interface_modes.svg" loading="lazy" alt="Left, a dashed profile of the staggered potential and a solid local gap that drops to zero at two points. Right, the bands of a cylinder with a blue and a red branch that cross the gap with opposite slopes." />
+<figcaption><strong>Schematic 3.9.</strong> The argument of Figure <a href="#fig:s03:bulkboundary">3.2</a>, now computed on a cylinder of the Haldane model with <span class="math inline">\(t_2=0.1\)</span>. The staggered potential <span class="math inline">\(M\)</span> grows smoothly from <span class="math inline">\(0\)</span> to <span class="math inline">\(t\)</span> and goes back, so a region with <span class="math inline">\(C=0\)</span> sits between two regions with <span class="math inline">\(C=1\)</span>. In (a) the local gap is the bulk gap of the Haldane model at the local value of <span class="math inline">\(M\)</span>. It closes at the two crosses, where <span class="math inline">\(M\)</span> passes <span class="math inline">\(3\sqrt3\,t_2\)</span> and the Chern number jumps. In (b) the spectrum of the cylinder has only two branches inside the gap, one at each interface, with opposite velocities. The colors of the branches are the colors of the two crosses, so each branch sits where the local gap closes.</figcaption>
+</figure>
+<p>The same argument explains the robustness that we used before. Let us put a local impurity at the edge of a quantum Hall sample. This only changes the microscopic details of the interface between the vacuum and the quantum Hall state. Since the topological excitation of the interface must exist for any such details, the edge state reorganizes itself around the impurity and is not scattered by it. This is a general mechanism, which is not special to the quantum Hall case, and it will appear again for every topological invariant that we see from now on.</p>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>This argument can be tested by writing the interface on purpose. In a film of a magnetic topological insulator, magnetic domains were written with the tip of a magnetic force microscope, with each domain in the quantum anomalous Hall state. Transport measurements show a chiral one-dimensional conduction along the walls between the domains, at the places where the walls were written. The measurement is in <a href="https://www.science.org/doi/10.1126/science.aan5991">this article</a>.</p>
+<p>We can read this experiment with the result of this page. Two domains with opposite magnetization are related by time reversal, so their Chern numbers are <span class="math inline">\(C\)</span> and <span class="math inline">\(-C\)</span>. The wall between them then has a net number <span class="math inline">\(2|C|\)</span> of chiral modes, which is two for <span class="math inline">\(|C|=1\)</span>.</p>
+</div>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>Why must the gap close somewhere in an interface between a region with <span class="math inline">\(C=1\)</span> and a region with <span class="math inline">\(C=0\)</span>?</p>
+<p>The Hall conductivity of a gapped system is</p>
+<p><span class="math display">\[\sigma_{xy} = \frac{e^2}{h}\,C, \qquad C = \sum_{n\ \text{filled}}\frac{1}{2\pi}\int_{\text{BZ}}\Omega_n(k)\,d^2k,\]</span></p>
+<p>with <span class="math inline">\(\Omega_n(k)\)</span> the Berry curvature of the filled band <span class="math inline">\(n\)</span>, and <span class="math inline">\(C\)</span> is an integer. A region with <span class="math inline">\(C=1\)</span> touches a region with <span class="math inline">\(C=0\)</span>. Why must the gap close in between?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -111,18 +146,90 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
 <p>This is false. Two regions that both have <span class="math inline">\(C=1\)</span> can be joined with the gap open everywhere, and the Hall conductivity is the same on both sides. The gapless state is forced by the change of <span class="math inline">\(C\)</span> and not by the presence of a current.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. A quantized quantity cannot change continuously while the gap is open, as in <a href="05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#eq-3-4">(3.4)</a>. An interface from <span class="math inline">\(C=1\)</span> to <span class="math inline">\(C=0\)</span> must then have a point where the local gap is zero.</p></li>
+<p>This is true. A quantized quantity cannot change continuously while the gap is open. An interface from <span class="math inline">\(C=1\)</span> to <span class="math inline">\(C=0\)</span> must then have a point where the local gap is zero.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
 <p>This is false. Replace the vacuum by a trivial insulator, such as boron nitride, with <span class="math inline">\(C=0\)</span> and a large gap. The interface with a <span class="math inline">\(C=1\)</span> region still has a gapless state, so the vacuum plays no role.</p></li>
 </ul>
 </div>
 </details>
 </div>
-<figure id="sch:s03:interface_modes" class="schematic">
-<img src="../figures/web/session03/interface_modes.svg" loading="lazy" alt="Left, a dashed profile of the staggered potential and a solid local gap that drops to zero at two points. Right, the bands of a cylinder with a blue and a red branch that cross the gap with opposite slopes." />
-<figcaption><strong>Schematic 3.6.</strong> The argument of Figure <a href="#fig:s03:bulkboundary">3.2</a>, now computed on a cylinder of the Haldane model with <span class="math inline">\(t_2=0.1\)</span>. The staggered potential <span class="math inline">\(M\)</span> grows smoothly from <span class="math inline">\(0\)</span> to <span class="math inline">\(t\)</span> and goes back, so a region with <span class="math inline">\(C=0\)</span> sits between two regions with <span class="math inline">\(C=1\)</span>. In (a) the local gap is the bulk gap of the Haldane model at the local value of <span class="math inline">\(M\)</span>. It closes at the two crosses, where <span class="math inline">\(M\)</span> passes <span class="math inline">\(3\sqrt3\,t_2\)</span> and the Chern number jumps. In (b) the spectrum of the cylinder has only two branches inside the gap, one at each interface, with opposite velocities. The colors of the branches are the colors of the two crosses, so each branch sits where the local gap closes.</figcaption>
-</figure>
-<p>The same argument explains the robustness that we used before. Let us put a local impurity at the edge of a quantum Hall sample. This only changes the microscopic details of the interface between the vacuum and the quantum Hall state. Since the topological excitation of the interface must exist for any such details, the edge state reorganizes itself around the impurity and is not scattered by it. This is a general mechanism, which is not special to the quantum Hall case, and it will appear again for every topological invariant that we see from now on.</p>
+<div class="quiz quiz-pics" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>A honeycomb lattice has a Haldane coupling and a staggered potential <span class="math inline">\(M\)</span>. A deformation changes <span class="math inline">\(M\)</span> linearly with a parameter <span class="math inline">\(\lambda\)</span>, from <span class="math inline">\(\lambda=0\)</span> to <span class="math inline">\(\lambda=1\)</span>. Each plot shows the bulk gap, in units of the hopping <span class="math inline">\(t\)</span>, against <span class="math inline">\(\lambda\)</span>. Along which deformation does the Chern number change?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session03/g2_quiz_gap_open.svg" loading="lazy" alt="A gap that falls along the path and stays above zero." /></li>
+<li><img src="../figures/web/session03/g2_quiz_gap_closes.svg" loading="lazy" alt="A gap that falls to zero in the middle of the path and opens again." /></li>
+<li><img src="../figures/web/session03/g2_quiz_gap_grows.svg" loading="lazy" alt="A gap that grows along the path." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The gap falls from <span class="math inline">\(0.90\)</span> to <span class="math inline">\(0.18\)</span> and it never closes, so the integer cannot change. Here the Haldane coupling alone opens the gap <span class="math inline">\(0.90\)</span>, and <span class="math inline">\(M\)</span> goes from <span class="math inline">\(0\)</span> to <span class="math inline">\(0.36\)</span>. The Chern number has the size <span class="math inline">\(1\)</span> at both ends.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The Haldane coupling alone opens the gap <span class="math inline">\(0.90\)</span>, and <span class="math inline">\(M\)</span> goes from <span class="math inline">\(0\)</span> to <span class="math inline">\(0.90\)</span>. The gap is <span class="math inline">\(2|M-0.45|\)</span>, so it closes at <span class="math inline">\(\lambda=0.5\)</span> and opens again. This coupling is <code>add_haldane(0.1)</code> of pyqula, which is a second-neighbor hopping <span class="math inline">\(t_2=0.087\)</span>, so the value <span class="math inline">\(0.45\)</span> is <span class="math inline">\(3\sqrt3\,t_2\)</span>. The Chern number has the size <span class="math inline">\(1\)</span> at <span class="math inline">\(\lambda=0\)</span> and it is <span class="math inline">\(0\)</span> at <span class="math inline">\(\lambda=1\)</span>. An integer can only change where the gap closes.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The gap grows from <span class="math inline">\(0.18\)</span> to <span class="math inline">\(0.90\)</span> and it never closes. Here <span class="math inline">\(M\)</span> goes from <span class="math inline">\(0.54\)</span> to <span class="math inline">\(0.90\)</span>, which is above the value <span class="math inline">\(0.45\)</span> where the gap of this lattice closes. The Chern number is <span class="math inline">\(0\)</span> at both ends, so the two ends are the same trivial insulator.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="quiz" data-correct="C" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>A region with two filled Landau levels touches a region with one filled Landau level. Each filled level has the Chern number <span class="math inline">\(1\)</span>, so <span class="math inline">\(C_1=2\)</span> and <span class="math inline">\(C_2=1\)</span>. How many chiral modes does the interface have?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(C_1+C_2=3\)</span></li>
+<li><span class="math inline">\(C_1=2\)</span></li>
+<li><span class="math inline">\(C_1-C_2=1\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Take <span class="math inline">\(C_1=C_2=1\)</span>, which is the same phase on both sides. There is no interface and the gap is open everywhere, but the sum would give two modes.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. This is the answer for an edge with the vacuum, where <span class="math inline">\(C_2=0\)</span>. Take <span class="math inline">\(C_1=C_2=2\)</span>, which is again the same phase on both sides with no gapless state, while this rule would give two modes.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. Only the difference of the two integers must be carried by the interface. The first Landau level is filled on both sides, so it does not end there, and only the second level does. Take a ribbon of the square lattice with the flux <span class="math inline">\(0.02\)</span> per plaquette, a potential step of <span class="math inline">\(0.24\,t\)</span> and the chemical potential at <span class="math inline">\(-3.5\,t\)</span>. It has two filled levels on one side of the step and one on the other, and one branch at the step crosses the chemical potential.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>The simplest interface that we can solve by hand is a gapped Dirac cone whose mass changes sign. We take</p>
+<p><span class="math display">\[H = -i\,\partial_x\,\sigma_x + k_y\,\sigma_y + m(x)\,\sigma_z,\]</span></p>
+<p>in units where <span class="math inline">\(\hbar\)</span> and the velocity are one. Here <span class="math inline">\(k_y\)</span> is the momentum along the interface, and the mass <span class="math inline">\(m(x)\)</span> goes from <span class="math inline">\(-m_0\)</span> far to the left to <span class="math inline">\(+m_0\)</span> far to the right, with <span class="math inline">\(m_0&gt;0\)</span>. Far from the interface the spectrum has the gap <span class="math inline">\(2m_0\)</span>. Find the state that is bound to the interface, and its energy <span class="math inline">\(E(k_y)\)</span>.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>We first set <span class="math inline">\(k_y=0\)</span> and look for a state with zero energy, <span class="math inline">\((-i\sigma_x\partial_x+m\,\sigma_z)\psi=0\)</span>. We multiply this equation by <span class="math inline">\(i\sigma_x\)</span> and use <span class="math inline">\(\sigma_x\sigma_z=-i\sigma_y\)</span>, which gives</p>
+<p><span class="math display">\[\partial_x\psi = -m(x)\,\sigma_y\,\psi .\]</span></p>
+<p>We take the spinor of <span class="math inline">\(\psi\)</span> as an eigenvector of <span class="math inline">\(\sigma_y\)</span>, with <span class="math inline">\(\sigma_y\chi_\pm=\pm\chi_\pm\)</span>, and then</p>
+<p><span class="math display">\[\psi_\pm(x) = \exp\Big(\mp\int_0^x m(x&#39;)\,dx&#39;\Big)\,\chi_\pm .\]</span></p>
+<p>Far from the interface the exponent of <span class="math inline">\(\psi_+\)</span> is <span class="math inline">\(-m_0|x|\)</span> on both sides. So <span class="math inline">\(\psi_+\)</span> decays on both sides and can be normalized, while <span class="math inline">\(\psi_-\)</span> grows on both sides and is not a state. There is one state at zero energy, with <span class="math inline">\(\chi_+=(1,i)/\sqrt2\)</span>. It sits where the mass vanishes, and far from that point it decays over the length <span class="math inline">\(1/m_0\)</span>.</p>
+<p>Now we add <span class="math inline">\(k_y\)</span>. The same <span class="math inline">\(\psi_+\)</span> is still an eigenstate, since the term <span class="math inline">\(k_y\sigma_y\)</span> acts on it as the number <span class="math inline">\(k_y\)</span>,</p>
+<p><span class="math display">\[H\,\psi_+ = k_y\,\psi_+, \qquad E(k_y) = k_y .\]</span></p>
+<p>This is one branch that crosses the whole gap with a single sign of the velocity, which is a chiral mode. A smooth interface can bind more states at finite energies inside the gap, but they do not cross it. If the mass goes from <span class="math inline">\(+m_0\)</span> to <span class="math inline">\(-m_0\)</span> the bound state is <span class="math inline">\(\psi_-\)</span> with <span class="math inline">\(E=-k_y\)</span>, so the mode moves the other way. We did not use any detail of <span class="math inline">\(m(x)\)</span>, only its two signs far from the interface. In Section <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#sec-3-10">3.10</a> we will see that the two signs of the mass differ by one unit of the Chern number, so this is the bulk-boundary correspondence with one mode.</p>
+<p>For a measurement it means that the local density of states that STM measures at zero energy sits at the interface, and it decays away from it over the length <span class="math inline">\(1/m_0\)</span>. For a calculation it gives the width that a ribbon needs, which is several times this length, so that the modes of its two edges do not overlap.</p>
+</div>
+</details>
+</div>
+</div>
 <div class="tryit">
 <p><strong>Try it.</strong> In the cell with the Haldane coupling on an island, change <code>rot=np.pi/6.</code> or <code>n=8</code> so that the shape of the edge changes. At the energies inside the gap, the local density of states still sits on the whole boundary, whatever its shape. This is the argument of <a href="#fig:s03:bulkboundary"></a>, which does not use any detail of the edge.</p>
 <div class="tryit-links">

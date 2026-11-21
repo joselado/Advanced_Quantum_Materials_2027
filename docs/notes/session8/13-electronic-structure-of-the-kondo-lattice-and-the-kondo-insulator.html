@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -106,6 +107,11 @@ Question
 </div>
 <div class="quiz-q">
 <p>In <a href="11-from-a-single-kondo-impurity-to-the-kondo-lattice.html#eq-8-21">(8.21)</a> we have one <span class="math inline">\(f\)</span> fermion per site and a half-filled conduction band. How many particles per <span class="math inline">\(\mathbf k\)</span> point and spin fill the two bands?</p>
+<div class="eq-again">
+<p><span class="math display">\[H \sim \sum_{\mathbf k\alpha} \varepsilon_{\mathbf k}\, c^\dagger_{\mathbf k\alpha} c_{\mathbf
+k\alpha} \;-\; \gamma_K \sum_{\mathbf k,\alpha} f^\dagger_{\mathbf k\alpha}c_{\mathbf k\alpha} +
+\text{h.c.}, \tag{8.21}\]</span></p>
+</div>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -153,7 +159,12 @@ Question
 <figure class="quiz-fig schematic">
 <img src="../figures/web/session08/hybrid_gap.svg" loading="lazy" alt="Two panels of a cosine band and a flat band repelled by a hybridization, with an arrow at the crossing that is twice as long for the larger hybridization." />
 <figcaption>The two bands of <a href="11-from-a-single-kondo-impurity-to-the-kondo-lattice.html#eq-8-21">(8.21)</a> for <span class="math inline">\(\gamma_K=0.5\)</span> and <span class="math inline">\(\gamma_K=1\)</span> with <span class="math inline">\(t=1\)</span>. The direct gap at the crossing, the arrow, is <span class="math inline">\(2\gamma_K\)</span>, so it doubles.</figcaption>
-</figure></li>
+</figure>
+<div class="eq-again">
+<p><span class="math display">\[H \sim \sum_{\mathbf k\alpha} \varepsilon_{\mathbf k}\, c^\dagger_{\mathbf k\alpha} c_{\mathbf
+k\alpha} \;-\; \gamma_K \sum_{\mathbf k,\alpha} f^\dagger_{\mathbf k\alpha}c_{\mathbf k\alpha} +
+\text{h.c.}, \tag{8.21}\]</span></p>
+</div></li>
 </ul>
 </div>
 </details>

@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -103,6 +104,9 @@ Question
 </div>
 <div class="quiz-q">
 <p>When DMRG updates one tensor with all the others fixed, what happens to the energy <a href="#eq-7-11">(7.11)</a>?</p>
+<div class="eq-again">
+<p><span class="math display">\[E[\Psi] = \frac{\langle \Psi | H | \Psi \rangle}{\langle \Psi | \Psi \rangle}, \tag{7.11}\]</span></p>
+</div>
 </div>
 <div class="quiz-options">
 <ol type="A">

@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -102,6 +103,9 @@ Question
 </div>
 <div class="quiz-q">
 <p>An open Kitaev chain with <span class="math inline">\(\Delta=0.5t\)</span> and <span class="math inline">\(\mu=t\)</span> has two Majoranas at its ends. We change the chemical potential to <span class="math inline">\(\mu=-t\)</span>. What happens to them?</p>
+<div class="eq-again">
+<p><span class="math display">\[|\mu| &lt; 2t \quad \Longrightarrow \quad \text{topological phase (unpaired end Majoranas)}, \qquad |\mu| &gt; 2t \quad \Longrightarrow \quad \text{trivial phase.} \tag{5.22}\]</span></p>
+</div>
 </div>
 <div class="quiz-options">
 <ol type="A">

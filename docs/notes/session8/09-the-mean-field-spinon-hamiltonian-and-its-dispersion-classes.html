@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -112,6 +113,12 @@ Question
 </div>
 <div class="quiz-q">
 <p>Why must the spinon tight-binding model <a href="#eq-8-15">(8.15)</a> be studied at half filling?</p>
+<div class="eq-again">
+<p><span class="math display">\[\mathcal H_\text{MF} = \sum_{ij,s} \chi_{ij}\, f^\dagger_{i,s} f_{j,s}. \tag{8.15}\]</span></p>
+</div>
+<div class="eq-again">
+<p><span class="math display">\[\sum_\sigma f_{i\sigma}^\dagger f_{i\sigma} = 1 \qquad \text{at every site } i. \tag{8.11}\]</span></p>
+</div>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -155,7 +162,10 @@ Question
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
 <p>This is true. The two spin species see the same band, so no spin direction is selected. The state has zero magnetization by construction.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. Spinons are neutral for any <span class="math inline">\(\chi_{ij}\)</span>, also a spin-dependent one, since the constraint <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-11">(8.11)</a> fixes one fermion per site. The equal choice for both spins is not what gives this.</p></li>
+<p>This is false. Spinons are neutral for any <span class="math inline">\(\chi_{ij}\)</span>, also a spin-dependent one, since the constraint <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-11">(8.11)</a> fixes one fermion per site. The equal choice for both spins is not what gives this.</p>
+<div class="eq-again">
+<p><span class="math display">\[\sum_\sigma f_{i\sigma}^\dagger f_{i\sigma} = 1 \qquad \text{at every site } i. \tag{8.11}\]</span></p>
+</div></li>
 </ul>
 </div>
 </details>

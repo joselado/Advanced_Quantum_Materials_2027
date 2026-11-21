@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -100,12 +101,24 @@
 <li><p>The same invariants apply beyond electrons, for example to magnons, and also beyond quantum mechanics, to any system with a dispersion relation.</p></li>
 </ul>
 <p>In <a href="../session4/index.html">Session 4</a> we take the flat-band case of Section <a href="../session2/09-properties-of-an-electronic-dispersion.html#sec-2-10">2.10</a> in full. We will derive the Landau levels from the start, see the integer quantum Hall effect as a set of filled bands with <span class="math inline">\(C=1\)</span>, and build the fractional quantum Hall state.</p>
+<p>After this session we can do the following tasks, and each of them has the section that teaches it.</p>
+<ul>
+<li>Write the Hall conductivity of an insulator as a sum over filled and empty bands, and say why the band energies drop out of it. This is in Section <a href="03-where-perturbation-theory-breaks-down.html#sec-3-4">3.4</a> and Section <a href="05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#sec-3-5">3.5</a>.</li>
+<li>Compute a Chern number on a k-mesh and say when the mesh is too coarse. This is in Section <a href="05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#sec-3-5">3.5</a>.</li>
+<li>Count the chiral edge states in the spectrum of a ribbon, and say on which edge each of them sits. This is in Section <a href="06b-the-quantum-hall-ribbon-on-the-lattice.html#sec-3-6b">3.6b</a>.</li>
+<li>Say where a gapless state must appear when two regions with different invariants are joined. This is in Section <a href="07-what-topology-means-for-a-hamiltonian-and-the-bulk-boundary-correspondence.html#sec-3-7">3.7</a>.</li>
+<li>Compute the Zak phase of the SSH chain from its Bloch Hamiltonian, and predict if the chain has zero modes at its ends. This is in Section <a href="09c-the-ssh-model-the-bloch-hamiltonian-and-the-zak-phase.html#sec-3-9c">3.9c</a> and Section <a href="09b-the-ssh-chain-in-the-opposite-limit-and-the-zero-modes.html#sec-3-9b">3.9b</a>.</li>
+<li>Decide if the two Dirac points of the honeycomb lattice add or cancel, from how the mass term transforms under time reversal. This is in Section <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#sec-3-10">3.10</a> and Section <a href="10b-the-haldane-coupling-and-a-real-chern-insulator.html#sec-3-10b">3.10b</a>.</li>
+<li>Tell a helical edge from a chiral one in the spectrum of a ribbon, and say which perturbation opens a gap in it. This is in Section <a href="11-quantum-spin-hall-insulators.html#sec-3-11">3.11</a> and Section <a href="11b-kramers-protection-of-the-helical-edge.html#sec-3-11b">3.11b</a>.</li>
+</ul>
 <div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>What decides whether the two Dirac points of the honeycomb lattice give Chern numbers that cancel or that add?</p>
+<p>Each gapped Dirac point of the honeycomb lattice has the Chern number</p>
+<p><span class="math display">\[C_{\text{Dirac}} = \frac{1}{2}\,\mathrm{sgn}(m)\,\mathrm{sgn}(\lambda).\]</span></p>
+<p>Here <span class="math inline">\(m\)</span> is its mass and <span class="math inline">\(\lambda=\pm1\)</span> is its chirality. The chirality is opposite at the two points. What decides whether the two points cancel or add?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -120,7 +133,7 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
 <p>This is false. The Chern number is a dimensionless integer. Rescaling the lattice constant from <span class="math inline">\(a\)</span> to <span class="math inline">\(2a\)</span> changes neither the staggered potential, with <span class="math inline">\(C=0\)</span>, nor the Haldane coupling, with <span class="math inline">\(C=\pm1\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
-<p>This is false. In Figure <a href="10b-the-haldane-coupling-and-a-real-chern-insulator.html#fig:s03:masses">3.5</a> the two gaps are about the same, with <span class="math inline">\(m=0.5\)</span> and a Haldane mass <span class="math inline">\(3\sqrt{3}t_2\approx0.52\)</span> for <span class="math inline">\(t_2=0.1\)</span>. One gives <span class="math inline">\(C=0\)</span> and the other gives <span class="math inline">\(C=\pm1\)</span>.</p></li>
+<p>This is false. A staggered potential <span class="math inline">\(0.5\,t\)</span> gives the gap <span class="math inline">\(1.0\,t\)</span>, and a Haldane coupling <span class="math inline">\(t_2=0.1\,t\)</span> gives the gap <span class="math inline">\(6\sqrt{3}\,t_2\approx1.04\,t\)</span>. The two masses have about the same size, but the first one gives <span class="math inline">\(C=0\)</span> and the second one gives <span class="math inline">\(C=\pm1\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
 <p>This is true. A staggered potential is even under time reversal and gives the same mass at both valleys, so the half-integers cancel. The Haldane coupling is odd under time reversal, so the half-integers add.</p>
 <figure class="quiz-fig again panel">
@@ -136,24 +149,53 @@ Question
 Question
 </div>
 <div class="quiz-q">
-<p>Which symmetry protects the helical edge states of the quantum spin Hall insulator?</p>
+<p>One edge of a quantum spin Hall insulator has two states inside the gap. They cross, they move in opposite directions and they have opposite spin. Which symmetry protects this crossing?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
 <li>Spin conservation.</li>
 <li>Time-reversal symmetry, through the Kramers degeneracy.</li>
-<li>Translational symmetry and gauge invariance.</li>
+<li>Translational symmetry along the edge.</li>
 </ol>
 </div>
 <details class="quiz-answer"><summary>Show the answers</summary>
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
-<p>This is false. Rashba coupling breaks the conservation of <span class="math inline">\(S_z\)</span>, and the crossing of the helical edge stays closed as long as time-reversal symmetry holds.</p></li>
+<p>This is false. A Rashba coupling breaks the conservation of <span class="math inline">\(s_z\)</span>. On a ribbon with a Rashba coupling <span class="math inline">\(0.1\,t\)</span> the two edge states are still degenerate at <span class="math inline">\(k=\pi\)</span>, since time-reversal symmetry holds.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. The helical edge is protected by time reversal, and it holds even when spin is not conserved.</p></li>
+<p>This is true. The two states are partners under time reversal, and at a time-reversal invariant momentum they are degenerate. This holds even when spin is not conserved.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. A random spin-independent potential at the edge breaks the translation symmetry completely, and the crossing at <span class="math inline">\(k=0\)</span> is still protected. The Chern number needs no symmetry at all, only a bulk gap that stays open.</p></li>
+<p>This is false. Take a ribbon with a random potential on every site, with values between <span class="math inline">\(-0.5\,t\)</span> and <span class="math inline">\(0.5\,t\)</span>, the same for both spins. It breaks the translations, and the edge spectrum has no gap. A random exchange field of the same size breaks time reversal. When it has a component in the plane, it opens gaps of order <span class="math inline">\(0.1\,t\)</span> to <span class="math inline">\(0.4\,t\)</span> in the edge spectrum, which change with the realization.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="quiz quiz-pics" data-correct="A" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>The Hall conductivity of an insulator is</p>
+<p><span class="math display">\[\sigma_{xy} = \frac{e^2}{h}\,C.\]</span></p>
+<p>On one edge, <span class="math inline">\(|C|\)</span> counts the branches in one direction minus the others. Each picture shows the bands of a ribbon against the momentum <span class="math inline">\(k\)</span>. The states of the lower edge are in color. Red is spin up and blue is spin down. Which ribbon has <span class="math inline">\(|\sigma_{xy}|=2e^2/h\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session03/g4_quiz_ribbon_chern.svg" loading="lazy" alt="The bands of a ribbon with a gap. A red and a blue branch cross the gap next to each other, both going up to the right." /></li>
+<li><img src="../figures/web/session03/g4_quiz_ribbon_qsh.svg" loading="lazy" alt="The bands of a ribbon with a gap. A red branch and a blue branch cross the gap with opposite slopes and cross each other in the middle." /></li>
+<li><img src="../figures/web/session03/g4_quiz_ribbon_trivial.svg" loading="lazy" alt="The bands of a ribbon with an empty gap. A short flat red line and a short flat blue line sit at the top of the lower bands." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The lower edge has two branches inside the gap, one of each spin, and both have the same sign of the slope. So two branches move in the same direction and <span class="math inline">\(|C|=2\)</span>. This ribbon has the Haldane coupling for both spins.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The two branches of the lower edge have opposite slopes, so the count is <span class="math inline">\(1-1=0\)</span> and <span class="math inline">\(\sigma_{xy}=0\)</span>. This is the helical edge of a quantum spin Hall insulator, with <span class="math inline">\(C_\uparrow=1\)</span> and <span class="math inline">\(C_\downarrow=-1\)</span> up to a common sign.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. No branch crosses the gap, so the count is <span class="math inline">\(0\)</span> and <span class="math inline">\(\sigma_{xy}=0\)</span>. This ribbon has a staggered sublattice potential <span class="math inline">\(0.45\,t\)</span>, which gives an ordinary insulator.</p></li>
 </ul>
 </div>
 </details>

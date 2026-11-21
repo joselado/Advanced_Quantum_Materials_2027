@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -84,17 +85,31 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="on" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 3. Topological Band Structure Theory</a></p>
 <h1 id="sec-3-12"><span class="num">3.12</span> Topology beyond electrons</h1>
-<p>We built all the tools of this session, which are the Chern number, the Zak phase and the bulk-boundary correspondence, around electronic band structures. However, none of the underlying mathematics requires electrons. The same invariants apply to any quantum excitation with a well-defined dispersion relation. Examples are <strong>magnons</strong>, which are the spin-wave excitations of an ordered magnet, and <strong>spinons</strong>, which are the fractionalized spin excitations of a quantum magnet. Both allow the same treatment with Berry curvature and Chern number. We will do it explicitly for magnon bands in Section <a href="../session6/16-topological-magnons.html#sec-6-16">6.16</a>, and in Section <a href="../session8/09-the-mean-field-spinon-hamiltonian-and-its-dispersion-classes.html#sec-8-9">8.9</a> we will see that spinons also have their own band structure. In fact, the argument only needed a Hamiltonian, or more generally a matrix that describes how a wave propagates, so it applies to any system with a dispersion relation. This includes photonic systems, where light propagates through a periodic medium. It also includes classical systems, such as coupled pendula, vibrating lattices and electronic circuits, and all of them have shown topologically protected modes in tabletop experiments. In the end, topology is a statement about the internal structure of the eigenvectors as a function of momentum, and this structure exists wherever there is a wave equation, quantum or classical.</p>
+<p>All the invariants of this session were computed for the bands of electrons. Do they need electrons at all? We will now see that they do not. The Chern number and the Zak phase only use the eigenvectors of a matrix over the Brillouin zone, so the same topology appears for magnons, for spinons, for light and for classical waves.</p>
+<p>We built all the tools of this session, which are the Chern number, the Zak phase and the bulk-boundary correspondence, around electronic band structures. However, none of the underlying mathematics requires electrons. The same invariants apply to any quantum excitation with a well-defined dispersion relation. Examples are <strong>magnons</strong>, which are the spin-wave excitations of an ordered magnet, and <strong>spinons</strong>, which are the fractionalized spin excitations of a quantum magnet. Both allow the same treatment with Berry curvature and Chern number. We will do it explicitly for magnon bands in Section <a href="../session6/16-topological-magnons.html#sec-6-16">6.16</a>, and in Section <a href="../session8/09-the-mean-field-spinon-hamiltonian-and-its-dispersion-classes.html#sec-8-9">8.9</a> we will see that spinons also have their own band structure.</p>
+<p>In fact, the argument only needed a Hamiltonian, or more generally a matrix that describes how a wave propagates, so it applies to any system with a dispersion relation. This includes photonic systems, where light propagates through a periodic medium. It also includes classical systems, such as coupled pendula, vibrating lattices and electronic circuits, and all of them have shown topologically protected modes in tabletop experiments.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>In the end, topology is a statement about the internal structure of the eigenvectors as a function of momentum, and this structure exists wherever there is a wave equation, quantum or classical.</p>
+<p><span class="math display">\[D(k)\,|u_n(k)\rangle = \omega_n(k)\,|u_n(k)\rangle,\]</span></p>
+<p><span class="math display">\[C_n = \frac{1}{2\pi}\int_{\text{BZ}} \Omega_n(k)\, d^2k.\]</span></p>
+<p>Here <span class="math inline">\(D(k)\)</span> is the Hermitian matrix that describes how the wave propagates in the periodic medium, and <span class="math inline">\(\omega_n(k)\)</span> is its eigenvalue, which gives the dispersion relation. For a classical lattice <span class="math inline">\(D(k)\)</span> is the dynamical matrix, and its eigenvalue is the square of the frequency. In both cases <span class="math inline">\(\Omega_n(k)\)</span> is the Berry curvature of the eigenvectors <span class="math inline">\(|u_n(k)\rangle\)</span>, as in <a href="05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#eq-3-4">(3.4)</a>. For electrons <span class="math inline">\(D(k)\)</span> is the Bloch Hamiltonian.</p>
+</div>
 <figure class="again">
 <img src="../figures/s08f01_magnon_spinon.svg" loading="lazy" alt="A chain of spins with one flipped spin, and a chain of singlet pairs with two unpaired sites." />
 <figcaption><strong><a href="../session8/01-two-classes-of-magnets-and-where-we-find-them.html#fig:s08:magnonspinon">Figure 8.1</a>, shown again.</strong> Why a spinon is half a magnon, which is a first example of the excitations that we meet beyond electrons. In (a) a magnetic order has excitations with <span class="math inline">\(\Delta S=1\)</span>, the magnons of Section <a href="../session6/13-magnons-as-fluctuations-of-the-order-parameter.html#sec-6-13">6.13</a>. In (b) a quantum magnet has spinons, which have <span class="math inline">\(S=1/2\)</span> each. Both can have bands with a Berry curvature and a Chern number. We compute the magnon bands in <a href="../session6/index.html">Session 6</a> and the spinon bands in <a href="../session8/index.html">Session 8</a>.</figcaption>
 </figure>
+<p>The main message of this session is the following. Topological systems have protected edge modes, and these modes are connected to a non-trivial value of a topological invariant that is computed only from the bulk. This happens in one and in two dimensions, and also in higher dimensions, and it is usually protected by a specific symmetry. For the Chern number this is translational symmetry and gauge invariance, and for the quantum spin Hall state it is time-reversal symmetry.</p>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>The Chern number needs Bloch eigenvectors over a Brillouin zone. For which excitations can we define it?</p>
+<p>The Chern number of a band uses only its eigenvectors <span class="math inline">\(|u(k)\rangle\)</span> over the Brillouin zone,</p>
+<p><span class="math display">\[C = \frac{1}{2\pi}\int_{\text{BZ}} \Omega(k)\, d^2k, \qquad \Omega = -2\,\mathrm{Im}\,\langle \partial_{k_x} u|\partial_{k_y} u\rangle.\]</span></p>
+<p>For which excitations can we define it?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -107,16 +122,15 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
-<p>This is false. The Chern number is defined for a band that is separated by a gap from the others, and this is an insulating situation. A metal has a Fermi surface, and the Chern insulators of this session are insulators.</p></li>
+<p>This is false. The Chern number is defined for a band that a gap separates from the others, which is the case of an insulator. The honeycomb lattice with the Haldane coupling <span class="math inline">\(t_2=0.1\,t\)</span> has a gap <span class="math inline">\(6\sqrt3\,t_2=1.04\,t\)</span>, so it is not a metal, and its filled band has <span class="math inline">\(|C|=1\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. The argument of the session uses only a matrix that describes how a wave propagates in a periodic medium. It does not use charge or the Pauli principle, so it holds for any wave equation.</p></li>
+<p>This is true. The formula only needs the eigenvectors of the matrix that describes how a wave propagates in a periodic medium. It does not use the charge or the Pauli principle, so it holds for any wave equation.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. Magnons in a honeycomb ferromagnet and photons in a photonic crystal are neutral, and both have bands with a Chern number and chiral edge modes.</p></li>
+<p>This is false. The formula has no charge in it. The magnons of a honeycomb ferromagnet are neutral. With a second-neighbor hopping <span class="math inline">\(0.1\,t\)</span> of phase <span class="math inline">\(\pm\pi/2\)</span>, which a Dzyaloshinskii-Moriya interaction gives, their two bands have a gap <span class="math inline">\(1.04\,t\)</span> and the Chern numbers <span class="math inline">\(+1\)</span> and <span class="math inline">\(-1\)</span>.</p></li>
 </ul>
 </div>
 </details>
 </div>
-<p>The main message of this session is the following. Topological systems have protected edge modes, and these modes are connected to a non-trivial value of a topological invariant that is computed only from the bulk. This happens in one and in two dimensions, and also in higher dimensions, and it is usually protected by a specific symmetry. For the Chern number this is translational symmetry and gauge invariance, and for the quantum spin Hall state it is time-reversal symmetry.</p>
 <div class="comesback">
 <div class="comesback-label">
 Where this comes back

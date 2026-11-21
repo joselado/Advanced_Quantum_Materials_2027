@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -130,6 +131,9 @@ Question
 </div>
 <div class="quiz-q">
 <p>A gauge change <span class="math inline">\(\mathbf{A}\to\mathbf{A}+\nabla\chi\)</span> changes the phase of every bond in <a href="#eq-4-4">(4.4)</a>. Which quantity does not change?</p>
+<div class="eq-again">
+<p><span class="math display">\[t_{ij} \;\longrightarrow\; t_{ij}\, \exp\!\left(i\int_{\mathbf{R}_j}^{\mathbf{R}_i} \mathbf{A}\cdot d\boldsymbol{\ell}\right), \tag{4.4}\]</span></p>
+</div>
 </div>
 <div class="quiz-options">
 <ol type="A">

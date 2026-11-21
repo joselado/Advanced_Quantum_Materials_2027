@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -118,9 +119,15 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
-<p>This is false. The Chern number of <a href="#eq-4-1">(4.1)</a> is computed from the bulk wavefunctions of a periodic system, with no edge at all. The edge states are a consequence, since their number equals <span class="math inline">\(C\)</span>.</p></li>
+<p>This is false. The Chern number of <a href="#eq-4-1">(4.1)</a> is computed from the bulk wavefunctions of a periodic system, with no edge at all. The edge states are a consequence, since their number equals <span class="math inline">\(C\)</span>.</p>
+<div class="eq-again">
+<p><span class="math display">\[\sigma_{xy} = \frac{e^2}{h}\, C, \qquad C = \frac{1}{2\pi}\sum_{n\,\text{occ.}}\int_{\text{BZ}} \Omega_n(\mathbf{k})\, d^2k \in \mathbb{Z}, \tag{4.1}\]</span></p>
+</div></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. The energies cancel in <a href="#eq-4-1">(4.1)</a>, as we saw in Section <a href="../session3/05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#sec-3-5">3.5</a>. A flat band can still have wavefunctions that twist across the Brillouin zone, and this twist is counted by <span class="math inline">\(C\)</span>.</p></li>
+<p>This is true. The energies cancel in <a href="#eq-4-1">(4.1)</a>, as we saw in Section <a href="../session3/05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#sec-3-5">3.5</a>. A flat band can still have wavefunctions that twist across the Brillouin zone, and this twist is counted by <span class="math inline">\(C\)</span>.</p>
+<div class="eq-again">
+<p><span class="math display">\[\sigma_{xy} = \frac{e^2}{h}\, C, \qquad C = \frac{1}{2\pi}\sum_{n\,\text{occ.}}\int_{\text{BZ}} \Omega_n(\mathbf{k})\, d^2k \in \mathbb{Z}, \tag{4.1}\]</span></p>
+</div></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
 <p>This is false. If <span class="math inline">\(C\)</span> were zero, a filled Landau level would give <span class="math inline">\(\sigma_{xy}=0\)</span>. The measured plateau of a filled lowest Landau level is <span class="math inline">\(e^2/h\)</span>, which needs <span class="math inline">\(C=1\)</span>.</p></li>
 </ul>
@@ -147,7 +154,10 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
 <p>This is false. The value <span class="math inline">\(e^2/h\)</span> is the plateau with only the lowest Landau level filled. Three filled levels give three times this value.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. Three Landau levels are filled, each with <span class="math inline">\(C=1\)</span>. By <a href="#eq-4-2">(4.2)</a> the total is <span class="math inline">\(C=3\)</span>, and <span class="math inline">\(\sigma_{xy}=3e^2/h\)</span>.</p></li>
+<p>This is true. Three Landau levels are filled, each with <span class="math inline">\(C=1\)</span>. By <a href="#eq-4-2">(4.2)</a> the total is <span class="math inline">\(C=3\)</span>, and <span class="math inline">\(\sigma_{xy}=3e^2/h\)</span>.</p>
+<div class="eq-again">
+<p><span class="math display">\[C_{\text{tot}} = \sum_{n=0}^{N-1} C_n = N \quad\Longrightarrow\quad \sigma_{xy} = N\,\frac{e^2}{h}, \tag{4.2}\]</span></p>
+</div></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
 <p>This is false. The fourth level is above the chemical potential and it is empty, so it adds nothing. The plateau at <span class="math inline">\(4e^2/h\)</span> needs the chemical potential in the gap above the fourth level.</p></li>
 </ul>

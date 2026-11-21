@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -107,6 +108,9 @@ Question
 </div>
 <div class="quiz-q">
 <p>At <span class="math inline">\(\Delta=t\)</span> and <span class="math inline">\(\mu=0\)</span> the chain has the dispersion <span class="math inline">\(E(k)=\sqrt{\varepsilon(k)^2+|\Delta(k)|^2}\)</span> with <a href="#eq-5-20">(5.20)</a>. How does the bulk energy depend on <span class="math inline">\(k\)</span>?</p>
+<div class="eq-again">
+<p><span class="math display">\[\varepsilon(k) = -2t\cos k - \mu, \qquad \Delta(k) = 2i\Delta\sin k, \tag{5.20}\]</span></p>
+</div>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -121,7 +125,10 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
 <p>This is false. At <span class="math inline">\(k=0\)</span> we have <span class="math inline">\(\varepsilon=-2t\)</span> and <span class="math inline">\(\Delta(0)=0\)</span>, so <span class="math inline">\(E=2t\)</span> and not zero. The same holds at <span class="math inline">\(k=\pi/2\)</span>, where <span class="math inline">\(\varepsilon=0\)</span> and <span class="math inline">\(|\Delta|=2t\)</span>, so the energy does not grow.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. Here <span class="math inline">\(\varepsilon=-2t\cos k\)</span> and <span class="math inline">\(|\Delta(k)|=2t|\sin k|\)</span>, so <span class="math inline">\(E^2=4t^2(\cos^2k+\sin^2k)=4t^2\)</span>. This matches the dimers of <a href="#eq-5-21">(5.21)</a>, where all bulk modes have the same energy.</p></li>
+<p>This is true. Here <span class="math inline">\(\varepsilon=-2t\cos k\)</span> and <span class="math inline">\(|\Delta(k)|=2t|\sin k|\)</span>, so <span class="math inline">\(E^2=4t^2(\cos^2k+\sin^2k)=4t^2\)</span>. This matches the dimers of <a href="#eq-5-21">(5.21)</a>, where all bulk modes have the same energy.</p>
+<div class="eq-again">
+<p><span class="math display">\[H_{\text{Kitaev}}\Big|_{\Delta=t,\ \mu=0} = it\sum_{n=1}^{N-1} \gamma_{2n}\,\gamma_{2n+1}. \tag{5.21}\]</span></p>
+</div></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
 <p>This is false. At <span class="math inline">\(k=\pi/2\)</span> the term <span class="math inline">\(\varepsilon\)</span> vanishes and <span class="math inline">\(|\Delta(k)|=2t|\sin(\pi/2)|=2t\)</span>, so <span class="math inline">\(E=2t\)</span>. The value <span class="math inline">\(t\)</span> would need <span class="math inline">\(\Delta=t/2\)</span>.</p></li>
 </ul>

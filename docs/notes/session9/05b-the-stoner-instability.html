@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -106,6 +107,9 @@ Question
 </div>
 <div class="quiz-q">
 <p>For the half-filled square lattice we have <span class="math inline">\(\chi_0(0,0)=0.26/t\)</span> and <span class="math inline">\(\chi_0(\pi,\pi)=0.68/t\)</span> at <span class="math inline">\(T=0.1t\)</span>. With <a href="#eq-9-8">(9.8)</a>, where does the first instability appear as we increase <span class="math inline">\(U\)</span>?</p>
+<div class="eq-again">
+<p><span class="math display">\[U\, \chi_0(q,0) = 1. \tag{9.8}\]</span></p>
+</div>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -151,7 +155,10 @@ Question
 <figure class="quiz-fig schematic">
 <img src="../figures/web/session09/rpa_factor.svg" loading="lazy" alt="The ratio of the interacting to the bare response against U chi zero, falling slowly for the charge channel and diverging at one for the spin channel." />
 <figcaption>The factor of <a href="05-interactions-as-a-perturbation-with-rpa-plasmons-and-the-stoner-instability.html#eq-9-6">(9.6)</a> in the two channels, with the point <span class="math inline">\(U\chi_0=0.68\)</span> for <span class="math inline">\(U=t\)</span>. The charge response drops to <span class="math inline">\(0.60\)</span> of <span class="math inline">\(\chi_0\)</span> and the spin response grows to <span class="math inline">\(3.1\)</span> times <span class="math inline">\(\chi_0\)</span>.</figcaption>
-</figure></li>
+</figure>
+<div class="eq-again">
+<p><span class="math display">\[\chi(q,\omega) = \frac{\chi_0(q,\omega)}{1 + U\,\chi_0(q,\omega)}. \tag{9.6}\]</span></p>
+</div></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
 <p>This is false. If the spin response stayed at <span class="math inline">\(\chi_0\)</span>, there would be no Stoner instability at any <span class="math inline">\(U\)</span>. The ferromagnet that appears above <span class="math inline">\(U=1/\chi_0(0,0)\)</span> would not exist.</p></li>
 </ul>

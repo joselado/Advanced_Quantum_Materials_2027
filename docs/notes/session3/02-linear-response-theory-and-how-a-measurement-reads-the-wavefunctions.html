@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -84,24 +85,56 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="on" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 3. Topological Band Structure Theory</a></p>
 <h1 id="sec-3-2"><span class="num">3.2</span> Linear response theory and how a measurement reads the wavefunctions</h1>
+<p>How can a measurement tell us something about the wavefunctions of a material? We will now see that the response to a small perturbation is fixed by the states and the energies of the unperturbed system. The result that we need is the first-order formula <a href="#eq-3-1">(3.1)</a>, and the rest of the session is built on it.</p>
 <p>To see why a bulk band structure can have an invariant at all, we need a tool that connects the wavefunctions of a Hamiltonian to something that we can measure. This tool is linear response theory, and the idea behind it is very general. We perturb the system at a position <span class="math inline">\(x\)</span> and time <span class="math inline">\(t\)</span>, and then we measure an observable, such as the charge, the current, the magnetization or the heat, at another position <span class="math inline">\(x&#39;\)</span> and time <span class="math inline">\(t&#39;\)</span>. Linear response theory tells us that this measured response depends only on the electronic structure of the unperturbed material.</p>
-<p>Before we specialize to the Hall conductivity, let us look at two examples. Let us put an impurity in a two-dimensional metal and look at how the electron density, or the local density of states, is modulated around it. Linear response theory shows that this modulation pattern, which is called the Friedel oscillation, directly contains the Fermi wavelength of the electron gas, and this is what scanning tunneling microscopy uses in practice. In a similar way, when we scatter neutrons on a magnetic material, the magnetic moment of the neutron couples to the local moments in the sample. The resulting scattering pattern gives both the magnetic structure and its excitations, in particular magnons, which we build in Section <a href="../session6/13-magnons-as-fluctuations-of-the-order-parameter.html#sec-6-13">6.13</a>. It is useful to keep both examples in mind as the general result of the formalism that we build next.</p>
+<p>Before we specialize to the Hall conductivity, let us look at two examples. Let us put an impurity in a two-dimensional metal and look at how the electron density, or the local density of states, is modulated around it. Linear response theory shows that this modulation pattern, which is called the Friedel oscillation, directly contains the Fermi wavelength of the electron gas, and this is what scanning tunneling microscopy uses in practice.</p>
+<p>In a similar way, when we scatter neutrons on a magnetic material, the magnetic moment of the neutron couples to the local moments in the sample. The resulting scattering pattern gives both the magnetic structure and its excitations, in particular magnons, which we build in Section <a href="../session6/13-magnons-as-fluctuations-of-the-order-parameter.html#sec-6-13">6.13</a>. It is useful to keep both examples in mind as the general result of the formalism that we build next.</p>
 <figure class="again panel">
 <img src="../figures/panel/s09f01_nesting_ab.svg" loading="lazy" alt="A one-dimensional band with its two Fermi points and the static response function with a logarithmic peak at twice the Fermi wavevector." />
 <figcaption><strong><a href="../session9/04b-nesting-and-the-divergence-of-the-lindhard-function.html#fig:s09:nesting">Figure 9.1</a>, one panel shown again.</strong> The origin of the Friedel oscillation, which is the response of a metal to an impurity. In (a) the vector <span class="math inline">\(2k_F\)</span> connects the two Fermi points of a chain. In (b) the static response has its peak at this vector, so the density around the impurity oscillates with the wavevector <span class="math inline">\(2k_F\)</span>. We derive this response in Section <a href="../session9/04-the-fermi-sea-and-the-lindhard-function.html#sec-9-4">9.4</a>.</figcaption>
 </figure>
 <p>Formally, we start from an unperturbed Hamiltonian <span class="math inline">\(H_0\)</span> and add a perturbation controlled by a dimensionless parameter <span class="math inline">\(\lambda\)</span>,</p>
 <p><span class="math display">\[H(\lambda) = H_0 + \lambda V,\]</span></p>
-<p>so that <span class="math inline">\(\lambda = 0\)</span> gives the original system and <span class="math inline">\(\lambda = 1\)</span> is the fully perturbed one. Any observable, such as the energy, the density, the magnetic moment, the current, or the wavefunctions themselves, can then be expanded in a Taylor series in <span class="math inline">\(\lambda\)</span>. The derivative of an observable with respect to <span class="math inline">\(\lambda\)</span> at <span class="math inline">\(\lambda = 0\)</span> is what we call the response of the system, and in the case of a magnetic perturbation it is called the susceptibility. Since every observable can be built from the wavefunctions, the most useful object to expand is the ground-state wavefunction itself. For a state <span class="math inline">\(|n\rangle\)</span> of the unperturbed Hamiltonian <span class="math inline">\(H_0\)</span> with energy <span class="math inline">\(\varepsilon_n\)</span>, standard first-order perturbation theory gives</p>
+<p>so that <span class="math inline">\(\lambda = 0\)</span> gives the original system and <span class="math inline">\(\lambda = 1\)</span> is the fully perturbed one. Any observable, such as the energy, the density, the magnetic moment, the current, or the wavefunctions themselves, can then be expanded in a Taylor series in <span class="math inline">\(\lambda\)</span>. The derivative of an observable with respect to <span class="math inline">\(\lambda\)</span> at <span class="math inline">\(\lambda = 0\)</span> is what we call the response of the system, and in the case of a magnetic perturbation it is called the susceptibility. Since every observable can be built from the wavefunctions, the most useful object to expand is the ground-state wavefunction itself.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>For a state <span class="math inline">\(|n\rangle\)</span> of the unperturbed Hamiltonian <span class="math inline">\(H_0\)</span> with energy <span class="math inline">\(\varepsilon_n\)</span>, standard first-order perturbation theory gives</p>
 <p><span id="eq-3-1" class="eq"><span class="math display">\[|n\rangle_\lambda = |n\rangle + \lambda \sum_{m \neq n} \alpha_m\, |m\rangle + \mathcal{O}(\lambda^2),
 \qquad \alpha_m = \frac{\langle m|V|n\rangle}{\varepsilon_n - \varepsilon_m}. \tag{3.1}\]</span></span></p>
+<p>The perturbation mixes every other state <span class="math inline">\(|m\rangle\)</span> of <span class="math inline">\(H_0\)</span> into <span class="math inline">\(|n\rangle\)</span>. The amplitude is the matrix element of <span class="math inline">\(V\)</span> between the two states divided by their energy difference, so a state that is close in energy is mixed in strongly.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the Schrödinger equation to the first-order state (3.1)</span></summary>
+<div class="fold-body">
+<p>We look for the eigenstate of <span class="math inline">\(H_0+\lambda V\)</span> that becomes <span class="math inline">\(|n\rangle\)</span> at <span class="math inline">\(\lambda=0\)</span>. We take the simplest case, where no other state of <span class="math inline">\(H_0\)</span> has the energy <span class="math inline">\(\varepsilon_n\)</span>. We write the state and its energy as a series in <span class="math inline">\(\lambda\)</span>,</p>
+<p><span class="math display">\[|n\rangle_\lambda = |n\rangle + \lambda\,|n^{(1)}\rangle + \mathcal{O}(\lambda^2), \qquad
+E_n(\lambda) = \varepsilon_n + \lambda\,E^{(1)} + \mathcal{O}(\lambda^2),\]</span></p>
+<p>and we put both into the Schrödinger equation <span class="math inline">\((H_0+\lambda V)|n\rangle_\lambda = E_n(\lambda)|n\rangle_\lambda\)</span>. The terms without <span class="math inline">\(\lambda\)</span> give <span class="math inline">\(H_0|n\rangle=\varepsilon_n|n\rangle\)</span>, which we already know. The terms with one power of <span class="math inline">\(\lambda\)</span> give</p>
+<p><span class="math display">\[H_0|n^{(1)}\rangle + V|n\rangle = \varepsilon_n|n^{(1)}\rangle + E^{(1)}|n\rangle.\]</span></p>
+<p>The first step is to multiply this equation from the left by <span class="math inline">\(\langle m|\)</span> with <span class="math inline">\(m\neq n\)</span>. Since <span class="math inline">\(\langle m|H_0=\varepsilon_m\langle m|\)</span> and <span class="math inline">\(\langle m|n\rangle=0\)</span>, the term with <span class="math inline">\(E^{(1)}\)</span> drops, and we get</p>
+<p><span class="math display">\[\varepsilon_m\langle m|n^{(1)}\rangle + \langle m|V|n\rangle = \varepsilon_n\langle m|n^{(1)}\rangle,
+\qquad\text{so}\qquad
+\langle m|n^{(1)}\rangle = \frac{\langle m|V|n\rangle}{\varepsilon_n-\varepsilon_m}.\]</span></p>
+<p>This is the amplitude <span class="math inline">\(\alpha_m\)</span> of <a href="#eq-3-1">(3.1)</a>.</p>
+<p>The second step is to multiply the same equation by <span class="math inline">\(\langle n|\)</span>. Now the two terms with <span class="math inline">\(|n^{(1)}\rangle\)</span> cancel, since <span class="math inline">\(\langle n|H_0=\varepsilon_n\langle n|\)</span>, and what is left is</p>
+<p><span class="math display">\[E^{(1)} = \langle n|V|n\rangle,\]</span></p>
+<p>meaning that the energy changes at first order by the expectation value of the perturbation in the unperturbed state.</p>
+<p>The last step is the component of <span class="math inline">\(|n^{(1)}\rangle\)</span> along <span class="math inline">\(|n\rangle\)</span> itself, which the two projections do not fix. The perturbed state is normalized, and at first order in <span class="math inline">\(\lambda\)</span> this gives <span class="math inline">\(\langle n|n^{(1)}\rangle + \langle n^{(1)}|n\rangle = 0\)</span>, so <span class="math inline">\(\langle n|n^{(1)}\rangle\)</span> is purely imaginary. An imaginary component along <span class="math inline">\(|n\rangle\)</span> is only a change of the phase of the state, so we can set it to zero. Then <span class="math inline">\(|n^{(1)}\rangle=\sum_{m\neq n}\alpha_m|m\rangle\)</span>, which is <a href="#eq-3-1">(3.1)</a>.</p>
+<p>The denominator also says when the result can be used. The correction is small only if <span class="math inline">\(\lambda|\langle m|V|n\rangle|\)</span> is much smaller than <span class="math inline">\(|\varepsilon_n-\varepsilon_m|\)</span> for every <span class="math inline">\(m\)</span>. The problem at the end of this page checks <a href="#eq-3-1">(3.1)</a> against an exact solution for two levels.</p>
+</div>
+</details>
+</div>
 <p>Everything that we do in the rest of this session, which is the Hall conductivity, the Berry curvature and the Chern number, comes directly from putting <a href="#eq-3-1">(3.1)</a> into the definition of some observable.</p>
 <div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>In <a href="#eq-3-1">(3.1)</a> the state <span class="math inline">\(|m\rangle\)</span> is mixed into <span class="math inline">\(|n\rangle\)</span> with the amplitude <span class="math inline">\(\alpha_m\)</span>. What happens to <span class="math inline">\(\alpha_m\)</span> if the level <span class="math inline">\(m\)</span> comes closer to the level <span class="math inline">\(n\)</span> while <span class="math inline">\(V\)</span> stays fixed?</p>
+<p>A perturbation <span class="math inline">\(\lambda V\)</span> mixes the state <span class="math inline">\(|m\rangle\)</span> into the state <span class="math inline">\(|n\rangle\)</span>. The amplitude to first order is <span class="math inline">\(\lambda\alpha_m\)</span>, with</p>
+<p><span class="math display">\[\alpha_m = \frac{\langle m|V|n\rangle}{\varepsilon_n - \varepsilon_m}.\]</span></p>
+<p>Here <span class="math inline">\(\varepsilon_n\)</span> and <span class="math inline">\(\varepsilon_m\)</span> are the energies of the two states without the perturbation. The level <span class="math inline">\(m\)</span> comes closer to the level <span class="math inline">\(n\)</span>, and <span class="math inline">\(V\)</span> stays fixed. What happens to <span class="math inline">\(\alpha_m\)</span>?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -118,10 +151,61 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
 <p>This is false. The energy difference <span class="math inline">\(\varepsilon_n-\varepsilon_m\)</span> is in the denominator of <span class="math inline">\(\alpha_m\)</span>. For the same <span class="math inline">\(V\)</span>, a distance ten times smaller gives an amplitude ten times larger.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
-<p>This is true. The amplitude goes as <span class="math inline">\(1/(\varepsilon_n-\varepsilon_m)\)</span> in <a href="#eq-3-1">(3.1)</a>. With <span class="math inline">\(\lambda|\langle m|V|n\rangle|=0.1\)</span> it reaches <span class="math inline">\(1\)</span> at a distance <span class="math inline">\(0.1\)</span>, where the first-order result cannot be trusted.</p></li>
+<p>This is true. The amplitude goes as <span class="math inline">\(1/(\varepsilon_n-\varepsilon_m)\)</span>. With <span class="math inline">\(\lambda|\langle m|V|n\rangle|=0.1\)</span> it reaches <span class="math inline">\(1\)</span> at a distance <span class="math inline">\(0.1\)</span>, where the first-order result cannot be trusted. For two levels at this distance the amplitude in the normalized exact ground state is <span class="math inline">\(0.53\)</span>.</p></li>
 </ul>
 </div>
 </details>
+</div>
+<div class="quiz" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Two levels have the energies <span class="math inline">\(-\Delta\)</span> and <span class="math inline">\(+\Delta\)</span>. A perturbation couples them with the real matrix element <span class="math inline">\(\lambda v\)</span>. To first order, the amplitude of a state <span class="math inline">\(|m\rangle\)</span> in the perturbed state <span class="math inline">\(|n\rangle\)</span> is</p>
+<p><span class="math display">\[\lambda\alpha_m = \frac{\lambda\langle m|V|n\rangle}{\varepsilon_n - \varepsilon_m},\]</span></p>
+<p>where <span class="math inline">\(\varepsilon_n\)</span> and <span class="math inline">\(\varepsilon_m\)</span> are the unperturbed energies. What is the amplitude of the upper level in the ground state?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(-\dfrac{\lambda v}{\Delta}\)</span></li>
+<li><span class="math inline">\(-\dfrac{\lambda v}{2\Delta}\)</span></li>
+<li><span class="math inline">\(\left(\dfrac{\lambda v}{2\Delta}\right)^2\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The distance between the two levels is <span class="math inline">\(2\Delta\)</span> and not <span class="math inline">\(\Delta\)</span>. For <span class="math inline">\(\lambda v=0.2\)</span> and <span class="math inline">\(\Delta=1\)</span> this option gives <span class="math inline">\(-0.2\)</span>, and the normalized ground state of the exact diagonalization has <span class="math inline">\(-0.099\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The ground state has <span class="math inline">\(\varepsilon_n=-\Delta\)</span> and the upper level has <span class="math inline">\(\varepsilon_m=+\Delta\)</span>, so the denominator is <span class="math inline">\(-2\Delta\)</span>. For <span class="math inline">\(\lambda v=0.2\)</span> and <span class="math inline">\(\Delta=1\)</span> this gives <span class="math inline">\(-0.1\)</span>, and the value in the normalized exact ground state is <span class="math inline">\(-0.099\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. This is the probability to find the system in the upper level, which is of second order in <span class="math inline">\(\lambda\)</span>. For <span class="math inline">\(\lambda v=0.2\)</span> and <span class="math inline">\(\Delta=1\)</span> it is <span class="math inline">\(0.01\)</span>, while the amplitude is <span class="math inline">\(-0.1\)</span>.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>A spin <span class="math inline">\(1/2\)</span> sits in a magnetic field along <span class="math inline">\(z\)</span>, with the Hamiltonian <span class="math inline">\(H_0=-B\sigma_z\)</span>, where <span class="math inline">\(B\)</span> is the Zeeman energy. We add a small field along <span class="math inline">\(x\)</span>, which is the perturbation <span class="math inline">\(\lambda V=\lambda\sigma_x\)</span>. Use <a href="#eq-3-1">(3.1)</a> to compute the ground state to first order in <span class="math inline">\(\lambda\)</span>, and from it the response <span class="math inline">\(d\langle\sigma_x\rangle/d\lambda\)</span> at <span class="math inline">\(\lambda=0\)</span>. Then compare with the exact value of <span class="math inline">\(\langle\sigma_x\rangle\)</span>.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>The ground state of <span class="math inline">\(H_0\)</span> is <span class="math inline">\(|\!\uparrow\rangle\)</span> with the energy <span class="math inline">\(-B\)</span>, and the other state is <span class="math inline">\(|\!\downarrow\rangle\)</span> with the energy <span class="math inline">\(+B\)</span>. The operator <span class="math inline">\(\sigma_x\)</span> flips the spin, so <span class="math inline">\(\langle\downarrow\!|\sigma_x|\!\uparrow\rangle=1\)</span>, and <a href="#eq-3-1">(3.1)</a> gives</p>
+<p><span class="math display">\[\alpha_\downarrow = \frac{1}{(-B)-(+B)} = -\frac{1}{2B}, \qquad
+|\!\uparrow\rangle_\lambda = |\!\uparrow\rangle - \frac{\lambda}{2B}\,|\!\downarrow\rangle.\]</span></p>
+<p>In the unperturbed state <span class="math inline">\(\langle\sigma_x\rangle\)</span> is zero. At first order only the two cross terms between <span class="math inline">\(|\!\uparrow\rangle\)</span> and <span class="math inline">\(|\!\downarrow\rangle\)</span> contribute, and each of them gives <span class="math inline">\(-\lambda/2B\)</span>, so</p>
+<p><span class="math display">\[\langle\sigma_x\rangle = -\frac{\lambda}{B} + \mathcal{O}(\lambda^2), \qquad
+\frac{d\langle\sigma_x\rangle}{d\lambda}\bigg|_{\lambda=0} = -\frac{1}{B}.\]</span></p>
+<p>For the exact result we note that <span class="math inline">\(-B\sigma_z+\lambda\sigma_x\)</span> is a spin in a field of size <span class="math inline">\(\sqrt{B^2+\lambda^2}\)</span>. The ground state points along this field, which gives</p>
+<p><span class="math display">\[\langle\sigma_x\rangle = -\frac{\lambda}{\sqrt{B^2+\lambda^2}} = -\frac{\lambda}{B}\left(1-\frac{\lambda^2}{2B^2}+\dots\right).\]</span></p>
+<p>The first term is the linear response. The relative error of the linear response is <span class="math inline">\(\lambda^2/2B^2\)</span> for small <span class="math inline">\(\lambda\)</span>. It is <span class="math inline">\(0.5\%\)</span> for <span class="math inline">\(\lambda=0.1B\)</span>, and for <span class="math inline">\(\lambda=0.5B\)</span> the linear response is already <span class="math inline">\(12\%\)</span> larger in size than the exact value.</p>
+<p>The response <span class="math inline">\(-1/B\)</span> is the transverse susceptibility of the spin. It contains only the matrix element of the perturbation and the splitting <span class="math inline">\(2B\)</span> of the unperturbed levels, so a measurement of the moment that a small field induces gives this splitting. This is how a response reads the spectrum. A small energy difference gives a large response, and when the splitting goes to zero the linear response diverges and the expansion cannot be used.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="comesback">
 <div class="comesback-label">

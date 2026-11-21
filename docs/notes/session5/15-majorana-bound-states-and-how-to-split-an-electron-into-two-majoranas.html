@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -102,6 +103,9 @@ Question
 </div>
 <div class="quiz-q">
 <p>Which statement about the operators <span class="math inline">\(\gamma_A=c+c^\dagger\)</span> and <span class="math inline">\(\gamma_B=-i(c-c^\dagger)\)</span> of <a href="#eq-5-17">(5.17)</a> is correct?</p>
+<div class="eq-again">
+<p><span class="math display">\[\gamma_A = c + c^\dagger, \qquad \gamma_B = -i\left(c - c^\dagger\right), \tag{5.17}\]</span></p>
+</div>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -141,7 +145,10 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
-<p>This is true. Inserting <a href="#eq-5-17">(5.17)</a> gives <span class="math inline">\(i\gamma_A\gamma_B=2c^\dagger c-1\)</span>. The empty mode has <span class="math inline">\(c^\dagger c=0\)</span>, so the value is <span class="math inline">\(-1\)</span>.</p></li>
+<p>This is true. Inserting <a href="#eq-5-17">(5.17)</a> gives <span class="math inline">\(i\gamma_A\gamma_B=2c^\dagger c-1\)</span>. The empty mode has <span class="math inline">\(c^\dagger c=0\)</span>, so the value is <span class="math inline">\(-1\)</span>.</p>
+<div class="eq-again">
+<p><span class="math display">\[\gamma_A = c + c^\dagger, \qquad \gamma_B = -i\left(c - c^\dagger\right), \tag{5.17}\]</span></p>
+</div></li>
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
 <p>This is false. The value <span class="math inline">\(+1\)</span> belongs to the filled mode, where <span class="math inline">\(c^\dagger c=1\)</span> gives <span class="math inline">\(2-1=+1\)</span>. The empty mode has <span class="math inline">\(c^\dagger c=0\)</span> and gives <span class="math inline">\(-1\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>

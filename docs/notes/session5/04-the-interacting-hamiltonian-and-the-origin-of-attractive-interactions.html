@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -117,6 +118,12 @@ Question
 </div>
 <div class="quiz-q">
 <p>We start the loop for the attractive chain <a href="#eq-5-2">(5.2)</a> with a small guess <span class="math inline">\(\Delta_n\neq0\)</span>, but now with <span class="math inline">\(U&gt;0\)</span>. Which self-consistent solution does the loop find?</p>
+<div class="eq-again">
+<p><span class="math display">\[H = -t\sum_{n,\sigma}\left(c_{n\sigma}^\dagger c_{n+1,\sigma} + \text{h.c.}\right) - \mu\sum_{n\sigma}c_{n\sigma}^\dagger c_{n\sigma} + U\sum_n c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger c_{n\downarrow} c_{n\uparrow}, \qquad U&lt;0. \tag{5.2}\]</span></p>
+</div>
+<div class="eq-again">
+<p><span class="math display">\[\Delta_n \equiv U\langle c_{n\downarrow}c_{n\uparrow}\rangle, \tag{5.3}\]</span></p>
+</div>
 </div>
 <div class="quiz-options">
 <ol type="A">

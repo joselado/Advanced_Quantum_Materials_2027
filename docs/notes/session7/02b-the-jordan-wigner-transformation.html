@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -146,7 +147,11 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
 <p>This is false. For a chain of a single site <span class="math inline">\(S_1^+\)</span> must take <span class="math inline">\(|{\downarrow}\rangle\)</span> to <span class="math inline">\(|{\uparrow}\rangle\)</span> with matrix element <span class="math inline">\(+1\)</span>. The choice <span class="math inline">\(K_1=-1\)</span> would give <span class="math inline">\(-1\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. The sum in <a href="#eq-7-2">(7.2)</a> runs over <span class="math inline">\(j&lt;i\)</span>, which is empty for the first site. An empty sum gives the exponential of zero, which is <span class="math inline">\(1\)</span>.</p></li>
+<p>This is true. The sum in <a href="#eq-7-2">(7.2)</a> runs over <span class="math inline">\(j&lt;i\)</span>, which is empty for the first site. An empty sum gives the exponential of zero, which is <span class="math inline">\(1\)</span>.</p>
+<div class="eq-again">
+<p><span class="math display">\[S_i^+ = c_i^\dagger K_i, \qquad S_i^- = c_i K_i, \qquad S_i^z = n_i - \tfrac{1}{2}, \qquad
+K_i = \exp\!\left(i\pi \sum_{j&lt;i} n_j\right), \tag{7.2}\]</span></p>
+</div></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
 <p>This is false. The string is an exponential, so it is never zero. If <span class="math inline">\(S_1^+\)</span> vanished, a chain of one site could not flip a spin from down to up, which <span class="math inline">\(S^+\)</span> does.</p></li>
 </ul>

@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -132,6 +133,9 @@ Question
 </div>
 <div class="quiz-q">
 <p>For a spin chain whose ground-state energy we know exactly, a student finds <span class="math inline">\(E[\theta]\)</span> clearly below it, well beyond the statistical error. What should we conclude?</p>
+<div class="eq-again">
+<p><span class="math display">\[E[\theta] \;=\; \frac{\langle \psi_\theta | H | \psi_\theta\rangle}{\langle \psi_\theta|\psi_\theta\rangle} \;=\; \frac{\sum_{s,s&#39;} C_\theta^*(s)\, H_{s s&#39;}\, C_\theta(s&#39;)}{\sum_s |C_\theta(s)|^2} \;\geq\; E_0, \tag{10.3}\]</span></p>
+</div>
 </div>
 <div class="quiz-options">
 <ol type="A">

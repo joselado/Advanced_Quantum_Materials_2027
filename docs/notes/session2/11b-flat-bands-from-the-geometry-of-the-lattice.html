@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -84,21 +85,65 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="on" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 2. Symmetries, Tight-Binding Band Structure Theory, and Effective Models</a></p>
 <h1 id="sec-2-11b"><span class="num">2.11b</span> Flat bands from the geometry of the lattice, the Lieb and the kagome lattices</h1>
-<p>Two standard lattices realize truly flat bands only from their geometry in real space, and not from a fine-tuning of hopping parameters to zero. The <strong>Lieb lattice</strong> is built from a square lattice where one site out of every four is removed in a regular pattern. Its dispersion has two dispersive bands, which come from the bands of the square lattice <a href="08-higher-dimensional-band-structures.html#eq-2-14">(2.14)</a>, and in addition one exactly flat band at zero energy. Near the corner <span class="math inline">\(M\)</span> of the Brillouin zone the two dispersive bands form a linear, Dirac-like cone, and the flat band goes through the tip of this cone. The <strong>kagome lattice</strong> is built instead from a triangular lattice where one site out of every four is removed. Its dispersion is closer to the one of the honeycomb lattice, with linear crossings similar to Dirac cones, and in addition it has a flat band at the edge of the spectrum. With the sign convention of <a href="05-blochs-theorem-and-the-first-band-structure.html#eq-2-5">(2.5)</a> this flat band is at the top, at <span class="math inline">\(\epsilon=2t\)</span>, and it would be at the bottom for the opposite sign of <span class="math inline">\(t\)</span>. In both cases the flat band comes from destructive interference between hopping paths in real space. This is a purely geometric effect and not an effect of interactions, and the physics of strong correlations only enters once electrons are placed into these bands, which are already flat. Figure <a href="#fig:s02:flatbands">2.6</a> shows both lattices, both dispersions, and the localized state where the hopping paths cancel.</p>
+<p>Can a band be flat when every hopping of the lattice is nonzero? We will now see that it can, in the Lieb and the kagome lattices, where a state on one plaquette cancels on every site outside it. This gives a flat band at <span class="math inline">\(\epsilon=0\)</span> for the Lieb lattice and at <span class="math inline">\(\epsilon=2t\)</span> for the kagome lattice, with the sign of <a href="05-blochs-theorem-and-the-first-band-structure.html#eq-2-5">(2.5)</a>.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[g(\omega) = \int_{\text{BZ}} \frac{d^dk}{(2\pi)^d}\; \delta\!\left(\omega-E(\mathbf{k})\right). \tag{2.16}\]</span></p>
+</div>
+<p>This is the density of states of Section <a href="09-properties-of-an-electronic-dispersion.html#sec-2-9">2.9</a>. It counts the states per unit of energy at the energy <span class="math inline">\(\omega\)</span>, for one band <span class="math inline">\(E(\mathbf k)\)</span> and for one spin, per unit length, area or volume of the lattice in <span class="math inline">\(d\)</span> dimensions.</p>
+</div>
+<p>Two standard lattices realize truly flat bands only from their geometry in real space, and not from a fine-tuning of hopping parameters to zero. The <strong>Lieb lattice</strong> is built from a square lattice where one site out of every four is removed in a regular pattern. Its dispersion has two dispersive bands, which come from the bands of the square lattice <a href="08-higher-dimensional-band-structures.html#eq-2-14">(2.14)</a>, and in addition one exactly flat band at zero energy. Near the corner <span class="math inline">\(M\)</span> of the Brillouin zone the two dispersive bands form a linear, Dirac-like cone, and the flat band goes through the tip of this cone.</p>
+<p>The <strong>kagome lattice</strong> is built instead from a triangular lattice where one site out of every four is removed. Its dispersion is closer to the one of the honeycomb lattice, with linear crossings similar to Dirac cones, and in addition it has a flat band at the edge of the spectrum. With the sign convention of <a href="05-blochs-theorem-and-the-first-band-structure.html#eq-2-5">(2.5)</a> this flat band is at the top, at <span class="math inline">\(\epsilon=2t\)</span>, and it would be at the bottom for the opposite sign of <span class="math inline">\(t\)</span>. In both cases the flat band comes from destructive interference between hopping paths in real space. This is a purely geometric effect and not an effect of interactions, and the physics of strong correlations only enters once electrons are placed into these bands, which are already flat. Figure <a href="#fig:s02:flatbands">2.6</a> shows both lattices, both dispersions, and the localized state where the hopping paths cancel.</p>
 <figure id="fig:s02:flatbands">
 <img src="../figures/s02f05_flatbands.svg" loading="lazy" alt="Flat bands that come only from geometry, with the bands computed from the Bloch Hamiltonian of each lattice and the flat band drawn as the red tube." />
 <figcaption><strong>Figure 2.6.</strong> Flat bands that come only from geometry, with the bands computed from the Bloch Hamiltonian of each lattice and the flat band drawn as the red tube. <strong>(a)</strong> The Lieb lattice, which is a square lattice with one site in four removed, and <strong>(b)</strong> its bands. There are two dispersive bands and a band that is exactly flat at <span class="math inline">\(\epsilon=0\)</span>, and all three touch at <span class="math inline">\(M\)</span>. <strong>(c)</strong> The kagome lattice, made of triangles that share corners, and <strong>(d)</strong> its bands, with a Dirac-like crossing at <span class="math inline">\(K\)</span> and a flat band at <span class="math inline">\(\epsilon=2t\)</span>. <strong>(e)</strong> The reason why the flat band exists. An eigenstate can be confined to a single kagome hexagon, with amplitudes of alternating sign around it, the filled and the ghost balls. Every path by which it could hop onto a site outside arrives twice with opposite sign, the two arrows, so the two contributions cancel at the cross. Nothing is fine-tuned to zero, since the flatness is a property of the geometry of the lattice, and by <a href="09-properties-of-an-electronic-dispersion.html#eq-2-16">(2.16)</a> it makes the density of states diverge.</figcaption>
 </figure>
-<figure id="sch:s02:kagome_dos" class="schematic">
-<img src="../figures/web/session02/kagome_dos.svg" loading="lazy" alt="On the left the three bands of the kagome lattice along Gamma, K, M and Gamma, with a red flat band at 2t. On the right the density of states, smooth below and with a cut red peak at 2t." />
-<figcaption><strong>Schematic 2.12.</strong> The bands and the density of states of the kagome lattice, computed on a k-mesh of <span class="math inline">\(600\times600\)</span> points. The flat band at <span class="math inline">\(\epsilon=2t\)</span>, in red, holds one third of all the states at a single energy. So in <a href="09-properties-of-an-electronic-dispersion.html#eq-2-16">(2.16)</a> it gives a delta peak, which the plot cuts. The two dispersive bands give a continuous density of states between <span class="math inline">\(-4t\)</span> and <span class="math inline">\(2t\)</span>, with two peaks at the energies of the bands at <span class="math inline">\(M\)</span>, <span class="math inline">\(-2t\)</span> and <span class="math inline">\(0\)</span>.</figcaption>
+<p>The localized state of panel (e) is the whole reason for the flat band of the kagome lattice, and one line of algebra shows that it is an exact eigenstate.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>On the kagome lattice with <span class="math inline">\(H=-t\sum_{\langle ij\rangle}c_i^\dagger c_j\)</span> over first neighbors, the state <span class="math inline">\(\psi\)</span> with the amplitudes <span class="math inline">\(+1,-1,+1,-1,+1,-1\)</span> around one hexagon, and zero on every other site, obeys</p>
+<p><span class="math display">\[H\psi = 2t\,\psi\]</span></p>
+<p>for any value of <span class="math inline">\(t\)</span>. Such a state sits on every hexagon of the lattice, so the energy <span class="math inline">\(2t\)</span> does not depend on the momentum, which is the flat band. It holds one third of all the states.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">Why the state on one hexagon has the energy 2t</span></summary>
+<div class="fold-body">
+<p>We write <span class="math inline">\(H\psi\)</span> site by site, <span class="math inline">\((H\psi)_i=-t\sum_j\psi_j\)</span>, where the sum runs over the four neighbors <span class="math inline">\(j\)</span> of the site <span class="math inline">\(i\)</span>. First a site <span class="math inline">\(i\)</span> of the hexagon. Two of its four neighbors are its neighbors on the hexagon, and both have the amplitude <span class="math inline">\(-\psi_i\)</span>, since the signs alternate. Its two other neighbors are outside the hexagon, where <span class="math inline">\(\psi\)</span> is zero. So</p>
+<p><span class="math display">\[(H\psi)_i=-t\,(-\psi_i-\psi_i)=2t\,\psi_i.\]</span></p>
+<p>Next a site outside the hexagon that touches it. In the kagome lattice every bond of the hexagon is the side of a triangle, and such a site is the third corner of that triangle. Its other two corners are neighbors on the hexagon, with the amplitudes <span class="math inline">\(a\)</span> and <span class="math inline">\(-a\)</span>, so the site gets</p>
+<p><span class="math display">\[-t\,(a-a)=0.\]</span></p>
+<p>Every other site has no neighbor on the hexagon and gets zero. Together this is <span class="math inline">\(H\psi=2t\,\psi\)</span>, with no condition on the value of <span class="math inline">\(t\)</span>.</p>
+<p>The Lieb lattice has the same kind of state at zero energy. We put the amplitudes <span class="math inline">\(+1,-1,+1,-1\)</span> on the four edge sites around one square plaquette, which are the sites with two neighbors, and zero elsewhere. An edge site has only corner sites as neighbors, where the amplitude is zero, so it gets zero. Each corner of the plaquette is bonded to two of the four edge sites, with opposite amplitudes, so it gets <span class="math inline">\(-t\,(1-1)=0\)</span>. So <span class="math inline">\(H\psi=0\)</span>, and the flat band of the Lieb lattice sits at <span class="math inline">\(\epsilon=0\)</span> for either sign of <span class="math inline">\(t\)</span>.</p>
+</div>
+</details>
+</div>
+<p>The flat band is one band of three, so it puts one third of the states at a single energy, and in <a href="09-properties-of-an-electronic-dispersion.html#eq-2-16">(2.16)</a> it gives a delta peak. The bands and the density of states of the kagome lattice, computed with pyqula, are in <a href="#sch:s02:kagome_dos">Schematic 2.14</a>. There the peak sits on top of the smooth density of the two other bands.</p>
+<figure id="sch:s02:kagome_dos" class="schematic has-script">
+<img src="../figures/web/session02/kagome_dos.svg" loading="lazy" alt="On the left the three bands of the kagome lattice along Gamma, K, M and Gamma, with a red flat band at 2t. On the right the density of states, smooth below, with a V at minus t, two peaks at minus 2t and zero, and a cut red peak at 2t." />
+<div class="script-row">
+<a href="../scripts/session02/g4_kagome_bands.py" class="script-dl" download="g4_kagome_bands.py">Download the pyqula script</a> <span class="script-name"><code>g4_kagome_bands.py</code></span>
+</div>
+<figcaption><strong>Schematic 2.14.</strong> The bands and the density of states of the kagome lattice with <span class="math inline">\(H=-t\sum_{\langle ij\rangle}c_i^\dagger c_j\)</span> over first neighbors, computed with pyqula, with the energy in units of <span class="math inline">\(t\)</span>. The flat band at <span class="math inline">\(\epsilon=2t\)</span>, in red, holds one third of all the states at a single energy. So in <a href="09-properties-of-an-electronic-dispersion.html#eq-2-16">(2.16)</a> it gives a delta peak, which the broadening turns into a narrow peak that the plot cuts. The two dispersive bands give a continuous density of states between <span class="math inline">\(-4t\)</span> and <span class="math inline">\(2t\)</span>, with two peaks at the energies of the bands at <span class="math inline">\(M\)</span>, <span class="math inline">\(-2t\)</span> and <span class="math inline">\(0\)</span>. It has a V at <span class="math inline">\(-t\)</span>, where the two bands cross at <span class="math inline">\(K\)</span>. The density is per unit cell, summed over the three bands and for one spin, with every level broadened into a Lorentzian of half width <span class="math inline">\(0.04\,t\)</span> on a mesh of <span class="math inline">\(200\times200\)</span> momenta.</figcaption>
 </figure>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>In the kagome system CoSn, ARPES sees the flat band. The preprint of this article, arXiv 2002.01452, describes it as a state with no dispersion along the path from <span class="math inline">\(\Gamma\)</span> to <span class="math inline">\(M\)</span>. There its width is below <span class="math inline">\(150\)</span> meV, which is an order of magnitude smaller than the width of the Dirac bands that come from the same orbitals. The published abstract gives no width in meV, and it says that the width of the flat band is an order of magnitude smaller over the whole Brillouin zone. In the first-neighbor model of this section the width is zero. Our reading is that the <span class="math inline">\(d\)</span> orbitals of CoSn and its longer-range hoppings give the small width that is measured. The measurement is in <a href="https://www.nature.com/articles/s41467-020-17465-1">this article</a>.</p>
+</div>
 <div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>We change the value of the hopping <span class="math inline">\(t\)</span> of the kagome lattice. Where is the flat band?</p>
+<p>The kagome lattice has the Hamiltonian</p>
+<p><span class="math display">\[H=-t\sum_{\langle ij\rangle}c_i^\dagger c_j,\]</span></p>
+<p>with the sum over first neighbors. We change the value of <span class="math inline">\(t\)</span>. Where is the flat band?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -128,7 +173,7 @@ Question
 Question
 </div>
 <div class="quiz-q">
-<p>Why does the state on one hexagon of the kagome lattice not spread to the sites outside?</p>
+<p>Around one hexagon of the kagome lattice we put the amplitudes <span class="math inline">\(+1,-1,+1,-1,+1,-1\)</span>, and zero elsewhere. Why does this state not spread to the sites outside?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -141,7 +186,11 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
-<p>This is true. The alternating amplitudes around the hexagon make the two contributions to each outside site equal and opposite, as in panel (e) of the figure. Nothing is tuned to zero, since this is a property of the geometry.</p></li>
+<p>This is true. The alternating amplitudes around the hexagon make the two contributions to each outside site equal and opposite. Nothing is tuned to zero, since this is a property of the geometry.</p>
+<figure class="quiz-fig again panel">
+<img src="../figures/panel/s02f05_flatbands_e.svg" loading="lazy" alt="A hexagon of the kagome lattice with balls of alternating sign on its corners and two arrows that meet at a site outside." />
+<figcaption><strong><a href="#fig:s02:flatbands">Figure 2.6</a>, one panel shown again.</strong> The state on one hexagon, with amplitudes of alternating sign, the filled and the ghost balls. The two arrows that reach a site outside arrive with opposite signs and cancel at the cross.</figcaption>
+</figure></li>
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
 <p>This is false. Every bond of the kagome lattice has the same hopping <span class="math inline">\(t\)</span>, and an outside site is bonded to two sites of the hexagon. The two terms are <span class="math inline">\(-ta\)</span> and <span class="math inline">\(+ta\)</span>, each of them nonzero, and they add up to zero.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
@@ -152,6 +201,87 @@ Question
 <p>The localization is a single-particle effect of the geometry.</p>
 </div>
 </details>
+</div>
+<div class="quiz quiz-pics" data-correct="A" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>The kagome lattice with first-neighbor hopping has the Hamiltonian</p>
+<p><span class="math display">\[H=-t\sum_{\langle ij\rangle}c_i^\dagger c_j,\qquad t&gt;0.\]</span></p>
+<p>Each picture shows the bands of a lattice with three sites per cell. The energy is in units of <span class="math inline">\(t\)</span>. Which one is this kagome lattice?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session02/g4_quiz_flat_kagome_minus.svg" loading="lazy" alt="Three bands along Gamma, K, M and Gamma, with a flat band at the top at two." /></li>
+<li><img src="../figures/web/session02/g4_quiz_flat_kagome_plus.svg" loading="lazy" alt="Three bands along Gamma, K, M and Gamma, with a flat band at the bottom at minus two." /></li>
+<li><img src="../figures/web/session02/g4_quiz_flat_lieb.svg" loading="lazy" alt="Three bands along Gamma, X, M and Gamma, with a flat band at zero in the middle." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The flat band is the top band, at <span class="math inline">\(2t\)</span>, as the state on one hexagon gives. The two other bands run from <span class="math inline">\(-4t\)</span> at <span class="math inline">\(\Gamma\)</span> to <span class="math inline">\(2t\)</span>, and they cross at <span class="math inline">\(-t\)</span> at <span class="math inline">\(K\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The flat band is at <span class="math inline">\(-2t\)</span>, at the bottom, and the bands run from <span class="math inline">\(-2t\)</span> to <span class="math inline">\(4t\)</span>. These are the bands of <span class="math inline">\(H=+t\sum c_i^\dagger c_j\)</span>, the sign of the notebook, which turns the kagome bands upside down.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The flat band is at zero, between the two other bands, and all three meet at <span class="math inline">\(M\)</span>. This is the Lieb lattice, whose flat band stays at zero for either sign of <span class="math inline">\(t\)</span>.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The sign of the hopping decides whether the kagome flat band is at the top or at the bottom of the spectrum.</p>
+</div>
+</details>
+</div>
+<div class="quiz" data-correct="A" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>The kagome lattice has the Hamiltonian</p>
+<p><span class="math display">\[H=-t\sum_{\langle ij\rangle}c_i^\dagger c_j.\]</span></p>
+<p>The state <span class="math inline">\(\psi\)</span> has the amplitudes <span class="math inline">\(+1,-1,+1,-1,+1,-1\)</span> around one hexagon, and zero elsewhere. What is <span class="math inline">\(H\psi\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(H\psi=2t\,\psi\)</span></li>
+<li><span class="math inline">\(H\psi=-2t\,\psi\)</span></li>
+<li><span class="math inline">\(H\psi=0\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. A site of the hexagon gets <span class="math inline">\(-t\)</span> times the sum of its two neighbors on the hexagon, which are both <span class="math inline">\(-\psi_i\)</span>, so it gets <span class="math inline">\(2t\,\psi_i\)</span>. A site outside gets <span class="math inline">\(-t\,(1-1)=0\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. Take <span class="math inline">\(t=1\)</span> and a site with <span class="math inline">\(\psi_i=1\)</span>. Its two neighbors on the hexagon have <span class="math inline">\(-1\)</span>, so <span class="math inline">\((H\psi)_i=-1\cdot(-1-1)=2\)</span>, and not <span class="math inline">\(-2\)</span>. The energy <span class="math inline">\(-2t\)</span> belongs to <span class="math inline">\(H=+t\sum c_i^\dagger c_j\)</span>, the sign of the notebook.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. For <span class="math inline">\(t=1\)</span> the site with <span class="math inline">\(\psi_i=1\)</span> gets <span class="math inline">\(2\)</span>, which is not zero. Zero is what the sites outside the hexagon get, and it is the energy of the state on one plaquette of the Lieb lattice.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The two neighbors on the hexagon add up, and the two paths to a site outside cancel.</p>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>The Lieb lattice has three sites per cell. A corner site <span class="math inline">\(C\)</span> has four neighbors, and two edge sites, <span class="math inline">\(X\)</span> between two corners along <span class="math inline">\(x\)</span> and <span class="math inline">\(Y\)</span> between two corners along <span class="math inline">\(y\)</span>, have two neighbors each. We take the hopping <span class="math inline">\(-t\)</span> and the bond length <span class="math inline">\(1\)</span>, so the lattice constant is <span class="math inline">\(2\)</span>. Write the Bloch Hamiltonian, and find its energies at <span class="math inline">\(\Gamma=(0,0)\)</span> and at the corner <span class="math inline">\(M=(\pi/2,\pi/2)\)</span> of the Brillouin zone.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>We put each orbital at its position in the cell, with <span class="math inline">\(C\)</span> at the origin, <span class="math inline">\(X\)</span> at <span class="math inline">\((1,0)\)</span> and <span class="math inline">\(Y\)</span> at <span class="math inline">\((0,1)\)</span>. The corner <span class="math inline">\(C\)</span> is bonded to the site <span class="math inline">\(X\)</span> of its own cell, at <span class="math inline">\((1,0)\)</span>, and to the site <span class="math inline">\(X\)</span> of the cell before it along <span class="math inline">\(x\)</span>, at <span class="math inline">\((-1,0)\)</span>. Its entry with <span class="math inline">\(X\)</span> is then <span class="math inline">\(-t\,(e^{ik_x}+e^{-ik_x})=-2t\cos k_x\)</span>, and in the same way its entry with <span class="math inline">\(Y\)</span> is <span class="math inline">\(-2t\cos k_y\)</span>. The sites <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are not bonded, so</p>
+<p><span class="math display">\[H(\mathbf k)=-2t\begin{pmatrix}0&amp;\cos k_x&amp;\cos k_y\\ \cos k_x&amp;0&amp;0\\ \cos k_y&amp;0&amp;0\end{pmatrix}.\]</span></p>
+<p>The vector <span class="math inline">\((0,\cos k_y,-\cos k_x)\)</span> has the energy <span class="math inline">\(0\)</span> at every <span class="math inline">\(\mathbf k\)</span>, which is the flat band. The other two energies are</p>
+<p><span class="math display">\[\epsilon_\pm(\mathbf k)=\pm2t\sqrt{\cos^2k_x+\cos^2k_y}.\]</span></p>
+<p>At <span class="math inline">\(\Gamma\)</span> this gives <span class="math inline">\(\pm2\sqrt2\,t\approx\pm2.83\,t\)</span> and <span class="math inline">\(0\)</span>. At <span class="math inline">\(M\)</span> both cosines vanish, so all three energies are <span class="math inline">\(0\)</span>, and the two dispersive bands touch the flat band there, as panel (b) of Figure <a href="#fig:s02:flatbands">2.6</a> shows. In a calculation, these energies at <span class="math inline">\(\Gamma\)</span> and at <span class="math inline">\(M\)</span> are a quick test that a code has the right lattice and the right size of the hopping. They do not test its sign, since the Lieb bands are the same for <span class="math inline">\(t\)</span> and <span class="math inline">\(-t\)</span>. The kagome flat band, at <span class="math inline">\(+2t\)</span> or at <span class="math inline">\(-2t\)</span>, does test the sign.</p>
+</div>
+</details>
+</div>
 </div>
 <p>The notebook <code>session2.ipynb</code> treats the honeycomb lattice in depth, but it has no section on the Lieb lattice or on the kagome lattice. The box below builds both from the cell of the honeycomb lattice.</p>
 <div class="tryit">

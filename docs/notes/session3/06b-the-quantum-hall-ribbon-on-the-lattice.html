@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -84,17 +85,63 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="on" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 3. Topological Band Structure Theory</a></p>
 <h1 id="sec-3-6b"><span class="num">3.6b</span> The quantum Hall ribbon on the lattice</h1>
-<p>Let us look at a concrete model. We take a tight-binding square lattice with a perpendicular magnetic field and cut it into a ribbon of finite width, which has translational invariance along the ribbon but is finite across it. When we diagonalize this ribbon, we find the structure described above. There are flat bulk bands similar to Landau levels, and there are dispersive edge branches that cross the gap, with one branch confined to each edge and propagating in only one direction. In the low-energy region the spacing between the flat bands approaches the equal spacing of a continuum two-dimensional electron gas in a magnetic field. So the tight-binding model reproduces the Landau problem in this limit, which we solve in Section <a href="../session4/09-landau-levels-of-schrodinger-electrons.html#sec-4-9">4.9</a>. The notebook box below asks you to compute this band structure, with the flat bulk bands and the two edge branches that propagate in opposite directions.</p>
+<p>Do the flat Landau levels and the chiral edge states also appear in a lattice model, where we only diagonalize a matrix? We will now see that they do. A ribbon of the square lattice in a magnetic field has flat bands in the bulk and one branch at each edge that crosses the gap. At low field the spacing of the flat bands is the cyclotron energy of the continuum.</p>
+<p>Let us look at a concrete model. We take a tight-binding square lattice with a perpendicular magnetic field and cut it into a ribbon of finite width, which has translational invariance along the ribbon but is finite across it. When we diagonalize this ribbon, we find the structure described above. There are flat bulk bands similar to Landau levels, and there are dispersive edge branches that cross the gap, with one branch confined to each edge and propagating in only one direction.</p>
+<p>In the low-energy region the spacing between the flat bands approaches the equal spacing of a continuum two-dimensional electron gas in a magnetic field. So the tight-binding model reproduces the Landau problem in this limit, which we solve in Section <a href="../session4/09-landau-levels-of-schrodinger-electrons.html#sec-4-9">4.9</a>. The notebook box below asks you to compute this band structure, with the flat bulk bands and the two edge branches that propagate in opposite directions.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>We take a ribbon of the square lattice with first-neighbor hopping <span class="math inline">\(t\)</span> and a magnetic flux <span class="math inline">\(\alpha\)</span> through each plaquette, in units of the flux quantum <span class="math inline">\(h/e\)</span>. At low field, <span class="math inline">\(\alpha\ll1\)</span>, the flat bands at the bottom of the band are</p>
+<p><span class="math display">\[\begin{aligned} E_n &amp;\simeq -4t + \hbar\omega_c\Big(n+\frac12\Big), \\ \hbar\omega_c &amp;= 4\pi\alpha\, t, \qquad n=0,1,2,\dots \end{aligned}\]</span></p>
+<p>These are the Landau levels of the lattice, with the cyclotron energy <span class="math inline">\(\hbar\omega_c\)</span>. At each edge of the ribbon every flat band bends into one branch that crosses the gap, and the branches of the two edges have opposite velocities.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the ribbon in a magnetic field to equally spaced Landau levels</span></summary>
+<div class="fold-body">
+<p>We take the lattice constant <span class="math inline">\(a\)</span>, the hopping <span class="math inline">\(-t\)</span> and the gauge <span class="math inline">\(\mathbf A=(-By,0)\)</span>, which keeps the translational invariance along the ribbon, the direction <span class="math inline">\(x\)</span>. With the Peierls substitution <a href="../session4/06-quantized-hall-plateaus-in-experiment.html#eq-4-4">(4.4)</a> the hopping along <span class="math inline">\(x\)</span> on the row <span class="math inline">\(y=ma\)</span> gets the phase <span class="math inline">\(e^{\mp 2\pi i\alpha m}\)</span>, and the hopping along <span class="math inline">\(y\)</span> does not change. Here <span class="math inline">\(\alpha=Ba^2/(h/e)\)</span> is the flux through one plaquette in units of the flux quantum. For a Bloch wave <span class="math inline">\(e^{ikx}\)</span> along the ribbon what remains is a chain across the ribbon, one for each <span class="math inline">\(k\)</span>,</p>
+<p><span class="math display">\[H(k) = -2t\sum_m \cos(ka-2\pi\alpha m)\,|m\rangle\langle m| \;-\; t\sum_m\big(|m+1\rangle\langle m| + \text{h.c.}\big).\]</span></p>
+<p>This is the matrix that we diagonalize. Its size is the number of rows of the ribbon, and the field is in an onsite energy that depends on the row.</p>
+<p>The first step is the minimum of this onsite energy. It sits at the row <span class="math inline">\(m_0=ka/2\pi\alpha\)</span>, and close to it</p>
+<p><span class="math display">\[-2t\cos(ka-2\pi\alpha m) \simeq -2t + t\,(2\pi\alpha)^2\,(m-m_0)^2 .\]</span></p>
+<p>The second step is the hopping along <span class="math inline">\(y\)</span>. For a state that changes slowly from row to row it is the kinetic energy at the bottom of a band, <span class="math inline">\(-2t\cos(p_ya/\hbar)\simeq -2t+p_y^2/2m^*\)</span>, with the effective mass <span class="math inline">\(m^*=\hbar^2/2ta^2\)</span>. The two terms together are a harmonic oscillator centered at <span class="math inline">\(y_0=m_0a\)</span>,</p>
+<p><span class="math display">\[H(k) \simeq -4t + \frac{p_y^2}{2m^*} + \frac12\,m^*\omega_c^2\,(y-y_0)^2, \qquad \frac12\,m^*\omega_c^2\,a^2 = t\,(2\pi\alpha)^2 .\]</span></p>
+<p>The third step is to solve the last relation for the frequency. With <span class="math inline">\(m^*=\hbar^2/2ta^2\)</span> we get</p>
+<p><span class="math display">\[\hbar\omega_c = 2t\cdot 2\pi\alpha = 4\pi\alpha\,t,\]</span></p>
+<p>which is the cyclotron frequency <span class="math inline">\(\omega_c=eB/m^*\)</span> of a particle with the mass <span class="math inline">\(m^*\)</span>. The levels are <span class="math inline">\(-4t+\hbar\omega_c(n+\tfrac12)\)</span> for every <span class="math inline">\(k\)</span>, so the bands are flat. The size of the oscillator state is the magnetic length,</p>
+<p><span class="math display">\[\ell_B = \sqrt{\frac{\hbar}{m^*\omega_c}} = \frac{a}{\sqrt{2\pi\alpha}} .\]</span></p>
+<p>The last step is the edge. The center <span class="math inline">\(y_0=m_0a=ka^2/2\pi\alpha\)</span>, which is <span class="math inline">\(k\ell_B^2\)</span>, moves across the ribbon when <span class="math inline">\(k\)</span> changes. While it is farther than a few <span class="math inline">\(\ell_B\)</span> from both edges, the energy does not depend on <span class="math inline">\(k\)</span>. When <span class="math inline">\(y_0\)</span> comes to an edge the state is pressed against the wall and its energy goes up, which is the edge branch. At the opposite edge the energy goes up when <span class="math inline">\(k\)</span> decreases, so the two branches have opposite slopes.</p>
+<p>The expansion of the cosine needs that the phase changes little over one magnetic length, meaning <span class="math inline">\(\sqrt{2\pi\alpha}\ll1\)</span>. For <span class="math inline">\(\alpha=0.02\)</span> the first spacing of the lattice is <span class="math inline">\(0.244\,t\)</span> and <span class="math inline">\(4\pi\alpha t\)</span> is <span class="math inline">\(0.251\,t\)</span>. For <span class="math inline">\(\alpha=0.005\)</span> the two differ by less than <span class="math inline">\(1\%\)</span>.</p>
+</div>
+</details>
+</div>
 <figure class="again panel">
 <img src="../figures/panel/s04f01_ribbon_a.svg" loading="lazy" alt="Flat Landau levels of a ribbon with the edge branches that bend up near the walls and cross the gap." />
 <figcaption><strong><a href="../session4/05-edge-states-and-why-an-insulating-bulk-still-conducts.html#fig:s04:ribbon">Figure 4.1</a>, one panel shown again.</strong> The spectrum of a quantum Hall ribbon, which we compute in Section <a href="../session4/05-edge-states-and-why-an-insulating-bulk-still-conducts.html#sec-4-5">4.5</a>. The flat bulk levels are the Landau levels. The branches that bend up near the walls are the edge states, one for each edge. This panel is computed in the continuum with hard walls, and the lattice ribbon of the notebook gives the same picture. Look at the number of branches that cross the chemical potential, the translucent plane.</figcaption>
 </figure>
+<p><a href="#sch:s03:g2_lattice_ribbon">Schematic 3.8</a> shows the same spectrum on the lattice, without and with the field.</p>
+<figure id="sch:s03:g2_lattice_ribbon" class="schematic has-script">
+<img src="../figures/web/session03/g2_lattice_ribbon.svg" loading="lazy" alt="Two band structures of a ribbon against the momentum. Without field, many parabolic bands. With field, flat bands that bend up at both ends, blue on one side and red on the other." />
+<div class="script-row">
+<a href="../scripts/session03/g2_square_ribbon.py" class="script-dl" download="g2_square_ribbon.py">Download the pyqula script</a> <span class="script-name"><code>g2_square_ribbon.py</code></span>
+</div>
+<figcaption><strong>Schematic 3.8.</strong> The bands of a ribbon of the square lattice with 40 sites across, near the bottom of the band, computed with pyqula. In (a) there is no field and every band disperses. In (b) the flux through each plaquette is <span class="math inline">\(0.02\)</span> of a flux quantum. The bands are flat in the middle of the zone, and the dashed lines are the continuum levels <span class="math inline">\(-4t+\hbar\omega_c(n+\tfrac12)\)</span> with <span class="math inline">\(\hbar\omega_c=4\pi\alpha t=0.25\,t\)</span>. The first spacing of the lattice is <span class="math inline">\(0.24\,t\)</span>. The color is the position across the ribbon, with the same scale in both panels. Look at the two ends of each flat band in (b), where the states are blue at one edge and red at the other, and the two slopes are opposite.</figcaption>
+</figure>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>In a Hall bar the Hall resistance on a plateau is <span class="math inline">\(h/e^2=25.8\)</span> k<span class="math inline">\(\Omega\)</span> divided by an integer. A plateau needs the chemical potential in a gap between two Landau levels, and a temperature with <span class="math inline">\(k_BT\)</span> much smaller than this gap. For a long time the quantum Hall effect was observed only at the temperature of liquid helium. In graphene, which is a single atomic layer of carbon, it is measured even at room temperature. The measurement is in <a href="https://www.science.org/doi/10.1126/science.1137201">this article</a>, which is the one given in the notebook <code>session3.ipynb</code>.</p>
+<p>The honeycomb ribbon of the notebook box below is the model of this experiment. Its electrons are Dirac electrons, and the gap above their first Landau level grows as <span class="math inline">\(\sqrt{B}\)</span>, as we derive in Section <a href="../session4/10-landau-levels-of-dirac-electrons.html#sec-4-10">4.10</a>. At low field it is larger than the gap <span class="math inline">\(\hbar\omega_c\)</span> of a parabolic band, which grows only as <span class="math inline">\(B\)</span>.</p>
+</div>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>In the spectrum of the ribbon the bulk Landau levels are flat. What does this say about the current carried by the bulk states?</p>
+<p>The velocity of a Bloch state along the ribbon is the slope of its band,</p>
+<p><span class="math display">\[v_n(k) = \frac{1}{\hbar}\,\frac{\partial E_n(k)}{\partial k},\]</span></p>
+<p>with <span class="math inline">\(E_n(k)\)</span> the energy of the band <span class="math inline">\(n\)</span> at the momentum <span class="math inline">\(k\)</span>. In the spectrum of the ribbon the bulk Landau levels are flat. What current do the bulk states carry?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -107,7 +154,7 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
-<p>This is false. Compare the first and the fifth Landau level. Both are flat, so both have <span class="math inline">\(\partial E/\partial k=0\)</span>, and neither carries current although their energies differ by a factor of nine.</p></li>
+<p>This is false. Compare the first and the fifth Landau level. Both are flat, so both have <span class="math inline">\(\partial E/\partial k=0\)</span>, and neither carries current although their energies above the bottom of the band differ by about a factor of nine.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
 <p>This is true. The velocity along the ribbon is the slope of the band. A flat level has zero slope, so the current is carried only by the edge branches that cross the chemical potential.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
@@ -115,6 +162,82 @@ Question
 </ul>
 </div>
 </details>
+</div>
+<div class="quiz quiz-pics" data-correct="C" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Each picture shows the bands of one ribbon of the square lattice. Only the magnetic field differs. The axes are the momentum <span class="math inline">\(k\)</span> along the ribbon and the energy <span class="math inline">\(E/t\)</span>. Blue states sit at one edge and red states at the other edge. The flat bands are the Landau levels, and their spacing is</p>
+<p><span class="math display">\[\hbar\omega_c = \frac{\hbar eB}{m^*}.\]</span></p>
+<p>Here <span class="math inline">\(B\)</span> is the magnetic field and <span class="math inline">\(m^*\)</span> is the effective mass. Which ribbon has the largest field?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session03/g2_quiz_ribbon_low.svg" loading="lazy" alt="Bands of a ribbon with many flat bands close to each other, each one bending up at both ends." /></li>
+<li><img src="../figures/web/session03/g2_quiz_ribbon_mid.svg" loading="lazy" alt="Bands of a ribbon with five flat bands, each one bending up at both ends." /></li>
+<li><img src="../figures/web/session03/g2_quiz_ribbon_high.svg" loading="lazy" alt="Bands of a ribbon with four flat bands, each one bending up at both ends." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The flat bands are <span class="math inline">\(0.12\,t\)</span> apart, which is the smallest spacing of the three. This ribbon has the flux <span class="math inline">\(0.01\)</span> per plaquette, in units of the flux quantum, and the spacing is close to <span class="math inline">\(\hbar\omega_c=4\pi\times0.01\,t=0.13\,t\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The flat bands are <span class="math inline">\(0.18\,t\)</span> apart, for the flux <span class="math inline">\(0.015\)</span> per plaquette. Another ribbon has only four flat bands in the same window, with a spacing of <span class="math inline">\(0.24\,t\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. The spacing <span class="math inline">\(\hbar\omega_c\)</span> grows in proportion to <span class="math inline">\(B\)</span>, and here it is the largest, <span class="math inline">\(0.24\,t\)</span> for the flux <span class="math inline">\(0.02\)</span> per plaquette. The flat part of each band is also the widest, since a larger field moves the state across the ribbon over a wider range of <span class="math inline">\(k\)</span>.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="quiz" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>The lowest Landau levels of a square lattice have the spacing</p>
+<p><span class="math display">\[\hbar\omega_c = 4\pi\alpha\,t,\]</span></p>
+<p>with <span class="math inline">\(t\)</span> the hopping and <span class="math inline">\(\alpha\)</span> the flux per plaquette in flux quanta. We double the hopping <span class="math inline">\(t\)</span> and keep the field. What happens to the spacing?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(\hbar\omega_c \to \hbar\omega_c/2\)</span></li>
+<li><span class="math inline">\(\hbar\omega_c \to 2\,\hbar\omega_c\)</span></li>
+<li><span class="math inline">\(\hbar\omega_c \to \hbar\omega_c\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Take <span class="math inline">\(\alpha=0.02\)</span>. For <span class="math inline">\(t=1\)</span> the spacing is <span class="math inline">\(0.25\)</span> and for <span class="math inline">\(t=2\)</span> it is <span class="math inline">\(0.50\)</span>, in the same units, so it does not decrease. A larger hopping gives a lighter particle and not a heavier one.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The effective mass at the bottom of the band is <span class="math inline">\(m^*=\hbar^2/2ta^2\)</span>, so a hopping twice as large gives half the mass, and <span class="math inline">\(\omega_c=eB/m^*\)</span> doubles.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The field alone does not fix the spacing. For <span class="math inline">\(\alpha=0.02\)</span> we get <span class="math inline">\(0.25\)</span> with <span class="math inline">\(t=1\)</span> and <span class="math inline">\(0.50\)</span> with <span class="math inline">\(t=2\)</span>, because the mass <span class="math inline">\(m^*=\hbar^2/2ta^2\)</span> depends on the hopping.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>The chemical potential <span class="math inline">\(\mu\)</span> of a ribbon is in a gap between two Landau levels, and <span class="math inline">\(N\)</span> edge branches cross it at each edge. A voltage <span class="math inline">\(V\)</span> between the two edges fills the branches of one edge up to <span class="math inline">\(\mu+eV/2\)</span> and the branches of the other edge up to <span class="math inline">\(\mu-eV/2\)</span>. Compute the current along the ribbon, and show that it is <span class="math inline">\(I=N(e^2/h)V\)</span> for any shape of the branches.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>A state of the band <span class="math inline">\(n\)</span> with momentum <span class="math inline">\(k\)</span> has the velocity <span class="math inline">\(v_n(k)=\hbar^{-1}\partial E_n/\partial k\)</span>. A ribbon of length <span class="math inline">\(L\)</span> has <span class="math inline">\(L\,dk/2\pi\)</span> states in the interval <span class="math inline">\(dk\)</span>, and each filled state gives the current <span class="math inline">\(e\,v_n/L\)</span>. So a piece of one band that is filled between the energies <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span> carries</p>
+<p><span class="math display">\[I_n = e\int\frac{dk}{2\pi}\,v_n(k) = \frac{e}{2\pi\hbar}\int_{E_1}^{E_2}dE = \frac{e}{h}\,(E_2-E_1).\]</span></p>
+<p>The velocity cancels against the density of states of a one-dimensional band, so the result does not depend on the dispersion.</p>
+<p>When both edges are filled up to the same energy the total current is zero. The reason is that every band is then filled between two points with the same energy, so the integral of its velocity vanishes, and the currents of the two edges cancel. What is left is the window of width <span class="math inline">\(eV\)</span> between the two fillings, where only the branches of one edge are filled. Each of them gives <span class="math inline">\((e/h)\,eV\)</span>, and the <span class="math inline">\(N\)</span> branches give</p>
+<p><span class="math display">\[I = N\,\frac{e^2}{h}\,V .\]</span></p>
+<p>This is the Hall conductance of <a href="05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#eq-3-4">(3.4)</a> with <span class="math inline">\(C=N\)</span>, obtained by counting branches. The current flows along the ribbon and the voltage is across it, so <span class="math inline">\(V/I=h/Ne^2\)</span> is the Hall resistance, which is <span class="math inline">\(25.8\)</span> k<span class="math inline">\(\Omega\)</span> for <span class="math inline">\(N=1\)</span>. The velocity of the edge states, the width of the ribbon and the shape of the edge do not appear, and this is why every sample gives the same plateau. For a calculation it means that we only need to count the branches that cross the chemical potential at one edge.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session3.ipynb"><code>session3.ipynb</code></a>, “From electrons in a ribbon to the quantum Hall state” (Core), “The quantum Hall effect in graphene” (Core), and “Localization of the edge states in the quantum Hall effect” (Challenge)</p>

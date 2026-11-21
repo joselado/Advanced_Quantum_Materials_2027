@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -84,17 +85,75 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="on" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 3. Topological Band Structure Theory</a></p>
 <h1 id="sec-3-10b"><span class="num">3.10b</span> The Haldane coupling and a real Chern insulator</h1>
-<p>The staggered potential gave <span class="math inline">\(C=0\)</span>, so it remains to see the second choice of the mass term. Now let us instead open the gap with a purely imaginary second-neighbor hopping, which is called the <strong>Haldane coupling</strong>. Physically, this term is a pattern of local orbital currents that circulate inside each hexagon, and it is odd under time reversal. This mass term changes sign between <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span> <em>relative to</em> <span class="math inline">\(\lambda\)</span>, so the two Dirac points now give Chern numbers of the <em>same</em> sign, which add and do not cancel. The result is <span class="math inline">\(C = \pm 1\)</span>, a real Chern insulator, built only from lattice hoppings and without any external magnetic field. This was the first model with a finite and quantized Hall conductivity and zero net flux. It is the mechanism to open a gap in the Dirac cone of Section <a href="../session2/11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#sec-2-11">2.11</a> that we were looking for. Figure <a href="#fig:s03:masses">3.5</a> shows the two cases side by side, each on the lattice and in the spectrum of a ribbon, where only the Haldane case has edge states that cross the gap. A gap can also be opened by combining an ordinary magnetization with spin-orbit coupling, which gives the same sign pattern as the Haldane term and an equivalent quantum anomalous Hall state. Both routes have material realizations. Physics similar to the Haldane model has been realized in twisted graphene bilayers on boron nitride, and the route with magnetism and spin-orbit coupling has been realized and measured in Cr-doped (Bi,Sb)<span class="math inline">\(_2\)</span>Te<span class="math inline">\(_3\)</span>.</p>
+<p>Which mass term makes the two halves of <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span> add, so that they do not cancel? We will now see that an imaginary second-neighbor hopping does it. Its mass has opposite signs at the two Dirac points, and the result is <span class="math inline">\(C=\pm1\)</span>, which is a Chern insulator with no magnetic field.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[H(k) = k_x\,\sigma_x + \lambda\, k_y\,\sigma_y + m\,\sigma_z, \tag{3.7}\]</span></p>
+</div>
+<div class="eq-again">
+<p><span class="math display">\[C_{\text{Dirac}} = \frac{1}{2}\,\mathrm{sgn}(m)\,\mathrm{sgn}(\lambda). \tag{3.8}\]</span></p>
+</div>
+<p>These are the Hamiltonian of a gapped Dirac cone and its Chern number, from Section <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#sec-3-10">3.10</a>. The mass is <span class="math inline">\(m\)</span>, and the chirality <span class="math inline">\(\lambda=\pm1\)</span> has opposite signs at the two Dirac points <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span> of the honeycomb lattice. A staggered potential has the same <span class="math inline">\(m\)</span> at both points, so its two halves cancel.</p>
+</div>
+<p>The staggered potential gave <span class="math inline">\(C=0\)</span>, so it remains to see the second choice of the mass term. Now let us instead open the gap with a purely imaginary second-neighbor hopping, which is called the <strong>Haldane coupling</strong>. Physically, this term is a pattern of local orbital currents that circulate inside each hexagon, and it is odd under time reversal. This mass term changes sign between <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span> <em>relative to</em> <span class="math inline">\(\lambda\)</span>, so the two Dirac points now give Chern numbers of the <em>same</em> sign, which add and do not cancel. The result is <span class="math inline">\(C = \pm 1\)</span>, a real Chern insulator, built only from lattice hoppings and without any external magnetic field.</p>
+<p>This was the first model with a finite and quantized Hall conductivity and zero net flux. It is the mechanism to open a gap in the Dirac cone of Section <a href="../session2/11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#sec-2-11">2.11</a> that we were looking for. Figure <a href="#fig:s03:masses">3.5</a> shows the two cases side by side, each on the lattice and in the spectrum of a ribbon, where only the Haldane case has edge states that cross the gap.</p>
+<p>A gap can also be opened by combining an ordinary magnetization with spin-orbit coupling, which gives the same sign pattern as the Haldane term and an equivalent quantum anomalous Hall state. Both routes have material realizations. Physics similar to the Haldane model has been realized in twisted graphene bilayers on boron nitride, and the route with magnetism and spin-orbit coupling has been realized and measured in Cr-doped (Bi,Sb)<span class="math inline">\(_2\)</span>Te<span class="math inline">\(_3\)</span>.</p>
 <figure id="fig:s03:masses">
 <img src="../figures/s03f05_masses.svg" loading="lazy" alt="Two ways to gap the Dirac cones of the honeycomb lattice, on the lattice and in the spectrum of a zigzag ribbon." />
 <figcaption><strong>Figure 3.5.</strong> Two ways to gap the Dirac cones of the honeycomb lattice, on the lattice and in the spectrum of a zigzag ribbon. Equation <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#eq-3-8">(3.8)</a> gives each gapped Dirac point a Chern number <span class="math inline">\(\tfrac 12\,\mathrm{sgn}(m)\,\mathrm{sgn}(\lambda)\)</span>, and the two Dirac points of the honeycomb lattice are time-reversal partners with opposite chirality, <span class="math inline">\(\lambda=+1\)</span> at <span class="math inline">\(K\)</span> and <span class="math inline">\(\lambda=-1\)</span> at <span class="math inline">\(K&#39;\)</span>. So the result depends only on how the mass term itself behaves under time reversal. (a) A staggered sublattice potential, <span class="math inline">\(+m\)</span> on the large dark sites and <span class="math inline">\(-m\)</span> on the small light ones, is an ordinary scalar potential. It is even under time reversal, so <span class="math inline">\(m\)</span> has the same sign at both valleys. The two half-integers are then opposite and they cancel, which gives an ordinary insulator with the same kind of gap as boron nitride. The ribbon spectrum below it has a gap with nothing in it. (b) The Haldane coupling, the second-neighbor hoppings drawn as arrows around one hexagon, is a pattern of circulating orbital currents, which is odd under time reversal, so <span class="math inline">\(m\)</span> changes sign between the valleys. The two half-integers are then equal and they add, which gives <span class="math inline">\(C=\pm 1\)</span>. This is a real Chern insulator with quantized <span class="math inline">\(\sigma_{xy}\)</span> and chiral edge states, built only from lattice hoppings, with no external magnetic field and zero net flux. In the ribbon spectrum one branch from each edge, the dark and the light tube, crosses the gap. The two gaps look the same in the bulk spectrum, and the difference appears only in the wavefunctions. The spectra are computed for ribbons 16 cells wide, with <span class="math inline">\(m=0.5\)</span> and <span class="math inline">\(t_2=0.1\)</span> in units of the first-neighbor hopping.</figcaption>
 </figure>
+<p>What happens when both mass terms are there? A staggered potential <span class="math inline">\(M\)</span> gives the same mass at the two Dirac points. The Haldane coupling <span class="math inline">\(t_2\)</span> gives the mass <span class="math inline">\(+m_H\)</span> at one of them and <span class="math inline">\(-m_H\)</span> at the other, so the two net masses are <span class="math inline">\(M+m_H\)</span> and <span class="math inline">\(M-m_H\)</span>. When <span class="math inline">\(|M|\)</span> is larger than <span class="math inline">\(|m_H|\)</span> both masses have the same sign, and the two halves cancel as they did for the staggered potential alone.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>The honeycomb lattice with the Haldane coupling <span class="math inline">\(t_2\)</span> and a staggered potential <span class="math inline">\(M\)</span> has the masses <span class="math inline">\(M+m_H\)</span> and <span class="math inline">\(M-m_H\)</span> at its two Dirac points, with <span class="math inline">\(m_H=3\sqrt{3}\,t_2\)</span>, and its Chern number is</p>
+<p><span class="math display">\[\begin{aligned}
+|C| &amp;= 1 &amp;&amp;\text{for}\ |M|&lt;|m_H|,\\
+C &amp;= 0 &amp;&amp;\text{for}\ |M|&gt;|m_H|.
+\end{aligned}\]</span></p>
+<p>The first case is a Chern insulator with no magnetic field, and the second is an ordinary insulator. At <span class="math inline">\(M=0\)</span> the gap is <span class="math inline">\(6\sqrt{3}\,|t_2|\)</span> for small <span class="math inline">\(t_2\)</span>, which is <span class="math inline">\(|t_2|&lt;1/3\sqrt3\approx0.19\)</span> in units of the first-neighbor hopping. <span class="math inline">\(C\)</span> changes sign with <span class="math inline">\(t_2\)</span>, meaning when the currents circulate in the opposite direction.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the imaginary second-neighbor hopping to the masses of the two Dirac points</span></summary>
+<div class="fold-body">
+<p>A second-neighbor hop joins two sites of the same sublattice, so in the Bloch Hamiltonian it is a diagonal term. We take the three second-neighbor vectors <span class="math inline">\(\mathbf b_1,\mathbf b_2,\mathbf b_3\)</span> that go around a hexagon in one direction. They add to zero, and their length is the lattice constant. On the sublattice <span class="math inline">\(A\)</span> the hopping along each <span class="math inline">\(\mathbf b_i\)</span> is <span class="math inline">\(i\,t_2\)</span>, and the hopping back is <span class="math inline">\(-i\,t_2\)</span>, so that the Hamiltonian is Hermitian. The simplest piece is one such pair of hops, which gives</p>
+<p><span class="math display">\[i\,t_2\,e^{i\mathbf k\cdot\mathbf b_i} - i\,t_2\,e^{-i\mathbf k\cdot\mathbf b_i} = -2\,t_2\,\sin(\mathbf k\cdot\mathbf b_i).\]</span></p>
+<p>A real hopping would give a cosine, which is even in <span class="math inline">\(\mathbf k\)</span>. The imaginary hopping gives a sine, which is odd. On the sublattice <span class="math inline">\(B\)</span> the currents circulate in the same sense around the hexagon, and this is the opposite direction along the same vectors, so the hopping along <span class="math inline">\(\mathbf b_i\)</span> is <span class="math inline">\(-i\,t_2\)</span> there. The whole term is then</p>
+<p><span class="math display">\[H_H(\mathbf k) = -2\,t_2\sum_{i=1}^{3}\sin(\mathbf k\cdot\mathbf b_i)\;\sigma_z .\]</span></p>
+<p>The second step is the value at the Dirac points. At <span class="math inline">\(K\)</span> the three phases are the same, <span class="math inline">\(\mathbf K\cdot\mathbf b_i=-2\pi/3\)</span> up to a multiple of <span class="math inline">\(2\pi\)</span>, so each sine is <span class="math inline">\(-\sqrt3/2\)</span> and</p>
+<p><span class="math display">\[H_H(K) = -2\,t_2\cdot 3\cdot\Big(-\frac{\sqrt3}{2}\Big)\,\sigma_z = 3\sqrt3\,t_2\,\sigma_z = m_H\,\sigma_z .\]</span></p>
+<p>The other Dirac point is <span class="math inline">\(K&#39;=-K\)</span>, and the sine is odd, so <span class="math inline">\(H_H(K&#39;)=-m_H\,\sigma_z\)</span>. For <span class="math inline">\(t_2=0.1\)</span> this is <span class="math inline">\(m_H=0.52\)</span> and a gap <span class="math inline">\(2m_H=1.04\)</span>, in units of the first-neighbor hopping. The name of the two points does not matter, since <span class="math inline">\(\lambda\)</span> and the mass change sign together when we exchange them. What changes the sign of <span class="math inline">\(C\)</span> is the sign of <span class="math inline">\(t_2\)</span>.</p>
+<p>The third step adds the staggered potential, which is <span class="math inline">\(M\sigma_z\)</span> at every <span class="math inline">\(\mathbf k\)</span>. The first-neighbor hopping vanishes at the two Dirac points, so the masses are <span class="math inline">\(M+m_H\)</span> at <span class="math inline">\(K\)</span> and <span class="math inline">\(M-m_H\)</span> at <span class="math inline">\(K&#39;\)</span>. The chirality <span class="math inline">\(\lambda\)</span> has opposite signs at <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span>, so equation <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#eq-3-8">(3.8)</a> gives</p>
+<p><span class="math display">\[C = \pm\,\frac{\mathrm{sgn}(M+m_H)-\mathrm{sgn}(M-m_H)}{2},\]</span></p>
+<p>where the sign in front depends on which of the two points has <span class="math inline">\(\lambda=+1\)</span>. This is fixed by the first-neighbor term and by the sense of the vectors <span class="math inline">\(\mathbf b_i\)</span>, which we did not need here. The size is <span class="math inline">\(|C|=1\)</span> for <span class="math inline">\(|M|&lt;|m_H|\)</span> and <span class="math inline">\(0\)</span> for <span class="math inline">\(|M|&gt;|m_H|\)</span>, and <span class="math inline">\(C\)</span> changes sign with <span class="math inline">\(m_H\)</span>, which is with <span class="math inline">\(t_2\)</span>. The gap at the Dirac points is the smaller of the two, <span class="math inline">\(2\min(|M+m_H|,|M-m_H|)\)</span>, and it closes at <span class="math inline">\(M=\pm m_H\)</span>. It is the gap of the lattice as long as it is smaller than <span class="math inline">\(2\)</span>. This is the gap of the first-neighbor bands at the middle of an edge of the Brillouin zone, where the Haldane term vanishes. As a check, a sum of the Berry curvature on the lattice with <span class="math inline">\(t_2=0.1\)</span> gives <span class="math inline">\(|C|=1.000\)</span> for <span class="math inline">\(M=0.3\)</span> and <span class="math inline">\(C=0.000\)</span> for <span class="math inline">\(M=0.8\)</span>, with the gaps <span class="math inline">\(0.44\)</span> and <span class="math inline">\(0.56\)</span> that this formula gives.</p>
+</div>
+</details>
+</div>
+<p>We can follow this cancellation on the lattice. In <a href="#sch:s03:haldane_phase">Schematic 3.13</a> we keep the Haldane coupling fixed and we increase the staggered potential <span class="math inline">\(M\)</span>. The staggered potential <span class="math inline">\(M\)</span>, which Figure <a href="#fig:s03:masses">3.5</a> writes as <span class="math inline">\(m\)</span>, gives the mass <span class="math inline">\(m\)</span> of <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#eq-3-7">(3.7)</a> with the same sign at both valleys. The Haldane coupling instead gives masses of opposite sign at <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span>, and only this one gives <span class="math inline">\(C=\pm1\)</span>.</p>
+<figure id="sch:s03:haldane_phase" class="schematic">
+<img src="../figures/web/session03/haldane_phase.svg" loading="lazy" alt="The bulk gap against the staggered potential, with two zeros, and below it the Chern number, equal to one between the zeros and to zero outside." />
+<figcaption><strong>Schematic 3.13.</strong> The honeycomb lattice with the Haldane coupling <span class="math inline">\(t_2=0.1\)</span> and a staggered potential <span class="math inline">\(M\)</span>, computed on the lattice. At the top is the gap of the bulk. At the bottom is the Chern number of the lower band, from a grid of 60 by 60 points. The gap closes at <span class="math inline">\(M=\pm m_H\)</span>, with <span class="math inline">\(m_H=3\sqrt{3}\,t_2\approx0.52\)</span>, which is where the mass of one valley changes sign, and <span class="math inline">\(|C|\)</span> jumps from <span class="math inline">\(1\)</span> to <span class="math inline">\(0\)</span> there. Look at the zeros of the gap, since a Chern number can change only where the gap closes.</figcaption>
+</figure>
+<div class="notebookbox">
+<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session3.ipynb"><code>session3.ipynb</code></a>, “The quantum anomalous Hall effect” (Core), “Edge states of the quantum anomalous Hall state” (Core) and “Topological phase transitions in the edge” (Core). Two more sections are challenges, “Topological states and topological invariants” (Challenge) and “Topological phase transitions in the bulk” (Challenge).</p>
+<p>Build the honeycomb ribbon with the Haldane coupling and without magnetic field, and check that the same chiral edge states of Section <a href="06-landau-levels-and-chiral-edge-states-in-the-quantum-hall-state.html#sec-3-6">3.6</a> appear, as the argument above predicts. Then, in the exercise on the Berry curvature, integrate the curvature separately for the Haldane coupling and for a sublattice imbalance. You should find a non-zero net Chern number for the Haldane case and a vanishing one for the sublattice imbalance, which is the difference between cancellation and addition that we worked out around <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#eq-3-8">(3.8)</a>. Then combine both terms and change their relative strength, and follow where the bulk gap closes and then where the edge states do. This is the numerical version of the phase transition at <span class="math inline">\(t=1\)</span> of Section <a href="08-three-topological-material-classes.html#sec-3-9">3.9</a>, now in two dimensions. The Berry curvature of <a href="05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#sch:s03:berry_haldane">Schematic 3.5</a> and the ribbon spectra of Figure <a href="#fig:s03:masses">3.5</a> come from this same computation.</p>
+</div>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>The route with magnetism and spin-orbit coupling is measured through the Hall resistance, as the quantum Hall effect is, but at zero magnetic field. In thin films of Cr-doped (Bi,Sb)<span class="math inline">\(_2\)</span>Te<span class="math inline">\(_3\)</span> the Hall resistance at zero field reaches the quantized value <span class="math inline">\(h/e^2=25.8\)</span> k<span class="math inline">\(\Omega\)</span>, which is <span class="math inline">\(|C|=1\)</span> in <a href="05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#eq-3-4">(3.4)</a>, and the longitudinal resistance drops at the same time. The measurement is in <a href="https://arxiv.org/abs/1605.08829">this article</a>. In films of V-doped (Bi,Sb)<span class="math inline">\(_2\)</span>Te<span class="math inline">\(_3\)</span> the Hall conductance of this state reaches <span class="math inline">\(0.9998\pm0.0006\)</span> in units of <span class="math inline">\(e^2/h\)</span> at <span class="math inline">\(25\)</span> mK, as reported in <a href="https://arxiv.org/abs/1412.3758">this second article</a>.</p>
+</div>
 <div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>We keep the Haldane coupling fixed and increase a staggered potential until it is larger than the Haldane mass. What happens to the Chern number?</p>
+<p>A honeycomb lattice has a Haldane coupling with mass <span class="math inline">\(m_H\)</span> and a staggered potential <span class="math inline">\(M\)</span>. The masses at its two Dirac points are <span class="math inline">\(M+m_H\)</span> and <span class="math inline">\(M-m_H\)</span>. We increase <span class="math inline">\(M\)</span> from zero until <span class="math inline">\(M&gt;m_H\)</span>. What happens to the Chern number?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -107,30 +166,21 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
-<p>This is false. Take a Haldane mass <span class="math inline">\(0.5\)</span> and a staggered mass <span class="math inline">\(1\)</span>. The masses at the two valleys are <span class="math inline">\(1.5\)</span> and <span class="math inline">\(0.5\)</span>, both positive, so <span class="math inline">\(C=\tfrac12-\tfrac12=0\)</span>.</p></li>
+<p>This is false. Take a Haldane mass <span class="math inline">\(0.5\)</span> and a staggered potential <span class="math inline">\(1\)</span>. The masses at the two valleys are <span class="math inline">\(1.5\)</span> and <span class="math inline">\(0.5\)</span>, both positive, so <span class="math inline">\(C=\tfrac12-\tfrac12=0\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
-<p>This is false. The two masses add at one valley and subtract at the other, and each Dirac point gives at most <span class="math inline">\(\pm\tfrac12\)</span>.</p></li>
+<p>This is false. The two masses add at one valley and subtract at the other. For a Haldane mass <span class="math inline">\(0.5\)</span> and a staggered potential <span class="math inline">\(1\)</span> they are <span class="math inline">\(1.5\)</span> and <span class="math inline">\(0.5\)</span>. Each Dirac point gives at most <span class="math inline">\(\pm\tfrac12\)</span>, so the size of <span class="math inline">\(C\)</span> is never larger than <span class="math inline">\(1\)</span>, and here it is <span class="math inline">\(\tfrac12-\tfrac12=0\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
-<p>This is true. The net masses of the two valleys are <span class="math inline">\(m_s+m_H\)</span> and <span class="math inline">\(m_s-m_H\)</span>. When the staggered one wins both have the same sign, and the two half-integers of <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#eq-3-8">(3.8)</a> are opposite and cancel.</p></li>
+<p>This is true. The gap closes at the valley with the mass <span class="math inline">\(M-m_H\)</span> when <span class="math inline">\(M=m_H\)</span>. When the staggered potential wins, both masses have the same sign, and the two half-integers are opposite and cancel.</p></li>
 </ul>
 </div>
 </details>
-</div>
-<p>We can follow this cancellation on the lattice. In <a href="#sch:s03:haldane_phase">Schematic 3.9</a> we keep the Haldane coupling fixed and we increase the staggered potential <span class="math inline">\(M\)</span>. The staggered potential <span class="math inline">\(M\)</span>, which Figure <a href="#fig:s03:masses">3.5</a> writes as <span class="math inline">\(m\)</span>, gives the mass <span class="math inline">\(m\)</span> of <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#eq-3-7">(3.7)</a> with the same sign at both valleys. The Haldane coupling instead gives masses of opposite sign at <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span>, and only this one gives <span class="math inline">\(C=\pm1\)</span>.</p>
-<figure id="sch:s03:haldane_phase" class="schematic">
-<img src="../figures/web/session03/haldane_phase.svg" loading="lazy" alt="The bulk gap against the staggered potential, with two zeros, and below it the Chern number, equal to one between the zeros and to zero outside." />
-<figcaption><strong>Schematic 3.9.</strong> The honeycomb lattice with the Haldane coupling <span class="math inline">\(t_2=0.1\)</span> and a staggered potential <span class="math inline">\(M\)</span>, computed on the lattice. At the top is the gap of the bulk. At the bottom is the Chern number of the lower band, from a grid of 60 by 60 points. The gap closes at <span class="math inline">\(M=\pm m_H\)</span>, with <span class="math inline">\(m_H=3\sqrt{3}\,t_2\approx0.52\)</span>, which is where the mass of one valley changes sign, and <span class="math inline">\(|C|\)</span> jumps from <span class="math inline">\(1\)</span> to <span class="math inline">\(0\)</span> there. Look at the zeros of the gap, since a Chern number can change only where the gap closes.</figcaption>
-</figure>
-<div class="notebookbox">
-<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session3.ipynb"><code>session3.ipynb</code></a>, “The quantum anomalous Hall effect” (Core), “Edge states of the quantum anomalous Hall state” (Core) and “Topological phase transitions in the edge” (Core). Two more sections are challenges, “Topological states and topological invariants” (Challenge) and “Topological phase transitions in the bulk” (Challenge).</p>
-<p>Build the honeycomb ribbon with the Haldane coupling and without magnetic field, and check that the same chiral edge states of Section <a href="06-landau-levels-and-chiral-edge-states-in-the-quantum-hall-state.html#sec-3-6">3.6</a> appear, as the argument above predicts. Then, in the exercise on the Berry curvature, integrate the curvature separately for the Haldane coupling and for a sublattice imbalance. You should find a non-zero net Chern number for the Haldane case and a vanishing one for the sublattice imbalance, which is the difference between cancellation and addition that we worked out around <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#eq-3-8">(3.8)</a>. Then combine both terms and change their relative strength, and follow where the bulk gap closes and then where the edge states do. This is the numerical version of the phase transition at <span class="math inline">\(t=1\)</span> of Section <a href="08-three-topological-material-classes.html#sec-3-9">3.9</a>, now in two dimensions. The Berry curvature of <a href="05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#sch:s03:berry_haldane">Schematic 3.5</a> and the ribbon spectra of Figure <a href="#fig:s03:masses">3.5</a> come from this same computation.</p>
 </div>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>The Haldane coupling has zero net magnetic flux through the unit cell, and yet it gives <span class="math inline">\(C\neq 0\)</span>. Why?</p>
+<p>The Haldane coupling has zero net magnetic flux through the unit cell. It still gives <span class="math inline">\(C\neq 0\)</span>. Why?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -143,17 +193,93 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
-<p>This is false. Take the loop of the six first-neighbor bonds around one hexagon. The hoppings are real, so the phase is zero. The complex phases are on the second-neighbor bonds and add to zero over the unit cell.</p></li>
+<p>This is false. Take the loop of the six first-neighbor bonds around one hexagon. These hoppings are real, so the phase around the loop is zero. The complex phases are on the second-neighbor bonds, and the fluxes that they give add to zero over the unit cell.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
 <p>This is true. What matters is that time reversal is broken, and not that the field is nonzero. The imaginary second-neighbor hopping gives currents that circulate inside each hexagon and cancel on average.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. The staggered potential lives on the same bipartite honeycomb lattice and gives <span class="math inline">\(C=0\)</span>, as in Figure <a href="#fig:s03:masses">3.5</a>. The lattice alone cannot decide the Chern number.</p></li>
+<p>This is false. The staggered potential lives on the same bipartite honeycomb lattice and gives <span class="math inline">\(C=0\)</span>. For a potential of <span class="math inline">\(0.5\)</span> the sum of the Berry curvature over a mesh of 60 by 60 points gives <span class="math inline">\(0.000\)</span>. The lattice alone cannot decide the Chern number.</p></li>
 </ul>
 </div>
 </details>
 </div>
+<div class="quiz" data-correct="C" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>The Haldane coupling gives the masses</p>
+<p><span class="math display">\[m(K) = -m(K&#39;) = 3\sqrt3\,t_2\]</span></p>
+<p>at the two Dirac points <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span> of the honeycomb lattice. Here <span class="math inline">\(t_2\)</span> is the imaginary second-neighbor hopping. What is the gap for <span class="math inline">\(t_2=0.1\)</span>, in units of the first-neighbor hopping?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(2\,t_2=0.2\)</span></li>
+<li><span class="math inline">\(3\sqrt3\,t_2\approx0.52\)</span></li>
+<li><span class="math inline">\(6\sqrt3\,t_2\approx1.04\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The three second-neighbor hops of each sublattice add at the Dirac point, each with a factor <span class="math inline">\(\sqrt3/2\)</span> from the sine. The bands of the lattice with <span class="math inline">\(t_2=0.1\)</span> have a gap of <span class="math inline">\(1.04\)</span> and not <span class="math inline">\(0.2\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. This is the mass, and the gap of a Dirac cone is twice its mass, since the bands are <span class="math inline">\(\pm\sqrt{k^2+m^2}\)</span>. The two levels at <span class="math inline">\(K\)</span> are at <span class="math inline">\(+0.52\)</span> and <span class="math inline">\(-0.52\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. The gap is <span class="math inline">\(2|m|\)</span> at each Dirac point, and the two points have the same <span class="math inline">\(|m|\)</span>. A diagonalization on a k-mesh of the Brillouin zone gives <span class="math inline">\(1.04\)</span>.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="quiz quiz-pics" data-correct="A" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Three ribbons of the honeycomb lattice have the same bulk gap, <span class="math inline">\(0.9\,t\)</span>. Here <span class="math inline">\(t\)</span> is the first-neighbor hopping. Each picture shows the bands of one ribbon against the momentum <span class="math inline">\(k\)</span> along it. Blue and red states sit at the two edges. Grey states are in the bulk. Which ribbon is a Chern insulator?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session03/g3_quiz_ribbon_haldane.svg" loading="lazy" alt="Two groups of grey bands with a gap, and one blue and one red branch that cross the gap with opposite slopes." /></li>
+<li><img src="../figures/web/session03/g3_quiz_ribbon_staggered.svg" loading="lazy" alt="Two groups of grey bands with an empty gap between them." /></li>
+<li><img src="../figures/web/session03/g3_quiz_ribbon_both.svg" loading="lazy" alt="Two groups of grey bands with an empty gap between them, and the bands more spread in energy." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. Two branches cross the gap, one at each edge, with opposite slopes. These are the chiral edge states of <span class="math inline">\(|C|=1\)</span>. This ribbon has only the Haldane coupling, with the mass <span class="math inline">\(m_H=0.45\,t\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The gap is empty, so there is no edge state that crosses it. This ribbon has only a staggered potential <span class="math inline">\(M=0.45\,t\)</span>, which gives the same bulk gap <span class="math inline">\(2M=0.9\,t\)</span> and <span class="math inline">\(C=0\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The gap is empty here too. This ribbon has the Haldane mass <span class="math inline">\(m_H=0.45\,t\)</span> and a staggered potential <span class="math inline">\(M=0.9\,t\)</span>. The masses of the two valleys are <span class="math inline">\(1.35\,t\)</span> and <span class="math inline">\(0.45\,t\)</span>, with the same sign, so <span class="math inline">\(C=0\)</span>, and the gap is again <span class="math inline">\(0.9\,t\)</span>.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>In the Haldane model the second-neighbor hopping has a general phase, <span class="math inline">\(t_2\,e^{i\phi}\)</span>, and the case of this page is <span class="math inline">\(\phi=\pi/2\)</span>. Find the diagonal part of the Bloch Hamiltonian at the Dirac point <span class="math inline">\(K\)</span> for a general <span class="math inline">\(\phi\)</span>, and the values of the staggered potential <span class="math inline">\(M\)</span> where the Chern number changes. Use that the three second-neighbor vectors <span class="math inline">\(\mathbf b_i\)</span> of the sublattice <span class="math inline">\(A\)</span> have <span class="math inline">\(\mathbf K\cdot\mathbf b_i=-2\pi/3\)</span> up to a multiple of <span class="math inline">\(2\pi\)</span>, and that on the sublattice <span class="math inline">\(B\)</span> the phase of the hopping along <span class="math inline">\(\mathbf b_i\)</span> is <span class="math inline">\(-\phi\)</span>.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>On the sublattice <span class="math inline">\(A\)</span> the hop along <span class="math inline">\(\mathbf b_i\)</span> and the hop back give</p>
+<p><span class="math display">\[t_2\,e^{i\phi}\,e^{i\mathbf k\cdot\mathbf b_i}+t_2\,e^{-i\phi}\,e^{-i\mathbf k\cdot\mathbf b_i} = 2\,t_2\cos(\mathbf k\cdot\mathbf b_i+\phi),\]</span></p>
+<p>and on the sublattice <span class="math inline">\(B\)</span> the same with <span class="math inline">\(-\phi\)</span>. At <span class="math inline">\(K\)</span> the three vectors give the same term, so</p>
+<p><span class="math display">\[H_{AA}(K) = 6\,t_2\cos\Big(\phi-\frac{2\pi}{3}\Big) = -3\,t_2\cos\phi+3\sqrt3\,t_2\sin\phi, \qquad
+H_{BB}(K) = -3\,t_2\cos\phi-3\sqrt3\,t_2\sin\phi .\]</span></p>
+<p>The part that is the same on both sublattices, <span class="math inline">\(-3\,t_2\cos\phi\)</span>, moves the two levels together and opens no gap. The part with opposite signs is the mass, <span class="math inline">\(m_H=3\sqrt3\,t_2\sin\phi\)</span>. At <span class="math inline">\(K&#39;=-K\)</span> the phases are <span class="math inline">\(+2\pi/3\)</span>, which changes the sign of the sine term only, so the mass there is <span class="math inline">\(-m_H\)</span>. With the staggered potential the masses are <span class="math inline">\(M\pm m_H\)</span>, and the Chern number changes where one of them vanishes,</p>
+<p><span class="math display">\[M=\pm\,3\sqrt3\,t_2\sin\phi .\]</span></p>
+<p>Only the imaginary part of the hopping, <span class="math inline">\(t_2\sin\phi\)</span>, opens the topological gap, since it is the part that breaks time-reversal symmetry. A real second-neighbor hopping, with <span class="math inline">\(\phi=0\)</span>, moves the Dirac points in energy by <span class="math inline">\(-3\,t_2\)</span> and leaves them gapless. So the real second-neighbor hopping of a honeycomb material such as graphene does not make it a Chern insulator. In a calculation the same result tells us how fine the k-mesh has to be. The mass <span class="math inline">\(3\sqrt3\,t_2|\sin\phi|\)</span> is the width of the peaks of the Berry curvature, up to the velocity <span class="math inline">\(\sqrt3/2\)</span> of the Dirac cone.</p>
+</div>
+</details>
+</div>
+</div>
 <div class="tryit">
-<p><strong>Try it.</strong> The cell fixes the Haldane coupling at 0.05 and increases the sublattice imbalance. The title of each panel gives the Chern number. It is 2 for the first two values of the imbalance and 0 for the last two, because both spin species count. Double the Haldane coupling to 0.1 and run the cell again. The jump of the Chern number needs about twice the imbalance, since the Haldane mass is twice as large.</p>
+<p><strong>Try it.</strong> The cell fixes the Haldane coupling at 0.05 and increases the sublattice imbalance. The title of each panel gives the Chern number. It is 2 for the first two values of the imbalance and 0 for the last two, because both spin species count. Double the Haldane coupling to 0.1 and run the cell again. The jump of the Chern number needs about twice the imbalance, since the Haldane mass is twice as large. In pyqula the Haldane mass is 4.5 times the number given to <code>add_haldane</code>, so the jump is at an imbalance of 0.225 for 0.05 and of 0.45 for 0.1.</p>
 <div class="tryit-links">
 Notebook <code>session3.ipynb</code>, cell “Topological phase transitions in the bulk”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session3.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session3.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession3.ipynb">Binder</a>.
 </div>

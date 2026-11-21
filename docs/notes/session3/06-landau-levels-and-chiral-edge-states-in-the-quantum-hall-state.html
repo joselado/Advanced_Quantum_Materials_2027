@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -84,13 +85,69 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="on" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 3. Topological Band Structure Theory</a></p>
 <h1 id="sec-3-6"><span class="num">3.6a</span> Landau levels and chiral edge states in the quantum Hall state</h1>
+<p>How can an insulator have a Hall conductivity that is not zero, and where does the current flow? We will now see that every filled Landau level adds one to the Chern number, and that the current flows in states at the edge of the sample. On one edge these states propagate in one direction only.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[\sigma_{xy} = \frac{e^2}{h}\, C, \qquad
+C = \sum_{n\ \text{filled}} \frac{1}{2\pi}\int_{\text{BZ}} \Omega_n(k)\, d^2k. \tag{3.4}\]</span></p>
+</div>
+<p>This is the result of Section <a href="05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#sec-3-5">3.5</a>. The Hall conductivity of a set of filled bands is an integer <span class="math inline">\(C\)</span> times <span class="math inline">\(e^2/h\)</span>. The integer is the sum of the Chern numbers of the filled bands, and <span class="math inline">\(\Omega_n(k)\)</span> is the Berry curvature of the band <span class="math inline">\(n\)</span>.</p>
+</div>
 <p>The Chern number appears in its simplest form in the quantum Hall state itself, which is a two-dimensional electron gas in a strong perpendicular magnetic field. The resulting band structure is the flat-band type of dispersion of Section <a href="../session2/09-properties-of-an-electronic-dispersion.html#sec-2-10">2.10</a>, which is a set of Landau levels without dispersion, and each Landau level has Chern number <span class="math inline">\(+1\)</span>. If we fill the first Landau level, the total Chern number is <span class="math inline">\(C=1\)</span>. If we fill the first two, we get <span class="math inline">\(C=2\)</span>, and so on, so that <span class="math inline">\(\sigma_{xy} = C\, e^2/h\)</span> goes through successive integer plateaus as the chemical potential goes up through successive Landau levels. This is the integer quantum Hall effect, and in <a href="../session4/index.html">Session 4</a> we will work out its full phenomenology, including the fractional case of Section <a href="../session4/16-fractional-filling-and-the-laughlin-wavefunction.html#sec-4-16">4.16</a>. In this session we only need to count the Chern numbers.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>With the chemical potential in a gap between two Landau levels, the Hall conductivity is</p>
+<p><span class="math display">\[\sigma_{xy} = C\,\frac{e^2}{h}, \qquad C = N_{\text{filled}} = N_{\text{edge}}.\]</span></p>
+<p>Here <span class="math inline">\(N_{\text{filled}}\)</span> is the number of filled Landau levels of a parabolic band without spin, where no level is degenerate, and <span class="math inline">\(N_{\text{edge}}\)</span> is the number of chiral modes at one edge. A degenerate level, as in graphene, counts once for each of its copies. The bulk is an insulator, and the current flows in the modes at the edge. All the modes of one edge propagate in the same direction, so they cannot be scattered backwards.</p>
+</div>
+<p>This raises a puzzle. We have an insulator, with a gap between Landau levels, but <span class="math inline">\(\sigma_{xy}\)</span> is a <em>conductivity</em>, which means that some electron has to move somewhere. The answer is that any real sample has an edge, and at this edge the bulk gap closes. Gapless edge states appear, and they carry the current that <a href="05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#eq-3-4">(3.4)</a> predicts.</p>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From one chiral edge mode to the conductance of (3.4)</span></summary>
+<div class="fold-body">
+<p>We take the simplest case, which is one mode at one edge, with the dispersion <span class="math inline">\(\varepsilon(k)\)</span> along the edge. The edge has the length <span class="math inline">\(L\)</span>, and the mode moves in the positive direction, so <span class="math inline">\(\varepsilon(k)\)</span> grows with <span class="math inline">\(k\)</span>. An electron in the state <span class="math inline">\(k\)</span> of this mode has the velocity <span class="math inline">\(v(k)=\hbar^{-1}\,d\varepsilon/dk\)</span>, and it gives the current <span class="math inline">\(-e\,v(k)/L\)</span>.</p>
+<p>The first step is to raise the chemical potential of this edge from <span class="math inline">\(\mu\)</span> to <span class="math inline">\(\mu+\Delta\mu\)</span>. The states of the mode with an energy between these two values are now filled. Their number in an interval <span class="math inline">\(dk\)</span> is <span class="math inline">\(L\,dk/2\pi\)</span>, so the extra current is</p>
+<p><span class="math display">\[\Delta I = -\frac{e}{L}\int \frac{L\,dk}{2\pi}\, v(k)
+= -\frac{e}{2\pi\hbar}\int \frac{d\varepsilon}{dk}\,dk
+= -\frac{e}{h}\int_{\mu}^{\mu+\Delta\mu} d\varepsilon
+= -\frac{e}{h}\,\Delta\mu.\]</span></p>
+<p>The velocity cancels against the density of states of the mode, which is <span class="math inline">\(1/(2\pi\hbar v)\)</span> for each unit of length. So the result does not depend on the dispersion of the edge mode.</p>
+<p>The second step is the voltage. A voltage <span class="math inline">\(V\)</span> between the two edges shifts the chemical potential of one edge with respect to the other one by <span class="math inline">\(\Delta\mu=-eV\)</span>. The modes of the other edge propagate in the opposite direction, and their filling does not change, so the net current along the sample is</p>
+<p><span class="math display">\[I = -\frac{e}{h}\,\Delta\mu = \frac{e^2}{h}\,V.\]</span></p>
+<p>The current flows along the sample and the voltage is across it, so the ratio <span class="math inline">\(I/V=e^2/h\)</span> is a Hall conductance. It is the value that <a href="05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#eq-3-4">(3.4)</a> gives for <span class="math inline">\(C=1\)</span>. For a mode that moves in the negative direction the same steps give the opposite sign, so the direction of the chiral mode sets the sign of the Hall conductance.</p>
+<p>The last step is to take <span class="math inline">\(C\)</span> modes at the edge. They all propagate in the same direction, and each of them gives <span class="math inline">\(e^2/h\)</span>, so the conductance is <span class="math inline">\(C\,e^2/h\)</span>. For the two results to agree, the number of chiral modes at one edge has to be the Chern number of the filled levels. An impurity cannot change this value, since it would have to send an electron backwards, and the edge has no state that goes backwards.</p>
+</div>
+</details>
+</div>
+<p>These edge states have another key property, which is that on a given edge the states propagate in only <em>one</em> direction. The top edge of a sample carries current in one direction only, and the bottom edge carries it in the opposite direction only. A mode that propagates in a single direction is called <strong>chiral</strong>, and chirality is what protects the quantum Hall state against disorder. An electron in a chiral edge mode cannot backscatter, since there is no state that propagates in the opposite direction at the same edge and the same energy. Without a backscattering channel there is no resistance in this channel.</p>
+<p>Figure <a href="#fig:s03:chiraledge">3.1</a> shows both parts of this picture, the closed bulk orbits that carry no current and the skipping orbits that carry all of it. It also shows what happens when an impurity is put in their way.</p>
+<figure id="fig:s03:chiraledge">
+<img src="../figures/s03f01_chiraledge.svg" loading="lazy" alt="Chiral edge states, and why they cannot be backscattered, seen from above with B out of the page." />
+<figcaption><strong>Figure 3.1.</strong> Chiral edge states, and why they cannot be backscattered, seen from above with <span class="math inline">\(B\)</span> out of the page. (a) A quantum Hall sample. In the bulk the electrons move on closed cyclotron orbits and do not go anywhere, and the system is an insulator with a gap between Landau levels. At the boundary these orbits cannot close. They skip along the edge, and for a given direction of <span class="math inline">\(B\)</span> they skip in one direction only, which is opposite on the two edges. Propagation in a single direction is what the word <strong>chiral</strong> means, and it carries the current that <span class="math inline">\(\sigma_{xy}=C\,e^2/h\)</span> predicts, even though the bulk is gapped. (b) The consequence. An impurity at the edge can deflect the mode. However, there is no state that propagates in the opposite direction at the same edge and the same energy for it to scatter <em>into</em>, so the mode goes around the obstacle and continues. Without a backscattering channel there is no resistance, which is why the Hall plateaus are quantized so sharply. If we reverse the sign of <span class="math inline">\(B\)</span>, all the arrows are reversed at the same time.</figcaption>
+</figure>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>In a Hall bar we measure the Hall resistance. On a plateau the longitudinal conductivity vanishes, so the Hall resistance is <span class="math inline">\(h/Ce^2\)</span>, which is <span class="math inline">\(25.8\)</span> k<span class="math inline">\(\Omega\)</span> for <span class="math inline">\(C=1\)</span> and <span class="math inline">\(12.9\)</span> k<span class="math inline">\(\Omega\)</span> for <span class="math inline">\(C=2\)</span>, with no parameter of the material in it. For this reason the plateau is used as a standard of resistance. The plateau needs a thermal energy <span class="math inline">\(k_BT\)</span> that is much smaller than the gap between the Landau levels, and for a long time it was only seen at the temperature of liquid helium. In graphene the quantum Hall effect is measured even at room temperature. The measurement is in <a href="https://www.science.org/doi/10.1126/science.1137201">this article</a>, which is the one given in the notebook <code>session3.ipynb</code>.</p>
+<p><a href="#sch:s03:g1_landau_plateau">Schematic 3.7</a> shows what the temperature does to the plateaus of equally spaced Landau levels. It is not the full experiment. There the axis is the electron density or the magnetic field, and a plateau in the density needs localized states, which this calculation does not have.</p>
+<figure id="sch:s03:g1_landau_plateau" class="schematic">
+<img src="../figures/web/session03/g1_landau_plateau.svg" loading="lazy" alt="Three curves of the Hall conductivity against the chemical potential, a sharp staircase with steps at the Landau levels for the lowest temperature and an almost straight line for the highest one." />
+<figcaption><strong>Schematic 3.7.</strong> The Hall conductivity of equally spaced Landau levels against the chemical potential <span class="math inline">\(\mu\)</span>, for three temperatures. The levels are at <span class="math inline">\(\hbar\omega_c(n+1/2)\)</span>, and each of them has <span class="math inline">\(C=1\)</span>, so we add the occupations of the levels, which are Fermi functions. For <span class="math inline">\(k_BT=0.02\,\hbar\omega_c\)</span> the value stays within <span class="math inline">\(1\%\)</span> of <span class="math inline">\(e^2/h\)</span> over <span class="math inline">\(82\%\)</span> of the first gap. For <span class="math inline">\(k_BT=0.1\,\hbar\omega_c\)</span> this range is <span class="math inline">\(14\%\)</span> of the gap, and for <span class="math inline">\(k_BT=0.3\,\hbar\omega_c\)</span> it is <span class="math inline">\(2\%\)</span>. Look at the steps, since the temperature has to be a small fraction of the level spacing for a flat plateau. Only clean levels are computed, with no disorder and no edge.</figcaption>
+</figure>
+</div>
 <div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>The chemical potential of a quantum Hall sample is in the gap between the second and the third Landau level. What are <span class="math inline">\(\sigma_{xy}\)</span> and the number of chiral modes at one edge?</p>
+<p>The Hall conductivity of a quantum Hall sample is</p>
+<p><span class="math display">\[\sigma_{xy} = C\,\frac{e^2}{h}.\]</span></p>
+<p>Here <span class="math inline">\(C\)</span> is the number of filled Landau levels. The chemical potential is in the gap between the second and the third level. What are <span class="math inline">\(\sigma_{xy}\)</span> and the number of chiral modes at one edge?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -116,37 +173,60 @@ Question
 </div>
 </details>
 </div>
-<p>This raises a puzzle. We have an insulator, with a gap between Landau levels, but <span class="math inline">\(\sigma_{xy}\)</span> is a <em>conductivity</em>, which means that some electron has to move somewhere. The answer is that any real sample has an edge, and at this edge the bulk gap closes. Gapless edge states appear, and they carry the current that <a href="05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#eq-3-4">(3.4)</a> predicts. These edge states have another key property, which is that on a given edge the states propagate in only <em>one</em> direction. The top edge of a sample carries current in one direction only, and the bottom edge carries it in the opposite direction only. A mode that propagates in a single direction is called <strong>chiral</strong>, and chirality is what protects the quantum Hall state against disorder. An electron in a chiral edge mode cannot backscatter, since there is no state that propagates in the opposite direction at the same edge and the same energy. Without a backscattering channel there is no resistance in this channel. Figure <a href="#fig:s03:chiraledge">3.1</a> shows both parts of this picture, the closed bulk orbits that carry no current and the skipping orbits that carry all of it. It also shows what happens when an impurity is put in their way.</p>
-<figure id="fig:s03:chiraledge">
-<img src="../figures/s03f01_chiraledge.svg" loading="lazy" alt="Chiral edge states, and why they cannot be backscattered, seen from above with B out of the page." />
-<figcaption><strong>Figure 3.1.</strong> Chiral edge states, and why they cannot be backscattered, seen from above with <span class="math inline">\(B\)</span> out of the page. (a) A quantum Hall sample. In the bulk the electrons move on closed cyclotron orbits and do not go anywhere, and the system is an insulator with a gap between Landau levels. At the boundary these orbits cannot close. They skip along the edge, and for a given direction of <span class="math inline">\(B\)</span> they skip in one direction only, which is opposite on the two edges. Propagation in a single direction is what the word <strong>chiral</strong> means, and it carries the current that <span class="math inline">\(\sigma_{xy}=C\,e^2/h\)</span> predicts, even though the bulk is gapped. (b) The consequence. An impurity at the edge can deflect the mode. However, there is no state that propagates in the opposite direction at the same edge and the same energy for it to scatter <em>into</em>, so the mode goes around the obstacle and continues. Without a backscattering channel there is no resistance, which is why the Hall plateaus are quantized so sharply. If we reverse the sign of <span class="math inline">\(B\)</span>, all the arrows are reversed at the same time.</figcaption>
-</figure>
-<div class="quiz" data-correct="C" data-fb="1">
+<div class="quiz quiz-pics" data-correct="C" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>We reverse the direction of the magnetic field in a quantum Hall sample. What happens to the edge states?</p>
+<p>The plot shows the bands of a ribbon in a magnetic field <span class="math inline">\(B\)</span>. The horizontal axis is the momentum <span class="math inline">\(k\)</span> along the ribbon. The color is the position <span class="math inline">\(y\)</span> across the ribbon. The flat bands are the Landau levels. The slope of a band is the velocity of its states.</p>
+<figure class="quiz-fig schematic has-script">
+<img src="../figures/web/session03/g1_ribbon_field.svg" loading="lazy" alt="Flat Landau levels with red branches that rise on one side of the plot and blue branches that rise on the other side." />
+<div class="script-row">
+<a href="../scripts/session03/g1_qh_ribbon.py" class="script-dl" download="g1_qh_ribbon.py">Download the pyqula script</a> <span class="script-name"><code>g1_qh_ribbon.py</code></span>
+</div>
+<figcaption>The ribbon in the field <span class="math inline">\(B\)</span>, computed for the triangular lattice with a width of 20 cells and the field <span class="math inline">\(0.04\)</span> of the notebook. The energy is in units of the hopping <span class="math inline">\(t\)</span>, the momentum <span class="math inline">\(k\)</span> is multiplied by the period of the ribbon, and <span class="math inline">\(y\)</span> is in units of the lattice constant. The red branches are at one edge and the blue branches at the other one.</figcaption>
+</figure>
+<p>Which plot shows the same ribbon in the field <span class="math inline">\(-B\)</span>?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li>They disappear, since the field is now opposite.</li>
-<li>They stay unchanged, since the edge states do not depend on <span class="math inline">\(B\)</span>.</li>
-<li>They stay, but each one propagates in the opposite direction and <span class="math inline">\(\sigma_{xy}\)</span> changes sign.</li>
+<li><img src="../figures/web/session03/g1_quiz_ribbon_same.svg" loading="lazy" alt="Bands of a ribbon with flat levels and with the red and the blue branches on the same sides as in the plot of the question." /></li>
+<li><img src="../figures/web/session03/g1_quiz_ribbon_nofield.svg" loading="lazy" alt="Bands of a ribbon that are all grey parabolas, with no flat level." /></li>
+<li><img src="../figures/web/session03/g1_quiz_ribbon_reversed.svg" loading="lazy" alt="Bands of a ribbon with flat levels and with the red and the blue branches exchanged with respect to the plot of the question." /></li>
 </ol>
 </div>
 <details class="quiz-answer"><summary>Show the answers</summary>
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
-<p>This is false. The plateau <span class="math inline">\(|\sigma_{xy}|=e^2/h\)</span> is measured for both signs of the field, and a plateau needs the edge states. Only the sign of the Hall voltage changes.</p></li>
+<p>This is false. This plot is the same as the one of the question, which would mean that the edge states do not depend on the sign of the field. The Hall conductivity is odd in <span class="math inline">\(B\)</span>, so <span class="math inline">\(\sigma_{xy}(-B)=-\sigma_{xy}(B)\)</span>. With <span class="math inline">\(\sigma_{xy}=e^2/h\)</span> the chiral mode must go the other way, otherwise the sign could not change.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
-<p>This is false. The Hall conductivity is odd in <span class="math inline">\(B\)</span>, so <span class="math inline">\(\sigma_{xy}(-B)=-\sigma_{xy}(B)\)</span>. With <span class="math inline">\(\sigma_{xy}=e^2/h\)</span> the chiral mode must go the other way, otherwise the sign could not change.</p></li>
+<p>This is false. This is the ribbon without any field. It has no flat level and no state at an edge, and all its states are spread over the width. The plateau <span class="math inline">\(|\sigma_{xy}|=e^2/h\)</span> is measured for both signs of the field, and a plateau needs the edge states. Only the sign of the Hall voltage changes.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
-<p>This is true. All the arrows of the figure are reversed together. The Chern number of every Landau level changes sign, so the number of edge modes is the same and their direction is the opposite.</p></li>
+<p>This is true. The energies are the same, and the two colors are exchanged. The branch of each edge now has the opposite slope, so each edge state propagates in the opposite direction. The number of edge modes is the same, and <span class="math inline">\(\sigma_{xy}\)</span> changes sign, since the Chern number of every Landau level changes sign.</p></li>
 </ul>
 </div>
 </details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>The Landau levels of electrons with a parabolic band of mass <span class="math inline">\(m\)</span> are at <span class="math inline">\(\hbar\omega_c(n+1/2)\)</span>, with <span class="math inline">\(\omega_c=eB/m\)</span>, as we derive in Section <a href="../session4/09-landau-levels-of-schrodinger-electrons.html#sec-4-9">4.9</a>. For the Dirac electrons of graphene the first level above zero energy is at <span class="math inline">\(E_1=v_F\sqrt{2\hbar eB}\)</span>, which is the level <span class="math inline">\(n=1\)</span> of Section <a href="../session4/10-landau-levels-of-dirac-electrons.html#sec-4-10">4.10</a>. Take the free electron mass, <span class="math inline">\(v_F=10^6\)</span> m/s and <span class="math inline">\(B=10\)</span> T. Compute the gap above the lowest level in the two cases, and compare it with <span class="math inline">\(k_BT\)</span> at <span class="math inline">\(4.2\)</span> K and at <span class="math inline">\(300\)</span> K. Which of the two can have a Hall plateau at room temperature?</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>For the parabolic band the gap is <span class="math inline">\(\hbar\omega_c=\hbar eB/m\)</span>. With <span class="math inline">\(\hbar e/m=0.116\)</span> meV/T for the free electron mass, we get</p>
+<p><span class="math display">\[\hbar\omega_c = 0.116\ \text{meV/T}\times 10\ \text{T} = 1.16\ \text{meV}.\]</span></p>
+<p>For graphene the lowest level is at zero energy, so the gap above it is <span class="math inline">\(E_1\)</span>. With <span class="math inline">\(v_F=10^6\)</span> m/s the formula gives <span class="math inline">\(E_1=36.3\)</span> meV at <span class="math inline">\(1\)</span> T, and it grows as the square root of the field, so</p>
+<p><span class="math display">\[E_1 = 36.3\ \text{meV}\times\sqrt{10} = 115\ \text{meV}.\]</span></p>
+<p>The thermal energy is <span class="math inline">\(k_BT=0.36\)</span> meV at <span class="math inline">\(4.2\)</span> K and <span class="math inline">\(k_BT=25.9\)</span> meV at <span class="math inline">\(300\)</span> K.</p>
+<p>For the parabolic band the gap is <span class="math inline">\(3.2\,k_BT\)</span> at <span class="math inline">\(4.2\)</span> K, and only <span class="math inline">\(0.045\,k_BT\)</span> at <span class="math inline">\(300\)</span> K. At room temperature many Landau levels are partly filled and there is no plateau. A field with <span class="math inline">\(\hbar\omega_c=k_BT\)</span> at <span class="math inline">\(300\)</span> K would be <span class="math inline">\(223\)</span> T. A real semiconductor has a smaller effective mass and a larger gap, as we see in Section <a href="../session4/01-where-the-quantum-hall-state-shows-up.html#sec-4-1">4.1</a>, but the scaling with the field is the same.</p>
+<p>For graphene the gap is <span class="math inline">\(4.4\,k_BT\)</span> at <span class="math inline">\(300\)</span> K already at <span class="math inline">\(10\)</span> T, and <span class="math inline">\(7.7\,k_BT\)</span> at <span class="math inline">\(30\)</span> T. So in graphene the thermal energy at room temperature can be well below the gap, and this is the reason why it can keep a Hall plateau there. The gap of the Dirac electrons grows as <span class="math inline">\(\sqrt{B}\)</span> and not as <span class="math inline">\(B\)</span>, and at <span class="math inline">\(10\)</span> T it is a hundred times larger than the one of free electrons.</p>
+<p>For a measurement this is the number to compute first. A plateau that is flat within <span class="math inline">\(1\%\)</span> needs <span class="math inline">\(k_BT\)</span> to be a small fraction of the gap. So the gap of the material at the available field decides at which temperature the quantization can be used.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="tryit">
 <p><strong>Try it.</strong> Run the cell for the three values in <code>Bs</code>. At <code>B = 0</code> the lowest bands disperse over a wide range of energy. At <code>B = 0.04</code> they are almost flat as a function of the momentum, which is what a Landau level is. The color shows the position across the ribbon.</p>

@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -84,37 +85,92 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="on" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 2. Symmetries, Tight-Binding Band Structure Theory, and Effective Models</a></p>
 <h1 id="sec-2-11"><span class="num">2.11a</span> The Dirac cone of the honeycomb lattice of graphene</h1>
+<p>Why do the two bands of graphene touch, and what does the band look like close to the touching point? We will now see that at the corners <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span> of the Brillouin zone the phases of the three hoppings of an atom point at <span class="math inline">\(120^\circ\)</span> from each other. They cancel, so the two bands meet at zero energy. Close to these points the band is a cone, <span class="math inline">\(E=\pm\hbar v_F|\mathbf q|\)</span> with the velocity <span class="math inline">\(v_F=3ta/2\hbar\)</span>.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[H(\varphi) = t + \gamma\, e^{i\varphi} + \gamma^\dagger e^{-i\varphi}, \tag{2.12}\]</span></p>
+</div>
+<p>This is the Bloch Hamiltonian of Section <a href="07-multi-orbital-band-structures.html#sec-2-7">2.7</a>. The matrix <span class="math inline">\(t\)</span> holds the hoppings inside the unit cell, <span class="math inline">\(\gamma\)</span> the hoppings from one cell to the next, and <span class="math inline">\(\varphi\)</span> is the phase per cell. Its size is the number of orbitals per cell, and in two dimensions there is one phase for each direction, which we write together as <span class="math inline">\(\mathbf k\)</span>.</p>
+</div>
 <p>The honeycomb lattice of graphene has two orbitals per unit cell, one on each of two triangular sublattices, which are usually called <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, and which sit on an underlying triangular Bravais lattice. Nearest-neighbor hopping only connects <span class="math inline">\(A\)</span> with <span class="math inline">\(B\)</span>, and never <span class="math inline">\(A\)</span> with <span class="math inline">\(A\)</span> or <span class="math inline">\(B\)</span> with <span class="math inline">\(B\)</span>, so by the method of Section <a href="07-multi-orbital-band-structures.html#sec-2-7">2.7</a> the Bloch Hamiltonian <a href="07-multi-orbital-band-structures.html#eq-2-12">(2.12)</a> is purely off-diagonal,</p>
 <p><span id="eq-2-19" class="eq"><span class="math display">\[H(\mathbf{k}) = \begin{pmatrix} 0 &amp; f(\mathbf{k}) \\ f^\ast(\mathbf{k}) &amp; 0 \end{pmatrix},
 \qquad f(\mathbf{k}) = t\sum_{j=1}^{3} e^{i\mathbf{k}\cdot\boldsymbol{\delta}_j}, \tag{2.19}\]</span></span></p>
-<p>where <span class="math inline">\(\boldsymbol{\delta}_j\)</span>, <span class="math inline">\(j=1,2,3\)</span>, are the three vectors that connect an <span class="math inline">\(A\)</span> site with its nearest <span class="math inline">\(B\)</span> neighbors. When we diagonalize <a href="#eq-2-19">(2.19)</a> we obtain <span class="math inline">\(E_\pm(\mathbf{k})=\pm|f(\mathbf{k})|\)</span>. With the sign of <a href="05-blochs-theorem-and-the-first-band-structure.html#eq-2-5">(2.5)</a> the off-diagonal element would be <span class="math inline">\(-t\sum_j e^{i\mathbf{k}\cdot\boldsymbol{\delta}_j}\)</span>, and we write it with <span class="math inline">\(+t\)</span> since the overall sign of <span class="math inline">\(f(\mathbf{k})\)</span> drops out of the bands <span class="math inline">\(\pm|f(\mathbf{k})|\)</span>. The function <span class="math inline">\(f(\mathbf{k})\)</span> vanishes at two inequivalent points of the Brillouin zone, which are usually called <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span>, since there the three phases in the sum cancel exactly. So both bands touch at zero energy at <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span>. It is useful to see this cancellation explicitly. Figure <a href="#fig:s02:dirac">2.5</a> shows the three phase factors at <span class="math inline">\(\mathbf{K}\)</span> as three unit vectors at <span class="math inline">\(120^\circ\)</span> from each other, which close a triangle and so sum to zero.</p>
+<p>where <span class="math inline">\(\boldsymbol{\delta}_j\)</span>, <span class="math inline">\(j=1,2,3\)</span>, are the three vectors that connect an <span class="math inline">\(A\)</span> site with its nearest <span class="math inline">\(B\)</span> neighbors. When we diagonalize <a href="#eq-2-19">(2.19)</a> we obtain <span class="math inline">\(E_\pm(\mathbf{k})=\pm|f(\mathbf{k})|\)</span>. With the sign of <a href="05-blochs-theorem-and-the-first-band-structure.html#eq-2-5">(2.5)</a> the off-diagonal element would be <span class="math inline">\(-t\sum_j e^{i\mathbf{k}\cdot\boldsymbol{\delta}_j}\)</span>, and we write it with <span class="math inline">\(+t\)</span> since the overall sign of <span class="math inline">\(f(\mathbf{k})\)</span> drops out of the bands <span class="math inline">\(\pm|f(\mathbf{k})|\)</span>.</p>
+<p>The function <span class="math inline">\(f(\mathbf{k})\)</span> vanishes at two inequivalent points of the Brillouin zone, which are usually called <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span>, since there the three phases in the sum cancel exactly. So both bands touch at zero energy at <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span>. It is useful to see this cancellation explicitly. Figure <a href="#fig:s02:dirac">2.5</a> shows the three phase factors at <span class="math inline">\(\mathbf{K}\)</span> as three unit vectors at <span class="math inline">\(120^\circ\)</span> from each other, which close a triangle and so sum to zero.</p>
 <figure id="fig:s02:dirac">
 <img src="../figures/s02f04_dirac.svg" loading="lazy" alt="The Dirac cones of graphene." />
 <figcaption><strong>Figure 2.5.</strong> The Dirac cones of graphene. <strong>(a)</strong> The honeycomb lattice, with two sublattices <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> per unit cell, drawn as dark and grey discs, and the three nearest-neighbor vectors <span class="math inline">\(\boldsymbol\delta_{1,2,3}\)</span> from an <span class="math inline">\(A\)</span> site. <strong>(b)</strong> The reason why the bands touch. At <span class="math inline">\(\mathbf k=\mathbf K\)</span> the three phase factors <span class="math inline">\(e^{i\mathbf
 K\cdot\boldsymbol\delta_j}\)</span> are three unit vectors at <span class="math inline">\(120^\circ\)</span> from each other in the complex plane. When we place them one after the other they close a triangle, so <span class="math inline">\(f(\mathbf K)=0\)</span> in <a href="#eq-2-19">(2.19)</a> and both bands meet at zero energy. At a generic <span class="math inline">\(\mathbf k\)</span> they do not close, the ghost ball marks where the sum ends, and the bands are split. <strong>(c)</strong> The two inequivalent points <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span> of the Brillouin zone with zero energy, at two corners of the hexagonal tile, around which the dispersion is the linear cone <span class="math inline">\(E_\pm=\pm\hbar v_F|\mathbf q|\)</span> of <a href="#eq-2-21">(2.21)</a>.</figcaption>
 </figure>
-<p>We expand <span class="math inline">\(f(\mathbf{k})\)</span> to linear order around <span class="math inline">\(K\)</span> and write <span class="math inline">\(\mathbf{k}=\mathbf{K}+\mathbf{q}\)</span> for small <span class="math inline">\(\mathbf{q}\)</span>. The off-diagonal entry then becomes a linear function of <span class="math inline">\(\mathbf{q}\)</span>, with one linear term for its real part and one for its imaginary part, and <a href="#eq-2-19">(2.19)</a> reduces to the standard two-dimensional <strong>Dirac Hamiltonian</strong>,</p>
+<p>We expand <span class="math inline">\(f(\mathbf{k})\)</span> to linear order around <span class="math inline">\(K\)</span> and write <span class="math inline">\(\mathbf{k}=\mathbf{K}+\mathbf{q}\)</span> for small <span class="math inline">\(\mathbf{q}\)</span>. The off-diagonal entry then becomes a linear function of <span class="math inline">\(\mathbf{q}\)</span>, with one linear term for its real part and one for its imaginary part, and <a href="#eq-2-19">(2.19)</a> reduces to the standard two-dimensional <strong>Dirac Hamiltonian</strong>.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>Close to the corner <span class="math inline">\(K\)</span> of the Brillouin zone the Bloch Hamiltonian of graphene is the Dirac Hamiltonian, and its two energies form a cone,</p>
 <p><span id="eq-2-20" class="eq"><span class="math display">\[H(\mathbf{q}) \approx \hbar v_F\left(q_x\sigma_x + q_y\sigma_y\right), \qquad
 v_F = \frac{3ta}{2\hbar}, \tag{2.20}\]</span></span></p>
-<p>where <span class="math inline">\(\sigma_x,\sigma_y\)</span> are the Pauli matrices that act on the <span class="math inline">\(A/B\)</span> sublattice space and <span class="math inline">\(a\)</span> is the nearest-neighbor bond length. When we diagonalize <a href="#eq-2-20">(2.20)</a> we obtain</p>
-<p><span id="eq-2-21" class="eq"><span class="math display">\[E_\pm(\mathbf{q}) = \pm \hbar v_F |\mathbf{q}|, \tag{2.21}\]</span></span></p>
-<p>which is a strictly linear dispersion with the shape of a cone around <span class="math inline">\(K\)</span>, and the same calculation gives the same result around <span class="math inline">\(K&#39;\)</span>. This is what is called the <strong>Dirac cone</strong>. Note that the curvature of the cone along the radial direction vanishes. So <a href="09-properties-of-an-electronic-dispersion.html#eq-2-18">(2.18)</a> gives an infinite effective mass in this direction, and at the tip of the cone the effective mass is not defined at all. Graphene is famous because its electrons are massless. This word refers to the Dirac mass term, which is the gap, and not to the curvature of the band. This is the low-energy physics of every material with a honeycomb lattice, and of graphene in the first place. There is more structure at <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span>, which is a Berry phase and with it a topological classification, and we leave it for <a href="../session3/index.html">Session 3</a>.</p>
-<figure id="sch:s02:graphene_path" class="schematic">
-<img src="../figures/web/session02/graphene_path.svg" loading="lazy" alt="The two bands of graphene along Gamma, K, M and Gamma. They touch at zero energy at K, where two red dashed straight lines follow them for a short distance." />
-<figcaption><strong>Schematic 2.11.</strong> The bands <span class="math inline">\(\pm|f(\mathbf{k})|\)</span> of <a href="#eq-2-19">(2.19)</a> along the path from <span class="math inline">\(\Gamma\)</span> to <span class="math inline">\(K\)</span> to <span class="math inline">\(M\)</span> and back to <span class="math inline">\(\Gamma\)</span>, with the bond length <span class="math inline">\(a=1\)</span>. The red dashed lines are the cone <span class="math inline">\(\pm\hbar v_F|\mathbf{q}|\)</span> of <a href="#eq-2-21">(2.21)</a> around <span class="math inline">\(K\)</span>. Close to <span class="math inline">\(K\)</span> the two agree, which is the linear dispersion. Further away the bands bend, so the cone describes only the low energies. The bands span the range from <span class="math inline">\(-3t\)</span> to <span class="math inline">\(3t\)</span>.</figcaption>
+<p><span id="eq-2-21" class="eq"><span class="math display">\[E_\pm(\mathbf{q}) = \pm \hbar v_F |\mathbf{q}|. \tag{2.21}\]</span></span></p>
+<p>Here <span class="math inline">\(\sigma_x,\sigma_y\)</span> are the Pauli matrices that act on the <span class="math inline">\(A/B\)</span> sublattice space and <span class="math inline">\(a\)</span> is the nearest-neighbor bond length. The form <a href="#eq-2-20">(2.20)</a> holds at <span class="math inline">\(K\)</span> once a constant phase is put on the <span class="math inline">\(B\)</span> orbital, and at <span class="math inline">\(K&#39;\)</span> the <span class="math inline">\(\sigma_y\)</span> term has the opposite sign, while the cone <a href="#eq-2-21">(2.21)</a> is the same at both. The hopping <span class="math inline">\(t\)</span> and the bond length <span class="math inline">\(a\)</span> fix the velocity, and the geometry of the lattice fixes the position of <span class="math inline">\(K\)</span>.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the off-diagonal entry (2.19) to the Dirac Hamiltonian (2.20)</span></summary>
+<div class="fold-body">
+<p>We take the frame of <a href="#sch:s02:graphene_path">Schematic 2.12</a>, with one bond along <span class="math inline">\(x\)</span>. The three vectors are <span class="math inline">\(\boldsymbol\delta_1=a(1,0)\)</span>, <span class="math inline">\(\boldsymbol\delta_2=a(-\tfrac12,\tfrac{\sqrt3}{2})\)</span> and <span class="math inline">\(\boldsymbol\delta_3=a(-\tfrac12,-\tfrac{\sqrt3}{2})\)</span>, and one corner of the Brillouin zone is <span class="math inline">\(\mathbf K=(2\pi/3a,\,2\pi/3\sqrt3a)\)</span>. Figure <a href="#fig:s02:dirac">2.5</a> draws the same lattice turned by <span class="math inline">\(90^\circ\)</span>, so there <span class="math inline">\(\boldsymbol\delta_1\)</span> is along <span class="math inline">\(y\)</span>. Our <span class="math inline">\(\mathbf K\)</span> turned by <span class="math inline">\(90^\circ\)</span> is at <span class="math inline">\((-2\pi/3\sqrt3a,\,2\pi/3a)\)</span>. The figure takes for <span class="math inline">\(K\)</span> the corner <span class="math inline">\((4\pi/3\sqrt3a,\,0)\)</span> on the <span class="math inline">\(k_x\)</span> axis, which differs from it by a vector of the reciprocal lattice, so it is the same valley. The turn takes our <span class="math inline">\(\boldsymbol\delta_2\)</span> to the <span class="math inline">\(\boldsymbol\delta_3\)</span> of the figure and our <span class="math inline">\(\boldsymbol\delta_3\)</span> to its <span class="math inline">\(\boldsymbol\delta_2\)</span>, which does not change the sum <span class="math inline">\(f\)</span>, and the bands are the same. The three phases at our <span class="math inline">\(\mathbf K\)</span> are</p>
+<p><span class="math display">\[\mathbf K\cdot\boldsymbol\delta_1=\frac{2\pi}{3},\qquad \mathbf K\cdot\boldsymbol\delta_2=0,\qquad \mathbf K\cdot\boldsymbol\delta_3=-\frac{2\pi}{3},\]</span></p>
+<p>so</p>
+<p><span class="math display">\[f(\mathbf K)=t\left(e^{2\pi i/3}+1+e^{-2\pi i/3}\right)=t\left(1+2\cos\frac{2\pi}{3}\right)=0.\]</span></p>
+<p>Next we write <span class="math inline">\(\mathbf k=\mathbf K+\mathbf q\)</span> and expand each exponential to first order in <span class="math inline">\(\mathbf q\)</span>, <span class="math inline">\(e^{i(\mathbf K+\mathbf q)\cdot\boldsymbol\delta_j}\approx e^{i\mathbf K\cdot\boldsymbol\delta_j}(1+i\,\mathbf q\cdot\boldsymbol\delta_j)\)</span>. The terms of order zero add up to <span class="math inline">\(f(\mathbf K)=0\)</span>, and what remains is</p>
+<p><span class="math display">\[f(\mathbf K+\mathbf q)\approx it\sum_{j=1}^{3}(\mathbf q\cdot\boldsymbol\delta_j)\,e^{i\mathbf K\cdot\boldsymbol\delta_j}.\]</span></p>
+<p>The simplest case is <span class="math inline">\(\mathbf q\)</span> along <span class="math inline">\(x\)</span>, <span class="math inline">\(\mathbf q=(q,0)\)</span>. Then <span class="math inline">\(\mathbf q\cdot\boldsymbol\delta_j\)</span> is <span class="math inline">\(qa\)</span>, <span class="math inline">\(-qa/2\)</span> and <span class="math inline">\(-qa/2\)</span>, and</p>
+<p><span class="math display">\[f(\mathbf K+\mathbf q)\approx itqa\left(e^{2\pi i/3}-\frac12-\frac12e^{-2\pi i/3}\right)=itqa\left(-\frac34+\frac{3\sqrt3}{4}\,i\right),\]</span></p>
+<p>whose modulus is <span class="math inline">\(\tfrac32\,ta\,q\)</span>, meaning that the band rises with the slope <span class="math inline">\(\hbar v_F=3ta/2\)</span>. For a general direction the same sum gives</p>
+<p><span class="math display">\[f(\mathbf K+\mathbf q)\approx\frac{3ta}{2}\,e^{-5\pi i/6}\,(q_x-iq_y).\]</span></p>
+<p>Its modulus is <span class="math inline">\(\tfrac32\,ta\,|\mathbf q|\)</span> in every direction, which gives <a href="#eq-2-21">(2.21)</a>. The constant phase <span class="math inline">\(e^{-5\pi i/6}\)</span> can be removed. We multiply the <span class="math inline">\(B\)</span> orbital by <span class="math inline">\(e^{5\pi i/6}\)</span>, which multiplies the off-diagonal entry by the same phase and leaves the energies as they are, and the Bloch Hamiltonian becomes</p>
+<p><span class="math display">\[H(\mathbf K+\mathbf q)\approx\frac{3ta}{2}\begin{pmatrix}0&amp;q_x-iq_y\\q_x+iq_y&amp;0\end{pmatrix}=\frac{3ta}{2}\left(q_x\sigma_x+q_y\sigma_y\right),\]</span></p>
+<p>which is <a href="#eq-2-20">(2.20)</a>. So the form <span class="math inline">\(q_x\sigma_x+q_y\sigma_y\)</span> holds at <span class="math inline">\(K\)</span> for this choice of the axes and of the phase of the <span class="math inline">\(B\)</span> orbital. At <span class="math inline">\(K&#39;=-\mathbf K\)</span> the three phases are the complex conjugates, and the same steps give <span class="math inline">\(\tfrac{3ta}{2}\,e^{-i\pi/6}(q_x+iq_y)\)</span>. There we put the phase <span class="math inline">\(e^{i\pi/6}\)</span> on the <span class="math inline">\(B\)</span> orbital instead, and the Dirac Hamiltonian is <span class="math inline">\(\hbar v_F(q_x\sigma_x-q_y\sigma_y)\)</span>, with the opposite sign of the <span class="math inline">\(\sigma_y\)</span> term. No constant phase on the <span class="math inline">\(B\)</span> orbital turns this into the form at <span class="math inline">\(K\)</span>, and the energies <a href="#eq-2-21">(2.21)</a> are the same.</p>
+</div>
+</details>
+</div>
+<p>The energies <a href="#eq-2-21">(2.21)</a> are a strictly linear dispersion with the shape of a cone around <span class="math inline">\(K\)</span>, and the same calculation gives the same result around <span class="math inline">\(K&#39;\)</span>. This is what is called the <strong>Dirac cone</strong>. Note that the curvature of the cone along the radial direction vanishes. So <a href="09-properties-of-an-electronic-dispersion.html#eq-2-18">(2.18)</a> gives an infinite effective mass in this direction, and at the tip of the cone the effective mass is not defined at all. Graphene is famous because its electrons are massless. This word refers to the Dirac mass term, which is the gap, and not to the curvature of the band. This is the low-energy physics of every material with a honeycomb lattice, and of graphene in the first place. There is more structure at <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span>, which is a Berry phase and with it a topological classification, and we leave it for <a href="../session3/index.html">Session 3</a>.</p>
+<p><a href="#sch:s02:graphene_path">Schematic 2.12</a> compares the cone with the full bands <span class="math inline">\(\pm|f(\mathbf k)|\)</span> along a path through the Brillouin zone. The density of states of the same two bands is in <a href="#sch:s02:g4_graphene_dos">Schematic 2.13</a>. It grows in proportion to <span class="math inline">\(|E|\)</span> close to zero energy, since the circle of constant energy on a cone grows in proportion to its energy. It also has two peaks at <span class="math inline">\(\pm t\)</span>, which come from the saddle points of the bands at <span class="math inline">\(M\)</span>.</p>
+<figure id="sch:s02:graphene_path" class="schematic has-script">
+<img src="../figures/web/session02/graphene_path.svg" loading="lazy" alt="The two bands of graphene along Gamma, K, M and Gamma, with the energy in units of t. They touch at zero energy at K, where two red dashed straight lines follow them for a short distance." />
+<div class="script-row">
+<a href="../scripts/session02/g4_graphene_bands.py" class="script-dl" download="g4_graphene_bands.py">Download the pyqula script</a> <span class="script-name"><code>g4_graphene_bands.py</code></span>
+</div>
+<figcaption><strong>Schematic 2.12.</strong> The bands <span class="math inline">\(\pm|f(\mathbf{k})|\)</span> of <a href="#eq-2-19">(2.19)</a> along the path from <span class="math inline">\(\Gamma\)</span> to <span class="math inline">\(K\)</span> to <span class="math inline">\(M\)</span> and back to <span class="math inline">\(\Gamma\)</span>, computed with pyqula for the honeycomb lattice with the bond length <span class="math inline">\(a=1\)</span> and the hopping <span class="math inline">\(t=1\)</span>. The frame has one bond along <span class="math inline">\(x\)</span>, so <span class="math inline">\(K=(2\pi/3a,\,2\pi/3\sqrt3a)\)</span> and <span class="math inline">\(M=(2\pi/3a,\,0)\)</span>. The energy is in units of <span class="math inline">\(t\)</span>. The red dashed lines are the cone <span class="math inline">\(\pm\hbar v_F|\mathbf{q}|\)</span> of <a href="#eq-2-21">(2.21)</a> around <span class="math inline">\(K\)</span>, with <span class="math inline">\(\hbar v_F=3ta/2\)</span>. Close to <span class="math inline">\(K\)</span> the two agree, which is the linear dispersion. Further away the bands bend, so the cone describes only the low energies. The bands span the range from <span class="math inline">\(-3t\)</span> to <span class="math inline">\(3t\)</span>, and at <span class="math inline">\(M\)</span> they are at <span class="math inline">\(\pm t\)</span>.</figcaption>
 </figure>
+<figure id="sch:s02:g4_graphene_dos" class="schematic has-script">
+<img src="../figures/web/session02/g4_graphene_dos.svg" loading="lazy" alt="The density of states of graphene against the energy in units of t. It is a V that dips to about 0.04 at zero energy, where the broadening rounds it, with two sharp peaks at minus one and plus one, and it ends at minus three and plus three." />
+<div class="script-row">
+<a href="../scripts/session02/g4_graphene_dos.py" class="script-dl" download="g4_graphene_dos.py">Download the pyqula script</a> <span class="script-name"><code>g4_graphene_dos.py</code></span>
+</div>
+<figcaption><strong>Schematic 2.13.</strong> The density of states of graphene, computed with pyqula for the honeycomb lattice with the hopping <span class="math inline">\(t\)</span>, per unit cell, summed over the two bands and for one spin. Every level is broadened into a Lorentzian of half width <span class="math inline">\(0.04\,t\)</span>, on a mesh of <span class="math inline">\(200\times200\)</span> momenta, as in the notebook. Close to zero energy it grows in proportion to <span class="math inline">\(|E|\)</span>, which is the V of the two Dirac cones. The broadening rounds the tip of the V to <span class="math inline">\(0.04\)</span> states per cell and per <span class="math inline">\(t\)</span>. The two peaks at <span class="math inline">\(\pm t\)</span> come from the saddle points of the bands at <span class="math inline">\(M\)</span>, and no states remain beyond <span class="math inline">\(\pm3t\)</span> but the tails of the Lorentzians. Look at the V at zero energy, which is where the cones are.</figcaption>
+</figure>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>The cone <a href="#eq-2-21">(2.21)</a> has no gap at its tip, which is what we mean when we call the electrons of graphene massless. In graphene the cyclotron mass was measured for carrier densities that vary over three orders of magnitude, and these experiments put an upper limit of about <span class="math inline">\(0.1\)</span> meV on a possible gap. Our reading is that a mass term added to <a href="#eq-2-20">(2.20)</a>, if there is one, opens a gap smaller than this limit. The same experiments, on suspended graphene, find that the real spectrum is not linear, and that at the lowest densities the velocity is three times the value commonly used for graphene. The authors attribute this to the electron-electron interaction. Our reading is that the cone <a href="#eq-2-21">(2.21)</a> with a constant <span class="math inline">\(v_F\)</span> is the single-particle picture, which the interactions reshape. The measurement is in <a href="https://www.nature.com/articles/nphys2049">this article</a>.</p>
+</div>
 <div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>The curvature of the cone is zero along the radial direction, and <a href="09-properties-of-an-electronic-dispersion.html#eq-2-18">(2.18)</a> gives an infinite mass. Why do we still call the electrons of graphene massless?</p>
+<p>The Dirac cone of graphene is</p>
+<p><span class="math display">\[E_\pm=\pm\hbar v_F|\mathbf q|.\]</span></p>
+<p>Its curvature along <span class="math inline">\(\mathbf q\)</span> is zero. Why do we still call its electrons massless?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
 <li>Because the Dirac Hamiltonian has no mass term, which would be a gap at the Dirac point.</li>
-<li>Because the effective mass of <a href="09-properties-of-an-electronic-dispersion.html#eq-2-18">(2.18)</a> is zero at the tip.</li>
-<li>Because the lattice constant drops out of the cone.</li>
+<li>Because the effective mass <span class="math inline">\(m^\ast\)</span>, with <span class="math inline">\(1/m^\ast=\hbar^{-2}\,\partial^2E/\partial q^2\)</span>, is zero at the tip.</li>
+<li>Because the bond length <span class="math inline">\(a\)</span> drops out of the cone.</li>
 </ol>
 </div>
 <details class="quiz-answer"><summary>Show the answers</summary>
@@ -123,13 +179,13 @@ Question
 <li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
 <p>This is true. Massless refers to the Dirac mass, which is a term that opens a gap at the touching point. It does not refer to the curvature of the band.</p>
 <figure class="quiz-fig schematic">
-<img src="../figures/web/session02/dirac_mass.svg" loading="lazy" alt="A linear cone with its tip at zero energy, and a hyperbola with a gap at the tip drawn dashed on top of it." />
-<figcaption>The cone <span class="math inline">\(E=\pm\hbar v_F|\mathbf q|\)</span> and the same cone with a mass term <span class="math inline">\(m\sigma_z\)</span>, which gives <span class="math inline">\(\pm\sqrt{m^2+\hbar^2v_F^2q^2}\)</span>. Here <span class="math inline">\(\hbar v_F=1\)</span> and <span class="math inline">\(m=0.5\)</span>. The mass opens a gap <span class="math inline">\(2m\)</span> at the tip, and without it the bands touch.</figcaption>
+<img src="../figures/web/session02/dirac_mass.svg" loading="lazy" alt="A linear cone with its tip at zero energy, and a hyperbola with a gap at the tip drawn dashed on top of it, with the energy in units of m." />
+<figcaption>The cone <span class="math inline">\(E=\pm\hbar v_F|\mathbf q|\)</span>, solid, and the same cone with a mass term <span class="math inline">\(m\sigma_z\)</span>, dashed, which gives <span class="math inline">\(\pm\sqrt{m^2+\hbar^2v_F^2q^2}\)</span>. The energy is in units of <span class="math inline">\(m\)</span> and the momentum in units of <span class="math inline">\(m/\hbar v_F\)</span>. The mass opens a gap <span class="math inline">\(2m\)</span> at the tip, and without it the bands touch.</figcaption>
 </figure></li>
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
-<p>This is false. For <span class="math inline">\(E=\hbar v_F q\)</span> the second derivative along <span class="math inline">\(q\)</span> is zero, so <span class="math inline">\(1/m^\ast=0\)</span> and <span class="math inline">\(m^\ast\)</span> is infinite. A zero mass would need an infinite curvature.</p></li>
+<p>This is false. Along <span class="math inline">\(\mathbf q\)</span> the cone has no curvature, so this formula gives <span class="math inline">\(1/m^\ast=0\)</span> and an infinite mass along the radius. Across <span class="math inline">\(\mathbf q\)</span> the same second derivative gives <span class="math inline">\(m^\ast=\hbar|\mathbf q|/v_F\)</span>, which goes to zero at the tip, and at the tip itself the formula is not defined. So the curvature gives no single mass, and massless refers to the missing gap term.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. The velocity <span class="math inline">\(v_F=3ta/2\hbar\)</span> of <a href="#eq-2-20">(2.20)</a> contains <span class="math inline">\(a\)</span>. A mass term <span class="math inline">\(m\sigma_z\)</span> is absent for any value of <span class="math inline">\(a\)</span>, so the lattice constant does not decide whether the electrons are massless.</p></li>
+<p>This is false. The velocity <span class="math inline">\(v_F=3ta/2\hbar\)</span> contains the bond length <span class="math inline">\(a\)</span>. A mass term <span class="math inline">\(m\sigma_z\)</span> is absent for any value of <span class="math inline">\(a\)</span>, so the bond length does not decide whether the electrons are massless.</p></li>
 </ul>
 </div>
 <div class="quiz-expl">
@@ -137,22 +193,14 @@ Question
 </div>
 </details>
 </div>
-<div class="notebookbox">
-<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session2.ipynb"><code>session2.ipynb</code></a>, “Infinite two-dimensional graphene” (Core)</p>
-<p>Build the two-dimensional honeycomb Bloch Hamiltonian <a href="#eq-2-19">(2.19)</a> directly and diagonalize it across the Brillouin zone. Zoom in on <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span> and check numerically that the dispersion there is really linear, which means that it agrees with <a href="#eq-2-21">(2.21)</a> once you are close enough to the Dirac point.</p>
-</div>
-<div class="tryit">
-<p><strong>Try it.</strong> Run the cell and zoom in on the bands near <span class="math inline">\(K\)</span>. Check that the two bands touch at zero energy and that they are straight lines close to this point. Then change the hopping in <code>tij</code>, and check that the slope of the lines changes with <span class="math inline">\(t\)</span>.</p>
-<div class="tryit-links">
-Notebook <code>session2.ipynb</code>, cell “Infinite two-dimensional graphene”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session2.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session2.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession2.ipynb">Binder</a>.
-</div>
-</div>
 <div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>The hopping <span class="math inline">\(t\)</span> of graphene is doubled. What happens to the Dirac cone of <a href="#eq-2-20">(2.20)</a> and <a href="#eq-2-21">(2.21)</a>?</p>
+<p>The Dirac cone of graphene is</p>
+<p><span class="math display">\[E_\pm=\pm\hbar v_F|\mathbf q|,\qquad v_F=\frac{3ta}{2\hbar},\]</span></p>
+<p>with <span class="math inline">\(\mathbf q\)</span> the momentum measured from the corner <span class="math inline">\(K\)</span> of the zone. The hopping <span class="math inline">\(t\)</span> is doubled. What happens to the cone?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -176,6 +224,64 @@ Question
 <p>The hopping sets the energy scale of the cone, and the lattice sets its position.</p>
 </div>
 </details>
+</div>
+<div class="quiz quiz-pics" data-correct="A" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Each picture shows the bands of a lattice along <span class="math inline">\(\Gamma\)</span>, <span class="math inline">\(K\)</span>, <span class="math inline">\(M\)</span>, <span class="math inline">\(\Gamma\)</span>. The energy is in units of the hopping <span class="math inline">\(t\)</span>. Which one is graphene with first-neighbor hopping only?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session02/g4_quiz_bands_honeycomb.svg" loading="lazy" alt="Two bands along Gamma, K, M and Gamma that touch at zero energy at K and reach minus three and three at Gamma." /></li>
+<li><img src="../figures/web/session02/g4_quiz_bands_imbalance.svg" loading="lazy" alt="Two bands along Gamma, K, M and Gamma that do not touch, with a small gap at K." /></li>
+<li><img src="../figures/web/session02/g4_quiz_bands_triangular.svg" loading="lazy" alt="A single band along Gamma, K, M and Gamma, from minus six at Gamma to three at K." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The two bands touch at zero energy at <span class="math inline">\(K\)</span>, where <span class="math inline">\(f(\mathbf K)=0\)</span>, and they are at <span class="math inline">\(\pm3t\)</span> at <span class="math inline">\(\Gamma\)</span> and at <span class="math inline">\(\pm t\)</span> at <span class="math inline">\(M\)</span>. These are the bands <span class="math inline">\(\pm|f(\mathbf k)|\)</span> of graphene.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The bands have a gap of <span class="math inline">\(1.0\,t\)</span> at <span class="math inline">\(K\)</span>. This is the honeycomb lattice with the onsite energy <span class="math inline">\(+0.5\,t\)</span> on one sublattice and <span class="math inline">\(-0.5\,t\)</span> on the other, which is a mass term. Since <span class="math inline">\(f(\mathbf K)=0\)</span>, the two energies at <span class="math inline">\(K\)</span> are the two onsite energies.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. There is a single band, from <span class="math inline">\(-6t\)</span> at <span class="math inline">\(\Gamma\)</span> to <span class="math inline">\(3t\)</span> at <span class="math inline">\(K\)</span>, so the cell has one site. This is the triangular lattice with <span class="math inline">\(H=-t\sum c_i^\dagger c_j\)</span> over first neighbors. Graphene has two sites per cell and two bands.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The number of bands is the number of sites per cell, and the touching point at <span class="math inline">\(K\)</span> is the mark of graphene.</p>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>The off-diagonal entry of the Bloch Hamiltonian of graphene is</p>
+<p><span class="math display">\[f(\mathbf k)=t\sum_{j=1}^{3}e^{i\mathbf k\cdot\boldsymbol\delta_j},\]</span></p>
+<p>with <span class="math inline">\(\boldsymbol\delta_1=a(1,0)\)</span>, <span class="math inline">\(\boldsymbol\delta_2=a(-\tfrac12,\tfrac{\sqrt3}{2})\)</span> and <span class="math inline">\(\boldsymbol\delta_3=a(-\tfrac12,-\tfrac{\sqrt3}{2})\)</span>. Compute <span class="math inline">\(|f(\mathbf k)|\)</span> at <span class="math inline">\(\Gamma=(0,0)\)</span> and at <span class="math inline">\(M=(2\pi/3a,\,0)\)</span>, and give the range of energies of the two bands.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>At <span class="math inline">\(\Gamma\)</span> every phase is one, so <span class="math inline">\(f(\Gamma)=3t\)</span> and the two bands are at <span class="math inline">\(\pm3t\)</span>. At <span class="math inline">\(M\)</span> the three phases are <span class="math inline">\(\mathbf M\cdot\boldsymbol\delta_j=2\pi/3\)</span>, <span class="math inline">\(-\pi/3\)</span> and <span class="math inline">\(-\pi/3\)</span>, so</p>
+<p><span class="math display">\[f(M)=t\left(e^{2\pi i/3}+2e^{-i\pi/3}\right)=t\left(-\frac12+\frac{\sqrt3}{2}\,i+1-\sqrt3\,i\right)=t\left(\frac12-\frac{\sqrt3}{2}\,i\right),\]</span></p>
+<p>whose modulus is <span class="math inline">\(t\)</span>, and the two bands are at <span class="math inline">\(\pm t\)</span>. The modulus of a sum of three phases times <span class="math inline">\(t\)</span> is at most <span class="math inline">\(3t\)</span>, which is reached at <span class="math inline">\(\Gamma\)</span>, and it is zero at <span class="math inline">\(K\)</span>. So the bands span the range from <span class="math inline">\(-3t\)</span> to <span class="math inline">\(3t\)</span>, a width of <span class="math inline">\(6t\)</span>.</p>
+<p>The point <span class="math inline">\(M\)</span> is a saddle point of the bands. So the energies <span class="math inline">\(\pm t\)</span> that we computed are the energies of the two peaks of the density of states of graphene, which <a href="#sch:s02:g4_graphene_dos">Schematic 2.13</a> shows.</p>
+</div>
+</details>
+</div>
+</div>
+<div class="notebookbox">
+<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session2.ipynb"><code>session2.ipynb</code></a>, “Infinite two-dimensional graphene” (Core)</p>
+<p>Build the two-dimensional honeycomb Bloch Hamiltonian <a href="#eq-2-19">(2.19)</a> directly and diagonalize it across the Brillouin zone. Zoom in on <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span> and check numerically that the dispersion there is really linear, which means that it agrees with <a href="#eq-2-21">(2.21)</a> once you are close enough to the Dirac point.</p>
+</div>
+<div class="tryit">
+<p><strong>Try it.</strong> Run the cell and zoom in on the bands near <span class="math inline">\(K\)</span>. Check that the two bands touch at zero energy and that they are straight lines close to this point. Then change the hopping in <code>tij</code>, and check that the slope of the lines changes with <span class="math inline">\(t\)</span>.</p>
+<div class="tryit-links">
+Notebook <code>session2.ipynb</code>, cell “Infinite two-dimensional graphene”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session2.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session2.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession2.ipynb">Binder</a>.
+</div>
 </div>
 <div class="comesback">
 <div class="comesback-label">

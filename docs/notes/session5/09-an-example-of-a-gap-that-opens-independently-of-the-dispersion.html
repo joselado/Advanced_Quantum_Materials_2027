@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -115,6 +116,9 @@ Question
 </div>
 <div class="quiz-q">
 <p>The <span class="math inline">\(d\)</span>-wave gap <a href="13-nodal-singlet-order-d-wave-pairing-in-the-cuprates-and-the-angular-momentum-expansion.html#eq-5-13">(5.13)</a> vanishes on the diagonals <span class="math inline">\(k_x=\pm k_y\)</span>. A small Fermi pocket is centered at <span class="math inline">\(X=(\pi,0)\)</span>. Is the superconductor nodal?</p>
+<div class="eq-again">
+<p><span class="math display">\[\Delta_{d}(\mathbf k) = \Delta_0\left(\cos k_x - \cos k_y\right), \tag{5.13}\]</span></p>
+</div>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -135,7 +139,10 @@ Question
 <figure class="quiz-fig schematic">
 <img src="../figures/web/session05/pockets_nodes.svg" loading="lazy" alt="A square Brillouin zone with its two diagonals, a circle at the center crossed by them at four points, and a half circle at the right edge that they do not reach." />
 <figcaption>A <span class="math inline">\(d\)</span>-wave gap with pockets at <span class="math inline">\(\Gamma\)</span> and at <span class="math inline">\(X\)</span>. The nodal lines cross the first pocket in four points and miss the second one.</figcaption>
-</figure></li>
+</figure>
+<div class="eq-again">
+<p><span class="math display">\[E(\mathbf k) = \pm\sqrt{\varepsilon(\mathbf k)^2 + |\Delta(\mathbf k)|^2}. \tag{5.9}\]</span></p>
+</div></li>
 </ul>
 </div>
 </details>

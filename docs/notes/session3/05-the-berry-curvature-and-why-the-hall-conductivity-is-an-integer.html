@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -84,25 +85,91 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="on" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 3. Topological Band Structure Theory</a></p>
 <h1 id="sec-3-5"><span class="num">3.5</span> The Berry curvature, and why the Hall conductivity is an integer</h1>
+<p>The Kubo formula <a href="03-where-perturbation-theory-breaks-down.html#eq-3-2">(3.2)</a> has the band energies in its denominator. Does the Hall conductivity then depend on the details of the band structure? We will now see that it does not. The energies cancel, and what remains is an integral over the Brillouin zone that is built only from the wavefunctions, and that is an integer for a gapped system.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[\sigma_{xy} \;\propto\; \sum_{n\ \text{filled}} \sum_{m\ \text{empty}} \int_{\text{BZ}}
+\frac{d^2k}{(2\pi)^2}\;
+\frac{\langle n|\partial_{k_x}H|m\rangle\langle m|\partial_{k_y}H|n\rangle - (x\leftrightarrow y)}
+{(\varepsilon_n - \varepsilon_m)^2}. \tag{3.2}\]</span></p>
+</div>
+<p>This is the Kubo formula of Section <a href="03-where-perturbation-theory-breaks-down.html#sec-3-4">3.4</a> for the Hall conductivity. The states <span class="math inline">\(|n\rangle\)</span> are the Bloch states <span class="math inline">\(|u_n(k)\rangle\)</span> with energies <span class="math inline">\(\varepsilon_n(k)\)</span>. The bands <span class="math inline">\(n\)</span> are filled and the bands <span class="math inline">\(m\)</span> are empty, and <span class="math inline">\(\partial_{k_x}H\)</span> is the velocity operator along <span class="math inline">\(x\)</span>, up to a factor <span class="math inline">\(\hbar\)</span>.</p>
+</div>
 <p>We take the derivative of the Schrödinger equation <span class="math inline">\(H(k)|u_n(k)\rangle = \varepsilon_n(k)|u_n(k)\rangle\)</span> with respect to <span class="math inline">\(k_\mu\)</span> and project it onto a different band <span class="math inline">\(\langle u_m(k)|\)</span>, with <span class="math inline">\(m \neq n\)</span>, which gives</p>
 <p><span id="eq-3-3" class="eq"><span class="math display">\[\langle u_m|\partial_{k_\mu} H|u_n\rangle
 = \big(\varepsilon_n(k) - \varepsilon_m(k)\big)\,\langle u_m|\partial_{k_\mu} u_n\rangle. \tag{3.3}\]</span></span></p>
 <p>This identity is the piece that we need, since it replaces a matrix element of <span class="math inline">\(\partial_k H\)</span> by a matrix element of the <span class="math inline">\(k\)</span>-derivative of the wavefunction, divided by the energy difference. When we use <a href="#eq-3-3">(3.3)</a> to rewrite the numerator and the denominator of <a href="03-where-perturbation-theory-breaks-down.html#eq-3-2">(3.2)</a> together, the explicit dependence on the energies cancels completely. What remains is an object built only from overlaps of wavefunctions, which is called the <strong>Berry curvature</strong> of band <span class="math inline">\(n\)</span>,</p>
-<p><span class="math display">\[\Omega_n(k) = -2\,\mathrm{Im}\, \langle \partial_{k_x} u_n(k)|\partial_{k_y} u_n(k)\rangle,\]</span></p>
-<p>so that the Hall conductivity of a set of filled bands is</p>
+<p><span class="math display">\[\Omega_n(k) = -2\,\mathrm{Im}\, \langle \partial_{k_x} u_n(k)|\partial_{k_y} u_n(k)\rangle.\]</span></p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>The Hall conductivity of a set of filled bands is</p>
 <p><span id="eq-3-4" class="eq"><span class="math display">\[\sigma_{xy} = \frac{e^2}{h}\, C, \qquad
 C = \sum_{n\ \text{filled}} \frac{1}{2\pi}\int_{\text{BZ}} \Omega_n(k)\, d^2k. \tag{3.4}\]</span></span></p>
-<p>This is the central result of the session, and there are two important points about <a href="#eq-3-4">(3.4)</a>. First, <span class="math inline">\(\sigma_{xy}\)</span> depends only on how the wavefunctions change across the Brillouin zone, and not on the energies. We can deform the band structure in any way, and as long as the wavefunctions do not change, the Hall conductivity stays the same. Second, and more surprising, for a gapped system, which is an insulator, <span class="math inline">\(C\)</span> is always an integer, regardless of the number of bands and of the shape of the dispersion. This is a topological statement. The Brillouin zone of a two-dimensional system is a compact manifold. It is a torus, since opposite edges of the zone are identified, and the integral of a curvature over a closed surface always gives an integer. The same happens for the Gaussian curvature of an ordinary closed surface in differential geometry. This integer <span class="math inline">\(C\)</span> is the <strong>Chern number</strong>, and <a href="#eq-3-4">(3.4)</a> is the first place in the course where a measurable quantity, the Hall conductivity, is fixed by a topological invariant. As an example, <a href="#sch:s03:berry_haldane">Schematic 3.5</a> shows the Berry curvature of two gapped honeycomb lattices, which we build in Section <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#sec-3-10">3.10</a>.</p>
-<figure id="sch:s03:berry_haldane" class="schematic">
-<img src="../figures/web/session03/berry_haldane.svg" loading="lazy" alt="Two color maps of the Brillouin zone, with two red spots for the Haldane coupling and one red and one blue spot for the staggered potential." />
-<figcaption><strong>Schematic 3.5.</strong> The Berry curvature of the lower band over the Brillouin zone of the honeycomb lattice, computed on a grid. In (a) the gap comes from the Haldane coupling, with second-neighbor hopping <span class="math inline">\(0.1\)</span> in units of the first-neighbor one. In (b) it comes from a staggered sublattice potential of <span class="math inline">\(0.5\)</span>. The curvature is concentrated at the two Dirac points, where the gap is smallest. In (a) it has the same sign at both points, and its integral divided by <span class="math inline">\(2\pi\)</span> gives <span class="math inline">\(|C|=1\)</span>. In (b) the two signs are opposite and the integral vanishes. Look at the colors, since the integer comes from the sum of the two red spots.</figcaption>
+<p>It is built only from the wavefunctions, through the Berry curvature <span class="math inline">\(\Omega_n(k)\)</span>, and not from the band energies. For a gapped system <span class="math inline">\(C\)</span> is an integer.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the Kubo formula (3.2) to the Chern number (3.4)</span></summary>
+<div class="fold-body">
+<p>We write <span class="math inline">\(|n\rangle\)</span> for <span class="math inline">\(|u_n(k)\rangle\)</span> and <span class="math inline">\(\partial_\mu\)</span> for <span class="math inline">\(\partial_{k_\mu}\)</span>, with <span class="math inline">\(\mu=x,y\)</span>. The first step is the identity <a href="#eq-3-3">(3.3)</a>. We take the derivative of <span class="math inline">\(H|n\rangle=\varepsilon_n|n\rangle\)</span> with respect to <span class="math inline">\(k_\mu\)</span>,</p>
+<p><span class="math display">\[(\partial_\mu H)|n\rangle + H|\partial_\mu n\rangle = (\partial_\mu\varepsilon_n)|n\rangle + \varepsilon_n|\partial_\mu n\rangle,\]</span></p>
+<p>and we multiply it from the left by <span class="math inline">\(\langle m|\)</span> with <span class="math inline">\(m\neq n\)</span>. Since <span class="math inline">\(\langle m|H=\varepsilon_m\langle m|\)</span> and <span class="math inline">\(\langle m|n\rangle=0\)</span>, the term with <span class="math inline">\(\partial_\mu\varepsilon_n\)</span> drops, and what is left is <a href="#eq-3-3">(3.3)</a>. Its complex conjugate is</p>
+<p><span class="math display">\[\langle n|\partial_\mu H|m\rangle = \big(\varepsilon_n-\varepsilon_m\big)\,\langle \partial_\mu n|m\rangle.\]</span></p>
+<p>The second step is to put these two relations into the numerator of <a href="03-where-perturbation-theory-breaks-down.html#eq-3-2">(3.2)</a>. Each of the two matrix elements gives one factor <span class="math inline">\(\varepsilon_n-\varepsilon_m\)</span>, so</p>
+<p><span class="math display">\[\frac{\langle n|\partial_x H|m\rangle\langle m|\partial_y H|n\rangle}{(\varepsilon_n-\varepsilon_m)^2}
+= \langle \partial_x n|m\rangle\langle m|\partial_y n\rangle,\]</span></p>
+<p>meaning that the energies are gone and only overlaps of wavefunctions remain.</p>
+<p>The third step is the sum over the empty bands <span class="math inline">\(m\)</span>. Let us take the simplest case, which is a single filled band <span class="math inline">\(n\)</span>. The empty bands are then all the other bands, so <span class="math inline">\(\sum_{m\neq n}|m\rangle\langle m| = 1-|n\rangle\langle n|\)</span>, and</p>
+<p><span class="math display">\[\sum_{m\neq n}\langle \partial_x n|m\rangle\langle m|\partial_y n\rangle
+= \langle \partial_x n|\partial_y n\rangle - \langle \partial_x n|n\rangle\langle n|\partial_y n\rangle.\]</span></p>
+<p>The state is normalized, <span class="math inline">\(\langle n|n\rangle=1\)</span>, and the derivative of this relation shows that <span class="math inline">\(\langle n|\partial_\mu n\rangle\)</span> is purely imaginary. We write it as <span class="math inline">\(i a_\mu\)</span> with <span class="math inline">\(a_\mu\)</span> real. The last term above is then <span class="math inline">\((-ia_x)(ia_y)=a_xa_y\)</span>, which does not change when we exchange <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. So it cancels in the combination of <a href="03-where-perturbation-theory-breaks-down.html#eq-3-2">(3.2)</a>, which is antisymmetric under this exchange, and what remains is</p>
+<p><span class="math display">\[\langle \partial_x n|\partial_y n\rangle - \langle \partial_y n|\partial_x n\rangle
+= 2i\,\mathrm{Im}\,\langle \partial_x n|\partial_y n\rangle = -i\,\Omega_n(k).\]</span></p>
+<p>With several filled bands the terms that we subtract are <span class="math inline">\(\sum_{n,n&#39;}\langle \partial_x n|n&#39;\rangle\langle n&#39;|\partial_y n\rangle\)</span> over the pairs of filled bands. This sum is also symmetric under the exchange of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, so it cancels in the same way, and each filled band gives its own <span class="math inline">\(-i\,\Omega_n(k)\)</span>.</p>
+<p>The last step is the constant in front of <a href="03-where-perturbation-theory-breaks-down.html#eq-3-2">(3.2)</a>. For the voltage along <span class="math inline">\(y\)</span> and the current along <span class="math inline">\(x\)</span> of Section <a href="03-where-perturbation-theory-breaks-down.html#sec-3-4">3.4</a> it is <span class="math inline">\(-ie^2/\hbar\)</span>. For the voltage along <span class="math inline">\(x\)</span> and the current along <span class="math inline">\(y\)</span> it is <span class="math inline">\(+ie^2/\hbar\)</span>, since the exchange of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> changes the sign. Equation <a href="#eq-3-4">(3.4)</a> is written for this second case, so we get</p>
+<p><span class="math display">\[\sigma_{xy} = \frac{ie^2}{\hbar}\sum_{n\ \text{filled}}\int_{\text{BZ}}\frac{d^2k}{(2\pi)^2}\,\big(-i\,\Omega_n(k)\big)
+= \frac{e^2}{2\pi\hbar}\sum_{n\ \text{filled}}\frac{1}{2\pi}\int_{\text{BZ}}\Omega_n(k)\,d^2k = \frac{e^2}{h}\,C,\]</span></p>
+<p>which is <a href="#eq-3-4">(3.4)</a>, since <span class="math inline">\(h=2\pi\hbar\)</span>. For the first case the result is <span class="math inline">\(-(e^2/h)\,C\)</span>. The sign also changes if <span class="math inline">\(\Omega_n\)</span> is defined with the opposite sign, and these are the only two choices that change it. What does not depend on them is that the result is an integer in units of <span class="math inline">\(e^2/h\)</span>, and this integer is what we use in the rest of the course.</p>
+</div>
+</details>
+</div>
+<p>This is the central result of the session, and there are two important points about <a href="#eq-3-4">(3.4)</a>. First, <span class="math inline">\(\sigma_{xy}\)</span> depends only on how the wavefunctions change across the Brillouin zone, and not on the energies. We can deform the band structure in any way, and as long as the wavefunctions do not change, the Hall conductivity stays the same.</p>
+<p>Second, and more surprising, for a gapped system, which is an insulator, <span class="math inline">\(C\)</span> is always an integer, regardless of the number of bands and of the shape of the dispersion. This is a topological statement. The Brillouin zone of a two-dimensional system is a compact manifold. It is a torus, since opposite edges of the zone are identified, and the integral of a curvature over a closed surface always gives an integer. The same happens for the Gaussian curvature of an ordinary closed surface in differential geometry.</p>
+<p>This integer <span class="math inline">\(C\)</span> is the <strong>Chern number</strong>, and <a href="#eq-3-4">(3.4)</a> is the first place in the course where a measurable quantity, the Hall conductivity, is fixed by a topological invariant. As an example, <a href="#sch:s03:berry_haldane">Schematic 3.5</a> shows the Berry curvature of two gapped honeycomb lattices, which we build in Section <a href="10-chern-insulators-without-landau-levels-from-a-gapped-dirac-cone.html#sec-3-10">3.10</a>.</p>
+<figure id="sch:s03:berry_haldane" class="schematic has-script">
+<img src="../figures/web/session03/berry_haldane.svg" loading="lazy" alt="Two color maps of reciprocal space with the first Brillouin zone as a dashed hexagon and the axes k x and k y. All six corners are red for the Haldane coupling, and the corners alternate between red and blue for the staggered potential." />
+<div class="script-row">
+<a href="../scripts/session03/berry_curvature_honeycomb.py" class="script-dl" download="berry_curvature_honeycomb.py">Download the pyqula script</a> <span class="script-name"><code>berry_curvature_honeycomb.py</code></span>
+</div>
+<figcaption><strong>Schematic 3.5.</strong> The Berry curvature of the filled band of the honeycomb lattice in reciprocal space, computed with pyqula. The dashed hexagon is the first Brillouin zone, and the map continues into the neighboring zones. The momenta are in units of the inverse bond length, and the curvature is in units where its average over the zone is the Chern number. In (a) the gap comes from the Haldane coupling <code>h.add_haldane(0.1)</code>, which opens a gap of <span class="math inline">\(0.9\)</span> in units of the first-neighbor hopping. In (b) it comes from a staggered sublattice potential of <span class="math inline">\(0.5\)</span>, with a gap of <span class="math inline">\(1.0\)</span>. The curvature is concentrated at the corners of the zone, which are the Dirac points <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span>, where the gap is smallest. In (a) it has the same sign at all the corners, and its average gives <span class="math inline">\(C=1\)</span>. In (b) the corners alternate in sign and the average vanishes. Look at the colors of the corners, since the integer comes from their sum.</figcaption>
 </figure>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>In a Hall bar we measure the Hall resistance. Inside the gap the longitudinal conductivity vanishes, so the Hall resistance is <span class="math inline">\(1/\sigma_{xy}\)</span>, and for <span class="math inline">\(C=1\)</span> equation <a href="#eq-3-4">(3.4)</a> gives <span class="math inline">\(h/e^2=25.8\)</span> k<span class="math inline">\(\Omega\)</span>, with no parameter of the material in it. In twisted bilayer graphene aligned to hBN this value is measured at zero magnetic field, within <span class="math inline">\(0.1\%\)</span>, and the quantization stays up to temperatures of several kelvin. The gap that transport gives is about <span class="math inline">\(27\)</span> K, which is <span class="math inline">\(2.3\)</span> meV. The measurement is in <a href="https://www.science.org/doi/10.1126/science.aay5533">this article</a>, which is also the one given in the notebook <code>session3.ipynb</code>.</p>
+<p><a href="#sch:s03:hall_plateau">Schematic 3.6</a> shows the Hall conductivity of the model of panel (a) of <a href="#sch:s03:berry_haldane">Schematic 3.5</a>, when the chemical potential is moved through the gap. It is not the full experiment. There the axis is the electron density, and a plateau in the density needs localized states. The deviation from <span class="math inline">\(h/e^2\)</span> at higher temperature comes there from the longitudinal conductivity, which this calculation does not have.</p>
+<figure id="sch:s03:hall_plateau" class="schematic has-script">
+<img src="../figures/web/session03/hall_plateau.svg" loading="lazy" alt="Three curves of the Hall conductivity against the chemical potential, with a flat plateau at one inside the gap that becomes rounder and lower as the temperature grows." />
+<div class="script-row">
+<a href="../scripts/session03/hall_conductivity_haldane.py" class="script-dl" download="hall_conductivity_haldane.py">Download the pyqula script</a> <span class="script-name"><code>hall_conductivity_haldane.py</code></span>
+</div>
+<figcaption><strong>Schematic 3.6.</strong> The Hall conductivity of the honeycomb lattice with the Haldane coupling <code>h.add_haldane(0.1)</code> against the chemical potential <span class="math inline">\(\mu\)</span>, for three temperatures, all in units of the first-neighbor hopping, computed with pyqula. We weight the Berry curvature of each state with its occupation, which is the Fermi function, and integrate over the Brillouin zone. The grey band is the gap, of width <span class="math inline">\(0.9\)</span>. While <span class="math inline">\(\mu\)</span> is in the gap and <span class="math inline">\(k_BT\)</span> is much smaller than the gap, the value is <span class="math inline">\(e^2/h\)</span>. For <span class="math inline">\(k_BT=0.2\)</span>, which is <span class="math inline">\(0.22\)</span> of the gap, the value in the middle of the gap is <span class="math inline">\(0.94\)</span>. Look at the plateau, since its width is the gap and the temperature rounds its edges. Only the part that comes from the Berry curvature is computed, and outside the gap the bands are partly filled and the value is not quantized.</figcaption>
+</figure>
+</div>
 <div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>We deform the dispersion of a gapped Chern insulator, so that all the band energies change. The Bloch wavefunctions stay the same and the gap stays open. What happens to <span class="math inline">\(\sigma_{xy}\)</span> in <a href="#eq-3-4">(3.4)</a>?</p>
+<p>The Hall conductivity of a set of filled bands is</p>
+<p><span class="math display">\[\sigma_{xy} = \frac{e^2}{h}\sum_{n\ \text{filled}} \frac{1}{2\pi}\int_{\text{BZ}} \Omega_n(k)\, d^2k, \qquad
+\Omega_n = -2\,\mathrm{Im}\, \langle \partial_{k_x} u_n|\partial_{k_y} u_n\rangle.\]</span></p>
+<p>We change all the band energies. The states <span class="math inline">\(|u_n\rangle\)</span> do not change, and the gap stays open. What happens to <span class="math inline">\(\sigma_{xy}\)</span>?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -119,7 +186,7 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
 <p>This is false. Add the same term <span class="math inline">\(0.3\cos k_x\)</span> to both bands. The eigenvectors are the same, so the Berry curvature is the same and <span class="math inline">\(C=1\)</span> stays at <span class="math inline">\(1\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
-<p>This is true. Equation <a href="#eq-3-4">(3.4)</a> contains only the Berry curvature, which is built from the wavefunctions. The energies canceled when we used <a href="#eq-3-3">(3.3)</a>.</p></li>
+<p>This is true. The formula contains only the states <span class="math inline">\(|u_n\rangle\)</span>, through the Berry curvature. The energies canceled between the numerator and the denominator of the Kubo formula.</p></li>
 </ul>
 </div>
 </details>
@@ -129,7 +196,7 @@ Question
 Question
 </div>
 <div class="quiz-q">
-<p>We integrate the Berry curvature of a gapped band over the Brillouin zone on a coarse k-mesh and obtain <span class="math inline">\(C=0.37\)</span>. What is the most likely reason?</p>
+<p>We sum the Berry curvature of a gapped band on a coarse k-mesh. The result is <span class="math inline">\(C=0.37\)</span>. What is the most likely reason?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -154,6 +221,54 @@ Question
 </ul>
 </div>
 </details>
+</div>
+<div class="quiz quiz-pics" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Three honeycomb lattices have a gap. Each map shows the Berry curvature <span class="math inline">\(\Omega(k)\)</span> of the filled band in reciprocal space. The dashed hexagon is the first Brillouin zone. Red is positive and blue is negative. The Hall conductivity is</p>
+<p><span class="math display">\[\sigma_{xy} = \frac{e^2}{h}\,\frac{1}{2\pi}\int_{\text{BZ}} \Omega(k)\, d^2k.\]</span></p>
+<p>Which lattice has <span class="math inline">\(\sigma_{xy}\neq 0\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session03/quiz_berrymap_staggered.svg" loading="lazy" alt="A map of reciprocal space with the first Brillouin zone as a dashed hexagon. Its corners alternate between red spots and blue spots of the same size." /></li>
+<li><img src="../figures/web/session03/quiz_berrymap_haldane.svg" loading="lazy" alt="A map of reciprocal space with the first Brillouin zone as a dashed hexagon. All six corners have a blue spot of the same size." /></li>
+<li><img src="../figures/web/session03/quiz_berrymap_both.svg" loading="lazy" alt="A map of reciprocal space with the first Brillouin zone as a dashed hexagon. Three corners have a small and strong blue spot, and the other three a wide and weak red spot." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The red spots and the blue spots have the same weight, about <span class="math inline">\(0.7\pi\)</span> for each color over one zone, so the integral is zero. This lattice has a staggered sublattice potential of <span class="math inline">\(0.5\)</span> and no Haldane coupling.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. All the spots are blue, so nothing cancels. The integral over one zone is <span class="math inline">\(-2\pi\)</span> and <span class="math inline">\(\sigma_{xy}=-e^2/h\)</span>, which is not zero. This lattice has the Haldane coupling <span class="math inline">\(-0.1\)</span>. The sign of the coupling sets the sign of the Hall conductivity.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. This lattice has the Haldane coupling <span class="math inline">\(0.1\)</span> and also a staggered potential of <span class="math inline">\(0.8\)</span>. The two kinds of spots do not look the same, but the integral over each kind has the same size, so they cancel. The potential is larger than <span class="math inline">\(0.45\)</span>, half of the gap <span class="math inline">\(0.9\)</span> that the Haldane coupling opens. At this value the gap closes at one Dirac point, and the integer changes from <span class="math inline">\(1\)</span> to <span class="math inline">\(0\)</span>.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>The phase of a Bloch state is not fixed. We can replace <span class="math inline">\(|u_n(k)\rangle\)</span> by <span class="math inline">\(e^{i\varphi(k)}|u_n(k)\rangle\)</span>, with any smooth real function <span class="math inline">\(\varphi(k)\)</span>, and it is still an eigenstate with the same energy. Show that <span class="math inline">\(\langle u_n|\partial_{k_\mu}u_n\rangle\)</span> changes under this replacement, and that the Berry curvature <span class="math inline">\(\Omega_n(k)\)</span> does not.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>We write <span class="math inline">\(|u&#39;\rangle=e^{i\varphi}|u\rangle\)</span> and <span class="math inline">\(\partial_\mu\)</span> for <span class="math inline">\(\partial_{k_\mu}\)</span>. The derivative of the new state is</p>
+<p><span class="math display">\[|\partial_\mu u&#39;\rangle = e^{i\varphi}\big(i\,\partial_\mu\varphi\,|u\rangle + |\partial_\mu u\rangle\big),\]</span></p>
+<p>so that <span class="math inline">\(\langle u&#39;|\partial_\mu u&#39;\rangle = \langle u|\partial_\mu u\rangle + i\,\partial_\mu\varphi\)</span>. This overlap changes, so it cannot be measured by itself. For the curvature we need</p>
+<p><span class="math display">\[\langle \partial_x u&#39;|\partial_y u&#39;\rangle = \langle \partial_x u|\partial_y u\rangle
++ \partial_x\varphi\,\partial_y\varphi - i\,\partial_x\varphi\,\langle u|\partial_y u\rangle + i\,\partial_y\varphi\,\langle \partial_x u|u\rangle.\]</span></p>
+<p>The state is normalized, so <span class="math inline">\(\langle u|\partial_\mu u\rangle=ia_\mu\)</span> with <span class="math inline">\(a_\mu\)</span> real, and <span class="math inline">\(\langle \partial_\mu u|u\rangle=-ia_\mu\)</span>. The three new terms are then <span class="math inline">\(\partial_x\varphi\,\partial_y\varphi + a_y\,\partial_x\varphi + a_x\,\partial_y\varphi\)</span>, which is a real number. The curvature <span class="math inline">\(\Omega_n=-2\,\mathrm{Im}\,\langle \partial_x u|\partial_y u\rangle\)</span> only uses the imaginary part, so it does not change.</p>
+<p>This is the reason why a quantity that we can measure, such as <span class="math inline">\(\sigma_{xy}\)</span>, can be built from the Berry curvature. It also matters for a numerical calculation. A diagonalization gives each eigenvector with an arbitrary phase at every point of the k-mesh, so we need a formula for <span class="math inline">\(\Omega_n\)</span> that does not use this phase. The Kubo form is one, since it only has matrix elements of <span class="math inline">\(\partial_{k_\mu}H\)</span> and energy differences, where the phase of each eigenvector cancels.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="tryit">
 <p><strong>Try it.</strong> In the cell that plots the Berry curvature, replace <code>h.add_sublattice_imbalance(0.5)</code> by <code>h.add_haldane(0.1)</code> and run it again. The map now has the same color around K and K’, as in panel (a) of <a href="#sch:s03:berry_haldane">Schematic 3.5</a>. Then call <code>h.get_chern(nk=60)</code>. It gives 2, which is the value 1 of each of the two spin species of the default Hamiltonian. With the sublattice imbalance it gives 0.</p>

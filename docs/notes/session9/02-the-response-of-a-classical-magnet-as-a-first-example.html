@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -121,7 +122,15 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
 <p>This is false. For a ferromagnet with <span class="math inline">\(T_c=+30\)</span> K the line <span class="math inline">\(1/\chi\propto T-30\)</span> reaches zero at <span class="math inline">\(30\)</span> K, and <span class="math inline">\(\chi\)</span> diverges there. Our line reaches zero only at <span class="math inline">\(-30\)</span> K, so it never does at a positive temperature.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. The line <span class="math inline">\(1/\chi\propto T+30\)</span> has the antiferromagnetic form of <a href="#eq-9-1">(9.1)</a>. The exchange favors staggered order, which the uniform <span class="math inline">\(\chi\)</span> does not feel, so it does not diverge for <span class="math inline">\(T&gt;0\)</span>.</p></li>
+<p>This is true. The line <span class="math inline">\(1/\chi\propto T+30\)</span> has the antiferromagnetic form of <a href="#eq-9-1">(9.1)</a>. The exchange favors staggered order, which the uniform <span class="math inline">\(\chi\)</span> does not feel, so it does not diverge for <span class="math inline">\(T&gt;0\)</span>.</p>
+<div class="eq-again">
+<p><span class="math display">\[\chi(T) \;\propto\;
+\begin{cases}
+\dfrac{1}{T} &amp; \text{paramagnet (no exchange coupling), diverges only at } T=0, \\[4pt]
+\dfrac{1}{T - T_c} &amp; \text{ferromagnet, diverges at a positive } T_c, \\[4pt]
+\dfrac{1}{T + T_c} &amp; \text{antiferromagnet, apparent divergence at a negative temperature.}
+\end{cases} \tag{9.1}\]</span></p>
+</div></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
 <p>This is false. A paramagnet has <span class="math inline">\(1/\chi\propto T\)</span>, which is <span class="math inline">\(60\)</span> at <span class="math inline">\(T=60\)</span> K. Our line gives <span class="math inline">\(90\)</span> there, so the intercept at <span class="math inline">\(-30\)</span> K is a measured deviation and it signals a finite exchange.</p></li>
 </ul>

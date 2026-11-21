@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -102,6 +103,9 @@ Question
 </div>
 <div class="quiz-q">
 <p>A state <span class="math inline">\(|n\rangle\)</span> is coupled by <span class="math inline">\(V\)</span> to two other states with the same matrix element. One of them is <span class="math inline">\(0.1t\)</span> away in energy and the other is <span class="math inline">\(1.0t\)</span> away. How do the two mixing coefficients of <a href="#eq-9-3">(9.3)</a> compare?</p>
+<div class="eq-again">
+<p><span class="math display">\[|n(\lambda)\rangle = |n\rangle + \lambda \sum_{m \neq n} \frac{\langle m|V|n\rangle}{E_n^{(0)} - E_m^{(0)}} \, |m\rangle + O(\lambda^2). \tag{9.3}\]</span></p>
+</div>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -129,6 +133,9 @@ Question
 </div>
 <div class="quiz-q">
 <p>Two levels of <span class="math inline">\(H_0\)</span> are exactly degenerate and <span class="math inline">\(V\)</span> couples them. What happens to the first-order coefficient of <a href="#eq-9-3">(9.3)</a> between them?</p>
+<div class="eq-again">
+<p><span class="math display">\[|n(\lambda)\rangle = |n\rangle + \lambda \sum_{m \neq n} \frac{\langle m|V|n\rangle}{E_n^{(0)} - E_m^{(0)}} \, |m\rangle + O(\lambda^2). \tag{9.3}\]</span></p>
+</div>
 </div>
 <div class="quiz-options">
 <ol type="A">

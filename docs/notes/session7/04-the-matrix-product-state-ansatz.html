@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -103,6 +104,9 @@ Question
 </div>
 <div class="quiz-q">
 <p>A spin-1/2 chain has <span class="math inline">\(L=100\)</span> sites, and we use an MPS with <span class="math inline">\(M=10\)</span>. How many numbers does <a href="#eq-7-5">(7.5)</a> store, roughly?</p>
+<div class="eq-again">
+<p><span class="math display">\[C(s_1,s_2,\dots,s_L) \;\approx\; M^{s_1}_{1}\, M^{s_2}_{2}\, \cdots\, M^{s_L}_{L}, \tag{7.5}\]</span></p>
+</div>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -152,6 +156,10 @@ Question
 </div>
 <div class="quiz-q">
 <p>The spin state <span class="math inline">\((|{\uparrow\downarrow}\rangle+|{\downarrow\uparrow}\rangle)/\sqrt2\)</span> differs from the singlet <a href="03-storing-the-wave-function-as-the-main-bottleneck.html#eq-7-3">(7.3)</a> only by a sign. What is the entanglement entropy of one site?</p>
+<div class="eq-again">
+<p><span class="math display">\[|\Psi\rangle = \frac{1}{\sqrt{2}}\left(|{\uparrow\downarrow}\rangle -
+|{\downarrow\uparrow}\rangle\right), \tag{7.3}\]</span></p>
+</div>
 </div>
 <div class="quiz-options">
 <ol type="A">

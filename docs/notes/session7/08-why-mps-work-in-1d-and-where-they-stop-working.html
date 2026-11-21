@@ -60,6 +60,7 @@
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
@@ -120,7 +121,10 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
 <p>This is false. The AKLT chain is exact with <span class="math inline">\(M=2\)</span> both for 50 and for 500 sites. The length of the chain does not enter in a gapped state.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. In a gapped state the entropy across a bond is set by the correlation length and not by the length of the chain. The bound <a href="#eq-7-10">(7.10)</a> then asks for the same <span class="math inline">\(M\)</span>.</p></li>
+<p>This is true. In a gapped state the entropy across a bond is set by the correlation length and not by the length of the chain. The bound <a href="#eq-7-10">(7.10)</a> then asks for the same <span class="math inline">\(M\)</span>.</p>
+<div class="eq-again">
+<p><span class="math display">\[S \;\le\; \log M. \tag{7.10}\]</span></p>
+</div></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
 <p>This is false. The central bond of the chain of 500 sites has the same entropy as the one of 50 sites, once both are longer than the correlation length. A smaller <span class="math inline">\(M\)</span> would drop weights that the first calculation had to keep.</p></li>
 </ul>
@@ -149,7 +153,10 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
 <p>This is false. The value <span class="math inline">\(8\log2=\log256\)</span> needs 256 equal Schmidt terms, and the MPS has only 16. The entropy is a logarithm of the number of terms and not a fraction of it.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
-<p>This is true. The bound <a href="#eq-7-10">(7.10)</a> is <span class="math inline">\(S\le\log M\)</span>, reached when the 16 weights are equal, and <span class="math inline">\(\log 16=4\log 2\)</span>. The number of Schmidt terms is 16 but the entropy grows only as its logarithm.</p></li>
+<p>This is true. The bound <a href="#eq-7-10">(7.10)</a> is <span class="math inline">\(S\le\log M\)</span>, reached when the 16 weights are equal, and <span class="math inline">\(\log 16=4\log 2\)</span>. The number of Schmidt terms is 16 but the entropy grows only as its logarithm.</p>
+<div class="eq-again">
+<p><span class="math display">\[S \;\le\; \log M. \tag{7.10}\]</span></p>
+</div></li>
 </ul>
 </div>
 </details>
