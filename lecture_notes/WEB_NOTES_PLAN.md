@@ -179,6 +179,41 @@ on a white card, since the renders are flattened on white by `build_figure.sh`, 
 mode of the site the white card stays. When the Blender plan of `BLENDER_FIGURES_PLAN.md`
 replaces a figure, the rebuild picks up the new PDF by its date.
 
+Every plot has its axes, locked by the lecturer on 2026-11-21 ("the plots should have axes"). The
+example was the maps of the Berry curvature, which had no $k_x$ and $k_y$. In practice every plot
+made for the web has its axes with their names, the unit in the name where there is one, and
+ticks with numbers at the values that the text quotes. This also holds for the small pictures
+that are the options of a quiz.
+
+A map over reciprocal space is drawn in the hexagonal Brillouin zone or in the extended zone with
+the first zone dashed, locked by the lecturer on 2026-11-21 ("plot it in the hexagonal Brillouin
+zone or in an extended Brillouin zone, but where one actually puts the minimal Brillouin zone with
+some dashed lines"). The reduced zone drawn as a bare rhombus is not used. The helpers are
+`kmap`, `draw_zone` and `kaxes` of `webnotes/figures/style.py`.
+
+Each plot is made in the nicest way for what it shows, locked by the lecturer on 2026-11-21 ("I
+want you to reflect how one could make all the plots in the nicest way"). The lecturer left the
+way open, and the list below is the answer of the session of that day, so it can be changed. The
+quantity on an axis is named with its unit, such as an energy in units of the hopping. A band
+structure names its high-symmetry points. A signed quantity uses a diverging color scale with
+white at zero and a colorbar with numbers, and a positive one a sequential scale. Panels that are
+compared share their scale. The parameters of the model are in the caption, and they are those of
+the script. The labels stay readable at a width of 390 px. A figure has one message, and its
+caption says what to look at.
+
+A calculation that pyqula can do is done with pyqula, by a small script that the student
+downloads next to the plot, locked by the lecturer on 2026-11-21 ("some sort of file where you
+have a button close to the plot where you could just download it, so that students could kind of
+reproduce it by themselves and change parameters"). The script is not shown in the page. It is
+"written in a very simple way, very minimal way, not very long comments, just the same way that a
+physicist would write it", meaning a few calls of pyqula functions with a few words on each, such
+as "this creates the Hamiltonian, this adds Haldane coupling, this computes the bands". It has no
+plotting, since "the plotting part of the script is not needed, just the part where one does the
+calculation". In practice the script is `webnotes/scripts/sessionNN/NAME.py`, the figure script
+draws from the variables of that script, so that the figure and the download are the same
+calculation, and the attribute `script="NAME.py"` of the figure makes the button. A calculation
+that pyqula cannot do stays in numpy and has no button. The details are in `webnotes/README.md`.
+
 ## Numbering and cross-references
 
 The web numbers follow the PDF at the moment of the conversion. Sections are numbered `C.K` in
@@ -228,7 +263,46 @@ is an edit of the Markdown and reaches the site by running the build, which rend
 `webnotes/pages/` to `docs/notes/`, runs the checks, and the result is committed with the
 Markdown. Every web edit of prose follows `VOICE.md` and `writing_style.md`.
 
+## The shape of a page
+
+These rules were locked by the lecturer on 2026-11-21, for all the sessions, and they apply from
+the next iteration of the notes on. The blocks that they use are described in
+`webnotes/README.md`, and Section 3.5 is the worked model.
+
+A page can be read without the pages before it, locked on 2026-11-21 ("somebody could skim through
+the notes and just start reading somewhere in the middle, and it could be sort of still
+understandable. Right now the notes are written as if one needs to read absolutely everything in
+order"). In practice a page opens with its question and where we arrive, and an equation of
+another page that it starts from is shown again in a `recall` box, with its symbols named.
+
+The most important parts of a page are in boxes, locked on 2026-11-21 ("some highlights of what
+are the most important parts, like in some sort of squares", since "the material looks very
+overwhelming" and "it can be nice to see more structure"). In practice the main result of a page
+is in a `key` box, with one or two sentences on what it means.
+
+Four additions were picked by the lecturer on 2026-11-21 from a list. The steps of a derivation
+that the text tells in words go in a fold, closed by default (`steps`). A box "In the lab" ties
+the result to one material, one number with its unit and the probe, with a link to the
+measurement, and no number is written from memory (`lab`). Each page opens with a question and
+paragraphs over about 150 words are split. Pen-and-paper problems have a folded solution
+(`problem`), and the closing summary of a session lists what the student can now do.
+
+Every page gets the full set of these blocks, wherever its content allows it, picked by the
+lecturer on 2026-11-21 over a light set. A page of motivation may have fewer.
+
 ## Quizzes
+
+A quiz is read alone, locked by the lecturer on 2026-11-21. The questions "shouldn't refer to
+equation 2.8 because nobody remembers that equation. If you refer to an equation, the equation
+should actually be in the question". Some questions "should have equations inside", "not in all,
+but at least in some", and some "involve pictures, meaning that the picture gives information, or
+that the solution to the question is choosing one picture or the other". "The sentences in the
+question should be shorter so that they are easier to understand." In practice a new question
+writes its equation as a display, with the symbols named, and does not refer to a section or a
+figure by its number. The build shows inside a quiz every numbered equation that it still links.
+The three options can be three pictures. The lint lists a question sentence of more than 15
+words, and this number is the choice of the session of that day, not of the lecturer. The form of
+2026-11-06 below still holds for the options and their feedback.
 
 A quiz is an inline multiple-choice question in a section page, with the choices as buttons,
 the answer hidden, and after the click one line that says right or wrong and the explanation.
