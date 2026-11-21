@@ -743,7 +743,14 @@ def main():
     a = ap.parse_args()
     if a.check:
         check_session(a.check)
-    elif a.quotes:
+        return
+    # Every other form reads sources/index.json at the start and writes it at the end, so two runs at the same
+    # time would lose one of the URLs. The lock in the ignored folder sources/.full/ makes them wait for each other.
+    import fcntl
+    os.makedirs(FULL, exist_ok=True)
+    lock = open(os.path.join(FULL, '.lock'), 'w')
+    fcntl.flock(lock, fcntl.LOCK_EX)
+    if a.quotes:
         requote()
     elif a.source and a.session and a.paste:
         paste(a)

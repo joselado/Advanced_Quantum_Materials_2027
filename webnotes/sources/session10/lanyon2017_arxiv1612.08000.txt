@@ -1,0 +1,12 @@
+url: https://arxiv.org/abs/1612.08000
+doi: 10.1038/nphys4244
+arxiv: 1612.08000
+fetched: 2026-11-21
+title: Efficient tomography of a quantum many-body system
+authors: B. P. Lanyon, C. Maier, M. Holzäpfel, T. Baumgratz, C. Hempel, P. Jurcevic and 7 more
+journal: Nature Physics volume 13, pages 1158 1162 (2017)
+
+[abstract, from https://export.arxiv.org/api/query?id_list=1612.08000]
+arxiv: 1612.08000
+title: Efficient tomography of a quantum many-body system
+Quantum state tomography (QST) is the gold standard technique for obtaining an estimate for the state of small quantum systems in the laboratory. Its application to systems with more than a few constituents (e.g. particles) soon becomes impractical as the effort required grows exponentially in the number of constituents. Developing more efficient techniques is particularly pressing as precisely-controllable quantum systems that are well beyond the reach of QST are emerging in laboratories. Motivated by this, there is a considerable ongoing effort to develop new characterisation tools for quantum many-body systems. Here we demonstrate Matrix Product State (MPS) tomography, which is theoretically proven to allow the states of a broad class of quantum systems to be accurately estimated with an effort that increases efficiently with constituent number. We first prove that this broad class includes the out-of-equilbrium states produced by 1D systems with finite-range interactions, up to any fixed point in time. We then use the technique to reconstruct the dynamical state of a trapped-ion quantum simulator comprising up to 14 entangled spins (qubits): a size far beyond the reach of QST. Our results reveal the dynamical growth of entanglement and description complexity as correlations spread out during a quench: a necessary condition for future beyond-classical performance. MPS tomography should find widespread use to study large quantum many-body systems and to benchmark and verify quantum simulators and computers.

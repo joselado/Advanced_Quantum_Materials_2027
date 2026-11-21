@@ -214,6 +214,13 @@ draws from the variables of that script, so that the figure and the download are
 calculation, and the attribute `script="NAME.py"` of the figure makes the button. A calculation
 that pyqula cannot do stays in numpy and has no button. The details are in `webnotes/README.md`.
 
+The old figures that break these rules are redrawn under the same names, picked by the lecturer on 2026-11-21 from
+a list ("Redraw them, same names"), over redrawing only the plots or leaving them for a later pass. In practice the
+builder of a page redraws the old plots of that page with their axes, from a pyqula script where pyqula can do the
+calculation, as `berry_haldane` was in Session 3, and reads the caption again against the new picture. A figure
+shown on several pages is redrawn by the builder of the first page where it appears, and a drawing with no axes,
+such as a lattice or a diagram, stays a drawing.
+
 ## Numbering and cross-references
 
 The web numbers follow the PDF at the moment of the conversion. Sections are numbered `C.K` in

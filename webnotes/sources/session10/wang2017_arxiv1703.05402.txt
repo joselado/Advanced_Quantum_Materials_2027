@@ -1,0 +1,12 @@
+url: https://arxiv.org/abs/1703.05402
+doi: 10.1038/nphys4074
+arxiv: 1703.05402
+fetched: 2026-11-21
+title: Experimental Quantum Hamiltonian Learning
+authors: Jianwei Wang, Stefano Paesani, Raffaele Santagati, Sebastian Knauer, Antonio A. Gentile, Nathan Wiebe and 5 more
+journal: Nature Physics 13, 551-555 (2017)
+
+[abstract, from https://export.arxiv.org/api/query?id_list=1703.05402]
+arxiv: 1703.05402
+title: Experimental Quantum Hamiltonian Learning
+Efficiently characterising quantum systems, verifying operations of quantum devices and validating underpinning physical models, are central challenges for the development of quantum technologies and for our continued understanding of foundational physics. Machine-learning enhanced by quantum simulators has been proposed as a route to improve the computational cost of performing these studies. Here we interface two different quantum systems through a classical channel - a silicon-photonics quantum simulator and an electron spin in a diamond nitrogen-vacancy centre - and use the former to learn the latter's Hamiltonian via Bayesian inference. We learn the salient Hamiltonian parameter with an uncertainty of approximately 10^-5. Furthermore, an observed saturation in the learning algorithm suggests deficiencies in the underlying Hamiltonian model, which we exploit to further improve the model itself. We go on to implement an interactive version of the protocol and experimentally show its ability to characterise the operation of the quantum photonic device. This work demonstrates powerful new quantum-enhanced techniques for investigating foundational physical models and characterising quantum technologies.
