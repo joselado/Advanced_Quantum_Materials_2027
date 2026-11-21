@@ -143,3 +143,76 @@ figure.panel figcaption { text-align: left; }
 .comesback ul { margin: 0.3em 0; padding-left: 1.3em; }
 .comesback li { margin: 3px 0; }
 @media (max-width: 480px) { .comesback { padding: 6px 12px 8px; } }
+
+/* the steps of a derivation and the solution of a problem: a closed <details>, opened by the reader */
+.fold { margin: 22px 0; }
+.fold-details { background: var(--card); border: 1px solid var(--rule); border-left: 3px solid var(--muted);
+                border-radius: 6px; padding: 0 16px; }
+.fold-details > summary { cursor: pointer; padding: 8px 0; color: var(--link); font-size: 0.95rem; }
+.fold-details > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.fold-label { font-size: 0.78rem; letter-spacing: 0.07em; text-transform: uppercase; font-weight: 700;
+              color: var(--accent); margin: 0 0.5em 0 0.3em; }
+.fold-details[open] > summary { border-bottom: 1px solid var(--rule); }
+.fold-body { padding: 4px 0 8px; font-size: 0.97rem; }
+.fold-body p { margin: 0.6em 0; }
+
+/* a pen-and-paper problem, with its solution folded inside */
+.problem { background: var(--card); border: 1px solid var(--rule); border-left: 3px solid var(--accent);
+           border-radius: 8px; padding: 6px 18px 10px; margin: 26px 0; }
+.problem-label { font-size: 0.78rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--accent);
+                 font-weight: 700; margin: 4px 0 2px; }
+.problem p { margin: 0.5em 0; }
+.problem .fold { margin: 10px 0 4px; }
+.problem .fold-details { background: var(--bg); }
+
+/* in the lab: one material, one number with its unit and the probe */
+.lab { background: color-mix(in srgb, var(--w2) 7%, var(--card)); border: 1px solid var(--rule);
+       border-left: 3px solid var(--w2); border-radius: 6px; padding: 6px 16px 8px; margin: 24px 0; font-size: 0.95rem; }
+.lab-label { font-size: 0.78rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--w2);
+             font-weight: 700; margin: 4px 0 2px; }
+.lab p { margin: 0.5em 0; }
+.lab figure { margin: 14px 0 6px; }
+@media (max-width: 480px) { .fold-details { padding: 0 12px; } .problem { padding: 6px 12px 10px; } .lab { padding: 6px 12px 8px; } }
+
+/* to remember: the main result of a page, the box that a reader who skims the page sees first */
+.keybox { background: color-mix(in srgb, var(--accent) 10%, var(--card)); border: 2px solid var(--accent);
+          border-radius: 8px; padding: 6px 18px 8px; margin: 26px 0; }
+.keybox-label { font-size: 0.78rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--accent);
+                font-weight: 700; margin: 4px 0 2px; }
+.keybox p { margin: 0.5em 0; }
+
+/* from before: the equations of other pages that a page starts from, shown again */
+.recall { background: var(--card); border: 1px dashed var(--muted); border-radius: 6px; padding: 6px 16px 8px;
+          margin: 20px 0; font-size: 0.95rem; }
+.recall-label { font-size: 0.78rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted);
+                font-weight: 700; margin: 4px 0 2px; }
+.recall p { margin: 0.5em 0; }
+
+/* a numbered equation shown again, in a recall box or in a quiz */
+.eq-again p { margin: 0.2em 0; }
+.quiz-q .eq-again { font-weight: 400; }
+
+/* a quiz whose options are pictures: the three pictures side by side, the feedback under the row */
+.quiz-pics .quiz-options ol { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding-left: 0;
+                              list-style: none; }
+.quiz-pics .quiz-options li { margin: 0; }
+.js .quiz-pics .quiz-options li { display: contents; }
+.quiz-pics .quiz-options img { width: 100%; height: auto; background: #fff; border-radius: 4px; display: block; }
+.quiz-pics .quiz-opt { flex-direction: column; align-items: stretch; gap: 6px; margin: 0; padding: 8px; order: 0; }
+.quiz-pics .quiz-letter { align-self: flex-start; }
+.quiz-pics .quiz-verdict { text-align: center; min-height: 1.2em; }
+.quiz-pics .quiz-fb { grid-column: 1 / -1; order: 1; margin: 0 0 4px; }
+@media (max-width: 480px) {
+  .keybox { padding: 6px 12px 8px; } .recall { padding: 6px 12px 8px; }
+  .quiz-pics .quiz-options ol { gap: 6px; }
+  .quiz-pics .quiz-opt { flex-wrap: nowrap; padding: 5px; }
+  .quiz-pics .quiz-opt .quiz-verdict { flex-basis: auto; padding-left: 0; }
+}
+
+/* the button under a plot that downloads the pyqula script the plot is drawn from */
+.script-row { margin: 8px 0 0; font-size: 0.88rem; color: var(--muted); }
+.script-dl { display: inline-block; padding: 3px 12px; border: 1px solid var(--accent); border-radius: 6px;
+             color: var(--accent); text-decoration: none; font-weight: 600; background: var(--bg); margin-right: 0.5em; }
+.script-dl:hover { background: color-mix(in srgb, var(--accent) 12%, var(--bg)); }
+.script-dl:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.script-name code { font-size: 0.85rem; }

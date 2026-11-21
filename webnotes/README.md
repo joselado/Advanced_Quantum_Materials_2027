@@ -16,6 +16,27 @@ The keyword `--session N` builds only the pages of one session, `--check-only` r
 existing build, and `--serve` serves `docs/` on `localhost:8000` after the build. The build is
 idempotent, so a second run changes nothing in `docs/`.
 
+### One page in two seconds
+
+While a page is being edited, we render only that page. The keyword `--page FILE` takes the name of its Markdown
+file and needs `--session N`. It writes that page on top of an earlier build of the session in the same folder, and
+the checks run on the whole folder as usual.
+
+```
+python3 webnotes/build.py --out /tmp/mynotes --session 3                 # once, the whole session
+python3 webnotes/build.py --out /tmp/mynotes --session 3 --page 05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.md
+```
+
+The first pass of the build reads every page of the ten sessions to collect the anchors. It keeps the pandoc tree
+of each page in `webnotes/.cache/ast/`, which git ignores, so only a page that changed goes through pandoc again.
+The folder can be deleted at any time. A full build of the 171 pages takes about 45 s, and one page about 2 s.
+
+A schematic is drawn again only when its own script, a helper `_NAME.py` that it imports, or the pyqula script that
+it runs is newer than its SVG. A change of `figures/style.py` does not redraw anything by itself, since it would
+redraw every schematic of the ten sessions, which takes more than ten minutes. After a change of the look in
+`style.py` we ask for it with `--redraw`, which draws every schematic again. We then read the diff of the SVGs
+before committing, since a few old scripts do not give the same file twice.
+
 ### Private builds
 
 When several people work at the same time, each one builds in a folder of their own with `--out`. The
@@ -84,8 +105,8 @@ they do not move when the file is edited.
 - A reference is a link to an anchor, `[(2.8)](#eq-2-8)`, `Section [2.11](#sec-2-11)`. The build points it
   to the page that holds the anchor, also in another session. If the session of the anchor is not built yet,
   the text stays without the link and `check.py` lists it as pending.
-- The box `notebookbox` is a fenced div as converted. The blocks `quiz`, `tryit`, `comesback`, the schematics, the figures
-  shown again and the merge and split of pages are described in the next sections. The block `widget` is described in
+- The box `notebookbox` is a fenced div as converted. The blocks `quiz`, `tryit`, `comesback`, `key`, `recall`, `steps`,
+  `problem` and `lab`, the schematics, the figures shown again and the merge and split of pages are described in the next sections. The block `widget` is described in
   `widgets/README.md`.
 
 ## Blocks added for the web
@@ -129,6 +150,67 @@ what to learn from it. Both follow the voice rules.
 
 A reference is the link with an empty text, `[](#sch:s02:chain_fold)`, which becomes "Schematic 2.1" with the link.
 A missing script and SVG, a failing script, a missing id and a missing alt are errors.
+
+### How a plot is drawn
+
+The rules are in `lecture_notes/WEB_NOTES_PLAN.md`, section "Figures and captions", and this is how they are
+applied in a script.
+
+- Every plot has its axes, with their names and the unit in the name, such as "$\sigma_{xy}$ in units of $e^2/h$".
+  Ticks with numbers go at the values that the text quotes. `style.arrows` draws the two arrows of a curve plot.
+- A map over reciprocal space shows $k_x$, $k_y$ and the first Brillouin zone, in the extended zone with the first
+  zone dashed. `style.kmap(ax, B, values)` draws a quantity given on the reduced grid, `style.pyqula_kmap(ax, g, kx,
+  ky, values)` draws what pyqula returns on its own window, and both draw the dashed zone. `style.kaxes(ax, ticks=2)`
+  adds the labels and the ticks, and `style.draw_zone(ax, B)` draws the zone alone. The bare rhombus of the reduced
+  zone is not used.
+- A signed quantity has a diverging color scale with white at zero and a colorbar with numbers. Panels that are
+  compared share the scale. The high-symmetry points are named, $\Gamma$, $K$, $K'$, $M$.
+- The parameters of the model are in the caption, and they are those of the script. The caption says in which
+  units the axes are.
+- The small pictures of a picture quiz follow the same rules, with the axes and no other text.
+- The labels are read at a width of 390 px before the figure is accepted.
+
+### A pyqula script to download
+
+A calculation that pyqula can do is done with pyqula, and the student downloads the script with a button under
+the plot. The script is `webnotes/scripts/sessionNN/NAME.py`. It is only the calculation, written as a physicist
+writes it, a few calls of pyqula with a few words on each, and it ends with its results in variables with plain
+names. It has no plotting.
+
+```python
+# Berry curvature and Chern number of the Haldane model
+from pyqula import geometry
+
+g = geometry.honeycomb_lattice()  # honeycomb lattice
+h = g.get_hamiltonian(has_spin=False)  # Hamiltonian with first-neighbor hopping 1
+h.add_haldane(0.1)  # Haldane coupling, a gap that breaks time reversal
+(kx, ky, omega) = h.get_berry_curvature(nk=120)  # Berry curvature of the filled band
+chern = h.get_chern(nk=60)  # Chern number, it gives 1
+```
+
+The figure script gets its data by running that script, so the figure and the download are the same calculation,
+and then it only plots.
+
+```python
+d = style.run_script('session03/berry_curvature_honeycomb.py')     # the variables of the script
+im, B = style.pyqula_kmap(ax, d['g'], d['kx'], d['ky'], d['omega_haldane'] / (2 * np.pi), cmap='RdBu_r', vmin=-12, vmax=12)
+```
+
+On the figure the attribute `script` names the file, and the build puts the button "Download the pyqula script"
+under the plot and copies the script to `docs/notes/scripts/sessionNN/`.
+
+```
+![Caption.](figures/web/session03/berry_haldane.svg){#sch:s03:berry_haldane alt="..." script="berry_curvature_honeycomb.py"}
+```
+
+The build makes an error of a script that is missing, that does not parse, that does not import pyqula, that
+imports a plotting package, that defines a function or a class, or that has more than 40 lines. It also makes an
+error of a figure that names a script and does not draw from it with `style.run_script`. A figure is redrawn when
+its own script, a helper `_NAME.py` that it imports or the pyqula script that it runs is newer than its SVG. The sign and the units of what pyqula returns are checked with a
+number before a caption states them, and the checks stay in the figure script as `assert` lines. A picture that is
+an option of a quiz has no button, but it is drawn from a script in the same way, and a figure in the question of a
+quiz can have one. A calculation that pyqula cannot do stays in
+numpy and has no button.
 
 ### Quiz
 
@@ -174,6 +256,55 @@ quiz is written with the feedback and the 3 options together.
 
 On a screen of 480 px or less the verdict of an option goes under its text. The math inside an option is not a
 tab stop (`notes.js` sets its tabindex to -1 after MathJax), so Tab goes from option to option.
+
+### A quiz is read alone
+
+A student may open a page in the middle of the notes and go to a question, so a quiz does not need the text
+around it. This gives four rules for a new quiz, and the lint lists the old ones that do not follow them.
+
+- The sentences of the question are short, 15 words at most with each math fragment counted as one word. The lint
+  reports a longer one as `quiz-long`.
+- An equation that the question needs is written in the question, as a display without `\tag`, with its symbols
+  named. A question does not send the reader to "equation (2.8)".
+- When a quiz still refers to a numbered equation with a link, `[(3.4)](#eq-3-4)`, the build shows that equation
+  inside the quiz, with its number. An equation of the question or of an option goes under the question, and an
+  equation that only the feedback of one option uses goes at the end of that feedback. An equation that the quiz
+  already displays is not shown twice. Nobody writes anything for this, the TeX comes from `labels.json`.
+- A quiz does not refer to a section, a figure or a schematic by its number. A figure that it needs is shown in
+  it, as the next section says. The lint reports the reference as `quiz-ref`.
+
+Some questions should have an equation in them, and some should be answered by reading a picture, since this is
+how the material of the course is used.
+
+### Picture options
+
+The three options of a quiz can be three pictures, when the answer is to choose one of them. An option is then one
+image and nothing else, a web schematic written as `![alt text](figures/web/sessionNN/NAME.svg)`, and its
+feedback goes under it as usual. The `alt` is required, and it says what is drawn without saying whether the
+option is right. All three options are pictures or none is.
+
+```
+::: quiz
+Each map shows the Berry curvature $\Omega(k)$ of the filled band. Which lattice has $\sigma_{xy}\neq 0$?
+
+- [ ] ![A map where the corners of the zone alternate between red and blue spots.](figures/web/session03/quiz_berrymap_staggered.svg)
+
+    This is false. The red spots and the blue spots have the same weight, so the integral is zero.
+
+- [x] ![A map where all the corners of the zone have a blue spot.](figures/web/session03/quiz_berrymap_haldane.svg)
+
+    This is true. All the spots are blue, so nothing cancels, and the integral is $-2\pi$, which is not zero.
+
+- [ ] ![A map with strong blue spots and weak red spots at the corners.](figures/web/session03/quiz_berrymap_both.svg)
+
+    This is false. The two kinds of spots do not look the same, but their integrals have the same size.
+:::
+```
+
+The student sees the three pictures side by side, also on a phone, and the feedback of a clicked option opens
+under the row, with the letter of its option. The pictures have their axes and no other text, the same color scale
+and the same size, and each one is a script of its own, since a script writes one SVG. The shared code goes in a file that
+starts with an underscore, such as `figures/session03/_berrymap.py`.
 
 ### A figure inside a quiz
 
@@ -280,6 +411,104 @@ for w in 1000 390; do
 done
 ```
 
+### To remember
+
+The main result of a page goes in a box, so that a reader who skims the page sees it first. The box holds the
+equation, which keeps its `\tag`, and one or two sentences that say what it means, with the symbols named. A page
+has one such box, or two when it has two results, and a page of motivation may have none.
+
+```
+::: key
+The Hall conductivity of a set of filled bands is
+
+$$\sigma_{xy} = \frac{e^2}{h}\, C, \qquad C = \sum_{n\ \text{filled}} \frac{1}{2\pi}\int_{\text{BZ}} \Omega_n(k)\, d^2k. \tag{3.4}$$
+
+It is built only from the wavefunctions, and not from the band energies. For a gapped system $C$ is an integer.
+:::
+```
+
+The build adds the title "To remember". The name of a new concept still comes in the text after the box, where
+it is built.
+
+### From before
+
+A page should be readable without the pages before it. When a page starts from an equation of another page, a
+box shows that equation again, with its number, and the text of the box says in words what it is and what its
+symbols are. The box goes right after the opening sentences of the page.
+
+```
+::: {.recall eq="3.2"}
+This is the Kubo formula of Section [3.4](#sec-3-4) for the Hall conductivity. The bands $n$ are filled and the
+bands $m$ are empty.
+:::
+```
+
+`eq` takes one number or several, `eq="3.2 3.3"`. The build adds the title "From before" and the equations, and
+nobody copies the TeX. A number that no page holds, a box with no text and an equation of the same page are
+errors of the build.
+
+### The steps of a derivation
+
+When the text tells a derivation in words, the steps go in a fold under the equation that they reach. The fold is
+closed, so a reader who trusts the result reads on, and a reader who wants the algebra opens it. The `title` is
+required and says which equations the steps join. It is plain text, with no math and no link.
+
+```
+::: {.steps title="From the Kubo formula (3.2) to the Chern number (3.4)"}
+The first step is the identity [(3.3)](#eq-3-3). We take the derivative of $H|n\rangle=\varepsilon_n|n\rangle$,
+
+$$(\partial_\mu H)|n\rangle + H|\partial_\mu n\rangle = (\partial_\mu\varepsilon_n)|n\rangle + \varepsilon_n|\partial_\mu n\rangle,$$
+
+and we multiply it from the left by $\langle m|$.
+:::
+```
+
+The student sees one line, "The steps" and the title, and a click opens the text. It is a `<details>`, so it needs
+no script and it works with the keyboard. The equations inside have no `\tag`, so the numbers of the notes do not
+move, and the text refers to the numbered equations of the page with the usual links. The simplest case comes
+first, such as one filled band before several. Every step is recomputed by a second reader before it goes to the
+site. A steps box without a title is an error of the build. The example is on
+`session03/05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.md`.
+
+### Problem with a solution
+
+A pen-and-paper problem, which the quizzes do not cover, since they only ask to recognize the answer. The box holds
+the statement and one `solution` div, which is a fold like the steps. The outer fence has four colons, so that the
+inner one closes first.
+
+```
+:::: problem
+Show that the Berry curvature $\Omega_n(k)$ does not change when $|u_n(k)\rangle$ gets a phase $e^{i\varphi(k)}$.
+
+::: solution
+We write $|u'\rangle=e^{i\varphi}|u\rangle$. The derivative of the new state is ...
+:::
+::::
+```
+
+The statement says what to show or to compute, and the solution ends with one or two sentences on why the result
+matters for a measurement or for a calculation. A problem needs exactly one solution, and a solution outside a
+problem is an error of the build. The box goes after the quizzes of the page and before the try-it box.
+
+### In the lab
+
+A short box that ties the result of the page to a real material, with one material, one number with its unit and
+the probe that measures it. It must hold a link to the measurement, since a number of a real material needs its
+source, and a box without an external link is an error of the build. The first source is the "In the lab" cell of
+the notebook of the session, and the number is read from the article and not from memory.
+
+```
+::: lab
+In a Hall bar we measure the Hall resistance, and for $C=1$ equation [(3.4)](#eq-3-4) gives $h/e^2=25.8$ k$\Omega$.
+In twisted bilayer graphene aligned to hBN this value is measured at zero magnetic field, within $0.1\%$. The
+measurement is in [this article](https://www.science.org/doi/10.1126/science.aay5533).
+:::
+```
+
+The box can hold a schematic of the measured quantity, written like any other schematic, with its id and its
+`alt`. Such a plot is computed with the model of the page, in the form that the experiment gives, and its caption
+says what is computed and what is left out. The box goes after the figure of the result and before the quizzes.
+
 ## Links to a session
 
 A plain "Session N" in the prose, with N from 1 to 10, is linked by the build to the index page of that session,
@@ -288,6 +517,28 @@ capitalised, and "session 6" in lowercase stays plain text. The link is not made
 or code, in a quiz option, which is a button, on the index page of the session itself, or for a session that
 has no manifest. "Session 4.2" and "Sessions 6 and 9" are not linked. The pass is `SessionLinks` in `filters/web.lua`, and it runs before the pass
 that resolves the anchors and renders the blocks.
+
+## The tools around the build
+
+Besides the build and the lint there are six tools, built on 2026-11-21 so that the next sessions cost less and
+go wrong less. Each has its own page of documentation.
+
+- `inventory.py`, the pages of a session from the manifest, with what each has and its lint hits, and the
+  skeleton of the plan of the session in `plans/sessionNN.md`. `python3 webnotes/inventory.py --session N --plan`.
+- `conventions/sessionNN.md`, the signs, the units and the pyqula facts of a session, each checked by a number.
+- `figures/physcheck.py`, the Berry curvature, the Chern number, the Zak phase and the gap in the convention of the
+  notes, and `scripts/RECIPES.md`, the pyqula recipes of the course. See `docs/helpers.md`.
+- `labsource.py` and `sources/`, the stored text of the sources of the lab boxes, against which the lint checks
+  every number of a real material. See `docs/gates.md`, which also describes the lint categories `opener`, `key`,
+  `long-paragraph`, `lab-source` and `lab-number`.
+- `layout.py`, the check of the layout in the browser at 1000 and 390 px, with no image to read. See
+  `docs/layout_and_verify.md`. Headless Chrome does not make a window narrower than 500 px, so the screenshot
+  commands of this file do not show a phone, and the layout check is the phone check.
+- `build.py --verify`, which runs every check script of `checks/`, and the warning `AXES-WARNING` of
+  `figures/style.py` for a plot without named axes. See `docs/layout_and_verify.md`.
+
+The order in which a session is done, with the test between the steps, is the skill `aqm-webnotes-session`, and
+the brief of the agents is `lecture_notes/WEB_NOTES_BRIEF.md`.
 
 ## The lint of the prose
 
@@ -322,6 +573,9 @@ are prose and are checked. The categories are the following.
 - `ref-format`, "eq. [", "Eq. [", "fig. [" and "section [", which become "equation [(N.M)](#eq-N-M)" and
   "Section [N.M](#sec-N-M)", as in `lecture_notes/WEB_NOTES_NOTATION.md`.
 - `comesback`, a page without a `::: comesback` block, the index pages included.
+- `quiz-long`, a sentence of more than 15 words in the question of a quiz, with each math fragment as one word.
+- `quiz-ref`, a quiz that refers to a section, a figure or a schematic by its number, so that it cannot be read
+  alone. A numbered equation is not reported, since the build shows it inside the quiz.
 
 ## Merging and splitting pages
 

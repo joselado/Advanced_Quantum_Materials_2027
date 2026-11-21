@@ -16,7 +16,7 @@ PRIVATE = False      # a private build (build.py --out DIR) has notes.js and not
 CSS_LINK = 'notes.css">'
 # the blocks and figures added for the web carry these classes, and only a page that has one links notes.css,
 # so a page without them is the same file as before
-NEW_BLOCKS = re.compile(r'class="[^"]*\b(quiz|tryit|schematic|again|panel|sec-next|widget|comesback)\b')
+NEW_BLOCKS = re.compile(r'class="[^"]*\b(quiz|tryit|schematic|again|panel|sec-next|widget|comesback|fold|problem|lab|keybox|recall|has-script)\b')
 
 NOTES_STYLE = """
   main { max-width: 860px; }
@@ -33,6 +33,7 @@ NOTES_STYLE = """
   .eq { display: block; }
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+  mjx-assistive-mml { max-width: 100%; }
   .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
                  border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;

@@ -140,3 +140,72 @@ Result, the live path works, so every widget has the button "Run live in the bro
   and the 34 HTML files without one are the redirect stubs. `docs/build_site.py` wrote 22 pages. No mechanical fault needed
   a fix. Still open are the 7 SVGs at or over 200 kB (9 warnings), with `nambu_bands.svg` at 560 kB the largest, and nobody
   has read the pages in a browser after this pass. Nothing committed.
+- 2026-11-21. Pedagogical pass, pilot on one page, Section 3.5. The lecturer picked four things for the notes, the
+  steps of a derivation on demand, a box "In the lab" with a real number and its source, an opening question on each
+  page with shorter paragraphs, and worked problems. The same day the lecturer asked for boxes around the main results,
+  for pages that can be read from the middle, and for quiz questions that are short, hold their equation and sometimes
+  use pictures. The toolkit got the blocks `key`, `recall`, `steps`, `problem` with `solution` and `lab`, picture
+  options in a quiz, the display inside a quiz of every numbered equation that it links (the TeX is the new key
+  `equations` of `labels.json`), and the lint categories `quiz-long` and `quiz-ref`. All are described in
+  `webnotes/README.md`. Page 3.5 has one of each, with a new schematic of the Hall plateau and three small maps for a
+  picture quiz. Only private builds were run (`--out`), with 171 pages, 0 errors and 6108 math fragments with 0 errors.
+  The default build was not run, so `docs/notes/` and `webnotes/labels.json` are as before. At the next default build
+  105 equations appear inside quizzes on 70 pages. The lint lists 83 `quiz-long` and 11 `quiz-ref` hits in the ten
+  sessions, as the work list for the questions. Not done: the other 16 pages of Session 3, the checklist of the closing
+  summary 3.13, and the lecturer has not read the page yet. Nothing committed.
+- 2026-11-21, later. The lecturer picked the full set of blocks for every page and locked the rules of the day, which
+  are now in `WEB_NOTES_PLAN.md` (sections "Figures and captions", "The shape of a page", "Quizzes"), in
+  `WEB_NOTES_BRIEF.md` for the agents and in `CLAUDE.md`, commit c7532ef. New rules of the same day: every plot has
+  its axes, a map over reciprocal space shows the first Brillouin zone dashed in the extended zone, and a
+  calculation that pyqula can do is a small script of `webnotes/scripts/sessionNN/` with a download button under the
+  plot (attribute `script` of the figure, helpers `run_script`, `kmap`, `pyqula_kmap`, `kaxes`, `draw_zone` of
+  `figures/style.py`). The three figures of Section 3.5 are redrawn from pyqula scripts with these rules. Four agents
+  are bringing the other 16 pages of Session 3 to the shape of Section 3.5. Still only private builds, nothing of
+  the toolkit or of the pages committed.
+- 2026-11-21, end of the day. Session 3 is in the new shape on all its pages. Four agents edited the 16 other pages
+  (the file of Section 3.8 also holds 3.9a), and four independent physics checks recomputed the new material, with
+  their findings applied by the agent of each group. The last private build gives 171 pages, 0 errors and 7678 math
+  fragments with 0 errors, and the lint has no hit on Session 3. Session 3 has 45 new figure scripts and 17 pyqula
+  scripts in `webnotes/scripts/session03/`, 6 of them with a download button. The conventions that were checked by
+  number are in `webnotes/conventions/session03.md`. Open for the lecturer: how (3.4) is printed, since for a voltage
+  along $y$ and a current along $x$ the result is $\sigma_{xy}=-(e^2/h)C$ with the $\Omega$ of the notes, and the two
+  folds of Sections 3.4 and 3.5 now say so while (3.4) is untouched. Also open: about ten older figures of Session 3
+  without ticks or named axes, the try-it box of Section 3.7 with an empty figure reference, and `ham_learning.py` of
+  Session 10, which is not reproducible. The lint lists 70 `quiz-long` and 9 `quiz-ref` hits in the other nine
+  sessions. The lecturer picked four toolkit parts to build before the next session: a fast build per page with
+  dependencies per figure, the conventions sheet with shared helpers and pyqula recipes, mechanical gates with a
+  check suite, and a skill with two agent types and a plan per session. Only the conventions sheet exists so far.
+  The default build was not run and nothing of the toolkit or of the pages is committed.
+- 2026-11-21, toolkit part 1 of 4, the fast build. `build.py` keeps the pandoc tree of each page in
+  `webnotes/.cache/ast/` (git ignores it), a schematic is stale only against its own script, the helpers `_NAME.py`
+  that it imports and its pyqula script, and `figures/style.py` no longer makes anything stale (`--redraw` draws all
+  again). `--page FILE` with `--session N` renders one page. Measured: 46 s for a full build of 171 pages, 30 s for
+  a second one, 2.3 s for one page, 0 errors, and no tracked SVG changed. `style.save` writes through a temporary
+  file per process, so parallel builds no longer collide. Parts 2 to 4 are not built yet.
+- 2026-11-21, toolkit parts 2 to 4. The lecturer kept (3.4) as printed, and the fold of Section 3.5 says once that
+  it is the current along $y$ for a voltage along $x$. Built and run on Session 3: `figures/physcheck.py` with
+  `scripts/RECIPES.md` (13 recipes) and the checks `checks/test_physcheck.py`, `checks/test_recipes.py` and
+  `checks/session03/conventions.py`; the lint categories `opener`, `key`, `long-paragraph`, `lab-source` and
+  `lab-number` with `labsource.py` and `sources/` (9 stored sources, publisher text kept only as short quotations,
+  full copies in the ignored `sources/.full/`); `layout.py`, `build.py --verify`, and the `AXES-WARNING` of
+  `style.save`; `inventory.py` with the plan skeleton `plans/sessionNN.md`; the documentation in `docs/`. On
+  Session 3 the build gives 0 errors, the lint 0 hits and 7 warnings, the layout check 0 findings at 1000 and at
+  a true 390 px, and `--verify` 3 of 3 OK. Headless Chrome does not go below 500 px, so the earlier "390 px"
+  screenshots were not a phone. The work lists for the other nine sessions: 100 pages without an opening question,
+  73 with a numbered equation and no key box, 64 paragraphs over 150 words, 70 long question sentences, 9 quizzes
+  that refer by number. The layout check finds 4 pages that scroll sideways on a phone (4.13, 5.4, 7.10, 9.10b;
+  the rule `mjx-assistive-mml { max-width: 100% }` of the template fixes three, and 5.4 needs its formula split).
+  The axes audit of the old figures gives 11 warnings in 7 scripts, and 80 axes drawn with the axis off in 51
+  scripts that need `sketch=True` or a look. Outside the repository: the skill `aqm-webnotes-session` and the agent
+  types `aqm-notes-builder` and `aqm-notes-checker`, set to Opus at xhigh as the lecturer said for the next
+  sessions. The brief has the mistakes of Session 3 and the new commands. Nothing of this is committed, and the
+  default build was not run.
+- 2026-11-21, last checks of the toolkit. The first check script per page, `checks/session03/main_05_berry_curvature.py`,
+  found a wrong number on its first run: the feedback of the picture quiz of 3.5 said that each color of the
+  staggered map weighs about $0.6\pi$, and two independent routes give $0.71\pi$ for a staggered potential of 0.5.
+  The page now says $0.7\pi$. That number came from a physics check and was never asserted, so the other 15 pages
+  of Session 3, which have no check script of their own, can hold the same kind of error. `--verify` gives 4 of 4
+  OK. With the real template the layout check of the ten sessions gives one page left, 5.4, whose inline formula
+  is 194 px too wide on a phone. The agent types `aqm-notes-builder` and `aqm-notes-checker` could not be launched
+  in the session that wrote them, so they are untested. The film agent `aqm-physics-checker` states the Berry
+  connection as $i\langle\partial_k u|u\rangle$, the opposite sign of the notes, and this is not changed.

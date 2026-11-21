@@ -1,6 +1,7 @@
 """Renders the web Markdown master in webnotes/pages/ to docs/notes/ and runs the checks.
 
     python3 webnotes/build.py [--session N] [--out DIR] [--serve] [--check-only] [--math] [--freeze]
+    python3 webnotes/build.py --verify [--session N]       # only the check scripts of webnotes/checks/, no build
 
 Two passes. The first reads every page of every converted session and writes labels.json, the map from
 each anchor (section, numbered equation, figure) to the page that holds it. The second renders each page
@@ -11,6 +12,7 @@ With --out DIR the pages, labels.json, the figures and notes.js are written in D
 webnotes/labels.json, and the checks run on DIR. Several people can build in parallel, each in a DIR of their own.
 """
 import argparse
+import hashlib
 import glob
 import html
 import json
@@ -108,6 +110,30 @@ def notebook_cells(nb):
     return '\n'.join(''.join(c['source']) for c in d.get('cells', []) if c['cell_type'] == 'markdown').lower()
 
 
+CACHE = os.path.join(HERE, '.cache', 'ast')
+
+
+def page_ast(path):
+    """The pandoc AST of one Markdown page, as the first pass needs it. It is kept in webnotes/.cache/ast/ under a
+    name made of the path, the size and the date of the file, so an unchanged page does not go through pandoc
+    again. The cache is local and git ignores it, and it can be deleted at any time."""
+    st = os.stat(path)
+    key = hashlib.sha1(f'{os.path.abspath(path)}|{st.st_size}|{st.st_mtime_ns}'.encode()).hexdigest()[:20]
+    cached = os.path.join(CACHE, key + '.json')
+    if os.path.exists(cached):
+        try:
+            return json.load(open(cached))
+        except ValueError:
+            pass
+    r = subprocess.run(['pandoc', '-f', 'markdown', '-t', 'json', path], capture_output=True, text=True, check=True)
+    os.makedirs(CACHE, exist_ok=True)
+    tmp = f'{cached}.{os.getpid()}.tmp'
+    with open(tmp, 'w') as f:
+        f.write(r.stdout)
+    os.replace(tmp, cached)
+    return json.loads(r.stdout)
+
+
 def collect_labels(mans):
     """First pass. Sections, figures and numbered equations of every page, as anchor -> page.
 
@@ -117,16 +143,16 @@ def collect_labels(mans):
     Returns a dict with anchors, numbers, figsrc, webfigs (the files figures/web/...), pdffigs (names) and
     panels ((name, panel) pairs)."""
     anchors, tags = {}, {}
+    equations = {}          # anchor of a numbered equation -> its TeX, to show it again in a quiz or a recall box
     numbers, figsrc, recycled = {}, {}, []
     webfigs, pdffigs, panels = set(), set(), set()
+    scripts = {}            # (session, NAME.py) of a downloadable pyqula script -> the figures that use it
     nsch = {}
     cells = {}
     for n, m in mans.items():
         for p in m['pages']:
-            r = subprocess.run(['pandoc', '-f', 'markdown', '-t', 'json', md_path(n, p)], capture_output=True,
-                               text=True, check=True)
             url = page_url(n, p)
-            ast = json.loads(r.stdout)
+            ast = page_ast(md_path(n, p))
 
             inquiz = set()      # the figures inside a quiz: no number, no id
 
@@ -151,6 +177,9 @@ def collect_labels(mans):
                     src = img['c'][2][0]
                     iid, icls, ikv = attrs(img['c'][0])
                     ident = d['c'][0][0]
+                    sname = ikv.get('script') or kv.get('script')
+                    if sname:
+                        scripts.setdefault((n, sname), []).append((url, src))
                     mm = re.match(r'figures/web/(session\d+/[A-Za-z0-9_]+)\.svg$', src)
                     if mm and id(d) in inquiz:
                         webfigs.add(src)      # a schematic in a quiz has no number and needs no id
@@ -199,6 +228,11 @@ def collect_labels(mans):
                             check.ERRORS.append(f'equation number {tag} used twice')
                         anchors[a] = url
                         tags[a] = tags.get(a, 0) + 1
+                        equations[a] = d['c'][1].strip()
+                elif t == 'Image':
+                    # a schematic used as the option of a quiz is an inline image and not a Figure
+                    if re.match(r'figures/web/session\d+/[A-Za-z0-9_]+\.svg$', d['c'][2][0]):
+                        webfigs.add(d['c'][2][0])
             walk(ast, visit)
     # the manifest: a page holds its own id and the ids of its other sections
     for n, m in mans.items():
@@ -218,7 +252,8 @@ def collect_labels(mans):
     for k in [k for k in numbers if k.startswith('~')]:
         del numbers[k]
     numbers.update(nums)
-    return dict(anchors=anchors, numbers=numbers, figsrc=need, webfigs=webfigs, pdffigs=pdffigs, panels=panels)
+    return dict(anchors=anchors, numbers=numbers, figsrc=need, webfigs=webfigs, pdffigs=pdffigs, panels=panels,
+                equations=equations, scripts=scripts)
 
 
 def labels_json(built, info):
@@ -227,6 +262,8 @@ def labels_json(built, info):
         d['numbers'] = info['numbers']
     if info['figsrc']:
         d['figsrc'] = info['figsrc']
+    if info.get('equations'):
+        d['equations'] = info['equations']
     return json.dumps(d, indent=1, sort_keys=True) + '\n'
 
 
@@ -365,18 +402,101 @@ def make_panels(panels):
     return done
 
 
-def build_web_figures(webfigs):
-    """Runs the stale scripts webnotes/figures/sessionNN/NAME.py and copies NAME.svg to figures/web/. A script is
-    stale when its SVG is missing or older than the script or than figures/style.py."""
+SCRIPTS = os.path.join(HERE, 'scripts')
+SCRIPT_MAXLINES = 40
+
+
+def copy_scripts(scripts):
+    """The downloadable pyqula scripts, webnotes/scripts/sessionNN/NAME.py, named by the attribute script="NAME.py"
+    of a figure. A script is only a calculation: it parses, it imports pyqula, it has no plotting, no function and
+    no class of its own, and at most SCRIPT_MAXLINES lines. The figure that names it must draw from it, with
+    style.run_script('sessionNN/NAME.py') in its own script. The script is copied to notes/scripts/sessionNN/."""
+    import ast
     done = 0
-    style = os.path.join(WEBFIG, 'style.py')
+    for (n, name), users in sorted(scripts.items()):
+        rel = f'session{n:02d}/{name}'
+        path = os.path.join(SCRIPTS, rel)
+        where = users[0][0]
+        if not re.match(r'[A-Za-z0-9_]+\.py$', name) or not os.path.exists(path):
+            check.ERRORS.append(f'{where}: the script "{name}" of a figure is not a file of webnotes/scripts/session{n:02d}/')
+            continue
+        text = open(path, encoding='utf-8').read()
+        try:
+            tree = ast.parse(text)
+        except SyntaxError as e:
+            check.ERRORS.append(f'script {rel}: it does not parse, {e.msg} in line {e.lineno}')
+            continue
+        mods = set()
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Import):
+                mods.update(a.name.split('.')[0] for a in node.names)
+            elif isinstance(node, ast.ImportFrom) and node.module:
+                mods.add(node.module.split('.')[0])
+            elif isinstance(node, (ast.FunctionDef, ast.ClassDef, ast.Lambda)):
+                check.ERRORS.append(f'script {rel}: it defines a function or a class in line {node.lineno}, '
+                                    'a script to download only calls pyqula')
+        if 'pyqula' not in mods:
+            check.ERRORS.append(f'script {rel}: it does not import pyqula')
+        for m in sorted(mods & {'matplotlib', 'pylab', 'seaborn', 'plotly'}):
+            check.ERRORS.append(f'script {rel}: it imports {m}, a script to download has no plotting')
+        nlines = len([l for l in text.splitlines() if l.strip()])
+        if nlines > SCRIPT_MAXLINES:
+            check.ERRORS.append(f'script {rel}: it has {nlines} lines, at most {SCRIPT_MAXLINES}')
+        for url, src in users:
+            mm = re.match(r'figures/web/(session\d+/[A-Za-z0-9_]+)\.svg$', src)
+            py = mm and os.path.join(WEBFIG, mm.group(1) + '.py')
+            if not py or not os.path.exists(py) or f"run_script('{rel}')" not in open(py).read():
+                check.ERRORS.append(f"{url}: the figure {src} names the script {name} but does not draw from it, "
+                                    f"its own script needs style.run_script('{rel}')")
+        done += write(os.path.join(NOTES, 'scripts', rel), text)
+    return done
+
+
+REDRAW = False            # set by --redraw: every figure of the build is drawn again
+
+
+def figure_helpers(py):
+    """The files _NAME.py of the folder of a figure script that the script imports, and those that they import."""
+    folder, seen, todo = os.path.dirname(py), [], [py]
+    while todo:
+        text = open(todo.pop(), encoding='utf-8').read()
+        for name in re.findall(r'^\s*(?:import|from)\s+(_[A-Za-z0-9_]+)', text, re.M):
+            h = os.path.join(folder, name + '.py')
+            if os.path.exists(h) and h not in seen:
+                seen.append(h)
+                todo.append(h)
+        # the shared physics module of figures/, which a figure script may import by its name
+        shared = os.path.join(WEBFIG, 'physcheck.py')
+        if re.search(r'^\s*(?:import|from)\s+physcheck\b', text, re.M) and shared not in seen:
+            seen.append(shared)
+    return seen
+
+
+def build_web_figures(webfigs, scripts=None):
+    """Runs the stale scripts webnotes/figures/sessionNN/NAME.py and copies NAME.svg to figures/web/. A script is
+    stale when its SVG is missing or older than the script, than a helper _NAME.py that it imports, or than the
+    pyqula script that the figure draws from. A change of figures/style.py does not make a figure stale, since it
+    would redraw every figure of the ten sessions: after such a change the option --redraw draws them all again."""
+    done = 0
+    dep = {}
+    for (n, name), users in (scripts or {}).items():
+        for url, src in users:
+            dep.setdefault(src, []).append(os.path.join(SCRIPTS, f'session{n:02d}', name))
     for src in sorted(webfigs):
         rel = src[len('figures/web/'):]
         py, svg = os.path.join(WEBFIG, rel[:-4] + '.py'), os.path.join(WEBFIG, rel)
         if os.path.exists(py):
-            if not os.path.exists(svg) or os.path.getmtime(svg) < max(os.path.getmtime(py), os.path.getmtime(style)):
+            deps = [py] + figure_helpers(py) + [d for d in dep.get(src, []) if os.path.exists(d)]
+            # a helper may run a pyqula script too, as the pictures of a quiz do
+            for f in [py] + figure_helpers(py):
+                for rel_s in re.findall(r"run_script\('([^']+)'\)", open(f, encoding='utf-8').read()):
+                    if os.path.exists(os.path.join(SCRIPTS, rel_s)):
+                        deps.append(os.path.join(SCRIPTS, rel_s))
+            if REDRAW or not os.path.exists(svg) or os.path.getmtime(svg) < max(os.path.getmtime(d) for d in deps):
                 r = subprocess.run([sys.executable, os.path.basename(py)], cwd=os.path.dirname(py),
                                    capture_output=True, text=True)
+                # style.save prints a line AXES-WARNING for a plot without axes, the build lists it
+                check.WARNINGS.extend(l.strip() for l in r.stdout.splitlines() if l.startswith('AXES-WARNING'))
                 if r.returncode:
                     check.ERRORS.append(f'schematic script {rel[:-4]}.py failed: {r.stderr.strip().splitlines()[-1:]}')
                     continue
@@ -424,7 +544,7 @@ def pager_link(p):
     return f'<a href="{p["file"][:-3]}.html">{p["number"]} {title_html(p["title"])}</a>'
 
 
-def build_session(n, m, sessions, built, labels_path):
+def build_session(n, m, sessions, built, labels_path, page=None):
     titles = {s['session']: s['title'] for s in sessions}
     pages = m['pages']
     intro = pages[0]
@@ -436,13 +556,20 @@ def build_session(n, m, sessions, built, labels_path):
              f'<a href="{T.REPO}/blob/main/lecture_notes/main.pdf">PDF of the notes</a></p>\n')
     body = T.tabs(n, 2) + T.session_row(sessions, built, n, 2)
     body += f'  <h1>Session {n}. {title_html(head)}</h1>\n  {links}'
-    body += render(n, intro, page_url(n, intro), labels_path, 'index')
-    body += '\n  <h2>Contents</h2>\n  ' + toc(pages) + '\n'
-    first = pages[1]
-    body += f'  <nav class="pager"><a href="../index.html">Lecture notes</a>{pager_link(first)}</nav>\n'
-    out = {os.path.join(sdir, 'index.html'): T.shell(f'Session {n}, lecture notes', body, 2)}
+    if page and intro['file'] != page:
+        body = None
+    else:
+        body += render(n, intro, page_url(n, intro), labels_path, 'index')
+    out = {}
+    if body is not None:
+        body += '\n  <h2>Contents</h2>\n  ' + toc(pages) + '\n'
+        first = pages[1]
+        body += f'  <nav class="pager"><a href="../index.html">Lecture notes</a>{pager_link(first)}</nav>\n'
+        out[os.path.join(sdir, 'index.html')] = T.shell(f'Session {n}, lecture notes', body, 2)
     for i, p in enumerate(pages[1:], start=1):
         url = page_url(n, p)
+        if page and p['file'] != page:
+            continue
         prev = pages[i - 1]
         pv = f'<a href="index.html">Session {n}</a>' if i == 1 else pager_link(prev)
         if i + 1 < len(pages):
@@ -456,8 +583,9 @@ def build_session(n, m, sessions, built, labels_path):
         b += render(n, p, url, labels_path, 'section')
         b += f'\n  <nav class="pager">{pv}{nv}</nav>\n'
         out[os.path.join(NOTES, url)] = T.shell(f'{p["number"]} {re.sub(r"[$]", "", p["title"])}, session {n}', b, 2)
-    for r in m.get('redirects', []):
-        out[os.path.join(sdir, r['from'])] = redirect_stub(n, r, pages)
+    if not page:
+        for r in m.get('redirects', []):
+            out[os.path.join(sdir, r['from'])] = redirect_stub(n, r, pages)
     return out
 
 
@@ -513,7 +641,7 @@ def copy_widgets(outputs):
         write(os.path.join(NOTES, 'widgets', wid + '.json'), open(js).read())
 
 
-def build(only=None):
+def build(only=None, page=None):
     pandoc_ok()
     sessions = json.load(open(os.path.join(DOCS, 'sessions.json')))
     mans = manifests()
@@ -522,12 +650,13 @@ def build(only=None):
     write(LABELS, labels_json(built, info))
     nfig = convert_figures(info['pdffigs'])
     nfig += make_panels(info['panels'])
-    nweb = build_web_figures(info['webfigs'])
+    nweb = build_web_figures(info['webfigs'], info['scripts'])
+    copy_scripts(info['scripts'])
     written, outputs = 0, {}
     for n, m in mans.items():
         if only and n != only:
             continue
-        outputs.update(build_session(n, m, sessions, built, LABELS))
+        outputs.update(build_session(n, m, sessions, built, LABELS, page))
     outputs[os.path.join(NOTES, 'index.html')] = course_index(sessions, mans)
     for path, text in outputs.items():
         written += write(path, text)
@@ -573,8 +702,60 @@ def mathcheck():
     return subprocess.run(['node', os.path.join(d, 'check.js'), NOTES]).returncode == 0
 
 
+CHECKS = os.path.join(HERE, 'checks')     # the kept check scripts that --verify runs
+VERIFY_TIMEOUT = 900                      # s, the time limit of one check script
+
+
+def check_scripts(folder, session=None):
+    """The check scripts under folder, NAME.py at any depth. With a session, only those directly in folder and those
+    under sessionNN/. A file _NAME.py is a helper that the checks import, and it is not run on its own."""
+    out = []
+    for d, dirs, files in os.walk(folder):
+        top = os.path.abspath(d) == os.path.abspath(folder)
+        dirs[:] = sorted(x for x in dirs if not x.startswith(('.', '_'))
+                         and not (top and session and x != f'session{session:02d}'))
+        out += [os.path.join(d, f) for f in sorted(files) if f.endswith('.py') and not f.startswith('_')]
+    return out
+
+
+def last_line(text):
+    lines = [l.strip() for l in (text or '').splitlines() if l.strip()]
+    return lines[-1] if lines else ''
+
+
+def verify(session=None, folder=None, timeout=VERIFY_TIMEOUT):
+    """Runs every check script, each in a temporary working folder of its own, so that the files a check writes stay
+    out of the tree, and with a time limit. A check passes when it exits with code 0. Prints one line per script,
+    OK or FAILED with the last line of its error, then a count, and returns True when every check passed."""
+    import tempfile
+    import time
+    folder = os.path.abspath(folder or CHECKS)
+    scripts = check_scripts(folder, session) if os.path.isdir(folder) else []
+    if not scripts:
+        print(f'verify: no check script in {folder}' + (f' for session {session}' if session else ''))
+        return True
+    failed = 0
+    for path in scripts:
+        rel = os.path.relpath(path, folder)
+        t0 = time.time()
+        with tempfile.TemporaryDirectory(prefix='verify-') as d:
+            try:
+                r = subprocess.run([sys.executable, path], cwd=d, capture_output=True, text=True, timeout=timeout,
+                                   env=dict(os.environ, MPLBACKEND='Agg', PYTHONDONTWRITEBYTECODE='1'))
+                why = r.returncode and (last_line(r.stderr) or last_line(r.stdout) or f'exit code {r.returncode}')
+            except subprocess.TimeoutExpired:
+                why = f'no result within the time limit of {timeout} s'
+        if why:
+            failed += 1
+            print(f'FAILED {rel} ({time.time() - t0:.0f} s): {why}')
+        else:
+            print(f'OK     {rel} ({time.time() - t0:.0f} s)')
+    print(f'verify: {len(scripts)} scripts, {len(scripts) - failed} OK, {failed} FAILED')
+    return failed == 0
+
+
 def main():
-    global NOTES, LABELS, PRIVATE
+    global NOTES, LABELS, PRIVATE, REDRAW
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('--session', type=int, help='build the pages of this session only')
     ap.add_argument('--out', metavar='DIR', help='private build: write everything in DIR instead of docs/notes/ '
@@ -582,18 +763,34 @@ def main():
     ap.add_argument('--serve', action='store_true', help='serve docs/ (or DIR) on localhost:8000 after the build')
     ap.add_argument('--check-only', action='store_true', help='run the checks on the existing build without building')
     ap.add_argument('--math', action='store_true', help='also render every math fragment with MathJax (mathcheck/)')
+    ap.add_argument('--page', metavar='FILE', help='with --session: render only this page, by the name of its '
+                    'Markdown file, on top of an earlier build of the session in the same folder')
+    ap.add_argument('--redraw', action='store_true', help='draw every schematic of the build again, '
+                    'for instance after a change of figures/style.py')
     ap.add_argument('--freeze', action='store_true', help='add the URLs of today to manifest/frozen_urls.txt and stop')
+    ap.add_argument('--verify', action='store_true', help='run the check scripts of webnotes/checks/ and stop, '
+                    'without a build; with --session N only checks/sessionNN/ and the scripts directly in checks/')
+    ap.add_argument('--checks-dir', metavar='DIR', help=argparse.SUPPRESS)     # another folder for --verify, for a test
     a = ap.parse_args()
     if a.freeze:
         freeze()
         return
+    if a.verify:
+        sys.exit(0 if verify(a.session, a.checks_dir) else 1)
     if a.out:
         NOTES = os.path.abspath(a.out)
         LABELS = os.path.join(NOTES, 'labels.json')
         PRIVATE = True
         T.PRIVATE = True
+    REDRAW = a.redraw
+    if a.page:
+        if not a.session:
+            sys.exit('--page needs --session N')
+        a.page = os.path.basename(a.page)
+        if not os.path.exists(os.path.join(HERE, 'pages', f'session{a.session:02d}', a.page)):
+            sys.exit(f'--page: {a.page} is not a file of pages/session{a.session:02d}/')
     if not a.check_only:
-        build(a.session)
+        build(a.session, a.page)
     skip = set(range(1, 100)) - {a.session} if (a.out and a.session) else set()
     ok = check.run(DOCS, HERE, notes=NOTES, skip_sessions=skip)
     if a.math:

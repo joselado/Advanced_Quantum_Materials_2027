@@ -16,6 +16,19 @@
 --             data-widget="NAME">, and notes.js adds the sliders and the plots from widgets/NAME.json.
 --   "comesback" a fenced div with the pages and sessions where the concepts of the page return. It becomes a
 --             box titled "Where this comes back", and it must hold at least one link.
+--   "steps"   a fenced div with title="...", the steps of a derivation that the text tells in words. It becomes a
+--             closed <details> with the summary "The steps" and the title.
+--   "problem" a fenced div with a pen-and-paper problem. It holds exactly one nested div "solution", which becomes
+--             a closed <details> with the summary "Solution".
+--   "lab"     a fenced div with one material, one number with its unit and the probe. It becomes a box titled
+--             "In the lab", and it must hold a link to the measurement.
+--   "key"     a fenced div with the main result of the page. It becomes a box titled "To remember".
+--   "recall"  a fenced div with eq="3.2", the equations of other pages that this page starts from. It becomes a
+--             box titled "From before" that shows them again with their numbers.
+-- A figure with script="NAME.py" gets a button that downloads webnotes/scripts/sessionNN/NAME.py, the pyqula
+-- script that it is drawn from.
+-- A quiz shows every numbered equation that it refers to, under the question or in the feedback that uses it,
+-- and an option of a quiz can be one picture, a web schematic written as ![alt](figures/web/...svg).
 -- Plain text "Session N" (N from 1 to 10, a built session) becomes a link to the index page of that session,
 -- except inside a heading, a link, math or code, and on the index page of that session itself.
 --   a figure with src figures/web/... is a web schematic, "Schematic N.", numbered by build.py (labels.numbers),
@@ -24,6 +37,7 @@
 -- Every problem is written to stderr as one line, and build.py turns the line into an error with the page.
 
 local labels, built, numbers, figsrc = {}, {}, {}, {}
+local equations = {}
 local nsections = 0
 local page, kind = '', 'section'
 
@@ -39,7 +53,36 @@ function Meta(m)
     labels = d.anchors
     numbers = d.numbers or {}
     figsrc = d.figsrc or {}
+    equations = d.equations or {}
   end
+end
+
+-- A numbered equation shown again, in a quiz or in a recall box. It keeps its number, since the \tag stays in the
+-- TeX, and it has no anchor, since the anchor belongs to the first display. The Math elements made here are not
+-- visited by the handler Math, which has already run on the block that holds them.
+local function eq_again(id)
+  local tex = equations[id]
+  if not tex then return nil end
+  return pandoc.Div({ pandoc.Para({ pandoc.Math('DisplayMath', tex) }) }, pandoc.Attr('', { 'eq-again' }))
+end
+
+-- The anchors of the equations that some blocks refer to, in the order of the text, each one once. The handler
+-- Link has already written the targets as "page.html#eq-3-4" or "#eq-3-4".
+local function eq_refs(blocks, seen)
+  local ids = {}
+  pandoc.Blocks(blocks):walk({ Link = function(l)
+    local id = l.target:match('#(eq%-[%w%-]+)$')
+    if id and not seen[id] then seen[id] = true; ids[#ids + 1] = id end
+  end })
+  return ids
+end
+
+-- The equations that some blocks already display, by their \tag, so that they are not shown twice.
+local function eq_shown(blocks, seen)
+  pandoc.Blocks(blocks):walk({ Math = function(m)
+    local tag = m.mathtype == 'DisplayMath' and m.text:match('\\tag{([^}]*)}')
+    if tag then seen['eq-' .. tag:gsub('%.', '-')] = true end
+  end })
 end
 
 local function session_of(id)
@@ -142,6 +185,22 @@ function MarkQuizFigures(d)
   return d:walk({ Figure = function(f) f.classes:insert('quiz-fig'); return f end })
 end
 
+-- A solution belongs to a problem. The first stage marks the solutions of a problem and writes their number on
+-- it, since the solution Div is visited before the problem Div that holds it.
+function MarkSolutions(d)
+  if not d.classes:includes('problem') then return nil end
+  local n = 0
+  local out = d:walk({ Div = function(x)
+    if x.classes:includes('solution') then n = n + 1; x.classes:insert('in-problem'); return x end
+  end })
+  out.attributes['nsol'] = tostring(n)
+  return out
+end
+
+function MarkBlocks(d)
+  return MarkQuizFigures(d) or MarkSolutions(d)
+end
+
 function Figure(f)
   local img = find_img(f)
   if not img then return nil end
@@ -200,10 +259,27 @@ function Figure(f)
     cap = strong_prefix(cap, { pandoc.Str('Figure ' .. number .. '.') })
   end
   if #cap > 0 then f.caption.long = { pandoc.Plain(cap) } else f.caption.long = {} end
+  -- script="NAME.py" names the pyqula script that the figure is drawn from, webnotes/scripts/sessionNN/NAME.py.
+  -- build.py checks and copies it, and here the figure gets a button to download it, right under the plot.
+  local script = img.attributes['script'] or f.attributes['script']
+  f.attributes['script'] = nil
   img.src = '../' .. src
   img.caption = { pandoc.Str(alt) }
   img.attributes = pandoc.AttributeList({ { 'loading', 'lazy' } })
   f.content = { pandoc.Plain({ img }) }
+  if script and script ~= '' then
+    local sess = tonumber(page:match('^session(%d+)/') or '')
+    if not sess then
+      io.stderr:write('the figure ' .. where .. ' has a script, but the page is not a page of a session\n')
+    else
+      local href = string.format('../scripts/session%02d/%s', sess, script)
+      local link = pandoc.Link({ pandoc.Str('Download the pyqula script') }, href, '',
+                               pandoc.Attr('', { 'script-dl' }, { { 'download', script } }))
+      f.content[#f.content + 1] = pandoc.Div({ pandoc.Plain({ link, pandoc.Space(),
+        pandoc.Span({ pandoc.Code(script) }, pandoc.Attr('', { 'script-name' })) }) }, pandoc.Attr('', { 'script-row' }))
+      f.classes:insert('has-script')
+    end
+  end
   return f
 end
 
@@ -223,6 +299,7 @@ function Quiz(d)
   -- An option is its first block, with the mark [x] or [ ]. The blocks that follow, indented under it, are the
   -- feedback of that option: why it is correct, or a counterexample that shows why it is false.
   local correct, opts, fbs, nfb = nil, {}, {}, 0
+  local npics = 0
   for i, item in ipairs(items) do
     local first = item[1]
     local mark = first and first.content and first.content[1]
@@ -236,6 +313,20 @@ function Quiz(d)
       end
       table.remove(first.content, 1)
       if first.content[1] and first.content[1].t == 'Space' then table.remove(first.content, 1) end
+    end
+    -- An option that is one image and nothing else is a picture option. The image is a web schematic, it needs an
+    -- alt text, and it gets the path of the page, as the handler Figure does for a figure.
+    local only = first and first.content and #first.content == 1 and first.content[1]
+    if only and only.t == 'Image' then
+      npics = npics + 1
+      if not only.src:match('^figures/web/') then
+        io.stderr:write(where .. ', option ' .. i .. ' is a picture that is not a web schematic (figures/web/...)\n')
+      end
+      if pandoc.utils.stringify(only.caption) == '' then
+        io.stderr:write(where .. ', option ' .. i .. ' is a picture with no alt text, write it as ![alt text](file)\n')
+      end
+      only.src = '../' .. only.src
+      only.attributes = pandoc.AttributeList({ { 'loading', 'lazy' } })
     end
     local fb = {}
     for k = 2, #item do fb[#fb + 1] = item[k] end
@@ -253,6 +344,33 @@ function Quiz(d)
     io.stderr:write(where .. ' has feedback on ' .. nfb .. ' of ' .. #items .. ' options, it needs all or none\n')
   end
   if not perOption and #after == 0 then io.stderr:write(where .. ' has no explanation after the options\n') end
+  if npics > 0 and npics < #items then
+    io.stderr:write(where .. ' has ' .. npics .. ' picture options of ' .. #items .. ', it needs all or none\n')
+  end
+  -- A quiz is read alone, so an equation that it refers to by its number is shown inside it. The equations of the
+  -- question and of the options go under the question. An equation that only the feedback of one option uses
+  -- goes at the end of that feedback.
+  local seen = {}
+  eq_shown(question, seen)
+  local qrefs = eq_refs(question, seen)
+  for _, o in ipairs(opts) do
+    for _, id in ipairs(eq_refs(o, seen)) do qrefs[#qrefs + 1] = id end
+  end
+  for _, id in ipairs(qrefs) do
+    local e = eq_again(id)
+    if e then question[#question + 1] = e end
+  end
+  for _, fb in ipairs(fbs) do
+    local mine = {}
+    for k, v in pairs(seen) do mine[k] = v end
+    eq_shown(fb, mine)
+    for _, id in ipairs(eq_refs(fb, mine)) do
+      local e = eq_again(id)
+      if e then fb[#fb + 1] = e end
+    end
+  end
+  local qclasses = { 'quiz' }
+  if npics > 0 then qclasses[#qclasses + 1] = 'quiz-pics' end
   local letter = LETTERS:sub(correct, correct)
   local out = {
     pandoc.Div({ pandoc.Plain({ pandoc.Str(perOption and 'Question' or 'Quick check') }) },
@@ -276,7 +394,7 @@ function Quiz(d)
     out[#out + 1] = pandoc.Div({ pandoc.BulletList(rows) }, pandoc.Attr('', { 'quiz-fbs' }))
     if #after > 0 then out[#out + 1] = pandoc.Div(after, pandoc.Attr('', { 'quiz-expl' })) end
     out[#out + 1] = pandoc.RawBlock('html', '</details>')
-    return pandoc.Div(out, pandoc.Attr('', { 'quiz' }, { { 'data-correct', letter }, { 'data-fb', '1' } }))
+    return pandoc.Div(out, pandoc.Attr('', qclasses, { { 'data-correct', letter }, { 'data-fb', '1' } }))
   end
   out[#out + 1] = pandoc.RawBlock('html', '<details class="quiz-answer"><summary>Show the answer</summary>')
   out[#out + 1] = pandoc.Para({ pandoc.Str('The correct option is '), pandoc.Strong({ pandoc.Str(letter) }), pandoc.Str('.') })
@@ -343,6 +461,93 @@ function ComesBack(d)
   return pandoc.Div(out, pandoc.Attr('', { 'comesback' }))
 end
 
+-- A closed <details>, for the steps of a derivation and for the solution of a problem. It needs no script.
+local function escape(t)
+  return (t:gsub('&', '&amp;'):gsub('<', '&lt;'):gsub('>', '&gt;'))
+end
+
+local function fold(kind, label, title, content)
+  local summary = '<summary><span class="fold-label">' .. label .. '</span>'
+  if title and title ~= '' then summary = summary .. ' <span class="fold-title">' .. escape(title) .. '</span>' end
+  return pandoc.Div({
+    pandoc.RawBlock('html', '<details class="fold-details">' .. summary .. '</summary>'),
+    pandoc.Div(content, pandoc.Attr('', { 'fold-body' })),
+    pandoc.RawBlock('html', '</details>'),
+  }, pandoc.Attr('', { 'fold', kind }))
+end
+
+function Steps(d)
+  local title = d.attributes['title']
+  if not title or title == '' then io.stderr:write('a steps box has no title="...", it says which equations it joins\n') end
+  return fold('steps', 'The steps', title, d.content)
+end
+
+function Solution(d)
+  if not d.classes:includes('in-problem') then
+    io.stderr:write('a solution box is outside a problem box, it goes inside ::: problem\n')
+  end
+  return fold('solution', 'Solution', '', d.content)
+end
+
+function Problem(d)
+  if d.attributes['nsol'] ~= '1' then
+    io.stderr:write('a problem box has ' .. (d.attributes['nsol'] or '0') .. ' solution boxes, it needs exactly one\n')
+  end
+  local out = {
+    pandoc.Div({ pandoc.Plain({ pandoc.Str('Problem') }) }, pandoc.Attr('', { 'problem-label' })),
+  }
+  for _, b in ipairs(d.content) do out[#out + 1] = b end
+  return pandoc.Div(out, pandoc.Attr('', { 'problem' }))
+end
+
+-- The main result of a page, in a box that a reader who skims the page sees first.
+function Key(d)
+  local out = {
+    pandoc.Div({ pandoc.Plain({ pandoc.Str('To remember') }) }, pandoc.Attr('', { 'keybox-label' })),
+  }
+  for _, b in ipairs(d.content) do out[#out + 1] = b end
+  return pandoc.Div(out, pandoc.Attr('', { 'keybox' }))
+end
+
+-- Equations of another page that this page starts from, shown again with their numbers, so that the page can be
+-- read without the pages before it. eq="3.2" or eq="3.2 3.3", and the text says in words what they are.
+function Recall(d)
+  local out = {
+    pandoc.Div({ pandoc.Plain({ pandoc.Str('From before') }) }, pandoc.Attr('', { 'recall-label' })),
+  }
+  local n = 0
+  for num in (d.attributes['eq'] or ''):gmatch('%S+') do
+    local id = 'eq-' .. num:gsub('%.', '-')
+    local e = eq_again(id)
+    if not e then
+      io.stderr:write('a recall box asks for the equation ' .. num .. ', which no page holds with a \\tag\n')
+    else
+      if labels[id] == page then
+        io.stderr:write('a recall box shows the equation ' .. num .. ' of its own page, link it in the text instead\n')
+      end
+      out[#out + 1] = e
+      n = n + 1
+    end
+  end
+  if n == 0 then io.stderr:write('a recall box has no eq="...", it names the equations that it shows again\n') end
+  if #d.content == 0 then io.stderr:write('a recall box has no text, it says in words what the equations are\n') end
+  for _, b in ipairs(d.content) do out[#out + 1] = b end
+  return pandoc.Div(out, pandoc.Attr('', { 'recall' }))
+end
+
+function Lab(d)
+  local next = 0
+  d:walk({ Link = function(l) if l.target:match('^https?:') then next = next + 1 end end })
+  if next == 0 then
+    io.stderr:write('a lab box has no link to the measurement, a number of a real material needs its source\n')
+  end
+  local out = {
+    pandoc.Div({ pandoc.Plain({ pandoc.Str('In the lab') }) }, pandoc.Attr('', { 'lab-label' })),
+  }
+  for _, b in ipairs(d.content) do out[#out + 1] = b end
+  return pandoc.Div(out, pandoc.Attr('', { 'lab' }))
+end
+
 -- "Session N" in plain text, as Str "Session", a Space or SoftBreak, and Str "N" with punctuation after it.
 -- The pass is top-down, and a Header or a Link stops the descent, so their text is never linked. Math and Code
 -- hold no Str, so they are never touched.
@@ -395,12 +600,18 @@ function Div(d)
   if d.classes:includes('widget') then return Widget(d) end
   if d.classes:includes('quiz') then return Quiz(d) end
   if d.classes:includes('tryit') then return TryIt(d) end
+  if d.classes:includes('steps') then return Steps(d) end
+  if d.classes:includes('solution') then return Solution(d) end
+  if d.classes:includes('problem') then return Problem(d) end
+  if d.classes:includes('lab') then return Lab(d) end
+  if d.classes:includes('key') then return Key(d) end
+  if d.classes:includes('recall') then return Recall(d) end
   return nil
 end
 
 return {
   { Meta = Meta },
-  { Div = MarkQuizFigures },
+  { Div = MarkBlocks },
   SessionLinks,
   { Math = Math, Link = Link, Header = Header, Figure = Figure, Div = Div },
 }

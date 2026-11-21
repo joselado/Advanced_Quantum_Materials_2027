@@ -20,6 +20,24 @@ Categories:
   session-case   "session N" in lowercase, which the build does not link, write "Session N"
   ref-format     "eq. [", "Eq. [", "fig. [" or "section [", write "equation [(N.M)](#eq-N-M)" or "Section [N.M](#sec-N-M)"
   comesback      a page without a ::: comesback block
+  quiz-long      a sentence of more than 15 words in the question of a quiz, with each math fragment as one word
+  quiz-ref       a quiz that refers to a section, a figure or a schematic by its number, so it cannot be read alone
+                 (a numbered equation is not reported, since the build shows it inside the quiz)
+
+The shape of a page, checked on the section pages (not on index.md, the introduction of the session):
+  opener         the first three sentences of prose under the first heading hold no question (the closing summary
+                 is not checked either)
+  key            a page with a numbered equation (\\tag{) and no ::: key box, a page of motivation has no \\tag
+  long-paragraph a paragraph of more than 150 words outside the blocks, with each math fragment counted as one word,
+                 a list item counted alone and the figures left out
+  lab-source     in a ::: lab box, an external link that is not in sources/index.json, or a number of a real
+                 material that is not in the stored text of its sources (see labsource.py). A number of a real
+                 material is a number followed by a unit (K, mK, meV, eV, T, nm, GHz, %, ...) or a number with an
+                 error bar, 0.97(2) or 0.9998\\pm0.0006. h/e^2 = 25.8 kOhm, h/2e^2 = 12.9 kOhm and e^2/h are exact
+                 and need no source, the figures of the box show the model and are not read, and a number that is
+                 our own conversion is listed in the box, ::: {.lab ours="2.3 meV"}. A value that the source gives
+                 without the unit, with another one or with another error bar is a hit that says so.
+  lab-number     a lab box with no number of a real material, only a warning, since the locked rule asks for one
 """
 import argparse
 import glob
@@ -28,9 +46,12 @@ import re
 import sys
 from collections import Counter, defaultdict
 
+import labsource
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 PAGES = os.path.join(HERE, 'pages')
 MAXWORDS = 35
+MAXPARA = 150
 
 RESIDUE = re.compile(r'\b(transcripts?|slides?|instructors?|recordings?|recorded|lecturers?|this year|'
                      r'previous editions?|next recording|spoken|narrated|raw)\b', re.I)
@@ -62,8 +83,27 @@ REF_FORMAT = re.compile(r'\b(?:[Ee]qs?|[Ff]igs?)\.\s*\[|\bsection \[|\beq\.?\s*\
 BACKSLASH_QUOTE = re.compile(r'\\"')
 
 CATEGORIES = ['residue', 'backslash-quote', 'banned', 'exactly', 'long-sentence', 'punctuation', 'session-case',
-              'ref-format', 'comesback']
-WARNINGS = {'exactly'}
+              'ref-format', 'comesback', 'quiz-long', 'quiz-ref', 'opener', 'key', 'long-paragraph', 'lab-source',
+              'lab-number']
+QUIZ_MAXWORDS = 15
+QUIZ_REF = re.compile(r'\]\(#(sec-[\w-]+|fig:[\w:]+|sch:[\w:]+)\)')
+
+
+def quiz_lines(path):
+    """For every line of a quiz its role, 'q' for the question and 'o' for the options with their feedback."""
+    role, state = {}, None
+    for i, raw in enumerate(open(path, encoding='utf-8'), start=1):
+        st = raw.strip()
+        if re.match(r'^:::+\s*quiz\b', st):
+            state = 'q'
+        elif state and re.match(r'^:::+\s*$', st):
+            state = None
+        elif state:
+            if state == 'q' and re.match(r'^[-*+]\s+\[[ xX]\]', st):
+                state = 'o'
+            role[i] = state
+    return role
+WARNINGS = {'exactly', 'lab-number'}
 
 
 def strip_inline(line):
@@ -119,10 +159,157 @@ def sentences(text):
     return [s for s in re.split(r'(?<=[.?!])\s+(?=[A-Z(*"])', text) if s.strip()]
 
 
+def page_kind(path, text):
+    """'index' for the introduction of a session, 'closing' for its closing summary, 'section' for the others."""
+    name = os.path.basename(path)
+    if name == 'index.md':
+        return 'index'
+    head = re.search(r'^#{1,6}\s+(.*)$', text, re.M)
+    if 'closing-summary' in name or (head and re.match(r'closing summary\b', head.group(1), re.I)):
+        return 'closing'
+    return 'section'
+
+
+def outline(path):
+    """The top level of a page, outside the blocks, as ('heading', line) and ('para', line, prose, words).
+    A paragraph ends at a blank line, a fence, a heading, a figure or a new list item. A display equation inside
+    a paragraph counts as one word, and a figure with its caption is not a paragraph."""
+    out, cur = [], []
+    depth, infence, indisplay, infig = 0, False, False, False
+
+    def flush():
+        if cur:
+            words = sum(len(t.split()) for _, t in cur)
+            out.append(('para', cur[0][0], ' '.join(t for _, t in cur), words))
+            cur.clear()
+
+    for i, raw in enumerate(open(path, encoding='utf-8'), start=1):
+        line = raw.rstrip('\n')
+        st = line.strip()
+        if st.startswith('```') or st.startswith('~~~'):
+            flush()
+            infence = not infence
+            continue
+        if infence:
+            continue
+        fence = re.match(r'^:{3,}\s*(\S.*)?$', st)
+        if fence:
+            flush()
+            infig = False
+            depth = depth + 1 if fence.group(1) else max(0, depth - 1)
+            continue
+        if depth:
+            continue
+        if indisplay:
+            if line.count('$$') % 2 == 1:
+                indisplay = False
+                cur.append((i, 'X'))
+            continue
+        if re.sub(r'\$\$.*?\$\$', '', line).count('$$') % 2 == 1:
+            indisplay = True
+            cur.append((i, strip_inline(line[:line.rfind('$$')])))
+            continue
+        if not st:
+            flush()
+            infig = False
+            continue
+        if st.startswith('#'):
+            flush()
+            out.append(('heading', i))
+            continue
+        if st.startswith('!['):
+            flush()
+            infig = True
+        if infig or st.startswith('<') or st.startswith('|'):
+            continue
+        if re.match(r'^(?:[-*+]|\d+\.)\s+', st):
+            flush()
+        cur.append((i, strip_inline(line)))
+    flush()
+    return out
+
+
+def opening(items):
+    """(line, first three sentences) of the prose under the first heading, skipping the blocks such as recall."""
+    seen, line, text = False, None, []
+    for it in items:
+        if it[0] == 'heading':
+            if seen:
+                break
+            seen = True
+        elif seen:
+            line = line or it[1]
+            text.append(it[2])
+            if len(sentences(' '.join(text))) >= 3:
+                break
+    return line, sentences(' '.join(text))[:3]
+
+
+KEYBOX = re.compile(r'^:{3,}\s*(?:key\b|\{[^}]*(?<![\w-])\.key(?![\w-]))', re.M)
+LAB_INDEX = None
+
+
+def lab_hits(path):
+    """The hits of the lab boxes of a page, from labsource.check_box."""
+    global LAB_INDEX
+    if LAB_INDEX is None:
+        LAB_INDEX = labsource.load_index()
+    sess = int(re.search(r'session(\d+)', path).group(1))
+    hits = []
+    for box in labsource.lab_boxes(path):
+        for state, n, what, detail in labsource.check_box(box, LAB_INDEX):
+            if state == 'unstored':
+                hits.append(('lab-source', n, f'{what} is not stored, run python3 webnotes/labsource.py '
+                                              f'--session {sess} {what}'))
+            elif state == 'nolink':
+                hits.append(('lab-source', n, 'a lab box with no external link'))
+            elif state == 'missing':
+                hits.append(('lab-source', n, f'{what} is not in the stored text of the sources of this box'))
+            elif state == 'nounit':
+                hits.append(('lab-source', n, f'{what}, the source has the value but not with this unit or error '
+                                              f'bar: {detail[:80]}'))
+            elif state == 'nonumber':
+                hits.append(('lab-number', n, 'a lab box with no number of a real material and its unit'))
+    return list(dict.fromkeys(hits))
+
+
+def shape_hits(path, text):
+    """The hits of the shape of a page, opener, key and long-paragraph. The index page is not a section page and
+    is not checked, and the closing summary is not checked for its opener."""
+    kind = page_kind(path, text)
+    if kind == 'index':
+        return []
+    hits = []
+    items = outline(path)
+    if kind == 'section':
+        line, first = opening(items)
+        if not any('?' in s for s in first):
+            snip = first[0][:60].strip() + ' ...' if first else 'no prose under the first heading'
+            hits.append(('opener', line or 1, f'no question in the first three sentences: {snip}'))
+    nocode = re.sub(r'^(```|~~~).*?^\1', '', text, flags=re.M | re.S)
+    tag = re.search(r'\\tag\{([^}]*)\}', nocode)
+    if tag and not KEYBOX.search(text):
+        n = text[:text.find(tag.group(0))].count('\n') + 1
+        hits.append(('key', n, f'a numbered equation ({tag.group(1)}) and no ::: key box'))
+    for it in items:
+        if it[0] == 'para' and it[3] > MAXPARA:
+            hits.append(('long-paragraph', it[1], f'{it[3]} words: {it[2][:60].strip()} ...'))
+    return hits
+
+
 def lint_page(path):
     hits = []
     text = open(path, encoding='utf-8').read()
+    inquiz = quiz_lines(path)
     for n, raw, prose in prose_lines(path):
+        if n in inquiz:
+            for m in QUIZ_REF.finditer(raw):
+                hits.append(('quiz-ref', n, f'a quiz refers to {m.group(1)} by its number'))
+            if inquiz[n] == 'q' and not raw.lstrip().startswith('!['):
+                for s in sentences(prose):
+                    w = len(s.split())
+                    if w > QUIZ_MAXWORDS:
+                        hits.append(('quiz-long', n, f'{w} words in a question: {s[:60].strip()} ...'))
         def hit(cat, m, src=prose):
             a = max(0, m.start() - 30)
             hits.append((cat, n, src[a:m.end() + 30].strip()))
@@ -149,6 +336,8 @@ def lint_page(path):
                 hits.append(('long-sentence', n, f'{w} words: {s[:60].strip()} ...'))
     if not re.search(r'^:::\s*\{?\s*\.?comesback\b', text, re.M):
         hits.append(('comesback', 1, 'no ::: comesback block'))
+    hits += shape_hits(path, text)
+    hits += lab_hits(path)
     return hits
 
 

@@ -40,3 +40,9 @@ __pycache__/
 
 # MathJax check of the web notes
 webnotes/mathcheck/node_modules/
+
+# Cache of the web notes build (pandoc AST of each page), local only
+webnotes/.cache/
+
+# Full copies of the fetched lab sources of the web notes (publisher text), local only
+webnotes/sources/.full/
