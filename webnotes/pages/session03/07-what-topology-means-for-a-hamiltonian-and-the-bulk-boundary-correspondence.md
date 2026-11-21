@@ -1,15 +1,45 @@
 ## What topology means for a Hamiltonian, and the bulk-boundary correspondence {#sec-3-7 number="3.7"}
 
+Why does a state with a nonzero Chern number always have gapless states at its boundary, for any shape of the boundary? We will now see that this follows from one fact, which is that the Chern number is an integer. An integer cannot change while the gap is open, so at an interface between two different values the gap must close.
+
+::: {.recall eq="3.4"}
+This is the Hall conductivity of Section [3.5](#sec-3-5). The integer $C$ is the Chern number, which is the integral of the Berry curvature $\Omega_n(k)$ of the filled bands over the Brillouin zone. It is an integer as long as the system has a gap.
+:::
+
 We have now seen one topological invariant at work. Let us now step back and say what the word topological means, in the mathematical sense from which the word is taken. Topology classifies objects by whether they can be smoothly deformed into each other without a drastic operation, such as cutting, tearing or gluing. Closed surfaces in three dimensions are classified by their number of holes. A donut and a coffee cup both have one hole and can be continuously deformed into each other, while a sphere has no hole and cannot be deformed into either of them. Closed curves embedded in three dimensions have a similar classification by knots, since curves with different knots cannot be smoothly untangled into each other.
 
 For a Hamiltonian, the equivalent of a deformation is to change the band structure continuously while the bulk gap stays open. Two Hamiltonians related by such a deformation have the same Chern number, because $C$ in [(3.4)](#eq-3-4) is quantized and so it cannot change continuously. It can only jump, and a jump requires the gap to close at some point of the deformation. So the Chern number plays the role that the number of holes plays for a surface. Hamiltonians with the same Chern number are topologically equivalent, meaning that they can be deformed into each other without closing the gap, and Hamiltonians with different Chern numbers are not.
 
-This has a direct and strong consequence. Let us build a Hamiltonian that changes in space and is equal to $H_1$, with Chern number $C_1$, far to the left, and to $H_2$, with Chern number $C_2 \neq C_1$, far to the right. The Hamiltonians $H_1$ and $H_2$ cannot be deformed into each other without closing the gap, and the Hamiltonian in between goes continuously from one to the other. So the gap *must* close somewhere in between, for any microscopic construction of the interface. An interface between two bulk phases with different Chern numbers always has a gapless state. Its existence depends only on $C_1$ and $C_2$, and not on any detail of the interface. This is called the **bulk-boundary correspondence**. The vacuum has $C=0$, since it is topologically trivial, so a quantum Hall state with $C=1$ always has a gapless edge state at every boundary with the vacuum. This is the edge physics of Section [3.6](#sec-3-6), now obtained from a completely general argument. Figure [3.2](#fig:s03:bulkboundary) shows the three steps of this argument in order.
+This has a direct and strong consequence. Let us build a Hamiltonian that changes in space and is equal to $H_1$, with Chern number $C_1$, far to the left, and to $H_2$, with Chern number $C_2 \neq C_1$, far to the right. The Hamiltonians $H_1$ and $H_2$ cannot be deformed into each other without closing the gap, and the Hamiltonian in between goes continuously from one to the other. So the gap *must* close somewhere in between, for any microscopic construction of the interface. An interface between two bulk phases with different Chern numbers always has a gapless state. Its existence depends only on $C_1$ and $C_2$, and not on any detail of the interface. This is called the **bulk-boundary correspondence**.
+
+::: key
+An interface between two gapped regions with different Chern numbers $C_1$ and $C_2$ always has gapless states that are bound to it. We count the modes that move one way along the interface, $N_\rightarrow$, and the ones that move the other way, $N_\leftarrow$. Their difference is fixed by the bulk,
+
+$$N_\rightarrow - N_\leftarrow = C_1 - C_2 ,$$
+
+with an overall sign that depends on which direction we call positive. Only $C_1$ and $C_2$ enter, and no detail of the interface. The vacuum has $C=0$, so the edge of a sample with Chern number $C$ has a net number $|C|$ of chiral modes.
+:::
+
+The vacuum has $C=0$, since it is topologically trivial, so a quantum Hall state with $C=1$ always has a gapless edge state at every boundary with the vacuum. This is the edge physics of Section [3.6](#sec-3-6), now obtained from a completely general argument. Figure [3.2](#fig:s03:bulkboundary) shows the three steps of this argument in order.
 
 ![The bulk-boundary correspondence, as an argument about an integer. A Hamiltonian changes slowly in space from $H_1$ on the left to $H_2$ on the right, which is the color of the backdrop. In the top row, the Chern number is an integer, so it cannot change continuously from $C_1=1$ to $C_2=0$ and it can only jump. In the middle row, a jump is only allowed where the quantization argument itself fails, which is where the gap closes. So the local gap must go to zero somewhere in the interface region, at the cross. This is drawn schematically, in the local-gap approximation. In the bottom row, the state that appears there is a gapless state bound to the interface. This argument does not use any detail of how the interface is built, and only $C_1$ and $C_2$ enter, which is why the edge state survives rough boundaries and impurities. If we take $H_2$ to be the vacuum, $C_2=0$, we obtain the chiral edge state of Figure [3.1](#fig:s03:chiraledge) from a completely general argument.](figures/s03f02_bulkboundary.svg){#fig:s03:bulkboundary number="3.2"}
 
+![The argument of Figure [3.2](#fig:s03:bulkboundary), now computed on a cylinder of the Haldane model with $t_2=0.1$. The staggered potential $M$ grows smoothly from $0$ to $t$ and goes back, so a region with $C=0$ sits between two regions with $C=1$. In (a) the local gap is the bulk gap of the Haldane model at the local value of $M$. It closes at the two crosses, where $M$ passes $3\sqrt3\,t_2$ and the Chern number jumps. In (b) the spectrum of the cylinder has only two branches inside the gap, one at each interface, with opposite velocities. The colors of the branches are the colors of the two crosses, so each branch sits where the local gap closes.](figures/web/session03/interface_modes.svg){#sch:s03:interface_modes alt="Left, a dashed profile of the staggered potential and a solid local gap that drops to zero at two points. Right, the bands of a cylinder with a blue and a red branch that cross the gap with opposite slopes."}
+
+The same argument explains the robustness that we used before. Let us put a local impurity at the edge of a quantum Hall sample. This only changes the microscopic details of the interface between the vacuum and the quantum Hall state. Since the topological excitation of the interface must exist for any such details, the edge state reorganizes itself around the impurity and is not scattered by it. This is a general mechanism, which is not special to the quantum Hall case, and it will appear again for every topological invariant that we see from now on.
+
+::: lab
+This argument can be tested by writing the interface on purpose. In a film of a magnetic topological insulator, magnetic domains were written with the tip of a magnetic force microscope, with each domain in the quantum anomalous Hall state. Transport measurements show a chiral one-dimensional conduction along the walls between the domains, at the places where the walls were written. The measurement is in [this article](https://www.science.org/doi/10.1126/science.aan5991).
+
+We can read this experiment with the result of this page. Two domains with opposite magnetization are related by time reversal, so their Chern numbers are $C$ and $-C$. The wall between them then has a net number $2|C|$ of chiral modes, which is two for $|C|=1$.
+:::
+
 ::: quiz
-Why must the gap close somewhere in an interface between a region with $C=1$ and a region with $C=0$?
+The Hall conductivity of a gapped system is
+
+$$\sigma_{xy} = \frac{e^2}{h}\,C, \qquad C = \sum_{n\ \text{filled}}\frac{1}{2\pi}\int_{\text{BZ}}\Omega_n(k)\,d^2k,$$
+
+with $\Omega_n(k)$ the Berry curvature of the filled band $n$, and $C$ is an integer. A region with $C=1$ touches a region with $C=0$. Why must the gap close in between?
 
 - [ ] Because a gapless state is needed for the current to flow in a gapped bulk.
 
@@ -17,7 +47,7 @@ Why must the gap close somewhere in an interface between a region with $C=1$ and
 
 - [x] Because $C$ is an integer, and it can change only where the quantization argument fails, which is where the gap closes.
 
-    This is true. A quantized quantity cannot change continuously while the gap is open, as in [(3.4)](#eq-3-4). An interface from $C=1$ to $C=0$ must then have a point where the local gap is zero.
+    This is true. A quantized quantity cannot change continuously while the gap is open. An interface from $C=1$ to $C=0$ must then have a point where the local gap is zero.
 
 - [ ] Because the vacuum has no states and so it cannot have a gap.
 
@@ -25,9 +55,67 @@ Why must the gap close somewhere in an interface between a region with $C=1$ and
 
 :::
 
-![The argument of Figure [3.2](#fig:s03:bulkboundary), now computed on a cylinder of the Haldane model with $t_2=0.1$. The staggered potential $M$ grows smoothly from $0$ to $t$ and goes back, so a region with $C=0$ sits between two regions with $C=1$. In (a) the local gap is the bulk gap of the Haldane model at the local value of $M$. It closes at the two crosses, where $M$ passes $3\sqrt3\,t_2$ and the Chern number jumps. In (b) the spectrum of the cylinder has only two branches inside the gap, one at each interface, with opposite velocities. The colors of the branches are the colors of the two crosses, so each branch sits where the local gap closes.](figures/web/session03/interface_modes.svg){#sch:s03:interface_modes alt="Left, a dashed profile of the staggered potential and a solid local gap that drops to zero at two points. Right, the bands of a cylinder with a blue and a red branch that cross the gap with opposite slopes."}
+::: quiz
+A honeycomb lattice has a Haldane coupling and a staggered potential $M$. A deformation changes $M$ linearly with a parameter $\lambda$, from $\lambda=0$ to $\lambda=1$. Each plot shows the bulk gap, in units of the hopping $t$, against $\lambda$. Along which deformation does the Chern number change?
 
-The same argument explains the robustness that we used before. Let us put a local impurity at the edge of a quantum Hall sample. This only changes the microscopic details of the interface between the vacuum and the quantum Hall state. Since the topological excitation of the interface must exist for any such details, the edge state reorganizes itself around the impurity and is not scattered by it. This is a general mechanism, which is not special to the quantum Hall case, and it will appear again for every topological invariant that we see from now on.
+- [ ] ![A gap that falls along the path and stays above zero.](figures/web/session03/g2_quiz_gap_open.svg)
+
+    This is false. The gap falls from $0.90$ to $0.18$ and it never closes, so the integer cannot change. Here the Haldane coupling alone opens the gap $0.90$, and $M$ goes from $0$ to $0.36$. The Chern number has the size $1$ at both ends.
+
+- [x] ![A gap that falls to zero in the middle of the path and opens again.](figures/web/session03/g2_quiz_gap_closes.svg)
+
+    This is true. The Haldane coupling alone opens the gap $0.90$, and $M$ goes from $0$ to $0.90$. The gap is $2|M-0.45|$, so it closes at $\lambda=0.5$ and opens again. This coupling is `add_haldane(0.1)` of pyqula, which is a second-neighbor hopping $t_2=0.087$, so the value $0.45$ is $3\sqrt3\,t_2$. The Chern number has the size $1$ at $\lambda=0$ and it is $0$ at $\lambda=1$. An integer can only change where the gap closes.
+
+- [ ] ![A gap that grows along the path.](figures/web/session03/g2_quiz_gap_grows.svg)
+
+    This is false. The gap grows from $0.18$ to $0.90$ and it never closes. Here $M$ goes from $0.54$ to $0.90$, which is above the value $0.45$ where the gap of this lattice closes. The Chern number is $0$ at both ends, so the two ends are the same trivial insulator.
+
+:::
+
+::: quiz
+A region with two filled Landau levels touches a region with one filled Landau level. Each filled level has the Chern number $1$, so $C_1=2$ and $C_2=1$. How many chiral modes does the interface have?
+
+- [ ] $C_1+C_2=3$
+
+    This is false. Take $C_1=C_2=1$, which is the same phase on both sides. There is no interface and the gap is open everywhere, but the sum would give two modes.
+
+- [ ] $C_1=2$
+
+    This is false. This is the answer for an edge with the vacuum, where $C_2=0$. Take $C_1=C_2=2$, which is again the same phase on both sides with no gapless state, while this rule would give two modes.
+
+- [x] $C_1-C_2=1$
+
+    This is true. Only the difference of the two integers must be carried by the interface. The first Landau level is filled on both sides, so it does not end there, and only the second level does. Take a ribbon of the square lattice with the flux $0.02$ per plaquette, a potential step of $0.24\,t$ and the chemical potential at $-3.5\,t$. It has two filled levels on one side of the step and one on the other, and one branch at the step crosses the chemical potential.
+
+:::
+
+:::: problem
+The simplest interface that we can solve by hand is a gapped Dirac cone whose mass changes sign. We take
+
+$$H = -i\,\partial_x\,\sigma_x + k_y\,\sigma_y + m(x)\,\sigma_z,$$
+
+in units where $\hbar$ and the velocity are one. Here $k_y$ is the momentum along the interface, and the mass $m(x)$ goes from $-m_0$ far to the left to $+m_0$ far to the right, with $m_0>0$. Far from the interface the spectrum has the gap $2m_0$. Find the state that is bound to the interface, and its energy $E(k_y)$.
+
+::: solution
+We first set $k_y=0$ and look for a state with zero energy, $(-i\sigma_x\partial_x+m\,\sigma_z)\psi=0$. We multiply this equation by $i\sigma_x$ and use $\sigma_x\sigma_z=-i\sigma_y$, which gives
+
+$$\partial_x\psi = -m(x)\,\sigma_y\,\psi .$$
+
+We take the spinor of $\psi$ as an eigenvector of $\sigma_y$, with $\sigma_y\chi_\pm=\pm\chi_\pm$, and then
+
+$$\psi_\pm(x) = \exp\Big(\mp\int_0^x m(x')\,dx'\Big)\,\chi_\pm .$$
+
+Far from the interface the exponent of $\psi_+$ is $-m_0|x|$ on both sides. So $\psi_+$ decays on both sides and can be normalized, while $\psi_-$ grows on both sides and is not a state. There is one state at zero energy, with $\chi_+=(1,i)/\sqrt2$. It sits where the mass vanishes, and far from that point it decays over the length $1/m_0$.
+
+Now we add $k_y$. The same $\psi_+$ is still an eigenstate, since the term $k_y\sigma_y$ acts on it as the number $k_y$,
+
+$$H\,\psi_+ = k_y\,\psi_+, \qquad E(k_y) = k_y .$$
+
+This is one branch that crosses the whole gap with a single sign of the velocity, which is a chiral mode. A smooth interface can bind more states at finite energies inside the gap, but they do not cross it. If the mass goes from $+m_0$ to $-m_0$ the bound state is $\psi_-$ with $E=-k_y$, so the mode moves the other way. We did not use any detail of $m(x)$, only its two signs far from the interface. In Section [3.10](#sec-3-10) we will see that the two signs of the mass differ by one unit of the Chern number, so this is the bulk-boundary correspondence with one mode.
+
+For a measurement it means that the local density of states that STM measures at zero energy sits at the interface, and it decays away from it over the length $1/m_0$. For a calculation it gives the width that a ribbon needs, which is several times this length, so that the modes of its two edges do not overlap.
+:::
+::::
 
 ::: {.tryit notebook="session3.ipynb" cell="Topological edge states in irregular geometries"}
 In the cell with the Haldane coupling on an island, change `rot=np.pi/6.` or `n=8` so that the shape of the edge changes. At the energies inside the gap, the local density of states still sits on the whole boundary, whatever its shape. This is the argument of [](#fig:s03:bulkboundary), which does not use any detail of the edge.

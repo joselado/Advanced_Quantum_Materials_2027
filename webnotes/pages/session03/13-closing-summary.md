@@ -21,8 +21,22 @@ In this session we started from the Bloch Hamiltonian of Section [2.5](#sec-2-5)
 
 In Session 4 we take the flat-band case of Section [2.10](#sec-2-10) in full. We will derive the Landau levels from the start, see the integer quantum Hall effect as a set of filled bands with $C=1$, and build the fractional quantum Hall state.
 
+After this session we can do the following tasks, and each of them has the section that teaches it.
+
+- Write the Hall conductivity of an insulator as a sum over filled and empty bands, and say why the band energies drop out of it. This is in Section [3.4](#sec-3-4) and Section [3.5](#sec-3-5).
+- Compute a Chern number on a k-mesh and say when the mesh is too coarse. This is in Section [3.5](#sec-3-5).
+- Count the chiral edge states in the spectrum of a ribbon, and say on which edge each of them sits. This is in Section [3.6b](#sec-3-6b).
+- Say where a gapless state must appear when two regions with different invariants are joined. This is in Section [3.7](#sec-3-7).
+- Compute the Zak phase of the SSH chain from its Bloch Hamiltonian, and predict if the chain has zero modes at its ends. This is in Section [3.9c](#sec-3-9c) and Section [3.9b](#sec-3-9b).
+- Decide if the two Dirac points of the honeycomb lattice add or cancel, from how the mass term transforms under time reversal. This is in Section [3.10](#sec-3-10) and Section [3.10b](#sec-3-10b).
+- Tell a helical edge from a chiral one in the spectrum of a ribbon, and say which perturbation opens a gap in it. This is in Section [3.11](#sec-3-11) and Section [3.11b](#sec-3-11b).
+
 ::: quiz
-What decides whether the two Dirac points of the honeycomb lattice give Chern numbers that cancel or that add?
+Each gapped Dirac point of the honeycomb lattice has the Chern number
+
+$$C_{\text{Dirac}} = \frac{1}{2}\,\mathrm{sgn}(m)\,\mathrm{sgn}(\lambda).$$
+
+Here $m$ is its mass and $\lambda=\pm1$ is its chirality. The chirality is opposite at the two points. What decides whether the two points cancel or add?
 
 - [ ] The lattice constant.
 
@@ -30,7 +44,7 @@ What decides whether the two Dirac points of the honeycomb lattice give Chern nu
 
 - [ ] The size of the mass.
 
-    This is false. In Figure [3.5](#fig:s03:masses) the two gaps are about the same, with $m=0.5$ and a Haldane mass $3\sqrt{3}t_2\approx0.52$ for $t_2=0.1$. One gives $C=0$ and the other gives $C=\pm1$.
+    This is false. A staggered potential $0.5\,t$ gives the gap $1.0\,t$, and a Haldane coupling $t_2=0.1\,t$ gives the gap $6\sqrt{3}\,t_2\approx1.04\,t$. The two masses have about the same size, but the first one gives $C=0$ and the second one gives $C=\pm1$.
 
 - [x] How the mass term transforms under time reversal.
 
@@ -41,19 +55,40 @@ What decides whether the two Dirac points of the honeycomb lattice give Chern nu
 :::
 
 ::: quiz
-Which symmetry protects the helical edge states of the quantum spin Hall insulator?
+One edge of a quantum spin Hall insulator has two states inside the gap. They cross, they move in opposite directions and they have opposite spin. Which symmetry protects this crossing?
 
 - [ ] Spin conservation.
 
-    This is false. Rashba coupling breaks the conservation of $S_z$, and the crossing of the helical edge stays closed as long as time-reversal symmetry holds.
+    This is false. A Rashba coupling breaks the conservation of $s_z$. On a ribbon with a Rashba coupling $0.1\,t$ the two edge states are still degenerate at $k=\pi$, since time-reversal symmetry holds.
 
 - [x] Time-reversal symmetry, through the Kramers degeneracy.
 
-    This is true. The helical edge is protected by time reversal, and it holds even when spin is not conserved.
+    This is true. The two states are partners under time reversal, and at a time-reversal invariant momentum they are degenerate. This holds even when spin is not conserved.
 
-- [ ] Translational symmetry and gauge invariance.
+- [ ] Translational symmetry along the edge.
 
-    This is false. A random spin-independent potential at the edge breaks the translation symmetry completely, and the crossing at $k=0$ is still protected. The Chern number needs no symmetry at all, only a bulk gap that stays open.
+    This is false. Take a ribbon with a random potential on every site, with values between $-0.5\,t$ and $0.5\,t$, the same for both spins. It breaks the translations, and the edge spectrum has no gap. A random exchange field of the same size breaks time reversal. When it has a component in the plane, it opens gaps of order $0.1\,t$ to $0.4\,t$ in the edge spectrum, which change with the realization.
+
+:::
+
+::: quiz
+The Hall conductivity of an insulator is
+
+$$\sigma_{xy} = \frac{e^2}{h}\,C.$$
+
+On one edge, $|C|$ counts the branches in one direction minus the others. Each picture shows the bands of a ribbon against the momentum $k$. The states of the lower edge are in color. Red is spin up and blue is spin down. Which ribbon has $|\sigma_{xy}|=2e^2/h$?
+
+- [x] ![The bands of a ribbon with a gap. A red and a blue branch cross the gap next to each other, both going up to the right.](figures/web/session03/g4_quiz_ribbon_chern.svg)
+
+    This is true. The lower edge has two branches inside the gap, one of each spin, and both have the same sign of the slope. So two branches move in the same direction and $|C|=2$. This ribbon has the Haldane coupling for both spins.
+
+- [ ] ![The bands of a ribbon with a gap. A red branch and a blue branch cross the gap with opposite slopes and cross each other in the middle.](figures/web/session03/g4_quiz_ribbon_qsh.svg)
+
+    This is false. The two branches of the lower edge have opposite slopes, so the count is $1-1=0$ and $\sigma_{xy}=0$. This is the helical edge of a quantum spin Hall insulator, with $C_\uparrow=1$ and $C_\downarrow=-1$ up to a common sign.
+
+- [ ] ![The bands of a ribbon with an empty gap. A short flat red line and a short flat blue line sit at the top of the lower bands.](figures/web/session03/g4_quiz_ribbon_trivial.svg)
+
+    This is false. No branch crosses the gap, so the count is $0$ and $\sigma_{xy}=0$. This ribbon has a staggered sublattice potential $0.45\,t$, which gives an ordinary insulator.
 
 :::
 
