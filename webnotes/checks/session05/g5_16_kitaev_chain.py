@@ -140,9 +140,22 @@ for tt in (1.0, 0.7):
     E = np.sqrt((-2 * tt * np.cos(k))**2 + (2 * tt * np.sin(k))**2)
     check(f'quiz: the bulk band is flat at Delta=t={tt}, mu=0, E = 2t', np.allclose(E, 2 * tt), tt)
 check('quiz: at k=0, eps=-2t and Delta(0)=0, at k=pi/2, eps=0 and |Delta|=2t', abs(-2 * np.cos(0) + 2) < 1e-15 and abs(2 * np.sin(np.pi / 2) - 2) < 1e-15, 2)
-E = np.sqrt((2 * np.cos(k))**2 + (2 * 0.5 * np.sin(k))**2)
-check('quiz: the flat value t would need Delta=t/2, which is not flat, E from t to 2t', abs(E.min() - 1) < 1e-6 and abs(E.max() - 2) < 1e-12,
-      (round(E.min(), 4), round(E.max(), 4)))
+# the third feedback, corrected on 2026-11-22: "No Delta gives a band flat at t, since at k=0 the pairing vanishes and E=2t for
+# any Delta". First route, the formula at mu=0, E(0) = |2t cos 0| = 2t. Second route, the levels of the BdG matrix of a ring of
+# 16 sites, which hold the level 2t of k=0 for every Delta, while the band is flat only at Delta=t, where it is at 2t
+for D_ in (0.2, 0.5, 1.0, 1.5):
+    E = np.sqrt((2 * np.cos(k))**2 + (2 * D_ * np.sin(k))**2)
+    Nr = 16
+    hr, dr = np.zeros((Nr, Nr)), np.zeros((Nr, Nr))
+    for n in range(Nr):
+        m = (n + 1) % Nr
+        hr[n, m] = hr[m, n] = -1.0
+        dr[m, n], dr[n, m] = D_, -D_
+    er = np.abs(np.linalg.eigvalsh(np.block([[hr, dr], [dr.T, -hr]])))
+    flat = E.max() - E.min() < 1e-12
+    check(f'quiz: at Delta={D_}t and mu=0, E(k=0) = 2t by the formula and on a ring, and the band is flat only at Delta=t',
+          abs(E[np.argmin(np.abs(k))] - 2) < 1e-12 and np.min(np.abs(er - 2)) < 1e-12 and flat == (D_ == 1.0),
+          (round(E.min(), 4), round(E.max(), 4)))
 
 # ---- a second route for the levels of the figures, the pyqula chain with d=[1,0,0], whose lowest levels are those of (5.19)
 from pyqula import geometry
@@ -170,4 +183,101 @@ e = kc.levels(10, 1.0, 0.0, 0.0)
 check('second route: the metal of 10 sites has the levels +-2t cos(pi j/11), the smallest 0.28t, the largest 1.92t',
       np.allclose(np.sort(e), np.sort(np.r_[2 * np.cos(np.pi * j / 11), -2 * np.cos(np.pi * j / 11)])) and
       abs(2 * np.cos(5 * np.pi / 11) - 0.2846) < 1e-4 and abs(2 * np.cos(np.pi / 11) - 1.919) < 1e-3, round(2 * np.cos(5 * np.pi / 11), 4))
+
+# ---- the sentence after (5.20), the lecturer's pick of 2026-11-22: "The sign of i is a gauge choice, Delta -> -Delta, and the
+# spectrum depends only on 2|Delta sin k|". First route, a ring of 24 sites at mu=0.7 and Delta=0.35: the levels for +Delta and
+# -Delta are the same, and they are +-sqrt(eps^2 + 4 Delta^2 sin^2 k). Second route, the 2x2 block at three momenta with
+# +2i Delta sin k, -2i Delta sin k and the real 2 Delta |sin k|, which have the same modulus. Third route, the gauge c_n -> i c_n
+# is the unitary diag(i, -i) of the Nambu basis, and it turns the BdG matrix of Delta into the one of -Delta.
+def ring(Nr, t, mu, D):
+    hr, dr = np.zeros((Nr, Nr)), np.zeros((Nr, Nr))
+    for n in range(Nr):
+        m = (n + 1) % Nr
+        hr[n, m] = hr[m, n] = -t
+        dr[m, n], dr[n, m] = D, -D
+    hr -= mu * np.eye(Nr)
+    return np.block([[hr, dr], [dr.T, -hr]])
+
+
+Nr, mu_, D_ = 24, 0.7, 0.35
+ep, em = np.linalg.eigvalsh(ring(Nr, 1.0, mu_, D_)), np.linalg.eigvalsh(ring(Nr, 1.0, mu_, -D_))
+kr = 2 * np.pi * np.arange(Nr) / Nr
+Ek = np.sqrt((2 * np.cos(kr) + mu_)**2 + 4 * D_**2 * np.sin(kr)**2)
+check('after (5.20): on a ring of 24 sites, mu=0.7, Delta=+-0.35 give the same levels, +-sqrt((2t cos k + mu)^2 + 4 Delta^2 sin^2 k)',
+      np.abs(ep - em).max() < 1e-12 and np.abs(np.sort(np.r_[Ek, -Ek]) - ep).max() < 1e-12, round(np.abs(ep - em).max(), 15))
+ok = True
+for kk in (0.3, 1.1, 2.5):
+    eps_ = -2 * np.cos(kk) - mu_
+    lev = [np.linalg.eigvalsh(np.array([[eps_, dk], [np.conj(dk), -eps_]])) for dk in
+           (2j * D_ * np.sin(kk), -2j * D_ * np.sin(kk), 2 * D_ * abs(np.sin(kk)))]
+    ok = ok and all(np.allclose(l, lev[0], atol=1e-12) for l in lev) and np.allclose(lev[0][1], np.hypot(eps_, 2 * D_ * np.sin(kk)))
+check('after (5.20): the block with +2i Delta sin k, -2i Delta sin k or 2 Delta |sin k| has the same two levels at k = 0.3, 1.1, 2.5',
+      ok, 3)
+Ug = np.diag(np.r_[1j * np.ones(8), -1j * np.ones(8)])
+check('after (5.20): the gauge c_n -> i c_n turns the open chain of Delta=0.3 into the one of Delta=-0.3, mu=0.4, 8 sites',
+      np.abs(Ug @ kc.bdg(8, 1.0, 0.4, 0.3) @ Ug.conj().T - kc.bdg(8, 1.0, 0.4, -0.3)).max() < 1e-15, 0)
+
+# ---- the notebook box, rewritten on 2026-11-22 to match its cell. The cell "Emergence of Majorana modes as a function of the
+# size of the superconductor" builds the chain of L sites with add_onsite(mu) and add_pairing(mode="pwave", delta=Delta,
+# d=[1,1,0]), at Delta = 0.1 and mu = 0.3, for L from 4 to 40. With the conventions sheet this is (5.19) with t=1,
+# mu = -0.3 and Delta = 0.1 |1 + i| = 0.14. First route, the text of the cell. Second route, its pyqula chain against the exact
+# chain of _g5_kitaev, for every L of the cell. At Delta=t, mu=0 the two lowest levels are zero for every L of the cell, and at
+# the values of the cell they come down from 0.29 at L=4 to below 0.002 at L=40, with oscillations.
+import json
+nb = json.load(open(os.path.join(HERE, '..', '..', '..', 'jupyter-notebooks', 'session5.ipynb'), encoding='utf-8'))
+cells = [''.join(x['source']) for x in nb['cells']]
+head = [i for i, s in enumerate(cells) if s.startswith('## Emergence of Majorana modes as a function of the size of the superconductor')]
+code = cells[head[0] + 1]
+check('notebook box: the cell has Delta = 0.1, mu = 0.3, add_onsite(mu), d=[1.,1.,0.] and the lengths range(4,42,2)',
+      len(head) == 1 and 'Delta = 0.1 ' in code and 'mu = 0.3 ' in code and 'h.add_onsite(mu)' in code
+      and 'd=[1.,1.,0.]' in code and 'Ls = range(4,42,2)' in code, head)
+
+
+def cell_levels(L, mu, Delta):
+    g = geometry.chain().get_supercell(L)  # the open chain of the cell
+    g.dimensionality = 0
+    h = g.get_hamiltonian()
+    h.add_onsite(4.0); h.add_exchange([0., 0., 4.])
+    h.add_onsite(mu)
+    h.add_pairing(mode="pwave", delta=Delta, d=[1., 1., 0.])
+    m = h.intra.todense() if hasattr(h.intra, 'todense') else h.intra
+    return np.sort(np.abs(np.linalg.eigvalsh(np.array(m))))
+
+
+gs = geometry.chain().get_supercell(4); gs.dimensionality = 0
+hs = gs.get_hamiltonian(); hs.add_onsite(4.0); hs.add_exchange([0., 0., 4.]); hs.add_onsite(0.3)
+ms = np.array(hs.intra.todense() if hasattr(hs.intra, 'todense') else hs.intra)
+check('notebook box: mu = 0.3 of the cell puts the spin-down onsite energy at +0.3, which is -mu c^dag c of (5.19) with mu=-0.3',
+      abs(ms[1, 1] - 0.3) < 1e-12 and abs(ms[0, 0] - 8.3) < 1e-12, (ms[1, 1].real, ms[0, 0].real))
+Dcell = 0.1 * abs(1 + 1j)
+ok, first, last, low = True, None, None, {}
+for L in range(4, 42, 2):
+    a = cell_levels(L, 0.3, 0.1)[:L]
+    b = np.sort(np.abs(kc.levels(L, 1.0, -0.3, Dcell)))[:L]
+    z = np.sort(np.abs(kc.levels(L, 1.0, 0.0, 1.0)))[:2]
+    ok = ok and np.abs(a - b).max() < 1e-10 and z.max() < 1e-12
+    first = a[0] if first is None else first
+    last = a[0]
+    low[L] = a[0]
+check('notebook box: the cell is (5.19) with mu=-0.3 and Delta=0.14 for every L from 4 to 40, and Delta=t, mu=0 has two zero levels '
+      'for every L', ok and abs(Dcell - 0.14) < 5e-3, round(Dcell, 4))
+check('notebook box: at the values of the cell the lowest level goes from 0.29 at L=4 to below 0.002 at L=40',
+      abs(first - 0.285) < 5e-3 and last < 2e-3, (round(first, 4), round(last, 5)))
+# corrected after the independent check of 2026-11-22: "There the two states approach zero only as the chain grows, with
+# oscillations, since the overlap of the two end modes oscillates with the length of the chain." First route, the levels of the
+# cell: the lowest one is not monotonic in L, 0.0126 at L=10 and 0.0449 at L=14, 2.0e-5 at L=30 and 1.65e-3 at L=40. Second route,
+# the end mode: at E=0 its Majorana amplitude a_n obeys (t+Delta) a_{n+1} + mu a_n + (t-Delta) a_{n-1} = 0, whose two roots are
+# complex for mu^2 < 4(t^2 - Delta^2), with the modulus sqrt((t-Delta)/(t+Delta)) = 0.867, so a_n decays as 0.867^n and oscillates.
+# The u+v part of the lowest state of a chain of 60 sites obeys this recursion at the left end, and |a_n| is not monotonic there
+nonmono = low[14] > 2 * low[10] and low[40] > 10 * low[30] and low[30] < 1e-4
+lam = np.roots([1.0 + Dcell, -0.3, 1.0 - Dcell])
+ev60, vv60 = np.linalg.eigh(kc.bdg(60, 1.0, -0.3, Dcell))
+j60 = int(np.argmin(np.where(ev60 > 0, ev60, np.inf)))
+amp = vv60[:60, j60] + vv60[60:, j60]
+amp = amp / amp[np.argmax(np.abs(amp))]
+res = np.abs((1 + Dcell) * amp[2:30] - 0.3 * amp[1:29] + (1 - Dcell) * amp[0:28]).max()
+check('notebook box: the lowest level of the cell oscillates in L, and the end mode decays as 0.867^n with complex roots',
+      nonmono and np.all(np.abs(lam.imag) > 0.5) and np.allclose(np.abs(lam), np.sqrt((1 - Dcell) / (1 + Dcell)), atol=1e-12)
+      and abs(np.abs(lam[0]) - 0.867) < 5e-4 and (-0.3) ** 2 < 4 * (1 - Dcell ** 2) and res < 1e-5 and abs(amp[1]) < abs(amp[2]),
+      (round(low[10], 4), round(low[14], 4), '%.1e' % low[30], '%.2e' % low[40], round(abs(lam[0]), 4), '%.0e' % res))
 print('all checks of page 16 hold')

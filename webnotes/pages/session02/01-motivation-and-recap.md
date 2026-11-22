@@ -61,7 +61,7 @@ How many rotations, counting the identity, leave a square unchanged?
 
 - [ ] $8$
 
-    This is false. A rotation by $45^\circ$ moves a corner to the middle of an edge, so the square becomes a diamond. The number $8$ counts the rotations and the four mirrors together.
+    This is false. A rotation by $45^\circ$ moves each corner to a point beyond the middle of an edge, so the square becomes a diamond. The number $8$ counts the rotations and the four mirrors together.
 
 Counting the mirrors too, the square has eight symmetry operations, and four of them are rotations.
 :::

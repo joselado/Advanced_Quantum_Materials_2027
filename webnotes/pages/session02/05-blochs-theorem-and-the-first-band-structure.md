@@ -18,17 +18,17 @@ $$|\Psi_\varphi\rangle = \sum_n e^{in\varphi}\, c_n^\dagger|0\rangle. \tag{2.6}$
 
 It is cleaner to invert this relation and to define new operators that are labelled by $\varphi$ instead of by site,
 
-$$\Psi_\varphi^\dagger = \sum_n e^{in\varphi}\, c_n^\dagger, \qquad
-c_n^\dagger = \sum_\varphi e^{-in\varphi}\, \Psi_\varphi^\dagger, \tag{2.7}$$
+$$\Psi_\varphi^\dagger = \frac{1}{\sqrt L}\sum_n e^{in\varphi}\, c_n^\dagger, \qquad
+c_n^\dagger = \frac{1}{\sqrt L}\sum_\varphi e^{-in\varphi}\, \Psi_\varphi^\dagger, \tag{2.7}$$
 
-which is an ordinary Fourier transform between real space and the space of Bloch phases. Putting [(2.7)](#eq-2-7) into [(2.5)](#eq-2-5) gives
+which is an ordinary Fourier transform between real space and the space of Bloch phases. Here we close the chain into a ring of $L$ sites, as in Section [2.4](#sec-2-4), so that $\varphi$ takes the $L$ values $2\pi m/L$, and at the end we take $L\to\infty$. The factor $1/\sqrt L$ makes the transform unitary, so $\Psi_\varphi^\dagger|0\rangle$ is the state [(2.6)](#eq-2-6) normalized to one, and [(2.8)](#eq-2-8) below does not change with it. Putting [(2.7)](#eq-2-7) into [(2.5)](#eq-2-5) gives
 
-$$\sum_n c_n^\dagger c_{n+1} = \sum_{n,\varphi,\varphi'} e^{-in\varphi}\,e^{i\varphi'(n+1)}\,
+$$\sum_n c_n^\dagger c_{n+1} = \frac{1}{L}\sum_{n,\varphi,\varphi'} e^{-in\varphi}\,e^{i\varphi'(n+1)}\,
 \Psi_\varphi^\dagger \Psi_{\varphi'} = \sum_{\varphi,\varphi'} e^{i\varphi'}\,\delta_{\varphi\varphi'}\,
 \Psi_\varphi^\dagger\Psi_{\varphi'} = \sum_\varphi e^{i\varphi}\, \Psi_\varphi^\dagger\Psi_\varphi,$$
 
 where the sum over $n$ gave the orthogonality relation $\sum_n e^{in(\varphi'-\varphi)} =
-\delta_{\varphi\varphi'}$. The Hermitian conjugate term gives the complex conjugate phase, and the Hamiltonian becomes diagonal.
+L\,\delta_{\varphi\varphi'}$, and the factor $L$ cancels the $1/L$ of the two normalizations. The Hermitian conjugate term gives the complex conjugate phase, and the Hamiltonian becomes diagonal.
 
 ::: key
 The chain [(2.5)](#eq-2-5) is diagonal in the Bloch phases,
@@ -172,11 +172,11 @@ Each extremum of the band is a point where the velocity vanishes, so it gives a 
 ::: notebookbox
 **Notebook check-in:** [`session2.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session2.ipynb), "One dimensional chain, with longer range hopping" (Core)
 
-Add the second-neighbor hopping $\eta$ to the chain from the previous box, and check that the band you compute numerically agrees with [(2.9)](#eq-2-9). It is also useful to check the density of states of Section [2.9](#sec-2-9) here. The hopping $\eta$ can create a second local extremum in $\epsilon_\varphi$, and with it one more Van Hove singularity in the spectrum.
+Add the second-neighbor hopping $\eta$ to the chain from the previous box, and check that the band you compute numerically agrees with [(2.9)](#eq-2-9). The cell itself changes the third-neighbor hopping $t_3$, in the third place of `tij`. It is also useful to check the density of states of Section [2.9](#sec-2-9) here. The hopping $\eta$ can create a second local extremum in $\epsilon_\varphi$, and with it one more Van Hove singularity in the spectrum.
 :::
 
 ::: {.tryit notebook="session2.ipynb" cell="One dimensional chain, with longer range hopping"}
-Put the second neighbor hopping in the second place of `tij`, for example `tij=[1.0,0.3,0.0]`, and compare the band with [(2.9)](#eq-2-9). Increase it to $0.5$, and check that the band gets an extra extremum and the density of states an extra peak. The notebook uses the opposite sign of the hopping, so its band is turned upside down.
+Put the second neighbor hopping in the second place of `tij`, for example `tij=[1.0,0.2,0.0]`, and compare the band with [(2.9)](#eq-2-9). Increase it to $0.5$, and check that the band gets an extra extremum and the density of states an extra peak. The notebook uses the opposite sign of the hopping, so its band is turned upside down.
 :::
 
 The computational tool of the whole course is `pyqula`, a Python package that computes band structures such as this one in 1D, 2D, 3D and higher dimensions. It is installed with `pip install pyqula`, and the notebook is the place where you run the code of this section yourself.

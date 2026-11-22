@@ -50,15 +50,19 @@ signs. A statement that is not on this sheet is checked before a page claims it.
 ## The Bloch phase and the momentum of pyqula
 
 - The translation $T$ of Section 2.4 moves each amplitude to the previous site, $(T\psi)_n=\psi_{n+1}$, so the state
-  $e^{in\varphi}$ of (2.6) has the eigenvalue $e^{i\varphi}$. The rotation $R$ of Section 2.3 and of the figure
-  `dimer_ring_symmetry` moves each amplitude to the next site, $(R\psi)_j=\psi_{j-1}$, which is $T^{-1}$, so the same
-  state has the eigenvalue $e^{-i\varphi}$ under $R$. This is why $(1,-i,-1,i)$ has $R=i$ and $(1,i,-1,-i)$ has
-  $R=-i$, as Section 2.3 says, while $(1,-i,-1,i)$ is the state $\varphi=-\pi/2$ of (2.6). On three sites the
-  rotation $1\to2\to3\to1$ in the sense of $R$ gives $e^{2\pi ij/3}$ the eigenvalue $e^{-2\pi i/3}$.
-- (2.7) and the orthogonality sum below it are printed with no normalization. On a ring of $L$ sites
-  $\sum_n e^{in(\varphi'-\varphi)}=L\,\delta_{\varphi\varphi'}$, so the inverse of (2.7) as printed gives
-  $L\,c_n^\dagger$. With $1/\sqrt L$ on both sides the transform is unitary, and the same steps give $H$ diagonal
-  with $-2t\cos\varphi$, which is (2.8) unchanged. Checked on 8 sites.
+  $e^{in\varphi}$ of (2.6) has the eigenvalue $e^{i\varphi}$. Since 2026-11-22, by the decision of the lecturer, the
+  rotation $R$ of Sections 2.3 and 2.4 and of the figures `dimer_ring_symmetry` and `block_diagonal` moves each
+  amplitude in the same direction, $(R\psi)_j=\psi_{j+1}$, so the same state has the eigenvalue $e^{i\varphi}$ under
+  $R$ too. So $(1,-i,-1,i)$ has $R=-i$ and $(1,i,-1,-i)$ has $R=i$, as Section 2.3 says, and $(1,-i,-1,i)$ is the state
+  $\varphi=-\pi/2$ of (2.6). On three sites $R$ moves the amplitude of the site 2 to the site 1 and gives
+  $e^{2\pi ij/3}$ the eigenvalue $e^{2\pi i/3}$. A rotation in the other sense gives every mode the conjugate
+  eigenvalue, so the label $n$ becomes $-n$ and the set of modes is the same.
+- (2.7) is printed with the factor $1/\sqrt L$ on both sides since 2026-11-22, by the decision of the lecturer, on a
+  ring of $L$ sites with $\varphi=2\pi m/L$. The orthogonality sum below it is
+  $\sum_n e^{in(\varphi'-\varphi)}=L\,\delta_{\varphi\varphi'}$, the transform is unitary, and the same steps give $H$
+  diagonal with $-2t\cos\varphi$, which is (2.8) unchanged. Without the factor the inverse would give
+  $L\,c_n^\dagger$ and the band would be $L$ times (2.8). (2.6) stays unnormalized, and $\Psi_\varphi^\dagger|0\rangle$
+  is (2.6) divided by $\sqrt L$. Checked on 8 sites.
 - $\gamma_{\alpha\beta}$ of (2.11) is the element of $c_{n,\alpha}^\dagger c_{n+1,\beta}$, and `h.inter` of pyqula is
   this $\gamma$. `h.get_hk_gen()([k,0,0])` is `h.intra + h.inter*exp(2j*pi*k)` plus its Hermitian conjugate, the
   form (2.12) with $\varphi=2\pi k$. `bichain()` has its only intercell 1 in `h.inter[1,0]`, the bond from $B$ of a
@@ -133,8 +137,8 @@ signs. A statement that is not on this sheet is checked before a page claims it.
 
 - $v_F=3ta/2\hbar$ of (2.20) holds with $a$ the bond length. The slope of $|f|$ at $K$ is 1.5000 in every direction,
   in the two frames of the scripts and in pyqula, in units of $t$ times the bond length over $\hbar$, and 0.866 in
-  units of the lattice constant $\sqrt3$. The largest velocity of the chain, $2ta/\hbar$ at $\varphi=\pm\pi/2$, is
-  larger than this.
+  units of the lattice constant $\sqrt3$. The largest size of the velocity of the chain, $2ta/\hbar$ at
+  $\varphi=\pm\pi/2$, is larger than this. The signed velocity is $+2ta/\hbar$ at $\pi/2$ and $-2ta/\hbar$ at $-\pi/2$.
 - At the $K$ of the notes $f(\mathbf K+\mathbf q)=\frac32t\,e^{-5i\pi/6}(q_x-iq_y)$, and at $K'=-K$ it is
   $\frac32t\,e^{-i\pi/6}(q_x+iq_y)$. So (2.20) holds at $K$ once the phase is put into the $B$ orbital, and at $K'$
   it holds with $q_y\to-q_y$, the sign of the $\sigma_y$ term changed. The energies (2.21) are the same at both. A
@@ -244,26 +248,29 @@ signs. A statement that is not on this sheet is checked before a page claims it.
 - $\hbar^2/2m=3.810$ eV Å$^2$, so an electron of 20 eV has $k=22.9$ nm$^{-1}$, and the angles $10^\circ$ and $20^\circ$
   give $k_\parallel=3.98$ and $7.84$ nm$^{-1}$, which round to the 4.0 and 7.8 of Section 2.12.
 
-## Open points of the old text, left as they are
+## Points of the old text, decided or corrected on 2026-11-22
 
-These restate lines above for the pages they concern. Each one is a change of a numbered equation or of the old
-text, so it is the lecturer's to decide, and the plan of the session lists them.
+These restate lines above for the pages they concern. They were open points, and each one is now decided by the
+lecturer or corrected on the web, as the plan of the session records. The check prints them in this order.
 
-- Section 2.3 calls $c_1^\dagger+c_2^\dagger$ the bonding state of $H=t(c_1^\dagger c_2+\text{h.c.})$. With $t>0$, the
-  sign of the session, it is the upper level at $+t$, as the caption of `dimer_ring_symmetry` on the same page says.
-- Section 2.4 says that $R$, which turns $1\to2\to3\to1$, multiplies a state by $e^{i\varphi_n}$ when
-  $\alpha_j\propto e^{i\varphi_nj}$. With the $R$ of Section 2.3, which gives $(1,-i,-1,i)$ the eigenvalue $i$, this
-  state has the eigenvalue $e^{-i\varphi_n}$, and $e^{i\varphi_n}$ is the eigenvalue of $T$. The allowed phases and
-  the set of eigenstates are the same, and only the label $n$ becomes $-n$.
-- (2.7) and the sum $\sum_n e^{in(\varphi'-\varphi)}=\delta_{\varphi\varphi'}$ of Section 2.5 miss the factor $L$, and
-  (2.8) holds for the normalized operators.
+- Section 2.3 called $c_1^\dagger+c_2^\dagger$ the bonding state of $H=t(c_1^\dagger c_2+\text{h.c.})$. With $t>0$,
+  the sign of the session, it is the upper level at $+t$, as the caption of `dimer_ring_symmetry` says, and the page now
+  calls it the symmetric state.
+- The rotation $R$ of Section 2.3 moved each amplitude to the next site, the opposite of $T$. The lecturer picked the
+  direction of $T$ for $R$, so $(1,-i,-1,i)$ now has $R=-i$, and Section 2.4 names the direction.
+- (2.7) and the sum below it had no factor $L$. The lecturer picked $1/\sqrt L$ in (2.7) and $L\,\delta_{\varphi\varphi'}$
+  in the sum, and (2.8) holds as printed.
 - Section 2.4 writes the ring of five sites with $H=\sum c_i^\dagger c_j$ and says that the weight of site 1 is $1/5$
-  for every $n$, for the lowest energy and for all other states. With this plus sign the lowest level has two states,
-  and the weight $1/5$ holds for its two Fourier modes, not for every state of the level. With $-t$, as in the
-  figure of the same paragraph, the lowest state is single and it holds as written.
-- The try-it of Section 2.5 starts at $\eta=0.3$ and says that the extra extremum comes when it is increased to 0.5.
-  Since $0.3>t/4$ the band at 0.3 already has it, with a dip of only $0.033t$.
-- The first notebook box of Section 2.5 asks to check the chain of the notebook against $-2t\cos\varphi$, with no
-  word on the sign. The cell has `tij=[1.0,0.]`, which gives $+2\cos\varphi$.
-- The notebook box of Section 2.7 says that the ladder section can be checked against $\epsilon_\pm$ of (2.13). The
-  ladder has the bands $2\cos\varphi\pm1$, and the chain of (2.13) is `bichain()`.
+  for every $n$. With this plus sign the lowest level has two states, and the weight $1/5$ holds for its two Fourier
+  modes, not for every state of the level, which the page now says. With $-t$, as in the figure of the same
+  paragraph, the lowest state is single.
+- Section 2.4 said that the eigenstates of the ring of three sites are the Fourier modes. With a real hopping the
+  twofold level, at $+t$ for the hopping $-t$ of (2.5), holds two states, and $(2,-1,-1)/\sqrt6$ is an eigenstate of it
+  that is no Fourier mode. The levels are $-2t$, $t$, $t$. So the page now says that they can be chosen as the Fourier
+  modes, and since the recheck d1 the caption of Figure 2.1 on the page says the same. The render of the figure and
+  its overlay are not changed.
+- The try-it of Section 2.5 started at $\eta=0.3$, which is above $t/4$ and already has the extra extremum, with a dip
+  of only $0.033t$, so it now starts at 0.2.
+- The first notebook box of Section 2.5 now says that the cell has `tij=[1.0,0.]`, which gives $+2\cos\varphi$.
+- The notebook box of Section 2.7 now says that the ladder has the bands $2\cos\varphi\pm1$, and the chain of (2.13) is
+  `bichain()`.

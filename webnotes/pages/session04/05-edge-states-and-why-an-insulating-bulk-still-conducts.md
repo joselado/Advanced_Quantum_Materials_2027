@@ -6,7 +6,7 @@ There is an obvious puzzle. If the chemical potential is in a gap between two La
 This is the Hall conductance of $N$ filled Landau levels, from Section [4.4](#sec-4-4). Here $C_n$ is the Chern number of the level $n$, and $C_{\text{tot}}$ is the Chern number of all the filled bands together.
 :::
 
-The answer is the same as in the general bulk-boundary argument of Section [3.7](#sec-3-7). A nonzero Chern number cannot end without consequences. At any interface where the Chern number changes there must be protected, gapless and chiral edge modes. Here the interface is the boundary between a sample with Chern number $N$ and the vacuum, which has $C=0$, so there are $N$ such modes. A chiral mode propagates in only one direction, and the number of edge modes at an interface is equal to the difference in Chern number across it.
+The answer is the same as in the general bulk-boundary argument of Section [3.7](#sec-3-7). A nonzero Chern number cannot end without consequences. At any interface where the Chern number changes there must be protected, gapless and chiral edge modes. Here the interface is the boundary between a sample with a Chern number of magnitude $N$ and the vacuum, which has $C=0$, so there are $N$ such modes. A chiral mode propagates in only one direction, and the number of edge modes at an interface is equal to the magnitude of the difference in Chern number across it.
 
 ::: key
 At an interface between two gapped regions with the Chern numbers $C_1$ and $C_2$, the number of chiral modes is
@@ -18,7 +18,9 @@ At the edge of a sample with $N$ filled Landau levels the vacuum has $C=0$, so t
 
 Every real sample is finite, so it always has an edge, and the edge states are always there, even when we do not think about them. A voltage between the top edge and the bottom edge of the sample creates an imbalance between the edge electrons that move to the right and the ones that move to the left. This imbalance is the quantized Hall current.
 
-The band structure of a ribbon, which is a sample that is infinite in $y$ and finite in $x$, shows this picture in a completely explicit way. Next to the flat bulk Landau levels, we find a set of dispersive states localized at the left edge, which all propagate in one direction. A mirror set is localized at the right edge and propagates in the opposite direction. Each propagation direction is tied to a *location*, the left edge or the right edge. So an impurity on the left edge cannot scatter a left-moving electron into a right-moving one, because the right edge is at a macroscopic distance. There is no available final state, so there is no backscattering, and the edge transport has no dissipation. Figure [4.1](#fig:s04:ribbon) shows the ribbon spectrum next to its real-space picture, together with the chiral modes that cross the chemical potential.
+The band structure of a ribbon, which is a sample that is infinite in $y$ and finite in $x$, shows this picture in a completely explicit way. Next to the flat bulk Landau levels, we find a set of dispersive states localized at the left edge, which all propagate in one direction. A mirror set is localized at the right edge and propagates in the opposite direction. Each propagation direction is tied to a *location*, the left edge or the right edge. So an impurity on the left edge cannot scatter an electron into a state that moves the other way along $y$, because these states are on the right edge, at a macroscopic distance. There is no available final state, so there is no backscattering, and the edge transport has no dissipation.
+
+Figure [4.1](#fig:s04:ribbon) shows the ribbon spectrum next to its real-space picture, together with the chiral modes that cross the chemical potential.
 
 ![The quantum Hall ribbon. (a) The spectrum of a strip that is infinite along $y$ and finite along $x$, computed for a width of $12\,\ell_B$ with hard walls. In the bulk the Landau levels [(4.6)](#eq-4-6) are flat, so they carry no current at all. Near each boundary the guiding centre $x_0=\hbar k_y/B$ is pushed into the wall and the level bends up strongly. These bending branches are the edge states. Each of them crosses the chemical potential, the translucent plane, once per edge, at the balls. So the number of chiral modes at a given edge is equal to the number $N$ of filled Landau levels, here $N=2$. (b) The same statement in real space, seen from above. The branches with $k_y>0$ have $v_y=\hbar^{-1}\partial_{k_y}E>0$ and live on the right edge, and the branches with $k_y<0$ move in the opposite direction and live on the left edge. To reverse the velocity of an electron we would have to move it to the other side of the sample, which no local impurity can do. This is why the edge transport has no dissipation.](figures/s04f01_ribbon.svg){#fig:s04:ribbon number="4.1"}
 
@@ -44,15 +46,15 @@ An impurity sits on the left edge of a quantum Hall ribbon. Why can it not backs
 :::
 
 ::: quiz
-The chemical potential is in the gap above the first Landau level. It moves to the gap above the third level. How do the number of chiral modes at one edge and $\sigma_{xy}$ change?
+The chemical potential is in the gap above the first Landau level. It moves to the gap above the third level. How do the number of chiral modes at one edge and $|\sigma_{xy}|$ change?
 
-- [ ] The number of modes stays at one, and $\sigma_{xy}$ changes from $e^2/h$ to $3e^2/h$.
+- [ ] The number of modes stays at one, and $|\sigma_{xy}|$ changes from $e^2/h$ to $3e^2/h$.
 
-    This is false. The number of modes is $C$ and $\sigma_{xy}=Ce^2/h$. A single chiral mode carries $e^2/h$, so $3e^2/h$ needs three modes.
+    This is false. The number of modes is $|C|$, and $|\sigma_{xy}|=|C|e^2/h$. A single chiral mode carries $e^2/h$, so $3e^2/h$ needs three modes.
 
 - [x] From one to three, and from $e^2/h$ to $3e^2/h$.
 
-    This is true. The number of chiral modes at an edge is equal to the Chern number of the bulk, which counts the filled Landau levels. The Hall conductance is this number times $e^2/h$.
+    This is true. The number of chiral modes at an edge is equal to the magnitude of the Chern number of the bulk, which counts the filled Landau levels. The magnitude of the Hall conductance is this number times $e^2/h$.
 
     ![The continuum ribbon of width $12\,\ell_B$ with hard walls, with the energy in units of $\hbar\omega_c$ and the chemical potential $\mu=3\hbar\omega_c$ in the gap above the third Landau level. The momentum $k_y\ell_B$ is the guiding center in units of $\ell_B$, measured from the left wall and not from the middle, so the walls are at $0$ and $12$. Each edge has three crossings, marked by the circles, which are the three chiral modes.](figures/web/session04/ribbon_three.svg){alt="Ribbon spectrum with five flat Landau levels, ticked at 0.5, 1.5, 2.5 and 3.5, that bend up at both walls, and the chemical potential at 3 with three crossings at each edge."}
 

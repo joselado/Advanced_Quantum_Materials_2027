@@ -6,7 +6,7 @@ Chiral and p-wave superconductors of the kind we need are rare in nature, so in 
 This is the Kitaev chain of Section [5.16](#sec-5-16), a chain of spinless fermions with the hopping $t$, the chemical potential $\mu$ and a pairing $\Delta$ between neighboring sites. In its topological phase it has one Majorana zero mode at each end. What it needs is a wire with a single channel in each direction of motion.
 :::
 
-One instructive recipe uses directly the quantum spin Hall (QSH) insulator of Section [3.11](#sec-3-11). We take a QSH insulator, for concreteness tungsten ditelluride (WTe$_2$). Its edge has helical modes, meaning that spin-up electrons propagate in one direction and spin-down electrons propagate in the other direction on the same edge. Now we place ordinary ferromagnets on two segments of this edge. A magnet breaks time-reversal symmetry locally, and this opens a gap in the helical edge modes below it. We recall from Section [3.11b](#sec-3-11b) that the protection of the QSH edge relies on time-reversal symmetry through Kramers degeneracy, so if we break this symmetry locally, the protection is lost there. What remains without a gap is a short isolated segment of helical edge between the two magnetic regions.
+One instructive recipe uses directly the quantum spin Hall (QSH) insulator of Section [3.11](#sec-3-11). We take a QSH insulator, for concreteness tungsten ditelluride (WTe$_2$). Its edge has helical modes, meaning that spin-up electrons propagate in one direction and spin-down electrons propagate in the other direction on the same edge. Now we place ordinary ferromagnets on two segments of this edge. A magnet whose magnetization has a component perpendicular to the spin axis of the edge breaks time-reversal symmetry locally, and this opens a gap in the helical edge modes below it. We recall from Section [3.11b](#sec-3-11b) that the protection of the QSH edge relies on time-reversal symmetry through Kramers degeneracy, so if we break this symmetry locally, the protection is lost there. What remains without a gap is a short isolated segment of helical edge between the two magnetic regions.
 
 This isolated segment only has spin-up electrons moving right and spin-down electrons moving left, with no spin-down electrons moving right and no spin-up electrons moving left. If we count states only by their direction of propagation, this segment is *effectively spinless*, which is the ingredient that the Kitaev-chain construction of Section [5.16](#sec-5-16) needs. If we then couple this segment by proximity to an ordinary s-wave superconductor, we reproduce on it the physics of [(5.19)](#eq-5-19). This is a one-dimensional p-wave superconductor, with Majorana zero modes pinned at the two ends of the isolated segment. Figure [5.6](#fig:s05:qsh) shows the whole setup.
 
@@ -51,7 +51,7 @@ The segment of helical edge between the two magnets is called effectively spinle
 
 - [ ] The magnets remove the spin of the electrons.
 
-    This is false. A magnet only breaks time-reversal symmetry and opens a gap below it. The electrons in the segment between the magnets still have spin, since spin-up moves right and spin-down moves left.
+    This is false. A magnet breaks time-reversal symmetry, and its component perpendicular to the spin axis of the edge opens a gap below it. The electrons in the segment between the magnets still have spin, since spin-up moves right and spin-down moves left.
 
 - [x] For each direction of motion only one spin is present, so counting channels gives a single spinless wire.
 
@@ -121,7 +121,7 @@ The level $h-\sqrt{\Delta^2+\mu^2}$ crosses zero at $h=\sqrt{0.09+0.16}=0.5$. A 
 ::: notebookbox
 **Notebook check-in:** [`session5.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb), "Artificial topological superconductivity" (Challenge), "Edge states of an artificial topological superconductor" (Challenge), and "Topological phase transition as a function of the exchange field"
 
-Build the construction described above, with the QSH edge, the magnets and superconductivity, and check that zero modes localized at the ends emerge as you change the strength of the exchange field. Look at how the system crosses the boundary between the topological and the trivial phase, of the type of [(5.22)](#eq-5-22), as the magnetic gap changes.
+Build the two-dimensional analog of this construction, a triangular lattice with Rashba coupling, an exchange field and s-wave pairing. The first cell computes the Chern number of the BdG bands, and the second one the chiral edge states of a ribbon. These two cells use opposite signs of the exchange field, and a change of this sign reverses both the Chern number and the direction of the edge states. The last cell follows how the gap closes and opens again as the field grows.
 :::
 
 ::: {.tryit notebook="session5.ipynb" cell="Topological phase transition as a function of the exchange field"}

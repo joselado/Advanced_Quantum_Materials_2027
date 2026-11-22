@@ -20,7 +20,7 @@ A hopping term between two sites, which describes an electron that can jump betw
 
 $$H_\text{hop} = t\left(c_0^\dagger c_1 + c_1^\dagger c_0\right), \tag{1.2}$$
 
-and we read it as "destroy an electron at 1 and create one at 0" plus the reverse process. If we start from the vacuum and apply creation operators, we obtain all the states of the two-site system. These are $|0\rangle$, then $c_0^\dagger|0\rangle$ with one electron at site 0, then $c_1^\dagger|0\rangle$ with one electron at site 1, and finally $c_0^\dagger c_1^\dagger|0\rangle$ with both sites occupied. [](#sch:s01:dimer_fock) lists these four states with their energies.
+and we read it as "destroy an electron at 1 and create one at 0" plus the reverse process. If we start from the vacuum and apply creation operators, we obtain all the states of the two-site system. These are $|0\rangle$, then $c_0^\dagger|0\rangle$ with one electron at site 0, then $c_1^\dagger|0\rangle$ with one electron at site 1, and finally $c_0^\dagger c_1^\dagger|0\rangle$ with both sites occupied. [](#sch:s01:dimer_fock) lists these four states with their energies. We write $+t$ here, and from Section [1.10](#sec-1-10) on the hopping is $-t$, so the two combinations exchange their levels.
 
 ![The four states of the two-site problem sorted by electron number, with the energies of [(1.2)](#eq-1-2). One electron gives the levels $-t$ and $+t$, which are the antisymmetric and the symmetric combination of the two sites. With two electrons the hopping cannot move anything, and the energy is $(-t)+(+t)=0$.](figures/web/session01/dimer_fock.svg){#sch:s01:dimer_fock alt="Energy levels of the two-site problem grouped by the number of electrons, with the occupied sites drawn as discs."}
 

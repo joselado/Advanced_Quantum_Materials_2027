@@ -16,7 +16,7 @@ $$g(\omega) = \int_{\text{BZ}} \frac{d^dk}{(2\pi)^d}\; \delta\!\left(\omega-E(\m
 It counts the states per unit of energy and per unit length, area or volume, for one band and one spin. The group velocity [(2.17)](#eq-2-17) and the effective mass [(2.18)](#eq-2-18) below are the slope and the curvature of the same band.
 :::
 
-The density of states controls how strongly a material responds to interactions. A large or divergent density of states means that even a weak interaction can drive an instability toward magnetism, a charge density wave or superconductivity, which are the three cases of Session 1. In Session 6 and in Session 9 its value at the Fermi level is written $D(E_F)$, and in Section [6.6](#sec-6-6) it gives the Stoner criterion for magnetism. A vanishing density of states means that interactions can hardly have any effect, however strong they are.
+The density of states controls how strongly a material responds to interactions. A large or divergent density of states means that even a weak interaction can drive an instability toward magnetism, a charge density wave or superconductivity, which are the three cases of Session 1. In Session 6 and in Session 9 its value at the Fermi level is written $D(E_F)$, and in Section [6.6](#sec-6-6) it gives the Stoner criterion for magnetism. A vanishing density of states means that a weak interaction can hardly have any effect, and only an interaction above a finite strength can drive such an instability.
 
 The **group velocity**,
 
@@ -29,9 +29,9 @@ The **effective mass**,
 $$\left(\frac{1}{m^\ast}\right)_{ij} = \frac{1}{\hbar^2}\,
 \frac{\partial^2 E(\mathbf{k})}{\partial k_i\,\partial k_j}, \tag{2.18}$$
 
-is the curvature of the dispersion, and it is the mass that is measured in essentially every transport or cyclotron-resonance experiment, since the bare electron mass cannot be observed directly inside a solid. Depending on the band, $m^\ast$ can go from nearly zero to very large values. For a Dirac dispersion, as we will see in Section [2.11](#sec-2-11), it is formally not defined at the point where the bands touch.
+is the curvature of the dispersion. For an isotropic parabolic band it is also the mass that is measured in transport and cyclotron-resonance experiments, since the bare electron mass cannot be observed directly inside a solid. For an anisotropic parabolic band, with the masses $m_1$ and $m_2$ along its two main axes, transport along one axis measures the mass of that axis, and cyclotron resonance measures $\sqrt{m_1m_2}$. Depending on the band, $m^\ast$ can go from nearly zero to very large values. For a Dirac dispersion, as we will see in Section [2.11](#sec-2-11), it is formally not defined at the point where the bands touch.
 
-For the chain band of [(2.8)](#eq-2-8) we can draw the three quantities one next to the other, in [](#sch:s02:cos_velocity_mass). The velocity is largest in the middle of the band, where the effective mass changes sign.
+For the chain band of [(2.8)](#eq-2-8) we can draw the three quantities one next to the other, in [](#sch:s02:cos_velocity_mass). The size of the velocity is largest in the middle of the band, where the effective mass changes sign.
 
 ![The chain band [(2.8)](#eq-2-8), its group velocity and its inverse effective mass, computed with pyqula for $t=1$ and in units of $\hbar=a=1$. The velocity and the inverse mass are the first and the second derivative of the band. Each vertical axis names its quantity with its unit, $t$ for the energy, $ta/\hbar$ for the velocity and $ta^2/\hbar^2$ for the inverse mass. The velocity $2t\sin\varphi$ is zero at the band edges, and its size is largest at $\varphi=\pm\pi/2$, the red dots. The inverse mass $2t\cos\varphi$ is positive at the bottom of the band, in light blue, negative at the top, in red, and it changes sign at $\varphi=\pm\pi/2$, which is the inflection point of the band.](figures/web/session02/cos_velocity_mass.svg){#sch:s02:cos_velocity_mass alt="Three curves against the phase, with ticks at minus two, zero and two. The cosine band, its slope, which is largest in size at plus and minus pi over two, and its curvature, which is positive at the bottom and negative at the top." script="g3_chain_velocity_mass.py"}
 
@@ -46,7 +46,7 @@ Half filling, at zero energy, is also where the density of states of the square 
 ![The density of states [(2.16)](#eq-2-16) of the square lattice [(2.14)](#eq-2-14), per site and for one spin, in units of $1/t$, computed with pyqula for $t=1$. Each state is a Lorentzian of half width $0.05\,t$, on a mesh of 300 by 300 momenta, and the grey line is the same density of states with no broadening. Look at the peak at zero energy, the energy of the square Fermi surface at half filling. It comes from the saddle points $X$, where the velocity vanishes, and with no broadening it diverges as a logarithm, while here it stops at $0.29/t$. At the band edges $\pm4t$ the grey line jumps to $1/4\pi t=0.08/t$, the constant density of states $|m^\ast|/2\pi\hbar^2$ of a parabolic band, and the broadening rounds this step. The mass of this parabolic band is $\hbar^2/2ta^2$ at the bottom and $-\hbar^2/2ta^2$ at the top.](figures/web/session02/g3_square_dos.svg){#sch:s02:g3_square_dos alt="The density of states against the energy, from minus four to four, with a sharp peak at zero energy, rounded steps at the two band edges, and a thin grey line with no broadening." script="g3_square_dos.py"}
 
 ::: quiz
-For the band $\epsilon_\varphi=-2t\cos\varphi$, where is the group velocity largest?
+For the band $\epsilon_\varphi=-2t\cos\varphi$, where is the size of the group velocity largest?
 
 - [ ] At $\varphi=0$.
 
@@ -54,13 +54,13 @@ For the band $\epsilon_\varphi=-2t\cos\varphi$, where is the group velocity larg
 
 - [x] At $\varphi=\pm\pi/2$.
 
-    This is true. The velocity is the slope of the band, which is proportional to $2t\sin\varphi$. It vanishes at the band edges and it is largest in the middle of the band.
+    This is true. The velocity is the slope of the band, which is proportional to $2t\sin\varphi$. It vanishes at the band edges and its size is largest in the middle of the band.
 
 - [ ] It is the same everywhere.
 
     This is false. A constant velocity needs a linear band, such as a Dirac cone. For the cosine band the slope is $0$ at $\varphi=0$ and $2t$ at $\varphi=\pi/2$, in units of the lattice constant over $\hbar$.
 
-The velocity is zero at the extrema of the band and largest where the band crosses the middle.
+The velocity is zero at the extrema of the band, and its size is largest where the band crosses the middle.
 :::
 
 ::: quiz

@@ -85,3 +85,56 @@ check('the four ingredients are four, electrons, protons, neutrons and photons',
 box = page.split('::: lab', 1)[1].split(':::', 1)[0]
 check('the box quotes 40 μm, 200 nm and 9.4 ± 0.6 μm and links the article',
       '$40$ μm' in box and '$200$ nm' in box and '$9.4\\pm0.6$ μm' in box and 'nature.com/articles/nphys3465' in box, True)
+
+# the vortex bullet, old text corrected on 2026-11-22: the ratio of Planck's constant and the electron charge was
+# measured with these effects, and now both constants have exact values in SI units, so has the Josephson constant 2e/h
+from scipy.constants import physical_constants as pc
+h_si, e_si, kj_si = pc['Planck constant'], pc['elementary charge'], pc['Josephson constant']
+check('Planck constant and the electron charge have exact SI values, with the uncertainty 0',
+      h_si[2] == 0 and e_si[2] == 0, (h_si[0], e_si[0]))
+check('so the Josephson constant is exact too, and it is 2e/h of the two exact values',
+      kj_si[2] == 0 and np.isclose(2 * e_si[0] / h_si[0], kj_si[0], rtol=1e-14), kj_si[0])
+
+# the caption of vortex_phase, old text corrected on 2026-11-22: the winding along the red loop goes away only when the
+# amplitude vanishes somewhere on the loop. Route 1 moves the core along x across the loop, route 2 deforms the vortex
+# linearly into the uniform field, with the core fixed
+phl = np.linspace(0, 2 * np.pi, 20001)
+XL, YL = _g1_phase.LOOP * np.cos(phl), _g1_phase.LOOP * np.sin(phl)
+
+
+def loop_winding(z):
+    return np.sum(np.angle(z[1:] / z[:-1])) / (2 * np.pi)
+
+
+def moved_core(x0):
+    amp, th = _g1_phase.field('vortex', XL - x0, YL)
+    return amp * np.exp(1j * th)
+
+
+cores = np.round(np.arange(0.01, 3.0, 0.02), 2)   # no core falls on the loop itself, at 2.2
+wc = [round(loop_winding(moved_core(x0))) for x0 in cores]
+jumps = [i for i in range(1, len(cores)) if wc[i] != wc[i - 1]]
+amin = [min(np.abs(moved_core(cores[i - 1])).min(), np.abs(moved_core(cores[i])).min()) for i in jumps]
+check('route 1, the winding is 1 while the core is inside the loop and 0 outside, and it changes only where the core '
+      'crosses the loop, from 2.19 to 2.21, with the amplitude on the loop 0.01 there',
+      wc[0] == 1 and wc[-1] == 0 and len(jumps) == 1 and amin[0] < 0.011 and cores[jumps[0]] == 2.21,
+      (cores[jumps], np.round(amin, 4)))
+s_star = np.tanh(_g1_phase.LOOP) / (1 + np.tanh(_g1_phase.LOOP))
+w_lo = round(loop_winding((1 - (s_star - 2e-3)) * moved_core(0.) + (s_star - 2e-3)))
+w_hi = round(loop_winding((1 - (s_star + 2e-3)) * moved_core(0.) + (s_star + 2e-3)))
+z_star = (1 - s_star) * moved_core(0.) + s_star
+check('route 2, the linear change from the vortex to the uniform field keeps the winding 1 until the amplitude on the '
+      'loop vanishes, at s = tanh(2.2)/(1 + tanh(2.2)) = 0.494, and has the winding 0 after',
+      w_lo == 1 and w_hi == 0 and np.abs(z_star).min() < 1e-6 and abs(s_star - 0.494) < 1e-3, (w_lo, w_hi, s_star))
+
+# the pointer of the closing page of Session 10, corrected on 2026-11-22: it sends the reader to "the question of
+# Section 1.3, how identical atoms on a lattice give rise to quantum materials". That question opens this page, and the
+# opener of Section 1.1 asks another one. The page of Session 10 is not read here, since another pass owns it
+pages = os.path.join(HERE, '..', '..', 'pages')
+p03 = open(os.path.join(pages, 'session01', '03-emergent-quasiparticles-and-what-the-lattice-gives-us.md'),
+           encoding='utf-8').read()
+p01 = open(os.path.join(pages, 'session01', '01-why-quantum-materials-and-why-now.md'), encoding='utf-8').read()
+opener = lambda text: [l for l in text.split('\n') if l.strip() and not l.startswith('#')][0]
+check('the pointer of Session 10: the opener of Section 1.3 asks how a lattice of identical atoms gives rise to its '
+      'collective behavior, while the opener of Section 1.1 does not',
+      'identical atoms' in opener(p03) and 'identical atoms' not in opener(p01), opener(p03)[:70])

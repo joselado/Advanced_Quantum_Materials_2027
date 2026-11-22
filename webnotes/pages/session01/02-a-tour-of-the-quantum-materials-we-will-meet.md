@@ -49,7 +49,7 @@ A doped semiconductor conducts, while the undoped one with the same bands does n
 
 - [ ] It closes the band gap, so the material becomes a metal.
 
-    This is false. Silicon doped with phosphorus keeps its gap of about $1.1$ eV, and it conducts. The dopants are one atom in a million, which is too few to change the bands.
+    This is false. Silicon doped with phosphorus keeps its gap, and it conducts. The dopants are far too few to change the bands.
 
 - [ ] It makes the electrons interact strongly, so the material becomes a magnet.
 

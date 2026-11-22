@@ -119,6 +119,47 @@ g = np.array([emin_k(h, D, mu, ks) for h in hs])
 check('problem: the smallest energy over all k vanishes only at h=0.5', g[50] < 1e-9 and np.all(g[np.abs(hs - 0.5) > 0.02] > 0.015),
       (g[50], round(g[np.abs(hs - 0.5) > 0.02].min(), 4)))
 
+# ---- decided on 2026-11-22, the text: "A magnet whose magnetization has a component perpendicular to the spin axis of the edge
+# breaks time-reversal symmetry locally, and this opens a gap in the helical edge modes below it." The edge without pairing is
+# v k sigma_z + m.sigma, with the levels +-sqrt((v k + m_z)^2 + m_x^2 + m_y^2). A magnet along z only shifts the crossing to
+# k = -m_z/v and leaves it at zero energy, while a component along x or y opens the gap 2 sqrt(m_x^2 + m_y^2) at that crossing.
+kk = np.linspace(-3, 3, 6001)
+gap_of = lambda m: min(np.abs(np.linalg.eigvalsh(k * SZ + m[0] * SX + m[1] * SY + m[2] * SZ)).min() for k in kk)
+gz, gx, gxy, gtilt = gap_of((0, 0, 0.5)), gap_of((0.5, 0, 0)), gap_of((0.3, 0.4, 0)), gap_of((0.3, 0, 0.4))
+check('text: a magnet along the spin axis z opens no gap, one with a perpendicular part m_perp opens |m_perp|, half of the gap 2|m_perp|',
+      gz < 1e-12 and abs(gx - 0.5) < 1e-12 and abs(gxy - 0.5) < 1e-12 and abs(gtilt - 0.3) < 1e-6, (gz, gx, gxy, round(gtilt, 6)))
+# corrected after the independent check of 2026-11-22, the first feedback of the first quiz: "A magnet breaks time-reversal
+# symmetry, and its component perpendicular to the spin axis of the edge opens a gap below it." Every m.sigma is odd under
+# the time reversal i sigma_y K, sigma_y (m.sigma)^* sigma_y = -m.sigma, also m along z, while the gap needs m_perp, as above
+rng_m = np.random.default_rng(5)
+odd_T = all(np.allclose(SY @ np.conj(m_[0] * SX + m_[1] * SY + m_[2] * SZ) @ SY, -(m_[0] * SX + m_[1] * SY + m_[2] * SZ))
+            for m_ in list(rng_m.normal(size=(5, 3))) + [np.array([0., 0., 0.5])])
+check('quiz feedback: every magnet m.sigma is odd under time reversal, also along z, where it opens no gap', odd_T and gz < 1e-12, 6)
+
+# ---- decided on 2026-11-22, the notebook box, rewritten to match its three cells, and corrected after the independent check of
+# the same day: "a triangular lattice with Rashba coupling, an exchange field and s-wave pairing", "The first cell computes the
+# Chern number of the BdG bands, and the second one the chiral edge states of a ribbon", "These two cells use opposite signs of
+# the exchange field" and "The last cell follows how the gap closes and opens again as the field grows". So the first cell has
+# the field -0.6 and get_chern, the second one the field +0.6 and the ribbon, and the third one the loop over J with the bands
+# and no Chern number. The reversal of C and of the edge states is asserted below, with the model, and the closing and opening
+# of the gap of the third cell by the caption and the try-it.
+import json
+nb = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '..', 'jupyter-notebooks', 'session5.ipynb'),
+                    encoding='utf-8'))
+cells = [''.join(x['source']) for x in nb['cells']]
+code_of = lambda title: [cells[i + 1] for i, x in enumerate(cells) if x.startswith('## ' + title)]
+c1 = code_of('Artificial topological superconductivity')
+c2 = code_of('Edge states of an artificial topological superconductor')
+c3 = code_of('Topological phase transition as a function of the exchange field')
+ok = len(c1) == len(c2) == len(c3) == 1
+ok = ok and all(all(w in c for w in ('geometry.triangular_lattice()', 'h.add_rashba(', 'h.add_zeeman(', 'swave')) for c in c1 + c2 + c3)
+ok = ok and 'h.get_chern(' in c1[0] and 'ribbon.bulk2ribbon(' in c2[0] and 'operator="yposition"' in c2[0]
+ok = ok and 'for J in Js' in c3[0] and 'h.add_zeeman([0.,0.,J])' in c3[0]
+ok = ok and 'h.add_zeeman([0.,0.,-0.6])' in c1[0] and 'h.add_zeeman([0.,0.,0.6])' in c2[0] and 'get_chern' not in c2[0] + c3[0]
+ok = ok and 'ribbon' not in c1[0] + c3[0] and 'get_bands(' in c3[0] and 'Js = np.linspace(0.,0.6,9)' in c3[0]
+check('notebook box: the three cells are the triangular lattice with Rashba, Zeeman and s-wave, its Chern number at the field -0.6, '
+      'a ribbon with the position of its states at +0.6, and a loop over the exchange field with the bands and no Chern number', ok, 3)
+
 # ---- the model of the notebook, with pyqula in a temporary folder
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'figures'))
 import physcheck
@@ -241,6 +282,13 @@ with tempfile.TemporaryDirectory() as tmp:
         e0 = min(np.abs(np.linalg.eigvalsh(hk0([k, 0., 0.]))).min() for k in line)
         check('caption: at J=0 the smallest energy is Delta = 0.3, on the Fermi surface, and the level at Gamma is 0.42',
               abs(e0 - 0.3) < 1e-3 and abs(np.abs(np.linalg.eigvalsh(hk0([0., 0., 0.]))).min() - Jc) < 1e-12, round(e0, 5))
+        # the try-it box, kept on 2026-11-22: "Follow the lowest energy near k=0. It starts at |Delta|=0.3". On the line of the
+        # cell, M, Gamma, M, at J=0 the value 0.3 sits on the inner Fermi line, at |k| below 0.1 out of 3.63 to M
+        near = minimize_scalar(lambda x: np.abs(np.linalg.eigvalsh(hk0([x, 0., 0.]))).min(), bounds=(0.002, 0.03), method='bounded',
+                               options=dict(xatol=1e-12))
+        knear = abs(near.x) * np.linalg.norm(B[0])
+        check('try-it: at J=0 the smallest energy 0.3 is reached near k=0, on the inner Fermi line of the line M, Gamma, M',
+              abs(near.fun - 0.3) < 1e-6 and abs(knear - 0.096) < 1e-3, (round(near.fun, 6), round(knear, 4)))
         def excess(J):
             hk = model(J).get_hk_gen()
             return min(np.abs(np.linalg.eigvalsh(hk([k, 0., 0.]))).min() for k in line) - abs(J - Jc) + 1e-7
@@ -256,5 +304,42 @@ with tempfile.TemporaryDirectory() as tmp:
         C = np.array(C)
         check('caption: the links give C = 0 at J=0.3 and C = 1 at J=0.6, for nk = 24 and 48',
               np.allclose(C[0], 0, atol=1e-6) and np.allclose(C[1], 1, atol=1e-6), np.round(C, 6).tolist())
+
+        # corrected after the independent check of 2026-11-22, the notebook box: "These two cells use opposite signs of the
+        # exchange field, and a change of this sign reverses both the Chern number and the direction of the edge states." The
+        # model of the first two cells, add_rashba(1.0), add_onsite(2.0), add_zeeman([0,0,J]), add_swave(.3). First route, the
+        # links of the two BdG bands below zero give C = +3 at J = -0.6 and -3 at J = +0.6 (the conventions sheet has the same
+        # numbers from get_chern and the Kubo form). Second route, the ribbon bulk2ribbon(h, n=30) of the second cell: the levels
+        # that cross the energy 0.1, inside the bulk gap 0.21, counted with the sign of their slope and with the edge where they
+        # sit, give 3 right movers on the upper edge at J = -0.6 and 3 left movers there at J = +0.6, and the reverse on the lower edge
+        from pyqula import ribbon
+
+        def cellmodel(J):
+            h = gt.get_hamiltonian(); h.add_rashba(1.0); h.add_onsite(2.0); h.add_zeeman([0., 0., J]); h.add_swave(.3)
+            return h
+        dense = lambda m: np.array(m.todense() if hasattr(m, 'todense') else m)    # noqa: E731
+        Ccell, net = {}, {}
+        for J in (-0.6, 0.6):
+            hk, Bz = physcheck.from_pyqula(cellmodel(J))
+            Ccell[J] = [physcheck.chern_links(hk, Bz, bands=range(2), nk=nk) for nk in (24, 36)]
+            hr = ribbon.bulk2ribbon(cellmodel(J), n=30)
+            fr = hr.get_hk_gen()
+            yr = np.array(hr.geometry.r)[:, 1]
+            yy = np.repeat(yr, dense(fr([0.1, 0., 0.])).shape[0] // len(yr))
+            yc = 0.5 * (yr.max() + yr.min())
+            cnt = {'up': 0, 'down': 0}
+            prev = None
+            for kr in np.linspace(-0.5, 0.5, 801)[:-1]:
+                er, vr = np.linalg.eigh(dense(fr([kr, 0., 0.])))
+                if prev is not None:
+                    for b in np.where((prev[0] < 0.1) != (er < 0.1))[0]:
+                        w = 0.5 * ((np.abs(prev[1][:, b]) ** 2 * yy).sum() + (np.abs(vr[:, b]) ** 2 * yy).sum())
+                        cnt['up' if w > yc else 'down'] += 1 if er[b] > prev[0][b] else -1
+                prev = (er, vr)
+            net[J] = (cnt['up'], cnt['down'])
+        check('notebook box: the fields -0.6 and +0.6 of the first two cells give C = +3 and -3, and the edge states of the ribbon '
+              'reverse their direction, 3 movers on each edge',
+              np.allclose(Ccell[-0.6], 3, atol=1e-6) and np.allclose(Ccell[0.6], -3, atol=1e-6) and net[-0.6] == (3, -3)
+              and net[0.6] == (-3, 3), (np.round(Ccell[-0.6], 6).tolist(), np.round(Ccell[0.6], 6).tolist(), net))
     finally:
         os.chdir(cwd)

@@ -83,6 +83,32 @@ for L in (3, 4):
             full = full + sum(HB(eps[i])[a, b] * dag(psi[a]) @ psi[b] for a in range(4) for b in range(4))
         check(f'fold, third step: H = (1/2) sum_k Psi+ H_BdG Psi + sum_k eps(k), L={L}, sign {sgn:+d}',
               np.abs(H - 0.5 * full - eps.sum() * I).max() < 1e-12, np.abs(H - 0.5 * full - eps.sum() * I).max())
+        # decided on 2026-11-22, the text after (5.6): "Without it, the two blocks would still be decoupled, but with +Delta in
+        # one and -Delta in the other, so they would not be identical copies." The spinor without the minus sign,
+        # (c_kup, c_kdn, c+_-kdn, c+_-kup), gives H with the pairing block diag(D, -D), which couples (e up, h dn) and
+        # (e dn, h up) only inside each block, and not with diag(D, D), the identical copies
+        nosign = {}
+        for s2 in (1, -1):
+            HBn = lambda e: np.array([[e, 0, D, 0], [0, e, 0, s2 * D], [np.conj(D), 0, -e, 0], [0, s2 * np.conj(D), 0, -e]])  # noqa: E731
+            alt = 0
+            for i in range(L):
+                psi = [ck['u'][i], ck['d'][i], dag(ck['d'][mk(i)]), dag(ck['u'][mk(i)])]
+                alt = alt + sum(HBn(eps[i])[a, b] * dag(psi[a]) @ psi[b] for a in range(4) for b in range(4))
+            nosign[s2] = np.abs(H - 0.5 * alt - eps.sum() * I).max()
+        check(f'text after (5.6): without the minus sign the blocks are decoupled with +Delta and -Delta, not identical, L={L}, '
+              f'sign {sgn:+d}', nosign[-1] < 1e-12 and nosign[1] > 0.1, (nosign[-1], round(nosign[1], 3)))
+    # corrected on 2026-11-22, the text before the key box: "The 4x4 problem in (5.7) splits into two 2x2 blocks, and it would
+    # split also without the extra minus sign of the spinor (5.6)", "and the minus sign is what makes the second one identical to
+    # the first". In the order of (5.6) the matrix (5.7) has Delta at (0,2) and (1,3), so it is not block-diagonal as written, and
+    # the order (0,2,1,3) gives two blocks h_BdG(D) with nothing between them. The matrix of the spinor without the sign, checked
+    # as operators above, gives in the same order h_BdG(D) and h_BdG(-D), also with nothing between them
+    perm = [0, 2, 1, 3]
+    Ms, Mn = HB(0.7)[np.ix_(perm, perm)], HBn(0.7)[np.ix_(perm, perm)]
+    hD, hmD = np.array([[0.7, D], [np.conj(D), -0.7]]), np.array([[0.7, -D], [-np.conj(D), -0.7]])
+    check(f'text before the key box: (5.7) is interleaved in the order of (5.6), and splits into h(D), h(D) with the sign and into '
+          f'h(D), h(-D) without it, L={L}', abs(HB(0.7)[0, 2]) > 0.1 and abs(HB(0.7)[1, 3]) > 0.1 and np.allclose(Ms[:2, 2:], 0)
+          and np.allclose(Ms[:2, :2], hD) and np.allclose(Ms[2:, 2:], hD) and np.allclose(Mn[:2, 2:], 0) and np.allclose(Mn[:2, :2], hD)
+          and np.allclose(Mn[2:, 2:], hmD) and s2 == -1, 'ok')
     i = 1
     x, y = ck['d'][i], ck['u'][mk(i)]
     check(f'fold, third step: -D c+_kdn c+_-kup = D c+_-kup c+_kdn, L={L}', np.allclose(-D * dag(x) @ dag(y), D * dag(y) @ dag(x)), 0)
@@ -159,7 +185,28 @@ for kw in ({}, {'nk': 10}):                         # the call without nk, and t
     hd = geometry.square_lattice().get_hamiltonian()
     hd.set_filling(0.2, **kw)
     shifts[str(kw)] = hd.intra[0, 0].real
+# decided on 2026-11-22, the notebook box: "check that you get two copies of the band structure", without "same", since the
+# second copy is the mirror -eps(k). The cell "Nambu electronic structure without superconductivity" is this lattice with
+# set_filling(0.2, nk=20) and setup_nambu_spinor(). At Gamma and at M its four levels are eps twice and -eps twice, and the
+# range of -eps, from -5.90 to 2.10, is not the range of eps, from -2.10 to 5.90
+hn = geometry.square_lattice().get_hamiltonian()
+hn.set_filling(0.2, nk=20)
+hn.setup_nambu_spinor()
+hkn = hn.get_hk_gen()
+lev = {kn: np.sort(np.linalg.eigvalsh(np.array(hkn(np.array(kv))))) for kn, kv in (('G', [0., 0., 0.]), ('M', [0.5, 0.5, 0.]))}
 os.chdir(cwd)
+eG, eM = 4 + x0, -4 + x0
+check('notebook box: without pairing the Nambu levels are eps and -eps, twice each, at Gamma and M, and the two copies are mirrors',
+      np.allclose(lev['G'], np.sort([eG, eG, -eG, -eG])) and np.allclose(lev['M'], np.sort([eM, eM, -eM, -eM]))
+      and abs(eG - (-eM)) > 1, (round(eM, 3), round(eG, 3)))      # top of eps 5.90, top of -eps 2.10
+import json  # noqa: E402
+nbk = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '..', 'jupyter-notebooks', 'session5.ipynb'),
+                     encoding='utf-8'))
+cl = [''.join(x['source']) for x in nbk['cells']]
+hi = [i for i, s in enumerate(cl) if s.startswith('## Nambu electronic structure without superconductivity')]
+check('notebook box: the cell is the square lattice with set_filling(0.2,nk=20), setup_nambu_spinor() and the electron weight',
+      len(hi) == 1 and 'geometry.square_lattice()' in cl[hi[0] + 1] and 'h.set_filling(0.2,nk=20)' in cl[hi[0] + 1]
+      and 'h.setup_nambu_spinor()' in cl[hi[0] + 1] and 'operator="electron"' in cl[hi[0] + 1], hi)
 check('caption: with the default nk=10 the same call adds 2.236, which is mu=-2.24', abs(shifts['{}'] - shifts["{'nk': 10}"]) < 1e-12
       and abs(shifts['{}'] - 2.236) < 1e-3 and round(-shifts['{}'], 2) == -2.24, round(shifts['{}'], 5))
 q = np.linspace(0, 2 * np.pi, 600, endpoint=False)

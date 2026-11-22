@@ -213,29 +213,32 @@ def main():
     def shift(L, s):
         return np.roll(np.eye(L), s, axis=0)                          # (P psi)_n = psi_{n-s}
     L = 8
-    T, R = shift(L, -1), shift(L, 1)                                   # (T psi)_n = psi_{n+1}, (R psi)_n = psi_{n-1}
+    T, R = shift(L, -1), shift(L, -1)                                  # (T psi)_n = psi_{n+1}, and R since 2026-11-22
     phi = 2 * np.pi * 3 / L
     v = np.exp(1j * phi * np.arange(L))
-    okT = near(T @ v, np.exp(1j * phi) * v) and near(R @ v, np.exp(-1j * phi) * v)
+    okT = near(T @ v, np.exp(1j * phi) * v) and near(R @ v, np.exp(1j * phi) * v)
+    okT = okT and near(shift(L, 1) @ v, np.exp(-1j * phi) * v)        # the other sense gives e^{-i phi}
     s4 = np.array([1, -1j, -1, 1j])
     q4 = np.array([1, 1j, -1, -1j])
-    R4, T4 = shift(4, 1), shift(4, -1)
+    R4, T4 = shift(4, -1), shift(4, -1)
     v3 = np.exp(2j * np.pi * np.arange(3) / 3)
-    check('the direction of the shift', okT and near(R4 @ s4, 1j * s4) and near(T4 @ s4, -1j * s4) and near(R4 @ q4, -1j * q4)
-          and near(shift(3, 1) @ v3, np.exp(-2j * np.pi / 3) * v3),
-          'e^{i n phi} has e^{i phi} under T and e^{-i phi} under R on 8 sites, (1,-i,-1,i) has R=i and T=-i, (1,i,-1,-i) '
-          'has R=-i, and on 3 sites R gives e^{2 pi i j/3} the eigenvalue e^{-2 pi i/3}')
+    check('the direction of the shift', okT and near(R4 @ s4, -1j * s4) and near(T4 @ s4, -1j * s4) and near(R4 @ q4, 1j * q4)
+          and near(shift(3, -1) @ v3, np.exp(2j * np.pi / 3) * v3) and near(R4 @ np.eye(4)[1], np.eye(4)[0]),
+          'R and T move every amplitude to the previous site, e^{i n phi} has e^{i phi} under both on 8 sites and e^{-i phi} '
+          'in the other sense, (1,-i,-1,i) has -i, (1,i,-1,-i) has i, and on 3 sites R gives e^{2 pi i j/3} the '
+          'eigenvalue e^{2 pi i/3}')
 
     ph = 2 * np.pi * np.arange(L) / L
-    F = np.exp(1j * np.outer(np.arange(L), ph))                       # column phi is Psi_phi^+ of (2.7) on the sites
+    F = np.exp(1j * np.outer(np.arange(L), ph))                       # column phi is e^{in phi}, (2.7) with no factor
     orth = F.conj().T @ F
-    back = F @ F.conj().T                                              # sum over phi of e^{-in phi} Psi_phi^+ in site space
-    U = F / np.sqrt(L)
+    back = F @ F.conj().T                                              # sum over phi of e^{-in phi} e^{im phi}
+    U = F / np.sqrt(L)                                                 # (2.7) as printed since 2026-11-22
     Hdiag = U.conj().T @ ring(L, [-1.0]) @ U
     check('the normalization of (2.7)', near(orth, L * np.eye(L), 1e-12) and near(back, L * np.eye(L), 1e-12)
+          and near(U.conj().T @ U, np.eye(L), 1e-12) and near(U @ U.conj().T, np.eye(L), 1e-12)
           and near(Hdiag, np.diag(-2 * np.cos(ph)), 1e-12),
-          'on 8 sites sum_n e^{in(phi-phi\')} is 8 delta, the inverse of (2.7) as printed gives 8 c_n^+, and with 1/sqrt(8) '
-          'H is diagonal with -2 cos(phi), (2.8)')
+          'on 8 sites sum_n e^{in(phi-phi\')} is 8 delta, with 1/sqrt(8) the transform (2.7) is unitary, its inverse gives '
+          'c_n^+, and H is diagonal with -2 cos(phi), (2.8)')
 
     hb = G['bichain'].get_hamiltonian(has_spin=False)
     inter = np.asarray(hb.inter).real
@@ -448,9 +451,17 @@ def main():
     sl_n = [abs(honey_f(KN + 1e-6 * np.array([np.cos(a), np.sin(a)]), DELTA)) / 1e-6 for a in np.linspace(0, 2 * np.pi, 8, endpoint=False)]
     sl_2 = [abs(honey_f(K2 + 1e-6 * np.array([np.cos(a), np.sin(a)]), D2)) / 1e-6 for a in np.linspace(0, 2 * np.pi, 8, endpoint=False)]
     sl_p = [ev(hh, lblK + 1e-6 * np.array([np.cos(a), np.sin(a)]))[1] / 1e-6 for a in np.linspace(0, 2 * np.pi, 8, endpoint=False)]
-    check('the Dirac velocity', near(sl_n, 1.5, 1e-5) and near(sl_2, 1.5, 1e-5) and near(sl_p, 1.5, 1e-5) and abs(1.5 / S3 - 0.866) < 1e-3,
+    # the chain v = 2t sin(phi): the signed velocity is +2 at pi/2 and -2 at -pi/2, so only its size is largest at
+    # both, and that size 2 is larger than the 1.5 of the cone
+    phv = np.linspace(-np.pi, np.pi, 200001)
+    vch = 2 * np.sin(phv)
+    vok = (near(phv[np.argmax(vch)], np.pi / 2, 1e-4) and near(phv[np.argmin(vch)], -np.pi / 2, 1e-4)
+           and near(np.abs(vch).max(), 2, 1e-9) and np.abs(vch).max() > 1.5)
+    check('the Dirac velocity', near(sl_n, 1.5, 1e-5) and near(sl_2, 1.5, 1e-5) and near(sl_p, 1.5, 1e-5)
+          and abs(1.5 / S3 - 0.866) < 1e-3 and vok,
           'the slope at K is %.5f to %.5f in 8 directions in each frame of the scripts and in pyqula, 3t/2 in units of the '
-          'bond length, %.3f in units of the lattice constant' % (min(sl_n + sl_2 + sl_p), max(sl_n + sl_2 + sl_p), 1.5 / S3))
+          'bond length, %.3f in units of the lattice constant, and the largest size of the velocity of the chain is %.4f at '
+          '+-pi/2' % (min(sl_n + sl_2 + sl_p), max(sl_n + sl_2 + sl_p), 1.5 / S3, np.abs(vch).max()))
 
     errK = errKp = 0.0
     for a in np.linspace(0, 2 * np.pi, 7, endpoint=False):
@@ -758,20 +769,28 @@ def main():
           'hbar^2/2m = %.4f eV A^2, an electron of 20 eV has k = %.2f nm^-1, and 10 and 20 degrees give %.2f and %.2f nm^-1'
           % (c, kk, *kpar))
 
-    # Open points of the old text
-    check('open point, the dimer of Section 2.3', near(esy, 1) and near(ms, 1),
-          'c1+ + c2+ has the mirror +1 and the energy +t, the upper level for t > 0')
-    check('open point, the direction of the ring', near(R4 @ s4, 1j * s4) and near(T4 @ s4, -1j * s4)
-          and near(shift(3, 1) @ v3, np.exp(-2j * np.pi / 3) * v3),
-          '(1,-i,-1,i) is R=i, T=-i, and the R of Section 2.3 gives e^{i phi j} the eigenvalue e^{-i phi}')
-    check('open point, (2.7)', near(orth, L * np.eye(L), 1e-12), 'the sum is L delta, not delta')
-    check('open point, the ring of five sites', near(ep[1] - ep[0], 0, 1e-12) and wts.max() > 0.39,
+    # Points of the old text, all decided or corrected on 2026-11-22
+    check('corrected, the dimer of Section 2.3', near(esy, 1) and near(ms, 1),
+          'c1+ + c2+ has the mirror +1 and the energy +t, the upper level for t > 0, so the page calls it symmetric')
+    check('decided, the direction of the ring', near(R4 @ s4, -1j * s4) and near(T4 @ s4, -1j * s4)
+          and near(shift(3, -1) @ v3, np.exp(2j * np.pi / 3) * v3),
+          '(1,-i,-1,i) has R=T=-i, and R gives e^{i phi j} the eigenvalue e^{i phi}, as T does')
+    check('decided, (2.7)', near(orth, L * np.eye(L), 1e-12) and near(Hdiag, np.diag(-2 * np.cos(ph)), 1e-12),
+          'the sum is L delta, and with 1/sqrt(L) in (2.7) the band is (2.8) with no factor')
+    check('corrected, the ring of five sites', near(ep[1] - ep[0], 0, 1e-12) and wts.max() > 0.39,
           'with +1 the lowest level is degenerate, and a state of it has a weight up to %.2f on one site' % wts.max())
-    check('open point, the try-it of Section 2.5', info[0.3][4] == 3 and near(info[0.3][0], 0.0333, 1e-4),
-          'eta=0.3 already has the extremum at pi, %.4f deep' % info[0.3][0])
-    check('open point, the notebook box of Section 2.5', chain_cell == 'tij=[1.0,0.]' and near(chain_band([1.0, 0.0]), 2 * np.cos(phis), 1e-12),
+    v3r = np.array([2, -1, -1]) / np.sqrt(6)
+    e3 = np.linalg.eigvalsh(ring(3, [-1.0]))
+    check('decided, the ring of three sites', near(e3, [-2, 1, 1], 1e-12) and near(ring(3, [-1.0]) @ v3r, v3r)
+          and not near(shift(3, -1) @ v3r, v3r) and near(v3r[0] ** 2, 2 / 3),
+          'with the hopping -t of (2.5) the levels are %s, so the twofold level is +t, and (2,-1,-1)/sqrt6 is an '
+          'eigenstate of it that is no Fourier mode, so the page and the caption of Figure 2.1 say that the eigenstates '
+          'can be chosen as the Fourier modes' % np.round(e3, 6).tolist())
+    check('corrected, the try-it of Section 2.5', info[0.3][4] == 3 and near(info[0.3][0], 0.0333, 1e-4),
+          'eta=0.3 already has the extremum at pi, %.4f deep, so the try-it starts at 0.2' % info[0.3][0])
+    check('corrected, the notebook box of Section 2.5', chain_cell == 'tij=[1.0,0.]' and near(chain_band([1.0, 0.0]), 2 * np.cos(phis), 1e-12),
           'the cell has tij=[1.0,0.], which gives +2 cos(phi)')
-    check('open point, the notebook box of Section 2.7', near(l0, [1, 3], 1e-12),
+    check('corrected, the notebook box of Section 2.7', near(l0, [1, 3], 1e-12),
           'the ladder has 2 cos(phi) -+ 1, not +-|1 + eta e^{-i phi}|')
     print('%d checks hold, %.1f s' % (COUNT[0], time.time() - t0))
 

@@ -28,8 +28,35 @@ def sq(kx, ky, t=1.0):
     return -2 * t * (np.cos(kx) + np.cos(ky))
 
 
+def vanishing_dos():
+    """The text after the key box, corrected on 2026-11-22: a vanishing density of states needs an interaction above a
+    finite strength. Mean-field antiferromagnet of the Hubbard model at half filling, with the staggered moment m, the
+    field D = U m/2 and m = <D/sqrt(D^2 + |f|^2)> over the zone. For the honeycomb lattice, whose density of states
+    vanishes at zero energy, the linearized equation gives the finite U_c = 2/<1/|f|>, about 2.2t, and the
+    self-consistent moment is zero at U = 1.5t and finite at U = 3t. The half-filled chain, with a finite density of
+    states and a nested Fermi surface, orders already at U = t. The two routes agree, and no number goes to the page."""
+    nk = 400
+    k1, k2 = np.meshgrid(np.arange(nk) / nk, np.arange(nk) / nk)
+    fk = np.abs(1 + np.exp(2j * np.pi * k1) + np.exp(2j * np.pi * k2)).ravel()
+    uc = 2 / np.mean(1 / fk[fk > 1e-9])
+
+    def moment(U, eps, it):
+        m = 0.5
+        for _ in range(it):
+            D = U * m / 2
+            m = float(np.mean(D / np.sqrt(D ** 2 + eps ** 2)))
+        return m
+    m15, m3 = moment(1.5, fk, 300), moment(3.0, fk, 300)
+    kc = (np.arange(20000) + 0.5) / 20000 * 2 * np.pi
+    mch = moment(1.0, np.abs(2 * np.cos(kc)), 3000)
+    check('a vanishing density of states needs a finite interaction: the honeycomb antiferromagnet has U_c = 2/<1/|f|> '
+          'of about 2.2t, no moment at U = 1.5t and a finite one at 3t, while the half-filled chain orders at U = t',
+          2.1 < uc < 2.4 and m15 < 1e-3 and m3 > 0.2 and mch > 1e-3, (round(uc, 3), round(m15, 5), round(m3, 3), round(mch, 4)))
+
+
 def main():
     from pyqula import geometry
+    vanishing_dos()
 
     # the text before the density of states: the corners of the square Fermi surface, X = (pi, 0) and (0, pi), are
     # saddle points where the velocity vanishes, and the density of states diverges as a logarithm there
@@ -84,6 +111,14 @@ def main():
     v = lambda p: (-2 * np.cos(p + 1e-6) + 2 * np.cos(p - 1e-6)) / 2e-6
     check('the slope of -2t cos(phi) is 0 at 0 and 2t at pi/2', np.isclose(v(0), 0, atol=1e-8) and np.isclose(v(np.pi / 2), 2, atol=1e-6),
           (round(v(0), 6), round(v(np.pi / 2), 6)))
+    # "the size of the velocity", decided on 2026-11-22: the signed velocity 2t sin(phi) is +2t at pi/2, its largest
+    # value, and -2t at -pi/2, its smallest value, so only its size is largest at both phi = +-pi/2, the middle of the band
+    pv = np.linspace(-np.pi, np.pi, 100001)
+    vv = 2 * np.sin(pv)
+    check('the signed velocity is largest only at pi/2 and smallest at -pi/2, its size is largest at +-pi/2, where the band is 0',
+          np.isclose(pv[np.argmax(vv)], np.pi / 2, atol=1e-4) and np.isclose(pv[np.argmin(vv)], -np.pi / 2, atol=1e-4)
+          and np.isclose(v(-np.pi / 2), -2, atol=1e-6) and np.allclose(sorted(np.abs(pv[np.abs(vv) > 2 - 1e-9])), np.pi / 2, atol=1e-4)
+          and abs(-2 * np.cos(np.pi / 2)) < 1e-12, (round(v(-np.pi / 2), 6), round(v(np.pi / 2), 6)))
 
     # the quiz on the mass: -2t cos(ka) = -2t + t a^2 k^2 close to k = 0, the curvature 2ta^2, m* = hbar^2/2ta^2,
     # 1/2 for t = a = hbar = 1, and 2t - t a^2 delta^2 at the top, so the mass goes as 1/t
@@ -97,6 +132,101 @@ def main():
     c1 = ((-2 + 0.01 ** 2) - 2 * (-2.0) + (-2 + 0.01 ** 2)) / 0.01 ** 2
     check('for t = a = hbar = 1 the band -2 + k^2 has the curvature 2, so 1/m* = 2 and m* = 1/2, and not 1',
           np.isclose(c1, 2) and np.isclose(1 / c1, 0.5), round(1 / c1, 6))
+
+    # the text on the effective mass, decided on 2026-11-22: "for a parabolic band it is also the mass that is measured in
+    # transport and cyclotron-resonance experiments". Units t = a = hbar = 1. The cyclotron mass is
+    # m_c = (hbar^2/2 pi) dA/dE, with A(E) the area of the zone inside the Fermi contour. For E = k^2/2m it is m at every
+    # energy. On the square lattice close to its bottom it tends to the mass 1/2 of (2.18), by two routes, a count of the
+    # area on a mesh and dA/dE = (2 pi)^2 g(E) with the formula K(1 - E^2/16)/(2 pi^2) of the density of states. The mass
+    # of transport, from the Drude weight n/m = (1/A) sum over the filled states of the curvature, also tends to 1/2. For
+    # the cone E = v|q| the cyclotron mass is E/v^2 = hbar k_F/v_F, finite, while the curvature of (2.18) along the radius is
+    # zero, so (2.18) is infinite there, and this is why the text names the parabolic band.
+    mpar = 0.8
+    Ep = np.array([0.5, 1.0, 2.0])
+    Ap = 2 * np.pi * mpar * Ep                                         # pi k^2 with k^2 = 2 m E
+    mc_par = np.gradient(Ap, Ep) / (2 * np.pi)
+    nm = 3000
+    km = (np.arange(nm) + 0.5) / nm * 2 * np.pi - np.pi
+    area = {}
+    for Ec in (-3.95, -3.9, -3.85):
+        cntc = 0
+        for i0 in range(0, nm, 500):
+            cntc += np.count_nonzero(sq(km[i0:i0 + 500, None], km[None, :]) < Ec)
+        area[Ec] = cntc / nm ** 2 * (2 * np.pi) ** 2
+    mc_count = (area[-3.85] - area[-3.95]) / 0.1 / (2 * np.pi)
+    mc_formula = {Ec: ellipk(1 - Ec ** 2 / 16) / np.pi for Ec in (-3.9, -3.99, -3.999)}
+    filled = []
+    for Ec in (-3.9, -3.99):
+        kk = km[np.abs(km) < 0.3]
+        KX, KY = np.meshgrid(kk, kk)
+        occ = sq(KX, KY) < Ec
+        filled.append(np.mean(2 * np.cos(KX[occ])))                   # the mean curvature along x of the filled states
+    check('for a parabolic band the cyclotron mass is m, on the square lattice it tends to 1/2 at the bottom by a count and '
+          'by the formula, the Drude mass tends to 1/2, and the cone has the finite E/v^2 where (2.18) is infinite',
+          np.allclose(mc_par, mpar) and abs(mc_count - mc_formula[-3.9]) < 0.01 and abs(mc_formula[-3.9] - 0.5) < 0.01
+          and abs(mc_formula[-3.999] - 0.5) < 1e-4 and abs(1 / filled[0] - 0.5) < 0.02 and abs(1 / filled[1] - 0.5) < 2e-3,
+          (round(mc_count, 4), round(mc_formula[-3.9], 4), round(1 / filled[1], 4)))
+    # the cone, by a count: E = v|q| with v = 1.5, the area pi (E/v)^2, so (1/2 pi) dA/dE = E/v^2 = k_F/v_F
+    vF = 1.5
+    Ec_ = np.array([0.2, 0.3, 0.4])
+    Acone = np.pi * (Ec_ / vF) ** 2
+    mcone = np.gradient(Acone, Ec_) / (2 * np.pi)
+    qr = np.array([0.19, 0.2, 0.21])
+    check('the cone E = v|q| has the cyclotron mass E/v^2 = k_F/v_F, finite, and no curvature along the radius',
+          np.allclose(mcone[1], 0.3 / vF ** 2) and np.isclose(mcone[1], (0.3 / vF) / vF)
+          and abs(np.diff(vF * qr, 2)[0]) < 1e-12, round(float(mcone[1]), 4))
+    # the text after the recheck d6: "isotropic", and for an anisotropic parabolic band with the masses m1 and m2 along its
+    # axes, transport along one axis measures the mass of that axis and cyclotron resonance measures sqrt(m1 m2). Two
+    # routes. The continuum E = kx^2/2m1 + ky^2/2m2 with m1 = 1/2 and m2 = 2, whose area pi 2E sqrt(m1 m2) gives the
+    # cyclotron mass sqrt(m1 m2) = 1, counted on a mesh. The lattice with tx = 1 and ty = 1/4, whose bottom has the same
+    # two masses 1/(2 tx) and 1/(2 ty), where the cyclotron mass by a count and the two Drude masses n/D tend to 1, 1/2, 2.
+    m1, m2 = 0.5, 2.0
+    kc = np.linspace(-3, 3, 4001)
+    dkc = kc[1] - kc[0]
+    KX, KY = np.meshgrid(kc, kc)
+    Eani = KX ** 2 / (2 * m1) + KY ** 2 / (2 * m2)
+    mc_ani = (np.count_nonzero(Eani < 1.05) - np.count_nonzero(Eani < 0.95)) * dkc ** 2 / 0.1 / (2 * np.pi)
+    tx, ty = 1.0, 0.25
+
+    def rect(kx, ky):
+        return -2 * tx * np.cos(kx) - 2 * ty * np.cos(ky)
+    bot = -2 * tx - 2 * ty
+    ar = {}
+    for Ec in (bot + 0.03, bot + 0.07):
+        cnt = 0
+        for i0 in range(0, nm, 500):
+            cnt += np.count_nonzero(rect(km[i0:i0 + 500, None], km[None, :]) < Ec)
+        ar[Ec] = cnt / nm ** 2 * (2 * np.pi) ** 2
+    mc_rect = (ar[bot + 0.07] - ar[bot + 0.03]) / 0.04 / (2 * np.pi)
+    kk = km[np.abs(km) < 1.0]
+    KX, KY = np.meshgrid(kk, kk)
+    occ = rect(KX, KY) < bot + 0.02
+    mdx, mdy = 1 / np.mean(2 * tx * np.cos(KX[occ])), 1 / np.mean(2 * ty * np.cos(KY[occ]))
+    check('anisotropic parabolic band, m1 = 1/2 and m2 = 2: cyclotron mass sqrt(m1 m2) = 1 by a count, on the lattice '
+          'close to the bottom the cyclotron mass tends to 1 and the Drude masses along x and y to 1/2 and 2',
+          abs(mc_ani - np.sqrt(m1 * m2)) < 2e-3 and np.isclose(np.sqrt(m1 * m2), 1.0) and abs(mc_rect - 1) < 0.03
+          and abs(mdx - m1) < 0.01 and abs(mdy - m2) < 0.04 and mc_rect > max(m1, mdx) and mc_rect < min(m2, mdy),
+          (round(mc_ani, 4), round(mc_rect, 4), round(mdx, 4), round(mdy, 4)))
+
+    # item 2 of Section 2.10, kept on 2026-11-22: a Dirac cone has a Berry phase. Around a small loop about K of graphene
+    # the lower band has the Berry phase pi, a Wilson loop of the eigenvectors. With a sublattice imbalance 0.5, which
+    # gaps the cone, it is no longer pi on the same loop, so the pi is a property of the massless cone.
+    dl = np.array([[1.0, 0.0], [-0.5, S3 / 2], [-0.5, -S3 / 2]])
+    Kp = np.array([2 * np.pi / 3, 2 * np.pi / (3 * S3)])
+
+    def berry_loop(mass, r=0.05, n=400):
+        vs = []
+        for th in np.linspace(0, 2 * np.pi, n, endpoint=False):
+            kv = Kp + r * np.array([np.cos(th), np.sin(th)])
+            f = np.exp(1j * dl @ kv).sum()
+            vs.append(np.linalg.eigh(np.array([[mass, f], [np.conj(f), -mass]]))[1][:, 0])
+        prod = np.prod([np.vdot(vs[i], vs[(i + 1) % n]) for i in range(n)])
+        return abs(np.angle(prod))
+    bp0, bp5 = berry_loop(0.0), berry_loop(0.5)
+    check('a small loop about K of graphene: the Berry phase of the lower band is pi, and with an imbalance 0.5 it is not',
+          np.isclose(bp0, np.pi, atol=1e-6)
+          and abs(bp5 - np.pi) > 0.5 and np.allclose(np.abs(np.exp(1j * dl @ Kp).sum()), 0, atol=1e-12),
+          (round(bp0, 6), round(bp5, 4)))
 
     # the quiz on nesting: eps(k + Q) = -eps(k), the surfaces at -3t and -t go to the contours at +3t and +t, and the
     # point (2 pi/3, 0) at -t goes to (5 pi/3, pi) at +t

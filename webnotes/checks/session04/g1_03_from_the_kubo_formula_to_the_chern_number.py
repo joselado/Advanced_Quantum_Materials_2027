@@ -8,8 +8,9 @@ the magnetic cell geometry.square_lattice().get_supercell((1, q)) and h.add_orbi
 numbers come from h.get_chern() and from the link variables of webnotes/figures/physcheck.py, which has the Omega of
 the notes. Both give +1 per band for this sign of the field of pyqula. The caption says that this positive flux is the
 field along +z for an electron and along -z for the charge +e, from the plaquette phase computed below, and that the
-flux -1/20 gives -1. The opener and the problem give magnitudes only, since the conventions sheet leaves the sign of
-(4.2) to the lecturer. The first quiz counts the chiral modes at an edge of a ribbon, and the Streda form is a
+flux -1/20 gives -1. The lecturer picked on 2026-11-22 the magnitudes |C_n| = 1 and |sigma_xy| = N e^2/h for the text
+and for (4.2), with one sentence on the signs, and the block marked "decided on 2026-11-22" backs them by a second route,
+a numpy cell with the phase (4.4) of the charge +e. The first quiz counts the chiral modes at an edge of a ribbon, and the Streda form is a
 second route to the Chern number of the third gap, by the count of the states at a fixed Fermi energy.
 
 pyqula writes files when it computes a Chern number, so the script works in a temporary folder and leaves no file.
@@ -132,6 +133,42 @@ dndphi = (dens[20] - dens[21]) / (1 / 20 - 1 / 21)
 check('the density below E_F = -2.35 t changes as dn/dphi = 3 per site, the Chern number of the third gap',
       abs(dndphi - sig[2]) < 1e-9, (dens[20], round(dens[21], 6), round(dndphi, 9)))
 check('the second quiz: three filled levels give 3 in units of e^2/h', abs(sig[2] - 3) < 1e-6, round(sig[2], 6))
+
+
+# ---------------------------------------------------------------- (4.2) with magnitudes, decided on 2026-11-22 by the lecturer
+# The text of Section 4.4, (4.2), the caption of s04f03_guidingcenter and the second quiz write |C_n| = 1, |C_tot| = N
+# and |sigma_xy| = N e^2/h, and one sentence says C_n = -1 for the charge +e in the field B z with the Omega of
+# Session 3, and +1 for an electron. The second route is a numpy cell with the phase (4.4) of the charge +e, for
+# A = (0, s B x): the hop from (x, y) to (x, y+1) is -exp(i s 2 pi x/q), so a counterclockwise plaquette has the phase
+# +2 pi s/q, and s = +1 is the field along +z. An electron in the field along +z has the phase of s = -1.
+def landau_cell(qq, s):
+    def hk_(k):
+        m = np.diag(-2 * np.cos(k[1] - s * 2 * np.pi * np.arange(qq) / qq)).astype(complex)
+        m += -np.eye(qq, k=1) - np.eye(qq, k=-1)
+        m[qq - 1, 0] += -np.exp(1j * k[0] * qq)
+        m[0, qq - 1] += -np.exp(-1j * k[0] * qq)
+        return m
+    return hk_, pc.reciprocal([[qq, 0], [0, 1]])
+
+
+Cs = {}
+for s in (1, -1):
+    hks, Bs = landau_cell(q, s)
+    es_ = np.array([np.linalg.eigvalsh(hks(k)) for k in pc.kmesh(Bs, 6)]).mean(axis=0)
+    assert np.allclose(es_[:4], lev[:4], atol=1e-6)                 # the same levels as the cell of pyqula
+    Cs[s] = [pc.chern_links(hks, Bs, bands=n, nk=12) for n in range(4)]
+tot = {s: np.cumsum(Cs[s]) for s in Cs}
+check('decided on 2026-11-22: |C_n| = 1 for each of the four lowest levels and |C_tot| = N for N = 1 to 4, for both '
+      'signs of the field, with pyqula and with the phase (4.4)',
+      np.allclose(np.abs(Cl), 1, atol=1e-9) and np.allclose(np.abs(Cm), 1, atol=1e-9)
+      and all(np.allclose(np.abs(tot[s]), [1, 2, 3, 4], atol=1e-9) for s in tot)
+      and np.allclose(np.abs(np.cumsum(Cm)), [1, 2, 3, 4], atol=1e-9), {s: np.round(tot[s], 6) for s in tot})
+check('decided on 2026-11-22: the charge +e in the field B z has C_n = -1 for each level with the Omega of Session 3, by '
+      'the phase (4.4) and by the flux -1/20 of pyqula, and an electron in the same field has C_n = +1',
+      np.allclose(Cs[1], -1, atol=1e-9) and np.allclose(Cm, -1, atol=1e-9) and np.allclose(Cs[-1], 1, atol=1e-9)
+      and np.allclose(Cl, 1, atol=1e-9), (np.round(Cs[1], 6), np.round(Cs[-1], 6)))
+check('decided on 2026-11-22, the second quiz: three filled levels give |C| = 3 and |sigma_xy| = 3 e^2/h for both charges',
+      abs(abs(tot[1][2]) - 3) < 1e-9 and abs(abs(tot[-1][2]) - 3) < 1e-9 and abs(sig[2] - 3) < 1e-6, (tot[1][2], tot[-1][2]))
 
 # the first quiz: the number of chiral modes at one edge is the |C| of all the filled bands, while each band has 1.
 # A ribbon of 80 sites, periodic along x as the ribbons of pyqula are, with the Fermi energy in the gaps 1, 2 and 3

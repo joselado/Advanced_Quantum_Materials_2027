@@ -103,7 +103,7 @@ python3 webnotes/build.py --verify --session 3      # checks/session03/ and the 
 ```
 
 Each script runs in a temporary working folder of its own, so the files that it writes stay out of the tree, and with
-a time limit of 15 minutes (`VERIFY_TIMEOUT` in `build.py`). A script passes when it exits with code 0, so a check
+a time limit of 40 minutes (`VERIFY_TIMEOUT` in `build.py`, raised from 15 on 2026-11-22, when about twenty agents on the machine made a check of 3 minutes take 15). A script passes when it exits with code 0, so a check
 ends with an assertion or with `sys.exit(1)` when a number is wrong. A file of test functions calls them under
 `if __name__ == '__main__'`, since nothing else runs them. A file `_NAME.py` is a helper that the checks import, and
 it is not run on its own. The output is one line per script with the last line of its error, then a count, and the

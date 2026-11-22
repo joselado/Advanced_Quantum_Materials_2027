@@ -162,3 +162,57 @@ check('quiz 3: every anticommutator of two of c_0, c_1, c_0^+, c_1^+ is 0 or 1 t
       sorted(consts))
 check('quiz 3: the product c_0 c_0^+ itself is not a multiple of the identity', not np.allclose(c[0] @ cd[0], (c[0] @ cd[0])[0, 0] * I4),
       np.diag(c[0] @ cd[0]).tolist())
+
+# the sentence after (1.2), added on 2026-11-22 by the pick of the lecturer: with +t the antisymmetric combination
+# (1,-1)/sqrt2 is the lower level, -t, and with the hopping -t of Section 1.10 on, the symmetric one (1,1)/sqrt2 is,
+# so the two combinations exchange their levels. Route 1 is the one-electron block of the Fock space, route 2 the 2x2
+# matrix by hand
+sym, asym = np.array([1., 1.]) / np.sqrt(2), np.array([1., -1.]) / np.sqrt(2)
+one = [cd[0] @ vac, cd[1] @ vac]
+for sign in (+1, -1):
+    Hs = sign * (cd[0] @ c[1] + cd[1] @ c[0])
+    block = np.array([[a @ Hs @ b for b in one] for a in one])
+    check(f'the sentence after (1.2): the one-electron block of {sign:+d}t is the matrix {sign:+d}t [[0,1],[1,0]]',
+          np.allclose(block, sign * np.array([[0., 1.], [1., 0.]])), block.tolist())
+    w, v = np.linalg.eigh(block)
+    low = v[:, 0] * np.sign(v[np.argmax(np.abs(v[:, 0])), 0])
+    check(f'the sentence after (1.2): with the hopping {sign:+d}t the lower level -t is the '
+          + ('antisymmetric' if sign > 0 else 'symmetric') + ' combination',
+          np.allclose(w, [-1., 1.]) and np.isclose(abs(low @ (asym if sign > 0 else sym)), 1.0), np.round(low, 6).tolist())
+check('the sentence after (1.2): the symmetric combination has +t with the hopping +t and -t with -t, so the two '
+      'combinations exchange their levels',
+      np.isclose(sym @ np.array([[0, 1], [1, 0]]) @ sym, 1.0) and np.isclose(sym @ (-np.array([[0, 1], [1, 0]])) @ sym, -1.0)
+      and np.isclose(asym @ np.array([[0, 1], [1, 0]]) @ asym, -1.0), 'symmetric +1 and -1, antisymmetric -1 and +1')
+
+# the same sentence: "from Section 1.10 on the hopping is -t". The pages are read in the order of the manifest, cut at
+# the headings, and every hopping written as t times a sum or a bracket of c^+ c is collected with its sign. Before
+# Section 1.10 the only one after (1.2) is (1.2) itself, with +t, and from Section 1.10 on every one has -t. On the web the
+# first one is the island of Section 1.10, while in the .tex, which has no island figure, it is (1.6) of Section 1.13.
+import json
+import os
+import re
+WEB = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..')
+files = [p['file'] for p in json.load(open(os.path.join(WEB, 'manifest', 'session01.json')))['pages']]
+hop = re.compile(r'(-?)t\\(?:sum|left\(c)')
+found = []
+for f in files:
+    sec = None
+    for line in open(os.path.join(WEB, 'pages', 'session01', f), encoding='utf-8'):
+        h = re.match(r'## .*\{#(sec-1-[0-9a-z]+)', line)
+        if h:
+            sec = h.group(1)
+        for s in hop.findall(line):
+            found.append((sec, s == '-'))
+order = [p for f in files for p in re.findall(r'\{#(sec-1-[0-9a-z]+)', open(os.path.join(WEB, 'pages', 'session01', f),
+                                                                                encoding='utf-8').read())]
+after = [(s, neg) for s, neg in found if s is not None and order.index(s) >= order.index('sec-1-10')]
+between = [(s, neg) for s, neg in found if s is not None and order.index('sec-1-6') <= order.index(s) < order.index('sec-1-10')]
+check('the sentence after (1.2): from Section 1.10 on every hopping of the pages is -t', len(after) >= 6 and
+      all(neg for _, neg in after), sorted({s for s, _ in after}))
+check('the sentence after (1.2): the first -t after (1.2) is in Section 1.10', after[0][0] == 'sec-1-10' and
+      all(not neg for _, neg in between), (after[0], between))
+tex = open(os.path.join(WEB, '..', 'lecture_notes', 'src', 'sessions', 'session01.tex'), encoding='utf-8').read().split('\n')
+first_tex = next(i + 1 for i, l in enumerate(tex) if re.search(r'-t\\sum', l))
+sec_tex = sum(1 for l in tex[:first_tex] if l.startswith('\\section{'))
+check('the .tex: the first -t is (1.6), in its 13th section, Section 1.13', sec_tex == 13 and '+ V\\sum_n' in tex[first_tex - 1],
+      (first_tex, sec_tex))

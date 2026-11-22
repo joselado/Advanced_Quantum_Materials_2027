@@ -4,7 +4,8 @@ The quiz writes three mean-field terms of the onsite interaction U n_up n_dn and
 of electrons. This script builds the four states of one site as matrices and checks the identities behind the signs
 of the options, which operators keep the number of electrons, and the counterexample of the first option. The old
 quiz of the page keeps its feedback, and its numbers, the filling 1/3 and the charge e/3, are asserted at the end, as
-the Laughlin state with m = 3 and against the page of Section 4.16, which states the same values. It needs numpy only
+the Laughlin state with m = 3 and against the page of Section 4.16, which states the same values. Its third feedback,
+corrected on 2026-11-22 to name the Majorana state as the fraction of an electron, is checked last. It needs numpy only
 and writes no file."""
 import os
 import numpy as np
@@ -92,3 +93,31 @@ page = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'pag
 text = open(page).read()
 check('Section 4.16 states the filling 1/3 and the charge e/3', 'sec-4-16' in text and '$\\nu=1/3$' in text
       and '$e^*=e/3$' in text, 'session04/16')
+
+# the third feedback of the old quiz, corrected on 2026-11-22: the fraction of an electron in a superconductor is a
+# Majorana state, not the Bogoliubov quasiparticle. First route, one site: the Bogoliubov operator b = u c_up + v c_dn^dag of
+# the block (5.8) with eps = 0.3 and Delta = 0.4 is a whole fermion, {b, b^dag} = 1 and b^2 = 0, a superposition of an
+# electron, weight u^2 = 0.8, and a hole. A Majorana gamma = c + c^dag squares to one, so it cannot be empty or filled alone,
+# and c = (gamma_A + i gamma_B)/2 takes two of them.
+eps_, D_ = 0.3, 0.4
+w_, v_ = np.linalg.eigh(np.array([[eps_, D_], [D_, -eps_]]))
+u_, vv_ = v_[0, 1], v_[1, 1]
+b = u_ * cu + vv_ * d(cd)
+check('third feedback: the Bogoliubov operator of eps=0.3, Delta=0.4 is a whole fermion with electron weight u^2 = 0.8',
+      np.allclose(b @ d(b) + d(b) @ b, np.eye(4)) and np.allclose(b @ b, 0) and np.isclose(u_ ** 2, 0.8), round(u_ ** 2, 6))
+gA, gB = cu + d(cu), -1j * (cu - d(cu))
+check('third feedback: a Majorana squares to one and two of them make c = (gA + i gB)/2',
+      np.allclose(gA @ gA, np.eye(4)) and np.allclose(cu, (gA + 1j * gB) / 2), 'ok')
+# second route, the mean-field Hamiltonian of the Kitaev chain at Delta=t, mu=0 on 10 sites, in the BdG basis (c, c^dag):
+# two levels at zero energy, whose space holds the Nambu vector of gamma_1, with equal electron and hole parts on site 1
+N = 10
+hh, dd = np.zeros((N, N)), np.zeros((N, N))
+for n in range(N - 1):
+    hh[n, n + 1] = hh[n + 1, n] = -1.0
+    dd[n + 1, n], dd[n, n + 1] = 1.0, -1.0
+e_, V_ = np.linalg.eigh(np.block([[hh, dd], [dd.T, -hh]]))
+Z_ = V_[:, np.abs(e_) < 1e-12]
+g1v = np.r_[np.eye(N)[0], np.eye(N)[0]] / np.sqrt(2)
+check('third feedback: the Kitaev chain at Delta=t, mu=0 has two zero levels, and their space holds gamma_1, half electron and half hole',
+      Z_.shape[1] == 2 and np.abs(Z_ @ Z_.conj().T @ g1v - g1v).max() < 1e-12, Z_.shape[1])
+print('all checks of page 01 hold')

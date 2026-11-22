@@ -112,7 +112,9 @@ it. The check is `webnotes/checks/session05/conventions.py`, which prints one li
   \sigma)$, for `d` along $x$, along $z$ and `[1,1,0]`, so `d` is not normalized. `d=[1,0,0]` pairs up with up and down
   with down, and the amplitude of the down-down pair is $x|d_x+id_y|$, so `d=[1,1,0]` gives $\sqrt2\,x$.
 - `mode="nodal_fwave"` on the triangular lattice is odd in $\mathbf k$, zero on the three lines $\Gamma$-$M$, with the
-  largest entry $10^{-15}$, and up to 1.42 on $\Gamma$-$K$. At $\mu=0$ the Fermi surface crosses $\Gamma$-$M$ at 2/3 of
+  largest entry $10^{-15}$. With `delta=0.2` its entry grows along $\Gamma$-$K$ up to $2.078=6\sqrt3$ `delta` at $K$, from six
+  bonds of $\pm2$ `delta` each (corrected on 2026-11-22, the line said "up to 1.42 on $\Gamma$-$K$", which was the largest
+  value between 0.2 and 0.7 of the way to $K$, 1.425 at 0.7). At $\mu=0$ the Fermi surface crosses $\Gamma$-$M$ at 2/3 of
   the way to $M$, where $|E|$ is below $10^{-15}$, so the nodes are on the Fermi surface. On the path `G`, `K`, `M`, `G` of
   the notebook the smallest $|E|$ is set by the steps of the path, 0.0182 with the default 546 steps and 0.0036 with
   `nk=2000`, and the s-wave 0.4 gives 0.4004 and 0.4000 there, against 0.4 on the Fermi surface. A page quotes the
@@ -296,42 +298,69 @@ it. The check is `webnotes/checks/session05/conventions.py`, which prints one li
 
 ## Open points of the old text, left as they are
 
-These were found while the sheet was checked. A change of an equation, of a statement of the old text or of a
-convention is the lecturer's decision, so they are left as they are, and a page that touches them says the condition.
+These were found while the sheet was checked, and they were left as they are until 2026-11-22, when they were decided, by
+the lecturer for (5.20) and by the rule of the coordinator for the others, as the list "Decided on 2026-11-22" of
+`webnotes/plans/session05.md` says. No numbered equation changed. A bullet quotes the old wording of the page in the past
+tense, "Before 2026-11-22 Section 5.8 said", names the `.tex` where it has the same point, and then says what the web page
+says now. The `.tex` keeps its wording until the list "Corrected on the web, to carry over to the .tex" of the plan is
+carried over.
 
-- Section 5.8 says of the minus sign of (5.6) that "without it, the two spin blocks would mix through a Pauli
-  matrix". Without the sign the pairing block is $\Delta\sigma_z$ and the coupling between the two blocks is 0, as the
-  bullet on the minus sign above says. The sign makes the two copies identical, as the caption of the figure of the
-  blocks says.
-- The quiz of Section 5.10 says $|\Delta_d|\approx2\Delta_0$ and $E\geq2\Delta_0$ on a pocket around $X$. On a pocket
-  of radius 0.3 it is $1.955\Delta_0$, and $1.876\Delta_0$ for a radius 0.5, so $E$ is slightly below $2\Delta_0$.
+- Before 2026-11-22 Section 5.8 said of the minus sign of (5.6) "Without it, the two spin blocks would mix through a Pauli
+  matrix.", and the `.tex` says "instead of mixing the two spin blocks through a Pauli matrix". Without the sign the
+  pairing block is $\Delta\sigma_z$ and the coupling between the two blocks is 0, as the bullet on the minus sign above
+  says. The sign makes the two copies identical, as the caption of the figure of the blocks says. Since 2026-11-22 the
+  page says "Without it, the two blocks would still be decoupled, but with $+\Delta$ in one and $-\Delta$ in the other, so
+  they would not be identical copies." The same page said, as the `.tex` still does, "Since the spinor (5.6) was built
+  with this extra minus sign, the $4\times 4$ problem in (5.7) is already block-diagonal", and since the independent check
+  of 2026-11-22 it says "The $4\times 4$ problem in (5.7) splits into two $2\times 2$ blocks, and it would split also
+  without the extra minus sign of the spinor (5.6)".
+- Before 2026-11-22 the quiz of Section 5.10 said "$|\Delta_d|\approx2\Delta_0$ and $E\geq2\Delta_0$ there" for a pocket
+  around $X$. On a pocket of radius 0.3 it is $1.955\Delta_0$, and $1.876\Delta_0$ for a radius 0.5, so $E$ is slightly
+  below $2\Delta_0$. The quiz is web-only, and since 2026-11-22 it says "$E$ is close to $2\Delta_0$ there".
 - (5.10) in Section 5.11 has the opposite sign of (5.4), $\Delta_{\uparrow\downarrow}=-\Delta$ with the sum over the
-  whole zone, and the prime is not defined, as the bullet on (5.10) above says.
-- Section 5.14 says that the sign of $C=\pm2$ "is set by the chirality". It is set by the chirality together with the
-  side of the Fermi surface. The same $p_x+ip_y$ gives $-2$ with the pocket of empty states of the notebook and $+2$
-  with a pocket of filled states, and $p_x-ip_y$ gives $+2$ on the notebook model. The quiz that goes from $+2$ to $-2$
-  holds for a pocket of filled states, as in Figure 5.4. The same section and the caption of Figure 5.4 count one
-  branch "from each of the two identical spin blocks". For this triplet the blocks
+  whole zone, and the prime is not defined, as the bullet on (5.10) above says. Since 2026-11-22 the page says "We use
+  (5.10) only for its symmetry, since its overall sign is the opposite of the one of (5.4)." The prime stays undefined, since
+  with the sum over half of the zone an even $\Delta_{\mathbf k,\uparrow\uparrow}$ gives an operator that is not zero,
+  which would contradict the fold of the page, where the sum runs over the whole zone.
+- Before 2026-11-22 Section 5.14 said "where the sign is set by the chirality, $p_x + ip_y$ or $p_x - ip_y$", as the
+  `.tex` still does. The sign is set by the chirality together with the side of the Fermi surface. The same $p_x+ip_y$
+  gives $-2$ with the pocket of empty states of the notebook and $+2$ with a pocket of filled states, and $p_x-ip_y$ gives
+  $+2$ on the notebook model. The quiz that goes from $+2$ to $-2$ holds for a pocket of filled states, as in Figure 5.4.
+  The text of the same section said, as the `.tex` still does, "one from each of the two identical spin blocks", and the
+  caption of Figure 5.4 says "one branch from each of the two identical spin blocks of (5.8)". For this triplet the blocks
   carry $+\Delta(\mathbf k)$ and $-\Delta(\mathbf k)$, so they have the same spectrum and the same Chern number, but
-  they are not (5.8) with one $\Delta$.
-- The quiz of Section 5.14 says that both gaps "are the same on the same Fermi surface, since $E=|\Delta|$ there". On
-  the Fermi surface of $\mu=-2t$ the p+ip gap goes from $0.200t$ to $0.245t$ while the s-wave one is $0.2t$. The
-  smallest energies are both $0.2t$, as the quiz says, and at $\mu=-3.5t$ they differ, $0.2t$ against $0.1314t$.
+  they are not (5.8) with one $\Delta$. Since 2026-11-22 the text, the fold and the kept quiz of the page say this, while
+  the caption of Figure 5.4, a converted figure, keeps "identical" and is left for the lecturer.
+- Before 2026-11-22 a quiz of Section 5.14 said "Both gaps are the same on the same Fermi surface, since $E=|\Delta|$
+  there." On the Fermi surface of $\mu=-2t$ the p+ip gap goes from $0.200t$ to $0.245t$ while the s-wave one is $0.2t$.
+  The smallest energies are both $0.2t$, and at $\mu=-3.5t$ they differ, $0.2t$ against $0.1314t$. The quiz now says
+  "The smallest energy is $0.2t$ for both pairings". The caption of Figure 5.4 says "The modulus is essentially the same
+  in both cases", and it is left for the lecturer on 2026-11-22 with the candidate "On a small pocket the modulus of
+  $\Delta_{p+ip}$ is almost constant".
 - (5.20) in Section 5.16 and the quiz of Section 5.20 write $\Delta(k)=2i\Delta\sin k$. With the Fourier transform
   (2.7) the entry of (5.8) is $-2i\Delta\sin k$, and the printed form is the entry below the diagonal. Nothing that a
-  page computes depends on it, since the sign changes only the signed winding.
+  page computes depends on it, since the sign changes only the signed winding. The lecturer picked on 2026-11-22 to keep
+  (5.20) as printed, and the page adds after it "The sign of $i$ is a gauge choice, $\Delta\to-\Delta$, and the spectrum
+  depends only on $2|\Delta\sin k|$". The spectrum also depends on $\varepsilon(k)$, so the candidate "the spectrum depends
+  on the pairing only through $2|\Delta\sin k|$" of the independent check of 2026-11-22 is left for the lecturer.
 - The try-it of Section 5.5 gives $|\Delta|$ "from about 0.1 to 0.2 and 0.4". The loop gives 0.103, 0.223 and 0.361,
-  which is 0.1, 0.2 and 0.4 to one digit, and a page that quotes two digits writes 0.10, 0.22 and 0.36.
-- The text of the widget of Section 5.17 says that for $|\mu|<2t$ two levels sit at zero energy. With 30 sites they
-  are at $1.6\cdot10^{-4}$ for $\mu=1.5t$ and at $0.047t$ for $\mu=1.9t$, half of the bulk value $0.1t$.
-- The word gap means $2|\Delta|$, the distance between the two branches, in Sections 5.8 and 5.9, and the smallest
-  quasiparticle energy in the try-it of Section 5.13, in the quiz of Section 5.17 with its $0.82t$, which is
-  $0.8165t$ while the branches are $1.633t$ apart, and in the widget. The two differ by a factor two, and a page
-  says which one it means.
-- The try-it of Section 5.17 says that the line `mu = 0.3` sets the chemical potential. In the cell `mu` is the
-  argument of `add_onsite`, so it is $\mu=-0.3$ of (5.22). (5.22) depends only on $|\mu|$, and $\mu=+0.3$ gives the
-  same splitting, $1.65\cdot10^{-3}$, so what the try-it says about the levels holds.
+  which is 0.1, 0.2 and 0.4 to one digit, and a page that quotes two digits writes 0.10, 0.22 and 0.36. The try-it keeps
+  its wording, decided on 2026-11-22.
+- The text of the widget of Section 5.17 says "For $|\mu|<2t$ two levels sit at zero energy inside the gap". With 30
+  sites they are at $1.6\cdot10^{-4}$ for $\mu=1.5t$ and at $0.047t$ for $\mu=1.9t$, half of the bulk value $0.1t$. Since
+  2026-11-22 the text adds that on 30 sites this holds away from $|\mu|=2t$.
+- The word gap means $2|\Delta|$, the distance between the two branches, in Sections 5.8 and 5.9. Before 2026-11-22 it
+  meant the smallest quasiparticle energy in the try-it of Section 5.13, "keep a gap of $|\Delta|=0.4$", and in the quiz
+  of Section 5.17, "the bulk gap is $0.82t$", which is $0.8165t$ while the branches are $1.633t$ apart. It still means
+  this in the widget of Section 5.17. The two differ by a factor two, and a page says which one it means. Since 2026-11-22
+  the try-it of Section 5.13 says "keep a smallest quasiparticle energy $|\Delta|=0.4$" and the quiz of Section 5.17 says
+  "the smallest bulk energy is $0.82t$".
+- Before 2026-11-22 the try-it of Section 5.17 said "the line `mu = 0.3` sets the chemical potential". In the cell `mu`
+  is the argument of `add_onsite`, so it is $\mu=-0.3$ of (5.22). (5.22) depends only on $|\mu|$, and $\mu=+0.3$ gives the
+  same splitting, $1.65\cdot10^{-3}$, so what the try-it says about the levels holds. Since 2026-11-22 the try-it says "the
+  line `mu = 0.3` sets the chemical potential through `h.add_onsite`, which is $\mu=-0.3$ in (5.19)", and the notebook box
+  of Section 5.16, which points to the same cell, says $\Delta=0.14$ and $\mu=-0.3$.
 - The notebook text, which is not a page, writes the exchange as $-Js_z$ with $E_\uparrow=E-J$, while
   `add_exchange([0,0,J])` moves the spin-up band up by $J$. It also writes the hole block as $-(H_0-\mu)^*$, which holds
   only for a Hamiltonian that does not depend on spin, and for a Rashba coupling 0.3 at the reduced momentum
-  $(0.1,0.2)$ it is off by 0.71.
+  $(0.1,0.2)$ it is off by 0.71. This stays, since the notebooks are not edited in this pass.

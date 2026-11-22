@@ -37,6 +37,17 @@ kF = np.arccos(np.array([1.2, 0.0, -1.2]) / (2 * t))
 check('gap_any_mu: k_F = arccos(-mu/2t) = 0.93, 1.57, 2.21 for mu = -1.2, 0, 1.2', np.allclose(kF, [0.93, 1.57, 2.21], atol=5e-3),
       np.round(kF, 3))
 
+# ---- the first paragraph of 5.9, corrected on 2026-11-22: for a uniform Delta the minimum of E is where eps = 0, and the
+# smallest quasiparticle energy there is |Delta|. First route, the mesh: the minimum sits at |eps| = 0 and has E = 0.3. Second
+# route, E^2 = eps^2 + |Delta|^2 >= |Delta|^2 with equality only at eps = 0, on the points of the mesh closest to the Fermi surface
+for mu in (-1.0, 0.0, 1.5):
+    E = np.sqrt(eps(mu)**2 + 0.3**2)
+    i = np.argmin(E)
+    near = np.abs(eps(mu)) < 1e-2
+    check(f'5.9: a uniform Delta=0.3 at mu={mu}, the minimum of E is at eps=0 and equals |Delta|',
+          abs(eps(mu).flat[i]) < 1e-4 and abs(E.flat[i] - 0.3) < 1e-8 and np.all(E >= 0.3 - 1e-15)
+          and np.abs(E[near] - 0.3).max() < 2e-4, (round(abs(eps(mu).flat[i]), 6), round(E.flat[i], 6)))
+
 # ---- the key box of 5.10: min E against the smallest |Delta| on the Fermi surface. In s = cos kx + cos ky the band is
 # -2t s - mu, and a pairing that depends on k only through s, the uniform one and the extended s-wave, has E^2 = eps^2 + |D(s)|^2
 for mu in (-3.0, -1.0, 0.0, 1.5):
@@ -81,14 +92,16 @@ check('key: min E is never above |Delta| on the Fermi surface, 72 cases of mu, D
 
 # ---- the quiz on the pocket at X
 check('quiz on X: cos kx - cos ky = -2 at X = (pi, 0)', np.isclose(np.cos(np.pi) - np.cos(0), -2), -2)
-# the first option, old text: "|Delta_d| approx 2 Delta_0" holds, and "E >= 2 Delta_0" does not (open for the lecturer)
+# the first option, old text: "|Delta_d| approx 2 Delta_0" holds, and "E >= 2 Delta_0" does not. On 2026-11-22 the
+# feedback became "E is close to 2 Delta_0 there", which is what the asserts below say, with E = |Delta_d| on the pocket.
+# The second route is the expansion at X + r (cos a, sin a), |cos kx - cos ky| = cos(r cos a) + cos(r sin a) = 2 - r^2/2 + O(r^4)
 ang = np.linspace(0, 2 * np.pi, 10000, endpoint=False)
 rng = {}
 for rad in (0.1, 0.3, 0.5):
     g = np.abs(np.cos(np.pi + rad * np.cos(ang)) - np.cos(rad * np.sin(ang)))
     rng[rad] = (round(g.min(), 4), round(g.max(), 4))
     check(f'quiz on X: on a pocket of radius {rad} around X, 1.876 <= |Delta_d|/Delta_0 < 2, so close to 2 and below it',
-          g.min() >= 1.876 - 1e-4 and g.max() < 2, rng[rad])
+          g.min() >= 1.876 - 1e-4 and g.max() < 2 and abs(g.min() - (2 - rad**2 / 2)) < rad**4 / 12 + 1e-9, rng[rad])
 check('quiz on X: the 1.88 of the caption is the pocket of radius 0.5', rng[0.5][0] >= 1.876 and round(rng[0.5][1], 2) == 1.88, rng[0.5])
 
 # ---- the lab box: the filling of the stored source, in words

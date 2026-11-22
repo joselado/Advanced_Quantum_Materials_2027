@@ -8,7 +8,11 @@ the key box, the five levels, the walls and the crossings of ribbon_three, the c
 picture quiz and the reversal of the field of its explanation, the ribbon with a step of the potential of the problem,
 and the numbers of the lab box. It finds the repository from its own path and writes no file.
 
-Run it from anywhere:  python3 webnotes/checks/session04/g2_05_edge_states.py"""
+Run it from anywhere:  python3 webnotes/checks/session04/g2_05_edge_states.py
+
+The blocks marked "corrected on 2026-11-22" back the sentences of the old text that were corrected on that day, after
+the lecturer chose to fix the errors of the old text. The block marked "decided on 2026-11-22" backs the magnitudes
+|C| and |sigma_xy| of the second paragraph and of the second quiz, after the choice of the lecturer on the sign of C."""
 import os
 import sys
 sys.dont_write_bytecode = True
@@ -46,6 +50,21 @@ mid = np.argmin(np.abs(ks - qh.W / 2))
 check('ribbon_three, five flat levels 0.5 to 4.5 below the top 4.8 of the energy axis, and the sixth above it',
       np.allclose(E[mid, :5], np.arange(5) + 0.5, atol=1e-3) and E[mid, 4] < ytop < E[mid, 5], np.round(E[mid], 3))
 check('ribbon_three, three crossings at each edge at mu = 3', qh.edge_counts(ks, E, 3.0) == (3, 3), qh.edge_counts(ks, E, 3.0))
+
+# the third paragraph, corrected on 2026-11-22: the edge states of the ribbon move along y, and at one energy in a gap all
+# the branches of the left wall have dE/dk_y of one sign and all those of the right wall the other sign, so a state that
+# moves the other way along y sits on the other wall. The slope is taken at each crossing, and the wall is the side of the
+# guiding center k_y l_B of the crossing, below or above the middle of the ribbon.
+slopes = {}
+for mu in (1.0, 2.0, 3.0):
+    left, right = [], []
+    for kc, n in qh.crossings(ks, E, mu):
+        i = int(np.clip(np.searchsorted(ks, kc), 1, len(ks) - 1))
+        s = np.sign(E[i, n] - E[i - 1, n])
+        (left if kc < qh.W / 2 else right).append(s)
+    slopes[mu] = (sorted(set(left)), sorted(set(right)), len(left), len(right))
+check('text, at mu = 1, 2, 3 all branches of the left wall move one way along y and all of the right wall the other way',
+      all(v[0] == [-1.0] and v[1] == [1.0] and v[2] == v[3] == int(mu) for mu, v in slopes.items()), slopes)
 kw = np.array([0.0, qh.W])
 Ew = qh.levels(kw, nlev=1)[:, 0]
 check('ribbon_three, k_y l_B = 0 and 12 put the guiding center on the left and on the right wall, the walls are at 0 and 12',
@@ -149,4 +168,18 @@ rk = h_planck / e_charge ** 2
 check('lab box, h/e^2 in kOhm, the page says 25.8', abs(rk / 1e3 - 25.8) < 0.05, round(rk / 1e3, 4))
 check('lab box, 3.35 ohm is 0.00013 h/e^2 and 1.76 ohm is 0.00007 h/e^2, to the digits of the abstract',
       round(3.35 / rk, 5) == 0.00013 and round(1.76 / rk, 5) == 0.00007, (3.35 / rk, 1.76 / rk))
+
+# ---------------------------------------------------------------- magnitudes of C, decided on 2026-11-22
+# The lecturer chose |C_n| = 1 and |sigma_xy| = N e^2/h for (4.2), with C_n = -1 for the charge +e in B z. After an
+# independent check the second paragraph says "a Chern number of magnitude N" and the second quiz writes |C| and
+# |sigma_xy|. The N lowest bands of the Harper cell with the flux +1/12, the charge +e in B z, have C_tot = -N, and with
+# -1/12, an electron in the same field, C_tot = +N, so |C_tot| = N, the N modes of each wall counted above.
+ctot = {p: [round(float(physcheck.chern_links(*harper(p, 12), bands=range(n), nk=24)), 6) for n in (1, 2, 3)] for p in (1, -1)}
+page05 = open(os.path.join(HERE, '..', '..', 'pages', 'session04',
+                           '05-edge-states-and-why-an-insulating-bulk-still-conducts.md'), encoding='utf-8').read()
+check('decided on 2026-11-22: N = 1, 2, 3 filled levels have C_tot = -N for the charge +e in B z and +N for an electron, '
+      'so |C_tot| = N, the number of modes at each wall, and the page writes the magnitudes',
+      ctot == {1: [-1.0, -2.0, -3.0], -1: [1.0, 2.0, 3.0]} and all(counts[mu] == (int(mu), int(mu)) for mu in counts)
+      and 'a Chern number of magnitude $N$' in page05 and r'$|\sigma_{xy}|=|C|e^2/h$' in page05
+      and 'with Chern number $N$' not in page05, ctot)
 print('all checks of page 05 hold')

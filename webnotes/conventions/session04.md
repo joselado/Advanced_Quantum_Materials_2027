@@ -21,9 +21,11 @@ order, in about two minutes. A statement that is not on this sheet is checked be
 
 ## Units and scales
 
-- The pages set $e=1$ and keep $\hbar$, as Sections 4.7 and 4.9 say, so $\omega_c=B/m$ and $\ell_B=\sqrt{\hbar/B}$.
-  With the units back, $\ell_B=\sqrt{\hbar/eB}$ is 25.66 nm at 1 T and 12.83 nm at 4 T, so it goes as $1/\sqrt B$,
-  and $2\pi\ell_B^2B$ is the flux quantum $h/e$.
+- The pages set $e=1$ and keep $\hbar$, as Sections 4.7 and 4.9 say, so $\omega_c=B/m$ and $\ell_B=\sqrt{\hbar/B}$,
+  and the phase of (4.4) is $(1/\hbar)\int\mathbf A\cdot d\boldsymbol\ell$, as the key box of Section 4.7 says since
+  2026-11-22, where (4.4) is printed with $\hbar=1$. With the units back, $\ell_B=\sqrt{\hbar/eB}$ is 25.66 nm at 1 T and 12.83 nm at 4 T, so it goes as
+  $1/\sqrt B$, and $2\pi\ell_B^2B$ is the flux quantum $h/e$, so the phase $(e/\hbar)Ba^2$ of a plaquette of side $a$
+  is $2\pi$ times its flux in flux quanta.
 - A Landau level holds one state per flux quantum, $eB/h=1/2\pi\ell_B^2$ per unit area, which is 241.8 per square
   micrometre at 1 T. So a sample of $1\,\mu\mathrm m^2$ holds 242 states at 1 T and 484 at 2 T, the numbers of the
   quiz of Section 4.9. A $24\times24$ torus of the square lattice with the flux 1/12 per plaquette has exactly 48
@@ -136,10 +138,12 @@ order, in about two minutes. A statement that is not on this sheet is checked be
   about $0.8\,t$ for $n\ge2$, so a level within $0.4\,t$ of the band bottom is within 5 percent of (4.6) at any flux.
 - At the flux 1/20 of `landau_chern.py` the four lowest bands are 0.012, 0.060, 0.155 and $0.295\,t$ below their
   dashed lines, which is 0.02, 0.10, 0.25 and 0.47 of the spacing $0.628\,t$, and they are flat to $10^{-5}$.
-- On the square ribbons of 20 and of 40 sites of the notebook, with the field 0.02, 0.03 and 0.04, the two lowest
-  levels are 0.244, 0.359 and 0.472 apart, a factor 1.94 from 0.02 to 0.04, against $4\pi\phi=0.251$, 0.377 and 0.503,
-  and $\ell_B$ is 2.8, 2.3 and 2.0 sites. This is the "roughly twice" of the try-it box of Section 4.7 and the
-  "roughly in proportion" of the one of Section 4.9.
+- The notebook has square ribbons of 30 and of 20 sites with the fields 0.02, 0.03 and 0.04, in the cells "Landau
+  levels of conventional electrons" and "Magnetic field dependence of Landau levels", and one of 40 sites with the
+  field 0.02 in "Bands in the conventional quantum Hall state", which the try-it box of Section 4.7 changes to 0.04. On
+  all three the two lowest levels are 0.244, 0.359 and 0.472 apart, a factor 1.94 from 0.02 to 0.04, against
+  $4\pi\phi=0.251$, 0.377 and 0.503, and $\ell_B$ is 2.8, 2.3 and 2.0 sites. This is the "roughly twice" of the try-it
+  box of Section 4.7 and the "roughly in proportion" of the one of Section 4.9.
 - On the honeycomb lattice of pyqula, with the bond 1, $\hbar v=3t/2$ and (4.7) is $E_n=\pm3\sqrt{\pi\phi|n|}\,t$, so
   $E_1=5.32\sqrt\phi\,t$. A level holds two states per flux quantum, one for each valley, and the zero level too. The
   lattice levels are below (4.7) by $c\,(E/t)^2$ of their energy, with $c$ from 0.09 to 0.10, so by 5 percent at about
@@ -206,17 +210,22 @@ order, in about two minutes. A statement that is not on this sheet is checked be
 
 ## The figure scripts of `webnotes/figures/session04/`
 
-- `landau_chern.py` has the charge $+e$ in the field $+B\hat z$, where its four bands have $C=-1$ with the $\Omega$ of
-  Session 3. The script sums the plaquette phases with no sign change and prints $+1$, which is the label $C=1$ of the
-  figure, so the label is $|C|$.
+- `landau_chern.py` draws the pyqula script `g1_landau_levels_square.py`, with `add_orbital_magnetic_field(1/20)` in the
+  cell `(1, 20)`. This is the field along $-z$ for the charge $+e$, where each of the four lowest bands has $C=+1$ with
+  the $\Omega$ of Session 3, and its caption says that the flux $-1/20$, the field $B\hat z$ of the pages, gives $-1$.
 - `lattice_ribbons.py` builds panel (a) as $-2\cos(k_y-Bx)$, which is the field $+B\hat z$ with $k_y$ the momentum, and
   its guiding center moves as $+1/B$ with $k_y$. Panel (b) has the phase (4.4) of the field $+B\hat z$ but the Bloch
   phase $e^{+ik_y(y_i-y_j)}$, so its $k_y$ is minus the momentum and its guiding center moves as $-1/B$, as the caption
   says. The reversal in (b) comes from this sign and is not a property of the honeycomb lattice.
-- `flat_chern_band.py` draws `phi=-pi/2` and `phi=-0.4*pi`, which have $C=-1$, while `_honeycomb.chern` prints $+1$.
-  Along the path the bands are those of the positive phases, which have $C=+1$ and are the models that the caption
-  names, so the drawing and the caption agree. The widths of the lower band are 2.48 and 0.212, the gaps 1.04 and
-  2.97, and the ratio of (b) is 14.0.
+- `flat_chern_band.py` draws the pyqula script `g5_haldane_t3_bands.py`, with `add_haldane(+0.1155)` for $t_2=0.1$ and
+  $\phi=\pi/2$, and with `tij=[1, 0.0927, -0.2]` and `add_haldane(+0.3295)` for $t_2=0.3$, $\phi=0.4\pi$ and
+  $t_3=-0.2$. Both lower bands have $C=+1$, from `h.get_chern()` and from the link variables. The widths of the lower
+  band are 2.48 and 0.212, the gaps 1.04 and 2.97, and the ratio of (b) is 14.0.
+- `tij=[1, a, b]` of the honeycomb lattice of pyqula with `add_haldane(c)` is `_honeycomb.bloch(t2, phi, t3)` of Session 3
+  with $a=t_2\cos\phi$, $b=t_3$ and $c=2t_2\sin\phi/\sqrt3$. The spectra on a mesh of the zone agree to $2\cdot10^{-15}$
+  for `add_haldane` of 0.05, 0.1, 0.1155 and 0.2 alone, and for the two models of (b) and of the trivial quiz option.
+- The flat band with $C=0$ of the quiz of Section 4.20, with the real $t_2=0.2$ and the staggered potential $M=1.5$,
+  `add_sublattice_imbalance(1.5)`, has the width 0.200 and the gap 3.000.
 - In `plateaus.py` the plateau $N$ is flat for the filling from $N-0.36$ to $N+0.36$, and the classical line crosses it
   at $\nu=N$, its middle in $1/B$. In $B$, the axis of the figure, the middle of the flat part is at 1.12, 0.517 and
   0.339 for $N=1$, 2 and 3, against the crossings at 1, 0.5 and 0.333.
@@ -230,34 +239,48 @@ order, in about two minutes. A statement that is not on this sheet is checked be
   goes around clockwise there, and in the island above with the field into the page it carries $+0.196$ along $x$ in
   the upper half.
 
-## Open points of the old text, left as they are
+## Open points of the old text, settled on 2026-11-22
 
-- Sections 4.4, 4.14 and 4.21, the index of the session and the figure `landau_chern` say that every Landau level has
-  $C=1$, and (4.2) writes $\sigma_{xy}=N\,e^2/h$. For the charge $+e$ in the field $+B\hat z$ of Sections 4.8 and 4.9
-  every level has $C=-1$, and (3.4) gives $-N\,e^2/h$. The pages hold for $|C|$, or for an electron, which is also the
-  sign of pyqula. Which one a page says is the choice of the lecturer.
-- Section 4.9 says that for an electron "every cyclotron orbit and every edge current below goes around in the other
+Each bullet below was an open point of the old text, and it is kept with its history. The plan of the session says how
+each one was settled, in its lists "Corrected on the web, to carry over to the .tex" and "Decided on 2026-11-22".
+
+- Sections 4.4, 4.14 and 4.21 and the index of the session said that every Landau level has $C=1$, and (4.2) wrote
+  $\sigma_{xy}=N\,e^2/h$. For the charge $+e$ in the field $+B\hat z$ of Sections 4.8 and 4.9 every level has $C=-1$,
+  and (3.4) gives $-N\,e^2/h$. The old text holds for $|C|$, or for an electron, which is also the sign of pyqula.
+  Decided by the lecturer on 2026-11-22: the pages write $|C_n|=1$, (4.2) writes $|C_\text{tot}|=N$ and
+  $|\sigma_{xy}|=N\,e^2/h$, and one sentence of Section 4.4 gives $C_n=-1$ for the charge $+e$ in $B\hat z$ and $+1$ for an
+  electron.
+- Section 4.9 said that for an electron "every cyclotron orbit and every edge current below goes around in the other
   direction, and nothing else changes". For the charge $-e$ the lowest level is $\bar z^me^{-|z|^2/4\ell_B^2}$ with
-  $L_z=-m\hbar$, the Dirac zero mode lives in the lower component, and $C$ and $\sigma_{xy}$ change sign.
+  $L_z=-m\hbar$, the Dirac zero mode lives in the lower component, and $C$ and $\sigma_{xy}$ change sign. Corrected on the
+  web on 2026-11-22.
 - Section 4.2 and its figure take the current along $x$ for a voltage along $y$, $I_x=N(e^2/h)V_y$, which is the
   opposite order of (3.4), and for $qB>0$ this current is $+N\,e^2/h$ while (3.4) gives $-N\,e^2/h$. The figure draws
   the field into the page with counterclockwise channels, the sense of an electron, while the pages take the charge
-  $+e$, which goes around clockwise there. The directions in which `hall_setup.py` draws $V_y$ and $I_x$ were not
-  checked.
-- Section 4.10 and the caption of Figure 4.4 say that the levels of graphene are about two orders of magnitude above
+  $+e$, which goes around clockwise there. `hall_setup.py` writes $V_y$ at the top contact and $0$ at the bottom one,
+  and draws $I_x$ out of the left contact. Decided on 2026-11-22 by the rule of the coordinator: the order stays, and
+  the caption of `hall_setup` says that its arrows are drawn for electrons and go around the other way for the charge
+  $+e$. After an independent check it also says that for the charge $+e$ the channels of the top contact end in the
+  right contact, where the current is then read. `g1_01` counts the four contacts with Landauer-Buttiker, with the
+  left and the right contact at 0.
+- Section 4.10 and the caption of Figure 4.4 said that the levels of graphene are about two orders of magnitude above
   those of GaAs, and Section 4.1 says roughly one order of magnitude and around 100 meV at 10 T. At 10 T the factor is
-  6.6, with 115 meV against 17.3 meV, as the quiz of Section 4.2 says. Section 4.1 also gives roughly one
+  6.6, with 115 meV against 17.3 meV, as the quiz of Section 4.2 says. Section 4.1 also gave roughly one
   millielectronvolt for the fields of a laboratory, while the scale is 1.73 meV per tesla, and 6.9 meV at 4 T in the
-  quiz of the same page. This was an open point of the sheet of Session 3 too.
-- The caption of `landau_chern` calls the shift of the upper levels from the dashed lines small, and its fourth band is
-  $0.30\,t$, half a spacing, below its line.
-- Section 4.16 says that leaving orbitals empty gives a density with lumps, which holds only within about
-  $2\,\ell_B$ of the center, since every third orbital gives a density within 3 percent of 1/3 further out.
-- The notebook box of Section 4.19 says that in "Topological domains" the two couplings compete, while that cell has a
+  quiz of the same page. This was an open point of the sheet of Session 3 too. Section 4.10 and the GaAs scale were
+  corrected on the web on 2026-11-22, and the graphene bullet of Section 4.1 was kept by the decision of that day.
+- Section 4.16 said that leaving orbitals empty gives a density with lumps, which holds only within about
+  $2\,\ell_B$ of the center for a regular choice, since every third orbital gives a density within 3 percent of 1/3
+  further out. Decided on 2026-11-22 by the rule of the coordinator: the example is one orbital out of every three,
+  and the lumps come from an irregular choice of the empty orbitals.
+- The notebook box of Section 4.19 said that in "Topological domains" the two couplings compete, while that cell has a
   field and two onsite energies, with $C=+2$ and $-2$, and no Haldane coupling. The comment of the notebook calls the
-  half with $y>0$ a hole band, while `add_onsite(mufun)` adds $+3.5$ there and makes it an electron band.
-- Section 4.19 says that the gap stays open at every step of the path from the Haldane model to the quantum Hall
+  half with $y>0$ a hole band, while `add_onsite(mufun)` adds $+3.5$ there and makes it an electron band. The box was
+  corrected on the web on 2026-11-22, and the comment stays, since the notebooks are not edited.
+- Section 4.19 said that the gap stays open at every step of the path from the Haldane model to the quantum Hall
   state. This holds for the signs of the notebook, with the field and the Haldane coupling of the same sign of $C$ and
   the chemical potential in the gap above the zero level, and the gap closes with the other sign of either of them.
-- The caption of `plateaus` says that every plateau crosses the classical line at its center. This holds in $1/B$,
+  Corrected on the web on 2026-11-22.
+- The caption of `plateaus` said that every plateau crosses the classical line at its center. This holds in $1/B$,
   while on the $B$ axis of the figure the crossing of $N=1$ is at 1.00 and the middle of its flat part at 1.12.
+  Corrected on the web on 2026-11-22.

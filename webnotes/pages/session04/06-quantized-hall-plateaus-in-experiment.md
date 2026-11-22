@@ -6,7 +6,9 @@ What does the Hall resistance of a two-dimensional electron gas do when we sweep
 This is the Hall conductance of $N$ filled Landau levels, from Section [4.4](#sec-4-4). Here $C_n$ is the Chern number of the level $n$, and $C_{\text{tot}}$ is the Chern number of all the filled bands together.
 :::
 
-When we sweep the magnetic field on a real 2DEG, we see the transition from the classical Hall effect to the quantized one directly. At low field, before the quantum regime starts, the Hall resistance grows linearly with $B$, which is the classical Hall effect of ordinary electromagnetism. When the field reaches the tesla range, a staircase of sharp plateaus appears in the Hall resistance instead. The precise field scale depends on the material and follows the spacing of the Landau levels that we derive below. When the field increases further, the cyclotron energy $\hbar\omega_c$ grows, so fewer Landau levels stay below a fixed chemical potential. Each time the chemical potential goes past a Landau level, the number of filled levels $N$ in [(4.2)](#eq-4-2) decreases by one, and the Hall resistance jumps to the next quantized plateau. The result for an ideal gas at fixed density is drawn in [](#sch:s04:plateaus).
+When we sweep the magnetic field on a real 2DEG, we see the transition from the classical Hall effect to the quantized one directly. At low field, before the quantum regime starts, the Hall resistance grows linearly with $B$, which is the classical Hall effect of ordinary electromagnetism. When the field reaches the tesla range, a staircase of sharp plateaus appears in the Hall resistance instead. The precise field scale depends on the material and follows the spacing of the Landau levels that we derive below.
+
+When the field increases further, the cyclotron energy $\hbar\omega_c$ grows and each Landau level holds more states, $eB/h$ per unit area, so at fixed density fewer Landau levels are filled. Each time the chemical potential goes past a Landau level, the number of filled levels $N$ in [(4.2)](#eq-4-2) decreases by one, and the Hall resistance jumps to the next quantized plateau. The result for an ideal gas at fixed density is drawn in [](#sch:s04:plateaus).
 
 ::: key
 On a plateau with $N$ filled Landau levels the Hall resistance is
@@ -31,7 +33,7 @@ A Hall bar sits on the plateau with $N=2$ filled Landau levels. What is $R_{xy}$
 
 - [x] $1/2$.
 
-    This is true. The Hall resistance is the inverse of the Hall conductance. With $\sigma_{xy}=Ne^2/h$ we obtain $R_{xy}=h/(Ne^2)$, which is $1/2$ for $N=2$.
+    This is true. The Hall resistance is the inverse of the Hall conductance. With $|\sigma_{xy}|=Ne^2/h$ we obtain $R_{xy}=h/(Ne^2)$, which is $1/2$ for $N=2$.
 
 - [ ] $1/4$.
 
@@ -78,7 +80,7 @@ There the classical Hall resistance is $h/2e^2=12.9$ k$\Omega$, which is the val
 
 ## Coupling electrons to a magnetic field with minimal coupling and the Peierls substitution {#sec-4-7 number="4.7"}
 
-To go beyond this phenomenology and derive the spectrum of the Landau levels, we first need to know how to include a magnetic field in a Hamiltonian. In classical physics, a magnetic field $\mathbf{B} = \nabla\times\mathbf{A}$ enters the equations of motion through the canonical momentum,
+To go beyond this phenomenology and derive the spectrum of the Landau levels, we first need to know how to include a magnetic field in a Hamiltonian. In classical physics, a magnetic field $\mathbf{B} = \nabla\times\mathbf{A}$ enters the equations of motion through the kinetic momentum, also called the mechanical momentum,
 
 $$\boldsymbol{\pi} = \mathbf{p} - e\mathbf{A}, \tag{4.3}$$
 
@@ -86,14 +88,14 @@ which replaces the ordinary momentum $\mathbf{p}$ everywhere it appears, and whe
 
 There is one subtle point that we cannot avoid, which is that $\mathbf{A}$ is never unique. Any change $\mathbf{A}\to\mathbf{A}+\nabla\chi$ with a scalar function $\chi$ gives the same physical field $\mathbf{B}$, so we always have to choose a gauge. We will need two gauges, the Landau gauge and the symmetric gauge, and we will see both in Section [4.8](#sec-4-8). A related point is a bit against intuition. A uniform out-of-plane field does not break the in-plane translational symmetry of the physical system. However, *every* choice of $\mathbf{A}$ for this field breaks translational symmetry in a formal way, in one direction or in both. Which symmetry survives, and how much of it, is a choice of gauge and not a physical choice.
 
-The minimal-coupling replacement [(4.3)](#eq-4-3) is the natural method for continuum models, which are Schrödinger or Dirac electrons, where we write and solve a differential equation directly. For a tight-binding model, which is written in real-space orbitals, the more natural method puts the dependence on the field into the wavefunctions and not into the Hamiltonian, with a local gauge transformation. In concrete terms, the hopping amplitude $t_{ij}$ is by definition an overlap between the orbital wavefunctions at sites $i$ and $j$. When we include the vector potential in these wavefunctions, every hopping gets multiplied by a complex phase, which is equal to the line integral of $\mathbf{A}$ between the two sites.
+The minimal-coupling replacement [(4.3)](#eq-4-3) is the natural method for continuum models, which are Schrödinger or Dirac electrons, where we write and solve a differential equation directly. For a tight-binding model, which is written in real-space orbitals, the more natural method puts the dependence on the field into the wavefunctions and not into the Hamiltonian, with a local gauge transformation. In concrete terms, the hopping amplitude $t_{ij}$ is the matrix element of the Hamiltonian between the orbital wavefunctions at sites $i$ and $j$. When we include the vector potential in these wavefunctions, every hopping gets multiplied by a complex phase, which is equal to the line integral of $\mathbf{A}$ between the two sites, divided by $\hbar$.
 
 ::: key
 On a lattice the field enters through a phase on every hopping,
 
 $$t_{ij} \;\longrightarrow\; t_{ij}\, \exp\!\left(i\int_{\mathbf{R}_j}^{\mathbf{R}_i} \mathbf{A}\cdot d\boldsymbol{\ell}\right). \tag{4.4}$$
 
-This is the lattice form of the minimal coupling [(4.3)](#eq-4-3), and the sum of these phases around a closed loop is fixed by the flux of the field through the loop.
+This form is written with $\hbar=1$. In the units of this session, with $e=1$ and $\hbar$ kept, the phase is $(1/\hbar)\int\mathbf{A}\cdot d\boldsymbol{\ell}$. This is the lattice form of the minimal coupling [(4.3)](#eq-4-3), and the sum of these phases around a closed loop is fixed by the flux of the field through the loop.
 :::
 
 This is what is called the **Peierls substitution**. It is the tight-binding version of minimal coupling. The two give the same physics, since at low energies the expansion of a tight-binding model with the Peierls substitution gives the continuum Hamiltonian with minimal coupling.
@@ -121,15 +123,15 @@ A gauge change $\mathbf{A}\to\mathbf{A}+\nabla\chi$ changes the phase of every b
 
 - [ ] The phase of any single bond.
 
-    This is false. Take $\chi=\theta x/a$. Every bond along $x$ gets the extra phase $e^{i\theta}$, and $\theta$ is arbitrary, so a single bond phase can be set to any value.
+    This is false. Take $\chi=\hbar\theta x/a$. Every bond along $x$ gets the extra phase $e^{i\theta}$, and $\theta$ is arbitrary, so a single bond phase can be set to any value.
 
 - [ ] None, since the Hamiltonian changes completely.
 
-    This is false. Around a plaquette with corners $0,1,2,3$ the added phases are $(\chi_1-\chi_0)+(\chi_2-\chi_1)+(\chi_3-\chi_2)+(\chi_0-\chi_3)=0$. The sum around the loop does not change.
+    This is false. Around a plaquette with corners $0,1,2,3$ the added phases are $(1/\hbar)\big[(\chi_1-\chi_0)+(\chi_2-\chi_1)+(\chi_3-\chi_2)+(\chi_0-\chi_3)\big]=0$. The sum around the loop does not change.
 
 - [x] The sum of the phases around a closed loop of bonds.
 
-    This is true. The sum of the phases around a loop is the flux through it, which is $\mathbf{B}$ and not $\mathbf{A}$. The electrons respond only to this flux.
+    This is true. The sum of the phases around a loop is the flux through it divided by $\hbar$, which is $2\pi$ times the flux in flux quanta. The flux is set by $\mathbf{B}$ and not by $\mathbf{A}$. The electrons respond only to this flux.
 
     ![One plaquette in the Landau gauge $\mathbf A=(0,Bx)$ and in the symmetric gauge $\mathbf A=\tfrac{B}{2}(-y,x)$, for the lower left corner $(x,y)=(2,1)$ and with the phases in units of the flux $\varphi$ of the plaquette. The bonds differ, and the sum around the loop is $\varphi$ in both.](figures/web/session04/plaquette_gauge.svg){alt="One square plaquette drawn twice with an arrow and a phase on each bond, for the Landau gauge and for the symmetric gauge, with the same sum around the loop."}
 

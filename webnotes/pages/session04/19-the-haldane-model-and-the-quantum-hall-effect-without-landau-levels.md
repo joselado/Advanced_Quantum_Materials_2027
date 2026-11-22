@@ -8,7 +8,7 @@ We start from the honeycomb lattice with first-neighbor hopping, which has two D
 
 ![The ribbon spectra of the two gapped honeycomb lattices of Section [3.10b](#sec-3-10b). On the left a staggered potential gives a gap with nothing inside. On the right the Haldane coupling gives one branch per edge that crosses the gap, with no magnetic field. Look at the dark and the light branch, which live on opposite edges.](figures/s03f05_masses.svg){panel="spec" alt="Two ribbon spectra, one with an empty gap and one with a branch from each edge crossing the gap."}
 
-What this session adds is the **adiabatic connection** between the two routes. We start in the Haldane model at zero field, we switch on a real magnetic field, and then we switch off the Haldane coupling. At every step of this path the bulk gap stays open and the chiral edge state survives. So the Chern insulator of the Haldane model and the quantum Hall state of the Landau levels are *topologically equivalent*. They are the same phase of matter, reached once with a magnetic field and once without it.
+What this session adds is the **adiabatic connection** between the two routes. We start in the Haldane model at zero field, we switch on a real magnetic field, and then we switch off the Haldane coupling. For the parameters of the notebook, where the field and the Haldane coupling give the same Chern number, the bulk gap stays open at every step of this path and the chiral edge state survives. So the Chern insulator of the Haldane model and the quantum Hall state of the Landau levels are *topologically equivalent*. They are the same phase of matter, reached once with a magnetic field and once without it.
 
 ::: quiz
 We start from the Haldane model at zero field. We switch on a magnetic field, and then we switch off the Haldane coupling. Which condition has to hold at every step?
@@ -30,7 +30,7 @@ We start from the Haldane model at zero field. We switch on a magnetic field, an
 ::: notebookbox
 **Notebook check-in:** [`session4.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session4.ipynb), "Topological equivalence between the Quantum Hall state and a Chern insulator" (Challenge), and "Topological domains in the quantum Hall state" (Challenge)
 
-Build the Haldane model, switch a magnetic field on and off numerically together with the Haldane coupling, and follow the bulk gap and the Chern number along the adiabatic path described above. The "topological domains" exercise lets you study spatial regions where the two couplings compete directly, which is a practical version of the equivalence argument that we just gave.
+Build the Haldane model and a quantum Hall ribbon, follow the straight line between the two Hamiltonians, and watch the bulk gap and the edge branches of the ribbon. The "topological domains" exercise puts the two halves of a ribbon in a field at onsite energies of opposite sign. The two halves then have Chern numbers of opposite sign, and the wall between them carries the chiral modes that the count of Section [4.5](#sec-4-5) gives.
 :::
 
 ::: quiz
@@ -51,7 +51,7 @@ One system has a field and Landau levels, and the other has no field. Why do we 
 :::
 
 ::: {.tryit notebook="session4.ipynb" cell="Topological equivalence between the Quantum Hall state and a Chern insulator"}
-Run the cell, which interpolates between the Chern insulator at `nu = 0` and the quantum Hall state at `nu = 1`. Follow the branch that crosses the gap in the first panel. It stays connected to the edge branch of the last panel, and it does not disappear at any step of the path.
+Run the cell, which interpolates between the Chern insulator at `nu = 0` and the quantum Hall state at `nu = 1`. The cell follows the straight line $\nu H_\mathrm{QH}+(1-\nu)H_\mathrm{C}$ between the two, and only $H_\mathrm{QH}$ carries the Peierls phases, so the Hamiltonians in between are not those of a uniform field. This line keeps the gap open on the ribbon of the cell in the gauge of pyqula, but not in every gauge. Follow the branch that crosses the gap in the first panel. It stays connected to the edge branch of the last panel, and it does not disappear at any step of the path.
 :::
 
 ::: comesback

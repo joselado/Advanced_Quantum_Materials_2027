@@ -8,7 +8,10 @@ gauge written with x and p_x in an oscillator basis, also for qB < 0, the energi
 lab box, the sentences of the lab box in the stored source, the plateaus of the problem by counting and with the Chern
 numbers of pyqula, for the honeycomb and the square lattice, the area of a hexagon in units of the flux, the widths of
 the levels of the fan on a k-mesh and the sublattice of the zero level on the lattice.
-It finds the repository from its own path and writes no file, since pyqula runs in a temporary folder."""
+It finds the repository from its own path and writes no file, since pyqula runs in a temporary folder.
+
+The blocks marked "corrected on 2026-11-22" back the sentences of the old text that were corrected on that day, after
+the lecturer chose to fix the errors of the old text."""
 import os
 import tempfile
 
@@ -86,6 +89,22 @@ check('quiz: E_n proportional to n^2 gives E_4 = 581 meV at 1 T', round(16 * E1(
 check('lab box, ours: E_1 = 169 meV at 18 T for v = 1.1e6 m/s', round(E1(18, 1.1e6)) == 169, E1(18, 1.1e6))
 check('lab box: the transition energies of (4.7) scale as sqrt(B)',
       abs((E1(18) + E1(18) * np.sqrt(2)) / (E1(4.5) + E1(4.5) * np.sqrt(2)) - 2) < 1e-12, 'E_1 + E_2 at 18 T and 4.5 T')
+# the text after (4.7) and the caption of Figure 4.4, corrected on 2026-11-22 from "two orders of magnitude" to "one
+# order of magnitude": E_1 of graphene over hbar omega_c = hbar e B / m* of GaAs, m* = 0.067 m_e, for 1 to 10 T, by the SI
+# constants and by the rates of the conventions sheet, 36.28 meV sqrt(B/T) and 1.728 meV B/T
+fields = np.linspace(1, 10, 91)
+wc_gaas = hbar * e * fields / (0.067 * 9.1093837015e-31) / e * 1e3
+ratio, ratio2 = E1(fields) / wc_gaas, 36.28 * np.sqrt(fields) / (1.728 * fields)
+check('text and Figure 4.4: E_1 / hbar omega_c is 21 at 1 T and 6.6 at 10 T, within half a decade of 10 and far from 100',
+      round(ratio[0]) == 21 and round(ratio[-1], 1) == 6.6 and np.allclose(ratio, ratio2, rtol=1e-3)
+      and np.all(np.abs(np.log10(ratio) - 1) < 0.5) and ratio.max() < 100 / 4, (round(ratio[0], 2), round(ratio[-1], 2)))
+# the same sentence, which since 2026-11-22 names v_F = 1e6 m/s and m* = 0.067 m_e as what sets the ratio, and says that the
+# ratio falls as 1/sqrt(B): E_1 / hbar omega_c = m* v_F sqrt(2/(hbar e B)), which is 1 only at 2 m*^2 v_F^2/(hbar e), 440 T
+b_equal = 2 * (0.067 * 9.1093837015e-31 * 1e6) ** 2 / (hbar * e)
+check('text: the ratio is m* v_F sqrt(2/(hbar e B)), it falls as 1/sqrt(B), and it is 1 only at 440 T',
+      np.allclose(ratio, 0.067 * 9.1093837015e-31 * 1e6 * np.sqrt(2 / (hbar * e * fields)), rtol=1e-9)
+      and np.allclose(ratio * np.sqrt(fields), ratio[0], rtol=1e-9) and round(b_equal, -1) == 440
+      and abs(E1(b_equal) / (hbar * e * b_equal / (0.067 * 9.1093837015e-31) / e * 1e3) - 1) < 1e-9, round(b_equal, 1))
 # the lab box: every sentence that it takes from the source is in the stored text, also the velocity 1.1e6 m/s, which
 # the lint does not read since m/s is not one of its units
 REPO = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '..')

@@ -25,7 +25,7 @@ Two states host excitations that are a fraction of an electron. They are a super
 
 - [ ] Neither of them has a mean-field description, since both host fractional excitations.
 
-    This is false. The Bogoliubov quasiparticle of a superconductor is a fraction of an electron, and it is an exact eigenstate of the mean-field Hamiltonian [(5.4)](#eq-5-4). So fractional excitations alone do not rule out a mean-field description.
+    This is false. A Majorana state of a superconductor is a fraction of an electron, and it is a zero-energy state of a mean-field Hamiltonian with pairing, which is bilinear as [(5.4)](#eq-5-4) is. So fractional excitations alone do not rule out a mean-field description.
 :::
 
 ::: quiz

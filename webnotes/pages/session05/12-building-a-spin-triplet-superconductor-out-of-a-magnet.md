@@ -10,7 +10,9 @@ One way to do this is a toy model that has both a ferromagnetic exchange field a
 
 $$H = -t\sum_{\langle ij\rangle,\sigma}c_{i\sigma}^\dagger c_{j\sigma} \;\underbrace{-\, h\sum_i \left(c_{i\uparrow}^\dagger c_{i\uparrow} - c_{i\downarrow}^\dagger c_{i\downarrow}\right)}_{\text{exchange field}} \;+\; \underbrace{U\sum_{\langle ij\rangle} c_{i\sigma}^\dagger c_{j\sigma'}^\dagger c_{j\sigma'}c_{i\sigma}}_{\text{attractive interaction}}, \qquad U<0.$$
 
-If we solve it self-consistently at the mean-field level, both order parameters, the ferromagnetic exchange field and the pairing amplitude, can be nonzero at the same time. The ground state then breaks both time-reversal symmetry, since it is magnetic, *and* gauge symmetry, since it is superconducting. The pairing that survives is necessarily spin-triplet, because the exchange field explicitly splits the $\uparrow$ and $\downarrow$ Fermi surfaces, and in this way it suppresses the singlet channel, which needs them to be degenerate. Physically, s-wave singlet pairing is usually the leading instability because it can gap the *entire* Fermi surface, which gives the largest condensation energy. When the exchange field suppresses this channel, a different pairing channel becomes the leading instability instead, which here is the odd-parity, spin-triplet channel, which is effectively p-wave.
+If we solve it self-consistently at the mean-field level, both order parameters, the ferromagnetic exchange field and the pairing amplitude, can be nonzero at the same time. The ground state then breaks both time-reversal symmetry, since it is magnetic, *and* gauge symmetry, since it is superconducting.
+
+The pairing that survives is spin-triplet once the exchange field is of the order of the smallest quasiparticle energy of the singlet, or when only one spin band crosses the Fermi level. The reason is that the exchange field explicitly splits the $\uparrow$ and $\downarrow$ Fermi surfaces, and in this way it suppresses the singlet channel, which needs them to be degenerate. Physically, s-wave singlet pairing is usually the leading instability because it can gap the *entire* Fermi surface, which gives the largest condensation energy. When the exchange field suppresses this channel, a different pairing channel becomes the leading instability instead, which here is the odd-parity, spin-triplet channel, which is effectively p-wave.
 
 ::: key
 An exchange field $h$ shifts the bands of the two spins in opposite directions,
@@ -91,7 +93,7 @@ which is $2h$. In a material the Zeeman energy of a magnetic field plays the rol
 ::::
 
 ::: {.tryit notebook="session5.ipynb" cell="The impact of a spin splitting in an electronic structure"}
-In the cell, the line `h.add_exchange([0.,0.,1.0])` splits the two spin bands of the chain. Change `1.0` to `2.0`. The two bands move apart from 2 to 4 at a fixed momentum, so each spin has its own Fermi momentum.
+In the cell, the line `h.add_exchange([0.,0.,1.0])` splits the two spin bands of the chain. Change `1.0` to `2.0`. The two bands move apart from 2 to 4 at a fixed momentum. At `1.0` each spin has its own Fermi momentum, and at `2.0` each band touches zero energy only at its edge.
 :::
 
 ::: comesback

@@ -127,9 +127,12 @@ check('quiz: the end modes of N=8 are at 0.011t', abs(lo[8][0] - 0.011) < 5e-4, 
 check('quiz: the end modes of N=20 are at 2e-5 t', abs(lo[20][0] - 2e-5) < 1e-6 * 5, lo[20][0])
 check('quiz: the smallest bulk energy of the infinite chain is 0.82t', abs(Ek(1.0, 0.5).min() - 0.82) < 0.005, round(Ek(1.0, 0.5).min(), 4))
 first = np.array([lo[n][2] for n in lo])
-check('caption: the first bulk level stays near 0.8t, from 1.02t at N=4 down to 0.83t at N=30, above 0.8165t',
-      first.max() < 1.02 and first.min() > 0.8165 and abs(first[-1] - 0.826) < 0.001 and np.all(np.diff(first) < 0.002),
-      (round(first.max(), 4), round(first.min(), 4)))
+check('caption: the first bulk level comes down from 1.02t at N=4 to 0.83t at N=30, close to the bulk value 0.82t',
+      round(first[0], 2) == 1.02 and round(first[-1], 2) == 0.83 and first.min() > 0.8165 and np.all(np.diff(first) < 0.002)
+      and round(Ek(1.0, 0.5).min(), 2) == 0.82, (round(first[0], 4), round(first[-1], 4)))
+check('alt text: on the log axis from 1e-8 to 3 the first bulk level is a nearly flat line close to 1, within 0.1 decade',
+      np.abs(np.log10(first)).max() < 0.1 and np.ptp(np.log10(first)) <0.1 * np.log10(3 / 1e-8),
+      (round(float(np.log10(first).min()), 4), round(float(np.log10(first).max()), 4)))
 
 # ---- the problem
 x = -2 / 3
@@ -174,6 +177,25 @@ for (m, expect, tol) in ((0.3, 1.65e-3, 5e-5), (1.0, 1.39e-3, 5e-5), (2.5, 0.506
     b = np.sort(np.abs(kc.levels(40, t, -m, 0.1 * np.sqrt(2))))[0]
     check(f'try-it: the notebook cell with delta=0.1, d=[1,1,0], L=40 and mu={m} has its lowest level at {expect}', abs(a - expect) < tol
           and abs(a - b) < 1e-12, a)
+# the try-it box, decided on 2026-11-22: "the line mu = 0.3 sets the chemical potential through h.add_onsite, which is mu=-0.3 in
+# (5.19)". First route, the matrix: add_onsite(0.3) of the cell puts the spin-down electron at +0.3 on every site, which is the
+# term -mu c^dag c of (5.19) with mu = -0.3. Second route, the levels: the cell with mu = 0.3 is the exact chain with mu = -0.3 at
+# every length of the cell, 4 to 40 (the levels do not depend on the sign of mu, so this route checks the size of mu only)
+gs_ = geometry.chain().get_supercell(3); gs_.dimensionality = 0
+hs_ = gs_.get_hamiltonian(); hs_.add_onsite(4.0); hs_.add_exchange([0., 0., 4.]); hs_.add_onsite(0.3)
+ms_ = np.array(hs_.intra.todense() if hasattr(hs_.intra, 'todense') else hs_.intra)
+ok = ms_.shape == (6, 6) and all(abs(ms_[2 * i + 1, 2 * i + 1] - 0.3) < 1e-12 for i in range(3))  # no pairing yet: up, down per site
+ok = ok and all(np.abs(pyqula_levels(L, 0.3, 0.1, [1., 1., 0.])[:L] - np.sort(np.abs(kc.levels(L, t, -0.3, 0.1 * np.sqrt(2))))[:L]).max()
+                < 1e-10 for L in range(4, 42, 2))
+check('try-it: mu = 0.3 of the cell enters through add_onsite as +0.3 on the spin-down electron, so it is mu=-0.3 of (5.19)', ok,
+      round(ms_[1, 1].real, 12))
+# the point on the Kitaev figures, decided on 2026-11-22 (numpy stays): the pyqula chain of the notebook with delta=0.5 and
+# d=[1,1,0] at mu=0 has its first bulk level at 1.418 on 40 sites, and so does the exact chain (5.19) with Delta=0.707, so the
+# 0.3% against the bulk value 2 Delta = 1.414 is the finite size of the chain, and not a difference between the two models
+a = pyqula_levels(40, 0.0, 0.5, [1., 1., 0.])[2]
+b = np.sort(np.abs(kc.levels(40, t, 0.0, 0.5 * np.sqrt(2))))[2]
+check('Kitaev figures: 40 sites, delta=0.5, d=[1,1,0], mu=0, first bulk level 1.418 by pyqula and by (5.19), bulk value 1.414',
+      abs(a - b) < 1e-10 and abs(a - 1.418) < 5e-4 and abs(2 * 0.5 * np.sqrt(2) - 1.414) < 5e-4, round(a, 5))
 # the old text "for example with N=100 sites" gives no mu and no Delta, so it is checked at the point (5.21), Delta=t and mu=0, at
 # the parameters of the profile figure, Delta=0.5t and mu=t, and at two more points inside the window: two levels at zero on the
 # ten end sites, and the first bulk level within 1% of the smallest bulk energy of the periodic chain
@@ -184,4 +206,58 @@ for (mu, D) in ((0.0, 1.0), (1.0, 0.5), (0.0, 0.7), (-1.5, 0.5)):
     check(f'text: an open chain of 100 sites with mu={mu}t, Delta={D}t has two levels at zero at the two ends, and keeps the gap {gap:.4f}t',
           nz == 2 and w[:5].sum() + w[-5:].sum() > 0.99 and abs(first - gap) < 0.01 * gap,
           (nz, round(w[:5].sum() + w[-5:].sum(), 6), round(first, 4)))
+
+# ---- the old text corrected on 2026-11-22
+# the smallest bulk energy, the formula of the sheet, Delta sqrt(4 - mu^2/(t^2 - Delta^2)) for Delta<t and |mu| t <= 2(t^2 - Delta^2),
+# and |2t - |mu|| otherwise, as a second route to the minimum over k
+def Eform(mu, D):
+    if D < t and abs(mu) * t <= 2 * (t**2 - D**2):
+        return D * np.sqrt(4 - mu**2 / (t**2 - D**2))
+    return abs(2 * t - abs(mu))
+
+
+check('quiz 2: "the smallest bulk energy is 0.82t" at Delta=0.5t, mu=t, by the minimum over k and by the formula',
+      abs(Ek(1.0, 0.5).min() - Eform(1.0, 0.5)) < 1e-6 and round(Eform(1.0, 0.5), 2) == 0.82, round(Eform(1.0, 0.5), 5))
+# the first paragraph: the periodic chain with Delta != 0 and |mu| < 2t is fully gapped, with a gap that depends on Delta and mu,
+# and its Zak phase is pi, while for |mu| > 2t the Zak phase is 0. Second route, the sign of eps(0) eps(pi), -1 inside the window
+sys.path.insert(0, os.path.join(HERE, '..', '..', 'figures'))
+import physcheck
+gaps = {mu: (Ek(mu, 0.5).min(), Eform(mu, 0.5)) for mu in (0.0, 1.0, 1.9, 3.0)}
+check('text: at Delta=0.5t the smallest bulk energy is 1.0t, 0.8165t and 0.1t for mu=0, t and 1.9t, so it is set by Delta and mu',
+      all(abs(a - b) < 1e-6 for a, b in gaps.values()) and abs(gaps[0.0][1] - 1.0) < 1e-12 and abs(gaps[1.0][1] - 0.8165) < 1e-4
+      and abs(gaps[1.9][1] - 0.1) < 1e-9, {m: round(v[1], 4) for m, v in gaps.items()})
+
+
+def bloch(mu, D):
+    return lambda q: np.array([[-2 * t * np.cos(float(np.ravel(q)[0])) - mu, -2j * D * np.sin(float(np.ravel(q)[0]))],
+                               [2j * D * np.sin(float(np.ravel(q)[0])), 2 * t * np.cos(float(np.ravel(q)[0])) + mu]])
+
+
+zak = {mu: physcheck.zak_phase(bloch(mu, 0.5), np.array([2 * np.pi]), bands=0, nk=400) for mu in (0.0, 1.0, 1.5, -1.5, 2.5, 3.0)}
+sgn = {mu: np.sign((-2 * t - mu) * (2 * t - mu)) for mu in zak}
+check('text: the Zak phase of the periodic chain at Delta=0.5t is pi for |mu|<2t and 0 for |mu|>2t, as the sign of eps(0) eps(pi)',
+      all((abs(abs(z) - np.pi) < 1e-9) == (abs(mu) < 2) and (abs(z) < 1e-9) == (abs(mu) > 2) and (sgn[mu] < 0) == (abs(mu) < 2)
+          for mu, z in zak.items()), {m: round(z, 4) for m, z in zak.items()})
+# "the hopping between neighboring sites dominates over the onsite term, |mu| < 2t, and then any pairing Delta != 0 gives this
+# phase, also a weak one": with Delta=0.1t, much smaller than mu=1.5t and 1.9t, an open chain of 400 sites has two levels at zero
+# with their weight on the 40 sites at each end, and at mu=2.1t it has none. Second route, the pyqula chain of 200 sites
+for (mu, D, topo) in ((1.5, 0.1, True), (1.9, 0.1, True), (2.1, 0.1, False)):
+    nz = int(np.sum(np.abs(kc.levels(400, t, mu, D)) < 1e-9))
+    a = pyqula_levels(200, -mu, D, [1., 0., 0.])[:2]
+    if topo:
+        w, nz = kc.zero_weight(400, t, mu, D, tol=1e-9)
+        ok = nz == 2 and w[:40].sum() + w[-40:].sum() > 0.999 and a.max() < 1e-9
+    else:
+        ok = nz == 0 and a.min() > 0.09
+    check(f'text: Delta={D}t and mu={mu}t on an open chain, {"two end modes at zero" if topo else "no level at zero"}, by numpy and by pyqula',
+          ok, (nz, np.round(a, 12)))
+# the widget, 30 sites with t=Delta=1: the two levels sit at zero away from |mu|=2t and move away from zero near it, while they
+# stay below the bulk value |2t-|mu||. Second route, the compute() of the widget itself
+sys.path.insert(0, os.path.join(HERE, '..', '..', 'widgets', 'defs'))
+import kitaevbdg
+for (mu, expect, tol) in ((1.0, 0.0, 1e-8), (1.5, 1.56e-4, 1e-6), (1.9, 0.0475, 5e-4)):
+    a = np.sort(np.abs(kc.levels(30, t, mu, 1.0)))[0]
+    b = np.sort(np.abs(kitaevbdg.compute(dict(mu=mu))['panels'][0]['series'][0]['y']))[0]
+    check(f'widget: 30 sites, t=Delta=1, mu={mu}, the lowest level is {expect}, below the bulk value {abs(2 - mu):.1f}',
+          abs(a - b) < 1e-12 and abs(a - expect) < tol and a < abs(2 * t - mu), a)
 print('all checks of page 17 hold')

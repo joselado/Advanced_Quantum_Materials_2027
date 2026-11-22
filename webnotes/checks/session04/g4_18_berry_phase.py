@@ -16,7 +16,12 @@ phase 2 pi/3 of m = 3 needs a Monte Carlo, which webnotes/checks/session04/conve
 page quotes from m = 3 only the charge that a quasihole removes from the discs of radius 5 to 8 l_B, asserted below with the
 four pairs of runs of g4_quasihole_dimple.py. The lab box is checked against its stored source.
 The convention of the Berry phase is that of the Zak phase (3.6), gamma = i oint <psi| d psi>, so for a discrete loop
-gamma = -arg prod_j <psi_j|psi_j+1>. The script writes no file and takes about a minute."""
+gamma = -arg prod_j <psi_j|psi_j+1>. The script writes no file and takes about a minute.
+
+The block marked "decided on 2026-11-22" backs the key box of (4.15), which since that day calls e/m the magnitude of the
+charge, by the rule of the coordinator: the quasihole leaves fewer electrons around it, so its charge has the sign opposite
+to the charge +e of the electrons. After an independent check the opener and the caption of Figure 4.6 give e/m as a
+magnitude too."""
 import os
 import sys
 
@@ -142,6 +147,28 @@ check('m = 3, N = 20, the quasihole removes 0.32 to 0.34 of an electron on avera
       'and beyond 8 l_B the disc reaches the edge, where the count rises again above 0.39',
       round(wmean.min(), 2) == 0.32 and round(wmean.max(), 2) == 0.34 and np.all(past > 0.39),
       'window means %s, largest count for 8.5 <= R <= 10 %s' % (np.round(wmean, 3), np.round(past, 3)))
+
+# ---------------------------------------------------------------- the key box of (4.15), decided on 2026-11-22
+# (4.15) stays as printed, and the key box calls e/m the magnitude of the charge. The sign is opposite to the charge of
+# the electrons, as the key box of Section 4.17 says: the quasihole leaves fewer electrons in a disc around it. For m = 1
+# exactly, with the orbitals 0 to N - 1 against 1 to N, the disc of radius R holds P(0, R) - P(N, R) electrons fewer, with
+# P(m, R) = gammainc(m + 1, R^2/2), and for m = 3 the four runs above give 0.32 to 0.34 fewer.
+from scipy.special import gammainc  # noqa: E402
+fewer = [gammainc(1, R ** 2 / 2) - gammainc(41, R ** 2 / 2) for R in (4.0, 5.0, 6.0)]
+q_qh = [-1 * x for x in fewer] + [-1 * x for x in wmean]       # the charge in units of +e, for particles of the charge +e
+page = open(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'pages', 'session04',
+                         '18-berry-phase-fractional-charge-and-anyonic-statistics.md'), encoding='utf-8').read()
+check('decided on 2026-11-22: a quasihole leaves 1 electron fewer for m = 1, 40 electrons and discs of 4 to 6 l_B, and 0.32 to '
+      '0.34 for m = 3, so its charge is -e/m for the charge +e and e/m is its magnitude, as the key box says',
+      np.allclose(fewer, 1, atol=1e-3) and np.all(wmean > 0.3) and all(x < 0 for x in q_qh)
+      and 'has a charge of magnitude' in page.split('::: key', 2)[1], np.round(fewer, 5))
+# After an independent check the opener and the caption of Figure 4.6 give e/m as a magnitude too, since the charge is
+# -e/m for the charge +e by the count above. The caption says that the quasihole removes e/m.
+check('decided on 2026-11-22: the opener and the caption of Figure 4.6 write the charge e/m as a magnitude, and the caption '
+      'says that a quasihole removes the charge of an electron divided by m, the count above',
+      'the Aharonov-Bohm phase of a charge of magnitude $e/m$' in page
+      and 'one quasihole removes the charge of an electron divided by $m$, and its charge has the magnitude $q=e/m$' in page
+      and 'has the charge of an electron divided by' not in page and all(x < 0 for x in q_qh), True)
 
 # ---------------------------------------------------------------- the lab box, against the stored source
 src = open(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'sources', 'session04',

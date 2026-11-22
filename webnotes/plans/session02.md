@@ -224,6 +224,7 @@ spelled as in `sources/index.json`.
 - `ruffieux2016_nature17151`, `https://www.nature.com/articles/nature17151`, arXiv 1511.05037 attached, the zigzag ribbons of the notebook. No number with a unit, so no box. The pages also have no ribbon.
 - `gonzalez-herrero2016_science.aad8038`, `https://www.science.org/doi/full/10.1126/science.aad8038`, arXiv 2009.13150 attached, hydrogen atoms on graphene in the notebook. It has $20$ meV, but it is a spin-split state from interactions, which no page of this session treats, so no box.
 - `nilius2002_science.1075242`, `https://www.science.org/doi/10.1126/science.1075242`, the chain of gold atoms built with STM. Its abstract has "a 20-atom chain" and no value with a unit, so it backs a sentence and not a box.
+- `bostwick2006_arxivcond-mat-0609660`, `https://arxiv.org/abs/cond-mat/0609660`, ARPES of graphene, stored on 2026-11-22 after the recheck d5 for the sentence of Section 2.12 on the measured cone. The arXiv record names no DOI, and its title differs from the one of Crossref for the paper in Nature Physics 3, 36, so the page links the arXiv abstract itself, which the tracked file keeps whole. It has no number with a unit, so it backs a sentence and not a box. labsource.py wrote this file and its line of `sources/index.json`, which the plan otherwise leaves to the coordinator.
 
 ## pyqula facts checked for this plan
 
@@ -249,17 +250,278 @@ These were run in the scratch folder of the plan with numbers, and they are conf
 
 ## Open for the lecturer
 
-These change a numbered equation, a statement of the old text or a convention, so a builder does not decide them.
+The lecturer decided on 2026-11-22 how to handle the points that the builders, the fixers and the rechecks left in
+the old text ("Fix old-text errors, ask the rest"). Their lists, the twelve points of this section and the open points
+of the conventions sheet were merged into 27 distinct points, and one more was found in that pass. Twelve were
+sentences that were false as written, or that contradicted another sentence of the session, and they are corrected on
+the web. The other sixteen were questions. On 2026-11-22 the lecturer picked points 1 and 3 ("ask me the top 5, other
+you decide by yourself"), and the coordinator decided the other fourteen by its rule. The rule takes the option that
+makes the text true with the smallest change and changes no numbered equation, reduces a claim that no stored source
+or calculation supports to what is supported, rewrites a notebook box that does not match its cell, and leaves a
+converted Blender figure and its overlay untouched. This pass first read that clause as covering the caption too. The
+recheck of the same day reversed that reading in its point d1, since the caption is text of the page and was false as
+written, so the caption of Figure 2.1 is now corrected on the web, while its render and its overlay are not touched.
+This can be undone by putting the old sentence back. Each change was checked first with a calculation, and the check
+script of its page asserts it. The points d1, d2 and d5 to d8 of that recheck change pages, and each is in the bullet
+of the change it concerns. The points d3 and d4 change only the conventions sheet and `conventions.py`, and d9
+changes nothing. The list "Decided on 2026-11-22" gives the
+choice of each point and who made it, and the list "Not applied" what the rule leaves out. The old figures were
+redrawn under the same names, as the lecturer picked on 2026-11-21, and the redraw also fixed the caption of
+`square_bands`. The conventions sheet is up to date since 2026-11-22, and its last section lists the points of the old
+text as decided or corrected, in the order of `conventions.py`.
 
-1. The direction of the ring rotation in Sections 2.3 and 2.4. The rotation of Section 2.3 moves each amplitude to the next site, so $(1,-i,-1,i)$, which is $e^{-i\pi j/2}$, has the eigenvalue $i$. The key formula of Section 2.4, $\alpha_j\propto e^{i\varphi_n j}$ for the eigenvalue $e^{i\varphi_n}$, and the translation $T$ of Section 2.4 with (2.6) need the amplitude to move to the previous site. The set of modes is the same, and only the labels flip. The options are to keep both and name the direction on each page, to turn the rotation of Section 2.3 around, so that $(1,-i,-1,i)$ has $-i$ and the quiz state $(1,i,-1,-i)$ has $i$, or to write $\alpha_j\propto e^{-i\varphi_n j}$ in Section 2.4.
-2. Section 2.3 says "Symmetry operators are always unitary", while time reversal, which the box "Where this comes back" of the same page links to Section 3.11b, is antiunitary.
-3. Section 2.4 says that the weight $1/5$ holds "for every $n$, for the lowest energy and for all other states". The levels $n$ and $-n$ of the ring of five sites are degenerate, and the real combination $\cos(2\pi j/5)$ is also an eigenstate of $H$, with weights $0.40$, $0.04$, $0.26$, $0.26$, $0.04$. The statement holds for the eigenstates chosen as eigenstates of $R$.
-4. Section 2.4 says that rings with few sites "have been built and measured" with STM and names the film "the smallest film ever made", with no source. The stored `nilius2002` is a chain of 20 gold atoms built with STM, not a ring, and it gives no number with a unit. The options are to keep the sentences, to write chains with this link, or to drop the sentence on the film.
-5. The equations (2.6) and (2.7) have no factor $1/\sqrt N$, and the sum $\sum_n e^{in(\varphi'-\varphi)}$ in the derivation is $N\delta_{\varphi\varphi'}$. A fold can say "up to the normalization", or the equations get the factor, which changes numbered equations.
-6. The equation (2.8) has a `\boxed` around $\epsilon_\varphi=-2t\cos\varphi$. Inside a key box the frame is doubled, so it stays or goes.
-7. Section 2.9 says "A vanishing density of states means that interactions can hardly have any effect, however strong they are". Section 2.10 of the same page says that a finite interaction is needed, and the notebook cell "Phase transition with electronic interactions" opens a gap in the honeycomb lattice above a critical $U$.
-8. Section 2.9 says that (2.18) "is the mass that is measured in essentially every transport or cyclotron-resonance experiment". The cyclotron mass equals (2.18) for a parabolic band. In graphene `elias2011` measures a finite cyclotron mass, while Section 2.11a says that (2.18) is infinite along the radius and not defined at the tip.
-9. Section 2.12 says "the measured Dirac cone agrees well with the tight-binding derivation". `elias2011` finds a velocity three times larger at low density from interactions, and the ARPES abstract of Bostwick and coworkers (arXiv cond-mat/0609660, read and not stored) finds the cones "distorted by strong electron-electron, electron-phonon, and electron-plasmon coupling effects".
-10. A key box on a page with no numbered equation, in Sections 2.10, 2.11b and 2.12, holds an untagged display. The rule of the numbering allows a lettered tag such as (2.21a) instead.
-11. The old figures that break the plot rules are listed in the blocks, and they are `block_diagonal`, `ring_long_range`, `chain_eta`, `band_sign_t`, `aliasing`, `ssh_recipe`, `fold_three`, `square_bands`, `decoupled_chains`, `cos_velocity_mass`, `graphene_path`, `dirac_mass` and `kagome_dos`. They are redrawn now under the same names with the scripts of this plan, as `berry_haldane` was in Session 3, or left and reported. `square_bands` also has a caption that says more than its picture, which a redraw in the extended zone or a change of the caption fixes.
-12. The scripts that the students download use `tij=[-1.0]`, the sign of (2.5), while the notebook uses $+1$ for the chain, the square and the kagome lattices. The other choice is the sign of the notebook, with every figure of these lattices turned upside down against the page.
+### Corrected on the web, to carry over to the .tex
+
+Each correction was checked first with a calculation of its own, by two routes where a number is involved, and the
+check script of its page asserts it. The lines are those of `lecture_notes/src/sessions/session02.tex`.
+
+- Page `01`, the quiz on the rotations of the square, feedback of the option $8$. Old "A rotation by $45^\circ$ moves a
+  corner to the middle of an edge, so the square becomes a diamond." New "A rotation by $45^\circ$ moves each corner to
+  a point beyond the middle of an edge, so the square becomes a diamond." The corner $(a,a)$ goes to $(0,\sqrt2\,a)$,
+  outside the square. Not in the .tex. Asserted in `g1_01_motivation_and_recap.py`.
+- Page `03`, Section 2.3, which was point 2 of this list. Old "Symmetry operators are always unitary." New "The symmetry
+  operators of this session are unitary." Time reversal, which the box "Where this comes back" of the same page links to
+  Section 3.11b, is antiunitary. (2.1) stays as it is. Line 81. Asserted in `g1_03_symmetry_operators.py`.
+- Page `03`, Section 2.3, the dimer $H=t(c_1^\dagger c_2+\text{h.c.})$. Old "the bonding and antibonding combinations
+  $c_1^\dagger+c_2^\dagger$ and $c_1^\dagger-c_2^\dagger$ ... the bonding state has eigenvalue $+1$ and the antibonding
+  state has eigenvalue $-1$." New "the symmetric and antisymmetric combinations $c_1^\dagger+c_2^\dagger$ and
+  $c_1^\dagger-c_2^\dagger$ ... the symmetric state has eigenvalue $+1$ and the antisymmetric state has eigenvalue $-1$."
+  For $t>0$ the symmetric state is the upper level at $+t$, as the caption of `dimer_ring_symmetry` says. Lines 106 to
+  108. Asserted in `g1_03_symmetry_operators.py`. The page of Section 3.8 calls the same state at $+t$ bonding, and it was
+  not touched in this pass.
+- Page `04`, Section 2.4, the ring of five sites, which was point 3 of this list. Old "so this overlap is $1/5$ for every
+  $n$, for the lowest energy and for all other states." New "so this overlap is $1/5$ for every $n$, for the lowest
+  energy and for all other states. This holds once we choose the eigenstates as these Fourier modes. It follows from the
+  symmetry only", where the next sentence began with "This follows" before. With the plus sign of this
+  $H$ the lowest level $2\cos(4\pi/5)$ holds two modes, and the states of this level have a weight from 0 to 0.40 on
+  site 1. Line 154. Asserted in `g1_04_ring_eigenstates.py`.
+- Page `04`, the quiz on the weight of one site, feedback of the option "It depends on the hopping amplitudes". Old "The
+  eigenstates are the same Fourier modes as for $\eta=0$, and each site has the weight $1/6$." New "The eigenstates can
+  be chosen as the same Fourier modes as for $\eta=0$, and each site has the weight $1/6$ in them." The levels $-0.7t$
+  and $1.3t$ hold two states each, and $\cos(2\pi j/6)$ is an eigenstate at $-0.7t$ with the weights $1/3$ and $1/12$.
+  Not in the .tex. Asserted in `g1_04_ring_eigenstates.py`.
+- Page `05`, the try-it of Section 2.5. Old "for example `tij=[1.0,0.3,0.0]`". New "for example `tij=[1.0,0.2,0.0]`".
+  The value 0.3 is above $t/4$, so its band already has the extra extremum, $0.033t$ deep, while 0.2 has none and 0.5
+  has it, so "Increase it to $0.5$" now holds. Not in the .tex. Asserted in `g2_05_bloch_chain.py` with pyqula.
+- Page `07`, Section 2.7. Old "The symmetry that diagonalizes (2.11) is a slightly richer version of a pure translation.
+  It shifts the unit-cell index $n\to n+1$ *and* applies a unitary rotation among the orbitals within each cell." New
+  "The symmetry that splits (2.11) into blocks, one for each phase, is the translation by one cell, which shifts the
+  unit-cell index $n\to n+1$. It fixes the phase from one cell to the next, but not the combination of the orbitals
+  within each cell, which is a unitary rotation among them." The rotation $U(\varphi)$ changes with $\varphi$ and comes
+  from $H(\varphi)$. The translation alone leaves one block $H(\varphi)$ per phase, as `block_diagonal` of Section 2.3
+  shows, so the verb "diagonalizes" of the old text became "splits into blocks", the words of Section 2.3, after the
+  recheck o3. Lines 306 and 307. Asserted in `g2_07_multi_orbital.py`, with the blocks of a chain of seven cells with
+  three orbitals.
+- Page `07`, the notebook box of Section 2.7. Old "in the same spirit as (2.13), and there you can check that the
+  numerical bands agree with $\epsilon_\pm(\varphi)$." New "in the same spirit as (2.13). For the ladder with one cell,
+  `NS=1` in the first column of the plots, you can check that the numerical bands are $2\cos\varphi\pm1$, with the
+  hopping $+1$ of the notebook. These are not the bands $\epsilon_\pm(\varphi)$ of (2.13), and the reason is the bond to
+  the next cell. In the ladder each site hops to its own copy in the next cell, while in (2.13) the site $B$ hops to the
+  site $A$ of the next cell." The rung is inside the cell in both, as the recheck o2 found. The cell also draws the
+  supercells `NS=2` and `NS=3`, whose levels at $k=0$ are $-3,-1,1,3$ and $-2,-2,0,0,1,3$, the same two bands folded.
+  Lines 347 and 348. Asserted in `g2_07_multi_orbital.py` with `geometry.ladder()`, the supercells included.
+- Page `09`, Section 2.9, which was point 7 of this list. Old "A vanishing density of states means that interactions can
+  hardly have any effect, however strong they are." New "A vanishing density of states means that a weak interaction can
+  hardly have any effect, and only an interaction above a finite strength can drive such an instability." This agrees
+  with Section 2.10, with the caption of Figure 2.4, which stays, and with the notebook cell "Phase transition with
+  electronic interactions". The mean-field antiferromagnet of the honeycomb lattice needs $U$ above about $2.2t$, while
+  the half-filled chain orders already at $U=t$. Lines 407 and 408. Asserted in
+  `g3_09_properties_of_an_electronic_dispersion.py`.
+- Page `11`, Section 2.11a. Old "This is the low-energy physics of every material with a honeycomb lattice, and of
+  graphene in the first place." New "The massless cone is the low-energy physics of graphene, and of every honeycomb
+  monolayer whose Fermi level sits at $K$ and $K'$. This holds as long as no term, such as a sublattice imbalance, opens
+  a gap there." The picture quiz of the same page has the imbalance $0.5$ and the gap $1.0$ at $K$. After the recheck
+  o1 the sentence names its subject, since the sentence before it is on the mass term, and two more conditions. A
+  Bernal stack of two layers with the interlayer hopping $0.14t$ has no gap at $K$, but its band grows as $q^2$. One
+  layer with a second-neighbor hopping $t_2=0.4t$ keeps the touching at $-1.2t$, while the Fermi level of half filling
+  is at about $-0.744t$. The paragraph, of 159 words with the first correction, is split before "Graphene is famous",
+  which is a web-only change. Lines 510 and 511. Asserted in `g4_11_dirac_cone.py`, the bilayer and $t_2$ included.
+- Page `12`, Section 2.12. Old "Conservation of momentum and energy relates the momentum and kinetic energy of the
+  electron, which are both measured directly outside the material, to its momentum and energy when it was still inside."
+  New "The kinetic energy and the emission angle of the electron are measured outside the material, and together they
+  give its momentum there. Conservation of energy and of the momentum along the surface then gives its energy and its
+  momentum along the surface when it was still inside." The component along the normal changes at the surface, as the
+  fold of the same page says. After the recheck o5 the first sentence names the angle, as the quiz of the same page
+  does, since the momentum is obtained from the angle and the energy and is not measured directly. Lines 552 to 554.
+  Asserted in `g4_12_arpes.py`.
+- Page `12`, Section 2.13. Old "Every real dispersion is built locally from three types, which are parabolic, Dirac and
+  flat." New "Almost every band structure in this course is built locally from three types, which are parabolic, Dirac
+  and flat." These are the words of Section 2.10, and the chain with $t_3=1/3$ of the notebook has the local form
+  $E\propto q^3$, which is none of the three. Lines 581 and 582. Asserted in `g4_12_arpes.py`.
+- Page `05`, the first notebook box of Section 2.5, corrected on the page in the commit of the new shape and not in this
+  pass. The old text ends with "check that the numerical spectrum follows $\epsilon_\varphi=-2t\cos\varphi$ from (2.8)
+  when you scan $\varphi$ across the Brillouin zone." The page adds "The notebook takes the hopping $+1$, which is $t=-1$
+  here, so its band is $+2\cos\varphi$, with the bottom at $\varphi=\pi$. The notebook plots $\varphi$ from $0$ to
+  $2\pi$, so the bottom is still in the middle of its plot, and the cell is spinful, so each level comes twice." Lines
+  230 and 231. Asserted in `g2_05_bloch_chain.py`.
+- Page `03`, Section 2.3, the two examples, from point 1 of the lecturer. Old "we apply a $90^\circ$ rotation that
+  shifts the sites by one in a cyclic way" and "The transformed wavefunction is $i$ times the original, so it is an
+  eigenstate with eigenvalue $i$, that is $\varphi=\pi/2$." New "We apply a $90^\circ$ rotation that moves the
+  amplitude of each site to the previous site, in a cyclic way" and "The transformed wavefunction is $-i$ times the
+  original, so it is an eigenstate with eigenvalue $-i$, that is $\varphi=-\pi/2$." The state $(+1,-1,+1,-1)$ keeps
+  $-1$. Lines 94 to 99. Asserted in `g1_03_symmetry_operators.py`. The quiz on $(1,i,-1,-i)$, now with the answer $i$,
+  the steps fold, and the captions and scripts of `dimer_ring_symmetry`, now labelled $R=-i$, and `block_diagonal`,
+  whose picture of $|H_{ij}|$ is the same for both senses, are web-only. Since the recheck d7 the two rings of
+  `dimer_ring_symmetry` number their sites from 1 to 4 counterclockwise, from the site on the right, and the caption
+  says so, since the direction "to the previous site" could not be read from a ring with no numbers. The matrix of
+  `_g1_ring.py` now moves every amplitude to the previous site too, and its pictures, which check both senses, did not
+  change.
+- Page `04`, Section 2.4, the ring of three sites, from point 1. Old "with a symmetry $R$ that rotates
+  $1\to2\to3\to1$ by $120^\circ$." New "with a symmetry $R$ that rotates the triangle by $120^\circ$. As in Section
+  2.3, $R$ moves the amplitude of each site to the previous site, $(R\psi)_j=\psi_{j+1}$ with $\psi_4=\psi_1$." The
+  rotation that takes the site 1 to the site 2 gives $\alpha_j\propto e^{i\varphi_nj}$ the eigenvalue
+  $e^{-i\varphi_n}$, while the next sentence and Figure 2.1 need $e^{i\varphi_n}$. Lines 131 and 132. Asserted in
+  `g1_04_ring_eigenstates.py`. The steps fold of the page, web-only, now uses this direction.
+- Page `04`, Section 2.4, from point 16. Old "The eigenstates of any Hamiltonian with this rotational symmetry are
+  exactly the three discrete Fourier modes on the ring", where the web had already dropped "exactly". New "...can be
+  chosen as the three discrete Fourier modes on the ring". Line 141. Old "As long as the rotational symmetry of the
+  ring is present, the symmetry eigenvalues, the eigenstates and expectation values such as this one are all fixed by
+  symmetry only, however complicated the Hamiltonian becomes." New "As long as the rotational symmetry of the ring is
+  present, the symmetry eigenvalues are fixed by symmetry only. The eigenstates can then be chosen as the Fourier
+  modes, with the weight $1/L$ on each site, however complicated the Hamiltonian becomes." Lines 157 to 159. With a
+  real hopping $(2,-1,-1)/\sqrt6$ is an eigenstate of the twofold level of three sites, with the weight $2/3$ on one
+  site, and it is no Fourier mode. Asserted in `g1_04_ring_eigenstates.py`. The caption of Figure 2.1 is corrected
+  too, in the next bullet.
+- Page `04`, the caption of Figure 2.1 (`s02f01_ringmodes`), from the recheck d1. Old "This means that the eigenstates
+  are the discrete Fourier modes, for any values of the hopping amplitudes." New "This means that the eigenstates can be
+  chosen as the discrete Fourier modes, for any values of the hopping amplitudes." The text two lines above says "can be
+  chosen as" since point 16. With the hopping $-t$ of (2.5) the ring of three sites has the levels $-2t$, $t$, $t$, and
+  $(2,-1,-1)/\sqrt6$ is an eigenstate of the level $t$ that is no Fourier mode. The render and its overlay are not
+  changed. `lecture_notes/src/figures/s02f01_ringmodes.tex`, lines 6 and 7. Asserted in `g1_04_ring_eigenstates.py` and
+  `conventions.py`.
+- Page `04`, Section 2.4, the STM sentences, from point 2. Old "With scanning tunnelling microscopy one can place
+  single atoms with essentially arbitrary precision, and tight-binding rings with few sites like these have been built
+  and measured in this way. There is a famous stop-motion film [...] It shows how precisely such models can now be
+  realized in the lab." New "With a scanning tunneling microscope (STM) one can place single atoms one by one, and
+  chains of gold atoms built in this way have been measured, in
+  [this article](https://www.science.org/doi/10.1126/science.1075242)." The name of STM is spelled out since the recheck
+  d8, as the old text did. Lines 161 to 165. The stored `nilius2002` says "The ability of a scanning tunneling
+  microscope to manipulate single atoms is used to build well-defined gold chains on NiAl(110)" and "Spatially resolved
+  conductance measurements along a 20-atom chain provide the dispersion relation, effective mass, and density of states
+  of the free electron-like band." Asserted against the stored text in `g1_04_ring_eigenstates.py`. The two phrases are
+  only in the full copy, which git ignores, so on a clean clone the script prints NOT CHECKED for them and asserts the
+  title and the URL only. The tracked file keeps only the clauses with a number that a page quotes, and this sentence
+  quotes none.
+- Page `05`, Section 2.5, the normalization, from point 3 of the lecturer. This changes the numbered equation (2.7).
+  Old (2.7) $\Psi_\varphi^\dagger=\sum_ne^{in\varphi}c_n^\dagger$, $c_n^\dagger=\sum_\varphi e^{-in\varphi}
+  \Psi_\varphi^\dagger$. New (2.7) with the factor $1/\sqrt L$ in front of both sums, and the `\tag` stays 2.7. After
+  "which is an ordinary Fourier transform between real space and the space of Bloch phases." the new sentences "Here we
+  close the chain into a ring of $L$ sites, as in Section 2.4, so that $\varphi$ takes the $L$ values $2\pi m/L$, and at
+  the end we take $L\to\infty$. The factor $1/\sqrt L$ makes the transform unitary, so $\Psi_\varphi^\dagger|0\rangle$ is
+  the state (2.6) normalized to one, and (2.8) below does not change with it." The unnumbered display gets $\frac1L$
+  in front of $\sum_{n,\varphi,\varphi'}$, and the orthogonality relation becomes "$\sum_ne^{in(\varphi'-\varphi)}=
+  L\,\delta_{\varphi\varphi'}$, and the factor $L$ cancels the $1/L$ of the two normalizations." (2.6) and (2.8) are
+  not changed. Lines 195 to 205. Asserted in `g2_05_bloch_chain.py` on 5, 8 and 12 sites and in `conventions.py`. The
+  steps fold of Section 2.7, web-only, writes $c_{\varphi,\alpha}^\dagger$ with the same factor, asserted in
+  `g2_07_multi_orbital.py`. The recall box of Section 2.7, web-only, shows the new (2.7), and since the recheck d2 it
+  adds "The chain is closed into a ring of $L$ sites, so that $\varphi$ takes the $L$ values $2\pi m/L$, and at the
+  end $L\to\infty$.", so that $L$ is named where (2.7) is shown.
+- Page `05`, the second notebook box of Section 2.5, from point 15. After "check that the band you compute
+  numerically agrees with (2.9)." the new sentence "The cell itself changes the third-neighbor hopping $t_3$, in the
+  third place of `tij`." The cell loops over $t_3=0$, $1/3$, $2/3$ in `tij=[1.0,0.,t3]`. Lines 243 to 247. Asserted in
+  `g2_05_bloch_chain.py`, from the notebook and with pyqula.
+- Page `09`, Section 2.9, from point 5. Old "is the curvature of the dispersion, and it is the mass that is measured in
+  essentially every transport or cyclotron-resonance experiment, since the bare electron mass cannot be observed
+  directly inside a solid." New "is the curvature of the dispersion. For an isotropic parabolic band it is also the mass
+  that is measured in transport and cyclotron-resonance experiments, since the bare electron mass cannot be observed
+  directly inside a solid. For an anisotropic parabolic band, with the masses $m_1$ and $m_2$ along its two main axes,
+  transport along one axis measures the mass of that axis, and cyclotron resonance measures $\sqrt{m_1m_2}$." The word
+  "isotropic" and the last sentence come from the recheck d6, since (2.18) is a tensor. The cyclotron mass
+  $(\hbar^2/2\pi)\,\partial A/\partial E$ of the square lattice is $0.506$ at $E=-3.9t$ by a count and by the formula,
+  and it tends to the $0.5$ of (2.18) at the bottom, as does the mass of the Drude weight, while the cone has the
+  finite $\hbar k_F/v_F$ where (2.18) is infinite along the radius. For $m_1=1/2$ and $m_2=2$ a count on the continuum
+  gives the cyclotron mass $1.0006$, and the lattice with $t_x=1$ and $t_y=1/4$, which has these masses at its bottom,
+  gives $1.016$ at $0.05t$ above it, with the Drude masses $0.501$ and $2.02$ along $x$ and $y$. Lines 422 to 424.
+  Asserted in `g3_09_properties_of_an_electronic_dispersion.py`.
+- Page `09`, Section 2.9, from point 14, web-only. "The size of the velocity is largest in the middle of the band" and
+  the quiz "where is the size of the group velocity largest?", with "its size is largest" in the feedback of the right
+  option and in the closing line of the quiz. The signed velocity is $-2ta/\hbar$ at $\varphi=-\pi/2$, its smallest
+  value. Asserted in `g3_09_properties_of_an_electronic_dispersion.py`. Not in the .tex.
+- Page `12`, Section 2.12, from point 6 and the recheck d5. Old "This is how the band structure and the Fermi surface
+  of graphene are measured in practice, and the measured Dirac cone agrees well with the tight-binding derivation of
+  Section 2.11." New "This is how the band structure and the Fermi surface of graphene are measured in practice. The
+  measured bands show the Dirac cone of Section 2.11, distorted by the coupling of the electrons to each other, to
+  phonons and to plasmons, in [this article](https://arxiv.org/abs/cond-mat/0609660)." Lines 556 and 557. No stored source
+  compared the measured cone with the model, and the lab box of Section 2.11a says from `elias2011` that the real
+  spectrum is not linear. The recheck d5 found that the first new wording had no stored source either, so the arXiv
+  abstract of `bostwick2006` is now stored, and it says "Using angle resolved photoelectron spectroscopy (ARPES), we
+  find that the expected conical bands are distorted by strong electron-electron, electron-phonon, and
+  electron-plasmon coupling effects." Asserted against the tracked file in `g4_12_arpes.py`, which holds the arXiv
+  abstract whole. The paragraph grew to 152 words, so on the web it is split before "This is how".
+- Page `12`, Section 2.13, from point 13. Old "$H(\mathbf{q})\approx\hbar v_F(q_x\sigma_x+q_y\sigma_y)$ with
+  $E_\pm=\pm\hbar v_F|\mathbf{q}|$ in (2.20)-(2.21)". New "$H(\mathbf{q})\approx\hbar v_F(q_x\sigma_x+q_y\sigma_y)$
+  at $K$, with the opposite sign of the $\sigma_y$ term at $K'$, and $E_\pm=\pm\hbar v_F|\mathbf{q}|$ at both, in (2.20)
+  and (2.21)". Lines 583 and 584. Asserted in `g4_12_arpes.py`, with the phase of the $B$ orbital of each valley.
+
+### Decided on 2026-11-22
+
+One bullet per point of the former list "For the lecturer", with the choice and who made it. "The coordinator" means
+the coordinator by its rule of 2026-11-22, given in the opening paragraph of this section. The changes of the text are
+in the list above, with their lines in the .tex.
+
+- 1, the direction of the ring rotation. The lecturer picked "Turn the rotation of Section 2.3 around". $R$ now moves
+  every amplitude to the previous site, $(R\psi)_j=\psi_{j+1}$, as $T$ of Section 2.4 and (2.6) need. So $(1,-i,-1,i)$
+  has $-i$ and the quiz state $(1,i,-1,-i)$ has $i$. The text of Section 2.3, its quiz, its steps fold, the captions
+  and scripts of `dimer_ring_symmetry` and `block_diagonal`, the sentence of Section 2.4 that defined $R$ by
+  $1\to2\to3\to1$, the steps fold of Section 2.4, the check scripts and the conventions sheet changed with it.
+- 2, the STM sentences of Section 2.4. The coordinator took "With STM one can place single atoms one by one, and
+  chains of gold atoms built in this way have been measured", with the link to `nilius2002`, by the clause that
+  reduces a claim with no stored source to what is supported. The rings "built and measured" and the film have no
+  stored source, so the new sentence replaces the one on the rings, and the two sentences on the film are gone. After
+  the recheck d8 the sentence spells out "a scanning tunneling microscope (STM)".
+- 3, the normalization of (2.6) and (2.7). The lecturer picked "The factor $1/\sqrt L$ in (2.7) and $L\,\delta$ in the
+  sum". (2.7) is the only numbered equation that changed, (2.6) stays unnormalized and (2.8) as printed, and one
+  sentence says that the transform is unitary and that (2.8) does not change.
+- 4, the `\boxed` of (2.8) inside the key box. The coordinator kept it, since the text is true either way and the
+  removal changes a numbered equation.
+- 5, the mass of transport and cyclotron resonance. The coordinator took "...and for a parabolic band it is also the
+  mass that is measured in transport and cyclotron-resonance experiments", as the smallest change that makes the text
+  true. "Essentially every" was false for the cone of Section 2.11a, whose cyclotron mass $\hbar k_F/v_F$ is finite
+  while (2.18) is infinite along the radius. The third option, a sentence of ours in the lab box of Section 2.11a, is a
+  larger change and was not taken. After the recheck d6 the sentence says "isotropic", and one more sentence gives the
+  anisotropic band, where cyclotron resonance measures $\sqrt{m_1m_2}$.
+- 6, how well the measured Dirac cone agrees. The coordinator took "...and the measured bands show the Dirac cone of
+  Section 2.11a", by the clause on claims with no stored source. "Agrees well" has none, and `elias2011` in the lab
+  box of Section 2.11a says that the real spectrum is not linear. The recheck d5 found no stored source for the new
+  words either, so by the same clause the arXiv abstract of `bostwick2006` was stored and linked, and the sentence now
+  says what it says, a cone distorted by three couplings.
+- 7, numbers for the key boxes of Sections 2.10, 2.11b and 2.12. The coordinator kept the displays untagged, since a
+  lettered tag adds numbered equations.
+- 8, the sign of the downloaded scripts. The coordinator kept `tij=[-1.0]`, the sign of (2.5). The try-it boxes of
+  Sections 2.5, 2.8 and 2.11b already name the sign of the notebook, so nothing changed.
+- 9, the six-site ring with long-range couplings in Section 2.4. The coordinator kept it, since the statement is true
+  and the next sentence names the schematic of five sites. A ring of six sites with real hoppings to the first, second
+  and third neighbors has every Fourier mode as an eigenstate, asserted in `g1_04_ring_eigenstates.py`.
+- 10, "Weyl semimetals, which are Dirac points generalized to higher dimensions" in Section 2.8. The coordinator kept
+  it, since it is true when "Dirac point" means the two-band crossing of graphene, which is the meaning of the page.
+- 11, the Berry phase of a Dirac dispersion in item 2 of Section 2.10. The coordinator kept it, since a massless cone
+  has the Berry phase $\pi$. A Wilson loop about $K$ of graphene gives $\pi$, and the same loop with a sublattice
+  imbalance $0.5$ does not, asserted in `g3_09_properties_of_an_electronic_dispersion.py`.
+- 12, the condition on the ground state in the first bullet of Section 2.13. The coordinator kept it, since the
+  sentence is true as written and fits the mean-field reading of the paragraph before the list.
+- 13, the form at $K'$ in the closing bullet of Section 2.13. The coordinator took "...$\hbar v_F(q_x\sigma_x+
+  q_y\sigma_y)$ at $K$, with the opposite sign of the $\sigma_y$ term at $K'$, and $E_\pm=\pm\hbar v_F|\mathbf q|$ at
+  both", since the bullet read as the form at both points, which the key box of Section 2.11a contradicts.
+- 14, "largest" for the velocity in Section 2.9. The coordinator took "The size of the velocity is largest..." and
+  "where is the size of the group velocity largest?", as the smallest change that makes the text true, and the same
+  two words go into the feedback of the right option and the closing line of the quiz, which had the same error. The
+  feedback of "It is the same everywhere", the third option, stays.
+- 15, the second notebook box of Section 2.5. The coordinator took "The cell itself changes the third-neighbor hopping
+  $t_3$, in the third place of `tij`", by the clause that a notebook box is rewritten to match its cell, as the smaller
+  of the two options that do so.
+- 16, "are" or "can be chosen as" for the eigenstates of the ring of three sites. The coordinator took the third
+  option, "...can be chosen as the three discrete Fourier modes on the ring..." and the sentence of the recheck o4,
+  split in two for the length of the sentence. The second option also changes the caption of Figure 2.1. The pass
+  first read the rule as leaving that caption alone, and the recheck d1 reversed the reading, so the caption now says
+  "can be chosen as" too, in the list above. The render and its overlay are not touched.
+
+### Not applied
+
+- The full copy of `nilius2002`, from the recheck d8. The two phrases that back the STM sentence of Section 2.4 are
+  asserted only where `webnotes/sources/.full/` exists, which git ignores, as in Session 5 for `tsuei1994`. The
+  tracked file keeps only clauses with a number that a page quotes, and `labsource.py --quotes` writes it again from
+  the full copy, so a phrase added by hand would not stay. Whether such a sentence needs an assert on every clone is a
+  point of the toolkit, and it is left to the coordinator.
+- Section 3.8 of Session 3 still calls the sum of the two sites of the dimer, at the energy $+t$, the bonding
+  combination (`session03/08-three-topological-material-classes.md`, line 81), while Section 2.3 now calls it the
+  symmetric state. It is a point about Session 3 that touches a sign, so the rule leaves it.

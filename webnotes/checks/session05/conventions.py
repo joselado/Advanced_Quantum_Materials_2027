@@ -492,20 +492,32 @@ def main():
     Ms = [Bq[0] / 2, Bq[1] / 2, third / 2]
     alongM = max(abs(hk(s * Mp)[0, 2]) for Mp in Ms for s in np.linspace(0.05, 1, 9))
     Kp = (Bq[0] + third) / 3
-    alongK = max(abs(hk(s * Kp)[0, 2]) for s in np.linspace(0.2, 0.7, 6))
+    # corrected on 2026-11-22: the line said "up to 1.42 on Gamma-K", the largest entry on 0.2 to 0.7 of the way to K. On the
+    # whole line the entry grows up to K, where it is 6 sqrt3 delta = 2.078 for delta=0.2. Second route, the six bonds of
+    # h.hopping, each +-2 delta, summed by hand with exp(i K.r)
+    alongK = max(abs(hk(s * Kp)[0, 2]) for s in np.linspace(0.0, 1.0, 201))
+    atK = abs(hk(Kp)[0, 2])
+    old142 = max(abs(hk(s * Kp)[0, 2]) for s in np.linspace(0.2, 0.7, 51))     # the 1.42 of the old line, at 0.7 of the way
+    hf = gtr.get_hamiltonian(); hf.add_pairing(mode="nodal_fwave", delta=0.2)
+    A2 = np.array([np.asarray(gtr.a1, float)[:2], np.asarray(gtr.a2, float)[:2]])
+    bonds = [(np.asarray(t.dir[:2], float) @ A2, dense(t.m)[0, 2]) for t in hf.hopping if abs(dense(t.m)[0, 2]) > 1e-12]
+    sixsum = abs(sum(a * np.exp(1j * (Kp @ r)) for r, a in bonds))
     s0 = brentq(lambda s: np.linalg.eigvalsh(hkn(s * Ms[0]))[0], 0.05, 1.0)
     efs = min(np.min(np.abs(np.linalg.eigvalsh(hk(s0 * Mp)))) for Mp in Ms)
     hks = res["swave"][3]
     efs_s = np.min(np.abs(np.linalg.eigvalsh(hks(s0 * Ms[0]))))
     odd = np.allclose(hk(-np.array([0.31, -0.77]))[:2, 2:], -hk(np.array([0.31, -0.77]))[:2, 2:])
-    ok = alongM < 1e-12 and alongK > 1.4 and abs(s0 - 2 / 3) < 1e-9 and efs < 1e-12 and odd and abs(efs_s - 0.4) < 1e-12
+    ok = alongM < 1e-12 and abs(atK - 6 * np.sqrt(3) * 0.2) < 1e-9 and alongK <= atK + 1e-12 and abs(sixsum - atK) < 1e-12
+    ok = ok and abs(old142 - 1.42) < 0.01 and abs(old142 - abs(hk(0.7 * Kp)[0, 2])) < 1e-12
+    ok = ok and len(bonds) == 6 and all(abs(abs(a) - 0.4) < 1e-12 for r, a in bonds) and abs(s0 - 2 / 3) < 1e-9 and efs < 1e-12 and odd and abs(efs_s - 0.4) < 1e-12
     ok = ok and res["nodal_fwave"][0] == 546 and abs(res["nodal_fwave"][1] - 0.0182) < 1e-4 and abs(res["nodal_fwave"][2] - 0.0036) < 1e-4
     ok = ok and abs(res["swave"][1] - 0.4004) < 1e-4 and abs(res["swave"][2] - 0.4) < 1e-4
     check('nodal_fwave', ok,
-          'odd in k, zero on the three lines Gamma-M (largest entry %.0e) and up to %.2f on Gamma-K; at mu=0 the Fermi '
+          'odd in k, zero on the three lines Gamma-M (largest entry %.0e), and with delta=0.2 up to %.3f = 6 sqrt3 delta at K, also by '
+          'the six bonds of +-2 delta, and %.3f at 0.7 of the way, the largest value on 0.2 to 0.7; at mu=0 the Fermi '
           'surface crosses Gamma-M at %.4f of the way to M, where |E| is %.0e; on the path G K M G the smallest |E| is '
           '%.4f with the default %d steps and %.4f with nk=2000, and swave 0.4 gives %.4f and %.4f there, 0.4 on the '
-          'Fermi surface' % (alongM, alongK, s0, efs, res["nodal_fwave"][1], res["nodal_fwave"][0], res["nodal_fwave"][2],
+          'Fermi surface' % (alongM, alongK, old142, s0, efs, res["nodal_fwave"][1], res["nodal_fwave"][0], res["nodal_fwave"][2],
                              res["swave"][1], res["swave"][2]))
 
     # The gap

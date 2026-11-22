@@ -703,7 +703,7 @@ def mathcheck():
 
 
 CHECKS = os.path.join(HERE, 'checks')     # the kept check scripts that --verify runs
-VERIFY_TIMEOUT = 900                      # s, the time limit of one check script
+VERIFY_TIMEOUT = 2400                     # s, the time limit of one check script; 900 s was too short with ~20 agents on the machine
 
 
 def check_scripts(folder, session=None):

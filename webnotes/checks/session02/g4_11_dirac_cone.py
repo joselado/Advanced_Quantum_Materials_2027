@@ -153,6 +153,50 @@ ek = np.linalg.eigvalsh(hk(Kp))
 check('pyqula, the sublattice imbalance 0.5 gives +-0.5 at K, the gap 1.0, since f(K) = 0', np.allclose(ek, [-0.5, 0.5]), ek)
 check('the gap of the imbalance 0.5 over the zone is 1.0, at K', abs(physcheck.gap(hk, Bq, 1, nk=60) - 1.0) < 1e-9,
       round(physcheck.gap(hk, Bq, 1, nk=60), 6))
+# the old text, corrected on 2026-11-22 to "The massless cone is the low-energy physics of graphene, and of every
+# honeycomb monolayer whose Fermi level sits at K and K'. This holds as long as no term, such as a sublattice
+# imbalance, opens a gap there." First condition, no gap: without the imbalance both corners have zero energy and the
+# cone, with it neither corner is gapless, so a honeycomb lattice alone does not give the cone
+h0 = g.get_hamiltonian(has_spin=False)
+hk0, _ = physcheck.from_pyqula(h0)
+e_pair = [np.abs(np.linalg.eigvalsh(hk0(kk))).max() for kk in (Kp, -Kp)] + [np.abs(np.linalg.eigvalsh(hk(kk))).min() for kk in (Kp, -Kp)]
+check('pyqula honeycomb: 0 at K and K\' without the imbalance, +-0.5 at both with the imbalance 0.5',
+      max(e_pair[:2]) < 1e-9 and np.allclose(e_pair[2:], 0.5), np.round(e_pair, 9))
+# Second condition, one layer: a Bernal (AB) stack of two layers, with the interlayer hopping 0.14 t from B of the
+# first layer to A of the second, has zero energy at K and no gap, but its lowest band grows as q^2 and not as q.
+# Route 1 is the ratio E(2q)/E(q), which is 2 for one layer. Route 2 is the two-band form E = (3q/2)^2/0.14.
+def bilayer(k, g1=0.14):
+    fk = f(k)
+    hb = np.zeros((4, 4), complex)
+    hb[0, 1], hb[2, 3], hb[1, 2] = fk, fk, g1
+    return np.linalg.eigvalsh(hb + hb.conj().T)
+
+
+qb = 0.005
+eb1, eb2 = np.abs(bilayer(K + [qb, 0])).min(), np.abs(bilayer(K + [2 * qb, 0])).min()
+em1, em2 = np.abs(np.linalg.eigvalsh(hk0(K + [qb, 0]))).min(), np.abs(np.linalg.eigvalsh(hk0(K + [2 * qb, 0]))).min()
+check('the Bernal bilayer with 0.14 t: 0 at K, E(2q)/E(q) about 4 against 2 for one layer, and E = (1.5 q)^2/0.14',
+      np.abs(bilayer(K)).min() < 1e-12 and 3.9 < eb2 / eb1 < 4.0 and abs(em2 / em1 - 2) < 1e-3
+      and abs(eb1 / ((1.5 * qb) ** 2 / 0.14) - 1) < 0.01, (round(eb2 / eb1, 3), round(em2 / em1, 4)))
+# Third condition, the Fermi level at K: one layer with a real second-neighbor hopping t2 keeps the touching at K, at
+# the energy -3 t2, since the six second neighbors give t2 (|f|^2 - 3). Above t2 = t/3 the lower band at Gamma,
+# -3t + 6 t2, rises above the touching, and the Fermi level of half filling leaves it. Route 1 is the sum over the six
+# second neighbors, route 2 the closed form, and the Fermi level is the median of the levels on a 300 x 300 mesh.
+bvec = np.array([delta[i] - delta[j] for i in range(3) for j in range(3) if i != j])
+nm = 300
+b1, b2 = 2 * np.pi * np.array([1 / 3, 1 / S3]), 2 * np.pi * np.array([1 / 3, -1 / S3])
+km = (((np.arange(nm) + 0.5) / nm)[:, None, None] * b1 + ((np.arange(nm) + 0.5) / nm)[None, :, None] * b2).reshape(-1, 2)
+fm = f(km)
+s2n = np.exp(1j * km @ bvec.T).sum(-1).real
+efs = {}
+for t2 in (0.1, 0.25, 0.4):
+    lev = np.sort(np.concatenate([t2 * s2n + np.abs(fm), t2 * s2n - np.abs(fm)]))
+    efs[t2] = 0.5 * (lev[lev.size // 2 - 1] + lev[lev.size // 2])
+check('second-neighbor t2: the six neighbors give |f|^2 - 3, the touching at K is at -3 t2, and the Fermi level of half '
+      'filling sits there for t2 = 0.1 and 0.25 but is about -0.744 for t2 = 0.4, against the touching at -1.2',
+      np.allclose(s2n, np.abs(fm) ** 2 - 3) and abs(np.exp(1j * bvec @ K).sum().real + 3) < 1e-12
+      and abs(efs[0.1] + 0.3) < 0.01 and abs(efs[0.25] + 0.75) < 0.01 and abs(efs[0.4] + 0.744) < 0.01,
+      {k_: round(v_, 4) for k_, v_ in efs.items()})
 
 # the triangular lattice of the third picture, by the formula -2t sum cos(k.a), a1 = (1,0), a2 = (-1/2, sqrt3/2)
 a_t = np.array([[1.0, 0.0], [-0.5, S3 / 2], [0.5, S3 / 2]])

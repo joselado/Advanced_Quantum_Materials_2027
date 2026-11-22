@@ -7,7 +7,11 @@ filled level from the orbitals and the Laughlin state from four runs of the Mont
 The charge is +e in the field B z, as webnotes/conventions/session04.md says, with pi = p - e A and the symmetric gauge
 A = B/2 (-y, x). sympy checks the step of the fold, pi_x + i pi_y = -2 i hbar (d_zbar + z/4 l_B^2), the states z^m times the
 Gaussian, and the three functions of the quiz, with the Hamiltonian written in x and y, which does not use the ladder
-operators of the page. The script writes no file and takes about 40 s, most of it in the Monte Carlo."""
+operators of the page. The script writes no file and takes about 40 s, most of it in the Monte Carlo.
+
+The blocks marked "corrected on 2026-11-22" back the sentences of the old text that were corrected on that day, after
+the lecturer chose to fix the errors of the old text. The block marked "decided on 2026-11-22" backs the sentence of
+Section 4.14, |C_tot| = N and |sigma_xy| = nu e^2/h, which the lecturer picked that day."""
 import os
 import sys
 from math import factorial
@@ -126,6 +130,17 @@ check('for N = 20, 100, 200 the filled level is 1 within 0.003 up to 2 l_B insid
       'and one half within 0.06 l_B of sqrt(2N)',
       all(v[0] < 0.003 and abs(v[1]) < 0.06 and v[2] < 0.925 for v in edge_n.values()),
       {n: tuple(np.round(v, 4)) for n, v in edge_n.items()})
+# the caption of droplet_density, corrected on 2026-11-22 from "flat at nu = 1 up to the radius sqrt(2N) l_B, where it drops
+# to zero" to "flat up to about 2 l_B inside the radius, and around this radius it drops to zero": for N = 20 it is 1 within
+# 0.002 at 2 l_B inside, 0.92 at 1 l_B inside, 0.47 at the radius and below 0.01 at 2 l_B outside, by the sum of the
+# orbitals of _g4_laughlin_mc and by the regularized incomplete gamma function Q(N, r^2/2)
+from scipy.special import gammaincc  # noqa: E402
+rr = np.sqrt(40) + np.array([-2.0, -1.0, 0.0, 2.0])
+by_sum, by_gamma = mc.filled_filling(20, rr), gammaincc(20, rr ** 2 / 2)
+check('caption: the filled level of 20 electrons is 0.998, 0.92, 0.47 and below 0.01 at 2 and 1 l_B inside, at, and 2 l_B '
+      'outside sqrt(2N) l_B, by two routes',
+      np.allclose(by_sum, by_gamma, atol=1e-6) and by_sum[0] > 0.998 and round(by_sum[1], 2) == 0.92
+      and round(by_sum[2], 2) == 0.47 and by_sum[3] < 0.01, np.round(by_sum, 4))
 fill, bump, edge = [], [], []
 for s in (1, 2, 3, 4):
     rc, nu, _ = mc.metropolis(20, 3, [], s)
@@ -139,4 +154,26 @@ check('its edge, where it drops to half of 1/3, is about sqrt 3 times further ou
       abs(ratio - np.sqrt(3)) < 0.1, 'edge at %s l_B, ratio %.2f against %.2f' % (np.round(edge, 2), ratio, np.sqrt(3)))
 check('Figure 4.5: the orbitals up to 3(N-1) against N-1 give the radius sqrt(3) times larger and a third of the density',
       abs(np.sqrt(2 * 3 * 19) / np.sqrt(2 * 19) - np.sqrt(3)) < 1e-12, 'sqrt 3')
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'figures'))
+import physcheck as pcl  # noqa: E402
+
+# ---------------------------------------------------------------- Section 4.14, |C_tot| = N, decided on 2026-11-22 by the lecturer
+# Section 4.14 says that the filling nu = N equals |C_tot| = N of (4.2), so |sigma_xy| = nu e^2/h.
+# A magnetic cell of the square lattice with the phase (4.4) of the charge +e, A = (0, s B x) and the flux 1/10: the
+# hop from (x, y) to (x, y+1) is -exp(i s 2 pi x/10), s = +1 for the field along +z, and s = -1 is an electron there.
+def landau_cell_q10(s, q=10):
+    def hk_(k):
+        m = np.diag(-2 * np.cos(k[1] - s * 2 * np.pi * np.arange(q) / q)).astype(complex)
+        m += -np.eye(q, k=1) - np.eye(q, k=-1)
+        m[q - 1, 0] += -np.exp(1j * k[0] * q)
+        m[0, q - 1] += -np.exp(-1j * k[0] * q)
+        return m
+    return hk_, pcl.reciprocal([[q, 0], [0, 1]])
+
+
+Cq10 = {s: [pcl.chern_links(*landau_cell_q10(s), bands=n, nk=10) for n in range(3)] for s in (1, -1)}
+check('decided on 2026-11-22: each of the three lowest levels has |C| = 1 and N filled levels have |C_tot| = N, for both charges, C = -1 per level for the charge +e in B z and +1 for an electron, so |sigma_xy| = nu e^2/h at nu = N', all(np.allclose(np.abs(Cq10[s]), 1, atol=1e-9)
+      and np.allclose(np.abs(np.cumsum(Cq10[s])), [1, 2, 3], atol=1e-9) for s in Cq10)
+      and np.allclose(Cq10[1], -1, atol=1e-9) and np.allclose(Cq10[-1], 1, atol=1e-9), {s: np.round(Cq10[s], 6) for s in Cq10})
+
 print('all checks of page 13 hold')

@@ -6,9 +6,9 @@ Does the gap of a uniform pairing depend on the band structure, and what changes
 This is the quasiparticle energy of Section [5.8](#sec-5-8), the eigenvalues of the BdG matrix of one band. Here $\varepsilon(\mathbf k)$ is the band measured from the chemical potential, and $\Delta(\mathbf k)$ is the pair amplitude.
 :::
 
-Equation [(5.9)](#eq-5-9) already tells us where the gap opens. The gap opens at the minimum of $E(\mathbf k)$, which is where $\varepsilon(\mathbf k) = 0$, so on the original Fermi surface, and the minimum gap there is $|\Delta(\mathbf k)|$ evaluated on that Fermi surface. Nothing in this argument depends on the details of $\varepsilon(\mathbf k)$, such as the range of the hopping, the lattice geometry or the position of the chemical potential.
+Equation [(5.9)](#eq-5-9) already tells us where the gap opens. For a uniform $\Delta$ the gap opens at the minimum of $E(\mathbf k)$, which is where $\varepsilon(\mathbf k) = 0$, so on the original Fermi surface, and the smallest quasiparticle energy there is $|\Delta|$. Nothing in this argument depends on the details of $\varepsilon(\mathbf k)$, such as the range of the hopping, the lattice geometry or the position of the chemical potential.
 
-For concreteness, let us take the single-orbital square lattice with $\varepsilon(\mathbf k) = -2t\left(\cos k_x + \cos k_y\right) - \mu$, as in [(2.14)](#eq-2-14). We choose a chemical potential such that the electron band, which is the physical one, and its spurious mirror, the hole band, cross. When we turn on a constant $\Delta$, a gap of size $2|\Delta|$ opens at every such crossing, for *any* choice of the chemical potential along this dispersion. Schematic [](#sch:s05:gap_any_mu) shows this for a chain and three chemical potentials. The curve moves and the Fermi momentum moves, and the minimum of $E(k)$ stays at $|\Delta|$.
+For concreteness, let us take the single-orbital square lattice with $\varepsilon(\mathbf k) = -2t\left(\cos k_x + \cos k_y\right) - \mu$, as in [(2.14)](#eq-2-14). We choose a chemical potential such that the electron band, which is the physical one, and its spurious mirror, the hole band, cross. When we turn on a constant $\Delta$, a gap of size $2|\Delta|$ opens at every such crossing, for *any* choice of the chemical potential along this dispersion. This is what [](#sch:s05:gap_any_mu) shows for a chain and three chemical potentials. The curve moves and the Fermi momentum moves, and the minimum of $E(k)$ stays at $|\Delta|$.
 
 ![The quasiparticle energy $E(k)$ for $\varepsilon(k)=-2t\cos k-\mu$ and $\Delta=0.3t$, for $\mu=-1.2t$, $0$ and $1.2t$, computed with pyqula, with the energy in units of $t$ and the momentum $k$ in units of the inverse lattice constant. The minimum is at $k_F$, where $\varepsilon=0$, which is $k_F=0.93$, $1.57$ and $2.21$, and it has the same value $|\Delta|=0.3t$ in the three cases. Look at the three minima, which move with $\mu$ and stay at the same height.](figures/web/session05/gap_any_mu.svg){#sch:s05:gap_any_mu alt="Three curves of the quasiparticle energy against momentum, each with a minimum at its own Fermi momentum and all at the height 0.3." script="g2_swave_chain_mu.py"}
 
@@ -55,7 +55,7 @@ The $d$-wave gap [(5.13)](#eq-5-13) vanishes on the diagonals $k_x=\pm k_y$. A s
 
 - [ ] Yes, since every $d$-wave order has gapless points.
 
-    This is false. Take $\Delta_d=\Delta_0(\cos k_x-\cos k_y)$ and a pocket around $X$. All its points have $k_x\approx\pi$ and $k_y\approx0$, so $|\Delta_d|\approx2\Delta_0$ and $E\geq2\Delta_0$ there. The nodes exist, but they are not on the Fermi surface.
+    This is false. Take $\Delta_d=\Delta_0(\cos k_x-\cos k_y)$ and a pocket around $X$. All its points have $k_x\approx\pi$ and $k_y\approx0$, so $|\Delta_d|\approx2\Delta_0$ and $E$ is close to $2\Delta_0$ there. The nodes exist, but they are not on the Fermi surface.
 
 - [ ] Yes, with four nodes on the pocket.
 

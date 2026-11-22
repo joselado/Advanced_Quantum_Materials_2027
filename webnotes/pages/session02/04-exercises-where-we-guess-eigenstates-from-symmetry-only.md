@@ -8,7 +8,7 @@ These are two results of Section [2.3](#sec-2-3). The eigenvalue of a unitary sy
 
 We will now see with a sequence of small examples how much [(2.3)](#eq-2-3) gives us. In each example we add sites, and at the end we take the infinite limit.
 
-**Three sites on a ring.** We take a tight-binding Hamiltonian on three sites in a triangle, with a symmetry $R$ that rotates $1\to2\to3\to1$ by $120^\circ$. Since $R^3=\mathbb{1}$, any eigenvalue $\lambda=e^{i\varphi}$ of $R$ must satisfy $\lambda^3=1$, and this fixes the allowed phases.
+**Three sites on a ring.** We take a tight-binding Hamiltonian on three sites in a triangle, with a symmetry $R$ that rotates the triangle by $120^\circ$. As in Section [2.3](#sec-2-3), $R$ moves the amplitude of each site to the previous site, $(R\psi)_j=\psi_{j+1}$ with $\psi_4=\psi_1$. Since $R^3=\mathbb{1}$, any eigenvalue $\lambda=e^{i\varphi}$ of $R$ must satisfy $\lambda^3=1$, and this fixes the allowed phases.
 
 ::: key
 The rotation of a ring of three sites has $R^3=\mathbb{1}$, so its eigenvalues $e^{i\varphi_n}$ have the phases
@@ -18,25 +18,25 @@ $$\varphi_n = \frac{2\pi n}{3}, \qquad n=0,1,2. \tag{2.4}$$
 On a ring of $L$ sites $R^L=\mathbb{1}$ gives in the same way $\varphi_n=2\pi n/L$, with $n=0,\dots,L-1$. Modulo $2\pi$ this is the same set as the $L$ phases in the range $(-\pi,\pi]$ of [(2.2)](#eq-2-2), and for example $4\pi/3$ is the same phase as $-2\pi/3$. The eigenstates of any Hamiltonian that keeps the rotation can be chosen as eigenstates of $R$, which are the $L$ Fourier modes and have the same modulus on every site.
 :::
 
-So we know a lot about the eigenstates of $H$ before we write $H$ explicitly. They must have the form $\alpha_1c_1^\dagger+\alpha_2c_2^\dagger+\alpha_3c_3^\dagger$. Since $R$ permutes the sites in a cyclic way and multiplies the whole state by $e^{i\varphi_n}$, the coefficients must have the same phase from one site to the next, $\alpha_j\propto e^{i\varphi_n j}$. The eigenstates of any Hamiltonian with this rotational symmetry are the three discrete Fourier modes on the ring, regardless of the values of the hopping amplitudes. Figure [2.1](#fig:s02:ring) shows the three modes explicitly, and it also shows how the set of allowed phases changes when the ring becomes larger.
+So we know a lot about the eigenstates of $H$ before we write $H$ explicitly. They must have the form $\alpha_1c_1^\dagger+\alpha_2c_2^\dagger+\alpha_3c_3^\dagger$. Since $R$ permutes the sites in a cyclic way and multiplies the whole state by $e^{i\varphi_n}$, the coefficients must have the same phase from one site to the next, $\alpha_j\propto e^{i\varphi_n j}$. The eigenstates of any Hamiltonian with this rotational symmetry can be chosen as the three discrete Fourier modes on the ring, regardless of the values of the hopping amplitudes. Figure [2.1](#fig:s02:ring) shows the three modes explicitly, and it also shows how the set of allowed phases changes when the ring becomes larger.
 
 ::: {.steps title="From the rotation of a ring to its Fourier modes"}
-We write a state as $\psi=\sum_j\alpha_jc_j^\dagger|0\rangle$, with the site $j$ counted modulo $L$, and we take an eigenstate of the rotation, $R\psi=\mu\psi$. The rotation moves every amplitude by one site, to the next site or to the previous one, depending on its sense.
+We write a state as $\psi=\sum_j\alpha_jc_j^\dagger|0\rangle$, with the site $j$ counted modulo $L$, and we take an eigenstate of the rotation, $R\psi=\mu\psi$. The rotation moves every amplitude to the previous site, $(R\psi)_j=\alpha_{j+1}$, as in Section [2.3](#sec-2-3).
 
 The simplest case is three sites. Applying $R$ three times brings every amplitude back to its site, so $R^3=\mathbb{1}$ and $\mu^3=1$, which gives the three phases of [(2.4)](#eq-2-4).
 
-Then we compare the amplitudes of two neighbors. $R\psi=\mu\psi$ says that the amplitude that arrives at each site from its neighbor is $\mu$ times the amplitude that was there. So the ratio of two neighbors is the same number on every bond, $\alpha_{j+1}=\lambda\,\alpha_j$, with $\lambda=\mu$ or $\lambda=1/\mu$ depending on the sense of $R$. After $L$ bonds we are back at the first site, so $\lambda^L=1$, which gives $\lambda=e^{i\varphi_n}$ with $\varphi_n=2\pi n/L$, and
+Then we compare the amplitudes of two neighbors. $R\psi=\mu\psi$ says that the amplitude that arrives at each site from its neighbor is $\mu$ times the amplitude that was there, $\alpha_{j+1}=\mu\,\alpha_j$. So the ratio of two neighbors is the same number on every bond. After $L$ bonds we are back at the first site, so $\mu^L=1$, which gives $\mu=e^{i\varphi_n}$ with $\varphi_n=2\pi n/L$, and
 
 $$\alpha_j=\alpha_0\,e^{i\varphi_n j}.$$
 
-The sense of $R$ only decides whether this mode has the eigenvalue $e^{i\varphi_n}$ or $e^{-i\varphi_n}$. So the label $n$ becomes $-n$, and the set of modes is the same.
+So this mode has the eigenvalue $e^{i\varphi_n}$ of $R$. A rotation in the other sense, which moves every amplitude to the next site, gives it the eigenvalue $e^{-i\varphi_n}$. So the label $n$ becomes $-n$, and the set of modes is the same.
 
-Since $|\lambda|=1$, every site has the same modulus, $|\alpha_j|=|\alpha_0|$. The state is normalized, $\sum_j|\alpha_j|^2=1$, so each site has the weight $|\alpha_j|^2=1/L$, which is $1/5$ on five sites.
+Since $|\mu|=1$, every site has the same modulus, $|\alpha_j|=|\alpha_0|$. The state is normalized, $\sum_j|\alpha_j|^2=1$, so each site has the weight $|\alpha_j|^2=1/L$, which is $1/5$ on five sites.
 
 The last step is the Hamiltonian. The $L$ modes have $L$ different eigenvalues of $R$, so each eigenvalue of $R$ has one state only. $H$ commutes with $R$, so it maps this state onto a state with the same eigenvalue of $R$, which is the same state times a number. So every Fourier mode is an eigenstate of $H$, for any hopping that keeps the rotation.
 :::
 
-![Symmetry fixes the eigenstates before we write down the Hamiltonian. On a three-site ring the rotation $R$ can only have eigenvalues $e^{2\pi i n/3}$ by [(2.4)](#eq-2-4), and so the coefficients of the state must change by this same phase from one site to the next. This means that the eigenstates are the discrete Fourier modes, for any values of the hopping amplitudes. The arrow on each site is the complex coefficient $\alpha_j\propto e^{i\varphi_n j}$, which turns by $2\pi n/3$ from one site to the next. On the right, the balls are the allowed phases for $L=3$ and $L=5$. In the limit $L\to\infty$ they fill the circle, and this circle is the first Brillouin zone.](figures/s02f01_ringmodes.svg){#fig:s02:ring number="2.1"}
+![Symmetry fixes the eigenstates before we write down the Hamiltonian. On a three-site ring the rotation $R$ can only have eigenvalues $e^{2\pi i n/3}$ by [(2.4)](#eq-2-4), and so the coefficients of the state must change by this same phase from one site to the next. This means that the eigenstates can be chosen as the discrete Fourier modes, for any values of the hopping amplitudes. The arrow on each site is the complex coefficient $\alpha_j\propto e^{i\varphi_n j}$, which turns by $2\pi n/3$ from one site to the next. On the right, the balls are the allowed phases for $L=3$ and $L=5$. In the limit $L\to\infty$ they fill the circle, and this circle is the first Brillouin zone.](figures/s02f01_ringmodes.svg){#fig:s02:ring number="2.1"}
 
 ::: quiz
 A ring has $L=6$ sites and a rotation $R$ with $R^6=\mathbb{1}$. How many Bloch phases $\varphi$ are allowed, and what is their spacing?
@@ -58,9 +58,9 @@ A ring has $L=6$ sites and a rotation $R$ with $R^6=\mathbb{1}$. How many Bloch 
 The number of allowed phases equals the number of sites of the ring.
 :::
 
-**Five sites on a ring.** The same argument on a five-site ring with nearest-neighbor hopping, $H=\sum_{\langle ij\rangle} c_i^\dagger c_j$, gives $\varphi_n=2\pi n/5$, $n=0,\dots,4$, and the eigenstates $|\Psi_n\rangle \propto \sum_{j=0}^4 e^{i\varphi_n j}\,c_j^\dagger|0\rangle$. With this we can already answer a quantitative question without diagonalizing anything. Let us ask what the weight of site 1 is in the lowest-energy eigenstate built from the vacuum $|\Omega\rangle$, in the sense of the overlap $\big|\langle\Omega|c_1\Psi_{\rm GS}^\dagger|\Omega\rangle\big|^2$. Every $|\Psi_n\rangle$ is a superposition over all five sites with the same modulus on each site, so this overlap is $1/5$ for every $n$, for the lowest energy and for all other states. This follows from the symmetry only, and it does not depend on the specific hopping amplitudes.
+**Five sites on a ring.** The same argument on a five-site ring with nearest-neighbor hopping, $H=\sum_{\langle ij\rangle} c_i^\dagger c_j$, gives $\varphi_n=2\pi n/5$, $n=0,\dots,4$, and the eigenstates $|\Psi_n\rangle \propto \sum_{j=0}^4 e^{i\varphi_n j}\,c_j^\dagger|0\rangle$. With this we can already answer a quantitative question without diagonalizing anything. Let us ask what the weight of site 1 is in the lowest-energy eigenstate built from the vacuum $|\Omega\rangle$, in the sense of the overlap $\big|\langle\Omega|c_1\Psi_{\rm GS}^\dagger|\Omega\rangle\big|^2$. Every $|\Psi_n\rangle$ is a superposition over all five sites with the same modulus on each site, so this overlap is $1/5$ for every $n$, for the lowest energy and for all other states. This holds once we choose the eigenstates as these Fourier modes. It follows from the symmetry only, and it does not depend on the specific hopping amplitudes.
 
-The same argument stays valid if the nearest-neighbor hopping is replaced by any long-range hopping, and a six-site ring with additional long-range couplings shows the same thing. As long as the rotational symmetry of the ring is present, the symmetry eigenvalues, the eigenstates and expectation values such as this one are all fixed by symmetry only, however complicated the Hamiltonian becomes. We see this in [](#sch:s02:ring_long_range) for the ring of five sites with a second-neighbor hopping.
+The same argument stays valid if the nearest-neighbor hopping is replaced by any long-range hopping, and a six-site ring with additional long-range couplings shows the same thing. As long as the rotational symmetry of the ring is present, the symmetry eigenvalues are fixed by symmetry only. The eigenstates can then be chosen as the Fourier modes, with the weight $1/L$ on each site, however complicated the Hamiltonian becomes. We see this in [](#sch:s02:ring_long_range) for the ring of five sites with a second-neighbor hopping.
 
 ![The five-site ring with $H=-t\sum_j(c_j^\dagger c_{j+1}+\text{h.c.})$, in blue, and with a second-neighbor term $-t_2\sum_j(c_j^\dagger c_{j+2}+\text{h.c.})$ added, in red, for $t_2=0.8t$. Both commute with the rotation of the ring, so both have the same five Fourier modes as eigenstates, and each mode has the weight $1/5$ on every site. Only the energies change. The blue dots lie on $-2t\cos\varphi$ and the red squares on $-2t\cos\varphi-2t_2\cos2\varphi$, the two grey curves. The energies are in units of $t$, computed with pyqula as the levels of a chain with a cell of five sites at $k=0$, which is the ring. Look at the phases of the dots and of the squares, which are the same, while the energies move.](figures/web/session02/ring_long_range.svg){#sch:s02:ring_long_range alt="Two pentagon rings, the second with a red star of second-neighbor bonds, and the energies of the five Fourier modes of each ring against the phase, as dots and squares on two grey curves." script="g1_ring_five_sites.py"}
 
@@ -73,7 +73,7 @@ The hoppings of a ring of $L$ sites keep its rotation. An eigenstate is a Fourie
 
 - [ ] It depends on the hopping amplitudes.
 
-    This is false. Take $t=1$ and a second-neighbor hopping $\eta=0.3$ on $L=6$. The eigenstates are the same Fourier modes as for $\eta=0$, and each site has the weight $1/6$.
+    This is false. Take $t=1$ and a second-neighbor hopping $\eta=0.3$ on $L=6$. The eigenstates can be chosen as the same Fourier modes as for $\eta=0$, and each site has the weight $1/6$ in them.
 
 - [ ] It is largest on the site where the state was created.
 
@@ -100,7 +100,7 @@ A ring has five sites, $j=0,\dots,4$. Its Hamiltonian $H$ keeps the rotation of 
 The allowed phases close around the ring, and on five sites each of them belongs to one mode only.
 :::
 
-Note that such models with few sites are not only of academic interest. With scanning tunnelling microscopy one can place single atoms with essentially arbitrary precision, and tight-binding rings with few sites like these have been built and measured in this way. There is a famous stop-motion film made only from atoms moved with STM, which is sometimes called "the smallest film ever made", where every dot on the screen is a single atom. It shows how accurately such models can now be realized in the lab.
+Note that such models with few sites are not only of academic interest. With a scanning tunneling microscope (STM) one can place single atoms one by one, and chains of gold atoms built in this way have been measured, in [this article](https://www.science.org/doi/10.1126/science.1075242).
 
 **The infinite chain.** Now we let the ring grow without limit, so that it becomes an infinite one-dimensional chain with nearest-neighbor hopping. The relevant symmetry is a translation by one site, $T: c_n^\dagger \to c_{n-1}^\dagger$, which shifts a wavefunction $\psi_n$ on the sites to $\psi_{n+1}$. We have $[H,T]=0$ for any Hamiltonian whose hoppings depend only on the distance between sites and not on the absolute position. By Section [2.3](#sec-2-3), $H$ and $T$ have a common eigenbasis, and by [(2.2)](#eq-2-2) the eigenvalue of $T$ in this common eigenbasis is a pure phase $e^{i\varphi}$. This $\varphi$ is called the **Bloch phase**. Applied to a system with translational symmetry, the statement that $H$ and $T$ have a common eigenbasis *is* Bloch's theorem. The relation between this phase and the corresponding energy of the Hamiltonian is what we call the **dispersion relation** of a periodic system.
 

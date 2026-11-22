@@ -6,7 +6,7 @@ This session needed nothing from before except the Schrödinger equation of a si
 
 - **Second quantization** is a language that treats in the same way systems with a fixed number of particles and systems where this number fluctuates. It is built from creation and annihilation operators that satisfy the anticommutation relations [(1.3)](#eq-1-3).
 
-- The many-body Hilbert space grows as $2^L$, as we saw in Section [1.9](#sec-1-9). For this reason interacting problems need a systematic approximation and not brute-force diagonalization.
+- The many-body Hilbert space grows as $2^L$ for spinless fermions and as $4^L$ with spin, as we saw in Section [1.9](#sec-1-9). For this reason interacting problems need a systematic approximation and not brute-force diagonalization.
 
 - **Spontaneous symmetry breaking** is the general phenomenon where a symmetric Hamiltonian gives an asymmetric ground state in the thermodynamic limit. We can classify states of matter by the symmetry that they break, which is time reversal for magnets, inversion for ferroelectrics and gauge symmetry for superconductors, and each case has its own emergent quasiparticle. A magnet has the formal definition of [(1.4)](#eq-1-4). Topological materials show that this classification does not cover all cases.
 
@@ -38,7 +38,7 @@ Why does a mean-field superconductor not have a fixed number of electrons?
 
 - [ ] The attractive interaction lets electrons escape from the sample.
 
-    This is false. An isolated superconducting island has a fixed number of electrons in total, and the mean-field state still has $\Delta\neq 0$. The state is a superposition of $N$, $N+2$ and $N-2$ electrons, with no electrons leaving.
+    This is false. An isolated superconducting island has a fixed number of electrons in total, and the mean-field state still has $\Delta\neq 0$. The state is a superposition of $N$, $N\pm2$, $N\pm4$ and more electrons, with no electrons leaving.
 
 - [ ] A superconductor breaks time-reversal symmetry.
 

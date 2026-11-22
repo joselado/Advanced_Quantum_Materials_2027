@@ -10,7 +10,7 @@ Let us now solve for the spectrum, and let us start with the simplest case. Thes
 
 $$H = \frac{\pi_x^2+\pi_y^2}{2m} = \frac{p_x^2}{2m} + \frac{(p_y-Bx)^2}{2m}. \tag{4.5}$$
 
-We take the charge of the carriers to be $+e$ in [(4.3)](#eq-4-3) and we set $e=1$ in all this session, while we keep $\hbar$ explicit. This is a choice of convention, but it has consequences, since it fixes $[\pi_x,\pi_y]=+i\hbar^2/\ell_B^2$. The ladder operators of Section [4.10](#sec-4-10) and the holomorphic wavefunctions of Section [4.13](#sec-4-13) are built on this convention. For an electron, which has charge $-e$, every cyclotron orbit and every edge current below goes around in the other direction, and nothing else changes.
+We take the charge of the carriers to be $+e$ in [(4.3)](#eq-4-3) and we set $e=1$ in all this session, while we keep $\hbar$ explicit. This is a choice of convention, but it has consequences, since it fixes $[\pi_x,\pi_y]=+i\hbar^2/\ell_B^2$. The ladder operators of Section [4.10](#sec-4-10) and the holomorphic wavefunctions of Section [4.13](#sec-4-13) are built on this convention. For an electron, which has charge $-e$, every cyclotron orbit and every edge current below goes around in the other direction. The states of the lowest Landau level in the symmetric gauge of Section [4.13](#sec-4-13) are then functions of $\bar z$ and not of $z$. The zero mode of the Dirac levels of Section [4.10](#sec-4-10) also moves, from the upper component of the spinor to the lower one.
 
 Since $\mathbf{A}$ does not depend on $y$, we have $[H,p_y]=0$, so we can look for eigenstates of the form $\psi(x,y) = e^{ik_y y}\phi(x)$. With the replacement $p_y\to\hbar k_y$, the Hamiltonian [(4.5)](#eq-4-5) becomes a one-dimensional problem in $x$,
 

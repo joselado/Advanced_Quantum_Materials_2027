@@ -356,52 +356,305 @@ file carries the prefix of its group, and no block uses a new file of another gr
 
 ## Open for the lecturer
 
-These touch a numbered equation, a statement of the old text, a convention or an old figure. A builder leaves them
-as they are.
+The lecturer decided on 2026-11-22 to "Fix old-text errors, ask the rest". The points of the builders, of the fixers,
+of the rechecks, of this section and of the conventions sheet were merged into 42 distinct points. The 18 points of the
+first list were false as written, or contradicted another sentence of the session, and their correction changes no
+numbered equation, no convention, no converted figure and no decision of the lecturer. They are corrected on the web,
+each checked with a calculation of its own and asserted in `webnotes/checks/session05/`. The 24 points of the second
+list were the lecturer's. They were decided later on 2026-11-22, the sign of (5.20) by the lecturer and the other 23 by
+the coordinator with the rule of that day, since the lecturer said "ask me the top 5, other you decide by yourself". They
+are now the list "Decided on 2026-11-22", with the three points that the rule leaves out in "Not applied", and the changes
+that they made on the web are at the end of the first list. An independent check of these changes, later on 2026-11-22,
+found two more sentences of the old text that the decisions left false or stronger than the new text, on pages `08` and
+`18`, and they are the last two items of the first list. The same check sharpened three of the new texts, on pages `12`, `16`
+and `18`, and their items give the wording as it is now. No numbered equation changed. The line numbers of the `.tex`
+are those of `lecture_notes/src/sessions/session05.tex` on 2026-11-22. The `.tex` is not changed in this pass, so until
+the first list is carried over the PDF keeps the old wording in these places.
 
-- The sign of [(5.20)](#eq-5-20). The page writes $\Delta(k)=2i\Delta\sin k$. With the convention of Section 2.5,
-  $c_n^\dagger=\sum_k e^{-ikn}c_k^\dagger$, and $\Delta(k)$ as the coefficient of $c_k^\dagger c_{-k}^\dagger$, as in the
-  upper right of [(5.8)](#eq-5-8), the Fourier transform of [(5.19)](#eq-5-19) gives $-2i\Delta\sin k$. On a ring
-  of 8 sites with $\Delta=0.3$ the coefficient at $k=\pi/2$ is $-0.6i$, and with the opposite Fourier sign it is
-  $+0.6i$. The sign of $i$ is a gauge choice and the spectrum depends only on $2\Delta|\sin k|$. The choices are to
-  keep (5.20) with a sentence on the convention, to write $-2i\Delta\sin k$, or to say which coefficient is called
-  $\Delta(k)$. The figure `pair_function` follows this choice.
-- The sign and the factor of [(5.10)](#eq-5-10). It has $-\tfrac12\sum'$, and the prime is not defined on the page,
-  while [(5.4)](#eq-5-4) has $+\Delta_n$. For the onsite singlet of (5.4), a sum over all $\mathbf k$ in (5.10) gives
-  $\Delta_{\mathbf k,\uparrow\downarrow}=-\Delta$, checked on the operators of a ring of 3 sites with
-  $\Delta=0.37$, and a sum over half of the zone gives $-2\Delta$. The classification (5.11) and (5.12) does not
-  depend on this.
-- The sentence of Section 5.8, "Without it, the two spin blocks would mix through a Pauli matrix". A check on the
-  operators of $\pm\mathbf k$ with $\Delta=0.7$ shows that without the minus sign the matrix stays block diagonal,
-  with $\Delta$ in one block and $-\Delta$ in the other, so the pairing block is $\Delta\sigma_z$ and the blocks do
-  not mix. They are only not identical copies. The mixing through $i\sigma_y$ appears when the hole entries keep the
-  order of the spins.
-- Anderson's theorem in Section 5.11. The page says that a spin-singlet superconductor is insensitive to
-  non-magnetic disorder, and that disorder "destroys the triplet channel and leaves the singlet channel intact".
-  The protection holds for a gap with no change of sign, and the d-wave singlet of Section 5.13 is suppressed too.
-  The stored abstract of Sr2RuO4 states "A key signature of unconventional or non-s-wave superconductivity is a
-  strong suppression of Tc by nonmagnetic as well as by magnetic impurities." The lab box of 5.11 waits for this.
-- "The pairing that survives is necessarily spin-triplet" in Section 5.12. This holds when the exchange field is
-  large compared with the singlet gap, or when only one spin band crosses the Fermi level. A weak field leaves a
-  singlet, and the source of the lab box of 5.12 reports superconductivity above the Pauli limit of a singlet,
-  which is a finite field. The choice is to write the condition next to the sentence, or to keep it.
-- The magnet of Section 5.18. The page says that a magnet opens a gap in the helical edge. In `helical_edge_gap`
-  the field is along $x$, while a term $h\sigma_z$ along the spin axis of the edge gives $(vk+h)\sigma_z$, which only
-  shifts the crossing in $k$ and opens no gap. The choice is to write that the magnetization needs a component
-  perpendicular to the spin axis of the edge, or to keep the sentence.
-- The list under [(5.14)](#eq-5-14) calls p-wave "often ferromagnetic-magnon-driven" and the d-wave of the cuprates
-  "often antiferromagnetic-magnon-driven", while Section 5.4 says that the mediator of an unconventional
-  superconductor is often an open question. The choice is "proposed to be" or to keep it.
-- The try-it box of Section 5.5 says that the gap grows "from about 0.1 to 0.2 and 0.4". With the settings of the
-  notebook the values are $0.103$, $0.223$ and $0.361$. The choice is to write $0.36$ or to keep "about 0.4".
-- The Kitaev figures of 5.16 and 5.17. The rule asks for a pyqula script when pyqula can do the calculation, and
-  the notebook does it with pyqula, but its chain is spinful with a remote band, and a run with `d=[1,1,0]` differs
-  from the exact chain by 0.3% in the lowest bulk level. The choices are all numpy from the exact chain, or numpy
-  for the figures that assert the numbers of the pages plus one pyqula figure with a download, whose caption quotes
-  the numbers of its own run. Until the pick the builder of `g5` uses numpy.
-- The old web figures that break the plot rules, listed in the blocks. These are `phonon_exchange`,
-  `pairing_cobweb`, `particle_number_weights`, `nambu_bands`, `gap_any_mu`, `pockets_nodes`, `pair_function`,
-  `spin_split_pairing`, `dwave_nodes`, `kitaev_spectrum`, `zero_mode_profile` and `helical_edge_gap`, with ticks
-  missing, maps with no $k_x$ and $k_y$, or parameters missing in the caption. The builders leave them, as in
-  Session 3. The choices are a separate pass that fixes them in place, followed by a look at `git status`, or to
-  leave them.
+### Corrected on the web, to carry over to the .tex
+
+- Page `01`, Section 5.1, third feedback of the first quiz. Old "The Bogoliubov quasiparticle of a superconductor is a
+  fraction of an electron, and it is an exact eigenstate of the mean-field Hamiltonian [(5.4)](#eq-5-4)." New "A
+  Majorana state of a superconductor is a fraction of an electron, and it is a zero-energy state of a mean-field
+  Hamiltonian with pairing, which is bilinear as [(5.4)](#eq-5-4) is." Not in the `.tex`, since the quizzes are
+  web-only. Asserted in `g1_01`.
+- Pages `09`, `17` and `19`, the word "Schematic" before a link `[](#sch:...)`, which rendered as "Schematic Schematic
+  5.8", "5.16" and "5.21". The word is removed. On page `09` the sentence is now "This is what [](#sch:s05:gap_any_mu)
+  shows for a chain and three chemical potentials.", since the lint joins a sentence that starts with a link to the one
+  before it. Not in the `.tex`, since the schematics are web figures.
+- Page `09`, Section 5.9, first paragraph. Old "The gap opens at the minimum of $E(\mathbf k)$, which is where
+  $\varepsilon(\mathbf k) = 0$, so on the original Fermi surface, and the minimum gap there is $|\Delta(\mathbf k)|$
+  evaluated on that Fermi surface." New "For a uniform $\Delta$ the gap opens at the minimum of $E(\mathbf k)$, which is
+  where $\varepsilon(\mathbf k) = 0$, so on the original Fermi surface, and the smallest quasiparticle energy there is
+  $|\Delta|$." `.tex` lines 328 to 331. Asserted in `g2_09`.
+- Page `09`, Section 5.10, first feedback of the quiz on the pocket at $X$. Old "so $|\Delta_d|\approx2\Delta_0$ and
+  $E\geq2\Delta_0$ there." New "so $|\Delta_d|\approx2\Delta_0$ and $E$ is close to $2\Delta_0$ there." Not in the
+  `.tex`. Asserted in `g2_09`, $1.876\le|\Delta_d|/\Delta_0<2$ on pockets of radius 0.1, 0.3 and 0.5.
+- Page `06`, Section 5.7, changed by the builder in commit `033b84d` and listed here to carry over. Old "such as
+  magnetic terms that depend on spin, spin-orbit coupling and any density-density interaction term", which put the
+  quartic density term among the bilinear terms. New, in two sentences since 2026-11-22, "such as spin-orbit coupling
+  and the magnetic terms that depend on spin. It also protects any density-density interaction term
+  $c_i^\dagger c_i c_j^\dagger c_j$, which is quartic." `.tex` lines 236 and 237. No number, and `g2_06` checks that
+  the density-density term keeps its phase.
+- Page `12`, try-it box. Old "The two bands move apart from 2 to 4 at a fixed momentum, so each spin has its own Fermi
+  momentum." New "The two bands move apart from 2 to 4 at a fixed momentum. At `1.0` each spin has its own Fermi
+  momentum, and at `2.0` each band touches zero energy only at its edge." Not in the `.tex`. Asserted in `g3_12`.
+- Page `13`, notebook box. Old header "Gapped and nodal superconducting orders" (Core), and old last sentence "The
+  nodal $L=3$ (f-wave) case of the triangular lattice discussed above is also in this section of the notebook, if you
+  want to see the pattern of six lobes directly." New header "Unconventional singlet superconducting orders"
+  (Challenge), and "Gapped and nodal superconducting orders" (Core), since the d-wave map is in the first one. New last
+  sentence "The nodal $L=3$ (f-wave) case of the triangular lattice discussed above is in the second of these sections,
+  where its bands touch zero energy at a node between $M$ and $\Gamma$.", since that cell draws bands and no map, and
+  its path $\Gamma$, $K$, $M$, $\Gamma$ crosses one node. `.tex` lines 532 and 535 to 537. Asserted in `g3_13` against
+  the cells of `session5.ipynb`, and on the path of the cell, 0.912 on $\Gamma$-$K$, 2.0 on $K$-$M$ and zero at
+  $(1/3,0)$ on $M$-$\Gamma$.
+- Page `13`, try-it box. Old "even though $\Delta=0.2$ is nonzero." New "even though `delta=0.2` is nonzero.", since the
+  pairing of the notes reaches $6\sqrt3\times0.2=2.078$ at $K$ for this argument of pyqula. Not in the `.tex`. Asserted
+  in `g3_13`, by pyqula and by the six-neighbor formula.
+- The word gap, used for $2|\Delta|$ in Sections 5.8 and 5.9 and for the smallest quasiparticle energy elsewhere. The
+  builder changed the try-it box of page `13`, old "keep a gap of $|\Delta|=0.4$", new "keep a smallest quasiparticle
+  energy $|\Delta|=0.4$". The third feedback of the second quiz of page `17`, old "the bulk gap is $0.82t$", is now "the
+  smallest bulk energy is $0.82t$". Both are web-only. Asserted in `g3_13` and `g5_17`.
+- Page `14`, text. Old "has Chern number $\pm 2$, where the sign is set by the chirality, $p_x + ip_y$ or $p_x - ip_y$."
+  New "has Chern number $\pm 2$. For a pocket around $\Gamma$ or $(\pi,\pi)$ the sign is set by the chirality, $p_x +
+  ip_y$ or $p_x - ip_y$, together with the side of the Fermi surface, filled or empty states inside the pocket." The
+  fold of the same page has the same range. `.tex` lines 560 and 561. Asserted in `g4_14`, together with the reason for
+  the range: (5.15) of $p_x+ip_y$ winds $-1$ around $(\pi,0)$, and a pocket of filled states there gives $C=-1$ per
+  block.
+- Page `14`, text. Old "Here there are two, one from each of the two identical spin blocks." New "Here there are two,
+  one from each of the two spin blocks.", since the two blocks of this triplet carry $\Delta$ and $-\Delta$. `.tex`
+  line 571. Asserted in `g4_14`.
+- Page `14`, the kept quiz on $p_x-ip_y$. Old first feedback "Its Chern number is $-2$ and not $0$", new "Its Chern
+  number has the opposite sign and the same size $2$, so it is not $0$". Old third feedback "The Chern number changes
+  from $+2$ to $-2$.", new "The Chern number changes sign, for example from $+2$ to $-2$ for a pocket of filled
+  states around $\Gamma$.", since the ribbon figure above it has $-2$ for $p_x+ip_y$. Not in the `.tex`. Asserted in
+  `g4_14`.
+- Page `16`, third feedback of the quiz on the flat band. Old "The value $t$ would need $\Delta=t/2$." New "No $\Delta$
+  gives a band flat at $t$, since at $k=0$ the pairing vanishes and $E=2t$ for any $\Delta$." Not in the `.tex`. The
+  assert of the removed $t/2$ is replaced in `g5_16`.
+- Page `17`, first paragraph. Old "If we diagonalize (5.19) on a *periodic* chain, we obtain a fully gapped spectrum,
+  with a superconducting gap set by $\Delta$ and a nontrivial topological invariant of the bulk." New "If we
+  diagonalize (5.19) on a *periodic* chain with $\Delta\neq0$ and $|\mu|<2t$, we obtain a fully gapped spectrum, with a
+  superconducting gap set by $\Delta$ and $\mu$ and a nontrivial topological invariant of the bulk." `.tex` lines 684
+  and 685. Asserted in `g5_17`, with the Zak phase and the smallest bulk energy.
+- Page `17`. Old "In the topological phase, on the other hand, p-wave pairing dominates over the trivial onsite
+  physics." New "In the topological phase, on the other hand, the hopping dominates over the onsite term,
+  $|\mu|<2t$, and any $\Delta\neq0$ is enough." `.tex` lines 704 and 705, where the sentence goes on with "and the two Majoranas
+  at each site pair". Asserted in `g5_17`, with $\Delta=0.1t$ at $\mu=1.5t$ and $1.9t$.
+- Page `17`, caption of `majorana_splitting`. Old "and the first bulk level stays near $0.8t$." New "and the first bulk
+  level comes down from $1.02t$ at $N=4$ to $0.83t$ at $N=30$, close to the bulk value $0.82t$." Its alt text, old "a
+  flat line for the first bulk level", new "a nearly flat line close to 1 for the first bulk level". Not in the `.tex`.
+  Asserted in `g5_17`, with the first bulk level within 0.1 decade of 1 on the log axis.
+- Page `17`, text of the widget `kitaevbdg`. After "For $|\mu|<2t$ two levels sit at zero energy inside the gap, and
+  their weight is at the two ends of the chain." the sentence "On 30 sites this holds away from $|\mu|=2t$, since near
+  it the two end modes overlap and the two levels move away from zero." is added. Not in the `.tex`. Asserted in
+  `g5_17`, with the levels of the widget itself.
+- Page `19`. Old "Braiding two Majoranas, for example $\gamma_1$ around $\gamma_2$, acts on the ground-state manifold as
+  a unitary", new "Braiding two Majoranas, for example the exchange of $\gamma_1$ and $\gamma_2$, acts on the
+  ground-state manifold as a unitary", since [(5.23)](#eq-5-23) is one exchange and $\gamma_1$ once around $\gamma_2$
+  is two. `.tex` line 762. Asserted in `g6_19`.
+- Page `16`, after (5.20), the pick of the lecturer. After "so the anomalous term is explicitly odd in $k$." the sentence
+  "The sign of $i$ is a gauge choice, $\Delta\to-\Delta$, and the spectrum depends only on $2|\Delta\sin k|$." is added,
+  and (5.20) stays as printed. `.tex` line 645. Asserted in `g5_16`.
+- Page `16`, notebook box. Old "Build the Kitaev chain of (5.19) and diagonalize it at the fine-tuned point $\Delta=t$,
+  $\mu=0$. Check directly, as the system size grows, that two states are pinned exactly to zero energy and are localized at
+  the two ends." New "Build the Kitaev chain of (5.19) at the fine-tuned point $\Delta=t$, $\mu=0$, and check that two
+  states sit at zero energy for every size, localized at the two ends.", then the sentence on $\gamma_1$ and $\gamma_{2N}$
+  as before, then "The cell itself uses `Delta = 0.1` with `d=[1.,1.,0.]`, which is $\Delta=0.14$, and `mu = 0.3`, which is
+  $\mu=-0.3$. There the two states approach zero only as the chain grows, with oscillations, since the overlap of the two end
+  modes oscillates with the length of the chain." The last sentence was "There the two states reach zero only as the chain
+  grows." until the independent check, since the lowest level of the cell is 0.0126 at 10 sites, 0.0449 at 14, $2.0\cdot10^{-5}$
+  at 30 and $1.65\cdot10^{-3}$ at 40. `.tex` lines 676 to 679. Asserted in `g5_16` against the cell, with the complex roots of
+  the end mode, of modulus $\sqrt{(t-\Delta)/(t+\Delta)}=0.867$.
+- Page `11`, after (5.10). The sentence "We use (5.10) only for its symmetry, since its overall sign is the opposite of the
+  one of (5.4)." is added before "The real-space and reciprocal-space pictures". `.tex` line 401. Asserted in `g3_11`.
+- Page `11`, Anderson's theorem. Old "A spin-singlet superconductor is essentially insensitive to non-magnetic disorder,
+  which is called Anderson's theorem, since the pair wave function only depends on time-reversed partners, and
+  non-magnetic disorder preserves them." New "A spin-singlet superconductor whose gap has one sign on the whole Fermi
+  surface is essentially insensitive to non-magnetic disorder, which is called Anderson's theorem. The reason is that the
+  pair wave function only depends on time-reversed partners, and non-magnetic disorder preserves them." Old "this disorder
+  destroys the triplet channel and leaves the singlet channel intact", new "this disorder suppresses the triplet channel
+  and the singlets that change sign, such as d-wave, and leaves the s-wave singlet intact". `.tex` lines 431 to 439.
+  Asserted in `g3_11`.
+- Page `08`, the minus sign of (5.6). The web had "Without it, the two spin blocks would mix through a Pauli matrix.",
+  the `.tex` "instead of mixing the two spin blocks through a Pauli matrix". New "Without it, the two blocks would still be
+  decoupled, but with $+\Delta$ in one and $-\Delta$ in the other, so they would not be identical copies." `.tex` lines
+  273 to 276. Asserted in `g2_08`.
+- Page `08`, notebook box. Old "two copies of the same band structure", new "two copies of the band structure". `.tex`
+  line 319. Asserted in `g2_08`.
+- Page `12`. Old "The pairing that survives is necessarily spin-triplet, because the exchange field explicitly splits",
+  new "The pairing that survives is spin-triplet once the exchange field is of the order of the smallest quasiparticle
+  energy of the singlet, or when only one spin band crosses the Fermi level. The reason is that the exchange field
+  explicitly splits". Until the independent check the condition was "when the exchange field is large compared with the
+  singlet gap", which holds, but the pairing changes already at a field below the singlet gap. `.tex` line 454.
+  Asserted in `g3_12`, on the bond attraction of the page with $\mu=-1.6$: for $|U|=1.5$ the pure singlet of $h=0$, with the
+  smallest quasiparticle energy 0.2875, is still the ground state at $h=0.1$ and gives way to a pure equal-spin triplet at
+  $h=0.3$, with both spin bands at the Fermi level, and for $|U|=3$ at $h=0.6$, where only the up band crosses it, the ground state is the up-up triplet, below
+  every opposite-spin state with a pair momentum from 0 to 1.6. The clause on one spin band is not backed at $|U|=3$ just
+  above $h=0.4$, see "Not applied".
+- Page `13`, the list under (5.14). Old "often ferromagnetic-magnon-driven" and "often antiferromagnetic-magnon-driven",
+  new "proposed to be ferromagnetic-magnon-driven" and "proposed to be antiferromagnetic-magnon-driven". `.tex` lines 505
+  and 506. No number, and `g3_13` checks the wording against Section 5.4.
+- Page `18`. Old "A magnet breaks time-reversal symmetry locally", new "A magnet whose magnetization has a component
+  perpendicular to the spin axis of the edge breaks time-reversal symmetry locally". `.tex` line 720. Asserted in `g6_18`.
+- Page `18`, notebook box. Old "Build the construction described above, with the QSH edge, the magnets and
+  superconductivity, and check that zero modes localized at the ends emerge as you change the strength of the exchange
+  field. Look at how the system crosses the boundary between the topological and the trivial phase, of the type of
+  (5.22), as the magnetic gap changes." New "Build the two-dimensional analog of this construction, a triangular lattice
+  with Rashba coupling, an exchange field and s-wave pairing. The first cell computes the Chern number of the BdG bands, and
+  the second one the chiral edge states of a ribbon. These two cells use opposite signs of the exchange field, and a change
+  of this sign reverses both the Chern number and the direction of the edge states. The last cell follows how the gap closes
+  and opens again as the field grows." Until the independent check the box said "Then follow the Chern number of the BdG
+  bands and the chiral edge states of a ribbon as you change the exchange field", while no cell follows them as the field
+  changes. `.tex` lines 738 to 741. Asserted in `g6_18`, on the text of the three cells, with $C=+3$ and $-3$ from the links
+  at the fields $-0.6$ and $+0.6$, and 3 right movers on the upper edge of the ribbon at $-0.6$ against 3 left movers at $+0.6$.
+- Page `17`, try-it box. Old "the line `mu = 0.3` sets the chemical potential", new "the line `mu = 0.3` sets the
+  chemical potential through `h.add_onsite`, which is $\mu=-0.3$ in (5.19)". Not in the `.tex`. Asserted in `g5_17`.
+- Format only, with no change of content. The paragraph of page `08` after (5.6) is split before "Let us take a
+  spin-singlet pairing", the paragraph of page `11` before "This symmetry classification has a direct physical
+  consequence", and the paragraph of page `12` before "The pairing that survives", since the new sentences took them
+  over 150 words.
+- Page `08`, found by the independent check of 2026-11-22. Old "Since the spinor [(5.6)](#eq-5-6) was built with this extra
+  minus sign, the $4\times 4$ problem in [(5.7)](#eq-5-7) is already block-diagonal. There is one $2\times 2$ block built
+  from $(c_{\mathbf k\uparrow}, c_{-\mathbf k\downarrow}^\dagger)$ and an identical one built from $(c_{\mathbf
+  k\downarrow}, -c_{-\mathbf k\uparrow}^\dagger)$." New "The $4\times 4$ problem in [(5.7)](#eq-5-7) splits into two $2\times
+  2$ blocks, and it would split also without the extra minus sign of the spinor [(5.6)](#eq-5-6). There is one block built
+  from $(c_{\mathbf k\uparrow}, c_{-\mathbf k\downarrow}^\dagger)$ and one built from $(c_{\mathbf k\downarrow},
+  -c_{-\mathbf k\uparrow}^\dagger)$, and the minus sign is what makes the second one identical to the first." The old
+  sentence gave the sign the credit for the decoupling, against the new sentence after (5.6), and in the order of (5.6)
+  the two blocks are interleaved, as the caption of `nambu_blocks` says. `.tex` lines 296 to 300. Asserted in `g2_08`, as
+  operators on rings of 3 and 4 sites and on the matrix (5.7) in the two orders.
+- Page `18`, first feedback of the first quiz, found by the independent check of 2026-11-22. Old "A magnet only breaks
+  time-reversal symmetry and opens a gap below it.", new "A magnet breaks time-reversal symmetry, and its component
+  perpendicular to the spin axis of the edge opens a gap below it.", in line with the new sentence of the text of the same
+  page. Not in the `.tex`. Asserted in `g6_18`, where every $\mathbf m\cdot\boldsymbol\sigma$ is odd under time
+  reversal and only the perpendicular part opens a gap.
+
+### Decided on 2026-11-22
+
+The lecturer picked the first point. The coordinator decided the others with the rule of that day, which takes the option
+that makes the text true with the smallest change and changes no numbered equation, reduces a claim to what a source or a
+calculation supports, redraws an old plot under its name, and rewrites a box that does not match its notebook cell.
+
+- The sign of (5.20), page `16`. The lecturer chose to keep (5.20) and to add "The sign of $i$ is a gauge choice,
+  $\Delta\to-\Delta$, and the spectrum depends only on $2|\Delta\sin k|$." The quiz of page `20` and the stems of
+  `pair_function` stay, since they follow (5.20) as printed. `g5_16` checks it on a ring of 24 sites, where $\pm\Delta$
+  give the same levels and they are $\pm\sqrt{(2t\cos k+\mu)^2+4\Delta^2\sin^2k}$, on the block with $+2i\Delta\sin k$,
+  $-2i\Delta\sin k$ and $2\Delta|\sin k|$, and with the gauge $c_n\to ic_n$ as a unitary. The independent check found
+  the wording loose, since the spectrum also depends on $\varepsilon(k)$. Its candidate is in "Not applied", since the
+  wording is the lecturer's.
+- The sign and the prime of (5.10), page `11`. The coordinator chose the first option, reduced to what is supported. The
+  page says "We use (5.10) only for its symmetry, since its overall sign is the opposite of the one of (5.4)." The
+  clause "the prime is the sum over half of the zone" is left out, since with that sum an even $\Delta_{\mathbf
+  k,\uparrow\uparrow}$ gives an operator that is not zero, which contradicts "Fermionic antisymmetry imposes (5.11)" and
+  the fold, whose sum runs over the whole zone. So the prime stays undefined. `g3_11` gives
+  $\Delta_{\uparrow\downarrow}=-\Delta$ with the whole zone and $-2\Delta$ with half of it, and the even
+  $\Delta_{\uparrow\uparrow}$, on a ring of 4 sites.
+- The minus sign of (5.6), page `08`. The coordinator chose the first option. Deleting the sentence would leave "With
+  it, ... two identical and decoupled copies", which credits the sign also with the decoupling, so only the first option
+  makes the text true. `g2_08` checks the spinor without the sign as operators on rings of 3 and 4 sites.
+- The try-it of 5.5, page `04`. The coordinator kept "about 0.1 to 0.2 and 0.4", which is true to one digit and asserted
+  in `g1_04`, so nothing changes.
+- Anderson's theorem, page `11`. The coordinator chose the two sentences without the lab box, the smallest change that
+  makes the page agree with Section 5.13. The first sentence is written as two, for the lint. The lab box of
+  Sr$_2$RuO$_4$ of the block of 5.11 stays out. `g3_11` checks it by two routes. A uniform onsite $\Delta$ with any real
+  disorder keeps the levels $\pm\sqrt{\varepsilon_n^2+\Delta^2}$, and in a self-consistent mean field on a square
+  lattice of $10\times10$ sites with a box disorder of width $3t$, six realizations, each converged to $10^{-7}$, the
+  s-wave order keeps more than 0.8 of its clean value, and the d-wave order and the $p_x+ip_y$ order of one spin keep
+  less than half of theirs, at most 0.18 and 0.23. Until the independent check the assert took two realizations, let a
+  run that had not converged pass when its order was small, and used the bound 0.25, which other couplings exceed.
+- "necessarily spin-triplet", page `12`. The coordinator chose the first option, written as two sentences for the lint.
+  The independent check sharpened its condition to "once the exchange field is of the order of the smallest quasiparticle
+  energy of the singlet", see the first list. `g3_12` checks the singlet part on the chain with $t=1$, $\mu=0.5$ and an
+  onsite $U=-2$, which has no triplet channel, where $\Delta_0=0.351$ and the field where the polarized state wins is
+  0.250, about $\Delta_0/\sqrt2$. The uniform singlet, with zero pair momentum, survives at half of this field and is
+  gone at 1.2 and 2 times it, and at $h=2$, where only the spin-down band crosses the Fermi level. A singlet with the pair
+  momentum 0.3 still lowers the energy at 1.2 times this field, by $5.3\cdot10^{-4}$ per site. The triplet part is checked
+  on the bond attraction of the page, as the first list says.
+- "often magnon-driven", page `13`. The coordinator chose "proposed to be", which agrees with Section 5.4. The list is
+  the unnumbered display after (5.14), so (5.14) does not change. No calculation can check it, and `g3_13` reads the two
+  pages.
+- The magnet on the helical edge, page `18`. The coordinator chose the first option. `g6_18` gives no gap for a magnet
+  along the spin axis $z$ and a gap of $2|m_\perp|$ for a perpendicular part $m_\perp$.
+  Three sentences with the same claim and no condition were found. The first feedback of the first quiz of the page was
+  corrected after the independent check, see the first list, and the two others are in "Not applied".
+- The Kitaev figures of 5.16 and 5.17. The coordinator kept all of them in numpy from the exact chain (5.19), as now,
+  since nothing on the pages is false and this is the smallest change. The locked rule of a pyqula script for every
+  calculation that pyqula can do points the other way, which is for the lecturer to weigh. The 0.3% of the question is
+  the finite size of the chain of 40 sites, since the exact chain gives the same first bulk level 1.418 as pyqula,
+  against the bulk value 1.414, asserted in `g5_17`.
+- The old web figures that break the plot rules. The coordinator applied the rule "Redraw them, same names" of
+  2026-11-21, and nothing was left to redraw. All twelve were redrawn in place in commit `033b84d`. On 2026-11-22 each
+  of the twelve scripts ran with no `AXES-WARNING` and wrote an SVG identical to the committed one, and each defect
+  named in the fields "Old figures of the page that break the plot rules" above is gone in the picture, so these fields
+  describe the figures before that commit. `zero_mode_profile` names the site axis once, under panel (b), which shares
+  it with panel (a).
+- "trillions" and "billions" of atoms, page `02`. The coordinator kept both, which are true as lower bounds and asserted
+  in `g1_02`.
+- The notebook box of page `08`. The coordinator chose "two copies of the band structure". `g2_08` checks the cell and
+  the levels $\varepsilon$ and $-\varepsilon$ at $\Gamma$ and $M$.
+- "identical spin blocks" in the caption of Figure 5.4, page `14`. The coordinator left it, since the rule keeps a point
+  about a converted figure listed. See "Not applied".
+- "The modulus is essentially the same" in the caption of Figure 5.4, page `14`. The coordinator left it for the same
+  reason. See "Not applied".
+- `delta=0.4` for both ribbons, page `14`. The coordinator kept it. The caption already says "The two gaps do not have
+  the same size here", so nothing changes, and 0.40 and 1.34 are asserted in `g4_14`.
+- The notebook box of page `16`. The coordinator chose the first option, by the rule on boxes that do not match their
+  cell, with the arguments of the cell named, `Delta = 0.1` with `d=[1.,1.,0.]` and `mu = 0.3`. `g5_16` checks the text
+  of the cell, its pyqula chain against (5.19) with $\mu=-0.3$ and $\Delta=0.14$ for every length of the cell, the two
+  zero levels at $\Delta=t$, $\mu=0$, and the lowest level from 0.29 at 4 sites to below 0.002 at 40. The independent check
+  added that this level oscillates with the length, see the first list.
+- The try-it of page `17`. The coordinator chose the first option, which matches the cell and agrees with the notebook
+  box of page `16`, which points to the same cell. Asserted in `g5_17`.
+- "for example with $N=100$ sites", page `17`. The coordinator kept it, since it is given as an example and holds at the
+  four points asserted in `g5_17`.
+- The notebook box of page `18`. The coordinator chose the first option, by the rule on boxes, written as two sentences
+  for the lint. The independent check found that no cell follows the Chern number as the field changes, and the box now
+  says what each cell does, see the first list. `g6_18` checks it against the three cells and the model.
+- The second quiz of page `19`. The coordinator kept it. In the basis $|11\rangle$, $-|00\rangle$ of the even sector the
+  two operators are $+\sigma_z$ and $+\sigma_x$, so "acts like" holds as written, asserted in `g6_19`.
+- The try-it of page `18`, "near $\mathbf k=0$". The coordinator kept it. At $J=0$ the value 0.3 is reached at
+  $|\mathbf k|=0.096$, on the inner Fermi line of the line `M1`, `G`, `M1` of the cell, asserted in `g6_18`.
+- The lab box of page `13`, source `tsuei1994`. The coordinator kept the asserts against the full copy. The other option
+  changes `labsource.py`, a file of the toolkit, which this pass does not edit.
+- The line on `nodal_fwave` of the conventions sheet. The coordinator corrected it, by the rule on outdated lines, to
+  "With `delta=0.2` its entry grows along $\Gamma$-$K$ up to $2.078=6\sqrt3$ `delta` at $K$". The 1.42 was the largest
+  value between 0.2 and 0.7 of the way to $K$. `conventions.py` checks it by pyqula and by the six bonds of $\pm2$
+  `delta`.
+- The notebook text on the exchange and on the hole block. The coordinator left it, since the notebooks are not edited.
+  See "Not applied".
+
+### Not applied
+
+- "identical spin blocks" in the caption of Figure 5.4, `s05f04_topology`, page `14`, line 15 of
+  `lecture_notes/src/figures/s05f04_topology.tex`. The rule leaves a converted figure untouched and keeps a point about it
+  listed, and the first list of this section already treats this caption as part of the converted figure. So the caption
+  keeps "one branch from each of the two identical spin blocks of (5.8)", while the text and the fold of the same page say
+  that the blocks carry $+\Delta$ and $-\Delta$. The candidate is "one branch from each of the two spin blocks of (5.8)".
+- "The modulus is essentially the same in both cases, so both fully gap the same pocket by the same amount", in the same
+  caption, lines 10 and 11 of the same file, for the same reason. The candidate is "On a small pocket the modulus of
+  $\Delta_{p+ip}$ is almost constant, so with the amplitudes chosen for it both gap the pocket by the same amount".
+  `g4_14` asserts its numbers, $|\Delta_{p+ip}|/\Delta_0$ from 0.2955 to 0.2972 on the pocket of the problem, and from
+  $0.200t$ to $0.245t$ at $\mu=-2t$ with $\Delta_0=0.2t$.
+- The notebook text, $-Js_z$ with $E_\uparrow=E-J$ and the hole block $-(H_0-\mu)^*$. The notebooks are not edited in this
+  pass, so the two sentences stay, and the conventions sheet keeps the point.
+- Not one of the 24 points, found while the magnet of page `18` was decided. Three more sentences said that a magnet or a
+  disorder that breaks time reversal opens a gap in a helical edge, with no condition on the direction. The first feedback
+  of the first quiz of page `18` was corrected after the independent check of 2026-11-22, see the first list, since a quiz
+  is web-only and it now disagreed with the text of its own page. Two stay for the lecturer. They are the caption of Figure
+  5.6, a converted figure, "A ferromagnet placed on a part of this edge breaks time-reversal symmetry locally and removes
+  the Kramers protection there, which opens a gap in the edge below it", and line 45 of
+  `webnotes/pages/session03/11b-kramers-protection-of-the-helical-edge.md`, a page of another session, "disorder that
+  breaks time-reversal symmetry opens a real gap in the edge spectrum".
+- The second clause of the sentence of page `12`, "or when only one spin band crosses the Fermi level", found while the
+  independent check was applied. On the bond attraction of the page with $\mu=-1.6$ and $|U|=3$ the down band leaves the
+  Fermi level at $h=0.4$, but at $h=0.45$ a state with the singlet part 0.38 is still below the pure triplet, while at
+  $h=0.6$ the pure triplet wins. So the clause holds at weak coupling, as at $|U|=1.5$, and not in general. It is decided text and no finding covered it, so it
+  stays for the coordinator, with the candidate "or, at weak coupling, when only one spin band crosses the Fermi level".
+  `g3_12` asserts the state at $h=0.45$.
+- The sentence after (5.20), page `16`, which is the lecturer's pick, "The sign of $i$ is a gauge choice,
+  $\Delta\to-\Delta$, and the spectrum depends only on $2|\Delta\sin k|$." The independent check of 2026-11-22 found it
+  loose, since the spectrum $\pm\sqrt{(2t\cos k+\mu)^2+4\Delta^2\sin^2k}$ also depends on $\varepsilon(k)$. The candidate
+  is "The sign of $i$ is a gauge choice, $\Delta\to-\Delta$, and the spectrum depends on the pairing only through
+  $2|\Delta\sin k|$." It is not applied, since the wording was picked by the lecturer, and the gauge part is asserted in
+  `g5_16`.

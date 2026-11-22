@@ -1,8 +1,8 @@
 """Session 2, a Hamiltonian that commutes with a symmetry is block diagonal in the eigenbasis of the symmetry.
 
 A ring of L = 4 cells with two orbitals per cell, with the onsite energies +0.6 and -0.6, the hopping 1 between the two
-orbitals of a cell, and the hoppings h1 from the orbitals of a cell to those of the next cell. The rotation R moves every
-cell to the next one, so [H, R] = 0. On the left |H_ij| in the basis of the sites, on the right |H_ij| in the basis of
+orbitals of a cell, and the hoppings h1 from the orbitals of a cell to those of the next cell. The rotation R moves the
+amplitudes of every cell to the previous cell, the direction of Section 2.3 decided on 2026-11-22, so [H, R] = 0. On the left |H_ij| in the basis of the sites, on the right |H_ij| in the basis of
 the eigenstates of R, which are the Fourier modes of the cells, on the same color scale. Only the 2x2 blocks with the
 same eigenvalue of R survive, one block for each phase 2 pi n / 4. The numbers of the caption are asserted here.
 pyqula has no change to the eigenbasis of a symmetry, so this is numpy and has no script to download.
@@ -28,8 +28,10 @@ for c in range(L):
     H[s, s] += h0
     H[s, s1] += h1
     H[s1, s] += h1.T
-R = np.kron(np.roll(np.eye(L), 1, axis=0), np.eye(n_orb))     # (R v)_{c+1} = v_c, cell c -> c + 1
+R = np.kron(np.roll(np.eye(L), -1, axis=0), np.eye(n_orb))    # (R v)_c = v_{c+1}, the amplitudes go to the previous cell
 assert np.allclose(H @ R, R @ H) and np.allclose(H, H.T)
+e2 = np.zeros(L * n_orb); e2[n_orb] = 1.0                       # one amplitude on the first orbital of the cell 2
+assert np.allclose(R @ e2, np.eye(L * n_orb)[0])                # it moves to the cell 1, the previous cell
 # every cell couples to its two neighbors in the site basis, the corner blocks are the bond from cell 4 to cell 1
 for c in range(L):
     for c2 in range(L):
@@ -41,12 +43,14 @@ U = np.zeros((L * n_orb, L * n_orb), complex)
 for n, ph in enumerate(phases):
     for a in range(n_orb):
         v = np.zeros(L * n_orb, complex)
-        v[a::n_orb] = np.exp(-1j * ph * np.arange(L)) / np.sqrt(L)
+        v[a::n_orb] = np.exp(1j * ph * np.arange(L)) / np.sqrt(L)
         assert np.allclose(R @ v, np.exp(1j * ph) * v)
         U[:, n * n_orb + a] = v
 assert np.allclose(np.exp(1j * phases), [1, 1j, -1, -1j])
 assert np.allclose(U.conj().T @ U, np.eye(L * n_orb))
 Hk = U.conj().T @ H @ U
+# the picture is |H_ij|, and it is the same for the rotation in the other sense, whose eigenbasis is U conjugated
+assert np.allclose(np.abs(Hk), np.abs(U.T @ H @ U.conj()))
 mask = np.kron(np.eye(L), np.ones((n_orb, n_orb)))
 assert np.allclose(Hk * (1 - mask), 0)                  # nothing outside the four blocks of size 2 x 2
 assert np.allclose(np.sort(np.linalg.eigvalsh(Hk)), np.sort(np.linalg.eigvalsh(H)))

@@ -41,9 +41,29 @@ d = 1e-3
 check('-2t + t phi^2 at the bottom and 2t - t delta^2 at the top', abs(band(d) - (-2 + d ** 2)) < 1e-10
       and abs(band(np.pi + d) - (2 - d ** 2)) < 1e-10, (band(d), band(np.pi + d)))
 
+# (2.7) with the factor 1/sqrt(L), the lecturer's decision of 2026-11-22, on a ring of L sites with phi = 2 pi m/L.
+# The orthogonality sum is L delta, the transform is unitary, its inverse gives back c_n^+, Psi_phi^+|0> is the state
+# (2.6) divided by sqrt(L) and so normalized, the substitution display with 1/L gives sum_phi e^{i phi} Psi^+ Psi, and
+# H of (2.5) becomes (2.8) with no factor. Without the 1/sqrt(L) the same steps give L times (2.8).
+for L in (5, 8, 12):
+    ph = 2 * np.pi * np.arange(L) / L
+    E = np.exp(1j * np.outer(np.arange(L), ph))                       # E[n, phi] = e^{i n phi}
+    U = E / np.sqrt(L)                                                 # column phi is Psi_phi^+ on the sites, (2.7)
+    orth = E.conj().T @ E                                              # sum_n e^{i n (phi' - phi)}
+    inverse = (U.conj() @ U.T)                                         # c_n^+ = (1/sqrt L) sum_phi e^{-i n phi} Psi_phi^+
+    hop = np.roll(np.eye(L), 1, axis=1)                                # c_n^+ c_{n+1}, row n and column n+1
+    D = U.conj().T @ hop @ U
+    H = -(hop + hop.T)
+    ok = np.allclose(orth, L * np.eye(L)) and np.allclose(U.conj().T @ U, np.eye(L)) and np.allclose(inverse, np.eye(L))
+    ok = ok and np.allclose(np.linalg.norm(E, axis=0) / np.sqrt(L), 1) and np.allclose(np.linalg.norm(U, axis=0), 1)
+    ok = ok and np.allclose(D, np.diag(np.exp(1j * ph))) and np.allclose(U.conj().T @ H @ U, np.diag(-2 * np.cos(ph)))
+    ok = ok and np.allclose(E.conj().T @ H @ E, L * np.diag(-2 * np.cos(ph)))
+    check(f'(2.7) with 1/sqrt(L), L={L}: the sum is L delta, the transform is unitary and inverts, Psi^+|0> is (2.6) '
+          'normalized, the 1/L display gives e^(i phi), and (2.8) has no factor, while with no 1/sqrt(L) it is L times',
+          ok, round(float(abs(np.linalg.det(U))), 12))
+
 # the steps fold: on a ring of L sites the hopping to the neighbor at distance m is diagonal in the Fourier modes,
-# with e^{i m phi}, so a hopping -t_m adds -2 t_m cos(m phi). The normalized transform is used, the result does not
-# depend on the normalization of (2.7), which is an open point of the plan.
+# with e^{i m phi}, so a hopping -t_m adds -2 t_m cos(m phi), with the normalized transform (2.7)
 L = 12
 phis = 2 * np.pi * np.arange(L) / L
 F = np.exp(1j * np.outer(np.arange(L), phis)) / np.sqrt(L)          # column j is the mode e^{i n phi_j}
@@ -128,6 +148,48 @@ e = band(p, 1.0, 0.5)
 check('problem, eta=0.5t: cos(phi)=-1/2 at the maxima, 1.5t, bottom -3t, width 4.5t',
       np.isclose(np.cos(p[np.argmax(e)]), -0.5, atol=1e-4) and np.isclose(e.max(), 1.5) and np.isclose(e.min(), -3)
       and np.isclose(np.ptp(e), 4.5), (e.max(), e.min(), np.ptp(e)))
+# the try-it, corrected on 2026-11-22 from tij=[1.0,0.3,0.0] to tij=[1.0,0.2,0.0]: with the sign of the notebook,
+# pyqula with tij=[1.0,0.2,0.0] has only the two extrema 0 and pi, while tij=[1.0,0.5,0.0] has two more, so the band
+# gets an extra extremum, and its energies give one more van Hove peak inside the band, at -1 between -1.5 and 3.
+# 0.3 is above t/4 and already has the extra extremum, 0.033 deep, which is why it was replaced. The page no longer
+# quotes 0.3, so it has no assert here, and the fact stays in conventions.py.
+def notebook_extrema(eta, n=4001):
+    hk_ = g.get_hamiltonian(has_spin=False, tij=[1.0, eta, 0.0]).get_hk_gen()
+    kk = np.linspace(-0.5, 0.5, n)
+    e_ = np.array([np.linalg.eigvalsh(hk_([k, 0., 0.]))[0] for k in kk])
+    ok_ = np.allclose(e_, -band(2 * np.pi * kk, 1.0, eta))                  # (2.9) turned upside down
+    de_ = np.diff(e_)
+    idx = np.where(np.sign(de_[1:]) != np.sign(de_[:-1]))[0] + 1          # interior turning points on (-pi, pi)
+    energies = sorted(set(np.round(np.r_[e_[idx], e_[0]], 3)))             # with the end point phi = -pi
+    return ok_, len(idx), energies
+ok2, n2, en2 = notebook_extrema(0.2)
+ok5, n5, en5 = notebook_extrema(0.5)
+check('try-it: tij=[1.0,0.2,0.0] gives (2.9) upside down with the extrema at 0 and pi only, the energies 2.4 and -1.6',
+      ok2 and n2 == 1 and np.allclose(en2, [-1.6, 2.4]), (n2, en2))
+check('try-it: tij=[1.0,0.5,0.0] gets the extra extremum at pi, and the extrema -1.5, -1 and 3 give one more van Hove '
+      'energy inside the band', ok5 and n5 == 3 and np.allclose(en5, [-1.5, -1.0, 3.0]), (n5, en5))
+
+# the second notebook box, decided on 2026-11-22: the cell "One dimensional chain, with longer range hopping" changes
+# the third-neighbor hopping t3, in the third place of tij, as tij=[1.0,0.,t3], and pyqula puts the place m of tij on
+# the neighbor at the distance m, so the third place adds 2 t3 cos(3 phi)
+import json  # noqa: E402
+import re  # noqa: E402
+nb = json.load(open(os.path.join(HERE, '..', '..', '..', 'jupyter-notebooks', 'session2.ipynb'), encoding='utf-8'))
+head, calls = None, []
+for c in nb['cells']:
+    s = ''.join(c['source'])
+    if c['cell_type'] == 'markdown' and s.lstrip().startswith('#'):
+        head = s.strip().split('\n')[0].lstrip('#').split('(')[0].strip()
+    elif c['cell_type'] == 'code' and head == 'One dimensional chain, with longer range hopping':
+        calls += [m.replace(' ', '') for m in re.findall(r'get_hamiltonian\(([^)]*)\)', s)]
+t3_ok = calls and all(a == 'tij=[1.0,0.,t3]' for a in calls)
+for t3 in (0.0, 1 / 3, 2 / 3):
+    hk3 = g.get_hamiltonian(has_spin=False, tij=[1.0, 0., t3]).get_hk_gen()
+    e3 = np.array([np.linalg.eigvalsh(hk3([k, 0., 0.]))[0] for k in ks])
+    t3_ok = t3_ok and np.allclose(e3, 2 * np.cos(2 * np.pi * ks) + 2 * t3 * np.cos(3 * 2 * np.pi * ks))
+check('notebook box 2: the cell calls get_hamiltonian(tij=[1.0,0.,t3]), and the third place of tij is the third-neighbor '
+      'hopping, 2 cos(phi) + 2 t3 cos(3 phi) for t3 = 0, 1/3, 2/3', bool(t3_ok), calls)
+
 # the condition eta >= 0 is needed: for a negative eta the extra extremum is at phi = 0, not at pi
 e = band(p, 1.0, -0.5)
 check('problem: for eta=-0.5 the extra extremum sits at phi=0, so the problem states eta >= 0',

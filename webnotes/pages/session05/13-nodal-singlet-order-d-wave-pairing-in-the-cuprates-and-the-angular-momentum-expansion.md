@@ -45,8 +45,8 @@ $$\Delta(\mathbf k) \;\sim\; \sum_L \Delta_L\, Y_L(\mathbf k), \tag{5.14}$$
 
 $$\begin{aligned}
 L=0:\quad &\text{s-wave (conventional, typically phonon-driven)},\\
-L=1:\quad &\text{p-wave (spin-triplet, often ferromagnetic-magnon-driven)},\\
-L=2:\quad &\text{d-wave (spin-singlet, often antiferromagnetic-magnon-driven; cuprates)}.
+L=1:\quad &\text{p-wave (spin-triplet, proposed to be ferromagnetic-magnon-driven)},\\
+L=2:\quad &\text{d-wave (spin-singlet, proposed to be antiferromagnetic-magnon-driven; cuprates)}.
 \end{aligned}$$
 
 In real and reciprocal space, s-wave order is flat and constant, with no momentum dependence at all. The $d_{x^2-y^2}$ order of [(5.13)](#eq-5-13) changes sign around the Fermi surface in a pattern of four lobes, $+,-,+,-$, with the same name and the same lobe structure as an atomic $d$ orbital. There is also a third possibility, which is called *extended s-wave*. It is still $L=0$, meaning that it has the same overall symmetry as plain s-wave under the lattice point group. However, it is nodal along the *radial* direction, since it is positive near the zone center $\Gamma$, goes through a node and is negative further out. Figure [5.3](#fig:s05:gapsymmetry) shows these sign structures over the Brillouin zone, together with the p- and f-wave cases below.
@@ -57,9 +57,9 @@ The same classification into three cases, uniform s-wave, a nodal order and exte
 ![The sign structure of $\Delta(\mathbf k)$ over the Brillouin zone, ordered by angular momentum $L$ as in [(5.14)](#eq-5-14). The positive regions are raised and the negative ones are sunk, in two colors, and the nodes are where the two colors meet. A reflection of a panel through its centre sends $\mathbf k\to-\mathbf k$. Panels with even $L$ do not change and are therefore spin singlets, and panels with odd $L$ come back with every sign flipped and are spin triplets, which is [(5.12)](#eq-5-12) seen in a picture. Counting lobes is the fastest way to identify the order. Two lobes mean $L=1$, four mean $L=2$ and six mean $L=3$. Any pattern whose lobes alternate an odd number of times in a half turn is necessarily odd in $\mathbf k$, so it is a triplet. This is why the $f$-wave state (e), with six lobes on the hexagonal zone of the triangular lattice, is a spin triplet. In every other respect it is similar to the singlet $d$-wave state. Extended $s$-wave (b) deserves a second look, since its node is radial and not angular. It has the same even parity and the same point-group symmetry as plain $s$-wave, and only the position of its node ring relative to the Fermi surface decides whether it is nodal in the spectrum. The overall sign of $\Delta$ is a gauge choice, and only the sign *changes* are physical.](figures/s05f03_gapsymmetry.svg){#fig:s05:gapsymmetry number="5.3"}
 
 ::: notebookbox
-**Notebook check-in:** [`session5.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb), "Gapped and nodal superconducting orders" (Core)
+**Notebook check-in:** [`session5.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb), "Unconventional singlet superconducting orders" (Challenge), and "Gapped and nodal superconducting orders" (Core)
 
-Implement the $d_{x^2-y^2}$ gap of [(5.13)](#eq-5-13) on the square lattice and plot $\Delta(\mathbf k)$ over the Brillouin zone. Check the pattern of four lobes with alternating sign, and the position of its nodes relative to a given Fermi surface. The nodal $L=3$ (f-wave) case of the triangular lattice discussed above is also in this section of the notebook, if you want to see the pattern of six lobes directly.
+Implement the $d_{x^2-y^2}$ gap of [(5.13)](#eq-5-13) on the square lattice and plot $\Delta(\mathbf k)$ over the Brillouin zone. Check the pattern of four lobes with alternating sign, and the position of its nodes relative to a given Fermi surface. The nodal $L=3$ (f-wave) case of the triangular lattice discussed above is in the second of these sections, where its bands touch zero energy at a node between $M$ and $\Gamma$.
 :::
 
 ::: lab
@@ -113,7 +113,7 @@ So the same order is gapped on the whole Fermi surface at one filling and gaples
 ::::
 
 ::: {.tryit notebook="session5.ipynb" cell="Gapped and nodal superconducting orders"}
-In the cell, compare the bands along the path `G`, `K`, `M`, `G` for the two orders. The $s$-wave bands keep a smallest quasiparticle energy $|\Delta|=0.4$ at the Fermi surface. The nodal $f$-wave bands touch zero energy, even though $\Delta=0.2$ is nonzero.
+In the cell, compare the bands along the path `G`, `K`, `M`, `G` for the two orders. The $s$-wave bands keep a smallest quasiparticle energy $|\Delta|=0.4$ at the Fermi surface. The nodal $f$-wave bands touch zero energy, even though `delta=0.2` is nonzero.
 :::
 
 ::: comesback

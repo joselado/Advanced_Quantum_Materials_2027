@@ -14,7 +14,7 @@ Here the pairing has to be on a bond and not onsite. For spinless fermions, an o
 
 $$\varepsilon(k) = -2t\cos k - \mu, \qquad \Delta(k) = 2i\Delta\sin k, \tag{5.20}$$
 
-so the anomalous term is explicitly odd in $k$. As [(5.12)](#eq-5-12) already tells us, this means that it is necessarily a superconductor of spin-triplet type, here a spinless p-wave one. This agrees with the fact that the onsite channel is forbidden by the Pauli principle.
+so the anomalous term is explicitly odd in $k$. The sign of $i$ is a gauge choice, $\Delta\to-\Delta$, and the spectrum depends only on $2|\Delta\sin k|$. As [(5.12)](#eq-5-12) already tells us, this means that it is necessarily a superconductor of spin-triplet type, here a spinless p-wave one. This agrees with the fact that the onsite channel is forbidden by the Pauli principle.
 
 Now let us set $\mu=0$ and go to the special point $\Delta=t$, and let us substitute the Majorana decomposition [(5.17)](#eq-5-17)-[(5.18)](#eq-5-18) at every site, $c_n = \frac{1}{2}(\gamma_{2n-1}+i\gamma_{2n})$. We do this substitution in both the hopping and the pairing term. The algebra is direct but a bit long, and it uses the anticommutation relations of the $\gamma$'s, so we suggest that you check it yourself, and the steps are in the fold below. The two terms combine so that every $\gamma_{2n-1}\gamma_{2n+2}$ contribution cancels exactly between hopping and pairing, and the result is very simple.
 
@@ -69,7 +69,7 @@ At $\Delta=t$ and $\mu=0$ the chain has the dispersion $E(k)=\sqrt{\varepsilon(k
 
 - [ ] It is flat at $E=t$ for every $k$.
 
-    This is false. At $k=\pi/2$ the term $\varepsilon$ vanishes and $|\Delta(k)|=2t|\sin(\pi/2)|=2t$, so $E=2t$. The value $t$ would need $\Delta=t/2$.
+    This is false. At $k=\pi/2$ the term $\varepsilon$ vanishes and $|\Delta(k)|=2t|\sin(\pi/2)|=2t$, so $E=2t$. No $\Delta$ gives a band flat at $t$, since at $k=0$ the pairing vanishes and $E=2t$ for any $\Delta$.
 :::
 
 ::: quiz
@@ -129,7 +129,7 @@ At the ends, $\gamma_1$ and $\gamma_{2N}$ are in no bond. Together they form the
 ::: notebookbox
 **Notebook check-in:** [`session5.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb), "Emergence of Majorana modes as a function of the size of the superconductor" (Core)
 
-Build the Kitaev chain of [(5.19)](#eq-5-19) and diagonalize it at the fine-tuned point $\Delta=t$, $\mu=0$. Check directly, as the system size grows, that two states are pinned exactly to zero energy and are localized at the two ends. These are the two decoupled Majoranas $\gamma_1$ and $\gamma_{2N}$ predicted by [(5.21)](#eq-5-21).
+Build the Kitaev chain of [(5.19)](#eq-5-19) at the fine-tuned point $\Delta=t$, $\mu=0$, and check that two states sit at zero energy for every size, localized at the two ends. These are the two decoupled Majoranas $\gamma_1$ and $\gamma_{2N}$ predicted by [(5.21)](#eq-5-21). The cell itself uses `Delta = 0.1` with `d=[1.,1.,0.]`, which is $\Delta=0.14$, and `mu = 0.3`, which is $\mu=-0.3$. There the two states approach zero only as the chain grows, with oscillations, since the overlap of the two end modes oscillates with the length of the chain.
 :::
 
 ::: comesback

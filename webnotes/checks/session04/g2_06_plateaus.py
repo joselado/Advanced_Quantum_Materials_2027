@@ -8,10 +8,17 @@ folder, its check runs here again. This script holds, in the order of the page: 
 the first quiz, the caption and the alt texts of plateaus and of the classical option, the problem on the density
 3e11 cm^-2, the fold from the Peierls phases to minimal coupling with its condition phi << 1, the loop sums of the quiz
 on the bond phase, and the sentence of the lab box in the stored source. The phases are written
-in units of phi, the sum of the phases around one plaquette, so no factor of (4.4) enters. It finds the repository
-from its own path and writes no file.
+in units of phi, the sum of the phases around one plaquette, so no factor of (4.4) enters there. The factor itself was
+decided on 2026-11-22 by the rule of the coordinator: (4.4) stays as printed, the key box adds that in the units of this
+session the phase is (1/hbar) int A.dl, and the first quiz of Section 4.7 takes chi = hbar theta x/a. After an
+independent check the key box also says that (4.4) is written with hbar = 1, the sentence before it divides the line
+integral by hbar, and the second and third options of that quiz write the factor. The block marked
+"decided on 2026-11-22" checks this by two routes. It finds the repository from its own path and writes no file.
 
-Run it from anywhere:  python3 webnotes/checks/session04/g2_06_plateaus.py"""
+Run it from anywhere:  python3 webnotes/checks/session04/g2_06_plateaus.py
+
+The blocks marked "corrected on 2026-11-22" back the sentences of the old text that were corrected on that day, after
+the lecturer chose to fix the errors of the old text."""
 import os
 import sys
 sys.dont_write_bytecode = True
@@ -71,6 +78,55 @@ check('alt text of the classical option, the line R_xy e^2/h = B/B_1 runs from 0
 
 check('problem, B/(n e) at 6.20 T is h/2e^2, the page says 12.9 kOhm', abs(B2 / (n * e_charge) / 1e3 - 12.9) < 0.05
       and abs(B2 / (n * e_charge) - rk / 2) < 1e-6 * rk, round(B2 / (n * e_charge) / 1e3, 4))
+
+# the text of Section 4.6, corrected on 2026-11-22 from "fewer Landau levels stay below a fixed chemical potential" to
+# "each Landau level holds more states, eB/h per unit area, so at fixed density fewer Landau levels are filled". At fixed
+# density the number of fully filled levels is the integer part of nu = n/(eB/h), which has no mass in it and falls by
+# one at B/B_1 = 1/N. This is the clean count, and it is not the plateau index of the figure. The model of the figure,
+# _g2_hall.quantum, fills the level n in a window around nu = n - 1/2, so its plateau N runs from nu = N - 1/2 to N + 1/2.
+# Its plateaus cross the classical line at B/B_1 = 1/N, where nu = N, and its jumps are at B/B_1 = 1/(N + 1/2), 0.667, 0.400
+# and 0.286, where the levels below the chemical potential number N + 1/2.
+filled = np.floor(nu + 1e-12)
+check('text, at fixed density the fully filled levels floor(n h/(e B)) are 1 from 6.20 to 12.4 T and 2 from 4.14 to 6.20 T',
+      np.all(filled[(B > B2 + 0.01) & (B < B1 - 0.01)] == 1) and np.all(filled[(B > B2 / 1.5 + 0.01) & (B < B2 - 0.01)] == 2),
+      (round(B2 / 1.5, 3), round(B2, 3), round(B1, 3)))
+jumps = [1 / (N + 0.5) for N in (1, 2, 3)]
+check('the plateaus of the figure cross the classical line at B/B_1 = 1/N, and its jumps are at 1/(N + 1/2) = 0.667, 0.400, '
+      '0.286',
+      all(abs(hall.quantum(1 / N) - 1 / N) < 1e-9 for N in (1, 2, 3))
+      and all(abs(1 / hall.quantum(x) - (N + 0.5)) < 1e-9 for N, x in zip((1, 2, 3), jumps))
+      and np.allclose(np.round(jumps, 3), [0.667, 0.4, 0.286]), np.round(jumps, 4))
+
+# the text of Section 4.7, corrected on 2026-11-22: pi = p - e A is the kinetic momentum m v, also called the mechanical
+# momentum, and p is the canonical one. Two routes with sympy: Hamilton's equations of H = (p - A)^2/2m give m dx/dt = pi,
+# and [p_x, p_y] = 0 while [pi_x, pi_y] = i hbar B, in the Landau gauge with e = 1
+import sympy as sp                                        # noqa: E402
+xs, ys, pxs, pys, Bs, ms, hb = sp.symbols('x y p_x p_y B m hbar', real=True)
+Hc = (pxs ** 2 + (pys - Bs * xs) ** 2) / (2 * ms)
+mv = (sp.simplify(ms * sp.diff(Hc, pxs)), sp.simplify(ms * sp.diff(Hc, pys)))
+fq = sp.Function('f')(xs, ys)
+qpx = lambda g: -sp.I * hb * sp.diff(g, xs)
+qpy = lambda g: -sp.I * hb * sp.diff(g, ys)
+qpiy = lambda g: qpy(g) - Bs * xs * g
+c_p = sp.simplify(qpx(qpy(fq)) - qpy(qpx(fq)))
+c_pi = sp.simplify(qpx(qpiy(fq)) - qpiy(qpx(fq)))
+check('text, m dx/dt = p_x - A_x and m dy/dt = p_y - B x, so pi is m v, and [p_x, p_y] = 0, [pi_x, pi_y] = i hbar B',
+      mv == (pxs, pys - Bs * xs) and c_p == 0 and sp.simplify(c_pi - sp.I * hb * Bs * fq) == 0, (mv, c_pi))
+
+# the text of Section 4.7, corrected on 2026-11-22: the hopping t_ij is the matrix element of H between two orbitals and not
+# their overlap. A double well on a grid: the two orbitals of the two wells, built orthonormal from the two lowest states,
+# have the overlap 0, while <1|H|2> is half the splitting of the two levels, which is the hopping of a two-site model.
+xg = np.linspace(-8.0, 8.0, 1600)
+dx = xg[1] - xg[0]
+Hg = (np.diag(np.full(xg.size, 2.0)) - np.eye(xg.size, k=1) - np.eye(xg.size, k=-1)) / (2 * dx ** 2)
+Hg += np.diag(-3.0 * (np.exp(-(xg - 2) ** 2) + np.exp(-(xg + 2) ** 2)))
+wg, vg = np.linalg.eigh(Hg)
+bond, anti = vg[:, 0] * np.sign(vg[:, 0].sum()), vg[:, 1] * np.sign(vg[xg > 0, 1].sum())
+orb1, orb2 = (bond + anti) / np.sqrt(2), (bond - anti) / np.sqrt(2)
+t12 = orb1 @ Hg @ orb2
+check('text, a double well: the two orbitals have the overlap 0, and |<1|H|2>| is half the splitting of the two levels',
+      abs(orb1 @ orb2) < 1e-12 and abs(abs(t12) - (wg[1] - wg[0]) / 2) < 1e-10 and abs(t12) > 1e-3,
+      (float(orb1 @ orb2), round(float(t12), 6), round(float((wg[1] - wg[0]) / 2), 6)))
 
 # the fold, the chain: the hopping -t with the phase theta on every bond, as (4.4) gives for a uniform A along the chain.
 # A ring of L sites has the levels -2t cos(k a - theta) with k a = 2 pi m / L, so the band is shifted by theta/a.
@@ -157,4 +213,63 @@ page = open(os.path.join(WEB, 'pages', 'session04', '06-quantized-hall-plateaus-
 box = page.split('::: lab', 1)[1].split('\n:::', 1)[0]
 check('lab box, the stored abstract says 8.2x10^-11 and the box quotes 8.2x10^-11 with the link to the article',
       sentence in stored and r'$8.2\times10^{-11}$' in box and 'https://arxiv.org/abs/1504.06511' in box, True)
+
+# ---------------------------------------------------------------- the factor of (4.4), decided on 2026-11-22
+# (4.4) stays as printed, and the key box says that in the units of this session, e = 1 with hbar kept, the phase is
+# (1/hbar) int A.dl. First route: the chain with the bond phase theta has its band minimum at k = theta/a, and the
+# continuum (hbar k - A)^2/2m of minimal coupling (4.3) at k = A/hbar, so the two agree only for theta = A a/hbar.
+for hb, Ax, a in ((1.0, 0.3, 1.0), (0.37, 0.2, 1.7), (2.5, -1.1, 0.6)):     # theta inside (-pi, pi), no folding
+    th = Ax * a / hb                                           # (1/hbar) int A.dl along one bond of length a
+    kk_ = np.linspace(-np.pi / a, np.pi / a, 200001)
+    k_lat = kk_[np.argmin(-2 * np.cos(kk_ * a - th))]
+    k_con = kk_[np.argmin((hb * kk_ - Ax) ** 2)]
+    check(f'decided on 2026-11-22, (4.4): hbar = {hb}, A = {Ax}, a = {a}, the lattice minimum theta/a with theta = A a/hbar '
+          'is the minimum A/hbar of minimal coupling', abs(k_lat - k_con) < 1e-4 and abs(k_lat - Ax / hb) < 1e-4,
+          (round(k_lat, 5), round(k_con, 5)))
+# Second route, with the units back: (e/hbar) times the flux through a plaquette is 2 pi times the flux in flux quanta
+# h/e, which is the phase 2 pi alpha of Section 3.6b, and the l_B = sqrt(hbar/eB) of the fold is 1/sqrt(phi) lattice
+# constants for phi = e B a^2/hbar.
+HBAR, ECH = 1.054571817e-34, 1.602176634e-19
+for Bt, aa in ((10.0, 5e-10), (1.0, 3e-9)):
+    phase = ECH / HBAR * Bt * aa ** 2
+    alpha = Bt * aa ** 2 / (2 * np.pi * HBAR / ECH)
+    check(f'decided on 2026-11-22, (4.4): at {Bt} T and a = {aa} m the plaquette phase (e/hbar) B a^2 is 2 pi alpha, '
+          'and l_B/a = 1/sqrt(phi)', abs(phase - 2 * np.pi * alpha) < 1e-12 * phase
+          and abs(np.sqrt(HBAR / (ECH * Bt)) / aa - 1 / np.sqrt(phase)) < 1e-9, (phase, alpha))
+# the first quiz of Section 4.7: chi = hbar theta x/a adds (1/hbar)(chi(x + a) - chi(x)) = theta to every bond along x
+# and nothing to the bonds along y
+hb, a, th = 0.37, 1.7, 0.9
+chi = lambda x, y: hb * th * x / a
+adds = [(chi(x + a, y) - chi(x, y)) / hb for x in (-2.0, 0.0, 3.4) for y in (0.0, 1.7)]
+check('decided on 2026-11-22, quiz: chi = hbar theta x/a adds theta to every bond along x and 0 along y',
+      np.allclose(adds, th, atol=1e-12) and abs(chi(1.0, 3.4) - chi(1.0, 0.0)) < 1e-12, round(adds[0], 12))
+key = page.split('::: key', 2)[2].split('\n:::', 1)[0]
+check('decided on 2026-11-22: the key box of (4.4) gives the factor 1/hbar, and the quiz takes chi = hbar theta x/a',
+      r'(1/\hbar)\int\mathbf{A}\cdot d\boldsymbol{\ell}' in key and r'\tag{4.4}' in key and r'$\chi=\hbar\theta x/a$' in page,
+      True)
+# After an independent check the key box says that (4.4) is written with hbar = 1, the sentence before it divides the
+# line integral by hbar, and the second and third options of the first quiz write the factor. Option 2: a gauge change
+# adds (1/hbar)(chi_i - chi_j) to the bond from j to i, and around a plaquette these add to 0 for any chi. Option 3: the
+# loop sum (1/hbar) of the line integral of A is the flux over hbar, 2 pi times the flux in flux quanta 2 pi hbar (e = 1),
+# here for the Landau gauge A = (0, Bx) on the plaquette of side a with its corner at (x0, y0).
+rng = np.random.default_rng(7)
+hb = 0.37
+loops = []
+for _ in range(5):
+    chi4 = rng.normal(size=4) * 3.0                         # chi at the corners 0, 1, 2, 3 of a plaquette
+    loops.append(sum((chi4[(i + 1) % 4] - chi4[i]) / hb for i in range(4)))
+Bf, a, x0 = 0.83, 1.3, 2.0
+legs = [0.0, Bf * (x0 + a) * a, 0.0, -Bf * x0 * a]          # bottom, right, top, left: int A.dl along each bond
+loop_phase = sum(legs) / hb
+flux = Bf * a * a
+check('decided on 2026-11-22, quiz: (1/hbar) times the gauge changes around a plaquette add to 0, and the loop sum of the '
+      'phases is the flux over hbar, 2 pi times the flux in flux quanta 2 pi hbar',
+      np.allclose(loops, 0, atol=1e-12) and abs(loop_phase - flux / hb) < 1e-12
+      and abs(loop_phase - 2 * np.pi * flux / (2 * np.pi * hb)) < 1e-12, (round(max(np.abs(loops)), 15), round(loop_phase, 6)))
+para = page.split('\n::: key\nOn a lattice', 1)[0].strip().rsplit('\n\n', 1)[1]     # the paragraph before (4.4)
+check('decided on 2026-11-22: the key box says that (4.4) is written with hbar = 1, the sentence before it divides by hbar, '
+      'and the first quiz writes the factor in its second and third options',
+      r'This form is written with $\hbar=1$' in key and para.endswith(r'between the two sites, divided by $\hbar$.')
+      and r'$(1/\hbar)\big[(\chi_1-\chi_0)' in page and r'the flux through it divided by $\hbar$, which is $2\pi$ times the '
+      'flux in flux quanta' in page, True)
 print('all checks of page 06 hold')

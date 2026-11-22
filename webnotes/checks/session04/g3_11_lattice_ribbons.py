@@ -10,7 +10,11 @@ of the level 0.37 to 0.35 near the armchair edges with three branches per edge a
 momentum, the energies of the wall by the zero of the parabolic cylinder function, the commutator
 of the problem in the two gauges and the fold from (pi_x^2 + pi_y^2)/2m to (4.8) with sympy, acting on a test function.
 It finds the repository from its own path and writes no file, since style.run_script runs pyqula in a temporary
-folder."""
+folder.
+
+The blocks marked "corrected on 2026-11-22" back the sentences of the old text that were corrected on that day, after
+the lecturer chose to fix the errors of the old text. The block marked "decided on 2026-11-22" backs the width N = 30
+of the Core cells, which the text gives again after an independent check found it in the notebook."""
 import os
 import sys
 
@@ -143,3 +147,61 @@ check('ribbons (b): the level 0.37 dips to 0.35 near each edge, and nowhere belo
 scan = [per_edge(Eh, Yh, mu, d['honeycomb_edge']) for mu in np.linspace(dip + 0.001, pos[1] - 0.001, 20)]
 check('ribbons (b): just below the level 0.37, three branches per edge with the net count one',
       all(s[:2] == (3, 3) and abs(s[2]) == 1 and s[2] == -s[3] for s in scan), set(scan))
+
+# the text of the widget landaufan, corrected on 2026-11-22: its dashed lines are -4t + (n + 1/2) hbar omega_c, measured
+# from the bottom of the band at -4t, and not (n + 1/2) hbar omega_c. First route, the code of the widget, which draws
+# the dashed lines and the bands; second route, a Harper matrix of q sites written here, whose lowest level sits near
+# -4t + hbar omega_c/2 for a small flux, and at zero flux the bottom of the band is -4t.
+import importlib.util  # noqa: E402
+spec = importlib.util.spec_from_file_location('landaufan', os.path.join(HERE, '..', '..', 'widgets', 'defs', 'landaufan.py'))
+lf = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(lf)
+widget = {}
+for q in (16, 40):
+    series = lf.compute(dict(q=q))['panels'][0]['series']
+    dashed = [s['y'][0] for s in series if s['kind'] == 'dash']
+    bands = [float(np.mean(s['y'])) for s in series if s['kind'] == 'line']
+    wq = 4 * np.pi / q
+    hq = np.diag(-2 * np.cos(2 * np.pi * np.arange(q) / q + 0.3)) - np.eye(q, k=1) - np.eye(q, k=-1)
+    hq[0, -1] = hq[-1, 0] = -1.0
+    widget[q] = (np.allclose(dashed, [-4 + wq * (n + 0.5) for n in range(len(dashed))], atol=1e-12),
+                 abs(bands[0] - (-4 + wq / 2)) / wq, abs(np.linalg.eigvalsh(hq)[0] - (-4 + wq / 2)) / wq)
+bottom =min(-2 * np.cos(kx) - 2 * np.cos(ky) for kx in np.linspace(-np.pi, np.pi, 41) for ky in np.linspace(-np.pi, np.pi, 41))
+check('widget: the dashed lines are -4t + (n + 1/2) hbar omega_c, the lowest band is within 5 percent of a spacing of the '
+      'first line for q = 16 and 40 by the widget and by a Harper matrix, and the band bottom at zero flux is -4t',
+      all(v[0] and v[1] < 0.05 and v[2] < 0.05 for v in widget.values()) and abs(bottom + 4) < 1e-12,
+      {q: (v[0], round(v[1], 4), round(v[2], 4)) for q, v in widget.items()})
+
+# ---------------------------------------------------------------- the width of the notebook, decided on 2026-11-22
+# "for example with the width N = 30 of its Core cells": the two Core cells of the notebook box of Section 4.10 that
+# build the ribbons in a field, "Landau levels of conventional electrons" and "Landau levels of the Dirac equation", set
+# N = 30 and pass it to square_ribbon and to honeycomb_armchair_ribbon. The square ribbon of 30 is 30 sites across and
+# the armchair ribbon of 30 has 60 rows of sites, so the page gives the width parameter and not a number of sites.
+import json  # noqa: E402
+import re    # noqa: E402
+nb = json.load(open(os.path.join(HERE, '..', '..', '..', 'jupyter-notebooks', 'session4.ipynb'), encoding='utf-8'))
+cells, title = {}, None
+for c in nb['cells']:
+    src = ''.join(c['source'])
+    if c['cell_type'] == 'markdown':
+        m = re.search(r'^#+\s*(.*)', src, re.M)
+        title = m.group(1) if m else title
+    elif title is not None:
+        cells.setdefault(title, src)
+core = {name: next(v for k, v in cells.items() if k.startswith(name)) for name in
+        ('Landau levels of conventional electrons', 'Landau levels of the Dirac equation')}
+page11 = open(os.path.join(HERE, '..', '..', 'pages', 'session04',
+                           '11-numerical-check-of-the-landau-levels-and-edge-states-on-the-lattice.md'), encoding='utf-8').read()
+box10 = open(os.path.join(HERE, '..', '..', 'pages', 'session04', '10-landau-levels-of-dirac-electrons.md'),
+             encoding='utf-8').read().split('::: notebookbox', 1)[1].split('\n:::', 1)[0]
+rows = {name: len(set(np.round(g.r[:, 1], 6))) for name, g in         # the geometry of pyqula writes no file
+        (('square', geometry.square_ribbon(30)), ('armchair', geometry.honeycomb_armchair_ribbon(30)))}
+check('decided on 2026-11-22, the width: the Core cells "Landau levels of conventional electrons" and "Landau levels of the '
+      'Dirac equation", named in the notebook box of Section 4.10, set N = 30 for square_ribbon and '
+      'honeycomb_armchair_ribbon, which are 30 and 60 rows of sites across',
+      all(re.search(r'^N = 30\b', v, re.M) for v in core.values())
+      and 'square_ribbon(N)' in core['Landau levels of conventional electrons']
+      and 'honeycomb_armchair_ribbon(N)' in core['Landau levels of the Dirac equation']
+      and all(f'"{k}" (Core)' in box10 for k in core) and rows == {'square': 30, 'armchair': 60}
+      and 'for example with the width `N = 30` of its Core cells' in page11, rows)
+print('all checks of page 11 hold')

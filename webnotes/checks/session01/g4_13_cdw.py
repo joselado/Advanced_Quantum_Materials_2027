@@ -199,4 +199,95 @@ check('try-it box: with cdw = 0.1 the imbalance at V = 0 is finite, 0.14', abs(a
 check('try-it box: the cell saturates close to 1 at V = 10t, 0.96 with its default Fock term',
       abs(abs(n10[0] - n10[1]) - 0.962) < 2e-3, n10)
 check('the calls with write=False leave no file', left == [], left)
+
+# the notebook box, old text corrected on 2026-11-22: both cells start the loop from the guess mf="CDW", which picks one
+# of the two charge patterns, while the Hamiltonian keeps the symmetry, since the cells set the external imbalance
+# cdw = 0. Route 1 reads the two cells, route 2 asks pyqula for the guess and runs the loop of the cells from it and from
+# the opposite guess
+import json
+import re
+from pyqula import meanfield
+nb = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '..', 'jupyter-notebooks',
+                                 'session1.ipynb'), encoding='utf-8'))
+heads = [''.join(c['source']).strip() for c in nb['cells']]
+mixes = {}
+for title, part in (('## Symmetry breaking in the spinless fermionic chain', 'Core'),
+                    ('## Gap opening in a spinless interacting model', 'Challenge')):
+    i = [j for j, s in enumerate(heads) if s.startswith(title)][0]
+    src = ''.join(nb['cells'][i + 1]['source'])
+    zero = re.search(r'^cdw = 0\.?\s*(#.*)?$', src, re.M) is not None
+    check('notebook box: the %s cell passes mf="CDW" and sets cdw = 0' % part, 'mf="CDW"' in src and zero, zero)
+    mixes[part] = float(re.search(r'mf="CDW",mix=([0-9.]+)', src).group(1))
+with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+    G = np.array(meanfield.guess(geometry.bichain().get_hamiltonian(has_spin=False), "CDW"))
+gcdw = np.real(np.diag(G))
+check('notebook box: the guess "CDW" is the onsite energies +1 and -1 on the two sites of the cell', np.allclose(gcdw, [1, -1]), gcdw)
+with tempfile.TemporaryDirectory() as tmp:
+    cwd = os.getcwd(); os.chdir(tmp)
+    try:
+        res = {}
+        with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+            for part, mix in mixes.items():
+                for V in (0., 3.):
+                    for sign in (+1, -1):
+                        h0 = geometry.bichain().get_hamiltonian(has_spin=False); h0.add_sublattice_imbalance(0.)
+                        hs, Es = h0.get_mean_field_hamiltonian(V1=V, mf="CDW" if sign > 0 else -G, mix=mix, filling=0.5,
+                                                               write=False, return_total_energy=True)
+                        res[part, V, sign] = (np.real(hs.get_vev(operator=None)), Es)
+        left = os.listdir(tmp)
+    finally:
+        os.chdir(cwd)
+for part in mixes:
+    (np_, Ep), (nm, Em) = res[part, 3., +1], res[part, 3., -1]
+    check('notebook box, %s cell: at V = 3t the guess and the opposite guess end in the two mirrored patterns, with the '
+          'same energy' % part, np.allclose(np_, nm[::-1], atol=1e-4) and abs(np_[0] - np_[1]) > 0.5 and abs(Ep - Em) < 1e-6,
+          (np.round(np_, 4), np.round(nm, 4), Ep - Em))
+    n0p, n0m = res[part, 0., +1][0], res[part, 0., -1][0]
+    check('notebook box, %s cell: at V = 0 the loop from the guess ends uniform, so the Hamiltonian keeps the symmetry' % part,
+          abs(n0p[0] - n0p[1]) < 1e-6 and abs(n0m[0] - n0m[1]) < 1e-6, (n0p, n0m))
+check('the notebook-box calls with write=False leave no file', left == [], left)
+# the notebook box, sentence added on 2026-11-22: "Both cells also keep the Fock term, so at V = 3t the imbalance is 0.70
+# and not the Hartree value 0.89 of the text". Route 1 reads the two cells, which call get_mean_field_hamiltonian with
+# no compute_cross, so with the default that keeps the Fock term. Route 2 runs the call of each cell at V = 3t with its
+# own mix and the default meshes, nk = 8 for the loop and 30 cells for get_vev, once as the cell does and once with
+# compute_cross=False. The Fock term makes the imbalance smaller at the same mesh for every V of a grid from 0.2t to 10t,
+# while below about 0.75t the coarse mesh of the cell gives more than the converged Hartree value, so the sentence
+# quotes V = 3t and not a range.
+for title, part in (('## Symmetry breaking in the spinless fermionic chain', 'Core'),
+                    ('## Gap opening in a spinless interacting model', 'Challenge')):
+    i = [j for j, s_ in enumerate(heads) if s_.startswith(title)][0]
+    src = ''.join(nb['cells'][i + 1]['source'])
+    check('notebook box: the %s cell calls the mean field with no compute_cross, so it keeps the Fock term' % part,
+          'get_mean_field_hamiltonian(V1=V,mf="CDW"' in src and 'compute_cross' not in src, mixes[part])
+with tempfile.TemporaryDirectory() as tmp:
+    cwd = os.getcwd(); os.chdir(tmp)
+    try:
+        dns = {}
+        with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+            for part, mix in mixes.items():
+                for cc in (True, False):
+                    h0 = geometry.bichain().get_hamiltonian(has_spin=False); h0.add_sublattice_imbalance(0.)
+                    d_ = h0.get_mean_field_hamiltonian(V1=3.0, mf="CDW", mix=mix, filling=0.5, write=False,
+                                                       compute_cross=cc).get_vev(operator=None)
+                    dns[part, cc] = abs(d_[0] - d_[1])
+            grid = {}
+            for V in (0.2, 0.5, 1.0, 2.0, 5.0, 10.0):
+                for cc in (True, False):
+                    h0 = geometry.bichain().get_hamiltonian(has_spin=False)
+                    d_ = h0.get_mean_field_hamiltonian(V1=V, mf="CDW", mix=0.5, filling=0.5, write=False,
+                                                       compute_cross=cc).get_vev(operator=None)
+                    grid[V, cc] = abs(d_[0] - d_[1])
+        left = os.listdir(tmp)
+    finally:
+        os.chdir(cwd)
+for part in mixes:
+    check('notebook box, %s cell: at V = 3t its call gives the imbalance 0.70, and 0.89 with compute_cross=False' % part,
+          abs(dns[part, True] - 0.704) < 2e-3 and abs(dns[part, False] - 0.892) < 1e-3, (dns[part, True], dns[part, False]))
+check('notebook box: at the mesh of the cell the Fock term lowers the imbalance at every V of the grid',
+      all(grid[V, True] < grid[V, False] for V in (0.2, 0.5, 1.0, 2.0, 5.0, 10.0)),
+      [(V, round(grid[V, True], 3), round(grid[V, False], 3)) for V in (0.2, 0.5, 1.0, 2.0, 5.0, 10.0)])
+check('notebook box: at V = 0.5t the cell gives more than the converged Hartree value 0.03, so no range is quoted',
+      grid[0.5, True] > 0.1 and abs(imbalance(0.5) - 0.03) < 5e-3, (grid[0.5, True], imbalance(0.5)))
+check('the calls of the notebook box leave no file', left == [], left)
+
 print('all checks of page 13 hold')

@@ -536,38 +536,342 @@ the prefix of the group.
 
 ## Open for the lecturer
 
-A builder does not decide these. Each is a numbered equation, a statement of the old text or a convention.
+The builders, the physics checkers and the fixers left the points of the old text that they found, as their brief says.
+The lecturer decided on 2026-11-22 how to handle them ("Fix old-text errors, ask the rest"). The old list of this
+section, the reports of the groups and the open points of `webnotes/conventions/session04.md` were merged into 31
+distinct points. Sixteen are errors of the old text, which are now corrected on the web, and fifteen are for the
+lecturer. A correction changes no numbered equation, no convention and no render of the PDF, and every number that it
+adds is an assert in the check script of its page, in the block marked "corrected on 2026-11-22". An independent check
+of the corrections on the same day made five of them more precise, entries 1, 2, 4, 10 and 12, and gave four more
+points for the lecturer, 16 to 19. Two of these are on files that this pass does not edit, the toolkit and the
+conventions sheet.
 
-1. The factor of the Peierls phase (4.4). Section 4.7 sets $e=1$ and keeps $\hbar$, and (4.5) to (4.8) use
-   $\ell_B=\sqrt{\hbar/B}$ and $x_0=\hbar k_y/B$. With these units the phase of minimal coupling (4.3) is
-   $(1/\hbar)\int\mathbf A\cdot d\boldsymbol\ell$, while (4.4) prints $\int\mathbf A\cdot d\boldsymbol\ell$. The
-   fold of Section 3.6b uses the phase $2\pi\alpha$ per plaquette with $\alpha=Ba^2/(h/e)$, which needs the
-   $1/\hbar$.
-2. The order of $x$ and $y$ in Section 4.2. The page and the caption of `hall_setup.svg` put the voltage along $y$
-   and the current along $x$, and write $I_x=N(e^2/h)V_y$. By the conventions sheet of Session 3 this is the case
-   where the $\Omega$ of the notes gives $\sigma_{xy}=-(e^2/h)C$. (4.1) and (3.4) stay as printed, and the sheet
-   says that a page does not derive an absolute direction of the current.
-3. "Roughly two orders of magnitude" in Section 4.10, in the text after (4.7) and in the caption of Figure 4.4,
-   which is a caption of the PDF. With $m^*=0.067\,m_e$ and $v=10^6$ m/s the ratio of $E_1$ of graphene to
-   $\hbar\omega_c$ of GaAs is $21$ at $1$ T, $10.5$ at $4$ T and $6.6$ at $10$ T. Section 4.1 says "roughly one
-   order of magnitude", and its quiz says "roughly seven times" at $10$ T. The sheet of Session 3 already lists this.
-4. "Roughly one millielectronvolt" for GaAs in Section 4.1, "for the fields that we can reach in a laboratory".
-   The level spacing is $1.7$ meV at $1$ T and $17.3$ meV at $10$ T, which the quiz of the same file states.
-5. The opening argument of Section 4.16. It says that leaving some orbitals empty gives a density "clearly not
-   uniform" with lumps. `droplet_density.py` prints the density of the Slater determinant of every third orbital,
-   and for $N=20$ it is between $0.324$ and $0.333$ of the full value for $2\ell_B<r<\sqrt{6N}\ell_B-2\ell_B$. Two
-   of every three orbitals give $0.665$ to $0.690$. The example "two out of every three" is also the filling
-   $2/3$, while the state that the page builds has $1/m$.
-6. "The exact ground state of a strongly interacting many-body problem" in Section 4.16. The Laughlin state is the
-   exact ground state of a short-range model interaction, the first Haldane pseudopotential, and for the Coulomb
-   interaction it is a very accurate trial state and not the exact one. This was not computed here.
-7. The charge $+e$ of Section 4.9. The page says that for an electron "every cyclotron orbit and every edge current
-   below goes around in the other direction, and nothing else changes". For the charge $-e$ the states of the
-   lowest level in the symmetric gauge are functions of $\bar z$, unless the field is reversed. A check by hand gives
-   $\pi_x+i\pi_y=-2i\hbar(\partial_{\bar z}+z/4\ell_B^2)$ for $+e$, so (4.9) is right for the convention of
-   the page.
-8. The text of the widget of Section 4.11 says that the dashed lines are $(n+\tfrac12)\hbar\omega_c$, while the
-   levels of the square lattice are $-4t+\hbar\omega_c(n+\tfrac12)$. Whether the widget draws the energy from the
-   bottom of the band was not read.
-9. The six PDF figures of the session have no ticks and no units, as listed above. They stay as they are unless
-   the lecturer asks for a redraw.
+The nineteen points for the lecturer were decided on 2026-11-22. The lecturer picked point 3 and said for the others
+"ask me the top 5, other you decide by yourself". The coordinator decided the other eighteen by a rule. It takes the
+option that makes the text true with the smallest change and changes no numbered equation, and between two true
+wordings the shorter and clearer one. A claim that no stored source or calculation supports is reduced to what is
+supported, a notebook box that does not match its cell is rewritten to match it, and an outdated line of the
+conventions sheet is corrected with its check. The notebooks, the Blender figures, the toolkit and a sign of Session 3
+are not edited. The list "Decided on 2026-11-22" below gives each choice, entries 17 to 27 of the next list carry the
+changes that the `.tex` shares, and "Not applied" gives what the rule leaves out. Every number that these changes add is
+an assert in the block marked "decided on 2026-11-22" of the check script of its page, and in
+`webnotes/checks/session04/conventions.py` for the sheet. The only numbered equation that changed is (4.2), which keeps its tag.
+
+A second independent check on the same day read the applied decisions and gave eight findings. All eight were applied,
+after a calculation of our own for each. The caption of `hall_setup` now says where the current of the charge $+e$ goes,
+point 2. The factor $1/\hbar$ of (4.4) is now also in the sentence before it and in the first quiz of Section 4.7, point
+1. The graphene bullet says what the stored abstract says, point 6. The magnitude of $C$ is written on page 05 too,
+point 3, and the charge $e/m$ of a quasihole is written as a magnitude on pages 16, 18 and 20, point 4. The width 30 is
+back on page 11, since the Core cells of the notebook have it, point 9. The range of the lumps is taken over 210 seeds,
+point 7, and the bullet of the conventions sheet on the square ribbons of the notebook names the cells and their widths.
+
+### Corrected on the web, to carry over to the .tex
+
+The line numbers are those of `lecture_notes/src/sessions/session04.tex` on 2026-11-22.
+
+1. Page 01, Section 4.1, the GaAs bullet, .tex lines 29 to 31. Old "For the fields that we can reach in a laboratory
+   this gives roughly one millielectronvolt, and this is the reason why quantum Hall physics in GaAs needs temperatures
+   of the order of one kelvin." New "This gives $1.7$ meV per tesla, so a few millielectronvolts at a few tesla and
+   $17$ meV at $10$ T. This is the reason why quantum Hall physics in GaAs needs temperatures of the order of one
+   kelvin." The pointer of Section 4.9 to "the millielectronvolt scale that we gave in Section 4.1" agrees with the new
+   sentence and is not changed. The sentence on the kelvin was changed on the same day by the decision on point 18, entry 21 below. `g1_01` asserts
+   1.73 meV per tesla by the SI constants and by $2\mu_B/0.067$, 3.5 to 8.6 meV for 2 to 5 T and 17 meV at 10 T. The
+   assert of the old number, 1 meV at 0.58 T, is removed.
+2. Page 10, Section 4.10, .tex lines 310 to 312. Old "while for Dirac electrons the levels are spaced as $\sqrt{n}$ and
+   grow as $\sqrt{B}$, and this is the reason why, at the same field, the Landau levels of graphene are roughly two
+   orders of magnitude higher in energy than the ones of a GaAs 2DEG." New "For Dirac electrons the levels are spaced
+   as $\sqrt{n}$ and grow as $\sqrt{B}$. With $v_F=10^6$ m/s for graphene and $m^*=0.067\,m_e$ for GaAs, at the same
+   field the Landau levels of graphene are roughly one order of magnitude higher in energy than the ones of a GaAs 2DEG.
+   The first level $E_1$ of graphene is $21$ times the spacing $\hbar\omega_c$ of GaAs at $1$ T and $6.6$ times at
+   $10$ T, and this ratio falls as $1/\sqrt{B}$." The old "this is the reason why" made the $\sqrt{B}$ law the cause of
+   the factor, while the factor $m^*v_F\sqrt{2/\hbar eB}$ is set by $v_F$ and $m^*$, and the $\sqrt{B}$ law only makes it
+   fall, to 1 at 440 T. The paragraph is now split before "Figure 4.4 shows", for its length. The caption of Figure 4.4 has the same error in its
+   text, `lecture_notes/src/figures/s04f04_ladders.tex` line 11, and only the text changed, not the render. Old "This is
+   still enough to put the level spacing of graphene about two orders of magnitude above the one of a GaAs quantum well
+   at the same field." New "This is still enough to put the level spacing of graphene about one order of magnitude
+   above the one of a GaAs quantum well at the same field." The .tex of Section 4.1, line 35, also says "roughly two
+   orders of magnitude larger", where the web already reads "roughly one order of magnitude larger, around 100
+   millielectronvolts at 10 T". `g3_10` asserts the ratio 21 at 1 T and 6.6 at 10 T, by the SI constants and by the
+   rates of the conventions sheet, within half a decade of 10, and that it is $m^*v_F\sqrt{2/\hbar eB}$, falls as
+   $1/\sqrt{B}$ and is 1 at 440 T.
+3. Page 05, Section 4.5, .tex lines 128 to 130. Old "So an impurity on the left edge cannot scatter a left-moving
+   electron into a right-moving one, because the right edge is at a macroscopic distance." New "So an impurity on the
+   left edge cannot scatter an electron into a state that moves the other way along $y$, because these states are on
+   the right edge, at a macroscopic distance." The ribbon is finite along $x$, so its edge states move along $y$. The
+   paragraph is now split before "Figure 4.1 shows", for its length. `g2_05` asserts that at $\mu=1$, 2 and 3 every
+   branch of the left wall has $dE/dk_y<0$ and every branch of the right wall $dE/dk_y>0$.
+4. Page 06, Section 4.6, .tex lines 151 and 152. Old "When the field increases further, the cyclotron energy
+   $\hbar\omega_c$ grows, so fewer Landau levels stay below a fixed chemical potential." New "When the field increases
+   further, the cyclotron energy $\hbar\omega_c$ grows and each Landau level holds more states, $eB/h$ per unit area, so
+   at fixed density fewer Landau levels are filled." The paragraph ends with the result at fixed density of the figure,
+   and the opener and the key box of the page are at fixed density too. The paragraph is now split before this sentence,
+   for its length. `g2_06` asserts that at the density $3\times10^{11}$ cm$^{-2}$ of the problem the fully filled
+   levels are 1 from 6.20 to 12.4 T and 2 from 4.14 to 6.20 T, which is the clean count, and that the plateaus of the
+   figure cross the classical line at $B/B_1=1/N$ while its jumps, with the broadening of its model, are at
+   $B/B_1=1/(N+\tfrac12)$. An earlier version of this entry said that the jumps of the figure are at $1/N$, and it is
+   corrected.
+5. Pages 06 and 11, Sections 4.7 and 4.12. The old text called $\boldsymbol\pi=\mathbf p-e\mathbf A$ the canonical
+   momentum, while it is the kinetic momentum $m\mathbf v$ and $\mathbf p$ is the canonical one, as the recall box of
+   Section 4.9 and the key box and the problem of Section 4.12 say. Page 06, .tex lines 160 and 161, old "enters the
+   equations of motion through the canonical momentum," new "enters the equations of motion through the kinetic
+   momentum, also called the mechanical momentum,". Page 11, .tex line 352, old "if we define the ladder operators
+   directly from the canonical momentum," new "if we define the ladder operators directly from the kinetic momentum,".
+   Page 11, a quiz feedback, not in the .tex, old "The ladder operators are built from the canonical momentum
+   $\boldsymbol{\pi}$." new "The ladder operators are built from the kinetic momentum $\boldsymbol{\pi}$." The
+   "canonical bosonic commutation relation" of .tex line 358 is another use of the word and stays. `g2_06` asserts with
+   sympy that Hamilton's equations give $m\dot x=\pi_x$ and $m\dot y=\pi_y$, and that $[p_x,p_y]=0$ while
+   $[\pi_x,\pi_y]=i\hbar B$.
+6. Page 06, Section 4.7, .tex lines 188 and 189. Old "In concrete terms, the hopping amplitude $t_{ij}$ is by
+   definition an overlap between the orbital wavefunctions at sites $i$ and $j$." New "In concrete terms, the hopping
+   amplitude $t_{ij}$ is the matrix element of the Hamiltonian between the orbital wavefunctions at sites $i$ and $j$."
+   `g2_06` asserts on a double well that the two orthonormal orbitals have the overlap 0, while $|\langle1|H|2\rangle|$
+   is half the splitting of the two levels.
+7. Page 09, Section 4.9, .tex lines 240 to 242. Old "For an electron, which has charge $-e$, every cyclotron orbit and
+   every edge current below goes around in the other direction, and nothing else changes." New "For an electron, which
+   has charge $-e$, every cyclotron orbit and every edge current below goes around in the other direction. The states of
+   the lowest Landau level in the symmetric gauge of Section 4.13 are then functions of $\bar z$ and not of $z$. The zero
+   mode of the Dirac levels of Section 4.10 also moves, from the upper component of the spinor to the lower one."
+   The sign of the Chern number for the charge $-e$ is not written, since the sign of $C$ is the third point for the
+   lecturer. `g3_09` asserts with sympy that $z^2$ and $\bar z^2$ times the Gaussian have $\tfrac12$ and $\tfrac52$ in
+   units of $\hbar\omega_c$ for $+e$ and the reverse for $-e$, and in an oscillator basis that the Dirac zero mode is in
+   the upper component for $+e$ and in the lower one for $-e$.
+8. Page 11, the text of the widget `landaufan`, not in the .tex. Old "and the dashed lines are the Landau levels
+   $(n+\tfrac12)\hbar\omega_c$ with $\hbar\omega_c=4\pi\phi t$ of Section 4.9." New "and the dashed lines are the Landau
+   levels $-4t+(n+\tfrac12)\hbar\omega_c$ with $\hbar\omega_c=4\pi\phi t$ of Section 4.9, measured from the bottom of the
+   band at $-4t$." The widget draws its dashed lines at `-4 + wc*(j + 0.5)`. Its legend label "(n+1/2) hbar omega_c" in
+   `webnotes/widgets/defs/landaufan.py` and the old text in `webnotes/widgets/blocks/landaufan.md` are files of the
+   toolkit and were not changed, and they are point 16 for the lecturer. `g3_11` asserts the dashed lines from the code of the widget and the lowest band
+   within 5 percent of a spacing of the first line, by the widget and by a Harper matrix of its own.
+9. Page 13, the caption of `droplet_density`, not in the .tex. Old "It is flat at $\nu=1$ up to the radius
+   $\sqrt{2N}\,\ell_B$, where it drops to zero." New "It is flat at $\nu=1$ up to about $2\,\ell_B$ inside the radius
+   $\sqrt{2N}\,\ell_B$, and around this radius it drops to zero." The old caption disagreed with the solution of the
+   same page. `g4_13` asserts 0.998, 0.92, 0.47 and 0.003 at 2 and 1 $\ell_B$ inside, at and 2 $\ell_B$ outside the
+   radius for 20 electrons, by the sum of the orbitals and by the incomplete gamma function.
+10. Page 16, Section 4.16, .tex lines 474 to 476. Old "From them we arrive at the exact ground state of a strongly
+    interacting many-body problem, which will give us fractional charge in the next section." New "From them we arrive
+    at an exact ground state of a repulsion of very short range. Among the states of zero energy of this repulsion it is
+    the densest one. For the Coulomb repulsion and $m=3$ we compare at the same total angular momentum,
+    $3N(N-1)\hbar/2$. There the Laughlin state is very close to the ground state but not equal to it, with an overlap of
+    $0.99$ for three electrons and $0.98$ for four on a disc. This state will give us fractional charge in the next
+    section." The paragraph is now split before "So we start only", for its length. On a disc with no confinement the
+    Coulomb energy keeps falling with the angular momentum, so the comparison holds only in the sector of the Laughlin
+    state, and the short-range repulsion has states of zero energy at every larger angular momentum, so the Laughlin
+    state is the densest of them and not the only one. `g4_16` diagonalizes 3 and 4 electrons in the lowest level at a
+    fixed total angular momentum. With $V_1$ alone there is no negative energy and no state of zero energy below
+    $3N(N-1)/2$, which is 9 and 18, one at it, the Laughlin state, and for three electrons 1, 1, 2 and 3 at 9 to 12.
+    With the Coulomb pseudopotentials the overlap at 9 and 18 is 0.990997 and 0.978804, the first one also in the full
+    product space of three particles.
+11. Page 16, Section 4.17, .tex lines 504 and 505. Old "This moves charge inward instead of outward, and it gives an excitation
+    with the opposite, negative, fractional charge." New "This moves charge inward instead of outward, and it gives an
+    excitation with the opposite fractional charge, which has the sign of the charge of the electrons." The old word
+    "negative" holds for the charge $-e$ and not for the charge $+e$ of these pages, and it disagreed with the key box of
+    the same page. `g4_16` asserts for 4 electrons that the quasielectron holds more electrons than the Laughlin state in
+    the discs of radius 1.5 to 2.5 $\ell_B$ and the quasihole fewer, with the angular momentum 14 and 22 against 18.
+    The sign of (4.15) is the fourth point for the lecturer.
+12. Pages 19 and 20, Sections 4.19 and 4.21. Page 19, .tex lines 581 and 582, old "At every step of this path the bulk
+    gap stays open and the chiral edge state survives." new "For the parameters of the notebook, where the field and the
+    Haldane coupling give the same Chern number, the bulk gap stays open at every step of this path and the chiral edge
+    state survives." Page 20, the closing summary, .tex lines 638 to 640, which there read "adiabatically and
+    topologically equivalent to the quantum Hall state driven by the field", old "It is adiabatically connected to the
+    quantum Hall state driven by the field, so the two are the same topological phase" new "It is adiabatically
+    connected to the quantum Hall state driven by the field with the same Chern number, so the two are the same
+    topological phase". The try-it box of page 19, not in the .tex, now says what the cell does: "The cell follows the
+    straight line $\nu H_\mathrm{QH}+(1-\nu)H_\mathrm{C}$ between the two, and only $H_\mathrm{QH}$ carries the Peierls
+    phases, so the Hamiltonians in between are not those of a uniform field. This line keeps the gap open on the ribbon
+    of the cell in the gauge of pyqula, but not in every gauge." `g5_19` asserts on the path of the text, with
+    `add_haldane(0.07)` added before the field 0.01 and the onsite energy $-0.2$ all along, that no bulk state comes
+    closer to zero energy than 0.135 at zero field, 0.404 at full field and 0.198 at the end, and that at every one of
+    its 11 steps one edge branch crosses zero energy on each edge, rising on the upper edge and falling on the lower one.
+    It asserts that on the straight line of the notebook the bulk gap stays above 0.198, that with `add_haldane(-0.07)`
+    a bulk state comes to zero energy, and that after a pure gauge change of $H_\mathrm{QH}$, the ribbon moved by 40 in
+    $y$, which shifts its spectrum by $-0.2$ in $k$, the straight line brings a bulk state below 0.01 at $\nu=0.5$,
+    0.0003 on the mesh of 41 $k$. `g5_20` asserts that the field and `add_haldane(+0.07)` have $C=+1$ while
+    `add_haldane(-0.07)` has $C=-1$.
+13. Page 19, the notebook box, .tex lines 591 and 592. Old "The "topological domains" exercise lets you study spatial
+    regions where the two couplings compete directly, which is a practical version of the equivalence argument that we
+    just gave." New "The "topological domains" exercise puts the two halves of a ribbon in a field at onsite energies of
+    opposite sign. The two halves then have Chern numbers of opposite sign, and the wall between them carries the chiral
+    modes that the count of Section 4.5 gives." The cell has a field and the onsite energies $\pm3.5$ and no Haldane
+    coupling. `g5_19` asserts $C=+2$ and $-2$ for the two halves, by `get_chern` and by the link variables, and 4
+    branches across zero energy at the wall and 2 at each outer edge.
+14. Page 10, a quiz feedback, not in the .tex, corrected earlier in the new shape. Old "$E_4=580\,\mathrm{meV}$" for
+    $E_n\propto n^2$, new "$E_4=581\,\mathrm{meV}$", which is $16\times36.3$. `g3_10` asserts it.
+15. Page 03, the caption of `landau_chern`, not in the .tex, corrected earlier when the figure was redrawn. Old "The
+    small shift of the upper levels from the dashed lines comes from the lattice", new "The bands sit below the dashed
+    lines, by $0.01\,t$ for the lowest and by $0.30\,t$, about half a spacing, for the fourth, which is the effect of the
+    lattice".
+16. Page 06, the caption of `plateaus`, not in the .tex, corrected earlier when the figure was redrawn. Old "Look at how
+    every plateau crosses the classical line at its center", new "Look at the dots, where every plateau crosses the
+    classical line at $B/B_1=1/N$". The old sentence held in $1/B$ and not on the axis $B$ of the figure.
+17. Page 03, Section 4.4, .tex lines 94 to 101, decided by the lecturer on 2026-11-22, point 3. Old "which is also the
+    smallest nonzero value, $C=1$." new "with the smallest nonzero magnitude, $|C_n|=1$. For the charge $+e$ of these
+    pages in the field $B\hat z$, each level has $C_n=-1$ with the $\Omega$ of Session 3, and for an electron in the same
+    field $C_n=+1$." Old "the sum of $N$ contributions equal to $1$," new "the sum of $N$ contributions of the same sign
+    and of magnitude $1$,". Equation (4.2), old $C_{\text{tot}} = \sum_{n=0}^{N-1} C_n = N \Longrightarrow \sigma_{xy} =
+    N\,e^2/h$, new $|C_{\text{tot}}| = \big|\sum_{n=0}^{N-1} C_n\big| = N \Longrightarrow |\sigma_{xy}| = N\,e^2/h$,
+    with the same number. The heading of Section 4.4, .tex line 89, is not changed, see "Not applied". `g1_03` asserts
+    $|C_n|=1$ and $|C_\text{tot}|=N$ for $N=1$ to 4 with both signs, and $C_n=-1$ for the charge $+e$ in $B\hat z$ and $+1$
+    for an electron, by pyqula and by a numpy cell with the phase (4.4).
+18. Page 20, the closing summary, .tex lines 618 to 620, point 3. Old "each with Chern number one, so the Hall
+    conductivity is quantized to $N e^2/h$ for $N$ filled Landau levels" new "each with a Chern number of magnitude one,
+    $|C_n|=1$. So the Hall conductivity is quantized to $|\sigma_{xy}|=Ne^2/h$ for $N$ filled Landau levels". The same
+    choice changed the web text of the index, of Section 4.14, of the caption of `s04f03_guidingcenter` on page 03, of
+    the second quiz of page 03 and of the first quiz of page 06, which the `.tex` does not have. `g5_20` and `g4_13`
+    assert $|C_n|=1$ and $|C_\text{tot}|=N$.
+19. Page 06, Section 4.7, .tex lines 190 to 195, point 1. Old "a complex phase, which is equal to the line integral of
+    $\mathbf{A}$ between the two sites," new "a complex phase, which is equal to the line integral of $\mathbf{A}$ between
+    the two sites, divided by $\hbar$." Under (4.4), after .tex line 195, new "This form is written with $\hbar=1$. In the
+    units of this session, with $e=1$ and $\hbar$ kept, the phase is $(1/\hbar)\int\mathbf{A}\cdot d\boldsymbol{\ell}$."
+    (4.4) stays as printed. The first quiz of Section 4.7, not in the `.tex`, now takes $\chi=\hbar\theta x/a$ in place of
+    $\chi=\theta x/a$, writes $(1/\hbar)$ in front of the sum of the added phases of its second option, and says in its third
+    option that the sum around a loop is "the flux through it divided by $\hbar$, which is $2\pi$ times the flux in flux
+    quanta". `g2_06` asserts that the bond phase $Aa/\hbar$ puts the minimum of the chain at the $k=A/\hbar$ of minimal
+    coupling, that $(e/\hbar)Ba^2$ is $2\pi\alpha$, that the new $\chi$ adds $\theta$ to every bond along $x$, that the
+    gauge changes around a plaquette add to 0 and that the loop sum is the flux over $\hbar$, $2\pi$ times the flux in flux
+    quanta $2\pi\hbar$. The sentence before (4.4) and the sentence under it were changed after the second independent
+    check.
+20. Page 01, Section 4.1, the graphene bullet, .tex lines 35 to 37, point 6. Old "This is high enough that the quantum
+    Hall plateaus of graphene survive up to about 100 K, and in the best samples up to almost room temperature." new
+    "This is high enough that the quantum Hall effect of graphene can be measured even at room temperature." No stored
+    source gives the 100 K or the best samples, and the stored abstract of `science.1137201` says "the QHE can reliably be
+    measured even at room temperature", which `g1_01` asserts, with 115 meV at 10 T as $4.4\,k_BT$ at 300 K for "high
+    enough", the number of Session 3. A first wording of the same day, "survive in the best samples up to almost room
+    temperature", was replaced after the second independent check. The rest of the bullet is kept by point 5.
+21. Page 01, Section 4.1, the GaAs bullet, .tex lines 29 to 31, point 18. Old "This is the reason why quantum Hall
+    physics in GaAs needs temperatures of the order of one kelvin." new "A plateau needs a thermal energy much smaller
+    than this spacing, and disorder broadens the levels, so quantum Hall physics in GaAs needs temperatures of the order
+    of one kelvin." This is the reason of the problem of the same page. `g1_01` asserts that 1.73 meV is 20 K and that
+    $k_B$ times 1 K is 1/20 of the spacing at 1 T.
+22. Page 16, Section 4.16, .tex lines 442 to 445, point 7. Old "for example two out of every three" new "for example
+    one out of every three". Old "If we only leave some orbitals empty, we obtain" new "If we leave the orbitals empty in
+    an irregular way, we obtain". `g4_16` asserts that every third orbital of 20 electrons gives 0.324 to 0.333 between
+    $2\,\ell_B$ and $2\,\ell_B$ inside the edge, and that the 210 irregular choices of 20 of the orbitals 0 to 57 with the
+    seeds 0 to 209 deviate there from $1/3$ by more than 20 percent. Their range is 24.0 to 185.2 percent, with 22 above
+    100 percent, and it depends on the seeds, so only the lower bound is asserted. An earlier version of this entry gave
+    27 to 100 percent from ten seeds, and over 1000 seeds the lowest deviation is 19.5 percent.
+23. Page 11, Section 4.11, .tex lines 343 to 346, point 9. Nothing to carry over. The web sentence "The notebook box of
+    Section 4.10 asks you to build both ribbons yourself, for example with a width of 30 sites." was first shortened, on
+    the ground that the notebook has no width 30. The second independent check found `N = 30` in the Core cells
+    "Landau levels of conventional electrons" with `square_ribbon` and "Landau levels of the Dirac equation" with
+    `honeycomb_armchair_ribbon`, which the notebook box of Section 4.10 names. The sentence is now "The notebook box of
+    Section 4.10 asks you to build both ribbons yourself, for example with the width `N = 30` of its Core cells." It
+    gives the width parameter and not a number of sites, since the armchair ribbon of 30 has 60 rows of sites and the
+    square one 30. The `.tex` phrase "shown for a width of 30 in the slides" agrees with the notebook and stays. `g3_11`
+    reads `N = 30` from the two cells and counts the rows.
+24. Page 19, the notebook box, .tex lines 589 and 590, point 19. Old "Build the Haldane model, switch a magnetic field on
+    and off numerically together with the Haldane coupling, and follow the bulk gap and the Chern number along the
+    adiabatic path described above." new "Build the Haldane model and a quantum Hall ribbon, follow the straight line
+    between the two Hamiltonians, and watch the bulk gap and the edge branches of the ribbon." `g5_19` reads the code cell
+    of the notebook and asserts that it builds the two Hamiltonians on one armchair ribbon, takes
+    `H_hall*nu + H_chern*(1-nu)`, plots the bands with `operator="yposition"` and calls no `get_chern`.
+25. Page 05, Section 4.5, .tex lines 114 to 118, point 3, after the second independent check. Old "a sample with Chern
+    number $N$" new "a sample with a Chern number of magnitude $N$". Old "is equal to the difference in Chern number
+    across it" new "is equal to the magnitude of the difference in Chern number across it". The second quiz of the page,
+    not in the `.tex`, now asks for $|\sigma_{xy}|$, and its feedback says "The number of modes is $|C|$, and
+    $|\sigma_{xy}|=|C|e^2/h$" and "equal to the magnitude of the Chern number of the bulk". `g2_05` asserts that $N=1$, 2
+    and 3 filled levels of a Harper cell with the flux $1/12$ have $C_\text{tot}=-N$ for the charge $+e$ in $B\hat z$ and
+    $+N$ for an electron, so $|C_\text{tot}|=N$, the number of modes at each wall.
+26. Page 20, the closing summary, .tex line 634, point 4, after the second independent check. Old "have fractional charge
+    $e/m$, equation (4.15)," new "have a fractional charge of magnitude $e/m$, equation (4.15),". The same change is in the
+    web text of the opener of page 16, the caption of `g4_quasihole_dimple`, the first quiz of Section 4.17 ("What is the
+    magnitude of the charge of one quasihole?", and "removes" in two feedbacks), the comesback box of page 16, the opener
+    of page 18 and the caption of `s04f06_quasihole` on page 20, which the `.tex` does not have. `g4_16`, `g4_18` and
+    `g5_20` assert the wording, and that for $m=1$ the quasihole leaves 1 electron fewer in the discs of 4 to 6
+    $\ell_B$, so its charge is $-e/m$ for the charge $+e$.
+27. Page 18, the caption of Figure 4.6, `lecture_notes/src/figures/s04f06_quasihole.tex` lines 10 and 11, point 4, after
+    the second independent check. Old "so one quasihole has the charge of an electron divided by $m$, which is $q=e/m$."
+    new "so one quasihole removes the charge of an electron divided by $m$, and its charge has the magnitude $q=e/m$."
+    Only the text changes, not the render. `g4_18` asserts it with the count of entry 26.
+
+### Decided on 2026-11-22
+
+One bullet per point of the old list "For the lecturer", in its order, with the choice and who chose it.
+
+1. The factor of the Peierls phase (4.4). The coordinator by the rule: keep (4.4) and add under it "In the units of this
+   session the phase is $(1/\hbar)\int\mathbf{A}\cdot d\boldsymbol{\ell}$", since the other form changes a numbered
+   equation. To keep the text true, the first quiz of Section 4.7 takes $\chi=\hbar\theta x/a$. The sheet gives the
+   factor in its first line of units. After the second independent check the key box also says that (4.4) is written
+   with $\hbar=1$, the sentence before (4.4) divides the line integral by $\hbar$, and the second and third options of the
+   quiz write the factor. Entry 19.
+2. The order of $x$ and $y$ in Section 4.2 and the sense of `hall_setup`. The coordinator by the rule: keep the order,
+   which holds in magnitude, and add to the caption "The arrows are drawn for electrons, and for the charge $+e$ of these
+   pages they go around the other way". `g1_01` asserts the sense with an island of 14 by 14 sites, $+0.196$ along $x$ in
+   the upper half for the charge $+e$ and $-0.196$ for an electron, and reads the counterclockwise arrows from the
+   coordinates of `hall_setup.py`. After the second independent check the caption reads "The arrows are drawn for
+   electrons. For the charge $+e$ of these pages they go around the other way, and the channels of the top contact then
+   end in the right contact, so the current is read there." `g1_01` counts the four contacts with Landauer-Buttiker, the
+   top one at $V_y$ and the others at 0. For the drawn sense the left contact takes $N(e^2/h)V_y$ and the right one 0, and
+   for the charge $+e$ the reverse, or the bottom contact takes it when the right one floats. Web text only.
+3. The sign of the Chern number of a Landau level. The lecturer: $|C_n|=1$ in the text and $|\sigma_{xy}|=Ne^2/h$ in
+   (4.2), with $|C_\text{tot}|=N$ on its left side and the tag 4.2, and one sentence of Section 4.4 that the charge $+e$
+   in $B\hat z$ has $C_n=-1$ with the $\Omega$ of Session 3 and an electron $+1$. Applied in the text of Section 4.4, in
+   (4.2), in the web caption of `s04f03_guidingcenter`, in the second quiz of page 03, in Section 4.14, in the closing
+   bullet of Section 4.21, in the index and in the first quiz of page 06, which quotes (4.2). After the second
+   independent check also in the second paragraph and in the second quiz of page 05. The heading of Section 4.4 is not
+   changed, see "Not applied". Entries 17, 18 and 25.
+4. The sign of (4.15). The coordinator by the rule: keep (4.15) as printed, since the other two forms change it, and the
+   lead sentence of the key box now reads "has a charge of magnitude", so that the box is true for the charge $+e$. The
+   key box of Section 4.17 gives the sign. `g4_18` asserts that the quasihole leaves 1 electron fewer for $m=1$ and 0.32
+   to 0.34 for $m=3$. After the second independent check every other place that gives a quasihole the charge $e/m$
+   writes it as a magnitude too, on pages 16, 18 and 20. Entries 26 and 27.
+5. The graphene bullet of Section 4.1. The coordinator by the rule: keep it as it is, since it holds. `g1_01` asserts the
+   ratio 10 at 4.4 T and 115 meV at 10 T.
+6. "Survive up to about 100 K". The coordinator by the rule: remove "up to about 100 K, and", since no stored source
+   gives it. After the second independent check the sentence says what the stored abstract says, "This is high enough
+   that the quantum Hall effect of graphene can be measured even at room temperature". Entry 20.
+7. The opening argument of Section 4.16. The coordinator by the rule: the smallest change, "one out of every three" and
+   the lumps of an irregular choice of the empty orbitals. Entry 22.
+8. The geometry of the third paragraph of Section 4.5. The coordinator by the rule: keep it, since it holds for the
+   Hall bar of Section 4.2.
+9. "For example with a width of 30 sites". The coordinator by the rule first removed it, on the ground that no source
+   gives the width. The second independent check found `N = 30` in the two Core cells of the notebook box of Section
+   4.10, so by the same rule the width stays, written as the width parameter `N = 30` of the Core cells. Entry 23.
+10. The origin of $k_y$ in `ribbon_three` and in the three quiz ribbons of page 05. The coordinator by the rule: keep
+    them, since their captions name the walls and the plots have their axes.
+11. The sign of the fold of Section 3.6b. Not applied, see below.
+12. The bullet of `landau_chern.py` in the conventions sheet. The coordinator by the rule: the bullet of the fixer of g1
+    is applied, the open point on the "small" shift is dropped, and the first open point no longer names the figure.
+    `conventions.py` now checks the pyqula cell of `g1_landau_levels_square.py`, $C=+1$ for each of the four bands with
+    the flux $1/20$ and $-1$ with $-1/20$.
+13. The bullet of `flat_chern_band.py` in the conventions sheet. The coordinator by the rule: the bullet and the two
+    extra bullets of the fixer of g5 are applied. `conventions.py` checks with pyqula the arguments 0.1155, 0.0927 and
+    0.3295, $C=+1$ from the links and from `get_chern`, the widths 2.48 and 0.212, the gaps 1.04 and 2.97, the ratio
+    14.0, the spectra of `_honeycomb.bloch` within $2\cdot10^{-15}$, and the width 0.200 and the gap 3.000 of the band
+    with $C=0$.
+14. The comments of `mufun` in `session4.ipynb`. Not applied, see below.
+15. Ticks and units on the six figures of the PDF. Not applied, see below.
+16. The legend of the widget `landaufan` and its template. Not applied, see below.
+17. The open points of the conventions sheet. The coordinator by the rule: each bullet is kept and marked with how it was
+    settled, the section is now "Open points of the old text, settled on 2026-11-22", and the bullet on the caption of
+    `landau_chern` is dropped by point 12. The bullets on the sign of $C$, on the order of $x$ and $y$ and on the lumps
+    are marked with the decisions of points 3, 2 and 7.
+18. The temperature of the GaAs bullet. The coordinator by the rule: "A plateau needs a thermal energy much smaller than
+    this spacing, and disorder broadens the levels, so quantum Hall physics in GaAs needs temperatures of the order of one
+    kelvin". The present sentence did not follow from 1.7 meV, which is 20 K, and of the two new wordings this one gives
+    the reason of the kelvin, while the shorter one states it with no reason. Entry 21.
+19. The notebook box of Section 4.19. The coordinator by the rule: "Build the Haldane model and a quantum Hall ribbon,
+    follow the straight line between the two Hamiltonians, and watch the bulk gap and the edge branches of the ribbon",
+    which matches the cell. Entry 24.
+
+### Not applied
+
+- Point 11, the fold of Section 3.6b. It is a sign on a page of Session 3, which this pass does not edit.
+- Point 14, the comments of `mufun`. The notebooks are not edited. The conventions sheet keeps the open point.
+- Point 15, the six figures of the PDF. A converted Blender figure and its overlay are not touched, and the point stays
+  for the next Blender pass of the session.
+- Point 16, the legend of `landaufan`. The widget and its template are files of the toolkit, which this pass does not
+  edit. The text of page 11 is true, and the legend is read from the bottom of the band.
+- The heading of Section 4.4, part of point 3. "Landau levels as Chern-number-one flat bands" is also the title of the
+  manifest, which this pass does not edit, and in words it names the magnitude.
+- Other places that write $C=1$ for a Landau level, outside the list of point 3. Session 3 writes "each of them has
+  $C=1$" in `session03/05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.md` and "flat bands with
+  $C=1$" in `session03/index.md`, a sign of Session 3. Session 2 writes "flat bands with Chern number one" in its index
+  and in two comesback boxes, edited at the same time by another run. The places of page 05 were applied after the
+  second independent check, entry 25.
+- The lab box of page 16 keeps "which is the charge $e/m$ of a quasihole for $m=3$". Its electron system has the
+  charge $-e$, where a quasihole has the charge $+e/m$, and the box is the reading of a stored source. The sentences that
+  say that a quasihole removes the charge $e/m$ hold as they are.
+- The caption of Figure 4.2 on page 08, "add up to the same $\varphi$, which is the flux through that plaquette", and
+  the same words in `lecture_notes/src/figures/s04f02_gauge.tex`. The caption draws the phases of (4.4), which is
+  written with $\hbar=1$, and in that form $\varphi$ is the flux. The second independent check named it as old text of
+  the same kind as the quiz of Section 4.7 and gave no correction.

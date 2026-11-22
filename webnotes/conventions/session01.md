@@ -263,38 +263,50 @@ This section is written for Sessions 6 and 9 as well.
   leaves zero at the point $U=2.04t$ with $|m|=0.198$, after $4\cdot10^{-4}$ at $U=1.84t$. At $U=1.9t$ the loop leaves
   $8\cdot10^{-4}$, which is its tolerance next to the threshold and not a moment.
 
-## Open points of the old text, left as they are
+## Points of the old text, decided on 2026-11-22
 
-- Section 1.14 says that self-consistency gives "a finite $m$ for $U>0$". This holds for the half-filled chain,
+These points were found in the old text by the checks of 2026-11-21. On 2026-11-22 each one was corrected on the web,
+left as it is by a decision, or left because it is a notebook cell or a page of Session 6. The list "Decided on
+2026-11-22" of `webnotes/plans/session01.md` says who chose each one. The facts of each bullet are still checked by
+number.
+
+- Section 1.14 said that self-consistency gives "a finite $m$ for $U>0$". This holds for the half-filled chain,
   which has $m=0.0299$ at $U=t$, and not in general. The dimer needs $U>2t$ and the honeycomb lattice $U>2.23t$.
-  Section 6.3 repeats the sentence.
+  Corrected on the web on 2026-11-22, to "in the half-filled chain a finite $m$ for $U>0$". Section 6.3 repeats the
+  old sentence, and this part stays open for the pass of Session 6.
 - Section 1.14 says that an attractive $U$ "drives superconductivity". At half filling the charge density wave of the
-  attractive chain has the same mean-field gap as the s-wave state, $1.862t$ at $U=-3t$.
-- The notebook box of Section 1.14 says that the honeycomb challenge "uses the finite islands of Section 1.10". The
-  cell uses the periodic `geometry.honeycomb_lattice()` with `nk=10`.
-- The notebook box of Section 1.13 says "Start from an unbiased guess", and the cell passes `mf="CDW"`, the onsite
-  energies $\pm1$.
+  attractive chain has the same mean-field gap as the s-wave state, $1.862t$ at $U=-3t$. Left as it is on 2026-11-22,
+  since the sentence holds and Section 1.15 is about the s-wave state.
+- The notebook box of Section 1.14 said that the honeycomb challenge "uses the finite islands of Section 1.10". The
+  cell uses the periodic `geometry.honeycomb_lattice()` with `nk=10`. Corrected on the web on 2026-11-22.
+- The notebook box of Section 1.13 said "Start from an unbiased guess", and the cell passes `mf="CDW"`, the onsite
+  energies $\pm1$. Corrected on the web on 2026-11-22.
 - Section 1.13 says that the interaction "becomes a single-particle onsite energy", and the text of the cell
   "Symmetry breaking in the spinless fermionic chain" writes the Hartree decoupling, while the cell calls the default
   of pyqula, which keeps the Fock term. At $V=3t$ the cell gives 0.704, where the Hartree decoupling of the text and
-  of Figure 1.5 gives 0.892.
-- The tryit box of Section 1.11b calls the arrows of the cell "Magnetic order driven by interactions in a chain" "the
-  arrows of the magnetization". They are drawn from `extract("mz")`, the field $-Um/2$, so each arrow points against
-  the moment of its site. They alternate, as the box says.
+  of Figure 1.5 gives 0.892. Since 2026-11-22 the notebook box of Section 1.13 says this, and the cell stays.
+- The try-it box of Section 1.11b called the arrows of the cell "Magnetic order driven by interactions in a chain"
+  "the arrows of the magnetization". They are drawn from `extract("mz")`, the field $-Um/2$, so each arrow points
+  against the moment of its site. They alternate, as the box says. Since 2026-11-22 the box says that they show the
+  exchange field.
 - The cell "Magnetic order driven by interactions in a chain" defines
   $\langle S_z\rangle=\tfrac12(\langle n_\uparrow\rangle-\langle n_\downarrow\rangle)$, and the cell "The interacting
   Hubbard dimer" plots `get_vev("mz")`, which is $n_\uparrow-n_\downarrow$, with the label $\langle S_z\rangle$. So the
-  label is a factor 2 off, and the curve saturates at 1, as the $m$ of (1.8) does.
+  label is a factor 2 off, and the curve saturates at 1, as the $m$ of (1.8) does. Left, since the notebook is not
+  edited in the pass of the web notes.
 - The cell "Gap opening of the Hubbard model in a chain" says that the even sites have a positive magnetization, and
-  `get_vev("mz")` with the guess `"antiferro"` is $-0.621$ there. The opposite pattern has the same energy.
+  `get_vev("mz")` with the guess `"antiferro"` is $-0.621$ there. The opposite pattern has the same energy. Left, since
+  the notebook is not edited in the pass of the web notes.
 - (1.9) defines $\Delta$ as the number $\langle c_ic_j\rangle$, while the figure of Section 1.1 and (5.3) use $\Delta$ as
-  an energy, larger by the factor $|U|$, which is 3 in the example above.
+  an energy, larger by the factor $|U|$, which is 3 in the example above. Since 2026-11-22 the caption of the figure
+  of Section 1.1 says that its $\Delta$ is an energy, the pair amplitude of (1.9) times the attraction, and the key box
+  of Section 1.15 says that for the onsite term of (1.7) the pair is $\langle c_{i\downarrow}c_{i\uparrow}\rangle$.
 - Section 6.6 says that the magnetization of the chain "stays at zero below a critical $U$, and it grows continuously"
   above it, and Section 6.5 says that the uniform solution is "the paramagnet below $U\approx 4t$ and a fully
   polarized ferromagnet above it". In the half-filled chain the antiferromagnet has no threshold. The full
   polarization is a solution from $4t$, the lowest uniform state jumps from $m=0$ to $m=1$ only at $5.09t$, and
-  $UD(E_F)=1$ is at $6.28t$.
+  $UD(E_F)=1$ is at $6.28t$. Left for the pass of Session 6.
 - Section 6.3 writes $\mathbf m\equiv\langle\mathbf S\rangle$, and its quiz takes $m_x=1/2$ for the spinor
   $(1,1)/\sqrt2$, while (6.2) defines $m=n_\uparrow-n_\downarrow$, which is $2\langle S_z\rangle$. It also takes the
   exchange field from $\mathbf S^2\approx2\langle\mathbf S\rangle\cdot\mathbf S-\langle\mathbf S\rangle^2$, which gives
-  $\tfrac23$ of the splitting $Um$ of the decoupling of the densities.
+  $\tfrac23$ of the splitting $Um$ of the decoupling of the densities. Left for the pass of Session 6.

@@ -1,6 +1,6 @@
 ## Berry phase, fractional charge, and anyonic statistics {#sec-4-18 number="4.18"}
 
-How can a Berry phase measure the charge of an excitation, and its statistics? We will now see that a quasihole that goes once around a loop gets the Aharonov-Bohm phase of the charge $e/m$. A second quasihole inside the loop adds the phase $2\pi/m$, which for $m>1$ is neither the phase of bosons nor the phase of fermions.
+How can a Berry phase measure the charge of an excitation, and its statistics? We will now see that a quasihole that goes once around a loop gets the Aharonov-Bohm phase of a charge of magnitude $e/m$. A second quasihole inside the loop adds the phase $2\pi/m$, which for $m>1$ is neither the phase of bosons nor the phase of fermions.
 
 ::: {.recall eq="4.12 4.14"}
 These are the Laughlin state of Section [4.16](#sec-4-16) at the filling $\nu=1/m$, with an odd integer $m$, and the same state with a quasihole at the position $w$, from Section [4.17](#sec-4-17). The position of the electron $i$ is the complex number $z_i=x_i+iy_i$, and the factor $\prod_i(z_i-w)$ pushes the electrons away from $w$.
@@ -12,7 +12,7 @@ We now use the Berry phase to show directly two things. It is the same object th
 q\Phi/\Phi_0$, where $\Phi_0$ is the flux quantum, so the extra factor $1/m$ that we find is a direct and clear statement about the *charge* of the excitation.
 
 ::: key
-A quasihole of the Laughlin state at the filling $\nu=1/m$ has the charge
+A quasihole of the Laughlin state at the filling $\nu=1/m$ has a charge of magnitude
 
 $$q_{\text{qh}} = \frac{e}{m}. \tag{4.15}$$
 
@@ -63,7 +63,7 @@ To compare with the familiar cases, note that to move one quasiparticle all the 
 
 These quasiparticles are what are called **anyons**, which are excitations with exchange statistics that go continuously from the fermionic to the bosonic case. They are labeled by the same integer $m$ that fixed the filling fraction. We started from a many-body wavefunction built only from ordinary electrons, which are real fermions, and from the correlations of this wavefunction we obtained excitations that are neither fermions nor bosons. This is the simplest example of fractionalization in a quantum many-body system that we will meet in this course.
 
-![Fractional charge and fractional statistics, both obtained from a Berry phase. (a) When we multiply the Laughlin state by $\prod_i(z_i-w)$, equation [(4.14)](#eq-4-14), the angular momentum of every electron about $w$ increases by one. By Figure [4.5](#fig:s04:droplet) this moves charge radially outward and leaves a region with less charge behind, the dimple. If we do this $m$ times we remove the charge of one electron, so one quasihole has the charge of an electron divided by $m$, which is $q=e/m$. (b) When we move one quasihole once around another, along the loop, and follow the Berry phase, it separates into two parts. The first is an Aharonov-Bohm part, proportional to the enclosed flux, and its prefactor is what fixes $q=e/m$ in [(4.15)](#eq-4-15). The second is a remaining part $2\pi/m$, which depends only on the fact that one quasiparticle went around the other. A full loop is two exchanges, so the exchange phase itself is $\pi/m$, drawn at the bottom for $m=3$. For every odd $m>1$ it is strictly between the bosonic $0$ and the fermionic $\pi$, and this is what makes these excitations anyons.](figures/s04f06_quasihole.svg){#fig:s04:quasihole number="4.6"}
+![Fractional charge and fractional statistics, both obtained from a Berry phase. (a) When we multiply the Laughlin state by $\prod_i(z_i-w)$, equation [(4.14)](#eq-4-14), the angular momentum of every electron about $w$ increases by one. By Figure [4.5](#fig:s04:droplet) this moves charge radially outward and leaves a region with less charge behind, the dimple. If we do this $m$ times we remove the charge of one electron, so one quasihole removes the charge of an electron divided by $m$, and its charge has the magnitude $q=e/m$. (b) When we move one quasihole once around another, along the loop, and follow the Berry phase, it separates into two parts. The first is an Aharonov-Bohm part, proportional to the enclosed flux, and its prefactor is what fixes $q=e/m$ in [(4.15)](#eq-4-15). The second is a remaining part $2\pi/m$, which depends only on the fact that one quasiparticle went around the other. A full loop is two exchanges, so the exchange phase itself is $\pi/m$, drawn at the bottom for $m=3$. For every odd $m>1$ it is strictly between the bosonic $0$ and the fermionic $\pi$, and this is what makes these excitations anyons.](figures/s04f06_quasihole.svg){#fig:s04:quasihole number="4.6"}
 
 ::: lab
 In an electronic Fabry-Perot interferometer at the filling $\nu=1/3$, the edge mode shows strong Aharonov-Bohm interference, and this interference is interrupted by discrete phase slips. The slips are consistent with an anyonic phase of $2\pi/3$. In our reading, a slip happens when the number of quasiparticles inside the loop of the edge mode changes by one, and $2\pi/3$ is the statistical phase [(4.16)](#eq-4-16) for $m=3$. The measurement is in [this article](https://arxiv.org/abs/2006.14115).

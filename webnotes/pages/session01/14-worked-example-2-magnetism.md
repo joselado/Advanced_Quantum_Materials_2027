@@ -23,7 +23,7 @@ For $U>0$ the antiferromagnetic mean field of the half-filled chain gives a mome
 The sign of $U$ alone decides the physics. An attractive $U<0$ drives superconductivity, which we discuss in Section [1.15](#sec-1-15), and a repulsive $U>0$ drives magnetism, which is the topic of this section.
 
 The mean-field decoupling is done in the same way as before, but now we apply it separately to $\langle c_{\uparrow}^\dagger c_\uparrow\rangle$ and $\langle c_\downarrow^\dagger
-c_\downarrow\rangle$, and we obtain a bilinear Hamiltonian with onsite energies that depend on the spin, through the magnetization $m$ of [(1.8)](#eq-1-8). Self-consistency gives $m=0$ automatically for $U<0$, and a finite $m$ for $U>0$, which is a real magnetic solution.
+c_\downarrow\rangle$, and we obtain a bilinear Hamiltonian with onsite energies that depend on the spin, through the magnetization $m$ of [(1.8)](#eq-1-8). Self-consistency gives $m=0$ automatically for $U<0$, and in the half-filled chain a finite $m$ for $U>0$, which is a real magnetic solution.
 
 ::: {.steps title="From the Hubbard term of (1.7) to the gap Um"}
 We write $n_{n\sigma}=c_{n\sigma}^\dagger c_{n\sigma}$. On each site the Hubbard term is decoupled as in Section [1.12](#sec-1-12),
@@ -122,7 +122,7 @@ So mean field gives a moment that the exact singlet of two sites does not have, 
 ::: notebookbox
 **Notebook check-in:** [`session1.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session1.ipynb), "The interacting Hubbard dimer" (Core) and "Magnetic order driven by interactions in a chain" (Core). The two challenges are "Gap opening of the Hubbard model in a chain" (Challenge) and "Gap opening in the Hubbard model on the honeycomb lattice" (Challenge).
 
-Start with the two-site case, the dimer, to see how the self-consistency loop converges in a small system that you can check by hand. Then go to the extended chain and finally to the honeycomb lattice, which uses the finite islands of Section [1.10](#sec-1-10) with interactions. Look at how the Mott gap opens and grows with $U$.
+Start with the two-site case, the dimer, to see how the self-consistency loop converges in a small system that you can check by hand. Then go to the extended chain and finally to the honeycomb lattice, which is the lattice of the islands of Section [1.10](#sec-1-10), now infinite and with interactions. Look at how the Mott gap opens and grows with $U$.
 :::
 
 ::: {.tryit notebook="session1.ipynb" cell="The interacting Hubbard dimer"}
@@ -138,7 +138,7 @@ The expectation value of two annihilation operators is
 
 $$\Delta = \langle c_i c_j\rangle. \tag{1.9}$$
 
-Under the gauge transformation
+For the onsite term of [(1.7)](#eq-1-7) the two operators have opposite spins, $\Delta=\langle c_{i\downarrow}c_{i\uparrow}\rangle$, since $c_{i\uparrow}c_{i\uparrow}=0$. Under the gauge transformation
 
 $$c \to c\, e^{i\varphi}, \qquad c^\dagger \to c^\dagger e^{-i\varphi}, \tag{1.10}$$
 

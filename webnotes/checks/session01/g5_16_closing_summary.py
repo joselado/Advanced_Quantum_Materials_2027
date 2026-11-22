@@ -116,6 +116,14 @@ check('three spinful sites give 4^3 = 64 = sum over N of binom(6, N)', 4 ** 3 ==
       4 ** 3)
 check('2^20 = 1 048 576, about a million states for L = 20', 2 ** 20 == 1048576, 2 ** 20)
 check('4^10 = 2^20, so spinful fermions reach the same size at half the number of sites', 4 ** 10 == 2 ** 20, 4 ** 10)
+# the bullet of the summary, corrected on 2026-11-22: "grows as 2^L for spinless fermions and as 4^L with spin", the
+# dimension of the Jordan-Wigner matrices of L spinless modes and of 2L modes for L spinful sites
+bullet = next(l for l in text.splitlines() if l.startswith('- The many-body Hilbert space grows'))
+check('the summary names both growths, 2^L for spinless fermions and 4^L with spin',
+      '$2^L$ for spinless fermions and as $4^L$ with spin' in bullet, bullet[:90])
+check('the Fock space of L = 1, 2, 3 sites has 2^L states without spin and 4^L with spin',
+      all(fermions(L)[0].shape == (2 ** L, 2 ** L) and fermions(2 * L)[0].shape == (4 ** L, 4 ** L) for L in (1, 2, 3)),
+      [(2 ** L, 4 ** L) for L in (1, 2, 3)])
 # what stops near L = 20 is the full diagonalization, and not the storage of one state: even the largest block of
 # fixed N, N = L/2, is a dense real matrix of 1.3 GB at L = 16, 19 GB at L = 18 and 273 GB at L = 20, while one vector
 # of the 2^20 coefficients is 8.4 MB
@@ -190,8 +198,9 @@ check('for g = 1.5J the splitting does not vanish, it goes to 2(g - J) = 1.0J',
       above[0] > above[1] > above[2] > 1.0 and abs(above[2] - 1.0) < 1e-3, np.round(above, 4))
 
 # ---- task 7: the test (1.4) on two spins can be done, with T = i sigma_y K on each spin -----------------------------
-# the page gives no verdict, since the form of (1.4) is open for the lecturer, so this only checks that the test of a
-# state of two spins is a calculation with a definite answer for the two states that Section 1.11b would use
+# the task applies the test to two spins, an even number, where T^2 = +1. Since 2026-11-22 page 11b says after (1.4)
+# that equal means equal up to a phase and that the test is for an even number of electrons, which g3_11b checks, so
+# this checks that the test of a state of two spins has a definite answer for the two states of Section 1.11b
 isy = np.array([[0.0, 1.0], [-1.0, 0.0]])
 U2 = np.kron(isy, isy)
 up, dn = np.array([1.0, 0.0]), np.array([0.0, 1.0])
@@ -345,6 +354,9 @@ check('ring of 4 sites at Delta = 0.8, the ground state has no weight on odd N',
       np.all(PN[1::2] < 1e-20) and np.isclose(PN.sum(), 1), np.round(PN, 4))
 check('its weight is on the five even values N = 0, 2, 4, 6, 8, 0.003, 0.109, 0.423, 0.444, 0.021',
       np.allclose(PN[0::2], [0.0028, 0.1092, 0.4234, 0.4435, 0.0211], atol=1e-4), np.round(PN[0::2], 4))
+check('old feedback corrected on 2026-11-22: with N = 4 the weights on N - 4 and N + 4 are nonzero too, 0.0028 and '
+      '0.0211, so the state is a superposition of N, N +- 2, N +- 4',
+      PN[0] > 1e-3 and PN[8] > 1e-3 and PN[2] > 1e-3 and PN[6] > 1e-3, np.round(PN[[0, 2, 6, 8]], 4))
 E0 = {d: np.linalg.eigvalsh(ring(d))[0] for d in (0.8, 0.8j, 0.8 * np.exp(0.6j))}
 check('the lowest level is the same, -7.2228t, for Delta = 0.8, 0.8i and 0.8 e^{0.6i}',
       max(E0.values()) - min(E0.values()) < 1e-12 and round(E0[0.8], 4) == -7.2228, E0)

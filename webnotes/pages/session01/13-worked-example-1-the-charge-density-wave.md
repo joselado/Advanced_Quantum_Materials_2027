@@ -142,7 +142,7 @@ The new charges are farther apart than the guess, so the imbalance grows in this
 ::: notebookbox
 **Notebook check-in:** [`session1.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session1.ipynb), "Symmetry breaking in the spinless fermionic chain" (Core), and "Gap opening in a spinless interacting model" (Challenge)
 
-Run the self-consistency loop of Section [1.13](#sec-1-13) yourself. Start from an unbiased guess, iterate, and look at how the charge imbalance on each site grows with $V$, together with the opening of the gap in the spectrum and in the density of states.
+Run the self-consistency loop of Section [1.13](#sec-1-13) yourself. Both cells start the loop from the guess `mf="CDW"`, which picks one of the two charge patterns. The Hamiltonian itself keeps the symmetry, since the cells set the external imbalance `cdw = 0`. Iterate, and look at how the charge imbalance on each site grows with $V$, together with the opening of the gap in the spectrum and in the density of states. Both cells also keep the Fock term, so at $V=3t$ the imbalance is $0.70$ and not the Hartree value $0.89$ of the text.
 :::
 
 ::: {.tryit notebook="session1.ipynb" cell="Symmetry breaking in the spinless fermionic chain"}

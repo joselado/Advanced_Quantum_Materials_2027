@@ -12,7 +12,9 @@ notebook and of its comments, the rotation that takes the coordinates of a pyqul
 choice, the directions in which hall_setup.py draws V_y and I_x, and what the figure scripts dirac_levels.py,
 lll_radius.py, laughlin_pair.py, droplet_density.py and plaquette_gauge.py draw, which was read and agrees with the
 lines of their models. The lines of the open points repeat numbers of the lines above, the ones that the old text
-contradicts. The lines taken from Session 3 are asserted by webnotes/checks/session03/conventions.py, and here
+contradicted, and each of them was settled on 2026-11-22, which the plan of the session records. The bullet of the
+caption of landau_chern was dropped that day, since the caption gives the shift of 0.30 t that the lines of the lattice
+assert, and the bullets of landau_chern.py and flat_chern_band.py now check the pyqula scripts that these figures draw. The lines taken from Session 3 are asserted by webnotes/checks/session03/conventions.py, and here
 only by their anchor. A figure script is not imported, since it saves its figure when it runs, and the lines of its
 model are written again here.
 
@@ -236,9 +238,18 @@ def main():
 
     # ---------------------------------------------------------------- units and scales
     lB = np.sqrt(HBAR / E) * 1e9
+    # the phase of (4.4) is (1/hbar) int A.dl with e = 1: the chain with the bond phase theta has its minimum at
+    # k = theta/a and minimal coupling (hbar k - A)^2/2m at k = A/hbar, the same for theta = A a/hbar; and with the units
+    # back (e/hbar) B a^2 is 2 pi B a^2/(h/e)
+    kk_ = np.linspace(-np.pi, np.pi, 200001)
+    hb_, A_, a_ = 0.37, 0.2, 1.7
+    kmin = kk_[np.argmin(-np.cos(kk_ * a_ - A_ * a_ / hb_))]
+    ph4 = E / HBAR * 10.0 * (5e-10) ** 2
     check('the magnetic length', abs(lB - 25.66) < 0.005 and abs(2 * np.pi * (lB * 1e-9) ** 2 / (H / E) - 1) < 1e-8
-          and abs(np.sqrt(HBAR / (E * 4)) * 1e9 - lB / 2) < 1e-12,
-          'l_B = %.2f nm at 1 T and %.2f nm at 4 T, and 2 pi l_B^2 B is h/e' % (lB, lB / 2))
+          and abs(np.sqrt(HBAR / (E * 4)) * 1e9 - lB / 2) < 1e-12 and abs(kmin - A_ / hb_) < 1e-4
+          and abs(ph4 / (2 * np.pi * 10.0 * (5e-10) ** 2 / (H / E)) - 1) < 1e-9,     # hbar of 10 digits against h
+          'l_B = %.2f nm at 1 T and %.2f nm at 4 T, 2 pi l_B^2 B is h/e, the chain with the bond phase A a/hbar has its minimum at '
+          'k = %.4f = A/hbar, and (e/hbar) B a^2 is 2 pi times the flux in h/e' % (lB, lB / 2, kmin))
     per = E / H * 1e-12
     Lt, qt = 24, 12
     hk_t, _ = square_cell(qt)
@@ -582,8 +593,25 @@ def main():
           and np.ptp(es20, axis=0).max() < 1e-4,
           'at the flux 1/20 the four lowest bands sit %s t below their dashed lines, %s of the spacing 0.628 t, and they are flat to %.0e'
           % (' '.join('%.3f' % a for a in sh), ' '.join('%.2f' % a for a in sh / (4 * np.pi / 20)), np.ptp(es20, axis=0).max()))
+    import json, re
+    nb = json.load(open(os.path.join(WEBNOTES, '..', 'jupyter-notebooks', 'session4.ipynb'), encoding='utf-8'))
+    cells, title = {}, None
+    for c in nb['cells']:
+        src = ''.join(c['source'])
+        if c['cell_type'] == 'markdown':
+            m_ = re.search(r'^#+\s*(.*)', src, re.M)
+            title = m_.group(1) if m_ else title
+        elif title is not None:
+            cells.setdefault(title, src)
+    cell = lambda name: next(v for k, v in cells.items() if k.startswith(name))
+    nbok = (re.search(r'^N = 30\b', cell('Landau levels of conventional electrons'), re.M) is not None
+            and re.search(r'^W = 20\b', cell('Magnetic field dependence of Landau levels'), re.M) is not None
+            and re.search(r'^W = 40\b', cell('Bands in the conventional quantum Hall state'), re.M) is not None
+            and all('Bs = [0.02,0.03,0.04]' in cell(n) and 'square_ribbon(' in cell(n) for n in
+                    ('Landau levels of conventional electrons', 'Magnetic field dependence of Landau levels'))
+            and re.search(r'^B = 0\.02\b', cell('Bands in the conventional quantum Hall state'), re.M) is not None)
     spc = {}
-    for W in (20, 40):
+    for W in (20, 30, 40):
         gw = geometry.square_ribbon(W)
         spc[W] = []
         for phi in (0.02, 0.03, 0.04):
@@ -592,13 +620,14 @@ def main():
             mid = np.abs((np.abs(v) ** 2).T @ gw.y) < 2
             lv = e[mid & (e < -3)][:2]
             spc[W].append(lv[1] - lv[0])
-    ok = np.allclose(spc[20], [0.2436, 0.3595, 0.4717], atol=2e-4) and np.allclose(spc[40], spc[20], atol=2e-4)
-    ok = ok and np.allclose([1 / np.sqrt(2 * np.pi * p) for p in (0.02, 0.03, 0.04)], [2.8, 2.3, 2.0], atol=0.03)
+    ok = np.allclose(spc[20], [0.2436, 0.3595, 0.4717], atol=2e-4) and all(np.allclose(spc[W], spc[20], atol=2e-4) for W in (30, 40))
+    ok = ok and np.allclose([1 / np.sqrt(2 * np.pi * p) for p in (0.02, 0.03, 0.04)], [2.8, 2.3, 2.0], atol=0.03) and nbok
     check('the square ribbons of the notebook', ok and abs(spc[20][2] / spc[20][0] - 1.94) < 0.005,
-          'on the ribbons of 20 and of 40 sites the two lowest levels are %s and %s apart for the field 0.02, 0.03, 0.04, a ratio %.2f from '
+          'the notebook has the ribbons of 30 and 20 sites with the field 0.02, 0.03, 0.04 and the one of 40 with 0.02 (%s); on the '
+          'ribbons of 20, 30 and 40 sites the two lowest levels are %s, %s and %s apart for the field 0.02, 0.03, 0.04, a ratio %.2f from '
           '0.02 to 0.04, against 4 pi phi = 0.251, 0.377, 0.503, and l_B = %.1f, %.1f, %.1f sites'
-          % (' '.join('%.4f' % a for a in spc[20]), ' '.join('%.4f' % a for a in spc[40]), spc[20][2] / spc[20][0],
-             *(1 / np.sqrt(2 * np.pi * p) for p in (0.02, 0.03, 0.04))))
+          % (nbok, ' '.join('%.4f' % a for a in spc[20]), ' '.join('%.4f' % a for a in spc[30]), ' '.join('%.4f' % a for a in spc[40]),
+             spc[20][2] / spc[20][0], *(1 / np.sqrt(2 * np.pi * p) for p in (0.02, 0.03, 0.04))))
     cs_, deg_ = [], []
     for n_ in (40, 20):
         g = rot(n_)
@@ -799,24 +828,18 @@ def main():
 
     # ---------------------------------------------------------------- the figure scripts
     q = 20
-
-    def hfig(k):                                     # the model of landau_chern.py
-        hm_ = np.zeros((q, q), complex)
-        for j in range(q):
-            hm_[j, j] = -2 * np.cos(k[1] + 2 * np.pi / q * j)
-            amp = np.exp(1j * k[0] * q) if j == q - 1 else 1.0
-            hm_[(j + 1) % q, j] += -amp; hm_[j, (j + 1) % q] += -np.conj(amp)
-        return hm_
-    Bfig = np.array([[2 * np.pi / q, 0], [0, 2 * np.pi]])
-    Cf = [pc.chern_links(hfig, Bfig, n, nk=10) for n in range(4)]
-    kx_, ky_ = np.arange(10) / 10 * 2 * np.pi / q, np.arange(40) / 40 * 2 * np.pi
-    V = np.array([[np.linalg.eigh(hfig(np.array([a, b])))[1][:, 0] for b in ky_] for a in kx_])
-    lk = lambda u, v: np.sum(u.conj() * v, -1) / np.abs(np.sum(u.conj() * v, -1))
-    U1, U2 = lk(V, np.roll(V, -1, 0)), lk(V, np.roll(V, -1, 1))
-    plain = np.angle(U1 * np.roll(U2, -1, 0) / np.roll(U1, -1, 1) / U2).sum() / (2 * np.pi)
-    check('landau_chern.py', np.allclose(Cf, -1, atol=1e-9) and abs(plain - 1) < 1e-6,
-          'its model has C = %s for the four lowest bands with the Omega of Session 3, and the plaquette phases summed with no sign change '
-          'give %+.3f, the label C=1 of the figure' % (' '.join('%+.0f' % c for c in Cf), plain))
+    Cf = {}
+    for sg in (1, -1):                               # the model of g1_landau_levels_square.py, which landau_chern.py draws
+        hq_ = geometry.square_lattice().get_supercell((1, q)).get_hamiltonian(has_spin=False, tij=[-1.])
+        hq_.add_orbital_magnetic_field(sg / q)
+        hkq_, Bq_ = pc.from_pyqula(hq_)
+        Cf[sg] = [pc.chern_links(hkq_, Bq_, n, nk=12) for n in range(4)]
+    src_lc = open(os.path.join(WEBNOTES, 'figures', 'session04', 'landau_chern.py')).read()
+    check('landau_chern.py', np.allclose(Cf[1], 1, atol=1e-9) and np.allclose(Cf[-1], -1, atol=1e-9)
+          and "run_script('session04/g1_landau_levels_square.py')" in src_lc,
+          'it draws g1_landau_levels_square.py, where add_orbital_magnetic_field(1/20) in the cell (1, 20), the field along -z for the '
+          'charge +e, has C = %s for the four lowest bands with the Omega of Session 3, and the flux -1/20 has C = %s'
+          % (' '.join('%+.0f' % c for c in Cf[1]), ' '.join('%+.0f' % c for c in Cf[-1])))
     Nx, Bh, Ly = 40, 1 / 16, S3
     cellb = np.array([[0, 0], [0, 1 / S3], [0.5, S3 / 2], [0.5, S3 / 2 + 1 / S3]])
     posb = np.array([c + [i, 0] for i in range(Nx) for c in cellb])
@@ -845,22 +868,46 @@ def main():
           'panel (a), -2 cos(k_y - B x), has the guiding center moving as %+.2f/B with k_y, the field +B z with k_y the momentum; panel (b) '
           'has the phase (4.4) of the field +B z and the Bloch phase exp(+i k_y (y_i - y_j)), and its guiding center moves as %+.2f/B, '
           'and %+.2f/B with the Bloch phase of (a), so its k_y is minus the momentum' % (ga_, gcs[1], gcs[-1]))
+    ks48 = np.arange(48) / 48
     Bv = pc.reciprocal([hc.a1, hc.a2])
-    K = np.array([4 * np.pi / 3, 0.0])
-    pts, _ = hc.path(120)
-    rows = []
-    for kw in (dict(t2=0.1, phi=-np.pi / 2), dict(t2=0.3, phi=-0.4 * np.pi, t3=-0.2)):
-        Eg = np.array([np.linalg.eigvalsh(hc.bloch(k, **kw)) for k in pc.kmesh(Bv, 48, points=[K, -K])])
-        kwp = dict(kw); kwp['phi'] = -kw['phi']
-        same = np.allclose([np.linalg.eigvalsh(hc.bloch(k, **kw)) for k in pts], [np.linalg.eigvalsh(hc.bloch(k, **kwp)) for k in pts])
-        rows.append((np.ptp(Eg[:, 0]), Eg[:, 1].min() - Eg[:, 0].max(), pc.chern_links(lambda k: hc.bloch(k, **kw), Bv, 0, nk=24),
-                     pc.chern_links(lambda k: hc.bloch(k, **kwp), Bv, 0, nk=24), hc.chern(N=30, **kw), same))
-    ok = all(abs(r_[2] + 1) < 1e-9 and abs(r_[3] - 1) < 1e-9 and abs(r_[4] - 1) < 1e-6 and r_[5] for r_ in rows)
-    ok = ok and abs(rows[0][0] - 2.48) < 0.01 and abs(rows[0][1] - 1.04) < 0.01 and abs(rows[1][0] - 0.212) < 0.002 and abs(rows[1][1] - 2.97) < 0.005 and abs(rows[1][1] / rows[1][0] - 14.0) < 0.1
+    rows, same = [], []
+    for (t2_, ph_, t3_, M_) in ((0.1, np.pi / 2, 0., 0.), (0.3, 0.4 * np.pi, -0.2, 0.), (0.2, 0., 0., 1.5)):
+        hh_ = gh.get_hamiltonian(has_spin=False, tij=[1., t2_ * np.cos(ph_), t3_])    # the models of g5_haldane_t3_bands.py
+        hh_.add_haldane(2 * t2_ * np.sin(ph_) / S3)
+        hh_.add_sublattice_imbalance(M_)
+        hkg = hh_.get_hk_gen()
+        Eg = np.array([np.linalg.eigvalsh(hkg([a, b, 0.])) for a in ks48 for b in ks48])
+        hk_, B_ = pc.from_pyqula(hh_)
+        rows.append((np.ptp(Eg[:, 0]), Eg[:, 1].min() - Eg[:, 0].max(), pc.chern_links(hk_, B_, 0, nk=24), hh_.get_chern(nk=40),
+                     2 * t2_ * np.sin(ph_) / S3, t2_ * np.cos(ph_)))
+        e_hc = np.sort(np.concatenate([np.linalg.eigvalsh(hc.bloch(a * Bv[0] + b * Bv[1], t2=t2_, phi=ph_, t3=t3_, M=M_))
+                                       for a in ks48[::2] for b in ks48[::2]]))
+        e_pq = np.sort(np.concatenate([np.linalg.eigvalsh(hkg([a, b, 0.])) for a in ks48[::2] for b in ks48[::2]]))
+        same.append(np.abs(e_hc - e_pq).max())
+    src_fc = open(os.path.join(WEBNOTES, 'figures', 'session04', 'flat_chern_band.py')).read()
+    ok = all(abs(r_[2] - 1) < 1e-9 and abs(r_[3] - 1) < 1e-6 for r_ in rows[:2]) and "session04/g5_haldane_t3_bands.py" in src_fc
+    ok = ok and round(rows[0][4], 4) == 0.1155 and round(rows[1][4], 4) == 0.3295 and round(rows[1][5], 4) == 0.0927
+    ok = ok and abs(rows[0][0] - 2.48) < 0.005 and abs(rows[0][1] - 1.04) < 0.005 and abs(rows[1][0] - 0.212) < 0.0005
+    ok = ok and abs(rows[1][1] - 2.97) < 0.005 and round(rows[1][1] / rows[1][0], 1) == 14.0
     check('flat_chern_band.py', ok,
-          'it draws phi = -pi/2 and -0.4 pi, with C = %+.0f and %+.0f, while _honeycomb.chern prints %+.0f, and along the path the bands are '
-          'those of +pi/2 and +0.4 pi, with C = %+.0f; the widths are %.2f and %.3f and the gaps %.2f and %.2f, a ratio %.1f in (b)'
-          % (rows[0][2], rows[1][2], rows[0][4], rows[0][3], rows[0][0], rows[1][0], rows[0][1], rows[1][1], rows[1][1] / rows[1][0]))
+          'it draws g5_haldane_t3_bands.py, add_haldane(%.4f) and tij=[1, %.4f, -0.2] with add_haldane(%.4f), with C = %+.0f and %+.0f '
+          'from the links and %+.0f and %+.0f from get_chern; the widths are %.2f and %.3f and the gaps %.2f and %.2f, a ratio %.1f in (b)'
+          % (rows[0][4], rows[1][5], rows[1][4], rows[0][2], rows[1][2], rows[0][3], rows[1][3], rows[0][0], rows[1][0], rows[0][1],
+             rows[1][1], rows[1][1] / rows[1][0]))
+    same_h = []
+    for xh in (0.05, 0.1, 0.1155, 0.2):
+        hh_ = gh.get_hamiltonian(has_spin=False); hh_.add_haldane(xh)
+        hkg = hh_.get_hk_gen()
+        e_pq = np.sort(np.concatenate([np.linalg.eigvalsh(hkg([a, b, 0.])) for a in ks48[::2] for b in ks48[::2]]))
+        e_hc = np.sort(np.concatenate([np.linalg.eigvalsh(hc.bloch(a * Bv[0] + b * Bv[1], t2=xh * S3 / 2, phi=np.pi / 2))
+                                       for a in ks48[::2] for b in ks48[::2]]))
+        same_h.append(np.abs(e_hc - e_pq).max())
+    check('tij=[1, a, b] and add_haldane(c) of pyqula against _honeycomb.bloch', max(same_h + same) < 2e-15 + 1e-15,
+          'the spectra on a mesh of the zone agree to %.0e for add_haldane of 0.05, 0.1, 0.1155 and 0.2 alone, and to %.0e for the '
+          'three models of g5_haldane_t3_bands.py, with a = t2 cos phi, b = t3 and c = 2 t2 sin phi/sqrt 3' % (max(same_h), max(same)))
+    check('the flat band with C = 0', abs(rows[2][0] - 0.200) < 5e-4 and abs(rows[2][1] - 3.000) < 5e-4 and abs(rows[2][2]) < 1e-9
+          and abs(rows[2][3]) < 1e-6,
+          'the real t2 = 0.2 with add_sublattice_imbalance(1.5) has the width %.3f, the gap %.3f and C = %.0f' % (rows[2][0], rows[2][1], abs(rows[2][2])))
     xb = np.linspace(0.1, 1.55, 145001)
     Rb = 1 / sum(0.5 * (1 + np.tanh((1 / xb - (n - 0.5)) / 0.05)) for n in range(1, 40))
     plat = []
@@ -891,7 +938,7 @@ def main():
           'with the field into the page the charge +e carries %+.3f along x in the upper half of the island, clockwise, and an electron '
           'carries the opposite, counterclockwise as the figure draws it' % jt)
 
-    # ---------------------------------------------------------------- the open points of the old text
+    # ---------------------------------------------------------------- the open points of the old text, settled on 2026-11-22
     hk10_, B10_ = square_cell(10)
     hkm10, Bm10 = square_cell(10, s=-1)
     cpl, cmi = pc.chern_links(hk10_, B10_, 0, nk=10), pc.chern_links(hkm10, Bm10, 0, nk=10)
@@ -909,8 +956,6 @@ def main():
     check('Sections 4.1 and 4.10, the energy scales', abs(g10t / s10t - 6.64) < 0.01 and abs(g10t - 114.7) < 0.05 and abs(s10t - 17.28) < 0.01,
           'at 10 T the first level of graphene is %.0f meV and the spacing of GaAs %.1f meV, a factor %.1f, and not one or two orders of '
           'magnitude, and the GaAs scale is 1.73 meV per tesla' % (g10t, s10t, g10t / s10t))
-    check('the caption of landau_chern', abs(sh[3] / (4 * np.pi / 20) - 0.47) < 0.005,
-          'the fourth band is %.3f t below its dashed line, %.2f of the spacing' % (sh[3], sh[3] / (4 * np.pi / 20)))
     check('Section 4.16, "lumps"', np.abs(3 * third[sel] - 1).max() < 0.03,
           'every third orbital gives a density within %.1f percent of 1/3 for r > 2 l_B, so the lumps are only near the center'
           % (100 * np.abs(3 * third[sel] - 1).max()))

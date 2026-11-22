@@ -156,4 +156,38 @@ P = np.diag((-1.0) ** np.diag(N))
 pair = -0.3 * N + 0.8 * (c1.T @ c2.T + c2 @ c1)
 check('a pairing term keeps the parity (-1)^N and not N', np.allclose(pair @ P, P @ pair) and not np.allclose(pair @ N, N @ pair),
       'exact')
+
+# the notebook box, old text corrected on 2026-11-22: the honeycomb challenge is the infinite periodic lattice and not
+# the islands of Section 1.10. Route 1 reads the cell, route 2 asks pyqula for the dimension of its geometry
+import json
+import os
+from pyqula import geometry
+nb = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '..', 'jupyter-notebooks',
+                                 'session1.ipynb'), encoding='utf-8'))
+heads = [''.join(c['source']).strip() for c in nb['cells']]
+i21 = [i for i, s in enumerate(heads) if s.startswith('## Gap opening in the Hubbard model on the honeycomb lattice')][0]
+src21 = ''.join(nb['cells'][i21 + 1]['source'])
+check('notebook box: the honeycomb cell takes geometry.honeycomb_lattice() with nk=10, and no island and no dimensionality',
+      'honeycomb_lattice()' in src21 and 'nk=10' in src21 and 'island' not in src21 and 'dimensionality' not in src21, True)
+gh = geometry.honeycomb_lattice()
+check('notebook box: geometry.honeycomb_lattice() is periodic in two dimensions, with two sites per cell',
+      gh.dimensionality == 2 and len(gh.r) == 2, (gh.dimensionality, len(gh.r)))
+# the key box of Section 1.15, sentence added on 2026-11-22: "For the onsite term of (1.7) the two operators have opposite
+# spins, Delta = <c_dn c_up>, since c_up c_up = 0". One site with its two modes, up and down. Route 1, the operator
+# identities: c_up c_up = 0, and the Hubbard term n_up n_dn of (1.7) is c_up^+ c_dn^+ c_dn c_up, so the pairing channel
+# keeps the pair c_dn c_up. Route 2, the ground state of -0.3 n + 0.8 (c_up^+ c_dn^+ + h.c.) on the site has
+# <c_dn c_up> = -0.8/(2 sqrt(0.3^2 + 0.8^2)) = -0.468, while <c_up c_up> and <c_dn c_dn> are 0 in every state.
+cu, cdn = modes(2)
+nu, nd = cu.T @ cu, cdn.T @ cdn
+check('key box 1.15: c_up c_up = 0 and c_dn c_dn = 0 as matrices', np.allclose(cu @ cu, 0) and np.allclose(cdn @ cdn, 0), 0)
+check('key box 1.15: the Hubbard term n_up n_dn is c_up^+ c_dn^+ c_dn c_up', np.allclose(nu @ nd, cu.T @ cdn.T @ cdn @ cu), 0)
+Hp = -0.3 * (nu + nd) + 0.8 * (cu.T @ cdn.T + cdn @ cu)
+wp, vp = np.linalg.eigh(Hp)
+gp = vp[:, 0]
+amp = gp @ (cdn @ cu) @ gp
+check('key box 1.15: a pairing term gives the onsite amplitude <c_dn c_up> = -0.468, with opposite spins, as the closed form',
+      abs(amp + 0.468) < 1e-3 and np.isclose(amp, -0.8 / (2 * np.sqrt(0.3 ** 2 + 0.8 ** 2))), amp)
+check('key box 1.15: <c_dn c_up> = -<c_up c_dn>, so the order of the operators fixes the sign',
+      np.isclose(gp @ (cu @ cdn) @ gp, -amp), gp @ (cu @ cdn) @ gp)
+
 print('all checks of page 14 hold')

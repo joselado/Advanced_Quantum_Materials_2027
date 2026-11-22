@@ -28,7 +28,7 @@ Four Majoranas form two ordinary fermion modes. With the total fermion parity fi
     This is false. The four states include $|01\rangle$ and $|10\rangle$ with odd parity. A move from $|00\rangle$ to $|01\rangle$ changes $N$ by one, which no term of a superconductor does, so these are not reached.
 :::
 
-Braiding two Majoranas, for example $\gamma_1$ around $\gamma_2$, acts on the ground-state manifold as a unitary, which is the main result of this page.
+Braiding two Majoranas, for example the exchange of $\gamma_1$ and $\gamma_2$, acts on the ground-state manifold as a unitary, which is the main result of this page.
 
 ::: key
 The exchange of the Majoranas $\gamma_1$ and $\gamma_2$ acts on the degenerate ground states as
@@ -64,7 +64,7 @@ This unitary multiplies states by a relative phase built from $e^{i\pi/4}$ times
 
 This braid algebra that does not commute is what allows sequences of purely topological and geometric moves, which physically means moving Majoranas around one another, to implement non-trivial quantum logic gates. The resulting qubit is stored non-locally, divided between spatially separated Majoranas instead of being in one local degree of freedom. For this reason it is intrinsically resistant to local decoherence and to weak local disorder, and this robustness is the main reason for the interest in topological quantum computing. No section of `session5.ipynb` implements braiding dynamics or a qubit manifold, since braiding is a dynamical calculation and not a static tight-binding diagonalization.
 
-Schematic [](#sch:s05:braid_order) draws the three cases as worldlines, with time going up. The two exchanges that share a Majorana give two different arrangements, and the two disjoint exchanges give the same one.
+[](#sch:s05:braid_order) draws the three cases as worldlines, with time going up. The two exchanges that share a Majorana give two different arrangements, and the two disjoint exchanges give the same one.
 
 ![Exchanges of Majoranas as worldlines. (a) The exchange of $(1,2)$ followed by $(2,3)$. (b) The same exchanges in the opposite order, which ends in a different arrangement. (c) The exchange of $(1,2)$ and $(3,4)$, which gives the same result in either order. The operators $i\gamma_1\gamma_2$ and $i\gamma_2\gamma_3$ anticommute, and $i\gamma_1\gamma_2$ and $i\gamma_3\gamma_4$ commute, as we checked on four Majoranas of two fermion modes.](figures/web/session05/braid_order.svg){#sch:s05:braid_order alt="Three braid diagrams with worldlines that cross. The first two use the same two exchanges in opposite order and end in different arrangements. The third uses two exchanges of disjoint pairs."}
 

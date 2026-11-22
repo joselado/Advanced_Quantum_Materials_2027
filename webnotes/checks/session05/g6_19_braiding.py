@@ -65,6 +65,14 @@ A, B = (1j * g[3] @ g[4])[np.ix_(even, even)], (1j * g[2] @ g[3])[np.ix_(even, e
 check('quiz 2: in the even sector i g3 g4 is diagonal with +-1 and i g2 g3 is off-diagonal with modulus 1',
       np.allclose(np.abs(np.diag(A)), 1) and np.allclose(A, np.diag(np.diag(A))) and np.allclose(np.diag(B), 0)
       and np.allclose(np.abs(B[0, 1]), 1) and np.allclose(A @ B + B @ A, 0), (np.diag(A).real, B[0, 1]))
+# kept on 2026-11-22: "acts like sigma_z" and "like sigma_x" hold as written, since in the basis |00>, |11> the two are -sigma_z
+# and -sigma_x, and in the basis |11>, -|00> of the same even sector they are +sigma_z and +sigma_x
+s00_, s11_ = np.eye(4)[:, 0], dag(c1) @ dag(c2) @ np.eye(4)[:, 0]
+b1, b2 = np.array([s00_, s11_]).T, np.array([s11_, -s00_]).T
+A1, B1 = dag(b1) @ (1j * g[3] @ g[4]) @ b1, dag(b1) @ (1j * g[2] @ g[3]) @ b1
+A2, B2 = dag(b2) @ (1j * g[3] @ g[4]) @ b2, dag(b2) @ (1j * g[2] @ g[3]) @ b2
+check('quiz 2: i g3 g4 and i g2 g3 are -sigma_z and -sigma_x on |00>, |11>, and +sigma_z and +sigma_x on |11>, -|00>',
+      np.allclose(A1, -Z) and np.allclose(B1, -X) and np.allclose(A2, Z) and np.allclose(B2, X), 'ok')
 
 # ---- the new quiz: (g1 g2)^2 = -1, and g1 g2 = -i (2 n1 - 1) is i on the empty state and -i on the filled one
 check('quiz 3: g1 g2 = -i (2 c^dag c - 1)', np.allclose(G, -1j * (2 * n1 - I)), 'ok')
@@ -110,3 +118,11 @@ check('lab box: the stored source states the dwell time longer than 1 ms at appr
       'a dwell time in the two associated states that is longer than 1 ms at in-plane magnetic fields of approximately 2 T' in text
       and 'parity measurement with an assignment error probability of 1%' in text
       and 'url: https://www.nature.com/articles/s41586-024-08445-2' in text, os.path.relpath(src, os.path.dirname(src) + '/../..'))
+
+# the text corrected on 2026-11-22: "Braiding two Majoranas, for example the exchange of gamma_1 and gamma_2, acts on the
+# ground-state manifold as a unitary", which is (5.23). One exchange U12 moves gamma_1 to the place of gamma_2, with a sign,
+# while taking gamma_1 once around gamma_2 is two exchanges, U12^2 = g1 g2, which brings gamma_1 back as -gamma_1. Second route,
+# the generator: U12 = exp(pi/4 g1 g2) and U12^2 = exp(pi/2 g1 g2), from the matrix exponential
+check('text: the exchange of g1 and g2 is U12 = exp(pi/4 g1 g2), which sends g1 to -g2, while g1 once around g2 is U12^2, which '
+      'sends g1 to -g1', np.allclose(U12, expm(np.pi / 4 * G)) and np.allclose(U12 @ g[1] @ dag(U12), -g[2])
+      and np.allclose(U12 @ U12, expm(np.pi / 2 * G)) and np.allclose((U12 @ U12) @ g[1] @ dag(U12 @ U12), -g[1]), 'ok')

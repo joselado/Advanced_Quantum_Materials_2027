@@ -27,7 +27,8 @@ def is_eigen(R, v):
 
 
 def check():
-    R = np.roll(np.eye(4), 1, axis=0)            # (R v)_j = v_{j-1}, every amplitude moves to the next site
+    R = np.roll(np.eye(4), -1, axis=0)           # (R v)_j = v_{j+1}, every amplitude moves to the previous site, as on the page
+    assert np.allclose(R @ np.eye(4)[1], np.eye(4)[0])                                 # the amplitude of site 1 goes to site 0
     for name, v in STATES.items():
         for Rs in (R, R.T):                        # the rotation in the two senses
             ok, lam = is_eigen(Rs, v)

@@ -61,6 +61,32 @@ check('five percent of pi/a', abs(kph80 / edge - 0.05) < 0.01, round(kph80 / edg
 shift = max(abs(np.degrees(np.arcsin((edge + s_) / k_nm(80))) - th80) for s_ in (kph80, -kph80))
 check('the angle moves by about half a degree', 0.4 < shift < 0.6, round(shift, 3))
 
+# the old text, corrected on 2026-11-22 to "conservation of energy and of the momentum along the surface": in a
+# free-electron model of the final state with an inner potential V0, the parallel component is the same inside and
+# outside while the normal one changes, so only the momentum along the surface is kept. For 20 eV, 10 degrees and
+# V0 = 10 eV the normal component goes from 2.26 to 2.78 A^-1 and the parallel one stays 0.398 A^-1.
+V0 = 10.0
+kpar_out = np.sqrt(20 / hb2_2m) * np.sin(np.radians(10))
+kperp_out = np.sqrt(20 / hb2_2m) * np.cos(np.radians(10))
+kperp_in = np.sqrt((20 + V0) / hb2_2m - kpar_out ** 2)
+check('the surface keeps the parallel momentum and changes the normal one, inner potential 10 eV',
+      abs(kpar_out - 0.398) < 0.001 and kperp_in - kperp_out > 0.4 and np.isclose(hb2_2m * (kpar_out ** 2 + kperp_in ** 2), 20 + V0),
+      (round(kperp_out, 3), round(kperp_in, 3)))
+
+# the closing list, corrected on 2026-11-22 from "Every real dispersion" to "Almost every band structure in this
+# course", the words of Section 2.10: the chain with t3 = 1/3 of the notebook has energy, slope and curvature zero at
+# pi/2, a local form E ~ q^3 that is none of the three types, with a density of states that grows as |E|^(-2/3)
+E3 = lambda x: 2 * np.cos(x) + (2 / 3) * np.cos(3 * x)
+d1 = -2 * np.sin(np.pi / 2) - 2 * np.sin(3 * np.pi / 2)
+d2 = -2 * np.cos(np.pi / 2) - 6 * np.cos(3 * np.pi / 2)
+d3 = 2 * np.sin(np.pi / 2) + 18 * np.sin(3 * np.pi / 2)
+kk3 = (np.arange(2_000_000) + 0.5) / 2_000_000 * 2 * np.pi
+ee3 = E3(kk3)
+alpha = np.log10(np.sum(np.abs(ee3) < 1e-2) / np.sum(np.abs(ee3) < 1e-3)) - 1
+check('the chain with t3=1/3: zero energy, slope and curvature at pi/2, the third derivative -16, and a count of states '
+      'gives g ~ |E|^alpha with alpha = -2/3, not a parabolic, Dirac or flat form', abs(E3(np.pi / 2)) < 1e-12
+      and abs(d1) < 1e-12 and abs(d2) < 1e-12 and np.isclose(d3, -16) and abs(alpha + 2 / 3) < 0.03, round(alpha, 3))
+
 # the first quiz: on the chain -2t cos(ka), the energy is -2t at k = 0 and 0 at ka = pi/2
 check('chain band at k = 0 and ka = pi/2, -2t and 0', np.isclose(-2 * np.cos(0), -2) and abs(-2 * np.cos(np.pi / 2)) < 1e-12, (-2, 0))
 
@@ -70,6 +96,25 @@ H = np.zeros((L, L))
 for i in range(L):
     H[i, (i + 1) % L] += -1; H[(i + 1) % L, i] += -1          # phi = 0, the hopping to the next cell closes the ring
 check('chain with a cell of four sites at phi = 0, -2t, 0, 0, 2t', np.allclose(np.linalg.eigvalsh(H), [-2, 0, 0, 2]), np.linalg.eigvalsh(H))
+
+# the closing bullet on the Dirac cone, decided on 2026-11-22: hbar v_F (q_x sigma_x + q_y sigma_y) at K, the opposite
+# sign of the sigma_y term at K', and E = +-hbar v_F |q| at both. The graphene form (2.19) with bond length 1 and t = 1,
+# K = (2 pi/3, 2 pi/3 sqrt3) and K' = -K, with the phase of the B orbital of each valley as on the page of Section 2.11,
+# e^{5 pi i/6} at K and e^{i pi/6} at K'. Route 2 is the energies of the full 2 x 2 matrix close to both points.
+S3 = np.sqrt(3.0)
+dl = np.array([[1.0, 0.0], [-0.5, S3 / 2], [-0.5, -S3 / 2]])
+Kd = np.array([2 * np.pi / 3, 2 * np.pi / (3 * S3)])
+sx, sy = np.array([[0, 1], [1, 0]]), np.array([[0, -1j], [1j, 0]])
+ok = True
+for valley, phase, sgn in ((Kd, np.exp(5j * np.pi / 6), 1), (-Kd, np.exp(1j * np.pi / 6), -1)):
+    for q in (np.array([1e-6, 0]), np.array([0, 1e-6]), np.array([0.6e-6, -0.8e-6])):
+        f = np.exp(1j * dl @ (valley + q)).sum()
+        Hq = np.array([[0, f * phase], [np.conj(f * phase), 0]])                 # |B'> = phase |B>, H_AB' = phase f
+        Hd = 1.5 * (q[0] * sx + sgn * q[1] * sy)
+        ok = ok and np.allclose(Hq, Hd, atol=1e-11)
+        Hf = np.array([[0, f], [np.conj(f), 0]])
+        ok = ok and np.allclose(np.linalg.eigvalsh(Hf), [-1.5 * np.linalg.norm(q), 1.5 * np.linalg.norm(q)], atol=1e-11)
+check("closing bullet: q_x sigma_x + q_y sigma_y at K, the opposite sign of sigma_y at K', and +-1.5|q| at both", ok, 'ok')
 
 # the closing list: the widths 4t, 8t and 12t of the chain, the square and the cubic lattices with -t
 k = np.linspace(-np.pi, np.pi, 41)
@@ -154,3 +199,15 @@ if os.path.exists(full):
         check('lab box talirz2017, the full copy says "%s"' % phrase, phrase in text, 'found')
 else:
     print('NOT CHECKED nine carbon atoms and Au(111) of talirz2017, no full copy of the source on this machine', flush=True)
+
+# the sentence of Section 2.12 on the measured cone of graphene, after the recheck d5: it says only what the stored arXiv
+# abstract of bostwick2006 says, ARPES of graphene and conical bands distorted by three couplings. An arXiv abstract is
+# kept whole in the tracked file, so this runs on every clone. The page links the same URL that the index stores.
+tracked = ' '.join(open(os.path.join(src, 'session02', 'bostwick2006_arxivcond-mat-0609660.txt'), encoding='utf-8').read().split())
+for phrase in ('url: https://arxiv.org/abs/cond-mat/0609660', 'Experimental Determination of the Spectral Function of Graphene',
+               'Using angle resolved photoelectron spectroscopy (ARPES), we find that the expected conical bands are distorted by '
+               'strong electron-electron, electron-phonon, and electron-plasmon coupling effects'):
+    check('Section 2.12, the tracked file of bostwick2006 says "%s"' % phrase, phrase in tracked, 'found')
+page = open(os.path.join(HERE, '..', '..', 'pages', 'session02', '12-measuring-band-structures-with-arpes.md'), encoding='utf-8').read()
+check('Section 2.12 links that URL next to the three couplings',
+      'to each other, to phonons and to plasmons, in [this article](https://arxiv.org/abs/cond-mat/0609660)' in page, 'found')

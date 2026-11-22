@@ -46,6 +46,15 @@ check('the square has 4 rotations and 8 operations, the page says 4 and 8', len(
       (len(rot), len(ops)))
 check('45 degrees moves a corner to the middle of an edge direction, (0, sqrt2)', np.allclose(img, [0, np.sqrt(2)]),
       np.round(img, 4))
+# the old feedback said "to the middle of an edge", and the page now says "beyond the middle of an edge": every corner
+# lands on the line from the center through the middle (0, +-1) or (+-1, 0) of an edge, farther out than it, and none
+# lands on a corner or inside the square
+imgs = np.array([r45 @ np.array(c, float) for c in sorted(corners)])
+mids = np.array([[0, 1], [0, -1], [1, 0], [-1, 0]], float)
+beyond = all(any(np.isclose(abs(p @ m), np.linalg.norm(p)) and p @ m > 1 for m in mids) for p in imgs)
+check('45 degrees: each corner lands beyond the middle of an edge, at the distance sqrt2 > 1, outside the square',
+      beyond and np.allclose(np.linalg.norm(imgs, axis=1), np.sqrt(2)) and not np.any(np.all(np.abs(imgs) <= 1 + 1e-12, axis=1)),
+      np.round(imgs, 4).tolist())
 
 # the picture quiz, first option: two equal charges at (+-d, 0) and the point (0, y) on the axis x = 0
 e = field([(1, 0), (-1, 0)], (0, 1.5))

@@ -1053,32 +1053,41 @@ def main():
           'with U = linspace(0,10,50) the magnetization leaves zero at the point U=%.3f with |m| = %.4f, after %.0e at U=%.3f, '
           'and U=1.9t leaves %.0e, the tolerance of the loop next to the threshold' % (first, mzs[10], mzs[9], Us[9], r19))
 
-    # ======================================================================= the open points of the old text
+    # ================================================ the points of the old text, decided on 2026-11-22
+    def page(prefix):
+        folder = os.path.join(REPO, 'webnotes', 'pages', 'session01')
+        return open(os.path.join(folder, next(f for f in os.listdir(folder) if f.startswith(prefix))), encoding='utf-8').read()
+    p11b, p13, p14 = page('11b-'), page('13-'), page('14-')
+    p01 = page('01-')
     md15 = dimer_hartree(1.5, 0.3)[0]
-    check('a finite m for U>0', chain_m(1.0)[0] > 0.02 and abs(md15) < 1e-9 and Uc_lim > 2.2,
+    check('a finite m for U>0, corrected in Section 1.14', chain_m(1.0)[0] > 0.02 and abs(md15) < 1e-9 and Uc_lim > 2.2
+          and 'in the half-filled chain a finite $m$ for $U>0$' in p14,
           'the half-filled chain has m = %.4f at U=t, while the dimer has m = %.0e at U=1.5t and the honeycomb lattice has no '
           'moment below %.2ft' % (chain_m(1.0)[0], abs(md15), Uc_lim))
 
     check('an attractive U at half filling', abs(2 * dBCS - 3 * d_neg) < 1e-6 and abs(hc.get_gap() - 2 * dBCS) < 2e-3,
           'at U=-3t the charge density wave and the s-wave state have the same gap %.4f' % (3 * d_neg))
 
-    check('the honeycomb challenge', 'islands' not in src21 and 'honeycomb_lattice()' in src21 and 'nk=10' in src21,
+    check('the honeycomb challenge, corrected in the notebook box', 'islands' not in src21 and 'honeycomb_lattice()' in src21
+          and 'nk=10' in src21 and 'uses the finite islands' not in p14,
           'the cell takes geometry.honeycomb_lattice() with nk=10, and no island')
 
     src24, _ = cell_after('## Symmetry breaking in the spinless fermionic chain')
-    check('the unbiased guess', 'mf="CDW"' in src24 and near(gC, [1, -1], 1e-12),
+    check('the CDW guess, corrected in the notebook box', 'mf="CDW"' in src24 and near(gC, [1, -1], 1e-12)
+          and 'unbiased guess' not in p13,
           'the cell passes mf="CDW", the onsite energies %s' % gC)
 
     with quiet():
         hn24 = geometry.bichain().get_hamiltonian(has_spin=False).get_mean_field_hamiltonian(V1=3.0, mf="CDW", mix=0.5, filling=0.5, write=False)
     d24 = np.real(hn24.get_vev(operator=None))
     ok = 'compute_cross' not in src24 and abs(abs(d24[0] - d24[1]) - 0.70) < 0.01 and r'\langle n_i\rangle n_{i+1}' in cells[23]
-    check('the decoupling of the notebook', ok,
+    check('the decoupling of the notebook, said in the notebook box', ok and 'Both cells also keep the Fock term' in p13,
           'the cell writes the Hartree decoupling and calls the default, which keeps the Fock term, so at V=3t it gives %.3f '
           'where Hartree gives %.3f' % (abs(d24[0] - d24[1]), 0.8923))
 
     src12, md11 = cell_after('## Magnetic order driven by interactions in a chain')
-    check('the arrows of cell 12', 'extract("mz")' in src12 and near(fld_c, -3.0 * mom_c / 2, 2e-3),
+    check('the arrows of cell 12, said in the try-it box', 'extract("mz")' in src12 and near(fld_c, -3.0 * mom_c / 2, 2e-3)
+          and 'which show the exchange field, so each arrow points against the moment of its site' in p11b,
           'the arrows are drawn from extract("mz"), the field -U m/2, so each arrow points against the moment of its site')
 
     ok = r'\langle S_z\rangle = \tfrac12' in md11 and r'\\langle S_z \\rangle' in src15 and 'get_vev("mz")' in src15
@@ -1091,7 +1100,9 @@ def main():
           'the cell says that the even sites have a positive magnetization, and get_vev("mz") with the guess "antiferro" is '
           '%+.4f there' % mom_c[0])
 
-    check('Delta as a number and as an energy', abs(dBCS / pair - Ua) < 1e-6,
+    check('Delta as a number and as an energy, said in the caption and the key box', abs(dBCS / pair - Ua) < 1e-6
+          and 'Here $\\Delta$ is an energy, the pair amplitude of [(1.9)](#eq-1-9) times the attraction' in p01
+          and '$\\Delta=\\langle c_{i\\downarrow}c_{i\\uparrow}\\rangle$' in p14,
           '|Delta| of (5.3) is |U| = %.0f times |<c_dn c_up>| of (1.9), %.4f against %.4f' % (Ua, dBCS, pair))
 
     check('a continuous onset in Section 6.6', abs(cross - 16 / np.pi) < 1e-9 and chain_m(1.0)[0] > 0,

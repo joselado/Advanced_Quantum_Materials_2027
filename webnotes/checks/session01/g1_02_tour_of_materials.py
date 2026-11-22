@@ -4,8 +4,9 @@ The bands of the caption and of the picture quiz are asserted in figures/session
 webnotes/scripts/session01/g1_chain_bands.py, and this script runs its check() too, so that --verify sees those
 asserts. It adds a second route in numpy for the fillings, the electrons per site of the caption by three routes, the
 count of the six families of the list, and the numbers of the quiz on the two chains with the hoppings 1 and 2, whose
-figure ssh_pair.py asserts only a part of them, so its six sites and 20 sites are read from its text. The real materials of the old quizzes, the gap
-of about 1.1 eV of silicon and the one dopant in a million, are not computed here. It writes no file."""
+figure ssh_pair.py asserts only a part of them, so its six sites and 20 sites are read from its text. The feedback of the
+doping quiz quoted the gap of silicon and the density of the dopants with no source, and since 2026-11-22 it quotes no
+number, which the last check reads on the page. It writes no file."""
 import os
 import sys
 
@@ -107,3 +108,10 @@ bondsA = [1 if i % 2 == 0 else 2 for i in range(5)]
 bondsB = [2 if i % 2 == 0 else 1 for i in range(5)]
 check('so the drawn bonds are 1, 2, 1, 2, 1 and 2, 1, 2, 1, 2', bondsA == [1, 2, 1, 2, 1] and bondsB == [2, 1, 2, 1, 2],
       (bondsA, bondsB))
+
+# the doping quiz, feedback corrected on 2026-11-22: the gap of silicon and the density of the dopants had no stored
+# source, so the feedback of the second option quotes no number
+page = open(os.path.join(HERE, '..', '..', 'pages', 'session01', '02-a-tour-of-the-quantum-materials-we-will-meet.md'),
+            encoding='utf-8').read()
+fb = next(l for l in page.split('\n') if 'Silicon doped with phosphorus' in l)
+check('the doping quiz: the feedback on silicon quotes no number', not any(ch.isdigit() for ch in fb), fb.strip())

@@ -422,6 +422,62 @@ wf, ws, wc = edge_weight("nodal_fwave", 3.0), edge_weight("swave", 3.0), edge_we
 check('quiz 3, f-wave: no state in the window sits at an edge, the weight on the two outer rows of one edge is at most '
       'that of the s-wave bulk, against the chiral edge states', wf < 0.16 and abs(wf - ws) < 0.01 and wc > 0.8,
       (round(wf, 4), round(ws, 4), round(wc, 4)))
+# the old text corrected on 2026-11-22: "for a pocket around Gamma or (pi,pi) the sign is set by the chirality ... together
+# with the side of the Fermi surface", in the text and in the fold, the kept quiz "changes sign, for example from +2 to -2
+# for a pocket of filled states around Gamma" and "the opposite sign and the same size 2", and "one from each of the two
+# spin blocks" without "identical". With pyqula, the filled pocket around Gamma of the square lattice gives +2 for
+# p_x+ip_y and -2 for p_x-ip_y, the empty pocket around Gamma of the notebook model -2 and +2, and the links of the block
+# above give the same signs, +1 and -1 per block, reversed for the empty pocket around (pi,pi)
+check('old text: C changes sign with the chirality, and the side of the Fermi surface reverses both, by pyqula and by the links',
+      abs(c_full - 2) < 1e-6 and abs(c_minus + 2) < 1e-6 and abs(hp.get_chern() + 2) < 1e-6 and abs(c_m3 - 2) < 1e-6
+      and abs(C[-2.0, 'p+ip'] - 1) < 1e-6 and abs(C[1.0, 'p+ip'] + 1) < 1e-6,
+      (round(c_full, 4), round(c_minus, 4), round(hp.get_chern(), 4), round(c_m3, 4)))
+# why the range "for a pocket around Gamma or (pi,pi)" is written: (5.15) winds +1 for p_x+ip_y around Gamma and around
+# (pi,pi) and -1 around (pi,0), so a pocket of filled states around (pi,0), from eps = 2t cos kx - 2t cos ky - mu at
+# mu = -3t and -2t, gives C = -1 for the block of p_x+ip_y. First route the winding, second route the links
+circ = np.linspace(0, 2 * np.pi, 2001)
+wpt = {}
+for name, (cx, cy) in {'Gamma': (0., 0.), '(pi,pi)': (np.pi, np.pi), '(pi,0)': (np.pi, 0.)}.items():
+    ph = np.unwrap(np.angle(pairing('p+ip', 1, cx + 0.05 * np.cos(circ), cy + 0.05 * np.sin(circ))))
+    wpt[name] = (ph[-1] - ph[0]) / (2 * np.pi)
+check('the range: (5.15) of p_x+ip_y winds +1 around Gamma and (pi,pi) and -1 around (pi,0)',
+      abs(wpt['Gamma'] - 1) < 1e-9 and abs(wpt['(pi,pi)'] - 1) < 1e-9 and abs(wpt['(pi,0)'] + 1) < 1e-9,
+      {n: round(w, 6) for n, w in wpt.items()})
+BX = {}
+for mu in (-3.0, -2.0):
+    def hx(k, mu=mu, sgn=1):
+        e_ = 2 * np.cos(k[0]) - 2 * np.cos(k[1]) - mu
+        D = 0.5 * (np.sin(k[0]) + sgn * 1j * np.sin(k[1]))
+        return np.array([[e_, D], [np.conj(D), -e_]])
+    filled_x = (2 * np.cos(np.pi) - 2 - mu < 0 and 2 - 2 - mu > 0 and 2 + 2 - mu > 0 and -2 + 2 - mu > 0)
+    BX[mu] = (filled_x, physcheck.chern_links(hx, BSQ, bands=0, nk=48),
+              physcheck.chern_links(partial(hx, sgn=-1), BSQ, bands=0, nk=48))
+check('the range: a filled pocket around (pi,0) gives C=-1 for the block of p_x+ip_y and +1 for p_x-ip_y, by the links',
+      all(f_ and abs(a + 1) < 1e-6 and abs(b - 1) < 1e-6 for f_, a, b in BX.values()),
+      {mu: (round(a, 6), round(b, 6)) for mu, (f_, a, b) in BX.items()})
+# the caption of Figure 5.4, a converted figure, left for the lecturer on 2026-11-22 (plan, "Not applied"). Its sentence "The
+# modulus is essentially the same in both cases" and the candidate "On a small pocket the modulus of Delta_{p+ip} is almost
+# constant" rest on these numbers. On the Fermi surface of the square lattice, |sin kx + i sin ky| varies by less than 1% for
+# the pocket of radius 0.3 around Gamma of the problem, and by 22% for mu = -2t, where it goes from 0.200 to 0.245 for
+# Delta_0 = 0.2t. That the two blocks carry +Delta and -Delta and the same C is asserted by the check above of the old text.
+from scipy.optimize import brentq  # noqa: E402
+
+
+def fs_modulus(mu, n=2000):
+    out = []
+    for th in np.linspace(0, np.pi / 4, n):
+        u = np.array([np.cos(th), np.sin(th)])
+        r = brentq(lambda r: -2 * (np.cos(r * u[0]) + np.cos(r * u[1])) - mu, 1e-6, np.pi / np.max(np.abs(u)) - 1e-9)
+        out.append(abs(np.sin(r * u[0]) + 1j * np.sin(r * u[1])))
+    return min(out), max(out)
+
+
+small, large = fs_modulus(-2 * (1 + np.cos(0.3))), fs_modulus(-2.0)
+check('Figure 5.4, for the lecturer: |Delta_p+ip| is almost constant on the small pocket, 0.2955 to 0.2972, and not on the pocket '
+      'of mu=-2t, 0.200t to 0.245t for Delta_0=0.2t',
+      (small[1] - small[0]) / small[1] < 0.01 and abs(small[0] - 0.2955) < 5e-5 and abs(small[1] - 0.2972) < 5e-5
+      and abs(0.2 * large[0] - 0.200) < 1e-3 and abs(0.2 * large[1] - 0.245) < 1e-3,
+      (round(small[0], 4), round(small[1], 4), round(0.2 * large[0], 4), round(0.2 * large[1], 4)))
 print('all checks of page 14 hold')
 
 check('the solution writes mu as about -3.911t', round(-2 * (1 + np.cos(0.3)), 3) == -3.911, round(-2 * (1 + np.cos(0.3)), 5))

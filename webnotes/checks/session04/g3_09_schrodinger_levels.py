@@ -4,7 +4,10 @@ lab box is an assert, here or in the figure script that draws it. The figure scr
 of its caption (the levels -3.70 and -3.12 against -3.69 and -3.06 at the flux 0.05, the cells q = 10 to 60). This script
 checks the fold from (4.5) to (4.6) by finite differences, the degeneracy of one state per flux quantum by an explicit
 count of k_y and on a torus of the square lattice, the feedback of the three quizzes and the solution of the problem. It
-needs numpy and scipy, finds the repository from its own path and writes no file."""
+needs numpy and scipy, finds the repository from its own path and writes no file.
+
+The blocks marked "corrected on 2026-11-22" back the sentences of the old text that were corrected on that day, after
+the lecturer chose to fix the errors of the old text."""
 import numpy as np
 from scipy.linalg import eigh_tridiagonal
 
@@ -79,3 +82,42 @@ gap = np.diff(ev)
 first = int(np.argmax(gap[:100] > 0.1)) + 1
 check('torus 24 x 24 with the flux 1/12: the lowest level holds 48 states, one per flux quantum',
       first == 48 and np.ptp(ev[:48]) < 1e-4, (first, np.ptp(ev[:48]), round(gap[first - 1], 3)))
+
+# the paragraph on the charge, corrected on 2026-11-22 from "and nothing else changes": for the charge -e the states of
+# the lowest level in the symmetric gauge are functions of zbar, and the zero mode of the Dirac levels is in the lower
+# component. First route, sympy: H = (pi_x^2 + pi_y^2)/2m with pi = p - q A and A = B/2 (-y, x), acting on z^2 and zbar^2
+# times the Gaussian, in units of hbar omega_c, for q = +1 and q = -1.
+import sympy as sp  # noqa: E402
+X, Y = sp.symbols('X Y', real=True)
+hb, Bq, mq = sp.symbols('hbar B m', positive=True)
+gauss = sp.exp(-(X ** 2 + Y ** 2) * Bq / (4 * hb))
+
+
+def energy(f, q):
+    pix = lambda g: -sp.I * hb * sp.diff(g, X) + q * Bq * Y / 2 * g
+    piy = lambda g: -sp.I * hb * sp.diff(g, Y) - q * Bq * X / 2 * g
+    return sp.simplify((pix(pix(f)) + piy(piy(f))) / (2 * mq) / f / (hb * Bq / mq))
+
+
+zq, zbq = X + sp.I * Y, X - sp.I * Y
+levels_q = {q: (energy(zq ** 2 * gauss, q), energy(zbq ** 2 * gauss, q)) for q in (1, -1)}
+check('charge: z^2 and zbar^2 times the Gaussian have 1/2 and 5/2 hbar omega_c for +e, and 5/2 and 1/2 for -e',
+      levels_q[1] == (sp.Rational(1, 2), sp.Rational(5, 2)) and levels_q[-1] == (sp.Rational(5, 2), sp.Rational(1, 2)), levels_q)
+# second route, the Dirac Hamiltonian v (pi_x sigma_x + pi_y sigma_y) in the Landau gauge with x and p_x in a basis of
+# M oscillator states, hbar = |B| = v = 1: the physical zero mode is in the upper component for qB > 0 and in the lower
+# one for qB < 0 (the cut basis adds one more zero mode, at its highest states, which we leave out)
+M = 80
+bo = np.diag(np.sqrt(np.arange(1, M)), 1)
+Xo, Po = (bo + bo.T) / np.sqrt(2), 1j * (bo.T - bo) / np.sqrt(2)
+upper = {}
+for q in (1, -1):
+    pim = Po - 1j * (0.4 * np.eye(M) - q * Xo)                # pi_x - i pi_y with pi_y = hbar k_y - q B x
+    Hd = np.block([[np.zeros((M, M)), pim], [pim.conj().T, np.zeros((M, M))]])
+    wd, vd = np.linalg.eigh(Hd)
+    Z = vd[:, np.abs(wd) < 1e-6]
+    low = [np.sum(np.abs(Z[:, j][:M // 4]) ** 2) + np.sum(np.abs(Z[:, j][M:M + M // 4]) ** 2) for j in range(Z.shape[1])]
+    phys = Z[:, int(np.argmax(low))]                       # the zero mode that lives at the low oscillator states
+    upper[q] = round(float(np.sum(np.abs(phys[:M]) ** 2)), 8)
+check('charge: the Dirac zero mode is fully in the upper component for +e and fully in the lower one for -e',
+      upper[1] == 1.0 and upper[-1] == 0.0, upper)
+print('all checks of page 09 hold')

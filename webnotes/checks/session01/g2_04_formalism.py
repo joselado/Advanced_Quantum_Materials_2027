@@ -74,3 +74,41 @@ for i in range(4):
         P[4 * i + j, 4 * j + i] = 1.0
 anti = np.linalg.matrix_rank((np.eye(16) - P) / 2)
 check('problem: the antisymmetric two-particle functions of four levels span 6 dimensions', anti == 6, anti)
+
+# Section 1.4.2, the sentences corrected on 2026-11-22: for interacting electrons first quantization still works, with a
+# wave function psi(x1, x2) of the coordinates of both. Two spinless electrons on an open chain of five sites with the
+# hopping -t and the repulsion V n_i n_(i+1). Route 1 is first quantization, the 25 functions psi(x1, x2) and their
+# antisymmetric part, route 2 the block with N=2 of the Fock space with the Jordan-Wigner operators. The two give the
+# same 10 levels. At V = 0 the ground state is one Slater determinant, an antisymmetric 5x5 matrix of rank 2, and at
+# V = 2t it is not, so the wave function depends on both coordinates at once.
+L5, tt = 5, 1.0
+h1 = np.zeros((L5, L5))
+for i in range(L5 - 1):
+    h1[i, i + 1] = h1[i + 1, i] = -tt
+I5 = np.eye(L5)
+Pex = np.zeros((L5 * L5, L5 * L5))
+for i in range(L5):
+    for j in range(L5):
+        Pex[L5 * i + j, L5 * j + i] = 1.0
+cf = fermions(L5)
+nf = [x.T @ x for x in cf]
+Nf = sum(nf)
+blk = np.where(np.isclose(np.diag(Nf), 2))[0]
+res = {}
+for V in (0.0, 2.0):
+    Vx = np.diag([V * (abs(i - j) == 1) for i in range(L5) for j in range(L5)])
+    H1q = np.kron(h1, I5) + np.kron(I5, h1) + Vx
+    w, v = np.linalg.eigh((np.eye(L5 * L5) - Pex) / 2)
+    A = v[:, np.isclose(w, 1)]                                        # the antisymmetric functions psi(x1, x2)
+    e1, u1 = np.linalg.eigh(A.T @ H1q @ A)
+    H2q = sum(-tt * (cf[i].T @ cf[i + 1] + cf[i + 1].T @ cf[i]) + V * nf[i] @ nf[i + 1] for i in range(L5 - 1))
+    e2 = np.linalg.eigvalsh(H2q[np.ix_(blk, blk)])
+    psi = (A @ u1[:, 0]).reshape(L5, L5)
+    res[V] = (A.shape[1], e1, e2, np.linalg.matrix_rank(psi, tol=1e-10), np.allclose(psi, -psi.T))
+for V, (dim, e1, e2, rank, asym) in res.items():
+    check(f'Section 1.4.2: at V = {V:g}t first quantization, psi(x1, x2) antisymmetric, has binom(5, 2) = 10 states and the '
+          'same levels as the block N=2 of the Fock space', dim == comb(L5, 2) == len(e2) and np.allclose(e1, e2, atol=1e-12)
+          and asym, np.round(e1[:3], 6).tolist())
+check('Section 1.4.2: at V = 0 the ground state psi(x1, x2) is one Slater determinant, rank 2', res[0.0][3] == 2, res[0.0][3])
+check('Section 1.4.2: at V = 2t it is not one Slater determinant, so it depends on both coordinates at once',
+      res[2.0][3] > 2, res[2.0][3])

@@ -4,7 +4,9 @@ One check script per page is the rule: every number of a caption, a feedback, a 
 or in the figure script that draws it. The figure script gap_two_origins.py asserts the pyqula bands of
 webnotes/scripts/session01/g1_two_gaps.py. This script checks the same statements by a second route, the 2x2 Bloch
 Hamiltonian of the chain with two sites per cell and the 2x2 Bogoliubov-de Gennes Hamiltonian of the chain written by
-hand in numpy, and then the pyqula script once more. It writes no file, since pyqula runs in a temporary folder."""
+hand in numpy, and then the pyqula script once more. Since 2026-11-22 it also checks the sentence of the caption that
+Delta is an energy, the pair amplitude of (1.9) times the attraction, and that the paragraph on the goals of the
+United Nations has no number. It writes no file, since pyqula runs in a temporary folder."""
 import os
 import sys
 
@@ -82,3 +84,52 @@ check('pyqula, both panels reach +-2.09',
       (np.max(d['semiconductor']), np.max(d['superconductor'])))
 check('the momentum of the pyqula script runs from -pi to pi', abs(kp[0] + np.pi) < 1e-12 and abs(kp[-1] - np.pi) < 1e-12,
       (kp[0], kp[-1]))
+
+# the caption, sentence added on 2026-11-22: "Here Delta is an energy, the pair amplitude of (1.9) times the attraction,
+# as in Session 5." The mean field of U n_up n_dn = U c_up^+ c_dn^+ c_dn c_up in the pairing channel is the term
+# U <c_dn c_up> c_up^+ c_dn^+ + h.c., so the energy Delta of the pairing term is U <c_dn c_up>, the Delta_n of (5.3).
+# Route 1: each pair (k up, -k down) is a Fock space of two modes, solved exactly, and the onsite amplitude is the mean
+# of <c_-k_dn c_k_up> over k. Route 2: the closed form <c_dn c_up> = -mean(Delta / 2E_k). For Delta > 0 the amplitude is
+# negative, so Delta = U <c_dn c_up> needs U < 0, an attraction, and the self-consistent chain at U = -3t has
+# |Delta| = 0.931 = 3 |<c_dn c_up>|.
+from scipy import optimize
+a2, Z2, I2 = np.array([[0., 1.], [0., 0.]]), np.diag([1., -1.]), np.eye(2)
+ca, cb = np.kron(a2, I2), np.kron(Z2, a2)                    # c_k_up and c_-k_dn, Jordan-Wigner on two modes
+kk = (np.arange(4000) + 0.5) / 4000 * 2 * np.pi - np.pi
+
+
+def pair_amplitude(D):
+    amp = []
+    for x in kk:
+        xi = -2 * t * np.cos(x)
+        H2 = xi * (ca.T @ ca + cb.T @ cb) + D * (ca.T @ cb.T + cb @ ca)
+        w, v = np.linalg.eigh(H2)
+        g0 = v[:, 0]
+        amp.append(g0 @ (cb @ ca) @ g0)
+    return np.mean(amp)
+
+
+F06 = pair_amplitude(0.6)
+closed06 = -np.mean(0.6 / (2 * np.sqrt((2 * t * np.cos(kk)) ** 2 + 0.6 ** 2)))
+check('caption: for the pairing Delta = 0.6t the onsite amplitude <c_dn c_up> is negative, the same by the two routes',
+      F06 < 0 and abs(F06 - closed06) < 1e-12, (F06, closed06))
+U06 = 0.6 / F06
+check('caption: Delta = U <c_dn c_up> then needs U < 0, an attraction, here U = Delta / <c_dn c_up>', U06 < 0, U06)
+Dsc = optimize.brentq(lambda D: D - (-3.0) * (-np.mean(D / (2 * np.sqrt((2 * t * np.cos(kk)) ** 2 + D ** 2)))), 0.05, 3.0)
+Fsc = pair_amplitude(Dsc)
+check('caption: the self-consistent chain at U = -3t has |Delta| = 0.931, |<c_dn c_up>| = 0.310, and Delta = U <c_dn c_up>',
+      abs(Dsc - 0.931) < 1e-3 and abs(abs(Fsc) - 0.310) < 1e-3 and abs(Dsc - (-3.0) * Fsc) < 1e-9, (Dsc, Fsc))
+check('caption: so the energy Delta is |U| = 3 times the pair amplitude of (1.9)', abs(Dsc / abs(Fsc) - 3.0) < 1e-9,
+      Dsc / abs(Fsc))
+s5 = open(os.path.join(HERE, '..', '..', 'pages', 'session05',
+                       '04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.md'), encoding='utf-8').read()
+check('caption: Session 5 defines Delta_n = U <c_dn c_up> in (5.3)',
+      r'\Delta_n \equiv U\langle c_{n\downarrow}c_{n\uparrow}\rangle, \tag{5.3}' in s5, '(5.3)')
+
+# the paragraph on the goals of the United Nations, corrected on 2026-11-22: the numbers of the goals had no stored
+# source, so the paragraph names the goals and quotes no number
+page = open(os.path.join(HERE, '..', '..', 'pages', 'session01', '01-why-quantum-materials-and-why-now.md'),
+            encoding='utf-8').read()
+para = next(p for p in page.split('\n\n') if 'Sustainable Development Goals' in p)
+check('the paragraph on the goals of the United Nations quotes no number', not any(ch.isdigit() for ch in para),
+      [w for w in para.split() if any(ch.isdigit() for ch in w)])

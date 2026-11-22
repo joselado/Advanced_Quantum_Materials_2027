@@ -8,7 +8,13 @@ first-neighbor hopping -1, which the conventions sheet uses, and its Chern numbe
 one of h.get_chern(). It also checks that the flat band with C=0 keeps time reversal, the arguments of add_haldane that the
 caption names, and the resistance 3h/2e^2 of the lab box, which is our conversion. The numbers 0.1 % and 1 % of the lab box are
 read from the stored source with labsource.py. It finds the repository from its own path and writes no file, since pyqula runs
-in a temporary folder."""
+in a temporary folder.
+
+The blocks marked "corrected on 2026-11-22" back the sentences of the old text that were corrected on that day, after
+the lecturer chose to fix the errors of the old text. The block marked "decided on 2026-11-22" backs the closing bullet on
+the Landau levels, |C_n| = 1 and |sigma_xy| = N e^2/h, which the lecturer picked that day, on a magnetic cell of the square
+lattice with the phase (4.4) for both signs of the field. The last block backs the charge e/m written as a magnitude in
+the caption of the fractional figure and in the closing bullet, after an independent check."""
 import os
 import sys
 import tempfile
@@ -144,4 +150,58 @@ s_xy = np.array([np.linalg.inv(m)[1, 0] for m in rho])
 check('sigma_xy rho_xy from the inverse of the resistivity tensor is 1/(1 + r^2), 1 at r = 0 and 0.990 at r = 0.1',
       np.allclose(s_xy * rho_xy, 1 / (1 + r**2)) and abs(s_xy[0] - 2 / 3) < 1e-12 and abs(s_xy[1] * rho_xy - 0.990) < 0.0005,
       s_xy * rho_xy)
+
+# the closing summary, corrected on 2026-11-22: the Haldane model "is adiabatically connected to the quantum Hall state
+# driven by the field with the same Chern number". In the rotated honeycomb cell of 80 sites with one flux quantum, the
+# field with the zero of energy above the zero level has C = +1, add_haldane(+0.07) has +1 and add_haldane(-0.07) has -1,
+# so only the first Haldane model has the Chern number of this quantum Hall state. The path between them is the check of
+# page 19, where the gap stays open for +0.07 and closes for -0.07.
+gm = geometry.honeycomb_lattice_square_cell().rotate(90).get_supercell((20, 1))
+hm = gm.get_hamiltonian(has_spin=False)
+hm.add_orbital_magnetic_field(1 / (3 * np.sqrt(3) * 20))
+hm.add_onsite(-0.25)
+c_qh = hm.get_chern(nk=8)
+c_h = {}
+for xh in (0.07, -0.07):
+    hh = gm.get_hamiltonian(has_spin=False)
+    hh.add_haldane(xh)
+    c_h[xh] = hh.get_chern(nk=8)
+check('closing summary: the quantum Hall state above the zero level has C = +1, add_haldane(+0.07) +1 and add_haldane(-0.07) -1',
+      abs(c_qh - 1) < 1e-3 and abs(c_h[0.07] - 1) < 1e-3 and abs(c_h[-0.07] + 1) < 1e-3, (round(c_qh, 4), c_h))
+pcl = pc
+
+# ---------------------------------------------------------------- the closing bullet of Section 4.21, decided on 2026-11-22 by the lecturer
+# The bullet says that each Landau level has |C_n| = 1, so |sigma_xy| = N e^2/h for N filled levels, (4.2).
+# A magnetic cell of the square lattice with the phase (4.4) of the charge +e, A = (0, s B x) and the flux 1/10: the
+# hop from (x, y) to (x, y+1) is -exp(i s 2 pi x/10), s = +1 for the field along +z, and s = -1 is an electron there.
+def landau_cell_q10(s, q=10):
+    def hk_(k):
+        m = np.diag(-2 * np.cos(k[1] - s * 2 * np.pi * np.arange(q) / q)).astype(complex)
+        m += -np.eye(q, k=1) - np.eye(q, k=-1)
+        m[q - 1, 0] += -np.exp(1j * k[0] * q)
+        m[0, q - 1] += -np.exp(-1j * k[0] * q)
+        return m
+    return hk_, pcl.reciprocal([[q, 0], [0, 1]])
+
+
+Cq10 = {s: [pcl.chern_links(*landau_cell_q10(s), bands=n, nk=10) for n in range(3)] for s in (1, -1)}
+check('decided on 2026-11-22: closing bullet, each Landau level has |C_n| = 1 and N filled levels give |C_tot| = N, so |sigma_xy| = N e^2/h, for both charges', all(np.allclose(np.abs(Cq10[s]), 1, atol=1e-9)
+      and np.allclose(np.abs(np.cumsum(Cq10[s])), [1, 2, 3], atol=1e-9) for s in Cq10)
+      and np.allclose(Cq10[1], -1, atol=1e-9) and np.allclose(Cq10[-1], 1, atol=1e-9), {s: np.round(Cq10[s], 6) for s in Cq10})
+
+# ---------------------------------------------------------------- the charge e/m as a magnitude, decided on 2026-11-22
+# After an independent check the caption of the fractional figure and the closing bullet give e/m as the magnitude of
+# the charge of a quasihole, as the key box of (4.15) does. The sign is -e/m for the charge +e: for m = 1 the quasihole
+# at the origin moves the orbitals 0 to N - 1 to 1 to N, and the disc of radius R holds gammainc(1, R^2/2) -
+# gammainc(N + 1, R^2/2) electrons fewer, 1 in the bulk for N = 40.
+from scipy.special import gammainc  # noqa: E402
+fewer = [gammainc(1, R ** 2 / 2) - gammainc(41, R ** 2 / 2) for R in (4.0, 5.0, 6.0)]
+page20 = open(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'pages', 'session04',
+                           '20-real-materials-realizing-chern-and-fractional-chern-physics.md'), encoding='utf-8').read()
+check('decided on 2026-11-22: the caption and the closing bullet write the charge e/m as a magnitude, and for m = 1 the '
+      'quasihole leaves 1 electron fewer, so its charge is -e for the charge +e',
+      'In (a) the quasihole has a charge of magnitude $e/m$.' in page20
+      and 'have a fractional charge of magnitude $e/m$, equation [(4.15)]' in page20
+      and 'have fractional charge $e/m$' not in page20 and np.allclose(fewer, 1, atol=1e-3), np.round(fewer, 5))
+
 print('all checks of page 20 hold')

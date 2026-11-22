@@ -5,13 +5,23 @@ caption too, and they are repeated here so that build.py --verify sees them.
 The lab box quotes 3.5 T, 10 K and 1e-9 from the stored abstract of arXiv:1504.06511. labsource.py --check 4 shows
 the first two and does not read 1x10^-9, so this script finds the three in one sentence of the stored file.
 
-The old bullets of Section 4.1 hold sentences that the plan of the session leaves to the lecturer (open points 3 and
-4). This script does not confirm them. It asserts the numbers that bear on them, so that the lecturer sees them:
-hbar omega_c of GaAs is 1 meV at 0.58 T, for "roughly one millielectronvolt", and k_B times 1 K is 1/20 of it at 1 T,
-for "of the order of one kelvin". The ratio of graphene to GaAs is 10 at 4.4 T, for "roughly one order of
-magnitude", and E_1 is 115 meV at 10 T, for "around 100 millielectronvolts". "Almost room temperature" is checked
-against the stored abstract of doi 10.1126/science.1137201, which says room temperature. "Up to about 100 K" has no
-stored source, so only k_B times 100 K against E_1 is printed.
+The GaAs bullet of Section 4.1 said "roughly one millielectronvolt" for the fields of a laboratory, and it was corrected
+on 2026-11-22, after the choice of the lecturer to fix the errors of the old text, to "1.7 meV per tesla, so a few
+millielectronvolts at a few tesla and 17 meV at 10 T". This script asserts the new numbers: 1.73 meV per tesla by two
+routes, 3.5 to 8.6 meV for 2 to 5 T, which is "a few millielectronvolts", and 17 meV at 10 T.
+
+The rest of the two bullets and the caption of hall_setup were decided on 2026-11-22, by the rule of the coordinator
+for the points that the lecturer did not pick, and the block marked "decided on 2026-11-22" backs them. The kelvin of
+GaAs now follows from the reason of the problem, a thermal energy much smaller than the spacing and a broadening by
+disorder, and k_B times 1 K is 1/20 of hbar omega_c at 1 T. The graphene bullet keeps "roughly one order of magnitude"
+and "around 100 millielectronvolts", since the ratio is 10 at 4.4 T and E_1 is 115 meV at 10 T. "Up to about 100 K"
+had no stored source and was removed, and after an independent check the bullet says what the stored abstract of doi
+10.1126/science.1137201 says, that the quantum Hall effect of graphene can be measured even at room temperature, with
+115 meV at 10 T as 4.4 k_B T at 300 K for "high enough". The caption of hall_setup now says that its arrows are drawn
+for electrons, and that for the charge +e the channels of the top contact end in the right contact. The check
+computes the edge current of a square island with the field into the page for both charges, reads the sense of the
+arrows from the coordinates of hall_setup.py, and counts the currents of the four contacts with Landauer-Buttiker
+for both senses.
 
 The plateau at 2 e^2/h of the feedback of the second quiz is computed with pyqula for the spinful honeycomb lattice
 with the Fermi energy above its zero level and for the spinful square lattice with its lowest level filled, which are
@@ -20,7 +30,10 @@ part runs in a temporary folder that the script removes.
 
 Every value comes from two routes, the SI constants and the conversion of the conventions sheet
 (1.73 meV per tesla for GaAs, 36.3 meV for sqrt(B/T) in graphene). It needs numpy and pyqula, and writes no file in
-the repository."""
+the repository.
+
+The blocks marked "corrected on 2026-11-22" back the sentences of the old text that were corrected on that day, after
+the lecturer chose to fix the errors of the old text."""
 import json, os, re, tempfile
 import numpy as np
 
@@ -108,24 +121,99 @@ check('lab box, the stored abstract ties the large spacing of the lowest levels 
       'In graphene, the spacing between the lowest discrete energy levels' in text and 'exceptionally large' in text
       and 'promising for a quantum Hall resistance standard' in text, 'found')
 
-# ---------------------------------------------------------------- the old bullets, open points 3 and 4 of the plan
-b1 = 1 / gaas(1)                                       # the field where hbar omega_c of GaAs is 1 meV
-check('old text, open point 4: hbar omega_c of GaAs is 1 meV at 0.58 T, 1.73 meV at 1 T and 17.3 meV at 10 T',
-      round(b1, 2) == 0.58 and abs(gaas(b1) - 1) < 1e-12, round(b1, 4))
+# ---------------------------------------------------------------- the GaAs bullet, corrected on 2026-11-22
+# "1.7 meV per tesla, so a few millielectronvolts at a few tesla and 17 meV at 10 T": the rate by the SI constants and
+# by 2 mu_B / 0.067, the values for the fields of a few tesla, and the value at 10 T
+few = [gaas(B) for B in (2, 3, 4, 5)]
+check('bullet: GaAs has 1.7 meV per tesla by two routes, 3.5 to 8.6 meV for 2 to 5 T, a few millielectronvolts, and 17 meV '
+      'at 10 T',
+      round(gaas(1), 1) == 1.7 and round(2 * mu_b / 0.067, 1) == 1.7 and abs(gaas(1) - 2 * mu_b / 0.067) < 1e-6
+      and 3 < min(few) and max(few) < 9 and round(few[0], 1) == 3.5 and round(few[-1], 1) == 8.6
+      and round(gaas(10)) == 17 and round(20 * mu_b / 0.067) == 17, (np.round(few, 3), round(gaas(10), 3)))
+
+# ---------------------------------------------------------------- the two bullets and hall_setup, decided on 2026-11-22
 kT1 = KB * 1 / E * 1e3                                 # k_B times 1 K, in meV
-check('old text, open point 4: k_B times 1 K is 0.086 meV, 1/20 of hbar omega_c at 1 T',
-      round(kT1, 3) == 0.086 and round(gaas(1) / kT1) == 20, (round(kT1, 4), round(gaas(1) / kT1, 2)))
+check('decided on 2026-11-22, the GaAs kelvin: k_B times 1 K is 0.086 meV, 1/20 of hbar omega_c at 1 T, and 1.73 meV is 20 K',
+      round(kT1, 3) == 0.086 and round(gaas(1) / kT1) == 20 and round(gaas(1) * 1e-3 * E / KB) == 20,
+      (round(kT1, 4), round(gaas(1) / kT1, 2)))
 b10 = (graphene(1) / gaas(1) / 10) ** 2                # the field where the ratio of the two scales is 10
-check('old text, open point 3: the ratio of E_1 to hbar omega_c is 10 at 4.4 T, 21 at 1 T and 6.6 at 10 T',
-      round(b10, 1) == 4.4 and abs(graphene(b10) / gaas(b10) - 10) < 1e-9, round(b10, 3))
-check('old text, open point 3: E_1 of graphene at 10 T is 115 meV, the "around 100 millielectronvolts"',
-      round(graphene(10)) == 115, round(graphene(10), 2))
-kT100 = KB * 100 / E * 1e3
-check('old text, "up to about 100 K" has no stored source: k_B times 100 K is 8.6 meV, 1/13 of E_1 at 10 T',
-      round(kT100, 1) == 8.6 and round(graphene(10) / kT100) == 13, (round(kT100, 3), round(graphene(10) / kT100, 2)))
-check('old text, "almost room temperature": the stored abstract of doi 10.1126/science.1137201 says room temperature',
-      'the QHE can reliably be measured even at room temperature' in stored('https://www.science.org/doi/10.1126/science.1137201'),
+check('decided on 2026-11-22, kept: the ratio of E_1 to hbar omega_c is 10 at 4.4 T, 21 at 1 T and 6.6 at 10 T, '
+      '"roughly one order of magnitude"', round(b10, 1) == 4.4 and abs(graphene(b10) / gaas(b10) - 10) < 1e-9
+      and round(r1) == 21 and round(r10, 1) == 6.6, round(b10, 3))
+check('decided on 2026-11-22, kept: E_1 of graphene at 10 T is 115 meV, the "around 100 millielectronvolts"',
+      round(graphene(10)) == 115 and 90 < graphene(10) < 125, round(graphene(10), 2))
+page01 = open(os.path.join(WEBNOTES, 'pages', 'session04', '01-where-the-quantum-hall-state-shows-up.md')).read()
+check('decided on 2026-11-22: "up to about 100 K" had no stored source and is no longer on the page, and "can be measured '
+      'even at room temperature" is what the stored abstract of doi 10.1126/science.1137201 says, with no "best samples"',
+      '100 K' not in page01 and 'the quantum Hall effect of graphene can be measured even at room temperature' in page01
+      and 'best samples' not in page01 and 'almost room temperature' not in page01
+      and 'the QHE can reliably be measured even at room temperature' in stored('https://www.science.org/doi/10.1126/science.1137201'),
       'found')
+# "This is high enough": E_1 = 115 meV at 10 T is 4.4 k_B T at 300 K, the number of Session 3, Section 3.6, by the SI
+# constants and by the rounded k_B of the problem
+kT300 = KB * 300 / E * 1e3
+check('decided on 2026-11-22, "high enough": E_1 of graphene at 10 T is 4.4 k_B T at 300 K, as Session 3 says',
+      round(graphene(10) / kT300, 1) == 4.4 and round(115e-3 / (8.617e-5 * 300), 1) == 4.4,
+      (round(kT300, 3), round(graphene(10) / kT300, 3)))
+
+
+def island_current(sign, L=14, phi=1 / 16):
+    """Current along +x in the upper half of an L x L island of the square lattice, hopping -1, in the edge state of
+    the first gap. The hop from (x, y) to (x, y+1) has the phase sign * 2 pi phi x, which is (q/hbar) times the line
+    integral of A = (0, s B x), with sign = q s: +1 for the charge +e in the field out of the page or for an electron
+    in the field into the page, -1 for the charge +e in the field into the page."""
+    idx = lambda x, y: x * L + y
+    Hm = np.zeros((L * L, L * L), complex)
+    for x in range(L):
+        for y in range(L):
+            if x + 1 < L:
+                Hm[idx(x + 1, y), idx(x, y)] = Hm[idx(x, y), idx(x + 1, y)] = -1
+            if y + 1 < L:
+                Hm[idx(x, y + 1), idx(x, y)] = -np.exp(1j * sign * 2 * np.pi * phi * x)
+                Hm[idx(x, y), idx(x, y + 1)] = np.conj(Hm[idx(x, y + 1), idx(x, y)])
+    e, v = np.linalg.eigh(Hm)
+    st = v[:, np.argmin(np.abs(e - (-4 + 4 * np.pi * phi)))]          # the gap between the two lowest levels
+    # particle current from (x, y) to (x+1, y), 2 Im(psi_b^* H_ba psi_a), summed over the bonds of the upper half
+    return sum(2 * np.imag(np.conj(st[idx(x + 1, y)]) * Hm[idx(x + 1, y), idx(x, y)] * st[idx(x, y)])
+               for x in range(L - 1) for y in range(L) if y > (L - 1) / 2)
+
+
+j_plus, j_electron = island_current(-1), island_current(+1)          # the field into the page, as hall_setup.py draws it
+src = open(os.path.join(WEBNOTES, 'figures', 'session04', 'hall_setup.py')).read()
+loop_src = re.search(r'for \(p, q\) in \((.*?)\):\n', src, re.S).group(1)
+pts = eval('(' + loop_src + ')', {}, dict(x0=1.0, y0=0.6, S=4.0, d=0.28))        # the four arrows of the edge channels, tail to head
+starts = np.array([p for p, q in pts])
+area = 0.5 * sum(starts[i, 0] * starts[(i + 1) % 4, 1] - starts[(i + 1) % 4, 0] * starts[i, 1] for i in range(4))
+chain = all(np.allclose(pts[i][1], pts[(i + 1) % 4][0]) for i in range(4))
+check('decided on 2026-11-22, hall_setup: with the field into the page the charge +e goes along +x in the upper half, '
+      'clockwise, and an electron along -x, counterclockwise, which is the sense of the arrows that hall_setup.py draws',
+      j_plus > 0.1 and j_electron < -0.1 and abs(j_plus + j_electron) < 1e-9 and chain and area > 0
+      and 'into the page (a cross)' in src, (round(j_plus, 4), round(j_electron, 4), round(area, 3)))
+
+
+def four_contacts(order, V, N=3, floating=()):
+    """Landauer-Buttiker for N chiral channels that go from each contact to the next one in `order`. The current
+    into the sample from contact i, in units of e^2/h times a volt, is N (V_i - V_prev(i)), where prev(i) is the
+    contact whose channels arrive at i. A floating contact draws no current, so it takes the potential of the
+    contact before it. Returns the current that leaves the sample into each contact."""
+    V = dict(V)
+    for c in floating:                                  # a floating contact sits at the potential of the one before it
+        V[c] = V[order[(order.index(c) - 1) % 4]]
+    return {c: -N * (V[c] - V[order[(order.index(c) - 1) % 4]]) for c in order}
+
+
+Vy = 1.0
+ccw = ('bottom', 'right', 'top', 'left')               # the arrows of hall_setup.py, the electron sense
+cw = ccw[::-1]                                         # the charge +e in the same field
+grounded = dict(top=Vy, bottom=0.0, left=0.0, right=0.0)
+I_e, I_p = four_contacts(ccw, grounded), four_contacts(cw, grounded)
+I_pf = four_contacts(cw, grounded, floating=('right',))
+check('decided on 2026-11-22, hall_setup: with the top contact at V_y and the others at 0, the channels of the top contact '
+      'end in the left contact for the drawn sense, which takes N (e^2/h) V_y, and in the right contact for the charge +e, '
+      'which then takes it while the left one takes 0',
+      I_e['left'] == 3 * Vy and I_e['right'] == 0 and I_p['right'] == 3 * Vy and I_p['left'] == 0
+      and cw[(cw.index('top') + 1) % 4] == 'right' and ccw[(ccw.index('top') + 1) % 4] == 'left'
+      and I_pf['left'] == 0 and I_pf['bottom'] == 3 * Vy, (I_e, I_p, I_pf))
 
 # ---------------------------------------------------------------- quiz 2, the plateau at 2 e^2/h in both materials
 from pyqula import geometry

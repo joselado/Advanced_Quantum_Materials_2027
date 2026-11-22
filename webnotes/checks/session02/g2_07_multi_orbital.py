@@ -65,6 +65,34 @@ for j in range(L):
         v = np.concatenate([np.exp(1j * n * fj) * U[:, b] for n in range(L)])
         ok = ok and np.allclose(H @ v, w[b] * v)
 check('fold: e^{i n phi} u is an eigenvector of (2.11) on the ring for each eigenvector u of H(phi)', ok, 'ok')
+# the old text, corrected on 2026-11-22: the symmetry of (2.11) is the translation by one cell alone. It commutes with
+# H, while the translation combined with one fixed rotation U(0) of the orbitals on every cell does not, and the
+# rotation that the eigenstates need, U(phi), changes with phi, so it comes from H(phi) and is not part of the symmetry.
+Tc = np.kron(np.roll(np.eye(L), 1, axis=0), np.eye(no))
+U0 = np.linalg.eigh(bloch(t, g, 0.0))[1]
+U1 = np.linalg.eigh(bloch(t, g, 2 * np.pi / L))[1]
+VT = np.kron(np.eye(L), U0) @ Tc
+check('the translation by one cell commutes with (2.11), the translation with a fixed rotation U(0) of the orbitals does '
+      'not, and U(phi) differs between phi = 0 and 2 pi/7', np.allclose(Tc @ H, H @ Tc) and not np.allclose(VT @ H, H @ VT)
+      and not np.allclose(np.abs(U0), np.abs(U1)), round(float(np.abs(VT @ H - H @ VT).max()), 3))
+# the same sentence, corrected again on 2026-11-22 from "diagonalizes" to "splits (2.11) into blocks, one for each
+# phase": in the eigenbasis e^{i n phi} e_alpha of the translation, each of the 7 phases holds 3 states, H has no
+# element between different phases, and inside a block it is H(phi), which is not diagonal. Route 2 compares the
+# blocks with (2.12).
+W = np.kron(np.array([[np.exp(2j * np.pi * n * j / L) for j in range(L)] for n in range(L)]) / np.sqrt(L), np.eye(no))
+Hb, Tb = W.conj().T @ H @ W, W.conj().T @ Tc @ W
+inblk = np.kron(np.eye(L), np.ones((no, no)))
+blocks_ok = all(np.allclose(Hb[no * j:no * j + no, no * j:no * j + no], bloch(t, g, 2 * np.pi * j / L)) for j in range(L))
+check('in the eigenbasis of the translation, (2.11) is block diagonal with the 3 x 3 blocks H(phi) of (2.12), which are '
+      'not diagonal', np.allclose(Tb, np.diag(np.diag(Tb))) and np.abs(Hb * (1 - inblk)).max() < 1e-12 and blocks_ok
+      and np.unique(np.round(np.angle(np.diag(Tb)), 8)).size == L
+      and np.abs(Hb * inblk - np.diag(np.diag(Hb))).max() > 0.1, round(float(np.abs(Hb * inblk - np.diag(np.diag(Hb))).max()), 3))
+# the fold, with the normalization of (2.7) decided on 2026-11-22: the operators c^dagger_{phi,a} carry 1/sqrt(L), with L
+# the number of cells, so W is unitary and the bracket of the fold is H(phi) itself, while with no 1/sqrt(L) it is L H(phi)
+Wn = W * np.sqrt(L)
+check('fold: with 1/sqrt(L) the operators c^dagger_(phi,a) are orthonormal and give H(phi), with no factor they give L H(phi)',
+      np.allclose(W.conj().T @ W, np.eye(L * no)) and all(np.allclose((Wn.conj().T @ H @ Wn)[no * j:no * j + no, no * j:no * j + no],
+      L * bloch(t, g, 2 * np.pi * j / L)) for j in range(L)), L)
 
 # the key box: a hopping gamma_m to the cell at the distance m adds gamma_m e^{i m phi} and its Hermitian conjugate.
 # Ring of 9 cells of two orbitals with a random t, gamma_1 and gamma_2.
@@ -155,6 +183,29 @@ h3 = lambda x: bloch(np.array([[0, -t1, 0], [-t1, 0, -t1], [0, -t1, 0]]),
 check('quiz three sites: -2t, t, t at phi=0, three bands', np.allclose(np.linalg.eigvalsh(h3(0.0)), [-2, 1, 1]), 'ok')
 check('quiz three sites: the branches -2t cos[(phi + 2 pi m)/3]', all(np.allclose(np.linalg.eigvalsh(h3(x)), np.sort(
     [-2 * np.cos((x + 2 * np.pi * m) / 3) for m in range(3)])) for x in f), 'ok')
+
+# the notebook box, corrected on 2026-11-22: geometry.ladder() of the cell "One dimensional ladder, band folding",
+# spinless as in the cell, has the rung 1 in h.intra and the two legs 1 in h.inter, so its bands are 2cos(phi) +- 1 with
+# the hopping +1 of the notebook, and not the bands +-|1 + eta e^{-i phi}| of (2.13) for any eta
+hl = geometry.ladder().get_hamiltonian(has_spin=False)
+hkl = hl.get_hk_gen()
+okl = np.allclose(hl.intra, [[0, 1], [1, 0]]) and np.allclose(hl.inter, np.eye(2))
+okl = okl and all(np.allclose(np.linalg.eigvalsh(hkl([x / (2 * np.pi), 0, 0])), [2 * np.cos(x) - 1, 2 * np.cos(x) + 1])
+                  for x in f)
+okl = okl and np.allclose(np.linalg.eigvalsh(hkl([0, 0, 0])), [1, 3]) and np.allclose(np.linalg.eigvalsh(hkl([0.5, 0, 0])), [-3, -1])
+okl = okl and not any(np.allclose(np.linalg.eigvalsh(hkl([0, 0, 0])), np.linalg.eigvalsh(ssh(eta, 0.0)))
+                      for eta in np.linspace(0, 3, 301))
+check('notebook box: pyqula ladder has the rung inside the cell and the legs to the next cell, the bands 2cos(phi) -+ 1, '
+      '1 and 3 at 0 and -3 and -1 at pi, which no eta of (2.13) gives', okl, np.linalg.eigvalsh(hkl([0.5, 0, 0])))
+# the same box, after the recheck o2: the cell also draws the supercells NS = 2 and 3, whose levels at k = 0 are the
+# two bands 2cos(phi) -+ 1 folded, at phi = 2 pi m/NS. Route 1 is pyqula get_supercell, route 2 the folded formula.
+lev_ns = {}
+for ns in (2, 3):
+    lev_ns[ns] = np.linalg.eigvalsh(geometry.ladder().get_supercell(ns).get_hamiltonian(has_spin=False).get_hk_gen()([0, 0, 0]))
+fold_ns = {ns: np.sort([2 * np.cos(2 * np.pi * m / ns) + s for m in range(ns) for s in (-1, 1)]) for ns in (2, 3)}
+check('notebook box: the supercells NS = 2 and 3 of the ladder have -3, -1, 1, 3 and -2, -2, 0, 0, 1, 3 at k = 0, the '
+      'bands 2cos(phi) -+ 1 folded', np.allclose(lev_ns[2], [-3, -1, 1, 3]) and np.allclose(lev_ns[3], [-2, -2, 0, 0, 1, 3])
+      and all(np.allclose(lev_ns[ns], fold_ns[ns]) for ns in (2, 3)), {k_: np.round(v_, 6) for k_, v_ in lev_ns.items()})
 
 # the problem: H(phi), the bands +-sqrt(Delta^2 + 2 t^2 (1 + cos phi)), the gap 2|Delta| at pi, +-sqrt(Delta^2 + 4t^2)
 # at 0, +-2t|cos(phi/2)| for Delta = 0, from numpy and from pyqula (bichain, hoppings -1, add_sublattice_imbalance).

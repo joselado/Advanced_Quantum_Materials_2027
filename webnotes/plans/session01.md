@@ -549,33 +549,235 @@ coordinator can tell them from an accidental redraw. Any other old SVG that chan
 
 ## Open for the lecturer
 
-These touch a numbered equation, a statement of the old text or a convention. A builder leaves them as they are.
+The lecturer decided on 2026-11-22 how the points found in the old text are handled ("Fix old-text errors, ask the
+rest"). The first list holds the sentences of the old text that were false as written and that were corrected on the
+web pages, and the sentences that the decisions of the second list changed or added, each with the line of
+`lecture_notes/src/sessions/session01.tex` where the old sentence stands, so that the change can be carried over to
+the .tex. The points come from the reports of the builders and of the fixers, from
+this section as it was, whose numbers 1 to 8 are kept as "was point N", and from the open points of
+`webnotes/conventions/session01.md`. Repeats were merged, so there were 35 points, 8 corrected and 27 asked. The 27
+asked points have the ids B1 to B27 of the question file of the coordinator, in the order of the list below. On the
+same day the lecturer picked B1 and said for the rest "ask me the top 5, other you decide by yourself", so the
+coordinator decided the other 26 by the rule that the list "Decided on 2026-11-22" gives. Of the 27, 12 changed a
+page, 11 were left as they are by a decision, and 4 are not applied, for the reasons of the list "Not applied". No
+numbered equation changed. The conventions sheet was edited on the same day, and its last section, "Points of the old
+text, decided on 2026-11-22", marks each of its points as corrected, left, or left for the notebook or for Session 6,
+while the part of the finite $m$ on Section 6.3 stays open. Its checks in `webnotes/checks/session01/conventions.py`
+also read the corrected pages, and the check that read "the unbiased guess" is called "the CDW guess, corrected in the
+notebook box".
 
-1. The sign of the hopping. (1.2) writes $+t$, and so do `dimer_fock.py`, `boson_fermion_pair.py` and the caption of
-   the dimer, where $-t$ is the antisymmetric combination. (1.6), (1.7), `island_states.py`, `levels_vs_size.py`
-   and `dimer_meanfield.py` write $-t$. pyqula uses $+1$. On the bipartite lattices of the session the set of levels
-   and the densities do not depend on the sign, but the band against $k$ does, pyqula gives $+2\cos k$ for the chain
-   where Section 1.2 draws $-2t\cos k$, and so does the sign pattern of the lowest state of an island. A reader sees
-   two conventions. Keep both with one sentence, or move (1.2) to $-t$, which changes a numbered equation and the
-   labels of the two combinations. In both cases the new pyqula scripts say which sign they use.
-2. The definition of a magnet (1.4), $\hat T|\Psi\rangle=|\Psi\rangle$. A state is invariant only up to a phase, and
-   for an odd number of electrons $\hat T^2=-1$, so $\hat T|\Psi\rangle$ is orthogonal to $|\Psi\rangle$ and no state
-   passes the test, also with no magnetism (Kramers). A number confirms $\hat T^2=-1$ for one spin with
-   $\hat T=i\sigma_yK$, and that the singlet of two spins passes. A sentence next to (1.4) or a new form of it is the
-   lecturer's.
-3. The pairing amplitude (1.9), $\Delta=\langle c_ic_j\rangle$, has no spin, while Section 1.15 decouples the onsite
-   term of (1.7), where it is $\langle c_{i\downarrow}c_{i\uparrow}\rangle$. For one spin species $c_ic_i=0$. Adding
-   the spin changes a numbered equation.
-4. The table of Section 1.11b pairs the broken gauge symmetry with the Higgs mode, while the other two rows give the
-   Goldstone mode. The amplitude mode is gapped, and the phase mode of a neutral superfluid is gapless, while in a
-   charged superconductor it moves up to the plasma frequency. The sentence "only the phonon is gapless in every
-   material" holds for acoustic phonons. These are statements of the old text.
-5. The mean-field decoupling is told in words on pages `12` to `14`. The plan puts it in unnumbered displays inside
-   the steps folds, and the key boxes keep (1.5), (1.6) and (1.7). Giving it its own number, such as (1.6a), is the
-   lecturer's.
-6. Section 1.3 says that flux quantization and the Josephson effect are the basis of "some of our most precise
-   measurements of the ratio between Planck's constant and the electron charge". Since 2019 both constants are
-   exact in the SI, and the Josephson effect realizes the volt. A statement of the old text.
-7. The lab box of Section 1.14 is a gas of atoms on a square lattice, not one material and not the chain of the
-   page. Keep it, or leave Section 1.14 without a lab box.
-8. Section 1.11b and Session 6 would link the same CrI3 article. Keep it in both, or give Session 1 another source.
+### Corrected on the web, to carry over to the .tex
+
+- Page `03`, the bullet on vortices (was point 6). The old sentence is "These two effects are the basis of some of our most precise
+  measurements of the ratio between Planck's constant and the electron charge." The new sentence is "These two effects were the basis
+  of some of our most precise measurements of the ratio between Planck's constant and the electron charge, and now both
+  constants have exact values in SI units." In the .tex at lines 110 to 112, where it is one sentence with the one
+  before it, "... and to the Josephson effect, and these are the basis of ...". `scipy.constants` gives the
+  uncertainty 0 for both constants and for $2e/h$, asserted in `g1_03_emergent_quasiparticles.py`.
+- Page `03`, the caption of `vortex_phase`. The old sentence is "No smooth change of the arrows can remove this winding, and this is
+  why we call a vortex a topological defect." The new sentence is "No smooth change of the arrows can remove this winding as long as
+  the amplitude stays nonzero on the loop, and this is why we call a vortex a topological defect." Not in the .tex,
+  since the figure is web-only. Checked by two routes in `g1_03`. When the core moves along $x$, the winding along
+  the loop of radius $2.2\,\xi$ drops from 1 to 0 only between $2.19\,\xi$ and $2.21\,\xi$, where the amplitude on
+  the loop is 0.01. The linear change from the vortex to the uniform field loses the winding only at $s=0.494$,
+  where the amplitude vanishes on the loop.
+- Page `11b`, the paragraph on the Hall conductivity and the Kerr effect. The old sentence is "A nonzero signal in either of them is
+  direct evidence of broken time-reversal symmetry." The new sentence is "A nonzero signal in either of them at zero applied magnetic
+  field is direct evidence of broken time-reversal symmetry." In the .tex at line 367. Checked in `g3_11b` with the
+  Drude tensor and with the drift of the equation of motion, which give $\sigma_{xy}=0$ at zero field and
+  $-0.099\,\sigma_0$ at $\omega_c\tau=0.1$ for a metal with no magnetism.
+- Page `11b`, the table and the sentence after it (part of was point 4). The old text is the cell "Phonon" of the row of
+  continuous translations, and "and that only the phonon is gapless in every material.", and the new text is "Acoustic phonon" and
+  "and that only the acoustic phonon is gapless in every material." In the .tex at line 349 for the table and at
+  lines 356 to 357 for the sentence. Checked in `g3_11b` on a chain with the masses 1 and 2, where at $k=0$ the
+  acoustic branch is 0 and the optical branch is $\sqrt3$, by diagonalization and by the closed form. The row of the
+  Higgs mode stays, and it is a question below. The caption of `gapless_gapped`, which is web-only, now says "The
+  phonon, the acoustic branch of a chain with one mass per cell, is gapless", so that it matches the table. This is
+  not a correction, the old caption was right, and `g3_11b` checks that one mass per cell has the single branch
+  $2|\sin(k/2)|$.
+- Page `13`, the notebook box. The old sentence is "Start from an unbiased guess, iterate, and look at how the charge imbalance on each
+  site grows with $V$, ..." The new text is "Both cells start the loop from the guess `mf="CDW"`, which picks one of the two
+  charge patterns. The Hamiltonian itself keeps the symmetry, since the cells set the external imbalance `cdw = 0`.
+  Iterate, and look at how the charge imbalance on each site grows with $V$, ..." In the .tex at line 467. Checked in
+  `g4_13` by reading the Core and the Challenge cells, by asking pyqula for the guess, which is the onsite energies
+  $+1$ and $-1$, and by the loop of each cell. At $V=3t$ the guess and the opposite guess end in the two mirrored
+  patterns with the same energy, and at $V=0$ the loop from the guess ends uniform. A first correction said that the
+  guess "breaks the symmetry by hand", which in this session means a term of the Hamiltonian, so it was replaced.
+- Page `14`, Section 1.14. The old sentence is "Self-consistency gives $m=0$ automatically for $U<0$, and a finite $m$ for $U>0$,
+  which is a real magnetic solution." The new sentence is "Self-consistency gives $m=0$ automatically for $U<0$, and in the
+  half-filled chain a finite $m$ for $U>0$, which is a real magnetic solution." In the .tex at lines 493 to 494. The
+  try-it box of the same page finds the onset $U=2t$ of the dimer, and the honeycomb lattice needs $U>2.23t$. The
+  moment of the chain, 0.0299 at $U=t$ and nonzero at $0.8t$, and the threshold of the dimer are asserts of
+  `g4_14_magnetism.py` already. The gap equation and a loop on a mesh of 200001 cells give again 0.0299 at $U=t$
+  and 0.0078 at $0.8t$, and a map with the opposite sign of $m$ at $U=-3t$. Section 6.3 repeats the sentence, which
+  is a point of Session 6.
+- Page `14`, the notebook box. The old sentence is "Then go to the extended chain and finally to the honeycomb lattice, which uses the
+  finite islands of Section [1.10](#sec-1-10) with interactions." The new sentence is "Then go to the extended chain and finally to
+  the honeycomb lattice, which is the lattice of the islands of Section [1.10](#sec-1-10), now infinite and with
+  interactions." In the .tex at lines 511 to 512, where the old wording is "which uses the same finite-island
+  geometries of Section 1.10 but now with interactions". Checked in `g4_14` by reading the cell, which takes
+  `geometry.honeycomb_lattice()` with `nk=10`, and by pyqula, whose geometry has the dimension 2.
+- Page `16`, the feedback of the second option of the quiz. The old sentence is "The state is a superposition of $N$, $N+2$ and $N-2$
+  electrons, with no electrons leaving." The new sentence is "The state is a superposition of $N$, $N\pm2$, $N\pm4$ and more
+  electrons, with no electrons leaving." Not in the .tex, since the quiz is web-only. Checked in `g5_16` on a ring of
+  four spinful sites at $\Delta=0.8$, where the ground state has the weights 0.0028, 0.1092, 0.4435 and 0.0211 on
+  $N=0$, 2, 6 and 8 around $N=4$.
+
+- Page `05`, the paragraph after (1.2), the pick of the lecturer of 2026-11-22 (B1). It is not a correction but an
+  added sentence. The paragraph now ends "We write $+t$ here, and from Section 1.10 on the hopping is $-t$, so the two
+  combinations exchange their levels." On the web the first $-t$ after (1.2) is the island of Section 1.10. In the
+  .tex the sentence goes at the end of the paragraph of lines 196 to 200, and there the first $-t$ after (1.2) is (1.6)
+  of Section 1.13, at line 434, so the .tex takes "from Section 1.13 on". The .tex has no figure that names the
+  symmetric and the antisymmetric combination, so it needs their names in the sentence. Checked in `g2_05`, which
+  also finds the line and the section of the .tex.
+- Page `04`, Section 1.4.1 (B9). The old sentence is "When the electrons can be treated as independent of each other, we
+  can describe the system with a single-particle wave function that lives in an ordinary Hilbert space." The new
+  sentence is "We can describe the system with a wave function with a fixed number of particles, which for independent
+  electrons is a single-particle wave function that lives in an ordinary Hilbert space." In the .tex at lines 136 to
+  137.
+- Page `04`, Section 1.4.2 (B9). The old sentence is "It fails for any system where the electrons are not independent,
+  and also, which is more surprising, for systems where the *number* of electrons is itself not fixed." The new text
+  is "For interacting electrons it still works, but the wave function depends on the coordinates of all of them at
+  once. It fails, which is more surprising, for systems where the *number* of electrons is itself not fixed." In the
+  .tex at lines 145 to 147. Checked in `g2_04` with two electrons on five sites, in first quantization and in the Fock
+  space.
+- Page `11b`, the definition of the Hall conductivity (B27). The old sentence is "The first one is the **Hall
+  conductivity**, which is a transverse current generated by a longitudinal voltage." The new sentence adds ", in its
+  antisymmetric part $\sigma_{xy}=-\sigma_{yx}$" before the period. In the .tex at lines 364 to 365, where the
+  sentence after it still lacks "at zero applied magnetic field", the correction above. Checked in `g3_11b` by two
+  routes.
+- Page `11b`, after (1.4) (B2). New sentence after the key box, "In (1.4) equal means equal up to a phase, and the test
+  is for an even number of electrons, since for an odd number $\hat T^2=-1$ and no state passes." In the .tex it goes
+  right after the equation of lines 373 to 376, before the paragraph of line 378, where it can start "Here equal
+  means". Checked in `g3_11b`.
+- Page `13`, the notebook box (B15). New last sentence, "Both cells also keep the Fock term, so at $V=3t$ the imbalance
+  is $0.70$ and not the Hartree value $0.89$ of the text." In the .tex at the end of the box of lines 466 to 470, after
+  line 469, in the box that also takes the correction of the guess above. Checked in `g4_13`.
+- Page `14`, the key box of Section 1.15 (B3). New sentence after (1.9), "For the onsite term of (1.7) the two
+  operators have opposite spins, $\Delta=\langle c_{i\downarrow}c_{i\uparrow}\rangle$, since
+  $c_{i\uparrow}c_{i\uparrow}=0$." In the .tex right after the equation of lines 522 to 524. Checked in `g4_14`.
+- Page `16`, the summary (B18). The old sentence is "The many-body Hilbert space grows as $2^L$, as we saw in Section
+  1.9." The new sentence is "The many-body Hilbert space grows as $2^L$ for spinless fermions and as $4^L$ with spin, as
+  we saw in Section 1.9." In the .tex at line 560. Checked in `g5_16`.
+- Page `01`, the goals of the United Nations (B21). The old text is "Quantum computing is connected to goals 8 and 9,
+  which are economic growth, industry and innovation. Solar energy and superconducting or topological electronics with
+  low power consumption are connected to goals 7 and 13, which are clean energy and climate action. The international
+  and cross-disciplinary character of the field is connected to goal 17, which is partnerships." The new text names
+  "the goals on economic growth, industry and innovation", "the goals on clean energy and climate action" and "the goal
+  on partnerships", with no number. In the .tex at lines 38 to 42. Checked in `g1_01`, which finds no digit in the
+  paragraph.
+
+The changes of 2026-11-22 that the .tex does not share are the caption of `gap_two_origins` on page `01` (B4), the
+feedback of the doping quiz of page `02` (B22), the try-it box of page `11b` (B13), and the comesback box of the
+closing page of Session 10 (B23).
+
+### Decided on 2026-11-22
+
+The lecturer picked B1. The coordinator decided the other points by the rule of 2026-11-22, which is the following. The
+option that makes the text true with the smallest change, and that changes no numbered equation, is taken, and between
+two true wordings the shorter and clearer one. A sentence with a number or a claim that no stored source or
+calculation supports is reduced to what is supported, and a number that we compute is asserted. A try-it box or a
+notebook box that does not match its notebook cell is rewritten to match the cell, and the notebooks are not edited. A
+Blender figure and its overlay are not touched, a page of Session 6 or 7 is not edited, and a one-line fix on a page of
+another session is applied. A sentence that the rule keeps was first checked to be true, and a point with an added
+sentence was checked with a calculation of its own, in the check script of its page.
+
+- B1, the sign of the hopping (was point 1). Picked by the lecturer, keep $+t$ in (1.2) with one sentence after it. The
+  paragraph after (1.2) on page `05` now ends "We write $+t$ here, and from Section 1.10 on the hopping is $-t$, so the
+  two combinations exchange their levels." The option had Section 1.13, which is right for the .tex. On the web the
+  first $-t$ after (1.2) is the island of Section 1.10, in the caption of `island_states` and in its quiz, and the
+  problem of Section 1.12 and (1.6) and (1.7) follow. The bands $-2t\cos k$ of pages `01` and `02` come before (1.2).
+  The sentence follows the pointer to `dimer_fock`, whose caption names the two combinations. `g2_05` checks that the
+  lower level is the antisymmetric combination with $+t$ and the symmetric one with $-t$, that every hopping of the
+  pages from Section 1.10 on is $-t$, and that the first one is in Section 1.10.
+- B2, the definition of a magnet (1.4) (was point 2). The coordinator, the first option, since a triplet with no moment
+  fails (1.4) as written. Page `11b` has after the key box "In (1.4) equal means equal up to a phase, and the test is
+  for an even number of electrons, since for an odd number $\hat T^2=-1$ and no state passes." The option starts
+  "Here", and on the web the sentence follows the key box, so it names (1.4). `g3_11b` checks $\hat T^2=-1$ on one and
+  three spins, $\langle\psi|\hat T\psi\rangle=0$ on 200 random states of each, three spins with no moment that still
+  fail, and the triplet $(|{\uparrow\downarrow}\rangle+|{\downarrow\uparrow}\rangle)/\sqrt2$, which gets the phase $-1$.
+- B3, the pairing amplitude (1.9) has no spin (was point 3). The coordinator, the second option, which keeps (1.9). The
+  key box of Section 1.15 on page `14` has after (1.9) "For the onsite term of (1.7) the two operators have opposite
+  spins, $\Delta=\langle c_{i\downarrow}c_{i\uparrow}\rangle$, since $c_{i\uparrow}c_{i\uparrow}=0$." `g4_14` checks
+  $c_\uparrow c_\uparrow=0$, $n_\uparrow n_\downarrow=c_\uparrow^\dagger c_\downarrow^\dagger c_\downarrow c_\uparrow$, and
+  $\langle c_\downarrow c_\uparrow\rangle=-0.468$ for a pairing term on one site, by diagonalization and by the closed form.
+- B4, $\Delta$ as a number and as an energy. The coordinator, the first option, since the caption used for an energy the
+  symbol that (1.9) gives to a number smaller by $|U|$. The caption of `gap_two_origins` on page `01` has "Here $\Delta$
+  is an energy, the pair amplitude of (1.9) times the attraction, as in Session 5." `g1_01` checks that the amplitude is
+  negative for $\Delta>0$ by two routes, so $\Delta=U\langle c_\downarrow c_\uparrow\rangle$ needs $U<0$, that the chain
+  at $U=-3t$ has $|\Delta|=0.931=3\times0.310$, and that (5.3) is $\Delta_n\equiv U\langle c_{n\downarrow}c_{n\uparrow}\rangle$.
+- B5, the row of the Higgs mode (rest of was point 4). The coordinator, leave it as it is. The table and the sentence
+  after it hold for a superconductor, where the Higgs mode is a gapped fluctuation of the order, and the offered
+  sentence adds a claim on the plasma frequency that no stored source and no check of the repository supports.
+- B6, the number of the decoupling (was point 5). The coordinator, leave it unnumbered. No new number.
+- B7, the lab box of Section 1.14 (was point 7). The coordinator, no lab box. Every lab box stays a material.
+- B8, the CrI3 article (was point 8). The coordinator, the first option. It stays in Section 1.11b, and Session 6 may
+  link it too. Nothing changes in Session 1.
+- B9, first quantization on page `04`. The coordinator, the first option, since "It fails for any system where the
+  electrons are not independent" was false. Section 1.4.1 now has "a wave function with a fixed number of particles,
+  which for independent electrons is a single-particle wave function", and Section 1.4.2 "For interacting electrons it
+  still works, but the wave function depends on the coordinates of all of them at once." The key box and the problem
+  of page `04` and the opener of page `08` agree with it. The question named "the problem of page `05`", while
+  $\psi(x_1,x_2)$ is in the problem of page `04`. `g2_04` checks that two electrons on five sites with $V=0$ and
+  $V=2t$ have the same ten levels in first quantization and in the block $N=2$ of the Fock space, and that the ground
+  state is one Slater determinant only at $V=0$, of rank 2 against 4.
+- B10, STM and the lowest levels of the island on page `08`. The coordinator, leave it as it is. The caption says
+  "proportional to what STM maps at that energy", which holds in principle, and the lab box says as our reading that
+  the measured levels are close to $E=0$.
+- B11, the try-it box of Section 1.10. The coordinator, leave it as it is. The sentence holds for the even lengths of
+  the cell.
+- B12, two meanings of $\Delta$ on page `11`. The coordinator, leave it with the sentence of the problem.
+- B13, the arrows of the try-it box of Section 1.11b. The coordinator, the first option, by the rule on try-it boxes.
+  The box now reads "look at the arrows in the panel of the antiferromagnetic guess, which show the exchange field, so
+  each arrow points against the moment of its site". `g3_11b` reads the cell, with its panel "Antiferromagnetic guess",
+  `U = 6.0` and `extract("mz")`, and pyqula gives the arrows $\pm2.677$ where `get_vev("mz")` is $\mp0.892$, which is
+  $-Um/2$, alternating from site to site.
+- B14, "An attractive $U<0$ drives superconductivity" on page `14`. The coordinator, leave it as it is. The sentence
+  holds, and the offered clause would say that Section 1.15 discusses the charge density wave, which it does not.
+- B15, the decoupling of the notebook cell of Section 1.13. The coordinator, the third option, by the rule on notebook
+  boxes, with its claim reduced to what holds. The option said "its imbalance is smaller than the Hartree value of the
+  text", which is false below about $0.75t$, where the 8 cells of the loop of the cell give more than the converged
+  Hartree value, 0.12 against 0.03 at $V=0.5t$. The box of page `13` now ends "Both cells also keep the Fock term, so at
+  $V=3t$ the imbalance is $0.70$ and not the Hartree value $0.89$ of the text." `g4_13` checks that neither cell passes
+  `compute_cross`, that the call of each cell at $V=3t$ gives 0.704, and 0.892 with `compute_cross=False`, and that at
+  the mesh of the cell the Fock term lowers the imbalance at every $V$ from $0.2t$ to $10t$ of its grid.
+- B16, the picture quiz on the gauge transformation. The coordinator, keep $\varphi=\pi/4$. No change.
+- B17, the link text of the sections with a letter. The coordinator, leave it as the conversion wrote it. The links
+  reach the right anchors.
+- B18, "The many-body Hilbert space grows as $2^L$" on page `16`. The coordinator, the second option, since the bullet
+  gave $2^L$ also for the spinful electrons of the Hubbard model of the same session, which have $4^L$, against the
+  list of tasks of the same page. The bullet now reads "grows as $2^L$ for spinless fermions and as $4^L$ with spin", and
+  `g5_16` checks it.
+- B19, "aluminum has a real $\Delta$" in the quiz of page `16`. The coordinator, leave it as it is. It holds in the usual
+  gauge, and `g5_16` already shows that a uniform phase of $\Delta$ is removed by (1.10).
+- B20, the overlay of the Blender figure `s01f03_threechannels`. Not applied, see the list below.
+- B21, the goals of the United Nations on page `01`. The coordinator, the second option, since no stored source gives
+  the numbers. The paragraph names the goals and has no number, which `g1_01` checks.
+- B22, the numbers of silicon in the doping quiz of page `02`. The coordinator, the second option, since no stored
+  source gives them. The feedback reads "Silicon doped with phosphorus keeps its gap, and it conducts. The dopants are
+  far too few to change the bands.", and `g1_02` checks that it has no number.
+- B23, the pointer of the closing page of Session 10. The coordinator, the first option, a one-line fix on another
+  session. Line 40 of `webnotes/pages/session10/08-closing-summary.md` now sends the reader to Section 1.3, whose
+  opener is "How can a lattice of identical atoms give rise to so many different kinds of collective behavior?".
+  Section 1.1 opens on the materials of the next technologies. `g1_03` checks both openers and the pointer.
+- B24, the label of the cell "The interacting Hubbard dimer". Not applied, see the list below.
+- B25, the sign of the sites in the cell "Gap opening of the Hubbard model in a chain". Not applied, see the list below.
+- B26, the old text of Session 6 that the conventions sheet lists. Not applied, see the list below.
+- B27, the definition of the Hall conductivity on page `11b`. The coordinator, the first option, since a crystal of low
+  symmetry gives a transverse current at zero field that keeps time reversal, so the corrected sentence after it did
+  not hold with the old definition. The sentence now ends "in its antisymmetric part $\sigma_{xy}=-\sigma_{yx}$". `g3_11b`
+  checks it by a second route, carriers with an inverse mass tensor at 30 degrees, which have
+  $\sigma_{xy}=\sigma_{yx}=0.217$ and no antisymmetric part at zero field, and in a field an antisymmetric part that is
+  odd in $B$, with $\sigma_{xy}(B)=\sigma_{yx}(-B)$.
+
+### Not applied
+
+- B20, the overlay of `s01f03_threechannels`. The rule does not touch a converted Blender figure or its overlay. Line 29
+  of `lecture_notes/src/figures/overlays/s01f03_threechannels.tex` still says that the charge density wave is "not
+  revisited", while Sections 9.4b and 9.5b come back to it, and the point waits for the next render of the figure.
+- B24, the label $\langle S_z\rangle$ of the cell "The interacting Hubbard dimer", a factor 2 off. The rule does not edit
+  the notebooks, and no box of the web quotes the label.
+- B25, "the even sites have a positive magnetization" in the cell "Gap opening of the Hubbard model in a chain", while
+  `get_vev("mz")` is $-0.621$ there. The rule does not edit the notebooks, and no box of the web repeats the sentence.
+- B26, the old text of Session 6 that the conventions sheet lists, Sections 6.3, 6.5 and 6.6. Another run edits the
+  pages of Session 6 now, so the points stay on the sheet of Session 1 for the pass of Session 6.

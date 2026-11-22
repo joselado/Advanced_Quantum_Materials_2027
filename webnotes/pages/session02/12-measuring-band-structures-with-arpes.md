@@ -6,7 +6,9 @@ Can any of this formalism be observed? The energy eigenvalue $E(\mathbf{k})$ is 
 This is the relation of Section [2.6](#sec-2-6) between the phase $\varphi$ of the translation eigenvalue $e^{i\varphi}$ and the momentum. Here $p$ is the momentum, $a$ the lattice constant and $k$ the quasi-momentum, which is defined up to a multiple of $2\pi/a$.
 :::
 
-The answer is yes, with **angle-resolved photoemission spectroscopy (ARPES)**. The idea is simple in principle. We send photons of known energy and momentum onto a material, and each photon can remove an electron from the material completely, which is the photoelectric effect. Conservation of momentum and energy relates the momentum and kinetic energy of the electron, which are both measured directly outside the material, to its momentum and energy when it was still inside. So when we scan the emission angle and the kinetic energy of the emitted electrons, we map $E(\mathbf{k})$ directly. This is how the band structure and the Fermi surface of graphene are measured in practice, and the measured Dirac cone agrees well with the tight-binding derivation of Section [2.11](#sec-2-11).
+The answer is yes, with **angle-resolved photoemission spectroscopy (ARPES)**. The idea is simple in principle. We send photons of known energy and momentum onto a material, and each photon can remove an electron from the material completely, which is the photoelectric effect. The kinetic energy and the emission angle of the electron are measured outside the material, and together they give its momentum there. Conservation of energy and of the momentum along the surface then gives its energy and its momentum along the surface when it was still inside. So when we scan the emission angle and the kinetic energy of the emitted electrons, we map $E(\mathbf{k})$ directly.
+
+This is how the band structure and the Fermi surface of graphene are measured in practice. The measured bands show the Dirac cone of Section [2.11](#sec-2-11), distorted by the coupling of the electrons to each other, to phonons and to plasmons, in [this article](https://arxiv.org/abs/cond-mat/0609660).
 
 The component of the momentum along the surface does not change when the electron leaves the material, and this gives the main result of this section.
 
@@ -106,10 +108,10 @@ From Session 1 this session used the single-particle part of the Hamiltonian [(1
 
 - We derived the band structure of the one-dimensional chain explicitly, $\epsilon_\varphi=-2t\cos\varphi$ in [(2.8)](#eq-2-8). We generalized the same method to second-neighbor hopping [(2.9)](#eq-2-9), to several orbitals per unit cell with the matrix Bloch Hamiltonian $H(\varphi)=t+\gamma e^{i\varphi}+\gamma^\dagger e^{-i\varphi}$ in [(2.12)](#eq-2-12) and [(2.13)](#eq-2-13), and to higher spatial dimensions, [(2.14)](#eq-2-14) and [(2.15)](#eq-2-15).
 
-- A dispersion $E(\mathbf{k})$ directly determines the measurable properties of a material, which are the density of states [(2.16)](#eq-2-16), the group velocity [(2.17)](#eq-2-17), the effective mass [(2.18)](#eq-2-18) and the Fermi surface. Every real dispersion is built locally from three types, which are parabolic, Dirac and flat.
+- A dispersion $E(\mathbf{k})$ directly determines the measurable properties of a material, which are the density of states [(2.16)](#eq-2-16), the group velocity [(2.17)](#eq-2-17), the effective mass [(2.18)](#eq-2-18) and the Fermi surface. Almost every band structure in this course is built locally from three types, which are parabolic, Dirac and flat.
 
 - The **Dirac cone** of the honeycomb lattice of graphene, $H(\mathbf{q})\approx\hbar v_F(q_x\sigma_x+
-    q_y\sigma_y)$ with $E_\pm=\pm\hbar v_F|\mathbf{q}|$ in [(2.20)](#eq-2-20) and [(2.21)](#eq-2-21), is the most important example of this session. We derived it directly from the vanishing of the off-diagonal Bloch Hamiltonian [(2.19)](#eq-2-19) at the points $K,K'$. The Lieb and kagome lattices realize flat bands with interference in real space, and with no fine-tuning.
+    q_y\sigma_y)$ at $K$, with the opposite sign of the $\sigma_y$ term at $K'$, and $E_\pm=\pm\hbar v_F|\mathbf{q}|$ at both, in [(2.20)](#eq-2-20) and [(2.21)](#eq-2-21), is the most important example of this session. We derived it directly from the vanishing of the off-diagonal Bloch Hamiltonian [(2.19)](#eq-2-19) at the points $K,K'$. The Lieb and kagome lattices realize flat bands with interference in real space, and with no fine-tuning.
 
 - All of this band-structure method generalizes directly to phonons, magnons and Bogoliubov-de Gennes quasiparticles, and not only to electrons. It is tested against real materials in experiments with ARPES.
 
