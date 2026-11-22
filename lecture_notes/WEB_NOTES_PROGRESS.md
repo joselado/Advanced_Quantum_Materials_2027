@@ -4,9 +4,8 @@ The plan is `lecture_notes/WEB_NOTES_PLAN.md`. This file is the tracker that eac
 updates at its end, one line per phase and one per session. Last update 2026-11-22, the end of the pedagogical pass
 of all ten sessions.
 
-Start here after 2026-11-22. All ten sessions are in the shape locked on 2026-11-21. The site has Sessions 1 to 5 as
-they were before the old-text corrections; the corrections of 1, 2, 4 and 5 and the pages of 6 to 10 are committed and
-go to the site with the next default build and push, on the lecturer's word. Each `webnotes/plans/sessionNN.md` ends
+Start here after 2026-11-22. All ten sessions are in the shape locked on 2026-11-21 and published on the site, with
+the old-text corrections of Sessions 1, 2, 4 and 5 (commit 68829ee, pushed on the lecturer's word). Each `webnotes/plans/sessionNN.md` ends
 with the list of corrections to carry over to the `.tex`, the list "Decided on 2026-11-22", and the points left for
 the lecturer: three in all, the corner $\mathbf K$ of the solution of 6.16, the quantity of (9.11), and the italic rule
 of the key box of 9.8. The last log entries at the end say what was done and what is open.
@@ -281,4 +280,6 @@ Result, the live path works, so every widget has the button "Run live in the bro
   6 to 10 and on page 5.19; `labsource.py --check` finds every planned number; `build.py --verify` gives 14, 15, 15, 18 and 12 scripts OK on Sessions 6 to 10, with
   nothing else running. Cost: about 64 million
   subagent tokens in the workflows of the pass of the nine sessions, about 27 million of them for the pages of Sessions
-  6 to 10, as a lower bound, since a stopped run may not be counted.
+  6 to 10, as a lower bound, since a stopped run may not be counted. The lecturer then picked "Publish all now": the
+  default build gives 171 pages, 0 errors, 17755 math fragments with 0 errors, a second build writes nothing, and
+  commit 68829ee is pushed with the README line on Sessions 1 to 5 removed.
