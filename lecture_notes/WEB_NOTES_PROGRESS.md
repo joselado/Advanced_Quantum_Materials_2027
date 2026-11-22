@@ -250,3 +250,10 @@ Result, the live path works, so every widget has the button "Run live in the bro
   commit, and the default build and push only on the lecturer's word. The flaky check of the Ising chain in
   `checks/session07/conventions.py` now accepts any state of the two-fold ground level, which is what DMRG returns.
   Sessions 8, 9 and 10 have not started.
+- 2026-11-22, later in the morning. The old-text corrections of Sessions 1, 2, 4 and 5 finished (54 corrections,
+  checked, not committed). The lecturer picked five open points: keep +t in (1.2) with a bridge sentence, turn the ring
+  rotation of 2.3 around, put 1/sqrt(L) in (2.7), write |C_n|=1 and |sigma_xy| in (4.2), keep (5.20) and say that the
+  sign of i is a gauge choice. The other 81 points are decided by the coordinator with the rule written in the
+  workflow, run `wf_1a0244e4-53c`, and each plan ends with the list "Decided on 2026-11-22". Session 7 was paused at
+  07:52 and resumed at 09:01 (same run `wf_cda36960-673`). Sessions 8, 9 and 10 run as `wf_26730ac0-c6d`, with at most
+  7 groups at once so that all the runs together stay near 20 agents. The README was rewritten and pushed (80ab324).
