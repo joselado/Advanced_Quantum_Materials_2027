@@ -1,10 +1,16 @@
-"""Session 6, the half-filled Hubbard chain in mean field, the antiferromagnetic gap and the energy it gains."""
+"""Session 6, the half-filled Hubbard chain in mean field, the antiferromagnetic gap and the energy it gains.
+
+Panel (a) is drawn from the downloadable pyqula script webnotes/scripts/session06/g2_chain_meanfield.py, the bands of
+the antiferromagnet at U=4t and those of U=0, with the asserts of _g2_chain.check_meanfield. Panel (b) is the numpy
+calculation of the first version of this figure, unchanged, since the uniform solution that it compares with is a point
+that the lecturer decides (plan of Session 6, "Open for the lecturer", item 1)."""
 import os, sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import numpy as np
 from scipy.integrate import quad
 from scipy.optimize import brentq
-import style
+import style, _g2_chain
 
 t = 1.0
 
@@ -28,23 +34,29 @@ for U in (20.0, 40.0):
     e, m, D = energy_afm(U)
     assert abs(-e * U / t**2 - 2) < 0.1 and abs(m - 1) < 0.02        # E_FM - E_AFM -> 2t^2/U = J/2, with m -> 1
 
+d = style.run_script('session06/g2_chain_meanfield.py')
+_g2_chain.check_meanfield(d)
+
 fig, axs = style.figure(height_cm=5.8, ncols=2)
-# (a) bands, the folded zone of the two-site cell
+# (a) the bands of the antiferromagnet at U=4t from pyqula, over the zone of the chain, and the crossing bands of U=0
 ax = axs[0]
-k = np.linspace(0, np.pi, 500)
-eps = -2 * t * np.cos(k)
-U0 = 4.0
-D0 = gap_parameter(U0)
-ax.plot(k, eps, color=style.MUTED, lw=1.0, ls=(0, (3, 2)))
-ax.plot(k, -eps, color=style.MUTED, lw=1.0, ls=(0, (3, 2)))
-ax.plot(k, np.sqrt(eps**2 + D0**2), color=style.ACCENT)
-ax.plot(k, -np.sqrt(eps**2 + D0**2), color=style.ACCENT)
+ks, baf, bpm = d['ks'], d['bands_afm'], d['bands_pm']
+Delta = d['U'] * abs(float(np.real(d['m_afm'][0]))) / 2             # Um/2 = 1.54
+for x in (-np.pi / 2, np.pi / 2):
+    style.guide(ax, x=x, color=style.GRID, lw=0.8)
 style.guide(ax, y=0)
-ax.annotate('', xy=(np.pi / 2, D0), xytext=(np.pi / 2, -D0), arrowprops=dict(arrowstyle='<->', color=style.BROKEN, lw=0.9, shrinkA=0, shrinkB=0))
-style.label(ax, np.pi / 2 + 0.12, 0.0, r'$Um$', color=style.BROKEN, ha='left', fontsize=8.5)
-style.arrows(ax, xlabel=r'$k$', ylabel=r'$E$')
-style.label(ax, 1.55, 3.5, r'(a) $U=4t$, grey $U=0$', fontsize=8.5)
-ax.set_xlim(0, np.pi); ax.set_ylim(-3.9, 4.1)
+ax.plot(ks, bpm[:, 0], color=style.MUTED, lw=1.0, ls=(0, (3, 2)))
+ax.plot(ks, bpm[:, 3], color=style.MUTED, lw=1.0, ls=(0, (3, 2)))
+ax.plot(ks, baf[:, 0], color=style.ACCENT)
+ax.plot(ks, baf[:, 3], color=style.ACCENT)
+ax.annotate('', xy=(np.pi / 2, Delta), xytext=(np.pi / 2, -Delta), arrowprops=dict(arrowstyle='<->', color=style.BROKEN, lw=0.9, shrinkA=0, shrinkB=0))
+style.label(ax, np.pi / 2 + 0.42, 0.3, r'$Um$', color=style.BROKEN, ha='left', fontsize=8.5)   # right of the U=0 crossing
+style.arrows(ax, xlabel=r'$k$', ylabel=r'$E/t$', ticks=True)
+ax.set_xticks([-np.pi / 2, 0, np.pi / 2]); ax.set_xticklabels([r'$-\pi/2$', '0', r'$\pi/2$'])
+ax.set_yticks([-Delta, Delta]); ax.set_yticklabels([r'$%.2f$' % -Delta, r'$%.2f$' % Delta])
+ax.tick_params(length=2.5, width=0.6)
+style.label(ax, 0.0, 3.6, r'(a) $U=4t$, grey $U=0$', fontsize=8.5)
+ax.set_xlim(-np.pi, np.pi); ax.set_ylim(-3.9, 4.1)
 # (b) the energy that the antiferromagnet gains over the uniform solution, per site
 ax = axs[1]
 Us = np.concatenate([np.linspace(1.2, 3.999, 40), np.linspace(4.0, 12, 60)])

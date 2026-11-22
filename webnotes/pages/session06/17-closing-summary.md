@@ -30,6 +30,18 @@ Every magnet that we have constructed in this session, from the mean-field excha
 
 Two topics are left open on purpose. The Kitaev interaction of Section [6.12](#sec-6-12) is a second kind of frustration, which comes from the interaction and not from the geometry, and frustration is the route to a quantum spin liquid in Session 8. The spinon was previewed in Section [6.1](#sec-6-1) only by name and by its spin-$1/2$ and charge-neutral quantum numbers. It gets the same full treatment that magnons got here when we move to quantum magnets that do not break time-reversal symmetry. Before that, Session 7 leaves mean field and treats strongly correlated spin chains with tensor networks.
 
+After this session we can do the following tasks, and each of them has the section that teaches it.
+
+- Write the mean-field Hamiltonian of the Hubbard model, and read the exchange splitting $Um$ between the two spins. This is in Section [6.3](#sec-6-3).
+- Decide from the total energies which of two self-consistent solutions is the ground state. This is in Section [6.5](#sec-6-5).
+- Check the Stoner criterion [(6.3)](#eq-6-3) for a given density of states. This is in Section [6.6](#sec-6-6).
+- Derive $J=4t^2/U$ from the Hubbard dimer. This is in Section [6.8](#sec-6-8).
+- Tell a bipartite lattice from a frustrated one, and find the classical state of three spins at $120^\circ$ on a triangle. This is in Section [6.9](#sec-6-9) and Section [6.10](#sec-6-10).
+- Say which exchange terms need spin-orbit coupling. This is in Section [6.12](#sec-6-12).
+- Write a spin Hamiltonian as bosons with the Holstein-Primakoff transformation. This is in Section [6.14](#sec-6-14).
+- Tell the ferromagnetic magnon from the antiferromagnetic one by its law at small $k$. This is in Section [6.15](#sec-6-15).
+- Compute the gap and the Chern number of the magnon bands of a honeycomb ferromagnet. This is in Section [6.16](#sec-6-16).
+
 ::: comesback
 - In Section [7.10](#sec-7-10) DMRG gives the ground state of the Heisenberg chain without any mean-field step.
 - In Section [8.4](#sec-8-4) frustration on the triangular and kagome lattices gives a quantum spin liquid, and in Section [8.7](#sec-8-7) the Holstein-Primakoff expansion fails for it.

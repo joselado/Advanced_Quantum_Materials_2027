@@ -903,7 +903,7 @@ def main():
     genz = hz.get_hk_gen()
     dense = lambda m: np.asarray(m.todense() if hasattr(m, 'todense') else m)
     top = []
-    for kz in (0.45, 0.5, 0.55):
+    for kz in (0.45, 0.48, 0.55):   # not 0.5, where the states of the two edges are degenerate and eigh mixes them
         ez, vz = np.linalg.eigh(dense(genz([kz, 0, 0]))); ez2 = np.linalg.eigh(dense(genz([kz + 1e-5, 0, 0])))[0]
         yy = (np.abs(vz) ** 2).T @ yz
         top += [np.sign(ez2[j] - ez[j]) for j in range(len(ez)) if abs(ez[j]) < 0.2 and yy[j] > 0.6 * yz.max()]

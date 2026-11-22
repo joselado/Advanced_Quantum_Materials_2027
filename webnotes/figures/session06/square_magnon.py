@@ -1,32 +1,37 @@
-"""Session 6, the ferromagnetic magnon of the square lattice along the path Gamma, X, M, Gamma."""
+"""Session 6, Section 6.15, the ferromagnetic magnon (6.8) of the square lattice along the path Gamma, X, M, Gamma.
+
+The picture sits in the feedback of the quiz at (pi, pi). The calculation is the pyqula script
+webnotes/scripts/session06/g4_magnon_square.py, which the student downloads under the figure: the magnon is a boson
+that hops with -|J|S to the four neighbors (tij=[-1.]) and has the onsite energy z|J|S = 4 (h.add_onsite(4.)), with
+|J|S = 1, so its band is E = 4|J|S (1 - gamma) with gamma = (cos kx + cos ky)/2. The path is given as reduced momenta,
+so steps 0, 100, 200 and 300 are Gamma, X, M and Gamma. The asserts check the band against the closed form at every
+step, and the values 0, 4 and 8 at Gamma, X and M that the feedback quotes."""
 import os, sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 import numpy as np
 import style
 
-z = 4
-def E(kx, ky):
-    return z * (1 - 0.5 * (np.cos(kx) + np.cos(ky)))       # in units of |J| S, from E = |J| S z (1 - gamma)
-n = 100
-seg = [((0, 0), (np.pi, 0)), ((np.pi, 0), (np.pi, np.pi)), ((np.pi, np.pi), (0, 0))]
-xs, es = [], []
-for i, (a, b) in enumerate(seg):
-    s = np.linspace(0, 1, n, endpoint=False if i < 2 else True)
-    kx = a[0] + (b[0] - a[0]) * s; ky = a[1] + (b[1] - a[1]) * s
-    xs.append(i * n + s * n); es.append(E(kx, ky))
-x = np.concatenate(xs); e = np.concatenate(es)
-assert abs(E(0, 0)) < 1e-12 and abs(E(np.pi, 0) - 4) < 1e-12 and abs(E(np.pi, np.pi) - 8) < 1e-12
-fig, ax = style.figure(height_cm=5.0, width_cm=10.5)
+d = style.run_script('session06/g4_magnon_square.py')
+kp, e = np.asarray(d['kpath'], float), np.asarray(d['e'], float)
+gamma = 0.5 * (np.cos(2 * np.pi * kp[:, 0]) + np.cos(2 * np.pi * kp[:, 1]))
+assert len(e) == 301 and np.allclose(e, 4 * (1 - gamma), atol=1e-12)      # (6.8) with z = 4 and |J|S = 1
+assert np.allclose(e[[0, 100, 200, 300]], [0, 4, 8, 0], atol=1e-12)        # Gamma, X, M, Gamma
+assert abs(e.min()) < 1e-12 and np.isclose(e.max(), 8) and np.argmax(e) == 200  # zero at Gamma, top at M
+x = np.r_[0, np.cumsum(np.linalg.norm(np.diff(kp[:, :2], axis=0), axis=1))] * 2 * np.pi
+marks = x[[0, 100, 200, 300]]
+assert np.allclose(marks, [0, np.pi, 2 * np.pi, (2 + np.sqrt(2)) * np.pi])
+
+FS = 11
+style.plt.rcParams['font.size'] = FS          # the labels of the arrows too, for a phone
+fig, ax = style.figure(height_cm=5.0, width_cm=9.0)
+for xx in marks:
+    style.guide(ax, x=xx)
+for yy in (4, 8):
+    style.guide(ax, y=yy)
 ax.plot(x, e, color=style.ACCENT)
-for tk in (0, n, 2 * n, 3 * n):
-    style.guide(ax, x=tk)
-for val in (4, 8):
-    style.guide(ax, y=val, color=style.MUTED, lw=0.8, ls=(0, (3, 2)))
-    style.label(ax, 3 * n + 4, val, r'$%d|J|S$' % val, fontsize=8, ha='left')
-style.arrows(ax, xlabel='', ylabel=r'$E$')
-for tk, lab in zip((0, n, 2 * n, 3 * n), (r'$\Gamma$', r'$X$', r'$M$', r'$\Gamma$')):
-    style.label(ax, tk, -0.75, lab, fontsize=8.5)
-ax.plot([n, 2 * n], [4, 8], 'o', color=style.BROKEN, ms=3.5, zorder=5)
-ax.plot([2 * n], [8], 'o', color=style.BROKEN, ms=3.5)
-ax.set_xlim(0, 3 * n); ax.set_ylim(0, 9)
+style.arrows(ax, ylabel=r'$E/|J|S$')
+ax.set_xticks(marks); ax.set_xticklabels([r'$\Gamma$', r'$X$', r'$M$', r'$\Gamma$'], fontsize=FS)
+ax.set_yticks([0, 4, 8]); ax.set_yticklabels(['$0$', '$4$', '$8$'], fontsize=FS)
+ax.tick_params(length=2.5, width=0.6, pad=2)
+ax.set_xlim(0, marks[-1]); ax.set_ylim(0, 9.2)
 style.save(fig, __file__)
