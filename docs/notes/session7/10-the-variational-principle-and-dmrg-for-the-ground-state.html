@@ -85,10 +85,44 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="on" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 7. Quantum Many-Body Entanglement and Tensor Networks</a></p>
 <h1 id="sec-7-10"><span class="num">7.10</span> The variational principle and DMRG for the ground state</h1>
-<p>An ansatz is only useful if we can optimize it. We take the MPS matrices <span class="math inline">\(\{M_i^{s_i}\}\)</span> as variational parameters and minimize the Rayleigh quotient</p>
+<p>How do we find the best MPS without searching a space of size <span class="math inline">\(2^L\)</span>? We will now see that we can minimize the energy one tensor at a time, and that each step is a small eigenvalue problem. With these updates of one tensor the energy never goes up, and the sweep that they form is what is called DMRG.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[C(s_1,s_2,\dots,s_L) \;\approx\; M^{s_1}_{1}\, M^{s_2}_{2}\, \cdots\, M^{s_L}_{L}, \tag{7.5}\]</span></p>
+</div>
+<p>This is the matrix product state of Section <a href="04-the-matrix-product-state-ansatz.html#sec-7-4">7.4</a>. Each <span class="math inline">\(M^{s_i}_i\)</span> is a <span class="math inline">\(\chi\times \chi\)</span> matrix for each value of the spin <span class="math inline">\(s_i\)</span>, and <span class="math inline">\(\chi\)</span> is the bond dimension. These matrices are the variational parameters of this page.</p>
+</div>
+<p>An ansatz is only useful if we can optimize it. We take the MPS matrices <span class="math inline">\(\{M_i^{s_i}\}\)</span> as variational parameters and minimize the Rayleigh quotient <a href="#eq-7-11">(7.11)</a>.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>The energy of a state <span class="math inline">\(|\Psi\rangle\)</span> is the Rayleigh quotient</p>
 <p><span id="eq-7-11" class="eq"><span class="math display">\[E[\Psi] = \frac{\langle \Psi | H | \Psi \rangle}{\langle \Psi | \Psi \rangle}, \tag{7.11}\]</span></span></p>
-<p>or, in an equivalent way, we introduce a Lagrange multiplier <span class="math inline">\(\lambda\)</span> for the normalization and minimize <span class="math inline">\(\langle
-\Psi|H|\Psi\rangle - \lambda\left(\langle\Psi|\Psi\rangle - 1\right)\)</span> with respect to every matrix in the network. In the diagrams, the derivative with respect to one tensor in the network, for example the matrix at site <span class="math inline">\(k\)</span>, corresponds to erasing that tensor from the diagram. The reason is that each tensor appears once in the bra layer and once in the ket layer, so with the other tensors fixed the energy is a quadratic form in that tensor, and it is linear in the bra copy alone. When we erase the bra tensor of site <span class="math inline">\(k\)</span> from both the numerator and the denominator diagrams, what is left is a generalized eigenvalue problem for that single tensor, which becomes an ordinary one when the other tensors are chosen orthonormal. It involves an effective, reduced Hamiltonian that acts on the indices of site <span class="math inline">\(k\)</span>, and its ground eigenvector is the locally optimal replacement for <span class="math inline">\(M_k^{s_k}\)</span>. Figure <a href="#fig:s07:dmrg">7.5</a> shows this erasure and the sweep that follows from it.</p>
+<p>and <span class="math inline">\(E[\Psi]\ge E_0\)</span> for every state, where <span class="math inline">\(E_0\)</span> is the energy of the ground state. An update of one tensor that minimizes <span class="math inline">\(E\)</span> over that tensor cannot raise <span class="math inline">\(E\)</span>, since the old tensor is one of the candidates. The two-site update, which changes two neighboring tensors at once and is the default of <code>dmrgpy</code>, truncates the bond after each step, so there <span class="math inline">\(E\)</span> can go up a little.</p>
+</div>
+<p>In an equivalent way, we can introduce a Lagrange multiplier <span class="math inline">\(\lambda\)</span> for the normalization and minimize <span class="math inline">\(\langle
+\Psi|H|\Psi\rangle - \lambda\left(\langle\Psi|\Psi\rangle - 1\right)\)</span> with respect to every matrix in the network. In the diagrams, the derivative with respect to one tensor in the network, for example the matrix at site <span class="math inline">\(k\)</span>, corresponds to erasing that tensor from the diagram. The reason is that each tensor appears once in the bra layer and once in the ket layer, so with the other tensors fixed the energy is a quadratic form in that tensor, and it is linear in the bra copy alone. When we erase the bra tensor of site <span class="math inline">\(k\)</span> from both the numerator and the denominator diagrams, what is left is a generalized eigenvalue problem for that single tensor, which becomes an ordinary one when the other tensors are chosen orthonormal. It involves an effective, reduced Hamiltonian that acts on the indices of site <span class="math inline">\(k\)</span>, and its ground eigenvector is the locally optimal replacement for <span class="math inline">\(M_k^{s_k}\)</span>. Figure <a href="#fig:s07:dmrg">7.5</a> shows this erasure and the sweep that follows from it.</p>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the Rayleigh quotient (7.11) to the local eigenvalue problem</span></summary>
+<div class="fold-body">
+<p>We fix every tensor except the one of site <span class="math inline">\(k\)</span>, and we write that tensor as a vector <span class="math inline">\(A\)</span>, which has <span class="math inline">\(2\chi^2\)</span> numbers at a bulk site of a spin-1/2 chain. The state is linear in <span class="math inline">\(A\)</span>,</p>
+<p><span class="math display">\[|\Psi\rangle=\sum_j A_j\,|\phi_j\rangle,\]</span></p>
+<p>where <span class="math inline">\(|\phi_j\rangle\)</span> is the network with the tensor of site <span class="math inline">\(k\)</span> replaced by the unit vector number <span class="math inline">\(j\)</span>. Then</p>
+<p><span class="math display">\[\langle\Psi|H|\Psi\rangle=A^\dagger H_\text{eff}A,\qquad \langle\Psi|\Psi\rangle=A^\dagger N A,\]</span></p>
+<p>with <span class="math inline">\((H_\text{eff})_{ij}=\langle\phi_i|H|\phi_j\rangle\)</span> and <span class="math inline">\(N_{ij}=\langle\phi_i|\phi_j\rangle\)</span>, two matrices of size <span class="math inline">\(2\chi^2\times2\chi^2\)</span>. So the energy is</p>
+<p><span class="math display">\[E=\frac{A^\dagger H_\text{eff}A}{A^\dagger NA}.\]</span></p>
+<p>The simplest case is a tensor that is the whole state. Then the <span class="math inline">\(|\phi_j\rangle\)</span> are the basis states, <span class="math inline">\(H_\text{eff}=H\)</span> and <span class="math inline">\(N=1\)</span>, and what follows is the Schrödinger equation.</p>
+<p>We take the derivative with respect to <span class="math inline">\(A^\dagger\)</span>, with <span class="math inline">\(A\)</span> held fixed, and set it to zero,</p>
+<p><span class="math display">\[\frac{H_\text{eff}A}{A^\dagger NA}-\frac{(A^\dagger H_\text{eff}A)\,NA}{(A^\dagger NA)^2}=0,
+\qquad\text{so}\qquad H_\text{eff}A=E\,NA.\]</span></p>
+<p>This is the generalized eigenvalue problem of the text, and its lowest eigenvalue is the lowest energy that this tensor can give. When the tensors on the left of <span class="math inline">\(k\)</span> and on the right of <span class="math inline">\(k\)</span> are chosen orthonormal, the states <span class="math inline">\(|\phi_j\rangle\)</span> are orthonormal, so <span class="math inline">\(N=1\)</span> and the problem is the ordinary eigenvalue problem <span class="math inline">\(H_\text{eff}A=EA\)</span>. The old tensor is one of the vectors <span class="math inline">\(A\)</span>, so the new lowest energy is at most the old one.</p>
+</div>
+</details>
+</div>
 <figure id="fig:s07:dmrg">
 <img src="../figures/s07f05_dmrg.svg" loading="lazy" alt="How DMRG turns an exponentially large minimization into a sequence of small ones." />
 <figcaption><strong>Figure 7.5.</strong> How DMRG turns an exponentially large minimization into a sequence of small ones. (a) The numerator of the Rayleigh quotient <a href="#eq-7-11">(7.11)</a> is a single closed network, made of the ket MPS, the Hamiltonian as an MPO and the bra MPS, all contracted together. It has no free legs, so it is a number. (b) Every tensor enters that network once in the bra layer and once in the ket layer. So the energy is a quadratic form in each tensor and linear in its bra copy. The derivative with respect to the bra tensor at site <span class="math inline">\(k\)</span> removes it, which is the ghost. What is left has three open legs, drawn in red, the two virtual bonds and the physical index of site <span class="math inline">\(k\)</span>, which are the indices of the tensor <span class="math inline">\(M_k^{s_k}\)</span> that we want to find. Everything to the left and right of <span class="math inline">\(k\)</span> has been reduced to an environment. The stationarity condition is then a generalized eigenvalue problem with the size of a single tensor, and it is an ordinary one in an orthonormal gauge. (c) We solve it, move one site along, solve again, and sweep back and forth until the energy stops decreasing. This is the density matrix renormalization group, and at no point do we build an object of size <span class="math inline">\(2^L\)</span>.</figcaption>
@@ -96,38 +130,37 @@
 <p>This suggests an iterative algorithm. We fix every tensor except the one of site <span class="math inline">\(1\)</span>, solve the local eigenvalue problem there, and update <span class="math inline">\(M_1^{s_1}\)</span> with the resulting eigenvector. Then we move to site <span class="math inline">\(2\)</span>, fix everything else, solve the local eigenvalue problem there, and update. We continue sweeping through the chain, site by site, until the energy stops decreasing. This sweeping procedure is the <strong>density matrix renormalization group (DMRG)</strong> algorithm. Its efficiency comes from the property of <a href="#eq-7-11">(7.11)</a> that we used to build it. At every step we optimize only one matrix, which is a small linear-algebra problem. We never search for the ground state in the full exponentially large space at once. In a small chain we can follow the energy after every update, which is what <a href="#sch:s07:dmrg_sweeps">Schematic 7.12</a> does.</p>
 <figure id="sch:s07:dmrg_sweeps" class="schematic">
 <img src="../figures/web/session07/dmrg_sweeps.svg" loading="lazy" alt="The error of the energy against the number of updates on a logarithmic scale, three curves for bond dimensions 2, 4 and 8, which only go down and stop at different levels." />
-<figcaption><strong>Schematic 7.12.</strong> The error <span class="math inline">\(E-E_0\)</span> of the energy after every one-site update of a variational sweep, for an open Heisenberg chain with 10 sites and a random start. Each update is the exact minimum over one tensor, and one sweep is 18 updates. After three sweeps the error is <span class="math inline">\(0.2\)</span>, <span class="math inline">\(6\times10^{-3}\)</span> and <span class="math inline">\(1.5\times10^{-5}\)</span> for <span class="math inline">\(M=2\)</span>, <span class="math inline">\(4\)</span> and <span class="math inline">\(8\)</span>. Look at how no curve ever goes up, and how each one stops at a level set by <span class="math inline">\(M\)</span>.</figcaption>
+<figcaption><strong>Schematic 7.12.</strong> The error <span class="math inline">\(E-E_0\)</span> of the energy after every one-site update of a variational sweep, for an open Heisenberg chain <span class="math inline">\(J\sum_i\mathbf S_i\cdot\mathbf S_{i+1}\)</span> with 10 sites and one random start. Each update is the exact minimum over one tensor, and one sweep is 18 updates. After three sweeps the error is <span class="math inline">\(0.2\)</span>, <span class="math inline">\(6\times10^{-3}\)</span> and <span class="math inline">\(1.5\times10^{-5}\)</span> in units of <span class="math inline">\(J\)</span> for <span class="math inline">\(\chi=2\)</span>, <span class="math inline">\(4\)</span> and <span class="math inline">\(8\)</span>. For <span class="math inline">\(\chi=4\)</span>, 50 random starts end between <span class="math inline">\(6.1\times10^{-3}\)</span> and <span class="math inline">\(1.1\times10^{-2}\)</span> after three sweeps, and all of them reach the same <span class="math inline">\(6.1\times10^{-3}\)</span> within eight sweeps. Look at how no curve ever goes up, and how each one stops at a level set by <span class="math inline">\(\chi\)</span>.</figcaption>
 </figure>
-<div class="quiz" data-correct="B" data-fb="1">
+<div class="quiz quiz-pics" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>When DMRG updates one tensor with all the others fixed, what happens to the energy <a href="#eq-7-11">(7.11)</a>?</p>
-<div class="eq-again">
-<p><span class="math display">\[E[\Psi] = \frac{\langle \Psi | H | \Psi \rangle}{\langle \Psi | \Psi \rangle}, \tag{7.11}\]</span></p>
-</div>
+<p>DMRG minimizes the energy one tensor at a time,</p>
+<p><span class="math display">\[E[\Psi]=\frac{\langle\Psi|H|\Psi\rangle}{\langle\Psi|\Psi\rangle}\ge E_0.\]</span></p>
+<p>Each picture shows <span class="math inline">\(E\)</span> after every update of three sweeps. The dashed line is the exact ground state energy <span class="math inline">\(E_0\)</span>. Which picture can come from DMRG?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li>It can increase, and the sweeps compensate it later.</li>
-<li>It cannot increase, since the update is the exact minimum over that tensor.</li>
-<li>It decreases only if the bond dimension is also increased.</li>
+<li><img src="../figures/web/session07/g4_quiz_sweep_up.svg" loading="lazy" alt="A curve of the energy against the update that falls, jumps up at one update, and then falls again to just above a dashed line." /></li>
+<li><img src="../figures/web/session07/g4_quiz_sweep_ok.svg" loading="lazy" alt="A curve of the energy against the update that falls fast and then flattens just above a dashed line." /></li>
+<li><img src="../figures/web/session07/g4_quiz_sweep_below.svg" loading="lazy" alt="A curve of the energy against the update that falls and ends below a dashed line." /></li>
 </ol>
 </div>
 <details class="quiz-answer"><summary>Show the answers</summary>
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
-<p>This is false. The old tensor is one of the candidates of the local minimization with energy <span class="math inline">\(E_\text{old}\)</span>. The minimum is then <span class="math inline">\(E_\text{new}\le E_\text{old}\)</span>, so an increase is impossible at any step.</p>
+<p>This is false. This curve was changed by hand at one update, where the energy goes up by <span class="math inline">\(1.5J\)</span>. In an update of one tensor the old tensor is one of the candidates of the local minimization, so <span class="math inline">\(E_\text{new}\le E_\text{old}\)</span> at every step. The two-site update changes two tensors at once and truncates after each step, so its energy can go up, but on the open Heisenberg chain of 10 sites with <span class="math inline">\(\chi=4\)</span> only by about <span class="math inline">\(10^{-4}J\)</span>.</p>
 <figure class="quiz-fig schematic">
 <img src="../figures/web/session07/dmrg_sweeps.svg" loading="lazy" alt="The error of the energy against the number of updates on a logarithmic scale, three curves for bond dimensions 2, 4 and 8, which only go down and stop at different levels." />
 <figcaption>The energy error after each update of a sweep never goes up, for three bond dimensions.</figcaption>
 </figure></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. The old tensor is one of the candidates of the local minimization, so the new one is at least as good. The energy <a href="#eq-7-11">(7.11)</a> goes down or stays the same, and this is why the sweeps converge.</p></li>
+<p>This is true. This is the sweep computed for an open Heisenberg chain of 10 sites with <span class="math inline">\(\chi=4\)</span>. The energy goes down or stays the same at every update, and after three sweeps it is <span class="math inline">\(6\times10^{-3}J\)</span> above <span class="math inline">\(E_0\)</span>, which on this scale is on the line.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. The bond dimension <span class="math inline">\(M\)</span> is fixed during the sweeps. Starting from a random MPS with energy close to zero, the first update already lowers the energy at the same <span class="math inline">\(M\)</span>.</p></li>
+<p>This is false. This is the computed sweep shifted down by hand by <span class="math inline">\(0.5J\)</span>, so its last points are below <span class="math inline">\(E_0\)</span>. The Rayleigh quotient of every state is at least <span class="math inline">\(E_0\)</span>, so no sweep can cross the dashed line.</p></li>
 </ul>
 </div>
 </details>
@@ -137,27 +170,43 @@ Question
 Question
 </div>
 <div class="quiz-q">
-<p>The local eigenvalue problem at one bulk site of a spin-1/2 chain has a matrix of size</p>
+<p>A one-site update works on a bulk site of a spin-1/2 chain. On how many numbers does its local eigenvalue problem act?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li><span class="math inline">\(2M^2\)</span>.</li>
+<li><span class="math inline">\(2\chi^2\)</span>.</li>
 <li><span class="math inline">\(2^L\)</span>.</li>
-<li><span class="math inline">\(2M\)</span>.</li>
+<li><span class="math inline">\(2\chi\)</span>.</li>
 </ol>
 </div>
 <details class="quiz-answer"><summary>Show the answers</summary>
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
-<p>This is true. The open legs of the erased tensor are two virtual bonds of dimension <span class="math inline">\(M\)</span> and one physical index of dimension <span class="math inline">\(2\)</span>. The matrix acts on these <span class="math inline">\(2M^2\)</span> numbers, and <span class="math inline">\(L\)</span> does not appear.</p></li>
+<p>This is true. The open legs of the erased tensor are two virtual bonds of dimension <span class="math inline">\(\chi\)</span> and one physical index of dimension <span class="math inline">\(2\)</span>. The matrix acts on these <span class="math inline">\(2\chi^2\)</span> numbers, and <span class="math inline">\(L\)</span> does not appear.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
-<p>This is false. This is the exact diagonalization, which needs <span class="math inline">\(2^{40}\approx10^{12}\)</span> numbers for <span class="math inline">\(L=40\)</span>. For <span class="math inline">\(M=100\)</span> the local problem has only <span class="math inline">\(2M^2=2\times10^4\)</span> numbers.</p></li>
+<p>This is false. This is the exact diagonalization, which needs <span class="math inline">\(2^{40}\approx10^{12}\)</span> numbers for <span class="math inline">\(L=40\)</span>. For <span class="math inline">\(\chi=100\)</span> the local problem has only <span class="math inline">\(2\chi^2=2\times10^4\)</span> numbers.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. This is the size at the end of the chain, where the tensor has one bond and one physical leg. At a bulk site there are two bonds, so for <span class="math inline">\(M=100\)</span> the size is <span class="math inline">\(2\times10^4\)</span> and not <span class="math inline">\(200\)</span>.</p></li>
+<p>This is false. This is the size at the end of the chain, where the tensor has one bond and one physical leg. At a bulk site there are two bonds, so for <span class="math inline">\(\chi=100\)</span> the size is <span class="math inline">\(2\times10^4\)</span> and not <span class="math inline">\(200\)</span>.</p></li>
 </ul>
 </div>
 </details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>Show that <span class="math inline">\(E[\Psi]\ge E_0\)</span> for every state, by writing <span class="math inline">\(|\Psi\rangle\)</span> in the eigenstates <span class="math inline">\(|n\rangle\)</span> of <span class="math inline">\(H\)</span>, with <span class="math inline">\(H|n\rangle=E_n|n\rangle\)</span>. Then take a system with two levels, <span class="math inline">\(E_0=-1\)</span> and <span class="math inline">\(E_1=0\)</span>, and compute <span class="math inline">\(E[\Psi]\)</span> for <span class="math inline">\(|\Psi\rangle=(|0\rangle+|1\rangle)/\sqrt2\)</span>.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>We write <span class="math inline">\(|\Psi\rangle=\sum_nc_n|n\rangle\)</span>. The eigenstates are orthonormal, so <span class="math inline">\(\langle\Psi|\Psi\rangle=\sum_n|c_n|^2\)</span> and <span class="math inline">\(\langle\Psi|H|\Psi\rangle=\sum_n|c_n|^2E_n\)</span>. Then</p>
+<p><span class="math display">\[E[\Psi]-E_0=\frac{\sum_n|c_n|^2\,(E_n-E_0)}{\sum_n|c_n|^2}\ge0,\]</span></p>
+<p>since every <span class="math inline">\(E_n-E_0\ge0\)</span> and every <span class="math inline">\(|c_n|^2\ge0\)</span>. The equality holds only when <span class="math inline">\(c_n=0\)</span> for every level above <span class="math inline">\(E_0\)</span>, meaning that <span class="math inline">\(|\Psi\rangle\)</span> is a ground state.</p>
+<p>For the two levels <span class="math inline">\(c_0=c_1=1/\sqrt2\)</span>, so <span class="math inline">\(E[\Psi]=\tfrac12(-1)+\tfrac12\cdot0=-0.5\)</span>, which is <span class="math inline">\(0.5\)</span> above <span class="math inline">\(E_0\)</span>. The error of the energy is the weight of the excited levels times their energy above <span class="math inline">\(E_0\)</span>. For this reason a variational calculation gives the energy with a smaller error than the state, since an amplitude <span class="math inline">\(\delta\)</span> in the excited level gives an error of order <span class="math inline">\(\delta^2\)</span> in the energy.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb"><code>session7.ipynb</code></a>, “Low energy excitations of a Heisenberg model” (Core)</p>

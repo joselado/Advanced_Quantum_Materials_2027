@@ -85,24 +85,94 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="on" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 6. Classical Magnetism and Magnons</a></p>
 <h1 id="sec-6-6"><span class="num">6.6</span> The Stoner threshold as a criterion for magnetism</h1>
-<p>A natural question is whether <em>any</em> repulsive <span class="math inline">\(U&gt;0\)</span> gives magnetism, or if there is a threshold. We write the mean-field bands as <span class="math inline">\(E_\sigma(\mathbf{k}) = E(\mathbf{k}) - \sigma\, \tfrac{U}{2}m\)</span> for <span class="math inline">\(\sigma=\pm1\)</span>, meaning spin up and down, where <span class="math inline">\(m\)</span> is the self-consistent magnetization of <a href="02-a-recap-of-symmetry-breaking-and-the-mean-field-philosophy.html#eq-6-2">(6.2)</a>. At zero temperature, the self-consistency condition is</p>
+<p>Does any repulsive <span class="math inline">\(U&gt;0\)</span> give magnetism, or is there a threshold? We will now see that the nonmagnetic state becomes unstable towards a uniform magnetization when the product of <span class="math inline">\(U\)</span> and the density of states at the Fermi level reaches one, which is the Stoner criterion. Then we follow the half-filled chain, whose staggered moment needs no threshold, to large <span class="math inline">\(U\)</span>, where the moment saturates and mean field stops being reliable.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[m = \langle c_\uparrow^\dagger c_\uparrow\rangle - \langle c_\downarrow^\dagger c_\downarrow\rangle. \tag{6.2}\]</span></p>
+</div>
+<div class="eq-again">
+<p><span class="math display">\[g(\omega) = \int_{\text{BZ}} \frac{d^dk}{(2\pi)^d}\; \delta\!\left(\omega-E(\mathbf{k})\right). \tag{2.16}\]</span></p>
+</div>
+<p>This is the magnetization <span class="math inline">\(m\)</span> of one site of Section <a href="02-a-recap-of-symmetry-breaking-and-the-mean-field-philosophy.html#sec-6-3">6.3</a>, and the density of states <span class="math inline">\(g(\omega)\)</span> of Section <a href="../session2/09-properties-of-an-electronic-dispersion.html#sec-2-9">2.9</a>. It counts the states per unit of energy and per unit length, area or volume, for one band and one spin. For a lattice with one site in a cell of unit size it is the density of states per site and per spin.</p>
+</div>
+<p>We write the mean-field bands as <span class="math inline">\(E_\sigma(\mathbf{k}) = E(\mathbf{k}) - \sigma\, \tfrac{U}{2}m\)</span> for <span class="math inline">\(\sigma=\pm1\)</span>, meaning spin up and down, where <span class="math inline">\(m\)</span> is the self-consistent magnetization of <a href="02-a-recap-of-symmetry-breaking-and-the-mean-field-philosophy.html#eq-6-2">(6.2)</a>. At zero temperature, the self-consistency condition is</p>
 <p><span class="math display">\[m = \sum_{\mathbf k}\Big[n_F\big(E(\mathbf k)-\tfrac{U}{2}m\big) - n_F\big(E(\mathbf k)+\tfrac{U}{2}m\big)\Big].\]</span></p>
-<p>If we expand the right-hand side for small <span class="math inline">\(m\)</span> we obtain <span class="math inline">\(m \approx U\,m\,D(E_F)\)</span>, where <span class="math inline">\(D(E_F)\)</span> is the density of states at the Fermi level. The trivial solution <span class="math inline">\(m=0\)</span> always exists, but a <em>nontrivial</em> solution appears when the linear coefficient reaches one, which gives the condition</p>
+<p>If we expand the right-hand side for small <span class="math inline">\(m\)</span> we obtain <span class="math inline">\(m \approx U\,m\,D(E_F)\)</span>, where <span class="math inline">\(D(E_F)\)</span> is the density of states at the Fermi level. The trivial solution <span class="math inline">\(m=0\)</span> always exists, but a <em>nontrivial</em> solution appears when the linear coefficient reaches one, which gives the condition <a href="#eq-6-3">(6.3)</a>.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>The nonmagnetic state is unstable towards a uniform magnetization when</p>
 <p><span id="eq-6-3" class="eq"><span class="math display">\[U\, D(E_F) \geq 1. \tag{6.3}\]</span></span></p>
-<p>This condition is called the Stoner criterion. Here <span class="math inline">\(D(E_F)\)</span> is the density of states <span class="math inline">\(g(\omega)\)</span> of <a href="../session2/09-properties-of-an-electronic-dispersion.html#eq-2-16">(2.16)</a> at <span class="math inline">\(\omega=E_F\)</span>. In <a href="../session9/index.html">Session 9</a> the same criterion comes back as the divergence of the spin response, <span class="math inline">\(U\chi_0(q,0)=1\)</span> in <a href="../session9/05b-the-stoner-instability.html#eq-9-8">(9.8)</a>, which at <span class="math inline">\(q=0\)</span> is the condition that we have here. Below the threshold only <span class="math inline">\(m=0\)</span> is stable, and the system stays nonmagnetic for any perturbation. Above the threshold the nonmagnetic solution becomes unstable, and a finite <span class="math inline">\(m\)</span> appears spontaneously. This is the reason why some metals with a sizable Coulomb repulsion, such as aluminum or lead, stay nonmagnetic. Their density of states at the Fermi level is too small for the product in <a href="#eq-6-3">(6.3)</a> to reach one. Iron and cobalt, on the other hand, have a large density of states from their narrow <span class="math inline">\(d\)</span> bands together with a sizable effective <span class="math inline">\(U\)</span>, so they are clearly above the threshold. In the numerics we see what <a href="#eq-6-3">(6.3)</a> predicts. The self-consistent magnetization of the chain stays at zero below a critical <span class="math inline">\(U\)</span>, and it grows continuously once <span class="math inline">\(U\)</span> is above this threshold. Figure <a href="#fig:s06:stoner">6.1</a> shows both parts of this statement together. It shows why a nontrivial solution of the self-consistency condition only exists above the threshold, and how the resulting magnetization curve looks.</p>
+<p>Here <span class="math inline">\(D(E_F)\)</span> is the density of states per spin and per site at the Fermi level. The product decides, and not <span class="math inline">\(U\)</span> alone.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the self-consistency condition to the Stoner criterion (6.3)</span></summary>
+<div class="fold-body">
+<p>We write <span class="math inline">\(x=Um/2\)</span>, and the sum over <span class="math inline">\(\mathbf k\)</span> is normalized by the number of momenta of the zone, so that it is a sum per site. The simplest case is a constant density of states <span class="math inline">\(D\)</span> per spin around <span class="math inline">\(E_F\)</span>. The sum becomes an integral over the energy, and at zero temperature the bracket is one for <span class="math inline">\(E_F-x&lt;E&lt;E_F+x\)</span> and zero elsewhere, as long as <span class="math inline">\(E_F\pm x\)</span> stays inside the band. So</p>
+<p><span class="math display">\[m=\int dE\,D\,\big[n_F(E-x)-n_F(E+x)\big]=2xD=U\,m\,D,\]</span></p>
+<p>meaning that the right-hand side is a straight line in <span class="math inline">\(m\)</span> with the slope <span class="math inline">\(UD\)</span>.</p>
+<p>For a general density of states we expand the bracket to first order in <span class="math inline">\(x\)</span>,</p>
+<p><span class="math display">\[n_F(E-x)-n_F(E+x)\simeq-2x\,\frac{\partial n_F}{\partial E},\]</span></p>
+<p>and at zero temperature <span class="math inline">\(-\partial n_F/\partial E=\delta(E-E_F)\)</span>. The sum of this delta function over <span class="math inline">\(\mathbf k\)</span> is the density of states per spin and per site, so</p>
+<p><span class="math display">\[m\simeq U\,m\,\frac1N\sum_{\mathbf k}\delta\big(E(\mathbf k)-E_F\big)=U\,m\,D(E_F).\]</span></p>
+<p>The total density does not change at this order, since one spin gains what the other loses, so <span class="math inline">\(E_F\)</span> stays where it is. The slope of the right-hand side at <span class="math inline">\(m=0\)</span> is <span class="math inline">\(UD(E_F)\)</span>. When this slope is above one, a small <span class="math inline">\(m\)</span> gives back a larger one, so the state with <span class="math inline">\(m=0\)</span> is unstable, which is <a href="#eq-6-3">(6.3)</a>. The expansion holds only for small <span class="math inline">\(m\)</span>, when <span class="math inline">\(Um/2\)</span> is small against the energy over which <span class="math inline">\(D(E)\)</span> changes around <span class="math inline">\(E_F\)</span>. So it tells us when the state with <span class="math inline">\(m=0\)</span> becomes unstable, and not how large <span class="math inline">\(m\)</span> is above the threshold.</p>
+</div>
+</details>
+</div>
+<p>This condition is called the Stoner criterion. Here <span class="math inline">\(D(E_F)\)</span> is the density of states <span class="math inline">\(g(\omega)\)</span> of <a href="../session2/09-properties-of-an-electronic-dispersion.html#eq-2-16">(2.16)</a> at <span class="math inline">\(\omega=E_F\)</span>. In <a href="../session9/index.html">Session 9</a> the same criterion comes back as the divergence of the spin response, <span class="math inline">\(U\chi_0(q,0)=1\)</span> in <a href="../session9/05b-the-stoner-instability.html#eq-9-8">(9.8)</a>, which at <span class="math inline">\(q=0\)</span> is the condition that we have here. Below the threshold a small magnetization dies away, so the state with <span class="math inline">\(m=0\)</span> is stable against it. Above the threshold the nonmagnetic solution becomes unstable, and a finite <span class="math inline">\(m\)</span> appears spontaneously.</p>
+<p>This is the reason why some metals with a sizable Coulomb repulsion, such as aluminum or lead, stay nonmagnetic. Their density of states at the Fermi level is too small for the product in <a href="#eq-6-3">(6.3)</a> to reach one. Iron and cobalt, on the other hand, have a large density of states from their narrow <span class="math inline">\(d\)</span> bands together with a sizable effective <span class="math inline">\(U\)</span>, so they are clearly above the threshold.</p>
+<p>In the numerics we see what <a href="#eq-6-3">(6.3)</a> predicts. The self-consistent magnetization of the chain stays at zero below a critical <span class="math inline">\(U\)</span>, and it is finite above it. In mean field it does not grow continuously, since the uniform chain jumps to the full moment. At <span class="math inline">\(n=0.2\)</span> it jumps from <span class="math inline">\(m=0\)</span> to <span class="math inline">\(m=0.2\)</span> at <span class="math inline">\(U=1.93t\)</span>, just below the value <span class="math inline">\(1.94t\)</span> of <a href="#eq-6-3">(6.3)</a>. The cell of the notebook can end at a moment between <span class="math inline">\(0\)</span> and <span class="math inline">\(0.2\)</span>. At <span class="math inline">\(U=1.8t\)</span> its title shows <span class="math inline">\(0.13\)</span>, for a state above <span class="math inline">\(m=0\)</span> in energy that the finite k-mesh keeps, while it shows <span class="math inline">\(0\)</span> at <span class="math inline">\(1.2t\)</span> and <span class="math inline">\(0.2\)</span> at <span class="math inline">\(2.4t\)</span>. Figure <a href="#fig:s06:stoner">6.1</a> shows why a nontrivial solution of the self-consistency condition only exists above the threshold, for a model of <span class="math inline">\(f(m)\)</span> where the magnetization grows continuously.</p>
 <figure id="fig:s06:stoner">
 <img src="../figures/s06f01_stoner.svg" loading="lazy" alt="A graphical reading of the Stoner criterion (6.3)." />
 <figcaption><strong>Figure 6.1.</strong> A graphical reading of the Stoner criterion <a href="#eq-6-3">(6.3)</a>. (a) The self-consistency condition <span class="math inline">\(m=f(m)\)</span>, where <span class="math inline">\(f\)</span> is the right-hand side of the zero-temperature gap equation, drawn here with the shape <span class="math inline">\(\tanh\)</span> for two values of the slope. It is an odd function that saturates once the bands are fully polarized, and its slope at the origin is <span class="math inline">\(U D(E_F)\)</span>. If this slope is below one, the only crossing with <span class="math inline">\(y=m\)</span> is the trivial solution <span class="math inline">\(m=0\)</span>. Once the slope is above one, a pair of nontrivial solutions <span class="math inline">\(\pm m_0\)</span> appears and the nonmagnetic state becomes unstable. (b) The resulting order parameter, which stays at zero until <span class="math inline">\(U D(E_F)\)</span> reaches one and then grows continuously. For this reason, whether a metal becomes magnetic is not decided by <span class="math inline">\(U\)</span> alone but by the <em>product</em> of <span class="math inline">\(U\)</span> with the density of states at the Fermi level. This is why aluminium and lead stay nonmagnetic even with a sizeable Coulomb repulsion, while the narrow <span class="math inline">\(d\)</span> bands of iron and cobalt are clearly above the threshold.</figcaption>
 </figure>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>In twisted bilayer graphene the two sheets are stacked at a small twist angle, and the resulting flat superlattice minibands are expected to enhance the interaction between the electrons strongly. The article presents evidence that near three-quarters filling of the conduction miniband the enhanced interaction drives the bilayer into a ferromagnetic state. The probe is the anomalous Hall resistance, which shows a ferromagnetic hysteresis and is as large as <span class="math inline">\(10.4\)</span> k<span class="math inline">\(\Omega\)</span>. The measurement is in <a href="https://www.science.org/doi/10.1126/science.aaw3780">this article</a>. The abstract does not name the Stoner criterion, and our reading is that the flat minibands give a large <span class="math inline">\(D(E_F)\)</span>, so that <span class="math inline">\(UD(E_F)\)</span> reaches one.</p>
+</div>
+<div class="quiz quiz-pics" data-correct="C" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>The self-consistency condition of a uniform magnet is <span class="math inline">\(m=f(m)\)</span>. Here we take the model</p>
+<p><span class="math display">\[f(m)=\tanh(s\,m),\qquad s=U\,D(E_F),\]</span></p>
+<p>whose slope at <span class="math inline">\(m=0\)</span> is <span class="math inline">\(s\)</span>. Each picture shows <span class="math inline">\(f(m)\)</span> and the dashed line <span class="math inline">\(y=m\)</span>. Which one gives a magnetized solution?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session06/g2_quiz_stoner_low.svg" loading="lazy" alt="A curve f(m) through the origin with a small slope, which stays under the dashed diagonal for positive m." /></li>
+<li><img src="../figures/web/session06/g2_quiz_stoner_none.svg" loading="lazy" alt="A curve f(m) that starts along the dashed diagonal at the origin and then bends below it." /></li>
+<li><img src="../figures/web/session06/g2_quiz_stoner_high.svg" loading="lazy" alt="A curve f(m) that starts above the dashed diagonal for positive m and meets it again before m equal to one." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The slope at <span class="math inline">\(m=0\)</span> is <span class="math inline">\(UD(E_F)=0.5\)</span>, below one. The curve stays under the line <span class="math inline">\(y=m\)</span> for <span class="math inline">\(m&gt;0\)</span>, for instance <span class="math inline">\(f(0.5)=0.24\)</span>, so the only crossing is <span class="math inline">\(m=0\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The slope at <span class="math inline">\(m=0\)</span> is one, the threshold itself, where the linear term does not decide. For this <span class="math inline">\(f\)</span> the next term bends the curve down, with <span class="math inline">\(f(0.5)=0.46\)</span>, so it touches the line <span class="math inline">\(y=m\)</span> only at <span class="math inline">\(m=0\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. The slope at <span class="math inline">\(m=0\)</span> is <span class="math inline">\(UD(E_F)=1.5\)</span>, above one, so the curve starts above the line <span class="math inline">\(y=m\)</span>. It saturates, so it has to come back under the line, and it crosses it at <span class="math inline">\(m_0=\pm0.86\)</span>, which are the magnetized solutions.</p></li>
+</ul>
+</div>
+</details>
+</div>
 <div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>A flat band has a very large density of states at the Fermi level. According to the Stoner criterion <a href="#eq-6-3">(6.3)</a>, how large must <span class="math inline">\(U\)</span> be for magnetism?</p>
-<div class="eq-again">
-<p><span class="math display">\[U\, D(E_F) \geq 1. \tag{6.3}\]</span></p>
-</div>
+<p>A flat band has a very large density of states <span class="math inline">\(D(E_F)\)</span> at the Fermi level. The Stoner criterion reads</p>
+<p><span class="math display">\[U\,D(E_F)\geq1.\]</span></p>
+<p>How large must <span class="math inline">\(U\)</span> be for magnetism?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -117,9 +187,9 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
 <p>This is false. Take a flat band of width <span class="math inline">\(W=0.1t\)</span>, with <span class="math inline">\(D(E_F)\approx10/t\)</span>. Then <span class="math inline">\(U=0.1t\)</span> already gives <span class="math inline">\(UD(E_F)=1\)</span>, which is far below <span class="math inline">\(4t\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
-<p>This is false. The criterion <a href="#eq-6-3">(6.3)</a> has no condition on dispersion. When <span class="math inline">\(W\to0\)</span> we get <span class="math inline">\(D(E_F)\to\infty\)</span>, so any <span class="math inline">\(U&gt;0\)</span> gives <span class="math inline">\(UD(E_F)&gt;1\)</span> and magnetism appears.</p></li>
+<p>This is false. The criterion has no condition on the dispersion. When <span class="math inline">\(W\to0\)</span> we get <span class="math inline">\(D(E_F)\to\infty\)</span>, so any <span class="math inline">\(U&gt;0\)</span> gives <span class="math inline">\(UD(E_F)&gt;1\)</span> and magnetism appears.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
-<p>This is true. The condition <a href="#eq-6-3">(6.3)</a> is <span class="math inline">\(U D(E_F)\geq1\)</span>. When <span class="math inline">\(D(E_F)\)</span> is large, a small <span class="math inline">\(U\)</span> reaches the threshold, and this is why flat bands are good places to look for magnetism.</p></li>
+<p>This is true. When <span class="math inline">\(D(E_F)\)</span> is large, a small <span class="math inline">\(U\)</span> reaches the threshold <span class="math inline">\(UD(E_F)=1\)</span>, and this is why flat bands are good places to look for magnetism.</p></li>
 </ul>
 </div>
 </details>
@@ -147,11 +217,60 @@ Interactive
 </div>
 <h1 class="sec-next" id="sec-6-7"><span class="num">6.7</span> The strongly localized limit, where mean field breaks down</h1>
 <p>Let us look again at the half-filled chain of Section <a href="04-exchange-splitting-and-antiferromagnetic-order-in-numerical-mean-field-theory.html#sec-6-4">6.4</a>, but now we follow the magnetization per site as <span class="math inline">\(U\)</span> grows from zero to very large values. At <span class="math inline">\(U=0\)</span> there is no interaction and <span class="math inline">\(m=0\)</span>. When <span class="math inline">\(U\)</span> increases, <span class="math inline">\(m\)</span> grows, and for <span class="math inline">\(U\to\infty\)</span> it saturates at exactly one Bohr magneton per site. This is a full localized spin-<span class="math inline">\(1/2\)</span> moment on every site, and the moments point in alternating directions on the two sublattices, which is the Ising-like antiferromagnetic state to which the numerics converge.</p>
-<p>This saturation tells us something physical, which is that in the large-<span class="math inline">\(U\)</span> limit the electrons stop moving completely. If an electron hops onto a neighboring site that is already occupied, this costs an energy <span class="math inline">\(U\)</span>. When <span class="math inline">\(U\gg t\)</span> this cost is too large, so each site keeps its one localized electron, and only its spin can still fluctuate. For this reason, in this limit perturbation theory should <em>not</em> be organized around the kinetic term, as mean field does implicitly, but around the localized state. We take the interacting and localized configuration as the ground state at zeroth order, and we treat the hopping as a small perturbation on top of it. Schematic <a href="#sch:s06:moment_vs_U">Schematic 6.5</a> shows how the chain gets there. The moment on a site grows with <span class="math inline">\(U\)</span> and goes to one, and the fraction of doubly occupied sites goes to zero.</p>
-<figure id="sch:s06:moment_vs_U" class="schematic">
-<img src="../figures/web/session06/moment_vs_U.svg" loading="lazy" alt="The moment on a site rising from zero to one as U grows, and the double occupancy falling from one to zero." />
-<figcaption><strong>Schematic 6.5.</strong> The moment <span class="math inline">\(|m|\)</span> on a site of the half-filled chain and the weight of double occupancy <span class="math inline">\(4\langle n_\uparrow n_\downarrow\rangle=1-m^2\)</span>, from the mean-field equation of the chain in units of <span class="math inline">\(t\)</span>. The moment is <span class="math inline">\(0.77\)</span> at <span class="math inline">\(U=4t\)</span> and <span class="math inline">\(0.98\)</span> at <span class="math inline">\(U=16t\)</span>. The electrons stop moving as <span class="math inline">\(U\)</span> grows.</figcaption>
+<p>This saturation tells us something physical, which is that in the large-<span class="math inline">\(U\)</span> limit the electrons stop moving completely. If an electron hops onto a neighboring site that is already occupied, this costs an energy <span class="math inline">\(U\)</span>. When <span class="math inline">\(U\gg t\)</span> this cost is too large, so each site keeps its one localized electron, and only its spin can still fluctuate. For this reason, in this limit perturbation theory should <em>not</em> be organized around the kinetic term, as mean field does implicitly, but around the localized state. We take the interacting and localized configuration as the ground state at zeroth order, and we treat the hopping as a small perturbation on top of it. We see in <a href="#sch:s06:moment_vs_U">Schematic 6.5</a> how the chain gets there. The moment on a site grows with <span class="math inline">\(U\)</span> and goes to one, and the fraction of doubly occupied sites goes to zero.</p>
+<figure id="sch:s06:moment_vs_U" class="schematic has-script">
+<img src="../figures/web/session06/moment_vs_U.svg" loading="lazy" alt="The moment on a site rising from close to zero at U equal to t towards one as U grows, and the double occupancy falling from close to one towards zero." />
+<div class="script-row">
+<a href="../scripts/session06/g2_chain_moment.py" class="script-dl" download="g2_chain_moment.py">Download the pyqula script</a> <span class="script-name"><code>g2_chain_moment.py</code></span>
+</div>
+<figcaption><strong>Schematic 6.5.</strong> The moment <span class="math inline">\(|m|\)</span> on a site of the half-filled chain and the weight of double occupancy <span class="math inline">\(4\langle n_\uparrow n_\downarrow\rangle=1-m^2\)</span>, from the mean-field antiferromagnet of the chain, computed with pyqula, with <span class="math inline">\(U\)</span> in units of <span class="math inline">\(t\)</span>. The moment is <span class="math inline">\(0.77\)</span> at <span class="math inline">\(U=4t\)</span> and <span class="math inline">\(0.98\)</span> at <span class="math inline">\(U=16t\)</span>. The curve starts at <span class="math inline">\(U=t\)</span>, where the moment is <span class="math inline">\(0.03\)</span>, since at smaller <span class="math inline">\(U\)</span> the gap is too small for the mesh of <span class="math inline">\(400\)</span> cells of the calculation. Look at the double occupancy, which goes to zero, meaning that the electrons stop moving as <span class="math inline">\(U\)</span> grows.</figcaption>
 </figure>
+<div class="quiz" data-correct="A" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>The half-filled chain at <span class="math inline">\(U=16t\)</span> has the moment <span class="math inline">\(|m|=0.984\)</span> on every site. In mean field the double occupancy is a product of the two densities,</p>
+<p><span class="math display">\[\langle n_\uparrow n_\downarrow\rangle=\langle n_\uparrow\rangle\langle n_\downarrow\rangle,\qquad \langle n_\uparrow\rangle=\tfrac12(1+m),\quad \langle n_\downarrow\rangle=\tfrac12(1-m).\]</span></p>
+<p>What is <span class="math inline">\(4\langle n_\uparrow n_\downarrow\rangle\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(0.03\)</span></li>
+<li><span class="math inline">\(0.97\)</span></li>
+<li><span class="math inline">\(0.016\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The product gives <span class="math inline">\(4\langle n_\uparrow n_\downarrow\rangle=(1+m)(1-m)=1-m^2\)</span>, and <span class="math inline">\(1-0.984^2=0.03\)</span>. This is <span class="math inline">\(3\)</span> percent of the value <span class="math inline">\(1\)</span> at <span class="math inline">\(U=0\)</span>, where the two spins are independent, so the electrons almost stop moving.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. This is <span class="math inline">\(m^2\)</span>, and not <span class="math inline">\(1-m^2\)</span>. At <span class="math inline">\(U=0\)</span> we have <span class="math inline">\(m=0\)</span>, the two spins are independent and <span class="math inline">\(4\langle n_\uparrow n_\downarrow\rangle=1\)</span>, while <span class="math inline">\(m^2\)</span> would give <span class="math inline">\(0\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. This is <span class="math inline">\(1-|m|\)</span>, which leaves out the factor <span class="math inline">\(1+|m|\)</span>. At <span class="math inline">\(U=4t\)</span>, where <span class="math inline">\(|m|=0.77\)</span>, the product gives <span class="math inline">\(1-m^2=0.41\)</span>, while <span class="math inline">\(1-|m|\)</span> gives <span class="math inline">\(0.23\)</span>.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>A half-filled band has a constant density of states <span class="math inline">\(D=1/W\)</span> per spin and per site over a width <span class="math inline">\(W\)</span>. Find the interaction <span class="math inline">\(U_c\)</span> above which the paramagnet is unstable towards a uniform magnetization.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>The density of states is normalized, since <span class="math inline">\(\int D\,dE=W\cdot\tfrac1W=1\)</span>, one state per spin and per site. For a constant density of states the self-consistency condition is linear in <span class="math inline">\(m\)</span>, as long as <span class="math inline">\(E_F\pm Um/2\)</span> stays inside the band,</p>
+<p><span class="math display">\[m=U\,m\,D=\frac{U}{W}\,m,\]</span></p>
+<p>so the slope at <span class="math inline">\(m=0\)</span> is <span class="math inline">\(U/W\)</span>. By <a href="#eq-6-3">(6.3)</a> the paramagnet is unstable when <span class="math inline">\(UD(E_F)\geq1\)</span>, which gives</p>
+<p><span class="math display">\[U_c=W.\]</span></p>
+<p>For <span class="math inline">\(W=4t\)</span> this is <span class="math inline">\(U_c=4t\)</span>. The threshold depends on the band only through <span class="math inline">\(D(E_F)\)</span>, so a narrower band with the same number of states has a smaller threshold. The chain has the same width <span class="math inline">\(4t\)</span>, but its density of states is largest at the band edges and lowest at the center, where <span class="math inline">\(D(0)=1/(2\pi t)\)</span> is below <span class="math inline">\(1/W\)</span>. So the half-filled chain is unstable towards a uniform magnetization only above <span class="math inline">\(2\pi t\)</span>, about <span class="math inline">\(6.3t\)</span>, and not above <span class="math inline">\(4t\)</span>. The saturated ferromagnet, a solution from <span class="math inline">\(4t\)</span> on, is already lower than the paramagnet from <span class="math inline">\(16t/\pi\)</span>, about <span class="math inline">\(5.1t\)</span>, so in mean field the uniform chain jumps to the full moment before this instability. In a calculation we only need the density of states at the Fermi level to check the criterion. With pyqula it is what <code>h.get_dos(nk=2000, delta=0.02)</code> gives for the spinful Hamiltonian, divided by 2 for the two spins and by the number of sites of the cell. The k-mesh has to resolve the broadening <code>delta</code>. With the default <code>nk</code> and <code>delta</code> the value on the chain can be off by up to <span class="math inline">\(18\)</span> percent close to the center of the band, above or below, depending on the energy.</p>
+</div>
+</details>
+</div>
+</div>
 <div class="comesback">
 <div class="comesback-label">
 Where this comes back

@@ -28,7 +28,6 @@ of the course, one page per section. Each page opens with the question that it a
 boxes. A page has the explanations, the derivations in folded steps, short problems with their solutions, and quizzes
 that can be read alone. The simulations are small pyqula scripts that you download next to each plot, and some pages
 have widgets that run in the browser. A box "In the lab" ties a result to a real measurement, with its source.
-Sessions 1 to 5 have this full shape already, and the other sessions follow.
 
 <p>
 <img src="docs/readme/notes_keybox.jpg" width="49%" alt="A page of the web notes with the box of the main result, the band of the square lattice, and a folded derivation.">

@@ -85,29 +85,74 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="on" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 6. Classical Magnetism and Magnons</a></p>
 <h1 id="sec-6-8"><span class="num">6.8</span> From the Hubbard dimer to the Heisenberg model</h1>
-<p>Let us make this precise in the smallest possible example. We take two sites, <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>, with a hopping <span class="math inline">\(t\)</span> between them, a local repulsion <span class="math inline">\(U\)</span> on each of them, and exactly two electrons in total, which is half filling. The Fock space at this filling has <span class="math inline">\(\binom{4}{2}=6\)</span> states. Four of them have one electron on each site, where the electron of each site can be up or down independently. The other two have both electrons on the same site, with one electron up and one down because of Pauli exclusion.</p>
+<p>What sets the energy scale of magnetism when the repulsion <span class="math inline">\(U\)</span> is much larger than the hopping <span class="math inline">\(t\)</span>, and why does it prefer antiparallel spins? We will now see that the smallest example, the Hubbard dimer, answers both questions. Its singlet lies below its triplet by <span class="math inline">\(J=4t^2/U\)</span>, and this splitting is the coupling of the Heisenberg model of the two spins.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[H = -t\sum_{n,\sigma}\left(c_{n\sigma}^\dagger c_{n+1,\sigma} + \text{h.c.}\right) + U\sum_n c_{n\uparrow}^\dagger c_{n\uparrow}\, c_{n\downarrow}^\dagger c_{n\downarrow}, \tag{6.1}\]</span></p>
+</div>
+<p>This is the Hubbard chain of Section <a href="02-a-recap-of-symmetry-breaking-and-the-mean-field-philosophy.html#sec-6-3">6.3</a>, with the hopping <span class="math inline">\(t\)</span> between neighboring sites and the repulsion <span class="math inline">\(U\)</span> between the two electrons of one site. Here we keep only two of its sites.</p>
+</div>
+<p>We take two sites, <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>, with a hopping <span class="math inline">\(t\)</span> between them, a local repulsion <span class="math inline">\(U\)</span> on each of them, and exactly two electrons in total, which is half filling. The Fock space at this filling has <span class="math inline">\(\binom{4}{2}=6\)</span> states. Four of them have one electron on each site, where the electron of each site can be up or down independently. The other two have both electrons on the same site, with one electron up and one down because of Pauli exclusion.</p>
 <p>Let us group these states by energy in the atomic limit (<span class="math inline">\(t=0\)</span>). The four configurations with single occupation, <span class="math inline">\(|\!\uparrow,\uparrow\rangle\)</span>, <span class="math inline">\(|\!\downarrow,\downarrow\rangle\)</span>, <span class="math inline">\(|\!\uparrow,\downarrow\rangle\)</span> and <span class="math inline">\(|\!\downarrow,\uparrow\rangle\)</span>, have no interaction energy. We call them the <strong>low-energy manifold</strong>, at energy <span class="math inline">\(0\)</span>. The two configurations with double occupation, <span class="math inline">\(|\!\uparrow\downarrow,0\rangle\)</span> and <span class="math inline">\(|0,\uparrow\downarrow\rangle\)</span>, each have the full charging energy <span class="math inline">\(U\)</span>, and they form the <strong>high-energy manifold</strong>. In the low-energy manifold every state has exactly one electron per site, so the charge degree of freedom is completely frozen and only the spin on each site can still fluctuate. For this reason the natural low-energy effective Hamiltonian is a Hamiltonian for the spin only, and rotational invariance fixes its form up to an overall coupling, <span class="math inline">\(H_\text{eff} = J\,
 \mathbf S_0\cdot\mathbf S_1\)</span>, which is the two-site Heisenberg Hamiltonian. What remains is to obtain <span class="math inline">\(J\)</span> from the microscopic <span class="math inline">\(t\)</span> and <span class="math inline">\(U\)</span>.</p>
-<p>The hopping, which is the perturbation, conserves the total spin, so for the <em>parallel</em>-spin states it cannot connect the low-energy manifold to the high-energy one at all. If we apply <span class="math inline">\(H_t\)</span> to <span class="math inline">\(|\!\uparrow,\uparrow\rangle\)</span>, we would need to move a spin-up electron onto a site that already has one, and Pauli exclusion forbids this completely. The three parallel or triplet-like states, <span class="math inline">\(|\!\uparrow,\uparrow\rangle\)</span>, <span class="math inline">\(|\!\downarrow,\downarrow\rangle\)</span> and the symmetric combination <span class="math inline">\(\tfrac{1}{\sqrt2}(|\!\uparrow,\downarrow\rangle+|\!\downarrow,\uparrow\rangle)\)</span>. These three states are exact eigenstates of the <em>full</em> Hamiltonian at energy <span class="math inline">\(E_T=0\)</span>, since the hopping does not act on them at any order. The antiparallel or singlet combination <span class="math inline">\(|S\rangle=\tfrac{1}{\sqrt2}(|\!\uparrow,\downarrow\rangle-|\!\downarrow,\uparrow\rangle)\)</span> is different. The hopping <em>can</em> connect it to the symmetric combination with double occupation, <span class="math inline">\(|D\rangle=\tfrac{1}{\sqrt2}(|\!\uparrow\downarrow,0\rangle+|0,\uparrow\downarrow\rangle)\)</span>, with matrix element <span class="math inline">\(\langle D|H_t|S\rangle = -2t\)</span>. In the two-dimensional subspace <span class="math inline">\(\{|S\rangle,|D\rangle\}\)</span>, the Hamiltonian is exactly</p>
+<p>The hopping, which is the perturbation, conserves the total spin, so for the <em>parallel</em>-spin states it cannot connect the low-energy manifold to the high-energy one at all. If we apply <span class="math inline">\(H_t\)</span> to <span class="math inline">\(|\!\uparrow,\uparrow\rangle\)</span>, we would need to move a spin-up electron onto a site that already has one, and Pauli exclusion forbids this completely. The three parallel or triplet-like states are <span class="math inline">\(|\!\uparrow,\uparrow\rangle\)</span>, <span class="math inline">\(|\!\downarrow,\downarrow\rangle\)</span> and the symmetric combination <span class="math inline">\(\tfrac{1}{\sqrt2}(|\!\uparrow,\downarrow\rangle+|\!\downarrow,\uparrow\rangle)\)</span>. These three states are exact eigenstates of the <em>full</em> Hamiltonian at energy <span class="math inline">\(E_T=0\)</span>, since the hopping does not act on them at any order.</p>
+<p>The antiparallel or singlet combination <span class="math inline">\(|S\rangle=\tfrac{1}{\sqrt2}(|\!\uparrow,\downarrow\rangle-|\!\downarrow,\uparrow\rangle)\)</span> is different. The hopping <em>can</em> connect it to the symmetric combination with double occupation, <span class="math inline">\(|D\rangle=\tfrac{1}{\sqrt2}(|\!\uparrow\downarrow,0\rangle+|0,\uparrow\downarrow\rangle)\)</span>, with matrix element <span class="math inline">\(\langle D|H_t|S\rangle = -2t\)</span>. In the two-dimensional subspace <span class="math inline">\(\{|S\rangle,|D\rangle\}\)</span>, the Hamiltonian is exactly</p>
 <p><span class="math display">\[H = \begin{pmatrix} 0 &amp; -2t \\ -2t &amp; U\end{pmatrix},\]</span></p>
 <p>with exact eigenvalues <span class="math inline">\(E_\pm = \tfrac{U}{2}\pm\sqrt{(U/2)^2+4t^2}\)</span>. The energy of the singlet ground state is the lower root, <span class="math inline">\(E_S = \tfrac{U}{2}-\sqrt{(U/2)^2+4t^2}\)</span>, and if we expand it for <span class="math inline">\(U\gg t\)</span> we obtain</p>
 <p><span class="math display">\[E_S \;\approx\; -\frac{4t^2}{U} + O(t^4/U^3), \qquad E_T = 0 \text{ exactly.}\]</span></p>
-<p>We compare this with the exact spectrum of the Heisenberg dimer, <span class="math inline">\(E_\text{singlet}=-\tfrac34 J\)</span> and <span class="math inline">\(E_\text{triplet}=+\tfrac14 J\)</span>, where the singlet-triplet gap is <span class="math inline">\(\Delta E = E_T-E_S = J\)</span>, and we obtain</p>
+<p>We compare this with the exact spectrum of the Heisenberg dimer, <span class="math inline">\(E_\text{singlet}=-\tfrac34 J\)</span> and <span class="math inline">\(E_\text{triplet}=+\tfrac14 J\)</span>, where the singlet-triplet gap is <span class="math inline">\(\Delta E = E_T-E_S = J\)</span>. The comparison gives the main result of this section.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>For <span class="math inline">\(U\gg t\)</span> the two spins of the half-filled Hubbard dimer are coupled by</p>
 <p><span id="eq-6-4" class="eq"><span class="math display">\[J = \frac{4t^2}{U}. \tag{6.4}\]</span></span></p>
-<p>We have <span class="math inline">\(J&gt;0\)</span>, which is antiferromagnetic, and the singlet is below the triplet. This confirms, with the correct numerical prefactor, the estimate of second-order perturbation theory. There the unperturbed Hamiltonian is the Hubbard term, the perturbation is the hopping, the matrix element is <span class="math inline">\(t\)</span> and the energy denominator is <span class="math inline">\(U\)</span>. It also reproduces the <span class="math inline">\(1/U\)</span> scaling that we found numerically for the energy difference between the ferromagnet and the antiferromagnet in Section <a href="04-exchange-splitting-and-antiferromagnetic-order-in-numerical-mean-field-theory.html#sec-6-5">6.5</a>. That mean-field energy difference per bond <em>is</em> one half of the exchange coupling <a href="#eq-6-4">(6.4)</a>, so the two completely different calculations, the mean-field numerics and the many-body perturbation theory, agree. Figure <a href="#fig:s06:dimer">6.2</a> shows the whole argument. It shows the Pauli blockade that protects the triplet, the virtual process that lowers the energy of the singlet, and the exact spectrum, whose splitting is <span class="math inline">\(J\)</span>.</p>
+<p><span class="math inline">\(J\)</span> is the splitting between the triplet and the singlet, and it is positive, so antiparallel spins are lower, because only they can hop. The exact splitting is a little smaller, <span class="math inline">\(0.83\)</span> of <span class="math inline">\(4t^2/U\)</span> at <span class="math inline">\(U=4t\)</span> and <span class="math inline">\(0.98\)</span> of it at <span class="math inline">\(U=16t\)</span>.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">The singlet, the triplet and their coupling to the doubly occupied state</span></summary>
+<div class="fold-body">
+<p>We fix the order of the operators in the basis, with the operator of site <span class="math inline">\(0\)</span> first,</p>
+<p><span class="math display">\[|\!\uparrow,\downarrow\rangle=c^\dagger_{0\uparrow}c^\dagger_{1\downarrow}|0\rangle,\qquad |\!\downarrow,\uparrow\rangle=c^\dagger_{0\downarrow}c^\dagger_{1\uparrow}|0\rangle,\qquad |\!\uparrow\downarrow,0\rangle=c^\dagger_{0\uparrow}c^\dagger_{0\downarrow}|0\rangle,\qquad |0,\uparrow\downarrow\rangle=c^\dagger_{1\uparrow}c^\dagger_{1\downarrow}|0\rangle,\]</span></p>
+<p>and the hopping is <span class="math inline">\(H_t=-t\sum_\sigma\big(c^\dagger_{0\sigma}c_{1\sigma}+c^\dagger_{1\sigma}c_{0\sigma}\big)\)</span>.</p>
+<p>The simplest case is <span class="math inline">\(|\!\uparrow,\uparrow\rangle\)</span>. The terms of <span class="math inline">\(H_t\)</span> with spin up would move an up electron onto a site that already has one, and the terms with spin down find no down electron, so <span class="math inline">\(H_t|\!\uparrow,\uparrow\rangle=0\)</span>. In the same way <span class="math inline">\(H_t|\!\downarrow,\downarrow\rangle=0\)</span>.</p>
+<p>For the antiparallel states, <span class="math inline">\(H_t\)</span> moves the electron of one site onto the other site. We then bring the operators back to the order of the basis, which can give a minus sign, and we get</p>
+<p><span class="math display">\[H_t|\!\uparrow,\downarrow\rangle=-t\big(|\!\uparrow\downarrow,0\rangle+|0,\uparrow\downarrow\rangle\big),\qquad H_t|\!\downarrow,\uparrow\rangle=+t\big(|\!\uparrow\downarrow,0\rangle+|0,\uparrow\downarrow\rangle\big).\]</span></p>
+<p>The two results have opposite signs. So they cancel in the symmetric combination, which gives <span class="math inline">\(H_t|T_0\rangle=0\)</span> for <span class="math inline">\(|T_0\rangle=\tfrac{1}{\sqrt2}(|\!\uparrow,\downarrow\rangle+|\!\downarrow,\uparrow\rangle)\)</span>, and they add in the singlet,</p>
+<p><span class="math display">\[H_t|S\rangle=-\frac{2t}{\sqrt2}\big(|\!\uparrow\downarrow,0\rangle+|0,\uparrow\downarrow\rangle\big)=-2t\,|D\rangle.\]</span></p>
+<p>The antisymmetric combination of the two doubly occupied states is not reached by the hopping, so it stays at the energy <span class="math inline">\(U\)</span>. The sign of <span class="math inline">\(-2t\)</span> depends on the order of the operators in the basis, and the eigenvalues do not, since another order only changes the sign of some basis states.</p>
+<p>The last step is the expansion of the lower eigenvalue for <span class="math inline">\(U\gg t\)</span>. We write <span class="math inline">\(\sqrt{U^2/4+4t^2}=\tfrac U2\sqrt{1+16t^2/U^2}\)</span> and use <span class="math inline">\(\sqrt{1+x}\approx1+x/2\)</span> for small <span class="math inline">\(x\)</span>, which gives</p>
+<p><span class="math display">\[E_S\approx\frac U2-\frac U2\Big(1+\frac{8t^2}{U^2}\Big)=-\frac{4t^2}{U}.\]</span></p>
+<p>The triplet stays at <span class="math inline">\(0\)</span>, so the splitting is <span class="math inline">\(4t^2/U\)</span>, which is <span class="math inline">\(J\)</span> of <a href="#eq-6-4">(6.4)</a>.</p>
+</div>
+</details>
+</div>
+<p>We have <span class="math inline">\(J&gt;0\)</span>, which is antiferromagnetic, and the singlet is below the triplet. This confirms, with the correct numerical prefactor, the estimate of second-order perturbation theory. There the unperturbed Hamiltonian is the Hubbard term, the perturbation is the hopping, the matrix element is <span class="math inline">\(t\)</span> and the energy denominator is <span class="math inline">\(U\)</span>. It also reproduces the <span class="math inline">\(1/U\)</span> scaling that we found numerically for the energy difference between the ferromagnet and the antiferromagnet in Section <a href="04-exchange-splitting-and-antiferromagnetic-order-in-numerical-mean-field-theory.html#sec-6-5">6.5</a>. That mean-field energy difference per bond <em>is</em> one half of the exchange coupling <a href="#eq-6-4">(6.4)</a>, so the two completely different calculations, the mean-field numerics and the many-body perturbation theory, agree. Figure <a href="#fig:s06:dimer">6.2</a> shows the whole argument. It shows the Pauli blockade that protects the triplet, the virtual process that lowers the energy of the singlet, and the exact spectrum, whose splitting is <span class="math inline">\(J\)</span>.</p>
 <figure id="fig:s06:dimer">
 <img src="../figures/s06f02_dimer.svg" loading="lazy" alt="Superexchange in the two-site Hubbard model, and the reason why it is always antiferromagnetic." />
 <figcaption><strong>Figure 6.2.</strong> Superexchange in the two-site Hubbard model, and the reason why it is always antiferromagnetic. (a) With parallel spins, the only possible hop would put two <span class="math inline">\(\uparrow\)</span> electrons on one site, and Pauli exclusion forbids this completely. As a result the triplet states cannot lower their energy at any order, and stay at <span class="math inline">\(E_T=0\)</span>. With antiparallel spins the hop is allowed, so the singlet goes through a virtual double occupation of energy <span class="math inline">\(U\)</span>, the glow, and comes back, and gains a second-order energy <span class="math inline">\(-4t^2/U\)</span>. Here the magnetic order is a purely kinetic effect, since antiparallel spins have lower energy because only they can move. (b) The exact singlet energy <span class="math inline">\(E_S=\tfrac{U}{2}-\sqrt{(U/2)^2+4t^2}\)</span> as a function of <span class="math inline">\(U/t\)</span>, with <span class="math inline">\(E_T=0\)</span> exact for every <span class="math inline">\(U\)</span>. The singlet-triplet splitting <em>is</em> the Heisenberg coupling <span class="math inline">\(J\)</span> of <a href="#eq-6-4">(6.4)</a>, and it decays as <span class="math inline">\(4t^2/U\)</span>, the grey curve. This is the same <span class="math inline">\(1/U\)</span> law that we found numerically for the mean-field energy difference between the ferromagnet and the antiferromagnet in Section <a href="04-exchange-splitting-and-antiferromagnetic-order-in-numerical-mean-field-theory.html#sec-6-5">6.5</a>.</figcaption>
 </figure>
+<div class="notebookbox">
+<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb"><code>session6.ipynb</code></a>, “(Reminder) The spectra of a dimer,” “(Exercise) The interacting Hubbard dimer,” “Gap opening in the Hubbard model,” and “(Exercise) The strongly interacting limit”</p>
+<p>The first cell has no interaction, and it gives the single-particle levels <span class="math inline">\(\pm t\)</span> of the dimer. The other three use mean field, and not the six states of this section. The second one solves the dimer in mean field, where a moment appears only above <span class="math inline">\(U=2t\)</span>, while the exact dimer of this section has a singlet ground state with no ordered moment. The third one follows the mean-field gap of the chain as <span class="math inline">\(U\)</span> grows. The last one compares the energies of the ferromagnet and the antiferromagnet at large <span class="math inline">\(U\)</span>, whose difference falls as <span class="math inline">\(1/U\)</span>, as the coupling <span class="math inline">\(J\)</span> of <a href="#eq-6-4">(6.4)</a> does.</p>
+</div>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>In the nanographene C<span class="math inline">\(_{38}\)</span>H<span class="math inline">\(_{18}\)</span>, which is called Clar’s goblet, the network of <span class="math inline">\(\pi\)</span> electrons cannot be given a classical Kekulé structure without leaving unpaired electrons. Scanning tunnelling microscopy and spin excitation spectroscopy of single molecules on a gold surface show antiferromagnetic order with an exchange-coupling strength of <span class="math inline">\(23\)</span> meV. The measurement is in <a href="https://www.nature.com/articles/s41565-019-0577-9">this article</a>. In our reading this coupling plays the role of <span class="math inline">\(J\)</span> of <a href="#eq-6-4">(6.4)</a>, the splitting between the singlet and the triplet of two coupled spins. We also read the spin excitation of the measurement as the flip of one spin, from the singlet to the triplet.</p>
+</div>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>At fixed large <span class="math inline">\(U\)</span> the hopping <span class="math inline">\(t\)</span> of the dimer is doubled. How does <span class="math inline">\(J\)</span> of <a href="#eq-6-4">(6.4)</a> change?</p>
-<div class="eq-again">
-<p><span class="math display">\[J = \frac{4t^2}{U}. \tag{6.4}\]</span></p>
-</div>
+<p>At large <span class="math inline">\(U\)</span> the two spins of the Hubbard dimer have the coupling</p>
+<p><span class="math display">\[J=\frac{4t^2}{U}.\]</span></p>
+<p>We double the hopping <span class="math inline">\(t\)</span> and keep <span class="math inline">\(U\)</span> fixed. How does <span class="math inline">\(J\)</span> change?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -120,21 +165,88 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
-<p>This is false. For <span class="math inline">\(U=10t\)</span> and <span class="math inline">\(t=1\)</span> we get <span class="math inline">\(J=4/10=0.4\)</span>. For <span class="math inline">\(t=2\)</span> we get <span class="math inline">\(J=16/10=1.6\)</span>, which is four times larger and not <span class="math inline">\(0.8\)</span>.</p></li>
+<p>This is false. Take <span class="math inline">\(U=10\)</span> and <span class="math inline">\(t=1\)</span>, so <span class="math inline">\(J=4/10=0.4\)</span>. For <span class="math inline">\(t=2\)</span> we get <span class="math inline">\(J=16/10=1.6\)</span>, which is four times larger and not <span class="math inline">\(0.8\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
 <p>This is true. The coupling <span class="math inline">\(J=4t^2/U\)</span> depends on <span class="math inline">\(t^2\)</span>, so doubling <span class="math inline">\(t\)</span> gives a factor of four. The process needs two hops, one to the doubly occupied state and one back.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. For <span class="math inline">\(t=0\)</span> the two sites are decoupled and the singlet and triplet are degenerate, so <span class="math inline">\(J=0\)</span>. Then <span class="math inline">\(J\)</span> has to depend on <span class="math inline">\(t\)</span>, and it follows <span class="math inline">\(t^2\)</span> in <a href="#eq-6-4">(6.4)</a>.</p></li>
+<p>This is false. For <span class="math inline">\(t=0\)</span> the two sites are decoupled and the singlet and triplet are degenerate, so <span class="math inline">\(J=0\)</span>. Then <span class="math inline">\(J\)</span> has to depend on <span class="math inline">\(t\)</span>, and it follows <span class="math inline">\(t^2\)</span>.</p></li>
 </ul>
 </div>
 </details>
 </div>
-<div class="notebookbox">
-<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb"><code>session6.ipynb</code></a>, “(Reminder) The spectra of a dimer,” “(Exercise) The interacting Hubbard dimer,” “Gap opening in the Hubbard model,” and “(Exercise) The strongly interacting limit”</p>
-<p>Diagonalize the Hubbard dimer with six states directly, and check that the singlet-triplet splitting agrees with <a href="#eq-6-4">(6.4)</a>. Then take large values of <span class="math inline">\(U/t\)</span> and check that the gap and the low-energy spectrum converge to the prediction of the Heisenberg model. This compares the exact result of this section with a direct numerical diagonalization.</p>
+<div class="quiz" data-correct="A" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>In the basis <span class="math inline">\(\{|S\rangle,|D\rangle\}\)</span> the dimer has the matrix</p>
+<p><span class="math display">\[H=\begin{pmatrix}0&amp;-2t\\-2t&amp;U\end{pmatrix}.\]</span></p>
+<p>Here <span class="math inline">\(|S\rangle\)</span> is the singlet and <span class="math inline">\(|D\rangle\)</span> the doubly occupied state. What is the singlet energy?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(E_S=\frac U2-\sqrt{U^2/4+4t^2}\)</span></li>
+<li><span class="math inline">\(E_S=\frac U2-\sqrt{U^2/4+t^2}\)</span></li>
+<li><span class="math inline">\(E_S=-4t^2/U\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The eigenvalues of the matrix are <span class="math inline">\(\tfrac U2\pm\sqrt{U^2/4+4t^2}\)</span>, and the singlet is the lower one. At <span class="math inline">\(U=10t\)</span> it is <span class="math inline">\(-0.385t\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. This is the lower eigenvalue for the coupling <span class="math inline">\(-t\)</span> instead of <span class="math inline">\(-2t\)</span>. At <span class="math inline">\(U=0\)</span> the matrix has the eigenvalues <span class="math inline">\(\pm2t\)</span>, while this formula gives <span class="math inline">\(-t\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. This is only the first term for <span class="math inline">\(U\gg t\)</span>. At <span class="math inline">\(U=4t\)</span> the lower eigenvalue is <span class="math inline">\(2t-\sqrt8\,t=-0.828t\)</span>, while <span class="math inline">\(-4t^2/U\)</span> gives <span class="math inline">\(-t\)</span>, and at <span class="math inline">\(U=0\)</span> the formula diverges.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="quiz quiz-pics" data-correct="A" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Two sites have the hopping <span class="math inline">\(t\)</span>, the repulsion <span class="math inline">\(U=10t\)</span> on each site and two electrons. One bar is one level, and bars side by side have the same energy. Which picture shows the four lowest levels?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session06/g3_quiz_dimer_singlet_low.svg" loading="lazy" alt="An energy axis E over t with one bar at minus 0.385 and three bars side by side at 0." /></li>
+<li><img src="../figures/web/session06/g3_quiz_dimer_triplet_low.svg" loading="lazy" alt="An energy axis E over t with three bars side by side at minus 0.385 and one bar at 0." /></li>
+<li><img src="../figures/web/session06/g3_quiz_dimer_degenerate.svg" loading="lazy" alt="An energy axis E over t with four bars side by side at 0." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The hopping keeps the total spin, and the doubly occupied states have spin zero, so the triplet stays at <span class="math inline">\(E_T=0\)</span>. The singlet goes through the doubly occupied state and goes down to <span class="math inline">\(E_S=5t-\sqrt{29}\,t=-0.385t\)</span>, close to <span class="math inline">\(-4t^2/U=-0.4t\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. Here the three degenerate levels are lowered. The hopping keeps the total spin and cannot reach the doubly occupied states from the triplet, so the triplet stays at <span class="math inline">\(E=0\)</span> for every <span class="math inline">\(U\)</span>, and only the singlet goes down.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. Four degenerate levels are the atomic limit <span class="math inline">\(t=0\)</span>. At <span class="math inline">\(U=10t\)</span> the singlet is split off by <span class="math inline">\(0.385t\)</span>, the exact splitting, close to <span class="math inline">\(J=4t^2/U=0.4t\)</span>.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>The singlet of the dimer is at <span class="math inline">\(E_S=\tfrac U2-\sqrt{U^2/4+4t^2}\)</span> and the triplet at <span class="math inline">\(E_T=0\)</span>. Expand the splitting <span class="math inline">\(E_T-E_S\)</span> to the next order in <span class="math inline">\(t/U\)</span>. Compare it at <span class="math inline">\(U=8t\)</span> with the exact value and with <span class="math inline">\(4t^2/U\)</span>.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>We write <span class="math inline">\(E_T-E_S=\tfrac U2\big(\sqrt{1+x}-1\big)\)</span> with <span class="math inline">\(x=16t^2/U^2\)</span>, and we use <span class="math inline">\(\sqrt{1+x}\approx1+\tfrac x2-\tfrac{x^2}8\)</span>. This gives</p>
+<p><span class="math display">\[E_T-E_S\approx\frac U2\Big(\frac{8t^2}{U^2}-\frac{32t^4}{U^4}\Big)=\frac{4t^2}{U}-\frac{16t^4}{U^3}.\]</span></p>
+<p>At <span class="math inline">\(U=8t\)</span> the first term is <span class="math inline">\(0.5t\)</span> and the second one is <span class="math inline">\(-0.031t\)</span>, so the expansion gives <span class="math inline">\(0.469t\)</span>. The exact value is <span class="math inline">\(\sqrt{20}\,t-4t=0.472t\)</span>, which is <span class="math inline">\(0.944\)</span> of <span class="math inline">\(4t^2/U\)</span>. The correction is negative, so the exact coupling of the dimer is a little smaller than <span class="math inline">\(4t^2/U\)</span>. When a measured singlet-triplet splitting is used to estimate <span class="math inline">\(t\)</span> and <span class="math inline">\(U\)</span>, this correction matters as long as <span class="math inline">\(U\)</span> is only a few times <span class="math inline">\(t\)</span>.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="tryit">
-<p><strong>Try it.</strong> In the cell, diagonalize the dimer with six states for <span class="math inline">\(U/t\)</span> equal to 4, 8 and 16. The exact splitting <span class="math inline">\(E_T-E_S\)</span> divided by <span class="math inline">\(4t^2/U\)</span> is about 0.83, 0.94 and 0.98, and it approaches one as <span class="math inline">\(U/t\)</span> grows.</p>
+<p><strong>Try it.</strong> In the cell, the dimer is solved in mean field for <code>Us</code> from 0 to 10. The moment of a site stays at zero up to <span class="math inline">\(U=2t\)</span> and then grows as <span class="math inline">\(\sqrt{1-4t^2/U^2}\)</span>, to <span class="math inline">\(0.87\)</span> at <span class="math inline">\(U=4t\)</span> and <span class="math inline">\(0.98\)</span> at <span class="math inline">\(10t\)</span>, and the gap goes from <span class="math inline">\(2t\)</span> to <span class="math inline">\(U\)</span>. The exact dimer of this section has no ordered moment at any <span class="math inline">\(U\)</span>, meaning that <span class="math inline">\(\langle n_\uparrow-n_\downarrow\rangle=0\)</span> on each site, since its ground state is the singlet. Its local moment <span class="math inline">\(\langle(n_\uparrow-n_\downarrow)^2\rangle\)</span> is still <span class="math inline">\(0.85\)</span> at <span class="math inline">\(U=4t\)</span>. So the ordered moment of the cell comes from mean field.</p>
 <div class="tryit-links">
 Notebook <code>session6.ipynb</code>, cell “The interacting Hubbard dimer”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession6.ipynb">Binder</a>.
 </div>

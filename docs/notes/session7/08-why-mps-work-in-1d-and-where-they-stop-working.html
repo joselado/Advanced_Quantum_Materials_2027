@@ -85,48 +85,83 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="on" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 7. Quantum Many-Body Entanglement and Tensor Networks</a></p>
 <h1 id="sec-7-8"><span class="num">7.8a</span> Why MPS work in 1D</h1>
+<p>Why is a fixed and moderate bond dimension enough for a gapped chain of any length? We will now see that an MPS can hold at most <span class="math inline">\(\log \chi\)</span> of entanglement entropy across a bond. The area law says that a gapped chain needs only a fixed amount, so the two meet.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[C(s_1,s_2,\dots,s_L) \;\approx\; M^{s_1}_{1}\, M^{s_2}_{2}\, \cdots\, M^{s_L}_{L}, \tag{7.5}\]</span></p>
+</div>
+<div class="eq-again">
+<p><span class="math display">\[S_A \;\sim\; \alpha\, |\partial A|, \tag{7.9}\]</span></p>
+</div>
+<p>The first equation is the matrix product state of Section <a href="04-the-matrix-product-state-ansatz.html#sec-7-4">7.4</a>, where each coefficient of the state is a product of <span class="math inline">\(L\)</span> matrices of size <span class="math inline">\(\chi\times \chi\)</span>, and <span class="math inline">\(\chi\)</span> is the bond dimension. On an open chain the two ends are vectors. The second is the area law of Section <a href="07-two-dimensions-and-the-area-law.html#sec-7-7">7.7</a>. For the ground state of a gapped and local Hamiltonian, the entanglement entropy of a region <span class="math inline">\(A\)</span> grows with the size <span class="math inline">\(|\partial A|\)</span> of its boundary. In one dimension this boundary is one or two points.</p>
+</div>
 <p>The area law is the missing piece that explains why the ansatz <a href="04-the-matrix-product-state-ansatz.html#eq-7-5">(7.5)</a> is a good one. Let us take an MPS at a given bond, and use it to build the Schmidt decomposition of the state for a division of the system at that bond.</p>
-<p><span class="math display">\[|\Psi\rangle = \sum_{\alpha=1}^{M} \lambda_\alpha\, |\alpha\rangle_A \otimes |\alpha\rangle_B,\]</span></p>
-<p>This sum has at most <span class="math inline">\(M\)</span> terms, because the internal index, also called virtual index, that runs through that bond only takes <span class="math inline">\(M\)</span> values. Therefore the reduced density matrix <span class="math inline">\(\rho_A = \sum_\alpha
+<p><span class="math display">\[|\Psi\rangle = \sum_{\alpha=1}^{\chi} \lambda_\alpha\, |\alpha\rangle_A \otimes |\alpha\rangle_B.\]</span></p>
+<p>This sum has at most <span class="math inline">\(\chi\)</span> terms, because the internal index, also called virtual index, that runs through that bond only takes <span class="math inline">\(\chi\)</span> values. Therefore the reduced density matrix <span class="math inline">\(\rho_A = \sum_\alpha
 \lambda_\alpha^2 |\alpha\rangle_A
-\langle\alpha|_A\)</span> has rank at most <span class="math inline">\(M\)</span>. Among all density matrices with rank <span class="math inline">\(\le M\)</span>, the entropy <a href="04-the-matrix-product-state-ansatz.html#eq-7-6">(7.6)</a> is maximal when all the eigenvalues are equal, <span class="math inline">\(\lambda_\alpha^2 = 1/M\)</span>, which gives</p>
-<p><span id="eq-7-10" class="eq"><span class="math display">\[S \;\le\; \log M. \tag{7.10}\]</span></span></p>
-<p>In other words, an MPS with bond dimension <span class="math inline">\(M\)</span> can have an entanglement entropy of at most <span class="math inline">\(\log M\)</span> across any bond, which grows only logarithmically with <span class="math inline">\(M\)</span>. Let us compare this with <a href="07-two-dimensions-and-the-area-law.html#eq-7-9">(7.9)</a>. A 1D gapped ground state has an entanglement entropy that <em>saturates</em> at a finite value, which does not depend on the size of the subsystem. So a moderate and fixed bond dimension is already enough to describe it with a very small error. This is the quantitative reason why matrix product states are such a good ansatz in one dimension, since the area law limits the same quantity that the bond dimension limits. Geometrically, we can think of the full many-body Hilbert space as a large set, and MPS describe only a very small part of it, which is the part of area-law states. This part is reached with a bond dimension that stays moderate (<span class="math inline">\(M \sim 10\)</span>, <span class="math inline">\(100\)</span>) as long as we stay in the area-law regime. To reach a general state with a volume law, the bond dimension would have to become very large, <span class="math inline">\(M \sim 2^{L/2}\)</span>, which is exponential in <span class="math inline">\(L\)</span>. Figure <a href="#fig:s07:ceiling">7.3</a> shows this comparison directly. It shows the upper limit <span class="math inline">\(\log M\)</span> given by <a href="#eq-7-10">(7.10)</a> and the entropy that a gapped, a critical and a general state need when the subsystem grows.</p>
+\langle\alpha|_A\)</span> has rank at most <span class="math inline">\(\chi\)</span>. Among all density matrices with rank <span class="math inline">\(\le \chi\)</span>, the entropy <a href="04-the-matrix-product-state-ansatz.html#eq-7-6">(7.6)</a> is maximal when all the eigenvalues are equal, <span class="math inline">\(\lambda_\alpha^2 = 1/\chi\)</span>, and this gives the bound on the entanglement of an MPS.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>An MPS with bond dimension <span class="math inline">\(\chi\)</span> holds across any bond an entanglement entropy of at most</p>
+<p><span id="eq-7-10" class="eq"><span class="math display">\[S \;\le\; \log \chi. \tag{7.10}\]</span></span></p>
+<p>Only <span class="math inline">\(\chi\)</span> equal Schmidt weights reach this value. A gapped chain longer than its correlation length needs the same <span class="math inline">\(\chi\)</span> for 50 or for 500 sites, for the same error at each bond. A state with a volume law would need <span class="math inline">\(\chi\sim2^{L/2}\)</span>.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the rank of the reduced density matrix to the bound (7.10)</span></summary>
+<div class="fold-body">
+<p>We write <span class="math inline">\(p_\alpha=\lambda_\alpha^2\)</span> for the eigenvalues of <span class="math inline">\(\rho_A\)</span>. They are positive and <span class="math inline">\(\sum_\alpha p_\alpha=1\)</span>, and the entropy <a href="04-the-matrix-product-state-ansatz.html#eq-7-6">(7.6)</a> is <span class="math inline">\(S=-\sum_\alpha p_\alpha\log p_\alpha\)</span>. Let us take the simplest case first, <span class="math inline">\(\chi=2\)</span>, with the two weights <span class="math inline">\(p\)</span> and <span class="math inline">\(1-p\)</span>,</p>
+<p><span class="math display">\[S(p) = -p\log p-(1-p)\log(1-p), \qquad \frac{dS}{dp}=\log\frac{1-p}{p}.\]</span></p>
+<p>The derivative vanishes only at <span class="math inline">\(p=\tfrac12\)</span>, where <span class="math inline">\(S=\log 2\)</span>, and <span class="math inline">\(S\)</span> goes to zero at <span class="math inline">\(p=0\)</span> and <span class="math inline">\(p=1\)</span>. So two Schmidt terms hold at most <span class="math inline">\(\log 2\)</span>, which is the singlet <a href="04-the-matrix-product-state-ansatz.html#eq-7-7">(7.7)</a>.</p>
+<p>For <span class="math inline">\(\chi\)</span> weights we look for the largest <span class="math inline">\(S\)</span> with the condition <span class="math inline">\(\sum_\alpha p_\alpha=1\)</span>, and we add it with a Lagrange multiplier <span class="math inline">\(\mu\)</span>,</p>
+<p><span class="math display">\[\frac{\partial}{\partial p_\alpha}\Big[-\sum_\beta p_\beta\log p_\beta-\mu\Big(\sum_\beta p_\beta-1\Big)\Big]=-\log p_\alpha-1-\mu=0.\]</span></p>
+<p>This gives the same value for every <span class="math inline">\(p_\alpha\)</span>, so <span class="math inline">\(p_\alpha=1/\chi\)</span>. The second derivative of <span class="math inline">\(S\)</span> is <span class="math inline">\(-1/p_\alpha&lt;0\)</span>, meaning that this point is the maximum, and its value is</p>
+<p><span class="math display">\[S=-\sum_{\alpha=1}^{\chi}\frac1\chi\log\frac1\chi=\log \chi.\]</span></p>
+<p>A density matrix of rank lower than <span class="math inline">\(\chi\)</span> has fewer nonzero weights, and its largest entropy is the logarithm of its rank, which is smaller. So every MPS of bond dimension <span class="math inline">\(\chi\)</span> has <span class="math inline">\(S\le\log \chi\)</span>, which is <a href="#eq-7-10">(7.10)</a>.</p>
+</div>
+</details>
+</div>
+<p>In other words, an MPS with bond dimension <span class="math inline">\(\chi\)</span> can have an entanglement entropy of at most <span class="math inline">\(\log \chi\)</span> across any bond, which grows only logarithmically with <span class="math inline">\(\chi\)</span>. Let us compare this with <a href="07-two-dimensions-and-the-area-law.html#eq-7-9">(7.9)</a>. A 1D gapped ground state has an entanglement entropy that <em>saturates</em> at a finite value, which does not depend on the size of the subsystem. So a moderate and fixed bond dimension is already enough to describe it with a very small error. This is the quantitative reason why matrix product states are such a good ansatz in one dimension, since the area law limits the same quantity that the bond dimension limits.</p>
+<p>Geometrically, we can think of the full many-body Hilbert space as a large set, and MPS describe only a very small part of it, which is the part of area-law states. This part is reached with a bond dimension that stays moderate (<span class="math inline">\(\chi \sim 10\)</span>, <span class="math inline">\(100\)</span>) as long as we stay in the area-law regime. To reach a general state with a volume law, the bond dimension would have to become very large, <span class="math inline">\(\chi \sim 2^{L/2}\)</span>, which is exponential in <span class="math inline">\(L\)</span>. Figure <a href="#fig:s07:ceiling">7.3</a> shows this comparison directly. It shows the upper limit <span class="math inline">\(\log \chi\)</span> given by <a href="#eq-7-10">(7.10)</a> and the entropy that a gapped, a critical and a general state need when the subsystem grows.</p>
 <figure id="fig:s07:ceiling">
 <img src="../figures/s07f03_entropyceiling.svg" loading="lazy" alt="The bond dimension is an upper limit on the entanglement, and this determines when matrix product states work." />
-<figcaption><strong>Figure 7.3.</strong> The bond dimension is an upper limit on the entanglement, and this determines when matrix product states work. An MPS with bond dimension <span class="math inline">\(M\)</span> has at most <span class="math inline">\(M\)</span> Schmidt terms across any bond. So by <a href="#eq-7-10">(7.10)</a> it can have at most <span class="math inline">\(S=\log M\)</span> there, which is shown by the two horizontal bars, for <span class="math inline">\(M=4\)</span> and <span class="math inline">\(M=16\)</span>. A gapped one-dimensional ground state follows the area law of Section <a href="06-entanglement-entropy-of-a-solvable-dimerized-chain.html#sec-7-6">7.6</a>. Its entropy saturates at a value set by the correlation length and not by the subsystem size, so it stays below a fixed and moderate limit for any chain length. A critical chain violates the area law logarithmically, <a href="11-mera-and-peps-beyond-mps.html#eq-7-12">(7.12)</a>, so at some point it goes above any fixed limit, here the lower bar. Then <span class="math inline">\(M\)</span> must be increased as the system grows, slowly but without bound. A general state of the Hilbert space of dimension <span class="math inline">\(2^L\)</span> follows a volume law, <span class="math inline">\(S=\ell\log 2\)</span>, and it goes above any usable <span class="math inline">\(M\)</span> after a few sites. This is why time evolution over long times, highly excited states and two-dimensional systems are all out of reach. The entropy is drawn in bits, <span class="math inline">\(S/\log 2\)</span>, with central charge <span class="math inline">\(c=1\)</span>, and the curves are schematic and not fits to a specific model.</figcaption>
+<figcaption><strong>Figure 7.3.</strong> The bond dimension is an upper limit on the entanglement, and this determines when matrix product states work. An MPS with bond dimension <span class="math inline">\(\chi\)</span> has at most <span class="math inline">\(\chi\)</span> Schmidt terms across any bond. So by <a href="#eq-7-10">(7.10)</a> it can have at most <span class="math inline">\(S=\log \chi\)</span> there, which is shown by the two horizontal bars, for <span class="math inline">\(\chi=4\)</span> and <span class="math inline">\(\chi=16\)</span>. A gapped one-dimensional ground state follows the area law of Section <a href="06-entanglement-entropy-of-a-solvable-dimerized-chain.html#sec-7-6">7.6</a>. Its entropy saturates at a value set by the correlation length and not by the subsystem size, so it stays below a fixed and moderate limit for any chain length. A critical chain violates the area law logarithmically, <a href="11-mera-and-peps-beyond-mps.html#eq-7-12">(7.12)</a>, so at some point it goes above any fixed limit, here the lower bar. Then <span class="math inline">\(\chi\)</span> must be increased as the system grows, slowly but without bound. A general state of the Hilbert space of dimension <span class="math inline">\(2^L\)</span> follows a volume law, <span class="math inline">\(S=\ell\log 2\)</span>, and it goes above any usable <span class="math inline">\(\chi\)</span> after a few sites. This is why time evolution over long times, highly excited states and two-dimensional systems are all out of reach. The entropy is drawn in bits, <span class="math inline">\(S/\log 2\)</span>, with central charge <span class="math inline">\(c=1\)</span>, and the curves are schematic and not fits to a specific model. The labels of the drawing write the bond dimension as <span class="math inline">\(M\)</span>.</figcaption>
 </figure>
-<p>The bound <a href="#eq-7-10">(7.10)</a> is reached only if all the Schmidt weights are equal, and in a real ground state they are not. The weights across the central bond of a chain with 16 sites, which we can still solve exactly, are shown in <a href="#sch:s07:schmidt_spectrum">Schematic 7.10</a>. They fall quickly, and they fall faster for the dimerized chain than for the uniform one, as we expect for a gapped state. Keeping the <span class="math inline">\(M\)</span> largest weights therefore gives an almost exact state.</p>
+<p>The bound <a href="#eq-7-10">(7.10)</a> is reached only if all the Schmidt weights are equal, and in a real ground state they are not. The weights across the central bond of a chain with 16 sites, which we can still solve exactly, are shown in <a href="#sch:s07:schmidt_spectrum">Schematic 7.10</a>. They fall quickly, and they fall faster for the dimerized chain than for the uniform one, as we expect for a gapped state. Keeping the <span class="math inline">\(\chi\)</span> largest weights therefore gives an almost exact state.</p>
 <figure id="sch:s07:schmidt_spectrum" class="schematic">
 <img src="../figures/web/session07/schmidt_spectrum.svg" loading="lazy" alt="The Schmidt weights on a logarithmic scale against their index for a uniform and a dimerized chain, falling by many orders of magnitude, with a dashed line at index 16." />
-<figcaption><strong>Schematic 7.10.</strong> The Schmidt weights <span class="math inline">\(\lambda_\alpha^2\)</span> at the central bond of the ground state of an open Heisenberg chain with 16 sites, from exact diagonalization. The bonds alternate between <span class="math inline">\(J_1=1\)</span> and <span class="math inline">\(J_2\)</span>, and the central bond is a <span class="math inline">\(J_2\)</span> bond. The weights fall by orders of magnitude, so a moderate <span class="math inline">\(M\)</span> keeps almost everything. Look at the dashed line at <span class="math inline">\(M=16\)</span>, where the weight that we remove is <span class="math inline">\(2\times10^{-7}\)</span> for the uniform chain and <span class="math inline">\(3\times10^{-11}\)</span> for the dimerized one.</figcaption>
+<figcaption><strong>Schematic 7.10.</strong> The Schmidt weights <span class="math inline">\(\lambda_\alpha^2\)</span> at the central bond of the ground state of an open Heisenberg chain with 16 sites, from exact diagonalization. The bonds alternate between <span class="math inline">\(J_1=1\)</span> and <span class="math inline">\(J_2\)</span>, and the central bond is a <span class="math inline">\(J_2\)</span> bond. The weights fall by orders of magnitude, so a moderate <span class="math inline">\(\chi\)</span> keeps almost everything. Look at the dashed line at <span class="math inline">\(\chi=16\)</span>, where the weight that we remove is <span class="math inline">\(2\times10^{-7}\)</span> for the uniform chain and <span class="math inline">\(3\times10^{-11}\)</span> for the dimerized one.</figcaption>
 </figure>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>A gapped chain of 50 sites is described accurately with a bond dimension <span class="math inline">\(M\)</span>. What do we need for a gapped chain of 500 sites in the same phase?</p>
+<p>A gapped chain of 50 sites is described accurately with a bond dimension <span class="math inline">\(\chi\)</span>. What do we need for a gapped chain of 500 sites in the same phase?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li>About ten times larger <span class="math inline">\(M\)</span>.</li>
-<li>About the same <span class="math inline">\(M\)</span>, since the entropy saturates.</li>
-<li>A smaller <span class="math inline">\(M\)</span>, since the chain is longer.</li>
+<li>About ten times larger <span class="math inline">\(\chi\)</span>.</li>
+<li>About the same <span class="math inline">\(\chi\)</span>, since the entropy saturates.</li>
+<li>A smaller <span class="math inline">\(\chi\)</span>, since the chain is longer.</li>
 </ol>
 </div>
 <details class="quiz-answer"><summary>Show the answers</summary>
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
-<p>This is false. The AKLT chain is exact with <span class="math inline">\(M=2\)</span> both for 50 and for 500 sites. The length of the chain does not enter in a gapped state.</p></li>
+<p>This is false. The AKLT chain is exact with <span class="math inline">\(\chi=2\)</span> both for 50 and for 500 sites. The length of the chain does not enter in a gapped state.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. In a gapped state the entropy across a bond is set by the correlation length and not by the length of the chain. The bound <a href="#eq-7-10">(7.10)</a> then asks for the same <span class="math inline">\(M\)</span>.</p>
+<p>This is true. In a gapped state the entropy across a bond is set by the correlation length and not by the length of the chain. The bound <a href="#eq-7-10">(7.10)</a> then asks for the same <span class="math inline">\(\chi\)</span>.</p>
 <div class="eq-again">
-<p><span class="math display">\[S \;\le\; \log M. \tag{7.10}\]</span></p>
+<p><span class="math display">\[S \;\le\; \log \chi. \tag{7.10}\]</span></p>
 </div></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. The central bond of the chain of 500 sites has the same entropy as the one of 50 sites, once both are longer than the correlation length. A smaller <span class="math inline">\(M\)</span> would drop weights that the first calculation had to keep.</p></li>
+<p>This is false. The central bond of the chain of 500 sites has the same entropy as the one of 50 sites, once both are longer than the correlation length. A smaller <span class="math inline">\(\chi\)</span> would drop weights that the first calculation had to keep.</p></li>
 </ul>
 </div>
 </details>
@@ -136,13 +171,15 @@ Question
 Question
 </div>
 <div class="quiz-q">
-<p>An MPS has <span class="math inline">\(M=16\)</span>. What is the largest entanglement entropy that it can hold across one bond, in units of <span class="math inline">\(\log 2\)</span>?</p>
+<p>An MPS has the bond dimension <span class="math inline">\(\chi=16\)</span>. Across one bond its entanglement entropy obeys</p>
+<p><span class="math display">\[S\le\log \chi.\]</span></p>
+<p>What is the largest entropy that one bond can hold?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li><span class="math inline">\(16\)</span>, since there are 16 terms.</li>
-<li><span class="math inline">\(8\)</span>, since it is half of <span class="math inline">\(M\)</span>.</li>
-<li><span class="math inline">\(4\)</span>, since <span class="math inline">\(\log 16=4\log 2\)</span>.</li>
+<li><span class="math inline">\(S=16\log 2\)</span></li>
+<li><span class="math inline">\(S=8\log 2\)</span></li>
+<li><span class="math inline">\(S=\log 16=4\log 2\)</span></li>
 </ol>
 </div>
 <details class="quiz-answer"><summary>Show the answers</summary>
@@ -153,20 +190,33 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
 <p>This is false. The value <span class="math inline">\(8\log2=\log256\)</span> needs 256 equal Schmidt terms, and the MPS has only 16. The entropy is a logarithm of the number of terms and not a fraction of it.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
-<p>This is true. The bound <a href="#eq-7-10">(7.10)</a> is <span class="math inline">\(S\le\log M\)</span>, reached when the 16 weights are equal, and <span class="math inline">\(\log 16=4\log 2\)</span>. The number of Schmidt terms is 16 but the entropy grows only as its logarithm.</p>
-<div class="eq-again">
-<p><span class="math display">\[S \;\le\; \log M. \tag{7.10}\]</span></p>
-</div></li>
+<p>This is true. The bound <span class="math inline">\(S\le\log \chi\)</span> is reached when the 16 weights are equal, and <span class="math inline">\(\log 16=4\log 2\)</span>. The number of Schmidt terms is 16 but the entropy grows only as its logarithm.</p></li>
 </ul>
 </div>
 </details>
 </div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>A cut of a state has four Schmidt weights, <span class="math inline">\(\lambda_\alpha^2=\tfrac12,\tfrac14,\tfrac18,\tfrac18\)</span>. Compute the entanglement entropy and compare it with the bound <a href="#eq-7-10">(7.10)</a> for <span class="math inline">\(\chi=4\)</span>. Then we keep only the two largest weights, which is an MPS with <span class="math inline">\(\chi=2\)</span> at this bond. Find the weight that we drop.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>The entropy is <span class="math inline">\(S=-\sum_\alpha\lambda_\alpha^2\log\lambda_\alpha^2\)</span>, and each weight is a power of <span class="math inline">\(\tfrac12\)</span>, so every term is a multiple of <span class="math inline">\(\log 2\)</span>,</p>
+<p><span class="math display">\[S=\tfrac12\log2+\tfrac14\log4+2\cdot\tfrac18\log8=\Big(\tfrac12+\tfrac12+\tfrac34\Big)\log2=1.75\log2=1.21.\]</span></p>
+<p>The bound for <span class="math inline">\(\chi=4\)</span> is <span class="math inline">\(\log4=2\log2=1.39\)</span>. The state stays below it, since its four weights are not equal.</p>
+<p>With <span class="math inline">\(\chi=2\)</span> we keep <span class="math inline">\(\tfrac12\)</span> and <span class="math inline">\(\tfrac14\)</span>, and we drop <span class="math inline">\(\tfrac18+\tfrac18=0.25\)</span> of the weight. The state that we keep, before we normalize it, differs from the exact one by a vector whose squared norm is this dropped weight. After we normalize it, the square of its overlap with the exact state is <span class="math inline">\(1-0.25=0.75\)</span>. So the error of a truncation is set by the weights that we drop, and not by how close <span class="math inline">\(S\)</span> is to <span class="math inline">\(\log \chi\)</span>. This is why the fast fall of the weights in <a href="#sch:s07:schmidt_spectrum">Schematic 7.10</a> is what makes a moderate <span class="math inline">\(\chi\)</span> enough.</p>
+</div>
+</details>
+</div>
+</div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb"><code>session7.ipynb</code></a>, “Near linear scaling with system size with matrix product states” (Core) and “The role of the bond dimension in tensor networks” (Core)</p>
-<p>In the first exercise you check that the cost of the DMRG ground-state calculation in <code>dmrgpy</code> grows linearly with the system size. This is the <span class="math inline">\(L\times M^2\)</span> scaling of <a href="04-the-matrix-product-state-ansatz.html#eq-7-5">(7.5)</a> and not the <span class="math inline">\(2^L\)</span> scaling of <a href="03-storing-the-wave-function-as-the-main-bottleneck.html#eq-7-4">(7.4)</a>. In the second exercise you change the bond dimension and see how the fluctuation of the ground-state energy becomes smaller and then saturates. The point where it saturates is where <span class="math inline">\(M\)</span> is large enough to satisfy the bound <a href="#eq-7-10">(7.10)</a> for that state.</p>
+<p>In the first exercise you check that the cost of the DMRG ground-state calculation in <code>dmrgpy</code> grows linearly with the system size. This is the linear growth in <span class="math inline">\(L\)</span> of <a href="04-the-matrix-product-state-ansatz.html#eq-7-5">(7.5)</a> and not the <span class="math inline">\(2^L\)</span> scaling of <a href="03-storing-the-wave-function-as-the-main-bottleneck.html#eq-7-4">(7.4)</a>. In the second exercise you change the bond dimension and see how the ground-state energy saturates, while its fluctuation keeps becoming smaller. The energy saturates once the Schmidt weights that <span class="math inline">\(\chi\)</span> drops are negligible, and this happens well above the smallest <span class="math inline">\(\chi\)</span> that the bound <a href="#eq-7-10">(7.10)</a> allows.</p>
 </div>
 <div class="tryit">
-<p><strong>Try it.</strong> Run the loop over <code>maxm</code> in <code>[2,4,8,20]</code> and look at the bond entropy. For <code>maxm=2</code> the curve cannot go above <span class="math inline">\(\ln 2\approx0.69\)</span>, while for <code>maxm=20</code> it follows the true ground state. Check that the central bonds have the largest entropy.</p>
+<p><strong>Try it.</strong> Run the loop over <code>maxm</code> in <code>[2,4,8,20]</code> and look at the bond entropy. For <code>maxm=2</code> the curve cannot go above <span class="math inline">\(\ln 2\approx0.69\)</span>, while for <code>maxm=20</code> it follows the true ground state. Check that the largest entropy sits on the two bonds next to the central bond, and not on the central bond itself.</p>
 <div class="tryit-links">
 Notebook <code>session7.ipynb</code>, cell “Entanglement entropy of the ground state”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession7.ipynb">Binder</a>.
 </div>
@@ -177,7 +227,7 @@ Where this comes back
 </div>
 <ul>
 <li>In Section <a href="08b-where-mps-stop-working.html#sec-7-8b">7.8b</a> the same bound <a href="#eq-7-10">(7.10)</a> tells us where MPS fail, in long-time dynamics and in two dimensions.</li>
-<li>In Section <a href="10-the-variational-principle-and-dmrg-for-the-ground-state.html#sec-7-10">7.10</a> DMRG optimizes the MPS at a fixed bond dimension, and the error of the energy stops at a level set by <span class="math inline">\(M\)</span>.</li>
+<li>In Section <a href="10-the-variational-principle-and-dmrg-for-the-ground-state.html#sec-7-10">7.10</a> DMRG optimizes the MPS at a fixed bond dimension, and the error of the energy stops at a level set by <span class="math inline">\(\chi\)</span>.</li>
 <li>In Section <a href="../session10/03b-training-the-network-and-quantum-state-tomography.html#sec-10-3b">10.3b</a> matrix product states are the innermost family of the variational states of the course, inside PEPS and neural network quantum states.</li>
 </ul>
 </div>

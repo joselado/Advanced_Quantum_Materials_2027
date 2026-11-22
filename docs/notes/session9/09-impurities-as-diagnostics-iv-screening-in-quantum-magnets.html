@@ -85,32 +85,78 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="on" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 9. Excitations and Defects in Quantum Materials</a></p>
 <h1 id="sec-9-9"><span class="num">9.9</span> Impurities as diagnostics IV, screening in quantum magnets</h1>
+<p>How do the spins of a quantum magnet screen one local magnetic perturbation, and does the decay of this screening tell whether the magnet has a gap? We will now see that it does. We arrive at <a href="#eq-9-11">(9.11)</a>, a power law <span class="math inline">\((-1)^n/n\)</span> for the gapless <span class="math inline">\(S=1/2\)</span> chain and an exponential <span class="math inline">\((-1)^ne^{-n/\xi}\)</span> for the gapped <span class="math inline">\(S=1\)</span> chain. The rule is that a power law means gapless and an exponential means gapped.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[\mathcal H_\text{MF} = \sum_{ij,s} \chi_{ij}\, f^\dagger_{i,s} f_{j,s}. \tag{8.15}\]</span></p>
+</div>
+<div class="eq-again">
+<p><span class="math display">\[\delta n(x) \;\xrightarrow{|x|\to\infty}\; A(v_0)\, \frac{\cos\!\big(2k_F |x| + \varphi_0\big)}{|x|^{\,d}} \qquad (d = 1,2,3). \tag{9.9}\]</span></p>
+</div>
+<p>The first is the mean-field Hamiltonian of the spinons of Section <a href="../session8/09-the-mean-field-spinon-hamiltonian-and-its-dispersion-classes.html#sec-8-9">8.9</a>, a tight-binding model for the auxiliary fermions <span class="math inline">\(f_{i,s}\)</span> with the hoppings <span class="math inline">\(\chi_{ij}\)</span>, at half filling since there is one fermion per site. The second is the Friedel oscillation of Section <a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html#sec-9-6">9.6a</a>, the change of density at a distance <span class="math inline">\(x\)</span> from one impurity in a metal with the Fermi wavevector <span class="math inline">\(k_F\)</span>, in <span class="math inline">\(d\)</span> dimensions.</p>
+</div>
 <p>The last case study brings us directly back to the parton construction of <a href="../session8/index.html">Session 8</a>. We take a frustrated Heisenberg model, of the form <a href="../session6/09-the-heisenberg-model-on-a-general-lattice.html#eq-6-5">(6.5)</a>, with a ground state similar to the quantum spin liquid of Section <a href="../session8/04-frustration-as-the-route-to-a-quantum-spin-liquid.html#sec-8-4">8.4</a>. This ground state has zero net magnetization on every site, and it does not break time-reversal symmetry. We add one local magnetic perturbation, and we ask how the spins around it screen it.</p>
 <p>For <span class="math inline">\(S=1/2\)</span> we do not need to repeat the construction from the beginning, since <a href="../session8/index.html">Session 8</a> already built the tool that we need. We write each spin with a pair of auxiliary (Abrikosov) fermions, <span class="math inline">\(S_i =
 \tfrac{1}{2}\sum_{\alpha\beta} f_{i\alpha}^\dagger \boldsymbol{\sigma}_{\alpha\beta} f_{i\beta}\)</span>, with the single-occupancy constraint <span class="math inline">\(\sum_\sigma f_{i\sigma}^\dagger f_{i\sigma} = 1\)</span> at every site, and we make a mean-field decoupling of the quartic Hamiltonian that we obtain. As we derived in Section <a href="../session8/09-the-mean-field-spinon-hamiltonian-and-its-dispersion-classes.html#sec-8-9">8.9</a>, this turns the Heisenberg model with a local magnetic perturbation into a bilinear Hamiltonian for the spinons, similar to a tight-binding one. The impurity gives an effective onsite term at its site, which mixes with the spinon band. We will not derive this mapping again here, and Section <a href="../session8/07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#sec-8-8">8.8</a> gives the full mean-field decoupling with Abrikosov fermions.</p>
 <p>What matters for us in this session is what this mapping gives us. It turns the screening of a magnetic moment inside a quantum spin liquid into the same mathematical problem as the impurity in a one-dimensional electron gas of Section <a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html#sec-9-6">9.6</a>. The only change is that the electrons are replaced by spinons. The induced spin correlation <span class="math inline">\(\langle S_0 \cdot S_n\rangle\)</span>, as a function of the distance <span class="math inline">\(n\)</span> from the impurity, therefore has the same structure as <a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html#eq-9-9">(9.9)</a>. It has an oscillation set by the antiferromagnetic exchange, and it decays with distance in a way that depends on whether the spinon band is gapped or gapless.</p>
 <p>Here the comparison between the <span class="math inline">\(S=1/2\)</span> and <span class="math inline">\(S=1\)</span> Heisenberg chains becomes clear. Both have a ground state similar to a spin liquid, with zero onsite magnetization when there is no impurity, and both develop an oscillating induced moment once the impurity is switched on. However, the decay is qualitatively different in the two cases.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>For the two Heisenberg chains the decay is</p>
 <p><span id="eq-9-11" class="eq"><span class="math display">\[\langle S_0 \cdot S_n \rangle \;\sim\;
 \begin{cases}
 \dfrac{(-1)^n}{n} &amp; S = 1/2 \quad \text{(power-law, gapless)}, \\[6pt]
 (-1)^n\, e^{-n/\xi} &amp; S = 1 \quad \text{(exponential, gapped)}.
 \end{cases} \tag{9.11}\]</span></span></p>
+<p>A power-law decay of an impurity response signals a gapless ground state, and an exponential decay signals a gapped one, where the decay length in the exponent is the correlation length.</p>
+</div>
 <p>The reason is the same reasoning as for <a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html#eq-9-9">(9.9)</a>. Through the Abrikosov-fermion construction, the spin-<span class="math inline">\(1/2\)</span> Heisenberg chain maps onto a gapless tight-binding chain of spinons, with a real Fermi surface of two points, as for the 1D metal of Section <a href="04-the-fermi-sea-and-the-lindhard-function.html#sec-9-4">9.4</a>. So the impurity response must decay algebraically, in the same way as the Friedel oscillations of a metal. The spin-1 chain, on the other hand, has an excitation gap. This is the Haldane gap, which opens for antiferromagnetic chains with integer spin. This gap sets a finite correlation length <span class="math inline">\(\xi\)</span>, and it forces the impurity response to decay exponentially, in the same way as charge screening inside a band insulator.</p>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From a field on one spin to the impurity of a spinon chain</span></summary>
+<div class="fold-body">
+<p>We take the simplest case, a field <span class="math inline">\(h\)</span> on site <span class="math inline">\(0\)</span> of the spinon chain <a href="../session8/09-the-mean-field-spinon-hamiltonian-and-its-dispersion-classes.html#eq-8-15">(8.15)</a>, with the same hopping <span class="math inline">\(\chi\)</span> on every bond and for both species. The field couples to</p>
+<p><span class="math display">\[S^z_0=\tfrac12\big(f^\dagger_{0\uparrow}f_{0\uparrow}-f^\dagger_{0\downarrow}f_{0\downarrow}\big),\]</span></p>
+<p>so the term <span class="math inline">\(-hS^z_0\)</span> is an onsite energy <span class="math inline">\(-h/2\)</span> for the up spinons and <span class="math inline">\(+h/2\)</span> for the down spinons, on site <span class="math inline">\(0\)</span> only.</p>
+<p>The two species do not mix, since <a href="../session8/09-the-mean-field-spinon-hamiltonian-and-its-dispersion-classes.html#eq-8-15">(8.15)</a> has the same <span class="math inline">\(\chi\)</span> for both and no term that flips the spin. Each species is then a tight-binding chain with one impurity of strength <span class="math inline">\(v_0=\mp h/2\)</span>, which is the problem of Section <a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html#sec-9-6">9.6a</a>. At first order in <span class="math inline">\(v_0\)</span> its change of density at a distance <span class="math inline">\(n\)</span> is the Friedel oscillation <a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html#eq-9-9">(9.9)</a> with <span class="math inline">\(d=1\)</span>,</p>
+<p><span class="math display">\[\delta n_\sigma(n)\;\propto\;v_{0\sigma}\,\frac{\cos(2k_Fn+\varphi_0)}{n}.\]</span></p>
+<p>There is one spinon per site, so each species is at half filling. For the band <span class="math inline">\(2\chi\cos k\)</span> this gives <span class="math inline">\(k_F=\pi/2\)</span> and <span class="math inline">\(2k_F=\pi\)</span>, so <span class="math inline">\(\cos(\pi n+\varphi_0)=(-1)^n\cos\varphi_0\)</span>.</p>
+<p>The moment is <span class="math inline">\(\langle S^z_n\rangle=\frac12(\delta n_\uparrow-\delta n_\downarrow)\)</span>. The two impurity strengths are opposite, and <span class="math inline">\(\delta n\)</span> is linear in <span class="math inline">\(v_0\)</span>, so <span class="math inline">\(\delta n_\downarrow=-\delta n_\uparrow\)</span> and</p>
+<p><span class="math display">\[\langle S^z_n\rangle=\delta n_\uparrow(n)\;\propto\;h\,\frac{(-1)^n}{n},\]</span></p>
+<p>meaning that the induced moment changes sign from site to site and its envelope falls as <span class="math inline">\(1/n\)</span>. The sign of <span class="math inline">\(\chi\)</span> does not enter. The chain is bipartite, so <span class="math inline">\(f_{n\sigma}\to(-1)^nf_{n\sigma}\)</span> changes <span class="math inline">\(\chi\)</span> into <span class="math inline">\(-\chi\)</span> and leaves every density as it is. For a dimerized <span class="math inline">\(\chi\)</span> the spinon band has a gap and no Fermi surface, and the change of density decays exponentially, as in the insulating chain of Section <a href="06b-friedel-oscillations-in-a-chain-and-the-contrast-with-an-insulator.html#sec-9-6b">9.6b</a>. <a href="#sch:s09:spinon_impurity">Schematic 9.14</a> shows the two cases, computed.</p>
+</div>
+</details>
+</div>
 <p>This gives us a general diagnostic, which connects all the case studies of this session. <em>A power-law decay of an impurity response signals a gapless ground state, and an exponential decay signals a gapped one, where the decay length in the exponent is the correlation length</em>. The metal of Section <a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html#sec-9-6">9.6</a> has a power law, and the insulating chain of Section <a href="06b-friedel-oscillations-in-a-chain-and-the-contrast-with-an-insulator.html#sec-9-6b">9.6b</a> has an exponential. These two and the two quantum-magnet cases here are all examples of the same statement, and Figure <a href="#fig:s09:decay">9.5</a> draws them side by side.</p>
 <figure id="fig:s09:decay">
 <img src="../figures/s09f05_decay.svg" loading="lazy" alt="The diagnostic that connects the whole session, drawn for the two Heisenberg chains of (9.11)." />
 <figcaption><strong>Figure 9.5.</strong> The diagnostic that connects the whole session, drawn for the two Heisenberg chains of <a href="#eq-9-11">(9.11)</a>. Close to the impurity both look the same, with an induced moment that changes sign from site to site, because the exchange is antiferromagnetic. The only difference between them is how the envelope decays. (a) The <span class="math inline">\(S=1/2\)</span> chain maps, through the Abrikosov-fermion construction of <a href="../session8/index.html">Session 8</a>, onto a <em>gapless</em> spinon band with a real Fermi surface of two points, so its envelope decays as the power law <span class="math inline">\(1/n\)</span>. This is the same mathematics, and the same reason, as for the Friedel oscillations <a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html#eq-9-9">(9.9)</a> of a metal. (b) The <span class="math inline">\(S=1\)</span> chain has the Haldane gap, which fixes a finite correlation length <span class="math inline">\(\xi\)</span> and gives an exponential envelope <span class="math inline">\(e^{-n/\xi}\)</span>, drawn for <span class="math inline">\(\xi=2.5\)</span>. This is the same decay as for charge screening inside a band insulator. (c) On a logarithmic vertical scale the two are easy to distinguish, since an exponential is a straight line of slope <span class="math inline">\(-1/\xi\)</span> and a power law is not. The statement can be read in both directions, so a measured decay law is a measurement of whether the ground state is gapped.</figcaption>
 </figure>
-<figure id="sch:s09:spinon_impurity" class="schematic">
+<figure id="sch:s09:spinon_impurity" class="schematic has-script">
 <img src="../figures/web/session09/spinon_impurity.svg" loading="lazy" alt="Left, bars of the induced moment along a chain, alternating in sign around a large bar at site zero, in blue and red. Right, the size of the moment on a logarithmic scale, with blue points that bend slowly and red points that fall along two straight lines." />
-<figcaption><strong>Schematic 9.13.</strong> The mapping of this section, computed. We take the spinon chain of Section <a href="../session8/09-the-mean-field-spinon-hamiltonian-and-its-dispersion-classes.html#sec-8-9">8.9</a> at half filling, with a field <span class="math inline">\(h=0.1\chi\)</span> on site <span class="math inline">\(0\)</span> that couples to <span class="math inline">\(S^z_0\)</span>. We diagonalize it for each spin on an open chain of <span class="math inline">\(2000\)</span> sites. The blue chain has a uniform <span class="math inline">\(\chi\)</span>, which gives the gapless spinon band. The red chain has <span class="math inline">\(\chi\)</span> alternating between <span class="math inline">\(1\)</span> and <span class="math inline">\(0.6\)</span>, which gives a spinon band with a gap of <span class="math inline">\(0.8\chi\)</span>. It stands for a gapped spin liquid in general, and it is not a model of the spin-1 chain. On the left the induced moment changes sign from site to site in both chains, and in the red chain most of it sits on the partner of site <span class="math inline">\(0\)</span> in its dimer. On the right, on a logarithmic scale, the blue points follow the grey line <span class="math inline">\(1/n\)</span>, and the red points fall on two straight lines, one for each sublattice. These are the power law and the exponential of <a href="#eq-9-11">(9.11)</a>, from the same calculation as the Friedel oscillation of Section <a href="06b-friedel-oscillations-in-a-chain-and-the-contrast-with-an-insulator.html#sec-9-6b">9.6b</a>.</figcaption>
+<div class="script-row">
+<a href="../scripts/session09/g5_spinon_chain_field.py" class="script-dl" download="g5_spinon_chain_field.py">Download the pyqula script</a> <span class="script-name"><code>g5_spinon_chain_field.py</code></span>
+</div>
+<figcaption><strong>Schematic 9.14.</strong> The mapping of this section, computed with pyqula. We take the spinon chain of Section <a href="../session8/09-the-mean-field-spinon-hamiltonian-and-its-dispersion-classes.html#sec-8-9">8.9</a> at half filling, with a field <span class="math inline">\(h=0.1\chi\)</span> on site <span class="math inline">\(0\)</span> that couples to <span class="math inline">\(S^z_0\)</span>. We diagonalize it for each spin on an open chain of <span class="math inline">\(2000\)</span> sites. The blue chain has a uniform <span class="math inline">\(\chi\)</span>, which gives the gapless spinon band. The red chain has <span class="math inline">\(\chi\)</span> alternating between <span class="math inline">\(1\)</span> and <span class="math inline">\(0.6\)</span>, which gives a spinon band with a gap of <span class="math inline">\(0.8\chi\)</span>. It stands for a gapped spin liquid in general, and it is not a model of the spin-1 chain. On the left the induced moment changes sign from site to site in both chains, and in the red chain most of it sits on the partner of site <span class="math inline">\(0\)</span> in its dimer. On the right, on a logarithmic scale that shows the moments above <span class="math inline">\(10^{-8}\)</span>, the blue points follow the grey line <span class="math inline">\(1/n\)</span>, and the red points fall on two straight lines, one for each sublattice. These are the power law and the exponential of <a href="#eq-9-11">(9.11)</a>, from the same calculation as the Friedel oscillation of Section <a href="06b-friedel-oscillations-in-a-chain-and-the-contrast-with-an-insulator.html#sec-9-6b">9.6b</a>.</figcaption>
 </figure>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>In a real spin-1 chain the defect can be the end of the chain. <a href="https://arxiv.org/abs/cond-mat/0211703">This article</a> studies Y<span class="math inline">\(_2\)</span>BaNi<span class="math inline">\(_{1-x}\)</span>Mg<span class="math inline">\(_x\)</span>O<span class="math inline">\(_5\)</span>, which has antiferromagnetic spin-1 chains of finite length, with inelastic neutron scattering. In a field there is a Zeeman resonance below the Haldane gap, and the dependence of its intensity on the wave vector gives a staggered magnetization at the chain ends. This magnetization decays exponentially towards the bulk, with <span class="math inline">\(\xi=8(1)\)</span> at <span class="math inline">\(T=0.1\)</span> K. The abstract gives <span class="math inline">\(\xi\)</span> with no unit, and we read it as a number of sites along the chain. So an exponential decay is what a gapped chain shows around a defect, as the diagnostic of this page says.</p>
+</div>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>An impurity response in a spin chain is measured, and it looks like <span class="math inline">\((-1)^n e^{-n/\xi}\)</span> with <span class="math inline">\(\xi\approx2.5\)</span> sites. What do we conclude about the spin excitations?</p>
+<p>The response of a spin chain to one impurity is measured at a distance <span class="math inline">\(n\)</span>. It decays as</p>
+<p><span class="math display">\[(-1)^n\,e^{-n/\xi},\qquad \xi\approx2.5\ \text{sites}.\]</span></p>
+<p>What do we conclude about the spin excitations?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -132,35 +178,53 @@ Question
 </div>
 </details>
 </div>
-<div class="quiz" data-correct="A" data-fb="1">
+<div class="quiz quiz-pics" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>In panel (c) of Figure <a href="#fig:s09:decay">9.5</a> the vertical axis is logarithmic. How do the two envelopes look there?</p>
+<p>A field on site <span class="math inline">\(0\)</span> of a gapped spinon chain induces a moment <span class="math inline">\(\langle S^z_n\rangle\)</span>. Each plot shows <span class="math inline">\(|\langle S^z_n\rangle|\)</span> for one chain, on a logarithmic axis. Which chain has the smallest gap?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li>The exponential is a straight line of slope <span class="math inline">\(-1/\xi\)</span>, and the power law is a curve.</li>
-<li>Both are straight lines, with different slopes.</li>
-<li>The power law is a straight line, and the exponential is a curve.</li>
+<li><img src="../figures/web/session09/g5_quiz_spinon_06.svg" loading="lazy" alt="Points of the size of the moment against the distance on a logarithmic axis, on two steep straight lines that reach the bottom of the axis at about n=20 and n=25." /></li>
+<li><img src="../figures/web/session09/g5_quiz_spinon_09.svg" loading="lazy" alt="Points of the size of the moment against the distance on a logarithmic axis, on two shallow lines that stay high up to the end of the axis." /></li>
+<li><img src="../figures/web/session09/g5_quiz_spinon_08.svg" loading="lazy" alt="Points of the size of the moment against the distance on a logarithmic axis, on two straight lines of middle slope, one of which reaches the bottom of the axis near the end." /></li>
 </ol>
 </div>
 <details class="quiz-answer"><summary>Show the answers</summary>
 <div class="quiz-fbs">
 <ul>
-<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
-<p>This is true. The logarithm of <span class="math inline">\(e^{-n/\xi}\)</span> is <span class="math inline">\(-n/\xi\)</span>, so <span class="math inline">\(n=0,2.5,5\)</span> give <span class="math inline">\(0,-1,-2\)</span> on a straight line. The logarithm of <span class="math inline">\(1/n\)</span> is <span class="math inline">\(-\ln n\)</span>, which bends.</p></li>
-<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
-<p>This is false. The power law <span class="math inline">\(1/n\)</span> gives <span class="math inline">\(\ln\)</span> values <span class="math inline">\(0,-0.69,-1.10,-1.39\)</span> for <span class="math inline">\(n=1,2,3,4\)</span>. The steps shrink, so it is not a straight line.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. This is the steepest line, so it has the shortest <span class="math inline">\(\xi\)</span> and the largest gap. Here <span class="math inline">\(\chi\)</span> alternates between <span class="math inline">\(1\)</span> and <span class="math inline">\(0.6\)</span>, the gap is <span class="math inline">\(0.8\chi\)</span>, and the moment falls below <span class="math inline">\(10^{-8}\)</span> before <span class="math inline">\(n=30\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. A gapped chain gives <span class="math inline">\(e^{-n/\xi}\)</span>, which falls on a logarithmic axis with a slope set by <span class="math inline">\(1/\xi\)</span>. The shallowest line has the longest <span class="math inline">\(\xi\)</span>, and a smaller gap gives a longer <span class="math inline">\(\xi\)</span>. Here <span class="math inline">\(\chi\)</span> alternates between <span class="math inline">\(1\)</span> and <span class="math inline">\(0.9\)</span>, and the gap is <span class="math inline">\(0.2\chi\)</span>. On the even sites the moment falls only from <span class="math inline">\(1.1\cdot10^{-4}\)</span> at <span class="math inline">\(n=10\)</span> to <span class="math inline">\(7.8\cdot10^{-7}\)</span> at <span class="math inline">\(n=40\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. For the exponential the steps are all equal, since <span class="math inline">\(\ln e^{-n/\xi}=-n/\xi\)</span>. For <span class="math inline">\(\xi=2.5\)</span> every <span class="math inline">\(2.5\)</span> sites gives <span class="math inline">\(-1\)</span>, and it is a straight line, not a curve.</p></li>
+<p>This is false. This line is steeper than the shallowest one, so its gap is larger. Here <span class="math inline">\(\chi\)</span> alternates between <span class="math inline">\(1\)</span> and <span class="math inline">\(0.8\)</span>, and the gap is <span class="math inline">\(0.4\chi\)</span>, twice the smallest gap of the three. On the even sites the moment falls from <span class="math inline">\(2.9\cdot10^{-5}\)</span> at <span class="math inline">\(n=10\)</span> to <span class="math inline">\(1.6\cdot10^{-8}\)</span> at <span class="math inline">\(n=36\)</span>.</p></li>
 </ul>
+</div>
+<div class="quiz-expl">
+<p>On a logarithmic axis an exponential tends to a straight line far from the impurity, while a power law keeps bending, so this plot is the way to read a decay law from a measurement.</p>
 </div>
 </details>
 </div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>The staggered moment around a defect in a gapped chain decays as <span class="math inline">\((-1)^ne^{-n/\xi}\)</span>, with <span class="math inline">\(\xi=8\)</span> sites. By which factor does its size fall from <span class="math inline">\(n=8\)</span> to <span class="math inline">\(n=24\)</span>? Compare with a power law <span class="math inline">\(1/n\)</span> over the same distances.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>For the exponential the ratio of the two sizes is</p>
+<p><span class="math display">\[\frac{e^{-24/8}}{e^{-8/8}}=e^{-2}\approx0.14.\]</span></p>
+<p>For the power law it is <span class="math inline">\(8/24=1/3\approx0.33\)</span>. The two ratios differ by a factor of about <span class="math inline">\(2.5\)</span>, but in a measurement <span class="math inline">\(\xi\)</span> and the power are not known. Two points fix the amplitude and the decay constant of either law, so two points alone cannot tell the two laws apart. A measurement needs a range of several <span class="math inline">\(\xi\)</span>, and a logarithmic axis, where the exponential of this problem is a straight line of slope <span class="math inline">\(-1/\xi\)</span> and the power law keeps bending.</p>
+</div>
+</details>
+</div>
+</div>
 <div class="tryit">
-<p><strong>Try it.</strong> Run the cell, which compares a gap of <code>0.1</code> with a gap of <code>0.3</code>. The LDOS reaches its bulk value after about 25 sites for the smaller gap and after about 10 sites for the larger one. The decay length is set by the gap, in the same way as <span class="math inline">\(\xi\)</span> in <a href="#eq-9-11">(9.11)</a>.</p>
+<p><strong>Try it.</strong> Run the cell, which compares the gaps <span class="math inline">\(0.2\)</span> and <span class="math inline">\(0.6\)</span>, since <code>gaps = [0.1,0.3]</code> are the onsite energies <span class="math inline">\(\pm m\)</span> and the gap is <span class="math inline">\(2m\)</span>. The change of the LDOS decays as <span class="math inline">\(e^{-x/\xi}\)</span>, with <span class="math inline">\(\xi\approx10\)</span> sites for the smaller gap and <span class="math inline">\(\xi\approx3.3\)</span> sites for the larger one. The decay length is set by the gap, in the same way as <span class="math inline">\(\xi\)</span> in <a href="#eq-9-11">(9.11)</a>.</p>
 <div class="tryit-links">
 Notebook <code>session9.ipynb</code>, cell “Impurity in an electronic insulator”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession9.ipynb">Binder</a>.
 </div>
@@ -168,7 +232,7 @@ Notebook <code>session9.ipynb</code>, cell “Impurity in an electronic insulato
 <p>The screening in quantum magnets has no direct counterpart in <code>session9.ipynb</code>, since none of its sections build a chain of spinons or Abrikosov fermions. So there is no exercise that reproduces <a href="#eq-9-11">(9.11)</a> itself.</p>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb"><code>session9.ipynb</code></a>, “The impact of a strong impurity” (Core)</p>
-<p>This is not a spin model, but it is the closest exercise in its logic. It compares how a dimerized chain, with a stronger or a weaker gap, responds to a strong local impurity. Run it with <a href="#eq-9-11">(9.11)</a> in mind, and check the same principle in the fermionic language, where the chain with the stronger gap screens the impurity over a shorter length.</p>
+<p>This is not a spin model. The cell puts one impurity of growing strength into three gapped chains built on <code>geometry.bichain()</code>, which has two sites in its cell and equal hoppings. These are an s-wave superconductor, an insulator with a sublattice imbalance and a topological p-wave superconductor. The cell plots the density of states summed over four sites, the impurity site and the next three sites of the chain. Look at which of the three gaps get a state inside them as the impurity grows, which is the question of Section <a href="08-impurities-as-diagnostics-iii-vacancies-in-topological-matter.html#sec-9-8">9.8</a> for one strong impurity. The decay length of this page, which is shorter for the larger gap, is in the cell “Impurity in an electronic insulator” that the box above runs.</p>
 </div>
 <div class="comesback">
 <div class="comesback-label">

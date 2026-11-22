@@ -85,6 +85,16 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="on" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 8. Quantum Magnetism, Spinons and Kondo Physics</a></p>
 <h1 id="sec-8-3"><span class="num">8.3</span> Two minimal dimers, a classical order parameter and a quantum singlet</h1>
+<p>What is the smallest magnet whose ground state keeps time-reversal symmetry? The Ising dimer has a twofold ground level, and its two product states <span class="math inline">\(|{\uparrow\downarrow}\rangle\)</span> and <span class="math inline">\(|{\downarrow\uparrow}\rangle\)</span> each break the symmetry. The Heisenberg dimer has a single ground state, the singlet <a href="#eq-8-3">(8.3)</a>, with <span class="math inline">\(\langle\mathbf S_i\rangle=0\)</span>, so two spins are enough.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[H_\text{Heis} = \sum_{\langle ij\rangle} J_{ij}\, \mathbf S_i\cdot\mathbf S_j, \qquad J_{ij} = \frac{4t_{ij}^2}{U}. \tag{6.5}\]</span></p>
+</div>
+<p>This is the Heisenberg model of Section <a href="../session6/09-the-heisenberg-model-on-a-general-lattice.html#sec-6-9">6.9</a>, which the Hubbard model gives at large <span class="math inline">\(U\)</span> with one electron on each site. The spins are <span class="math inline">\(\mathbf S_i=\boldsymbol\sigma/2\)</span>, each bond is counted once, and <span class="math inline">\(J_{ij}=4t_{ij}^2/U&gt;0\)</span> is antiferromagnetic. With two sites and <span class="math inline">\(J=1\)</span> it is the Heisenberg dimer of this page.</p>
+</div>
 <p>The simplest way to start with quantum magnetism is to look first at the smallest possible magnet, which has two spins, and to compare two different Hamiltonians for it.</p>
 <p>The first one is the <strong>Ising dimer</strong>,</p>
 <p><span id="eq-8-1" class="eq"><span class="math display">\[\mathcal H_\text{Ising} = S_0^z S_1^z, \tag{8.1}\]</span></span></p>
@@ -93,13 +103,35 @@
 <p>Both are eigenstates with the same energy, but each one of them <em>alone</em> breaks time-reversal symmetry, since time reversal flips every spin and so it turns <span class="math inline">\(|GS_1\rangle\)</span> into <span class="math inline">\(|GS_2\rangle\)</span> and the other way around. Only the degenerate pair of the two states together respects the symmetry. A macroscopic symmetry-broken antiferromagnet, of the same kind as the one of Section <a href="../session6/04-exchange-splitting-and-antiferromagnetic-order-in-numerical-mean-field-theory.html#sec-6-4">6.4</a>, is the version of this same problem with an infinite number of sites. The same argument also works for ferromagnets and spin spirals.</p>
 <p>Let us now replace the Ising coupling by the full <strong>quantum Heisenberg dimer</strong>, which has rotational symmetry,</p>
 <p><span id="eq-8-2" class="eq"><span class="math display">\[\mathcal H_\text{Heis} = \mathbf S_0 \cdot \mathbf S_1. \tag{8.2}\]</span></span></p>
-<p>This is the model that we obtain from a half-filled Hubbard model with strong interactions in the large-<span class="math inline">\(U\)</span> limit, as we derived in Section <a href="../session6/08-from-the-hubbard-dimer-to-the-heisenberg-model.html#sec-6-8">6.8</a>. When we solve it with <span class="math inline">\(\mathbf S_0, \mathbf S_1\)</span> as real spin-<span class="math inline">\(1/2\)</span> operators, the two spin-<span class="math inline">\(1/2\)</span>’s combine into a singlet (<span class="math inline">\(S=0\)</span>) and a triplet (<span class="math inline">\(S=1\)</span>). The value is <span class="math inline">\(\mathbf S_0\cdot\mathbf S_1 = -3/4\)</span> for the singlet and <span class="math inline">\(+1/4\)</span> for the triplet, so the unique ground state is the <strong>singlet</strong>,</p>
+<p>This is the model that we obtain from a half-filled Hubbard model with strong interactions in the large-<span class="math inline">\(U\)</span> limit, as we derived in Section <a href="../session6/08-from-the-hubbard-dimer-to-the-heisenberg-model.html#sec-6-8">6.8</a>. When we solve it with <span class="math inline">\(\mathbf S_0, \mathbf S_1\)</span> as real spin-<span class="math inline">\(1/2\)</span> operators, the two spin-<span class="math inline">\(1/2\)</span>’s combine into a singlet (<span class="math inline">\(S=0\)</span>) and a triplet (<span class="math inline">\(S=1\)</span>).</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>The value is <span class="math inline">\(\mathbf S_0\cdot\mathbf S_1 = -3/4\)</span> for the singlet and <span class="math inline">\(+1/4\)</span> for the triplet, so the unique ground state of the Heisenberg dimer is the <strong>singlet</strong>,</p>
 <p><span id="eq-8-3" class="eq"><span class="math display">\[|GS\rangle = \frac{1}{\sqrt2}\Big(|{\uparrow\downarrow}\rangle -
 |{\downarrow\uparrow}\rangle\Big), \qquad \langle \mathbf S_i \rangle = 0. \tag{8.3}\]</span></span></p>
-<p>This ground state is different from the Ising case in three ways, and these three points are important for the rest of the session. First, it is the <em>unique</em> ground state, so there is no degeneracy and no spontaneous choice between states. Second, it is <em>time-reversal symmetric</em>, since its net magnetization is zero and time reversal maps <span class="math inline">\(|GS\rangle\)</span> to itself. Third, it is <em>maximally entangled</em>, since the two terms in <a href="#eq-8-3">(8.3)</a> have the same weight, which is the largest entanglement that two qubits can have. It is the singlet <a href="../session7/03-storing-the-wave-function-as-the-main-bottleneck.html#eq-7-3">(7.3)</a> of <a href="../session7/index.html">Session 7</a>, with the entanglement entropy <span class="math inline">\(\log 2\)</span> of <a href="../session7/04-the-matrix-product-state-ansatz.html#eq-7-7">(7.7)</a>. Can we have a macroscopic version of this ground state? This question is the origin of quantum spin liquids. Before we go on, <a href="#sch:s08:dimer_levels">Schematic 8.2</a> puts the levels of the two dimers side by side.</p>
+<p>It is unique, it is time-reversal symmetric and it is maximally entangled, and the threefold triplet lies one unit of the coupling above it.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the two spins to the singlet and the triplet</span></summary>
+<div class="fold-body">
+<p>We write the product of the two spins with <span class="math inline">\(S^\pm=S^x\pm iS^y\)</span>,</p>
+<p><span class="math display">\[\mathbf S_0\cdot\mathbf S_1=S^z_0S^z_1+\tfrac12\big(S^+_0S^-_1+S^-_0S^+_1\big).\]</span></p>
+<p>The simplest case is <span class="math inline">\(|{\uparrow\uparrow}\rangle\)</span>. Each term in the bracket raises one of the two spins, and both are already up, so the bracket gives zero and only <span class="math inline">\(S^z_0S^z_1=+\tfrac14\)</span> remains. The same holds for <span class="math inline">\(|{\downarrow\downarrow}\rangle\)</span>, so both states have the energy <span class="math inline">\(+1/4\)</span>.</p>
+<p>For the antiparallel states the bracket exchanges the two spins with the factor <span class="math inline">\(\tfrac12\)</span>, <span class="math inline">\(|{\uparrow\downarrow}\rangle\to\tfrac12|{\downarrow\uparrow}\rangle\)</span>, while <span class="math inline">\(S^z_0S^z_1=-\tfrac14\)</span>. In the basis <span class="math inline">\(|{\uparrow\downarrow}\rangle\)</span>, <span class="math inline">\(|{\downarrow\uparrow}\rangle\)</span> the Hamiltonian is then</p>
+<p><span class="math display">\[\begin{pmatrix}-\tfrac14&amp;\tfrac12\\\tfrac12&amp;-\tfrac14\end{pmatrix},\]</span></p>
+<p>with the eigenvalue <span class="math inline">\(+\tfrac14\)</span> for <span class="math inline">\((|{\uparrow\downarrow}\rangle+|{\downarrow\uparrow}\rangle)/\sqrt2\)</span> and <span class="math inline">\(-\tfrac34\)</span> for <span class="math inline">\((|{\uparrow\downarrow}\rangle-|{\downarrow\uparrow}\rangle)/\sqrt2\)</span>, which is <a href="#eq-8-3">(8.3)</a>.</p>
+<p>The three states at <span class="math inline">\(+1/4\)</span> are the triplet, and we see this with the total spin <span class="math inline">\(\mathbf S=\mathbf S_0+\mathbf S_1\)</span>. Its square is <span class="math inline">\(\mathbf S^2=\mathbf S_0^2+\mathbf S_1^2+2\,\mathbf S_0\cdot\mathbf S_1\)</span>, and a spin one half has <span class="math inline">\(\mathbf S_i^2=\tfrac12\big(\tfrac12+1\big)=\tfrac34\)</span>, so</p>
+<p><span class="math display">\[\mathbf S_0\cdot\mathbf S_1=\tfrac12\big(\mathbf S^2-\mathbf S_0^2-\mathbf S_1^2\big)=\tfrac12\Big(S(S+1)-\tfrac32\Big).\]</span></p>
+<p>This gives <span class="math inline">\(-3/4\)</span> for <span class="math inline">\(S=0\)</span> and <span class="math inline">\(+1/4\)</span> for <span class="math inline">\(S=1\)</span>. So the level at <span class="math inline">\(+1/4\)</span> holds the <span class="math inline">\(2S+1=3\)</span> states of <span class="math inline">\(S=1\)</span>, and the singlet is the only state with <span class="math inline">\(S=0\)</span>. The singlet also has <span class="math inline">\(\langle\mathbf S_i\rangle=0\)</span>. Its two terms have opposite <span class="math inline">\(S^z_i\)</span> with the same weight, so <span class="math inline">\(\langle S^z_i\rangle=0\)</span>. The operators <span class="math inline">\(S^x_i\)</span> and <span class="math inline">\(S^y_i\)</span> flip one spin, so they take the singlet to a state with two parallel spins, which is orthogonal to it.</p>
+</div>
+</details>
+</div>
+<p>This ground state is different from the Ising case in three ways, and these three points are important for the rest of the session. First, it is the <em>unique</em> ground state, so there is no degeneracy and no spontaneous choice between states. Second, it is <em>time-reversal symmetric</em>, since time reversal maps <span class="math inline">\(|GS\rangle\)</span> to itself, and so <span class="math inline">\(\langle\mathbf S_i\rangle=0\)</span> on each site. Third, it is <em>maximally entangled</em>, since the two terms in <a href="#eq-8-3">(8.3)</a> have the same weight, which is the largest entanglement that two qubits can have. It is the singlet <a href="../session7/03-storing-the-wave-function-as-the-main-bottleneck.html#eq-7-3">(7.3)</a> of <a href="../session7/index.html">Session 7</a>, with the entanglement entropy <span class="math inline">\(\log 2\)</span> of <a href="../session7/04-the-matrix-product-state-ansatz.html#eq-7-7">(7.7)</a>. Can we have a macroscopic version of this ground state? This question is the origin of quantum spin liquids. Before we go on, <a href="#sch:s08:dimer_levels">Schematic 8.2</a> puts the levels of the two dimers side by side.</p>
 <figure id="sch:s08:dimer_levels" class="schematic">
-<img src="../figures/web/session08/dimer_levels.svg" loading="lazy" alt="Two columns of energy levels, the Ising dimer with two levels of two states each and the Heisenberg dimer with a singlet below a triplet." />
-<figcaption><strong>Schematic 8.2.</strong> The levels of the Ising dimer <a href="#eq-8-1">(8.1)</a> and of the Heisenberg dimer <a href="#eq-8-2">(8.2)</a>, from the <span class="math inline">\(4\times4\)</span> matrices with <span class="math inline">\(J=1\)</span>. The Ising dimer has two degenerate ground states, and each one breaks time reversal. Look at the Heisenberg dimer, where the ground state is a single singlet and the triplet lies one unit above it.</figcaption>
+<img src="../figures/web/session08/dimer_levels.svg" loading="lazy" alt="Two columns of short bars on an energy axis with ticks from minus three quarters to three quarters, the Ising dimer with two levels of two states each and the Heisenberg dimer with one singlet below three triplet states." />
+<figcaption><strong>Schematic 8.2.</strong> The levels of the Ising dimer <a href="#eq-8-1">(8.1)</a> and of the Heisenberg dimer <a href="#eq-8-2">(8.2)</a>, from the <span class="math inline">\(4\times4\)</span> matrices with the coupling <span class="math inline">\(J=1\)</span>, so the energy is in units of <span class="math inline">\(J\)</span>. Each short bar is one state. The Ising dimer has two levels, at <span class="math inline">\(-1/4\)</span> and <span class="math inline">\(+1/4\)</span>, with two states each. The two product states of its ground level, <span class="math inline">\(|{\uparrow\downarrow}\rangle\)</span> and <span class="math inline">\(|{\downarrow\uparrow}\rangle\)</span>, each break time reversal. Look at the Heisenberg dimer, where the ground state is a single singlet at <span class="math inline">\(-3/4\)</span> and the three states of the triplet lie one unit above it, at <span class="math inline">\(+1/4\)</span>.</figcaption>
 </figure>
 <figure class="again panel">
 <img src="../figures/panel/s06f02_dimer_a.svg" loading="lazy" alt="Two sites with parallel spins, where the hop is forbidden, and with antiparallel spins, where the hop is allowed." />
@@ -110,10 +142,9 @@
 Question
 </div>
 <div class="quiz-q">
-<p>What is the energy of the state <span class="math inline">\(|{\uparrow\downarrow}\rangle\)</span> of the Ising dimer <a href="#eq-8-1">(8.1)</a>?</p>
-<div class="eq-again">
-<p><span class="math display">\[\mathcal H_\text{Ising} = S_0^z S_1^z, \tag{8.1}\]</span></p>
-</div>
+<p>The Ising dimer of two spins one half is</p>
+<p><span class="math display">\[\mathcal H_\text{Ising} = S_0^z S_1^z.\]</span></p>
+<p>What is the energy of the state <span class="math inline">\(|{\uparrow\downarrow}\rangle\)</span>?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -126,11 +157,11 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
-<p>This is false. The Ising dimer <a href="#eq-8-1">(8.1)</a> only has <span class="math inline">\(S^z_0S^z_1=\pm\tfrac14\)</span>, so its energies are <span class="math inline">\(\pm1/4\)</span>. The value <span class="math inline">\(-3/4\)</span> needs the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> terms of the Heisenberg dimer.</p></li>
+<p>This is false. The Ising dimer only has <span class="math inline">\(S^z_0S^z_1=\pm\tfrac14\)</span>, so its energies are <span class="math inline">\(\pm1/4\)</span>. The value <span class="math inline">\(-3/4\)</span> needs the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> terms of the Heisenberg dimer.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
 <p>This is true. The product of the two <span class="math inline">\(z\)</span> components is <span class="math inline">\(-1/4\)</span> for antiparallel spins and <span class="math inline">\(+1/4\)</span> for parallel ones. The two antiparallel states are degenerate, and each symmetry-broken state chooses one of them.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. The state <span class="math inline">\(|{\uparrow\uparrow}\rangle\)</span> has <span class="math inline">\(S^z_0S^z_1=+\tfrac14\)</span>, and it is the one with energy <span class="math inline">\(+1/4\)</span>. For antiparallel spins the product is <span class="math inline">\((\tfrac12)(-\tfrac12)=-\tfrac14\)</span>.</p></li>
+<p>This is false. The states <span class="math inline">\(|{\uparrow\uparrow}\rangle\)</span> and <span class="math inline">\(|{\downarrow\downarrow}\rangle\)</span> have <span class="math inline">\(S^z_0S^z_1=+\tfrac14\)</span>, and they are the ones with energy <span class="math inline">\(+1/4\)</span>. For antiparallel spins the product is <span class="math inline">\((\tfrac12)(-\tfrac12)=-\tfrac14\)</span>.</p></li>
 </ul>
 </div>
 </details>
@@ -155,8 +186,8 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
 <p>This is false. Take <span class="math inline">\(J=-1\)</span>. The singlet has energy <span class="math inline">\(-3J/4=+3/4\)</span> and the triplet has <span class="math inline">\(J/4=-1/4\)</span>, so the triplet is lower.</p>
 <figure class="quiz-fig schematic">
-<img src="../figures/web/session08/dimer_levels_signs.svg" loading="lazy" alt="Two columns of levels, for J equal to 1 with the singlet below the triplet and for J equal to minus 1 with the triplet below the singlet." />
-<figcaption>The levels of <span class="math inline">\(H=J\,\mathbf S_0\cdot\mathbf S_1\)</span> for <span class="math inline">\(J=1\)</span> and <span class="math inline">\(J=-1\)</span>. The sign of <span class="math inline">\(J\)</span> turns the levels upside down, and the triplet becomes the ground level.</figcaption>
+<img src="../figures/web/session08/dimer_levels_signs.svg" loading="lazy" alt="Two columns of short bars on an energy axis, for J equal to 1 with the singlet at minus three quarters below the triplet, and for J equal to minus 1 with the triplet at minus one quarter below the singlet." />
+<figcaption>The levels of <span class="math inline">\(H=J\,\mathbf S_0\cdot\mathbf S_1\)</span> for <span class="math inline">\(J=1\)</span> and <span class="math inline">\(J=-1\)</span>, with the energy in units of <span class="math inline">\(|J|\)</span>. The sign of <span class="math inline">\(J\)</span> turns the levels upside down, and the triplet at <span class="math inline">\(-1/4\)</span> becomes the ground level.</figcaption>
 </figure></li>
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
 <p>This is false. The Hamiltonian commutes with the total spin, so <span class="math inline">\(|{\downarrow\downarrow}\rangle\)</span> and <span class="math inline">\((|{\uparrow\downarrow}\rangle+|{\downarrow\uparrow}\rangle)/\sqrt2\)</span> have the same energy <span class="math inline">\(J/4\)</span>. The ground state is threefold degenerate and not a single state.</p></li>
@@ -165,6 +196,51 @@ Question
 </ul>
 </div>
 </details>
+</div>
+<div class="quiz" data-correct="A" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Two spins one half are coupled by</p>
+<p><span class="math display">\[H=\mathbf S_0\cdot\mathbf S_1.\]</span></p>
+<p>Which state is the ground state of <span class="math inline">\(H\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(\dfrac{1}{\sqrt2}\big(|{\uparrow\downarrow}\rangle-|{\downarrow\uparrow}\rangle\big)\)</span></li>
+<li><span class="math inline">\(\dfrac{1}{\sqrt2}\big(|{\uparrow\downarrow}\rangle+|{\downarrow\uparrow}\rangle\big)\)</span></li>
+<li><span class="math inline">\(|{\uparrow\downarrow}\rangle\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. This is the singlet, with <span class="math inline">\(S=0\)</span>. With <span class="math inline">\(\mathbf S_0\cdot\mathbf S_1=\tfrac12\big(S(S+1)-\tfrac32\big)\)</span> its energy is <span class="math inline">\(-3/4\)</span>, the lowest of the four states.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. This is the triplet state with <span class="math inline">\(S^z=0\)</span>. It has <span class="math inline">\(S=1\)</span> and the energy <span class="math inline">\(+1/4\)</span>, one unit above the singlet.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The exchange term turns it partly into <span class="math inline">\(|{\downarrow\uparrow}\rangle\)</span>, since <span class="math inline">\(H|{\uparrow\downarrow}\rangle=-\tfrac14|{\uparrow\downarrow}\rangle+\tfrac12|{\downarrow\uparrow}\rangle\)</span>, so it is not an eigenstate. Its mean energy is <span class="math inline">\(-1/4\)</span>, the value of the Ising dimer, which is above <span class="math inline">\(-3/4\)</span>.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>Take the singlet <span class="math inline">\(|s\rangle=(|{\uparrow\downarrow}\rangle-|{\downarrow\uparrow}\rangle)/\sqrt2\)</span>. Show that <span class="math inline">\(\langle s|S^z_0S^z_1|s\rangle=-1/4\)</span>, and that the <span class="math inline">\(x\)</span> and the <span class="math inline">\(y\)</span> terms also give <span class="math inline">\(-1/4\)</span> each, so that <span class="math inline">\(\langle s|\mathbf S_0\cdot\mathbf S_1|s\rangle=-3/4\)</span>. What is the lowest energy of the Ising dimer <span class="math inline">\(S^z_0S^z_1\)</span>?</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>Both terms of the singlet have antiparallel spins, so <span class="math inline">\(S^z_0S^z_1=-\tfrac14\)</span> on each of them and <span class="math inline">\(\langle s|S^z_0S^z_1|s\rangle=-\tfrac14\)</span>.</p>
+<p>For the <span class="math inline">\(x\)</span> term we use <span class="math inline">\(S^x=\sigma^x/2\)</span>, where <span class="math inline">\(\sigma^x\)</span> flips the spin. Then <span class="math inline">\(\sigma^x_0\sigma^x_1\)</span> flips both spins, <span class="math inline">\(|{\uparrow\downarrow}\rangle\to|{\downarrow\uparrow}\rangle\)</span> and <span class="math inline">\(|{\downarrow\uparrow}\rangle\to|{\uparrow\downarrow}\rangle\)</span>. So it turns <span class="math inline">\(|s\rangle\)</span> into <span class="math inline">\(-|s\rangle\)</span>, and <span class="math inline">\(\langle s|S^x_0S^x_1|s\rangle=-\tfrac14\)</span>.</p>
+<p>For the <span class="math inline">\(y\)</span> term we use <span class="math inline">\(\sigma^y|{\uparrow}\rangle=i|{\downarrow}\rangle\)</span> and <span class="math inline">\(\sigma^y|{\downarrow}\rangle=-i|{\uparrow}\rangle\)</span>. This gives <span class="math inline">\(\sigma^y_0\sigma^y_1|{\uparrow\downarrow}\rangle=(i)(-i)|{\downarrow\uparrow}\rangle=|{\downarrow\uparrow}\rangle\)</span>, and in the same way <span class="math inline">\(|{\downarrow\uparrow}\rangle\to|{\uparrow\downarrow}\rangle\)</span>. Again <span class="math inline">\(|s\rangle\to-|s\rangle\)</span>, and <span class="math inline">\(\langle s|S^y_0S^y_1|s\rangle=-\tfrac14\)</span>. The sum of the three terms is <span class="math inline">\(-\tfrac34\)</span>.</p>
+<p>The Ising dimer has only the <span class="math inline">\(z\)</span> term, so its lowest energy is <span class="math inline">\(-\tfrac14\)</span>, which <span class="math inline">\(|{\uparrow\downarrow}\rangle\)</span> and <span class="math inline">\(|{\downarrow\uparrow}\rangle\)</span> both reach. The other <span class="math inline">\(-\tfrac12\)</span> of the singlet comes from the transverse terms, which flip both spins and mix the two antiparallel states. These quantum fluctuations are what the Ising dimer misses, and they make the ground state unique, with no direction of the spin chosen. A mean-field calculation misses them too, since a product state has <span class="math inline">\(\langle\mathbf S_0\cdot\mathbf S_1\rangle=\langle\mathbf S_0\rangle\cdot\langle\mathbf S_1\rangle\)</span> with <span class="math inline">\(|\langle\mathbf S_i\rangle|\le\tfrac12\)</span>, so its best energy is also <span class="math inline">\(-\tfrac14\)</span>.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="comesback">
 <div class="comesback-label">

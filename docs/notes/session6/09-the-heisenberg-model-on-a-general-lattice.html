@@ -85,29 +85,84 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="on" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 6. Classical Magnetism and Magnons</a></p>
 <h1 id="sec-6-9"><span class="num">6.9</span> The Heisenberg model on a general lattice</h1>
-<p>The argument of Section <a href="08-from-the-hubbard-dimer-to-the-heisenberg-model.html#sec-6-8">6.8</a> did not use the fact that we had only two sites. Let us take a generic lattice with hopping <span class="math inline">\(t_{ij}\)</span> between sites <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> and a local interaction <span class="math inline">\(U\)</span>. In the limit <span class="math inline">\(U\gg t_{ij}\)</span> the same second-order argument applies to every connected pair independently, and it gives the generalized Heisenberg Hamiltonian</p>
+<p>What spin model does the Hubbard model give on any lattice when <span class="math inline">\(U\)</span> is large, and can all its bonds be satisfied at the same time? We will now see that every bond gets its own antiferromagnetic coupling <span class="math inline">\(J_{ij}=4t_{ij}^2/U\)</span>. For classical spins this gives the Néel state on a bipartite lattice, while on a triangle the best that the spins can do is a compromise at <span class="math inline">\(120^\circ\)</span>.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[J = \frac{4t^2}{U}. \tag{6.4}\]</span></p>
+</div>
+<p>This is the coupling of the two spins of the Hubbard dimer of Section <a href="08-from-the-hubbard-dimer-to-the-heisenberg-model.html#sec-6-8">6.8</a>, with the hopping <span class="math inline">\(t\)</span> and the repulsion <span class="math inline">\(U\gg t\)</span> at half filling. It is the splitting between the triplet and the singlet, and the singlet is lower.</p>
+</div>
+<p>The argument of Section <a href="08-from-the-hubbard-dimer-to-the-heisenberg-model.html#sec-6-8">6.8</a> did not use the fact that we had only two sites. Let us take a generic lattice with hopping <span class="math inline">\(t_{ij}\)</span> between sites <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> and a local interaction <span class="math inline">\(U\)</span>. In the limit <span class="math inline">\(U\gg t_{ij}\)</span> the same second-order argument applies to every connected pair independently, and it gives the generalized Heisenberg Hamiltonian, which is the main result of this section.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>In the limit <span class="math inline">\(U\gg t_{ij}\)</span>, with one electron on each site, the Hubbard model becomes</p>
 <p><span id="eq-6-5" class="eq"><span class="math display">\[H_\text{Heis} = \sum_{\langle ij\rangle} J_{ij}\, \mathbf S_i\cdot\mathbf S_j, \qquad J_{ij} = \frac{4t_{ij}^2}{U}. \tag{6.5}\]</span></span></p>
+<p>The sum counts each bond once. A coupling <span class="math inline">\(J_{ij}&gt;0\)</span> favors antiparallel neighbors, which is antiferromagnetic, and <span class="math inline">\(J_{ij}&lt;0\)</span> favors parallel neighbors, which is ferromagnetic.</p>
+</div>
 <p>Since <span class="math inline">\(J_{ij}\propto t_{ij}^2\)</span>, this superexchange coupling, derived directly from a single-orbital Hubbard model, is always positive and antiferromagnetic, regardless of the sign or the geometry of <span class="math inline">\(t_{ij}\)</span>. More general microscopic models, which are not Hubbard models or have several orbitals, can give couplings of both signs, and they do. In Section <a href="11-superexchange-as-the-origin-of-ferromagnetic-coupling.html#sec-6-11">6.11</a> we will see explicitly how a ferromagnetic coupling appears when a second, intermediate orbital takes part. In all of this session we use the following sign convention. A coupling <span class="math inline">\(J_{ij}&gt;0\)</span> favors antiparallel neighboring spins, which is antiferromagnetic, and <span class="math inline">\(J_{ij}&lt;0\)</span> favors parallel neighboring spins, which is ferromagnetic. If we treat the spins in <a href="#eq-6-5">(6.5)</a> as classical vectors, we already obtain both classical ground states on a bond between two sites, which are antiparallel for <span class="math inline">\(J&gt;0\)</span> and parallel for <span class="math inline">\(J&lt;0\)</span>.</p>
 <figure id="sch:s06:hubbard_to_heisenberg" class="schematic">
 <img src="../figures/web/session06/hubbard_to_heisenberg.svg" loading="lazy" alt="Blue curves of excitation energies against U over t that rise and flatten onto dashed red horizontal lines at 0.66, 1.37, 1.73, 2.07 and 2.37." />
 <figcaption><strong>Schematic 6.6.</strong> The low-energy levels of an open Hubbard chain of four sites at half filling, from exact diagonalization of <a href="02-a-recap-of-symmetry-breaking-and-the-mean-field-philosophy.html#eq-6-1">(6.1)</a>, against <span class="math inline">\(U/t\)</span>. The blue lines are the 16 lowest excitation energies <span class="math inline">\(E_n-E_0\)</span>, several of them degenerate, divided by <span class="math inline">\(J=4t^2/U\)</span>. The dashed red lines are the levels of the Heisenberg chain <a href="#eq-6-5">(6.5)</a> in units of <span class="math inline">\(J\)</span>. At <span class="math inline">\(U=10t\)</span> every level is within 5 percent of the Heisenberg value, and at <span class="math inline">\(U=30t\)</span> within 1 percent. The next level is a charge excitation with an energy of order <span class="math inline">\(U\)</span>, far above the plot.</figcaption>
 </figure>
 <h1 class="sec-next" id="sec-6-10"><span class="num">6.10</span> Bipartite order versus geometric frustration</h1>
-<p>On a <strong>bipartite</strong> lattice, such as the square or the honeycomb lattice, the sites split into two sublattices <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> so that every bond connects an <span class="math inline">\(A\)</span> site with a <span class="math inline">\(B\)</span> site. On such a lattice the antiferromagnetic Heisenberg model <a href="#eq-6-5">(6.5)</a> has an obvious classical ground state. All spins on <span class="math inline">\(A\)</span> point in one direction and all spins on <span class="math inline">\(B\)</span> point in the opposite direction. In this way every bond has antiparallel neighbors at the same time, which is what it prefers. This is the collinear antiferromagnetic order with two sublattices that we already saw at the mean-field level in Section <a href="04-exchange-splitting-and-antiferromagnetic-order-in-numerical-mean-field-theory.html#sec-6-4">6.4</a>, and <a href="#eq-6-5">(6.5)</a> explains <em>why</em> it appears. In the large-<span class="math inline">\(U\)</span> limit, the mean-field Hubbard model on a bipartite lattice reduces to this Heisenberg model.</p>
-<p>Frustrated lattices are different. On a <strong>non-bipartite</strong> lattice, of which the kagome and the triangular lattices are the standard examples, it is not possible to color the sites with two colors so that every bond connects opposite colors. For instance, a triangular plaquette has three sites that are all neighbors of each other, and no choice of up and down spins makes all three bonds antiparallel at the same time. The antiferromagnetic tendency of <span class="math inline">\(J_{ij}&gt;0\)</span> is still present on every single bond, but it cannot be satisfied everywhere at the same time, and this is what is called <strong>geometric frustration</strong>. The best compromise for the system is usually a noncollinear arrangement, and the standard case is spins at <span class="math inline">\(120^\circ\)</span> from each other on a triangular plaquette. This arrangement maximizes the total antiferromagnetic character bond by bond, without fully satisfying any single bond. This noncollinear character also appears directly in the mean-field solution of the corresponding electronic Hamiltonian, and not only in the spin model. Figure <a href="#fig:s06:frustration">6.3</a> shows next to each other the bipartite case, the frustrated collinear attempt and the <span class="math inline">\(120^\circ\)</span> compromise, together with the classical bond energies that decide between the last two.</p>
+<p>On a <strong>bipartite</strong> lattice, such as the square or the honeycomb lattice, the sites split into two sublattices <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> so that every bond connects an <span class="math inline">\(A\)</span> site with a <span class="math inline">\(B\)</span> site. On such a lattice the antiferromagnetic Heisenberg model <a href="#eq-6-5">(6.5)</a> has an obvious classical ground state. All spins on <span class="math inline">\(A\)</span> point in one direction and all spins on <span class="math inline">\(B\)</span> point in the opposite direction. In this way every bond has antiparallel neighbors at the same time, which is what it prefers. This is the collinear antiferromagnetic order with two sublattices that we already saw at the mean-field level in Section <a href="04-exchange-splitting-and-antiferromagnetic-order-in-numerical-mean-field-theory.html#sec-6-4">6.4</a>, and <a href="#eq-6-5">(6.5)</a> explains <em>why</em> it appears.</p>
+<p>In the large-<span class="math inline">\(U\)</span> limit, the mean-field Hubbard model on a bipartite lattice gives this Néel state, and not the quantum ground state of this Heisenberg model. Its energy is the one of classical spins once we add the constant <span class="math inline">\(-J_{ij}/4\)</span> per bond that <a href="#eq-6-5">(6.5)</a> leaves out.</p>
+<p>Frustrated lattices are different. On a <strong>non-bipartite</strong> lattice, of which the kagome and the triangular lattices are the standard examples, it is not possible to color the sites with two colors so that every bond connects opposite colors. For instance, a triangular plaquette has three sites that are all neighbors of each other, and no choice of up and down spins makes all three bonds antiparallel at the same time. The antiferromagnetic tendency of <span class="math inline">\(J_{ij}&gt;0\)</span> is still present on every single bond, but it cannot be satisfied everywhere at the same time, and this is what is called <strong>geometric frustration</strong>.</p>
+<p>The best compromise for the system is usually a noncollinear arrangement, and the standard case is spins at <span class="math inline">\(120^\circ\)</span> from each other on a triangular plaquette. This arrangement maximizes the total antiferromagnetic character bond by bond, without fully satisfying any single bond. This noncollinear character also appears directly in the mean-field solution of the corresponding electronic Hamiltonian, and not only in the spin model, as <a href="#sch:s06:g3_triangular_meanfield">Schematic 6.7</a> shows for the triangular lattice. Figure <a href="#fig:s06:frustration">6.3</a> shows next to each other the bipartite case, the frustrated collinear attempt and the <span class="math inline">\(120^\circ\)</span> compromise, together with the classical bond energies that decide between the last two.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>Three classical spins of length <span class="math inline">\(S\)</span> on a triangle, with the same <span class="math inline">\(J&gt;0\)</span> on the three bonds, have their lowest energy when they lie in a plane at <span class="math inline">\(120^\circ\)</span> from each other,</p>
+<p><span class="math display">\[\mathbf S_i\cdot\mathbf S_j=-\frac{S^2}{2}\ \text{on every bond},\qquad E_{120^\circ}=-\frac32JS^2,\qquad E_\text{collinear}=-JS^2.\]</span></p>
+<p>No bond is fully satisfied, and still this compromise is lower than the best collinear state, where one bond stays frustrated.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From one bond to the 120 degree triangle</span></summary>
+<div class="fold-body">
+<p>We start with one bond. In the limit <span class="math inline">\(U\gg t_{ij}\)</span> a virtual process of second order takes an electron from <span class="math inline">\(i\)</span> to <span class="math inline">\(j\)</span>, and then it brings one of the two electrons of <span class="math inline">\(j\)</span> back to <span class="math inline">\(i\)</span>. Any other second hop leaves one site empty and another one doubly occupied. So each bond acts alone, as the dimer of Section <a href="08-from-the-hubbard-dimer-to-the-heisenberg-model.html#sec-6-8">6.8</a> does. On one bond the singlet goes down by <span class="math inline">\(4t_{ij}^2/U\)</span> and the triplet stays at zero, which is the operator</p>
+<p><span class="math display">\[J_{ij}\Big(\mathbf S_i\cdot\mathbf S_j-\frac14\Big),\qquad J_{ij}=\frac{4t_{ij}^2}{U},\]</span></p>
+<p>since <span class="math inline">\(\mathbf S_i\cdot\mathbf S_j\)</span> is <span class="math inline">\(-\tfrac34\)</span> on the singlet and <span class="math inline">\(\tfrac14\)</span> on the triplet. The sum over the bonds gives <a href="#eq-6-5">(6.5)</a> plus the constant <span class="math inline">\(-\sum_{\langle ij\rangle}J_{ij}/4\)</span>. This constant shifts all the levels together, and <a href="#eq-6-5">(6.5)</a> leaves it out.</p>
+<p>Then we take three classical spins of length <span class="math inline">\(S\)</span> on a triangle, with the same <span class="math inline">\(J&gt;0\)</span> on the three bonds. The square of the total spin <span class="math inline">\(\mathbf S_\text{tot}=\mathbf S_1+\mathbf S_2+\mathbf S_3\)</span> is <span class="math inline">\(3S^2\)</span> plus twice the sum over the bonds, so</p>
+<p><span class="math display">\[\sum_\text{bonds}\mathbf S_i\cdot\mathbf S_j=\frac12\big(\mathbf S_\text{tot}^2-3S^2\big).\]</span></p>
+<p>The energy is smallest when <span class="math inline">\(\mathbf S_\text{tot}=0\)</span>, meaning three spins in a plane at <span class="math inline">\(120^\circ\)</span> from each other. Then each bond has <span class="math inline">\(\mathbf S_i\cdot\mathbf S_j=-S^2/2\)</span>, and the triangle has <span class="math inline">\(-\tfrac32JS^2\)</span>. Collinear spins cannot add up to zero, since three values <span class="math inline">\(\pm S\)</span> give at least <span class="math inline">\(|\mathbf S_\text{tot}|=S\)</span>. So the best collinear state has <span class="math inline">\(\tfrac12(S^2-3S^2)J=-JS^2\)</span>.</p>
+</div>
+</details>
+</div>
 <figure id="fig:s06:frustration">
 <img src="../figures/s06f03_frustration.svg" loading="lazy" alt="How the geometry decides if an antiferromagnet can order." />
 <figcaption><strong>Figure 6.3.</strong> How the geometry decides if an antiferromagnet can order. (a) On a bipartite lattice the sites can be coloured with two colours, here dark and light, and every bond joins the two colours. The Néel state of Section <a href="#sec-6-10">6.10</a> satisfies all bonds at the same time. (b) On a triangle it is not possible to use two colours. If we fix two spins antiparallel, the third one is parallel to one of its neighbors for any choice, the two ghost arrows, and one bond stays frustrated. For classical spins, this collinear compromise costs <span class="math inline">\(+JS^2\)</span> on the frustrated bond, and the total is <span class="math inline">\(-JS^2\)</span> per triangle. (c) The energy is lower if no single bond is fully satisfied. Three spins at <span class="math inline">\(120^\circ\)</span> in the plane give <span class="math inline">\(\mathbf S_i\cdot\mathbf S_j=-S^2/2\)</span> on <em>every</em> bond and a total of <span class="math inline">\(-\tfrac 32 JS^2\)</span>, which is lower than (b) by half of its value. This is the origin of the noncollinear order to which the mean-field solution of the corresponding electronic Hamiltonian also converges.</figcaption>
 </figure>
+<figure id="sch:s06:g3_triangular_meanfield" class="schematic has-script">
+<img src="../figures/web/session06/g3_triangular_meanfield.svg" loading="lazy" alt="Arrows on the sites of a triangular lattice in the plane x, y, in three directions at 120 degrees from each other, so that every triangle has one arrow of each direction, with a dashed parallelogram around the nine sites of the cell." />
+<div class="script-row">
+<a href="../scripts/session06/g3_triangular_meanfield.py" class="script-dl" download="g3_triangular_meanfield.py">Download the pyqula script</a> <span class="script-name"><code>g3_triangular_meanfield.py</code></span>
+</div>
+<figcaption><strong>Schematic 6.7.</strong> The moments of the mean-field ground state of the Hubbard model on the triangular lattice at half filling, with <span class="math inline">\(U=10t\)</span>, computed with pyqula. The cell has <span class="math inline">\(3\times3\)</span> sites, the dashed parallelogram, and the loop starts from the random guess <code>mf="XY"</code>. The axes are the positions <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> in units of the lattice constant <span class="math inline">\(a\)</span>. The arrows give the direction of the moment <span class="math inline">\((m_x,m_y)\)</span> of each site, and the three colors mark its three directions. We ran four random guesses. For each of them the angle between neighbors is <span class="math inline">\(120^\circ\)</span> within <span class="math inline">\(0.2^\circ\)</span> on the <span class="math inline">\(27\)</span> bonds of the cell. This spread comes from where the loop stops, since with <code>maxerror=1e-8</code> the difference is below <span class="math inline">\(0.001^\circ\)</span>. Every moment has the length <span class="math inline">\(0.922\)</span>, where <span class="math inline">\(1\)</span> is a full moment. The energy is <span class="math inline">\(-3.8085t\)</span> per cell for each guess. Look at any triangle, since its three arrows point in the three directions.</figcaption>
+</figure>
+<div class="notebookbox">
+<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb"><code>session6.ipynb</code></a>, “(Exercise) Magnetic instabilities of the square lattice” and “(Exercise) Non-collinear magnetic order from geometric frustration”</p>
+<p>Compare at the mean-field level a bipartite lattice, the square lattice, with a frustrated one, the triangular or kagome lattice. The square lattice should converge to the collinear order with two sublattices of Section <a href="#sec-6-10">6.10</a>, and the frustrated lattice should converge to a noncollinear compromise. Both results can be traced back to the sign convention of <a href="#eq-6-5">(6.5)</a> on each bond.</p>
+</div>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>In ZnCu<span class="math inline">\(_3\)</span>(OH)<span class="math inline">\(_6\)</span>Cl<span class="math inline">\(_2\)</span> the spins <span class="math inline">\(S=1/2\)</span> form a kagome lattice. The susceptibility indicates a Curie-Weiss temperature of about <span class="math inline">\(-300\)</span> K, and still no magnetic order is observed down to <span class="math inline">\(50\)</span> mK. The authors suggest that an unusual spin-liquid state with essentially gapless excitations is realized. The measurement is in <a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.98.107204">this article</a>. In our reading the negative Curie-Weiss temperature means an antiferromagnetic coupling, whose size in mean field is set by <span class="math inline">\(J\)</span>. The two temperatures then differ by a factor of about <span class="math inline">\(6000\)</span>, which is our ratio. The kagome lattice is made of triangles that share their corners, so in our reading it is frustrated like the triangle of this page. In our reading this frustration is why the material does not reach an ordered state such as the <span class="math inline">\(120^\circ\)</span> compromise, at least down to <span class="math inline">\(50\)</span> mK, and <a href="../session8/index.html">Session 8</a> comes back to it.</p>
+</div>
 <div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>Spins sit on the sites of a triangular lattice, and the coupling is ferromagnetic, <span class="math inline">\(J&lt;0\)</span> in the convention of <a href="#eq-6-5">(6.5)</a>. Is there geometric frustration?</p>
-<div class="eq-again">
-<p><span class="math display">\[H_\text{Heis} = \sum_{\langle ij\rangle} J_{ij}\, \mathbf S_i\cdot\mathbf S_j, \qquad J_{ij} = \frac{4t_{ij}^2}{U}. \tag{6.5}\]</span></p>
-</div>
+<p>Spins sit on a triangular lattice with the coupling</p>
+<p><span class="math display">\[H=J\sum_{\langle ij\rangle}\mathbf S_i\cdot\mathbf S_j,\qquad J&lt;0.\]</span></p>
+<p>Is there geometric frustration?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -133,9 +188,80 @@ Question
 </div>
 </details>
 </div>
-<div class="notebookbox">
-<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb"><code>session6.ipynb</code></a>, “(Exercise) Magnetic instabilities of the square lattice” and “(Exercise) Non-collinear magnetic order from geometric frustration”</p>
-<p>Compare at the mean-field level a bipartite lattice, the square lattice, with a frustrated one, the triangular or kagome lattice. The square lattice should converge to the collinear order with two sublattices of Section <a href="#sec-6-10">6.10</a>, and the frustrated lattice should converge to a noncollinear compromise. Both results can be traced back to the sign convention of <a href="#eq-6-5">(6.5)</a> on each bond.</p>
+<div class="quiz quiz-pics" data-correct="C" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Each picture shows a lattice with its bonds. Classical spins on it have the energy</p>
+<p><span class="math display">\[H=J\sum_{\langle ij\rangle}\mathbf S_i\cdot\mathbf S_j,\qquad J&gt;0.\]</span></p>
+<p>Which lattice is frustrated?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session06/g3_quiz_lattice_square.svg" loading="lazy" alt="A patch of the square lattice, with sites joined by bonds along two perpendicular directions." /></li>
+<li><img src="../figures/web/session06/g3_quiz_lattice_honeycomb.svg" loading="lazy" alt="A patch of the honeycomb lattice, four hexagons with their sites." /></li>
+<li><img src="../figures/web/session06/g3_quiz_lattice_triangular.svg" loading="lazy" alt="A patch of the triangular lattice, with sites joined into triangles." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Color the sites like a chessboard. Every bond joins a dark site and a light site, so the Néel state gives <span class="math inline">\(-JS^2\)</span> on every bond, which is the lowest value of one bond.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The honeycomb lattice has the two sublattices <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, and every bond joins <span class="math inline">\(A\)</span> to <span class="math inline">\(B\)</span>. So the Néel state again gives <span class="math inline">\(-JS^2\)</span> on every bond, with three neighbors per site instead of four.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. The three sites of a triangle are all neighbors, so two colors cannot alternate around it. The best classical state puts the spins at <span class="math inline">\(120^\circ\)</span>, with only <span class="math inline">\(-JS^2/2\)</span> on each bond.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="quiz" data-correct="A" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Three classical spins of length <span class="math inline">\(S\)</span> sit on a triangle. Their energy is</p>
+<p><span class="math display">\[E=J\,(\mathbf S_1\cdot\mathbf S_2+\mathbf S_2\cdot\mathbf S_3+\mathbf S_3\cdot\mathbf S_1),\qquad J&gt;0.\]</span></p>
+<p>What is the lowest energy?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(-\tfrac32JS^2\)</span></li>
+<li><span class="math inline">\(-JS^2\)</span></li>
+<li><span class="math inline">\(-3JS^2\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The sum of the three products is <span class="math inline">\(\tfrac12(\mathbf S_\text{tot}^2-3S^2)\)</span>, which is smallest for <span class="math inline">\(\mathbf S_\text{tot}=0\)</span>. Three spins at <span class="math inline">\(120^\circ\)</span> give <span class="math inline">\(-S^2/2\)</span> on each bond, so the energy is <span class="math inline">\(3J(-\tfrac12S^2)=-\tfrac32JS^2\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. This is the best collinear state, with two antiparallel bonds at <span class="math inline">\(-JS^2\)</span> each and one parallel bond at <span class="math inline">\(+JS^2\)</span>. The spins at <span class="math inline">\(120^\circ\)</span> are lower, at <span class="math inline">\(-1.5JS^2\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. This needs <span class="math inline">\(\mathbf S_i\cdot\mathbf S_j=-S^2\)</span> on all three bonds, meaning every pair antiparallel, which three spins cannot do. The sum <span class="math inline">\(\tfrac12(\mathbf S_\text{tot}^2-3S^2)\)</span> is never below <span class="math inline">\(-\tfrac32S^2\)</span>.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>On the triangular lattice every site has six neighbors. Compute the classical energy per site of <span class="math inline">\(H=J\sum_{\langle ij\rangle}\mathbf S_i\cdot\mathbf S_j\)</span> with <span class="math inline">\(J&gt;0\)</span> for two states. In the first, the spins of the three sublattices point at <span class="math inline">\(120^\circ\)</span> from each other. In the second, a collinear stripe state, every site has two parallel and four antiparallel neighbors.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>Each bond is shared by two sites, so the energy per site is half of the sum over the six neighbors of one site. In the <span class="math inline">\(120^\circ\)</span> state every neighbor is on another sublattice, at <span class="math inline">\(120^\circ\)</span>, so</p>
+<p><span class="math display">\[\frac{E}{N}=\frac12\cdot6\cdot J\Big(-\frac{S^2}{2}\Big)=-\frac32JS^2.\]</span></p>
+<p>In the stripe state we get</p>
+<p><span class="math display">\[\frac{E}{N}=\frac12\big(2\cdot JS^2+4\cdot(-JS^2)\big)=-JS^2.\]</span></p>
+<p>The <span class="math inline">\(120^\circ\)</span> state is lower by <span class="math inline">\(\tfrac12JS^2\)</span> per site. Every triangle of the lattice has one site of each sublattice, so in the <span class="math inline">\(120^\circ\)</span> state each triangle is in its own best state, and the lattice is not more frustrated than one triangle. In a calculation this is a quick test of a numerical minimization of the classical energy, which has to reach <span class="math inline">\(-\tfrac32JS^2\)</span> per site.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="tryit">
 <p><strong>Try it.</strong> In the cell, run the bipartite square lattice with <code>U=3.0</code>. The antiferromagnetic guess gives <span class="math inline">\(M_z\)</span> of equal size and alternating sign on neighboring sites, and its total energy is about 0.3 lower than that of the ferromagnetic guess. Then run the triangular lattice of the frustration cell, where neighboring spins are neither parallel nor antiparallel.</p>

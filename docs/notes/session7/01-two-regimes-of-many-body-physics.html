@@ -85,10 +85,49 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="on" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 7. Quantum Many-Body Entanglement and Tensor Networks</a></p>
 <h1 id="sec-7-1"><span class="num">7.1</span> Two regimes of many-body physics</h1>
-<p>Let us go back to the general interacting Hamiltonian that we have used in the whole course,</p>
+<p>Mean field gave us the magnets, the superconductors and the charge density wave of the previous sessions, so why does it give the wrong answer for a quantum spin liquid? We will now see that there no decoupling of the quartic term gives the ground state, so we need a tool that does not assume a broken symmetry. We will also see that fermions and spins are two languages for this same problem.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[H = \sum_{ij} t_{ij}\, c_i^\dagger c_j \;+\; \sum_{ijkl} V_{ijkl}\, c_i^\dagger c_j^\dagger c_k c_l. \tag{1.5}\]</span></p>
+</div>
+<div class="eq-again">
+<p><span class="math display">\[H_\text{Heis} = \sum_{\langle ij\rangle} J_{ij}\, \mathbf S_i\cdot\mathbf S_j, \qquad J_{ij} = \frac{4t_{ij}^2}{U}. \tag{6.5}\]</span></p>
+</div>
+<p>The first equation is the general interacting Hamiltonian of Section <a href="../session1/12-the-general-interacting-hamiltonian-and-the-tool-we-will-use-on-it.html#sec-1-12">1.12</a>, with the hopping <span class="math inline">\(t_{ij}\)</span> and the two-body interaction <span class="math inline">\(V_{ijkl}\)</span>, written with the two creation operators first. The second is the Heisenberg model of Section <a href="../session6/09-the-heisenberg-model-on-a-general-lattice.html#sec-6-9">6.9</a>, with the antiferromagnetic exchange <span class="math inline">\(J_{ij}=4t_{ij}^2/U\)</span> between the spins <span class="math inline">\(\mathbf S_i\)</span> and <span class="math inline">\(\mathbf S_j\)</span>, which the Hubbard model gives for <span class="math inline">\(U\gg t_{ij}\)</span> with one electron on each site.</p>
+</div>
+<p>Let us go back to the general interacting Hamiltonian that we have used in the whole course.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>With the four operators of the interaction in the order that we use in this session, the general interacting Hamiltonian is</p>
 <p><span id="eq-7-1" class="eq"><span class="math display">\[H = \sum_{ij} t_{ij}\, c_i^\dagger c_j \;+\; \sum_{ijkl} V_{ijkl}\, c_i^\dagger c_j c_k^\dagger c_l. \tag{7.1}\]</span></span></p>
-<p>This is the Hamiltonian <a href="../session1/12-the-general-interacting-hamiltonian-and-the-tool-we-will-use-on-it.html#eq-1-5">(1.5)</a> of <a href="../session1/index.html">Session 1</a> with the four operators in another order, which only relabels <span class="math inline">\(V_{ijkl}\)</span> and adds a bilinear term to the hopping. The kinetic term is free and can be solved exactly, and the interaction term in general cannot. In all sessions so far we treated <a href="#eq-7-1">(7.1)</a> in the same way. We decoupled the quartic term with mean field, as in Section <a href="../session1/12-the-general-interacting-hamiltonian-and-the-tool-we-will-use-on-it.html#sec-1-12">1.12</a>, we replaced it with an effective bilinear Hamiltonian, and we looked at which symmetry is broken by the resulting order parameter. This strategy defines what we can call <strong>weakly correlated matter</strong>. In this sense, the magnets of <a href="../session6/index.html">Session 6</a>, the superconductors of <a href="../session5/index.html">Session 5</a> and the charge density wave of Section <a href="../session1/13-worked-example-1-the-charge-density-wave.html#sec-1-13">1.13</a> are all single-particle physics, once we find the right symmetry-broken background.</p>
+<p>When the quartic term can be replaced by a bilinear one with an order parameter, the matter is weakly correlated. When no decoupling gives the ground state, it is strongly correlated.</p>
+</div>
+<p>This is the Hamiltonian <a href="../session1/12-the-general-interacting-hamiltonian-and-the-tool-we-will-use-on-it.html#eq-1-5">(1.5)</a> of <a href="../session1/index.html">Session 1</a> with the four operators in another order, which exchanges the two middle indices of <span class="math inline">\(V_{ijkl}\)</span> with a minus sign and adds a bilinear term to the hopping.</p>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the order of (7.1) to the order of (1.5)</span></summary>
+<div class="fold-body">
+<p>We take one term first. The anticommutation relation <span class="math inline">\(c_jc_k^\dagger=\delta_{jk}-c_k^\dagger c_j\)</span> moves <span class="math inline">\(c_k^\dagger\)</span> to the left of <span class="math inline">\(c_j\)</span>, so</p>
+<p><span class="math display">\[c_i^\dagger c_j\, c_k^\dagger c_l = \delta_{jk}\, c_i^\dagger c_l - c_i^\dagger c_k^\dagger c_j c_l .\]</span></p>
+<p>The first term has two operators, so it is a hopping from site <span class="math inline">\(l\)</span> to site <span class="math inline">\(i\)</span>. The second term has the order of <a href="../session1/12-the-general-interacting-hamiltonian-and-the-tool-we-will-use-on-it.html#eq-1-5">(1.5)</a>, with the two middle indices exchanged and a minus sign.</p>
+<p>Now we sum over all the indices with the coefficients <span class="math inline">\(V_{ijkl}\)</span> of <a href="#eq-7-1">(7.1)</a>. The quartic part is the interaction of <a href="../session1/12-the-general-interacting-hamiltonian-and-the-tool-we-will-use-on-it.html#eq-1-5">(1.5)</a> with the coefficients</p>
+<p><span class="math display">\[V&#39;_{ijkl} = -V_{ikjl},\]</span></p>
+<p>and the bilinear part adds <span class="math inline">\(\sum_j V_{ijjl}\)</span> to the hopping <span class="math inline">\(t_{il}\)</span>. So the two forms hold the same Hamiltonian, meaning that the reordering changes the names of the coefficients and the hopping, and not the physics.</p>
+</div>
+</details>
+</div>
+<p>The kinetic term is free and can be solved exactly, and the interaction term in general cannot. In all sessions so far we treated <a href="#eq-7-1">(7.1)</a> in the same way. We decoupled the quartic term with mean field, as in Section <a href="../session1/12-the-general-interacting-hamiltonian-and-the-tool-we-will-use-on-it.html#sec-1-12">1.12</a>, we replaced it with an effective bilinear Hamiltonian, and we looked at which symmetry is broken by the resulting order parameter. This strategy defines what we can call <strong>weakly correlated matter</strong>. In this sense, the magnets of <a href="../session6/index.html">Session 6</a>, the superconductors of <a href="../session5/index.html">Session 5</a> and the charge density wave of Section <a href="../session1/13-worked-example-1-the-charge-density-wave.html#sec-1-13">1.13</a> are all single-particle physics, once we find the right symmetry-broken background.</p>
 <p>In this session we are in the opposite regime, which is <strong>strongly correlated matter</strong>. Here the interactions are so strong that no effective single-particle Hamiltonian gives the ground state, for any choice of the decoupling. Quantum spin liquids and fractional Chern insulators are our two main examples, and more generally, the same problem appears when we want an accurate phase diagram of a truly interacting model. In both cases we cannot solve the problem with an ansatz for the broken symmetry. Instead, we need something close to an exact numerical solution, or at least a controlled approximation that does not assume symmetry breaking from the start. This is what tensor networks give us.</p>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>In the organic Mott insulator <span class="math inline">\(\kappa\)</span>-(BEDT-TTF)<span class="math inline">\(_2\)</span>Cu<span class="math inline">\(_2\)</span>(CN)<span class="math inline">\(_3\)</span> the spins sit on a nearly isotropic triangular lattice. The static susceptibility follows the Heisenberg model of spins 1/2 on this lattice, antiferromagnetic, with the exchange constant <span class="math inline">\(J\sim250\)</span> K. The <span class="math inline">\(^1\)</span>H NMR spectra show no indication of long-range magnetic ordering down to <span class="math inline">\(32\)</span> mK, four orders of magnitude below <span class="math inline">\(J\)</span>, and the authors write that these results suggest a quantum spin liquid. Our own reading is that a mean-field calculation of this Heisenberg model gives an order below a temperature of the order of <span class="math inline">\(J\)</span>, so this material is a case where mean field fails. The measurement is in <a href="https://arxiv.org/abs/cond-mat/0307483">this article</a>.</p>
+</div>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
@@ -98,8 +137,8 @@ Question
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li>A small but finite magnetization that grows with the system size.</li>
-<li>A zero order parameter, which tells us nothing about the true ground state.</li>
+<li>A zero order parameter, as in the true ground state.</li>
+<li>A magnetic order, which the true ground state does not have.</li>
 <li>The exact ground state energy, but not the wave function.</li>
 </ol>
 </div>
@@ -107,9 +146,9 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
-<p>This is false. A finite magnetization is a magnetic order, and a spin liquid has none. For the singlet of two spins we find <span class="math inline">\(\langle S^z_i\rangle=0\)</span> exactly, at every size.</p></li>
+<p>This is false. Zero solves the self-consistent equations, but the loop leaves it. Started from small random spins of size <span class="math inline">\(10^{-3}\)</span>, it ends with <span class="math inline">\(|\langle\mathbf S_i\rangle|=\tfrac12\)</span> at zero temperature, both for the Heisenberg dimer and for the triangular lattice.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. The self-consistent loop looks for a symmetry-broken solution. If the true state has none, the loop converges to zero, which is a valid but empty answer.</p></li>
+<p>This is true. The self-consistent loop looks for a symmetry-broken solution, and it finds one. For the Heisenberg dimer it gives two antiparallel spins, while the true ground state is the singlet, with <span class="math inline">\(\langle S^z_i\rangle=0\)</span> on both sites. In a spin liquid the order that mean field finds is wrong in the same way.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
 <p>This is false. Mean field is a product-like trial state, so its energy is only an upper bound. For the singlet of two spins the best mean-field energy is <span class="math inline">\(-1/4\)</span> while the exact one is <span class="math inline">\(-3/4\)</span>.</p>
 <figure class="quiz-fig schematic">
@@ -122,7 +161,7 @@ Question
 </div>
 <h1 class="sec-next" id="sec-7-2"><span class="num">7.2a</span> Fermions and spins, two languages for the same physics</h1>
 <p>Before we build the tool, let us point out something that was present in the last sessions without being said explicitly. We have used two families of many-body Hamiltonians that look different. The first family is the fermionic Hamiltonians of the form <a href="#eq-7-1">(7.1)</a>, with a general two-body interaction <span class="math inline">\(V_{ijkl}\)</span>, where density-density interactions are only a special case, and we used them in Sessions 1 to 5. The second family is the spin Hamiltonians, mainly the Heisenberg model <span class="math inline">\(H =
-\sum_{ij} J_{ij}\, \mathbf{S}_i \cdot \mathbf{S}_j\)</span> of <a href="../session6/09-the-heisenberg-model-on-a-general-lattice.html#eq-6-5">(6.5)</a>. We used it for the magnons of Section <a href="../session6/13-magnons-as-fluctuations-of-the-order-parameter.html#sec-6-13">6.13</a>, and we use it again in this session for quantum spin liquids. These are not two different topics. They are the same physics written in two different languages, and in this section we make this translation precise.</p>
+\sum_{\langle ij\rangle} J_{ij}\, \mathbf{S}_i \cdot \mathbf{S}_j\)</span> of <a href="../session6/09-the-heisenberg-model-on-a-general-lattice.html#eq-6-5">(6.5)</a>. We used it for the magnons of Section <a href="../session6/13-magnons-as-fluctuations-of-the-order-parameter.html#sec-6-13">6.13</a>, and we use it again in this session for quantum spin liquids. These are not two different topics. They are the same physics written in two different languages, and in this section we make this translation precise.</p>
 <figure id="sch:s07:two_languages" class="schematic">
 <img src="../figures/web/session07/two_languages.svg" loading="lazy" alt="Three sites drawn as fermions, empty or full, above the same three sites drawn as spin arrows, with the rules of anticommutation and commutation at the right." />
 <figcaption><strong>Schematic 7.2.</strong> On one site the fermion and the spin-1/2 are the same object, since an empty site is a down spin and an occupied site is an up spin. Between two sites the two languages differ in one sign, because fermion operators anticommute and spin operators commute. Look at the right side of the figure, since this is the sign that the string of the next section has to carry.</figcaption>
@@ -132,27 +171,48 @@ Question
 Question
 </div>
 <div class="quiz-q">
-<p>We replace <span class="math inline">\(c_1^\dagger\)</span> and <span class="math inline">\(c_2^\dagger\)</span> of two different sites by <span class="math inline">\(S_1^+\)</span> and <span class="math inline">\(S_2^+\)</span> with no extra factor. What goes wrong?</p>
+<p>For two different sites the fermion and the spin operators obey</p>
+<p><span class="math display">\[c_1^\dagger c_2^\dagger=-c_2^\dagger c_1^\dagger,\qquad S_1^+S_2^+=S_2^+S_1^+.\]</span></p>
+<p>We replace each <span class="math inline">\(c_i^\dagger\)</span> by <span class="math inline">\(S_i^+\)</span> with no extra factor. Which rule of the fermions is lost?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li>The operator <span class="math inline">\(S^z_i=n_i-\tfrac12\)</span> gets the wrong sign.</li>
-<li>The spin operators commute while the fermion operators anticommute, so the relative sign between sites is wrong.</li>
-<li>The resulting Hamiltonian is no longer Hermitian.</li>
+<li><span class="math inline">\(S^z_i=n_i-\tfrac12\)</span>, the rule of one site.</li>
+<li><span class="math inline">\(c_1^\dagger c_2^\dagger=-c_2^\dagger c_1^\dagger\)</span>, the sign of an exchange between two sites.</li>
+<li><span class="math inline">\((c_1^\dagger)^2=0\)</span>, the Pauli principle on one site.</li>
 </ol>
 </div>
 <details class="quiz-answer"><summary>Show the answers</summary>
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
-<p>This is false. On one site <span class="math inline">\(S^z=n-\tfrac12\)</span> is exact, since an occupied site is <span class="math inline">\(S^z=+1/2\)</span> and an empty site is <span class="math inline">\(-1/2\)</span>. The problem only appears between two sites.</p></li>
+<p>This is false. On one site the replacement is exact. An occupied site is the up spin with <span class="math inline">\(S^z=+\tfrac12\)</span>, and an empty site is the down spin with <span class="math inline">\(S^z=-\tfrac12\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. On a single site the replacement is exact, as the figure shows. Between two sites the commutator and the anticommutator differ, and this is the sign that the Jordan-Wigner string will carry.</p></li>
+<p>This is true. The images <span class="math inline">\(S_1^+\)</span> and <span class="math inline">\(S_2^+\)</span> commute, so the exchange of the two sites gives <span class="math inline">\(+1\)</span> instead of <span class="math inline">\(-1\)</span>. This relative sign between sites is what the Jordan-Wigner string will carry.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. The hopping term <span class="math inline">\(c_1^\dagger c_2+c_2^\dagger c_1\)</span> is replaced by <span class="math inline">\(S_1^+S_2^-+S_2^+S_1^-\)</span>, which is its own Hermitian conjugate. The Hamiltonian stays Hermitian and it is just the wrong one.</p></li>
+<p>This is false. The image also vanishes, <span class="math inline">\((S_1^+)^2=0\)</span>, since a spin 1/2 that points up cannot be raised again. Two fermions on one site and two raisings of one spin are both forbidden.</p></li>
 </ul>
 </div>
 </details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>Two spins 1/2 are in a product state, where spin 1 points along the unit vector <span class="math inline">\(\mathbf n_1\)</span> and spin 2 along <span class="math inline">\(\mathbf n_2\)</span>. Show that <span class="math inline">\(\langle\mathbf S_1\cdot\mathbf S_2\rangle=\tfrac14\,\mathbf n_1\cdot\mathbf n_2\)</span>, and compare its lowest value with the singlet.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>In a product state the expectation value of a product of operators on two different sites is the product of their expectation values, so</p>
+<p><span class="math display">\[\langle\mathbf S_1\cdot\mathbf S_2\rangle=\sum_{a=x,y,z}\langle S_1^a\rangle\langle S_2^a\rangle.\]</span></p>
+<p>A spin 1/2 that points along <span class="math inline">\(\mathbf n\)</span> is the eigenstate of <span class="math inline">\(\mathbf n\cdot\mathbf S\)</span> with the eigenvalue <span class="math inline">\(+\tfrac12\)</span>. For <span class="math inline">\(\mathbf n\)</span> along <span class="math inline">\(z\)</span> it has <span class="math inline">\(\langle\mathbf S\rangle=(0,0,\tfrac12)\)</span>, and a rotation gives <span class="math inline">\(\langle\mathbf S\rangle=\tfrac12\,\mathbf n\)</span> for any direction. So <span class="math inline">\(\langle\mathbf S_1\cdot\mathbf S_2\rangle=\tfrac14\,\mathbf n_1\cdot\mathbf n_2\)</span>, and the lowest value is <span class="math inline">\(-\tfrac14\)</span>, for antiparallel spins.</p>
+<p>For the singlet we write</p>
+<p><span class="math display">\[\mathbf S_1\cdot\mathbf S_2=\tfrac12\big[(\mathbf S_1+\mathbf S_2)^2-\mathbf S_1^2-\mathbf S_2^2\big].\]</span></p>
+<p>Each spin has <span class="math inline">\(\mathbf S_i^2=\tfrac34\)</span>, and the singlet has the total spin 0, so it gives <span class="math inline">\(\tfrac12(0-\tfrac34-\tfrac34)=-\tfrac34\)</span>.</p>
+<p>So no product state reaches the ground state of the Heisenberg dimer <span class="math inline">\(J\,\mathbf S_1\cdot\mathbf S_2\)</span>, and mean field, which is built from product states, misses <span class="math inline">\(\tfrac12J\)</span> of its energy. The missing part is the entanglement of the singlet, which the tensor networks of this session are built to describe.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="comesback">
 <div class="comesback-label">

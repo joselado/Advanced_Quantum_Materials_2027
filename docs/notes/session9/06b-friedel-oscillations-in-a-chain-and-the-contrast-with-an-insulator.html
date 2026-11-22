@@ -85,18 +85,49 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="on" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 9. Excitations and Defects in Quantum Materials</a></p>
 <h1 id="sec-9-6b"><span class="num">9.6b</span> Friedel oscillations in a chain, and the contrast with an insulator</h1>
-<p>In the first part we derived the Friedel oscillation from the singularity of <span class="math inline">\(\chi_0(q)\)</span>. Let us now look at it in a chain.</p>
-<p>For a concrete example, let us take a one-dimensional tight-binding chain with an impurity at site <span class="math inline">\(0\)</span>. The local density of states oscillates around the impurity with wavelength <span class="math inline">\(\pi/k_F\)</span>, which is half of the Fermi wavelength <span class="math inline">\(\lambda_F=2\pi/k_F\)</span>, since the modulation is set by <span class="math inline">\(2k_F\)</span> and not by <span class="math inline">\(k_F\)</span>. If we raise the chemical potential, <span class="math inline">\(k_F^{-1}\)</span> becomes shorter and the oscillation becomes faster in the same way. The same phenomenon, with the same physical content, appears in a two-dimensional square lattice. This real-space LDOS modulation around impurities is what an STM measures in practice, and it is quasiparticle interference again, seen this time in real space and not in reciprocal space. In <a href="#sch:s09:friedel">Schematic 9.11</a> we see the density along the chain at two fillings, and the oscillation is faster for the larger <span class="math inline">\(k_F\)</span>. The same is seen in two dimensions in <a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html#sch:s09:friedel2d">Schematic 9.10</a> of the first part. As a complementary check, the notebook also shows the <em>insulating</em> case. An impurity placed in a gapped 1D chain gives an LDOS that converges very quickly to its uniform value, instead of oscillating with a slow power-law envelope. This is a first view of the diagnostic that separates gapped and gapless systems, which we will make fully general in Section <a href="09-impurities-as-diagnostics-iv-screening-in-quantum-magnets.html#sec-9-9">9.9</a> and draw in Figure <a href="09-impurities-as-diagnostics-iv-screening-in-quantum-magnets.html#fig:s09:decay">9.5</a>.</p>
+<p>What does the Friedel oscillation look like in a chain, and what changes when the chain has a gap? In a metallic chain the density oscillates with the period <span class="math inline">\(\pi/k_F\)</span> under an envelope <span class="math inline">\(1/x\)</span>. With a gap the change of the density decays as <span class="math inline">\(e^{-x/\xi}\)</span> instead, over a length <span class="math inline">\(\xi\)</span> that is set by the gap.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[\delta n(x) \;\xrightarrow{|x|\to\infty}\; A(v_0)\, \frac{\cos\!\big(2k_F |x| + \varphi_0\big)}{|x|^{\,d}} \qquad (d = 1,2,3). \tag{9.9}\]</span></p>
+</div>
+<p>This is the Friedel oscillation of Section <a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html#sec-9-6">9.6a</a>, the change of the density at a distance <span class="math inline">\(|x|\)</span> from one impurity in a metal of dimension <span class="math inline">\(d\)</span>. It comes from the singularity of <span class="math inline">\(\chi_0(q)\)</span> at <span class="math inline">\(q=2k_F\)</span>, and the amplitude <span class="math inline">\(A(v_0)\)</span> and the phase <span class="math inline">\(\varphi_0\)</span> depend on the impurity.</p>
+</div>
+<p>For a concrete example, let us take a one-dimensional tight-binding chain with an impurity at site <span class="math inline">\(0\)</span>. The local density of states oscillates around the impurity with wavelength <span class="math inline">\(\pi/k_F\)</span>, which is half of the Fermi wavelength <span class="math inline">\(\lambda_F=2\pi/k_F\)</span>, since the modulation is set by <span class="math inline">\(2k_F\)</span> and not by <span class="math inline">\(k_F\)</span>. If we raise the chemical potential, <span class="math inline">\(k_F^{-1}\)</span> becomes shorter and the oscillation becomes faster in the same way. The same phenomenon, with the same physical content, appears in a two-dimensional square lattice. This real-space LDOS modulation around impurities is what an STM measures in practice, and it is quasiparticle interference again, seen this time in real space and not in reciprocal space. In <a href="#sch:s09:friedel">Schematic 9.11</a> we see the density along the chain at two fillings, and the oscillation is faster for the larger <span class="math inline">\(k_F\)</span>. The same is seen in two dimensions in <a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html#sch:s09:friedel2d">Schematic 9.10</a> of the first part.</p>
+<p>As a complementary check, the notebook also shows the <em>insulating</em> case. An impurity placed in a gapped 1D chain changes the LDOS at the energies inside the gap, such as <span class="math inline">\(E=0\)</span> of the notebook, and there the change decays exponentially. In a metallic chain the LDOS at the Fermi energy instead keeps oscillating with the period <span class="math inline">\(\pi/k_F\)</span> far from the impurity. This is a first view of the diagnostic that separates gapped and gapless systems, which we will make fully general in Section <a href="09-impurities-as-diagnostics-iv-screening-in-quantum-magnets.html#sec-9-9">9.9</a> and draw in Figure <a href="09-impurities-as-diagnostics-iv-screening-in-quantum-magnets.html#fig:s09:decay">9.5</a>.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>One impurity changes the density of a chain in two different ways, without and with a gap,</p>
+<p><span class="math display">\[\delta n(x)\sim\frac{\cos(2k_Fx)}{x}\quad\text{(metal)},\qquad\qquad \delta n(x)\sim e^{-x/\xi}\quad\text{(gap)}.\]</span></p>
+<p>The decay law tells whether there is a Fermi surface. A power law needs the singularity of <span class="math inline">\(\chi_0(q)\)</span> at <span class="math inline">\(2k_F\)</span>, and a gap gives an exponential, whose length <span class="math inline">\(\xi\)</span> grows as the gap closes.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">Why a gap gives an exponential</span></summary>
+<div class="fold-body">
+<p>Let us start with the simplest function that has no singularity on the real axis, <span class="math inline">\(f(q)=1/(q^2+\kappa^2)\)</span> with <span class="math inline">\(\kappa&gt;0\)</span>. For <span class="math inline">\(x&gt;0\)</span> we close the integration contour in the upper half plane, where the only pole is at <span class="math inline">\(q=i\kappa\)</span>, with the residue <span class="math inline">\(e^{-\kappa x}/(2i\kappa)\)</span>, so</p>
+<p><span class="math display">\[\int_{-\infty}^{\infty}\frac{dq}{2\pi}\,\frac{e^{iqx}}{q^2+\kappa^2}=\frac{e^{-\kappa|x|}}{2\kappa}.\]</span></p>
+<p>The decay rate <span class="math inline">\(\kappa\)</span> is the distance of the pole from the real axis.</p>
+<p>In a chain with a gap, the Fermi level sits in the gap, and the Lindhard sum only joins a state of a filled band to a state of an empty band. Each energy denominator is then at least the gap <span class="math inline">\(E_g\)</span> and never vanishes, so <span class="math inline">\(\chi_0(q)\)</span> stays analytic when <span class="math inline">\(q\)</span> gets a small imaginary part. We call <span class="math inline">\(1/\xi\)</span> the half width of the strip <span class="math inline">\(|\mathrm{Im}\,q|&lt;1/\xi\)</span> where this holds. For any <span class="math inline">\(\kappa&#39;&lt;1/\xi\)</span> we can move the integration line from the real axis to <span class="math inline">\(\mathrm{Im}\,q=\kappa&#39;\)</span>, which gives</p>
+<p><span class="math display">\[\left|\int\frac{dq}{2\pi}\,e^{iqx}\,\chi_0(q)\right|\le e^{-\kappa&#39;x}\int\frac{dq}{2\pi}\,\big|\chi_0(q+i\kappa&#39;)\big| .\]</span></p>
+<p>So the density change decays at least as <span class="math inline">\(e^{-\kappa&#39;x}\)</span> for every <span class="math inline">\(\kappa&#39;&lt;1/\xi\)</span>, meaning that it decays as <span class="math inline">\(e^{-x/\xi}\)</span>, up to a slower factor in front. In a metal the logarithm at <span class="math inline">\(q=2k_F\)</span> sits on the real axis, so the line cannot be moved, and the transform decays only as a power.</p>
+<p>As an example, we take the chain with the hopping <span class="math inline">\(t\)</span> and the onsite energies <span class="math inline">\(+m\)</span> and <span class="math inline">\(-m\)</span> on the two sublattices, which has the gap <span class="math inline">\(E_g=2m\)</span> at half filling. Here <span class="math inline">\(1/\xi=2\,\mathrm{asinh}(m/2t)\)</span>, which is close to <span class="math inline">\(m/t\)</span> for a small gap. This is <span class="math inline">\(E_g/\hbar v_F\)</span>, with the Fermi velocity <span class="math inline">\(v_F=2ta/\hbar\)</span> of the chain without the gap and the lattice constant <span class="math inline">\(a=1\)</span>, so <span class="math inline">\(\xi\)</span> grows as the gap closes. For <span class="math inline">\(m=0.3t\)</span> this gives <span class="math inline">\(\xi=3.3\)</span> sites. We put one impurity of <span class="math inline">\(0.1t\)</span> in this chain and compute the density by exact diagonalization. From <span class="math inline">\(x=10\)</span> to <span class="math inline">\(x=20\)</span>, and from <span class="math inline">\(x=11\)</span> to <span class="math inline">\(x=21\)</span>, it falls by a factor between <span class="math inline">\(21\)</span> and <span class="math inline">\(29\)</span>, on either sublattice. This is a little more than <span class="math inline">\(e^{10/\xi}=20\)</span>, because of the slower factor in front.</p>
+</div>
+</details>
+</div>
 <figure id="sch:s09:friedel" class="schematic">
-<img src="../figures/web/session09/friedel.svg" loading="lazy" alt="Two plots of the density change along a chain, an oscillation with a decaying envelope, slower in the left plot and faster in the right plot." />
-<figcaption><strong>Schematic 9.11.</strong> The density induced by one impurity of strength <span class="math inline">\(v_0=t\)</span> in a chain of 4001 sites, from exact diagonalization, for two chemical potentials. The period is <span class="math inline">\(\pi/k_F\)</span>, so the lower filling on the left gives the longer period. The grey lines are an envelope <span class="math inline">\(1/x\)</span>, as <a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html#eq-9-9">(9.9)</a> gives for <span class="math inline">\(d=1\)</span>, and the points follow it after the first few sites.</figcaption>
+<img src="../figures/web/session09/friedel.svg" loading="lazy" alt="Two plots of the density change along a chain, on the sites x from 1 to 60, an oscillation with a decaying envelope, slower in the left plot and faster in the right plot." />
+<figcaption><strong>Schematic 9.11.</strong> The density induced by one impurity of strength <span class="math inline">\(v_0=t\)</span> in a spinless chain of 4001 sites with the hopping <span class="math inline">\(-t\)</span>, from exact diagonalization. The chemical potential is <span class="math inline">\(\mu=-1.6t\)</span> on the left and <span class="math inline">\(\mu=-t\)</span> on the right, and <span class="math inline">\(x\)</span> is in sites. The period is <span class="math inline">\(\pi/k_F\)</span>, so the lower filling on the left gives the longer period. The grey lines are an envelope <span class="math inline">\(1/x\)</span>, as <a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html#eq-9-9">(9.9)</a> gives for <span class="math inline">\(d=1\)</span>, and the points follow it after the first few sites. The first site on the left, with <span class="math inline">\(\delta n=-0.07\)</span>, lies below the drawn range. The impurity site, <span class="math inline">\(x=0\)</span>, is not drawn, and it has <span class="math inline">\(\delta n=-0.15\)</span> on the left and <span class="math inline">\(-0.19\)</span> on the right.</figcaption>
 </figure>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>In a gapped chain the LDOS around an impurity converges to its bulk value within a few sites. Why is there no slowly decaying oscillation?</p>
+<p>In a chain with a gap, the density change around an impurity decays as <span class="math inline">\(e^{-x/\xi}\)</span>. Why is there no slowly decaying oscillation?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -113,10 +144,53 @@ Question
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
 <p>This is true. A gap makes <span class="math inline">\(\chi_0(q)\)</span> analytic for all <span class="math inline">\(q\)</span>, so its Fourier transform decays as <span class="math inline">\(e^{-x/\xi}\)</span>. For <span class="math inline">\(\xi\approx2.5\)</span> sites the response at ten sites is <span class="math inline">\(e^{-4}\approx0.02\)</span> of its starting value.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. A dimerized chain with hoppings <span class="math inline">\(t_1\neq t_2\)</span> is gapped and has translational symmetry with a two-site cell. Its LDOS around an impurity still decays exponentially.</p></li>
+<p>This is false. A dimerized chain with hoppings <span class="math inline">\(t_1\neq t_2\)</span> is gapped and has translational symmetry with a two-site cell. Its density change around an impurity still decays exponentially. For <span class="math inline">\(t_1=t\)</span>, <span class="math inline">\(t_2=0.6t\)</span> and an impurity of <span class="math inline">\(0.1t\)</span>, beyond ten sites it falls by more than a factor <span class="math inline">\(100\)</span> every ten sites.</p></li>
 </ul>
 </div>
 </details>
+</div>
+<div class="quiz" data-correct="A" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>One impurity sits in a chain with a gap. How does the envelope of the density change <span class="math inline">\(\delta n(x)\)</span> fall far from it?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(e^{-x/\xi}\)</span></li>
+<li><span class="math inline">\(1/x\)</span></li>
+<li><span class="math inline">\(1/x^2\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. With the Fermi level in the gap, <span class="math inline">\(\chi_0(q)\)</span> has no singularity, and its Fourier transform decays exponentially. In a chain with the onsite energies <span class="math inline">\(\pm0.3t\)</span>, which has the gap <span class="math inline">\(0.6t\)</span>, an impurity of <span class="math inline">\(0.1t\)</span> gives a <span class="math inline">\(\delta n\)</span> that falls by more than a factor <span class="math inline">\(20\)</span> from <span class="math inline">\(x=10\)</span> to <span class="math inline">\(x=20\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. This is the envelope of a metallic chain, where the two Fermi points give the singularity at <span class="math inline">\(2k_F\)</span>. In the chain with the gap <span class="math inline">\(0.6t\)</span>, <span class="math inline">\(\delta n\)</span> falls by more than a factor <span class="math inline">\(20\)</span> from <span class="math inline">\(x=10\)</span> to <span class="math inline">\(x=20\)</span>, while <span class="math inline">\(1/x\)</span> gives <span class="math inline">\(2\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. A power law needs a singularity of <span class="math inline">\(\chi_0(q)\)</span>, so a Fermi surface, and <span class="math inline">\(1/x^2\)</span> is the envelope of a metal in two dimensions. The chain with the gap <span class="math inline">\(0.6t\)</span> gives more than a factor <span class="math inline">\(20\)</span> from <span class="math inline">\(x=10\)</span> to <span class="math inline">\(x=20\)</span>, while <span class="math inline">\(1/x^2\)</span> gives <span class="math inline">\(4\)</span>.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>In a chain with a gap the response to one impurity decays as <span class="math inline">\(e^{-x/\xi}\)</span>, with <span class="math inline">\(\xi=2.5\)</span> sites. In a metallic chain it decays as <span class="math inline">\(1/x\)</span>. For each of the two, at which distance <span class="math inline">\(x\)</span> is the response below <span class="math inline">\(1\%\)</span> of its value at <span class="math inline">\(x=1\)</span>?</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>For the chain with the gap the ratio to the value at <span class="math inline">\(x=1\)</span> is <span class="math inline">\(e^{-(x-1)/\xi}\)</span>. It equals <span class="math inline">\(0.01\)</span> when</p>
+<p><span class="math display">\[x-1=\xi\ln100=2.5\times4.61=11.5,\]</span></p>
+<p>so below <span class="math inline">\(1\%\)</span> beyond <span class="math inline">\(x\approx12.5\)</span> sites. For the metal the ratio is <span class="math inline">\(1/x\)</span>, and it equals <span class="math inline">\(0.01\)</span> at <span class="math inline">\(x=100\)</span> sites. At <span class="math inline">\(x=15\)</span> the exponential is at <span class="math inline">\(0.4\%\)</span> of its value at <span class="math inline">\(x=1\)</span>, while the power law is still at <span class="math inline">\(7\%\)</span>.</p>
+<p>This is why the decay law, and not the size of the response close to the impurity, tells a metal from an insulator. Over a few tens of sites the two laws differ by orders of magnitude, so a map of the density of this size is enough to tell them apart.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="tryit">
 <p><strong>Try it.</strong> The cell uses <code>mus = [1.95,1.7]</code>. The Fermi level is close to the bottom of the band, so <span class="math inline">\(k_F\)</span> is measured from the minimum. The ripples have a period of about 14 sites for <code>1.95</code> and about 5.7 sites for <code>1.7</code>, which is <span class="math inline">\(\pi/k_F\)</span>. Replace <code>1.7</code> by <code>1.0</code> and check that the period becomes 3 sites.</p>
@@ -126,7 +200,7 @@ Notebook <code>session9.ipynb</code>, cell “Impurity in a 1d metal”. Open it
 </div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb"><code>session9.ipynb</code></a>, “Impurity in a 1d metal” (Core), “Impurities in a 2d metal” (Core), and “Impurity in an electronic insulator” (Core)</p>
-<p>Place a single impurity in a 1D chain, and then in a 2D square lattice, and look at how the LDOS oscillates as in <a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html#eq-9-9">(9.9)</a>. Change the chemical potential and check that the wavelength of the oscillation follows <span class="math inline">\(\pi/k_F\)</span>, as predicted. This is the clearest place in the whole session to see a response formula and a numerical experiment agree digit by digit. The third section repeats the exercise with the chemical potential inside a gap, instead of in a partially filled band. Check that the LDOS now converges to its bulk value within one or two sites, without an oscillating tail that decays slowly. This is the contrast between gapped and gapless systems that Section <a href="09-impurities-as-diagnostics-iv-screening-in-quantum-magnets.html#sec-9-9">9.9</a> makes fully general.</p>
+<p>Place a single impurity in a 1D chain, and then in a 2D square lattice, and look at how the LDOS oscillates as in <a href="06-impurities-as-diagnostics-i-friedel-oscillations-in-a-metal.html#eq-9-9">(9.9)</a>. Change the chemical potential and check that the wavelength of the oscillation follows <span class="math inline">\(\pi/k_F\)</span>, as predicted. This is the clearest place in the whole session to see a response formula and a numerical experiment agree digit by digit. The third section repeats the exercise with the chemical potential inside a gap, instead of in a partially filled band. Check that the change of the LDOS now decays exponentially, over about <span class="math inline">\(10\)</span> sites for the gap <span class="math inline">\(0.2\)</span> and about <span class="math inline">\(3.3\)</span> sites for the gap <span class="math inline">\(0.6\)</span>, without an oscillating tail that decays slowly. This is the contrast between gapped and gapless systems that Section <a href="09-impurities-as-diagnostics-iv-screening-in-quantum-magnets.html#sec-9-9">9.9</a> makes fully general.</p>
 </div>
 <div class="comesback">
 <div class="comesback-label">

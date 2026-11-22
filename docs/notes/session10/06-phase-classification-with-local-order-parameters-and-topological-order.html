@@ -85,18 +85,38 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="on" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 10. Machine Learning Quantum Materials</a></p>
 <h1 id="sec-10-6"><span class="num">10.6a</span> Phase classification with local order parameters and topological order</h1>
-<p>We now come to a section that is, in a real sense, a review of the classification scheme of the whole course, seen from the point of view of machine learning. In this course we have used two quite different tools to distinguish phases. <a href="../session1/index.html">Session 1</a>, <a href="../session5/index.html">Session 5</a> and <a href="../session6/index.html">Session 6</a> used a <strong>local order parameter</strong>, which is a quantity built from a simple local expectation value that is zero in one phase and nonzero in the other. It comes with the spontaneous symmetry breaking of Section <a href="../session1/11-spontaneous-symmetry-breaking-and-why-a-symmetric-hamiltonian-can-have-an-asymmetric-ground-state.html#sec-1-11">1.11</a>. Examples are the charge imbalance for the charge density wave of Section <a href="../session1/13-worked-example-1-the-charge-density-wave.html#sec-1-13">1.13</a>, the magnetization for the magnet and the pairing amplitude for the superconductor. <a href="../session3/index.html">Session 3</a> and <a href="../session4/index.html">Session 4</a> instead used a <strong>topological invariant</strong>, such as the Chern number of Section <a href="../session3/05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#sec-3-5">3.5</a> or the Zak phase of Section <a href="../session3/09c-the-ssh-model-the-bloch-hamiltonian-and-the-zak-phase.html#sec-3-9c">3.9c</a>. The reason is that the phases there are <em>not</em> distinguished by any local quantity at all, and the difference can only be seen in a non-local way. In this session the same contrast gives an easy and a hard worked example of machine learning.</p>
-<p><strong>The easy case, the Ising model.</strong> Let us take classical Ising spins <span class="math inline">\(\sigma_i = \pm 1\)</span> on a square lattice, with the standard nearest-neighbor Hamiltonian and a local order parameter,</p>
+<p>Can a network that is trained on snapshots of spins find a phase transition, and what does it learn? We will now see that for the Ising model it finds again the logic of the magnetization <a href="#eq-10-9">(10.9)</a>, which is a local order parameter. The drop of <span class="math inline">\(|m|\)</span> at <span class="math inline">\(T_c=2J/\ln(1+\sqrt2)\approx2.27J\)</span> becomes sharper as the lattice grows, and the trained classifier shows this too.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[\mathcal{L}(\theta) = \sum_n \left\| f_\theta(x_n) - y_n \right\|^2, \qquad \theta \;\longrightarrow\; \theta - \eta\, \nabla_\theta \mathcal{L}(\theta), \tag{10.1}\]</span></p>
+</div>
+<p>This is the loss and the update of a network in Section <a href="01-machine-learning-and-many-body-physics-in-two-directions.html#sec-10-2">10.2</a>. On this page the input <span class="math inline">\(x_n\)</span> is a snapshot of the spins, and the label <span class="math inline">\(y_n\)</span> is a one-hot vector for ordered or disordered. As before, <span class="math inline">\(\theta\)</span> holds the weights and the biases, and <span class="math inline">\(\eta\)</span> is the learning rate.</p>
+</div>
+<p>This section is, in a real sense, a review of the classification scheme of the whole course, seen from the point of view of machine learning. In this course we have used two quite different tools to distinguish phases. <a href="../session1/index.html">Session 1</a>, <a href="../session5/index.html">Session 5</a> and <a href="../session6/index.html">Session 6</a> used a <strong>local order parameter</strong>, which is a quantity built from a simple local expectation value that is zero in one phase and nonzero in the other. It comes with the spontaneous symmetry breaking of Section <a href="../session1/11-spontaneous-symmetry-breaking-and-why-a-symmetric-hamiltonian-can-have-an-asymmetric-ground-state.html#sec-1-11">1.11</a>. Examples are the charge imbalance for the charge density wave of Section <a href="../session1/13-worked-example-1-the-charge-density-wave.html#sec-1-13">1.13</a>, the magnetization for the magnet and the pairing amplitude for the superconductor.</p>
+<p><a href="../session3/index.html">Session 3</a> and <a href="../session4/index.html">Session 4</a> instead used a <strong>topological invariant</strong>, such as the Chern number of Section <a href="../session3/05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#sec-3-5">3.5</a> or the Zak phase of Section <a href="../session3/09c-the-ssh-model-the-bloch-hamiltonian-and-the-zak-phase.html#sec-3-9c">3.9c</a>. The reason is that the phases there are <em>not</em> distinguished by any local quantity at all, and the difference can only be seen in a non-local way. In this session the same contrast gives an easy and a hard worked example of machine learning.</p>
+<p><strong>The easy case, the Ising model.</strong> Let us take classical Ising spins <span class="math inline">\(\sigma_i = \pm 1\)</span> on a square lattice, with the standard nearest-neighbor Hamiltonian and a local order parameter.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>The Ising model on the square lattice and its magnetization are</p>
 <p><span id="eq-10-9" class="eq"><span class="math display">\[H_{\rm Ising} = -J\sum_{\langle i,j\rangle} \sigma_i \sigma_j, \qquad m = \frac{1}{N}\sum_i \sigma_i, \tag{10.9}\]</span></span></p>
-<p>which has ferromagnetic order (<span class="math inline">\(|m|\to 1\)</span>) below a critical temperature <span class="math inline">\(T_c\)</span> and is disordered (<span class="math inline">\(m\to 0\)</span>) above it. Note the sign, since here <span class="math inline">\(J&gt;0\)</span> favors parallel spins, while in the Heisenberg model <a href="../session6/09-the-heisenberg-model-on-a-general-lattice.html#eq-6-5">(6.5)</a> of <a href="../session6/index.html">Session 6</a> a positive <span class="math inline">\(J\)</span> is antiferromagnetic. If we only have a single snapshot of the spin configuration, at some unknown temperature, we can see the phase even by eye. We sum the spins and check whether the result is close to <span class="math inline">\(\pm N\)</span> or close to <span class="math inline">\(0\)</span>. Even so, it is a clean and controlled test case for machine learning. We train the same cat-versus-dog architecture of Section <a href="01-machine-learning-and-many-body-physics-in-two-directions.html#sec-10-2">10.2</a> on labeled snapshots below and above <span class="math inline">\(T_c\)</span>, where the input is the <span class="math inline">\(N\times N\)</span> spin snapshot and the output is a one-hot label for ordered or disordered. The classifier then gives a transition that becomes sharper as the system size grows, for sizes from <span class="math inline">\(L = 10\)</span> up to <span class="math inline">\(L = 60\)</span>, and this reproduces what we already know analytically.</p>
+<p>with <span class="math inline">\(N\)</span> spins and the sum over the pairs <span class="math inline">\(\langle i,j\rangle\)</span> of first neighbors. Here <span class="math inline">\(m\)</span> is a local order parameter. Well below <span class="math inline">\(T_c=2J/\ln(1+\sqrt2)\approx2.27J\)</span> a snapshot has <span class="math inline">\(|m|\)</span> close to one, and far above it <span class="math inline">\(|m|\)</span> is of order <span class="math inline">\(1/\sqrt N\)</span>, so one number per snapshot tells the phase.</p>
+</div>
+<p>This model has ferromagnetic order (<span class="math inline">\(|m|&gt;0\)</span>) below a critical temperature <span class="math inline">\(T_c\)</span> and is disordered (<span class="math inline">\(m\to 0\)</span>) above it. Note the sign, since here <span class="math inline">\(J&gt;0\)</span> favors parallel spins, while in the Heisenberg model <a href="../session6/09-the-heisenberg-model-on-a-general-lattice.html#eq-6-5">(6.5)</a> of <a href="../session6/index.html">Session 6</a> a positive <span class="math inline">\(J\)</span> is antiferromagnetic. If we only have a single snapshot of the spin configuration, at some unknown temperature, we can see the phase even by eye. We sum the spins and check whether the result is close to <span class="math inline">\(\pm N\)</span> or close to <span class="math inline">\(0\)</span>. Even so, it is a clean and controlled test case for machine learning.</p>
+<p>We train the same cat-versus-dog architecture of Section <a href="01-machine-learning-and-many-body-physics-in-two-directions.html#sec-10-2">10.2</a> on labeled snapshots below and above <span class="math inline">\(T_c\)</span>, where the input is the <span class="math inline">\(L\times L\)</span> spin snapshot and the output is a one-hot label for ordered or disordered. The classifier then gives a transition that becomes sharper as the system size grows, for sizes from <span class="math inline">\(L = 10\)</span> up to <span class="math inline">\(L = 60\)</span>, and this reproduces what we already know analytically.</p>
 <figure id="sch:s10:onsager" class="schematic">
-<img src="../figures/web/session10/onsager.svg" loading="lazy" alt="The magnetization of the Ising model against temperature, close to one at low temperature, falling steeply to zero at the critical temperature." />
-<figcaption><strong>Schematic 10.6.</strong> The order parameter of <a href="#eq-10-9">(10.9)</a> from the exact solution of the Ising model on the square lattice, <span class="math inline">\(|m|=(1-\sinh^{-4}(2J/k_BT))^{1/8}\)</span> below <span class="math inline">\(T_c=2J/\ln(1+\sqrt2)\approx2.27J\)</span>. A single snapshot has <span class="math inline">\(|m|\)</span> close to one below <span class="math inline">\(T_c\)</span> and close to zero above it, so a sum over the spins is already a good test. The network of Section <a href="01-machine-learning-and-many-body-physics-in-two-directions.html#sec-10-2">10.2</a> learns this test by itself.</figcaption>
+<img src="../figures/web/session10/onsager.svg" loading="lazy" alt="The magnetization of the Ising model against the temperature in units of J, close to one at low temperature, falling steeply to zero at the critical temperature 2.27, which a dashed line marks." />
+<figcaption><strong>Schematic 10.6.</strong> The order parameter of <a href="#eq-10-9">(10.9)</a> from the exact solution of the Ising model on the square lattice, <span class="math inline">\(|m|=(1-\sinh^{-4}(2J/k_BT))^{1/8}\)</span> below <span class="math inline">\(T_c=2J/\ln(1+\sqrt2)\approx2.27J\)</span>, and zero above it. A single snapshot has <span class="math inline">\(|m|\)</span> close to one well below <span class="math inline">\(T_c\)</span> and close to zero above it, so a sum over the spins is already a good test. The network of Section <a href="01-machine-learning-and-many-body-physics-in-two-directions.html#sec-10-2">10.2</a> learns this test by itself.</figcaption>
 </figure>
 <figure id="sch:s10:ising_sizes" class="schematic">
 <img src="../figures/web/session10/ising_sizes.svg" loading="lazy" alt="The mean absolute magnetization against temperature for three lattice sizes. The curves agree at low temperature and drop near the critical temperature, more steeply for the larger lattice." />
-<figcaption><strong>Schematic 10.7.</strong> The same order parameter on finite lattices, from Metropolis Monte Carlo with <span class="math inline">\(L=8\)</span>, <span class="math inline">\(16\)</span> and <span class="math inline">\(32\)</span>, with <span class="math inline">\(1500\)</span> sweeps to thermalize and <span class="math inline">\(3000\)</span> sweeps to average at each temperature. The grey curve is the exact result for the infinite lattice. Below <span class="math inline">\(T_c\)</span> the three sizes agree with it. Above <span class="math inline">\(T_c\)</span> a finite lattice keeps a magnetization of order <span class="math inline">\(1/L\)</span>, so the drop at <span class="math inline">\(T_c\)</span> becomes sharper as <span class="math inline">\(L\)</span> grows. This is the finite-size behavior that the trained classifier shows too.</figcaption>
+<figcaption><strong>Schematic 10.7.</strong> The same order parameter on finite lattices, from Metropolis Monte Carlo with <span class="math inline">\(L=8\)</span>, <span class="math inline">\(16\)</span> and <span class="math inline">\(32\)</span>, with <span class="math inline">\(1500\)</span> sweeps to thermalize and <span class="math inline">\(3000\)</span> sweeps to average at each temperature. The grey curve is the exact result for the infinite lattice. Up to <span class="math inline">\(k_BT=2.1J\)</span> the three sizes agree with it within <span class="math inline">\(0.007\)</span>, and at <span class="math inline">\(2.2J\)</span>, close to <span class="math inline">\(T_c\)</span>, the lattice of <span class="math inline">\(8\)</span> is <span class="math inline">\(0.03\)</span> above it. Above <span class="math inline">\(T_c\)</span> a finite lattice keeps a magnetization of order <span class="math inline">\(1/L\)</span>, so the drop at <span class="math inline">\(T_c\)</span> becomes sharper as <span class="math inline">\(L\)</span> grows. This is the finite-size behavior that the trained classifier shows too.</figcaption>
 </figure>
+<p>Next we will see a model where this simple test fails.</p>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
@@ -129,11 +149,11 @@ Question
 Question
 </div>
 <div class="quiz-q">
-<p>We train the classifier of Section <a href="01-machine-learning-and-many-body-physics-in-two-directions.html#sec-10-2">10.2</a> on Ising snapshots. What are the input and the output?</p>
+<p>The classifier of cats and dogs takes an image and gives a one-hot label. We train it on snapshots of the Ising model on <span class="math inline">\(L\times L\)</span> sites. What are the input and the output?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li>The <span class="math inline">\(N\times N\)</span> array of spins as input, and a one-hot label for ordered or disordered as output.</li>
+<li>The <span class="math inline">\(L\times L\)</span> array of spins as input, and a one-hot label for ordered or disordered as output.</li>
 <li>The temperature as input, and the magnetization as output.</li>
 <li>The energy of the snapshot as input, and the critical temperature as output.</li>
 </ol>
@@ -151,13 +171,58 @@ Question
 </div>
 </details>
 </div>
-<p>Next we will see a model where this simple test fails.</p>
+<div class="quiz quiz-pics" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>The magnetization of a snapshot of <span class="math inline">\(N\)</span> spins <span class="math inline">\(\sigma_i=\pm1\)</span> is</p>
+<p><span class="math display">\[m=\frac{1}{N}\sum_i\sigma_i.\]</span></p>
+<p>Each histogram shows <span class="math inline">\(|m|\)</span> of single snapshots of a <span class="math inline">\(16\times16\)</span> Ising lattice. Here <span class="math inline">\(p(|m|)\)</span> is the probability density, and <span class="math inline">\(T_c=2.27J\)</span>. Which histogram was taken at <span class="math inline">\(k_BT=1.5J\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session10/g4_quiz_ising_hist_high.svg" loading="lazy" alt="A histogram of the absolute magnetization that is highest near zero and falls off toward 0.4." /></li>
+<li><img src="../figures/web/session10/g4_quiz_ising_hist_low.svg" loading="lazy" alt="A histogram of the absolute magnetization with one narrow peak next to one." /></li>
+<li><img src="../figures/web/session10/g4_quiz_ising_hist_tc.svg" loading="lazy" alt="A wide and low histogram of the absolute magnetization, from zero to one, with its maximum near 0.85." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. These snapshots are at <span class="math inline">\(k_BT=3.5J\)</span>, above <span class="math inline">\(T_c\)</span>, where the spins are disordered. The mean of <span class="math inline">\(|m|\)</span> is about <span class="math inline">\(0.12\)</span>, from <span class="math inline">\(0.11\)</span> to <span class="math inline">\(0.13\)</span> over <span class="math inline">\(20\)</span> runs, and it is not zero only because the lattice is finite.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. Below <span class="math inline">\(T_c\)</span> the spins are ordered, and every snapshot has <span class="math inline">\(|m|\)</span> close to one. The mean is <span class="math inline">\(0.99\)</span>, as the exact <span class="math inline">\(|m|=0.9865\)</span> of the infinite lattice at this temperature.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. These snapshots are at <span class="math inline">\(k_BT=2.27J\)</span>, at <span class="math inline">\(T_c\)</span>. The histogram is wide, with snapshots from below <span class="math inline">\(0.5\)</span> to above <span class="math inline">\(0.9\)</span>, since at the transition <span class="math inline">\(m\)</span> fluctuates strongly.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>Take <span class="math inline">\(N\)</span> independent spins <span class="math inline">\(\sigma_i=\pm1\)</span>, each up or down with probability <span class="math inline">\(1/2\)</span>, which is the Ising model at infinite temperature. Show that the magnetization <span class="math inline">\(m=\frac1N\sum_i\sigma_i\)</span> has <span class="math inline">\(\langle m\rangle=0\)</span> and <span class="math inline">\(\langle m^2\rangle=1/N\)</span>. What is the typical <span class="math inline">\(|m|\)</span> of one snapshot for <span class="math inline">\(N=64^2=4096\)</span>, and how does it compare with <span class="math inline">\(|m|\)</span> at <span class="math inline">\(k_BT=1.5J\)</span>?</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>Each spin has <span class="math inline">\(\langle\sigma_i\rangle=\tfrac12(+1)+\tfrac12(-1)=0\)</span>, so <span class="math inline">\(\langle m\rangle=\frac1N\sum_i\langle\sigma_i\rangle=0\)</span>. For the square we write</p>
+<p><span class="math display">\[\langle m^2\rangle=\frac{1}{N^2}\sum_{i,j}\langle\sigma_i\sigma_j\rangle.\]</span></p>
+<p>For <span class="math inline">\(i\neq j\)</span> the two spins are independent, so <span class="math inline">\(\langle\sigma_i\sigma_j\rangle=\langle\sigma_i\rangle\langle\sigma_j\rangle=0\)</span>. For <span class="math inline">\(i=j\)</span> we have <span class="math inline">\(\sigma_i^2=1\)</span>. Only the <span class="math inline">\(N\)</span> terms with <span class="math inline">\(i=j\)</span> are left, and <span class="math inline">\(\langle m^2\rangle=N/N^2=1/N\)</span>.</p>
+<p>The typical size of <span class="math inline">\(m\)</span> is then <span class="math inline">\(\sqrt{\langle m^2\rangle}=1/\sqrt N\)</span>, which is <span class="math inline">\(1/64\approx0.016\)</span> for <span class="math inline">\(N=4096\)</span>. A sample of <span class="math inline">\(20000\)</span> snapshots of <span class="math inline">\(4096\)</span> random spins gives a spread of <span class="math inline">\(m\)</span> of <span class="math inline">\(0.016\)</span> too. At <span class="math inline">\(k_BT=1.5J\)</span> the exact result gives <span class="math inline">\(|m|=0.99\)</span>, which is more than <span class="math inline">\(60\)</span> times larger.</p>
+<p>This is why one snapshot is enough to tell the phase of a large lattice. The fluctuations of <span class="math inline">\(m\)</span> go down as <span class="math inline">\(1/\sqrt N\)</span>, while the ordered value stays close to one, so the two regimes separate more and more as the lattice grows.</p>
+</div>
+</details>
+</div>
+</div>
 <div class="comesback">
 <div class="comesback-label">
 Where this comes back
 </div>
 <ul>
-<li>In Section <a href="06b-the-hard-case-the-ising-gauge-theory.html#sec-10-6b">10.6b</a> the Ising gauge theory has no local order parameter, and the same classifier has to find a non-local quantity.</li>
+<li>In Section <a href="06b-the-hard-case-the-ising-gauge-theory.html#sec-10-6b">10.6b</a> the Ising gauge theory has no local order parameter, and the same classifier has to find a quantity of four spins, the plaquette product.</li>
 <li>In Section <a href="07-hamiltonian-learning-as-the-inverse-of-the-first-step-of-session-1.html#sec-10-7">10.7</a> the output of the network is the set of parameters of a Hamiltonian, in place of a phase label.</li>
 </ul>
 </div>

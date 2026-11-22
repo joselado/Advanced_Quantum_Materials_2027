@@ -85,29 +85,136 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="on" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 6. Classical Magnetism and Magnons</a></p>
 <h1 id="sec-6-4"><span class="num">6.4</span> Exchange splitting and antiferromagnetic order in numerical mean-field theory</h1>
-<p>Let us now see the method of Section <a href="02-a-recap-of-symmetry-breaking-and-the-mean-field-philosophy.html#sec-6-3">6.3</a> in a real calculation. First we take the one-dimensional chain <a href="02-a-recap-of-symmetry-breaking-and-the-mean-field-philosophy.html#eq-6-1">(6.1)</a> with a unit cell of one site at 20% filling, and we solve it self-consistently. The resulting band structure shows an exchange splitting. The spin-up band, which is occupied up to the chemical potential, is at lower energy than the spin-down band, which is empty at this filling. The splitting between them is called the <strong>exchange splitting</strong>, and it grows with <span class="math inline">\(U\)</span>. Only spin-up states are occupied, so this is a fully polarized ferromagnetic solution with <span class="math inline">\(m\neq 0\)</span>.</p>
-<p>Now we take a unit cell with two sites, and we work at half filling. At <span class="math inline">\(U=0\)</span> there are two bands, one per site in the cell, and they cross at one point, so the system is metallic. When we turn on <span class="math inline">\(U&gt;0\)</span> a mean-field gap opens, and in real space the two sublattices get opposite spin polarization, with one site mostly up and its neighbor mostly down. The <em>net</em> magnetization is zero, but the <em>staggered</em> magnetization is not, and this is antiferromagnetic order. As always when a mean-field gap opens, it lowers the total electronic energy with respect to the state without a gap, because the states that the gap pushes down in energy are the occupied ones. Schematic <a href="#sch:s06:fm_afm_chain">Schematic 6.3</a> shows the two solutions.</p>
-<figure id="sch:s06:fm_afm_chain" class="schematic">
-<img src="../figures/web/session06/fm_afm_chain.svg" loading="lazy" alt="Two bands of a chain shifted in energy with only the lower one occupied, and a chain of sites with arrows that alternate up and down." />
-<figcaption><strong>Schematic 6.3.</strong> The two solutions of the chain at <span class="math inline">\(U=4t\)</span>. (a) The ferromagnet at <span class="math inline">\(n=0.2\)</span>, where the spin-down band is shifted up by <span class="math inline">\(Um=0.8t\)</span> and is empty, and the spin-up band is filled up to <span class="math inline">\(\mu\)</span>. (b) The antiferromagnet at half filling, with a moment <span class="math inline">\(|m|=0.77\)</span> on every site and opposite signs on the two sublattices. The arrows are proportional to the local moment.</figcaption>
+<p>Does the repulsive Hubbard chain order as a ferromagnet or as an antiferromagnet, and which of the two is lower in energy? Let us now see the method of Section <a href="02-a-recap-of-symmetry-breaking-and-the-mean-field-philosophy.html#sec-6-3">6.3</a> in a real calculation, first for a ferromagnet away from half filling and then for an antiferromagnet at half filling. At half filling we arrive at an antiferromagnet with a gap, which is below the uniform solution by an energy that falls as <span class="math inline">\(1/U\)</span> at large <span class="math inline">\(U\)</span>.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[H = -t\sum_{n,\sigma}\left(c_{n\sigma}^\dagger c_{n+1,\sigma} + \text{h.c.}\right) + U\sum_n c_{n\uparrow}^\dagger c_{n\uparrow}\, c_{n\downarrow}^\dagger c_{n\downarrow}, \tag{6.1}\]</span></p>
+</div>
+<div class="eq-again">
+<p><span class="math display">\[m = \langle c_\uparrow^\dagger c_\uparrow\rangle - \langle c_\downarrow^\dagger c_\downarrow\rangle. \tag{6.2}\]</span></p>
+</div>
+<p>This is the Hubbard chain of Section <a href="02-a-recap-of-symmetry-breaking-and-the-mean-field-philosophy.html#sec-6-3">6.3</a>, with the hopping <span class="math inline">\(t\)</span> between first neighbors and the onsite repulsion <span class="math inline">\(U\)</span> between the two spins of a site. The magnetization <span class="math inline">\(m\)</span> of one site is the difference between the densities of the two spins.</p>
+</div>
+<p>First we take the one-dimensional chain <a href="02-a-recap-of-symmetry-breaking-and-the-mean-field-philosophy.html#eq-6-1">(6.1)</a> with a unit cell of one site and <span class="math inline">\(n=0.2\)</span> electrons per site, and we solve it self-consistently. The resulting band structure shows an exchange splitting. The spin-up band, which is occupied up to the chemical potential, is at lower energy than the spin-down band, which is empty at this filling. The splitting between them is called the <strong>exchange splitting</strong>, and it grows with <span class="math inline">\(U\)</span>. Only spin-up states are occupied, so this is a fully polarized ferromagnetic solution with <span class="math inline">\(m\neq 0\)</span>.</p>
+<p>Now we take a unit cell with two sites, and we work at half filling. At <span class="math inline">\(U=0\)</span> there are two bands, one per site in the cell, and they cross at one point, so the system is metallic. When we turn on <span class="math inline">\(U&gt;0\)</span> a mean-field gap opens, and in real space the two sublattices get opposite spin polarization, with one site mostly up and its neighbor mostly down. The <em>net</em> magnetization is zero, but the <em>staggered</em> magnetization is not, and this is antiferromagnetic order. As always when a mean-field gap opens, it lowers the total electronic energy with respect to the state without a gap, because the states that the gap pushes down in energy are the occupied ones. The two solutions are drawn in <a href="#sch:s06:fm_afm_chain">Schematic 6.3</a>.</p>
+<figure id="sch:s06:fm_afm_chain" class="schematic has-script">
+<img src="../figures/web/session06/fm_afm_chain.svg" loading="lazy" alt="Two cosine bands of a chain shifted in energy, with only the lower one filled up to the chemical potential, and a chain of sites with arrows that alternate up and down." />
+<div class="script-row">
+<a href="../scripts/session06/g2_chain_meanfield.py" class="script-dl" download="g2_chain_meanfield.py">Download the pyqula script</a> <span class="script-name"><code>g2_chain_meanfield.py</code></span>
+</div>
+<figcaption><strong>Schematic 6.3.</strong> The two solutions of the chain at <span class="math inline">\(U=4t\)</span>, computed with pyqula. (a) The ferromagnet at <span class="math inline">\(n=0.2\)</span>, which is <code>filling=0.1</code> in pyqula, with the momentum <span class="math inline">\(k\)</span> in units of the inverse lattice constant and the energy measured from the chemical potential <span class="math inline">\(\mu\)</span>. The spin-down band is shifted up by <span class="math inline">\(Um=0.8t\)</span> and is empty, and the spin-up band is filled up to <span class="math inline">\(\mu\)</span>. (b) The antiferromagnet at half filling, with a moment <span class="math inline">\(|m|=0.77\)</span> on every site and opposite signs on the two sublattices. The arrows are proportional to the local moment. Look at the bottoms of the two bands in (a), at <span class="math inline">\(-0.38t\)</span> and <span class="math inline">\(0.42t\)</span>, which are <span class="math inline">\(Um\)</span> apart.</figcaption>
 </figure>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb"><code>session6.ipynb</code></a>, “(Reminder) Bandstructure of a tight binding chain with two sites” and “(Exercise) Magnetic order driven by interactions in a chain”</p>
-<p>Start from the band structure of the two-site chain without interactions, which is the metallic case with a crossing. Then turn on <span class="math inline">\(U\)</span> and see how the mean-field gap opens and how the spin pattern in real space becomes antiferromagnetic, which reproduces the exchange splitting of <a href="02-a-recap-of-symmetry-breaking-and-the-mean-field-philosophy.html#eq-6-2">(6.2)</a> directly. The ferromagnetic case with one site per cell at 20% filling, from the same section, is the companion calculation.</p>
+<p>Start from the band structure of the two-site chain without interactions, which is the metallic case with a crossing. Then turn on <span class="math inline">\(U\)</span> and see how the mean-field gap opens and how the spin pattern in real space becomes antiferromagnetic, which reproduces the exchange splitting of <a href="02-a-recap-of-symmetry-breaking-and-the-mean-field-philosophy.html#eq-6-2">(6.2)</a> directly. The ferromagnetic case with one site per cell and <span class="math inline">\(n=0.2\)</span>, which is <code>filling=0.1</code>, is the companion calculation, and it is in the cell “(Exercise) Intermediate coupling regime and Stoner instability”.</p>
 </div>
 <h1 class="sec-next" id="sec-6-5"><span class="num">6.5</span> Competition between the ferromagnet and the antiferromagnet</h1>
-<p>The Hubbard chain <a href="02-a-recap-of-symmetry-breaking-and-the-mean-field-philosophy.html#eq-6-1">(6.1)</a> has <em>two</em> kinds of self-consistent solution at the same filling and the same <span class="math inline">\(U\)</span>. The first is a uniform solution, with one site per cell and without the gap of the doubled cell. It is the paramagnet below <span class="math inline">\(U\approx 4t\)</span> and a fully polarized ferromagnet above it, where the spin-up band is full and the spin-down band is empty. The second is an antiferromagnetic solution, with two sites per cell, which is insulating and gapped. Both are real fixed points of the self-consistency loop. Only one of them can be the true ground state, and we decide which one by comparing total energies. Here the gapped antiferromagnetic solution always has the lower energy. Opening a gap pushes the occupied single-particle energies down, so the insulating configuration has a lower total energy than the gapless ferromagnetic one for every <span class="math inline">\(U&gt;0\)</span> that we can reach numerically in this half-filled chain.</p>
+<p>The Hubbard chain <a href="02-a-recap-of-symmetry-breaking-and-the-mean-field-philosophy.html#eq-6-1">(6.1)</a> has <em>two</em> kinds of self-consistent solution at the same filling and the same <span class="math inline">\(U\)</span>. The first is a uniform solution, with one site per cell and without the gap of the doubled cell. Its lowest state is the paramagnet below <span class="math inline">\(U=16t/\pi\approx5.1t\)</span> and a fully polarized ferromagnet above it, where the spin-up band is full and the spin-down band is empty. The second is an antiferromagnetic solution, with two sites per cell, which is insulating and gapped. Both are real fixed points of the self-consistency loop.</p>
+<p>Only one of them can be the true ground state, and we decide which one by comparing total energies. Here the gapped antiferromagnetic solution always has the lower energy. Below <span class="math inline">\(16t/\pi\)</span> the lowest uniform state is the paramagnet, which has no gap, and opening a gap pushes the occupied single-particle energies down. Above <span class="math inline">\(16t/\pi\)</span> the lowest uniform state is the saturated ferromagnet, which has the gap <span class="math inline">\(U-4t\)</span> too. There the antiferromagnet stays lower by about <span class="math inline">\(2t^2/U\)</span> per site, the energy of the virtual hops that the Pauli principle blocks in the ferromagnet.</p>
 <p>Let us follow how large this energy difference is as a function of <span class="math inline">\(U\)</span>. At <span class="math inline">\(U=0\)</span> the two configurations are the same, so the energy difference is zero. When <span class="math inline">\(U\)</span> grows from zero the gap opens and the energy difference grows with it. However, when <span class="math inline">\(U\)</span> keeps growing, the energy difference starts to <em>decrease</em> again, which is not what one would expect. In the limit <span class="math inline">\(U\to\infty\)</span>, which is the same as the limit where the kinetic energy can be neglected, the two configurations become degenerate. Numerically, this energy difference follows a <span class="math inline">\(1/U\)</span> form. In Section <a href="08-from-the-hubbard-dimer-to-the-heisenberg-model.html#sec-6-8">6.8</a> we will derive this exact <span class="math inline">\(1/U\)</span> scaling analytically from a completely independent calculation, which is a real cross-check between the mean-field numerics and a many-body perturbative treatment.</p>
-<figure id="sch:s06:mf_chain" class="schematic">
-<img src="../figures/web/session06/mf_chain.svg" loading="lazy" alt="Left, two bands separated by a gap with the crossing of the noninteracting bands drawn dashed. Right, a curve of the energy gain against U that rises, jumps at U equal to 4t and then decays as one over U." />
-<figcaption><strong>Schematic 6.4.</strong> The half-filled Hubbard chain in mean field, in units of <span class="math inline">\(t\)</span>. (a) The antiferromagnetic bands at <span class="math inline">\(U=4t\)</span> have a gap <span class="math inline">\(Um\)</span>, and the dashed grey bands are the crossing at <span class="math inline">\(U=0\)</span>. (b) The energy per site that the antiferromagnet gains over the uniform solution. The jump at <span class="math inline">\(4t\)</span> is where the uniform solution changes from the paramagnet to the fully polarized ferromagnet, and above it the curve follows <span class="math inline">\(2t^2/U\)</span>.</figcaption>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>At half filling the chain has a self-consistent antiferromagnetic solution, with the moments <span class="math inline">\(\pm m\)</span> on the two sites of the cell, and its bands are</p>
+<p><span class="math display">\[E_k=\pm\sqrt{\epsilon_k^2+\Big(\frac{Um}{2}\Big)^2},\qquad \epsilon_k=-2t\cos k,\]</span></p>
+<p>with a gap <span class="math inline">\(Um\)</span> at the Fermi level for every <span class="math inline">\(U&gt;0\)</span>. For <span class="math inline">\(U\gg t\)</span> it lies below the saturated ferromagnet by</p>
+<p><span class="math display">\[E_\text{FM}-E_\text{AFM}\simeq\frac{4t^2}{U}\]</span></p>
+<p>per cell of two sites, which is <span class="math inline">\(2t^2/U\)</span> per site.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the gap equation to the 1/U law</span></summary>
+<div class="fold-body">
+<p>We write <span class="math inline">\(\Delta=Um/2\)</span>. Measured from <span class="math inline">\(U/2\)</span>, a spin up sees the onsite energy <span class="math inline">\(-\Delta\)</span> on one sublattice and <span class="math inline">\(+\Delta\)</span> on the other, and a spin down sees the opposite. This staggered field couples the states <span class="math inline">\(k\)</span> and <span class="math inline">\(k+\pi\)</span>, whose energies are <span class="math inline">\(\epsilon_k\)</span> and <span class="math inline">\(-\epsilon_k\)</span>, and the two-level problem gives the bands <span class="math inline">\(\pm E_k\)</span> with <span class="math inline">\(E_k=\sqrt{\epsilon_k^2+\Delta^2}\)</span>. The simplest case is <span class="math inline">\(U=0\)</span>, where <span class="math inline">\(\Delta=0\)</span> and the two bands touch at <span class="math inline">\(\epsilon_k=0\)</span>, so there is no gap.</p>
+<p>At half filling the lower band is full. Its state has the weight <span class="math inline">\(\tfrac12(1+\Delta/E_k)\)</span> on the sublattice where the spin has the lower onsite energy, so the moment is <span class="math inline">\(m=\langle\Delta/E_k\rangle\)</span>. Here <span class="math inline">\(\langle\cdot\rangle\)</span> is the average over <span class="math inline">\(|k|&lt;\pi/2\)</span>, the zone of the cell of two sites. With <span class="math inline">\(m=2\Delta/U\)</span> this is the gap equation</p>
+<p><span class="math display">\[1=\frac U2\left\langle\frac{1}{E_k}\right\rangle.\]</span></p>
+<p>It has a solution for any <span class="math inline">\(U&gt;0\)</span>, since <span class="math inline">\(\langle1/|\epsilon_k|\rangle\)</span> diverges at the edges of the zone, where <span class="math inline">\(\epsilon_k=0\)</span>.</p>
+<p>For <span class="math inline">\(U\gg t\)</span> the field is large, <span class="math inline">\(\Delta\simeq U/2\)</span>, and we expand in <span class="math inline">\(\epsilon_k/\Delta\)</span>. The average of <span class="math inline">\(\epsilon_k^2=4t^2\cos^2k\)</span> is <span class="math inline">\(2t^2\)</span>, so</p>
+<p><span class="math display">\[m=\left\langle\frac{\Delta}{E_k}\right\rangle\simeq1-\frac{\langle\epsilon_k^2\rangle}{2\Delta^2}\simeq1-\frac{4t^2}{U^2}.\]</span></p>
+<p>The energy per site has two parts. The kinetic energy of the two spins is</p>
+<p><span class="math display">\[-\left\langle\frac{\epsilon_k^2}{E_k}\right\rangle\simeq-\frac{\langle\epsilon_k^2\rangle}{\Delta}\simeq-\frac{4t^2}{U},\]</span></p>
+<p>and the interaction energy is <span class="math inline">\(U\langle n_\uparrow\rangle\langle n_\downarrow\rangle=U(1-m^2)/4\simeq2t^2/U\)</span>. So <span class="math inline">\(E_\text{AFM}\simeq-2t^2/U\)</span> per site. The saturated ferromagnet has a full spin-up band and an empty spin-down band, so its kinetic energy and its interaction energy are both zero. The difference is <span class="math inline">\(2t^2/U\)</span> per site, which is <span class="math inline">\(4t^2/U\)</span> per cell of two sites. At <span class="math inline">\(U=20t\)</span> the expansion gives <span class="math inline">\(E_\text{AFM}\simeq-0.1t\)</span> per site, and the gap equation solved numerically gives <span class="math inline">\(-0.09975t\)</span>.</p>
+</div>
+</details>
+</div>
+<figure id="sch:s06:mf_chain" class="schematic has-script">
+<img src="../figures/web/session06/mf_chain.svg" loading="lazy" alt="Left, two bands separated by a gap with the crossing of the noninteracting bands drawn dashed. Right, a curve of the energy gain against U that rises to a kink at U close to 5.1t and then decays as one over U." />
+<div class="script-row">
+<a href="../scripts/session06/g2_chain_meanfield.py" class="script-dl" download="g2_chain_meanfield.py">Download the pyqula script</a> <span class="script-name"><code>g2_chain_meanfield.py</code></span>
+</div>
+<figcaption><strong>Schematic 6.4.</strong> The half-filled Hubbard chain in mean field, in units of <span class="math inline">\(t\)</span>. (a) The antiferromagnetic bands at <span class="math inline">\(U=4t\)</span>, computed with pyqula, have a gap <span class="math inline">\(Um=3.08t\)</span> at the Fermi level, with <span class="math inline">\(|m|=0.77\)</span>, and the dashed grey bands are the crossing at <span class="math inline">\(U=0\)</span>. The energy is measured from the Fermi level, and the momentum <span class="math inline">\(k\)</span> is in units of the inverse lattice constant. The zone of the cell of two sites ends at <span class="math inline">\(k=\pm\pi/2\)</span>, where the gap opens. (b) The energy per site that the antiferromagnet gains over the lowest uniform solution. The kink at <span class="math inline">\(16t/\pi\approx5.1t\)</span>, where the curve is largest, is where the lowest uniform solution changes from the paramagnet to the fully polarized ferromagnet, and above it the curve approaches <span class="math inline">\(2t^2/U\)</span>.</figcaption>
 </figure>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>A gap that the authors identify as a signature of magnetic order is measured in narrow graphene nanoribbons with zigzag edges. The ribbons were cut with a nanofabrication technique based on scanning tunneling microscopy, with well-defined edges. Zigzag ribbons narrower than <span class="math inline">\(7\)</span> nm show a band gap of about <span class="math inline">\(0.2\)</span> to <span class="math inline">\(0.3\)</span> eV, which can be identified as a signature of spin order along the edges, induced by the interaction. When the ribbons get wider, a transition from a semiconductor to a metal appears, which the article reads as the coupling between the two edges switching from antiferromagnetic to ferromagnetic. The measurement is in <a href="https://www.nature.com/articles/nature13831">this article</a>. That this gap plays the role of the gap <span class="math inline">\(Um\)</span> of the antiferromagnetic chain is our reading, since a ribbon is a strip of the honeycomb lattice with two edges, and not a chain.</p>
+</div>
+<div class="quiz quiz-pics" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Each picture shows mean-field bands of the Hubbard chain at <span class="math inline">\(U=4t\)</span>. The energy <span class="math inline">\(E\)</span> is measured from the Fermi level, the dashed line. Which picture is the antiferromagnet at half filling?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session06/g2_quiz_bands_fm.svg" loading="lazy" alt="Two cosine bands of the same shape, one shifted up from the other, with the dashed line crossing the lower one near its bottom." /></li>
+<li><img src="../figures/web/session06/g2_quiz_bands_afm.svg" loading="lazy" alt="Two bands that are mirror images of each other, one below and one above the dashed line, with an empty window between them." /></li>
+<li><img src="../figures/web/session06/g2_quiz_bands_pm.svg" loading="lazy" alt="Two bands that cross each other on the dashed line at two momenta." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. These are two copies of the band, <span class="math inline">\(\epsilon_k\)</span> and <span class="math inline">\(\epsilon_k+Um\)</span> with <span class="math inline">\(Um=0.8t\)</span>, and only the lower one is partly filled. This is the ferromagnet at <span class="math inline">\(n=0.2\)</span>, and the Fermi level cuts a band, so it is a metal.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The bands are <span class="math inline">\(\pm\sqrt{\epsilon_k^2+(Um/2)^2}\)</span>, with the gap <span class="math inline">\(Um=3.08t\)</span> at the Fermi level, since <span class="math inline">\(|m|=0.77\)</span>. The staggered moment opens the gap at <span class="math inline">\(k=\pm\pi/2\)</span>, where the bands of the cell of two sites crossed.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. Here the two bands of the cell of two sites cross at the Fermi level, so there is no gap. This is the paramagnet, with <span class="math inline">\(m=0\)</span>, whose bands are those of <span class="math inline">\(U=0\)</span>.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="quiz" data-correct="A" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>The half-filled chain orders as an antiferromagnet in mean field. The two sites of its cell have the moments <span class="math inline">\(\pm m\)</span>. Without interaction its band is <span class="math inline">\(\epsilon_k=-2t\cos k\)</span>. Which dispersion does the antiferromagnet have?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(E_k=\pm\sqrt{\epsilon_k^2+(Um/2)^2}\)</span></li>
+<li><span class="math inline">\(E_k=\epsilon_k\pm Um/2\)</span></li>
+<li><span class="math inline">\(E_k=\pm|\epsilon_k|+Um/2\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The staggered field <span class="math inline">\(\pm Um/2\)</span> couples <span class="math inline">\(k\)</span> and <span class="math inline">\(k+\pi\)</span>, whose energies are <span class="math inline">\(\epsilon_k\)</span> and <span class="math inline">\(-\epsilon_k\)</span>, and the two-level problem gives this root. At <span class="math inline">\(U=4t\)</span> the gap at <span class="math inline">\(\epsilon_k=0\)</span> is <span class="math inline">\(Um=3.08t\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. These are two copies of the band in a uniform field, which is a ferromagnet. With <span class="math inline">\(U=4t\)</span> and <span class="math inline">\(|m|=0.77\)</span> the lower copy ends at <span class="math inline">\(0.46t\)</span> and the upper one starts at <span class="math inline">\(-0.46t\)</span>, so they overlap and there is no gap.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. At <span class="math inline">\(\epsilon_k=0\)</span>, which is <span class="math inline">\(k=\pi/2\)</span>, the two branches meet at <span class="math inline">\(Um/2\)</span>, so there is no gap there. The antiferromagnet has its gap <span class="math inline">\(Um\)</span> at this momentum.</p></li>
+</ul>
+</div>
+</details>
+</div>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>At large <span class="math inline">\(U\)</span> the energy difference <span class="math inline">\(E_\text{FM}-E_\text{AFM}\)</span> of the half-filled chain, per cell of two sites, follows a <span class="math inline">\(1/U\)</span> law. What happens to it when <span class="math inline">\(U\)</span> doubles from <span class="math inline">\(20t\)</span> to <span class="math inline">\(40t\)</span>?</p>
+<p>At large <span class="math inline">\(U\)</span> the half-filled chain has, per cell of two sites,</p>
+<p><span class="math display">\[E_\text{FM}-E_\text{AFM}\simeq\frac{4t^2}{U}.\]</span></p>
+<p>What happens to this difference when <span class="math inline">\(U\)</span> doubles from <span class="math inline">\(20t\)</span> to <span class="math inline">\(40t\)</span>?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -120,18 +227,39 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
-<p>This is false. With <span class="math inline">\(J=4t^2/U\)</span> and <span class="math inline">\(t=1\)</span> we get <span class="math inline">\(0.2\)</span> at <span class="math inline">\(U=20t\)</span> and <span class="math inline">\(0.1\)</span> at <span class="math inline">\(U=40t\)</span>. Doubling would give <span class="math inline">\(0.4\)</span> at <span class="math inline">\(U=40t\)</span>, while the two states become degenerate at <span class="math inline">\(U\to\infty\)</span>.</p></li>
+<p>This is false. With <span class="math inline">\(4t^2/U\)</span> and <span class="math inline">\(t=1\)</span> we get <span class="math inline">\(0.2\)</span> at <span class="math inline">\(U=20t\)</span> and <span class="math inline">\(0.1\)</span> at <span class="math inline">\(U=40t\)</span>. Doubling would give <span class="math inline">\(0.4\)</span> at <span class="math inline">\(U=40t\)</span>, while the two states become degenerate at <span class="math inline">\(U\to\infty\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. A <span class="math inline">\(1/U\)</span> law gives half the value when <span class="math inline">\(U\)</span> doubles. It comes from <span class="math inline">\(J=4t^2/U\)</span> of Section <a href="08-from-the-hubbard-dimer-to-the-heisenberg-model.html#sec-6-8">6.8</a>, which is <span class="math inline">\(0.2t\)</span> at <span class="math inline">\(U=20t\)</span> and <span class="math inline">\(0.1t\)</span> at <span class="math inline">\(U=40t\)</span> for the cell of two sites. A mean-field calculation gives <span class="math inline">\(0.1995t\)</span> and <span class="math inline">\(0.0999t\)</span>.</p>
-<figure class="quiz-fig schematic">
-<img src="../figures/web/session06/ufactor.svg" loading="lazy" alt="A straight line of slope minus one on logarithmic axes with two marked points, one at the energy 0.1995 and one at 0.0999." />
-<figcaption>The energy difference <span class="math inline">\(E_\mathrm{FM}-E_\mathrm{AFM}\)</span> per cell of two sites from the mean-field chain, on logarithmic axes, with the line <span class="math inline">\(4t^2/U\)</span>. The two points are <span class="math inline">\(U=20t\)</span> and <span class="math inline">\(U=40t\)</span>.</figcaption>
+<p>This is true. A <span class="math inline">\(1/U\)</span> law gives half the value when <span class="math inline">\(U\)</span> doubles. The law is the exchange coupling <span class="math inline">\(J=4t^2/U\)</span> of the Hubbard dimer, which is <span class="math inline">\(0.2t\)</span> at <span class="math inline">\(U=20t\)</span> and <span class="math inline">\(0.1t\)</span> at <span class="math inline">\(U=40t\)</span> for the cell of two sites. A mean-field calculation gives <span class="math inline">\(0.1995t\)</span> and <span class="math inline">\(0.0999t\)</span>.</p>
+<figure class="quiz-fig schematic has-script">
+<img src="../figures/web/session06/ufactor.svg" loading="lazy" alt="Dots on a straight line of slope minus one on logarithmic axes, close to the dashed line four over U, with two marked points, one at the energy 0.1995 and one at 0.0999." />
+<div class="script-row">
+<a href="../scripts/session06/g2_chain_energy_difference.py" class="script-dl" download="g2_chain_energy_difference.py">Download the pyqula script</a> <span class="script-name"><code>g2_chain_energy_difference.py</code></span>
+</div>
+<figcaption>The energy difference <span class="math inline">\(E_\mathrm{FM}-E_\mathrm{AFM}\)</span> per cell of two sites of the mean-field chain, computed with pyqula, on logarithmic axes, with the line <span class="math inline">\(4t^2/U\)</span>. The two large dots are <span class="math inline">\(U=20t\)</span> and <span class="math inline">\(U=40t\)</span>.</figcaption>
 </figure></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
 <p>This is false. A division by four needs a <span class="math inline">\(1/U^2\)</span> law. The product <span class="math inline">\(U(E_\text{FM}-E_\text{AFM})\)</span> is close to <span class="math inline">\(4t^2\)</span> at large <span class="math inline">\(U\)</span>, which gives <span class="math inline">\(0.2t\)</span> and <span class="math inline">\(0.1t\)</span> for the two values, and not <span class="math inline">\(0.05t\)</span>.</p></li>
 </ul>
 </div>
 </details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>In the saturated ferromagnet of the half-filled chain every site holds one electron with spin up, so <span class="math inline">\(m=1\)</span>. Show that this state is a self-consistent solution of the mean field only for <span class="math inline">\(U&gt;4t\)</span>.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>With <span class="math inline">\(\langle n_\uparrow\rangle=1\)</span> and <span class="math inline">\(\langle n_\downarrow\rangle=0\)</span> on every site, the mean field gives the spin-up electrons the onsite energy <span class="math inline">\(U\langle n_\downarrow\rangle=0\)</span>, and the spin-down electrons the onsite energy <span class="math inline">\(U\langle n_\uparrow\rangle=U\)</span>. The two bands are then</p>
+<p><span class="math display">\[E_\uparrow(k)=-2t\cos k,\qquad E_\downarrow(k)=-2t\cos k+U,\]</span></p>
+<p>which is an exchange splitting <span class="math inline">\(Um=U\)</span>. The state is self-consistent when the electrons, one per site, fill the whole spin-up band and leave the spin-down band empty. This needs the bottom of the spin-down band above the top of the spin-up band,</p>
+<p><span class="math display">\[-2t+U&gt;2t,\]</span></p>
+<p>meaning that <span class="math inline">\(U&gt;4t\)</span>. For <span class="math inline">\(U&lt;4t\)</span> the two bands overlap, so the lowest states include the bottom of the spin-down band, some electrons go there, and the moment is below one.</p>
+<p>In a calculation this is why a mean-field loop started from the field of the saturated state stays there, with <span class="math inline">\(|m|=1\)</span>, at <span class="math inline">\(U=4.1t\)</span>. At <span class="math inline">\(U=3.9t\)</span> the loop leaves the saturated state. Where it ends depends on <code>mix</code>, the weight of the new mean field in each step, and on <code>maxerror</code>, the change of the mean field below which the loop stops. With <code>mix=0.9</code> and the default <code>maxerror=1e-5</code> it stops close to the paramagnet, with <span class="math inline">\(|m|=0.025\)</span> on a mesh of <span class="math inline">\(40\)</span> cells and <span class="math inline">\(0.049\)</span> on a mesh of <span class="math inline">\(41\)</span> cells, a moment of one or two k-points. This end is an early stop. With a smaller <code>mix</code>, such as <span class="math inline">\(0.5\)</span>, or with <code>maxerror=1e-9</code>, the loop runs longer and reaches the antiferromagnet, which is lower in energy. In these runs its moment ends in the plane <span class="math inline">\(xy\)</span>, so <span class="math inline">\(|m|\)</span> is read from <span class="math inline">\(m_x\)</span>, <span class="math inline">\(m_y\)</span> and <span class="math inline">\(m_z\)</span>.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="tryit">
 <p><strong>Try it.</strong> In the cell, <code>Us</code> runs from 20 to 60. The plot of <span class="math inline">\(E_\text{FE}-E_\text{AF}\)</span> falls as <span class="math inline">\(1/U\)</span>, and the points of the log-log plot follow a line of slope <span class="math inline">\(-1\)</span>. The product <span class="math inline">\(U(E_\text{FE}-E_\text{AF})\)</span> is close to <span class="math inline">\(4t^2\)</span> for the cell of two sites.</p>

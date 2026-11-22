@@ -112,7 +112,7 @@ To remember
 </div>
 <p>The sign of <span class="math inline">\(U\)</span> alone decides the physics. An attractive <span class="math inline">\(U&lt;0\)</span> drives superconductivity, which we discuss in Section <a href="#sec-1-15">1.15</a>, and a repulsive <span class="math inline">\(U&gt;0\)</span> drives magnetism, which is the topic of this section.</p>
 <p>The mean-field decoupling is done in the same way as before, but now we apply it separately to <span class="math inline">\(\langle c_{\uparrow}^\dagger c_\uparrow\rangle\)</span> and <span class="math inline">\(\langle c_\downarrow^\dagger
-c_\downarrow\rangle\)</span>, and we obtain a bilinear Hamiltonian with onsite energies that depend on the spin, through the magnetization <span class="math inline">\(m\)</span> of <a href="#eq-1-8">(1.8)</a>. Self-consistency gives <span class="math inline">\(m=0\)</span> automatically for <span class="math inline">\(U&lt;0\)</span>, and a finite <span class="math inline">\(m\)</span> for <span class="math inline">\(U&gt;0\)</span>, which is a real magnetic solution.</p>
+c_\downarrow\rangle\)</span>, and we obtain a bilinear Hamiltonian with onsite energies that depend on the spin, through the magnetization <span class="math inline">\(m\)</span> of <a href="#eq-1-8">(1.8)</a>. Self-consistency gives <span class="math inline">\(m=0\)</span> automatically for <span class="math inline">\(U&lt;0\)</span>, and in the half-filled chain a finite <span class="math inline">\(m\)</span> for <span class="math inline">\(U&gt;0\)</span>, which is a real magnetic solution.</p>
 <div class="fold steps">
 <details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the Hubbard term of (1.7) to the gap Um</span></summary>
 <div class="fold-body">
@@ -231,7 +231,7 @@ Problem
 </div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session1.ipynb"><code>session1.ipynb</code></a>, “The interacting Hubbard dimer” (Core) and “Magnetic order driven by interactions in a chain” (Core). The two challenges are “Gap opening of the Hubbard model in a chain” (Challenge) and “Gap opening in the Hubbard model on the honeycomb lattice” (Challenge).</p>
-<p>Start with the two-site case, the dimer, to see how the self-consistency loop converges in a small system that you can check by hand. Then go to the extended chain and finally to the honeycomb lattice, which uses the finite islands of Section <a href="08-first-versus-second-quantization-for-the-same-problem.html#sec-1-10">1.10</a> with interactions. Look at how the Mott gap opens and grows with <span class="math inline">\(U\)</span>.</p>
+<p>Start with the two-site case, the dimer, to see how the self-consistency loop converges in a small system that you can check by hand. Then go to the extended chain and finally to the honeycomb lattice, which is the lattice of the islands of Section <a href="08-first-versus-second-quantization-for-the-same-problem.html#sec-1-10">1.10</a>, now infinite and with interactions. Look at how the Mott gap opens and grows with <span class="math inline">\(U\)</span>.</p>
 </div>
 <div class="tryit">
 <p><strong>Try it.</strong> Run the dimer for <span class="math inline">\(U\)</span> from <span class="math inline">\(0\)</span> to <span class="math inline">\(10\)</span> and read the value of <span class="math inline">\(U\)</span> where the magnetization leaves zero. It is close to <span class="math inline">\(U=2t\)</span>. Check that the gap is already <span class="math inline">\(2t\)</span> at <span class="math inline">\(U=0\)</span>, since the two levels are at <span class="math inline">\(\pm t\)</span>.</p>
@@ -247,7 +247,7 @@ To remember
 </div>
 <p>The expectation value of two annihilation operators is</p>
 <p><span id="eq-1-9" class="eq"><span class="math display">\[\Delta = \langle c_i c_j\rangle. \tag{1.9}\]</span></span></p>
-<p>Under the gauge transformation</p>
+<p>For the onsite term of <a href="#eq-1-7">(1.7)</a> the two operators have opposite spins, <span class="math inline">\(\Delta=\langle c_{i\downarrow}c_{i\uparrow}\rangle\)</span>, since <span class="math inline">\(c_{i\uparrow}c_{i\uparrow}=0\)</span>. Under the gauge transformation</p>
 <p><span id="eq-1-10" class="eq"><span class="math display">\[c \to c\, e^{i\varphi}, \qquad c^\dagger \to c^\dagger e^{-i\varphi}, \tag{1.10}\]</span></span></p>
 <p>it turns as <span class="math inline">\(\Delta\to e^{2i\varphi}\Delta\)</span>, while every term <span class="math inline">\(c^\dagger c\)</span> stays the same. So a mean-field state with <span class="math inline">\(\Delta\neq0\)</span> breaks the gauge symmetry, and it has no fixed number of electrons, only a fixed parity.</p>
 </div>

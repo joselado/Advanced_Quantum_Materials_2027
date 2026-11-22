@@ -85,44 +85,93 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="on" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 8. Quantum Magnetism, Spinons and Kondo Physics</a></p>
 <h1 id="sec-8-9"><span class="num">8.9</span> The mean-field spinon Hamiltonian and its dispersion classes</h1>
-<p>We put the couplings and the expectation value of <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-14">(8.14)</a> together into one mean-field parameter <span class="math inline">\(\chi_{ij}\)</span> per bond, and if needed we impose the constraint <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-11">(8.11)</a> on average with a Lagrange multiplier. In this way, the mean-field decoupling of Section <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#sec-8-8">8.8</a> turns the original spin problem into a real Hamiltonian for the auxiliary fermions, which has the form of a tight-binding model and which we can diagonalize,</p>
+<p>What does the spin problem look like after the mean-field decoupling, and which spinon bands can it give? We will now see that it becomes a tight-binding model for the auxiliary fermions at half filling, <a href="#eq-8-15">(8.15)</a>. Its bands fall into three classes, with gapless, gapped or Dirac spinons.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[\mathcal H = \sum_{\langle ij\rangle} J_{ij}\left(\frac14 - \frac12\,\chi_{ij}^\dagger\chi_{ij}\right)
+= \text{const} - \frac12\sum_{\langle ij\rangle} J_{ij}\, \chi_{ij}^\dagger \chi_{ij}. \tag{8.13}\]</span></p>
+</div>
+<div class="eq-again">
+<p><span class="math display">\[\chi_{ij}^\dagger\chi_{ij} \;\approx\; \langle\chi_{ij}^\dagger\rangle\,\chi_{ij} +
+\chi_{ij}^\dagger\,\langle\chi_{ij}\rangle - |\langle\chi_{ij}\rangle|^2. \tag{8.14}\]</span></p>
+</div>
+<p>This is the Heisenberg model of Section <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#sec-8-8">8.8</a>, written with the bond operator <span class="math inline">\(\chi_{ij}=\sum_\sigma f^\dagger_{i\sigma}f_{j\sigma}\)</span> of the auxiliary fermions, which makes it quartic in the fermions, and its mean-field decoupling. In the decoupling <span class="math inline">\(\langle\chi_{ij}\rangle\)</span> is the expectation value of the bond operator in the mean-field ground state.</p>
+</div>
+<p>We put the couplings and the expectation value of <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-14">(8.14)</a> together into one mean-field parameter <span class="math inline">\(\chi_{ij}\)</span> per bond, and if needed we impose the constraint <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-11">(8.11)</a> on average with a Lagrange multiplier. In this way, the mean-field decoupling of Section <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#sec-8-8">8.8</a> turns the original spin problem into a Hamiltonian for the auxiliary fermions, which has the form of a tight-binding model and which we can diagonalize.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>The mean-field Hamiltonian of the spinons is the tight-binding model</p>
 <p><span id="eq-8-15" class="eq"><span class="math display">\[\mathcal H_\text{MF} = \sum_{ij,s} \chi_{ij}\, f^\dagger_{i,s} f_{j,s}. \tag{8.15}\]</span></span></p>
-<p>This mean-field step is different from all the other mean-field decouplings of this course up to now, since it does not need to break time-reversal symmetry. If we take the same <span class="math inline">\(\chi_{ij}\)</span> for spin up and spin down, we keep <span class="math inline">\(\langle \mathbf S_i\rangle = 0\)</span> exactly, so the ground state that we obtain is time-reversal symmetric by construction, as <a href="05-the-dimerized-heisenberg-model-a-first-step-before-a-spin-liquid.html#eq-8-5">(8.5)</a> and <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-9">(8.9)</a> require. Equation <a href="#eq-8-15">(8.15)</a> is a tight-binding model for the auxiliary fermions, with hoppings <span class="math inline">\(\chi_{ij}\)</span> that are fixed self-consistently by the geometry of the lattice and by the exchange couplings <span class="math inline">\(J_{ij}\)</span>. Its excitations are the <strong>spinons</strong>, which are emergent fermionic quasiparticles with spin <span class="math inline">\(1/2\)</span> and no charge. We obtain them with the same procedure that we used for electrons in the whole course. We take a quartic interaction, decouple it at the mean-field level and diagonalize a bilinear Hamiltonian, and the only difference is that now we apply it to the spin sector. Figure <a href="#fig:s08:parton">8.4</a>b shows the resulting picture, with spinons that hop on the lattice with amplitude <span class="math inline">\(\chi_{ij}\)</span>, at half filling because of <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-11">(8.11)</a>.</p>
+<p>The constraint <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-11">(8.11)</a> puts one fermion on every site, out of two spin states, so the spinons fill half of the states of these bands.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the decoupling (8.14) to the hopping model (8.15)</span></summary>
+<div class="fold-body">
+<p>We put <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-14">(8.14)</a> into <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-13">(8.13)</a>. Each bond <span class="math inline">\(\langle ij\rangle\)</span> gives</p>
+<p><span class="math display">\[-\frac{J_{ij}}2\,\chi^\dagger_{ij}\chi_{ij}\;\approx\;-\frac{J_{ij}}2\Big(\langle\chi_{ij}\rangle^*\chi_{ij}+\langle\chi_{ij}\rangle\,\chi^\dagger_{ij}\Big)+\frac{J_{ij}}2\,|\langle\chi_{ij}\rangle|^2 .\]</span></p>
+<p>The bond operator <span class="math inline">\(\chi_{ij}=\sum_s f^\dagger_{is}f_{js}\)</span> moves a fermion from <span class="math inline">\(j\)</span> to <span class="math inline">\(i\)</span>, and <span class="math inline">\(\chi^\dagger_{ij}=\sum_s f^\dagger_{js}f_{is}\)</span> moves it back. So the coefficient of <span class="math inline">\(f^\dagger_{is}f_{js}\)</span> is</p>
+<p><span class="math display">\[-\frac{J_{ij}}2\,\langle\chi_{ij}\rangle^* = -\frac{J_{ij}}2\sum_\sigma\langle f^\dagger_{j\sigma}f_{i\sigma}\rangle ,\]</span></p>
+<p>and the coefficient of <span class="math inline">\(f^\dagger_{js}f_{is}\)</span> is its complex conjugate, as it must be for a Hermitian Hamiltonian. This coefficient is the mean-field parameter of <a href="#eq-8-15">(8.15)</a> on the bond, the hopping of the spinons, so it is proportional to the exchange <span class="math inline">\(J_{ij}\)</span>. The term <span class="math inline">\(\frac{J_{ij}}2|\langle\chi_{ij}\rangle|^2\)</span> and the constant of <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-13">(8.13)</a> are numbers, which shift the energy and not the states.</p>
+<p>The expectation value is taken in the ground state of <a href="#eq-8-15">(8.15)</a>, so the hoppings are found self-consistently. We guess them, diagonalize <a href="#eq-8-15">(8.15)</a> at half filling, compute <span class="math inline">\(\langle\chi_{ij}\rangle\)</span> and repeat, as in the self-consistent loop of Section <a href="../session1/12-the-general-interacting-hamiltonian-and-the-tool-we-will-use-on-it.html#sec-1-12">1.12</a>.</p>
+<p>The constraint <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-11">(8.11)</a> is imposed on average. We add <span class="math inline">\(-\sum_i\lambda_i\big(\sum_s f^\dagger_{is}f_{is}-1\big)\)</span> with one Lagrange multiplier <span class="math inline">\(\lambda_i\)</span> per site, and we choose the <span class="math inline">\(\lambda_i\)</span> so that every site holds one fermion on average. When all the sites are equivalent the <span class="math inline">\(\lambda_i\)</span> are equal, and <span class="math inline">\(\lambda\)</span> is the chemical potential that gives one fermion per site, which is half filling. On the chain the band is symmetric around zero, so <span class="math inline">\(\lambda=0\)</span>. On the triangular lattice with the hopping <span class="math inline">\(1\)</span> to the first neighbors the band runs from <span class="math inline">\(-3\)</span> to <span class="math inline">\(6\)</span>, and half filling puts the Fermi level at <span class="math inline">\(-0.835\)</span>.</p>
+</div>
+</details>
+</div>
+<p>This mean-field step is different from all the other mean-field decouplings of this course up to now, since it does not need to break time-reversal symmetry. If we take the same <span class="math inline">\(\chi_{ij}\)</span> for spin up and spin down, we keep <span class="math inline">\(\langle \mathbf S_i\rangle = 0\)</span> exactly, as <a href="05-the-dimerized-heisenberg-model-a-first-step-before-a-spin-liquid.html#eq-8-5">(8.5)</a> and <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-9">(8.9)</a> require. When the flux of the <span class="math inline">\(\chi_{ij}\)</span> around every plaquette, which we define in Section <a href="10-emergent-gauge-symmetry-and-vison-excitations.html#sec-8-10">8.10</a>, is <span class="math inline">\(0\)</span> or <span class="math inline">\(\pi\)</span>, as for real <span class="math inline">\(\chi_{ij}\)</span>, the ground state is also time-reversal symmetric by construction. On a lattice with triangles, a complex <span class="math inline">\(\chi_{ij}\)</span> with another flux keeps <span class="math inline">\(\langle\mathbf S_i\rangle=0\)</span> and can break time reversal.</p>
+<p>Equation <a href="#eq-8-15">(8.15)</a> is a tight-binding model for the auxiliary fermions, with hoppings <span class="math inline">\(\chi_{ij}\)</span> that are fixed self-consistently by the geometry of the lattice and by the exchange couplings <span class="math inline">\(J_{ij}\)</span>. Its excitations are the <strong>spinons</strong>, which are emergent fermionic quasiparticles with spin <span class="math inline">\(1/2\)</span> and no charge. We obtain them with the same procedure that we used for electrons in the whole course. We take a quartic interaction, decouple it at the mean-field level and diagonalize a bilinear Hamiltonian, and the only difference is that now we apply it to the spin sector. Figure <a href="#fig:s08:parton">8.4</a>b shows the resulting picture, with spinons that hop on the lattice with amplitude <span class="math inline">\(\chi_{ij}\)</span>, at half filling because of <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-11">(8.11)</a>.</p>
 <figure id="fig:s08:parton">
 <img src="../figures/s08f04_parton.svg" loading="lazy" alt="What the Abrikosov-fermion rewriting (8.10) costs, and what it gives us." />
-<figcaption><strong>Figure 8.4.</strong> What the Abrikosov-fermion rewriting <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-10">(8.10)</a> costs, and what it gives us. (a) The four fermionic states of a site. The two singly-occupied states are the physical spin-<span class="math inline">\(1/2\)</span> doublet. The empty and doubly-occupied states, drawn as ghosts with a cross, are extra unphysical states, which <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-10">(8.10)</a> maps to <span class="math inline">\(\mathbf S_i=\mathbf 0\)</span>. The constraint <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-11">(8.11)</a> removes them by hand, and this constraint is the operator version of the Gutzwiller projector <a href="06-the-resonating-valence-bond-wavefunction-as-the-qsl-ground-state.html#eq-8-7">(8.7)</a>. (b) What remains after the mean-field decoupling <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-14">(8.14)</a> is an ordinary tight-binding problem <a href="#eq-8-15">(8.15)</a> for fermions with spin-<span class="math inline">\(1/2\)</span> and no charge. They hop with the self-consistent bond amplitude <span class="math inline">\(\chi_{ij}\)</span>, drawn as the thickness of the bond, here with two values for illustration. Since there is one fermion per site, the resulting spinon model must be studied at half filling. Taking the same <span class="math inline">\(\chi_{ij}\)</span> for both spin species keeps <span class="math inline">\(\langle\mathbf S_i\rangle=\mathbf 0\)</span>, so this mean field, unlike the magnetic mean fields of <a href="../session1/index.html">Session 1</a> and <a href="../session6/index.html">Session 6</a>, does not break time-reversal symmetry.</figcaption>
+<figcaption><strong>Figure 8.4.</strong> What the Abrikosov-fermion rewriting <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-10">(8.10)</a> costs, and what it gives us. (a) The four fermionic states of a site. The two singly-occupied states are the physical spin-<span class="math inline">\(1/2\)</span> doublet. The empty and doubly-occupied states, drawn as ghosts with a cross, are extra unphysical states, which <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-10">(8.10)</a> maps to <span class="math inline">\(\mathbf S_i=\mathbf 0\)</span>. The constraint <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-11">(8.11)</a> removes them by hand, and this constraint is the operator version of the Gutzwiller projector <a href="06-the-resonating-valence-bond-wavefunction-as-the-qsl-ground-state.html#eq-8-7">(8.7)</a>. (b) What remains after the mean-field decoupling <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-14">(8.14)</a> is an ordinary tight-binding problem <a href="#eq-8-15">(8.15)</a> for fermions with spin-<span class="math inline">\(1/2\)</span> and no charge. They hop with the self-consistent bond amplitude <span class="math inline">\(\chi_{ij}\)</span>, drawn as the thickness of the bond, here with two values for illustration. Since there is one fermion per site, the resulting spinon model must be studied at half filling. Taking the same <span class="math inline">\(\chi_{ij}\)</span> for both spin species keeps <span class="math inline">\(\langle\mathbf S_i\rangle=\mathbf 0\)</span>. With real <span class="math inline">\(\chi_{ij}\)</span> this mean field also keeps time-reversal symmetry, unlike the magnetic mean fields of <a href="../session1/index.html">Session 1</a> and <a href="../session6/index.html">Session 6</a>.</figcaption>
 </figure>
-<p>When we diagonalize <a href="#eq-8-15">(8.15)</a> on a given lattice, we obtain a real spinon band structure. Depending on the mean-field parameters that we obtain, there are three different possible outcomes.</p>
+<p>When we diagonalize <a href="#eq-8-15">(8.15)</a> on a given lattice, we obtain a spinon band structure. Depending on the mean-field parameters that we obtain, there are three different possible outcomes.</p>
 <ul>
-<li><p><strong>Gapless spinons</strong>, with excitations at energies as close to zero as we want.</p></li>
+<li><p><strong>Gapless spinons</strong>, with a Fermi surface, so that there are excitations at energies as close to zero as we want and a finite density of states at the Fermi level.</p></li>
 <li><p><strong>Gapped spinons</strong>, where it costs a finite energy to create a spinon.</p></li>
-<li><p><strong>Dirac spinons</strong>, with a linear relation between energy and momentum at isolated points in the Brillouin zone, as for the Dirac cone of graphene in Section <a href="../session2/11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#sec-2-11">2.11</a>.</p></li>
+<li><p><strong>Dirac spinons</strong>, where two bands touch at isolated points in the Brillouin zone, with a linear relation between energy and momentum, as for the Dirac cone of graphene in Section <a href="../session2/11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#sec-2-11">2.11</a>. In two dimensions the density of states then vanishes at the Fermi level.</p></li>
 </ul>
 <p><a href="#sch:s08:spinon_bands">Schematic 8.7</a> shows one example of each class. The gapped example uses the alternating bonds of the valence bond solid of Section <a href="05-the-dimerized-heisenberg-model-a-first-step-before-a-spin-liquid.html#sec-8-5">8.5</a>.</p>
-<figure id="sch:s08:spinon_bands" class="schematic">
-<img src="../figures/web/session08/spinon_bands.svg" loading="lazy" alt="Three panels of spinon bands against momentum, a cosine band crossing the Fermi level, two bands separated by a gap, and two bands touching linearly at one point." />
-<figcaption><strong>Schematic 8.7.</strong> One example of each class of spinon bands from <a href="#eq-8-15">(8.15)</a> with one spin species, for <span class="math inline">\(\chi=1\)</span> on a grid of 401 values of <span class="math inline">\(k\)</span>. Left, the uniform chain, where the band crosses the Fermi level at two points. Center, the chain with alternating hoppings <span class="math inline">\(1\)</span> and <span class="math inline">\(0.6\)</span>, where the gap is <span class="math inline">\(0.8\)</span>. Right, the <span class="math inline">\(\pi\)</span>-flux square lattice along <span class="math inline">\(k_y=\pi/2\)</span>, where the two bands touch linearly in a Dirac point. Look at the grey line at zero, which the half filling puts at the Fermi level.</figcaption>
+<figure id="sch:s08:spinon_bands" class="schematic has-script">
+<img src="../figures/web/session08/spinon_bands.svg" loading="lazy" alt="Three panels of spinon bands against the momentum from minus pi to pi, a cosine band that crosses the Fermi level, two bands separated by a gap, and two bands that touch linearly at the Fermi level." />
+<div class="script-row">
+<a href="../scripts/session08/g3_spinon_band_classes.py" class="script-dl" download="g3_spinon_band_classes.py">Download the pyqula script</a> <span class="script-name"><code>g3_spinon_band_classes.py</code></span>
+</div>
+<figcaption><strong>Schematic 8.7.</strong> One example of each class of spinon bands from <a href="#eq-8-15">(8.15)</a>, for one spin species and the hopping <span class="math inline">\(\chi=1\)</span>, computed with pyqula on 401 values of <span class="math inline">\(k\)</span>. This is the hopping <span class="math inline">\(+1\)</span> of pyqula, so the uniform chain has the band <span class="math inline">\(2\chi\cos k\)</span>. The hopping <span class="math inline">\(-1\)</span> gives the same levels, since on these lattices the sign of <span class="math inline">\(\chi\)</span> is a gauge choice, and for the uniform chain it moves the band by <span class="math inline">\(\pi\)</span> in momentum. The momentum <span class="math inline">\(k\)</span> is the phase per cell, from <span class="math inline">\(-\pi\)</span> to <span class="math inline">\(\pi\)</span>. The cell is one site for the uniform chain and along <span class="math inline">\(x\)</span> for the <span class="math inline">\(\pi\)</span>-flux lattice, and two sites for the dimerized chain. Left, the uniform chain, where the band crosses the Fermi level at <span class="math inline">\(k=\pm\pi/2\)</span>. Center, the chain with the hoppings <span class="math inline">\(0.6\)</span> and <span class="math inline">\(1\)</span> on alternate bonds, where the gap at <span class="math inline">\(k=\pm\pi\)</span> is <span class="math inline">\(2(1-0.6)=0.8\)</span>. Right, the <span class="math inline">\(\pi\)</span>-flux square lattice with two sites per cell along <span class="math inline">\(y\)</span>, on the line <span class="math inline">\(k_y=\pi/2\)</span> in units of the inverse distance between sites. There the two bands <span class="math inline">\(\pm2|\sin k_x|\)</span> touch linearly at <span class="math inline">\(k_x=0\)</span> and at <span class="math inline">\(k_x=\pi\)</span>, which are the two Dirac points of this lattice in the gauge of pyqula, and <span class="math inline">\(k_x=-\pi\)</span> is the same point as <span class="math inline">\(k_x=\pi\)</span>. Another gauge of the same flux, with the hoppings <span class="math inline">\((-1)^y\)</span> along <span class="math inline">\(x\)</span> on the row <span class="math inline">\(y\)</span> and <span class="math inline">\(1\)</span> along <span class="math inline">\(y\)</span>, has the same levels and its Dirac points at <span class="math inline">\(k_x=\pm\pi/2\)</span>. The levels of the three models are symmetric around zero, so half of them lie below zero. Look at the grey line at zero, which the half filling puts at the Fermi level.</figcaption>
+</figure>
+<p>In two dimensions the gapless spinons of the first class have a whole line of states at the Fermi level, which is a spinon Fermi surface. On the triangular lattice of the notebook, <a href="#sch:s08:g3_fermi_surface_triangular">Schematic 8.8</a> shows it for three ratios of the second-neighbor hopping <span class="math inline">\(t_2\)</span> to the first-neighbor hopping <span class="math inline">\(t_1\)</span>.</p>
+<figure id="sch:s08:g3_fermi_surface_triangular" class="schematic has-script">
+<img src="../figures/web/session08/g3_fermi_surface_triangular.svg" loading="lazy" alt="Three color maps of reciprocal space with the first Brillouin zone as a dashed hexagon and the axes k x and k y. Each map has a dark contour around the center of the zone, and the third map also has closed pockets around the corners of the zone." />
+<div class="script-row">
+<a href="../scripts/session08/g3_spinon_fermi_surface.py" class="script-dl" download="g3_spinon_fermi_surface.py">Download the pyqula script</a> <span class="script-name"><code>g3_spinon_fermi_surface.py</code></span>
+</div>
+<figcaption><strong>Schematic 8.8.</strong> The spinon Fermi surface of <a href="#eq-8-15">(8.15)</a> on the triangular lattice at half filling, computed with pyqula, for the hopping <span class="math inline">\(t_1=1\)</span> to the first neighbors and <span class="math inline">\(t_2=-0.5\)</span>, <span class="math inline">\(0\)</span> and <span class="math inline">\(0.5\)</span> to the second neighbors. The color is the spectral weight at the Fermi level on a square of 151 by 151 momenta, summed over the two spins with the broadening <span class="math inline">\(\delta=0.15\)</span>, in units of its largest value <span class="math inline">\(2/\delta\)</span>. The dashed hexagon is the first Brillouin zone, with its corner <span class="math inline">\(K\)</span>, and the map continues into the neighboring zones. The momenta are in units of the inverse lattice constant. The Fermi level comes from a mesh of 101 by 101 momenta, which gives the filling <span class="math inline">\(0.500\)</span> to <span class="math inline">\(0.001\)</span>. For <span class="math inline">\(t_2/t_1=-0.5\)</span> and <span class="math inline">\(0\)</span> the Fermi surface is one contour around the center <span class="math inline">\(\Gamma\)</span> of the zone, and for <span class="math inline">\(t_2/t_1=0.5\)</span> there are also pockets around the corners <span class="math inline">\(K\)</span>. Changing the sign of both hoppings gives the same Fermi surface, so what matters is the ratio <span class="math inline">\(t_2/t_1\)</span>. Look at how the contour around <span class="math inline">\(\Gamma\)</span> changes its shape with this ratio.</figcaption>
 </figure>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session8.ipynb"><code>session8.ipynb</code></a>, “Spinon Fermi surface in gapless quantum spin liquids” (Core)</p>
 <p>Build the spinon tight-binding Hamiltonian <a href="#eq-8-15">(8.15)</a> on the triangular lattice and look at how its Fermi surface changes when the ratio of hopping amplitudes <span class="math inline">\(t_2/t_1\)</span> changes. In the quiz you repeat this on the square and kagome lattices, and you explain why the effective spinon model must be at half filling. The reason is the single-occupancy constraint <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-11">(8.11)</a> at the mean-field level.</p>
+</div>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>Inelastic neutron scattering measures the spin excitations of a magnet against their energy, so it shows whether they have a gap. In the kagome antiferromagnet ZnCu<span class="math inline">\(_3\)</span>(OH)<span class="math inline">\(_6\)</span>Cl<span class="math inline">\(_2\)</span> it reveals a spectrum of low energy spin excitations with no observable gap down to <span class="math inline">\(0.1\)</span> meV. From this and from their thermodynamic measurements, the authors suggest a spin-liquid state with essentially gapless excitations. That these excitations are spinons with no gap, as in the gapless or the Dirac class of <a href="#eq-8-15">(8.15)</a>, is our reading and not a statement of the article. The measurement is in <a href="https://doi.org/10.1103/PhysRevLett.98.107204">this article</a>.</p>
 </div>
 <div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>Why must the spinon tight-binding model <a href="#eq-8-15">(8.15)</a> be studied at half filling?</p>
-<div class="eq-again">
-<p><span class="math display">\[\mathcal H_\text{MF} = \sum_{ij,s} \chi_{ij}\, f^\dagger_{i,s} f_{j,s}. \tag{8.15}\]</span></p>
-</div>
-<div class="eq-again">
-<p><span class="math display">\[\sum_\sigma f_{i\sigma}^\dagger f_{i\sigma} = 1 \qquad \text{at every site } i. \tag{8.11}\]</span></p>
-</div>
+<p>The spinons hop with the mean-field Hamiltonian</p>
+<p><span class="math display">\[\mathcal H_\text{MF} = \sum_{ij,s} \chi_{ij}\, f^\dagger_{i,s} f_{j,s},\]</span></p>
+<p>where <span class="math inline">\(s\)</span> is the spin. Why do we fill half of its states?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li>There is one <span class="math inline">\(f\)</span> fermion on every site, which is the constraint <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-11">(8.11)</a> on average.</li>
+<li>There is one <span class="math inline">\(f\)</span> fermion on every site, which is the constraint <span class="math inline">\(\sum_s f^\dagger_{i,s}f_{i,s}=1\)</span> on average.</li>
 <li>The model has particle-hole symmetry only at half filling.</li>
 <li>A Fermi surface exists only at half filling.</li>
 </ol>
@@ -131,7 +180,7 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
-<p>This is true. Each site holds exactly one <span class="math inline">\(f\)</span> fermion, which is one particle for two spin states. This gives half filling of the spinon bands.</p></li>
+<p>This is true. Each site holds one <span class="math inline">\(f\)</span> fermion on average, which is one particle for two spin states. This gives half filling of the spinon bands.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
 <p>This is false. Add a second-neighbor hopping to the square lattice. Particle-hole symmetry is lost, but the constraint still asks for one fermion per site, so half filling is still required.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
@@ -150,7 +199,7 @@ Question
 <div class="quiz-options">
 <ol type="A">
 <li>The Fermi surface of the spinons.</li>
-<li><span class="math inline">\(\langle\mathbf S_i\rangle=0\)</span>, so the state is time-reversal symmetric.</li>
+<li><span class="math inline">\(\langle\mathbf S_i\rangle=0\)</span>, and with real <span class="math inline">\(\chi_{ij}\)</span> the state is also time-reversal symmetric.</li>
 <li>The charge of the spinons.</li>
 </ol>
 </div>
@@ -160,7 +209,7 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
 <p>This is false. The same <span class="math inline">\(\chi_{ij}\)</span> for both spins can give a Fermi surface or Dirac points. A uniform <span class="math inline">\(\chi\)</span> on the square lattice has a Fermi surface and the <span class="math inline">\(\pi\)</span>-flux choice has Dirac points.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. The two spin species see the same band, so no spin direction is selected. The state has zero magnetization by construction.</p></li>
+<p>This is true. The two spin species see the same band, so no spin direction is selected. The state has zero magnetization by construction. A complex <span class="math inline">\(\chi_{ij}\)</span> with another flux through a triangle of the lattice also has zero magnetization, and it can break time reversal.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
 <p>This is false. Spinons are neutral for any <span class="math inline">\(\chi_{ij}\)</span>, also a spin-dependent one, since the constraint <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-11">(8.11)</a> fixes one fermion per site. The equal choice for both spins is not what gives this.</p>
 <div class="eq-again">
@@ -169,6 +218,51 @@ Question
 </ul>
 </div>
 </details>
+</div>
+<div class="quiz quiz-pics" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Each picture shows spinon bands <span class="math inline">\(E/\chi\)</span> along a line in momentum. The spinons are at half filling. These bands are symmetric around zero, so the Fermi level is at <span class="math inline">\(E=0\)</span>. Dirac spinons have two bands that touch at the Fermi level, linearly in <span class="math inline">\(k\)</span>. Which picture has Dirac spinons?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session08/g3_quiz_bands_chain.svg" loading="lazy" alt="Spinon bands against the momentum from minus pi to pi. One cosine band goes from minus 2 to 2 and crosses zero at two points." /></li>
+<li><img src="../figures/web/session08/g3_quiz_bands_piflux.svg" loading="lazy" alt="Spinon bands against the momentum from minus pi to pi. Two bands, symmetric around zero, meet at zero at three points of the axis." /></li>
+<li><img src="../figures/web/session08/g3_quiz_bands_dimer.svg" loading="lazy" alt="Spinon bands against the momentum from minus pi to pi. Two bands, symmetric around zero, are separated by a gap at the edges of the axis." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. One band crosses the Fermi level, at <span class="math inline">\(k=\pm\pi/2\)</span>. These two points are the Fermi surface of a chain, and the density of states at the Fermi level is finite, so these are gapless spinons. This is the uniform chain with <span class="math inline">\(\chi=1\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The two bands <span class="math inline">\(\pm2|\sin k|\)</span> touch at the Fermi level at <span class="math inline">\(k=0\)</span> and <span class="math inline">\(k=\pm\pi\)</span>, with the slopes <span class="math inline">\(\pm2\)</span>. This is the <span class="math inline">\(\pi\)</span>-flux square lattice along the line <span class="math inline">\(k_y=\pi/2\)</span>, which goes through its two Dirac points. Around each of them the bands form a cone, and the density of states vanishes at the Fermi level.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The two bands are separated by a gap of <span class="math inline">\(0.8\)</span> at <span class="math inline">\(k=\pm\pi\)</span>, so these are gapped spinons, and no state is at the Fermi level. This is the chain with the hoppings <span class="math inline">\(0.6\)</span> and <span class="math inline">\(1\)</span> on alternate bonds.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>Take the uniform chain with the exchange <span class="math inline">\(J\)</span> on every bond, and a real and negative hopping <span class="math inline">\(\chi\)</span> in <a href="#eq-8-15">(8.15)</a>, so that the spinon band <span class="math inline">\(2\chi\cos k\)</span> has its minimum at <span class="math inline">\(k=0\)</span>. At half filling, find <span class="math inline">\(\langle f^\dagger_{is}f_{i+1,s}\rangle\)</span> for one spin. Then find the self-consistent <span class="math inline">\(\chi\)</span>, which is the coefficient <span class="math inline">\(-\frac J2\langle\chi_{i,i+1}\rangle^*\)</span> of the decoupling, and the width of the spinon band.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>At half filling each spin fills the states with <span class="math inline">\(|k|&lt;\pi/2\)</span>, which is half of the zone. With <span class="math inline">\(f_j=N^{-1/2}\sum_k e^{ikj}f_k\)</span> we get</p>
+<p><span class="math display">\[\langle f^\dagger_{is}f_{i+1,s}\rangle=\int_{-\pi/2}^{\pi/2}\frac{dk}{2\pi}\,e^{ik}=\frac{1}{\pi}.\]</span></p>
+<p>The bond operator sums over the two spins, so <span class="math inline">\(\langle\chi_{i,i+1}\rangle=2/\pi\approx0.64\)</span>, and the hopping is</p>
+<p><span class="math display">\[\chi=-\frac J2\cdot\frac2\pi=-\frac J\pi\approx-0.32\,J,\]</span></p>
+<p>which is negative, as we assumed. The band <span class="math inline">\(2\chi\cos k\)</span> then runs from <span class="math inline">\(-2J/\pi\)</span> to <span class="math inline">\(2J/\pi\)</span>, a width of <span class="math inline">\(4J/\pi\approx1.27\,J\)</span>. A positive <span class="math inline">\(\chi\)</span> gives <span class="math inline">\(|\chi|=J/\pi\)</span> too, since <span class="math inline">\(f_j\to(-1)^jf_j\)</span> changes the sign of every hopping of the chain.</p>
+<p>This is a mean-field number, and the uniform chain is one self-consistent solution of the loop, which we take as an ansatz. A loop on a cell of two sites is free to dimerize, and it ends at the hoppings <span class="math inline">\(-J/2\)</span> and <span class="math inline">\(0\)</span> on alternate bonds. Its mean-field energy <span class="math inline">\(\frac J4-\frac J2|\langle\chi_{ij}\rangle|^2\)</span> is <span class="math inline">\(0\)</span> per bond, against <span class="math inline">\(0.047\,J\)</span> for the uniform chain. So the uniform chain of <a href="#sch:s08:spinon_bands">Schematic 8.7</a> is an ansatz, and not the lowest mean-field state of the chain.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="tryit">
 <p><strong>Try it.</strong> Change the values in <code>t2s</code> and look at how the spinon Fermi surface of the triangular lattice changes. Then replace <code>triangular_lattice</code> by <code>square_lattice</code> and see which shape the Fermi surface has at <span class="math inline">\(t_2=0\)</span> and half filling.</p>

@@ -85,6 +85,7 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="on" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 8. Quantum Magnetism, Spinons and Kondo Physics</a></p>
 <h1 id="sec-8-11"><span class="num">8.11</span> From a single Kondo impurity to the Kondo lattice</h1>
+<p>What does a local magnetic moment do inside a metal, and what changes when there is one on every site? We will see that a single moment forms a singlet with a conduction electron close to it. In a lattice of moments the conduction electrons that screen them are shared between the singlets.</p>
 <p>Now that we have the method for quantum spin liquids, we move to a second physical system, which is quite different but which can be solved with the same method. This is the <strong>Kondo lattice model</strong>, which appears whenever a metal and a correlated system of local moments exist together.</p>
 <p>Let us start with the simplest case, which is a single spin-<span class="math inline">\(1/2\)</span> magnetic impurity in a non-interacting two-dimensional electron gas. The total Hamiltonian has a free kinetic term for the conduction electrons, with the sign of the hopping of <a href="../session1/13-worked-example-1-the-charge-density-wave.html#eq-1-6">(1.6)</a>. It also has a Heisenberg-like coupling between the spin of the impurity and the local spin density of the conduction electrons at the impurity site,</p>
 <p><span id="eq-8-17" class="eq"><span class="math display">\[H = -t\sum_{\langle ij\rangle,\sigma}\Big(c^\dagger_{i\sigma}c_{j\sigma} + \text{h.c.}\Big) +
@@ -94,32 +95,83 @@ c_{0\alpha}\Big)\cdot \mathbf S, \tag{8.17}\]</span></span></p>
 <p><span class="math display">\[|GS\rangle \sim \frac{1}{\sqrt2}\Big(|{\Uparrow\downarrow}\rangle -
 |{\Downarrow\uparrow}\rangle\Big),\]</span></p>
 <p>and the rest of the electron gas behaves as a Fermi sea without interactions. This is a good approximation to the many-body ground state. The resulting state has total spin zero and does not break time-reversal symmetry, so even if it has a real local moment, it is already a quantum magnet in the sense of Section <a href="01-two-classes-of-magnets-and-where-we-find-them.html#sec-8-1">8.1</a>.</p>
-<p>Let us now generalize this to a whole <strong>lattice</strong> of magnetic impurities, with one impurity per site, where each impurity is coupled to the same bath of conduction electrons,</p>
+<p>Let us now generalize this to a whole <strong>lattice</strong> of magnetic impurities, with one impurity per site, where each impurity is coupled to the same bath of conduction electrons.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>A lattice of impurity spins <span class="math inline">\(\mathbf S_j\)</span>, one on every site <span class="math inline">\(j\)</span>, each coupled to the conduction electrons of its own site, is the Kondo lattice,</p>
 <p><span id="eq-8-18" class="eq"><span class="math display">\[H = -t\sum_{\langle ij\rangle,\sigma}\Big(c^\dagger_{i\sigma}c_{j\sigma} + \text{h.c.}\Big) +
 J_K\sum_{j,\alpha\beta}\Big(c^\dagger_{j\beta}\,\boldsymbol\sigma_{\beta\alpha}\,c_{j\alpha}\Big)\cdot
 \mathbf S_j. \tag{8.18}\]</span></span></p>
-<p>Every impurity again tends to form a singlet with a conduction electron close to it. Since many impurities compete for the same sea of electrons, the electrons that screen the impurities are shared, in a fractional way, between the singlets of different impurities. The result is a state with a large entanglement over the whole lattice, between all the magnetic sites and the electron gas, while the total spin stays zero. <a href="#sch:s08:kondo_screening">Schematic 8.9</a> sketches the two cases.</p>
+<p>For <span class="math inline">\(J_K&gt;0\)</span> each impurity tends to bind a conduction electron into a singlet. The same conduction electrons screen many impurities, so the screening is shared between them.</p>
+</div>
+<p>Every impurity again tends to form a singlet with a conduction electron close to it. Since many impurities compete for the same sea of electrons, the electrons that screen the impurities are shared, in a fractional way, between the singlets of different impurities. The result is a state with a large entanglement over the whole lattice, between all the magnetic sites and the electron gas, while the total spin stays zero. <a href="#sch:s08:kondo_screening">Schematic 8.10</a> sketches the two cases.</p>
 <figure id="sch:s08:kondo_screening" class="schematic">
 <img src="../figures/web/session08/kondo_screening.svg" loading="lazy" alt="A magnetic impurity with a bound conduction electron in a sea of electrons, and a lattice of impurities whose screening clouds overlap." />
-<figcaption><strong>Schematic 8.9.</strong> A sketch of the Kondo screening. Left, a magnetic impurity forms a singlet with one conduction electron close to it. Right, in a lattice every impurity wants such a singlet, and the clouds overlap, so the same electrons serve several impurities. Look at the overlaps in the right panel, which are the reason why the screening is shared. The drawing is schematic and no number is computed.</figcaption>
+<figcaption><strong>Schematic 8.10.</strong> A sketch of the Kondo screening. Left, a magnetic impurity forms a singlet with one conduction electron close to it. Right, in a lattice every impurity wants such a singlet, and the clouds overlap, so the same electrons serve several impurities. Look at the overlaps in the right panel, which are the reason why the screening is shared. The drawing is schematic and no number is computed.</figcaption>
 </figure>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session8.ipynb"><code>session8.ipynb</code></a>, “Magnetization of a large Heisenberg model with a magnetic impurity” (Challenge) and “Magnetization of a dimerized Heisenberg model with a magnetic impurity” (Challenge)</p>
 <p>These exercises show, numerically and in real space, how the local field of a single magnetic impurity decays with the distance in a quantum magnet that is otherwise gapless or dimerized. The gapless chain shows an algebraic and staggered decay, which follows the correlation profile of a critical spin liquid. The dimerized chain of Section <a href="05-the-dimerized-heisenberg-model-a-first-step-before-a-spin-liquid.html#sec-8-5">8.5</a>, which is a valence bond solid, shows instead an exponential decay over a finite correlation length, because its ground state is gapped. This is the same physics of the screening cloud as in <a href="#eq-8-17">(8.17)</a>, seen from the side of a single chain in real space and not from the side of itinerant electrons.</p>
 </div>
 <h1 class="sec-next" id="sec-8-12"><span class="num">8.12</span> Solving the Kondo lattice with the parton method and a hybridization</h1>
+<p>How do we solve a lattice of impurity spins that are coupled to a metal? We write every spin with the Abrikosov fermions of Section <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#sec-8-8">8.8</a> and decouple the Kondo term in mean field. We arrive at a bilinear Hamiltonian, <a href="#eq-8-21">(8.21)</a>, in which the conduction electrons hybridize with the <span class="math inline">\(f\)</span> fermions.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[\mathbf S_i = \frac12 \sum_{\alpha\beta} f_{i\alpha}^\dagger\, \boldsymbol\sigma_{\alpha\beta}\,
+f_{i\beta}, \tag{8.10}\]</span></p>
+</div>
+<div class="eq-again">
+<p><span class="math display">\[\sum_\sigma f_{i\sigma}^\dagger f_{i\sigma} = 1 \qquad \text{at every site } i. \tag{8.11}\]</span></p>
+</div>
+<p>These are the Abrikosov fermions of Section <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#sec-8-8">8.8</a>. A spin one half on site <span class="math inline">\(i\)</span> is written with two fermions <span class="math inline">\(f_{i\uparrow}\)</span> and <span class="math inline">\(f_{i\downarrow}\)</span>, and <span class="math inline">\(\boldsymbol\sigma\)</span> is the vector of Pauli matrices. The constraint keeps one fermion on every site, so that the four states of the two fermions reduce to the two states of the spin.</p>
+</div>
 <p>We solve this problem in the same way as we solved the QSL in Section <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#sec-8-8">8.8</a>. We replace every impurity spin by an Abrikosov fermion, <span class="math inline">\(\mathbf S_j = \tfrac12
-f_{j\alpha}^\dagger \boldsymbol\sigma_{\alpha\beta} f_{j\beta}\)</span>, with the same single-occupancy constraint <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-11">(8.11)</a>, which we write here in the equivalent traceless form</p>
+f_{j\alpha}^\dagger \boldsymbol\sigma_{\alpha\beta} f_{j\beta}\)</span>, with the same single-occupancy constraint <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-11">(8.11)</a>, and we write the spin here in the equivalent traceless form</p>
 <p><span id="eq-8-19" class="eq"><span class="math display">\[S_{\alpha\beta}(j) = f^\dagger_{j\alpha}f_{j\beta} - \frac{n_f(j)}{2}\delta_{\alpha\beta}. \tag{8.19}\]</span></span></p>
 <p>When we insert this into <a href="#eq-8-18">(8.18)</a>, the Kondo coupling becomes a real quartic interaction. Now it does not couple the auxiliary <span class="math inline">\(f\)</span> fermions to the <span class="math inline">\(f\)</span> fermion of another site, as in <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-13">(8.13)</a>, but to the <em>real</em> conduction electrons <span class="math inline">\(c_{j\sigma}\)</span> on the same site,</p>
 <p><span id="eq-8-20" class="eq"><span class="math display">\[H \sim \sum_{\mathbf k\alpha} \varepsilon_{\mathbf k}\, c^\dagger_{\mathbf k\alpha}c_{\mathbf
 k\alpha} \;-\; J_K\sum_{j,\alpha\beta}\Big(c^\dagger_{j\beta}f_{j\beta}\Big)\Big(f^\dagger_{j\alpha}
 c_{j\alpha}\Big). \tag{8.20}\]</span></span></p>
-<p>As in <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-14">(8.14)</a>, we decouple this quartic term at the mean-field level, with the expectation value <span class="math inline">\(\langle c^\dagger_j f_j\rangle\)</span>, and we do a Fourier transform to momentum space. This gives a bilinear Hamiltonian that mixes real electrons and auxiliary fermions,</p>
+<p>As in <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-14">(8.14)</a>, we decouple this quartic term at the mean-field level, with the expectation value <span class="math inline">\(\langle c^\dagger_j f_j\rangle\)</span>, and we do a Fourier transform to momentum space. This gives a bilinear Hamiltonian that mixes real electrons and auxiliary fermions.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>The mean-field Hamiltonian of the Kondo lattice is</p>
 <p><span id="eq-8-21" class="eq"><span class="math display">\[H \sim \sum_{\mathbf k\alpha} \varepsilon_{\mathbf k}\, c^\dagger_{\mathbf k\alpha} c_{\mathbf
 k\alpha} \;-\; \gamma_K \sum_{\mathbf k,\alpha} f^\dagger_{\mathbf k\alpha}c_{\mathbf k\alpha} +
 \text{h.c.}, \tag{8.21}\]</span></span></p>
-<p>where <span class="math inline">\(\varepsilon_{\mathbf k}\)</span> is the <strong>conduction band dispersion</strong> and <span class="math inline">\(\gamma_K\)</span> is the <strong>Kondo hybridization</strong>. The hybridization is the only mean-field parameter, it is determined self-consistently, and it contains all the information about the strength of the original Kondo coupling <span class="math inline">\(J_K\)</span>.</p>
+<p>where <span class="math inline">\(\varepsilon_{\mathbf k}\)</span> is the <strong>conduction band dispersion</strong> and <span class="math inline">\(\gamma_K\)</span> is the <strong>Kondo hybridization</strong>. It is bilinear, and for every <span class="math inline">\(\mathbf k\)</span> and spin it mixes one conduction electron with one <span class="math inline">\(f\)</span> fermion, with the strength <span class="math inline">\(\gamma_K=J_K\langle\sum_\sigma c^\dagger_{j\sigma}f_{j\sigma}\rangle\)</span> that we find self-consistently.</p>
+</div>
+<p>The hybridization is the only mean-field parameter, it is determined self-consistently, and it contains all the information about the strength of the original Kondo coupling <span class="math inline">\(J_K\)</span>. This holds when the <span class="math inline">\(f\)</span> level stays at zero, as for a half-filled conduction band that is symmetric around zero. For another band or another filling the constraint <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-11">(8.11)</a>, imposed on average, adds the energy of the <span class="math inline">\(f\)</span> level as a second mean-field parameter.</p>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the Kondo lattice (8.18) to the hybridization (8.21)</span></summary>
+<div class="fold-body">
+<p>The algebra happens on one site, so let us take one site and drop its index <span class="math inline">\(j\)</span>. We write the spin with <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-10">(8.10)</a>, <span class="math inline">\(\mathbf S=\tfrac12 f^\dagger_\gamma\boldsymbol\sigma_{\gamma\delta}f_\delta\)</span>, with a sum over every repeated spin index. The Kondo term of <a href="#eq-8-18">(8.18)</a> on the site is then</p>
+<p><span class="math display">\[J_K\big(c^\dagger_\beta\boldsymbol\sigma_{\beta\alpha}c_\alpha\big)\cdot\mathbf S=\frac{J_K}{2}\sum_{a=x,y,z}\sigma^a_{\beta\alpha}\sigma^a_{\gamma\delta}\,c^\dagger_\beta c_\alpha f^\dagger_\gamma f_\delta.\]</span></p>
+<p>The Pauli matrices obey the Fierz identity of Section <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#sec-8-8">8.8</a>,</p>
+<p><span class="math display">\[\sum_{a=x,y,z}\sigma^a_{\beta\alpha}\sigma^a_{\gamma\delta}=2\,\delta_{\beta\delta}\delta_{\alpha\gamma}-\delta_{\beta\alpha}\delta_{\gamma\delta},\]</span></p>
+<p>so the Kondo term is</p>
+<p><span class="math display">\[J_K\,c^\dagger_\beta c_\alpha f^\dagger_\alpha f_\beta-\frac{J_K}{2}\,n_cn_f,\]</span></p>
+<p>with <span class="math inline">\(n_c=c^\dagger_\alpha c_\alpha\)</span> and <span class="math inline">\(n_f=f^\dagger_\alpha f_\alpha\)</span> on the site. We now bring each <span class="math inline">\(c^\dagger\)</span> next to an <span class="math inline">\(f\)</span>. The anticommutator <span class="math inline">\(f_\beta f^\dagger_\alpha=\delta_{\alpha\beta}-f^\dagger_\alpha f_\beta\)</span> gives one more term, and moving <span class="math inline">\(c_\alpha\)</span> past two fermion operators gives no sign, so that</p>
+<p><span class="math display">\[c^\dagger_\beta c_\alpha f^\dagger_\alpha f_\beta=n_c-\big(c^\dagger_\beta f_\beta\big)\big(f^\dagger_\alpha c_\alpha\big).\]</span></p>
+<p>With one <span class="math inline">\(f\)</span> fermion on the site, <span class="math inline">\(n_f=1\)</span> from <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-11">(8.11)</a>, the Kondo term becomes</p>
+<p><span class="math display">\[-J_K\big(c^\dagger_\beta f_\beta\big)\big(f^\dagger_\alpha c_\alpha\big)+\frac{J_K}{2}\,n_c.\]</span></p>
+<p>The first term is the quartic term of <a href="#eq-8-20">(8.20)</a>. The second one is a potential <span class="math inline">\(J_K/2\)</span> for the conduction electrons on every site, which only shifts their chemical potential, and the <span class="math inline">\(\sim\)</span> of <a href="#eq-8-20">(8.20)</a> leaves it out.</p>
+<p>The decoupling follows <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-14">(8.14)</a>. We write <span class="math inline">\(A_j=\sum_\alpha f^\dagger_{j\alpha}c_{j\alpha}\)</span>, so that the quartic term is <span class="math inline">\(-J_KA_j^\dagger A_j\)</span>, and</p>
+<p><span class="math display">\[A_j^\dagger A_j\approx\langle A_j^\dagger\rangle A_j+A_j^\dagger\langle A_j\rangle-|\langle A_j\rangle|^2.\]</span></p>
+<p>We call <span class="math inline">\(\gamma_K=J_K\langle A_j^\dagger\rangle=J_K\langle\sum_\sigma c^\dagger_{j\sigma}f_{j\sigma}\rangle\)</span>, the same on every site, and we get</p>
+<p><span class="math display">\[-J_KA_j^\dagger A_j\approx-\gamma_K\sum_\alpha f^\dagger_{j\alpha}c_{j\alpha}-\gamma_K^*\sum_\alpha c^\dagger_{j\alpha}f_{j\alpha}+\frac{|\gamma_K|^2}{J_K}.\]</span></p>
+<p>Both operators sit on the same site, so the sum over the sites of <span class="math inline">\(f^\dagger_{j\alpha}c_{j\alpha}\)</span> is <span class="math inline">\(\sum_{\mathbf k}f^\dagger_{\mathbf k\alpha}c_{\mathbf k\alpha}\)</span>. This is <a href="#eq-8-21">(8.21)</a>, up to the constant <span class="math inline">\(|\gamma_K|^2/J_K\)</span> per site. The sign of <span class="math inline">\(\gamma_K\)</span> is a gauge choice, since <span class="math inline">\(f\to-f\)</span> changes it and leaves the bands the same.</p>
+<p>As a check with a number, we take the half-filled chain with <span class="math inline">\(t=1\)</span> and <span class="math inline">\(J_K=0.8\)</span>. The energy of the filled bands of <a href="#eq-8-21">(8.21)</a>, plus <span class="math inline">\(\gamma_K^2/J_K\)</span> per site, is lowest at <span class="math inline">\(\gamma_K=0.527\)</span>. The filled states give <span class="math inline">\(J_K\langle\sum_\sigma c^\dagger_\sigma f_\sigma\rangle=0.527\)</span> too, with the same sign.</p>
+</div>
+</details>
+</div>
 <figure class="again">
 <img src="../figures/s08f06_kondo_bands.svg" loading="lazy" alt="A dispersive conduction band crossing a flat band without hybridization, and the same bands with a gap at the crossing when the hybridization is finite." />
 <figcaption><strong><a href="13-electronic-structure-of-the-kondo-lattice-and-the-kondo-insulator.html#fig:s08:kondobands">Figure 8.6</a>, shown again.</strong> The result of the parton method for the Kondo lattice, which we obtain in the second part of this page. In panel (a) the flat band of the <span class="math inline">\(f\)</span> levels crosses the conduction band, and in panel (b) the hybridization <span class="math inline">\(\gamma_K\)</span> of <a href="#eq-8-21">(8.21)</a> opens a gap at the crossing.</figcaption>
@@ -129,12 +181,9 @@ k\alpha} \;-\; \gamma_K \sum_{\mathbf k,\alpha} f^\dagger_{\mathbf k\alpha}c_{\m
 Question
 </div>
 <div class="quiz-q">
-<p>In the Kondo lattice <a href="#eq-8-18">(8.18)</a> every impurity wants a singlet with a conduction electron close to it. What is the consequence of having many impurities?</p>
-<div class="eq-again">
-<p><span class="math display">\[H = -t\sum_{\langle ij\rangle,\sigma}\Big(c^\dagger_{i\sigma}c_{j\sigma} + \text{h.c.}\Big) +
-J_K\sum_{j,\alpha\beta}\Big(c^\dagger_{j\beta}\,\boldsymbol\sigma_{\beta\alpha}\,c_{j\alpha}\Big)\cdot
-\mathbf S_j. \tag{8.18}\]</span></p>
-</div>
+<p>The Kondo lattice couples an impurity spin on each site to the conduction electrons,</p>
+<p><span class="math display">\[H_K=J_K\sum_{j,\alpha\beta}\Big(c^\dagger_{j\beta}\,\boldsymbol\sigma_{\beta\alpha}\,c_{j\alpha}\Big)\cdot\mathbf S_j,\qquad J_K&gt;0.\]</span></p>
+<p>Each impurity wants a singlet with a conduction electron close to it. What happens when there are many impurities?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -147,11 +196,11 @@ J_K\sum_{j,\alpha\beta}\Big(c^\dagger_{j\beta}\,\boldsymbol\sigma_{\beta\alpha}\
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
-<p>This is true. The number of conduction electrons is not larger than the number of impurities, and all impurities draw from the same sea. The singlets are then fractional and entangled over the lattice.</p></li>
+<p>This is true. At half filling or below, the number of conduction electrons is not larger than the number of impurities, and all impurities draw from the same sea. The singlets are then fractional and entangled over the lattice.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
 <p>This is false. The Kondo coupling does not create electrons. With <span class="math inline">\(0.5\)</span> conduction electrons per site, only half of the impurities could get one, and the density stays <span class="math inline">\(0.5\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. At half filling the <span class="math inline">\(f\)</span> fermions hybridize with the conduction band, which opens a gap <span class="math inline">\(2\gamma_K\)</span> as in the Kondo insulator. Decoupled impurities could not do this.</p></li>
+<p>This is false. At half filling the <span class="math inline">\(f\)</span> fermions hybridize with the conduction band. This opens a direct gap <span class="math inline">\(2\gamma_K\)</span> at the crossing, and the Fermi level lies in the smaller gap between the two bands, as in the Kondo insulator. Decoupled impurities could not do this.</p></li>
 </ul>
 </div>
 </details>
@@ -161,12 +210,9 @@ J_K\sum_{j,\alpha\beta}\Big(c^\dagger_{j\beta}\,\boldsymbol\sigma_{\beta\alpha}\
 Question
 </div>
 <div class="quiz-q">
-<p>In <a href="#eq-8-21">(8.21)</a> with <span class="math inline">\(\gamma_K=0\)</span>, what is the energy of the <span class="math inline">\(f\)</span> band?</p>
-<div class="eq-again">
-<p><span class="math display">\[H \sim \sum_{\mathbf k\alpha} \varepsilon_{\mathbf k}\, c^\dagger_{\mathbf k\alpha} c_{\mathbf
-k\alpha} \;-\; \gamma_K \sum_{\mathbf k,\alpha} f^\dagger_{\mathbf k\alpha}c_{\mathbf k\alpha} +
-\text{h.c.}, \tag{8.21}\]</span></p>
-</div>
+<p>A Kondo lattice in mean field has the Hamiltonian</p>
+<p><span class="math display">\[H=\sum_{\mathbf k\alpha}\varepsilon_{\mathbf k}\,c^\dagger_{\mathbf k\alpha}c_{\mathbf k\alpha}-\gamma_K\sum_{\mathbf k\alpha}f^\dagger_{\mathbf k\alpha}c_{\mathbf k\alpha}+\text{h.c.}\]</span></p>
+<p>Here <span class="math inline">\(c\)</span> are the conduction electrons, with the band <span class="math inline">\(\varepsilon_{\mathbf k}\)</span>. The <span class="math inline">\(f\)</span> are the fermions of the impurity spins, and <span class="math inline">\(\gamma_K\)</span> is the hybridization. With <span class="math inline">\(\gamma_K=0\)</span>, what is the energy of the <span class="math inline">\(f\)</span> band?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -181,15 +227,58 @@ k\alpha} \;-\; \gamma_K \sum_{\mathbf k,\alpha} f^\dagger_{\mathbf k\alpha}c_{\m
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
 <p>This is false. The <span class="math inline">\(f\)</span> fermions have no hopping. At <span class="math inline">\(\mathbf k\)</span> with <span class="math inline">\(\varepsilon_{\mathbf k}=2\)</span>, say, the conduction band is at <span class="math inline">\(2\)</span> and the <span class="math inline">\(f\)</span> level is still at <span class="math inline">\(0\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. The auxiliary fermions have no hopping of their own, and the only term that involves them is the hybridization. Without it their levels sit at zero energy, which is the chemical potential of the constraint.</p></li>
+<p>This is true. The auxiliary fermions have no hopping of their own, and the only term that involves them is the hybridization. Without it their levels sit at zero energy, which is the chemical potential of the constraint when the conduction band is half filled and symmetric around zero.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
 <p>This is false. The constraint asks for one <span class="math inline">\(f\)</span> fermion on each site, so there are <span class="math inline">\(N\)</span> of them for <span class="math inline">\(N\)</span> sites. They are still in the Hamiltonian, at energy zero.</p></li>
 </ul>
 </div>
 </details>
 </div>
+<div class="quiz" data-correct="A" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>The <span class="math inline">\(f\)</span> fermions write the impurity spins, and <span class="math inline">\(c\)</span> are the conduction electrons. The conduction band is <span class="math inline">\(\varepsilon_{\mathbf k}\)</span>, and <span class="math inline">\(\gamma_K\)</span> is the hybridization. The Kondo coupling is <span class="math inline">\(J_K\)</span>. Which term puts <span class="math inline">\(c\)</span> and <span class="math inline">\(f\)</span> into the same bands?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(-\gamma_K\sum_{\mathbf k\alpha}f^\dagger_{\mathbf k\alpha}c_{\mathbf k\alpha}+\text{h.c.}\)</span></li>
+<li><span class="math inline">\(\sum_{\mathbf k\alpha}\varepsilon_{\mathbf k}\,c^\dagger_{\mathbf k\alpha}c_{\mathbf k\alpha}\)</span></li>
+<li><span class="math inline">\(-J_K\sum_{j,\alpha\beta}\big(c^\dagger_{j\beta}f_{j\beta}\big)\big(f^\dagger_{j\alpha}c_{j\alpha}\big)\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. It moves an electron from <span class="math inline">\(c\)</span> to <span class="math inline">\(f\)</span> at the same <span class="math inline">\(\mathbf k\)</span>, so <span class="math inline">\(n_c\)</span> and <span class="math inline">\(n_f\)</span> are no longer conserved apart. For every <span class="math inline">\(\mathbf k\)</span> and spin it is the entry <span class="math inline">\(-\gamma_K\)</span> of a <span class="math inline">\(2\times2\)</span> matrix, and at the crossing it splits the two levels into <span class="math inline">\(\pm\gamma_K\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. It acts on the conduction electrons alone. With only this term, a <span class="math inline">\(\mathbf k\)</span> with <span class="math inline">\(\varepsilon_{\mathbf k}=2\)</span> has a conduction electron at <span class="math inline">\(2\)</span> and the <span class="math inline">\(f\)</span> level at <span class="math inline">\(0\)</span>, and the two do not mix.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. This quartic term moves an electron from <span class="math inline">\(c\)</span> to <span class="math inline">\(f\)</span> and back on the same site, so it keeps <span class="math inline">\(n_c\)</span> and <span class="math inline">\(n_f\)</span>. On a site with one conduction electron and one <span class="math inline">\(f\)</span> fermion both numbers stay <span class="math inline">\(1\)</span>. Only its mean-field decoupling gives a term that mixes the bands.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>Take one impurity spin <span class="math inline">\(\mathbf S\)</span> and one conduction electron on the same site, with the Kondo term of <a href="#eq-8-17">(8.17)</a>, <span class="math inline">\(H_K=J_K\big(c^\dagger\boldsymbol\sigma c\big)\cdot\mathbf S\)</span>. Write <span class="math inline">\(H_K\)</span> with the spin <span class="math inline">\(\mathbf s=\tfrac12c^\dagger\boldsymbol\sigma c\)</span> of the electron, and find its levels with their degeneracies. Which level is the ground state for <span class="math inline">\(J_K&gt;0\)</span>?</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>Since <span class="math inline">\(c^\dagger\boldsymbol\sigma c=2\mathbf s\)</span>, the coupling is <span class="math inline">\(H_K=2J_K\,\mathbf s\cdot\mathbf S\)</span>. This is the Heisenberg dimer with <span class="math inline">\(J=2J_K\)</span>, so the algebra is the one of the singlet <a href="03-two-minimal-dimers-a-classical-order-parameter-and-a-quantum-singlet.html#eq-8-3">(8.3)</a>. With the total spin <span class="math inline">\(\mathbf S_\text{tot}=\mathbf s+\mathbf S\)</span> we have</p>
+<p><span class="math display">\[\mathbf s\cdot\mathbf S=\frac12\Big(\mathbf S_\text{tot}^2-\mathbf s^2-\mathbf S^2\Big)=\frac12\Big(S_\text{tot}(S_\text{tot}+1)-\frac32\Big),\]</span></p>
+<p>since <span class="math inline">\(\mathbf s^2=\mathbf S^2=3/4\)</span>. For <span class="math inline">\(S_\text{tot}=0\)</span> this is <span class="math inline">\(-3/4\)</span>, and for <span class="math inline">\(S_\text{tot}=1\)</span> it is <span class="math inline">\(+1/4\)</span>. So the singlet is at <span class="math inline">\(-3J_K/2\)</span>, once, and the triplet is at <span class="math inline">\(+J_K/2\)</span>, three times, with the gap <span class="math inline">\(2J_K\)</span> between them. For <span class="math inline">\(J_K&gt;0\)</span> the ground state is the singlet, which is the bound state of the impurity and the electron of Section <a href="#sec-8-11">8.11</a>.</p>
+<p>The factor two matters when we compare with a formula or a code written for <span class="math inline">\(J\,\mathbf s\cdot\mathbf S\)</span>, which needs <span class="math inline">\(J=2J_K\)</span>. The <code>KondoLatticeHamiltonian</code> of pyqula is such a code. With its coupling set to <span class="math inline">\(2J_K\)</span> it gives the same <span class="math inline">\(\gamma_K\)</span> as the decoupling above, <span class="math inline">\(0.527\)</span> for <span class="math inline">\(J_K=0.8\)</span> on the half-filled chain.</p>
+</div>
+</details>
+</div>
+</div>
 <div class="tryit">
-<p><strong>Try it.</strong> Run the three values of <code>JK</code> and follow the flat band. Check that the crossing with the conduction band is replaced by a gap, and that the gap grows from <span class="math inline">\(J_K=0.25\)</span> to <span class="math inline">\(J_K=0.5\)</span>. Then change <code>add_onsite(-2.0)</code> and see if the gap stays at the Fermi level.</p>
+<p><strong>Try it.</strong> Run the three values of <code>JK</code> and follow the flat band. Check that the crossing with the conduction band is replaced by a gap, and that the gap grows from <code>JK=0.25</code> to <code>JK=0.5</code>, where <code>JK</code> is the hybridization <span class="math inline">\(\gamma_K\)</span> of <a href="#eq-8-21">(8.21)</a>. Then change <code>add_onsite(-2.0)</code> and see if the gap stays at the Fermi level.</p>
 <div class="tryit-links">
 Notebook <code>session8.ipynb</code>, cell “Quantum magnetism in the Kondo lattice”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session8.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session8.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession8.ipynb">Binder</a>.
 </div>

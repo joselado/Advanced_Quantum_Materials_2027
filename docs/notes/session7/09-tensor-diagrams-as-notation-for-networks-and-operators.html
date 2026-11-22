@@ -85,24 +85,58 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="on" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 7. Quantum Many-Body Entanglement and Tensor Networks</a></p>
 <h1 id="sec-7-9"><span class="num">7.9</span> Tensor diagrams as notation for networks and operators</h1>
+<p>How do we compute with an MPS without writing every index? We will now see a graphical notation, where a leg is an index and two joined legs are a sum over that index. In this notation an operator that acts on a state multiplies the bond dimensions, and a singular value decomposition cuts them back.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[C(s_1,s_2,\dots,s_L) \;\approx\; M^{s_1}_{1}\, M^{s_2}_{2}\, \cdots\, M^{s_L}_{L}, \tag{7.5}\]</span></p>
+</div>
+<p>This is the matrix product state of Section <a href="04-the-matrix-product-state-ansatz.html#sec-7-4">7.4</a>. The coefficient <span class="math inline">\(C(s_1,\dots,s_L)\)</span> of the state is a product of matrices, one for each site. Each <span class="math inline">\(M^{s_i}_i\)</span> is a <span class="math inline">\(\chi\times \chi\)</span> matrix for each value of the spin <span class="math inline">\(s_i\)</span>, and <span class="math inline">\(\chi\)</span> is the bond dimension. At the two ends of an open chain the matrices are vectors.</p>
+</div>
 <p>Matrix product states come with a convenient graphical notation, which makes it much easier to think about both the ansatz and the algorithms built on it. A scalar, which is a tensor of rank 0, is drawn as a point. A vector, of rank 1, is a point with one free leg. A matrix, of rank 2, is a point with two legs. A tensor of rank 3 is a point with three legs, and so on for any rank. Each leg represents one index of the tensor, and when we join two legs of two tensors, this means that we sum over the shared index, which is called a contraction.</p>
-<p>An MPS is then a horizontal chain of such points, with one point per site. Each point has one <em>physical</em> leg pointing down, which is the index <span class="math inline">\(s_i\)</span>, the local spin value. It also has one or two <em>virtual</em> legs that connect it to its neighbors in the chain, and these carry the bond-dimension index that is summed over. A <strong>matrix product operator</strong> (MPO) represents an operator, in particular the Hamiltonian, in the same way. Now each site has <em>two</em> physical legs instead of one, which correspond to the two indices <span class="math inline">\(\sigma_i,\sigma_i&#39;\)</span> of the operator, and the same virtual legs that link neighboring sites. To apply an MPO to an MPS, for example to compute <span class="math inline">\(H|\Psi\rangle\)</span>, we join the two diagrams along the physical legs and contract them. This means that we multiply every pair of matrices that share an index and sum over that index. If we do this in a naive way, the bond dimensions of the two objects are multiplied, which would remove the advantage of the method. In practice, we do a singular value decomposition of the result and keep only the largest singular values. In this way we truncate back to a bond dimension that we can handle, and we remove the least important part of the Hilbert space that is represented. This truncation step is the practical core of almost every MPS algorithm, including the ground-state search of the next section. Figure <a href="#fig:s07:tensors">7.4</a> shows together the notation, the ansatz <a href="04-the-matrix-product-state-ansatz.html#eq-7-5">(7.5)</a> drawn in this notation, and this step of contraction and truncation.</p>
+<p>An MPS is then a horizontal chain of such points, with one point per site. Each point has one <em>physical</em> leg pointing down, which is the index <span class="math inline">\(s_i\)</span>, the local spin value. It also has one or two <em>virtual</em> legs that connect it to its neighbors in the chain, and these carry the bond-dimension index that is summed over.</p>
+<p>A <strong>matrix product operator</strong> (MPO) represents an operator, in particular the Hamiltonian, in the same way. Now each site has <em>two</em> physical legs instead of one, which correspond to the two indices <span class="math inline">\(\sigma_i,\sigma_i&#39;\)</span> of the operator, and the same virtual legs that link neighboring sites. To apply an MPO to an MPS, for example to compute <span class="math inline">\(H|\Psi\rangle\)</span>, we join the two diagrams along the physical legs and contract them. This means that we multiply every pair of matrices that share an index and sum over that index. If we do this in a naive way, the bond dimensions of the two objects are multiplied, which would remove the advantage of the method.</p>
+<p>In practice, we do a singular value decomposition of the result and keep only the largest singular values. In this way we truncate back to a bond dimension that we can handle, and we remove the least important part of the Hilbert space that is represented. This truncation step is the practical core of almost every MPS algorithm, including the two-site update of the ground-state search of the next section. Figure <a href="#fig:s07:tensors">7.4</a> shows together the notation, the ansatz <a href="04-the-matrix-product-state-ansatz.html#eq-7-5">(7.5)</a> drawn in this notation, and this step of contraction and truncation.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>An MPO of bond dimension <span class="math inline">\(D\)</span> that acts on an MPS of bond dimension <span class="math inline">\(\chi\)</span> gives an MPS of bond dimension <span class="math inline">\(\chi D\)</span>, so the new state has at most <span class="math inline">\(\chi D\)</span> Schmidt terms at a bond. A singular value decomposition at each bond brings it back,</p>
+<p><span class="math display">\[\chi \;\to\; \chi D \;\to\; \chi,\]</span></p>
+<p>by keeping the <span class="math inline">\(\chi\)</span> largest singular values. This truncation is the core of almost every MPS algorithm.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From an MPO and an MPS to a bond of dimension chi times D, and back to chi</span></summary>
+<div class="fold-body">
+<p>We write the tensor of the MPS at one site as <span class="math inline">\(M^{\sigma&#39;}_{\alpha\beta}\)</span>, with the physical index <span class="math inline">\(\sigma&#39;\)</span> and the two virtual indices <span class="math inline">\(\alpha,\beta\)</span>, which take <span class="math inline">\(\chi\)</span> values. The tensor of the MPO at the same site is <span class="math inline">\(W^{\sigma\sigma&#39;}_{ab}\)</span>, with two physical indices and two virtual indices <span class="math inline">\(a,b\)</span>, which take <span class="math inline">\(D\)</span> values. Joining the physical legs is the sum over <span class="math inline">\(\sigma&#39;\)</span>,</p>
+<p><span class="math display">\[N^{\sigma}_{(a\alpha),(b\beta)}=\sum_{\sigma&#39;}W^{\sigma\sigma&#39;}_{ab}\,M^{\sigma&#39;}_{\alpha\beta}.\]</span></p>
+<p>The new tensor has one physical index <span class="math inline">\(\sigma\)</span>. Its left index is the pair <span class="math inline">\((a,\alpha)\)</span>, which takes <span class="math inline">\(D\cdot \chi\)</span> values, and so does its right index. So the result is again an MPS, with the bond dimension <span class="math inline">\(\chi D\)</span>. The new state has at most <span class="math inline">\(\chi D\)</span> Schmidt terms at a bond, and it can have fewer. For the MPO of the Heisenberg chain, with <span class="math inline">\(D=5\)</span>, and a random MPS with <span class="math inline">\(\chi=4\)</span> on 10 sites, the bonds in the bulk are 20. The new state has at most 12 Schmidt terms at a bond. The simplest case is a product state, <span class="math inline">\(\chi=1\)</span>, and a product operator, <span class="math inline">\(D=1\)</span>, such as <span class="math inline">\(\prod_i\sigma^x_i\)</span>, which flips every spin, and then the result is again a product state.</p>
+<p>To cut the bond back, we write the state at one bond in its Schmidt form,</p>
+<p><span class="math display">\[|\Psi\rangle=\sum_{k=1}^{\chi D}s_k\,|L_k\rangle\otimes|R_k\rangle, \qquad s_1\ge s_2\ge\dots\ge0,\]</span></p>
+<p>where the states <span class="math inline">\(|L_k\rangle\)</span> on the left are orthonormal, and so are the states <span class="math inline">\(|R_k\rangle\)</span> on the right. This is the singular value decomposition of the coefficients, with the sites on the left as rows and the sites on the right as columns. In an MPS it is done on the tensors next to the bond, once the others are in an orthonormal form, so it never builds the <span class="math inline">\(2^L\)</span> coefficients. We keep the <span class="math inline">\(\chi\)</span> largest <span class="math inline">\(s_k\)</span>. For a normalized state the squared distance between <span class="math inline">\(|\Psi\rangle\)</span> and the truncated state, before it is normalized again, is the dropped weight</p>
+<p><span class="math display">\[\varepsilon=\sum_{k&gt;\chi}s_k^2,\]</span></p>
+<p>and no other state with at most <span class="math inline">\(\chi\)</span> Schmidt terms at this bond is closer. When the Schmidt weights fall fast, as for a gapped chain, <span class="math inline">\(\varepsilon\)</span> is small already for a moderate <span class="math inline">\(\chi\)</span>.</p>
+</div>
+</details>
+</div>
 <figure id="fig:s07:tensors">
 <img src="../figures/s07f04_tensordiagram.svg" loading="lazy" alt="The graphical notation, and the MPS ansatz drawn in it." />
-<figcaption><strong>Figure 7.4.</strong> The graphical notation, and the MPS ansatz drawn in it. (a) A tensor is a block and each of its indices is a leg, so a scalar has no leg, a vector has one leg, a matrix has two, and so on. Joining two legs means summing over the shared index. (b) The exact coefficient tensor of <a href="03-storing-the-wave-function-as-the-main-bottleneck.html#eq-7-4">(7.4)</a> is a single object with one leg per site, and it contains <span class="math inline">\(2^L\)</span> independent numbers. The matrix product state <a href="04-the-matrix-product-state-ansatz.html#eq-7-5">(7.5)</a> replaces it with a chain of small tensors. Each of them has one physical leg pointing down and virtual legs of dimension <span class="math inline">\(M\)</span> that link it to its neighbors. In total this is <span class="math inline">\(\sim 2LM^2\)</span> numbers, so the exponential growth is replaced by a linear one. (c) An operator, in particular the Hamiltonian, becomes a matrix product operator, the darker row, with two physical legs per site. To apply it to a state we join the diagrams along the shared physical legs and contract them, which multiplies the two bond dimensions. A singular value decomposition that keeps only the largest singular values then truncates the result back to a usable <span class="math inline">\(M\)</span>. This truncation is the core of every MPS algorithm, including DMRG.</figcaption>
+<figcaption><strong>Figure 7.4.</strong> The graphical notation, and the MPS ansatz drawn in it. (a) A tensor is a block and each of its indices is a leg, so a scalar has no leg, a vector has one leg, a matrix has two, and so on. Joining two legs means summing over the shared index. (b) The exact coefficient tensor of <a href="03-storing-the-wave-function-as-the-main-bottleneck.html#eq-7-4">(7.4)</a> is a single object with one leg per site, and it contains <span class="math inline">\(2^L\)</span> independent numbers. The matrix product state <a href="04-the-matrix-product-state-ansatz.html#eq-7-5">(7.5)</a> replaces it with a chain of small tensors. Each of them has one physical leg pointing down and virtual legs of dimension <span class="math inline">\(\chi\)</span> that link it to its neighbors. In total this is <span class="math inline">\(\sim 2L\chi^2\)</span> numbers, so the exponential growth is replaced by a linear one. (c) An operator, in particular the Hamiltonian, becomes a matrix product operator, the darker row, with two physical legs per site. To apply it to a state we join the diagrams along the shared physical legs and contract them, which multiplies the two bond dimensions. A singular value decomposition that keeps only the largest singular values then truncates the result back to a usable <span class="math inline">\(\chi\)</span>. This truncation is the core of almost every MPS algorithm, including DMRG. The labels of the drawing write the bond dimension as <span class="math inline">\(M\)</span>.</figcaption>
 </figure>
 <div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>An MPS of bond dimension <span class="math inline">\(M\)</span> is acted on by an MPO of bond dimension <span class="math inline">\(D\)</span>, and we contract the physical legs without truncating. What is the bond dimension of the result?</p>
+<p>An MPO of bond dimension <span class="math inline">\(D\)</span> acts on an MPS of bond dimension <span class="math inline">\(\chi\)</span>. We contract the physical legs and do not truncate. What is the bond dimension of the result?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li><span class="math inline">\(M\cdot D\)</span>.</li>
-<li><span class="math inline">\(M+D\)</span>.</li>
-<li><span class="math inline">\(M^D\)</span>.</li>
+<li><span class="math inline">\(\chi\cdot D\)</span>.</li>
+<li><span class="math inline">\(\chi+D\)</span>.</li>
+<li><span class="math inline">\(\chi^D\)</span>.</li>
 </ol>
 </div>
 <details class="quiz-answer"><summary>Show the answers</summary>
@@ -111,13 +145,13 @@ Question
 <li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
 <p>This is true. Each bond of the result carries one index of the state and one of the operator, so the dimensions multiply. This growth is the reason why a truncation by singular value decomposition follows each operation.</p>
 <figure class="quiz-fig schematic">
-<img src="../figures/web/session07/mpo_on_mps.svg" loading="lazy" alt="A row of squares joined to a row of circles by their physical legs, then one row of tensors whose bonds are labelled M times D." />
-<figcaption>An MPO acts on an MPS. Each bond of the result joins one bond of the MPO and one of the MPS, so it has the dimension <span class="math inline">\(M\cdot D\)</span>.</figcaption>
+<img src="../figures/web/session07/mpo_on_mps.svg" loading="lazy" alt="A row of squares joined to a row of circles by their physical legs, then one row of tensors whose bonds are labelled chi times D." />
+<figcaption>An MPO acts on an MPS. Each bond of the result joins one bond of the MPO and one of the MPS, so it has the dimension <span class="math inline">\(\chi\cdot D\)</span>.</figcaption>
 </figure></li>
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
-<p>This is false. Take a product state, <span class="math inline">\(M=1\)</span>, and a product operator, <span class="math inline">\(D=1\)</span>. The sum gives 2, but the result is again a product state with bond dimension 1.</p></li>
+<p>This is false. Take a product state, <span class="math inline">\(\chi=1\)</span>, and a product operator, <span class="math inline">\(D=1\)</span>. The sum gives 2, but the result is again a product state with bond dimension 1.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. For a product state, <span class="math inline">\(M=1\)</span>, acted on by an operator with <span class="math inline">\(D=5\)</span> the formula gives <span class="math inline">\(1^5=1\)</span>. The result has a bond that can be as large as <span class="math inline">\(1\cdot5=5\)</span>.</p></li>
+<p>This is false. For a product state, <span class="math inline">\(\chi=1\)</span>, acted on by an operator with <span class="math inline">\(D=5\)</span> the formula gives <span class="math inline">\(1^5=1\)</span>. The result has a bond that can be as large as <span class="math inline">\(1\cdot5=5\)</span>.</p></li>
 </ul>
 </div>
 </details>
@@ -148,6 +182,47 @@ Question
 </ul>
 </div>
 </details>
+</div>
+<div class="quiz quiz-pics" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Each diagram is built from the tensors of a chain of four sites. A joined leg is a sum over its index. Which diagram is a number?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session07/g4_quiz_net_ket.svg" loading="lazy" alt="One row of four circles joined by horizontal bonds, where each circle has one leg that points down and ends free." /></li>
+<li><img src="../figures/web/session07/g4_quiz_net_norm.svg" loading="lazy" alt="Two rows of four circles, where the leg of each circle of the upper row joins the leg of the circle below it." /></li>
+<li><img src="../figures/web/session07/g4_quiz_net_hpsi.svg" loading="lazy" alt="A row of four squares above a row of four circles. The leg of each circle joins the square above it, and each square has one more leg that points up and ends free." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The four free legs are the spins <span class="math inline">\(s_1,\dots,s_4\)</span>, so the diagram is the tensor <span class="math inline">\(C(s_1,\dots,s_4)\)</span> of the state <span class="math inline">\(|\Psi\rangle\)</span>, with <span class="math inline">\(2^4=16\)</span> entries.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. Every leg joins two tensors, so every index is summed and nothing is left. The diagram is the norm <span class="math inline">\(\langle\Psi|\Psi\rangle\)</span>, with the MPS on top and its complex conjugate below.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The legs between the circles and the squares are summed, but the four upper legs of the squares are free. The diagram is the state <span class="math inline">\(H|\Psi\rangle\)</span>, again with <span class="math inline">\(2^4=16\)</span> entries.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>An MPS of a spin-1/2 chain has the bond dimension <span class="math inline">\(\chi=10\)</span>, and an MPO with <span class="math inline">\(D=5\)</span> acts on it, which is the bond dimension of the MPO of the Heisenberg chain. Find the bond dimension of the result before any truncation. Then count the numbers of one bulk tensor before the contraction, after it, and after the truncation back to <span class="math inline">\(\chi=10\)</span>.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>Each bond of the result carries one index of the MPS and one of the MPO, so its dimension is <span class="math inline">\(\chi D=10\times5=50\)</span>. A bulk tensor has one physical leg of dimension 2 and two virtual legs. Before the contraction it has <span class="math inline">\(2\chi^2=2\times10^2=200\)</span> numbers, after it <span class="math inline">\(2\times50^2=5000\)</span>, and after the truncation <span class="math inline">\(200\)</span> again.</p>
+<p>One application of the MPO makes each tensor <span class="math inline">\(D^2=25\)</span> times larger, and a second one without truncation would give <span class="math inline">\(2\times250^2=1.25\times10^5\)</span> numbers. This is why MPS algorithms truncate after each application of an operator, so that the cost stays set by <span class="math inline">\(\chi\)</span>.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="comesback">
 <div class="comesback-label">

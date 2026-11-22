@@ -85,28 +85,64 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="on" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 9. Excitations and Defects in Quantum Materials</a></p>
 <h1 id="sec-9-2"><span class="num">9.2</span> The response of a classical magnet as a first example</h1>
-<p>Before we use any quantum many-body method, let us see how the response predicts the ground state in a setting that we can solve in closed form. This setting is a classical Ising magnet at finite temperature, treated in mean-field theory, and Section <a href="../session1/12-the-general-interacting-hamiltonian-and-the-tool-we-will-use-on-it.html#sec-1-12">1.12</a> gives the mean-field method itself. We take a temperature well above any ordering transition, where the system is disordered. Is there a measurement that we can do <em>at that temperature</em> which tells us what kind of order the system will develop when we cool it down?</p>
-<p>The relevant response is the <strong>magnetic susceptibility</strong>, <span class="math inline">\(\chi = \partial M/\partial H\)</span>, which is the linear-response coefficient that relates an applied field <span class="math inline">\(H\)</span> to the magnetization <span class="math inline">\(M\)</span> that it induces. If we solve the mean-field Ising model at high temperature, we find three different behaviors, which depend on the sign and the strength of the exchange coupling.</p>
+<p>Before we use any quantum many-body method, let us see how the response predicts the ground state in a setting that we can solve in closed form. We take a temperature well above any ordering transition, where the system is disordered. Is there a measurement that we can do <em>at that temperature</em> which tells us what kind of order the system will develop when we cool it down? We will now see that the answer is yes. The inverse susceptibility <span class="math inline">\(1/\chi(T)\)</span> is a straight line, and the temperature where it extrapolates to zero tells a ferromagnet from an antiferromagnet, long before any order appears.</p>
+<p>This setting is a classical Ising magnet at finite temperature, treated in mean-field theory, and Section <a href="../session1/12-the-general-interacting-hamiltonian-and-the-tool-we-will-use-on-it.html#sec-1-12">1.12</a> gives the mean-field method itself. The relevant response is the <strong>magnetic susceptibility</strong>, <span class="math inline">\(\chi = \partial M/\partial H\)</span>, which is the linear-response coefficient that relates an applied field <span class="math inline">\(H\)</span> to the magnetization <span class="math inline">\(M\)</span> that it induces. If we solve the mean-field Ising model at high temperature, we find three different behaviors, which depend on the sign and the strength of the exchange coupling.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>In mean field, the uniform susceptibility of the disordered phase is</p>
 <p><span id="eq-9-1" class="eq"><span class="math display">\[\chi(T) \;\propto\;
 \begin{cases}
-\dfrac{1}{T} &amp; \text{paramagnet (no exchange coupling), diverges only at } T=0, \\[4pt]
+\dfrac{1}{T} &amp; \text{paramagnet (no exchange coupling),} \\[-2pt]
+ &amp; \text{diverges only at } T=0, \\[4pt]
 \dfrac{1}{T - T_c} &amp; \text{ferromagnet, diverges at a positive } T_c, \\[4pt]
-\dfrac{1}{T + T_c} &amp; \text{antiferromagnet, apparent divergence at a negative temperature.}
+\dfrac{1}{T + T_c} &amp; \text{antiferromagnet, apparent divergence} \\[-2pt]
+ &amp; \text{at a negative temperature.}
 \end{cases} \tag{9.1}\]</span></span></p>
+<p>The line <span class="math inline">\(1/\chi(T)\)</span> crosses zero at <span class="math inline">\(T_c\)</span> for a ferromagnet and at <span class="math inline">\(-T_c\)</span> for an antiferromagnet, so its intercept gives the sign of the exchange.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the mean-field Ising model to (9.1)</span></summary>
+<div class="fold-body">
+<p>We take Ising spins <span class="math inline">\(\sigma_i=\pm1\)</span> with the energy</p>
+<p><span class="math display">\[E=-J\sum_{\langle ij\rangle}\sigma_i\sigma_j-h\sum_i\sigma_i,\]</span></p>
+<p>where each bond counts once and <span class="math inline">\(J&gt;0\)</span> favors parallel spins. We measure <span class="math inline">\(h\)</span> and <span class="math inline">\(T\)</span> in the same unit, with <span class="math inline">\(k_B=1\)</span>, and the susceptibility is <span class="math inline">\(\chi=\partial m/\partial h\)</span> at small <span class="math inline">\(h\)</span>, with <span class="math inline">\(m=\langle\sigma_i\rangle\)</span>. In these units <span class="math inline">\(1/\chi\)</span> is a temperature.</p>
+<p>The simplest case is a free spin, <span class="math inline">\(J=0\)</span>. Its two states have the energies <span class="math inline">\(\mp h\)</span>, so</p>
+<p><span class="math display">\[m=\tanh(h/T)\approx h/T,\qquad \chi=1/T,\]</span></p>
+<p>which is the paramagnet of <a href="#eq-9-1">(9.1)</a>.</p>
+<p>With <span class="math inline">\(J\neq0\)</span>, mean field replaces the <span class="math inline">\(z\)</span> neighbors of a site by their average moment <span class="math inline">\(m\)</span>. The site then feels the field <span class="math inline">\(h+zJm\)</span>, and</p>
+<p><span class="math display">\[m=\tanh\Big(\frac{h+zJm}{T}\Big)\approx\frac{h+zJm}{T}.\]</span></p>
+<p>We solve for <span class="math inline">\(m\)</span> and get <span class="math inline">\(m=h/(T-zJ)\)</span>, so <span class="math inline">\(\chi=1/(T-T_c)\)</span> with <span class="math inline">\(T_c=zJ\)</span>, which is the ferromagnet of <a href="#eq-9-1">(9.1)</a>. The expansion of <span class="math inline">\(\tanh\)</span> holds while <span class="math inline">\(m\)</span> is small, which is the case above <span class="math inline">\(T_c\)</span> in a small field.</p>
+<p>For <span class="math inline">\(J&lt;0\)</span> on a bipartite lattice, such as the square lattice with <span class="math inline">\(z=4\)</span>, all the neighbors of a site of one sublattice are on the other one. A uniform field gives the same small moment <span class="math inline">\(m\)</span> on both, so a site feels <span class="math inline">\(h-z|J|m\)</span>, and <span class="math inline">\(m=h/(T+z|J|)\)</span>. This is the antiferromagnet of <a href="#eq-9-1">(9.1)</a>, with <span class="math inline">\(T_c=z|J|\)</span>. A staggered field, <span class="math inline">\(+h\)</span> on one sublattice and <span class="math inline">\(-h\)</span> on the other, gives opposite moments, and the same steps give <span class="math inline">\(m=h/(T-z|J|)\)</span> on each sublattice. This staggered response diverges at <span class="math inline">\(T_c\)</span>, which is where the antiferromagnet orders.</p>
+<p>Mean field is only an estimate of <span class="math inline">\(T_c\)</span>. On the square lattice it gives <span class="math inline">\(T_c=4J\)</span>, while the exact solution of the Ising model gives <span class="math inline">\(2.27J\)</span>. The intercept is more reliable, since far above <span class="math inline">\(T_c\)</span> the line <span class="math inline">\(1/\chi\)</span> of the exact model also extrapolates to zero at <span class="math inline">\(T=zJ\)</span>. In the rest of this page we use the sign of the intercept, and in the problem also its size.</p>
+</div>
+</details>
+</div>
 <figure id="sch:s09:curie_weiss" class="schematic">
-<img src="../figures/web/session09/curie_weiss.svg" loading="lazy" alt="Three straight lines of the inverse susceptibility against temperature, crossing the temperature axis at zero, at a positive temperature and at a negative temperature." />
-<figcaption><strong>Schematic 9.3.</strong> The inverse susceptibility of <a href="#eq-9-1">(9.1)</a> is a straight line in each case. The line of the paramagnet goes through the origin, the ferromagnet extrapolates to zero at the positive temperature <span class="math inline">\(T_c\)</span>, and the antiferromagnet at the negative temperature <span class="math inline">\(-T_c\)</span>. The dashed parts are extrapolations, since the disordered phase does not reach them.</figcaption>
+<img src="../figures/web/session09/curie_weiss.svg" loading="lazy" alt="Three straight lines of the inverse susceptibility against temperature, with open dots on them, crossing the temperature axis at zero, at a positive temperature and at a negative temperature." />
+<figcaption><strong>Schematic 9.3.</strong> The inverse susceptibility of <a href="#eq-9-1">(9.1)</a> is a straight line in each case. The line of the paramagnet goes through the origin, the ferromagnet extrapolates to zero at the positive temperature <span class="math inline">\(T_c\)</span>, and the antiferromagnet at the negative temperature <span class="math inline">\(-T_c\)</span>. The dashed parts are extrapolations, since the disordered phase does not reach them, which for both magnets means below <span class="math inline">\(T_c\)</span>. The temperature and <span class="math inline">\(1/\chi\)</span> are in units of <span class="math inline">\(T_c\)</span>, with the field and <span class="math inline">\(T\)</span> in the same unit as in the steps above, so that a free spin has <span class="math inline">\(\chi=1/T\)</span>. The open dots are the self-consistent mean field of the steps in a small field, at <span class="math inline">\(T=1.5T_c\)</span>, <span class="math inline">\(2T_c\)</span>, <span class="math inline">\(2.5T_c\)</span> and <span class="math inline">\(3T_c\)</span>, and they fall on the lines. Look at where each line meets zero.</figcaption>
 </figure>
-<p>The physical picture behind <a href="#eq-9-1">(9.1)</a> is important, because we will find it again in a fully quantum form in Section <a href="05-interactions-as-a-perturbation-with-rpa-plasmons-and-the-stoner-instability.html#sec-9-5">9.5</a>. In the paramagnetic regime the thermal fluctuations dominate, and the susceptibility stays finite at any <span class="math inline">\(T&gt;0\)</span>, since nothing in the system tends to order. In the ferromagnetic case the fluctuations <em>reinforce</em> the applied field, so as <span class="math inline">\(T\to T_c^+\)</span> the system becomes polarized more and more easily, and <span class="math inline">\(\chi\)</span> really diverges at the transition. In the antiferromagnetic case the fluctuations <em>oppose</em> the applied field, since they favor staggered order and not uniform order, and this appears as the opposite sign in the denominator. The susceptibility then seems to go towards a divergence at a temperature below absolute zero. Of course it never reaches it, but the sign alone already tells us that the system tends to antiferromagnetic order and not to ferromagnetic order. In experiments this is a practical diagnostic. We plot <span class="math inline">\(\chi^{-1}(T)\)</span>, and if the straight line extrapolates to a positive intercept, the system is close to a ferromagnet, while a negative intercept means that the system is close to an antiferromagnet. All of this is measured in the disordered phase at high temperature. This is the model for the whole session. <strong>The response of the disordered and uniform state, computed without ever solving for the ordered state itself, already contains the information about which ordered state is coming.</strong></p>
+<p>The physical picture behind <a href="#eq-9-1">(9.1)</a> is important, because we will find it again in a fully quantum form in Section <a href="05-interactions-as-a-perturbation-with-rpa-plasmons-and-the-stoner-instability.html#sec-9-5">9.5</a>. In the paramagnetic regime the thermal fluctuations dominate, and the susceptibility stays finite at any <span class="math inline">\(T&gt;0\)</span>, since nothing in the system tends to order. In the ferromagnetic case the exchange field of the neighbors <em>reinforces</em> the applied field, so as <span class="math inline">\(T\to T_c^+\)</span> the system becomes polarized more and more easily, and <span class="math inline">\(\chi\)</span> really diverges at the transition.</p>
+<p>In the antiferromagnetic case the exchange field of the neighbors <em>opposes</em> the applied field, since the exchange favors staggered order and not uniform order, and this appears as the opposite sign in the denominator. The susceptibility then seems to go towards a divergence at a temperature below absolute zero. Of course it never reaches it, but the sign alone already tells us that the system tends to antiferromagnetic order and not to ferromagnetic order.</p>
+<p>In experiments this is a practical diagnostic. We plot <span class="math inline">\(\chi^{-1}(T)\)</span>, and if the straight line extrapolates to a positive intercept, the system is close to a ferromagnet, while a negative intercept means that the system is close to an antiferromagnet. All of this is measured in the disordered phase at high temperature. This is the model for the whole session. <strong>The response of the disordered and uniform state, computed without ever solving for the ordered state itself, already contains the information about which ordered state is coming.</strong></p>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>The susceptibility is a thermodynamic measurement, and the temperature <span class="math inline">\(\theta\)</span> where its line <span class="math inline">\(1/\chi(T)\)</span> extrapolates to zero is what is called the Curie-Weiss temperature. In ZnCu<span class="math inline">\(_3\)</span>(OH)<span class="math inline">\(_6\)</span>Cl<span class="math inline">\(_2\)</span>, a kagome lattice antiferromagnet with spin <span class="math inline">\(S=1/2\)</span>, the susceptibility gives a Curie-Weiss temperature of about <span class="math inline">\(-300\)</span> K, and no magnetic order is observed down to <span class="math inline">\(50\)</span> mK. The measurement is in <a href="https://arxiv.org/abs/cond-mat/0610539">this article</a>. In our reading the negative sign is the antiferromagnetic line of <a href="#eq-9-1">(9.1)</a>, and on a bipartite lattice mean field would then give order at <span class="math inline">\(T_c=|\theta|\)</span>. In our reading the kagome lattice, which is built from triangles and is not bipartite, is frustrated as in Section <a href="../session8/04-frustration-as-the-route-to-a-quantum-spin-liquid.html#sec-8-4">8.4</a>, and this is what keeps the compound from ordering. Mean field and <a href="#eq-9-1">(9.1)</a> cannot tell us this.</p>
+</div>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>We measure the susceptibility of a magnet at high temperature. A plot of <span class="math inline">\(1/\chi\)</span> against <span class="math inline">\(T\)</span> is a straight line that reaches zero at <span class="math inline">\(T=-30\)</span> K when we extrapolate it. What do we expect when we cool the sample?</p>
+<p>We measure <span class="math inline">\(\chi\)</span> of an Ising magnet on a square lattice at high temperature. The straight line</p>
+<p><span class="math display">\[\frac{1}{\chi}\propto T-\theta\]</span></p>
+<p>extrapolates to zero at <span class="math inline">\(\theta=-30\)</span> K. What do we expect when we cool the sample?</p>
 <figure class="quiz-fig schematic">
-<img src="../figures/web/session09/curie_quiz.svg" loading="lazy" alt="The inverse susceptibility against temperature, a straight line that starts at minus thirty kelvin, above the line of a paramagnet through the origin." />
-<figcaption>The measured line, which reaches zero at <span class="math inline">\(-30\)</span> K, and the line of a paramagnet. At <span class="math inline">\(T=60\)</span> K the measured line gives <span class="math inline">\(90\)</span> and the paramagnet gives <span class="math inline">\(60\)</span>.</figcaption>
+<img src="../figures/web/session09/curie_quiz.svg" loading="lazy" alt="The inverse susceptibility against temperature, a straight line that is dashed down to minus thirty kelvin, above the line of a paramagnet through the origin." />
+<figcaption>The measured line, which reaches zero at <span class="math inline">\(-30\)</span> K, and the line of a paramagnet. Both lines have the Curie constant <span class="math inline">\(C=1\)</span> of a free spin, so <span class="math inline">\(1/\chi\)</span> is in kelvin. At <span class="math inline">\(T=60\)</span> K the measured line gives <span class="math inline">\(90\)</span> and the paramagnet gives <span class="math inline">\(60\)</span>.</figcaption>
 </figure>
 </div>
 <div class="quiz-options">
@@ -122,13 +158,15 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
 <p>This is false. For a ferromagnet with <span class="math inline">\(T_c=+30\)</span> K the line <span class="math inline">\(1/\chi\propto T-30\)</span> reaches zero at <span class="math inline">\(30\)</span> K, and <span class="math inline">\(\chi\)</span> diverges there. Our line reaches zero only at <span class="math inline">\(-30\)</span> K, so it never does at a positive temperature.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. The line <span class="math inline">\(1/\chi\propto T+30\)</span> has the antiferromagnetic form of <a href="#eq-9-1">(9.1)</a>. The exchange favors staggered order, which the uniform <span class="math inline">\(\chi\)</span> does not feel, so it does not diverge for <span class="math inline">\(T&gt;0\)</span>.</p>
+<p>This is true. The line <span class="math inline">\(1/\chi\propto T+30\)</span> has the antiferromagnetic form of <a href="#eq-9-1">(9.1)</a>. The exchange favors staggered order, and a uniform field does not couple to this order. So the uniform <span class="math inline">\(\chi\)</span> does not diverge for <span class="math inline">\(T&gt;0\)</span>, and the exchange only makes it smaller than the <span class="math inline">\(\chi\)</span> of a free spin. The order needs a lattice without frustration, such as the square lattice. On the kagome lattice a negative intercept can come with no order at all.</p>
 <div class="eq-again">
 <p><span class="math display">\[\chi(T) \;\propto\;
 \begin{cases}
-\dfrac{1}{T} &amp; \text{paramagnet (no exchange coupling), diverges only at } T=0, \\[4pt]
+\dfrac{1}{T} &amp; \text{paramagnet (no exchange coupling),} \\[-2pt]
+ &amp; \text{diverges only at } T=0, \\[4pt]
 \dfrac{1}{T - T_c} &amp; \text{ferromagnet, diverges at a positive } T_c, \\[4pt]
-\dfrac{1}{T + T_c} &amp; \text{antiferromagnet, apparent divergence at a negative temperature.}
+\dfrac{1}{T + T_c} &amp; \text{antiferromagnet, apparent divergence} \\[-2pt]
+ &amp; \text{at a negative temperature.}
 \end{cases} \tag{9.1}\]</span></p>
 </div></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
@@ -136,6 +174,81 @@ Question
 </ul>
 </div>
 </details>
+</div>
+<div class="quiz quiz-pics" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Each line is <span class="math inline">\(1/\chi(T)\)</span> of one sample. The dashed part is an extrapolation. Which sample orders as a ferromagnet?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session09/g1_quiz_curie_zero.svg" loading="lazy" alt="A straight line of the inverse susceptibility against temperature, solid at high temperature and dashed down to the origin." /></li>
+<li><img src="../figures/web/session09/g1_quiz_curie_plus30.svg" loading="lazy" alt="A straight line of the inverse susceptibility against temperature, solid at high temperature and dashed down to zero at plus thirty kelvin." /></li>
+<li><img src="../figures/web/session09/g1_quiz_curie_minus30.svg" loading="lazy" alt="A straight line of the inverse susceptibility against temperature, solid at high temperature and dashed down to zero at minus thirty kelvin." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The line goes through the origin, <span class="math inline">\(1/\chi\propto T\)</span>, which is a paramagnet with no exchange. Its <span class="math inline">\(\chi\)</span> diverges only at <span class="math inline">\(T=0\)</span>, so it does not order at any positive temperature.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The line reaches zero at <span class="math inline">\(T=30\)</span> K, which is the <span class="math inline">\(T_c\)</span> of <span class="math inline">\(1/\chi\propto T-T_c\)</span>. There <span class="math inline">\(\chi\)</span> diverges, and below it the sample is a ferromagnet.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The line reaches zero only at <span class="math inline">\(-30\)</span> K, so <span class="math inline">\(\chi\)</span> stays finite at every <span class="math inline">\(T&gt;0\)</span>. The negative intercept means an antiferromagnetic exchange.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The three lines have the same slope, so they differ only in their intercept, and the sign of the intercept is the sign of the exchange.</p>
+</div>
+</details>
+</div>
+<div class="quiz" data-correct="C" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>A bipartite antiferromagnet orders at <span class="math inline">\(T_c\)</span> in mean field. How does its uniform <span class="math inline">\(\chi\)</span> depend on <span class="math inline">\(T\)</span> above <span class="math inline">\(T_c\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(\chi=\dfrac{1}{T-T_c}\)</span></li>
+<li><span class="math inline">\(\chi=\dfrac{1}{T}\)</span></li>
+<li><span class="math inline">\(\chi=\dfrac{1}{T+T_c}\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. This is the ferromagnet, which diverges at <span class="math inline">\(T_c\)</span>. For the antiferromagnet at <span class="math inline">\(T=1.5\,T_c\)</span> the self-consistent mean field gives <span class="math inline">\(1/\chi=2.5\,T_c\)</span>, and not <span class="math inline">\(0.5\,T_c\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. This is a free spin with no exchange. At <span class="math inline">\(T=3T_c\)</span> it gives <span class="math inline">\(1/\chi=3T_c\)</span>, while the antiferromagnet gives <span class="math inline">\(4T_c\)</span>, so the exchange makes <span class="math inline">\(\chi\)</span> smaller.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. A uniform field gives the same moment <span class="math inline">\(m\)</span> to both sublattices, and the exchange with the neighbors opposes the field, so a site feels <span class="math inline">\(h-T_cm\)</span>. Then <span class="math inline">\(m=h/(T+T_c)\)</span>, and at <span class="math inline">\(T=3T_c\)</span> the self-consistent mean field gives <span class="math inline">\(1/\chi=4T_c\)</span>.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The susceptibilities are in the units of the steps above, where a free spin has <span class="math inline">\(\chi=1/T\)</span>.</p>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>A fit of the susceptibility of a magnet at high temperature gives <span class="math inline">\(1/\chi=(T-\theta)/C\)</span>. It passes through <span class="math inline">\(1/\chi=90\)</span> at <span class="math inline">\(T=60\)</span> K and <span class="math inline">\(1/\chi=120\)</span> at <span class="math inline">\(T=90\)</span> K, with <span class="math inline">\(1/\chi\)</span> in kelvin as in the steps above, where a free spin has <span class="math inline">\(C=1\)</span>. Find <span class="math inline">\(C\)</span> and <span class="math inline">\(\theta\)</span>, say which order is coming, and find <span class="math inline">\(|J|\)</span> for a square lattice, <span class="math inline">\(z=4\)</span>.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>The slope of the line is <span class="math inline">\(1/C=(120-90)/(90-60)=1\)</span>, so <span class="math inline">\(C=1\)</span>, the value of a free spin. The first point then gives <span class="math inline">\(90=60-\theta\)</span>, so <span class="math inline">\(\theta=-30\)</span> K. The intercept is negative, so the exchange is antiferromagnetic, and the order that is coming is a Néel state.</p>
+<p>The steps above give <span class="math inline">\(1/\chi=T+z|J|\)</span> for the antiferromagnet, so <span class="math inline">\(z|J|=30\)</span> K and <span class="math inline">\(|J|=30/4=7.5\)</span> K. Mean field puts the order at <span class="math inline">\(T_c=z|J|=30\)</span> K. The exact solution of the Ising model on the square lattice puts it at <span class="math inline">\(2.27|J|\)</span>, which is <span class="math inline">\(17\)</span> K. So mean field gives the sign of the exchange and the scale of <span class="math inline">\(T_c\)</span>, but not its precise value. For a real magnet this value of <span class="math inline">\(|J|\)</span> holds when the data are taken far above <span class="math inline">\(|\theta|\)</span>, since closer to <span class="math inline">\(|\theta|\)</span> the line bends.</p>
+<p>This is how a measurement far above any order gives the sign and the size of the exchange, and so which ordered state is coming.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="comesback">
 <div class="comesback-label">

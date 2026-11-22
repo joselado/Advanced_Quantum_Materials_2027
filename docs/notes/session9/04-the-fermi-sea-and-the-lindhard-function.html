@@ -85,24 +85,56 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="on" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 9. Excitations and Defects in Quantum Materials</a></p>
 <h1 id="sec-9-4"><span class="num">9.4a</span> The Fermi sea and the Lindhard function</h1>
+<p>Which states of a Fermi sea respond to a weak local potential? We will now see that only the pairs with one state on each side of the Fermi surface respond. Their sum is the static Lindhard function <a href="#eq-9-4">(9.4)</a>, and at <span class="math inline">\(q\to0\)</span> and zero temperature it is the density of states at the Fermi level.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[|n(\lambda)\rangle = |n\rangle + \lambda \sum_{m \neq n} \frac{\langle m|V|n\rangle}{E_n^{(0)} - E_m^{(0)}} \, |m\rangle + O(\lambda^2). \tag{9.3}\]</span></p>
+</div>
+<p>This is the first-order state of Section <a href="03-linear-response-and-perturbation-theory-in-detail.html#sec-9-3">9.3</a>. A perturbation <span class="math inline">\(V\)</span> mixes the eigenstate <span class="math inline">\(|n\rangle\)</span> of <span class="math inline">\(H_0\)</span>, of energy <span class="math inline">\(E_n^{(0)}\)</span>, with every other eigenstate <span class="math inline">\(|m\rangle\)</span>, with the matrix element <span class="math inline">\(\langle m|V|n\rangle\)</span> divided by the energy difference.</p>
+</div>
 <p>To make <a href="03-linear-response-and-perturbation-theory-in-detail.html#eq-9-3">(9.3)</a> concrete, let us take the case that we will use for most of this session, which is a non-interacting electronic Hamiltonian in diagonal form, <span class="math inline">\(H_0 = \sum_k \varepsilon(k)\, c_k^\dagger
 c_k\)</span>. Its many-body ground state is the Fermi sea, where every single-particle state with <span class="math inline">\(\varepsilon(k)\)</span> below the Fermi energy is filled and every state above it is empty. In the same way, <span class="math inline">\(\langle c_k^\dagger c_k\rangle = n_F(\varepsilon(k))\)</span>, which is equal to <span class="math inline">\(1\)</span> for occupied states and <span class="math inline">\(0\)</span> for unoccupied states at <span class="math inline">\(T=0\)</span>, and more generally is the Fermi-Dirac function. The set of <span class="math inline">\(k\)</span>-points at the Fermi energy defines the <strong>Fermi surface</strong>. This surface will be the most important geometric object in everything that follows, because a small perturbation can only change the states that are close to it. To move an electron from deep inside the Fermi sea to far above it costs too much energy to be relevant at first order.</p>
-<p>Now we use <a href="03-linear-response-and-perturbation-theory-in-detail.html#eq-9-3">(9.3)</a> with a specific perturbation that has a clear physical meaning, which is a local shift of the onsite energy. This is a local change of the chemical potential at one point of the material. The observable that we follow is the change in the local electronic density, <span class="math inline">\(n(x) - n_0(x)\)</span>. We use translational symmetry, we Fourier transform to <span class="math inline">\(q\)</span>-space, and we insert the perturbed wavefunctions <a href="03-linear-response-and-perturbation-theory-in-detail.html#eq-9-3">(9.3)</a> into the density operator. After some algebra, where each term comes from a matrix element <span class="math inline">\(\langle k+q|V|k\rangle\)</span> divided by the energy denominator <span class="math inline">\(\varepsilon(k+q)-\varepsilon(k)\)</span>, with the same structure as <a href="03-linear-response-and-perturbation-theory-in-detail.html#eq-9-3">(9.3)</a>, we obtain the <strong>static Lindhard function</strong>,</p>
+<p>Now we use <a href="03-linear-response-and-perturbation-theory-in-detail.html#eq-9-3">(9.3)</a> with a specific perturbation that has a clear physical meaning, which is a local shift of the onsite energy. This is a local change of the chemical potential at one point of the material. The observable that we follow is the change in the local electronic density, <span class="math inline">\(n(x) - n_0(x)\)</span>. We use translational symmetry, we Fourier transform to <span class="math inline">\(q\)</span>-space, and we insert the perturbed wavefunctions <a href="03-linear-response-and-perturbation-theory-in-detail.html#eq-9-3">(9.3)</a> into the density operator. After some algebra, where each term comes from a matrix element <span class="math inline">\(\langle k+q|V|k\rangle\)</span> divided by the energy denominator <span class="math inline">\(\varepsilon(k)-\varepsilon(k+q)\)</span>, with the same structure as <a href="03-linear-response-and-perturbation-theory-in-detail.html#eq-9-3">(9.3)</a>, we obtain the <strong>static Lindhard function</strong>.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>The static Lindhard function of a Fermi sea is</p>
 <p><span id="eq-9-4" class="eq"><span class="math display">\[\chi_0(q) = \frac{1}{N} \sum_k \frac{n_F(\varepsilon(k)) - n_F(\varepsilon(k+q))}{\varepsilon(k+q) - \varepsilon(k)}. \tag{9.4}\]</span></span></p>
+<p>Only the pairs where one of the states <span class="math inline">\(k\)</span> and <span class="math inline">\(k+q\)</span> is filled and the other is empty contribute, so the response is built at the Fermi surface. At <span class="math inline">\(q\to0\)</span> and <span class="math inline">\(T=0\)</span> it is the density of states at the Fermi level, <span class="math inline">\(D(E_F)\)</span>.</p>
+</div>
+<p>The density then changes by <span class="math inline">\(\delta n(q)=-\chi_0(q)\,v_q\)</span>, with <span class="math inline">\(v_q=\langle k+q|V|k\rangle\)</span> the matrix element of the potential. With the density as the observable <span class="math inline">\(A\)</span>, this is the response <span class="math inline">\(\chi_A=\partial A/\partial\lambda\)</span> of Section <a href="03-linear-response-and-perturbation-theory-in-detail.html#sec-9-3">9.3</a>, so <span class="math inline">\(\chi_A=-\chi_0(q)\,v_q\)</span>, and <span class="math inline">\(\chi_0\)</span> is the response to the local chemical potential <span class="math inline">\(-v_q\)</span>. The minus sign comes from the denominator <span class="math inline">\(\varepsilon(k)-\varepsilon(k+q)\)</span> of the mixing <a href="03-linear-response-and-perturbation-theory-in-detail.html#eq-9-3">(9.3)</a>, which is minus the one of <a href="#eq-9-4">(9.4)</a>, and it means that a higher onsite energy pushes the electrons away. Like <a href="#eq-9-4">(9.4)</a>, this counts one spin. For spinful electrons each spin responds in the same way, and the total density changes by <span class="math inline">\(-2\chi_0(q)\,v_q\)</span>.</p>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the mixing (9.3) to the Lindhard function (9.4)</span></summary>
+<div class="fold-body">
+<p>The one-particle states are the plane waves <span class="math inline">\(|k\rangle\)</span> with the energies <span class="math inline">\(\varepsilon(k)\)</span>. A potential with the wavevector <span class="math inline">\(q\)</span> couples <span class="math inline">\(|k\rangle\)</span> only to <span class="math inline">\(|k+q\rangle\)</span> and <span class="math inline">\(|k-q\rangle\)</span>, and we write its matrix element as <span class="math inline">\(v_q=\langle k+q|V|k\rangle\)</span>. By <a href="03-linear-response-and-perturbation-theory-in-detail.html#eq-9-3">(9.3)</a> the state <span class="math inline">\(|k\rangle\)</span> takes in <span class="math inline">\(|k+q\rangle\)</span> with the coefficient</p>
+<p><span class="math display">\[a=\frac{v_q}{\varepsilon(k)-\varepsilon(k+q)},\]</span></p>
+<p>and the state <span class="math inline">\(|k+q\rangle\)</span> takes in <span class="math inline">\(|k\rangle\)</span> with <span class="math inline">\(b=v_q^*/(\varepsilon(k+q)-\varepsilon(k))\)</span>, so that <span class="math inline">\(b=-a^*\)</span>.</p>
+<p>Let us start with the simplest case, a pair where both states are filled. To first order, the density of the state <span class="math inline">\(|k\rangle+a|k+q\rangle\)</span> has the modulation <span class="math inline">\(a\,e^{iqx}\)</span> plus its complex conjugate, and the density of <span class="math inline">\(|k+q\rangle+b|k\rangle\)</span> has <span class="math inline">\(b^*e^{iqx}\)</span> plus its complex conjugate. Since <span class="math inline">\(b^*=-a\)</span>, the two cancel, and a filled pair does not change the density. The mixing only rotates the filled states among themselves. An empty pair has no electron, so it does not change the density either.</p>
+<p>So only the pairs with one filled and one empty state respond. In <a href="#eq-9-4">(9.4)</a> the numerator <span class="math inline">\(n_F(\varepsilon(k))-n_F(\varepsilon(k+q))\)</span> selects them, since at <span class="math inline">\(T=0\)</span> it is <span class="math inline">\(\pm1\)</span> for such a pair and <span class="math inline">\(0\)</span> for the others. The denominator is the energy difference of the pair, which comes from the mixing <a href="03-linear-response-and-perturbation-theory-in-detail.html#eq-9-3">(9.3)</a>. The function <span class="math inline">\(n_F\)</span> falls with the energy, so the numerator and the denominator of each term have the same sign, and every term of <a href="#eq-9-4">(9.4)</a> is positive.</p>
+<p>The last step is the limit <span class="math inline">\(q\to0\)</span>. The two energies get close, and the numerator becomes <span class="math inline">\(-n_F&#39;(\varepsilon(k))\,\big(\varepsilon(k+q)-\varepsilon(k)\big)\)</span>, so each term goes to <span class="math inline">\(-n_F&#39;(\varepsilon(k))\)</span> and</p>
+<p><span class="math display">\[\chi_0(q\to0)=-\frac1N\sum_k n_F&#39;(\varepsilon(k)).\]</span></p>
+<p>At <span class="math inline">\(T=0\)</span> the function <span class="math inline">\(-n_F&#39;(\varepsilon)\)</span> is <span class="math inline">\(\delta(\varepsilon-E_F)\)</span>, and the sum counts the states at the Fermi level per site, which is <span class="math inline">\(D(E_F)\)</span>. For the spinless chain <span class="math inline">\(\varepsilon(k)=-2t\cos k\)</span> this is <span class="math inline">\(0.159/t\)</span> at half filling and <span class="math inline">\(0.225/t\)</span> at quarter filling.</p>
+</div>
+</details>
+</div>
 <p>Let us first check <a href="#eq-9-4">(9.4)</a>. As <span class="math inline">\(q\to 0\)</span>, we expand both the numerator and the denominator to first order in <span class="math inline">\(q\)</span> and we obtain <span class="math inline">\(\chi_0(q\to 0) \to -\sum_k n_F&#39;(\varepsilon(k))/N\)</span>. At <span class="math inline">\(T=0\)</span> this is <span class="math inline">\(D(E_F)\)</span>, the density of states per site at the Fermi level, which is a positive and finite number, as expected. It is the density of states <span class="math inline">\(g(\omega)\)</span> of <a href="../session2/09-properties-of-an-electronic-dispersion.html#eq-2-16">(2.16)</a> at <span class="math inline">\(\omega=E_F\)</span>. Equation <a href="#eq-9-4">(9.4)</a> is different from zero only when <span class="math inline">\(k\)</span> is occupied and <span class="math inline">\(k+q\)</span> is unoccupied, or the opposite. If both are occupied or both are empty, the numerator vanishes. So the response is built only from states on the two sides of the Fermi surface, as the general argument above predicted.</p>
 <figure id="sch:s09:occupation" class="schematic">
-<img src="../figures/web/session09/occupation.svg" loading="lazy" alt="A cosine band with the occupied states drawn thick, and a plot with two narrow plateaus at the two Fermi points." />
-<figcaption><strong>Schematic 9.5.</strong> Which states build the static Lindhard function of <a href="#eq-9-4">(9.4)</a> for a chain at half filling. On the left, the band with the occupied states drawn thick, and a wavevector <span class="math inline">\(q\)</span> that moves an electron. On the right, the summand of <a href="#eq-9-4">(9.4)</a> as a function of <span class="math inline">\(k\)</span> for <span class="math inline">\(q=0.5\)</span>. It is different from zero only in two windows of width <span class="math inline">\(q\)</span>, one next to each Fermi point, where one of the two states is occupied and the other is empty.</figcaption>
+<img src="../figures/web/session09/occupation.svg" loading="lazy" alt="A cosine band with the occupied states drawn thick and ticks at minus pi, minus pi over two, zero, pi over two and pi, and a plot of the summand with two narrow plateaus of height one that end at the two Fermi points." />
+<figcaption><strong>Schematic 9.5.</strong> Which states build the static Lindhard function of <a href="#eq-9-4">(9.4)</a> for a chain <span class="math inline">\(\varepsilon(k)=-2t\cos k\)</span> at half filling, where <span class="math inline">\(k_F=\pi/2\)</span>. On the left, the band in units of <span class="math inline">\(t\)</span> with the occupied states drawn thick, and a bar of width <span class="math inline">\(q\)</span> that ends at the Fermi point <span class="math inline">\(k_F\)</span>. On the right, the summand of <a href="#eq-9-4">(9.4)</a> in units of <span class="math inline">\(1/t\)</span> as a function of <span class="math inline">\(k\)</span>, for <span class="math inline">\(q=0.5\)</span> and <span class="math inline">\(T=0.02t\)</span>. It is different from zero only in two windows of width <span class="math inline">\(q\)</span>, one next to each Fermi point, where one of the two states is occupied and the other is empty. Inside the windows it is about <span class="math inline">\(1/t\)</span>, which is one over the energy difference of the pair.</figcaption>
 </figure>
+<p>In Section <a href="04b-nesting-and-the-divergence-of-the-lindhard-function.html#sec-9-4b">9.4b</a> we will see where this function diverges, which is the nesting condition.</p>
 <div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>For small <span class="math inline">\(q\)</span> the two windows of the figure have width <span class="math inline">\(q\)</span>, and the denominator of <a href="#eq-9-4">(9.4)</a> is roughly <span class="math inline">\(v_F q\)</span>. What is <span class="math inline">\(\chi_0(q\to0)\)</span> for the chain?</p>
-<div class="eq-again">
-<p><span class="math display">\[\chi_0(q) = \frac{1}{N} \sum_k \frac{n_F(\varepsilon(k)) - n_F(\varepsilon(k+q))}{\varepsilon(k+q) - \varepsilon(k)}. \tag{9.4}\]</span></p>
-</div>
+<p>The static Lindhard function of a chain is</p>
+<p><span class="math display">\[\chi_0(q)=\frac1N\sum_k\frac{n_F(\varepsilon(k))-n_F(\varepsilon(k+q))}{\varepsilon(k+q)-\varepsilon(k)}.\]</span></p>
+<p>At small <span class="math inline">\(q\)</span> the numerator is nonzero in two windows of width <span class="math inline">\(q\)</span>. There the denominator is about <span class="math inline">\(v_Fq\)</span>. What is <span class="math inline">\(\chi_0(q\to0)\)</span>?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -115,16 +147,60 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
-<p>This is true. The number of states in the windows and the denominator <span class="math inline">\(v_Fq\)</span> are both proportional to <span class="math inline">\(q\)</span>. They cancel, and what remains is <span class="math inline">\(1/(\pi v_F)\)</span> for the spinless chain, which is <span class="math inline">\(D(E_F)\)</span>.</p></li>
+<p>This is true. The number of states in the windows and the denominator <span class="math inline">\(v_Fq\)</span> are both proportional to <span class="math inline">\(q\)</span>. They cancel, and what remains is <span class="math inline">\(1/(\pi v_F)\)</span> for the spinless chain, which is <span class="math inline">\(D(E_F)\)</span>. At half filling <span class="math inline">\(v_F=2t\)</span>, which gives <span class="math inline">\(0.159/t\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
-<p>This is false. The windows shrink, but the denominator shrinks in the same way. A free chain has a finite Pauli-like response <span class="math inline">\(D(E_F)&gt;0\)</span> at <span class="math inline">\(q\to0\)</span>, so the ratio does not vanish.</p></li>
+<p>This is false. The windows shrink, but the denominator shrinks in the same way. A free chain has a finite Pauli-like response <span class="math inline">\(D(E_F)&gt;0\)</span> at <span class="math inline">\(q\to0\)</span>, which is <span class="math inline">\(0.159/t\)</span> at half filling, so the ratio does not vanish.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
 <p>This is false. A divergence of <span class="math inline">\(\chi_0(q\to0)\)</span> would mean an infinite compressibility. A free electron gas has the finite value <span class="math inline">\(D(E_F)\)</span>, because the number of states in the window decreases together with the denominator.</p></li>
 </ul>
 </div>
 </details>
 </div>
-<p>In the next part we will see where this function diverges, which is the nesting condition.</p>
+<div class="quiz quiz-pics" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>A spinless chain has <span class="math inline">\(\varepsilon(k)=-2t\cos k\)</span> and <span class="math inline">\(k_F=\pi/4\)</span>. The static Lindhard function sums</p>
+<p><span class="math display">\[S(k)=\frac{n_F(\varepsilon(k))-n_F(\varepsilon(k+q))}{\varepsilon(k+q)-\varepsilon(k)}\]</span></p>
+<p>over <span class="math inline">\(k\)</span>. Each picture shows a curve against <span class="math inline">\(k\)</span>, with the same axes. Which one is <span class="math inline">\(S(k)\)</span> at <span class="math inline">\(q=0.3\)</span>, in units of <span class="math inline">\(1/t\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session09/g2_quiz_summand_half.svg" loading="lazy" alt="A plot against k from minus pi to pi with two narrow plateaus of height 1.7 that end at minus pi over two and at pi over two." /></li>
+<li><img src="../figures/web/session09/g2_quiz_summand_quarter.svg" loading="lazy" alt="A plot against k from minus pi to pi with two narrow plateaus of height 2 to 2.7 that end at minus pi over four and at pi over four." /></li>
+<li><img src="../figures/web/session09/g2_quiz_summand_occupation.svg" loading="lazy" alt="A plot against k from minus pi to pi with one wide plateau of height 1 between minus pi over four and pi over four." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. These windows end at the Fermi points <span class="math inline">\(\pm\pi/2\)</span> of the half-filled chain. At <span class="math inline">\(k_F=\pi/4\)</span> the Fermi level is at <span class="math inline">\(-\sqrt2\,t\)</span>. The states at <span class="math inline">\(k=\pi/2-0.15\)</span> and <span class="math inline">\(k+q=\pi/2+0.15\)</span> have <span class="math inline">\(\varepsilon=-0.30t\)</span> and <span class="math inline">\(0.30t\)</span>, both empty, so the numerator vanishes there.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The windows are <span class="math inline">\(\pi/4-0.3&lt;k&lt;\pi/4\)</span> and <span class="math inline">\(-\pi/4-0.3&lt;k&lt;-\pi/4\)</span>, where one of the two states is below the Fermi level <span class="math inline">\(-\sqrt2\,t\)</span> and the other is above it. In the middle of a window <span class="math inline">\(S(k)\)</span> is about <span class="math inline">\(1/(v_Fq)\)</span>, which is <span class="math inline">\(2.4/t\)</span> for <span class="math inline">\(v_F=\sqrt2\,t\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. This is the occupation <span class="math inline">\(n_F(\varepsilon(k))\)</span> itself, which is one for every filled state with <span class="math inline">\(|k|&lt;\pi/4\)</span>. At <span class="math inline">\(k=0\)</span> the states <span class="math inline">\(k\)</span> and <span class="math inline">\(k+q\)</span> have <span class="math inline">\(\varepsilon=-2t\)</span> and <span class="math inline">\(-1.91t\)</span>, which are both filled, so the numerator of <span class="math inline">\(S(k)\)</span> vanishes there.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>Take the spinless chain <span class="math inline">\(\varepsilon(k)=-2t\cos k\)</span> with one site per cell. Show that the density of states per site at the Fermi level is <span class="math inline">\(D(E_F)=1/(\pi v_F)\)</span>, with <span class="math inline">\(v_F=|d\varepsilon/dk|\)</span> at <span class="math inline">\(k_F\)</span>, and compute it at half filling and at quarter filling.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>Per site the sum over <span class="math inline">\(k\)</span> is <span class="math inline">\(\frac1N\sum_k\to\int_{-\pi}^{\pi}\frac{dk}{2\pi}\)</span>, so <span class="math inline">\(D(E)=\int_{-\pi}^{\pi}\frac{dk}{2\pi}\,\delta\big(E-\varepsilon(k)\big)\)</span>. At <span class="math inline">\(E=E_F\)</span> the delta function has two roots, <span class="math inline">\(k=\pm k_F\)</span>, and each one gives <span class="math inline">\(1/(2\pi v_F)\)</span>, with <span class="math inline">\(v_F=2t\sin k_F\)</span>. Together they give <span class="math inline">\(D(E_F)=1/(\pi v_F)\)</span>.</p>
+<p>At half filling <span class="math inline">\(E_F=0\)</span> and <span class="math inline">\(k_F=\pi/2\)</span>, so <span class="math inline">\(v_F=2t\)</span> and <span class="math inline">\(D(E_F)=1/(2\pi t)=0.159/t\)</span>.</p>
+<p>At quarter filling the filled states are <span class="math inline">\(|k|&lt;\pi/4\)</span>, so <span class="math inline">\(k_F=\pi/4\)</span>, <span class="math inline">\(E_F=-\sqrt2\,t\)</span> and <span class="math inline">\(v_F=\sqrt2\,t\)</span>. This gives <span class="math inline">\(D(E_F)=1/(\sqrt2\,\pi t)=0.225/t\)</span>, which is larger, since the band is flatter there.</p>
+<p>These are the values of <span class="math inline">\(\chi_0(q\to0)\)</span> in <a href="#eq-9-4">(9.4)</a>. In a calculation they are the first check of a code for <span class="math inline">\(\chi_0\)</span>, since its value at the smallest <span class="math inline">\(q\)</span> must be the density of states of the band. For the spinless chain <code>h.get_dos(mode="Green", delta=1e-3)</code> of pyqula, with the Green function and a small broadening, gives the same <span class="math inline">\(0.159/t\)</span> and <span class="math inline">\(0.225/t\)</span> at these two energies.</p>
+</div>
+</details>
+</div>
+</div>
 <div class="comesback">
 <div class="comesback-label">
 Where this comes back

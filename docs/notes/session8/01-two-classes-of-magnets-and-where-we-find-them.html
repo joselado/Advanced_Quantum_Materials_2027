@@ -85,25 +85,42 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="on" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 8. Quantum Magnetism, Spinons and Kondo Physics</a></p>
 <h1 id="sec-8-1"><span class="num">8.1</span> Two classes of magnets and where we find them</h1>
+<p>Which magnets does mean-field theory miss, and what are their excitations? We will now see that magnets fall into two classes, classical magnets that break time-reversal symmetry and quantum magnets that do not. The excitation of an ordered magnet is the magnon, with spin <span class="math inline">\(1\)</span>, and the excitation of a quantum spin liquid is the spinon, with spin <span class="math inline">\(1/2\)</span>.</p>
 <p>In this session, we put every magnetic material into one of two classes, as in Section <a href="../session6/01-two-classes-of-magnets-and-their-excitations.html#sec-6-1">6.1</a>. <strong>Classical magnets</strong> break time-reversal symmetry, and examples are conventional ferromagnets, antiferromagnets and spin spirals. For the electrons, these magnets can be described with mean-field theory, in the same way as we did in Section <a href="../session1/14-worked-example-2-magnetism.html#sec-1-14">1.14</a> and Section <a href="../session6/04-exchange-splitting-and-antiferromagnetic-order-in-numerical-mean-field-theory.html#sec-6-4">6.4</a>. Most magnetic materials in nature are of this type, for example iron, copper oxide, or any material with a well-defined Néel temperature.</p>
-<p><strong>Quantum magnets</strong> are the opposite case. They cannot be described with mean-field theory in terms of electrons, and their ground states have long-range entanglement. This entanglement is not a small detail, since it gives rise to excitations that do not exist in a symmetry-broken magnet. In this session we will study two physical realizations of quantum magnetism, which are quite different from each other.</p>
+<p><strong>Quantum magnets</strong> are the opposite case. They cannot be described with mean-field theory in terms of electrons, and their ground states are entangled. This entanglement is not a small detail, since it gives rise to excitations that do not exist in a symmetry-broken magnet. In this session we will study two physical realizations of quantum magnetism, which are quite different from each other.</p>
 <ul>
 <li><p><strong>Quantum spin liquids (QSLs)</strong>, which are the first class that we build in detail. The main candidate material is herbertsmithite, a compound where the magnetic ions form a kagome lattice of spin-<span class="math inline">\(1/2\)</span> sites.</p></li>
 <li><p><strong>Heavy-fermion Kondo insulators</strong>, which are often rare-earth compounds, and the standard example is samarium hexaboride (SmB<span class="math inline">\(_6\)</span>). We build the theory for this class in the second half of the session.</p></li>
 </ul>
 <h1 class="sec-next" id="sec-8-2"><span class="num">8.2</span> Two emergent excitations, magnons and spinons</h1>
 <p>The strong many-body interactions between electrons are the origin of the emergent collective excitations of magnetic materials. In a symmetry-broken magnet, this collective excitation is the <strong>magnon</strong> of Section <a href="../session6/13-magnons-as-fluctuations-of-the-order-parameter.html#sec-6-13">6.13</a>, which has spin <span class="math inline">\(1\)</span> and no charge. The reason is that the strong repulsion between electrons freezes the charge degree of freedom completely, so only the spin can fluctuate. In a quantum magnet, the excitation is of a different kind. It is the <strong>spinon</strong>, which has spin <span class="math inline">\(1/2\)</span> and also no charge. It is useful to think of a spinon as the spin half of an electron. If we take this picture one step further, we obtain the standard language of fractionalization for a QSL. In this language the electron splits into a <strong>chargon</strong>, which has the charge, and a <strong>spinon</strong>, which has the spin.</p>
-<p>There is a simple argument with pictures that shows why the spin of the two excitations differs by a factor of two. Let us take a ferromagnet, where the ground state has all spins up, <span class="math inline">\(|{\uparrow\uparrow\uparrow\cdots}\rangle\)</span>. If we flip one spin to build an excited state, the total spin of the excited state differs from the one of the ground state by <span class="math inline">\(\Delta S = 1\)</span>, and this is a local magnon. Let us now take a quantum spin liquid, where the ground state is a collection of singlets everywhere and no spin points in a specific direction. If we build an excited state by leaving one spin without a partner, instead of putting it in a singlet, the difference in total spin is <span class="math inline">\(\Delta S = 1/2\)</span>, and in this picture this is a spinon. This picture is too simple on purpose, since a real spinon is more subtle than an unpaired spin. Still, it is the right first intuition for why symmetry-broken magnets and quantum spin liquids have different excitations. Figure <a href="#fig:s08:magnonspinon">8.1</a> shows the two counting arguments next to each other.</p>
+<p>There is a simple argument with pictures that shows why the spin of the two excitations differs by a factor of two. Let us take a ferromagnet, where the ground state has all spins up, <span class="math inline">\(|{\uparrow\uparrow\uparrow\cdots}\rangle\)</span>. If we flip one spin to build an excited state, <span class="math inline">\(S^z_\text{tot}\)</span> of the excited state differs from the one of the ground state by one. When this flip is spread over the lattice with a nonzero momentum, the total spin also differs by <span class="math inline">\(\Delta S = 1\)</span>, and this is a magnon.</p>
+<p>Let us now take a quantum spin liquid, where the ground state is a collection of singlets everywhere and no spin points in a specific direction. If we build an excited state by leaving one spin without a partner, instead of putting it in a singlet, the difference in total spin is <span class="math inline">\(\Delta S = 1/2\)</span>, and in this picture this is a spinon. This picture is too simple on purpose, since a real spinon is more subtle than an unpaired spin. Still, it is the right first intuition for why symmetry-broken magnets and quantum spin liquids have different excitations. Figure <a href="#fig:s08:magnonspinon">8.1</a> shows the two counting arguments next to each other.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>In a ferromagnet, flipping one spin changes <span class="math inline">\(S^z_\text{tot}\)</span> by one. The magnon is this flip spread over the lattice with a nonzero momentum, and its total spin is one less than the one of the ground state. Leaving one site of a singlet covering without a partner changes the total spin by one half, and this is the spinon,</p>
+<p><span class="math display">\[\Delta S_\text{magnon}=1,\qquad \Delta S_\text{spinon}=\tfrac12.\]</span></p>
+<p>With an even number of sites the total spin is an integer, so spinons come in pairs.</p>
+</div>
 <figure id="fig:s08:magnonspinon">
 <img src="../figures/s08f01_magnon_spinon.svg" loading="lazy" alt="Why the two kinds of magnet have excitations whose spin differs by a factor of two." />
-<figcaption><strong>Figure 8.1.</strong> Why the two kinds of magnet have excitations whose spin differs by a factor of two. (a) In a symmetry-broken magnet every site has a definite spin, shown with arrows. Flipping one costs <span class="math inline">\(\Delta S=1\)</span>, and this excitation is the magnon of <a href="../session6/index.html">Session 6</a>. The single flipped spin drawn here, next to the ghost of its old direction, only does the counting of <span class="math inline">\(\Delta S\)</span>. The real magnon is the delocalized precession of Figure <a href="../session6/13-magnons-as-fluctuations-of-the-order-parameter.html#fig:s06:magnon">6.5</a> and not one flipped site. (b) In a quantum magnet no site has a definite spin at all. The sites are paired into singlets <a href="03-two-minimal-dimers-a-classical-order-parameter-and-a-quantum-singlet.html#eq-8-3">(8.3)</a>, drawn as capsules, so <span class="math inline">\(\langle\mathbf S_i\rangle=0\)</span> everywhere and <span class="math inline">\(S_\text{tot}=0\)</span>. When we break one pair, we leave <em>unpaired</em> sites, drawn as open balls, and each one of them has <span class="math inline">\(S=1/2\)</span>. This is a spinon, which is half a magnon. For this reason spinons are always created in pairs, and Figure <a href="06-the-resonating-valence-bond-wavefunction-as-the-qsl-ground-state.html#fig:s08:vbsrvb">8.3</a> shows whether the pair stays bound or separates.</figcaption>
+<figcaption><strong>Figure 8.1.</strong> Why the two kinds of magnet have excitations whose spin differs by a factor of two. (a) In a symmetry-broken magnet every site has a definite spin, shown with arrows. Flipping one lowers <span class="math inline">\(S^z_\text{tot}\)</span> by one, and the magnon of <a href="../session6/index.html">Session 6</a> built from this flip has <span class="math inline">\(\Delta S=1\)</span>. The single flipped spin drawn here, next to the ghost of its old direction, only does this counting. The real magnon is the delocalized precession of Figure <a href="../session6/13-magnons-as-fluctuations-of-the-order-parameter.html#fig:s06:magnon">6.5</a> and not one flipped site. (b) In a quantum magnet no site has a definite spin at all. The sites are paired into singlets <a href="03-two-minimal-dimers-a-classical-order-parameter-and-a-quantum-singlet.html#eq-8-3">(8.3)</a>, drawn as capsules, so <span class="math inline">\(\langle\mathbf S_i\rangle=0\)</span> everywhere and <span class="math inline">\(S_\text{tot}=0\)</span>. When we break one pair, we leave <em>unpaired</em> sites, drawn as open balls, and each one of them has <span class="math inline">\(S=1/2\)</span>. This is a spinon, which is half a magnon. For this reason spinons are always created in pairs, and Figure <a href="06-the-resonating-valence-bond-wavefunction-as-the-qsl-ground-state.html#fig:s08:vbsrvb">8.3</a> shows whether the pair stays bound or separates.</figcaption>
 </figure>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>The spin-1/2 Heisenberg antiferromagnetic chain is one of the simplest quantum many-body systems, and its exact ground state is a singlet of all the spins of the chain. Its elementary excitations are spinons, fractional spin-1/2 quasiparticles that neutron scattering creates and detects in pairs. With inelastic neutron scattering on a compound that realizes this chain, and an absolute normalization of the data, the measurement accounts for the full spectral weight to within <span class="math inline">\(99(8)\%\)</span>. Theory predicts that the states of two spinons hold only <span class="math inline">\(71\%\)</span> of this weight, so the rest comes from states with more spinons. The measurement is in <a href="https://www.nature.com/articles/nphys2652">this article</a>.</p>
+<p>In our reading, this is the counting of this page seen in a measurement. The neutron couples to one spin operator, so from the singlet ground state it reaches states with <span class="math inline">\(S_\text{tot}=1\)</span>, which two spinons can form and one spinon cannot. The two spinons share the energy and the momentum of the neutron in many ways, which gives a broad continuum and not the sharp line of a single magnon.</p>
+</div>
 <div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>A quantum spin liquid has an even number of spin-1/2 sites, and its ground state has <span class="math inline">\(S_\text{tot}=0\)</span>. Can the lowest excited state contain a single spinon?</p>
+<p>A quantum spin liquid has an even number of spin-1/2 sites. Its ground state has <span class="math inline">\(S_\text{tot}=0\)</span>. Can the lowest excited state contain a single spinon?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -155,6 +172,48 @@ Question
 </ul>
 </div>
 </details>
+</div>
+<div class="quiz quiz-pics" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Each chain has six spin-1/2 sites. A capsule is a singlet with <span class="math inline">\(S=0\)</span>, and an arrow is a free spin. Which state has <span class="math inline">\(S_\text{tot}=1\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session08/g1_quiz_spins_paired.svg" loading="lazy" alt="A chain of six sites paired into three capsules, with no free spin." /></li>
+<li><img src="../figures/web/session08/g1_quiz_spins_two.svg" loading="lazy" alt="A chain of six sites with two capsules in the middle and a free spin pointing up at each end." /></li>
+<li><img src="../figures/web/session08/g1_quiz_spins_flip.svg" loading="lazy" alt="A chain of six arrows, five pointing up and the third one pointing down." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Every site is in a singlet, and each singlet has <span class="math inline">\(S=0\)</span>, so the total spin is <span class="math inline">\(0\)</span>. This state has no spinon.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The two singlets have <span class="math inline">\(S=0\)</span>. The two free spins both point up, so they are in the triplet state <span class="math inline">\(|{\uparrow\uparrow}\rangle\)</span> with <span class="math inline">\(S=1\)</span>, and the whole chain has <span class="math inline">\(S_\text{tot}=1\)</span>. These are two spinons, which together have the spin of one magnon.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. Five spins up and one spin down give <span class="math inline">\(S^z_\text{tot}=2\)</span>, and the total spin is never smaller than <span class="math inline">\(|S^z_\text{tot}|\)</span>, so it is at least <span class="math inline">\(2\)</span>. When the flip is spread over the chain with a nonzero momentum, it is the magnon of a ferromagnet, with <span class="math inline">\(S_\text{tot}=2\)</span>, one less than the <span class="math inline">\(S_\text{tot}=3\)</span> of the state with all spins up.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>Three spin-1/2 sites have <span class="math inline">\(2^3=8\)</span> states. Find the possible values of their total spin <span class="math inline">\(S\)</span>, and how many times each value appears. Then show that an even number of spin-1/2 sites always has an integer total spin.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>We add the spins one at a time. Two spins one half give <span class="math inline">\(S=0\)</span> once and <span class="math inline">\(S=1\)</span> once, the singlet and the triplet, with <span class="math inline">\(1+3=4\)</span> states. A third spin one half added to <span class="math inline">\(S=0\)</span> gives <span class="math inline">\(S=1/2\)</span>. Added to <span class="math inline">\(S=1\)</span> it gives <span class="math inline">\(S=1/2\)</span> or <span class="math inline">\(S=3/2\)</span>, since the total spin goes from <span class="math inline">\(|1-\tfrac12|\)</span> to <span class="math inline">\(1+\tfrac12\)</span> in steps of one. So three sites have <span class="math inline">\(S=1/2\)</span> twice and <span class="math inline">\(S=3/2\)</span> once. A value <span class="math inline">\(S\)</span> has <span class="math inline">\(2S+1\)</span> states, so we count <span class="math inline">\(2\cdot2+4=8\)</span>, which is all the states.</p>
+<p>Each new spin one half changes the total spin by <span class="math inline">\(\pm\tfrac12\)</span>. One site has <span class="math inline">\(S=1/2\)</span>, two sites have an integer <span class="math inline">\(S\)</span>, three sites have a half-integer <span class="math inline">\(S\)</span> again, and so on. So an even number of sites always has an integer total spin.</p>
+<p>This is why a chain with an even number of sites has no state with a single spinon, since its total spin would be a half-integer. In a measurement the spinons appear in pairs, as in the neutron scattering of the lab box of this page.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="comesback">
 <div class="comesback-label">

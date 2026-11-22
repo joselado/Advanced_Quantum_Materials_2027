@@ -87,31 +87,72 @@
 <h1 id="sec-7-12"><span class="num">7.12</span> Closing summary</h1>
 <p>We started from three things that we built before. These were the general interacting Hamiltonian and the mean-field method of Section <a href="../session1/12-the-general-interacting-hamiltonian-and-the-tool-we-will-use-on-it.html#sec-1-12">1.12</a>, the Heisenberg model <a href="../session6/09-the-heisenberg-model-on-a-general-lattice.html#eq-6-5">(6.5)</a> of <a href="../session6/index.html">Session 6</a>, and the frustrated magnets of Section <a href="../session6/09-the-heisenberg-model-on-a-general-lattice.html#sec-6-10">6.10</a>, where no order parameter appears. In this session we saw the following.</p>
 <ul>
-<li><p>Strongly correlated matter, which includes quantum spin liquids and fractional Chern insulators, is the regime where mean field has no order parameter to converge to. We saw this with <a href="01-two-regimes-of-many-body-physics.html#eq-7-1">(7.1)</a> in Section <a href="01-two-regimes-of-many-body-physics.html#sec-7-1">7.1</a>.</p></li>
+<li><p>Strongly correlated matter, which includes quantum spin liquids and fractional Chern insulators, is the regime where no mean-field decoupling gives the true ground state. We saw this with <a href="01-two-regimes-of-many-body-physics.html#eq-7-1">(7.1)</a> in Section <a href="01-two-regimes-of-many-body-physics.html#sec-7-1">7.1</a>.</p></li>
 <li><p>The <strong>Jordan-Wigner transformation</strong> <a href="02b-the-jordan-wigner-transformation.html#eq-7-2">(7.2)</a> is an exact mapping between fermionic and spin-1/2 Hamiltonians, and in short spin equals fermion times string. It links the fermionic language of Sessions 1 to 5 with the spin language of <a href="../session6/index.html">Session 6</a> and <a href="../session8/index.html">Session 8</a>. For this reason we could work in the spin representation for the rest of the session.</p></li>
 <li><p>The real obstruction to solving many-body Hamiltonians is <strong>storage</strong>, since a system of <span class="math inline">\(L\)</span> spins needs <span class="math inline">\(2^L\)</span> coefficients <a href="03-storing-the-wave-function-as-the-main-bottleneck.html#eq-7-4">(7.4)</a> to describe its wave function exactly.</p></li>
-<li><p>The <strong>matrix product state</strong> ansatz <a href="04-the-matrix-product-state-ansatz.html#eq-7-5">(7.5)</a> replaces these <span class="math inline">\(2^L\)</span> coefficients with <span class="math inline">\(O(LM^2)\)</span> parameters. We give up exactness and get an approximation that we control with the bond dimension <span class="math inline">\(M\)</span>.</p></li>
+<li><p>The <strong>matrix product state</strong> ansatz <a href="04-the-matrix-product-state-ansatz.html#eq-7-5">(7.5)</a> replaces these <span class="math inline">\(2^L\)</span> coefficients with <span class="math inline">\(O(L\chi^2)\)</span> parameters. We give up exactness and get an approximation that we control with the bond dimension <span class="math inline">\(\chi\)</span>.</p></li>
 <li><p>The <strong>entanglement entropy</strong> <a href="04-the-matrix-product-state-ansatz.html#eq-7-6">(7.6)</a>, which we computed for the singlet in <a href="04-the-matrix-product-state-ansatz.html#eq-7-7">(7.7)</a>, measures how entangled a state is. Exactly solvable dimer and tetramer models show that gapped ground states follow an <strong>area law</strong> <a href="07-two-dimensions-and-the-area-law.html#eq-7-9">(7.9)</a>, with an entropy set by the length of the boundary and not by the volume of the subsystem.</p></li>
-<li><p>The entanglement of an MPS is itself bounded, <span class="math inline">\(S \le \log M\)</span> <a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#eq-7-10">(7.10)</a>. This is the reason why MPS work so well in 1D, where the area law saturates, and why they need an exponentially large <span class="math inline">\(M\)</span> in higher dimensions or away from the ground state.</p></li>
+<li><p>The entanglement of an MPS is itself bounded, <span class="math inline">\(S \le \log \chi\)</span> <a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#eq-7-10">(7.10)</a>. This is the reason why MPS work so well in 1D, where the area law saturates, and why they need an exponentially large <span class="math inline">\(\chi\)</span> in higher dimensions or away from the ground state.</p></li>
 <li><p>Ground states are found variationally, by minimizing <a href="10-the-variational-principle-and-dmrg-for-the-ground-state.html#eq-7-11">(7.11)</a> one tensor at a time, and this sweeping procedure is the <strong>DMRG</strong> algorithm.</p></li>
 <li><p><strong>MERA</strong> extends tensor networks to criticality, through the logarithmic correction to the entropy <a href="11-mera-and-peps-beyond-mps.html#eq-7-12">(7.12)</a>, and <strong>PEPS</strong> extend them to real 2D lattices. MERA can still be optimized tensor by tensor. For PEPS the contraction is the hard step, so the simple local optimization of DMRG is lost.</p></li>
 <li><p>Neural network quantum states are a second answer to the same storage problem, and we did not develop them in this session.</p></li>
 </ul>
 <figure class="again">
 <img src="../figures/s07f03_entropyceiling.svg" loading="lazy" alt="Entropy against the size of the subsystem for a gapped, a critical and a generic state, with horizontal bars for two bond dimensions." />
-<figcaption><strong><a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#fig:s07:ceiling">Figure 7.3</a>, shown again.</strong> The summary of the session in one picture. Look at where the gapped curve, the critical curve and the volume law meet the horizontal bars set by <span class="math inline">\(M\)</span>, since this is where an MPS of that bond dimension stops being enough.</figcaption>
+<figcaption><strong><a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#fig:s07:ceiling">Figure 7.3</a>, shown again.</strong> The summary of the session in one picture. Look at where the gapped curve, the critical curve and the volume law meet the horizontal bars set by <span class="math inline">\(\chi\)</span>, since this is where an MPS of that bond dimension stops being enough. The labels of the drawing write the bond dimension as <span class="math inline">\(M\)</span>.</figcaption>
 </figure>
+<p>After this session we can do the following tasks, and each of them has the section that teaches it.</p>
+<ul>
+<li>Map a spin-1/2 chain to spinless fermions with the string, and see when the string cancels. This is in Section <a href="02b-the-jordan-wigner-transformation.html#sec-7-2b">7.2b</a>.</li>
+<li>Count the coefficients of an exact state and the numbers of an MPS of bond dimension <span class="math inline">\(\chi\)</span>. This is in Section <a href="03-storing-the-wave-function-as-the-main-bottleneck.html#sec-7-3">7.3</a> and Section <a href="04-the-matrix-product-state-ansatz.html#sec-7-4">7.4</a>.</li>
+<li>Compute the entanglement entropy of a two-spin state and of a product of singlets. This is in Section <a href="04-the-matrix-product-state-ansatz.html#sec-7-5">7.5</a> and Section <a href="06-entanglement-entropy-of-a-solvable-dimerized-chain.html#sec-7-6">7.6</a>.</li>
+<li>Tell an area law from a volume law, and count the cut bonds of a region in one and two dimensions. This is in Section <a href="07-two-dimensions-and-the-area-law.html#sec-7-7">7.7</a>.</li>
+<li>Compute the entropy of a cut from its Schmidt weights, and compare it with <span class="math inline">\(S\le\log \chi\)</span>, which gives only a lower bound on <span class="math inline">\(\chi\)</span>. Find the weight that a smaller <span class="math inline">\(\chi\)</span> drops. This is in Section <a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#sec-7-8">7.8a</a>.</li>
+<li>Say why a quench, a 2D lattice or a highly excited state needs an exponentially large <span class="math inline">\(\chi\)</span>. This is in Section <a href="08b-where-mps-stop-working.html#sec-7-8b">7.8b</a>.</li>
+<li>Read a tensor diagram and give the bond dimension after an MPO. This is in Section <a href="09-tensor-diagrams-as-notation-for-networks-and-operators.html#sec-7-9">7.9</a>.</li>
+<li>Explain why a DMRG sweep never raises the energy. This is in Section <a href="10-the-variational-principle-and-dmrg-for-the-ground-state.html#sec-7-10">7.10</a>.</li>
+<li>Say which network fits a critical chain and which one fits a 2D lattice. This is in Section <a href="11-mera-and-peps-beyond-mps.html#sec-7-11">7.11</a>.</li>
+</ul>
+<div class="quiz" data-correct="A" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>An MPS of <span class="math inline">\(L\)</span> spins one-half writes each coefficient of the state as</p>
+<p><span class="math display">\[C(s_1,\dots,s_L) \approx M^{s_1}_1\, M^{s_2}_2 \cdots M^{s_L}_L.\]</span></p>
+<p>Each <span class="math inline">\(M^{s_i}_i\)</span> is a matrix of size <span class="math inline">\(\chi\times \chi\)</span>, and <span class="math inline">\(s_i\)</span> takes two values. At the two ends they are vectors. About how many numbers does the MPS store?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(2L\chi^2\)</span></li>
+<li><span class="math inline">\(2^L\)</span></li>
+<li><span class="math inline">\(\chi^L\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. Each site has two matrices, one for each value of <span class="math inline">\(s_i\)</span>, and each matrix has <span class="math inline">\(\chi^2\)</span> numbers. For <span class="math inline">\(L=100\)</span> and <span class="math inline">\(\chi=10\)</span> this is <span class="math inline">\(2\times10^4\)</span> numbers. The matrices at the two ends are smaller, so the exact count is a bit lower.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. <span class="math inline">\(2^L\)</span> is the number of coefficients of the exact state, which the MPS replaces. For <span class="math inline">\(L=100\)</span> it is <span class="math inline">\(1.3\times10^{30}\)</span>, while the MPS with <span class="math inline">\(\chi=10\)</span> stores about <span class="math inline">\(2\times10^4\)</span> numbers.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. Take <span class="math inline">\(\chi=1\)</span>, which is a product state. Then <span class="math inline">\(\chi^L=1\)</span> for any <span class="math inline">\(L\)</span>, but the MPS still stores two numbers on every site, <span class="math inline">\(2L\)</span> in total.</p></li>
+</ul>
+</div>
+</details>
+</div>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>An MPS with <span class="math inline">\(M=20\)</span> describes a gapped chain of 200 sites very well. We now move to a gapped model on a <span class="math inline">\(20\times20\)</span> lattice. What do we expect?</p>
+<p>An MPS with <span class="math inline">\(\chi=20\)</span> describes a gapped chain of 200 sites very well. We now move to a gapped model on a <span class="math inline">\(20\times20\)</span> lattice. What do we expect?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li>The same <span class="math inline">\(M\)</span> is enough, since the model is gapped.</li>
-<li>The same <span class="math inline">\(M\)</span> is not enough, since the boundary grows with the width.</li>
+<li>The same <span class="math inline">\(\chi\)</span> is enough, since the model is gapped.</li>
+<li>The same <span class="math inline">\(\chi\)</span> is not enough, since the boundary grows with the width.</li>
 <li>The MPS fails only because there are more sites.</li>
 </ol>
 </div>
@@ -119,11 +160,11 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
-<p>This is false. Being gapped fixes the entropy per bond. The cut of the <span class="math inline">\(20\times20\)</span> lattice crosses 20 bonds, so the entropy is about 20 times larger and the needed <span class="math inline">\(M\)</span> is of the order of <span class="math inline">\(20^{20}\approx10^{26}\)</span>.</p></li>
+<p>This is false. Being gapped fixes the entropy per bond. The cut of the <span class="math inline">\(20\times20\)</span> lattice crosses 20 bonds, so the entropy is about 20 times larger and the needed <span class="math inline">\(\chi\)</span> is of the order of <span class="math inline">\(20^{20}\approx10^{26}\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
 <p>This is true. A gapped state obeys the area law in both cases, but in two dimensions the boundary has 20 bonds and not one. The entropy grows in proportion, and the bond dimension that it needs grows exponentially.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. A gapped chain of 2000 sites needs the same <span class="math inline">\(M=20\)</span> as the one of 200, so the number of sites alone does not matter. A <span class="math inline">\(20\times20\)</span> lattice has just 400 sites.</p></li>
+<p>This is false. A gapped chain of 2000 sites needs the same <span class="math inline">\(\chi=20\)</span> as the one of 200, so the number of sites alone does not matter. A <span class="math inline">\(20\times20\)</span> lattice has just 400 sites.</p></li>
 </ul>
 </div>
 </details>

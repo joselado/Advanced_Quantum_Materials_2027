@@ -85,34 +85,93 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="on" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 9. Excitations and Defects in Quantum Materials</a></p>
 <h1 id="sec-9-5"><span class="num">9.5a</span> Interactions as a perturbation, with RPA, plasmons and the Stoner instability</h1>
-<p>So far the perturbation has been an external impurity. However, we can also treat the electron-electron interaction <em>itself</em> as the perturbation. We use <span class="math inline">\(\chi_0\)</span>, the non-interacting response that we just built, as input, and we ask for the response <span class="math inline">\(\chi\)</span> of the full interacting system. For this we need two things. The first is a rule that connects <span class="math inline">\(\chi\)</span> to <span class="math inline">\(\chi_0\)</span>, and the second is a criterion to find instabilities from <span class="math inline">\(\chi\)</span>.</p>
-<p><strong>From <span class="math inline">\(\chi_0\)</span> to <span class="math inline">\(\chi\)</span> with the random phase approximation.</strong> Let us take a contact interaction of the Hubbard type of <a href="../session1/14-worked-example-2-magnetism.html#eq-1-7">(1.7)</a>, with strength <span class="math inline">\(U\)</span>, which couples to the density. The physical picture is a diagrammatic one. The response to a probe is the bare response <span class="math inline">\(\chi_0\)</span>, plus the bare response followed by one interaction event and another bare response. Then come two interaction events and so on, which is an infinite ladder of terms. The most efficient way to include all of them is not to sum the series term by term, but to write the self-consistent equation that the full response must satisfy,</p>
+<p>So far the perturbation has been an external impurity. What happens to the response when the perturbation is the electron-electron interaction <em>itself</em>? We will now see that a whole series of terms in the interaction can be summed, which gives the random phase approximation <a href="#eq-9-6">(9.6)</a>. It screens the charge response, and a zero of its denominator gives the plasmon <a href="#eq-9-7">(9.7)</a>, a collective mode at the frequency <span class="math inline">\(\omega_p\)</span>, where no particle-hole pair exists.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[\chi_0(q,\omega) = \frac{1}{N} \sum_k \frac{n_F(\varepsilon(k)) - n_F(\varepsilon(k+q))}{\varepsilon(k+q) - \varepsilon(k) - \hbar\omega - i0^+}. \tag{9.5}\]</span></p>
+</div>
+<p>This is the dynamical Lindhard function of Section <a href="04b-nesting-and-the-divergence-of-the-lindhard-function.html#sec-9-4b">9.4b</a>, the response of the Fermi sea without interaction. It sums over the pairs of one filled and one empty state, <span class="math inline">\(k\)</span> and <span class="math inline">\(k+q\)</span>, in both orders. Its imaginary part vanishes outside the particle-hole continuum, the set of <span class="math inline">\((q,\omega)\)</span> where such a pair has the energy <span class="math inline">\(\hbar\omega\)</span>. At <span class="math inline">\(\omega=0\)</span> it is the static function <a href="04-the-fermi-sea-and-the-lindhard-function.html#eq-9-4">(9.4)</a>, which is positive.</p>
+</div>
+<p>We use <span class="math inline">\(\chi_0\)</span>, the non-interacting response that we just built, as input, and we ask for the response <span class="math inline">\(\chi\)</span> of the full interacting system. For this we need two things. The first is a rule that connects <span class="math inline">\(\chi\)</span> to <span class="math inline">\(\chi_0\)</span>, and the second is a criterion to find instabilities from <span class="math inline">\(\chi\)</span>.</p>
+<p><strong>From <span class="math inline">\(\chi_0\)</span> to <span class="math inline">\(\chi\)</span> with the random phase approximation.</strong> Let us take a contact interaction of the Hubbard type of <a href="../session1/14-worked-example-2-magnetism.html#eq-1-7">(1.7)</a>, with strength <span class="math inline">\(U\)</span>, which couples the densities of the two spins. The physical picture is a diagrammatic one. The response to a probe is the bare response <span class="math inline">\(\chi_0\)</span>, plus the bare response followed by one interaction event and another bare response. Then come two interaction events and so on, which is an infinite ladder of terms. The most efficient way to include all of them is not to sum the series term by term, but to write the self-consistent equation that the full response must satisfy,</p>
 <p><span class="math display">\[\chi(q,\omega) = \chi_0(q,\omega) - \chi_0(q,\omega)\, U\, \chi(q,\omega),\]</span></p>
-<p>and its algebraic solution gives the <strong>random phase approximation (RPA)</strong>,</p>
+<p>and its algebraic solution gives the <strong>random phase approximation (RPA)</strong>.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>The response of the interacting system in the random phase approximation is</p>
 <p><span id="eq-9-6" class="eq"><span class="math display">\[\chi(q,\omega) = \frac{\chi_0(q,\omega)}{1 + U\,\chi_0(q,\omega)}. \tag{9.6}\]</span></span></p>
-<p>Equation <a href="#eq-9-6">(9.6)</a> has a mixed character. It is derived order by order in <span class="math inline">\(U\)</span>, so it is perturbative, but since we sum the whole geometric series it becomes non-perturbative. In this way it includes physics that no finite order in <span class="math inline">\(U\)</span> can give, which is a real pole, meaning a real phase transition. The first terms of the series are drawn in <a href="#sch:s09:bubbles">Schematic 9.7</a>.</p>
+<p>It is the sum of the whole series of bubbles <span class="math inline">\(\chi_0-\chi_0U\chi_0+\chi_0U\chi_0U\chi_0-\dots\)</span> for <span class="math inline">\(|U\chi_0|&lt;1\)</span>, and beyond this range it is the solution of the self-consistent equation. It has a pole, a zero of <span class="math inline">\(1+U\chi_0\)</span>, which no finite order in <span class="math inline">\(U\)</span> has.</p>
+</div>
+<p>Here <span class="math inline">\(\chi_0\)</span> counts one spin. For an interaction that couples to the total density, the denominator is <span class="math inline">\(1+2v(q)\chi_0\)</span>.</p>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the bubble series to the RPA (9.6)</span></summary>
+<div class="fold-body">
+<p>The simplest way to see the series is to solve the self-consistent equation by iteration. We start from <span class="math inline">\(\chi\approx\chi_0\)</span> and put it on the right side,</p>
+<p><span class="math display">\[\chi \approx \chi_0 - \chi_0U\chi_0,\]</span></p>
+<p>which is the bare bubble plus the bubble with one interaction line. Putting this again on the right side gives one more term,</p>
+<p><span class="math display">\[\chi \approx \chi_0 - \chi_0U\chi_0 + \chi_0U\chi_0U\chi_0,\]</span></p>
+<p>and each new iteration adds one bubble and one interaction line, with the factor <span class="math inline">\(-U\chi_0\)</span>. At fixed <span class="math inline">\(q\)</span> and <span class="math inline">\(\omega\)</span> both <span class="math inline">\(U\)</span> and <span class="math inline">\(\chi_0\)</span> are numbers, so the series is geometric,</p>
+<p><span class="math display">\[\chi = \chi_0\left[1 - U\chi_0 + (U\chi_0)^2 - (U\chi_0)^3 + \dots\right] = \frac{\chi_0}{1+U\chi_0},\]</span></p>
+<p>and the sum holds for <span class="math inline">\(|U\chi_0|&lt;1\)</span>. The self-consistent equation gives the same result directly, since it reads <span class="math inline">\(\chi\,(1+U\chi_0)=\chi_0\)</span>, and this solution holds also for <span class="math inline">\(|U\chi_0|\geq1\)</span>, where the series does not converge. The one exception is <span class="math inline">\(U\chi_0=-1\)</span>, where the equation reads <span class="math inline">\(0=\chi_0\)</span> and has no solution. Each truncation of the series is a polynomial in <span class="math inline">\(U\chi_0\)</span>, which stays finite. So the pole of <a href="#eq-9-6">(9.6)</a> at <span class="math inline">\(U\chi_0=-1\)</span> appears only in the sum to all orders.</p>
+</div>
+</details>
+</div>
+<p>Equation <a href="#eq-9-6">(9.6)</a> has a mixed character. It is derived order by order in <span class="math inline">\(U\)</span>, so it is perturbative, but since we sum the whole geometric series it becomes non-perturbative. In this way it includes physics that no finite order in <span class="math inline">\(U\)</span> can give, which is a real pole. A pole at <span class="math inline">\(\omega=0\)</span> is a phase transition, and a pole at a finite frequency, such as the plasmon, is a collective mode. The first terms of the series are drawn in <a href="#sch:s09:bubbles">Schematic 9.7</a>.</p>
 <figure id="sch:s09:bubbles" class="schematic">
 <img src="../figures/web/session09/bubbles.svg" loading="lazy" alt="A bubble, then two bubbles joined by a dashed line, then three bubbles joined by two dashed lines, with alternating signs." />
 <figcaption><strong>Schematic 9.7.</strong> The series behind <a href="#eq-9-6">(9.6)</a>. Each bubble is a bare response <span class="math inline">\(\chi_0\)</span> and each dashed line is one interaction event <span class="math inline">\(U\)</span>. Every extra bubble with its dashed line adds the factor <span class="math inline">\(-U\chi_0\)</span>, so the sum is a geometric series that gives <span class="math inline">\(\chi_0/(1+U\chi_0)\)</span>.</figcaption>
 </figure>
 <p><strong>Two different sources of divergence.</strong> The interacting response <a href="#eq-9-6">(9.6)</a> can diverge for two quite different reasons. It is useful to separate them, because they correspond to two different emergent quasiparticles.</p>
 <p><em>From <span class="math inline">\(\chi_0\)</span> itself</em>, as in Section <a href="04-the-fermi-sea-and-the-lindhard-function.html#sec-9-4">9.4</a>. This is an electron-hole excitation, which is a single-particle process that moves one electron from an occupied state to an empty state.</p>
-<p><em>From the RPA denominator</em>, <span class="math inline">\(1+U\chi_0=0\)</span>, which is a new collective phenomenon that comes from the interaction. For a long-range Coulomb interaction, <span class="math inline">\(U \to v(q)\)</span>, which depends strongly on <span class="math inline">\(q\)</span> and diverges as <span class="math inline">\(q\to0\)</span>. The pole of <a href="#eq-9-6">(9.6)</a> as a function of <span class="math inline">\(\omega\)</span> at fixed <span class="math inline">\(q\)</span> then defines a new quasiparticle, the <strong>plasmon</strong>, which is a collective charge oscillation of the whole electron gas. Its dispersion depends on the screening and on the dimensionality of the system. In the standard RPA treatment of the three-dimensional electron gas, which is the Bohm-Pines treatment, at long wavelength the dispersion has the form</p>
+<p><em>From the RPA denominator</em>, <span class="math inline">\(1+U\chi_0=0\)</span>, which is a new collective phenomenon that comes from the interaction. For a long-range Coulomb interaction, <span class="math inline">\(U \to 2v(q)\)</span>, which depends strongly on <span class="math inline">\(q\)</span> and diverges as <span class="math inline">\(q\to0\)</span>. The pole of <a href="#eq-9-6">(9.6)</a> as a function of <span class="math inline">\(\omega\)</span> at fixed <span class="math inline">\(q\)</span> then defines a new quasiparticle, the <strong>plasmon</strong>, which is a collective charge oscillation of the whole electron gas. Its dispersion depends on the screening and on the dimensionality of the system. In the standard RPA treatment of the three-dimensional electron gas, which is the Bohm-Pines treatment, the dispersion at long wavelength has the form below.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>The plasmon of the three-dimensional electron gas has, at long wavelength, the dispersion</p>
 <p><span id="eq-9-7" class="eq"><span class="math display">\[\omega_{\rm pl}(q)^2 = \omega_p^2 + \tfrac{3}{5} v_F^2\, q^2 + O(q^4), \tag{9.7}\]</span></span></p>
-<p>where <span class="math inline">\(\omega_p\)</span> is the classical plasma frequency. The plasmon exists even at <span class="math inline">\(q=0\)</span>, which is different from the particle-hole continuum, because it is a collective mode of the whole charge density and not a single-particle excitation. Figure <a href="#fig:s09:plasmon">9.2</a> shows both kinds of divergence in the same <span class="math inline">\((q,\omega)\)</span> plane, and it shows explicitly the window at small <span class="math inline">\(q\)</span> where the pole exists and no single-particle excitation exists.</p>
+<p>where <span class="math inline">\(\omega_p\)</span> is the classical plasma frequency. It is a collective mode of the whole charge density, with the finite frequency <span class="math inline">\(\omega_p\)</span> also at <span class="math inline">\(q=0\)</span>.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From a zero of the denominator to the plasma frequency</span></summary>
+<div class="fold-body">
+<p>Let us take the simplest case, <span class="math inline">\(q\to0\)</span> at a fixed frequency <span class="math inline">\(\omega\)</span>. Then <span class="math inline">\(\hbar\omega\)</span> is far above every pair energy <span class="math inline">\(\Delta_k=\varepsilon(k+q)-\varepsilon(k)\)</span>, which is at most about <span class="math inline">\(\hbar v_Fq\)</span>, and each term of <a href="04b-nesting-and-the-divergence-of-the-lindhard-function.html#eq-9-5">(9.5)</a> can be expanded in powers of <span class="math inline">\(\Delta_k/\hbar\omega\)</span>,</p>
+<p><span class="math display">\[\frac{1}{\Delta_k-\hbar\omega}=-\frac{1}{\hbar\omega}-\frac{\Delta_k}{(\hbar\omega)^2}-\dots\]</span></p>
+<p>The first term gives zero, since the sum of <span class="math inline">\(n_F(\varepsilon(k))-n_F(\varepsilon(k+q))\)</span> over <span class="math inline">\(k\)</span> vanishes. In the second term we shift <span class="math inline">\(k\to k-q\)</span> in the part with <span class="math inline">\(n_F(\varepsilon(k+q))\)</span>, and we get</p>
+<p><span class="math display">\[\chi_0(q,\omega)\approx-\frac{1}{N(\hbar\omega)^2}\sum_k n_F(\varepsilon(k))\big[\varepsilon(k+q)+\varepsilon(k-q)-2\varepsilon(k)\big].\]</span></p>
+<p>For free electrons, <span class="math inline">\(\varepsilon(k)=\hbar^2k^2/2m\)</span>, the bracket is <span class="math inline">\(\hbar^2q^2/m\)</span> for every <span class="math inline">\(k\)</span>. For the electron gas the sum <span class="math inline">\(\frac1N\sum_k\)</span> becomes an integral over <span class="math inline">\(k\)</span> per unit volume, so it counts the electrons of one spin per unit volume, and</p>
+<p><span class="math display">\[\chi_0(q,\omega)\approx-\frac{n_\sigma q^2}{m\omega^2},\]</span></p>
+<p>with <span class="math inline">\(n_\sigma=n/2\)</span> the density of one spin. So above the continuum <span class="math inline">\(\chi_0\)</span> is negative. The Coulomb interaction <span class="math inline">\(v(q)=4\pi e^2/q^2\)</span>, in Gaussian units, couples to the total density, so the plasmon is the zero of <span class="math inline">\(1+2v(q)\chi_0\)</span>, which is at</p>
+<p><span class="math display">\[\omega^2=\frac{2v(q)\,n_\sigma q^2}{m}=\frac{4\pi ne^2}{m}=\omega_p^2.\]</span></p>
+<p>This is the classical plasma frequency. With <span class="math inline">\(1+v(q)\chi_0\)</span> the zero would sit at <span class="math inline">\(\omega_p/\sqrt2\)</span>, since this <span class="math inline">\(\chi_0\)</span> counts only one spin.</p>
+</div>
+</details>
+</div>
+<p>The plasmon exists even at <span class="math inline">\(q=0\)</span>, which is different from the particle-hole continuum, because it is a collective mode of the whole charge density and not a single-particle excitation. Figure <a href="#fig:s09:plasmon">9.2</a> shows both kinds of divergence in the same <span class="math inline">\((q,\omega)\)</span> plane, and it shows explicitly the window at small <span class="math inline">\(q\)</span> where the pole exists and no single-particle excitation exists.</p>
 <figure id="fig:s09:plasmon">
 <img src="../figures/s09f02_plasmon.svg" loading="lazy" alt="The two divergences of the RPA response (9.6), drawn in the (q,\omega) plane for the three-dimensional electron gas." />
-<figcaption><strong>Figure 9.2.</strong> The two divergences of the RPA response <a href="#eq-9-6">(9.6)</a>, drawn in the <span class="math inline">\((q,\omega)\)</span> plane for the three-dimensional electron gas. The shaded region is where <span class="math inline">\(\mathrm{Im}\,\chi_0(q,\omega)\neq 0\)</span>, which is the <em>particle-hole continuum</em>, the set of all <span class="math inline">\((q,\omega)\)</span> at which a single electron can be moved from an occupied state <span class="math inline">\(k\)</span> to an empty state <span class="math inline">\(k+q\)</span>. Its upper boundary is <span class="math inline">\(\hbar\omega_+=\hbar v_Fq+\hbar^2q^2/2m\)</span>, and beyond <span class="math inline">\(2k_F\)</span> a lower boundary <span class="math inline">\(\hbar\omega_-=\hbar^2q^2/2m-\hbar v_Fq\)</span> appears. Both follow from the energy denominator of <a href="04b-nesting-and-the-divergence-of-the-lindhard-function.html#eq-9-5">(9.5)</a>. For <span class="math inline">\(q&lt;2k_F\)</span> the continuum goes all the way down to <span class="math inline">\(\omega=0\)</span>, which is the same statement as saying that <span class="math inline">\(\chi_0\)</span> is built only from states on the two sides of the Fermi surface. The plasmon <a href="#eq-9-7">(9.7)</a> is a different object. It is a zero of the RPA <em>denominator</em> <span class="math inline">\(1-v(q)\chi_0\)</span>, so it exists at <span class="math inline">\(\omega_p\)</span> even as <span class="math inline">\(q\to 0\)</span>, in a window where no single-particle excitation exists at all. This window, marked in the figure, is the full meaning of the phrase “collective mode, not a particle-hole pair”. Once the branch meets the continuum it can decay into particle-hole pairs, and it is Landau damped (dashed).</figcaption>
+<figcaption><strong>Figure 9.2.</strong> The two divergences of the RPA response <a href="#eq-9-6">(9.6)</a>, drawn in the <span class="math inline">\((q,\omega)\)</span> plane for the three-dimensional electron gas. The shaded region is where <span class="math inline">\(\mathrm{Im}\,\chi_0(q,\omega)\neq 0\)</span>, which is the <em>particle-hole continuum</em>, the set of all <span class="math inline">\((q,\omega)\)</span> at which a single electron can be moved from an occupied state <span class="math inline">\(k\)</span> to an empty state <span class="math inline">\(k+q\)</span>. Its upper boundary is <span class="math inline">\(\hbar\omega_+=\hbar v_Fq+\hbar^2q^2/2m\)</span>, and beyond <span class="math inline">\(2k_F\)</span> a lower boundary <span class="math inline">\(\hbar\omega_-=\hbar^2q^2/2m-\hbar v_Fq\)</span> appears. Both follow from the energy denominator of <a href="04b-nesting-and-the-divergence-of-the-lindhard-function.html#eq-9-5">(9.5)</a>. For <span class="math inline">\(q&lt;2k_F\)</span> the continuum goes all the way down to <span class="math inline">\(\omega=0\)</span>, which is the same statement as saying that <span class="math inline">\(\chi_0\)</span> is built only from states on the two sides of the Fermi surface. The plasmon <a href="#eq-9-7">(9.7)</a> is a different object. It is a zero of the RPA <em>denominator</em> <span class="math inline">\(1+2v(q)\chi_0\)</span>, so it exists at <span class="math inline">\(\omega_p\)</span> even as <span class="math inline">\(q\to 0\)</span>, in a window where no single-particle excitation exists at all. This window, marked in the figure, is the full meaning of the phrase “collective mode, not a particle-hole pair”. Once the branch meets the continuum it can decay into particle-hole pairs, and it is Landau damped (dashed).</figcaption>
 </figure>
+<p>The same denominator, now in the spin channel, gives the Stoner instability, and we treat it next.</p>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>With infrared nano-imaging, <a href="https://arxiv.org/abs/1202.4993">this article</a> shows that graphene on SiO<span class="math inline">\(_2\)</span>/Si with a back gate supports propagating surface plasmons. Their wavelength is of the order of <span class="math inline">\(200\)</span> nm at infrared frequencies, and they can propagate several times this distance. The authors change both the amplitude and the wavelength of these plasmons with the gate voltage. They read real space profiles of plasmon standing waves between the tip of the nano-probe and the edges of the sample. Our reading is that graphene is two-dimensional, and in two dimensions the Fourier transform of the Coulomb interaction goes as <span class="math inline">\(1/q\)</span> and not as <span class="math inline">\(1/q^2\)</span>. The zero of the RPA denominator then gives <span class="math inline">\(\omega_{\rm pl}^2\propto q\)</span> at small <span class="math inline">\(q\)</span>, so this plasmon goes to zero as <span class="math inline">\(q\to0\)</span>, and it does not have the three-dimensional form <a href="#eq-9-7">(9.7)</a>. In our reading the gate changes the density of carriers, and with it <span class="math inline">\(\chi_0\)</span> and the wavelength of the plasmon at a given frequency.</p>
+</div>
 <div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>In the density channel the interaction is repulsive, <span class="math inline">\(U&gt;0\)</span>, and <span class="math inline">\(\chi_0\)</span> is positive. How does the RPA response <a href="#eq-9-6">(9.6)</a> compare with <span class="math inline">\(\chi_0\)</span> at the same <span class="math inline">\(q\)</span> and <span class="math inline">\(\omega\)</span>?</p>
-<div class="eq-again">
-<p><span class="math display">\[\chi(q,\omega) = \frac{\chi_0(q,\omega)}{1 + U\,\chi_0(q,\omega)}. \tag{9.6}\]</span></p>
-</div>
+<p>The RPA response of the density is</p>
+<p><span class="math display">\[\chi(q,\omega) = \frac{\chi_0(q,\omega)}{1 + U\,\chi_0(q,\omega)}.\]</span></p>
+<p>The interaction is repulsive, <span class="math inline">\(U&gt;0\)</span>, and the static <span class="math inline">\(\chi_0(q,0)\)</span> is positive. On the half-filled square lattice at <span class="math inline">\(T=0.1t\)</span>, <span class="math inline">\(\chi_0(q,0)=0.68/t\)</span> at <span class="math inline">\(q=(\pi,\pi)\)</span>. How does the static <span class="math inline">\(\chi\)</span> compare with <span class="math inline">\(\chi_0\)</span>?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -129,7 +188,7 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
 <p>This is false. For <span class="math inline">\(U=t\)</span> and <span class="math inline">\(\chi_0=0.68/t\)</span> the RPA response is <span class="math inline">\(0.68/1.68=0.40\)</span>. This is smaller, since a repulsive <span class="math inline">\(U\)</span> enhances only the spin channel and not the density one.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. The denominator <span class="math inline">\(1+U\chi_0\)</span> is <span class="math inline">\(1.68\)</span> for <span class="math inline">\(U=t\)</span> and <span class="math inline">\(\chi_0=0.68/t\)</span>, so the response changes by this factor. The poles are shifted too, but the weight at fixed <span class="math inline">\(q\)</span> and <span class="math inline">\(\omega\)</span> changes as well.</p></li>
+<p>This is false. The denominator <span class="math inline">\(1+U\chi_0\)</span> is <span class="math inline">\(1.68\)</span> for <span class="math inline">\(U=t\)</span> and <span class="math inline">\(\chi_0=0.68/t\)</span>, so the response changes by this factor. The poles are shifted too, but the static response at each <span class="math inline">\(q\)</span> changes as well.</p></li>
 </ul>
 </div>
 </details>
@@ -139,10 +198,11 @@ Question
 Question
 </div>
 <div class="quiz-q">
-<p>At small <span class="math inline">\(q\)</span> the particle-hole continuum of Figure <a href="#fig:s09:plasmon">9.2</a> shrinks towards <span class="math inline">\(\omega=0\)</span>, while the plasmon of <a href="#eq-9-7">(9.7)</a> stays near <span class="math inline">\(\omega_p\)</span>. Why is the plasmon not damped there?</p>
-<div class="eq-again">
-<p><span class="math display">\[\omega_{\rm pl}(q)^2 = \omega_p^2 + \tfrac{3}{5} v_F^2\, q^2 + O(q^4), \tag{9.7}\]</span></p>
-</div>
+<p>The particle-hole pairs of the electron gas fill <span class="math inline">\(0&lt;\omega&lt;\omega_+\)</span> for <span class="math inline">\(q&lt;2k_F\)</span>, with</p>
+<p><span class="math display">\[\hbar\omega_+=\hbar v_Fq+\frac{\hbar^2q^2}{2m}.\]</span></p>
+<p>The plasmon has the dispersion</p>
+<p><span class="math display">\[\omega_{\rm pl}(q)^2=\omega_p^2+\tfrac35v_F^2q^2.\]</span></p>
+<p>Why is the plasmon not damped at small <span class="math inline">\(q\)</span>?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -157,14 +217,57 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
 <p>This is false. For the Coulomb interaction <span class="math inline">\(v(q)\propto1/q^2\)</span> diverges at <span class="math inline">\(q\to0\)</span>. The interaction is not zero there, and its divergence is what puts the plasmon at the finite <span class="math inline">\(\omega_p\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. Landau damping needs a pair with the same <span class="math inline">\(q\)</span> and <span class="math inline">\(\omega\)</span>. At small <span class="math inline">\(q\)</span> the continuum is at low <span class="math inline">\(\omega\)</span> and the plasmon is at <span class="math inline">\(\omega_p\)</span>, so no pair exists and the mode is sharp.</p></li>
+<p>This is true. Landau damping needs a pair with the same <span class="math inline">\(q\)</span> and <span class="math inline">\(\omega\)</span>. At <span class="math inline">\(q=0.1k_F\)</span> the pairs end at <span class="math inline">\(\hbar\omega_+=0.21E_F\)</span>, with <span class="math inline">\(E_F=\hbar^2k_F^2/2m\)</span>, and <span class="math inline">\(\omega_+\)</span> goes to zero with <span class="math inline">\(q\)</span>. The plasmon stays at <span class="math inline">\(\omega_{\rm pl}\geq\omega_p\)</span>, and <span class="math inline">\(\hbar\omega_p=1.9E_F\)</span> for one electron per sphere of radius <span class="math inline">\(4a_0\)</span>, with <span class="math inline">\(a_0\)</span> the Bohr radius. So no pair exists at its energy and the mode is sharp.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
 <p>This is false. The plasmon is a collective mode of all electrons. The same mode does decay when its branch enters the continuum at larger <span class="math inline">\(q\)</span>, which shows that it is not protected as a single particle.</p></li>
 </ul>
 </div>
 </details>
 </div>
-<p>The same denominator, now in the spin channel, gives the Stoner instability, and we treat it next.</p>
+<div class="quiz" data-correct="A" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>The RPA response is</p>
+<p><span class="math display">\[\chi=\frac{\chi_0}{1+U\chi_0}.\]</span></p>
+<p>Which series in <span class="math inline">\(U\)</span> does it sum?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(\chi_0-\chi_0U\chi_0+\chi_0U\chi_0U\chi_0-\dots\)</span></li>
+<li><span class="math inline">\(\chi_0+\chi_0U\chi_0+\chi_0U\chi_0U\chi_0+\dots\)</span></li>
+<li><span class="math inline">\(\chi_0-U\chi_0^2\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. Each term adds one bubble and one interaction line with the factor <span class="math inline">\(-U\chi_0\)</span>, and this geometric series sums to <span class="math inline">\(\chi_0/(1+U\chi_0)\)</span> for <span class="math inline">\(|U\chi_0|&lt;1\)</span>. For <span class="math inline">\(U\chi_0=0.2\)</span> the three terms give <span class="math inline">\(0.84\,\chi_0\)</span>, close to the <span class="math inline">\(0.833\,\chi_0\)</span> of the formula.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. This series sums to <span class="math inline">\(\chi_0/(1-U\chi_0)\)</span>, which is <span class="math inline">\(1.25\,\chi_0\)</span> for <span class="math inline">\(U\chi_0=0.2\)</span>, and not <span class="math inline">\(0.833\,\chi_0\)</span>. It has the sign of the spin channel, where the same <span class="math inline">\(U\)</span> enhances the response.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. This is only the first order in <span class="math inline">\(U\)</span>. For <span class="math inline">\(U\chi_0=0.2\)</span> it gives <span class="math inline">\(0.8\,\chi_0\)</span>, while the formula gives <span class="math inline">\(0.833\,\chi_0\)</span>, and at no value of <span class="math inline">\(U\)</span> does it have a pole.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>The RPA response <a href="#eq-9-6">(9.6)</a> is the sum of the series <span class="math inline">\(\chi_0\left[1-U\chi_0+(U\chi_0)^2-\dots\right]\)</span>. Take the first three terms for <span class="math inline">\(U\chi_0=0.5\)</span> and compare them with <a href="#eq-9-6">(9.6)</a>. Then do the same for <span class="math inline">\(U\chi_0=2\)</span>. What does this say about a calculation that stops at a finite order in <span class="math inline">\(U\)</span>?</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>For <span class="math inline">\(U\chi_0=0.5\)</span> the three terms give <span class="math inline">\(\chi_0(1-0.5+0.25)=0.75\,\chi_0\)</span>, and <a href="#eq-9-6">(9.6)</a> gives <span class="math inline">\(\chi_0/1.5=0.667\,\chi_0\)</span>. The next term, <span class="math inline">\(-0.125\,\chi_0\)</span>, brings the sum to <span class="math inline">\(0.625\,\chi_0\)</span>. So the partial sums come closer to <span class="math inline">\(0.667\,\chi_0\)</span> from the two sides, since the series converges for <span class="math inline">\(|U\chi_0|&lt;1\)</span>.</p>
+<p>For <span class="math inline">\(U\chi_0=2\)</span> the three terms give <span class="math inline">\(\chi_0(1-2+4)=3\,\chi_0\)</span>. The partial sums are <span class="math inline">\(1\)</span>, <span class="math inline">\(-1\)</span>, <span class="math inline">\(3\)</span> and <span class="math inline">\(-5\)</span> times <span class="math inline">\(\chi_0\)</span>, which jump with a growing size, so the series does not converge. The formula <a href="#eq-9-6">(9.6)</a> still gives <span class="math inline">\(\chi_0/3=0.333\,\chi_0\)</span>, and this value solves the self-consistent equation <span class="math inline">\(\chi=\chi_0-\chi_0U\chi\)</span>, since <span class="math inline">\(\chi_0/3=\chi_0-2\chi_0/3\)</span>.</p>
+<p>So a calculation at a finite order in <span class="math inline">\(U\)</span> works only when <span class="math inline">\(|U\chi_0|\)</span> is small. For <span class="math inline">\(|U\chi_0|\geq1\)</span> the series does not converge, while the closed form <a href="#eq-9-6">(9.6)</a>, the solution of the self-consistent equation, stays finite. The one exception is its pole at <span class="math inline">\(U\chi_0=-1\)</span>, which no truncation has. This is why a collective mode cannot be found at any finite order in <span class="math inline">\(U\)</span>.</p>
+</div>
+</details>
+</div>
+</div>
 <div class="comesback">
 <div class="comesback-label">
 Where this comes back

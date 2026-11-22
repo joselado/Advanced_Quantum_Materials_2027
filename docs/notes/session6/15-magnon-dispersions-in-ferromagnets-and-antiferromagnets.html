@@ -85,33 +85,77 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="on" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 6. Classical Magnetism and Magnons</a></p>
 <h1 id="sec-6-15"><span class="num">6.15</span> Magnon dispersions in ferromagnets and antiferromagnets</h1>
+<p>How does the magnon energy go to zero at long wavelength, in a ferromagnet and in an antiferromagnet? We will now see that it goes to zero in both, since the magnon is a Goldstone mode. In a ferromagnet it goes as <span class="math inline">\(k^2\)</span>, <a href="#eq-6-8">(6.8)</a>, and in an antiferromagnet as <span class="math inline">\(|k|\)</span>, <a href="#eq-6-9">(6.9)</a>, because of the anomalous terms of its boson Hamiltonian.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[S_i^+ \approx \sqrt{2S}\, a_i, \qquad S_i^- \approx \sqrt{2S}\, a_i^\dagger, \qquad S_i^z = S - a_i^\dagger a_i. \tag{6.7}\]</span></p>
+</div>
+<p>This is the linear form of the Holstein-Primakoff transformation of Section <a href="13-magnons-as-fluctuations-of-the-order-parameter.html#sec-6-14">6.14</a>, which holds close to full polarization, <span class="math inline">\(\langle a_i^\dagger a_i\rangle\ll S\)</span>. The boson <span class="math inline">\(a_i\)</span> counts the spin removed from <span class="math inline">\(S\)</span> on site <span class="math inline">\(i\)</span>. With it the ferromagnetic Heisenberg model becomes a bosonic tight-binding Hamiltonian, where the magnon has the onsite energy <span class="math inline">\(z|J|S\)</span> and hops with <span class="math inline">\(-|J|S\)</span> to each of the <span class="math inline">\(z\)</span> neighbors.</p>
+</div>
 <p>We Fourier transform the bosonic Hamiltonian of Section <a href="13-magnons-as-fluctuations-of-the-order-parameter.html#sec-6-14">6.14</a> on a Bravais lattice with coordination number <span class="math inline">\(z\)</span> and first-neighbor structure factor <span class="math inline">\(\gamma(\mathbf k) = \tfrac1z\sum_{\boldsymbol\delta}
-e^{i\mathbf k\cdot\boldsymbol\delta}\)</span>. For the <strong>ferromagnet</strong>, with <span class="math inline">\(J&lt;0\)</span> and <span class="math inline">\(|J|=-J\)</span>, this gives a diagonal magnon Hamiltonian with dispersion</p>
+e^{i\mathbf k\cdot\boldsymbol\delta}\)</span>. For the <strong>ferromagnet</strong>, with <span class="math inline">\(J&lt;0\)</span> and <span class="math inline">\(|J|=-J\)</span>, this gives a diagonal magnon Hamiltonian, with one band that is the onsite energy <span class="math inline">\(z|J|S\)</span> plus the hops <span class="math inline">\(-|J|S\,e^{i\mathbf k\cdot\boldsymbol\delta}\)</span> to the <span class="math inline">\(z\)</span> neighbors.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>The magnon band of a ferromagnet, with <span class="math inline">\(J&lt;0\)</span> on a Bravais lattice, is</p>
 <p><span id="eq-6-8" class="eq"><span class="math display">\[E_\text{FM}(\mathbf k) = |J|\,S\,z\big(1-\gamma(\mathbf k)\big). \tag{6.8}\]</span></span></p>
+<p>It is zero at <span class="math inline">\(\mathbf k=0\)</span> and quadratic at small <span class="math inline">\(\mathbf k\)</span>, since <span class="math inline">\(1-\gamma(\mathbf k)\propto k^2\)</span>. It is exact for one magnon.</p>
+</div>
 <p>This dispersion is zero at <span class="math inline">\(\mathbf k=0\)</span>, as it has to be. A uniform rotation of all the spins costs no energy, and this is the Goldstone mode of the broken spin-rotation symmetry. If we expand <span class="math inline">\(\gamma(\mathbf k)\)</span> for small <span class="math inline">\(\mathbf k\)</span> we obtain <span class="math inline">\(E_\text{FM}(\mathbf k)\propto k^2\)</span>, which is a <strong>quadratic</strong> magnon dispersion, and this is the gapless and quadratic magnon of a ferromagnet.</p>
-<p>The <strong>antiferromagnetic</strong> case needs one more step, because in the ground state the spins are not all up. On a bipartite lattice, we apply the Holstein-Primakoff transformation <a href="13-magnons-as-fluctuations-of-the-order-parameter.html#eq-6-7">(6.7)</a> separately on the two sublattices. On the <span class="math inline">\(B\)</span> sublattice the roles of <span class="math inline">\(S^+\)</span> and <span class="math inline">\(S^-\)</span> are exchanged, since these spins point in the opposite direction. We have <span class="math inline">\(S_i^z=S-a_i^\dagger a_i\)</span> on <span class="math inline">\(A\)</span>, but <span class="math inline">\(S_j^z=-S+b_j^\dagger b_j\)</span> on <span class="math inline">\(B\)</span>. If we insert this into <span class="math inline">\(\mathbf S_i\cdot\mathbf S_j\)</span> for a bond between the two sublattices, we obtain density terms <span class="math inline">\(a^\dagger a\)</span> and <span class="math inline">\(b^\dagger b\)</span>. We also obtain <em>anomalous</em> terms <span class="math inline">\(a_i b_j\)</span> and <span class="math inline">\(a_i^\dagger b_j^\dagger\)</span>, which do not conserve the particle number. This tells us that the magnon vacuum on top of the Néel state is not the bosonic vacuum. To diagonalize the Hamiltonian we need a Bogoliubov transformation and not only a Fourier transform, as for the pairing term of the BdG Hamiltonian in Section <a href="../session5/08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#sec-5-8">5.8</a>. If we do this, we obtain the antiferromagnetic magnon dispersion</p>
+<p>The <strong>antiferromagnetic</strong> case needs one more step, because in the ground state the spins are not all up. On a bipartite lattice, we apply the Holstein-Primakoff transformation <a href="13-magnons-as-fluctuations-of-the-order-parameter.html#eq-6-7">(6.7)</a> separately on the two sublattices. On the <span class="math inline">\(B\)</span> sublattice the roles of <span class="math inline">\(S^+\)</span> and <span class="math inline">\(S^-\)</span> are exchanged, since these spins point in the opposite direction. We have <span class="math inline">\(S_i^z=S-a_i^\dagger a_i\)</span> on <span class="math inline">\(A\)</span>, but <span class="math inline">\(S_j^z=-S+b_j^\dagger b_j\)</span> on <span class="math inline">\(B\)</span>. If we insert this into <span class="math inline">\(\mathbf S_i\cdot\mathbf S_j\)</span> for a bond between the two sublattices, we obtain density terms <span class="math inline">\(a^\dagger a\)</span> and <span class="math inline">\(b^\dagger b\)</span>. We also obtain <em>anomalous</em> terms <span class="math inline">\(a_i b_j\)</span> and <span class="math inline">\(a_i^\dagger b_j^\dagger\)</span>, which do not conserve the particle number.</p>
+<p>This tells us that the magnon vacuum on top of the Néel state is not the bosonic vacuum. To diagonalize the Hamiltonian we need a Bogoliubov transformation and not only a Fourier transform, as for the pairing term of the BdG Hamiltonian in Section <a href="../session5/08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#sec-5-8">5.8</a>. If we do this, we obtain the antiferromagnetic magnon dispersion.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>In linear spin-wave theory the magnon band of an antiferromagnet, with <span class="math inline">\(J&gt;0\)</span> on a bipartite Bravais lattice such as the chain or the square lattice, is</p>
 <p><span id="eq-6-9" class="eq"><span class="math display">\[E_\text{AFM}(\mathbf k) = J\,S\,z\,\sqrt{1-\gamma(\mathbf k)^2}. \tag{6.9}\]</span></span></p>
-<p>Close to <span class="math inline">\(\mathbf k=0\)</span> we have <span class="math inline">\(1-\gamma(\mathbf k)^2 \propto k^2\)</span>, so <span class="math inline">\(E_\text{AFM}(\mathbf k)\propto |k|\)</span>. This is a <strong>linear</strong> dispersion similar to a Dirac cone, which is gapless at the same point but linear and not quadratic. This is the rule that magnons are quadratic in ferromagnets and linear in antiferromagnets, which we have now derived. It is also one more example of a linear dispersion that comes from the structure of a symmetry and is not put in by hand. The Dirac cones of Section <a href="../session2/11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#sec-2-11">2.11</a> and <a href="../session3/index.html">Session 3</a> are the other examples. Figure <a href="#fig:s06:dispersion">6.6</a> shows <a href="#eq-6-8">(6.8)</a> and <a href="#eq-6-9">(6.9)</a> together, with a magnified view of the zone center, so that the parabola and the cone can be distinguished.</p>
+<p>It is zero at <span class="math inline">\(\mathbf k=0\)</span> and linear at small <span class="math inline">\(\mathbf k\)</span>. The square root comes from the Bogoliubov transformation that the anomalous terms <span class="math inline">\(a_ib_j\)</span> need, and the square root of a quantity proportional to <span class="math inline">\(k^2\)</span> is linear in <span class="math inline">\(|k|\)</span>.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">The Bogoliubov transformation of the antiferromagnet</span></summary>
+<div class="fold-body">
+<p>On a bond between the site <span class="math inline">\(i\)</span> of <span class="math inline">\(A\)</span> and the site <span class="math inline">\(j\)</span> of <span class="math inline">\(B\)</span> the linear form gives <span class="math inline">\(S_i^zS_j^z\approx-S^2+S(a_i^\dagger a_i+b_j^\dagger b_j)\)</span>. It also gives <span class="math inline">\(\tfrac12(S_i^+S_j^-+S_i^-S_j^+)\approx S(a_ib_j+a_i^\dagger b_j^\dagger)\)</span>, since on <span class="math inline">\(B\)</span> we have <span class="math inline">\(S_j^+\approx\sqrt{2S}\,b_j^\dagger\)</span>. After the Fourier transform the momenta <span class="math inline">\(\mathbf k\)</span> and <span class="math inline">\(-\mathbf k\)</span> are coupled in pairs, and up to a constant each pair gives</p>
+<p><span class="math display">\[H_{\mathbf k} = JSz\Big[a_{\mathbf k}^\dagger a_{\mathbf k} + b_{-\mathbf k}^\dagger b_{-\mathbf k} + \gamma_{\mathbf k}\big(a_{\mathbf k}b_{-\mathbf k} + a_{\mathbf k}^\dagger b_{-\mathbf k}^\dagger\big)\Big],\]</span></p>
+<p>with <span class="math inline">\(\gamma_{\mathbf k}=\gamma(\mathbf k)\)</span>. The simplest case is <span class="math inline">\(\gamma_{\mathbf k}=0\)</span>, as at <span class="math inline">\(k=\pm\pi/2\)</span> on the chain. There the anomalous term is absent, and <span class="math inline">\(a_{\mathbf k}\)</span> is already a magnon, with the energy <span class="math inline">\(JSz\)</span>.</p>
+<p>For <span class="math inline">\(\gamma_{\mathbf k}\neq0\)</span> we look for a boson <span class="math inline">\(\alpha_{\mathbf k}=u\,a_{\mathbf k}+v\,b_{-\mathbf k}^\dagger\)</span> with <span class="math inline">\([\alpha_{\mathbf k},H_{\mathbf k}]=\omega\,\alpha_{\mathbf k}\)</span>, which removes a quantum of energy <span class="math inline">\(\omega\)</span>. We write <span class="math inline">\(\varepsilon=JSz\)</span> and <span class="math inline">\(\Delta=JSz\,\gamma_{\mathbf k}\)</span>, and the commutators</p>
+<p><span class="math display">\[[a_{\mathbf k},H_{\mathbf k}]=\varepsilon\,a_{\mathbf k}+\Delta\,b_{-\mathbf k}^\dagger, \qquad [b_{-\mathbf k}^\dagger,H_{\mathbf k}]=-\varepsilon\,b_{-\mathbf k}^\dagger-\Delta\,a_{\mathbf k}\]</span></p>
+<p>give the eigenvalue problem</p>
+<p><span class="math display">\[\begin{pmatrix}\varepsilon &amp; -\Delta\\ \Delta &amp; -\varepsilon\end{pmatrix}\begin{pmatrix}u\\ v\end{pmatrix}=\omega\begin{pmatrix}u\\ v\end{pmatrix}, \qquad \omega=\sqrt{\varepsilon^2-\Delta^2}=JSz\sqrt{1-\gamma_{\mathbf k}^2},\]</span></p>
+<p>which is <a href="#eq-6-9">(6.9)</a>. The minus sign under the root comes from the anomalous term. For bosons <span class="math inline">\([a_{\mathbf k},a_{\mathbf k}^\dagger b_{-\mathbf k}^\dagger]=+b_{-\mathbf k}^\dagger\)</span>, while <span class="math inline">\([b_{-\mathbf k}^\dagger,a_{\mathbf k}b_{-\mathbf k}]=-a_{\mathbf k}\)</span>, so the two entries off the diagonal have opposite signs and the matrix is not symmetric. With fermions the pair term is <span class="math inline">\(a b+b^\dagger a^\dagger\)</span>, both commutators give a minus sign, the matrix is symmetric, and the root is <span class="math inline">\(\sqrt{\varepsilon^2+\Delta^2}\)</span>, which is <a href="../session5/08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#eq-5-9">(5.9)</a> of the BdG Hamiltonian.</p>
+<p>The new operator is a boson when <span class="math inline">\([\alpha_{\mathbf k},\alpha_{\mathbf k}^\dagger]=u^2-v^2=1\)</span>, and the eigenvector then gives</p>
+<p><span class="math display">\[u^2=\frac12\Big(\frac{\varepsilon}{\omega}+1\Big), \qquad v^2=\frac12\Big(\frac{1}{\sqrt{1-\gamma_{\mathbf k}^2}}-1\Big).\]</span></p>
+<p>The magnon vacuum, with <span class="math inline">\(\alpha_{\mathbf k}|0\rangle=0\)</span>, holds <span class="math inline">\(v^2\)</span> Holstein-Primakoff bosons in each mode, which is nonzero wherever <span class="math inline">\(\gamma_{\mathbf k}\neq0\)</span>, for instance <span class="math inline">\(1.19\)</span> at <span class="math inline">\(k=0.3\)</span> on the chain. <a href="#sch:s06:afm_bogoliubov">Schematic 6.11</a> shows <span class="math inline">\(\omega\)</span> and <span class="math inline">\(v^2\)</span> for the chain. Near <span class="math inline">\(k=0\)</span> the chain has <span class="math inline">\(v^2\approx1/(2|k|)\)</span>, so the average of <span class="math inline">\(v^2\)</span> over the zone grows as the logarithm of the number of k-points. These zero-point bosons remove the Néel order that the theory starts from, so on the chain <a href="#eq-6-9">(6.9)</a> is only an estimate. On the square lattice the average stays finite, and it reduces the moment of a sublattice from <span class="math inline">\(S\)</span> by about <span class="math inline">\(0.2\)</span>, to <span class="math inline">\(0.30\)</span> for <span class="math inline">\(S=\tfrac12\)</span>.</p>
+</div>
+</details>
+</div>
+<p>Close to <span class="math inline">\(\mathbf k=0\)</span> we have <span class="math inline">\(1-\gamma(\mathbf k)^2 \propto k^2\)</span>, so <span class="math inline">\(E_\text{AFM}(\mathbf k)\propto |k|\)</span>. This is a <strong>linear</strong> dispersion similar to a Dirac cone, which is gapless at the same point but linear and not quadratic. This is the rule that magnons are quadratic in ferromagnets and linear in antiferromagnets, which we have now derived. It is also one more example of a linear dispersion that comes from the structure of a symmetry and is not put in by hand. The Dirac cones of Section <a href="../session2/11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#sec-2-11">2.11</a> and <a href="../session3/index.html">Session 3</a> are the other examples. Figure <a href="#fig:s06:dispersion">6.6</a> shows <a href="#eq-6-8">(6.8)</a> and <a href="#eq-6-9">(6.9)</a> together, with a magnified view of the zone center, so that the parabola and the cone can be distinguished.</p>
 <figure id="fig:s06:dispersion">
 <img src="../figures/s06f06_dispersion.svg" loading="lazy" alt="Magnon dispersions (6.8) and (6.9) for a chain (z=2, \gamma(\mathbf k)=\cos ka), both in units of |J|Sz." />
 <figcaption><strong>Figure 6.6.</strong> Magnon dispersions <a href="#eq-6-8">(6.8)</a> and <a href="#eq-6-9">(6.9)</a> for a chain (<span class="math inline">\(z=2\)</span>, <span class="math inline">\(\gamma(\mathbf k)=\cos ka\)</span>), both in units of <span class="math inline">\(|J|Sz\)</span>. Both are zero at <span class="math inline">\(\mathbf k=0\)</span>, since a uniform rotation of all the spins costs no energy. So the magnon is the Goldstone mode of the broken spin-rotation symmetry, and no value of the exchange can open a gap in it. The difference is <em>how</em> the two dispersions go to zero. The factor <span class="math inline">\(1-\gamma(\mathbf k)\)</span> of the ferromagnet is quadratic in <span class="math inline">\(k\)</span>. The factor <span class="math inline">\(\sqrt{1-\gamma(\mathbf k)^2}\)</span> of the antiferromagnet is the square root of the same quantity, so it is linear and gives a Dirac-like cone instead of a parabola. The right panel magnifies the zone centre, where the difference is clear. This extra square root comes from the Bogoliubov transformation that the Néel state requires, since the anomalous <span class="math inline">\(a_ib_j\)</span> terms are what change a parabola into a cone.</figcaption>
 </figure>
 <figure id="sch:s06:afm_bogoliubov" class="schematic">
 <img src="../figures/web/session06/afm_bogoliubov.svg" loading="lazy" alt="On the left, three dispersions against k, a flat line at one, a weakly modulated curve and a curve with zeros at zero and at plus and minus pi. On the right, a curve that is zero at plus and minus pi over two and diverges at zero and at plus and minus pi." />
-<figcaption><strong>Schematic 6.10.</strong> What the anomalous terms do, for the antiferromagnetic chain with <span class="math inline">\(\gamma(k)=\cos k\)</span>. For each <span class="math inline">\(k\)</span> the boson Hamiltonian couples <span class="math inline">\(a_k\)</span> with <span class="math inline">\(b^\dagger_{-k}\)</span>, and we multiply the anomalous terms by a factor <span class="math inline">\(\lambda\)</span>. The energies come from a numerical Bogoliubov diagonalization. (a) The magnon energy in units of <span class="math inline">\(JSz\)</span>. For <span class="math inline">\(\lambda=0\)</span> every magnon costs <span class="math inline">\(JSz\)</span>, which is a flat band. For <span class="math inline">\(\lambda=1\)</span> the anomalous terms bring it down to <a href="#eq-6-9">(6.9)</a>, with zeros at <span class="math inline">\(k=0\)</span> and <span class="math inline">\(k=\pm\pi\)</span>. (b) For <span class="math inline">\(\lambda=1\)</span>, the number <span class="math inline">\(v_k^2\)</span> of Holstein-Primakoff bosons in each mode of the magnon vacuum. It is nonzero, so the magnon vacuum is not the boson vacuum, which is the Néel state. It grows without bound near <span class="math inline">\(k=0\)</span> and <span class="math inline">\(k=\pm\pi\)</span>.</figcaption>
+<figcaption><strong>Schematic 6.11.</strong> What the anomalous terms do, for the antiferromagnetic chain with <span class="math inline">\(\gamma(k)=\cos k\)</span>. For each <span class="math inline">\(k\)</span> the boson Hamiltonian couples <span class="math inline">\(a_k\)</span> with <span class="math inline">\(b^\dagger_{-k}\)</span>, and we multiply the anomalous terms by a factor <span class="math inline">\(\lambda\)</span>. The energies come from a numerical Bogoliubov diagonalization. (a) The magnon energy in units of <span class="math inline">\(JSz\)</span>. For <span class="math inline">\(\lambda=0\)</span> every magnon costs <span class="math inline">\(JSz\)</span>, which is a flat band. For <span class="math inline">\(\lambda=1\)</span> the anomalous terms bring it down to <a href="#eq-6-9">(6.9)</a>, with zeros at <span class="math inline">\(k=0\)</span> and <span class="math inline">\(k=\pm\pi\)</span>. (b) For <span class="math inline">\(\lambda=1\)</span>, the number <span class="math inline">\(v_k^2\)</span> of Holstein-Primakoff bosons in each mode of the magnon vacuum. It is zero only at <span class="math inline">\(k=\pm\pi/2\)</span>, where <span class="math inline">\(\gamma_k=0\)</span>, and positive everywhere else, so the magnon vacuum is not the boson vacuum, which is the Néel state. It grows without bound near <span class="math inline">\(k=0\)</span> and <span class="math inline">\(k=\pm\pi\)</span>.</figcaption>
 </figure>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>Inelastic neutron scattering measures the energy of a magnon at each wave vector, so it measures the band that <a href="#eq-6-9">(6.9)</a> describes. In the square-lattice antiferromagnet K<span class="math inline">\(_2\)</span>V<span class="math inline">\(_3\)</span>O<span class="math inline">\(_8\)</span>, with spins <span class="math inline">\(S=\tfrac12\)</span>, the neutron data give the near-neighbor exchange constant <span class="math inline">\(1.08\pm0.03\)</span> meV. At the antiferromagnetic zone center the measurement finds a small energy gap of <span class="math inline">\(72\pm9\)</span> micro-eV, which is <span class="math inline">\(0.072\)</span> meV. On the square lattice <a href="#eq-6-9">(6.9)</a> is zero there, at <span class="math inline">\(\mathbf k=(\pi,\pi)\)</span> as at <span class="math inline">\(\mathbf k=0\)</span>, so in our reading the gap needs a small term beyond the isotropic exchange, which the model of this page leaves out. Near the zone boundary the measured spectrum deviates from linear spin-wave theory, which is the theory of <a href="#eq-6-9">(6.9)</a>. The measurement is in <a href="https://arxiv.org/abs/cond-mat/0609775">this article</a>.</p>
+</div>
 <div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>At small <span class="math inline">\(k\)</span> we double the wave vector. How do the magnon energies <a href="#eq-6-8">(6.8)</a> and <a href="#eq-6-9">(6.9)</a> of a chain change?</p>
-<div class="eq-again">
-<p><span class="math display">\[E_\text{FM}(\mathbf k) = |J|\,S\,z\big(1-\gamma(\mathbf k)\big). \tag{6.8}\]</span></p>
-</div>
-<div class="eq-again">
-<p><span class="math display">\[E_\text{AFM}(\mathbf k) = J\,S\,z\,\sqrt{1-\gamma(\mathbf k)^2}. \tag{6.9}\]</span></p>
-</div>
+<p>On a chain the two magnon bands are</p>
+<p><span class="math display">\[E_\text{FM}\propto1-\cos k, \qquad E_\text{AFM}\propto|\sin k|.\]</span></p>
+<p>At small <span class="math inline">\(k\)</span> we double the wave vector. How do the two energies change?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -128,7 +172,7 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
 <p>This is false. For the antiferromagnet of a chain <span class="math inline">\(E\propto\sqrt{1-\cos^2k}=|\sin k|\)</span>. This is <span class="math inline">\(0.0998\)</span> at <span class="math inline">\(k=0.1\)</span> and <span class="math inline">\(0.1987\)</span> at <span class="math inline">\(k=0.2\)</span>, a ratio of about <span class="math inline">\(2\)</span> and not <span class="math inline">\(4\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
-<p>This is true. For small <span class="math inline">\(k\)</span> we have <span class="math inline">\(1-\gamma(\mathbf k)\propto k^2\)</span>. So <a href="#eq-6-8">(6.8)</a> is quadratic, while <a href="#eq-6-9">(6.9)</a> is the square root of a quantity proportional to <span class="math inline">\(k^2\)</span>, which is linear.</p></li>
+<p>This is true. For small <span class="math inline">\(k\)</span> we have <span class="math inline">\(1-\cos k\approx k^2/2\)</span>, so the ferromagnetic band is quadratic. The antiferromagnetic band <span class="math inline">\(|\sin k|=\sqrt{1-\cos^2k}\)</span> is the square root of a quantity proportional to <span class="math inline">\(k^2\)</span>, which is linear.</p></li>
 </ul>
 </div>
 </details>
@@ -138,6 +182,8 @@ Question
 Question
 </div>
 <div class="quiz-q">
+<p>The ferromagnetic magnon band is</p>
+<p><span class="math display">\[E(\mathbf k)=|J|Sz\big(1-\gamma(\mathbf k)\big).\]</span></p>
 <p>A square lattice has <span class="math inline">\(z=4\)</span> and <span class="math inline">\(\gamma(\mathbf k)=\tfrac12(\cos k_x+\cos k_y)\)</span>. What is the ferromagnetic magnon energy at <span class="math inline">\(\mathbf k=(\pi,\pi)\)</span>?</p>
 </div>
 <div class="quiz-options">
@@ -151,24 +197,68 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
-<p>This is false. The energy of <a href="#eq-6-8">(6.8)</a> is zero only where <span class="math inline">\(\gamma=1\)</span>, which is <span class="math inline">\(\mathbf k=(0,0)\)</span>. At <span class="math inline">\((\pi,\pi)\)</span> we have <span class="math inline">\(\gamma=-1\)</span>, which is the opposite end of the band.</p>
-<div class="eq-again">
-<p><span class="math display">\[E_\text{FM}(\mathbf k) = |J|\,S\,z\big(1-\gamma(\mathbf k)\big). \tag{6.8}\]</span></p>
-</div></li>
+<p>This is false. The energy is zero only where <span class="math inline">\(\gamma=1\)</span>, which is <span class="math inline">\(\mathbf k=(0,0)\)</span>. At <span class="math inline">\((\pi,\pi)\)</span> we have <span class="math inline">\(\gamma=-1\)</span>, which is the opposite end of the band.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
 <p>This is false. This value is found at <span class="math inline">\(\mathbf k=(\pi,0)\)</span>, where <span class="math inline">\(\gamma=\tfrac12(-1+1)=0\)</span> and <span class="math inline">\(1-\gamma=1\)</span>. At <span class="math inline">\((\pi,\pi)\)</span> we have <span class="math inline">\(\gamma=-1\)</span> and the energy is twice as large.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
-<p>This is true. At <span class="math inline">\((\pi,\pi)\)</span> we have <span class="math inline">\(\gamma=-1\)</span>, so <span class="math inline">\(1-\gamma=2\)</span>. Then <a href="#eq-6-8">(6.8)</a> gives <span class="math inline">\(2|J|Sz=8|J|S\)</span> for <span class="math inline">\(z=4\)</span>, which is the top of the band.</p>
-<figure class="quiz-fig schematic">
-<img src="../figures/web/session06/square_magnon.svg" loading="lazy" alt="A band that rises from zero at the center of the zone to a maximum at the corner and goes back to zero, with the values 4 and 8 marked." />
-<figcaption>The ferromagnetic magnon of the square lattice, <span class="math inline">\(E=4|J|S[1-(\cos k_x+\cos k_y)/2]\)</span>, along the path <span class="math inline">\(\Gamma\)</span>, <span class="math inline">\(X\)</span>, <span class="math inline">\(M\)</span>, <span class="math inline">\(\Gamma\)</span>. It is <span class="math inline">\(0\)</span> at <span class="math inline">\(\Gamma\)</span>, <span class="math inline">\(4|J|S\)</span> at <span class="math inline">\(X\)</span> and <span class="math inline">\(8|J|S\)</span> at <span class="math inline">\(M\)</span>.</figcaption>
-</figure>
-<div class="eq-again">
-<p><span class="math display">\[E_\text{FM}(\mathbf k) = |J|\,S\,z\big(1-\gamma(\mathbf k)\big). \tag{6.8}\]</span></p>
-</div></li>
+<p>This is true. At <span class="math inline">\((\pi,\pi)\)</span> we have <span class="math inline">\(\gamma=-1\)</span>, so <span class="math inline">\(1-\gamma=2\)</span>. Then <span class="math inline">\(E=2|J|Sz=8|J|S\)</span> for <span class="math inline">\(z=4\)</span>, which is the top of the band.</p>
+<figure class="quiz-fig schematic has-script">
+<img src="../figures/web/session06/square_magnon.svg" loading="lazy" alt="A band that rises from zero at Gamma to 4 at X and to its maximum 8 at M, and goes back to zero at Gamma, with the energy axis in units of the absolute value of J times S." />
+<div class="script-row">
+<a href="../scripts/session06/g4_magnon_square.py" class="script-dl" download="g4_magnon_square.py">Download the pyqula script</a> <span class="script-name"><code>g4_magnon_square.py</code></span>
+</div>
+<figcaption>The ferromagnetic magnon of the square lattice, <span class="math inline">\(E=4|J|S[1-(\cos k_x+\cos k_y)/2]\)</span>, along the path <span class="math inline">\(\Gamma\)</span>, <span class="math inline">\(X\)</span>, <span class="math inline">\(M\)</span>, <span class="math inline">\(\Gamma\)</span>, computed with pyqula as a band with the hopping <span class="math inline">\(-|J|S\)</span> and the onsite energy <span class="math inline">\(4|J|S\)</span>. It is <span class="math inline">\(0\)</span> at <span class="math inline">\(\Gamma\)</span>, <span class="math inline">\(4|J|S\)</span> at <span class="math inline">\(X\)</span> and <span class="math inline">\(8|J|S\)</span> at <span class="math inline">\(M\)</span>.</figcaption>
+</figure></li>
 </ul>
 </div>
 </details>
+</div>
+<div class="quiz quiz-pics" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>A Heisenberg chain of spins <span class="math inline">\(S=\tfrac12\)</span> has</p>
+<p><span class="math display">\[H=J\sum_i\mathbf S_i\cdot\mathbf S_{i+1}, \qquad J&gt;0.\]</span></p>
+<p>Which picture is its magnon band near <span class="math inline">\(k=0\)</span> in linear spin-wave theory?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session06/g4_quiz_disp_fm.svg" loading="lazy" alt="A parabola against k that is zero at k equal to zero and has zero slope there." /></li>
+<li><img src="../figures/web/session06/g4_quiz_disp_afm.svg" loading="lazy" alt="A V-shaped curve against k that is zero at k equal to zero and rises linearly on both sides." /></li>
+<li><img src="../figures/web/session06/g4_quiz_disp_gapped.svg" loading="lazy" alt="A parabola against k with its minimum at 0.2 at k equal to zero." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. This is <span class="math inline">\(1-\cos k\)</span>, the band of the ferromagnet with <span class="math inline">\(J=-1\)</span>. It is <span class="math inline">\(0.005\)</span> at <span class="math inline">\(k=0.1\)</span> and <span class="math inline">\(0.020\)</span> at <span class="math inline">\(k=0.2\)</span>, four times more for twice the <span class="math inline">\(k\)</span>, so it is quadratic. For <span class="math inline">\(J&gt;0\)</span> the chain is an antiferromagnet.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. For <span class="math inline">\(J&gt;0\)</span> the chain is an antiferromagnet, and its band is <span class="math inline">\(2JS|\sin k|\)</span>, which is <span class="math inline">\(|\sin k|\)</span> in units of <span class="math inline">\(J\)</span> for <span class="math inline">\(S=\tfrac12\)</span>. Near <span class="math inline">\(k=0\)</span> it is <span class="math inline">\(2JS|k|\)</span>, linear, because of the anomalous terms <span class="math inline">\(a_ib_j\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. This band is <span class="math inline">\(0.2\)</span> at <span class="math inline">\(k=0\)</span>. In linear spin-wave theory the Néel state breaks the rotation symmetry of <span class="math inline">\(H\)</span>, so turning all the spins together costs no energy, and the magnon at <span class="math inline">\(k=0\)</span> has zero energy for any <span class="math inline">\(J&gt;0\)</span>.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>Expand the two magnon bands at small <span class="math inline">\(\mathbf k\)</span>, with <span class="math inline">\(k\)</span> in units of the inverse lattice constant,</p>
+<p><span class="math display">\[E_\text{FM}=|J|Sz\big(1-\gamma(\mathbf k)\big), \qquad E_\text{AFM}=JSz\sqrt{1-\gamma(\mathbf k)^2}.\]</span></p>
+<p>Do it for the chain, with <span class="math inline">\(z=2\)</span> and <span class="math inline">\(\gamma=\cos k\)</span>, and for the square lattice, with <span class="math inline">\(z=4\)</span> and <span class="math inline">\(\gamma=\tfrac12(\cos k_x+\cos k_y)\)</span>.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>For the chain <span class="math inline">\(1-\cos k\approx k^2/2\)</span>, so <span class="math inline">\(E_\text{FM}\approx|J|S\,k^2\)</span>. For the antiferromagnet <span class="math inline">\(1-\cos^2k=\sin^2k\approx k^2\)</span>, so <span class="math inline">\(E_\text{AFM}\approx2JS|k|\)</span>.</p>
+<p>For the square lattice <span class="math inline">\(\gamma\approx1-k^2/4\)</span> with <span class="math inline">\(k^2=k_x^2+k_y^2\)</span>. So <span class="math inline">\(1-\gamma\approx k^2/4\)</span> and <span class="math inline">\(E_\text{FM}\approx|J|S\,k^2\)</span>, the same as on the chain. For the antiferromagnet <span class="math inline">\(1-\gamma^2\approx2(1-\gamma)\approx k^2/2\)</span>, so</p>
+<p><span class="math display">\[E_\text{AFM}\approx4JS\,\frac{|k|}{\sqrt2}=2\sqrt2\,JS|k|.\]</span></p>
+<p>At small <span class="math inline">\(k\)</span> both bands depend only on <span class="math inline">\(|\mathbf k|\)</span>, so they are isotropic. The ferromagnet has the spin-wave stiffness <span class="math inline">\(|J|S\)</span>, the coefficient of <span class="math inline">\(k^2\)</span>, which is the same on both lattices. The antiferromagnet has the velocity <span class="math inline">\(2JS\)</span> on the chain and <span class="math inline">\(2\sqrt2\,JS\)</span> on the square lattice, in units of the lattice constant over <span class="math inline">\(\hbar\)</span>. In linear spin-wave theory these are the numbers that a neutron measurement reads from the spectrum near the zone center, so they give the exchange <span class="math inline">\(J\)</span> of an ordered magnet. For spins <span class="math inline">\(\tfrac12\)</span> both velocities are estimates. The chain has no Néel order, and on the square lattice the quantum fluctuations raise the velocity by about 16 percent at first order in <span class="math inline">\(1/S\)</span>. The stiffness of the ferromagnet is exact, since its one-magnon band is exact.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="comesback">
 <div class="comesback-label">

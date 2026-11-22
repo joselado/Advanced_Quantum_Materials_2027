@@ -85,38 +85,71 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="on" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 8. Quantum Magnetism, Spinons and Kondo Physics</a></p>
 <h1 id="sec-8-10"><span class="num">8.10</span> Emergent gauge symmetry and vison excitations</h1>
-<p>There is one more essential part of the QSL picture, and it comes directly from the fact that we introduced fermions to describe a spin. Let us take a local phase rotation of the auxiliary fermions that depends on the site,</p>
+<p>What does the rewriting of a spin with fermions add that the spin itself did not have? We will now see that it adds the freedom to change the phase of the fermions on each site, <a href="#eq-8-16">(8.16)</a>. Under this change the phases of the mean-field hoppings change, while their product around a plaquette, the flux, does not. A plaquette whose flux is flipped with respect to the others is a topological defect of this gauge field, which is called a vison.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[\mathbf S_i = \frac12 \sum_{\alpha\beta} f_{i\alpha}^\dagger\, \boldsymbol\sigma_{\alpha\beta}\,
+f_{i\beta}, \tag{8.10}\]</span></p>
+</div>
+<div class="eq-again">
+<p><span class="math display">\[\sum_\sigma f_{i\sigma}^\dagger f_{i\sigma} = 1 \qquad \text{at every site } i. \tag{8.11}\]</span></p>
+</div>
+<p>This is the spin of site <span class="math inline">\(i\)</span> written with the auxiliary fermions <span class="math inline">\(f_{i\uparrow}\)</span> and <span class="math inline">\(f_{i\downarrow}\)</span> of Section <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#sec-8-8">8.8</a>, and the constraint of one fermion per site that makes this rewriting exact. Both contain the fermions of one site only in the pairs <span class="math inline">\(f^\dagger_{i\alpha}f_{i\beta}\)</span>.</p>
+</div>
+<p>There is one more essential part of the QSL picture, and it comes directly from the fact that we introduced fermions to describe a spin. Let us take a local phase rotation of the auxiliary fermions that depends on the site.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>A local phase rotation of the auxiliary fermions is</p>
 <p><span id="eq-8-16" class="eq"><span class="math display">\[f_{i\sigma} \;\to\; e^{i\theta_i}\, f_{i\sigma}, \qquad f^\dagger_{i\sigma} \to e^{-i\theta_i}
 f^\dagger_{i\sigma}. \tag{8.16}\]</span></span></p>
-<p>Both the physical spin operator <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-10">(8.10)</a> and the single-occupancy constraint <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-11">(8.11)</a> do not change at all under <a href="#eq-8-16">(8.16)</a>. The phase <span class="math inline">\(e^{i\theta_i}\)</span> cancels between <span class="math inline">\(f^\dagger_{i\alpha}\)</span> and <span class="math inline">\(f_{i\beta}\)</span> in every term, so the Hamiltonian and the physical spin operators are invariant. The mean-field bond variable <span class="math inline">\(\chi_{ij}\)</span>, however, is <em>not</em> invariant, since it gets a relative phase, <span class="math inline">\(\chi_{ij} \to e^{i(\theta_i - \theta_j)}\chi_{ij}\)</span>. This is the structure of a lattice gauge theory. The variable <span class="math inline">\(\chi_{ij}\)</span> behaves as a link variable, and <a href="#eq-8-16">(8.16)</a> is a local transformation, which is called a gauge transformation. The physical spin theory is invariant under it, while the mean-field saddle point of Section <a href="09-the-mean-field-spinon-hamiltonian-and-its-dispersion-classes.html#sec-8-9">8.9</a> is not. Any two choices of <span class="math inline">\(\chi_{ij}\)</span> that are related by <a href="#eq-8-16">(8.16)</a> describe the same physical quantum spin liquid, so the mean-field decoupling only fixes a class of gauge-equivalent solutions and not a unique set of hoppings. This redundancy is the origin of an <strong>emergent gauge theory</strong> for quantum spin liquids.</p>
-<p>Once we see this gauge structure, <span class="math inline">\(\chi_{ij}\)</span> becomes a dynamical field on the links of the lattice, and it can have its own topological defects. This is in direct analogy with the superconducting order parameter, whose gauge degree of freedom of Section <a href="../session5/06-why-pairing-does-not-conserve-the-particle-number.html#sec-5-7">5.7</a> can have vortices. Let us write the mean-field Hamiltonian as <span class="math inline">\(\mathcal H = \sum_{ij,s}|\chi_{ij}|e^{i\theta_{ij}}f^\dagger_{i,s}f_{j,s}\)</span>, and let us define the flux through a plaquette as the product of the phases that we pick up when we go around its boundary, <span class="math inline">\(\Phi = \prod e^{i\theta_{ij}}\)</span>. For concreteness, let us take a square lattice where the hoppings around every elementary loop pick up the phase <span class="math inline">\(\Phi=+1\)</span>, which is a ground state, except for one loop, where the phase is <span class="math inline">\(\Phi=-1\)</span>. This single flipped plaquette is an excited state. It is a topological defect in the emergent gauge field, and it is called a <strong>vison</strong>. The vison is the excitation of the gauge sector, and in general it is coupled to the spinon excitations of the matter sector that we built in Section <a href="09-the-mean-field-spinon-hamiltonian-and-its-dispersion-classes.html#sec-8-9">8.9</a>. In this language, a quantum spin liquid is described not only by its spinon dispersion but also by an emergent gauge theory and by the vison excitations of that theory. This is a new organizing principle, and nothing like it exists in the symmetry-broken magnets of <a href="../session6/index.html">Session 6</a>. There is no notebook exercise for this construction, which is a purely conceptual and formal part of the QSL picture. Figure <a href="#fig:s08:gauge">8.5</a> shows both parts of it, why the flux and not the link variable is the physical quantity, and what a single flipped flux looks like on the lattice.</p>
+<p>Under it the spin <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-10">(8.10)</a> and the constraint <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-11">(8.11)</a> do not change, while the phase <span class="math inline">\(\theta_{ij}\)</span> of each mean-field hopping changes by <span class="math inline">\(\theta_i-\theta_j\)</span>. The flux <span class="math inline">\(\Phi=\prod e^{i\theta_{ij}}\)</span>, the product of these phases around a plaquette, does not change, so the flux and not the phase of one link is the physical quantity.</p>
+</div>
+<p>Both the physical spin operator <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-10">(8.10)</a> and the single-occupancy constraint <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-11">(8.11)</a> do not change at all under <a href="#eq-8-16">(8.16)</a>. The phase <span class="math inline">\(e^{i\theta_i}\)</span> cancels between <span class="math inline">\(f^\dagger_{i\alpha}\)</span> and <span class="math inline">\(f_{i\beta}\)</span> in every term, so the Hamiltonian and the physical spin operators are invariant. The mean-field bond variable <span class="math inline">\(\chi_{ij}\)</span> of <a href="09-the-mean-field-spinon-hamiltonian-and-its-dispersion-classes.html#eq-8-15">(8.15)</a>, however, is <em>not</em> invariant, since it gets a relative phase, <span class="math inline">\(\chi_{ij} \to e^{i(\theta_i - \theta_j)}\chi_{ij}\)</span>.</p>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">Why the flux does not change under (8.16)</span></summary>
+<div class="fold-body">
+<p>We take the hopping of <a href="09-the-mean-field-spinon-hamiltonian-and-its-dispersion-classes.html#eq-8-15">(8.15)</a>, which is the coefficient <span class="math inline">\(\chi_{ij}=|\chi_{ij}|e^{i\theta_{ij}}\)</span> of <span class="math inline">\(f^\dagger_{is}f_{js}\)</span>. Let us start with one site. Under <a href="#eq-8-16">(8.16)</a> every pair of operators of the same site gets</p>
+<p><span class="math display">\[f^\dagger_{i\alpha}f_{i\beta}\;\to\;e^{-i\theta_i}e^{i\theta_i}\,f^\dagger_{i\alpha}f_{i\beta}=f^\dagger_{i\alpha}f_{i\beta},\]</span></p>
+<p>so the spin <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-10">(8.10)</a> and the number of fermions in <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-11">(8.11)</a> do not change. A pair of two sites is different, since <span class="math inline">\(f^\dagger_{is}f_{js}\to e^{-i(\theta_i-\theta_j)}f^\dagger_{is}f_{js}\)</span>. Written with the rotated fermions, <a href="09-the-mean-field-spinon-hamiltonian-and-its-dispersion-classes.html#eq-8-15">(8.15)</a> has the same form with the new coefficients</p>
+<p><span class="math display">\[\chi_{ij}\;\to\;e^{i(\theta_i-\theta_j)}\chi_{ij},\qquad \theta_{ij}\;\to\;\theta_{ij}+\theta_i-\theta_j,\]</span></p>
+<p>and the levels do not change. Now we go once around a plaquette with the sites <span class="math inline">\(1\)</span>, <span class="math inline">\(2\)</span>, <span class="math inline">\(3\)</span> and <span class="math inline">\(4\)</span>. The flux is the product of the four link phases in this order, so its phase changes by</p>
+<p><span class="math display">\[(\theta_1-\theta_2)+(\theta_2-\theta_3)+(\theta_3-\theta_4)+(\theta_4-\theta_1)=0 .\]</span></p>
+<p>Each site angle appears once with each sign, so <span class="math inline">\(\Phi\)</span> does not change for any choice of the <span class="math inline">\(\theta_i\)</span>, and the same holds around any closed loop of the lattice. The expectation value of the bond operator of <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-12">(8.12)</a> gets the opposite phase, <span class="math inline">\(e^{-i(\theta_i-\theta_j)}\)</span>, and its product around a plaquette does not change either, since the same sum is zero.</p>
+</div>
+</details>
+</div>
+<p>This is the structure of a lattice gauge theory. The variable <span class="math inline">\(\chi_{ij}\)</span> behaves as a link variable, and <a href="#eq-8-16">(8.16)</a> is a local transformation, which is called a gauge transformation. The physical spin theory is invariant under it, while the mean-field saddle point of Section <a href="09-the-mean-field-spinon-hamiltonian-and-its-dispersion-classes.html#sec-8-9">8.9</a> is not. Any two choices of <span class="math inline">\(\chi_{ij}\)</span> that are related by <a href="#eq-8-16">(8.16)</a> describe the same physical quantum spin liquid, so the mean-field decoupling only fixes a class of gauge-equivalent solutions and not a unique set of hoppings. This redundancy is the origin of an <strong>emergent gauge theory</strong> for quantum spin liquids.</p>
+<p>Once we see this gauge structure, <span class="math inline">\(\chi_{ij}\)</span> becomes a dynamical field on the links of the lattice, and it can have its own topological defects. This is in direct analogy with the superconducting order parameter, whose gauge degree of freedom of Section <a href="../session5/06-why-pairing-does-not-conserve-the-particle-number.html#sec-5-7">5.7</a> can have vortices.</p>
+<p>Let us write the mean-field Hamiltonian as <span class="math inline">\(\mathcal H = \sum_{ij,s}|\chi_{ij}|e^{i\theta_{ij}}f^\dagger_{i,s}f_{j,s}\)</span>, and let us define the flux through a plaquette as the product of the phases that we pick up when we go around its boundary, <span class="math inline">\(\Phi = \prod e^{i\theta_{ij}}\)</span>. For concreteness, let us take a square lattice where the hoppings around every elementary loop pick up the phase <span class="math inline">\(\Phi=+1\)</span>, except for one loop, where the phase is <span class="math inline">\(\Phi=-1\)</span>.</p>
+<p>This single flipped plaquette is a topological defect in the emergent gauge field, and it is called a <strong>vison</strong>. It is an excitation when the background has the flux of the ground state. For spinons at half filling on the square lattice with a fixed <span class="math inline">\(|\chi|\)</span> this is the flux <span class="math inline">\(\pi\)</span>, with <span class="math inline">\(\Phi=-1\)</span> on every plaquette, so there the vison is one plaquette with <span class="math inline">\(\Phi=+1\)</span>. The vison is the excitation of the gauge sector, and in general it is coupled to the spinon excitations of the matter sector that we built in Section <a href="09-the-mean-field-spinon-hamiltonian-and-its-dispersion-classes.html#sec-8-9">8.9</a>. In this language, a quantum spin liquid is described not only by its spinon dispersion but also by an emergent gauge theory and by the vison excitations of that theory. This is a new organizing principle, and nothing like it exists in the symmetry-broken magnets of <a href="../session6/index.html">Session 6</a>.</p>
+<p>There is no notebook exercise for this construction, which is a purely conceptual and formal part of the QSL picture. Figure <a href="#fig:s08:gauge">8.5</a> shows both parts of it, why the flux and not the link variable is the physical quantity, and what a single flipped flux looks like on the lattice.</p>
 <figure id="fig:s08:gauge">
 <img src="../figures/s08f05_gauge_vison.svg" loading="lazy" alt="The emergent gauge theory of the parton construction, and its excitation, seen from above." />
-<figcaption><strong>Figure 8.5.</strong> The emergent gauge theory of the parton construction, and its excitation, seen from above. (a) The mean-field bond variable is defined on the links, <span class="math inline">\(\chi_{ij}=|\chi_{ij}|e^{i\theta_{ij}}\)</span>, drawn as a dial at the phase <span class="math inline">\(\theta_{ij}\)</span>. The local phase rotation <a href="#eq-8-16">(8.16)</a> on one site shifts every link phase by <span class="math inline">\(\theta_i-\theta_j\)</span>, which changes the two red needles. When we go once around a plaquette, each site phase appears twice with opposite signs, so the flux <span class="math inline">\(\Phi=\prod e^{i\theta_{ij}}\)</span> does not change. The link variables are pure gauge, and the flux is physical. This is the reason why two mean-field solutions related by <a href="#eq-8-16">(8.16)</a> describe the same spin liquid. (b) As a result, the flux is what labels the state. With <span class="math inline">\(\Phi=+1\)</span> on every plaquette as the ground state, flipping a single plaquette to <span class="math inline">\(\Phi=-1\)</span> costs energy, and no gauge transformation can remove it. This localized defect of the gauge field is a <strong>vison</strong>. Which links have the minus sign is a gauge choice, here a string from the edge, and it can be moved freely, while the shaded plaquette cannot be moved.</figcaption>
+<figcaption><strong>Figure 8.5.</strong> The emergent gauge theory of the parton construction, and its excitation, seen from above. (a) The mean-field bond variable is defined on the links, <span class="math inline">\(\chi_{ij}=|\chi_{ij}|e^{i\theta_{ij}}\)</span>, drawn as a dial at the phase <span class="math inline">\(\theta_{ij}\)</span>. The local phase rotation <a href="#eq-8-16">(8.16)</a> on one site shifts every link phase by <span class="math inline">\(\theta_i-\theta_j\)</span>, which changes the two red needles. When we go once around a plaquette, each site phase appears twice with opposite signs, so the flux <span class="math inline">\(\Phi=\prod e^{i\theta_{ij}}\)</span> does not change. The link variables are pure gauge, and the flux is physical. This is the reason why two mean-field solutions related by <a href="#eq-8-16">(8.16)</a> describe the same spin liquid. (b) As a result, the flux is what labels the state. With <span class="math inline">\(\Phi=+1\)</span> on every plaquette as the background, a single plaquette flipped to <span class="math inline">\(\Phi=-1\)</span> changes the levels of the spinons, and no gauge transformation can remove it. This localized defect of the gauge field is a <strong>vison</strong>. Which links have the minus sign is a gauge choice, here a string from the edge, and it can be moved freely, while the shaded plaquette cannot be moved.</figcaption>
 </figure>
 <figure id="sch:s08:gauge_levels" class="schematic">
 <img src="../figures/web/session08/gauge_levels.svg" loading="lazy" alt="The shift of 36 energy levels from those of the uniform hopping, zero for every level after a gauge rotation, and scattered between about minus and plus 0.36 for one flipped plaquette." />
-<figcaption><strong>Schematic 8.8.</strong> The flux and not the link phase is what the spinons feel. We take the uniform hopping <span class="math inline">\(\chi_{ij}=1\)</span> on an open <span class="math inline">\(6\times6\)</span> square lattice, with the 36 levels <span class="math inline">\(E_n^{(0)}\)</span>. Then we change the link phases in two ways and plot the shift of the new levels <span class="math inline">\(E_n\)</span>. After a random gauge rotation <a href="#eq-8-16">(8.16)</a> on every site, every level stays the same to <span class="math inline">\(10^{-12}\)</span>, which gives the open circles on the zero line. With a string of three links set to <span class="math inline">\(-1\)</span> from the edge, one plaquette in the middle has <span class="math inline">\(\Phi=-1\)</span>. The levels then move by up to <span class="math inline">\(0.36\)</span> in units of <span class="math inline">\(|\chi|\)</span>, which gives the red dots. A vison changes the spinon spectrum, so no gauge rotation can remove it.</figcaption>
+<figcaption><strong>Schematic 8.9.</strong> The flux and not the link phase is what the spinons feel. We take the uniform hopping <span class="math inline">\(\chi_{ij}=1\)</span> on an open <span class="math inline">\(6\times6\)</span> square lattice, with the 36 levels <span class="math inline">\(E_n^{(0)}\)</span>. Then we change the link phases in two ways and plot the shift of the new levels <span class="math inline">\(E_n\)</span>. After a random gauge rotation <a href="#eq-8-16">(8.16)</a> on every site, every level stays the same to <span class="math inline">\(10^{-12}\)</span>, which gives the open circles on the zero line. With a string of three links set to <span class="math inline">\(-1\)</span> from the edge, one plaquette in the middle has <span class="math inline">\(\Phi=-1\)</span>. The levels then move by up to <span class="math inline">\(0.36\)</span> in units of <span class="math inline">\(|\chi|\)</span>, which gives the red dots. A vison changes the spinon spectrum, so no gauge rotation can remove it.</figcaption>
 </figure>
 <div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>Which of these objects changes under the local phase rotation <a href="#eq-8-16">(8.16)</a>?</p>
-<div class="eq-again">
-<p><span class="math display">\[f_{i\sigma} \;\to\; e^{i\theta_i}\, f_{i\sigma}, \qquad f^\dagger_{i\sigma} \to e^{-i\theta_i}
-f^\dagger_{i\sigma}. \tag{8.16}\]</span></p>
-</div>
-<div class="eq-again">
-<p><span class="math display">\[\sum_\sigma f_{i\sigma}^\dagger f_{i\sigma} = 1 \qquad \text{at every site } i. \tag{8.11}\]</span></p>
-</div>
+<p>We rotate the phase of the fermions on every site,</p>
+<p><span class="math display">\[f_{i\sigma} \;\to\; e^{i\theta_i}\, f_{i\sigma}, \qquad f^\dagger_{i\sigma} \to e^{-i\theta_i} f^\dagger_{i\sigma}.\]</span></p>
+<p>Which of these objects changes?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li>The single-occupancy constraint <a href="07-why-the-holstein-primakoff-magnon-approach-fails-for-qsl-excitations.html#eq-8-11">(8.11)</a>.</li>
+<li>The single-occupancy constraint <span class="math inline">\(\sum_\sigma f^\dagger_{i\sigma}f_{i\sigma}=1\)</span>.</li>
 <li>The physical spin Hamiltonian.</li>
-<li>The bond variable <span class="math inline">\(\chi_{ij}\)</span>, which gets the phase <span class="math inline">\(e^{i(\theta_i-\theta_j)}\)</span>.</li>
+<li>The mean-field hopping <span class="math inline">\(\chi_{ij}\)</span>, the coefficient of <span class="math inline">\(f^\dagger_{i\sigma}f_{j\sigma}\)</span>, which gets the phase <span class="math inline">\(e^{i(\theta_i-\theta_j)}\)</span>.</li>
 </ol>
 </div>
 <details class="quiz-answer"><summary>Show the answers</summary>
@@ -137,7 +170,7 @@ f^\dagger_{i\sigma}. \tag{8.16}\]</span></p>
 Question
 </div>
 <div class="quiz-q">
-<p>We rotate the phase of the fermions on the four sites of a plaquette with arbitrary angles <span class="math inline">\(\theta_i\)</span>. How does the flux <span class="math inline">\(\Phi\)</span> through it change?</p>
+<p>The flux <span class="math inline">\(\Phi\)</span> of a plaquette is the product of its four hopping phases. We rotate the fermions on its four sites by angles <span class="math inline">\(\theta_i\)</span>. How does <span class="math inline">\(\Phi\)</span> change?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -152,7 +185,7 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
 <p>This is false. Take the same angle <span class="math inline">\(\theta\)</span> on the four sites. Every link gets <span class="math inline">\(\theta-\theta=0\)</span>, so nothing changes, while the sum would be <span class="math inline">\(4\theta\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. Going around the plaquette we pick up <span class="math inline">\(\theta_i-\theta_j\)</span> on each link, and the sum telescopes to zero. The flux is physical, and this is why the vison, which is a plaquette with <span class="math inline">\(\Phi=-1\)</span>, cannot be removed.</p>
+<p>This is true. Going around the plaquette we pick up <span class="math inline">\(\theta_i-\theta_j\)</span> on each link, and the sum telescopes to zero. The flux is physical, and this is why the vison, a plaquette whose flux is flipped, cannot be removed.</p>
 <figure class="quiz-fig schematic">
 <img src="../figures/web/session08/plaquette_phases.svg" loading="lazy" alt="A square plaquette with a phase on each corner and the differences of two phases on each link, whose sum is zero." />
 <figcaption>The phases that the four links of a plaquette pick up under the gauge rotation add up to zero, since every <span class="math inline">\(\theta_i\)</span> appears once with each sign.</figcaption>
@@ -162,6 +195,49 @@ Question
 </ul>
 </div>
 </details>
+</div>
+<div class="quiz quiz-pics" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Each picture shows a plaquette with the hopping <span class="math inline">\(\chi_{ij}=\pm1\)</span> on each link. The flux is the product of the four hoppings,</p>
+<p><span class="math display">\[\Phi=\chi_{12}\,\chi_{23}\,\chi_{34}\,\chi_{41}.\]</span></p>
+<p>Which plaquette has <span class="math inline">\(\Phi=-1\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session08/g3_quiz_plaquette_two.svg" loading="lazy" alt="A square plaquette with the hopping minus one on the bottom and on the top link, and plus one on the two sides." /></li>
+<li><img src="../figures/web/session08/g3_quiz_plaquette_one.svg" loading="lazy" alt="A square plaquette with the hopping minus one on the left link and plus one on the other three links." /></li>
+<li><img src="../figures/web/session08/g3_quiz_plaquette_four.svg" loading="lazy" alt="A square plaquette with the hopping minus one on all four links." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The product is <span class="math inline">\((-1)(+1)(-1)(+1)=+1\)</span>. The rotation <span class="math inline">\(\theta_i=\pi\)</span> on the two sites of the left side gives this plaquette from the one with all hoppings <span class="math inline">\(+1\)</span>, so the two have the same flux.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. Only one hopping is <span class="math inline">\(-1\)</span>, so <span class="math inline">\(\Phi=-1\)</span>. A phase rotation of the sites cannot change this product, so no choice of the <span class="math inline">\(\theta_i\)</span> brings this plaquette back to <span class="math inline">\(\Phi=+1\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The product is <span class="math inline">\((-1)^4=+1\)</span>. The rotation <span class="math inline">\(\theta_i=\pi\)</span> on two opposite corners changes the sign of all four links, so this plaquette has the same flux as the one with all hoppings <span class="math inline">\(+1\)</span>.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>On an open square lattice of <span class="math inline">\(L\times L\)</span> sites all the hoppings are <span class="math inline">\(\chi_{ij}=1\)</span>. We set <span class="math inline">\(\chi_{ij}=-1\)</span> on <span class="math inline">\(n\)</span> vertical links between the same two rows, the first at the left edge and the others next to it, with <span class="math inline">\(1\le n\le L-1\)</span>. Show that one plaquette has <span class="math inline">\(\Phi=-1\)</span> and all the others have <span class="math inline">\(\Phi=+1\)</span>, and find where it sits.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>A plaquette between the two rows has two vertical links, one on its left and one on its right, and its two horizontal links have <span class="math inline">\(\chi=1\)</span>. We count the vertical links from <span class="math inline">\(1\)</span> at the left edge, so the plaquette number <span class="math inline">\(m\)</span> has the links <span class="math inline">\(m\)</span> and <span class="math inline">\(m+1\)</span>, with <span class="math inline">\(m\)</span> from <span class="math inline">\(1\)</span> to <span class="math inline">\(L-1\)</span>. For <span class="math inline">\(m&lt;n\)</span> both links are in the string, and <span class="math inline">\(\Phi=(-1)^2=+1\)</span>. For <span class="math inline">\(m=n\)</span> only the left link is in the string, and <span class="math inline">\(\Phi=-1\)</span>. For <span class="math inline">\(m&gt;n\)</span> neither is, and <span class="math inline">\(\Phi=+1\)</span>. The plaquettes of the other rows have no link of the string. So the only plaquette with <span class="math inline">\(\Phi=-1\)</span> is the one at the end of the string, the plaquette <span class="math inline">\(m=n\)</span>, and it exists since <span class="math inline">\(n\le L-1\)</span>. For <span class="math inline">\(n=L\)</span> the string crosses the whole lattice and every plaquette has <span class="math inline">\(\Phi=+1\)</span>. On the <span class="math inline">\(6\times6\)</span> lattice of <a href="#sch:s08:gauge_levels">Schematic 8.9</a>, with <span class="math inline">\(n=3\)</span>, this is one of the <span class="math inline">\(25\)</span> plaquettes, so the fluxes add up to <span class="math inline">\(23\)</span>.</p>
+<p>A string of horizontal links from the bottom edge that ends at the same plaquette gives the same fluxes, and the two strings differ by a gauge rotation <a href="#eq-8-16">(8.16)</a>. So the levels of <a href="#sch:s08:gauge_levels">Schematic 8.9</a> depend only on where the string ends, and a calculation can put the string anywhere.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="comesback">
 <div class="comesback-label">

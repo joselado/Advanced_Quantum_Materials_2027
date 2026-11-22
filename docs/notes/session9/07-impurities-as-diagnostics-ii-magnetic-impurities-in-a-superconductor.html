@@ -85,26 +85,56 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="on" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 9. Excitations and Defects in Quantum Materials</a></p>
 <h1 id="sec-9-7"><span class="num">9.7</span> Impurities as diagnostics II, magnetic impurities in a superconductor</h1>
+<p>What does one impurity do to a superconductor, which has a gap and no Fermi surface? We will now see that a non-magnetic impurity changes almost nothing, while a magnetic one binds a state inside the gap, at the energy <a href="#eq-9-10">(9.10)</a>. This energy crosses zero at <span class="math inline">\(\alpha=1\)</span>, and there the fermion parity of the ground state changes.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[E(\mathbf k) = \pm\sqrt{\varepsilon(\mathbf k)^2 + |\Delta(\mathbf k)|^2}. \tag{5.9}\]</span></p>
+</div>
+<p>These are the quasiparticle energies of the Bogoliubov-de Gennes Hamiltonian of Section <a href="../session5/08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#sec-5-8">5.8</a>. Here <span class="math inline">\(\varepsilon(\mathbf k)\)</span> is the band measured from the Fermi level and <span class="math inline">\(\Delta(\mathbf k)\)</span> is the pairing. For a uniform <span class="math inline">\(\Delta\)</span> there is no state with <span class="math inline">\(|E|&lt;|\Delta|\)</span>, and this gap is where a bound state can appear.</p>
+</div>
 <p>We described superconductors in <a href="../session5/index.html">Session 5</a> with the Bogoliubov-de Gennes Hamiltonian of Section <a href="../session5/08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#sec-5-8">5.8</a>. They behave in a completely different way under a local perturbation, because for single-particle excitations a superconductor is an insulator in the bulk. There is a finite gap <span class="math inline">\(\Delta\)</span>, so there is no Fermi surface that can give oscillations of the Friedel type. The interesting physics is instead the difference between magnetic and non-magnetic impurities.</p>
 <p>Let us remember that an s-wave Cooper pair binds one spin-up electron and one spin-down electron. A <strong>non-magnetic</strong> impurity, which is an ordinary local potential, does not distinguish spin up from spin down. So it does not break time-reversal symmetry, and it cannot lower the energy needed to break any specific Cooper pair. In practice, the density of states of a conventional s-wave superconductor is almost the same with and without a non-magnetic impurity, including the gap. Panel (a) of Figure <a href="#fig:s09:ysr">9.3</a> shows the two spectra on top of each other.</p>
-<p>A <strong>magnetic</strong> impurity is completely different. It couples with strength <span class="math inline">\(J\)</span> to the local spin, it distinguishes up from down, and so it <em>does</em> break time-reversal symmetry. This lowers the energy needed to break one specific Cooper pair and gives a real bound state inside the gap. In the approximation of a classical spin, in the Born approximation, this is the <strong>Yu-Shiba-Rusinov</strong> problem. With <span class="math inline">\(\alpha \equiv \pi
+<p>A <strong>magnetic</strong> impurity is completely different. It couples with strength <span class="math inline">\(J\)</span> to the local spin, it distinguishes up from down, and so it <em>does</em> break time-reversal symmetry. This lowers the energy needed to break one specific Cooper pair and gives a real bound state inside the gap. In the approximation of a classical spin, this is the <strong>Yu-Shiba-Rusinov</strong> problem.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>With <span class="math inline">\(\alpha \equiv \pi
 \nu_0 J S\)</span>, where <span class="math inline">\(\nu_0\)</span> is the density of states of the normal state at the Fermi level and <span class="math inline">\(S\)</span> is the impurity spin, the energy of the bound state in the gap is</p>
 <p><span id="eq-9-10" class="eq"><span class="math display">\[E_b(J) = \Delta\, \frac{1-\alpha^2}{1+\alpha^2}. \tag{9.10}\]</span></span></p>
+<p>Here <span class="math inline">\(\nu_0\)</span> is counted per spin, and <span class="math inline">\(JS\)</span> is the exchange energy on the impurity site, <span class="math inline">\(+JS\)</span> for one spin and <span class="math inline">\(-JS\)</span> for the other. The bound state starts at the gap edge for <span class="math inline">\(\alpha=0\)</span> and crosses zero energy at <span class="math inline">\(\alpha=1\)</span>. This crossing is a change of the ground state, and not only a level that moves.</p>
+</div>
 <p>Equation <a href="#eq-9-10">(9.10)</a> gives the curve of panel (b) of Figure <a href="#fig:s09:ysr">9.3</a>, as a function of <span class="math inline">\(J\)</span>. At <span class="math inline">\(J=0\)</span> (<span class="math inline">\(\alpha=0\)</span>), <span class="math inline">\(E_b = \Delta\)</span>, which is at the gap edge, meaning that there is no real bound state yet. As <span class="math inline">\(J\)</span> increases, <span class="math inline">\(\alpha\)</span> grows and <span class="math inline">\(E_b\)</span> moves down through the gap. At <span class="math inline">\(\alpha = 1\)</span>, which is <span class="math inline">\(\pi\nu_0 J S = 1\)</span>, the state crosses zero energy, and for <span class="math inline">\(\alpha&gt;1\)</span> the numerator of <a href="#eq-9-10">(9.10)</a> becomes negative, so the bound state appears again on the other side of zero. This crossing is a real quantum phase transition, where the fermion parity of the electronic ground state changes. Below it the electronic ground state is even, with total electron spin <span class="math inline">\(S_{\rm
 tot}=0\)</span>, where every Cooper pair is intact and the impurity spin is not screened. Above it the electronic ground state has <span class="math inline">\(S_{\rm tot}=1/2\)</span>, since one quasiparticle is bound to the impurity and partially screens its spin. So a superconductor with a single magnetic impurity that we can tune is a minimal, exactly solvable model of a quantum phase transition, which is driven only by a local perturbation. Both parts of this picture are drawn in Figure <a href="#fig:s09:ysr">9.3</a>. It shows the in-gap states that a magnetic impurity adds to a BCS spectrum that is otherwise unchanged, and the path that <a href="#eq-9-10">(9.10)</a> follows across the gap as <span class="math inline">\(\alpha\)</span> grows.</p>
 <figure id="fig:s09:ysr">
 <img src="../figures/s09f03_ysr.svg" loading="lazy" alt="A magnetic impurity in an s-wave superconductor." />
 <figcaption><strong>Figure 9.3.</strong> A magnetic impurity in an s-wave superconductor. (a) The single-particle density of states. The BCS continuum, with a gap <span class="math inline">\(\Delta\)</span> and coherence peaks at the gap edges, is almost unchanged by a <em>non-magnetic</em> impurity. Such an impurity does not distinguish up from down, so it cannot lower the energy needed to break any specific Cooper pair. A <em>magnetic</em> impurity distinguishes them, breaks time-reversal symmetry, and creates a pair of bound states inside the gap at <span class="math inline">\(\pm E_b\)</span>, the red peaks, drawn for <span class="math inline">\(\alpha=0.6\)</span>. (b) The energy of these states, from <a href="#eq-9-10">(9.10)</a>, as a function of <span class="math inline">\(\alpha=\pi\nu_0JS\)</span>. At <span class="math inline">\(\alpha=0\)</span> they are exactly at the gap edges, meaning that there is no bound state yet. As the exchange grows they move across the gap and cross at <span class="math inline">\(\alpha=1\)</span>. The crossing is not a level repulsion that did not open. It is a real quantum phase transition of the electronic ground state, with a change of fermion parity. The electron spin goes from <span class="math inline">\(S_{\rm tot}=0\)</span>, where every Cooper pair is intact and the impurity spin is not screened, to <span class="math inline">\(S_{\rm tot}=1/2\)</span>, where one quasiparticle is bound to the impurity and partially screens its spin. So a single impurity that we can tune is an exactly solvable quantum phase transition.</figcaption>
 </figure>
+<p>The same path can be computed on a lattice. In <a href="#sch:s09:g5_ysr_dos">Schematic 9.12</a> we show the density of states on the site of one magnetic impurity and on the two sites next to it on one side, in an infinite superconducting chain, against the exchange. At half filling the bound state follows <a href="#eq-9-10">(9.10)</a> as it moves through the gap.</p>
+<figure id="sch:s09:g5_ysr_dos" class="schematic has-script">
+<img src="../figures/web/session09/g5_ysr_dos.svg" loading="lazy" alt="A color map of the density of states against the exchange and the energy. Two dark lines start at the gap edges, cross at zero energy in the middle of the exchange axis and open again, on top of two red dashed curves." />
+<div class="script-row">
+<a href="../scripts/session09/g5_ysr_chain.py" class="script-dl" download="g5_ysr_chain.py">Download the pyqula script</a> <span class="script-name"><code>g5_ysr_chain.py</code></span>
+</div>
+<figcaption><strong>Schematic 9.12.</strong> The density of states of the cell of three sites that holds one magnetic impurity at its end, in an infinite s-wave superconducting chain, against the exchange <span class="math inline">\(JS\)</span> of the impurity, computed with pyqula. The chain is half filled, with the hopping <span class="math inline">\(t\)</span>, the pairing <span class="math inline">\(\Delta=0.2t\)</span> and a broadening of <span class="math inline">\(\Delta/40\)</span>. This is the model of the cell “Single magnetic impurity in a superconductor” of the notebook, at half filling without its <code>h.add_onsite(1.8)</code> and with a smaller broadening. The color is the density of states in units of its value in the normal state, clipped at <span class="math inline">\(4\)</span>. At half filling <span class="math inline">\(\nu_0=1/(2\pi t)\)</span> per spin, so <span class="math inline">\(\alpha=JS/2t\)</span>, and the red dashed lines are <span class="math inline">\(\pm E_b\)</span> of <a href="#eq-9-10">(9.10)</a>. The two dark lines inside the gap leave the gap edges as <span class="math inline">\(JS\)</span> grows. From <span class="math inline">\(JS=0.5t\)</span> on, where they are apart from the coherence peaks, they follow the dashed lines to <span class="math inline">\(0.01\Delta\)</span>, and they meet at zero energy at <span class="math inline">\(JS\approx2t\)</span>, which is <span class="math inline">\(\alpha=1\)</span> in <a href="#eq-9-10">(9.10)</a>. The level of the lattice crosses zero at <span class="math inline">\(JS=\sqrt{4t^2+\Delta^2}=2.01t\)</span>, which the grid of <span class="math inline">\(0.1t\)</span> in <span class="math inline">\(JS\)</span> does not resolve. Look at the dark lines, and note that the density of states shows <span class="math inline">\(+E_b\)</span> and <span class="math inline">\(-E_b\)</span> together, so it does not show on which side of zero the bound state is.</figcaption>
+</figure>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>An iron atom in a superconductor is a real case of the classical spin of <a href="#eq-9-10">(9.10)</a>. The arXiv abstract of <a href="https://www.nature.com/articles/nphys3508">this article</a> describes a localized classical spin of an iron atom immersed in a superconducting condensate. In addition to the Shiba bound state on top of the impurity, the measurement shows a star-shaped pattern that extends as far as <span class="math inline">\(12\)</span> nm from the impurity. This large extent is related, in a non-trivial way, to the superconducting coherence length. The arXiv abstract does not name the probe or the superconductor. Our reading is that a map in real space of a bound state is what scanning tunneling spectroscopy gives.</p>
+</div>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>For <span class="math inline">\(\alpha=0.5\)</span> in <a href="#eq-9-10">(9.10)</a>, what is the energy of the bound state in units of <span class="math inline">\(\Delta\)</span>?</p>
-<div class="eq-again">
-<p><span class="math display">\[E_b(J) = \Delta\, \frac{1-\alpha^2}{1+\alpha^2}. \tag{9.10}\]</span></p>
-</div>
+<p>A magnetic impurity in an s-wave superconductor binds a state at</p>
+<p><span class="math display">\[E_b = \Delta\,\frac{1-\alpha^2}{1+\alpha^2}.\]</span></p>
+<p>Here <span class="math inline">\(\alpha=\pi\nu_0JS\)</span> is the dimensionless exchange. What is <span class="math inline">\(E_b\)</span> at <span class="math inline">\(\alpha=0.5\)</span>, in units of <span class="math inline">\(\Delta\)</span>?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -152,6 +182,53 @@ Question
 </ul>
 </div>
 </details>
+</div>
+<div class="quiz" data-correct="C" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>A magnetic impurity in an s-wave superconductor has the dimensionless exchange <span class="math inline">\(\alpha=\pi\nu_0JS\)</span>. Its bound state stays inside the gap, <span class="math inline">\(|E_b|\leq\Delta\)</span>, and crosses zero at <span class="math inline">\(\alpha=1\)</span>. Which formula gives this energy?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(E_b=\Delta\,(1-\alpha^2)\)</span></li>
+<li><span class="math inline">\(E_b=\dfrac{\Delta}{1+\alpha^2}\)</span></li>
+<li><span class="math inline">\(E_b=\Delta\,\dfrac{1-\alpha^2}{1+\alpha^2}\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. It crosses zero at <span class="math inline">\(\alpha=1\)</span>, but it leaves the gap for <span class="math inline">\(\alpha&gt;\sqrt2\)</span>. At <span class="math inline">\(\alpha=2\)</span> it gives <span class="math inline">\(-3\Delta\)</span>, which is outside the gap.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. It stays inside the gap, but it is positive for every <span class="math inline">\(\alpha\)</span>. At <span class="math inline">\(\alpha=1\)</span> it gives <span class="math inline">\(0.5\Delta\)</span>, and not zero.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. The numerator vanishes at <span class="math inline">\(\alpha=1\)</span>, and <span class="math inline">\(|1-\alpha^2|\leq1+\alpha^2\)</span> for every <span class="math inline">\(\alpha\)</span>, so the state never leaves the gap. At <span class="math inline">\(\alpha=2\)</span> it gives <span class="math inline">\(-0.6\Delta\)</span>.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>A half-filled chain with <span class="math inline">\(\Delta=0.2t\)</span>, where <span class="math inline">\(\alpha=JS/2t\)</span>, gives its bound state within <span class="math inline">\(0.01\Delta\)</span> of this formula for <span class="math inline">\(JS\)</span> up to <span class="math inline">\(4t\)</span>.</p>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>Use <a href="#eq-9-10">(9.10)</a> to find the value of <span class="math inline">\(\alpha\)</span> where the bound state sits at half the gap, <span class="math inline">\(E_b=\Delta/2\)</span>. Then show that <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(1/\alpha\)</span> give bound states at opposite energies, <span class="math inline">\(E_b(1/\alpha)=-E_b(\alpha)\)</span>.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>We set <span class="math inline">\((1-\alpha^2)/(1+\alpha^2)=1/2\)</span>. This gives <span class="math inline">\(2-2\alpha^2=1+\alpha^2\)</span>, so <span class="math inline">\(\alpha^2=1/3\)</span> and</p>
+<p><span class="math display">\[\alpha=\frac{1}{\sqrt3}\approx0.58.\]</span></p>
+<p>For the second part we replace <span class="math inline">\(\alpha\)</span> by <span class="math inline">\(1/\alpha\)</span> and multiply the numerator and the denominator by <span class="math inline">\(\alpha^2\)</span>,</p>
+<p><span class="math display">\[E_b(1/\alpha)=\Delta\,\frac{1-\alpha^{-2}}{1+\alpha^{-2}}=\Delta\,\frac{\alpha^2-1}{\alpha^2+1}=-E_b(\alpha).\]</span></p>
+<p>So <span class="math inline">\(\alpha=1/\sqrt3\)</span> and <span class="math inline">\(\alpha=\sqrt3\)</span> give <span class="math inline">\(+\Delta/2\)</span> and <span class="math inline">\(-\Delta/2\)</span>, and the crossing at <span class="math inline">\(\alpha=1\)</span> is the point that this symmetry maps onto itself. The density of states has its peaks at <span class="math inline">\(+E_b\)</span> and <span class="math inline">\(-E_b\)</span> together, so the energy of the peaks alone does not tell whether an impurity is below or above the crossing.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="tryit">
 <p><strong>Try it.</strong> Run the cell and follow the bright line inside the gap as <span class="math inline">\(J\)</span> grows. Find the value of <span class="math inline">\(J\)</span> where it crosses zero energy. Then change <code>h.add_onsite(1.8)</code> to another value and run it again. The crossing moves, since <span class="math inline">\(\alpha=\pi\nu_0JS\)</span> depends on the density of states at the Fermi level.</p>

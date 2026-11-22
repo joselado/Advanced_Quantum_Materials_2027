@@ -85,22 +85,45 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="on" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 9. Excitations and Defects in Quantum Materials</a></p>
 <h1 id="sec-9-8"><span class="num">9.8</span> Impurities as diagnostics III, vacancies in topological matter</h1>
-<p>The strongest local impurity that is possible is a <strong>vacancy</strong>, where we remove a site completely, which is the same as sending its onsite potential to infinity. Here the bulk-boundary correspondence of Section <a href="../session3/07-what-topology-means-for-a-hamiltonian-and-the-bulk-boundary-correspondence.html#sec-3-7">3.7</a>, which we used in <a href="../session3/index.html">Session 3</a> and <a href="../session4/index.html">Session 4</a>, gives a direct result. It relates the Chern number of Section <a href="../session3/05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#sec-3-5">3.5</a> and the Zak phase of Section <a href="../session3/09c-the-ssh-model-the-bloch-hamiltonian-and-the-zak-phase.html#sec-3-9c">3.9c</a> to the gapless modes at any boundary of a topologically non-trivial phase. It is known that topological boundary modes survive around a large hole cut into a topological material. If we make that hole smaller, down to a single missing site, the argument still works. A vacancy is in practice a boundary of zero size, and the bulk-boundary correspondence still applies. When the bulk has a non-trivial topological invariant, a vacancy is guaranteed to host an in-gap bound state, as long as the vacancy itself preserves the symmetry that protects that invariant.</p>
-<p>This gives a useful diagnostic, because a fully gapped bulk spectrum alone cannot distinguish a topological phase from a trivial one. Let us take a <strong>chiral, spin-triplet topological superconductor</strong>, which is the chiral p-wave class of Section <a href="../session5/14-same-gap-and-different-topology-in-trivial-s-wave-and-chiral-p-wave-pairing.html#sec-5-14">5.14</a>, with the Majorana modes of Section <a href="../session5/15-majorana-bound-states-and-how-to-split-an-electron-into-two-majoranas.html#sec-5-15">5.15</a>. Without impurities, its bulk spectrum is fully gapped, and by itself it looks the same as the spectrum of a trivial s-wave superconductor. But a vacancy is a non-magnetic perturbation. It is a local change of the potential that does not distinguish spin, even in the extreme limit where the local potential diverges. So it does not change the topological invariant of the bulk, and once we add it, an in-gap mode appears. The same logic holds for a <strong>Chern insulator</strong>, such as the Haldane model of Section <a href="../session3/10b-the-haldane-coupling-and-a-real-chern-insulator.html#sec-3-10b">3.10b</a>. A vacancy in a system with a finite Chern number gives an in-gap mode, while the same vacancy in a topologically trivial insulator gives no such mode. In both cases the observable signature is the same and easy to read. <em>If vacancies produce in-gap modes, the underlying phase is topological, and if they do not, the phase is trivial</em>, regardless of what the clean bulk spectrum alone would tell us. Figure <a href="#fig:s09:vacancy">9.4</a> draws both the geometric argument, where a hole becomes smaller down to a single site, and the three spectra that make the diagnostic possible to use.</p>
+<p>Can one missing atom tell a topological insulator from a trivial one with the same gap? We will now see that a vacancy binds an in-gap state when the bulk invariant is not zero and the vacancy keeps the symmetry that protects it. When the gap is close to closing, this state can sit so close to a band edge that no separate peak is seen. We check this on a Chern insulator and on a trivial insulator of the honeycomb lattice, computed with pyqula.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[\sigma_{xy} = \frac{e^2}{h}\, C, \qquad
+C = \sum_{n\ \text{filled}} \frac{1}{2\pi}\int_{\text{BZ}} \Omega_n(k)\, d^2k. \tag{3.4}\]</span></p>
+</div>
+<p>This is the Chern number of Section <a href="../session3/05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#sec-3-5">3.5</a>, the integral of the Berry curvature <span class="math inline">\(\Omega_n(k)\)</span> of the filled bands over the Brillouin zone, divided by <span class="math inline">\(2\pi\)</span>. It fixes the Hall conductivity <span class="math inline">\(\sigma_{xy}\)</span>, and for a gapped system it is an integer. It is the bulk invariant of the Chern insulators of this page.</p>
+</div>
+<p>The strongest local impurity that is possible is a <strong>vacancy</strong>, where we remove a site completely, which is the same as sending its onsite potential to infinity. Here the bulk-boundary correspondence of Section <a href="../session3/07-what-topology-means-for-a-hamiltonian-and-the-bulk-boundary-correspondence.html#sec-3-7">3.7</a>, which we used in <a href="../session3/index.html">Session 3</a> and <a href="../session4/index.html">Session 4</a>, gives a direct result. It relates the Chern number of Section <a href="../session3/05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#sec-3-5">3.5</a> and the Zak phase of Section <a href="../session3/09c-the-ssh-model-the-bloch-hamiltonian-and-the-zak-phase.html#sec-3-9c">3.9c</a> to the gapless modes at any boundary of a topologically non-trivial phase.</p>
+<p>It is known that topological boundary modes survive around a large hole cut into a topological material. If we make that hole smaller, down to a single missing site, the argument still works. A vacancy is in practice a boundary of zero size, and the bulk-boundary correspondence still applies. When the bulk has a non-trivial topological invariant, a vacancy is guaranteed to host an in-gap bound state, as long as the vacancy itself preserves the symmetry that protects that invariant.</p>
+<p>This gives a useful diagnostic, because a fully gapped bulk spectrum alone cannot distinguish a topological phase from a trivial one. Let us take a <strong>chiral, spin-triplet topological superconductor</strong>, which is the chiral p-wave class of Section <a href="../session5/14-same-gap-and-different-topology-in-trivial-s-wave-and-chiral-p-wave-pairing.html#sec-5-14">5.14</a>, with the Majorana modes of Section <a href="../session5/15-majorana-bound-states-and-how-to-split-an-electron-into-two-majoranas.html#sec-5-15">5.15</a>. Without impurities, its bulk spectrum is fully gapped, and by itself it looks the same as the spectrum of a trivial s-wave superconductor. But a vacancy is a non-magnetic perturbation. It is a local change of the potential that does not distinguish spin, even in the extreme limit where the local potential diverges. So it does not change the topological invariant of the bulk, and once we add it, an in-gap mode appears.</p>
+<p>The same logic holds for a <strong>Chern insulator</strong>, such as the Haldane model of Section <a href="../session3/10b-the-haldane-coupling-and-a-real-chern-insulator.html#sec-3-10b">3.10b</a>. A vacancy in a system with a finite Chern number gives an in-gap mode, while the same vacancy in a topologically trivial insulator gives no such mode. In both cases the observable signature is the same and easy to read.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p><em>If vacancies produce in-gap modes, the underlying phase is topological, and if they do not, the phase is trivial</em>, regardless of what the clean bulk spectrum alone would tell us. The vacancy must keep the symmetry that protects the invariant. In a chain with chiral symmetry, such as the SSH chain, a vacancy leaves one more site on one sublattice, and this gives a level at zero energy also in the trivial phase.</p>
+</div>
+<p>Figure <a href="#fig:s09:vacancy">9.4</a> draws both the geometric argument, where a hole becomes smaller down to a single site, and the three spectra that make the diagnostic possible to use.</p>
 <figure id="fig:s09:vacancy">
 <img src="../figures/s09f04_vacancy.svg" loading="lazy" alt="Why a single missing atom detects topology." />
-<figcaption><strong>Figure 9.4.</strong> Why a single missing atom detects topology. Top, seen from above. If we cut a large hole into a topologically non-trivial insulator or superconductor, the bulk-boundary correspondence guarantees gapless modes that run around its edge. Nothing in that argument depends on the size of the hole, so making it smaller does not remove these modes. A vacancy is a boundary of zero size, and it binds an in-gap mode. Bottom, schematic spectra. This is the diagnostic that a clean spectrum cannot give. A trivial and a topological insulator with the same gap have bulk spectra that look the same, so nothing there distinguishes them (left). If we add a vacancy, the trivial spectrum stays as it was (middle), and only the topological one develops a state inside the gap (right). The rule is as direct as it looks. Vacancies produce in-gap modes if and only if the bulk invariant is non-zero, provided that the vacancy itself respects the symmetry that protects that invariant.</figcaption>
+<figcaption><strong>Figure 9.4.</strong> Why a single missing atom detects topology. Top, seen from above. If we cut a large hole into a topologically non-trivial insulator or superconductor, the bulk-boundary correspondence guarantees gapless modes that run around its edge. Nothing in that argument depends on the size of the hole, so making it smaller does not remove these modes. A vacancy is a boundary of zero size, and it binds an in-gap mode. Bottom, schematic spectra. This is the diagnostic that a clean spectrum cannot give. A trivial and a topological insulator with the same gap have bulk spectra that look the same, so nothing there distinguishes them (left). If we add a vacancy, the trivial spectrum stays as it was (middle), and only the topological one develops a state inside the gap (right). Vacancies produce in-gap modes when the bulk invariant is non-zero, provided that the vacancy itself respects the symmetry that protects that invariant.</figcaption>
 </figure>
-<figure id="sch:s09:vacancy_dos" class="schematic">
+<figure id="sch:s09:vacancy_dos" class="schematic has-script">
 <img src="../figures/web/session09/vacancy_dos.svg" loading="lazy" alt="Two plots of the local density of states against energy with the gap shaded. On the left the shaded gap is empty, and on the right a single sharp red peak stands in the middle of the gap." />
-<figcaption><strong>Schematic 9.12.</strong> A computed check of the diagnostic of Figure <a href="#fig:s09:vacancy">9.4</a>, for the Chern insulator of the first question below. We take the honeycomb lattice on a torus of <span class="math inline">\(18\times18\)</span> unit cells, so that there are no edges, and we remove one site. The Chern insulator is the Haldane model with <span class="math inline">\(t_2=0.15t\)</span> and phase <span class="math inline">\(\pi/2\)</span>. The trivial insulator has <span class="math inline">\(t_2=0\)</span> and a sublattice mass <span class="math inline">\(M=0.78t\)</span>, which gives the same gap <span class="math inline">\(1.56t\)</span>. We plot the local density of states summed on the three neighbors of the vacancy, with a broadening of <span class="math inline">\(0.03t\)</span>, and the grey curve is the same sum without the vacancy. In the trivial insulator the weight only piles up at the lower gap edge, and nothing enters the gap. In the Chern insulator one bound state appears in the middle of the gap, at <span class="math inline">\(E=0\)</span>, with <span class="math inline">\(45\%\)</span> of its weight on the three neighbors.</figcaption>
+<div class="script-row">
+<a href="../scripts/session09/g5_vacancy_honeycomb.py" class="script-dl" download="g5_vacancy_honeycomb.py">Download the pyqula script</a> <span class="script-name"><code>g5_vacancy_honeycomb.py</code></span>
+</div>
+<figcaption><strong>Schematic 9.13.</strong> A computed check of the diagnostic of Figure <a href="#fig:s09:vacancy">9.4</a>, for the Chern insulator of the first question below, computed with pyqula. We take the honeycomb lattice on a torus of <span class="math inline">\(18\times18\)</span> unit cells, so that there are no edges, and we remove one site. The Chern insulator is the Haldane model with <span class="math inline">\(t_2=0.15t\)</span> and phase <span class="math inline">\(\pi/2\)</span>. The trivial insulator has <span class="math inline">\(t_2=0\)</span> and a sublattice mass <span class="math inline">\(M=0.78t\)</span>, which gives the same gap <span class="math inline">\(1.56t\)</span>, and the removed site is one with the onsite energy <span class="math inline">\(+M\)</span>. We plot the local density of states summed on the three neighbors of the vacancy, in states per <span class="math inline">\(t\)</span>, with a broadening of <span class="math inline">\(0.03t\)</span>, and the grey curve is the same sum without the vacancy. In the trivial insulator the weight only piles up at the lower gap edge, and nothing enters the gap. In the Chern insulator one bound state appears in the middle of the gap, at <span class="math inline">\(E=0\)</span>, with <span class="math inline">\(45\%\)</span> of its weight on the three neighbors.</figcaption>
 </figure>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>We remove one site from a Haldane-model Chern insulator, and from a trivial insulator that has the same gap. What do we find inside the gap?</p>
+<p>We remove one site from a Chern insulator of the Haldane model. We do the same in a trivial insulator with the same gap. What do we find inside the gap?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -115,7 +138,7 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
 <p>This is false. Take a trivial insulator in the atomic limit, with isolated sites of onsite energy <span class="math inline">\(\pm M\)</span> and no hopping. Removing one site removes one level, and no state appears in the gap.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. The vacancy is a boundary of zero size, so a bound state needs a non-zero invariant. The Haldane model at <span class="math inline">\(C=1\)</span> has it. For <span class="math inline">\(t_2=0.1t\)</span>, <span class="math inline">\(\varphi=\pi/2\)</span> and <span class="math inline">\(M=0.3t\)</span> the gap edges are at <span class="math inline">\(\pm0.22t\)</span>, and a vacancy gives a state at <span class="math inline">\(-0.14t\)</span>.</p></li>
+<p>This is true. The vacancy is a boundary of zero size, so a bound state needs a non-zero invariant. The Haldane model at <span class="math inline">\(C=1\)</span> has it. For <span class="math inline">\(t_2=0.1t\)</span>, <span class="math inline">\(\varphi=\pi/2\)</span> and <span class="math inline">\(M=0.3t\)</span> the gap edges are at <span class="math inline">\(\pm0.22t\)</span>, and a vacancy on the sublattice with the onsite energy <span class="math inline">\(+M\)</span> gives a state at <span class="math inline">\(-0.14t\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
 <p>This is false. The gap is the same by construction, so it cannot decide. In the atomic limit of the trivial insulator the vacancy removes a level and creates none.</p></li>
 </ul>
@@ -132,7 +155,7 @@ Question
 <div class="quiz-options">
 <ol type="A">
 <li>The bulk is trivial.</li>
-<li>The bulk is trivial, or the vacancy breaks the symmetry that protects the invariant.</li>
+<li>The bulk is trivial, the vacancy breaks the symmetry that protects the invariant, or the gap is too small to separate the mode from the bands.</li>
 <li>The gap is too small to host a bound state.</li>
 </ol>
 </div>
@@ -140,14 +163,59 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
-<p>This is false. Take the topological SSH chain of Section <a href="../session3/08-three-topological-material-classes.html#sec-3-9">3.9</a> with hoppings <span class="math inline">\(0.5t\)</span> and <span class="math inline">\(t\)</span>, a vacancy and an onsite energy <span class="math inline">\(2t\)</span> on its neighbor, which breaks chiral symmetry. Then there is no state in the gap <span class="math inline">\(\pm0.5t\)</span>, while without the onsite energy there is a state at zero. So the bulk can be topological.</p></li>
+<p>This is false. Take the topological SSH chain with hoppings <span class="math inline">\(0.5t\)</span> and <span class="math inline">\(t\)</span>, a vacancy and an onsite energy <span class="math inline">\(2t\)</span> on its neighbor, which breaks chiral symmetry. Then there is no state in the gap <span class="math inline">\(\pm0.5t\)</span>, while without the onsite energy there is a state at zero. So the bulk can be topological. This holds for the neighbor joined to the vacancy by the strong bond <span class="math inline">\(t\)</span>, since on the other neighbor the level at zero stays.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. We can conclude only one of two cases. The bulk is trivial, as in the s-wave superconductor, or the defect breaks the protecting symmetry, so one measurement does not separate them.</p></li>
+<p>This is true. Each of the three cases gives no separate mode, so one measurement does not tell them apart. The bulk can be trivial, as in the s-wave superconductor, or the defect can break the protecting symmetry. In the third case the gap is so close to closing that the bound state sits too close to a band edge to be seen.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. A small gap does not prevent the mode. The Haldane model with <span class="math inline">\(t_2=0.1t\)</span>, <span class="math inline">\(\varphi=\pi/2\)</span> and <span class="math inline">\(M=0.5t\)</span> has a gap of only <span class="math inline">\(0.04t\)</span>, and a vacancy still gives a state at <span class="math inline">\(-0.016t\)</span>.</p></li>
+<p>This is false. A small gap can hide the mode, as in the Haldane model with <span class="math inline">\(t_2=0.1t\)</span>, <span class="math inline">\(\varphi=\pi/2\)</span> and <span class="math inline">\(M=0.5t\)</span>, which has <span class="math inline">\(C=1\)</span> and a gap of only <span class="math inline">\(0.04t\)</span>. A vacancy there gives no level that is separated from the band edges. But a small gap is not the only reason. The trivial insulator with <span class="math inline">\(t_2=0\)</span> and the sublattice mass <span class="math inline">\(M=0.78t\)</span> has the large gap <span class="math inline">\(1.56t\)</span>, and its vacancy leaves no level inside it.</p></li>
 </ul>
 </div>
 </details>
+</div>
+<div class="quiz quiz-pics" data-correct="C" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Each plot shows the LDOS next to one vacancy of a honeycomb insulator. The grey band is the bulk gap. Which insulator has a Chern number <span class="math inline">\(C\neq0\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session09/g5_quiz_vacancy_mass.svg" loading="lazy" alt="The local density of states against energy, with a wide shaded gap that stays empty and a high peak at its lower edge." /></li>
+<li><img src="../figures/web/session09/g5_quiz_vacancy_both.svg" loading="lazy" alt="The local density of states against energy, with a narrow shaded gap that stays empty." /></li>
+<li><img src="../figures/web/session09/g5_quiz_vacancy_chern.svg" loading="lazy" alt="The local density of states against energy, with a wide shaded gap and one sharp peak in its middle." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. This is a trivial insulator with a sublattice mass <span class="math inline">\(M=0.78t\)</span> and no second-neighbor hopping, so <span class="math inline">\(C=0\)</span>. Its gap is <span class="math inline">\(1.56t\)</span>, the same as for the Haldane model with <span class="math inline">\(t_2=0.15t\)</span>, and the vacancy leaves no level inside it.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. This is the Haldane model with <span class="math inline">\(t_2=0.15t\)</span> and also a sublattice mass <span class="math inline">\(M=1.0t\)</span>. The mass is larger than <span class="math inline">\(3\sqrt3\,t_2=0.78t\)</span>, so <span class="math inline">\(C=0\)</span>. The gap is <span class="math inline">\(0.44t\)</span>, and the vacancy leaves no level inside it.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. This is the Haldane model with <span class="math inline">\(t_2=0.15t\)</span>, the phase <span class="math inline">\(\pi/2\)</span> and no mass, and its Chern number is <span class="math inline">\(C=1\)</span>. The vacancy binds a level at <span class="math inline">\(E=0\)</span>, in the middle of the gap of <span class="math inline">\(1.56t\)</span>, with <span class="math inline">\(45\%\)</span> of its weight on the three neighbors.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The three pictures are computed in the same way, on a torus of <span class="math inline">\(18\times18\)</span> cells with one site removed, on the sublattice that has the onsite energy <span class="math inline">\(+M\)</span>.</p>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>The Haldane model with the second-neighbor hopping <span class="math inline">\(t_2\)</span> and the phase <span class="math inline">\(\pi/2\)</span> has the gap <span class="math inline">\(6\sqrt3\,t_2\)</span> at <span class="math inline">\(K\)</span> and <span class="math inline">\(K&#39;\)</span>. This is the gap of the whole band structure for <span class="math inline">\(t_2&lt;1/(3\sqrt3)\,t\approx0.19t\)</span>. Compute it for <span class="math inline">\(t_2=0.15t\)</span>. Then find the sublattice mass <span class="math inline">\(M\)</span> of a trivial insulator, whose gap is <span class="math inline">\(2M\)</span>, with the same gap.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>For <span class="math inline">\(t_2=0.15t\)</span>, which is below <span class="math inline">\(0.19t\)</span>, the gap is</p>
+<p><span class="math display">\[6\sqrt3\times0.15\,t\approx1.56t.\]</span></p>
+<p>The trivial insulator needs <span class="math inline">\(2M=6\sqrt3\,t_2\)</span>, so <span class="math inline">\(M=3\sqrt3\,t_2\approx0.78t\)</span>. These are the two insulators of <a href="#sch:s09:vacancy_dos">Schematic 9.13</a>. Their clean spectra have the same gap, so a measurement of the gap cannot tell them apart. The local density of states next to one vacancy, which STM measures, has a level at <span class="math inline">\(E=0\)</span> only in the Haldane model.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="tryit">
 <p><strong>Try it.</strong> Run the cell as it is and look at the right panel for a strong peak of the DOS at an energy <span class="math inline">\(|E/\Delta|&lt;1\)</span>, inside the gap. Then comment the line with <code>chiral_pwave</code> and uncomment the line with <code>mode="swave"</code>. The peak disappears, since the s-wave gap is trivial and the vacancy has no protected mode.</p>
@@ -165,7 +233,7 @@ Where this comes back
 </div>
 <ul>
 <li>In Section <a href="09-impurities-as-diagnostics-iv-screening-in-quantum-magnets.html#sec-9-9">9.9</a> the decay of the response around one impurity separates a gapped state from a gapless one, which is a second diagnostic from a single defect.</li>
-<li>In Section <a href="../session10/06b-the-hard-case-the-ising-gauge-theory.html#sec-10-6b">10.6b</a> a network must find a non-local quantity, since there the phases have no local order parameter, as for the topological phases of this page.</li>
+<li>In Section <a href="../session10/06b-the-hard-case-the-ising-gauge-theory.html#sec-10-6b">10.6b</a> a network must find a quantity of four spins, the plaquette product, since there the two regimes have no local order parameter, as for the topological phases of this page.</li>
 </ul>
 </div>
 

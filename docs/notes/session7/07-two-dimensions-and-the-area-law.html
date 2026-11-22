@@ -85,48 +85,85 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="on" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 7. Quantum Many-Body Entanglement and Tensor Networks</a></p>
 <h1 id="sec-7-7"><span class="num">7.7</span> Two dimensions and the area law</h1>
+<p>What changes when the decoupled clusters sit on a two-dimensional lattice? We will now see that the boundary of a region becomes a line that grows with the region. So the entanglement entropy of a gapped ground state grows with the boundary and not with the volume, which is the area law <a href="#eq-7-9">(7.9)</a>.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[|\Psi\rangle = |\text{singlet}\rangle_{01} \otimes |\text{singlet}\rangle_{23} \otimes
+|\text{singlet}\rangle_{45} \otimes \cdots. \tag{7.8}\]</span></p>
+</div>
+<p>This is the ground state of the decoupled dimers of Section <a href="06-entanglement-entropy-of-a-solvable-dimerized-chain.html#sec-7-6">7.6</a>, a product of singlets on the pairs of sites <span class="math inline">\((0,1)\)</span>, <span class="math inline">\((2,3)\)</span> and so on. A block of consecutive sites that cuts <span class="math inline">\(n_\text{cut}\)</span> of these singlets has the entanglement entropy <span class="math inline">\(S=n_\text{cut}\log 2\)</span>, at most <span class="math inline">\(2\log 2\)</span> for a block of any length.</p>
+</div>
 <p>Let us now do the same construction in one more dimension. We take a two-dimensional lattice and we group the sites into separate clusters of four sites, called tetramers, instead of pairs. The sites inside a cluster are coupled, but different clusters are not coupled, so the ground state is again an exact tensor product, now of tetramer ground states instead of dimer singlets. The same factorization argument applies. A cluster fully inside <span class="math inline">\(A\)</span> or fully inside <span class="math inline">\(B\)</span> gives nothing, and only the clusters that cross the boundary between the two parts contribute to <span class="math inline">\(S\)</span>.</p>
-<p>The only difference is geometric. Let us compare a small region <span class="math inline">\(A\)</span>, whose boundary cuts eight bonds, with a much larger region <span class="math inline">\(A&#39;\)</span>, whose longer boundary cuts many more bonds. Since the entropy again gets one contribution per cut bond, <span class="math inline">\(S\)</span> is now set by the <em>length of the boundary</em>. In two dimensions this length grows when the subsystem grows. This is different from the 1D case of Section <a href="06-entanglement-entropy-of-a-solvable-dimerized-chain.html#sec-7-6">7.6</a>, where the boundary was always two points for any size of the subsystem. This is the central contrast. <strong>In one dimension the entanglement entropy of a gapped ground state saturates</strong>, and it does not depend on the size of the subsystem. <strong>In two or more dimensions it grows with the size of the boundary</strong>, <span class="math inline">\(S_A \sim
+<p>The only difference is geometric. Let us compare a small region <span class="math inline">\(A\)</span>, whose boundary cuts eight bonds, with a much larger region <span class="math inline">\(A&#39;\)</span>, whose longer boundary cuts many more bonds. Since the entropy again gets one contribution from each cut cluster, at most <span class="math inline">\(\log 2\)</span> per cut bond, <span class="math inline">\(S\)</span> is now set by the <em>length of the boundary</em>. In two dimensions this length grows when the subsystem grows. This is different from the 1D case of Section <a href="06-entanglement-entropy-of-a-solvable-dimerized-chain.html#sec-7-6">7.6</a>, where the boundary was always two points for any size of the subsystem.</p>
+<p>This is the central contrast. <strong>In one dimension the entanglement entropy of a gapped ground state saturates</strong>, and it does not depend on the size of the subsystem. <strong>In two or more dimensions it grows with the size of the boundary</strong>, <span class="math inline">\(S_A \sim
 L_A \sim \partial A\)</span> and <span class="math inline">\(S_{A&#39;} \sim L_{A&#39;} \sim \partial A&#39;\)</span>, so <span class="math inline">\(S_{A&#39;} &gt; S_A\)</span> for the larger region. Figure <a href="#fig:s07:arealaw">7.2</a> shows the two cases next to each other, with the cut bonds marked, so that we can count them by eye in each case.</p>
 <figure id="fig:s07:arealaw">
 <img src="../figures/s07f02_arealaw.svg" loading="lazy" alt="Why the entanglement entropy counts the boundary and not the volume, seen from above." />
-<figcaption><strong>Figure 7.2.</strong> Why the entanglement entropy counts the boundary and not the volume, seen from above. In both panels the ground state is an exact product of the ground states of decoupled clusters. So a cluster that is fully inside <span class="math inline">\(A\)</span> or fully inside <span class="math inline">\(B\)</span> is in a pure state and gives nothing. Only the clusters that are cut by the division contribute, and the cut bonds are the red ones. (a) The dimerized chain. Each cut singlet gives the single-dimer result <span class="math inline">\(\log 2\)</span> of <a href="04-the-matrix-product-state-ansatz.html#eq-7-7">(7.7)</a>, and the boundary of a block is two points for any length of the block. Each end of <span class="math inline">\(A\)</span> cuts through one dimer, so making <span class="math inline">\(A\)</span> larger, from two interior dimers to five, leaves two cut singlets and <span class="math inline">\(S_A = 2\log 2\)</span> unchanged. The entropy saturates. (b) The same construction with clusters of four sites on a square lattice. Each cluster that crosses the boundary still gives a bounded amount, at most <span class="math inline">\(\log 2\)</span> per cut bond, but now the boundary is a curve whose length grows with the subsystem. When we double the linear size of <span class="math inline">\(A\)</span>, the number of cut bonds doubles, from eight to sixteen, and <span class="math inline">\(S_A\)</span> grows in proportion. This is the area law <a href="#eq-7-9">(7.9)</a>, <span class="math inline">\(S_A \sim
+<figcaption><strong>Figure 7.2.</strong> Why the entanglement entropy counts the boundary and not the volume, seen from above. In both panels the ground state is an exact product of the ground states of decoupled clusters. So a cluster that is fully inside <span class="math inline">\(A\)</span> or fully inside <span class="math inline">\(B\)</span> is in a pure state and gives nothing. Only the clusters that are cut by the division contribute, and the cut bonds are the red ones. (a) The dimerized chain. Each cut singlet gives the single-dimer result <span class="math inline">\(\log 2\)</span> of <a href="04-the-matrix-product-state-ansatz.html#eq-7-7">(7.7)</a>, and the boundary of a block is two points for any length of the block. Each end of <span class="math inline">\(A\)</span> cuts through one dimer, so making <span class="math inline">\(A\)</span> larger, from two interior dimers to five, leaves two cut singlets and <span class="math inline">\(S_A = 2\log 2\)</span> unchanged. The entropy saturates. (b) The same construction with clusters of four sites on a square lattice. Each cluster that crosses the boundary still gives a bounded amount, at most <span class="math inline">\(\log 2\)</span> per cut bond, but now the boundary is a curve whose length grows with the subsystem. When we double the linear size of <span class="math inline">\(A\)</span>, the number of cut bonds doubles, from eight to sixteen, and <span class="math inline">\(S_A\)</span> grows roughly in proportion. This is the area law <a href="#eq-7-9">(7.9)</a>, <span class="math inline">\(S_A \sim
 \alpha\,|\partial A|\)</span>, and the contrast between the two panels is the reason why matrix product states are a one-dimensional tool.</figcaption>
 </figure>
-<p>This behavior is called the <strong>area law</strong>. The boundary between a subsystem and the rest of the system is a fixed number of points in 1D, a length in 2D and an area in 3D. For the ground state of a gapped and local Hamiltonian, the entanglement entropy of a subsystem scales with the size of this boundary,</p>
+<p>This behavior is called the <strong>area law</strong>. The boundary between a subsystem and the rest of the system is a fixed number of points in 1D, a length in 2D and an area in 3D. For the ground state of a gapped and local Hamiltonian, the entanglement entropy of a subsystem scales with the size of this boundary, and not with the <em>volume</em> of <span class="math inline">\(A\)</span>.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>For the ground state of a gapped and local Hamiltonian, the entanglement entropy of a region <span class="math inline">\(A\)</span> grows with the size <span class="math inline">\(|\partial A|\)</span> of its boundary,</p>
 <p><span id="eq-7-9" class="eq"><span class="math display">\[S_A \;\sim\; \alpha\, |\partial A|, \tag{7.9}\]</span></span></p>
-<p>and not with the <em>volume</em> of <span class="math inline">\(A\)</span>. This is a strong restriction. A random state taken uniformly from the full Hilbert space of dimension <span class="math inline">\(2^L\)</span> would usually have <span class="math inline">\(S_A\)</span> close to its maximum value. This maximum is <span class="math inline">\(|A|\log 2\)</span> for a spin-1/2 subsystem of size <span class="math inline">\(|A|\)</span>, and this behavior is called a volume law. In this sense, gapped ground states are very far from typical states. They live only in the very small part of the Hilbert space that satisfies the area law. The ground states of the dimer and tetramer models above are in this part without any approximation, and the ones of realistic gapped Hamiltonians are approximately in it.</p>
+<p>and not with the volume of <span class="math inline">\(A\)</span>. This is the area law. A random state of the Hilbert space does not follow it, since its entropy grows with the volume. In its strict form the area law says that <span class="math inline">\(S_A\)</span> is at most a constant times <span class="math inline">\(|\partial A|\)</span>, and <span class="math inline">\(\alpha\)</span> depends on the model and on how the boundary runs on the lattice.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">Counting the cut singlets of a square region</span></summary>
+<div class="fold-body">
+<p>We take a square lattice covered by horizontal dimers, with a singlet on the sites <span class="math inline">\((2m,y)\)</span> and <span class="math inline">\((2m+1,y)\)</span> for every integer <span class="math inline">\(m\)</span> and every row <span class="math inline">\(y\)</span>. This is the product of singlets <a href="06-entanglement-entropy-of-a-solvable-dimerized-chain.html#eq-7-8">(7.8)</a> on every row, and the reduced state factorizes in the same way, so again <span class="math inline">\(S_A=n_\text{cut}\log 2\)</span>.</p>
+<p>The region <span class="math inline">\(A\)</span> is a square of side <span class="math inline">\(\ell\)</span>, with <span class="math inline">\(\ell\)</span> even, that covers the columns 1 to <span class="math inline">\(\ell\)</span>. On its left side the site <span class="math inline">\((1,y)\)</span> is paired with <span class="math inline">\((0,y)\)</span>, which is outside, so each of the <span class="math inline">\(\ell\)</span> rows has one cut singlet there. On its right side the site <span class="math inline">\((\ell,y)\)</span> is paired with <span class="math inline">\((\ell+1,y)\)</span>, which is outside too, and this gives <span class="math inline">\(\ell\)</span> more. The dimers inside are not cut, and the top and the bottom of the square cut no dimer, since the dimers are horizontal. So</p>
+<p><span class="math display">\[S_A=2\ell\log 2, \qquad |\partial A|=4\ell, \qquad |A|=\ell^2.\]</span></p>
+<p>When we double <span class="math inline">\(\ell\)</span>, the entropy doubles together with the boundary, while the volume grows four times. For this region only half of the cut bonds carry a singlet, so <span class="math inline">\(\alpha=\tfrac12\log 2\)</span>. The same square moved to the columns 0 to <span class="math inline">\(\ell-1\)</span> cuts no dimer and has <span class="math inline">\(\alpha=0\)</span>. So in a lattice state <span class="math inline">\(\alpha\)</span> depends on the orientation and on the position of the boundary.</p>
+</div>
+</details>
+</div>
+<p>This is a strong restriction. A random state taken uniformly from the full Hilbert space of dimension <span class="math inline">\(2^L\)</span> would usually have <span class="math inline">\(S_A\)</span> close to its maximum value. This maximum is <span class="math inline">\(|A|\log 2\)</span> for a spin-1/2 subsystem of size <span class="math inline">\(|A|\)</span>, and this behavior is called a volume law. In this sense, gapped ground states are very far from typical states. They live only in the very small part of the Hilbert space that satisfies the area law. The ground states of the dimer and tetramer models above are in this part without any approximation, and the ones of realistic gapped Hamiltonians are approximately in it.</p>
 <figure id="sch:s07:random_vs_gapped" class="schematic">
-<img src="../figures/web/session07/random_vs_gapped.svg" loading="lazy" alt="The entropy of the left block against its size for 14 spins, in units of log 2, a red tent that rises to about 6 at the middle and a blue zigzag between about 0.15 and 1." />
-<figcaption><strong>Schematic 7.9.</strong> Volume law against area law, computed for a chain of <span class="math inline">\(L=14\)</span> spins, where <span class="math inline">\(A\)</span> is the block of the first <span class="math inline">\(|A|\)</span> sites. The red points are a random state of the full Hilbert space. Its entropy follows the maximum <span class="math inline">\(\min(|A|,L-|A|)\log 2\)</span>, with a small deficit at the middle, so it grows with the volume of <span class="math inline">\(A\)</span>. The blue points are the ground state of a dimerized Heisenberg chain, with <span class="math inline">\(J=1\)</span> on the strong bonds and <span class="math inline">\(J=0.5\)</span> on the weak ones, which is gapped. Its entropy is close to <span class="math inline">\(\log 2\)</span> when the cut breaks a strong bond and about <span class="math inline">\(0.15\log 2\)</span> when it breaks a weak bond, for any <span class="math inline">\(|A|\)</span>. This is the chain of Section <a href="06-entanglement-entropy-of-a-solvable-dimerized-chain.html#sec-7-6">7.6</a> with the weak bonds switched on, and it stays far below the random state.</figcaption>
+<img src="../figures/web/session07/random_vs_gapped.svg" loading="lazy" alt="The entropy of the left block against its size for 14 spins, in units of log 2, a red tent that rises to about 6 at the middle and a blue zigzag between about 0.14 and 1." />
+<figcaption><strong>Schematic 7.9.</strong> Volume law against area law, computed for a chain of <span class="math inline">\(L=14\)</span> spins, where <span class="math inline">\(A\)</span> is the block of the first <span class="math inline">\(|A|\)</span> sites. The red points are a random state of the full Hilbert space. Its entropy follows the maximum <span class="math inline">\(\min(|A|,L-|A|)\log 2\)</span>, with a small deficit at the middle, so it grows with the volume of <span class="math inline">\(A\)</span>. The blue points are the ground state of a dimerized Heisenberg chain, with <span class="math inline">\(J=1\)</span> on the strong bonds and <span class="math inline">\(J=0.5\)</span> on the weak ones, which is gapped. Its entropy is close to <span class="math inline">\(\log 2\)</span> when the cut breaks a strong bond and about <span class="math inline">\(0.14\log 2\)</span> when it breaks a weak bond, for any <span class="math inline">\(|A|\)</span>. This is the chain of Section <a href="06-entanglement-entropy-of-a-solvable-dimerized-chain.html#sec-7-6">7.6</a> with the weak bonds switched on, and it stays far below the random state.</figcaption>
 </figure>
-<div class="quiz" data-correct="A" data-fb="1">
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>SrCu<span class="math inline">\(_2\)</span>(<span class="math inline">\(^{11}\)</span>BO<span class="math inline">\(_3\)</span>)<span class="math inline">\(_2\)</span> is a two-dimensional magnet of the Shastry-Sutherland kind, which the article describes with an exact dimer ground state. Inelastic neutron scattering at <span class="math inline">\(1.7\)</span> K finds three levels, at around 3, 5 and 9 meV. The lowest excitation, at <span class="math inline">\(3.0\)</span> meV, is almost without dispersion, with a bandwidth of <span class="math inline">\(0.2\)</span> meV at most. The measurement is in <a href="https://arxiv.org/abs/cond-mat/0005342">this article</a>. Our own reading is that a product of singlets on a 2D lattice has the entropy <span class="math inline">\(\log 2\)</span> times the number of singlets that the boundary cuts. So the dimer state of the Shastry-Sutherland model has an entropy of at most <span class="math inline">\(\log 2\)</span> times the number of cut bonds, with no approximation. This holds for a region of any size.</p>
+</div>
+<div class="quiz quiz-pics" data-correct="C" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>In the tetramer model of two dimensions we double the linear size of the region <span class="math inline">\(A\)</span>. How does <span class="math inline">\(S_A\)</span> change?</p>
+<p>Let us take the area law</p>
+<p><span class="math display">\[S_A=\alpha\,|\partial A|.\]</span></p>
+<p>Here <span class="math inline">\(|\partial A|\)</span> is the number of bonds that the boundary of <span class="math inline">\(A\)</span> cuts. Each picture shows a region <span class="math inline">\(A\)</span> of 16 sites on a square lattice. The cut bonds are red, and <span class="math inline">\(\alpha\)</span> is the same for the three regions. Which region has the largest entropy?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li>It roughly doubles, since the boundary length doubles.</li>
-<li>It roughly quadruples, since the area quadruples.</li>
-<li>It does not change, since the state is gapped.</li>
+<li><img src="../figures/web/session07/g3_quiz_region_square.svg" loading="lazy" alt="A patch of a square lattice with a square of 4 by 4 sites shaded and the bonds that leave it in red." /></li>
+<li><img src="../figures/web/session07/g3_quiz_region_rect.svg" loading="lazy" alt="A patch of a square lattice with a rectangle of 2 by 8 sites shaded and the bonds that leave it in red." /></li>
+<li><img src="../figures/web/session07/g3_quiz_region_line.svg" loading="lazy" alt="A patch of a square lattice with a line of 16 sites shaded and the bonds that leave it in red." /></li>
 </ol>
 </div>
 <details class="quiz-answer"><summary>Show the answers</summary>
 <div class="quiz-fbs">
 <ul>
-<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
-<p>This is true. The entropy counts the cut tetramers, and in two dimensions their number is proportional to the length of the boundary. For a square of side 2 or 4 the perimeter is 8 or 16, so the entropy doubles.</p></li>
-<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
-<p>This is false. The square of side 2 has 4 sites and the one of side 4 has 16, but the clusters inside the square are not cut. Only the perimeter, 8 and then 16, counts, so the factor is 2 and not 4.</p>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The square of 4 by 4 sites cuts 16 bonds, the fewest of the three, so it has the smallest entropy. When we double the side of a square, the number of cut bonds doubles and the volume grows four times. A square of side 2 cuts 8 bonds and one of side 4 cuts 16, so <span class="math inline">\(S_A\)</span> doubles while the number of sites goes from 4 to 16.</p>
 <figure class="quiz-fig schematic">
 <img src="../figures/web/session07/square_regions.svg" loading="lazy" alt="Two square regions on a lattice of dots, with 4 and 16 sites inside, and the bonds that cross their boundary in red, 8 and 16 of them." />
 <figcaption>A square of side 2 and one of side 4 on a square lattice. The red bonds are cut, and their number follows the perimeter.</figcaption>
 </figure></li>
-<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. In one dimension the boundary is two points and the entropy is constant. In two dimensions the boundary grows with the size, so a gapped state still has an entropy that grows.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The rectangle of 2 by 8 sites cuts 20 bonds, more than the square and fewer than the line. A region of <span class="math inline">\(a\)</span> by <span class="math inline">\(b\)</span> sites cuts <span class="math inline">\(2(a+b)\)</span> bonds, so the longer and thinner region has the longer boundary.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. The line of 16 sites cuts 34 bonds, 32 along its two long sides and 2 at its ends. The three regions have the same volume, and the area law follows only the boundary, so the line has the largest entropy. This uses that <span class="math inline">\(\alpha\)</span> is the same for the three regions, as the question says. Let us take a product of horizontal singlets, on the pairs of sites <span class="math inline">\((2m,y)\)</span> and <span class="math inline">\((2m+1,y)\)</span>. Depending on where the regions sit, the square cuts 0 or 8 singlets and the line only 0 or 2. So there <span class="math inline">\(\alpha\)</span> depends on how the boundary runs with respect to the singlets, and the order of the three regions can be reversed.</p></li>
 </ul>
 </div>
 </details>
@@ -136,30 +173,46 @@ Question
 Question
 </div>
 <div class="quiz-q">
-<p>A gapped ground state in three dimensions follows the area law <a href="#eq-7-9">(7.9)</a>. A cube of side <span class="math inline">\(\ell\)</span> has an entropy that grows as</p>
-<div class="eq-again">
-<p><span class="math display">\[S_A \;\sim\; \alpha\, |\partial A|, \tag{7.9}\]</span></p>
-</div>
+<p>A gapped ground state follows the area law</p>
+<p><span class="math display">\[S_A\sim\alpha\,|\partial A|.\]</span></p>
+<p>Here <span class="math inline">\(|\partial A|\)</span> is the size of the boundary of the region <span class="math inline">\(A\)</span>. The region is a cube of side <span class="math inline">\(\ell\)</span> in three dimensions. How does <span class="math inline">\(S_A\)</span> grow with <span class="math inline">\(\ell\)</span>?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li><span class="math inline">\(\ell^3\)</span>.</li>
-<li><span class="math inline">\(\ell^2\)</span>.</li>
-<li>a constant.</li>
+<li>As <span class="math inline">\(\ell^3\)</span>.</li>
+<li>As <span class="math inline">\(\ell^2\)</span>.</li>
+<li>It stays constant.</li>
 </ol>
 </div>
 <details class="quiz-answer"><summary>Show the answers</summary>
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
-<p>This is false. This is the volume law. For <span class="math inline">\(\ell=100\)</span> the cube has <span class="math inline">\(10^6\)</span> sites but its surface cuts only <span class="math inline">\(6\times10^4\)</span> bonds, and the area law lets each bond carry at most <span class="math inline">\(\log2\)</span>.</p></li>
+<p>This is false. This is the volume law. For <span class="math inline">\(\ell=100\)</span> the cube has <span class="math inline">\(10^6\)</span> sites but its surface cuts only <span class="math inline">\(6\times10^4\)</span> bonds, and in the area law the entropy follows this number of cut bonds.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. The boundary of a cube is made of its six faces, which have an area proportional to <span class="math inline">\(\ell^2\)</span>. In <a href="#eq-7-9">(7.9)</a> the entropy follows this area and not the volume <span class="math inline">\(\ell^3\)</span>.</p></li>
+<p>This is true. The boundary of a cube is made of its six faces, which have an area proportional to <span class="math inline">\(\ell^2\)</span>. The area law makes the entropy follow this area and not the volume <span class="math inline">\(\ell^3\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
 <p>This is false. A constant is the result in one dimension, where the boundary of a block is two points. For a cube of side 2 and of side 4 the surface cuts 24 and 96 bonds, so the number of cut bonds grows.</p></li>
 </ul>
 </div>
 </details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>We take the square lattice of the steps above, with horizontal dimers on the sites <span class="math inline">\((2m,y)\)</span> and <span class="math inline">\((2m+1,y)\)</span>. Compute <span class="math inline">\(S_A\)</span> for the squares of side 2 and of side 4 that cover the columns 1 to <span class="math inline">\(\ell\)</span>. Compare them with the volume law <span class="math inline">\(S_A=|A|\log 2\)</span> of a random state, for a region that is a small part of a large lattice. Then move the square of side 4 by one column, to the columns 0 to 3, and compute <span class="math inline">\(S_A\)</span> again.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>A square of side <span class="math inline">\(\ell\)</span> that starts at column 1 cuts one singlet on its left side and one on its right side in each row, so <span class="math inline">\(S_A=2\ell\log 2\)</span>. This is <span class="math inline">\(4\log 2\)</span> for <span class="math inline">\(\ell=2\)</span> and <span class="math inline">\(8\log 2\)</span> for <span class="math inline">\(\ell=4\)</span>.</p>
+<p>A random state has <span class="math inline">\(S_A=|A|\log 2=\ell^2\log 2\)</span>, which is <span class="math inline">\(4\log 2\)</span> and <span class="math inline">\(16\log 2\)</span>. So the two laws agree only for the smallest square, and at <span class="math inline">\(\ell=4\)</span> the volume law is already twice as large.</p>
+<p>The square on the columns 0 to 3 contains the dimers <span class="math inline">\((0,1)\)</span> and <span class="math inline">\((2,3)\)</span> of each row completely, so it cuts no singlet and <span class="math inline">\(S_A=0\)</span>, although its boundary still cuts 16 bonds. So in this state the area law is a bound, <span class="math inline">\(S_A\le|\partial A|\log 2\)</span>, with <span class="math inline">\(|\partial A|\)</span> the number of cut bonds. Where the boundary runs with respect to the singlets decides how much of this bound is used. The squares that start at column 1 have <span class="math inline">\(S_A=2\ell\log 2\)</span>, and the squares on the columns 0 to <span class="math inline">\(\ell-1\)</span> have <span class="math inline">\(S_A=0\)</span> for any even <span class="math inline">\(\ell\)</span>.</p>
+<p>For a calculation this has a direct cost. An MPS that orders the sites column by column, on a strip of <span class="math inline">\(W\)</span> rows, has a cut between the columns 0 and 1 that crosses one singlet in each row. This cut holds <span class="math inline">\(W\log 2\)</span>, so by <a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#eq-7-10">(7.10)</a> it needs <span class="math inline">\(\chi\ge2^W\)</span>, which grows exponentially with the width of the strip.</p>
+<p>For this state the cost comes from the order. Ordered row by row, each singlet sits on two neighboring sites of the MPS, every cut holds at most <span class="math inline">\(\log 2\)</span>, and <span class="math inline">\(\chi=2\)</span> is enough. On a strip longer than its width, every order of the sites has a cut through at least <span class="math inline">\(W\)</span> bonds, the cut that leaves half of the sites on each side. So the exponential cost cannot be avoided in a state where every boundary has an entropy that grows with its length, as in Section <a href="08b-where-mps-stop-working.html#sec-7-8b">7.8b</a>.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="comesback">
 <div class="comesback-label">

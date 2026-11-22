@@ -85,15 +85,34 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="on" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 6. Classical Magnetism and Magnons</a></p>
 <h1 id="sec-6-13"><span class="num">6.13</span> Magnons as fluctuations of the order parameter</h1>
-<p>Until now we have only asked about ground states. Let us now ask about excitations. We take the Heisenberg model <a href="09-the-heisenberg-model-on-a-general-lattice.html#eq-6-5">(6.5)</a> with <span class="math inline">\(J&lt;0\)</span>, which is ferromagnetic, and we promote the spins to real quantum operators that satisfy the angular-momentum algebra <span class="math inline">\([S_i^a,S_j^b] = i\hbar\,\delta_{ij}\epsilon^{abc}S_i^c\)</span>. From here on we set <span class="math inline">\(\hbar=1\)</span>, which is the standard choice for this kind of calculation, and we ask for the low-lying excited states. In contrast with the interacting electron problem, the exact ground state of the ferromagnetic Heisenberg model is known immediately. It is the fully polarized state with all spins aligned, since for <span class="math inline">\(J&lt;0\)</span> no other configuration can lower <span class="math inline">\(\langle \mathbf S_i\cdot\mathbf
-S_j\rangle\)</span> further. A <strong>magnon</strong> is a small fluctuation of the magnetization that propagates on top of this fully polarized state. Qualitatively, it is a single spin tilted slightly out of alignment, delocalized coherently over the whole lattice as a wave. The question is how to obtain these excitations systematically from a many-body spin Hamiltonian. The answer is a change of variables that turns the spin problem into a bosonic tight-binding problem.</p>
+<p>What are the low-lying excitations of an ordered ferromagnet, and how do we compute them? We will now see that the spins can be written as bosons with no approximation, <a href="#eq-6-6">(6.6)</a>. Close to the ordered state the spin Hamiltonian then becomes a bosonic tight-binding Hamiltonian, where the magnon hops between neighbors with the amplitude <span class="math inline">\(-|J|S\)</span>.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[H_\text{Heis} = \sum_{\langle ij\rangle} J_{ij}\, \mathbf S_i\cdot\mathbf S_j, \qquad J_{ij} = \frac{4t_{ij}^2}{U}. \tag{6.5}\]</span></p>
+</div>
+<p>This is the Heisenberg model of Section <a href="09-the-heisenberg-model-on-a-general-lattice.html#sec-6-9">6.9</a>, with each bond <span class="math inline">\(\langle ij\rangle\)</span> counted once and the spin operators <span class="math inline">\(\mathbf S_i\)</span> of size <span class="math inline">\(S\)</span>. For <span class="math inline">\(U\)</span> much larger than <span class="math inline">\(t_{ij}\)</span> and one electron per site, the direct hop <span class="math inline">\(t_{ij}\)</span> between two sites gives <span class="math inline">\(J_{ij}=4t_{ij}^2/U&gt;0\)</span>, which is antiferromagnetic. On this page we take one coupling <span class="math inline">\(J&lt;0\)</span> on all the first-neighbor bonds, which is a ferromagnet, and Section <a href="11-superexchange-as-the-origin-of-ferromagnetic-coupling.html#sec-6-11">6.11</a> shows where such a coupling comes from.</p>
+</div>
+<p>Until now we have only asked about ground states. Let us now ask about excitations. We take the Heisenberg model <a href="09-the-heisenberg-model-on-a-general-lattice.html#eq-6-5">(6.5)</a> with <span class="math inline">\(J&lt;0\)</span>, which is ferromagnetic, and we promote the spins to real quantum operators that satisfy the angular-momentum algebra <span class="math inline">\([S_i^a,S_j^b] = i\hbar\,\delta_{ij}\epsilon^{abc}S_i^c\)</span>. From here on we set <span class="math inline">\(\hbar=1\)</span>, which is the standard choice for this kind of calculation, and we ask for the low-lying excited states.</p>
+<p>In contrast with the interacting electron problem, the exact ground state of the ferromagnetic Heisenberg model is known immediately. It is the fully polarized state with all spins aligned, since for <span class="math inline">\(J&lt;0\)</span> no other configuration can make <span class="math inline">\(\langle \mathbf S_i\cdot\mathbf
+S_j\rangle\)</span> larger than <span class="math inline">\(S^2\)</span>, its value in this state, on any bond. A <strong>magnon</strong> is a small fluctuation of the magnetization that propagates on top of this fully polarized state. Qualitatively, it is a single spin tilted slightly out of alignment, delocalized coherently over the whole lattice as a wave. The question is how to obtain these excitations systematically from a many-body spin Hamiltonian. The answer is a change of variables that turns the spin problem into a bosonic tight-binding problem.</p>
 <h1 class="sec-next" id="sec-6-14"><span class="num">6.14</span> The Holstein-Primakoff transformation</h1>
 <p>There is an exact mapping between spin operators and bosonic creation and annihilation operators <span class="math inline">\(a_i^\dagger, a_i\)</span> with <span class="math inline">\([a_i,a_j^\dagger]=\delta_{ij}\)</span>, which is called the <strong>Holstein-Primakoff transformation</strong>. For a spin of magnitude <span class="math inline">\(S\)</span> on site <span class="math inline">\(i\)</span>, it reads</p>
 <p><span id="eq-6-6" class="eq"><span class="math display">\[S_i^z = S - a_i^\dagger a_i, \qquad S_i^+ = \sqrt{2S-a_i^\dagger a_i}\;a_i, \qquad S_i^- = a_i^\dagger\sqrt{2S-a_i^\dagger a_i}. \tag{6.6}\]</span></span></p>
 <p>This is an <em>exact</em> rewriting. If we insert <a href="#eq-6-6">(6.6)</a> and use the bosonic commutation relations, we obtain exactly the full <span class="math inline">\(SU(2)\)</span> spin algebra <span class="math inline">\([S_i^z,S_i^\pm]=\pm S_i^\pm\)</span>, <span class="math inline">\([S_i^+,S_i^-]=2S_i^z\)</span>, without any approximation so far. The physical picture is direct. The operator <span class="math inline">\(a_i^\dagger a_i\)</span> counts how many units of spin have been removed from the fully polarized value <span class="math inline">\(S\)</span> on site <span class="math inline">\(i\)</span>. This means that it counts the <strong>magnons</strong> on that site, which is what <span class="math inline">\(S_i^z=S-a_i^\dagger a_i\)</span> states. The square-root operators are what make <a href="#eq-6-6">(6.6)</a> exact even far from full polarization. They are also the reason why the Hamiltonian, written in this form, looks more complicated and not simpler.</p>
-<p>The simplification comes from linearizing. When the expectation value of <span class="math inline">\(a_i^\dagger a_i\)</span> stays much smaller than <span class="math inline">\(S\)</span>, which means when we stay close to the fully polarized ground state, we can expand the square roots and keep only the leading term. This is the regime that we want, since we are looking for low-lying excitations above this ground state, and the result is</p>
+<p>The simplification comes from linearizing. When the expectation value of <span class="math inline">\(a_i^\dagger a_i\)</span> stays much smaller than <span class="math inline">\(S\)</span>, which means when we stay close to the fully polarized ground state, we can expand the square roots and keep only the leading term. This is the regime that we want, since we are looking for low-lying excitations above this ground state.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>Close to full polarization, when <span class="math inline">\(\langle a_i^\dagger a_i\rangle\ll S\)</span>, the square roots of <a href="#eq-6-6">(6.6)</a> become <span class="math inline">\(\sqrt{2S}\)</span>, and the spins are linear in the bosons,</p>
 <p><span id="eq-6-7" class="eq"><span class="math display">\[S_i^+ \approx \sqrt{2S}\, a_i, \qquad S_i^- \approx \sqrt{2S}\, a_i^\dagger, \qquad S_i^z = S - a_i^\dagger a_i. \tag{6.7}\]</span></span></p>
-<p>This linearized form is the one that is used in practice to compute magnon spectra. The counting that follows from it is the easiest way to remember the whole transformation, so we write it out. The operator <span class="math inline">\(S^+\)</span> <em>raises</em> <span class="math inline">\(S^z\)</span>, meaning that it increases the local magnetization back toward saturation, and it <em>destroys</em> a magnon. The operator <span class="math inline">\(S^-\)</span> lowers the magnetization, and it <em>creates</em> a magnon. The total magnetization of the system is the fully saturated value minus the total number of magnons, <span class="math inline">\(\sum_i \langle S_i^z\rangle = NS - \sum_i\langle a_i^\dagger a_i\rangle\)</span>. Each magnon has one unit of spin, so magnons are <span class="math inline">\(S=1\)</span> excitations, in agreement with what we said about them in Section <a href="01-two-classes-of-magnets-and-their-excitations.html#sec-6-1">6.1</a>. They exist only because the ground state on which they live has already broken spin-rotation symmetry spontaneously. Figure <a href="#fig:s06:magnon">6.5</a> shows the three parts, which are the fully polarized ground state, the delocalized precession wave that carries a single magnon, and this rule for raising and lowering.</p>
+<p>The operator <span class="math inline">\(S_i^-\)</span> creates a magnon on site <span class="math inline">\(i\)</span> and <span class="math inline">\(S_i^+\)</span> removes one, so the total magnetization is <span class="math inline">\(\sum_i S_i^z=NS-\sum_i a_i^\dagger a_i\)</span>, one unit of spin less for every magnon.</p>
+</div>
+<p>This linearized form is the one that is used in practice to compute magnon spectra. The counting that follows from it is the easiest way to remember the whole transformation, so we write it out. The operator <span class="math inline">\(S^+\)</span> <em>raises</em> <span class="math inline">\(S^z\)</span>, meaning that it increases the local magnetization back toward saturation, and it <em>destroys</em> a magnon. The operator <span class="math inline">\(S^-\)</span> lowers the magnetization, and it <em>creates</em> a magnon.</p>
+<p>The total magnetization of the system is the fully saturated value minus the total number of magnons, <span class="math inline">\(\sum_i \langle S_i^z\rangle = NS - \sum_i\langle a_i^\dagger a_i\rangle\)</span>. Each magnon has one unit of spin, so magnons are <span class="math inline">\(S=1\)</span> excitations, in agreement with what we said about them in Section <a href="01-two-classes-of-magnets-and-their-excitations.html#sec-6-1">6.1</a>. They exist only because the ground state on which they live has already broken spin-rotation symmetry spontaneously. Figure <a href="#fig:s06:magnon">6.5</a> shows the three parts, which are the fully polarized ground state, the delocalized precession wave that carries a single magnon, and this rule for raising and lowering.</p>
 <figure id="fig:s06:magnon">
 <img src="../figures/s06f05_magnon.svg" loading="lazy" alt="The states that (6.6) and (6.7) describe." />
 <figcaption><strong>Figure 6.5.</strong> The states that <a href="#eq-6-6">(6.6)</a> and <a href="#eq-6-7">(6.7)</a> describe. (a) The ferromagnetic ground state, where every spin has its maximal value <span class="math inline">\(S^z=S\)</span>, and so there are no magnons. (b) A single magnon is <em>not</em> one spin flipped on one site. Instead, every spin is tilted slightly out of alignment and precesses on its cone, and the precession phase advances by <span class="math inline">\(\mathbf
@@ -127,16 +146,108 @@ Question
 </div>
 </details>
 </div>
+<div class="quiz" data-correct="A" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>The Holstein-Primakoff bosons count the spin removed from saturation,</p>
+<p><span class="math display">\[S_i^z = S - a_i^\dagger a_i.\]</span></p>
+<p>We take a spin <span class="math inline">\(S=1\)</span>. Close to saturation, which form does <span class="math inline">\(S_i^+\)</span> take?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(S_i^+\approx\sqrt{2S}\,a_i\)</span></li>
+<li><span class="math inline">\(S_i^+\approx\sqrt{2S}\,a_i^\dagger\)</span></li>
+<li><span class="math inline">\(S_i^+\approx S\,a_i\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. <span class="math inline">\(S_i^+\)</span> raises <span class="math inline">\(S_i^z\)</span> by one, so it removes a boson. The factor <span class="math inline">\(\sqrt{2S}\)</span> keeps the spin algebra, since <span class="math inline">\([S_i^+,S_i^-]=2S_i^z\approx2S\)</span> and <span class="math inline">\([a_i,a_i^\dagger]=1\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. This operator adds a boson, so it lowers <span class="math inline">\(S_i^z\)</span> by one, which is what <span class="math inline">\(S_i^-\)</span> does. On the saturated state, with no boson, <span class="math inline">\(S_i^+\)</span> gives zero, while <span class="math inline">\(a_i^\dagger\)</span> gives a state with one boson.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. For <span class="math inline">\(S=1\)</span> the commutator <span class="math inline">\([S_i^+,S_i^-]\)</span> would be <span class="math inline">\(S^2[a_i,a_i^\dagger]=1\)</span>, while the spin algebra needs <span class="math inline">\(2S_i^z\approx2S=2\)</span>. The two forms agree only for <span class="math inline">\(S=2\)</span>, where <span class="math inline">\(S=\sqrt{2S}\)</span>.</p></li>
+</ul>
+</div>
+</details>
+</div>
 <p>We insert <a href="#eq-6-7">(6.7)</a> into the ferromagnetic Heisenberg Hamiltonian,</p>
 <p><span class="math display">\[H = J\sum_{\langle ij\rangle}\mathbf S_i\cdot\mathbf S_j = J\sum_{\langle ij\rangle}\big[S_i^zS_j^z + \tfrac12(S_i^+S_j^-+S_i^-S_j^+)\big],\]</span></p>
 <p>and we keep the terms up to quadratic order in the bosonic operators,</p>
 <p><span class="math display">\[S_i^zS_j^z \approx S^2 - S\big(a_i^\dagger a_i + a_j^\dagger a_j\big), \qquad
 \tfrac12\big(S_i^+S_j^- + S_i^-S_j^+\big) \approx S\big(a_i^\dagger a_j + a_j^\dagger a_i\big),\]</span></p>
 <p>and in this way the spin Hamiltonian becomes a bosonic tight-binding Hamiltonian for magnons, and its hopping amplitude is set directly by the exchange coupling <span class="math inline">\(J\)</span>, as we said before. The magnon hops between sites with an amplitude proportional to <span class="math inline">\(JS\)</span>, in direct analogy with the electronic tight-binding Hamiltonians that we have diagonalized during the whole course.</p>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From a ferromagnetic bond to the magnon hopping</span></summary>
+<div class="fold-body">
+<p>Let us take the simplest case, two spins <span class="math inline">\(S\)</span> with one bond, <span class="math inline">\(H=J\,\mathbf S_1\cdot\mathbf S_2\)</span> with <span class="math inline">\(J=-|J|\)</span>. With the two quadratic forms above, and without the quartic terms, we get</p>
+<p><span class="math display">\[H \approx JS^2 - JS\big(a_1^\dagger a_1 + a_2^\dagger a_2\big) + JS\big(a_1^\dagger a_2 + a_2^\dagger a_1\big)
+= -|J|S^2 + |J|S\big(a_1^\dagger a_1 + a_2^\dagger a_2\big) - |J|S\big(a_1^\dagger a_2 + a_2^\dagger a_1\big).\]</span></p>
+<p>The constant <span class="math inline">\(-|J|S^2\)</span> is the energy of the polarized pair. The bond gives each of its two sites the onsite energy <span class="math inline">\(|J|S\)</span>, and it lets the boson hop from one site to the other with the amplitude <span class="math inline">\(-|J|S\)</span>. With one magnon the Hamiltonian is a matrix of size two,</p>
+<p><span class="math display">\[H_1 = -|J|S^2 + |J|S\begin{pmatrix} 1 &amp; -1 \\ -1 &amp; 1\end{pmatrix},\]</span></p>
+<p>with the excitation energies <span class="math inline">\(0\)</span> for the symmetric state and <span class="math inline">\(2|J|S\)</span> for the antisymmetric one. The exact pair gives the same, since <span class="math inline">\(J\,\mathbf S_1\cdot\mathbf S_2=\tfrac J2\big[S_\text{tot}(S_\text{tot}+1)-2S(S+1)\big]\)</span>. The one-magnon states have <span class="math inline">\(S_\text{tot}=2S\)</span>, with the energy <span class="math inline">\(-|J|S^2\)</span> of the polarized pair, and <span class="math inline">\(S_\text{tot}=2S-1\)</span>, with <span class="math inline">\(-|J|S^2+2|J|S\)</span>. The symmetric state is the polarized pair turned as a whole, which costs no energy.</p>
+<p>On a lattice every site belongs to <span class="math inline">\(z\)</span> bonds. The bonds add up to the onsite energy <span class="math inline">\(z|J|S\)</span> on each site and the hopping <span class="math inline">\(-|J|S\)</span> to each neighbor,</p>
+<p><span class="math display">\[H \approx E_0 + z|J|S\sum_i a_i^\dagger a_i - |J|S\sum_{\langle ij\rangle}\big(a_i^\dagger a_j + a_j^\dagger a_i\big),\]</span></p>
+<p>with <span class="math inline">\(E_0=-|J|S^2Nz/2\)</span> the energy of the polarized state of <span class="math inline">\(N\)</span> spins. This is the bosonic tight-binding Hamiltonian that Section <a href="15-magnon-dispersions-in-ferromagnets-and-antiferromagnets.html#sec-6-15">6.15</a> diagonalizes with a Fourier transform.</p>
+</div>
+</details>
+</div>
 <figure id="sch:s06:one_magnon" class="schematic">
 <img src="../figures/web/session06/one_magnon.svg" loading="lazy" alt="Two cosine-shaped bands that start at zero energy at k equal to zero, the upper one for spin one and the lower one for spin one half, with open circles and squares from exact diagonalization lying on them." />
-<figcaption><strong>Schematic 6.9.</strong> The one-magnon states of a ferromagnetic Heisenberg ring, from exact diagonalization, against the band <a href="15-magnon-dispersions-in-ferromagnets-and-antiferromagnets.html#eq-6-8">(6.8)</a> with <span class="math inline">\(z=2\)</span>. The circles are a ring of 10 spins <span class="math inline">\(S=\tfrac12\)</span> and the squares a ring of 8 spins <span class="math inline">\(S=1\)</span>. The lines are <span class="math inline">\(E=2|J|S(1-\cos k)\)</span>. The dots sit on the lines, so the linear form <a href="#eq-6-7">(6.7)</a> is exact for one magnon. The reason is that with one magnon the square roots of <a href="#eq-6-6">(6.6)</a> only act on sites with no magnon, where they are exactly <span class="math inline">\(\sqrt{2S}\)</span>. The band is twice as wide for <span class="math inline">\(S=1\)</span>, since the hopping of the magnon is <span class="math inline">\(JS\)</span>.</figcaption>
+<figcaption><strong>Schematic 6.10.</strong> The one-magnon states of a ferromagnetic Heisenberg ring, from exact diagonalization, against the band <a href="15-magnon-dispersions-in-ferromagnets-and-antiferromagnets.html#eq-6-8">(6.8)</a> with <span class="math inline">\(z=2\)</span>. The circles are a ring of 10 spins <span class="math inline">\(S=\tfrac12\)</span> and the squares a ring of 8 spins <span class="math inline">\(S=1\)</span>. The lines are <span class="math inline">\(E=2|J|S(1-\cos k)\)</span>. The dots sit on the lines, so the linear form <a href="#eq-6-7">(6.7)</a> is exact for one magnon. The reason is that with one magnon the square roots of <a href="#eq-6-6">(6.6)</a> only act on sites with no magnon, where they are exactly <span class="math inline">\(\sqrt{2S}\)</span>. The band is twice as wide for <span class="math inline">\(S=1\)</span>, since the hopping of the magnon is <span class="math inline">\(JS\)</span>.</figcaption>
 </figure>
+<div class="quiz quiz-pics" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>On a ferromagnetic ring the magnon hops with <span class="math inline">\(-|J|S\)</span> and has the onsite energy <span class="math inline">\(2|J|S\)</span>. Take <span class="math inline">\(S=1\)</span> and <span class="math inline">\(|J|=1\)</span>. Which picture is the one-magnon band?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session06/g4_quiz_magnon_w2.svg" loading="lazy" alt="A cosine-shaped band against k that is zero at k equal to zero and reaches 2 at k equal to plus and minus pi." /></li>
+<li><img src="../figures/web/session06/g4_quiz_magnon_w4.svg" loading="lazy" alt="A cosine-shaped band against k that is zero at k equal to zero and reaches 4 at k equal to plus and minus pi." /></li>
+<li><img src="../figures/web/session06/g4_quiz_magnon_w8.svg" loading="lazy" alt="A cosine-shaped band against k that is zero at k equal to zero and reaches 8 at k equal to plus and minus pi." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. This band reaches <span class="math inline">\(2\)</span> at <span class="math inline">\(k=\pm\pi\)</span>, which is the ring of spins <span class="math inline">\(S=\tfrac12\)</span>. For <span class="math inline">\(S=1\)</span> the onsite energy <span class="math inline">\(2\)</span> and the two hops of <span class="math inline">\(-1\)</span> give <span class="math inline">\(2-2\cos\pi=4\)</span> at <span class="math inline">\(k=\pi\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. A plane wave <span class="math inline">\(e^{ikj}\)</span> on the ring has the energy <span class="math inline">\(2|J|S-2|J|S\cos k=2|J|S(1-\cos k)\)</span>. It is zero at <span class="math inline">\(k=0\)</span>, where all the spins turn together, and <span class="math inline">\(4|J|S=4\)</span> at <span class="math inline">\(k=\pi\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. This band reaches <span class="math inline">\(8\)</span>, which a ring of spins <span class="math inline">\(S=2\)</span> has, since <span class="math inline">\(4|J|S=8\)</span> for <span class="math inline">\(S=2\)</span>. For <span class="math inline">\(S=1\)</span> the top of the band is <span class="math inline">\(4\)</span>.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>A ring of <span class="math inline">\(N\)</span> spins <span class="math inline">\(S=\tfrac12\)</span> has <span class="math inline">\(H=J\sum_j\mathbf S_j\cdot\mathbf S_{j+1}\)</span> with <span class="math inline">\(J&lt;0\)</span>, and <span class="math inline">\(|\mathrm{FM}\rangle\)</span> is the state with all the spins up. Show that the one-magnon state</p>
+<p><span class="math display">\[|k\rangle=\frac{1}{\sqrt N}\sum_j e^{ikj}\,S_j^-|\mathrm{FM}\rangle, \qquad k=\frac{2\pi n}{N},\]</span></p>
+<p>is an exact eigenstate of <span class="math inline">\(H\)</span>, and find its energy above the ground state.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>We write <span class="math inline">\(|j\rangle=S_j^-|\mathrm{FM}\rangle\)</span>, the state with the spin <span class="math inline">\(j\)</span> down, and the Hamiltonian as</p>
+<p><span class="math display">\[H=J\sum_j\Big[S_j^zS_{j+1}^z+\tfrac12\big(S_j^+S_{j+1}^-+S_j^-S_{j+1}^+\big)\Big].\]</span></p>
+<p>On <span class="math inline">\(|\mathrm{FM}\rangle\)</span> every bond gives <span class="math inline">\(J/4\)</span>, so the ground state energy is <span class="math inline">\(E_0=NJ/4\)</span>. In <span class="math inline">\(|j\rangle\)</span> the two bonds of the site <span class="math inline">\(j\)</span> have antiparallel spins and give <span class="math inline">\(-J/4\)</span> each, so the diagonal part is <span class="math inline">\(E_0-J\)</span>. The exchange term moves the down spin to a neighbor, with the matrix element <span class="math inline">\(J/2\)</span> for spins <span class="math inline">\(\tfrac12\)</span>, so</p>
+<p><span class="math display">\[H|j\rangle=(E_0-J)\,|j\rangle+\frac J2\big(|j+1\rangle+|j-1\rangle\big).\]</span></p>
+<p>This is a tight-binding chain for one particle, and the plane wave diagonalizes it,</p>
+<p><span class="math display">\[H|k\rangle=\big(E_0-J+J\cos k\big)|k\rangle, \qquad E(k)-E_0=|J|(1-\cos k).\]</span></p>
+<p>The state is exact, since <span class="math inline">\(H\)</span> conserves the total <span class="math inline">\(S^z\)</span> and never takes <span class="math inline">\(|j\rangle\)</span> out of the states with one down spin. The energy is zero at <span class="math inline">\(k=0\)</span>, where <span class="math inline">\(|k\rangle\)</span> is the polarized state turned as a whole, and it is largest at <span class="math inline">\(k=\pi\)</span>, with <span class="math inline">\(2|J|\)</span>. This is <span class="math inline">\(2|J|S(1-\cos k)\)</span> for <span class="math inline">\(S=\tfrac12\)</span>, the band <a href="15-magnon-dispersions-in-ferromagnets-and-antiferromagnets.html#eq-6-8">(6.8)</a> with <span class="math inline">\(z=2\)</span>, so the linear form <a href="#eq-6-7">(6.7)</a> is exact for one magnon, and the diagonalization of a ring of eight spins gives the same values. Inelastic neutron scattering measures this band, so its width gives the exchange <span class="math inline">\(|J|\)</span> of a ferromagnet.</p>
+</div>
+</details>
+</div>
+</div>
 <div class="comesback">
 <div class="comesback-label">
 Where this comes back

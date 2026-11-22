@@ -85,17 +85,55 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="on" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 8. Quantum Magnetism, Spinons and Kondo Physics</a></p>
 <h1 id="sec-8-4"><span class="num">8.4</span> Frustration as the route to a quantum spin liquid</h1>
-<p>Before we build a macroscopic version of <a href="03-two-minimal-dimers-a-classical-order-parameter-and-a-quantum-singlet.html#eq-8-3">(8.3)</a>, we need to know when the ground state of a Heisenberg model stays time-reversal symmetric in this way. The magnets of <a href="../session1/index.html">Session 1</a> and <a href="../session6/index.html">Session 6</a> did not, since they ordered spontaneously. The general rule is <strong>frustration</strong>, which we first met in Section <a href="../session6/09-the-heisenberg-model-on-a-general-lattice.html#sec-6-10">6.10</a>. The standard example is a triangular plaquette with antiferromagnetic coupling on all three bonds. Any two spins can point in opposite directions, but then the third spin is parallel to one of the two. So one of the two remaining bonds is not satisfied, and no spin configuration can satisfy all three bonds at the same time. This geometric frustration gives many classical ground states that are degenerate, which means that they have the same energy and different spin configurations. When we add quantum fluctuations, they mix these degenerate configurations into one quantum superposition, which in general does not break time-reversal symmetry.</p>
+<p>When can the ground state of a Heisenberg magnet avoid magnetic order? We will now see that the route is frustration, meaning that no spin configuration satisfies every bond at the same time. For Ising spins on the triangular and kagome lattices this gives a number of classical ground states that grows exponentially with the number of sites, and this large set is what quantum fluctuations can mix.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[|GS\rangle = \frac{1}{\sqrt2}\Big(|{\uparrow\downarrow}\rangle -
+|{\downarrow\uparrow}\rangle\Big), \qquad \langle \mathbf S_i \rangle = 0. \tag{8.3}\]</span></p>
+</div>
+<p>This is the singlet of two spins one half, the ground state of the Heisenberg dimer <span class="math inline">\(J\,\mathbf S_0\cdot\mathbf S_1\)</span> with <span class="math inline">\(J&gt;0\)</span>, at the energy <span class="math inline">\(-3J/4\)</span>. It is unique and has <span class="math inline">\(\langle\mathbf S_i\rangle=0\)</span> on both sites. Time reversal maps it to itself, so it does not break time-reversal symmetry. In this section we ask when a lattice of many spins can have a ground state of this kind.</p>
+</div>
+<p>Before we build a macroscopic version of <a href="03-two-minimal-dimers-a-classical-order-parameter-and-a-quantum-singlet.html#eq-8-3">(8.3)</a>, we need to know when the ground state of a Heisenberg model stays time-reversal symmetric in this way. The magnets of <a href="../session1/index.html">Session 1</a> and <a href="../session6/index.html">Session 6</a> did not, since they ordered spontaneously. The general rule is <strong>frustration</strong>, which we first met in Section <a href="../session6/09-the-heisenberg-model-on-a-general-lattice.html#sec-6-10">6.10</a>. The standard example is a triangular plaquette with antiferromagnetic coupling on all three bonds. Any two spins can point in opposite directions, but then the third spin is parallel to one of the two. So one of the two remaining bonds is not satisfied, and no spin configuration can satisfy all three bonds at the same time.</p>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">Counting the ground states of the triangle</span></summary>
+<div class="fold-body">
+<p>Let us take the simplest case first, two Ising spins <span class="math inline">\(S^z_0,S^z_1=\pm\tfrac12\)</span> with one bond, <span class="math inline">\(H=J\,S^z_0S^z_1\)</span>. We write <span class="math inline">\(M=S^z_0+S^z_1\)</span> for the total <span class="math inline">\(S^z\)</span>. Since <span class="math inline">\((S^z_i)^2=\tfrac14\)</span> for every spin,</p>
+<p><span class="math display">\[M^2=\frac12+2\,S^z_0S^z_1, \qquad\text{so}\qquad H=\frac J2\Big(M^2-\frac12\Big).\]</span></p>
+<p>The energy depends only on <span class="math inline">\(M\)</span>. It is lowest for <span class="math inline">\(M=0\)</span>, the two antiparallel states at <span class="math inline">\(-J/4\)</span>, and the bond is satisfied.</p>
+<p>On the triangle every pair of sites is a bond, so the same step works with three spins and <span class="math inline">\(M=S^z_0+S^z_1+S^z_2\)</span>,</p>
+<p><span class="math display">\[M^2=\frac34+2\sum_{\langle ij\rangle}S^z_iS^z_j, \qquad\text{so}\qquad H=\frac J2\Big(M^2-\frac34\Big).\]</span></p>
+<p>Three spins one half cannot have <span class="math inline">\(M=0\)</span>, since <span class="math inline">\(M\)</span> is a sum of three half-integers. The lowest value is <span class="math inline">\(|M|=\tfrac12\)</span>, with two spins up and one down, or the opposite. Each case has 3 configurations, one for each position of the minority spin, so there are <span class="math inline">\(3+3=6\)</span> ground states at <span class="math inline">\(\frac J2\big(\frac14-\frac34\big)=-\frac J4\)</span>. The two aligned configurations have <span class="math inline">\(M=\pm\tfrac32\)</span> and the energy <span class="math inline">\(\frac J2\big(\frac94-\frac34\big)=+\frac34J\)</span>. Three satisfied bonds would give <span class="math inline">\(3\cdot(-\tfrac J4)=-\tfrac34J\)</span>, and no configuration reaches it.</p>
+</div>
+</details>
+</div>
+<p>This geometric frustration gives many classical ground states that are degenerate, which means that they have the same energy and different spin configurations. When we add quantum fluctuations, they mix these degenerate configurations into one quantum superposition, which in general does not break time-reversal symmetry.</p>
 <p>This is the reason why the <strong>triangular</strong> and <strong>kagome</strong> lattices, which are both built only from triangles, are the standard place to look for quantum spin liquid physics. An antiferromagnetic Heisenberg model on either lattice is a real candidate for a QSL ground state, in the right range of couplings. This is also the reason why herbertsmithite, a compound with spin-<span class="math inline">\(1/2\)</span> sites on a kagome lattice, is the main real candidate material. A second route to frustration, from the bond-dependent Kitaev interaction on the honeycomb lattice, is in Section <a href="../session6/11-superexchange-as-the-origin-of-ferromagnetic-coupling.html#sec-6-12">6.12</a>. Figure <a href="#fig:s08:frustration">8.2</a> shows the geometry behind the whole argument. It is a frustrated triangle with its degenerate configurations, and the kagome lattice that is built only from such triangles. The plaquette without frustration and the single frustrated triangle are the ones of Figure <a href="../session6/09-the-heisenberg-model-on-a-general-lattice.html#fig:s06:frustration">6.3</a>.</p>
 <figure id="fig:s08:frustration">
 <img src="../figures/s08f02_frustration.svg" loading="lazy" alt="Frustration, with the spins drawn as collinear Ising variables, which is how the argument in the text is written." />
-<figcaption><strong>Figure 8.2.</strong> Frustration, with the spins drawn as collinear Ising variables, which is how the argument in the text is written. If the spins can rotate freely, the triangle goes instead into the <span class="math inline">\(120^\circ\)</span> noncollinear state of Figure <a href="../session6/09-the-heisenberg-model-on-a-general-lattice.html#fig:s06:frustration">6.3</a>, and the degeneracy that we discuss here is the Ising one. The plaquette without frustration and the single frustrated triangle are panels (a) and (b) of Figure <a href="../session6/09-the-heisenberg-model-on-a-general-lattice.html#fig:s06:frustration">6.3</a>. On a bipartite plaquette every antiferromagnetic bond can be satisfied at the same time. The ground state is then the Néel state, with two configurations related by a global flip, and each of them breaks time-reversal symmetry. On a triangle this is not possible, since once two spins are antiparallel the third bond cannot be satisfied for both directions of the last spin. (a) The frustrated bond, in red, can be on any of the three edges, so the classical ground state is degenerate and not unique. Quantum fluctuations mix the degenerate configurations into one superposition with <span class="math inline">\(\langle\mathbf
-S_i\rangle=\mathbf 0\)</span>, which does <em>not</em> break time-reversal symmetry. (b) The kagome lattice of herbertsmithite is built only from corner-sharing triangles, so all of them are frustrated at the same time, here with one frustrated bond on every triangle. The classical degeneracy then becomes macroscopic. This is why triangular and kagome lattices are the standard place to look for quantum spin liquids.</figcaption>
+<figcaption><strong>Figure 8.2.</strong> Frustration, with the spins drawn as collinear Ising variables, which is how the argument in the text is written. If the spins can rotate freely, the triangle goes instead into the <span class="math inline">\(120^\circ\)</span> noncollinear state of Figure <a href="../session6/09-the-heisenberg-model-on-a-general-lattice.html#fig:s06:frustration">6.3</a>, and the degeneracy that we discuss here is the Ising one. The plaquette without frustration and the single frustrated triangle are panels (a) and (b) of Figure <a href="../session6/09-the-heisenberg-model-on-a-general-lattice.html#fig:s06:frustration">6.3</a>. On a bipartite plaquette every antiferromagnetic bond can be satisfied at the same time. The ground state is then the Néel state, with two configurations related by a global flip, and each of them breaks time-reversal symmetry. On a triangle this is not possible, since once two spins are antiparallel the third bond cannot be satisfied for both directions of the last spin. (a) The frustrated bond, in red, can be on any of the three edges, so the classical ground state is degenerate and not unique. Quantum fluctuations mix the degenerate configurations. The three spins one half of one triangle keep a fourfold ground level, and with an even number of sites the mixing can give one superposition with <span class="math inline">\(\langle\mathbf S_i\rangle=\mathbf 0\)</span>, which does <em>not</em> break time-reversal symmetry. (b) The kagome lattice of herbertsmithite is built only from corner-sharing triangles, so all of them are frustrated at the same time, here with one frustrated bond on every triangle. The classical degeneracy then becomes macroscopic. This is why triangular and kagome lattices are the standard place to look for quantum spin liquids.</figcaption>
 </figure>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>On a triangle of Ising spins with antiferromagnetic bonds, no configuration satisfies all three bonds, and six of the eight configurations are ground states. On a lattice built from triangles this degeneracy becomes macroscopic, meaning that the number <span class="math inline">\(W\)</span> of classical ground states of <span class="math inline">\(N\)</span> sites grows exponentially,</p>
+<p><span class="math display">\[W\sim e^{sN}, \qquad s\approx0.32 \ \text{(triangular)}, \qquad s\approx0.50 \ \text{(kagome)},\]</span></p>
+<p>while the square lattice, which is bipartite, has only the two Néel states.</p>
+</div>
+<p><a href="#sch:s08:ising_degeneracy">Schematic 8.3</a> shows this count on small periodic clusters.</p>
 <figure id="sch:s08:ising_degeneracy" class="schematic">
 <img src="../figures/web/session08/ising_degeneracy.svg" loading="lazy" alt="The logarithm of the number of Ising ground states against the number of sites, flat at ln 2 for the square lattice and rising along two dashed lines for the triangular and kagome lattices." />
 <figcaption><strong>Schematic 8.3.</strong> How large the classical degeneracy is. We count by brute force the ground states of the antiferromagnetic Ising model on small periodic clusters of <span class="math inline">\(N\)</span> sites. On the square lattice there are always two, the two Néel states. On the triangular and kagome lattices the number grows exponentially with <span class="math inline">\(N\)</span>. The dashed lines have the slopes <span class="math inline">\(0.32\)</span> and <span class="math inline">\(0.50\)</span>, which are the entropies per site of the infinite lattices. This is what a macroscopic degeneracy means, and quantum fluctuations mix the states of this large set.</figcaption>
 </figure>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>In the kagome antiferromagnet ZnCu<span class="math inline">\(_3\)</span>(OH)<span class="math inline">\(_6\)</span>Cl<span class="math inline">\(_2\)</span>, with spin-<span class="math inline">\(1/2\)</span> sites, the magnetic susceptibility gives a Curie-Weiss temperature of about <span class="math inline">\(-300\)</span> K, and no magnetic order is observed down to <span class="math inline">\(50\)</span> mK. The measurement is in <a href="https://doi.org/10.1103/PhysRevLett.98.107204">this article</a>. What follows is our own reading. The size of the Curie-Weiss temperature is set by the antiferromagnetic exchange, and in mean field a magnet without frustration orders at a temperature of this order. Here the order is still absent at a temperature about <span class="math inline">\(6000\)</span> times lower, which fits a lattice made only of frustrated triangles.</p>
+</div>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
@@ -132,11 +170,13 @@ Question
 Question
 </div>
 <div class="quiz-q">
-<p>Why is the square lattice with antiferromagnetic Heisenberg coupling not a good place to look for a spin liquid?</p>
+<p>We take the Heisenberg model on the square lattice,</p>
+<p><span class="math display">\[H=J\sum_{\langle ij\rangle}\mathbf S_i\cdot\mathbf S_j, \qquad J&gt;0.\]</span></p>
+<p>Why is it not a good place to look for a spin liquid?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li>It is bipartite, so the Néel state satisfies every bond and breaks time-reversal symmetry.</li>
+<li>It is bipartite, so the classical Néel state satisfies every bond and breaks time-reversal symmetry.</li>
 <li>It has too many neighbors for singlets to form.</li>
 <li>It is two-dimensional, and spin liquids need three dimensions.</li>
 </ol>
@@ -157,6 +197,52 @@ Question
 </ul>
 </div>
 </details>
+</div>
+<div class="quiz quiz-pics" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Each picture is a cluster of Ising spins <span class="math inline">\(S^z_i=\pm\tfrac12\)</span>, one on each circle. Every line, solid or dashed, is a bond. The energy is</p>
+<p><span class="math display">\[H=J\sum_{\langle ij\rangle}S^z_iS^z_j, \qquad J&gt;0.\]</span></p>
+<p>In which cluster can every bond be satisfied?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session08/g2_quiz_cluster_triangle.svg" loading="lazy" alt="A triangle of three sites joined by three bonds." /></li>
+<li><img src="../figures/web/session08/g2_quiz_cluster_square.svg" loading="lazy" alt="A square of four sites joined by four bonds along its edges." /></li>
+<li><img src="../figures/web/session08/g2_quiz_cluster_tetra.svg" loading="lazy" alt="A tetrahedron of four sites with a bond between every pair, drawn in perspective with the bond behind dashed." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Two spins of the triangle can be antiparallel, but the third one is then parallel to one of them. The lowest energy is <span class="math inline">\(-J/4\)</span>, with one unsatisfied bond, and not the <span class="math inline">\(-3J/4\)</span> of three satisfied bonds.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The square is bipartite. With up spins on one diagonal and down spins on the other, every bond joins two antiparallel spins, and the energy is <span class="math inline">\(4\cdot(-J/4)=-J\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. Every pair of the four sites is a bond, so the cluster is made of four triangles. The best we can do is two spins up and two down, and the two parallel pairs cost energy. The lowest energy is <span class="math inline">\(-J/2\)</span>, and not the <span class="math inline">\(-3J/2\)</span> of six satisfied bonds.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>Four Ising spins <span class="math inline">\(S^z_i=\pm\tfrac12\)</span> have the energy <span class="math inline">\(H=J\sum S^z_iS^z_j\)</span> with <span class="math inline">\(J&gt;0\)</span>, summed over the bonds of a cluster. Find the lowest energy and count the ground states on the square plaquette, with its four bonds around the square, and on the tetrahedron, where all six pairs of sites are bonds. In which of the two is every bond satisfied?</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>On the square we label the sites <span class="math inline">\(0,1,2,3\)</span> around it. A bond is satisfied by two antiparallel spins, with <span class="math inline">\(-J/4\)</span>. If site <span class="math inline">\(0\)</span> is up, the bonds <span class="math inline">\((01)\)</span> and <span class="math inline">\((30)\)</span> put the sites <span class="math inline">\(1\)</span> and <span class="math inline">\(3\)</span> down, and the bonds <span class="math inline">\((12)\)</span> and <span class="math inline">\((23)\)</span> then put site <span class="math inline">\(2\)</span> up. This configuration satisfies all four bonds, with <span class="math inline">\(E=-J\)</span>, and its flip is the only other one. So the square has <span class="math inline">\(2\)</span> ground states, the two Néel states, and no frustration.</p>
+<p>On the tetrahedron every pair is a bond, as on the triangle, so we can use the total <span class="math inline">\(M=\sum_iS^z_i\)</span>. Since <span class="math inline">\(\sum_i(S^z_i)^2=1\)</span>,</p>
+<p><span class="math display">\[M^2=1+2\sum_{i&lt;j}S^z_iS^z_j, \qquad\text{so}\qquad H=\frac J2\big(M^2-1\big).\]</span></p>
+<p>The energy is lowest at <span class="math inline">\(M=0\)</span>, with two spins up and two down, at <span class="math inline">\(-J/2\)</span>. There are <span class="math inline">\(\binom42=6\)</span> such configurations, and in each of them the two parallel pairs are unsatisfied bonds. Six satisfied bonds would give <span class="math inline">\(6\cdot(-\tfrac J4)=-\tfrac32J\)</span>, so the tetrahedron is frustrated, with a sixfold ground state like the triangle.</p>
+<p>The two clusters have the same four sites, and only the bonds differ. The square is bipartite, and the tetrahedron is made of triangles. In a calculation this tells us what to expect before we run it. A bipartite lattice has only the two Néel states, as the square clusters of <a href="#sch:s08:ising_degeneracy">Schematic 8.3</a> show, while a lattice of triangles has a degenerate ground state.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="comesback">
 <div class="comesback-label">

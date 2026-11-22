@@ -85,10 +85,43 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="on" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 7. Quantum Many-Body Entanglement and Tensor Networks</a></p>
 <h1 id="sec-7-8b"><span class="num">7.8b</span> Where MPS stop working</h1>
-<p>The same argument tells us directly where MPS must fail, which is whenever the true entanglement entropy is larger than what a practical bond dimension can give through <a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#eq-7-10">(7.10)</a>. In practice this happens in four cases. The first case is dynamics over long times, since after a quench the entanglement grows <em>linearly</em> with time and not logarithmically, as <a href="#sch:s07:quench_entropy">Schematic 7.11</a> shows for a small chain. The second case is systems in more than one dimension. There the length of the boundary in the area law grows with the system size, as we saw in Section <a href="07-two-dimensions-and-the-area-law.html#sec-7-7">7.7</a>. So <span class="math inline">\(M\)</span> has to grow too, often exponentially in the linear size of the subsystem. The third case is highly excited states, since the area law is a statement about ground states and not about general eigenstates. The fourth case is, more generally, states far from equilibrium. However, when the physics stays close to a gapped 1D ground state, MPS can be used for more than the ground-state problem. With a higher cost, they can be used for time evolution, excited states and open quantum systems, routinely in 1D and in some cases in 2D.</p>
+<p>When does the bound <a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#eq-7-10">(7.10)</a> stop a matrix product state? It does so whenever the entanglement entropy of the state is larger than <span class="math inline">\(\log \chi\)</span> for every bond dimension <span class="math inline">\(\chi\)</span> that we can store. We will now see that this happens after a quench, in two dimensions and in highly excited states, and that in each case the bond dimension has to grow exponentially.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[S \;\le\; \log \chi. \tag{7.10}\]</span></p>
+</div>
+<p>This is the bound of Section <a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#sec-7-8">7.8a</a> on the entanglement entropy <span class="math inline">\(S\)</span> that an MPS of bond dimension <span class="math inline">\(\chi\)</span> can hold across one bond. It comes from the Schmidt decomposition at that bond, which has at most <span class="math inline">\(\chi\)</span> terms, and only <span class="math inline">\(\chi\)</span> equal Schmidt weights reach it.</p>
+</div>
+<p>The bound tells us directly where MPS must fail, which is whenever the true entanglement entropy is larger than what a practical bond dimension can give through <a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#eq-7-10">(7.10)</a>. In practice this happens in four cases. The first case is dynamics over long times, since after a quench the entanglement grows <em>linearly</em> with time and not logarithmically, as <a href="#sch:s07:quench_entropy">Schematic 7.11</a> shows for a small chain. The second case is systems in more than one dimension. There the length of the boundary in the area law grows with the system size, as we saw in Section <a href="07-two-dimensions-and-the-area-law.html#sec-7-7">7.7</a>. So <span class="math inline">\(\chi\)</span> has to grow too, often exponentially in the linear size of the subsystem. The third case is highly excited states, since the area law is a statement about ground states and not about general eigenstates. The fourth case is, more generally, states far from equilibrium.</p>
+<p>However, when the physics stays close to a gapped 1D ground state, MPS can be used for more than the ground-state problem. With a higher cost, they can be used for time evolution, excited states and open quantum systems, routinely in 1D and in some cases in 2D.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>An MPS that holds the entanglement entropy <span class="math inline">\(S\)</span> across a cut needs at least the bond dimension</p>
+<p><span class="math display">\[\chi \ge e^{S}.\]</span></p>
+<p>This is <a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#eq-7-10">(7.10)</a> read backwards. An entropy that grows linearly in time after a quench, or linearly with the width of a strip in two dimensions, needs a <span class="math inline">\(\chi\)</span> that grows exponentially.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the bound (7.10) to the cost of a quench and of a strip</span></summary>
+<div class="fold-body">
+<p>The bound <a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#eq-7-10">(7.10)</a> is <span class="math inline">\(S\le\log \chi\)</span>, so an MPS that holds the entropy <span class="math inline">\(S\)</span> needs <span class="math inline">\(\chi\ge e^{S}\)</span>. Let us take first the simplest case, a cut that crosses <span class="math inline">\(n\)</span> singlets. Each singlet gives <span class="math inline">\(\log 2\)</span>, so <span class="math inline">\(S=n\log 2\)</span> and</p>
+<p><span class="math display">\[\chi\ge e^{n\log 2}=2^{n}.\]</span></p>
+<p>After a quench the entropy of half of the chain grows about linearly, <span class="math inline">\(S(t)\approx vt\)</span>, until the finite length of the chain stops the growth. The bound then gives</p>
+<p><span class="math display">\[\chi\ge e^{vt},\]</span></p>
+<p>meaning that <span class="math inline">\(\chi\)</span> grows exponentially with the time that we want to reach. In the quench of <a href="#sch:s07:quench_entropy">Schematic 7.11</a> the entropy passes <span class="math inline">\(\log 2\)</span>, <span class="math inline">\(\log 4\)</span> and <span class="math inline">\(\log 8\)</span> at <span class="math inline">\(t\approx1.5\)</span>, <span class="math inline">\(2.5\)</span> and <span class="math inline">\(3.5\)</span> in units of <span class="math inline">\(\hbar/J\)</span>, so the bond dimension that it needs roughly doubles at each unit of time.</p>
+<p>For a strip of width <span class="math inline">\(W\)</span>, the MPS runs along the strip and each of its cuts crosses the strip. If each row adds the same entropy <span class="math inline">\(s\)</span> to the cut, then <span class="math inline">\(S=sW\)</span> and</p>
+<p><span class="math display">\[\chi\ge e^{sW}.\]</span></p>
+<p>A gapped ground state has a fixed <span class="math inline">\(s\)</span>, so <span class="math inline">\(\chi\)</span> grows exponentially with the width <span class="math inline">\(W\)</span>, while the length of the strip only adds tensors.</p>
+</div>
+</details>
+</div>
 <figure id="sch:s07:quench_entropy" class="schematic">
 <img src="../figures/web/session07/quench_entropy.svg" loading="lazy" alt="The entropy of half of a chain against time after a quench, rising about linearly and crossing three horizontal dashed lines for the bond dimensions 2, 4 and 8." />
-<figcaption><strong>Schematic 7.11.</strong> The entropy of half of a transverse-field Ising chain with 12 sites after a quench, from exact time evolution. The chain starts with all spins up along <span class="math inline">\(z\)</span> and evolves with <span class="math inline">\(H=-\sum_i\sigma^z_i\sigma^z_{i+1}-\sum_i\sigma^x_i\)</span>. Each dashed line is the largest entropy <span class="math inline">\(\log M\)</span> that an MPS with that bond dimension can hold. Look at how the curve crosses the lines for <span class="math inline">\(M=2\)</span>, <span class="math inline">\(M=4\)</span> and <span class="math inline">\(M=8\)</span> in turn. It turns over at <span class="math inline">\(t\approx4\)</span> only because the chain is finite.</figcaption>
+<figcaption><strong>Schematic 7.11.</strong> The entropy of half of a transverse-field Ising chain with 12 sites after a quench, from exact time evolution. The chain starts with all spins up along <span class="math inline">\(z\)</span> and evolves with <span class="math inline">\(H=-J\sum_i\sigma^z_i\sigma^z_{i+1}-J\sum_i\sigma^x_i\)</span>, which is the critical point of the chain, and the time is in units of <span class="math inline">\(\hbar/J\)</span>. The entropy is drawn as <span class="math inline">\(S/\log 2\)</span>, which is the entropy in bits. Each dashed line is the largest entropy <span class="math inline">\(\log \chi\)</span> that an MPS with that bond dimension can hold. Look at how the curve crosses the lines for <span class="math inline">\(\chi=2\)</span>, <span class="math inline">\(\chi=4\)</span> and <span class="math inline">\(\chi=8\)</span> in turn. It turns over at <span class="math inline">\(t\approx4\)</span> only because the chain is finite.</figcaption>
 </figure>
 <figure class="again">
 <img src="../figures/s07f02_arealaw.svg" loading="lazy" alt="A chain of dimers and a square lattice of tetramers, with the bonds cut by the boundary of a region drawn in red." />
@@ -99,13 +132,17 @@
 Question
 </div>
 <div class="quiz-q">
-<p>After a sudden change of the Hamiltonian the entanglement of a chain grows linearly with time. Why is this a problem for an MPS with fixed <span class="math inline">\(M\)</span>?</p>
+<p>We change the Hamiltonian of a chain suddenly, which is called a quench. After the quench the entropy of half of the chain grows linearly in time,</p>
+<p><span class="math display">\[S(t)\propto t.\]</span></p>
+<p>An MPS of bond dimension <span class="math inline">\(\chi\)</span> holds at most</p>
+<p><span class="math display">\[S\le\log \chi.\]</span></p>
+<p>Why is this growth a problem for an MPS with a fixed <span class="math inline">\(\chi\)</span>?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
 <li>The state stops being normalized after a quench.</li>
 <li>The Hamiltonian becomes nonlocal after a quench.</li>
-<li>The entropy soon exceeds <span class="math inline">\(\log M\)</span>, so <span class="math inline">\(M\)</span> must grow exponentially with time.</li>
+<li>The entropy soon exceeds <span class="math inline">\(\log \chi\)</span>, so <span class="math inline">\(\chi\)</span> must grow exponentially with time.</li>
 </ol>
 </div>
 <details class="quiz-answer"><summary>Show the answers</summary>
@@ -116,14 +153,11 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
 <p>This is false. A quench only changes the parameters. For example <span class="math inline">\(J=1\)</span> becomes <span class="math inline">\(J=2\)</span> and the Hamiltonian is still a sum of nearest-neighbor terms.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
-<p>This is true. The bound <a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#eq-7-10">(7.10)</a> gives <span class="math inline">\(S\le\log M\)</span>, and a linear growth of <span class="math inline">\(S\)</span> needs <span class="math inline">\(M\sim e^{S}\)</span> to grow exponentially. For this reason long-time dynamics is hard for MPS.</p>
+<p>This is true. The bound <span class="math inline">\(S\le\log \chi\)</span> needs <span class="math inline">\(\chi\ge e^{S}\)</span>, and a linear growth of <span class="math inline">\(S\)</span> makes this <span class="math inline">\(\chi\)</span> grow exponentially. For this reason long-time dynamics is hard for MPS.</p>
 <figure class="quiz-fig schematic">
 <img src="../figures/web/session07/quench_entropy.svg" loading="lazy" alt="The entropy of half of a chain against time after a quench, rising about linearly and crossing horizontal dashed lines for the bond dimensions 2, 4 and 8." />
-<figcaption>The half-chain entropy after a quench passes each limit <span class="math inline">\(\log M\)</span> at a finite time.</figcaption>
-</figure>
-<div class="eq-again">
-<p><span class="math display">\[S \;\le\; \log M. \tag{7.10}\]</span></p>
-</div></li>
+<figcaption>The half-chain entropy after a quench passes each limit <span class="math inline">\(\log \chi\)</span> at a finite time.</figcaption>
+</figure></li>
 </ul>
 </div>
 </details>
@@ -133,7 +167,7 @@ Question
 Question
 </div>
 <div class="quiz-q">
-<p>Which of the following ground states is the hardest for an MPS with a fixed bond dimension?</p>
+<p>Which ground state is the hardest for an MPS with a fixed bond dimension?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -146,21 +180,35 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
-<p>This is false. The AKLT chain is gapped and its exact ground state is an MPS with <span class="math inline">\(M=2\)</span>, for 100 sites or for 10000. The entropy of a gapped chain saturates.</p></li>
+<p>This is false. The AKLT chain is gapped and its exact ground state is an MPS with <span class="math inline">\(\chi=2\)</span>, for 100 sites or for 10000. The entropy of a gapped chain saturates.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. An MPS has to pass through the lattice, and its cut crosses a boundary of about ten bonds. The entropy is then ten times the one of a single bond, and the bond dimension that it needs is exponentially larger.</p></li>
+<p>This is true. An MPS has to pass through the lattice, and its cut through the middle crosses ten bonds. The entropy is then roughly ten times the one of a single bond, and the bond dimension that it needs is exponentially larger.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. A product of dimers has a cut that crosses at most one singlet, with entropy <span class="math inline">\(\log2\)</span> at most. It is an exact MPS with <span class="math inline">\(M=2\)</span>.</p></li>
+<p>This is false. A product of dimers has a cut that crosses at most one singlet, with entropy <span class="math inline">\(\log2\)</span> at most. It is an exact MPS with <span class="math inline">\(\chi=2\)</span>.</p></li>
 </ul>
 </div>
 </details>
 </div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>A gapped model lives on a strip of width <span class="math inline">\(W\)</span>. An MPS runs along the strip, and each of its cuts crosses <span class="math inline">\(W\)</span> singlets. Find the smallest bond dimension <span class="math inline">\(\chi\)</span>, and the number <span class="math inline">\(2\chi^2\)</span> of complex numbers of one bulk tensor, for <span class="math inline">\(W=10\)</span> and for <span class="math inline">\(W=20\)</span>.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>Each cut singlet gives <span class="math inline">\(\log 2\)</span>, so the entropy at a cut is <span class="math inline">\(S=W\log 2\)</span>. The bound <a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#eq-7-10">(7.10)</a> asks for <span class="math inline">\(\log \chi\ge W\log 2\)</span>, so the smallest bond dimension is <span class="math inline">\(\chi=2^W\)</span>. For <span class="math inline">\(W=10\)</span> this is <span class="math inline">\(\chi=2^{10}=1024\)</span>, and one bulk tensor has <span class="math inline">\(2\chi^2=2.1\times10^6\)</span> numbers. For <span class="math inline">\(W=20\)</span> it is <span class="math inline">\(\chi=2^{20}\approx10^6\)</span>, and one bulk tensor has <span class="math inline">\(2.2\times10^{12}\)</span> numbers, which is <span class="math inline">\(35\)</span> TB with 16 bytes per number.</p>
+<p>The strip is only twice as wide, but one tensor is about <span class="math inline">\(10^6\)</span> times larger. This is why DMRG in two dimensions is used on narrow strips, while for a chain the cost grows only linearly with the length.</p>
+</div>
+</details>
+</div>
+</div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb"><code>session7.ipynb</code></a>, “Entanglement entropy of the ground state” (Core), “Size dependence of the entanglement entropy” (Challenge), and “Bond dimension dependence of the entanglement entropy” (Challenge)</p>
-<p>With these three exercises you can reproduce Sections <a href="04-the-matrix-product-state-ansatz.html#sec-7-5">7.5</a> to <a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#sec-7-8">7.8</a> numerically. First, you compute the entanglement entropy at each bond for the MPS ground state of a Heisenberg chain. Then you check that it grows very little with the system size, which is the 1D area-law saturation of Section <a href="06-entanglement-entropy-of-a-solvable-dimerized-chain.html#sec-7-6">7.6</a>, but this time in a gapless chain and not in a gapped one. Finally, you check that it saturates once the bond dimension is large enough to satisfy <a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#eq-7-10">(7.10)</a>. The quiz of the first exercise also asks you to replace the model with an Ising model and to see how the entropy changes. This is a quick way to see how the area law responds to a really different ground state, which in this case is classical and has zero entanglement.</p>
+<p>With these three exercises you can reproduce Sections <a href="04-the-matrix-product-state-ansatz.html#sec-7-5">7.5</a> to <a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#sec-7-8">7.8</a> numerically. First, you compute the entanglement entropy at each bond for the MPS ground state of a Heisenberg chain. Then you check that it grows very little with the system size. This is not the area-law saturation of Section <a href="06-entanglement-entropy-of-a-solvable-dimerized-chain.html#sec-7-6">7.6</a>, since the Heisenberg chain is gapless and its entropy grows as <span class="math inline">\(\frac c6\ln L\)</span> with <span class="math inline">\(c=1\)</span>, as the notebook writes. Finally, you check that it saturates with the bond dimension once the Schmidt weights that <span class="math inline">\(\chi\)</span> drops are negligible, which is well above the smallest <span class="math inline">\(\chi\)</span> that <a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#eq-7-10">(7.10)</a> allows. The quiz of the first exercise also asks you to replace the model with an Ising model and to see how the entropy changes. This is a quick way to see how the area law responds to a really different ground state, which in this case is classical and has zero entanglement.</p>
 </div>
 <div class="tryit">
-<p><strong>Try it.</strong> Compare the curves of <span class="math inline">\(L=10\)</span> and <span class="math inline">\(L=30\)</span> as a function of <code>maxm</code>. Both curves follow the bound <span class="math inline">\(\ln\chi\)</span> at small <span class="math inline">\(\chi\)</span> and then saturate. Which chain saturates at the larger bond dimension, and why?</p>
+<p><strong>Try it.</strong> Compare the curves of <span class="math inline">\(L=10\)</span> and <span class="math inline">\(L=30\)</span> as a function of <code>maxm</code>. Both curves stay far below the bound <span class="math inline">\(\ln\chi\)</span> for <span class="math inline">\(\chi\ge2\)</span>. Which chain needs the larger bond dimension before its entropy saturates, and why?</p>
 <div class="tryit-links">
 Notebook <code>session7.ipynb</code>, cell “Bond dimension dependence of the entanglement entropy”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession7.ipynb">Binder</a>.
 </div>

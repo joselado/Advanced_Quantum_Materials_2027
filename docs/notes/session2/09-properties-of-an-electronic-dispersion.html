@@ -109,15 +109,15 @@ To remember
 <p><span id="eq-2-16" class="eq"><span class="math display">\[g(\omega) = \int_{\text{BZ}} \frac{d^dk}{(2\pi)^d}\; \delta\!\left(\omega-E(\mathbf{k})\right). \tag{2.16}\]</span></span></p>
 <p>It counts the states per unit of energy and per unit length, area or volume, for one band and one spin. The group velocity <a href="#eq-2-17">(2.17)</a> and the effective mass <a href="#eq-2-18">(2.18)</a> below are the slope and the curvature of the same band.</p>
 </div>
-<p>The density of states controls how strongly a material responds to interactions. A large or divergent density of states means that even a weak interaction can drive an instability toward magnetism, a charge density wave or superconductivity, which are the three cases of <a href="../session1/index.html">Session 1</a>. In <a href="../session6/index.html">Session 6</a> and in <a href="../session9/index.html">Session 9</a> its value at the Fermi level is written <span class="math inline">\(D(E_F)\)</span>, and in Section <a href="../session6/06-the-stoner-threshold-as-a-criterion-for-magnetism.html#sec-6-6">6.6</a> it gives the Stoner criterion for magnetism. A vanishing density of states means that interactions can hardly have any effect, however strong they are.</p>
+<p>The density of states controls how strongly a material responds to interactions. A large or divergent density of states means that even a weak interaction can drive an instability toward magnetism, a charge density wave or superconductivity, which are the three cases of <a href="../session1/index.html">Session 1</a>. In <a href="../session6/index.html">Session 6</a> and in <a href="../session9/index.html">Session 9</a> its value at the Fermi level is written <span class="math inline">\(D(E_F)\)</span>, and in Section <a href="../session6/06-the-stoner-threshold-as-a-criterion-for-magnetism.html#sec-6-6">6.6</a> it gives the Stoner criterion for magnetism. A vanishing density of states means that a weak interaction can hardly have any effect, and only an interaction above a finite strength can drive such an instability.</p>
 <p>The <strong>group velocity</strong>,</p>
 <p><span id="eq-2-17" class="eq"><span class="math display">\[v(\mathbf{k}) = \frac{1}{\hbar}\nabla_{\mathbf{k}} E(\mathbf{k}), \tag{2.17}\]</span></span></p>
 <p>is the local slope of the dispersion. Where <span class="math inline">\(v(\mathbf{k})=0\)</span>, electrons at that <span class="math inline">\(\mathbf{k}\)</span> do not move in practice. Where <span class="math inline">\(v(\mathbf{k})\)</span> is large, they propagate quickly through the lattice.</p>
 <p>The <strong>effective mass</strong>,</p>
 <p><span id="eq-2-18" class="eq"><span class="math display">\[\left(\frac{1}{m^\ast}\right)_{ij} = \frac{1}{\hbar^2}\,
 \frac{\partial^2 E(\mathbf{k})}{\partial k_i\,\partial k_j}, \tag{2.18}\]</span></span></p>
-<p>is the curvature of the dispersion, and it is the mass that is measured in essentially every transport or cyclotron-resonance experiment, since the bare electron mass cannot be observed directly inside a solid. Depending on the band, <span class="math inline">\(m^\ast\)</span> can go from nearly zero to very large values. For a Dirac dispersion, as we will see in Section <a href="11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#sec-2-11">2.11</a>, it is formally not defined at the point where the bands touch.</p>
-<p>For the chain band of <a href="05-blochs-theorem-and-the-first-band-structure.html#eq-2-8">(2.8)</a> we can draw the three quantities one next to the other, in <a href="#sch:s02:cos_velocity_mass">Schematic 2.10</a>. The velocity is largest in the middle of the band, where the effective mass changes sign.</p>
+<p>is the curvature of the dispersion. For an isotropic parabolic band it is also the mass that is measured in transport and cyclotron-resonance experiments, since the bare electron mass cannot be observed directly inside a solid. For an anisotropic parabolic band, with the masses <span class="math inline">\(m_1\)</span> and <span class="math inline">\(m_2\)</span> along its two main axes, transport along one axis measures the mass of that axis, and cyclotron resonance measures <span class="math inline">\(\sqrt{m_1m_2}\)</span>. Depending on the band, <span class="math inline">\(m^\ast\)</span> can go from nearly zero to very large values. For a Dirac dispersion, as we will see in Section <a href="11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.html#sec-2-11">2.11</a>, it is formally not defined at the point where the bands touch.</p>
+<p>For the chain band of <a href="05-blochs-theorem-and-the-first-band-structure.html#eq-2-8">(2.8)</a> we can draw the three quantities one next to the other, in <a href="#sch:s02:cos_velocity_mass">Schematic 2.10</a>. The size of the velocity is largest in the middle of the band, where the effective mass changes sign.</p>
 <figure id="sch:s02:cos_velocity_mass" class="schematic has-script">
 <img src="../figures/web/session02/cos_velocity_mass.svg" loading="lazy" alt="Three curves against the phase, with ticks at minus two, zero and two. The cosine band, its slope, which is largest in size at plus and minus pi over two, and its curvature, which is positive at the bottom and negative at the top." />
 <div class="script-row">
@@ -144,7 +144,7 @@ To remember
 Question
 </div>
 <div class="quiz-q">
-<p>For the band <span class="math inline">\(\epsilon_\varphi=-2t\cos\varphi\)</span>, where is the group velocity largest?</p>
+<p>For the band <span class="math inline">\(\epsilon_\varphi=-2t\cos\varphi\)</span>, where is the size of the group velocity largest?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -159,13 +159,13 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
 <p>This is false. The velocity is proportional to <span class="math inline">\(2t\sin\varphi\)</span>, which is zero at <span class="math inline">\(\varphi=0\)</span>. The bottom of the band is flat, and the electron there is at rest.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. The velocity is the slope of the band, which is proportional to <span class="math inline">\(2t\sin\varphi\)</span>. It vanishes at the band edges and it is largest in the middle of the band.</p></li>
+<p>This is true. The velocity is the slope of the band, which is proportional to <span class="math inline">\(2t\sin\varphi\)</span>. It vanishes at the band edges and its size is largest in the middle of the band.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
 <p>This is false. A constant velocity needs a linear band, such as a Dirac cone. For the cosine band the slope is <span class="math inline">\(0\)</span> at <span class="math inline">\(\varphi=0\)</span> and <span class="math inline">\(2t\)</span> at <span class="math inline">\(\varphi=\pi/2\)</span>, in units of the lattice constant over <span class="math inline">\(\hbar\)</span>.</p></li>
 </ul>
 </div>
 <div class="quiz-expl">
-<p>The velocity is zero at the extrema of the band and largest where the band crosses the middle.</p>
+<p>The velocity is zero at the extrema of the band, and its size is largest where the band crosses the middle.</p>
 </div>
 </details>
 </div>

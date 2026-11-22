@@ -128,7 +128,7 @@ Question
 </div>
 </details>
 </div>
-<p>Braiding two Majoranas, for example <span class="math inline">\(\gamma_1\)</span> around <span class="math inline">\(\gamma_2\)</span>, acts on the ground-state manifold as a unitary, which is the main result of this page.</p>
+<p>Braiding two Majoranas, for example the exchange of <span class="math inline">\(\gamma_1\)</span> and <span class="math inline">\(\gamma_2\)</span>, acts on the ground-state manifold as a unitary, which is the main result of this page.</p>
 <div class="keybox">
 <div class="keybox-label">
 To remember
@@ -155,7 +155,7 @@ To remember
 </div>
 <p>This unitary multiplies states by a relative phase built from <span class="math inline">\(e^{i\pi/4}\)</span> times the Majorana product. The exact form is less important than what it implies. Two exchanges that share a Majorana do not commute. Braiding the pair <span class="math inline">\((1,2)\)</span> and then the pair <span class="math inline">\((2,3)\)</span> gives a different final state than braiding <span class="math inline">\((2,3)\)</span> first and <span class="math inline">\((1,2)\)</span> second, since <span class="math inline">\(\gamma_1\gamma_2\)</span> and <span class="math inline">\(\gamma_2\gamma_3\)</span> anticommute. Exchanges of disjoint pairs, such as <span class="math inline">\((1,2)\)</span> and <span class="math inline">\((3,4)\)</span>, commute instead.</p>
 <p>This braid algebra that does not commute is what allows sequences of purely topological and geometric moves, which physically means moving Majoranas around one another, to implement non-trivial quantum logic gates. The resulting qubit is stored non-locally, divided between spatially separated Majoranas instead of being in one local degree of freedom. For this reason it is intrinsically resistant to local decoherence and to weak local disorder, and this robustness is the main reason for the interest in topological quantum computing. No section of <code>session5.ipynb</code> implements braiding dynamics or a qubit manifold, since braiding is a dynamical calculation and not a static tight-binding diagonalization.</p>
-<p>Schematic <a href="#sch:s05:braid_order">Schematic 5.21</a> draws the three cases as worldlines, with time going up. The two exchanges that share a Majorana give two different arrangements, and the two disjoint exchanges give the same one.</p>
+<p><a href="#sch:s05:braid_order">Schematic 5.21</a> draws the three cases as worldlines, with time going up. The two exchanges that share a Majorana give two different arrangements, and the two disjoint exchanges give the same one.</p>
 <figure id="sch:s05:braid_order" class="schematic">
 <img src="../figures/web/session05/braid_order.svg" loading="lazy" alt="Three braid diagrams with worldlines that cross. The first two use the same two exchanges in opposite order and end in different arrangements. The third uses two exchanges of disjoint pairs." />
 <figcaption><strong>Schematic 5.21.</strong> Exchanges of Majoranas as worldlines. (a) The exchange of <span class="math inline">\((1,2)\)</span> followed by <span class="math inline">\((2,3)\)</span>. (b) The same exchanges in the opposite order, which ends in a different arrangement. (c) The exchange of <span class="math inline">\((1,2)\)</span> and <span class="math inline">\((3,4)\)</span>, which gives the same result in either order. The operators <span class="math inline">\(i\gamma_1\gamma_2\)</span> and <span class="math inline">\(i\gamma_2\gamma_3\)</span> anticommute, and <span class="math inline">\(i\gamma_1\gamma_2\)</span> and <span class="math inline">\(i\gamma_3\gamma_4\)</span> commute, as we checked on four Majoranas of two fermion modes.</figcaption>
@@ -244,7 +244,7 @@ Where this comes back
 <ul>
 <li>In <a href="../session6/index.html">Session 6</a> we go to the other branch of the Hubbard model, <span class="math inline">\(U&gt;0\)</span>, which gives magnetism, starting from Section <a href="../session6/02-a-recap-of-symmetry-breaking-and-the-mean-field-philosophy.html#sec-6-3">6.3</a>.</li>
 <li>In Section <a href="../session8/10-emergent-gauge-symmetry-and-vison-excitations.html#sec-8-10">8.10</a> a quantum spin liquid has its own topological excitations, the visons, which are fluxes of an emergent gauge field.</li>
-<li>In Section <a href="../session10/06b-the-hard-case-the-ising-gauge-theory.html#sec-10-6b">10.6b</a> a phase that no local quantity can tell apart, as for the states of a topological qubit, is the hard case of phase classification.</li>
+<li>In Section <a href="../session10/06b-the-hard-case-the-ising-gauge-theory.html#sec-10-6b">10.6b</a> a phase with no local order parameter, as for the states of a topological qubit, is the hard case of phase classification.</li>
 </ul>
 </div>
 

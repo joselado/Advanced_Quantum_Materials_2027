@@ -85,28 +85,46 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="on" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 9. Excitations and Defects in Quantum Materials</a></p>
 <h1 id="sec-9-10b"><span class="num">9.10b</span> Random disorder and the special role of one dimension</h1>
-<p>In the first part we met extended, critical and localized states, and we saw how the <span class="math inline">\(\mathrm{IPR}\)</span> separates them. Let us now take disorder that is really random.</p>
-<p><strong>Fully disordered case.</strong> Now we take an onsite potential that is really random, with strength <span class="math inline">\(W\)</span>, <span class="math inline">\(H = -t\sum_n (c_n^\dagger c_{n+1} + \text{h.c.}) + \sum_n w_n\, c_n^\dagger c_n\)</span>, where <span class="math inline">\(w_n\)</span> is taken uniformly from <span class="math inline">\([-W,W]\)</span>. At <span class="math inline">\(W=0\)</span> this is an ordinary clean metal, with the band structure of the periodic hopping alone, and as <span class="math inline">\(W\to\infty\)</span> every eigenstate becomes concentrated on a single site. In dimension <span class="math inline">\(d\geq 3\)</span> there is a real <strong>Anderson localization transition</strong> at a finite critical disorder <span class="math inline">\(W_c\)</span>. There is a real mobility edge that separates extended metallic states from localized states. Below the transition, or at any energy on the extended side of a mobility edge, the system conducts. Above it, there are states at every energy, so there is <em>no spectral gap</em> in the density of states, but these states cannot carry current, so there <em>is</em> a transport gap. This means that the <strong>Anderson insulator</strong> is an insulator with no gap at all in its spectrum. This is a very unusual state of matter compared with every band insulator or Mott insulator that we have seen so far in this course. The regions of extended and localized states are sketched in <a href="#sch:s09:mobility">Schematic 9.15</a>.</p>
+<p>What does a potential that is really random do to the states of a material, and why is one dimension special? We will now see that in three dimensions a strong random potential gives the Anderson insulator, which has states at every energy and still does not conduct. In one dimension any random potential localizes every state, with a localization length <span class="math inline">\(\xi\propto(t/W)^2\)</span> at weak disorder close to the band center.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[\mathrm{IPR}(\psi) = \sum_i |\psi_i|^4, \qquad \sum_i |\psi_i|^2 = 1. \tag{9.12}\]</span></p>
+</div>
+<p>This is the inverse participation ratio of Section <a href="10-disorder-and-anderson-localization.html#sec-9-10">9.10a</a>, which separates the extended, critical and localized states. The weight of the normalized state on site <span class="math inline">\(i\)</span> is <span class="math inline">\(|\psi_i|^2\)</span>. The IPR falls as <span class="math inline">\(1/N\)</span> for a state that is extended over the <span class="math inline">\(N\)</span> sites of the sample, and it does not depend on <span class="math inline">\(N\)</span> for a localized state.</p>
+</div>
+<p><strong>Fully disordered case.</strong> Now we take an onsite potential that is really random, with strength <span class="math inline">\(W\)</span>, <span class="math inline">\(H = -t\sum_n (c_n^\dagger c_{n+1} + \text{h.c.}) + \sum_n w_n\, c_n^\dagger c_n\)</span>, where <span class="math inline">\(w_n\)</span> is taken uniformly from <span class="math inline">\([-W,W]\)</span>. At <span class="math inline">\(W=0\)</span> this is an ordinary clean metal, with the band structure of the periodic hopping alone, and as <span class="math inline">\(W\to\infty\)</span> every eigenstate becomes concentrated on a single site. In dimension <span class="math inline">\(d\geq 3\)</span> there is a real <strong>Anderson localization transition</strong> at a finite critical disorder <span class="math inline">\(W_c\)</span>. There is a real mobility edge that separates extended metallic states from localized states. Below the transition, or at any energy on the extended side of a mobility edge, the system conducts.</p>
+<p>Above the transition, there are states at every energy, so there is <em>no spectral gap</em> in the density of states, but these states cannot carry current, so there <em>is</em> a transport gap. This means that the <strong>Anderson insulator</strong> is an insulator with no gap at all in its spectrum. This is a very unusual state of matter compared with every band insulator or Mott insulator that we have seen so far in this course. The regions of extended and localized states are sketched in <a href="#sch:s09:mobility">Schematic 9.16</a>.</p>
 <figure id="sch:s09:mobility" class="schematic">
 <img src="../figures/web/session09/mobility.svg" loading="lazy" alt="Energy against disorder strength, with a blue region of extended states that closes at the critical disorder, inside a red region of localized states." />
-<figcaption><strong>Schematic 9.15.</strong> A sketch of the mobility edges of the three-dimensional Anderson model with <span class="math inline">\(w_n\)</span> uniform in <span class="math inline">\([-W,W]\)</span>. The grey lines are the band edges at <span class="math inline">\(\pm(6t+W)\)</span>. The blue curve is a guide for the eye, and only its end point, <span class="math inline">\(W_c\approx8t\)</span>, is taken from numerical work. States inside the curve are extended and all others are localized, so a Fermi level at the band center with <span class="math inline">\(W&gt;W_c\)</span> lies in the Anderson insulator.</figcaption>
+<figcaption><strong>Schematic 9.16.</strong> A sketch of the mobility edges of the three-dimensional Anderson model with <span class="math inline">\(w_n\)</span> uniform in <span class="math inline">\([-W,W]\)</span>, with the energy <span class="math inline">\(E\)</span> and the disorder <span class="math inline">\(W\)</span> in units of the hopping <span class="math inline">\(t\)</span>. The grey lines are the band edges at <span class="math inline">\(\pm(6t+W)\)</span>. The blue curve is a guide for the eye. Its end point, <span class="math inline">\(W_c\approx8t\)</span>, is taken from numerical work. At <span class="math inline">\(W=5t\)</span> it lies above <span class="math inline">\(E=7t\)</span>, since our level statistics of cubes of <span class="math inline">\(10^3\)</span> and <span class="math inline">\(12^3\)</span> sites there are those of extended states up to <span class="math inline">\(E=7t\)</span>. Roughly, states inside the curve are extended and all others are localized, so a Fermi level at the band center with <span class="math inline">\(W&gt;W_c\)</span> lies in the Anderson insulator.</figcaption>
 </figure>
-<p>In a finite sample we tell the regions apart by how the <span class="math inline">\(\mathrm{IPR}\)</span> of <a href="10-disorder-and-anderson-localization.html#eq-9-12">(9.12)</a> changes with the size <span class="math inline">\(N\)</span>, which we met in Section <a href="10-disorder-and-anderson-localization.html#sec-9-10">9.10</a> and show again here.</p>
+<p>In a finite sample we tell the regions apart by how the <span class="math inline">\(\mathrm{IPR}\)</span> of <a href="10-disorder-and-anderson-localization.html#eq-9-12">(9.12)</a> changes with the size <span class="math inline">\(N\)</span>, which we met in Section <a href="10-disorder-and-anderson-localization.html#sec-9-10">9.10a</a> and show again here.</p>
 <figure class="again panel">
 <img src="../figures/panel/s09f06_localization_ipr.svg" loading="lazy" alt="Three lines of IPR against system size on logarithmic axes, one falling steeply, one falling slowly and one constant." />
 <figcaption><strong><a href="10-disorder-and-anderson-localization.html#fig:s09:localization">Figure 9.6</a>, one panel shown again.</strong> The <span class="math inline">\(\mathrm{IPR}\)</span> against the size of the chain. The dark blue points fall as <span class="math inline">\(1/N\)</span> for extended states, the red points stay constant for localized states, and the light blue points fall more slowly for critical states.</figcaption>
 </figure>
 <p><strong>The special role of one dimension.</strong> In <span class="math inline">\(d=1\)</span> no real metallic phase survives at any non-zero disorder in the thermodynamic limit. According to the scaling theory of localization, the same holds in a marginal way in <span class="math inline">\(d=2\)</span>. An arbitrarily small <span class="math inline">\(W&gt;0\)</span> localizes every state at long enough distances. What survives is a finite localization length <span class="math inline">\(\xi(W)\)</span>. For weak disorder close to the band center of the 1D model, it scales as <span class="math inline">\(\xi(W) \propto (t/W)^2\)</span>, which diverges as <span class="math inline">\(W\to 0\)</span>. A finite sample that is shorter than <span class="math inline">\(\xi(W)\)</span> still looks metallic in practice, and only when the length of the sample is larger than <span class="math inline">\(\xi(W)\)</span> do we see the localized, insulating behavior in transport. This is the exact sense in which “weak disorder in 1D” and “genuinely metallic” are never the same statement, although they can look the same at short length scales.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>In one dimension a random potential of any strength <span class="math inline">\(W&gt;0\)</span> localizes every state. At weak disorder and close to the band center the localization length grows as</p>
+<p><span class="math display">\[\xi(W)\propto\left(\frac{t}{W}\right)^2 ,\]</span></p>
+<p>so a sample that is shorter than <span class="math inline">\(\xi\)</span> still looks metallic.</p>
+</div>
 <figure id="sch:s09:localization_length" class="schematic">
 <img src="../figures/web/session09/localization_length.svg" loading="lazy" alt="Localization length against disorder strength on logarithmic axes, falling along a straight line of slope minus two, with a horizontal line at one hundred sites." />
-<figcaption><strong>Schematic 9.16.</strong> The localization length <span class="math inline">\(\xi\)</span> of the random chain, from a transfer matrix at <span class="math inline">\(E=0\)</span> with <span class="math inline">\(2\times10^5\)</span> sites and <span class="math inline">\(w_n\)</span> uniform in <span class="math inline">\([-W,W]\)</span>, on logarithmic axes. For weak disorder the points follow a line of slope <span class="math inline">\(-2\)</span>, and the fitted slope is <span class="math inline">\(-2.0\)</span>, which is <span class="math inline">\(\xi\propto(t/W)^2\)</span>. The red line is a sample of <span class="math inline">\(100\)</span> sites. For <span class="math inline">\(W\)</span> below about <span class="math inline">\(0.5t\)</span> the localization length is longer than the sample, so the sample still looks metallic.</figcaption>
+<figcaption><strong>Schematic 9.17.</strong> The localization length <span class="math inline">\(\xi\)</span> of the amplitude, <span class="math inline">\(|\psi|\sim e^{-x/\xi}\)</span>, of the random chain, from a transfer matrix at <span class="math inline">\(E=0\)</span> with <span class="math inline">\(2\times10^5\)</span> sites and <span class="math inline">\(w_n\)</span> uniform in <span class="math inline">\([-W,W]\)</span>, on logarithmic axes. For weak disorder the points follow a line of slope <span class="math inline">\(-2\)</span>, and the fitted slope is <span class="math inline">\(-2.0\)</span>, which is <span class="math inline">\(\xi\propto(t/W)^2\)</span>. The red line is a sample of <span class="math inline">\(100\)</span> sites. For <span class="math inline">\(W\)</span> below about <span class="math inline">\(0.5t\)</span> the localization length is longer than the sample, so the sample still looks metallic.</figcaption>
 </figure>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>In the one-dimensional chain at weak disorder we reduce <span class="math inline">\(W\)</span> by a factor <span class="math inline">\(2\)</span>. By which factor does the localization length <span class="math inline">\(\xi\)</span> change?</p>
+<p>In the one-dimensional chain at weak disorder we reduce <span class="math inline">\(W\)</span> by a factor <span class="math inline">\(2\)</span>. By which factor does the localization length <span class="math inline">\(\xi\)</span> close to the band center change?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -133,7 +151,7 @@ Question
 Question
 </div>
 <div class="quiz-q">
-<p>In <span class="math inline">\(d=3\)</span> the disorder is above <span class="math inline">\(W_c\)</span>, and the Fermi level is in the region of localized states. Which statement describes the Anderson insulator?</p>
+<p>In <span class="math inline">\(d=3\)</span> the onsite energies <span class="math inline">\(w_n\)</span> are random and uniform in <span class="math inline">\([-W,W]\)</span>. The disorder <span class="math inline">\(W\)</span> is above the critical value <span class="math inline">\(W_c\)</span>. The Fermi level is in the region of localized states. Which statement describes this Anderson insulator?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -146,14 +164,61 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
-<p>This is false. A band insulator has no states at the Fermi level. In the Anderson insulator at <span class="math inline">\(W=20t\)</span> the density of states at the band center is about <span class="math inline">\(1/W=0.05/t\)</span> per site, which is finite.</p></li>
+<p>This is false. A band insulator has no states at the Fermi level. In the Anderson insulator at <span class="math inline">\(W=20t\)</span> the density of states near the band center is about <span class="math inline">\(1/(2W)=0.025/t\)</span> per site, which is finite. Eight cubes of <span class="math inline">\(10^3\)</span> sites give between about <span class="math inline">\(0.022/t\)</span> and <span class="math inline">\(0.027/t\)</span> in the window <span class="math inline">\(|E|&lt;5t\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. The density of states is finite inside the band, so there is no spectral gap. Localized states at different positions do not connect, so at <span class="math inline">\(T=0\)</span> the conductance falls as <span class="math inline">\(e^{-L/\xi}\)</span>.</p></li>
+<p>This is true. The density of states is finite inside the band, so there is no spectral gap. Localized states at different positions do not connect, so at <span class="math inline">\(T=0\)</span> the typical conductance falls as <span class="math inline">\(e^{-2L/\xi}\)</span>, with <span class="math inline">\(\xi\)</span> the decay length of the amplitude, <span class="math inline">\(|\psi|\sim e^{-x/\xi}\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. Above <span class="math inline">\(W_c\)</span> the mobility edges have met at the band center, so no extended state is left at the Fermi level. The conductance of a sample of length <span class="math inline">\(L\)</span> decays as <span class="math inline">\(e^{-L/\xi}\)</span>, so it goes to zero for large <span class="math inline">\(L\)</span>.</p></li>
+<p>This is false. Above <span class="math inline">\(W_c\)</span> the mobility edges have met at the band center, so no extended state is left at the Fermi level. The typical conductance of a sample of length <span class="math inline">\(L\)</span> decays as <span class="math inline">\(e^{-2L/\xi}\)</span>, with <span class="math inline">\(\xi\)</span> the decay length of the amplitude, so it goes to zero for large <span class="math inline">\(L\)</span>.</p></li>
 </ul>
 </div>
 </details>
+</div>
+<div class="quiz" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>A chain has the hopping <span class="math inline">\(t\)</span> and random onsite energies <span class="math inline">\(w_n\)</span>, uniform in <span class="math inline">\([-W,W]\)</span>.</p>
+<p><span class="math display">\[H=-t\sum_n\left(c_n^\dagger c_{n+1}+\text{h.c.}\right)+\sum_n w_n\,c_n^\dagger c_n\]</span></p>
+<p>Which law gives its localization length <span class="math inline">\(\xi\)</span> close to the band center at weak disorder?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(\xi\propto t/W\)</span></li>
+<li><span class="math inline">\(\xi\propto(t/W)^2\)</span></li>
+<li><span class="math inline">\(\xi\propto e^{t/W}\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. This law gives a factor <span class="math inline">\(2\)</span> each time <span class="math inline">\(W\)</span> is halved. A transfer matrix at the band center gives <span class="math inline">\(\xi\)</span> between about <span class="math inline">\(24\)</span> and <span class="math inline">\(26\)</span> sites at <span class="math inline">\(W=t\)</span> and between about <span class="math inline">\(98\)</span> and <span class="math inline">\(108\)</span> sites at <span class="math inline">\(W=0.5t\)</span>, over six realizations, so the factor is about <span class="math inline">\(4\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The transfer matrix at the band center gives <span class="math inline">\(\xi W^2/t^2\)</span> between about <span class="math inline">\(24\)</span> and <span class="math inline">\(29\)</span> for <span class="math inline">\(W=0.25t\)</span>, <span class="math inline">\(0.5t\)</span> and <span class="math inline">\(t\)</span>, over six realizations, so <span class="math inline">\(\xi\approx26\,(t/W)^2\)</span>. A longer run, with eight realizations of <span class="math inline">\(2\times10^5\)</span> sites from <span class="math inline">\(W=0.25t\)</span> to about <span class="math inline">\(t\)</span>, gives the slope <span class="math inline">\(-2.0\)</span> of <span class="math inline">\(\ln\xi\)</span> against <span class="math inline">\(\ln W\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. This law gives a factor <span class="math inline">\(e^2\approx7.4\)</span> from <span class="math inline">\(W=0.5t\)</span> to <span class="math inline">\(0.25t\)</span>. The transfer matrix gives <span class="math inline">\(\xi\)</span> between about <span class="math inline">\(98\)</span> and <span class="math inline">\(108\)</span> sites at <span class="math inline">\(0.5t\)</span> and between about <span class="math inline">\(380\)</span> and <span class="math inline">\(460\)</span> sites at <span class="math inline">\(0.25t\)</span>, over six realizations, a factor of about <span class="math inline">\(4\)</span>.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>In a disordered chain we find <span class="math inline">\(\xi=100\)</span> sites at <span class="math inline">\(W=0.5t\)</span>. At weak disorder <span class="math inline">\(\xi\propto W^{-2}\)</span>. Find <span class="math inline">\(\xi\)</span> at <span class="math inline">\(W=0.25t\)</span>. Then find the disorder <span class="math inline">\(W\)</span> at which <span class="math inline">\(\xi\)</span> reaches <span class="math inline">\(1000\)</span> sites.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>The law <span class="math inline">\(\xi\propto W^{-2}\)</span> means that <span class="math inline">\(\xi W^2\)</span> is a constant, here <span class="math inline">\(100\times(0.5t)^2=25\,t^2\)</span>. At <span class="math inline">\(W=0.25t\)</span> we get</p>
+<p><span class="math display">\[\xi=\frac{25\,t^2}{(0.25t)^2}=400\ \text{sites},\]</span></p>
+<p>so halving <span class="math inline">\(W\)</span> gives a localization length four times longer. For <span class="math inline">\(\xi=1000\)</span> sites we need</p>
+<p><span class="math display">\[W=\sqrt{\frac{25\,t^2}{1000}}=0.158\,t\approx0.16\,t ,\]</span></p>
+<p>which is <span class="math inline">\(0.5t/\sqrt{10}\)</span>, since a factor <span class="math inline">\(10\)</span> in <span class="math inline">\(\xi\)</span> needs a factor <span class="math inline">\(\sqrt{10}\)</span> in <span class="math inline">\(W\)</span>. The transfer matrix at the band center gives <span class="math inline">\(\xi W^2\approx26\,t^2\)</span>, close to the <span class="math inline">\(25\,t^2\)</span> of this problem.</p>
+<p>So a chain of <span class="math inline">\(1000\)</span> sites looks metallic only when <span class="math inline">\(W\)</span> is below about <span class="math inline">\(0.16t\)</span>. The weaker the disorder, the longer the sample that we need to see the localization in transport, and it grows as <span class="math inline">\(W^{-2}\)</span>.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="tryit">
 <p><strong>Try it.</strong> Run the cell and look at the left plot, with the average of <span class="math inline">\(1/\lambda\)</span> against the random potential. It is already finite at <span class="math inline">\(v=0.5\)</span> and it grows smoothly, with no threshold, as in the one-dimensional argument above. Compare it with the quasiperiodic plot, which stays near zero up to <span class="math inline">\(v\approx2\)</span>.</p>
@@ -163,7 +228,7 @@ Notebook <code>session9.ipynb</code>, cell “Localization due to random disorde
 </div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session9.ipynb"><code>session9.ipynb</code></a>, “The impact of disorder in different systems” (Core), “Extended and localized states in quasicrystals” (Challenge), and “Localization due to random disorder” (Core)</p>
-<p>Change the strength of the quasiperiodic modulation, and separately the strength <span class="math inline">\(W\)</span> of the random disorder, and compute <a href="10-disorder-and-anderson-localization.html#eq-9-12">(9.12)</a> for the eigenstates that you obtain in each case. Look at how the <span class="math inline">\(\mathrm{IPR}\)</span> changes from a behavior like <span class="math inline">\(1/N\)</span> to a behavior like <span class="math inline">\(O(1)\)</span> as you increase the strength of the potential. Try to find by eye where the change from extended to localized states happens in each of the two models, and compare it with the language of critical points and mobility edges above.</p>
+<p>Change the strength of the quasiperiodic modulation, and separately the strength of the random disorder, and compute <a href="10-disorder-and-anderson-localization.html#eq-9-12">(9.12)</a> for the eigenstates that you obtain in each case. The random potential of the cells has the full width <code>v</code> or <code>w</code>, which is <span class="math inline">\(2W\)</span> of this page. Look at how the <span class="math inline">\(\mathrm{IPR}\)</span> changes from a behavior like <span class="math inline">\(1/N\)</span> to a behavior like <span class="math inline">\(O(1)\)</span> as you increase the strength of the potential. Try to find by eye where the change from extended to localized states happens in each of the two models, and compare it with the language of critical points and mobility edges above.</p>
 </div>
 <div class="comesback">
 <div class="comesback-label">

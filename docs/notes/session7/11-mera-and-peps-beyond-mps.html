@@ -85,19 +85,61 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="on" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 7. Quantum Many-Body Entanglement and Tensor Networks</a></p>
 <h1 id="sec-7-11"><span class="num">7.11</span> MERA and PEPS beyond MPS</h1>
+<p>What network describes a critical chain, whose entropy does not saturate, and what network describes a lattice in two dimensions? We will now see that MERA can hold the slow logarithmic growth of the entropy at a critical point. PEPS put one tensor on every site of a 2D lattice, and the price is a contraction that is hard.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[S_A \;\sim\; \alpha\, |\partial A|, \tag{7.9}\]</span></p>
+</div>
+<div class="eq-again">
+<p><span class="math display">\[S \;\le\; \log \chi. \tag{7.10}\]</span></p>
+</div>
+<p>The first is the area law of Section <a href="07-two-dimensions-and-the-area-law.html#sec-7-7">7.7</a>. The entropy <span class="math inline">\(S_A\)</span> of a region <span class="math inline">\(A\)</span> in the ground state of a gapped and local Hamiltonian grows with the size <span class="math inline">\(|\partial A|\)</span> of its boundary, and <span class="math inline">\(\alpha\)</span> is a constant of the model. The second is the bound of Section <a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#sec-7-8">7.8a</a>. An MPS of bond dimension <span class="math inline">\(\chi\)</span> holds at most <span class="math inline">\(\log \chi\)</span> across any bond.</p>
+</div>
 <p>Matrix product states are the simplest member of a much larger family, which is called <strong>tensor networks</strong>. Nothing requires the tensors to sit in a 1D chain, and the same coefficient tensor <span class="math inline">\(C\)</span> of <a href="03-storing-the-wave-function-as-the-main-bottleneck.html#eq-7-4">(7.4)</a> can also be drawn as a 2D grid or as a general graph of connections. A richer connectivity makes the optimization harder, and MPS are the tensor network that is easiest to optimize, but in exchange it can represent a larger class of states. Let us mention two of these architectures.</p>
-<p>The <strong>multi-scale entanglement renormalization ansatz (MERA)</strong> organizes its tensors in a hierarchy of length scales instead of along a single chain. This extra structure allows it to describe more entanglement than an MPS with a comparable number of parameters. This is important because the area law <a href="07-two-dimensions-and-the-area-law.html#eq-7-9">(7.9)</a> is strictly a statement about <em>gapped</em> systems. At a critical point, which is a continuous quantum phase transition usually described by a conformal field theory in 1+1 dimensions, the entanglement entropy of the ground state does not saturate anymore. Instead, it grows logarithmically with the size of the subsystem,</p>
+<p>The <strong>multi-scale entanglement renormalization ansatz (MERA)</strong> organizes its tensors in a hierarchy of length scales instead of along a single chain. This extra structure allows it to describe more entanglement than an MPS with a comparable number of parameters. This is important because the area law <a href="07-two-dimensions-and-the-area-law.html#eq-7-9">(7.9)</a> is strictly a statement about <em>gapped</em> systems. At a critical point, which is a continuous quantum phase transition usually described by a conformal field theory in 1+1 dimensions, the entanglement entropy of the ground state does not saturate anymore. Instead, it grows logarithmically with the size of the subsystem.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>At a critical point the entropy of a block of <span class="math inline">\(\ell\)</span> sites with two ends, such as a block inside a long chain, grows as</p>
 <p><span id="eq-7-12" class="eq"><span class="math display">\[S(\ell) \;=\; \frac{c}{3}\log \ell \;+\; \text{const.}, \tag{7.12}\]</span></span></p>
-<p>where <span class="math inline">\(c\)</span> is the central charge of the CFT. This is a weak but real violation of the strict area law <a href="07-two-dimensions-and-the-area-law.html#eq-7-9">(7.9)</a>, and the extra hierarchical structure of MERA is built to describe this kind of weak violation. For this reason MERA is the tensor network that is used at criticality. We can see the growth in an exactly solvable chain, and <a href="#sch:s07:critical_entropy">Schematic 7.13</a> compares a critical chain with a gapped one.</p>
-<figure id="sch:s07:critical_entropy" class="schematic">
-<img src="../figures/web/session07/critical_entropy.svg" loading="lazy" alt="The entropy of a block against its length on a logarithmic axis, a straight rising line for the critical chain and a flat curve for the dimerized chain." />
-<figcaption><strong>Schematic 7.13.</strong> The entropy of a block of <span class="math inline">\(\ell\)</span> sites of an infinite chain of free fermions at half filling, which is the XX spin chain after the Jordan-Wigner transformation. Blue is the uniform chain with hopping <span class="math inline">\(1\)</span> and red is the dimerized chain with hoppings <span class="math inline">\(1\)</span> and <span class="math inline">\(0.6\)</span>, both from the correlation matrix of the block. The blue points follow <span class="math inline">\(\tfrac13\log\ell+0.73\)</span>, as <a href="#eq-7-12">(7.12)</a> says for <span class="math inline">\(c=1\)</span>, and go from <span class="math inline">\(1.49\)</span> at <span class="math inline">\(\ell=10\)</span> to <span class="math inline">\(3.03\)</span> at <span class="math inline">\(\ell=1000\)</span>. Look at the red points, which saturate at about <span class="math inline">\(0.5\)</span> after a few sites.</figcaption>
+<p>where <span class="math inline">\(c\)</span> is the central charge of the CFT, and <span class="math inline">\(c=1\)</span> for the XX chain. A block at the end of an open chain has one end, and there the factor is <span class="math inline">\(c/6\)</span>. The growth is slow, but it has no limit, so no fixed bond dimension of an MPS can follow it.</p>
+</div>
+<p>This is a weak but real violation of the strict area law <a href="07-two-dimensions-and-the-area-law.html#eq-7-9">(7.9)</a>, and the extra hierarchical structure of MERA is built to describe this kind of weak violation. For this reason MERA is the tensor network that is used at criticality.</p>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the layers of a MERA to the logarithm of (7.12)</span></summary>
+<div class="fold-body">
+<p>Let us take the simplest MERA, where each layer combines two sites into one. A block of <span class="math inline">\(\ell\)</span> sites is described by about <span class="math inline">\(\ell/2\)</span> sites after one layer, by <span class="math inline">\(\ell/4\)</span> after two layers, and by <span class="math inline">\(\ell/2^n\)</span> after <span class="math inline">\(n\)</span> layers. So the block is reduced to a single site after</p>
+<p><span class="math display">\[n \;\approx\; \log_2\ell\]</span></p>
+<p>layers. We first count one end of the block, where the cut is, as Figure <a href="#fig:s07:merapeps">7.6</a> draws it. Every cut that separates the block from the rest gives a bound, and the best bound comes from the cut with the fewest bonds. This cut crosses about one bond in every layer, whatever the size of the block, so over these layers it crosses about <span class="math inline">\(\log_2\ell\)</span> bonds. Each bond has the dimension <span class="math inline">\(\chi\)</span>, so by the argument of <a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#eq-7-10">(7.10)</a> it holds at most <span class="math inline">\(\log \chi\)</span>. The entropy is then bounded by</p>
+<p><span class="math display">\[S \;\lesssim\; \log_2\ell\,\log \chi \;=\; \frac{\log \chi}{\log 2}\,\log\ell,\]</span></p>
+<p>meaning that the bound grows as <span class="math inline">\(\log\ell\)</span>, which is the form of <a href="#eq-7-12">(7.12)</a>. For <span class="math inline">\(\ell=1024\)</span> there are 10 layers, and the bound at one end is <span class="math inline">\(10\log \chi\)</span>. A block in the middle of a chain has two ends, so its bound is twice as large, and it still grows as <span class="math inline">\(\log\ell\)</span>. An MPS has a single bond at each end, so its bound stays at <span class="math inline">\(\log \chi\)</span> per end, or <span class="math inline">\(2\log \chi\)</span> for the block, for any <span class="math inline">\(\ell\)</span>.</p>
+</div>
+</details>
+</div>
+<p>We can see the growth in an exactly solvable chain, and <a href="#sch:s07:critical_entropy">Schematic 7.13</a> compares a critical chain with a gapped one.</p>
+<figure id="sch:s07:critical_entropy" class="schematic has-script">
+<img src="../figures/web/session07/critical_entropy.svg" loading="lazy" alt="The entropy of a block against its length on a logarithmic axis. The blue points of the critical chain rise on a straight line next to a dashed line, and the red points of the dimerized chain stay flat near 0.5." />
+<div class="script-row">
+<a href="../scripts/session07/entropy_critical_chain.py" class="script-dl" download="entropy_critical_chain.py">Download the pyqula script</a> <span class="script-name"><code>entropy_critical_chain.py</code></span>
+</div>
+<figcaption><strong>Schematic 7.13.</strong> The entropy of a block of <span class="math inline">\(\ell\)</span> sites in the middle of an open chain of <span class="math inline">\(3002\)</span> sites, for free fermions at half filling, computed with pyqula. The entropy is in nats. Blue is the uniform chain with hopping <span class="math inline">\(1\)</span>, which is the XX spin chain after the Jordan-Wigner transformation. Red is the dimerized chain with hoppings <span class="math inline">\(1\)</span> and <span class="math inline">\(0.6\)</span>, where the blocks are whole cells, so both ends of a block cut a bond <span class="math inline">\(0.6\)</span>. The dashed line is <span class="math inline">\(\tfrac13\log\ell+0.73\)</span>, the entropy of a block of the infinite uniform chain, which is <a href="#eq-7-12">(7.12)</a> with <span class="math inline">\(c=1\)</span>. The blue points sit on it up to <span class="math inline">\(\ell=316\)</span>, starting from <span class="math inline">\(1.49\)</span> at <span class="math inline">\(\ell=10\)</span>. At <span class="math inline">\(\ell=1000\)</span> the point is <span class="math inline">\(2.96\)</span>, a little below the line, since the chain is only three times longer than the block. Look at the red points, which stay at about <span class="math inline">\(0.5\)</span> for every <span class="math inline">\(\ell\)</span>.</figcaption>
 </figure>
-<p><strong>Projected entangled pair states (PEPS)</strong> are the direct 2D generalization of the MPS idea. Instead of tensors coupled in a line, the tensors sit on the nodes of a real 2D lattice, and they are coupled to all their lattice neighbors. This is a natural and promising architecture for 2D quantum many-body problems, but it has a real cost. For PEPS there is no analogue of the simple local eigenvalue problem of DMRG. The reason is that the contraction of a general 2D tensor network is itself a hard computational problem. This is different from the 1D contraction, which is what made the local eigenvalue problem of Section <a href="10-the-variational-principle-and-dmrg-for-the-ground-state.html#sec-7-10">7.10</a> possible to solve. The optimization of PEPS is still an open and harder problem. Figure <a href="#fig:s07:merapeps">7.6</a> shows both architectures, where the extra structure of each one comes from and what it costs.</p>
+<p><strong>Projected entangled pair states (PEPS)</strong> are the direct 2D generalization of the MPS idea. Instead of tensors coupled in a line, the tensors sit on the nodes of a real 2D lattice, and they are coupled to all their lattice neighbors. This is a natural and promising architecture for 2D quantum many-body problems, but it has a real cost. For PEPS there is no analogue of the simple local eigenvalue problem of DMRG. The reason is that the contraction of a general 2D tensor network is itself a hard computational problem. This is different from the 1D contraction, which is what made the local eigenvalue problem of Section <a href="10-the-variational-principle-and-dmrg-for-the-ground-state.html#sec-7-10">7.10</a> possible to solve. The optimization of PEPS is still an open and harder problem. Figure <a href="#fig:s07:merapeps">7.6</a> shows both architectures, where the extra structure of each one comes from and what it costs.</p>
 <figure id="fig:s07:merapeps">
 <img src="../figures/s07f06_merapeps.svg" loading="lazy" alt="The two tensor networks beyond the chain, and what their geometry gives." />
 <figcaption><strong>Figure 7.6.</strong> The two tensor networks beyond the chain, and what their geometry gives. Left, the multi-scale entanglement renormalization ansatz. Its tensors are stacked in layers. Each layer first removes the short-range entanglement between neighboring blocks with the disentanglers, the boxes. Then it combines two sites into one with the triangular isometries. So the network describes the state at longer and longer length scales and not at successive positions along a chain. A division of the system, the red plane, now cuts one bond in every layer instead of one bond in total. This is how MERA can describe the logarithmically growing entropy <a href="#eq-7-12">(7.12)</a> of a critical chain, which an MPS with fixed bond dimension cannot reach. Right, projected entangled pair states, the direct 2D generalization of <a href="04-the-matrix-product-state-ansatz.html#eq-7-5">(7.5)</a>, with one tensor per lattice site that has a physical leg and four virtual bonds. The figure also shows the difficulty. There is no way to sweep along such a network one tensor at a time with the rest reduced to a simple environment. The exact contraction of the network is itself a hard problem, and this is why PEPS have no simple analogue of DMRG.</figcaption>
 </figure>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>Copper pyrazine dinitrate, Cu(C<span class="math inline">\(_4\)</span>H<span class="math inline">\(_4\)</span>N<span class="math inline">\(_2\)</span>)(NO<span class="math inline">\(_3\)</span>)<span class="math inline">\(_2\)</span>, is a quasi-one-dimensional magnet of spins 1/2. The article below measures its magnetization in high fields, its specific heat and its inelastic neutron scattering. It reports that the material is an ideal one-dimensional spin-1/2 Heisenberg antiferromagnet, with the exchange <span class="math inline">\(J=0.90(1)\)</span> meV between neighbors. It also reports that the material stays gapless and paramagnetic for <span class="math inline">\(k_BT/J\)</span> at least down to <span class="math inline">\(0.03\)</span>. With this <span class="math inline">\(J\)</span> the temperature is about <span class="math inline">\(0.3\)</span> K, which is our own conversion. The measurement is in <a href="https://arxiv.org/abs/cond-mat/9809068">this article</a>.</p>
+<p>What follows is our reading, and not a result of the article. The ideal spin-1/2 Heisenberg chain is critical, so in its ground state the entropy of a block follows <a href="#eq-7-12">(7.12)</a> with <span class="math inline">\(c=1\)</span>. This is a statement about the model and not about the material. The article reports the material as gapless and paramagnetic at least down to <span class="math inline">\(k_BT/J=0.03\)</span>, and it does not measure an entanglement entropy.</p>
+</div>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
@@ -119,10 +161,10 @@ Question
 <p>This is false. Saturation is the behavior of a gapped chain. For <span class="math inline">\(c=1\)</span> the term <span class="math inline">\(\tfrac13\log\ell\)</span> is <span class="math inline">\(0.77\)</span> at <span class="math inline">\(\ell=10\)</span> and <span class="math inline">\(2.3\)</span> at <span class="math inline">\(\ell=1000\)</span>, so the entropy grows.</p>
 <figure class="quiz-fig schematic">
 <img src="../figures/web/session07/critical_entropy.svg" loading="lazy" alt="The entropy of a block against its length on a logarithmic axis, a straight rising line for the critical chain and a flat curve for the dimerized chain." />
-<figcaption>The entropy of a block of free fermions. The critical chain grows by <span class="math inline">\(1.5\)</span> between <span class="math inline">\(\ell=10\)</span> and <span class="math inline">\(\ell=1000\)</span> and the dimerized chain saturates, and the constant <span class="math inline">\(0.73\)</span> only shifts the curve.</figcaption>
+<figcaption>The entropy of a block in the middle of a long chain of free fermions. The critical chain grows by about <span class="math inline">\(1.5\)</span> between <span class="math inline">\(\ell=10\)</span> and <span class="math inline">\(\ell=1000\)</span>, the dimerized chain stays at about <span class="math inline">\(0.5\)</span>, and the constant <span class="math inline">\(0.73\)</span> only shifts the curve.</figcaption>
 </figure></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. The difference is <span class="math inline">\(\tfrac13\log(1000/10)=\tfrac13\log100\approx1.5\)</span>. The growth is real but slow, and this is why MPS with a moderate <span class="math inline">\(M\)</span> still work for a critical chain of moderate length.</p></li>
+<p>This is true. The difference is <span class="math inline">\(\tfrac13\log(1000/10)=\tfrac13\log100\approx1.5\)</span>. The growth is real but slow, and this is why MPS with a moderate <span class="math inline">\(\chi\)</span> still work for a critical chain of moderate length.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
 <p>This is false. The entropy grows with the logarithm of <span class="math inline">\(\ell\)</span> and not with <span class="math inline">\(\ell\)</span> itself. The entropy at <span class="math inline">\(\ell=1000\)</span> is <span class="math inline">\(2.3\)</span>, about three times the one at <span class="math inline">\(\ell=10\)</span>, which is <span class="math inline">\(0.77\)</span>.</p></li>
 </ul>
@@ -134,7 +176,7 @@ Question
 Question
 </div>
 <div class="quiz-q">
-<p>A cut of a MERA crosses one bond in every layer, and the number of layers grows as <span class="math inline">\(\log\ell\)</span> for a block of size <span class="math inline">\(\ell\)</span>. What entropy can the cut hold?</p>
+<p>A cut of a MERA crosses one bond in every layer. A block of <span class="math inline">\(\ell\)</span> sites needs about <span class="math inline">\(\log_2\ell\)</span> layers. What entropy can the cut hold?</p>
 <div class="eq-again">
 <p><span class="math display">\[S(\ell) \;=\; \frac{c}{3}\log \ell \;+\; \text{const.}, \tag{7.12}\]</span></p>
 </div>
@@ -150,21 +192,69 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
-<p>This is false. The cut crosses one bond for each of the <span class="math inline">\(\log\ell\)</span> layers, so the bound grows with <span class="math inline">\(\ell\)</span>. The critical chain needs this, since its entropy goes from <span class="math inline">\(0.77\)</span> at <span class="math inline">\(\ell=10\)</span> to <span class="math inline">\(2.3\)</span> at <span class="math inline">\(\ell=1000\)</span>.</p></li>
+<p>This is false. The cut crosses one bond for each of the <span class="math inline">\(\log\ell\)</span> layers, so the bound grows with <span class="math inline">\(\ell\)</span>. The critical chain needs this, since its entropy grows by about <span class="math inline">\(1.5\)</span> from <span class="math inline">\(\ell=10\)</span> to <span class="math inline">\(\ell=1000\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
-<p>This is false. For <span class="math inline">\(\ell=1024\)</span> there are about 10 layers, so the entropy is at most <span class="math inline">\(10\log M\)</span>. A volume law would give about <span class="math inline">\(1000\log2\)</span>.</p></li>
+<p>This is false. For <span class="math inline">\(\ell=1024\)</span> there are about 10 layers, so the entropy is at most <span class="math inline">\(10\log \chi\)</span>. A volume law would give about <span class="math inline">\(1000\log2\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
-<p>This is true. Each cut bond can hold at most <span class="math inline">\(\log M\)</span>, so the sum over the layers is of order <span class="math inline">\(\log\ell\)</span> times <span class="math inline">\(\log M\)</span>. An MPS has a single bond at the cut, and it cannot do this.</p></li>
+<p>This is true. Each cut bond can hold at most <span class="math inline">\(\log \chi\)</span>, so the sum over the layers is of order <span class="math inline">\(\log\ell\)</span> times <span class="math inline">\(\log \chi\)</span>. An MPS has a single bond at the cut, and it cannot do this.</p></li>
 </ul>
 </div>
 </details>
 </div>
+<div class="quiz quiz-pics" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>At a critical point the entropy of a block of <span class="math inline">\(\ell\)</span> sites is</p>
+<p><span class="math display">\[S(\ell) = \frac{c}{3}\log\ell + \text{const.}\]</span></p>
+<p>Here <span class="math inline">\(c\)</span> is the central charge, which is <span class="math inline">\(1\)</span> for the XX chain. Each picture shows <span class="math inline">\(S\)</span> against <span class="math inline">\(\ell\)</span>, with <span class="math inline">\(\ell\)</span> on a logarithmic axis. Which one is a critical chain?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session07/g5_quiz_entropy_gapped.svg" loading="lazy" alt="A curve of the entropy against the block length on a logarithmic axis. It rises a little at small block lengths and then stays flat near 0.5." /></li>
+<li><img src="../figures/web/session07/g5_quiz_entropy_critical.svg" loading="lazy" alt="A curve of the entropy against the block length on a logarithmic axis. It is a straight rising line, from about 0.9 at the smallest block to about 2.2 at a block of 100 sites." /></li>
+<li><img src="../figures/web/session07/g5_quiz_entropy_volume.svg" loading="lazy" alt="A curve of the entropy against the block length on a logarithmic axis. It rises steeply from about 1.4 at the smallest block and leaves the top of the frame before a block of 4 sites." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The curve starts at <span class="math inline">\(0.39\)</span> at <span class="math inline">\(\ell=2\)</span> and stays at about <span class="math inline">\(0.5\)</span> from <span class="math inline">\(\ell=6\)</span> on, so the entropy saturates. This is the dimerized chain of free fermions with the hoppings <span class="math inline">\(1\)</span> and <span class="math inline">\(0.6\)</span>, which has a gap and follows the area law.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. On a logarithmic axis the curve is a straight line, so <span class="math inline">\(S\)</span> grows as <span class="math inline">\(\log\ell\)</span>. Its slope is <span class="math inline">\(0.33\)</span>, which is <span class="math inline">\(c/3\)</span> with <span class="math inline">\(c=1\)</span>. This is the uniform chain of free fermions, the XX chain. Here it is an open chain of 402 sites, and it reaches about <span class="math inline">\(2.2\)</span> at <span class="math inline">\(\ell=100\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. This curve is <span class="math inline">\(S=\ell\log2\)</span>, the largest entropy that <span class="math inline">\(\ell\)</span> spins one-half can hold, which is a volume law. It leaves the frame at <span class="math inline">\(\ell\approx3.6\)</span>. A critical chain grows by only <span class="math inline">\(\tfrac13\log2\approx0.23\)</span> when <span class="math inline">\(\ell\)</span> doubles.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>An MPS of bond dimension <span class="math inline">\(\chi\)</span> describes a block of <span class="math inline">\(\ell\)</span> sites inside an infinite chain. The block has two ends, so the cut crosses two bonds, and by <a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#eq-7-10">(7.10)</a> the entropy of the block is at most <span class="math inline">\(2\log \chi\)</span>. The chain is critical, with <a href="#eq-7-12">(7.12)</a>. Show that <span class="math inline">\(\chi\)</span> must grow at least as <span class="math inline">\(\ell^{c/6}\)</span>, and compute the factor by which this bound grows from <span class="math inline">\(\ell=10\)</span> to <span class="math inline">\(\ell=1000\)</span> for <span class="math inline">\(c=1\)</span>.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>The MPS can hold the entropy of the block only if</p>
+<p><span class="math display">\[2\log \chi \;\ge\; \frac{c}{3}\log\ell + \text{const.}\]</span></p>
+<p>We divide by 2 and take the exponential of both sides, which gives</p>
+<p><span class="math display">\[\chi \;\ge\; e^{\text{const}/2}\,\ell^{c/6},\]</span></p>
+<p>meaning that the smallest bond dimension that the bound allows, <span class="math inline">\(\chi_\text{min}\)</span>, grows as <span class="math inline">\(\ell^{c/6}\)</span>. The constant drops out of a ratio, so for <span class="math inline">\(c=1\)</span></p>
+<p><span class="math display">\[\frac{\chi_\text{min}(1000)}{\chi_\text{min}(10)} = \left(\frac{1000}{10}\right)^{1/6} = 100^{1/6} \approx 2.15.\]</span></p>
+<p>This is a power law and not an exponential. For a block one hundred times longer the bound asks for a bond dimension at least about twice larger. This is only a lower bound, since <span class="math inline">\(S\le2\log \chi\)</span> is necessary and not sufficient. For the XX chain we can count the Schmidt weights of the block. An MPS keeps at most <span class="math inline">\(\chi^2\)</span> of them, one for each pair of values of the two bonds. If the weights that it drops must sum to at most <span class="math inline">\(10^{-6}\)</span>, then <span class="math inline">\(\chi\)</span> must be at least 10 for <span class="math inline">\(\ell=10\)</span> and 69 for <span class="math inline">\(\ell=1000\)</span>, a factor of about 7. This grows faster than the bound, but it is still far from a volume law, <span class="math inline">\(S=\ell\log2\)</span>, which would need <span class="math inline">\(\chi\ge2^{\ell/2}\)</span>, exponential in <span class="math inline">\(\ell\)</span>. This is why DMRG still works on a critical chain of moderate length.</p>
+</div>
+</details>
+</div>
+</div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb"><code>session7.ipynb</code></a>, “The entanglement entropy as a signal for phase transitions” (Challenge)</p>
-<p>In this exercise you follow the entanglement entropy of the ground state of the transverse-field Ising chain while you change the transverse field across its quantum critical point, using the MPS methods of <code>dmrgpy</code>. Away from criticality you should see the area-law saturation of Section <a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#sec-7-8">7.8</a>. Close to the transition, you should see that the entropy does not saturate, as predicted by <a href="#eq-7-12">(7.12)</a>. The quiz also asks which regime is the hardest for MPS, and this question asks you to connect back to the reason why MERA exists.</p>
+<p>In this exercise you follow the entanglement entropy of the ground state of the transverse-field Ising chain while you change the transverse field across its quantum critical point, using the MPS methods of <code>dmrgpy</code>. When you make the chain smaller, as the quiz of the cell asks, the entropy at large <span class="math inline">\(B_x\)</span> stays the same, which is the area-law saturation of Section <a href="08-why-mps-work-in-1d-and-where-they-stop-working.html#sec-7-8">7.8a</a>. Close to the transition it grows with the length of the chain, as predicted by <a href="#eq-7-12">(7.12)</a>. The quiz also asks which regime is the hardest for MPS, and this question asks you to connect back to the reason why MERA exists.</p>
 </div>
 <div class="tryit">
-<p><strong>Try it.</strong> Run the loop over <code>Bx</code> for <code>L=40</code> and find the field where the entropy has its maximum. In these units the transition of the transverse-field Ising chain is at <span class="math inline">\(B_x=0.5\)</span>, so the peak should sit close to it. Repeat for <code>L=20</code> and see how the peak changes.</p>
+<p><strong>Try it.</strong> Run the loop over <code>Bx</code> for <code>L=40</code> and find the field where the entropy has its maximum. In these units the transition of the transverse-field Ising chain is at <span class="math inline">\(B_x=0.5\)</span>, but the peak of the scan sits below it, on the ordered side. There the exact ground state of an open chain is the even superposition of the two ferromagnetic states, with an entropy close to <span class="math inline">\(\ln 2\)</span>. Repeat for <code>L=20</code> and see how the peak changes.</p>
 <div class="tryit-links">
 Notebook <code>session7.ipynb</code>, cell “The entanglement entropy as a signal for phase transitions”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession7.ipynb">Binder</a>.
 </div>

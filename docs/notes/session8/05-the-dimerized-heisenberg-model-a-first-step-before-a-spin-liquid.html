@@ -85,12 +85,45 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="on" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 8. Quantum Magnetism, Spinons and Kondo Physics</a></p>
 <h1 id="sec-8-5"><span class="num">8.5</span> The dimerized Heisenberg model, a first step before a spin liquid</h1>
+<p>Can a Heisenberg model of many spins have a ground state with no magnetic order? We will now see that it can without frustration, when the bonds are made unequal, as in a lattice of decoupled dimers whose ground state is a product of singlets. Its lowest excitation still has spin <span class="math inline">\(1\)</span>, so this state is not yet a quantum spin liquid.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[|GS\rangle = \frac{1}{\sqrt2}\Big(|{\uparrow\downarrow}\rangle -
+|{\downarrow\uparrow}\rangle\Big), \qquad \langle \mathbf S_i \rangle = 0. \tag{8.3}\]</span></p>
+</div>
+<p>This is the singlet of two spins one half, the ground state of the Heisenberg dimer <span class="math inline">\(J\,\mathbf S_0\cdot\mathbf S_1\)</span> with <span class="math inline">\(J&gt;0\)</span>. Its energy is <span class="math inline">\(-3J/4\)</span>, the threefold triplet is at <span class="math inline">\(+J/4\)</span>, and <span class="math inline">\(\langle\mathbf S_i\rangle=0\)</span> on both sites.</p>
+</div>
 <p>Before we study a frustrated Hamiltonian, it is useful to build the simplest possible <em>macroscopic</em> quantum magnet and to check explicitly that its ground state does what <a href="03-two-minimal-dimers-a-classical-order-parameter-and-a-quantum-singlet.html#eq-8-3">(8.3)</a> told us. Let us take a <strong>fully dimerized Heisenberg model</strong>, which is made of dimers that are completely decoupled from each other, placed on a chain or on a two-dimensional lattice,</p>
 <p><span id="eq-8-4" class="eq"><span class="math display">\[H = \sum_n J\, \mathbf S_{2n}\cdot \mathbf S_{2n+1}, \qquad J&gt;0. \tag{8.4}\]</span></span></p>
-<p>Since every dimer is decoupled from its neighbors, we can write the many-body ground state exactly, as a product of singlets over the pairs of the dimers,</p>
+<p>Since every dimer is decoupled from its neighbors, we can write the many-body ground state exactly, as a product of singlets over the pairs of the dimers.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>The ground state of the decoupled dimers <a href="#eq-8-4">(8.4)</a> is</p>
 <p><span id="eq-8-5" class="eq"><span class="math display">\[|\Psi\rangle \sim \bigotimes_n \Big(|{\uparrow_{2n}\downarrow_{2n+1}}\rangle -
 |{\downarrow_{2n}\uparrow_{2n+1}}\rangle\Big), \qquad \langle \mathbf S_i\rangle = 0 \text{ on every
 site}. \tag{8.5}\]</span></span></p>
+<p>It is exact, and its energy is <span class="math inline">\(-3J/4\)</span> per dimer, so <span class="math inline">\(-3NJ/8\)</span> for <span class="math inline">\(N\)</span> sites. The lowest excitation turns one singlet into a triplet, which costs the energy <span class="math inline">\(J\)</span> and has spin <span class="math inline">\(1\)</span>.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the dimers (8.4) to the ground state (8.5) and its gap</span></summary>
+<div class="fold-body">
+<p>Let us take two dimers first, the four sites <span class="math inline">\(0,1,2,3\)</span> with <span class="math inline">\(H=J\,\mathbf S_0\cdot\mathbf S_1+J\,\mathbf S_2\cdot\mathbf S_3\)</span>. The two terms act on different sites, so they commute, and we can diagonalize them together. An eigenstate is a product of one eigenstate of each dimer, and its energy is the sum. Each dimer is in its singlet at <span class="math inline">\(-3J/4\)</span> or in its triplet at <span class="math inline">\(+J/4\)</span>, which gives</p>
+<p><span class="math display">\[E=-\tfrac32J \ \ (1 \text{ state}), \qquad -\tfrac12J \ \ (6 \text{ states}), \qquad +\tfrac12J \ \ (9 \text{ states}),\]</span></p>
+<p>with <span class="math inline">\(1+6+9=16\)</span> states in total. The lowest level has a singlet on both dimers, and it is nondegenerate.</p>
+<p>With <span class="math inline">\(N\)</span> sites there are <span class="math inline">\(N/2\)</span> dimers, and all the terms of <a href="#eq-8-4">(8.4)</a> commute in the same way. The ground state has a singlet on every dimer, which is <a href="#eq-8-5">(8.5)</a>, with the energy</p>
+<p><span class="math display">\[E_0=\frac N2\Big(-\frac34J\Big)=-\frac{3NJ}{8}.\]</span></p>
+<p>The lowest excited level puts one dimer in its triplet, at <span class="math inline">\(E_0+J\)</span>. It has <span class="math inline">\(3N/2\)</span> states, three for each of the <span class="math inline">\(N/2\)</span> dimers, and each of them has spin <span class="math inline">\(1\)</span>.</p>
+<p>The last step is the spin of one site. In the singlet <span class="math inline">\((|{\uparrow\downarrow}\rangle-|{\downarrow\uparrow}\rangle)/\sqrt2\)</span> the site <span class="math inline">\(0\)</span> is up with probability <span class="math inline">\(\tfrac12\)</span> and down with probability <span class="math inline">\(\tfrac12\)</span>, and the trace over the site <span class="math inline">\(1\)</span> leaves no coherence between the two. So the reduced density matrix of the site is</p>
+<p><span class="math display">\[\rho_0=\tfrac12\,\mathbb 1, \qquad \langle\mathbf S_0\rangle=\mathrm{Tr}\big(\rho_0\,\mathbf S_0\big)=0,\]</span></p>
+<p>since the spin matrices have zero trace. In the product <a href="#eq-8-5">(8.5)</a> every site belongs to one singlet, so <span class="math inline">\(\langle\mathbf S_i\rangle=0\)</span> on every site.</p>
+</div>
+</details>
+</div>
 <p>On a chain this is the dimerized model of Section <a href="../session7/06-entanglement-entropy-of-a-solvable-dimerized-chain.html#sec-7-6">7.6</a>, and <a href="#eq-8-5">(8.5)</a> is the product of singlets <a href="../session7/06-entanglement-entropy-of-a-solvable-dimerized-chain.html#eq-7-8">(7.8)</a>, whose entanglement entropy does not grow with the subsystem. In one sense this is a trivial Hamiltonian, a collection of independent zero-dimensional problems. But it already shows something important. A macroscopic Heisenberg Hamiltonian <em>can</em> have a ground state that does not break time-reversal symmetry, and this state is the direct generalization of the two-site singlet <a href="03-two-minimal-dimers-a-classical-order-parameter-and-a-quantum-singlet.html#eq-8-3">(8.3)</a> to an extensive system. If we add small couplings between the dimers, the state changes smoothly and it still does not break time-reversal symmetry. In a small chain we can follow this directly, and <a href="#sch:s08:dimerized_levels">Schematic 8.4</a> does so for four sites.</p>
 <figure id="sch:s08:dimerized_levels" class="schematic">
 <img src="../figures/web/session08/dimerized_levels.svg" loading="lazy" alt="The lowest energy levels of a four-site chain against the coupling between the dimers, with a nondegenerate singlet ground state well below a threefold triplet." />
@@ -99,19 +132,16 @@ site}. \tag{8.5}\]</span></span></p>
 <p>There is, however, an important difference to make here, because this state is <em>not yet</em> a quantum spin liquid. Its fundamental excitations still have spin <span class="math inline">\(1\)</span>. If we turn one singlet into its triplet partner, we obtain a <strong>triplon</strong>, which is a local transition from singlet to triplet. It has the same structure as a magnon, with only a different name. A state that is built in this way, from a fixed and static pattern of singlets, is called a <strong>valence bond solid (VBS)</strong>. To obtain a real quantum spin liquid, with spin-<span class="math inline">\(1/2\)</span> excitations instead of spin-<span class="math inline">\(1\)</span> triplons, we need more than a static dimer covering. We need the singlets to fluctuate and to resonate over the whole lattice, and this is the frustrated case that we study in the next section. Figure <a href="06-the-resonating-valence-bond-wavefunction-as-the-qsl-ground-state.html#fig:s08:vbsrvb">8.3</a> shows this difference explicitly.</p>
 <figure class="again">
 <img src="../figures/s08f03_vbs_rvb.svg" loading="lazy" alt="A valence bond solid with its two unpaired spins confined, and a resonating valence bond state with free spin one-half excitations." />
-<figcaption><strong><a href="06-the-resonating-valence-bond-wavefunction-as-the-qsl-ground-state.html#fig:s08:vbsrvb">Figure 8.3</a>, shown again.</strong> The frozen dimer covering of this section and its excitation. Look at the left panels (a1) and (a2), where separating the two unpaired spins breaks every singlet between them, so the pair stays bound as a triplon. The right panels show what the next section adds, a superposition of many coverings.</figcaption>
+<figcaption><strong><a href="06-the-resonating-valence-bond-wavefunction-as-the-qsl-ground-state.html#fig:s08:vbsrvb">Figure 8.3</a>, shown again.</strong> The frozen dimer covering of this section and its excitation. Look at the upper panels (a1) and (a2), where separating the two unpaired spins breaks every singlet between them, so the pair stays bound as a triplon. The lower panels (b1) and (b2) show what the next section adds, a superposition of many coverings.</figcaption>
 </figure>
 <div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>We turn one singlet of <a href="#eq-8-5">(8.5)</a> into a triplet. What is the spin of this excitation?</p>
-<div class="eq-again">
-<p><span class="math display">\[|\Psi\rangle \sim \bigotimes_n \Big(|{\uparrow_{2n}\downarrow_{2n+1}}\rangle -
-|{\downarrow_{2n}\uparrow_{2n+1}}\rangle\Big), \qquad \langle \mathbf S_i\rangle = 0 \text{ on every
-site}. \tag{8.5}\]</span></p>
-</div>
+<p>The ground state of decoupled dimers of spins one half is the product of singlets</p>
+<p><span class="math display">\[|\Psi\rangle \sim \bigotimes_n \Big(|{\uparrow_{2n}\downarrow_{2n+1}}\rangle - |{\downarrow_{2n}\uparrow_{2n+1}}\rangle\Big).\]</span></p>
+<p>We turn one singlet into a triplet. What is the spin of this excitation?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -138,10 +168,9 @@ site}. \tag{8.5}\]</span></p>
 Question
 </div>
 <div class="quiz-q">
-<p>We add a weak coupling between the dimers of <a href="#eq-8-4">(8.4)</a>. What happens to the ground state?</p>
-<div class="eq-again">
-<p><span class="math display">\[H = \sum_n J\, \mathbf S_{2n}\cdot \mathbf S_{2n+1}, \qquad J&gt;0. \tag{8.4}\]</span></p>
-</div>
+<p>Decoupled dimers of spins one half have the Hamiltonian</p>
+<p><span class="math display">\[H = \sum_n J\, \mathbf S_{2n}\cdot \mathbf S_{2n+1}, \qquad J&gt;0.\]</span></p>
+<p>We add a weak coupling <span class="math inline">\(J&#39;\)</span> between neighboring dimers. What happens to the ground state?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -166,6 +195,55 @@ Question
 </ul>
 </div>
 </details>
+</div>
+<div class="quiz" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Decoupled dimers of spins one half, with <span class="math inline">\(N\)</span> sites in total, have the Hamiltonian</p>
+<p><span class="math display">\[H = \sum_n J\, \mathbf S_{2n}\cdot \mathbf S_{2n+1}, \qquad J&gt;0.\]</span></p>
+<p>What is the ground-state energy?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(-3NJ/4\)</span></li>
+<li><span class="math inline">\(-3NJ/8\)</span></li>
+<li><span class="math inline">\(-NJ/8\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. It counts one singlet per site, but a singlet takes two sites. For <span class="math inline">\(N=2\)</span> it gives <span class="math inline">\(-3J/2\)</span>, while the single dimer has <span class="math inline">\(-3J/4\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. There are <span class="math inline">\(N/2\)</span> dimers, and each one is in its singlet with <span class="math inline">\(\mathbf S_{2n}\cdot\mathbf S_{2n+1}=-3/4\)</span>. For <span class="math inline">\(N=4\)</span> this gives <span class="math inline">\(-3J/2\)</span>, the value of the open chain of four sites with no coupling between its two dimers.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. It is the value <span class="math inline">\(-J/4\)</span> per dimer of the Ising coupling <span class="math inline">\(S^z_{2n}S^z_{2n+1}\)</span> alone. In the singlet the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> terms add <span class="math inline">\(-J/4\)</span> each, which gives <span class="math inline">\(-3J/4\)</span> per dimer.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>We couple two dimers by a weak bond <span class="math inline">\(J&#39;\)</span> between them, which is the open chain of four sites</p>
+<p><span class="math display">\[H=J\,\mathbf S_0\cdot\mathbf S_1+J\,\mathbf S_2\cdot\mathbf S_3+J&#39;\,\mathbf S_1\cdot\mathbf S_2.\]</span></p>
+<p>Compute the ground-state energy to second order in <span class="math inline">\(J&#39;\)</span>, and compare it with the value <span class="math inline">\(-1.500961J\)</span> of the exact diagonalization at <span class="math inline">\(J&#39;=0.1J\)</span>.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>We start from the ground state of the two decoupled dimers, <span class="math inline">\(|ss\rangle\)</span>, the product of two singlets at <span class="math inline">\(-\tfrac32J\)</span>, and we take <span class="math inline">\(V=J&#39;\,\mathbf S_1\cdot\mathbf S_2\)</span> as the perturbation. To first order <span class="math inline">\(\langle ss|V|ss\rangle=J&#39;\langle\mathbf S_1\rangle\cdot\langle\mathbf S_2\rangle=0\)</span>, since the two singlets are independent and each one has <span class="math inline">\(\langle\mathbf S_i\rangle=0\)</span>.</p>
+<p>For the second order we need <span class="math inline">\(V|ss\rangle\)</span>. Since <span class="math inline">\(\langle s|S^a_1|s\rangle=0\)</span> for <span class="math inline">\(a=x,y,z\)</span>, the state <span class="math inline">\(S^a_1|s\rangle\)</span> has no singlet part, so it is a triplet of the first dimer. In the same way <span class="math inline">\(S^a_2\)</span> turns the second singlet into a triplet. So <span class="math inline">\(V|ss\rangle\)</span> has both dimers in a triplet, at <span class="math inline">\(+\tfrac12J\)</span>, which is <span class="math inline">\(2J\)</span> above <span class="math inline">\(|ss\rangle\)</span>. Its norm uses <span class="math inline">\(\langle s|S^a_1S^b_1|s\rangle=\tfrac14\delta_{ab}\)</span>, since one site of the singlet is in the state <span class="math inline">\(\tfrac12\mathbb 1\)</span>,</p>
+<p><span class="math display">\[\langle ss|V^2|ss\rangle=J&#39;^2\sum_{a}\frac14\cdot\frac14=\frac{3J&#39;^2}{16}.\]</span></p>
+<p>The second order is then</p>
+<p><span class="math display">\[E_0\approx-\frac32J-\frac{3J&#39;^2/16}{2J}=-\frac32J-\frac{3J&#39;^2}{32J}.\]</span></p>
+<p>At <span class="math inline">\(J&#39;=0.1J\)</span> this gives <span class="math inline">\(-1.500938J\)</span>, against <span class="math inline">\(-1.500961J\)</span> of the exact diagonalization, so the two differ by about <span class="math inline">\(2\times10^{-5}J\)</span>. The correction is small because it is divided by the energy <span class="math inline">\(2J\)</span> of the excited dimers. This gap of order <span class="math inline">\(J\)</span> is what keeps the ground state smooth and nondegenerate when we couple the dimers, as long as <span class="math inline">\(J&#39;\)</span> stays well below <span class="math inline">\(J\)</span>.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="tryit">
 <p><strong>Try it.</strong> Run the dimerized chain with <span class="math inline">\(J=1\pm0.2\)</span> and compare the profile with the uniform chain. The magnetization induced by the local field should decay much faster along the dimerized chain. Change 0.2 to 0.05 and see how the decay length grows when the dimerization is weaker.</p>

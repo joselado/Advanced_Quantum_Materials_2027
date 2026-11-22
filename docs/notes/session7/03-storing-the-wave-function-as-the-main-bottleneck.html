@@ -85,31 +85,68 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="on" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 7. Quantum Many-Body Entanglement and Tensor Networks</a></p>
 <h1 id="sec-7-3"><span class="num">7.3</span> Storing the wave function as the main bottleneck</h1>
-<p>Now that we use the language of spins, let us ask why a general interacting many-body Hamiltonian is hard to solve. A first answer would be that the diagonalization of a huge matrix is slow. The main problem is more basic, and it is the <em>storage</em> of the wave function.</p>
+<p>Now that we use the language of spins, let us ask why a general interacting many-body Hamiltonian is hard to solve. Is it the diagonalization of a huge matrix, or the storage of its ground state? A first answer would be that the diagonalization is slow. We will now see that the main problem is more basic, and it is the <em>storage</em> of the wave function. The exact state of <span class="math inline">\(L\)</span> spins needs <span class="math inline">\(2^L\)</span> coefficients, while the elements of the matrix can be computed when we need them.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[H_\text{Heis} = \sum_{\langle ij\rangle} J_{ij}\, \mathbf S_i\cdot\mathbf S_j, \qquad J_{ij} = \frac{4t_{ij}^2}{U}. \tag{6.5}\]</span></p>
+</div>
+<p>This is the Heisenberg model of Section <a href="../session6/09-the-heisenberg-model-on-a-general-lattice.html#sec-6-9">6.9</a>, which the Hubbard model gives at half filling and large <span class="math inline">\(U\)</span>. The sum runs over the pairs of neighbors <span class="math inline">\(\langle ij\rangle\)</span>, <span class="math inline">\(\mathbf S_i\)</span> is the spin 1/2 of site <span class="math inline">\(i\)</span>, and <span class="math inline">\(J_{ij}&gt;0\)</span> is antiferromagnetic. For two sites it is the dimer <span class="math inline">\(\mathbf S_0\cdot\mathbf S_1\)</span>, and for a chain the sum runs over the bonds <span class="math inline">\((i,i+1)\)</span>.</p>
+</div>
 <p>Let us take the simplest nontrivial case, which is the antiferromagnetic Heisenberg dimer of Section <a href="../session6/08-from-the-hubbard-dimer-to-the-heisenberg-model.html#sec-6-8">6.8</a>, <span class="math inline">\(H =
 \mathbf{S}_0\cdot
 \mathbf{S}_1\)</span> on two spin-1/2 sites. Its ground state is the unique singlet,</p>
 <p><span id="eq-7-3" class="eq"><span class="math display">\[|\Psi\rangle = \frac{1}{\sqrt{2}}\left(|{\uparrow\downarrow}\rangle -
 |{\downarrow\uparrow}\rangle\right), \tag{7.3}\]</span></span></p>
-<p>which is a state that does not break any symmetry, since the expectation value of every single-site spin vanishes. As we will show below, it is also maximally entangled. The question of the whole session is how this kind of state generalizes to a macroscopic system with many sites.</p>
+<p>which is a state that does not break any symmetry, and the expectation value of every single-site spin vanishes. As we will show below, it is also maximally entangled. The question of the whole session is how this kind of state generalizes to a macroscopic system with many sites.</p>
 <p>Let us write a general spin-1/2 wave function in the natural product basis, with one up or down label <span class="math inline">\(s_i\)</span> per site.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>The exact state of <span class="math inline">\(L\)</span> spins 1/2 is</p>
 <p><span id="eq-7-4" class="eq"><span class="math display">\[|\Psi\rangle = \sum_{s_1,\dots,s_L} C(s_1,\dots,s_L)\, |s_1,\dots,s_L\rangle, \qquad
 s_i \in \{\uparrow,\downarrow\}. \tag{7.4}\]</span></span></p>
-<p>For <span class="math inline">\(L=2\)</span> there are four basis states, up-up, up-down, down-up and down-down, so there are four coefficients <span class="math inline">\(C\)</span>, and the Hamiltonian is a <span class="math inline">\(4\times4\)</span> matrix. If we add one site, <span class="math inline">\(L=3\)</span>, the number doubles to eight. If we add one more site, <span class="math inline">\(L=4\)</span>, it doubles again to sixteen. In general, the dimension of the Hilbert space is <span class="math inline">\(d = 2^L\)</span>, and this is also the number of coefficients <span class="math inline">\(C(s_1,\dots,s_L)\)</span> that we need to write the ground state exactly. This exponential growth is the main limitation. We may never build the full <span class="math inline">\(2^L\times2^L\)</span> Hamiltonian matrix, and compute its matrix elements only when we need them. Still, once we have found the ground state, we have to store its <span class="math inline">\(2^L\)</span> coefficients. This storage cost, and not the cost of the diagonalization, is the real obstruction, and it is the most important point of the whole session. Tensor networks are one answer to this storage problem. A second answer comes from machine learning, and it is <strong>neural network quantum states</strong>, which we will study in <a href="../session10/index.html">Session 10</a>. In this session we only develop the first answer, tensor networks, and in particular matrix product states.</p>
+<p>The sum runs over the <span class="math inline">\(2^L\)</span> configurations of the spins, so we need <span class="math inline">\(2^L\)</span> coefficients <span class="math inline">\(C\)</span>. Their storage, and not the diagonalization of the Hamiltonian, is the obstruction.</p>
+</div>
+<p>For <span class="math inline">\(L=2\)</span> there are four basis states, up-up, up-down, down-up and down-down, so there are four coefficients <span class="math inline">\(C\)</span>, and the Hamiltonian is a <span class="math inline">\(4\times4\)</span> matrix. If we add one site, <span class="math inline">\(L=3\)</span>, the number doubles to eight. If we add one more site, <span class="math inline">\(L=4\)</span>, it doubles again to sixteen. In general, the dimension of the Hilbert space is <span class="math inline">\(2^L\)</span>, and this is also the number of coefficients <span class="math inline">\(C(s_1,\dots,s_L)\)</span> that we need to write the ground state exactly. This exponential growth is the main limitation.</p>
+<p>We may never build the full <span class="math inline">\(2^L\times2^L\)</span> Hamiltonian matrix, and compute its matrix elements only when we need them. Still, once we have found the ground state, we have to store its <span class="math inline">\(2^L\)</span> coefficients. This storage cost, and not the cost of the diagonalization, is the real obstruction, and it is the most important point of the whole session.</p>
+<p>Tensor networks are one answer to this storage problem. A second answer comes from machine learning, and it is <strong>neural network quantum states</strong>, which we will study in <a href="../session10/index.html">Session 10</a>. In this session we only develop the first answer, tensor networks, and in particular matrix product states.</p>
 <figure id="sch:s07:memory_scaling" class="schematic">
-<img src="../figures/web/session07/memory_scaling.svg" loading="lazy" alt="The logarithm of the number of coefficients against the number of sites, with a steep straight line for the exact state and two almost flat curves for matrix product states." />
-<figcaption><strong>Schematic 7.4.</strong> The number of coefficients of the exact state <a href="#eq-7-4">(7.4)</a> doubles with every site, so on this logarithmic scale it is a straight line. The matrix product state <a href="04-the-matrix-product-state-ansatz.html#eq-7-5">(7.5)</a> needs only <span class="math inline">\(LM^2\)</span> numbers, which is an almost flat curve. Look at the dashed line, which marks one gigabyte of complex numbers. The exact state crosses it at about <span class="math inline">\(L=26\)</span> and has reached sixteen gigabytes at <span class="math inline">\(L=30\)</span>.</figcaption>
+<img src="../figures/web/session07/memory_scaling.svg" loading="lazy" alt="The number of coefficients on a logarithmic axis against the number of sites, with a steep straight line for the exact state, two almost flat curves for matrix product states and a horizontal dashed line at one gigabyte." />
+<figcaption><strong>Schematic 7.4.</strong> The number of coefficients of the exact state <a href="#eq-7-4">(7.4)</a> doubles with every site, so on this logarithmic scale it is a straight line. The matrix product state <a href="04-the-matrix-product-state-ansatz.html#eq-7-5">(7.5)</a> needs only <span class="math inline">\(L\chi^2\)</span> numbers, which is an almost flat curve, drawn here for the bond dimensions <span class="math inline">\(\chi=16\)</span> and <span class="math inline">\(\chi=64\)</span>, without the factor 2 of the two spin values. Look at the dashed line, which marks one gigabyte of complex numbers. The exact state crosses it at about <span class="math inline">\(L=26\)</span> and has reached about seventeen gigabytes at <span class="math inline">\(L=30\)</span>.</figcaption>
 </figure>
 <figure id="sch:s07:matrix_vs_vector" class="schematic">
-<img src="../figures/web/session07/matrix_vs_vector.svg" loading="lazy" alt="The logarithm of the number of stored numbers against the number of sites, with a steep dashed line for the dense matrix, red dots for its nonzero elements, and a blue line for the vector just below the dots." />
-<figcaption><strong>Schematic 7.5.</strong> Why the vector and not the matrix is the obstruction, for the Heisenberg chain <a href="../session6/09-the-heisenberg-model-on-a-general-lattice.html#eq-6-5">(6.5)</a> with open ends. The dense matrix has <span class="math inline">\(4^L\)</span> elements, but almost all of them are zero. The red dots count the nonzero ones in the basis of <a href="#eq-7-4">(7.4)</a>, and for even <span class="math inline">\(L\)</span> they are <span class="math inline">\((L+1)\,2^{L-1}\)</span>. The reason is that a basis state is connected only to itself and to the states where one antiparallel pair is flipped. So the sparse matrix costs about <span class="math inline">\(L/2\)</span> times the vector, and if we compute its elements on demand we store nothing of it. The dashed line marks one gigabyte of complex numbers, as in <a href="#sch:s07:memory_scaling">Schematic 7.4</a>. The dense matrix crosses it at <span class="math inline">\(L=13\)</span>, and the vector alone crosses it at about <span class="math inline">\(L=26\)</span>, which is the wall that remains.</figcaption>
+<img src="../figures/web/session07/matrix_vs_vector.svg" loading="lazy" alt="The number of stored numbers on a logarithmic axis against the number of sites, with a steep dashed line for the dense matrix, red dots for its nonzero elements, a blue line for the vector just below the dots and a horizontal dashed line at one gigabyte." />
+<figcaption><strong>Schematic 7.5.</strong> Why the vector and not the matrix is the obstruction, for the Heisenberg chain <a href="../session6/09-the-heisenberg-model-on-a-general-lattice.html#eq-6-5">(6.5)</a> with open ends. The dense matrix has <span class="math inline">\(4^L\)</span> elements, but almost all of them are zero. The red dots count the nonzero ones in the basis of <a href="#eq-7-4">(7.4)</a>, and for even <span class="math inline">\(L\)</span> they are <span class="math inline">\((L+1)\,2^{L-1}\)</span>. The reason is that a basis state is connected only to itself and to the states where one antiparallel pair is flipped. So the sparse matrix costs about <span class="math inline">\(L/2\)</span> times the vector, and if we compute its elements on demand we store nothing of it. The horizontal dashed line marks one gigabyte of complex numbers, as in <a href="#sch:s07:memory_scaling">Schematic 7.4</a>. The dense matrix crosses it at <span class="math inline">\(L=13\)</span>, and the vector alone crosses it at about <span class="math inline">\(L=26\)</span>, which is the wall that remains.</figcaption>
 </figure>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">The count of the nonzero elements of the Heisenberg matrix</span></summary>
+<div class="fold-body">
+<p>We take the open chain <span class="math inline">\(H=\sum_{i=0}^{L-2}\mathbf S_i\cdot\mathbf S_{i+1}\)</span>, with <span class="math inline">\(J=1\)</span>, and we write each bond as</p>
+<p><span class="math display">\[\mathbf S_i\cdot\mathbf S_{i+1}=S^z_iS^z_{i+1}+\tfrac12\left(S^+_iS^-_{i+1}+S^-_iS^+_{i+1}\right).\]</span></p>
+<p>The first term is diagonal in the basis of <a href="#eq-7-4">(7.4)</a>, with <span class="math inline">\(+\tfrac14\)</span> for a parallel pair and <span class="math inline">\(-\tfrac14\)</span> for an antiparallel pair. The second term flips an antiparallel pair, <span class="math inline">\(|{\uparrow\downarrow}\rangle\to|{\downarrow\uparrow}\rangle\)</span> and back, with the element <span class="math inline">\(\tfrac12\)</span>, and it gives zero on a parallel pair.</p>
+<p>Let us take the simplest case, <span class="math inline">\(L=2\)</span>. The four diagonal elements are <span class="math inline">\(\tfrac14\)</span>, <span class="math inline">\(-\tfrac14\)</span>, <span class="math inline">\(-\tfrac14\)</span> and <span class="math inline">\(\tfrac14\)</span>, and the flip joins <span class="math inline">\(|{\uparrow\downarrow}\rangle\)</span> and <span class="math inline">\(|{\downarrow\uparrow}\rangle\)</span> with two elements <span class="math inline">\(\tfrac12\)</span>. So <span class="math inline">\(6\)</span> of the <span class="math inline">\(16\)</span> elements are nonzero.</p>
+<p>For <span class="math inline">\(L\)</span> sites a basis state with <span class="math inline">\(n_\text{p}\)</span> parallel and <span class="math inline">\(n_\text{a}\)</span> antiparallel bonds has the diagonal element <span class="math inline">\(\tfrac14(n_\text{p}-n_\text{a})\)</span>, with <span class="math inline">\(n_\text{p}+n_\text{a}=L-1\)</span>. For even <span class="math inline">\(L\)</span> the number <span class="math inline">\(L-1\)</span> is odd, so <span class="math inline">\(n_\text{p}\neq n_\text{a}\)</span> and all the <span class="math inline">\(2^L\)</span> diagonal elements are nonzero. Each antiparallel bond of a basis state gives one off-diagonal element. A given bond is antiparallel in half of the <span class="math inline">\(2^L\)</span> basis states, so the <span class="math inline">\(L-1\)</span> bonds give <span class="math inline">\((L-1)\,2^{L-1}\)</span> off-diagonal elements. In total</p>
+<p><span class="math display">\[2^L+(L-1)\,2^{L-1}=(L+1)\,2^{L-1},\]</span></p>
+<p>which is <span class="math inline">\((L+1)/2\)</span> times the <span class="math inline">\(2^L\)</span> numbers of the vector. For odd <span class="math inline">\(L\)</span> some states have <span class="math inline">\(n_\text{p}=n_\text{a}\)</span>, and the count is lower, <span class="math inline">\(84\)</span> instead of <span class="math inline">\(96\)</span> for <span class="math inline">\(L=5\)</span>.</p>
+</div>
+</details>
+</div>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>The Heisenberg chain is realized in materials. In the copper oxide chains of SrCuO<span class="math inline">\(_2\)</span>, inelastic neutron scattering measures the magnetic excitations. They are well described by an ansatz for the two-spinon continuum of the spin-1/2 antiferromagnetic Heisenberg chain. The lower boundary of this continuum extends up to about <span class="math inline">\(360\)</span> meV, which corresponds to the exchange constant <span class="math inline">\(J=226(12)\)</span> meV. This is <span class="math inline">\(J/k_B\approx2600\)</span> K, so at room temperature, <span class="math inline">\(300\)</span> K, the thermal energy <span class="math inline">\(k_BT\)</span> is only about <span class="math inline">\(0.11\,J\)</span>. The measurement is in <a href="https://arxiv.org/abs/cond-mat/0312724">this article</a>.</p>
+</div>
 <div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>We store the exact ground state of <span class="math inline">\(L=40\)</span> spin-1/2 sites as complex numbers of 16 bytes each. What memory do we need?</p>
+<p>The exact state of <span class="math inline">\(L\)</span> spins 1/2 has <span class="math inline">\(2^L\)</span> coefficients. Each one is a complex number of 16 bytes. What memory does the state of <span class="math inline">\(L=40\)</span> spins need?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -122,52 +159,66 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
-<p>This is true. The number of coefficients is <span class="math inline">\(2^{40}\approx1.1\times10^{12}\)</span> and each one takes 16 bytes. This is already far above the memory of a computer, and ten more sites would multiply it by one thousand.</p></li>
+<p>This is true. The number of coefficients is <span class="math inline">\(2^{40}\approx1.1\times10^{12}\)</span> and each one takes 16 bytes. This gives <span class="math inline">\(1.76\times10^{13}\)</span> bytes, which is 17.6 terabytes of <span class="math inline">\(10^{12}\)</span> bytes, or 16 in units of <span class="math inline">\(2^{40}\)</span> bytes. This is already far above the memory of a computer, and ten more sites would multiply it by one thousand.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
 <p>This is false. The value <span class="math inline">\(2^{30}\approx10^9\)</span> is the one for a chain of 30 sites, which does need <span class="math inline">\(1.7\times10^{10}\)</span> bytes. For <span class="math inline">\(L=40\)</span> the number is <span class="math inline">\(2^{40}\approx10^{12}\)</span>, a thousand times more.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. This would be the storage of a product state, one 16-byte number per site. Already for <span class="math inline">\(L=2\)</span> the singlet has two nonzero coefficients that cannot be written as a product of two single-site states.</p></li>
+<p>This is false. This would be the storage of a product state, one 16-byte number per site. This count keeps only what is left once the norm and the phase of each site are fixed. A matrix product state with <span class="math inline">\(\chi=1\)</span> stores two numbers per site, so 1280 bytes for 40 sites. Already for <span class="math inline">\(L=2\)</span> the singlet has two nonzero coefficients that cannot be written as a product of two single-site states.</p></li>
 </ul>
 </div>
 </details>
 </div>
-<div class="quiz" data-correct="C" data-fb="1">
+<div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>We add one more spin-1/2 site to the chain. How does the storage of the exact state <a href="#eq-7-4">(7.4)</a> change?</p>
-<div class="eq-again">
-<p><span class="math display">\[|\Psi\rangle = \sum_{s_1,\dots,s_L} C(s_1,\dots,s_L)\, |s_1,\dots,s_L\rangle, \qquad
-s_i \in \{\uparrow,\downarrow\}. \tag{7.4}\]</span></p>
-</div>
+<p>The exact state of <span class="math inline">\(L\)</span> spins 1/2 is</p>
+<p><span class="math display">\[|\Psi\rangle = \sum_{s_1,\dots,s_L} C(s_1,\dots,s_L)\, |s_1,\dots,s_L\rangle, \qquad s_i \in \{\uparrow,\downarrow\}.\]</span></p>
+<p>We add one site to the chain. How many coefficients <span class="math inline">\(C\)</span> does the state of <span class="math inline">\(L+1\)</span> sites have?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li>It grows by a fixed number of coefficients.</li>
-<li>It is multiplied by <span class="math inline">\(L\)</span>.</li>
-<li>It doubles.</li>
+<li><span class="math inline">\(2^L+4\)</span></li>
+<li><span class="math inline">\(2^{L+1}\)</span></li>
+<li><span class="math inline">\(L\,2^L\)</span></li>
 </ol>
 </div>
 <details class="quiz-answer"><summary>Show the answers</summary>
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
-<p>This is false. Going from <span class="math inline">\(L=2\)</span> to <span class="math inline">\(L=3\)</span> adds 4 coefficients, from <span class="math inline">\(L=3\)</span> to <span class="math inline">\(L=4\)</span> adds 8, and from <span class="math inline">\(L=10\)</span> to <span class="math inline">\(L=11\)</span> adds 1024. The increase is not fixed.</p></li>
-<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
-<p>This is false. From <span class="math inline">\(L=2\)</span> to <span class="math inline">\(L=3\)</span> the number of coefficients goes from 4 to 8, and this is a factor 2 and not 3. The factor is 2 for every <span class="math inline">\(L\)</span>.</p></li>
-<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
-<p>This is true. Each new site doubles the dimension of the Hilbert space, so <span class="math inline">\(2^L\)</span> becomes <span class="math inline">\(2^{L+1}\)</span>. This is the exponential wall, and the MPS ansatz replaces it with a growth that is linear in <span class="math inline">\(L\)</span>.</p></li>
+<p>This is false. It holds from <span class="math inline">\(L=2\)</span> to <span class="math inline">\(L=3\)</span>, where 4 coefficients become 8. From <span class="math inline">\(L=3\)</span> to <span class="math inline">\(L=4\)</span> they go from 8 to 16, while <span class="math inline">\(2^3+4=12\)</span>. The increase is not a fixed number.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The new spin is up or down for every configuration of the other <span class="math inline">\(L\)</span> spins, so the number doubles. From <span class="math inline">\(L=10\)</span> to <span class="math inline">\(L=11\)</span> this adds 1024 coefficients. This is the exponential wall, and the MPS ansatz replaces it with a growth that is linear in <span class="math inline">\(L\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. It holds from <span class="math inline">\(L=2\)</span> to <span class="math inline">\(L=3\)</span>, since <span class="math inline">\(2\times4=8\)</span>. For <span class="math inline">\(L=3\)</span> it gives <span class="math inline">\(3\times8=24\)</span>, while four sites have 16 coefficients. The factor is 2 for every <span class="math inline">\(L\)</span>, and not <span class="math inline">\(L\)</span>.</p></li>
 </ul>
 </div>
 </details>
 </div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>The Heisenberg chain conserves the total spin along <span class="math inline">\(z\)</span>, <span class="math inline">\(S^z_\text{tot}=\sum_iS^z_i\)</span>, so its ground state can be searched in one sector of <span class="math inline">\(S^z_\text{tot}\)</span>. Count the coefficients of the sector <span class="math inline">\(S^z_\text{tot}=0\)</span> for <span class="math inline">\(L=4\)</span> and for <span class="math inline">\(L=30\)</span>, and compare them with <span class="math inline">\(2^L\)</span>.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>A basis state of <a href="#eq-7-4">(7.4)</a> has <span class="math inline">\(S^z_\text{tot}=0\)</span> when half of its spins are up. We choose the <span class="math inline">\(L/2\)</span> sites that have an up spin, so the sector has</p>
+<p><span class="math display">\[\binom{L}{L/2}\]</span></p>
+<p>coefficients. For <span class="math inline">\(L=4\)</span> this is <span class="math inline">\(6\)</span> of <span class="math inline">\(16\)</span>, the states <span class="math inline">\(|{\uparrow\uparrow\downarrow\downarrow}\rangle\)</span>, <span class="math inline">\(|{\uparrow\downarrow\uparrow\downarrow}\rangle\)</span>, <span class="math inline">\(|{\uparrow\downarrow\downarrow\uparrow}\rangle\)</span>, <span class="math inline">\(|{\downarrow\uparrow\uparrow\downarrow}\rangle\)</span>, <span class="math inline">\(|{\downarrow\uparrow\downarrow\uparrow}\rangle\)</span> and <span class="math inline">\(|{\downarrow\downarrow\uparrow\uparrow}\rangle\)</span>. For <span class="math inline">\(L=30\)</span> it is <span class="math inline">\(\binom{30}{15}=1.55\times10^8\)</span> of <span class="math inline">\(2^{30}=1.07\times10^9\)</span>, a factor <span class="math inline">\(6.9\)</span> less.</p>
+<p>The Stirling formula gives <span class="math inline">\(\binom{L}{L/2}\approx2^L\sqrt{2/(\pi L)}\)</span>. So the symmetry gains only a factor of order <span class="math inline">\(\sqrt L\)</span>, and the size of the sector still grows exponentially, as <span class="math inline">\(2^L/\sqrt L\)</span>. In practice exact diagonalization uses such symmetries. The factor <span class="math inline">\(6.9\approx2^{2.8}\)</span> moves the largest chain that fits in a given memory by two or three sites, for memories from one gigabyte to one terabyte, while the wall of <a href="#eq-7-4">(7.4)</a> stays.</p>
+</div>
+</details>
+</div>
+</div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb"><code>session7.ipynb</code></a>, “Energy of the Heisenberg model as a function of the system size” (Core)</p>
-<p>In this exercise you compute the ground-state energy per site of the Heisenberg chain with exact diagonalization, for growing system sizes. For this you use the <code>dmrgpy</code> library, which is new in this session, together with <code>pyqula</code>. You will see how fast exact diagonalization stops being possible, and this limit is the <span class="math inline">\(2^L\)</span> scaling of <a href="#eq-7-4">(7.4)</a> in a concrete calculation.</p>
+<p>In this exercise you compute the ground-state energy per site of the Heisenberg chain for growing system sizes, with the <code>dmrgpy</code> library, which is new in this session. The text of the cell speaks of exact diagonalization, but its code calls <code>sc.gs_energy(mode="DMRG")</code>, so it runs DMRG, the method of Section <a href="10-the-variational-principle-and-dmrg-for-the-ground-state.html#sec-7-10">7.10</a>. The quiz of the cell asks for the largest chain that exact diagonalization could reach, and this limit is the <span class="math inline">\(2^L\)</span> scaling of <a href="#eq-7-4">(7.4)</a> in a concrete calculation.</p>
 </div>
 <div class="tryit">
-<p><strong>Try it.</strong> Increase the sizes in the list <code>Ns</code> and plot the energy per site. For <span class="math inline">\(J=1\)</span> it should approach the value <span class="math inline">\(1/4-\ln 2\approx-0.443\)</span> of the infinite chain. At which size does the calculation become slow, and how does this compare with the <span class="math inline">\(2^L\)</span> of <a href="#eq-7-4">(7.4)</a>?</p>
+<p><strong>Try it.</strong> Increase the sizes in the list <code>Ns</code> and plot the energy per site. For <span class="math inline">\(J=1\)</span> it should approach the value <span class="math inline">\(1/4-\ln 2\approx-0.443\)</span> of the infinite chain. The cell runs DMRG, so time the loop and compare how the time grows with the <span class="math inline">\(2^L\)</span> of <a href="#eq-7-4">(7.4)</a>, which exact diagonalization would follow.</p>
 <div class="tryit-links">
 Notebook <code>session7.ipynb</code>, cell “Energy of the Heisenberg model as a function of the system size”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session7.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession7.ipynb">Binder</a>.
 </div>

@@ -85,31 +85,62 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="on" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 9. Excitations and Defects in Quantum Materials</a></p>
 <h1 id="sec-9-3"><span class="num">9.3</span> Linear response and perturbation theory in detail</h1>
-<p>Let us now build the quantum version of this idea, since everything that follows is based on it. We split the full Hamiltonian into an unperturbed part <span class="math inline">\(H_0\)</span>, which can be a metal, a superconductor, a quantum magnet or any system that we study, and a perturbation <span class="math inline">\(V\)</span>. We also add a coupling constant <span class="math inline">\(\lambda\)</span> that helps us keep track of the orders, and at the end we will set it to one.</p>
+<p>What is the first change of an eigenstate of <span class="math inline">\(H_0\)</span> when we add a small perturbation <span class="math inline">\(V\)</span>? We will now see that each state mixes with all the others, with the matrix element of <span class="math inline">\(V\)</span> divided by the energy difference, so that close levels mix the most. We will also see three cases where this expansion fails.</p>
+<p>In Section <a href="02-the-response-of-a-classical-magnet-as-a-first-example.html#sec-9-2">9.2</a> the response was the derivative <span class="math inline">\(\chi=\partial M/\partial H\)</span> of a classical magnet. Let us now build the quantum version of this idea, since everything that follows is based on it. We split the full Hamiltonian into an unperturbed part <span class="math inline">\(H_0\)</span>, which can be a metal, a superconductor, a quantum magnet or any system that we study, and a perturbation <span class="math inline">\(V\)</span>. We also add a coupling constant <span class="math inline">\(\lambda\)</span> that helps us keep track of the orders, and at the end we will set it to one.</p>
 <p><span id="eq-9-2" class="eq"><span class="math display">\[H(\lambda) = H_0 + \lambda V, \qquad \lambda = 0 \;\text{(pristine)}, \quad \lambda = 1\;\text{(full perturbation)}. \tag{9.2}\]</span></span></p>
 <p>Every observable of the system, such as energies, densities, magnetizations and the wavefunctions themselves, becomes a function of <span class="math inline">\(\lambda\)</span> once we fix <span class="math inline">\(H(\lambda)\)</span>. If this function is smooth enough to make a Taylor expansion around <span class="math inline">\(\lambda=0\)</span>, and later we will see when this assumption fails, then for any observable <span class="math inline">\(A\)</span> we have</p>
 <p><span class="math display">\[A(\lambda) = A^{(0)} + \lambda\, \chi_A + O(\lambda^2), \qquad
 \chi_A \equiv \left.\frac{\partial A}{\partial \lambda}\right|_{\lambda=0},\]</span></p>
-<p>and by definition <span class="math inline">\(\chi_A\)</span>, the first-order coefficient, <em>is</em> the response function that we have been talking about in this session. To compute <span class="math inline">\(\chi_A\)</span> for a generic observable, we first need the perturbed wavefunctions. We expand an unperturbed eigenstate <span class="math inline">\(|n\rangle\)</span> of <span class="math inline">\(H_0\)</span>, with energy <span class="math inline">\(E_n^{(0)}\)</span>, in the full basis <span class="math inline">\(\{|m\rangle\}\)</span> of <span class="math inline">\(H_0\)</span>. Standard Rayleigh-Schrödinger perturbation theory then gives, to first order in <span class="math inline">\(\lambda\)</span> and away from any degeneracy,</p>
+<p>and by definition <span class="math inline">\(\chi_A\)</span>, the first-order coefficient, <em>is</em> the response function that we have been talking about in this session. To compute <span class="math inline">\(\chi_A\)</span> for a generic observable, we first need the perturbed wavefunctions. We expand an unperturbed eigenstate <span class="math inline">\(|n\rangle\)</span> of <span class="math inline">\(H_0\)</span>, with energy <span class="math inline">\(E_n^{(0)}\)</span>, in the full basis <span class="math inline">\(\{|m\rangle\}\)</span> of <span class="math inline">\(H_0\)</span>. Standard Rayleigh-Schrödinger perturbation theory then gives the perturbed state to first order in <span class="math inline">\(\lambda\)</span>, away from any degeneracy.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>To first order in <span class="math inline">\(\lambda\)</span>, and when no other level has the energy <span class="math inline">\(E_n^{(0)}\)</span>, the eigenstate <span class="math inline">\(|n\rangle\)</span> of <span class="math inline">\(H_0\)</span> becomes</p>
 <p><span id="eq-9-3" class="eq"><span class="math display">\[|n(\lambda)\rangle = |n\rangle + \lambda \sum_{m \neq n} \frac{\langle m|V|n\rangle}{E_n^{(0)} - E_m^{(0)}} \, |m\rangle + O(\lambda^2). \tag{9.3}\]</span></span></p>
+<p>A perturbation mixes <span class="math inline">\(|n\rangle\)</span> with every other state <span class="math inline">\(|m\rangle\)</span>, with the matrix element of <span class="math inline">\(V\)</span> divided by the energy difference, so the levels that are close in energy mix the most.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From H(lambda) to the first-order state (9.3)</span></summary>
+<div class="fold-body">
+<p>Let us start with the simplest case, which is two levels. We take <span class="math inline">\(H_0=\mathrm{diag}(0,\Delta)\)</span> with <span class="math inline">\(\Delta&gt;0\)</span> and <span class="math inline">\(V=v\sigma_x\)</span>, so that <span class="math inline">\(\langle 2|V|1\rangle=v\)</span>, and</p>
+<p><span class="math display">\[H(\lambda)=\begin{pmatrix}0&amp;\lambda v\\ \lambda v&amp;\Delta\end{pmatrix}.\]</span></p>
+<p>We write the ground state as <span class="math inline">\(|1\rangle+c\,|2\rangle\)</span>. The second row of the eigenvalue equation gives <span class="math inline">\(\lambda v+\Delta\,c=E_1(\lambda)\,c\)</span>. The energy <span class="math inline">\(E_1(\lambda)\)</span> starts at order <span class="math inline">\(\lambda^2\)</span> and <span class="math inline">\(c\)</span> at order <span class="math inline">\(\lambda\)</span>, so the right side is of order <span class="math inline">\(\lambda^3\)</span>, and at first order</p>
+<p><span class="math display">\[c=-\frac{\lambda v}{\Delta}=\lambda\,\frac{\langle 2|V|1\rangle}{E_1^{(0)}-E_2^{(0)}},\]</span></p>
+<p>which is <a href="#eq-9-3">(9.3)</a> for two levels. For <span class="math inline">\(v&gt;0\)</span> the coefficient is negative, since the level that mixes in lies above the ground state.</p>
+<p>For the general case we write <span class="math inline">\(|n(\lambda)\rangle=|n\rangle+\lambda\sum_{m\neq n}c_m|m\rangle+O(\lambda^2)\)</span> and <span class="math inline">\(E_n(\lambda)=E_n^{(0)}+\lambda E_n^{(1)}+O(\lambda^2)\)</span>, and we put both in <span class="math inline">\((H_0+\lambda V)|n(\lambda)\rangle=E_n(\lambda)|n(\lambda)\rangle\)</span>. We project onto <span class="math inline">\(\langle m|\)</span> with <span class="math inline">\(m\neq n\)</span>. Since <span class="math inline">\(\langle m|H_0=E_m^{(0)}\langle m|\)</span> and <span class="math inline">\(\langle m|n\rangle=0\)</span>, the terms of order <span class="math inline">\(\lambda\)</span> give</p>
+<p><span class="math display">\[E_m^{(0)}c_m+\langle m|V|n\rangle=E_n^{(0)}c_m,\]</span></p>
+<p>so <span class="math inline">\(c_m=\langle m|V|n\rangle/(E_n^{(0)}-E_m^{(0)})\)</span>, which is <a href="#eq-9-3">(9.3)</a>. The projection onto <span class="math inline">\(\langle n|\)</span> gives the first-order energy <span class="math inline">\(E_n^{(1)}=\langle n|V|n\rangle\)</span>. The division needs <span class="math inline">\(E_m^{(0)}\neq E_n^{(0)}\)</span> for every <span class="math inline">\(m\)</span>, and this is the condition of no degeneracy.</p>
+<p>The last step is the response of an observable <span class="math inline">\(A\)</span>. Its value is <span class="math inline">\(\langle n(\lambda)|A|n(\lambda)\rangle\)</span>, and the norm of <span class="math inline">\(|n(\lambda)\rangle\)</span> changes only at order <span class="math inline">\(\lambda^2\)</span>, since <span class="math inline">\(\langle n|m\rangle=0\)</span>. The terms of first order are <span class="math inline">\(\sum_{m\neq n}c_m\langle n|A|m\rangle\)</span> and its complex conjugate, so</p>
+<p><span class="math display">\[\chi_A=2\,\mathrm{Re}\sum_{m\neq n}\frac{\langle n|A|m\rangle\langle m|V|n\rangle}{E_n^{(0)}-E_m^{(0)}}.\]</span></p>
+<p>For the two levels and <span class="math inline">\(A=\sigma_x\)</span> this gives <span class="math inline">\(\chi_A=-2v/\Delta\)</span>, which is the slope at <span class="math inline">\(\lambda=0\)</span> of <span class="math inline">\(\langle\sigma_x\rangle\)</span> in the exact ground state.</p>
+</div>
+</details>
+</div>
 <p>The structure of <a href="#eq-9-3">(9.3)</a> is the basis of every derivation in the rest of this session. A perturbation mixes a state <span class="math inline">\(|n\rangle\)</span> with every other state <span class="math inline">\(|m\rangle\)</span>. The weight of the mixing is the matrix element of <span class="math inline">\(V\)</span> between the two states, and it is suppressed by the inverse of the energy gap between them. States that are close in energy mix strongly, and states that are far apart in energy almost do not mix. Once we have <a href="#eq-9-3">(9.3)</a>, we can write any observable, in particular any density or magnetization, to first order in <span class="math inline">\(\lambda\)</span> by using the perturbed states.</p>
 <figure id="sch:s09:mixing" class="schematic">
-<img src="../figures/web/session09/mixing.svg" loading="lazy" alt="Four energy levels around a central level, and horizontal bars that show the mixing coefficient of each level, largest for the closest one." />
-<figcaption><strong>Schematic 9.4.</strong> The mixing of <a href="#eq-9-3">(9.3)</a> for one fixed matrix element <span class="math inline">\(\langle m|V|n\rangle=0.1\)</span>. On the left we see the levels of <span class="math inline">\(H_0\)</span> around <span class="math inline">\(|n\rangle\)</span>, and on the right the coefficient of each level in the perturbed state. The closest level, <span class="math inline">\(|m_1\rangle\)</span>, mixes the most, and the sign of the coefficient follows the sign of <span class="math inline">\(E_n^{(0)}-E_m^{(0)}\)</span>, so that a level above <span class="math inline">\(|n\rangle\)</span> enters with a negative sign.</figcaption>
+<img src="../figures/web/session09/mixing.svg" loading="lazy" alt="Five energy levels on an axis in units of t, and horizontal bars with the mixing coefficient of each level, negative for the levels above and largest for the closest one." />
+<figcaption><strong>Schematic 9.4.</strong> The mixing of <a href="#eq-9-3">(9.3)</a> for one fixed matrix element <span class="math inline">\(\langle m|V|n\rangle=0.1t\)</span>, with <span class="math inline">\(\lambda=1\)</span>. On the left are the levels of <span class="math inline">\(H_0\)</span> around <span class="math inline">\(|n\rangle\)</span>, with their energies in units of <span class="math inline">\(t\)</span>, and on the right the coefficient of each level in the perturbed state. The closest level, <span class="math inline">\(|m_1\rangle\)</span> at <span class="math inline">\(0.35t\)</span>, mixes the most, with <span class="math inline">\(-0.286\)</span>. The sign of the coefficient follows the sign of <span class="math inline">\(E_n^{(0)}-E_m^{(0)}\)</span>, so that a level above <span class="math inline">\(|n\rangle\)</span> enters with a negative sign. Look at the length of the bars, which falls as one over the distance in energy.</figcaption>
 </figure>
+<p><strong>When does this break down?</strong> The construction in <a href="#eq-9-3">(9.3)</a> assumes that <span class="math inline">\(A(\lambda)\)</span> is an analytic function of <span class="math inline">\(\lambda\)</span> close to <span class="math inline">\(\lambda=0\)</span>, and this assumption is not always true. There are three paradigmatic quantum states that are known to be intrinsically non-perturbative in this sense, and we mention them explicitly since they mark the limit of everything that we derive below. We met the same three cases in Section <a href="../session3/03-where-perturbation-theory-breaks-down.html#sec-3-3">3.3</a>.</p>
+<ul>
+<li><p><strong>An impurity in a metal, the orthogonality catastrophe.</strong> In the thermodynamic limit, the many-body wavefunction of a metal with the impurity becomes exactly orthogonal to the one without it. This happens for any strength of the impurity potential, even a very weak one.</p></li>
+<li><p><strong>A quantum spin in a metal, the Kondo effect.</strong> The Kondo temperature that emerges is non-perturbative in the Kondo coupling. It has an essential singularity in the coupling constant and not a power series, and Section <a href="../session8/11-from-a-single-kondo-impurity-to-the-kondo-lattice.html#sec-8-11">8.11</a> treats the Kondo impurity in full.</p></li>
+<li><p><strong>Superconductivity in the BCS limit.</strong> In the same way, the superconducting gap of <a href="../session5/index.html">Session 5</a> is non-perturbative in the attractive coupling constant.</p></li>
+</ul>
+<p>In the rest of this session we stay in the regime where perturbation theory <em>does</em> work, which is the regime where <a href="#eq-9-2">(9.2)</a> and <a href="#eq-9-3">(9.3)</a> give a controlled and systematic way to compute responses.</p>
 <div class="quiz" data-correct="A" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>A state <span class="math inline">\(|n\rangle\)</span> is coupled by <span class="math inline">\(V\)</span> to two other states with the same matrix element. One of them is <span class="math inline">\(0.1t\)</span> away in energy and the other is <span class="math inline">\(1.0t\)</span> away. How do the two mixing coefficients of <a href="#eq-9-3">(9.3)</a> compare?</p>
-<div class="eq-again">
-<p><span class="math display">\[|n(\lambda)\rangle = |n\rangle + \lambda \sum_{m \neq n} \frac{\langle m|V|n\rangle}{E_n^{(0)} - E_m^{(0)}} \, |m\rangle + O(\lambda^2). \tag{9.3}\]</span></p>
-</div>
+<p>At first order a state <span class="math inline">\(|n\rangle\)</span> of <span class="math inline">\(H_0\)</span> becomes</p>
+<p><span class="math display">\[|n(\lambda)\rangle=|n\rangle+\lambda\sum_{m\neq n}c_m|m\rangle,\qquad c_m=\frac{\langle m|V|n\rangle}{E_n^{(0)}-E_m^{(0)}}.\]</span></p>
+<p>Two states have the same matrix element with <span class="math inline">\(|n\rangle\)</span>. One is <span class="math inline">\(0.1t\)</span> away in energy, the other <span class="math inline">\(1.0t\)</span>. How do their coefficients compare?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li>The closer state has a coefficient ten times larger.</li>
+<li>The closer state has a coefficient ten times larger in size.</li>
 <li>They are equal, since the matrix element is the same.</li>
 <li>The farther state has the larger coefficient, since it carries more energy.</li>
 </ol>
@@ -118,11 +149,11 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
-<p>This is true. The coefficient is <span class="math inline">\(V/(E_n-E_m)\)</span>. For <span class="math inline">\(V=0.01t\)</span> it is <span class="math inline">\(0.1\)</span> for the state at <span class="math inline">\(0.1t\)</span> and <span class="math inline">\(0.01\)</span> for the state at <span class="math inline">\(1.0t\)</span>, which is a factor ten.</p></li>
+<p>This is true. The size of the coefficient is <span class="math inline">\(|\langle m|V|n\rangle|/|E_n^{(0)}-E_m^{(0)}|\)</span>. For a matrix element <span class="math inline">\(0.01t\)</span> it is <span class="math inline">\(0.1\)</span> for the state at <span class="math inline">\(0.1t\)</span> and <span class="math inline">\(0.01\)</span> for the state at <span class="math inline">\(1.0t\)</span>, which is a factor ten.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
-<p>This is false. The matrix element is the same, but the denominator is not. For <span class="math inline">\(V=0.01t\)</span> the two coefficients are <span class="math inline">\(0.1\)</span> and <span class="math inline">\(0.01\)</span>, so they differ by a factor ten.</p></li>
+<p>This is false. The matrix element is the same, but the denominator is not. For a matrix element <span class="math inline">\(0.01t\)</span> the two coefficients have the sizes <span class="math inline">\(0.1\)</span> and <span class="math inline">\(0.01\)</span>, so they differ by a factor ten.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. The energy of the far state enters only through the denominator. With <span class="math inline">\(V=0.01t\)</span> the state at <span class="math inline">\(1.0t\)</span> gives <span class="math inline">\(0.01\)</span>, which is smaller than the <span class="math inline">\(0.1\)</span> of the state at <span class="math inline">\(0.1t\)</span>.</p></li>
+<p>This is false. The energy of the far state enters only through the denominator. With a matrix element <span class="math inline">\(0.01t\)</span> the state at <span class="math inline">\(1.0t\)</span> gives <span class="math inline">\(0.01\)</span> in size, which is smaller than the <span class="math inline">\(0.1\)</span> of the state at <span class="math inline">\(0.1t\)</span>.</p></li>
 </ul>
 </div>
 </details>
@@ -132,10 +163,9 @@ Question
 Question
 </div>
 <div class="quiz-q">
-<p>Two levels of <span class="math inline">\(H_0\)</span> are exactly degenerate and <span class="math inline">\(V\)</span> couples them. What happens to the first-order coefficient of <a href="#eq-9-3">(9.3)</a> between them?</p>
-<div class="eq-again">
-<p><span class="math display">\[|n(\lambda)\rangle = |n\rangle + \lambda \sum_{m \neq n} \frac{\langle m|V|n\rangle}{E_n^{(0)} - E_m^{(0)}} \, |m\rangle + O(\lambda^2). \tag{9.3}\]</span></p>
-</div>
+<p>The first-order coefficient of <span class="math inline">\(|m\rangle\)</span> in the perturbed state <span class="math inline">\(|n(\lambda)\rangle\)</span> is</p>
+<p><span class="math display">\[c_m=\frac{\langle m|V|n\rangle}{E_n^{(0)}-E_m^{(0)}}.\]</span></p>
+<p>The levels <span class="math inline">\(|n\rangle\)</span> and <span class="math inline">\(|m\rangle\)</span> are degenerate, and <span class="math inline">\(V\)</span> couples them. What happens to <span class="math inline">\(c_m\)</span>?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -161,13 +191,51 @@ Question
 </div>
 </details>
 </div>
-<p><strong>When does this break down?</strong> The construction in <a href="#eq-9-3">(9.3)</a> assumes that <span class="math inline">\(A(\lambda)\)</span> is an analytic function of <span class="math inline">\(\lambda\)</span> close to <span class="math inline">\(\lambda=0\)</span>, and this assumption is not always true. There are three paradigmatic quantum states that are known to be intrinsically non-perturbative in this sense, and we mention them explicitly since they mark the limit of everything that we derive below. We met the same three cases in Section <a href="../session3/03-where-perturbation-theory-breaks-down.html#sec-3-3">3.3</a>.</p>
+<div class="quiz" data-correct="A" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Two levels have <span class="math inline">\(H_0=\mathrm{diag}(0,\Delta)\)</span> with <span class="math inline">\(\Delta&gt;0\)</span>, and <span class="math inline">\(V=v\sigma_x\)</span>. At first order the coefficient of <span class="math inline">\(|m\rangle\)</span> in <span class="math inline">\(|n(\lambda)\rangle\)</span> is</p>
+<p><span class="math display">\[c_m=\frac{\langle m|V|n\rangle}{E_n^{(0)}-E_m^{(0)}}.\]</span></p>
+<p>What is the coefficient of <span class="math inline">\(|2\rangle\)</span> in the ground state?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(-v/\Delta\)</span></li>
+<li><span class="math inline">\(+v/\Delta\)</span></li>
+<li><span class="math inline">\(-v^2/\Delta\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
 <ul>
-<li><p><strong>An impurity in a metal, the orthogonality catastrophe.</strong> In the thermodynamic limit, the many-body wavefunction of a metal with the impurity becomes exactly orthogonal to the one without it. This happens for any strength of the impurity potential, even a very weak one.</p></li>
-<li><p><strong>A quantum spin in a metal, the Kondo effect.</strong> The Kondo temperature that emerges is non-perturbative in the Kondo coupling. It has an essential singularity in the coupling constant and not a power series, and Section <a href="../session8/11-from-a-single-kondo-impurity-to-the-kondo-lattice.html#sec-8-11">8.11</a> treats the Kondo impurity in full.</p></li>
-<li><p><strong>Superconductivity in the BCS limit.</strong> In the same way, the superconducting gap of <a href="../session5/index.html">Session 5</a> is non-perturbative in the attractive coupling constant.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The matrix element is <span class="math inline">\(\langle 2|V|1\rangle=v\)</span>, and the ground state <span class="math inline">\(|1\rangle\)</span> lies below <span class="math inline">\(|2\rangle\)</span>, so the denominator is <span class="math inline">\(0-\Delta\)</span>. For <span class="math inline">\(v=0.1\Delta\)</span> the exact ground state gives <span class="math inline">\(-0.0990\)</span>, close to <span class="math inline">\(-0.1\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. This is the coefficient of <span class="math inline">\(|1\rangle\)</span> in the excited state, where the denominator is <span class="math inline">\(\Delta-0\)</span>. For <span class="math inline">\(v=0.1\Delta\)</span> the exact ground state gives <span class="math inline">\(-0.0990\)</span>, with a minus sign.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. This is the energy shift of the ground state at second order, which has the units of an energy. For <span class="math inline">\(v=0.1\Delta\)</span> it is <span class="math inline">\(-0.01\Delta\)</span>, while the coefficient is <span class="math inline">\(-0.1\)</span>.</p></li>
 </ul>
-<p>In the rest of this session we stay in the regime where perturbation theory <em>does</em> work, which is the regime where <a href="#eq-9-2">(9.2)</a> and <a href="#eq-9-3">(9.3)</a> give a controlled and systematic way to compute responses.</p>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>Take two levels, <span class="math inline">\(H_0=\mathrm{diag}(0,\Delta)\)</span>, and the perturbation <span class="math inline">\(V=v\sigma_x\)</span> with <span class="math inline">\(v=0.1\Delta\)</span> and <span class="math inline">\(\lambda=1\)</span>. Find the coefficient of <span class="math inline">\(|2\rangle\)</span> in the ground state from <a href="#eq-9-3">(9.3)</a> and compare it with the exact ground state. Do the same for the energy shift of the ground state, which starts at second order.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>From <a href="#eq-9-3">(9.3)</a> the coefficient is <span class="math inline">\(\langle 2|V|1\rangle/(E_1^{(0)}-E_2^{(0)})\)</span>, which is <span class="math inline">\(v/(0-\Delta)=-0.1\)</span>.</p>
+<p>The exact levels of the matrix <span class="math inline">\(\begin{pmatrix}0&amp;v\\ v&amp;\Delta\end{pmatrix}\)</span> are <span class="math inline">\(E_\pm=\Delta/2\pm\sqrt{\Delta^2/4+v^2}\)</span>, so the ground state has <span class="math inline">\(E_-=-0.0099\Delta\)</span>. Its eigenvector is <span class="math inline">\(|1\rangle+c\,|2\rangle\)</span> with <span class="math inline">\(c=E_-/v=-0.0990\)</span>. This is the number to compare, since <a href="#eq-9-3">(9.3)</a> also keeps the coefficient of <span class="math inline">\(|1\rangle\)</span> equal to one, and it is one percent away from <span class="math inline">\(-0.1\)</span>. After normalization the coefficient of <span class="math inline">\(|2\rangle\)</span> is <span class="math inline">\(c/\sqrt{1+c^2}=-0.0985\)</span>.</p>
+<p>For the energy we project the eigenvalue equation onto <span class="math inline">\(\langle 1|\)</span>, which gives <span class="math inline">\(E_1(\lambda)=\lambda v\,c\)</span>. With the first-order <span class="math inline">\(c=-v/\Delta\)</span> this is the second-order shift <span class="math inline">\(-v^2/\Delta=-0.01\Delta\)</span>, against the exact <span class="math inline">\(-0.0099\Delta\)</span>.</p>
+<p>Both errors are one percent, which is <span class="math inline">\((v/\Delta)^2\)</span>. So the expansion is controlled when the matrix element is small next to the spacing of the levels, and this ratio is the one that grows without bound near a degeneracy.</p>
+</div>
+</details>
+</div>
+</div>
 <div class="comesback">
 <div class="comesback-label">
 Where this comes back
