@@ -548,7 +548,6 @@ def build_session(n, m, sessions, built, labels_path, page=None):
     intro = pages[0]
     sdir = os.path.join(NOTES, f'session{n}')
     links = (f'  <p class="links">Exercises <a href="{T.REPO}/blob/main/jupyter-notebooks/session{n}.ipynb">session{n}.ipynb</a> · '
-             f'Slides <a href="{T.REPO}/blob/main/slides_prerecordings/lecture{n}.pdf">lecture{n}.pdf</a> · '
              f'<a href="{T.REPO}/blob/main/lecture_notes/main.pdf">PDF of the notes</a></p>\n')
     out = {}
     if not page or intro['file'] == page:

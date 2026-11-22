@@ -19,7 +19,6 @@ RELEASE = REPO + '/releases/download'
 FORMATS = {
     'lectures': {
         'name': 'Video lectures',
-        'mode': 'Slides',
         'release': 'lectures',
         'blurb': ('The prerecorded lectures with slides that follow the voice. Each step of a calculation is written '
                   'when it is said. Next to the formulas there is a schematic or a plot, computed with the codes of '
@@ -79,7 +78,7 @@ STYLE = """
   .tabs a.on { color: var(--fg); font-weight: 600; border-bottom-color: var(--accent); }
   .tabs span { opacity: 0.6; }
   .links { color: var(--muted); font-size: 0.93rem; margin: 10px 0 16px; }
-  /* the version of a video lecture, slides or landscape, chosen above the video */
+  /* the landscape versions of a video lecture, switched on and off above the video */
   .mode { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0 6px; }
   .mode .sublab { color: var(--muted); font-size: 0.9rem; margin-right: 4px; }
   .mode a { padding: 3px 14px; border: 1px solid var(--rule); border-radius: 999px; text-decoration: none; color: var(--fg);
@@ -161,10 +160,10 @@ def chips(sessions, n, href, ready=lambda k: True, off=lambda k: False):
 
 def session_tabs(n, on, up, notes=None):
     """The two views of session n, the video lecture and the notes. on is 'lectures', 'landscape' or 'notes'. The
-    landscape lecture is a version of the video lecture, chosen above the video with modes(), so both recordings
-    have the tab of the video lecture on. Every page of a session has the same tabs, from this one function."""
-    video = on if on in FORMATS else 'lectures'
-    out = [f'<a class="{"on" if on in FORMATS else ""}" href="{up}{video}/session{n}.html">Video lecture</a>']
+    landscape lecture is a version of the video lecture, switched on above the video with modes(), so both recordings
+    have the tab of the video lecture on. The tab always opens the video lecture itself, which is also the way back
+    from the landscape version. Every page of a session has the same tabs, from this one function."""
+    out = [f'<a class="{"on" if on in FORMATS else ""}" href="{up}lectures/session{n}.html">Video lecture</a>']
     if has_notes(n) if notes is None else notes:
         out.append(f'<a class="{"on" if on == "notes" else ""}" href="{up}notes/session{n}/index.html">Lecture notes</a>')
     else:
@@ -173,16 +172,20 @@ def session_tabs(n, on, up, notes=None):
 
 
 def modes(fmt, s):
-    """The versions of the video lecture of a session, as a row of links above the video, and one line that says what
-    the chosen version is. The landscape lecture with floating formulas is the landscape page with #floating, and the
-    script of that page changes the video, the chosen link and the line when the hash changes."""
+    """The landscape versions of the video lecture of a session, as a row of switches above the video, and one line
+    that says what the video on the page is. The video lecture itself has no switch: a switch that is on links back to
+    it, and so does the tab. The landscape lecture with floating formulas is the landscape page with #floating, and
+    the script of that page changes the video, the switches and the line when the hash changes."""
     n = s['session']
+    back = f'../lectures/session{n}.html'
+    go = {'landscape': f'../landscape/session{n}.html', 'floating': f'../landscape/session{n}.html#floating'}
+    names = {'landscape': FORMATS['landscape']['mode'], 'floating': FLOATING['mode']}
     out = ['<span class="sublab">Version</span>']
-    for f, F in FORMATS.items():
-        out.append(f'<a class="{"on" if f == fmt else ""}" data-mode="{f}" href="../{f}/session{n}.html">{F["mode"]}</a>')
-    if s.get('floating'):
-        out.append(f'<a data-mode="floating" href="../landscape/session{n}.html#floating">{FLOATING["mode"]}</a>')
-    b = '  <nav class="mode" aria-label="Version of the video lecture">' + ''.join(out) + '</nav>\n'
+    for m in ['landscape'] + (['floating'] if s.get('floating') else []):
+        on = m == fmt
+        out.append(f'<a class="{"on" if on else ""}" data-mode="{m}" data-go="{go[m]}" data-back="{back}" '
+                   f'href="{back if on else go[m]}">{names[m]}</a>')
+    b = '  <nav class="mode" aria-label="Landscape versions of the video lecture">' + ''.join(out) + '</nav>\n'
     b += f'  <p class="modenote">{FORMATS[fmt]["blurb"]}</p>\n'
     return b
 
@@ -196,7 +199,11 @@ FLOATING_SCRIPT = """  <script>
         var m = location.hash === '#floating' ? 'floating' : 'landscape';
         if (video.getAttribute('src') !== V[m][0]) video.setAttribute('src', V[m][0]);
         note.textContent = V[m][1];
-        links.forEach(function (a) { a.classList.toggle('on', a.dataset.mode === m); });
+        links.forEach(function (a) {
+          var on = a.dataset.mode === m;
+          a.classList.toggle('on', on);
+          a.setAttribute('href', on ? a.dataset.back : a.dataset.go);
+        });
       }
       window.addEventListener('hashchange', set);
       set();
@@ -269,10 +276,10 @@ def session_page(fmt, sessions, s):
     by = {x['session']: x for x in sessions}
     b = top('../', chips(sessions, n, lambda k: f'session{k}.html', off=lambda k: not has_video(by[k], fmt)))
     b += session_head(n, s['title'], fmt, '../')
-    b += f'  <p class="links">Slides <a href="{REPO}/blob/main/slides_prerecordings/lecture{n}.pdf">lecture{n}.pdf</a>'
+    b += '  <p class="links">'
     if s.get('notebook'):
-        b += f' · Exercises <a href="{REPO}/blob/main/jupyter-notebooks/session{n}.ipynb">session{n}.ipynb</a>'
-    b += f' · <a href="{REPO}/blob/main/lecture_notes/main.pdf">PDF of the notes</a></p>\n'
+        b += f'Exercises <a href="{REPO}/blob/main/jupyter-notebooks/session{n}.ipynb">session{n}.ipynb</a> · '
+    b += f'<a href="{REPO}/blob/main/lecture_notes/main.pdf">PDF of the notes</a></p>\n'
     b += modes(fmt, s)
     src = lambda release: f'{RELEASE}/{release}/session{n}.mp4#t=0.1'
     if has_video(s, fmt):
@@ -318,7 +325,6 @@ def landing(sessions):
             b += '<span class="soon">Lecture notes (not ready yet)</span>'
         if s.get('notebook'):
             b += f'<a class="minor" href="{REPO}/blob/main/jupyter-notebooks/session{n}.ipynb">Notebook</a>'
-        b += f'<a class="minor" href="{REPO}/blob/main/slides_prerecordings/lecture{n}.pdf">Slides</a>'
         b += '</p></div></li>\n'
     b += '  </ol>\n'
     b += ('  <p class="note"><a href="notes/index.html">Contents of the notes</a> · '

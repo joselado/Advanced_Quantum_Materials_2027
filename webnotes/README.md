@@ -97,9 +97,11 @@ The navigation of the site exists once, in `docs/build_site.py`, and `template.p
 with `top()`, the name of the course as the link to the home page and the row of the sessions from `chips()`.
 A page of a session then has `session_head()`, the number and the title of the session and the two tabs
 "Video lecture" and "Lecture notes" from `session_tabs()`. The landscape lecture is not a tab. It is a version
-of the video lecture, and `modes()` writes the row "Version" above the video, with "Slides", "Landscape" and,
-when the session has it, "Landscape with floating formulas". The two recordings keep their pages in
-`docs/lectures/` and `docs/landscape/`, and the floating version is the landscape page with `#floating`. The pages end with `pager()`,
+of the video lecture, and `modes()` writes the row "Version" above the video, with the switches "Landscape" and,
+when the session has it, "Landscape with floating formulas". The video lecture itself has no switch. A switch
+that is on links back to it, and so does the tab. The two recordings keep their pages in
+`docs/lectures/` and `docs/landscape/`, and the floating version is the landscape page with `#floating`. The
+PDF decks of `slides_prerecordings/` are not linked from the site. The pages end with `pager()`,
 the previous and the next page with their titles, and with `footer()`. A change of the navigation is done
 there and nowhere else. After it we run both builds, since the style is inline in every page.
 

@@ -792,16 +792,19 @@ header line, the tabs and the video pages. The text of the notes does not change
    lecture" and "Lecture notes", written by one function of `docs/build_site.py` that
    `template.py` imports. The landscape lecture is not a tab, in the words of the lecturer it is
    "a mode to choose inside of video lecture". It is the row "Version" above the video, with
-   "Slides", "Landscape" and "Landscape with floating formulas". The slides, the notebook and
-   the PDF are one line under the tabs. The title of a session is the one of
+   the switches "Landscape" and "Landscape with floating formulas". The video lecture itself has
+   no switch, and the tab is the way back to it. The notebook and the PDF of the notes are one
+   line under the tabs. The word "Slides" named both a switch and the link to the PDF deck of
+   the session, and the lecturer removed both on 2026-11-22 ("remove both from the webnotes").
+   The decks stay in `slides_prerecordings/`. The title of a session is the one of
    `docs/sessions.json` on every page. The chapter titles of the PDF differ from it in sessions
    2, 4 and 7, and they stay in the PDF.
 2. The list of the sections. A page of the notes shows the pages of its session at the left, with
    the page we are on marked and "Page 4 of 16 of this session" above the title. On a narrow
    screen the list is a fold. The previous and the next page are two labeled boxes with their
    titles.
-3. The home page by session. One row per session with its video lecture, its notes, its
-   notebook and its slides. The chart of the film rules is no longer on the site, since the
+3. The home page by session. One row per session with its video lecture, its notes and its
+   notebook. The chart of the film rules is no longer on the site, since the
    lecturer said "the rules about the landscape can go meaning that image".
 4. Reading. The text is a column of 728 px, about 85 characters instead of 96. A column of 680 px
    was tried first, and 19 of the 997 display equations scrolled sideways in it, against 8 at
