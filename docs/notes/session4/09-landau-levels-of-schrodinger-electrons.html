@@ -85,18 +85,55 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="on" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 4. Electrons in a Magnetic Field, Quantum Hall Effect and Landau Levels</a></p>
 <h1 id="sec-4-9"><span class="num">4.9</span> Landau levels of Schrödinger electrons</h1>
+<p>What is the spectrum of a free electron in a uniform magnetic field? We will now see that each momentum <span class="math inline">\(k_y\)</span> gives the same harmonic oscillator, only placed at another position. So the levels <a href="#eq-4-6">(4.6)</a> are flat bands, and each of them holds one state per flux quantum through the sample.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[\boldsymbol{\pi} = \mathbf{p} - e\mathbf{A}, \tag{4.3}\]</span></p>
+</div>
+<p>This is minimal coupling, from Section <a href="06-quantized-hall-plateaus-in-experiment.html#sec-4-7">4.7</a>. The magnetic field <span class="math inline">\(\mathbf B=\nabla\times\mathbf A\)</span> enters the Hamiltonian through the kinetic momentum <span class="math inline">\(\boldsymbol\pi\)</span>, also called the mechanical momentum, where <span class="math inline">\(\mathbf p\)</span> is the canonical momentum and <span class="math inline">\(\mathbf A\)</span> the vector potential. The carriers have the charge <span class="math inline">\(+e\)</span>.</p>
+</div>
 <p>Let us now solve for the spectrum, and let us start with the simplest case. These are free electrons with no lattice and no potential apart from the field itself, and with dispersion <span class="math inline">\(p^2/2m\)</span> before we switch on the field. With minimal coupling and the Landau gauge <span class="math inline">\(\mathbf{A}=(0,Bx,0)\)</span> we have</p>
 <p><span id="eq-4-5" class="eq"><span class="math display">\[H = \frac{\pi_x^2+\pi_y^2}{2m} = \frac{p_x^2}{2m} + \frac{(p_y-Bx)^2}{2m}. \tag{4.5}\]</span></span></p>
 <p>We take the charge of the carriers to be <span class="math inline">\(+e\)</span> in <a href="06-quantized-hall-plateaus-in-experiment.html#eq-4-3">(4.3)</a> and we set <span class="math inline">\(e=1\)</span> in all this session, while we keep <span class="math inline">\(\hbar\)</span> explicit. This is a choice of convention, but it has consequences, since it fixes <span class="math inline">\([\pi_x,\pi_y]=+i\hbar^2/\ell_B^2\)</span>. The ladder operators of Section <a href="10-landau-levels-of-dirac-electrons.html#sec-4-10">4.10</a> and the holomorphic wavefunctions of Section <a href="13-the-symmetric-gauge-and-the-lowest-landau-level-wavefunctions.html#sec-4-13">4.13</a> are built on this convention. For an electron, which has charge <span class="math inline">\(-e\)</span>, every cyclotron orbit and every edge current below goes around in the other direction, and nothing else changes.</p>
 <p>Since <span class="math inline">\(\mathbf{A}\)</span> does not depend on <span class="math inline">\(y\)</span>, we have <span class="math inline">\([H,p_y]=0\)</span>, so we can look for eigenstates of the form <span class="math inline">\(\psi(x,y) = e^{ik_y y}\phi(x)\)</span>. With the replacement <span class="math inline">\(p_y\to\hbar k_y\)</span>, the Hamiltonian <a href="#eq-4-5">(4.5)</a> becomes a one-dimensional problem in <span class="math inline">\(x\)</span>,</p>
 <p><span class="math display">\[H\phi(x) = \left[\frac{p_x^2}{2m} + \frac{B^2}{2m}\Big(x-\frac{\hbar k_y}{B}\Big)^2\right]\phi(x),\]</span></p>
 <p>which is exactly the Hamiltonian of a quantum harmonic oscillator centered at <span class="math inline">\(x_0 = \hbar
-k_y/B\)</span>, with frequency <span class="math inline">\(\omega_c = B/m\)</span>, the cyclotron frequency. The shift of the center is removed with the change of variable <span class="math inline">\(x\to x-x_0\)</span>. When we solve it with the same ladder operators as the ordinary harmonic oscillator we obtain</p>
+k_y/B\)</span>, with frequency <span class="math inline">\(\omega_c = B/m\)</span>, the cyclotron frequency. The shift of the center is removed with the change of variable <span class="math inline">\(x\to x-x_0\)</span>. When we solve it with the same ladder operators as the ordinary harmonic oscillator we obtain the Landau levels.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>The Landau levels of Schrödinger electrons are</p>
 <p><span id="eq-4-6" class="eq"><span class="math display">\[E_n = \hbar\omega_c\left(n+\frac{1}{2}\right), \qquad n=0,1,2,\dots, \tag{4.6}\]</span></span></p>
-<p>which does not depend on <span class="math inline">\(k_y\)</span> at all. Every value of <span class="math inline">\(k_y\)</span>, or in other words every choice of the guiding center <span class="math inline">\(x_0\)</span>, gives the same energy. This is the reason why the Landau levels are flat bands, and why each of them has a macroscopic degeneracy that is proportional to the area of the sample. Figure <a href="#fig:s04:guidingcenter">4.3</a> shows this mechanism directly, with the same well placed at different positions, and with the degeneracy counted as one orbital for each flux quantum through the sample. When we put in the real physical constants for a field typical of GaAs, we obtain the millielectronvolt scale that we gave in Section <a href="01-where-the-quantum-hall-state-shows-up.html#sec-4-1">4.1</a>.</p>
+<p>with <span class="math inline">\(\omega_c=B/m\)</span>. The energy does not depend on <span class="math inline">\(k_y\)</span>, so each level is a flat band, and in a sample of area <span class="math inline">\(A\)</span> it holds <span class="math inline">\(BA/(h/e)\)</span> states, one for each flux quantum <span class="math inline">\(h/e\)</span> through the sample.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the Hamiltonian (4.5) to the Landau levels (4.6)</span></summary>
+<div class="fold-body">
+<p>Let us take first <span class="math inline">\(k_y=0\)</span>. The term <span class="math inline">\((p_y-Bx)^2\)</span> becomes <span class="math inline">\(B^2x^2\)</span>, and <a href="#eq-4-5">(4.5)</a> is</p>
+<p><span class="math display">\[H=\frac{p_x^2}{2m}+\frac{B^2}{2m}\,x^2=\frac{p_x^2}{2m}+\frac12\,m\omega_c^2\,x^2, \qquad \omega_c=\frac{B}{m},\]</span></p>
+<p>since <span class="math inline">\(B^2/2m=\tfrac12m(B/m)^2\)</span>. This is the harmonic oscillator with the frequency <span class="math inline">\(\omega_c\)</span>, centered at <span class="math inline">\(x=0\)</span>, so its levels are <span class="math inline">\(\hbar\omega_c(n+\tfrac12)\)</span>.</p>
+<p>For any <span class="math inline">\(k_y\)</span> we complete the square,</p>
+<p><span class="math display">\[(\hbar k_y-Bx)^2=B^2\Big(x-\frac{\hbar k_y}{B}\Big)^2=B^2(x-x_0)^2,\]</span></p>
+<p>meaning that the oscillator keeps its frequency and only its center moves, to <span class="math inline">\(x_0=\hbar k_y/B=k_y\ell_B^2\)</span> with <span class="math inline">\(\ell_B^2=\hbar/B\)</span>. The change of variable <span class="math inline">\(x&#39;=x-x_0\)</span> does not change <span class="math inline">\(p_x=-i\hbar\,\partial_x\)</span>, so the levels are the same as for <span class="math inline">\(k_y=0\)</span>, which is <a href="#eq-4-6">(4.6)</a> for every <span class="math inline">\(k_y\)</span>. The state of the level <span class="math inline">\(n\)</span> is <span class="math inline">\(e^{ik_yy}\phi_n(x-x_0)\)</span>, with <span class="math inline">\(\phi_n\)</span> the oscillator state, and for <span class="math inline">\(n=0\)</span> it is the Gaussian <span class="math inline">\(e^{-(x-x_0)^2/2\ell_B^2}\)</span>.</p>
+</div>
+</details>
+</div>
+<p>The energy <a href="#eq-4-6">(4.6)</a> does not depend on <span class="math inline">\(k_y\)</span> at all. Every value of <span class="math inline">\(k_y\)</span>, or in other words every choice of the guiding center <span class="math inline">\(x_0\)</span>, gives the same energy. This is the reason why the Landau levels are flat bands, and why each of them has a macroscopic degeneracy that is proportional to the area of the sample. Figure <a href="#fig:s04:guidingcenter">4.3</a> shows this mechanism directly, with the same well placed at different positions, and with the degeneracy counted as one orbital for each flux quantum through the sample. When we put in the real physical constants for a field typical of GaAs, we obtain the millielectronvolt scale that we gave in Section <a href="01-where-the-quantum-hall-state-shows-up.html#sec-4-1">4.1</a>.</p>
 <figure id="fig:s04:guidingcenter">
 <img src="../figures/s04f03_guidingcenter.svg" loading="lazy" alt="Why the Landau levels are flat." />
 <figcaption><strong>Figure 4.3.</strong> Why the Landau levels are flat. (a) In the Landau gauge each <span class="math inline">\(k_y\)</span> reduces <a href="#eq-4-5">(4.5)</a> to a one-dimensional harmonic oscillator in <span class="math inline">\(x\)</span>, which is the same in every respect except that it is centred on the guiding centre <span class="math inline">\(x_0=\hbar k_y/B\)</span>. When <span class="math inline">\(k_y\)</span> increases, the whole well moves to the right without changing its curvature. Every well therefore has the same ladder <span class="math inline">\(E_n=\hbar\omega_c(n+\tfrac 12)\)</span>, drawn here as the horizontal guides, and the ground-state wavepacket of each well, the red bump, has the same shape at a different position. (b) As a function of <span class="math inline">\(k_y\)</span>, this is a set of bands with no dispersion at all, and the three balls are the three values of <span class="math inline">\(k_y\)</span> of (a). The flatness is not an artefact of the gauge. It means that the energy does not depend on the position of the electron in the sample, and this is also the origin of the very large degeneracy of the Landau levels.</figcaption>
+</figure>
+<p>On a lattice the same levels appear at the bottom of a band, where the dispersion is parabolic, and <a href="#sch:s04:g3_landau_fan">Schematic 4.6</a> shows them for the square lattice. They are computed with pyqula as a function of the flux through one plaquette, which is the Landau fan of the notebook.</p>
+<figure id="sch:s04:g3_landau_fan" class="schematic has-script">
+<img src="../figures/web/session04/g3_landau_fan.svg" loading="lazy" alt="Dots of the lowest Landau levels of the square lattice against the flux per plaquette, on straight dashed lines that start at the bottom of the band, with the dots of the higher levels bending below their lines at large flux." />
+<div class="script-row">
+<a href="../scripts/session04/g3_landau_fan_square.py" class="script-dl" download="g3_landau_fan_square.py">Download the pyqula script</a> <span class="script-name"><code>g3_landau_fan_square.py</code></span>
+</div>
+<figcaption><strong>Schematic 4.6.</strong> The Landau levels of the square lattice against the flux <span class="math inline">\(\phi\)</span> through one plaquette, in units of the flux quantum <span class="math inline">\(h/e\)</span>, computed with pyqula. The energy is in units of the hopping <span class="math inline">\(t\)</span>, and the bottom of the band is at <span class="math inline">\(-4t\)</span>. Each column of dots is one bulk magnetic cell of <span class="math inline">\(q\)</span> sites with one flux quantum, so <span class="math inline">\(\phi=1/q\)</span> with <span class="math inline">\(q\)</span> from <span class="math inline">\(10\)</span> to <span class="math inline">\(60\)</span>. The dots are its lowest levels below <span class="math inline">\(-2.5\,t\)</span>, up to six, so at strong flux the higher levels leave the window, and at <span class="math inline">\(\phi=0.1\)</span> only one is left. The dashed lines are the levels <a href="#eq-4-6">(4.6)</a> measured from the bottom of the band, <span class="math inline">\(-4t+\hbar\omega_c(n+\tfrac12)\)</span>, with <span class="math inline">\(\hbar\omega_c=4\pi\phi\,t\)</span> of Section <a href="../session3/06b-the-quantum-hall-ribbon-on-the-lattice.html#sec-3-6b">3.6b</a>. Each level starts at the bottom of the band and grows linearly with the field, as <a href="#eq-4-6">(4.6)</a> says. At <span class="math inline">\(\phi=0.05\)</span>, the dotted line, the two lowest levels are at <span class="math inline">\(-3.70\,t\)</span> and <span class="math inline">\(-3.12\,t\)</span>, against <span class="math inline">\(-3.69\,t\)</span> and <span class="math inline">\(-3.06\,t\)</span> of the lines. Look at how the dots fall below the lines for the higher levels and the larger flux, which is the correction of the lattice to the parabolic band.</figcaption>
 </figure>
 <div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
@@ -154,6 +191,49 @@ Question
 </ul>
 </div>
 </details>
+</div>
+<div class="quiz" data-correct="A" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>A Landau level holds one state for each flux quantum <span class="math inline">\(h/e\)</span> through the sample. How many states does it hold per unit area?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(eB/h\)</span></li>
+<li><span class="math inline">\(h/eB\)</span></li>
+<li><span class="math inline">\(eB/2\pi m\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. The flux per unit area is <span class="math inline">\(B\)</span>, and we divide it by the flux quantum <span class="math inline">\(h/e\)</span>. At <span class="math inline">\(1\)</span> T this is <span class="math inline">\(241.8\)</span> states per <span class="math inline">\(\mu\mathrm m^2\)</span>, the same for every mass.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. This is an area, <span class="math inline">\(4136\,\mathrm{nm}^2\)</span> at <span class="math inline">\(1\)</span> T, and it gets smaller when the field grows. It is the area that one state takes, and not the number of states per unit area.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. This is <span class="math inline">\(\omega_c/2\pi\)</span>, a frequency, which is <span class="math inline">\(418\)</span> GHz for the mass <span class="math inline">\(0.067\,m_e\)</span> of GaAs at <span class="math inline">\(1\)</span> T. It depends on the mass, while the number of states of a level does not.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>A sample has the size <span class="math inline">\(L_x\times L_y\)</span> and is periodic along <span class="math inline">\(y\)</span>, so <span class="math inline">\(k_y=2\pi j/L_y\)</span> with <span class="math inline">\(j\)</span> an integer. In the Landau gauge each <span class="math inline">\(k_y\)</span> gives one state of a level, centered at <span class="math inline">\(x_0=\hbar k_y/B\)</span>. Count the values of <span class="math inline">\(k_y\)</span> whose guiding center lies inside the sample, <span class="math inline">\(0\le x_0&lt;L_x\)</span>, and give the number for an area of <span class="math inline">\(1\,\mu\mathrm m^2\)</span> at <span class="math inline">\(1\)</span> T.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>The guiding center is inside the sample when <span class="math inline">\(0\le k_y&lt;BL_x/\hbar\)</span>. The values of <span class="math inline">\(k_y\)</span> are spaced by <span class="math inline">\(2\pi/L_y\)</span>, so their number is</p>
+<p><span class="math display">\[N=\frac{BL_x/\hbar}{2\pi/L_y}=\frac{BL_xL_y}{2\pi\hbar}=\frac{BA}{h},\]</span></p>
+<p>with <span class="math inline">\(A=L_xL_y\)</span> the area. With the charge written again, <span class="math inline">\(N=BA/(h/e)\)</span>, which is the flux through the sample in units of the flux quantum <span class="math inline">\(h/e=4.14\times10^{-15}\)</span> T m<span class="math inline">\(^2\)</span>. For <span class="math inline">\(A=1\,\mu\mathrm m^2\)</span> and <span class="math inline">\(B=1\)</span> T we get <span class="math inline">\(N=241.8\)</span>, and the count of the integers <span class="math inline">\(j\)</span> gives <span class="math inline">\(242\)</span>. The mass does not enter, so every Landau level of every parabolic band holds the same number of states.</p>
+<p>This is the number of electrons that one filled level holds. A sample with the density <span class="math inline">\(n\)</span> then fills <span class="math inline">\(\nu=nh/(eB)\)</span> levels, and this filling is what the Hall plateaus count when the field is swept.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="tryit">
 <p><strong>Try it.</strong> Run the cell, which shows the density of states of the bulk for the three fields. Measure the distance between the first two peaks in each panel. It grows roughly in proportion to <code>B</code>, as the cyclotron energy of <a href="#eq-4-6">(4.6)</a> does.</p>

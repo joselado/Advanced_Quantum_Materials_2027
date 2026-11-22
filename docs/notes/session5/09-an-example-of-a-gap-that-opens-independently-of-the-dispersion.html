@@ -85,12 +85,32 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="on" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 5. Superconductivity, Nambu Representation and Majorana Physics</a></p>
 <h1 id="sec-5-9"><span class="num">5.9</span> An example of a gap that opens independently of the dispersion</h1>
-<p>Equation <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#eq-5-9">(5.9)</a> already tells us where the gap opens. The gap opens at the minimum of <span class="math inline">\(E(\mathbf k)\)</span>, which is where <span class="math inline">\(\varepsilon(\mathbf
-k) = 0\)</span>, so on the original Fermi surface, and the minimum gap there is <span class="math inline">\(|\Delta(\mathbf
-k)|\)</span> evaluated on that Fermi surface. Nothing in this argument depends on the details of <span class="math inline">\(\varepsilon(\mathbf k)\)</span>, such as the range of the hopping, the lattice geometry or the position of the chemical potential. For concreteness, let us take the single-orbital square lattice with <span class="math inline">\(\varepsilon(\mathbf k) = -2t\left(\cos k_x + \cos k_y\right) - \mu\)</span>, as in <a href="../session2/08-higher-dimensional-band-structures.html#eq-2-14">(2.14)</a>, and a chemical potential such that the physical red band and the spurious blue mirror band cross. When we turn on a constant <span class="math inline">\(\Delta\)</span>, a gap of size <span class="math inline">\(2|\Delta|\)</span> opens at every such crossing, for <em>any</em> choice of the chemical potential along this dispersion. The same statement holds if we do the calculation on the triangular lattice instead of the square lattice. As we move the chemical potential across the band of the triangular lattice, a uniform <span class="math inline">\(\Delta\)</span> still opens a gap everywhere the physical and the spurious bands cross. This is the general signature of <em>conventional</em> superconductivity, which is fully gapped, since a uniform <span class="math inline">\(\Delta(\mathbf k)\)</span> that does not depend on momentum always gaps the whole Fermi surface, regardless of the microscopic details. Schematic <a href="#sch:s05:gap_any_mu">Schematic 5.6</a> shows this for a chain and three chemical potentials. The curve moves and the Fermi momentum moves, and the minimum of <span class="math inline">\(E(k)\)</span> stays at <span class="math inline">\(|\Delta|\)</span>.</p>
-<figure id="sch:s05:gap_any_mu" class="schematic">
-<img src="../figures/web/session05/gap_any_mu.svg" loading="lazy" alt="Three curves of the quasiparticle energy against momentum, each with a minimum at its own Fermi momentum and all at the same height." />
-<figcaption><strong>Schematic 5.6.</strong> The quasiparticle energy <span class="math inline">\(E(k)\)</span> for <span class="math inline">\(\varepsilon(k)=-2t\cos k-\mu\)</span> and <span class="math inline">\(\Delta=0.3t\)</span>, for <span class="math inline">\(\mu=-1.2t\)</span>, <span class="math inline">\(0\)</span> and <span class="math inline">\(1.2t\)</span>. The minimum is at <span class="math inline">\(k_F\)</span>, where <span class="math inline">\(\varepsilon=0\)</span>, and it has the same value <span class="math inline">\(|\Delta|\)</span> in the three cases.</figcaption>
+<p>Does the gap of a uniform pairing depend on the band structure, and what changes when <span class="math inline">\(\Delta(\mathbf k)\)</span> has nodes? We will now see that a uniform <span class="math inline">\(\Delta\)</span> opens a full gap for any dispersion and any chemical potential inside the band. For a <span class="math inline">\(\Delta(\mathbf k)\)</span> that depends on momentum, one Fermi surface has three possible outcomes, which are a metal, a full gap and a nodal superconductor.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[E(\mathbf k) = \pm\sqrt{\varepsilon(\mathbf k)^2 + |\Delta(\mathbf k)|^2}. \tag{5.9}\]</span></p>
+</div>
+<p>This is the quasiparticle energy of Section <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#sec-5-8">5.8</a>, the eigenvalues of the BdG matrix of one band. Here <span class="math inline">\(\varepsilon(\mathbf k)\)</span> is the band measured from the chemical potential, and <span class="math inline">\(\Delta(\mathbf k)\)</span> is the pair amplitude.</p>
+</div>
+<p>Equation <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#eq-5-9">(5.9)</a> already tells us where the gap opens. The gap opens at the minimum of <span class="math inline">\(E(\mathbf k)\)</span>, which is where <span class="math inline">\(\varepsilon(\mathbf k) = 0\)</span>, so on the original Fermi surface, and the minimum gap there is <span class="math inline">\(|\Delta(\mathbf k)|\)</span> evaluated on that Fermi surface. Nothing in this argument depends on the details of <span class="math inline">\(\varepsilon(\mathbf k)\)</span>, such as the range of the hopping, the lattice geometry or the position of the chemical potential.</p>
+<p>For concreteness, let us take the single-orbital square lattice with <span class="math inline">\(\varepsilon(\mathbf k) = -2t\left(\cos k_x + \cos k_y\right) - \mu\)</span>, as in <a href="../session2/08-higher-dimensional-band-structures.html#eq-2-14">(2.14)</a>. We choose a chemical potential such that the electron band, which is the physical one, and its spurious mirror, the hole band, cross. When we turn on a constant <span class="math inline">\(\Delta\)</span>, a gap of size <span class="math inline">\(2|\Delta|\)</span> opens at every such crossing, for <em>any</em> choice of the chemical potential along this dispersion. Schematic <a href="#sch:s05:gap_any_mu">Schematic 5.8</a> shows this for a chain and three chemical potentials. The curve moves and the Fermi momentum moves, and the minimum of <span class="math inline">\(E(k)\)</span> stays at <span class="math inline">\(|\Delta|\)</span>.</p>
+<figure id="sch:s05:gap_any_mu" class="schematic has-script">
+<img src="../figures/web/session05/gap_any_mu.svg" loading="lazy" alt="Three curves of the quasiparticle energy against momentum, each with a minimum at its own Fermi momentum and all at the height 0.3." />
+<div class="script-row">
+<a href="../scripts/session05/g2_swave_chain_mu.py" class="script-dl" download="g2_swave_chain_mu.py">Download the pyqula script</a> <span class="script-name"><code>g2_swave_chain_mu.py</code></span>
+</div>
+<figcaption><strong>Schematic 5.8.</strong> The quasiparticle energy <span class="math inline">\(E(k)\)</span> for <span class="math inline">\(\varepsilon(k)=-2t\cos k-\mu\)</span> and <span class="math inline">\(\Delta=0.3t\)</span>, for <span class="math inline">\(\mu=-1.2t\)</span>, <span class="math inline">\(0\)</span> and <span class="math inline">\(1.2t\)</span>, computed with pyqula, with the energy in units of <span class="math inline">\(t\)</span> and the momentum <span class="math inline">\(k\)</span> in units of the inverse lattice constant. The minimum is at <span class="math inline">\(k_F\)</span>, where <span class="math inline">\(\varepsilon=0\)</span>, which is <span class="math inline">\(k_F=0.93\)</span>, <span class="math inline">\(1.57\)</span> and <span class="math inline">\(2.21\)</span>, and it has the same value <span class="math inline">\(|\Delta|=0.3t\)</span> in the three cases. Look at the three minima, which move with <span class="math inline">\(\mu\)</span> and stay at the same height.</figcaption>
+</figure>
+<p>The same statement holds if we do the calculation on the triangular lattice instead of the square lattice. As we move the chemical potential across the band of the triangular lattice, a uniform <span class="math inline">\(\Delta\)</span> still opens a gap everywhere the physical and the spurious bands cross, as <a href="#sch:s05:g2_swave_triangular_mu">Schematic 5.9</a> shows for three chemical potentials. This is the general signature of <em>conventional</em> superconductivity, which is fully gapped, since a uniform <span class="math inline">\(\Delta(\mathbf k)\)</span> that does not depend on momentum always gaps the whole Fermi surface, regardless of the microscopic details.</p>
+<figure id="sch:s05:g2_swave_triangular_mu" class="schematic has-script">
+<img src="../figures/web/session05/g2_swave_triangular_mu.svg" loading="lazy" alt="Three panels of bands along Gamma, K, M, Gamma, colored from red for a hole to blue for an electron. In each panel the bands have gaps of the same size at two momenta, which are different in the three panels." />
+<div class="script-row">
+<a href="../scripts/session05/g2_swave_triangular_mu.py" class="script-dl" download="g2_swave_triangular_mu.py">Download the pyqula script</a> <span class="script-name"><code>g2_swave_triangular_mu.py</code></span>
+</div>
+<figcaption><strong>Schematic 5.9.</strong> The BdG bands of the triangular lattice with the uniform pairing <code>h.add_pairing(mode="swave", delta=0.4)</code> of the notebook, computed with pyqula along <span class="math inline">\(\Gamma\)</span>, <span class="math inline">\(K\)</span>, <span class="math inline">\(M\)</span>, <span class="math inline">\(\Gamma\)</span> for three chemical potentials. The energy is in units of the hopping <span class="math inline">\(|t|\)</span>, and the color is the electron weight. In pyqula the hopping is <span class="math inline">\(+1\)</span>, so the band runs from <span class="math inline">\(-3\)</span> at <span class="math inline">\(K\)</span> to <span class="math inline">\(6\)</span> at <span class="math inline">\(\Gamma\)</span>, and <code>h.add_onsite(x)</code> is the chemical potential <span class="math inline">\(\mu=-x\)</span>. For <span class="math inline">\(\mu=3\)</span> and <span class="math inline">\(\mu=0\)</span> the electron and the hole band cross between <span class="math inline">\(\Gamma\)</span> and <span class="math inline">\(K\)</span> and between <span class="math inline">\(M\)</span> and <span class="math inline">\(\Gamma\)</span>, and for <span class="math inline">\(\mu=-2.5\)</span> on both sides of <span class="math inline">\(K\)</span>. A gap opens at every crossing, and the smallest energy is <span class="math inline">\(|\Delta|=0.4\)</span> in the three cases. Look at where the arrows sit, since they move with <span class="math inline">\(\mu\)</span> while their length <span class="math inline">\(2|\Delta|=0.8\)</span> stays the same.</figcaption>
 </figure>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb"><code>session5.ipynb</code></a>, “Superconductivity, full spectral function and electron spectral function” (Core), and “The impact of superconductivity in an electronic structure” (Challenge)</p>
@@ -101,15 +121,28 @@ k)|\)</span> evaluated on that Fermi surface. Nothing in this argument depends o
 <ol type="1">
 <li><p><strong>No superconductivity</strong> (<span class="math inline">\(\Delta = 0\)</span>). This is a metal, which is gapless everywhere on the Fermi surface.</p></li>
 <li><p><strong>Conventional (s-wave) superconductivity.</strong> Here <span class="math inline">\(\Delta(\mathbf k) \ne 0\)</span> everywhere on the Fermi surface, so <span class="math inline">\(E(\mathbf k)\)</span> in <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#eq-5-9">(5.9)</a> stays away from zero everywhere, and there is a full gap.</p></li>
-<li><p><strong>Unconventional, nodal superconductivity.</strong> Here <span class="math inline">\(\Delta(\mathbf k)\)</span> vanishes along some lines or points of the Brillouin zone. Wherever the Fermi surface crosses one of these nodal lines, <span class="math inline">\(E(\mathbf
-k) = 0\)</span> even though <span class="math inline">\(\Delta \ne 0\)</span> nearby. The system is gapped in most of reciprocal space, but it stays gapless, which means metallic, at isolated momenta or along nodal lines.</p></li>
+<li><p><strong>Unconventional, nodal superconductivity.</strong> Here <span class="math inline">\(\Delta(\mathbf k)\)</span> vanishes along some lines or points of the Brillouin zone. Wherever the Fermi surface crosses one of these nodal lines, <span class="math inline">\(E(\mathbf k) = 0\)</span> even though <span class="math inline">\(\Delta \ne 0\)</span> nearby. The system is gapped in most of reciprocal space, but it stays gapless, which means metallic, at isolated momenta or along nodal lines.</p></li>
 </ol>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>On one Fermi surface the smallest quasiparticle energy is set by the pairing on that surface,</p>
+<p><span class="math display">\[\min_{\mathbf k} E(\mathbf k) \approx \min_{\varepsilon(\mathbf k)=0}|\Delta(\mathbf k)| .\]</span></p>
+<p>This is exact for a uniform <span class="math inline">\(\Delta\)</span> and for a node on the Fermi surface, where both sides vanish. It is close when <span class="math inline">\(\Delta(\mathbf k)\)</span> changes slowly with the band energy within an energy <span class="math inline">\(|\Delta|\)</span> of the Fermi surface, <span class="math inline">\(|\partial\Delta/\partial\varepsilon|\ll1\)</span> there. So <span class="math inline">\(\Delta=0\)</span> gives a metal, a <span class="math inline">\(\Delta(\mathbf k)\)</span> with no zero on the Fermi surface a full gap, and a zero on it a nodal superconductor.</p>
+</div>
+<p>The left side is never larger than the right side, since <span class="math inline">\(E=|\Delta|\)</span> on the Fermi surface. Take the extended <span class="math inline">\(s\)</span>-wave <span class="math inline">\(\Delta_0(\cos k_x+\cos k_y)\)</span> at <span class="math inline">\(\mu=-t\)</span>, where <span class="math inline">\(\partial\Delta/\partial\varepsilon=-\Delta_0/2t\)</span>. For <span class="math inline">\(\Delta_0=t\)</span> the smallest energy is <span class="math inline">\(0.447\,t\)</span>, against <span class="math inline">\(0.5\,t\)</span> on the Fermi surface. For <span class="math inline">\(\Delta_0=0.1\,t\)</span> it is <span class="math inline">\(0.0499\,t\)</span> against <span class="math inline">\(0.05\,t\)</span>, so the two agree when <span class="math inline">\(\Delta_0\ll t\)</span>.</p>
 <figure id="fig:s05:fsgap">
 <img src="../figures/s05f02_fsgap.svg" loading="lazy" alt="One Fermi surface with three outcomes." />
-<figcaption><strong>Figure 5.2.</strong> One Fermi surface with three outcomes. Each panel shows the Brillouin zone with a small Fermi pocket around <span class="math inline">\(\Gamma\)</span>, and the height of the tube standing on the pocket is the minimum of the quasiparticle energy <span class="math inline">\(E(\mathbf k)=\sqrt{\varepsilon(\mathbf
-k)^2+|\Delta(\mathbf k)|^2}\)</span> as we go once around it. Since <span class="math inline">\(\varepsilon=0\)</span> on the Fermi surface, this minimum is <span class="math inline">\(|\Delta|\)</span> evaluated there, which is why the pairing function only matters <em>on</em> the Fermi surface. (a) Without pairing the whole pocket is at zero energy, which is a metal. (b) A constant <span class="math inline">\(\Delta_0\)</span> lifts every point of it by the same amount, which gives a full gap. (c) The <span class="math inline">\(d\)</span>-wave gap <a href="13-nodal-singlet-order-d-wave-pairing-in-the-cuprates-and-the-angular-momentum-expansion.html#eq-5-13">(5.13)</a> vanishes on the zone diagonals, the red lines, and the pocket crosses them in four places, so four gapless points survive in a superconductor that is gapped everywhere else. Nodes in other parts of the zone do not appear in the spectrum, and only nodes that intersect the Fermi surface give gapless quasiparticles.</figcaption>
+<figcaption><strong>Figure 5.2.</strong> One Fermi surface with three outcomes. Each panel shows the Brillouin zone with a small Fermi pocket around <span class="math inline">\(\Gamma\)</span>. The height of the tube standing on the pocket is the minimum of the quasiparticle energy <span class="math inline">\(E(\mathbf k)=\sqrt{\varepsilon(\mathbf k)^2+|\Delta(\mathbf k)|^2}\)</span> as we go once around it. Since <span class="math inline">\(\varepsilon=0\)</span> on the Fermi surface, this minimum is <span class="math inline">\(|\Delta|\)</span> evaluated there, which is why the pairing function only matters <em>on</em> the Fermi surface. (a) Without pairing the whole pocket is at zero energy, which is a metal. (b) A constant <span class="math inline">\(\Delta_0\)</span> lifts every point of it by the same amount, which gives a full gap. (c) The <span class="math inline">\(d\)</span>-wave gap <a href="13-nodal-singlet-order-d-wave-pairing-in-the-cuprates-and-the-angular-momentum-expansion.html#eq-5-13">(5.13)</a> vanishes on the zone diagonals, the red lines, and the pocket crosses them in four places, so four gapless points survive in a superconductor that is gapped everywhere else. Nodes in other parts of the zone do not appear in the spectrum, and only nodes that intersect the Fermi surface give gapless quasiparticles.</figcaption>
 </figure>
-<p>Figure <a href="#fig:s05:fsgap">5.2</a> shows the three cases next to each other, in the Brillouin zone and as the gap along the Fermi surface. The Fermi surface is the only place where the gap can be read at all. The high-temperature cuprate superconductors are the standard example of scenario 3 in real materials. They are real superconductors, but their gap function has nodes, so parts of their Fermi surface stay gapless even in the superconducting state. This division into three cases holds for any lattice geometry, and the notebook checks it for the Fermi surfaces of the square and of the triangular lattice.</p>
+<p>Figure <a href="#fig:s05:fsgap">5.2</a> shows the three cases next to each other, in the Brillouin zone and as the gap along the Fermi surface. The Fermi surface is the only place where the gap can be read at all. The high-temperature cuprate superconductors are the standard example of scenario 3 in real materials. They are real superconductors, but their gap function has nodes, so parts of their Fermi surface stay gapless even in the superconducting state. This division into three cases holds for any lattice geometry, and the notebook checks it for the Fermi surfaces of the square and of the triangular lattice.</p>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>STM measures the tunneling conductance, which follows the electron density of states of the sample. In magic-angle twisted trilayer graphene, spectroscopic signatures of superconductivity appear in a density window that spans two to three holes per moiré unit cell. They are pronounced dips in the tunneling conductance at the Fermi level, with coherence peaks that are gradually suppressed at higher temperatures and magnetic fields. The authors write that the evolution of the conductance with doping is consistent with a gate-tunable transition from a gapped to a nodal superconductor. The measurement is in <a href="https://www.nature.com/articles/s41586-022-04715-z">this article</a>. Our reading, from the three cases above, is that a full gap leaves no states below the gap. A nodal gap leaves states down to zero energy, so the two give dips of different shapes.</p>
+</div>
 <div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
 Question
@@ -117,7 +150,7 @@ Question
 <div class="quiz-q">
 <p>The <span class="math inline">\(d\)</span>-wave gap <a href="13-nodal-singlet-order-d-wave-pairing-in-the-cuprates-and-the-angular-momentum-expansion.html#eq-5-13">(5.13)</a> vanishes on the diagonals <span class="math inline">\(k_x=\pm k_y\)</span>. A small Fermi pocket is centered at <span class="math inline">\(X=(\pi,0)\)</span>. Is the superconductor nodal?</p>
 <div class="eq-again">
-<p><span class="math display">\[\Delta_{d}(\mathbf k) = \Delta_0\left(\cos k_x - \cos k_y\right), \tag{5.13}\]</span></p>
+<p><span class="math display">\[\Delta_{d}(\mathbf k) = \Delta_0\left(\cos k_x - \cos k_y\right). \tag{5.13}\]</span></p>
 </div>
 </div>
 <div class="quiz-options">
@@ -133,12 +166,12 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
 <p>This is false. Take <span class="math inline">\(\Delta_d=\Delta_0(\cos k_x-\cos k_y)\)</span> and a pocket around <span class="math inline">\(X\)</span>. All its points have <span class="math inline">\(k_x\approx\pi\)</span> and <span class="math inline">\(k_y\approx0\)</span>, so <span class="math inline">\(|\Delta_d|\approx2\Delta_0\)</span> and <span class="math inline">\(E\geq2\Delta_0\)</span> there. The nodes exist, but they are not on the Fermi surface.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
-<p>This is false. Four nodes appear for a pocket around <span class="math inline">\(\Gamma\)</span>, as in Figure <a href="#fig:s05:fsgap">5.2</a>c, where the diagonals cross it. A small pocket around <span class="math inline">\(X\)</span> has <span class="math inline">\(|k_x|-|k_y|\approx\pi\)</span>, so it is far from the line <span class="math inline">\(k_x=\pm k_y\)</span>.</p></li>
+<p>This is false. Four nodes appear for a pocket around <span class="math inline">\(\Gamma\)</span>, which the two diagonals cross in four points. A small pocket around <span class="math inline">\(X\)</span> has <span class="math inline">\(|k_x|-|k_y|\approx\pi\)</span>, so it is far from the line <span class="math inline">\(k_x=\pm k_y\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
 <p>This is true. Only nodes that cross the Fermi surface give gapless quasiparticles. Near <span class="math inline">\(X\)</span> we have <span class="math inline">\(\cos k_x-\cos k_y\approx-2\)</span>, so <span class="math inline">\(E\)</span> in <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#eq-5-9">(5.9)</a> stays finite all around the pocket.</p>
 <figure class="quiz-fig schematic">
-<img src="../figures/web/session05/pockets_nodes.svg" loading="lazy" alt="A square Brillouin zone with its two diagonals, a circle at the center crossed by them at four points, and a half circle at the right edge that they do not reach." />
-<figcaption>A <span class="math inline">\(d\)</span>-wave gap with pockets at <span class="math inline">\(\Gamma\)</span> and at <span class="math inline">\(X\)</span>. The nodal lines cross the first pocket in four points and miss the second one.</figcaption>
+<img src="../figures/web/session05/pockets_nodes.svg" loading="lazy" alt="A color map of the d-wave gap over reciprocal space, with white diagonals, a circle at the center crossed by them at four points, and circles at the left and right edges of the zone that they do not reach." />
+<figcaption>The <span class="math inline">\(d\)</span>-wave gap <span class="math inline">\(\Delta_d=\Delta_0(\cos k_x-\cos k_y)\)</span> in units of <span class="math inline">\(\Delta_0\)</span>, with a pocket of radius <span class="math inline">\(0.5\)</span> around <span class="math inline">\(\Gamma\)</span> and one around <span class="math inline">\(X\)</span>. The dashed square is the first Brillouin zone, so the pocket at <span class="math inline">\(X\)</span> shows on both of its sides. The white diagonals are the nodes. They cross the first pocket in four points and miss the second one, where <span class="math inline">\(|\Delta_d|\)</span> stays at <span class="math inline">\(1.88\Delta_0\)</span>, just below <span class="math inline">\(2\Delta_0\)</span>.</figcaption>
 </figure>
 <div class="eq-again">
 <p><span class="math display">\[E(\mathbf k) = \pm\sqrt{\varepsilon(\mathbf k)^2 + |\Delta(\mathbf k)|^2}. \tag{5.9}\]</span></p>
@@ -146,6 +179,80 @@ Question
 </ul>
 </div>
 </details>
+</div>
+<div class="quiz quiz-pics" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Each curve is the quasiparticle energy <span class="math inline">\(E\)</span> on one Fermi surface. It is drawn against the angle <span class="math inline">\(\theta\)</span> around <span class="math inline">\(\Gamma\)</span>. The energy is in units of a fixed <span class="math inline">\(\Delta_0\)</span>. On the Fermi surface <span class="math inline">\(\varepsilon=0\)</span>, so</p>
+<p><span class="math display">\[E=|\Delta(\mathbf k)|.\]</span></p>
+<p>Which curve belongs to a nodal superconductor?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session05/g2_quiz_fsgap_swave.svg" loading="lazy" alt="The energy in units of Delta zero against the angle from 0 to 2 pi, a flat line at one." /></li>
+<li><img src="../figures/web/session05/g2_quiz_fsgap_dwave.svg" loading="lazy" alt="The energy in units of Delta zero against the angle from 0 to 2 pi, a curve that touches zero four times." /></li>
+<li><img src="../figures/web/session05/g2_quiz_fsgap_metal.svg" loading="lazy" alt="The energy in units of Delta zero against the angle from 0 to 2 pi, a flat line at zero." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The energy is <span class="math inline">\(\Delta_0\)</span> at every angle, so the whole Fermi surface is gapped. This is a uniform s-wave pairing, a full gap.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. <span class="math inline">\(E\)</span> vanishes at four angles, <span class="math inline">\(\theta=\pi/4\)</span>, <span class="math inline">\(3\pi/4\)</span>, <span class="math inline">\(5\pi/4\)</span> and <span class="math inline">\(7\pi/4\)</span>, where the Fermi surface crosses the diagonals. This is the <span class="math inline">\(d\)</span>-wave gap <span class="math inline">\(\Delta_0(\cos k_x-\cos k_y)\)</span> on the square lattice at <span class="math inline">\(\mu=-t\)</span>, which reaches <span class="math inline">\(1.5\Delta_0\)</span> on the axes.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. <span class="math inline">\(E=0\)</span> at every angle, so nothing is gapped, and this is a metal with <span class="math inline">\(\Delta=0\)</span>. A nodal superconductor is gapped away from a few angles.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="quiz" data-correct="A" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>The square lattice has the band</p>
+<p><span class="math display">\[\varepsilon(\mathbf k)=-2t(\cos k_x+\cos k_y)-\mu .\]</span></p>
+<p>Which pairing gaps the Fermi surface for every <span class="math inline">\(\mu\)</span> inside the band?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(\Delta(\mathbf k)=\Delta_0\)</span></li>
+<li><span class="math inline">\(\Delta(\mathbf k)=\Delta_0(\cos k_x-\cos k_y)\)</span></li>
+<li><span class="math inline">\(\Delta(\mathbf k)=\Delta_0(\cos k_x+\cos k_y)\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. A uniform <span class="math inline">\(\Delta_0\)</span> has no zero, so <span class="math inline">\(E\geq|\Delta_0|\)</span> on every Fermi surface. For <span class="math inline">\(\mu=-t\)</span> and <span class="math inline">\(\Delta_0=0.2t\)</span> the smallest energy is <span class="math inline">\(0.2t\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. It vanishes on the diagonals <span class="math inline">\(k_x=\pm k_y\)</span>, and every Fermi surface of this band crosses them, at <span class="math inline">\(\cos k=-\mu/4t\)</span>. For <span class="math inline">\(\mu=0\)</span> the Fermi surface passes through <span class="math inline">\((\pi/2,\pi/2)\)</span>, where <span class="math inline">\(E=0\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. At <span class="math inline">\(\mu=0\)</span> the Fermi surface is the curve <span class="math inline">\(\cos k_x+\cos k_y=0\)</span> itself, so this pairing vanishes on the whole Fermi surface and <span class="math inline">\(E=0\)</span> all along it.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>Take the square lattice with <span class="math inline">\(\varepsilon(\mathbf k)=-2t(\cos k_x+\cos k_y)-\mu\)</span> at <span class="math inline">\(\mu=-t\)</span>, and the <span class="math inline">\(d\)</span>-wave gap <span class="math inline">\(\Delta_d(\mathbf k)=\Delta_0(\cos k_x-\cos k_y)\)</span>. Find the points of the Fermi surface where the quasiparticle energy vanishes.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>The Fermi surface is <span class="math inline">\(\varepsilon=0\)</span>, so <span class="math inline">\(\cos k_x+\cos k_y=-\mu/2t=1/2\)</span>. The gap vanishes where <span class="math inline">\(\cos k_x=\cos k_y\)</span>, which is on the diagonals <span class="math inline">\(k_x=\pm k_y\)</span>. On a diagonal the condition of the Fermi surface is <span class="math inline">\(2\cos k_0=1/2\)</span>, so</p>
+<p><span class="math display">\[\cos k_0=\frac14, \qquad k_0=1.318,\]</span></p>
+<p>which is about <span class="math inline">\(0.42\pi\)</span>. The quasiparticle energy <span class="math inline">\(E=\sqrt{\varepsilon^2+|\Delta_d|^2}\)</span> is zero at the four points <span class="math inline">\((\pm k_0,\pm k_0)\)</span>, with the four choices of sign, and nowhere else on the Fermi surface. The size <span class="math inline">\(|\Delta_d|\)</span> of the pairing is largest where the Fermi surface crosses the axes, at <span class="math inline">\(\cos k_x=-1/2\)</span> and <span class="math inline">\(k_y=0\)</span> or the other way round, with <span class="math inline">\(1.5\Delta_0\)</span> there.</p>
+<p>These four momenta are where ARPES, which measures the gap along the Fermi surface, finds it closed, and they are the reason why a <span class="math inline">\(d\)</span>-wave superconductor has states down to zero energy.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb"><code>session5.ipynb</code></a>, “Unconventional singlet superconducting orders” (Challenge), and “Gapped and nodal superconducting orders” (Core)</p>

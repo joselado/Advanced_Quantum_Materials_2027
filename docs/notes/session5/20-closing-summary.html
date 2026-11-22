@@ -132,6 +132,76 @@ Question
 </details>
 </div>
 <p>In this session we followed superconductivity from the bare pairing order parameter of <a href="../session1/index.html">Session 1</a> to Nambu spinors, Bogoliubov-de Gennes Hamiltonians, the singlet and triplet classification and the Majorana zero modes of the Kitaev chain. The other branch of the Hubbard model, with <span class="math inline">\(U&gt;0\)</span>, gives magnetism, where time-reversal symmetry is broken instead of gauge symmetry. <a href="../session6/index.html">Session 6</a> starts from the same chain as <a href="04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html#eq-5-2">(5.2)</a>, now on its repulsive side, and gives magnetism the same depth of treatment.</p>
+<p>After this session we can do the following tasks, and each of them has the section that teaches it.</p>
+<ul>
+<li>Compute the flux quantum <span class="math inline">\(h/2e\)</span>, and say where the factor 2 comes from. This is in Section <a href="02-superconductivity-as-a-macroscopic-quantum-phenomenon.html#sec-5-2">5.2</a>.</li>
+<li>Decouple an attractive interaction in the pairing channel, and say why <span class="math inline">\(\Delta\)</span> vanishes for <span class="math inline">\(U&gt;0\)</span>. This is in Section <a href="04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html#sec-5-5">5.5</a>.</li>
+<li>Say why a superconductor has a fixed fermion parity and no fixed electron number. This is in Section <a href="06-why-pairing-does-not-conserve-the-particle-number.html#sec-5-6">5.6</a> and Section <a href="06-why-pairing-does-not-conserve-the-particle-number.html#sec-5-7">5.7</a>.</li>
+<li>Write the BdG matrix of one band, and read the gap <span class="math inline">\(2|\Delta|\)</span> between its two branches at the Fermi points. This is in Section <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#sec-5-8">5.8</a> and Section <a href="09-an-example-of-a-gap-that-opens-independently-of-the-dispersion.html#sec-5-9">5.9</a>.</li>
+<li>Tell a full gap from a nodal one, from where the nodes of <span class="math inline">\(\Delta(\mathbf k)\)</span> meet the Fermi surface. This is in Section <a href="09-an-example-of-a-gap-that-opens-independently-of-the-dispersion.html#sec-5-10">5.10</a> and Section <a href="13-nodal-singlet-order-d-wave-pairing-in-the-cuprates-and-the-angular-momentum-expansion.html#sec-5-13">5.13</a>.</li>
+<li>Decide from the parity of <span class="math inline">\(\Delta(\mathbf k)\)</span> whether a pairing is a spin singlet or a spin triplet. This is in Section <a href="11-the-general-pairing-hamiltonian-and-its-symmetry-classification.html#sec-5-11">5.11</a> and Section <a href="12-building-a-spin-triplet-superconductor-out-of-a-magnet.html#sec-5-12">5.12</a>.</li>
+<li>Tell s-wave from chiral p-wave pairing by the winding of the phase of <span class="math inline">\(\Delta(\mathbf k)\)</span> and by the Chern number. This is in Section <a href="14-same-gap-and-different-topology-in-trivial-s-wave-and-chiral-p-wave-pairing.html#sec-5-14">5.14</a>.</li>
+<li>Find the end Majoranas of a Kitaev chain, and the window <span class="math inline">\(|\mu|&lt;2t\)</span> of its topological phase. This is in Section <a href="16-the-kitaev-chain-as-the-minimal-model-with-isolated-majoranas.html#sec-5-16">5.16</a> and Section <a href="17-topological-zero-modes-with-periodic-and-open-boundaries.html#sec-5-17">5.17</a>.</li>
+<li>Name the parts that make a Kitaev chain out of the edge of a quantum spin Hall insulator. This is in Section <a href="18-engineering-a-topological-superconductor-from-a-quantum-spin-hall-insulator.html#sec-5-18">5.18</a>.</li>
+<li>Say why two braids that share a Majorana do not commute. This is in Section <a href="19-topological-quantum-computing-with-majoranas.html#sec-5-19">5.19</a>.</li>
+</ul>
+<div class="quiz" data-correct="C" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Fermi statistics ties the spin of a pair to the parity of <span class="math inline">\(\Delta(\mathbf k)\)</span>. Which pairing is a spin triplet?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(\Delta(\mathbf k)=\Delta_0\)</span></li>
+<li><span class="math inline">\(\Delta(\mathbf k)=\Delta_0(\cos k_x-\cos k_y)\)</span></li>
+<li><span class="math inline">\(\Delta(\mathbf k)=\Delta_0(\sin k_x+i\sin k_y)\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. A constant is even, <span class="math inline">\(\Delta(-\mathbf k)=\Delta(\mathbf k)\)</span>, so the pair is a spin singlet. This is the s-wave pairing of the onsite term.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The cosines are even in <span class="math inline">\(\mathbf k\)</span>. At <span class="math inline">\(\mathbf k=(\pi/2,0)\)</span> and at <span class="math inline">\(-\mathbf k\)</span> the function is <span class="math inline">\(-\Delta_0\)</span> in both cases, so the pair is a singlet, the d-wave pairing of the cuprates.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. The sines are odd, <span class="math inline">\(\Delta(-\mathbf k)=-\Delta(\mathbf k)\)</span>, so by <a href="11-the-general-pairing-hamiltonian-and-its-symmetry-classification.html#eq-5-12">(5.12)</a> the pair is a spin triplet. This is the chiral p-wave pairing.</p>
+<div class="eq-again">
+<p><span class="math display">\[\textbf{Spin triplet (odd parity):} \quad \Delta(\mathbf k) = -\Delta(-\mathbf k), \qquad \Delta_{\sigma\sigma&#39;} = +\Delta_{\sigma&#39;\sigma}\ \text{(spin-symmetric)}. \tag{5.12}\]</span></p>
+</div></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="quiz quiz-pics" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Each picture shows <span class="math inline">\(\Delta(\mathbf k)\)</span> on a Fermi pocket around <span class="math inline">\(\Gamma\)</span> of the square lattice. Each arrow is the complex number <span class="math inline">\(\Delta(\mathbf k)\)</span> at its point. The dashed square is the first Brillouin zone. Which pairing gives <span class="math inline">\(C=\pm2\)</span>, one unit from each spin block?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session05/g6_quiz_phase_swave.svg" loading="lazy" alt="A closed Fermi pocket around the center of the zone with sixteen arrows on it, all of the same length and all pointing to the right." /></li>
+<li><img src="../figures/web/session05/g6_quiz_phase_pwave.svg" loading="lazy" alt="A closed Fermi pocket around the center of the zone with sixteen arrows on it, each pointing away from the center." /></li>
+<li><img src="../figures/web/session05/g6_quiz_phase_dwave.svg" loading="lazy" alt="A closed Fermi pocket around the center of the zone with arrows that point left on the horizontal axis and right on the vertical axis, and four dots on the diagonals." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. All the arrows point the same way, so the phase of <span class="math inline">\(\Delta(\mathbf k)\)</span> does not wind around the pocket, and <span class="math inline">\(C=0\)</span>. This is the s-wave pairing <span class="math inline">\(\Delta_0\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The arrow turns once as <span class="math inline">\(\mathbf k\)</span> goes once around the pocket, which is the winding of <span class="math inline">\(\Delta_0(\sin k_x+i\sin k_y)\)</span>. Each of the two spin blocks gives one unit, so <span class="math inline">\(|C|=2\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The arrows reverse four times and vanish on the diagonals <span class="math inline">\(k_x=\pm k_y\)</span>, where the dots are. There <span class="math inline">\(\Delta(\mathbf k)=0\)</span> on the Fermi surface, so the spectrum has no gap and no Chern number. This is the d-wave pairing <span class="math inline">\(\Delta_0(\cos k_x-\cos k_y)\)</span>.</p></li>
+</ul>
+</div>
+</details>
+</div>
 <div class="comesback">
 <div class="comesback-label">
 Where this comes back

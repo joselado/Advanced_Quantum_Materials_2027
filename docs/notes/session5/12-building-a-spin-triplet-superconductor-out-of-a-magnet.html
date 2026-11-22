@@ -85,19 +85,62 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="on" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 5. Superconductivity, Nambu Representation and Majorana Physics</a></p>
 <h1 id="sec-5-12"><span class="num">5.12</span> Building a spin-triplet superconductor out of a magnet</h1>
-<p>Since spin-triplet order is so fragile, how could we ever build one on purpose? One way is a toy model that has both a ferromagnetic exchange field and an attractive interaction in the same Hamiltonian,</p>
+<p>Since spin-triplet order is so fragile, how could we ever build one on purpose? We will now see that an exchange field moves the bands of the two spins apart. A pair of opposite spins then costs an energy <span class="math inline">\(2h\)</span>, while a pair of two <span class="math inline">\(\uparrow\)</span> electrons costs nothing. With an attraction, the pairing of equal spins, which is odd in <span class="math inline">\(k\)</span>, can then win, and on a ribbon this state has modes at its edges.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[\textbf{Spin triplet (odd parity):} \quad \Delta(\mathbf k) = -\Delta(-\mathbf k), \qquad \Delta_{\sigma\sigma&#39;} = +\Delta_{\sigma&#39;\sigma}\ \text{(spin-symmetric)}. \tag{5.12}\]</span></p>
+</div>
+<p>This is the triplet line of the classification of Section <a href="11-the-general-pairing-hamiltonian-and-its-symmetry-classification.html#sec-5-11">5.11</a>. A pairing that is symmetric in spin, such as a pair of two <span class="math inline">\(\uparrow\)</span> electrons, has to be odd in <span class="math inline">\(\mathbf k\)</span>. The other line of the same classification is the spin singlet, which is antisymmetric in spin and even in <span class="math inline">\(\mathbf k\)</span>.</p>
+</div>
+<p>One way to do this is a toy model that has both a ferromagnetic exchange field and an attractive interaction in the same Hamiltonian,</p>
 <p><span class="math display">\[H = -t\sum_{\langle ij\rangle,\sigma}c_{i\sigma}^\dagger c_{j\sigma} \;\underbrace{-\, h\sum_i \left(c_{i\uparrow}^\dagger c_{i\uparrow} - c_{i\downarrow}^\dagger c_{i\downarrow}\right)}_{\text{exchange field}} \;+\; \underbrace{U\sum_{\langle ij\rangle} c_{i\sigma}^\dagger c_{j\sigma&#39;}^\dagger c_{j\sigma&#39;}c_{i\sigma}}_{\text{attractive interaction}}, \qquad U&lt;0.\]</span></p>
 <p>If we solve it self-consistently at the mean-field level, both order parameters, the ferromagnetic exchange field and the pairing amplitude, can be nonzero at the same time. The ground state then breaks both time-reversal symmetry, since it is magnetic, <em>and</em> gauge symmetry, since it is superconducting. The pairing that survives is necessarily spin-triplet, because the exchange field explicitly splits the <span class="math inline">\(\uparrow\)</span> and <span class="math inline">\(\downarrow\)</span> Fermi surfaces, and in this way it suppresses the singlet channel, which needs them to be degenerate. Physically, s-wave singlet pairing is usually the leading instability because it can gap the <em>entire</em> Fermi surface, which gives the largest condensation energy. When the exchange field suppresses this channel, a different pairing channel becomes the leading instability instead, which here is the odd-parity, spin-triplet channel, which is effectively p-wave.</p>
-<figure id="sch:s05:spin_split_pairing" class="schematic">
-<img src="../figures/web/session05/spin_split_pairing.svg" loading="lazy" alt="Two cosine bands for spin up and spin down, shifted in energy, with the Fermi points of each marked and an arrow of size 2h between the two bands at the Fermi momentum of spin up." />
-<figcaption><strong>Schematic 5.8.</strong> A chain with an exchange field <span class="math inline">\(h\)</span>. The bands of the two spins are shifted by <span class="math inline">\(\mp h\)</span>, so their Fermi momenta differ. A pair of two <span class="math inline">\(\uparrow\)</span> electrons sits on one Fermi surface, while the <span class="math inline">\(\downarrow\)</span> partner of an <span class="math inline">\(\uparrow\)</span> electron at <span class="math inline">\(k_{F\uparrow}\)</span> sits <span class="math inline">\(2h\)</span> above the Fermi level.</figcaption>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>An exchange field <span class="math inline">\(h\)</span> shifts the bands of the two spins in opposite directions,</p>
+<p><span class="math display">\[\varepsilon_{\uparrow,\downarrow}(k) = \varepsilon(k) \mp h.\]</span></p>
+<p>The <span class="math inline">\(\downarrow\)</span> partner of an <span class="math inline">\(\uparrow\)</span> electron on its Fermi surface sits <span class="math inline">\(2h\)</span> above the Fermi level, while two <span class="math inline">\(\uparrow\)</span> electrons sit on the same Fermi surface and do not pay this energy.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">The energy of a singlet pair in an exchange field</span></summary>
+<div class="fold-body">
+<p>A singlet pair takes an <span class="math inline">\(\uparrow\)</span> electron at <span class="math inline">\(k\)</span> and a <span class="math inline">\(\downarrow\)</span> electron at <span class="math inline">\(-k\)</span>. We put the <span class="math inline">\(\uparrow\)</span> electron at its Fermi momentum <span class="math inline">\(k_{F\uparrow}\)</span>, where <span class="math inline">\(\varepsilon_\uparrow(k_{F\uparrow})=\varepsilon(k_{F\uparrow})-h=0\)</span>, meaning that <span class="math inline">\(\varepsilon(k_{F\uparrow})=h\)</span>. The band is even, <span class="math inline">\(\varepsilon(-k)=\varepsilon(k)\)</span>, so the partner has</p>
+<p><span class="math display">\[\varepsilon_\downarrow(-k_{F\uparrow}) = \varepsilon(k_{F\uparrow}) + h = 2h.\]</span></p>
+<p>So the partner is <span class="math inline">\(2h\)</span> above the Fermi level, and the two electrons of the pair cannot both sit at the Fermi level. A pair of two <span class="math inline">\(\uparrow\)</span> electrons at <span class="math inline">\(k_{F\uparrow}\)</span> and <span class="math inline">\(-k_{F\uparrow}\)</span> has <span class="math inline">\(\varepsilon_\uparrow=0\)</span> for both, so it pays nothing. For the chain of the figure below, <span class="math inline">\(\varepsilon(k)=-2t\cos k-\mu\)</span> with <span class="math inline">\(t=1\)</span>, <span class="math inline">\(\mu=0\)</span> and <span class="math inline">\(h=0.6\)</span>, the Fermi momenta are <span class="math inline">\(k_{F\uparrow}=1.875\)</span> and <span class="math inline">\(k_{F\downarrow}=1.266\)</span>, and the partner sits at <span class="math inline">\(2h=1.2\)</span>.</p>
+</div>
+</details>
+</div>
+<figure id="sch:s05:spin_split_pairing" class="schematic has-script">
+<img src="../figures/web/session05/spin_split_pairing.svg" loading="lazy" alt="Two cosine bands for spin up and spin down, shifted in energy, with the Fermi points of each marked, an arrow between the two Fermi points of spin up, and an arrow of size 2h from the Fermi level up to the spin-down band at minus the Fermi momentum of spin up." />
+<div class="script-row">
+<a href="../scripts/session05/g3_exchange_chain_bands.py" class="script-dl" download="g3_exchange_chain_bands.py">Download the pyqula script</a> <span class="script-name"><code>g3_exchange_chain_bands.py</code></span>
+</div>
+<figcaption><strong>Schematic 5.11.</strong> A chain with an exchange field <span class="math inline">\(h\)</span>, computed with pyqula for <span class="math inline">\(t=1\)</span>, <span class="math inline">\(\mu=0\)</span> and <span class="math inline">\(h=0.6\)</span>, with the energy in units of <span class="math inline">\(t\)</span> and the momentum in units of the inverse lattice constant. The bands of the two spins are shifted by <span class="math inline">\(\mp h\)</span>, so their Fermi momenta differ, <span class="math inline">\(k_{F\uparrow}=1.875\)</span> and <span class="math inline">\(k_{F\downarrow}=1.266\)</span>. A pair of two <span class="math inline">\(\uparrow\)</span> electrons sits on one Fermi surface, while the <span class="math inline">\(\downarrow\)</span> partner of an <span class="math inline">\(\uparrow\)</span> electron at <span class="math inline">\(k_{F\uparrow}\)</span>, the open circle at <span class="math inline">\(-k_{F\uparrow}\)</span>, sits <span class="math inline">\(2h=1.2\)</span> above the Fermi level.</figcaption>
 </figure>
+<p>The most interesting feature of this state appears when we put it on a finite ribbon instead of an infinite plane. The bulk spectrum is gapped, as we expect for a superconductor, but the edges of the ribbon have gapless excitations. A superconductor that is fully gapped in the bulk and gapless at the edge is a signature that we already know from <a href="../session3/index.html">Session 3</a> and <a href="../session4/index.html">Session 4</a>, through the bulk-boundary correspondence of Section <a href="../session3/07-what-topology-means-for-a-hamiltonian-and-the-bulk-boundary-correspondence.html#sec-3-7">3.7</a>. These edge modes have a topological origin. They are tied to a finite Chern number of the BdG band structure, in the same way as the edge states of a Chern insulator are tied to its Chern number <a href="../session3/05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#eq-3-4">(3.4)</a>.</p>
+<div class="notebookbox">
+<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb"><code>session5.ipynb</code></a>, “The impact of a spin splitting in an electronic structure” (Reminder), “A spin triplet superconductor” (Core) and “Majorana modes in a spin triplet superconductor” (Challenge). The notebook goes further in “Interaction-induced spin-triplet superconductivity” (Challenge) and “Topological modes in interaction-driven spin triplet superconductors”.</p>
+<p>Start from the plain spin-split band structure, with only an exchange field, to build intuition. Then run the self-consistency loop for the model above and check that a spin-triplet <span class="math inline">\(\Delta\)</span> emerges. Move to a ribbon geometry and find the gapless edge modes described here, and then, in the later challenge sections of the notebook, connect them to the Majorana physics of Section <a href="15-majorana-bound-states-and-how-to-split-an-electron-into-two-majoranas.html#sec-5-15">5.15</a> to Section <a href="17-topological-zero-modes-with-periodic-and-open-boundaries.html#sec-5-17">5.17</a>.</p>
+</div>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>In magic-angle twisted trilayer graphene, superconductivity survives in-plane magnetic fields above <span class="math inline">\(10\)</span> T. The authors say that this is a violation of the Pauli limit of conventional spin-singlet superconductors by a factor of 2 to 3. They see this violation over the whole superconducting phase, and they also see re-entrant superconductivity at large magnetic fields. They write that these findings suggest that the superconductivity is likely driven by a mechanism that gives non-spin-singlet Cooper pairs. The measurement is in <a href="https://www.nature.com/articles/s41586-021-03685-y">this article</a>, which is also the one given in the notebook <code>session5.ipynb</code>. Our own reading is that an in-plane field acts on the spins as the exchange field <span class="math inline">\(h\)</span> of this page, so a singlet pair pays the mismatch <span class="math inline">\(2h\)</span>. In the BCS theory at zero temperature, the singlet state loses to a polarized normal state when <span class="math inline">\(h=\mu_BB\)</span> reaches about <span class="math inline">\(\Delta/\sqrt2\)</span>. Here <span class="math inline">\(\Delta\)</span> is the pairing amplitude of the singlet at zero field, the smallest quasiparticle energy, which is half of the gap <span class="math inline">\(2|\Delta|\)</span> between the two branches, and this field is the Pauli limit. At <span class="math inline">\(10\)</span> T and with <span class="math inline">\(g=2\)</span> the Zeeman energy is <span class="math inline">\(h=\mu_BB=0.58\)</span> meV.</p>
+</div>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>In the model of this section, why does the exchange field suppress <span class="math inline">\(s\)</span>-wave singlet pairing but not the pairing of two <span class="math inline">\(\uparrow\)</span> electrons?</p>
+<p>The two spin bands of a chain are</p>
+<p><span class="math display">\[\varepsilon_\sigma(k)=-2t\cos k-\mu\mp h,\]</span></p>
+<p>with the upper sign for <span class="math inline">\(\uparrow\)</span>. Why does <span class="math inline">\(h\)</span> suppress <span class="math inline">\(s\)</span>-wave singlet pairing and not <span class="math inline">\(\uparrow\uparrow\)</span> pairing?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -114,15 +157,52 @@ Question
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
 <p>This is true. The field shifts the two spin bands by <span class="math inline">\(\mp h\)</span>. The <span class="math inline">\(\downarrow\)</span> partner of an <span class="math inline">\(\uparrow\)</span> electron on its Fermi surface sits <span class="math inline">\(2h\)</span> above the Fermi level, while two <span class="math inline">\(\uparrow\)</span> electrons share one band.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. In the field the <span class="math inline">\(\uparrow\)</span> band is <span class="math inline">\(-2t\cos k-h\)</span>, which still has the bandwidth <span class="math inline">\(4t\)</span>. The <span class="math inline">\(\uparrow\)</span> electrons move normally, and they can form a Fermi surface to pair on.</p></li>
+<p>This is false. In the field the <span class="math inline">\(\uparrow\)</span> band is <span class="math inline">\(-2t\cos k-\mu-h\)</span>, which still has the bandwidth <span class="math inline">\(4t\)</span>. The <span class="math inline">\(\uparrow\)</span> electrons move normally, and they can form a Fermi surface to pair on.</p></li>
 </ul>
 </div>
 </details>
 </div>
-<p>The most interesting feature of this state appears when we put it on a finite ribbon instead of an infinite plane. The bulk spectrum is gapped, as we expect for a superconductor, but the edges of the ribbon have gapless excitations. A superconductor that is fully gapped in the bulk and gapless at the edge is a signature that we already know from <a href="../session3/index.html">Session 3</a> and <a href="../session4/index.html">Session 4</a>, through the bulk-boundary correspondence of Section <a href="../session3/07-what-topology-means-for-a-hamiltonian-and-the-bulk-boundary-correspondence.html#sec-3-7">3.7</a>. These edge modes have a topological origin. They are tied to a finite Chern number of the BdG band structure, in the same way as the edge states of a Chern insulator are tied to its Chern number <a href="../session3/05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#eq-3-4">(3.4)</a>.</p>
-<div class="notebookbox">
-<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb"><code>session5.ipynb</code></a>, “The impact of a spin splitting in an electronic structure” (Reminder), “A spin triplet superconductor” (Core) and “Majorana modes in a spin triplet superconductor” (Challenge). The notebook goes further in “Interaction-induced spin-triplet superconductivity” (Challenge) and “Topological modes in interaction-driven spin triplet superconductors”.</p>
-<p>Start from the plain spin-split band structure, with only an exchange field, to build intuition. Then run the self-consistency loop for the model above and check that a spin-triplet <span class="math inline">\(\Delta\)</span> emerges. Move to a ribbon geometry and find the gapless edge modes described here, and then, in the later challenge sections of the notebook, connect them to the Majorana physics of Section <a href="15-majorana-bound-states-and-how-to-split-an-electron-into-two-majoranas.html#sec-5-15">5.15</a> to Section <a href="17-topological-zero-modes-with-periodic-and-open-boundaries.html#sec-5-17">5.17</a>.</p>
+<div class="quiz quiz-pics" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Each plot shows the bands of a chain with <span class="math inline">\(\mu=-1.5t\)</span> and an exchange field <span class="math inline">\(h\)</span>. Blue is spin <span class="math inline">\(\uparrow\)</span> and red is spin <span class="math inline">\(\downarrow\)</span>. In which chain can only <span class="math inline">\(\uparrow\uparrow\)</span> pairs form at the Fermi level?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session05/g3_quiz_exch_both.svg" loading="lazy" alt="The bands of the two spins against k, a blue band and a red band slightly above it, both crossing zero energy." /></li>
+<li><img src="../figures/web/session05/g3_quiz_exch_up.svg" loading="lazy" alt="The bands of the two spins against k, a blue band that crosses zero energy and a red band that stays above zero." /></li>
+<li><img src="../figures/web/session05/g3_quiz_exch_down.svg" loading="lazy" alt="The bands of the two spins against k, a red band that crosses zero energy and a blue band that stays above zero." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Here <span class="math inline">\(h=0.2t\)</span>, and both bands cross <span class="math inline">\(E=0\)</span>, at <span class="math inline">\(k_{F\uparrow}=0.863\)</span> and <span class="math inline">\(k_{F\downarrow}=0.555\)</span>. So <span class="math inline">\(\downarrow\downarrow\)</span> pairs can also form at the Fermi level, and an <span class="math inline">\(\uparrow\downarrow\)</span> pair has the mismatch <span class="math inline">\(2h=0.4t\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. Here <span class="math inline">\(h=1.2t\)</span>, and only the <span class="math inline">\(\uparrow\)</span> band crosses <span class="math inline">\(E=0\)</span>, at <span class="math inline">\(k_{F\uparrow}=1.420\)</span>. The bottom of the <span class="math inline">\(\downarrow\)</span> band is <span class="math inline">\(0.7t\)</span> above the Fermi level, so every electron at the Fermi level has spin <span class="math inline">\(\uparrow\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. Here <span class="math inline">\(h=-1.2t\)</span>, a field in the opposite direction, and only the <span class="math inline">\(\downarrow\)</span> band crosses <span class="math inline">\(E=0\)</span>. The bottom of the <span class="math inline">\(\uparrow\)</span> band is <span class="math inline">\(0.7t\)</span> above the Fermi level, so the pairs at the Fermi level are <span class="math inline">\(\downarrow\downarrow\)</span> pairs.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>A chain has the bands <span class="math inline">\(\varepsilon_\sigma(k)=-2t\cos k-\mu\mp h\)</span>, with the upper sign for <span class="math inline">\(\uparrow\)</span>, <span class="math inline">\(t=1\)</span>, <span class="math inline">\(\mu=0\)</span> and <span class="math inline">\(h=0.5\)</span>. Find <span class="math inline">\(k_{F\uparrow}\)</span> and <span class="math inline">\(k_{F\downarrow}\)</span>. Then find the energy of the <span class="math inline">\(\downarrow\)</span> partner at <span class="math inline">\(-k_{F\uparrow}\)</span> of an <span class="math inline">\(\uparrow\)</span> electron at <span class="math inline">\(k_{F\uparrow}\)</span>.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>The <span class="math inline">\(\uparrow\)</span> band crosses zero where <span class="math inline">\(-2\cos k-0.5=0\)</span>, so <span class="math inline">\(\cos k_{F\uparrow}=-0.25\)</span> and <span class="math inline">\(k_{F\uparrow}=1.823\)</span>. The <span class="math inline">\(\downarrow\)</span> band crosses zero where <span class="math inline">\(-2\cos k+0.5=0\)</span>, so <span class="math inline">\(\cos k_{F\downarrow}=0.25\)</span> and <span class="math inline">\(k_{F\downarrow}=1.318\)</span>. The two Fermi momenta differ by <span class="math inline">\(0.505\)</span>, so the <span class="math inline">\(\downarrow\)</span> state at <span class="math inline">\(-k_{F\uparrow}\)</span> is not at the Fermi level. Its energy is</p>
+<p><span class="math display">\[\varepsilon_\downarrow(-k_{F\uparrow}) = -2\cos k_{F\uparrow}+0.5 = 0.5+0.5 = 1.0,\]</span></p>
+<p>which is <span class="math inline">\(2h\)</span>. In a material the Zeeman energy of a magnetic field plays the role of <span class="math inline">\(h\)</span>. So a field gives the same mismatch to a singlet pair, and this is the origin of the Pauli limit of the box above.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="tryit">
 <p><strong>Try it.</strong> In the cell, the line <code>h.add_exchange([0.,0.,1.0])</code> splits the two spin bands of the chain. Change <code>1.0</code> to <code>2.0</code>. The two bands move apart from 2 to 4 at a fixed momentum, so each spin has its own Fermi momentum.</p>

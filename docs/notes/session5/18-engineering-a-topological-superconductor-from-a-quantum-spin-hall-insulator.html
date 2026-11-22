@@ -85,16 +85,61 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="on" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 5. Superconductivity, Nambu Representation and Majorana Physics</a></p>
 <h1 id="sec-5-18"><span class="num">5.18</span> Engineering a topological superconductor from a quantum spin Hall insulator</h1>
-<p>Chiral and p-wave superconductors of the kind we need are rare in nature, so in practice they are usually <em>engineered</em> and not found. One instructive recipe uses directly the quantum spin Hall (QSH) insulator of Section <a href="../session3/11-quantum-spin-hall-insulators.html#sec-3-11">3.11</a>. We take a QSH insulator, for concreteness tungsten ditelluride (WTe<span class="math inline">\(_2\)</span>). Its edge has helical modes, meaning that spin-up electrons propagate in one direction and spin-down electrons propagate in the other direction on the same edge. Now we place ordinary ferromagnets on two segments of this edge. A magnet breaks time-reversal symmetry locally, and this opens a gap in the helical edge modes below it. We recall from Section <a href="../session3/11b-kramers-protection-of-the-helical-edge.html#sec-3-11b">3.11b</a> that the protection of the QSH edge relies on time-reversal symmetry through Kramers degeneracy, so if we break this symmetry locally, the protection is lost there. What remains without a gap is a short isolated segment of helical edge between the two magnetic regions.</p>
+<p>Chiral and p-wave superconductors of the kind we need are rare in nature, so in practice they are usually <em>engineered</em> and not found. Can we build the Kitaev chain out of parts that exist? We will now see that the edge of a quantum spin Hall insulator, two magnets and an ordinary s-wave superconductor are enough. The Majorana zero modes then sit at the two ends of the segment of edge between the magnets.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[H_{\text{Kitaev}} = -t\sum_n \left(c_n^\dagger c_{n+1} + \text{h.c.}\right) - \mu\sum_n c_n^\dagger c_n + \Delta\sum_n \left(c_n c_{n+1} + c_{n+1}^\dagger c_n^\dagger\right). \tag{5.19}\]</span></p>
+</div>
+<p>This is the Kitaev chain of Section <a href="16-the-kitaev-chain-as-the-minimal-model-with-isolated-majoranas.html#sec-5-16">5.16</a>, a chain of spinless fermions with the hopping <span class="math inline">\(t\)</span>, the chemical potential <span class="math inline">\(\mu\)</span> and a pairing <span class="math inline">\(\Delta\)</span> between neighboring sites. In its topological phase it has one Majorana zero mode at each end. What it needs is a wire with a single channel in each direction of motion.</p>
+</div>
+<p>One instructive recipe uses directly the quantum spin Hall (QSH) insulator of Section <a href="../session3/11-quantum-spin-hall-insulators.html#sec-3-11">3.11</a>. We take a QSH insulator, for concreteness tungsten ditelluride (WTe<span class="math inline">\(_2\)</span>). Its edge has helical modes, meaning that spin-up electrons propagate in one direction and spin-down electrons propagate in the other direction on the same edge. Now we place ordinary ferromagnets on two segments of this edge. A magnet breaks time-reversal symmetry locally, and this opens a gap in the helical edge modes below it. We recall from Section <a href="../session3/11b-kramers-protection-of-the-helical-edge.html#sec-3-11b">3.11b</a> that the protection of the QSH edge relies on time-reversal symmetry through Kramers degeneracy, so if we break this symmetry locally, the protection is lost there. What remains without a gap is a short isolated segment of helical edge between the two magnetic regions.</p>
 <p>This isolated segment only has spin-up electrons moving right and spin-down electrons moving left, with no spin-down electrons moving right and no spin-up electrons moving left. If we count states only by their direction of propagation, this segment is <em>effectively spinless</em>, which is the ingredient that the Kitaev-chain construction of Section <a href="16-the-kitaev-chain-as-the-minimal-model-with-isolated-majoranas.html#sec-5-16">5.16</a> needs. If we then couple this segment by proximity to an ordinary s-wave superconductor, we reproduce on it the physics of <a href="16-the-kitaev-chain-as-the-minimal-model-with-isolated-majoranas.html#eq-5-19">(5.19)</a>. This is a one-dimensional p-wave superconductor, with Majorana zero modes pinned at the two ends of the isolated segment. Figure <a href="#fig:s05:qsh">5.6</a> shows the whole setup.</p>
 <figure id="fig:s05:qsh">
 <img src="../figures/s05f06_qsh.svg" loading="lazy" alt="How to build the Kitaev chain from parts that exist." />
 <figcaption><strong>Figure 5.6.</strong> How to build the Kitaev chain from parts that exist. The edge of a quantum spin Hall insulator is helical. On the same edge spin-up electrons move in one direction and spin-down electrons in the other, drawn in a warm and a cold color. A ferromagnet placed on a part of this edge breaks time-reversal symmetry locally and removes the Kramers protection there, which opens a gap in the edge below it, where the channels are drawn faded. With two ferromagnets, one short helical segment survives between them. This segment has only one direction of propagation for each spin, so if we count channels it is a <em>spinless</em> one-dimensional wire. This is the ingredient that <a href="16-the-kitaev-chain-as-the-minimal-model-with-isolated-majoranas.html#eq-5-19">(5.19)</a> needs, and nature does not give it to us directly. Coupling it by proximity to an ordinary <span class="math inline">\(s\)</span>-wave superconductor gives the pairing. The result is a one-dimensional <span class="math inline">\(p\)</span>-wave superconductor with a Majorana zero mode at each end of the segment, which means at the two ferromagnet-superconductor interfaces. Note what was <em>not</em> needed. No unconventional superconductor appears in the recipe, only an <span class="math inline">\(s\)</span>-wave one, a magnet and a topological insulator.</figcaption>
 </figure>
+<p>Why do the Majoranas sit at the ends of the segment, and not somewhere else? Let us write the edge in the Nambu basis <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#eq-5-6">(5.6)</a>, with the velocity <span class="math inline">\(v\)</span> of the edge, an exchange field <span class="math inline">\(h\)</span> along <span class="math inline">\(x\)</span> from the magnet and an <span class="math inline">\(s\)</span>-wave pairing <span class="math inline">\(\Delta\)</span> from the superconductor,</p>
+<p><span class="math display">\[H(k)=\tau_z\left(vk\,\sigma_z-\mu\right)+h\,\sigma_x+\Delta\,\tau_x ,\]</span></p>
+<p>where <span class="math inline">\(\sigma\)</span> acts on the spin and <span class="math inline">\(\tau\)</span> on the electron and the hole. The kinetic term and <span class="math inline">\(\mu\)</span> change sign in the hole block, while the exchange field keeps its sign. The simplest case is <span class="math inline">\(k=0\)</span> and <span class="math inline">\(\mu=0\)</span>, where only the two terms that open a gap are left.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>At <span class="math inline">\(k=0\)</span> and <span class="math inline">\(\mu=0\)</span> the four BdG levels of this edge are</p>
+<p><span class="math display">\[E(k=0)=\pm h\pm\Delta .\]</span></p>
+<p>The gap closes at <span class="math inline">\(h=\Delta\)</span>. So a part of the edge where pairing wins, <span class="math inline">\(h&lt;\Delta\)</span>, and a part where the magnet wins, <span class="math inline">\(h&gt;\Delta\)</span>, are two different phases, and a Majorana zero mode sits at the boundary between them.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">The levels of the helical edge at k=0</span></summary>
+<div class="fold-body">
+<p>At <span class="math inline">\(k=0\)</span> and <span class="math inline">\(\mu=0\)</span> the edge Hamiltonian is <span class="math inline">\(H=h\,\sigma_x+\Delta\,\tau_x\)</span>. Let us take each term alone first. With <span class="math inline">\(\Delta=0\)</span> the magnet gives <span class="math inline">\(h\sigma_x\)</span>, whose eigenvalues are <span class="math inline">\(\pm h\)</span>, once for the electron and once for the hole. With <span class="math inline">\(h=0\)</span> the pairing gives <span class="math inline">\(\Delta\tau_x\)</span>, with the eigenvalues <span class="math inline">\(\pm\Delta\)</span>, once for each spin.</p>
+<p>The two terms act on different indices, so they commute, <span class="math inline">\([\sigma_x,\tau_x]=0\)</span>, and they have common eigenvectors. On such a vector <span class="math inline">\(\sigma_x=s\)</span> and <span class="math inline">\(\tau_x=s&#39;\)</span>, with <span class="math inline">\(s,s&#39;=\pm1\)</span>, and the energy is the sum</p>
+<p><span class="math display">\[E=s\,h+s&#39;\Delta ,\]</span></p>
+<p>which gives the four levels <span class="math inline">\(\pm h\pm\Delta\)</span>. The level <span class="math inline">\(h-\Delta\)</span> crosses zero at <span class="math inline">\(h=\Delta\)</span>, together with its partner <span class="math inline">\(\Delta-h\)</span>, so the gap closes there. The two energies add, and they do not add in quadrature as <span class="math inline">\(\varepsilon\)</span> and <span class="math inline">\(\Delta\)</span> do in <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#eq-5-9">(5.9)</a>. The reason for this is that <span class="math inline">\(\varepsilon\tau_z\)</span> and <span class="math inline">\(\Delta\tau_x\)</span> anticommute, while <span class="math inline">\(h\sigma_x\)</span> and <span class="math inline">\(\Delta\tau_x\)</span> commute.</p>
+</div>
+</details>
+</div>
 <figure id="sch:s05:helical_edge_gap" class="schematic">
-<img src="../figures/web/session05/helical_edge_gap.svg" loading="lazy" alt="On the left, two crossing straight lines for the helical edge and a hyperbola with a gap 2h for the edge under a magnet. On the right, four straight lines against h over Delta, two of which cross zero at h equal to Delta." />
-<figcaption><strong>Schematic 5.13.</strong> The two steps of Figure <a href="#fig:s05:qsh">5.6</a>, computed for an edge with velocity <span class="math inline">\(v=1\)</span>. (a) The helical edge, with spin up moving right and spin down moving left, is drawn with dashed lines. A magnet with an exchange field <span class="math inline">\(h\)</span> along <span class="math inline">\(x\)</span> couples the two branches and opens a gap <span class="math inline">\(2h\)</span> at <span class="math inline">\(k=0\)</span>, as the solid lines show. (b) The levels at <span class="math inline">\(k=0\)</span> of the BdG Hamiltonian of the edge with both <span class="math inline">\(h\)</span> and an <span class="math inline">\(s\)</span>-wave <span class="math inline">\(\Delta\)</span>, for <span class="math inline">\(\mu=0\)</span>. They are <span class="math inline">\(\pm h\pm\Delta\)</span>, and the gap closes at <span class="math inline">\(h=\Delta\)</span>. For <span class="math inline">\(h&lt;\Delta\)</span> the gap comes from pairing, and for <span class="math inline">\(h&gt;\Delta\)</span> it comes from the magnet. These are two different phases, and the Majorana zero mode sits at the boundary between them.</figcaption>
+<img src="../figures/web/session05/helical_edge_gap.svg" loading="lazy" alt="On the left, two crossing dashed lines for the helical edge and a hyperbola with a gap 2h for the edge under a magnet, with the ticks 0.7 and minus 0.7 on the energy axis. On the right, four straight lines of the energy against h over Delta, two of which cross zero at h equal to Delta." />
+<figcaption><strong>Schematic 5.18.</strong> The two steps of Figure <a href="#fig:s05:qsh">5.6</a>, computed for the edge <span class="math inline">\(H(k)\)</span> above. (a) The helical edge, with spin up moving right and spin down moving left, is drawn with dashed lines, with the energy <span class="math inline">\(E\)</span> and <span class="math inline">\(vk\)</span> in the same unit. A magnet with an exchange field <span class="math inline">\(h=0.7\)</span> along <span class="math inline">\(x\)</span> couples the two branches and opens a gap <span class="math inline">\(2h\)</span> at <span class="math inline">\(k=0\)</span>, as the solid lines show. (b) The levels at <span class="math inline">\(k=0\)</span> of the BdG Hamiltonian of the edge with both <span class="math inline">\(h\)</span> and an <span class="math inline">\(s\)</span>-wave <span class="math inline">\(\Delta\)</span>, for <span class="math inline">\(\mu=0\)</span>, with the energy and <span class="math inline">\(h\)</span> in units of <span class="math inline">\(\Delta\)</span>. They are <span class="math inline">\(\pm h\pm\Delta\)</span>, and the gap closes at <span class="math inline">\(h=\Delta\)</span>. For <span class="math inline">\(h&lt;\Delta\)</span> the gap comes from pairing, and for <span class="math inline">\(h&gt;\Delta\)</span> it comes from the magnet. These are two different phases, and the Majorana zero mode sits at the boundary between them.</figcaption>
 </figure>
+<p>The notebook builds the same competition in two dimensions, with a triangular lattice, a Rashba spin-orbit coupling, an exchange field <span class="math inline">\(J\)</span> along <span class="math inline">\(z\)</span> and an <span class="math inline">\(s\)</span>-wave pairing <span class="math inline">\(\Delta\)</span>. At <span class="math inline">\(\Gamma\)</span> the spin-orbit coupling vanishes, and the four levels are <span class="math inline">\(\pm J\pm\sqrt{\varepsilon_\Gamma^2+\Delta^2}\)</span>, with <span class="math inline">\(\varepsilon_\Gamma\)</span> the band energy at <span class="math inline">\(\Gamma\)</span>. This has the form of the levels of the edge at <span class="math inline">\(k=0\)</span>, with <span class="math inline">\(\sqrt{\varepsilon_\Gamma^2+\Delta^2}\)</span> in place of <span class="math inline">\(\Delta\)</span>. So the gap closes at <span class="math inline">\(J=\sqrt{\varepsilon_\Gamma^2+\Delta^2}\)</span>, and <a href="#sch:s05:g6_artificial_tsc">Schematic 5.19</a> shows that the Chern number of the BdG bands changes there.</p>
+<figure id="sch:s05:g6_artificial_tsc" class="schematic has-script">
+<img src="../figures/web/session05/g6_artificial_tsc.svg" loading="lazy" alt="A curve of the smallest quasiparticle energy against the exchange field. It starts at 0.3 and joins a dashed straight line that comes down from 0.42. From J of about 0.2 on, the curve lies on top of the dashed line. It comes down almost to zero at J equal to 0.42, and rises again. The region on the left is marked C equal to 0 and the one on the right C equal to 1." />
+<div class="script-row">
+<a href="../scripts/session05/g6_artificial_tsc.py" class="script-dl" download="g6_artificial_tsc.py">Download the pyqula script</a> <span class="script-name"><code>g6_artificial_tsc.py</code></span>
+</div>
+<figcaption><strong>Schematic 5.19.</strong> The artificial topological superconductor of the notebook against the exchange field <span class="math inline">\(J\)</span>, computed with pyqula. This is the model of the notebook, a two-dimensional electron gas with spin-orbit coupling on a triangular lattice, and not the edge of this page. In pyqula the hopping is <span class="math inline">\(+1\)</span>, which is <span class="math inline">\(t=-1\)</span> of the notes, so the band runs from <span class="math inline">\(-3\)</span> at <span class="math inline">\(K\)</span> to <span class="math inline">\(6\)</span> at <span class="math inline">\(\Gamma\)</span>, and all energies are in units of <span class="math inline">\(|t|\)</span>. The call <code>h.add_onsite(-5.7)</code> puts the band energy at <span class="math inline">\(\Gamma\)</span> at <span class="math inline">\(\varepsilon_\Gamma=0.3\)</span> above the Fermi level, which is the top of the band before the Rashba coupling is added. The Rashba coupling is <code>h.add_rashba(1.0)</code>, the exchange field <code>h.add_zeeman([0,0,J])</code> and the pairing <code>h.add_swave(0.3)</code>. With the Rashba coupling, <span class="math inline">\(\Gamma\)</span> is the crossing point of the two Rashba bands, and the Fermi level cuts them on two closed lines around <span class="math inline">\(\Gamma\)</span>, one of them very close to <span class="math inline">\(\Gamma\)</span>. The dots are the smallest quasiparticle energy <span class="math inline">\(E_\mathrm{min}\)</span> on the line <span class="math inline">\(M\)</span>, <span class="math inline">\(\Gamma\)</span>, <span class="math inline">\(M\)</span>, which is also the smallest one over the whole zone, and the dashed line is the level at <span class="math inline">\(\Gamma\)</span>, <span class="math inline">\(|J-0.42|\)</span>. At <span class="math inline">\(J=0\)</span> the smallest energy is <span class="math inline">\(\Delta=0.3\)</span>, on the Fermi surface, and from about <span class="math inline">\(J=0.22\)</span> on it is the level at <span class="math inline">\(\Gamma\)</span>. This level goes to zero at <span class="math inline">\(J=\sqrt{0.3^2+0.3^2}=0.42\)</span>, where the Chern number of the BdG bands below zero changes from <span class="math inline">\(0\)</span>, computed at <span class="math inline">\(J=0.3\)</span>, to <span class="math inline">\(1\)</span>, computed at <span class="math inline">\(J=0.6\)</span>. Look at the dip, since the two sides of it are two different phases.</figcaption>
+</figure>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>The helical edge of the recipe exists in monolayer WTe<span class="math inline">\(_2\)</span>. Its quantum spin Hall state is seen in transport at temperatures up to <span class="math inline">\(100\)</span> K, as reported in <a href="https://www.science.org/doi/10.1126/science.aan6003">this article</a>. In another experiment, reported in <a href="https://www.nature.com/articles/s41567-020-0816-x">this article</a>, atomically thin layers of WTe<span class="math inline">\(_2\)</span> are placed on the van der Waals superconductor NbSe<span class="math inline">\(_2\)</span>. There STM shows that at the edge of the monolayer the superconducting gap coexists with the spectroscopic signature of the quantum spin Hall edge state. The <span class="math inline">\(100\)</span> K belongs to the quantum spin Hall state of the first article, measured on another sample, and not to the proximity gap.</p>
+</div>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
@@ -124,6 +169,81 @@ Question
 </ul>
 </div>
 </details>
+</div>
+<div class="quiz" data-correct="A" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>At <span class="math inline">\(k=0\)</span> and <span class="math inline">\(\mu=0\)</span> the helical edge with a magnet and a pairing has</p>
+<p><span class="math display">\[H=h\,\sigma_x+\Delta\,\tau_x .\]</span></p>
+<p>Here <span class="math inline">\(\sigma\)</span> acts on the spin and <span class="math inline">\(\tau\)</span> on the electron and the hole. What are its levels?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(E=\pm h\pm\Delta\)</span></li>
+<li><span class="math inline">\(E=\pm\sqrt{h^2+\Delta^2}\)</span></li>
+<li><span class="math inline">\(E=\pm(h+\Delta)\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. <span class="math inline">\(\sigma_x\)</span> and <span class="math inline">\(\tau_x\)</span> act on different indices, so they commute and have common eigenvectors, and their eigenvalues add. For <span class="math inline">\(h=0.3\)</span> and <span class="math inline">\(\Delta=0.5\)</span> the levels are <span class="math inline">\(\pm0.2\)</span> and <span class="math inline">\(\pm0.8\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. For <span class="math inline">\(h=0.3\)</span> and <span class="math inline">\(\Delta=0.5\)</span> this gives <span class="math inline">\(\pm0.58\)</span>, while the matrix has the levels <span class="math inline">\(\pm0.2\)</span> and <span class="math inline">\(\pm0.8\)</span>. A square root appears for two terms that anticommute, as <span class="math inline">\(\varepsilon\tau_z\)</span> and <span class="math inline">\(\Delta\tau_x\)</span> do in the BdG spectrum <span class="math inline">\(E=\pm\sqrt{\varepsilon^2+|\Delta|^2}\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. These are only two of the four levels. For <span class="math inline">\(h=0.3\)</span> and <span class="math inline">\(\Delta=0.5\)</span> the matrix also has <span class="math inline">\(\pm0.2\)</span>, which is <span class="math inline">\(\pm(h-\Delta)\)</span>, and this pair crosses zero at <span class="math inline">\(h=\Delta\)</span>.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="quiz quiz-pics" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>A helical edge with the velocity <span class="math inline">\(v=1\)</span> and <span class="math inline">\(\mu=0.2\)</span> has the BdG Hamiltonian</p>
+<p><span class="math display">\[H(k)=\tau_z\left(vk\,\sigma_z-\mu\right)+h\,\sigma_x+\Delta\,\tau_x .\]</span></p>
+<p>Each picture shows its levels against <span class="math inline">\(k\)</span>. One has <span class="math inline">\(h=\Delta=0\)</span>, one has only <span class="math inline">\(h=0.5\)</span>, and one has only <span class="math inline">\(\Delta=0.3\)</span>. Which picture has the gap of the magnet?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session05/g6_quiz_edge_bare.svg" loading="lazy" alt="The levels of the edge against k. Four straight lines cross zero at k equal to 0.2 and minus 0.2, and cross each other at k equal to 0." /></li>
+<li><img src="../figures/web/session05/g6_quiz_edge_magnet.svg" loading="lazy" alt="The levels of the edge against k. Four hyperbolas, two above zero and two below, each with its smallest distance from zero at k equal to 0." /></li>
+<li><img src="../figures/web/session05/g6_quiz_edge_pairing.svg" loading="lazy" alt="The levels of the edge against k. Two levels above zero and two below, with their smallest distance from zero at k equal to 0.2 and minus 0.2, and crossings at k equal to 0." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. With <span class="math inline">\(h=\Delta=0\)</span> nothing couples the branches. The lines cross zero at <span class="math inline">\(k=\pm\mu/v=\pm0.2\)</span>, so this edge has no gap.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The magnet couples the two directions of motion where they cross, at <span class="math inline">\(k=0\)</span>. The electron levels are <span class="math inline">\(-\mu\pm\sqrt{v^2k^2+h^2}\)</span> and the hole levels <span class="math inline">\(\mu\pm\sqrt{v^2k^2+h^2}\)</span>, so the smallest energy is <span class="math inline">\(h-\mu=0.3\)</span>, at <span class="math inline">\(k=0\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. Pairing couples an electron and a hole where they cross zero, at the Fermi momenta <span class="math inline">\(k=\pm0.2\)</span>. The smallest energy is <span class="math inline">\(\Delta=0.3\)</span> there, and at <span class="math inline">\(k=0\)</span> the levels are <span class="math inline">\(\pm\sqrt{\mu^2+\Delta^2}=\pm0.36\)</span>.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>The edge has <span class="math inline">\(\Delta=0.3\)</span> and <span class="math inline">\(\mu=0.4\)</span>. Show that its levels at <span class="math inline">\(k=0\)</span> are <span class="math inline">\(\pm h\pm\sqrt{\Delta^2+\mu^2}\)</span>, and find the exchange field <span class="math inline">\(h\)</span> where the gap closes.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>At <span class="math inline">\(k=0\)</span> the edge Hamiltonian is <span class="math inline">\(H=-\mu\,\tau_z+\Delta\,\tau_x+h\,\sigma_x\)</span>. The first two terms act only on <span class="math inline">\(\tau\)</span>, and <span class="math inline">\(\tau_z\)</span> and <span class="math inline">\(\tau_x\)</span> anticommute, so</p>
+<p><span class="math display">\[\left(-\mu\,\tau_z+\Delta\,\tau_x\right)^2=\mu^2+\Delta^2 ,\]</span></p>
+<p>and their eigenvalues are <span class="math inline">\(\pm\sqrt{\mu^2+\Delta^2}=\pm0.5\)</span>, as for <span class="math inline">\(\varepsilon\)</span> and <span class="math inline">\(\Delta\)</span> in <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#eq-5-9">(5.9)</a>. The last term acts only on <span class="math inline">\(\sigma\)</span> and commutes with both, so the energies add, as in the steps of the levels at <span class="math inline">\(k=0\)</span> above,</p>
+<p><span class="math display">\[E(k=0)=\pm h\pm\sqrt{\Delta^2+\mu^2} .\]</span></p>
+<p>The level <span class="math inline">\(h-\sqrt{\Delta^2+\mu^2}\)</span> crosses zero at <span class="math inline">\(h=\sqrt{0.09+0.16}=0.5\)</span>. A scan over all <span class="math inline">\(k\)</span> gives the same answer, since the smallest energy of the edge vanishes only at <span class="math inline">\(h=0.5\)</span>. So the chemical potential enters the condition, as it does in the window <a href="17-topological-zero-modes-with-periodic-and-open-boundaries.html#eq-5-22">(5.22)</a> of the Kitaev chain. A gate that moves the Fermi level of the edge then moves the boundary between the two phases.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb"><code>session5.ipynb</code></a>, “Artificial topological superconductivity” (Challenge), “Edge states of an artificial topological superconductor” (Challenge), and “Topological phase transition as a function of the exchange field”</p>

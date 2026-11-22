@@ -85,51 +85,93 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="on" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 5. Superconductivity, Nambu Representation and Majorana Physics</a></p>
 <h1 id="sec-5-4"><span class="num">5.4</span> The interacting Hamiltonian and the origin of attractive interactions</h1>
+<p>Electrons repel each other, so where does an attraction between them come from, and how does it give a pair amplitude? We will now see that a phonon gives an effective attraction at frequencies below its own frequency <span class="math inline">\(\omega_0\)</span>. In the second part of the page this attraction gives the mean-field Hamiltonian <a href="#eq-5-4">(5.4)</a>, with a pairing <span class="math inline">\(\Delta_n\)</span> that can be nonzero only for <span class="math inline">\(U&lt;0\)</span>.</p>
 <p>As in Section <a href="../session1/12-the-general-interacting-hamiltonian-and-the-tool-we-will-use-on-it.html#sec-1-12">1.12</a>, we start from the general interacting Hamiltonian <span class="math inline">\(H = \sum_{ij}t_{ij}c_i^\dagger
-c_j + \sum_{ijkl}V_{ijkl}c_i^\dagger c_j^\dagger c_k c_l\)</span>. The interaction <span class="math inline">\(V_{ijkl}\)</span> can come from the plain electrostatic Coulomb repulsion, which is repulsive, but it can also be an <em>effective</em> interaction mediated by another quasiparticle in the material. Examples are phonons, which are lattice vibrations, magnons, which are fluctuations of a magnetic moment, plasmons, which are collective charge fluctuations, and even more exotic mediators such as skyrmion fluctuations or valence fluctuations. For superconductivity, what matters is not the microscopic origin of <span class="math inline">\(V_{ijkl}\)</span> but its net sign in the channel that turns out to be relevant, and superconductivity requires this channel to be effectively <em>attractive</em>. Schematic <a href="#sch:s05:phonon_exchange">Schematic 5.3</a> shows the simplest case, where two electrons interact through a phonon. At frequencies below the phonon frequency <span class="math inline">\(\omega_0\)</span> the phonon term is attractive, and above it the term is repulsive.</p>
+c_j + \sum_{ijkl}V_{ijkl}c_i^\dagger c_j^\dagger c_k c_l\)</span>. The interaction <span class="math inline">\(V_{ijkl}\)</span> can come from the plain electrostatic Coulomb repulsion, which is repulsive, but it can also be an <em>effective</em> interaction mediated by another quasiparticle in the material. Examples are phonons, which are lattice vibrations, magnons, which are fluctuations of a magnetic moment, plasmons, which are collective charge fluctuations, and even more exotic mediators such as skyrmion fluctuations or valence fluctuations. For superconductivity, what matters is not the microscopic origin of <span class="math inline">\(V_{ijkl}\)</span> but its net sign in the channel that turns out to be relevant, and superconductivity requires this channel to be effectively <em>attractive</em>. <a href="#sch:s05:phonon_exchange">Schematic 5.3</a> shows the simplest case, where two electrons interact through a phonon. At frequencies below the phonon frequency <span class="math inline">\(\omega_0\)</span> the phonon term is attractive, and above it the term is repulsive.</p>
 <figure id="sch:s05:phonon_exchange" class="schematic">
 <img src="../figures/web/session05/phonon_exchange.svg" loading="lazy" alt="Two electron lines joined by a wavy phonon line, and the effective interaction against frequency, which is negative below the phonon frequency and positive above it." />
-<figcaption><strong>Schematic 5.3.</strong> Interaction mediated by a phonon. (a) One electron deforms the lattice, and the second one feels it. (b) The effective interaction <span class="math inline">\(V_\mathrm{eff}(\omega)=V_c-(2g^2/\omega_0)/[1-(\omega/\omega_0)^2]\)</span> is plotted in units of <span class="math inline">\(2g^2/\omega_0\)</span>, with <span class="math inline">\(V_c=0.5\)</span>. It is negative for <span class="math inline">\(\omega&lt;\omega_0\)</span>, so the net sign of the channel is attractive.</figcaption>
+<figcaption><strong>Schematic 5.3.</strong> Interaction mediated by a phonon. (a) One electron deforms the lattice, and the second one feels it. (b) The effective interaction <span class="math inline">\(V_\mathrm{eff}(\omega)=V_c-(2g^2/\omega_0)/[1-(\omega/\omega_0)^2]\)</span> in units of <span class="math inline">\(2g^2/\omega_0\)</span>, against the frequency <span class="math inline">\(\omega\)</span> in units of <span class="math inline">\(\omega_0\)</span>, with the Coulomb part <span class="math inline">\(V_c=0.5\)</span>. It is <span class="math inline">\(V_c-1=-0.5\)</span> at <span class="math inline">\(\omega=0\)</span> and negative for every <span class="math inline">\(\omega&lt;\omega_0\)</span>, so the net sign of the channel is attractive there. Above <span class="math inline">\(\omega_0\)</span> it is positive, and it goes down to <span class="math inline">\(V_c\)</span> at high frequency.</figcaption>
 </figure>
 <p>This is the natural point to distinguish the two families of superconductors.</p>
 <ul>
 <li><p><strong>Conventional superconductors</strong>, where the attractive channel is mediated by phonons. This is the case that we understand best. Mean-field theory, which is called BCS theory, works well at the quantitative level, and the critical temperatures of simple conventional superconductors such as aluminum or lead can be predicted from theory.</p></li>
 <li><p><strong>Unconventional superconductors</strong>, where the attraction is mediated by anything that is not a phonon, such as antiferromagnetic or ferromagnetic magnons, plasmons, valence fluctuations, charge fluctuations and others. Here we do not have a predictive theory that is equally reliable. Even to identify <em>which</em> quasiparticle mediates the attraction in a given unconventional superconductor is often still an open research question. It is one of the major unsolved problems of the field.</p></li>
 </ul>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>In our reading, a phonon mechanism can be tested with isotopes, since in the Born-Oppenheimer picture a heavier isotope changes the phonons and not the electrons. In sulfur hydride at high pressure, <a href="https://www.nature.com/articles/nature14964">this article</a> sees a sharp drop of the resistivity to zero, and magnetic susceptibility measurements confirm a <span class="math inline">\(T_c\)</span> of <span class="math inline">\(203\)</span> K. The same article reports a pronounced isotope shift of <span class="math inline">\(T_c\)</span> in sulfur deuteride, which it calls suggestive of an electron-phonon mechanism consistent with BCS theory. The probes are the resistivity and the magnetic susceptibility. Our reading is that deuterium, which is heavier than hydrogen, lowers the phonon frequency <span class="math inline">\(\omega_0\)</span> of <a href="#sch:s05:phonon_exchange">Schematic 5.3</a>, and with it the window of frequencies where the interaction is attractive.</p>
+</div>
 <h1 class="sec-next" id="sec-5-5"><span class="num">5.5</span> The mean-field pairing Hamiltonian in detail</h1>
 <p>Let us now build the mean-field pairing Hamiltonian with the same care that we used for the charge density wave of Section <a href="../session1/13-worked-example-1-the-charge-density-wave.html#sec-1-13">1.13</a> and the magnet of Section <a href="../session1/14-worked-example-2-magnetism.html#sec-1-14">1.14</a>. In <a href="../session1/index.html">Session 1</a> we only pointed at <span class="math inline">\(\Delta = \langle
-cc\rangle\)</span>. We take the simplest interacting Hamiltonian that can give superconductivity, which is a one-dimensional tight-binding chain with an attractive onsite interaction between opposite spins,</p>
+cc\rangle\)</span>.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[H = -t\sum_{n,\sigma}\left(c_{n\sigma}^\dagger c_{n+1,\sigma} + \text{h.c.}\right) + U\sum_n c_{n\uparrow}^\dagger c_{n\uparrow}\, c_{n\downarrow}^\dagger c_{n\downarrow}, \tag{1.7}\]</span></p>
+</div>
+<p>This is the Hubbard chain of Section <a href="../session1/14-worked-example-2-magnetism.html#sec-1-14">1.14</a>, with the hopping <span class="math inline">\(t\)</span> between first neighbors and the onsite interaction <span class="math inline">\(U\)</span> between the two spins of a site, written with the densities <span class="math inline">\(n_{n\sigma}=c_{n\sigma}^\dagger c_{n\sigma}\)</span>. There <span class="math inline">\(U&gt;0\)</span> is the Coulomb repulsion, and it gives a magnet.</p>
+</div>
+<p>We take the simplest interacting Hamiltonian that can give superconductivity, which is a one-dimensional tight-binding chain with an attractive onsite interaction between opposite spins,</p>
 <p><span id="eq-5-2" class="eq"><span class="math display">\[H = -t\sum_{n,\sigma}\left(c_{n\sigma}^\dagger c_{n+1,\sigma} + \text{h.c.}\right) - \mu\sum_{n\sigma}c_{n\sigma}^\dagger c_{n\sigma} + U\sum_n c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger c_{n\downarrow} c_{n\uparrow}, \qquad U&lt;0. \tag{5.2}\]</span></span></p>
 <p>This is the Hubbard model of equation <a href="../session1/14-worked-example-2-magnetism.html#eq-1-7">(1.7)</a> in <a href="../session1/index.html">Session 1</a>, now with <span class="math inline">\(U = -|U| &lt; 0\)</span>. It is the attractive branch of the same Hamiltonian, and its repulsive branch gives rise to magnetism, which is the topic of <a href="../session6/index.html">Session 6</a>, where the chain comes back as <a href="../session6/02-a-recap-of-symmetry-breaking-and-the-mean-field-philosophy.html#eq-6-1">(6.1)</a>. This time we do the mean-field decoupling of the quartic term in the <em>pairing</em> channel, also called the particle-particle channel, instead of the density channel. We define the order parameter</p>
 <p><span id="eq-5-3" class="eq"><span class="math display">\[\Delta_n \equiv U\langle c_{n\downarrow}c_{n\uparrow}\rangle, \tag{5.3}\]</span></span></p>
-<p>and we factorize <span class="math inline">\(c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger c_{n\downarrow}c_{n\uparrow} \approx
+<p>and we factorize</p>
+<p><span class="math display">\[c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger c_{n\downarrow}c_{n\uparrow} \approx
 \langle c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger\rangle c_{n\downarrow}c_{n\uparrow} +
 c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger \langle c_{n\downarrow}c_{n\uparrow}\rangle - \langle
-c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger\rangle\langle c_{n\downarrow}c_{n\uparrow}\rangle\)</span>. This is the same Wick-type factorization that we used in all of <a href="../session1/index.html">Session 1</a>, now applied to a different pair of operators. The resulting mean-field Hamiltonian is</p>
+c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger\rangle\langle c_{n\downarrow}c_{n\uparrow}\rangle.\]</span></p>
+<p>This is the same Wick-type factorization that we used in all of <a href="../session1/index.html">Session 1</a>, now applied to a different pair of operators, and it gives the mean-field Hamiltonian of the chain.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>The mean-field Hamiltonian of the attractive chain is</p>
 <p><span id="eq-5-4" class="eq"><span class="math display">\[H_{\text{MF}} = -t\sum_{n\sigma}\left(c_{n\sigma}^\dagger c_{n+1,\sigma}+\text{h.c.}\right) - \mu\sum_{n\sigma}c_{n\sigma}^\dagger c_{n\sigma} + \sum_n\left(\Delta_n\, c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger + \Delta_n^*\, c_{n\downarrow}c_{n\uparrow}\right) - \sum_n\frac{|\Delta_n|^2}{U}. \tag{5.4}\]</span></span></p>
-<p>When we solve it self-consistently, <span class="math inline">\(\Delta_n\)</span> is exactly zero for <span class="math inline">\(U&gt;0\)</span>, the repulsive case, and it can become nonzero for <span class="math inline">\(U&lt;0\)</span>, the attractive case. This is the superconducting order parameter, and it is the term that breaks gauge symmetry.</p>
+<p>The pairing <span class="math inline">\(\Delta_n=U\langle c_{n\downarrow}c_{n\uparrow}\rangle\)</span> of <a href="#eq-5-3">(5.3)</a> is found self-consistently, and it is exactly zero for <span class="math inline">\(U&gt;0\)</span>, the repulsive case, while it can become nonzero for <span class="math inline">\(U&lt;0\)</span>, the attractive case. This is the superconducting order parameter, and it is the term that breaks gauge symmetry.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the attractive chain (5.2) to the mean-field Hamiltonian (5.4)</span></summary>
+<div class="fold-body">
+<p>Let us take one site first, and drop the index <span class="math inline">\(n\)</span>. The interaction of <a href="#eq-5-2">(5.2)</a> on the site is <span class="math inline">\(U c_\uparrow^\dagger c_\downarrow^\dagger c_\downarrow c_\uparrow\)</span>. We write <span class="math inline">\(B=c_\downarrow c_\uparrow\)</span>, which removes a pair, so <span class="math inline">\(B^\dagger=c_\uparrow^\dagger c_\downarrow^\dagger\)</span> creates it, and the interaction is <span class="math inline">\(U B^\dagger B\)</span>. We write the operator as its expectation value plus a fluctuation, <span class="math inline">\(B=\langle B\rangle+\delta B\)</span>, which gives</p>
+<p><span class="math display">\[B^\dagger B=\langle B^\dagger\rangle\langle B\rangle+\langle B^\dagger\rangle\,\delta B+\delta B^\dagger\,\langle B\rangle+\delta B^\dagger\,\delta B.\]</span></p>
+<p>The mean-field approximation drops the last term, which is a product of two fluctuations. We put back <span class="math inline">\(\delta B=B-\langle B\rangle\)</span> in the two terms in the middle, and we get</p>
+<p><span class="math display">\[U B^\dagger B\approx U\langle B\rangle\,B^\dagger+U\langle B^\dagger\rangle\,B-U|\langle B\rangle|^2.\]</span></p>
+<p>With <span class="math inline">\(\Delta=U\langle B\rangle=U\langle c_\downarrow c_\uparrow\rangle\)</span>, which is <a href="#eq-5-3">(5.3)</a>, and a real <span class="math inline">\(U\)</span>, we have <span class="math inline">\(U\langle B^\dagger\rangle=\Delta^*\)</span> and <span class="math inline">\(U|\langle B\rangle|^2=|\Delta|^2/U\)</span>, so</p>
+<p><span class="math display">\[U B^\dagger B\approx\Delta\,c_\uparrow^\dagger c_\downarrow^\dagger+\Delta^*\,c_\downarrow c_\uparrow-\frac{|\Delta|^2}{U}.\]</span></p>
+<p>The chain has one such term on every site, with its own <span class="math inline">\(\Delta_n\)</span>. The hopping and the chemical potential are already bilinear, so they stay as they are, and the sum over <span class="math inline">\(n\)</span> is <a href="#eq-5-4">(5.4)</a>. The term that we dropped, <span class="math inline">\(U\,\delta B^\dagger\delta B\)</span>, is the only approximation of the mean-field theory.</p>
+</div>
+</details>
+</div>
 <figure class="again">
 <img src="../figures/s01f05_selfconsistency.svg" loading="lazy" alt="A loop of four stations, a guess of the expectation values, the mean-field Hamiltonian, its diagonalization and the new expectation values, with a return arrow until the result stops changing." />
 <figcaption><strong><a href="../session1/13-worked-example-1-the-charge-density-wave.html#fig:s01:mfloop">Figure 1.4</a>, shown again.</strong> The mean-field loop of <a href="../session1/index.html">Session 1</a>, drawn there for a charge density wave. For the pairing channel of <a href="#eq-5-4">(5.4)</a> the guess is <span class="math inline">\(\Delta_n\)</span>, and the new expectation value is <span class="math inline">\(\langle c_{n\downarrow}c_{n\uparrow}\rangle\)</span>.</figcaption>
+</figure>
+<p><a href="#sch:s05:g1_gap_against_u">Schematic 5.4</a> shows what this loop gives for the attractive chain at a low density, with the settings of the notebook. The pairing is finite for every <span class="math inline">\(U&lt;0\)</span> of the plot, and it grows fast with the attraction.</p>
+<figure id="sch:s05:g1_gap_against_u" class="schematic has-script">
+<img src="../figures/web/session05/g1_gap_against_u.svg" loading="lazy" alt="Six dots of the pairing against the strength of the attraction, on a curve that rises and bends upward." />
+<div class="script-row">
+<a href="../scripts/session05/g1_meanfield_swave_chain.py" class="script-dl" download="g1_meanfield_swave_chain.py">Download the pyqula script</a> <span class="script-name"><code>g1_meanfield_swave_chain.py</code></span>
+</div>
+<figcaption><strong>Schematic 5.4.</strong> The self-consistent pairing <span class="math inline">\(|\Delta|\)</span> of the attractive chain <a href="#eq-5-2">(5.2)</a> against the strength <span class="math inline">\(|U|\)</span> of the attraction, both in units of the hopping <span class="math inline">\(t\)</span>, computed with pyqula. The chain has <span class="math inline">\(0.2\)</span> electrons per site, which is <code>filling=0.1</code>, and the loop uses <code>nk=100</code> and <code>mix=0.5</code>, the settings of the notebook. The values are those of the pyqula of GitHub, whose loop keeps the density fixed. At <span class="math inline">\(U=-1\)</span>, <span class="math inline">\(-1.5\)</span> and <span class="math inline">\(-2\)</span> the values are <span class="math inline">\(0.10\)</span>, <span class="math inline">\(0.22\)</span> and <span class="math inline">\(0.36\)</span>, so twice the attraction gives a pairing <span class="math inline">\(3.5\)</span> times larger. At every point the smallest energy of the bands is <span class="math inline">\(|\Delta|\)</span>. At <span class="math inline">\(|U|=0.5\)</span> a mesh of <span class="math inline">\(100\)</span> momenta gives <span class="math inline">\(0.017\)</span>, against <span class="math inline">\(0.015\)</span> on a dense mesh, so the plot starts at <span class="math inline">\(|U|=0.75\)</span>, where the two agree. Look at how the curve bends up, since <span class="math inline">\(|\Delta|\)</span> grows faster than <span class="math inline">\(|U|\)</span>.</figcaption>
 </figure>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>We start the loop for the attractive chain <a href="#eq-5-2">(5.2)</a> with a small guess <span class="math inline">\(\Delta_n\neq0\)</span>, but now with <span class="math inline">\(U&gt;0\)</span>. Which self-consistent solution does the loop find?</p>
-<div class="eq-again">
-<p><span class="math display">\[H = -t\sum_{n,\sigma}\left(c_{n\sigma}^\dagger c_{n+1,\sigma} + \text{h.c.}\right) - \mu\sum_{n\sigma}c_{n\sigma}^\dagger c_{n\sigma} + U\sum_n c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger c_{n\downarrow} c_{n\uparrow}, \qquad U&lt;0. \tag{5.2}\]</span></p>
-</div>
-<div class="eq-again">
-<p><span class="math display">\[\Delta_n \equiv U\langle c_{n\downarrow}c_{n\uparrow}\rangle, \tag{5.3}\]</span></p>
-</div>
+<p>Near <span class="math inline">\(\Delta=0\)</span>, one step of the mean-field loop for the pairing gives</p>
+<p><span class="math display">\[\Delta_\text{new}=-U g\,\Delta.\]</span></p>
+<p>Here <span class="math inline">\(g&gt;0\)</span> is the pair susceptibility of the bands. We take <span class="math inline">\(g\)</span> finite near <span class="math inline">\(\Delta=0\)</span>, as at a finite temperature, and <span class="math inline">\(Ug&lt;1\)</span>. We start from a small <span class="math inline">\(\Delta\neq0\)</span> with <span class="math inline">\(U&gt;0\)</span>. Which self-consistent solution does the loop find?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
-<li>A finite <span class="math inline">\(\Delta_n\)</span>, since any pair amplitude sustains itself.</li>
-<li>Only <span class="math inline">\(\Delta_n=0\)</span>.</li>
-<li>The loop keeps the guess, since <a href="#eq-5-3">(5.3)</a> does not depend on the sign of <span class="math inline">\(U\)</span>.</li>
+<li>A finite <span class="math inline">\(\Delta\)</span>, since any pair amplitude sustains itself.</li>
+<li>Only <span class="math inline">\(\Delta=0\)</span>.</li>
+<li>The loop keeps the guess, since the step does not depend on the sign of <span class="math inline">\(U\)</span>.</li>
 </ol>
 </div>
 <details class="quiz-answer"><summary>Show the answers</summary>
@@ -138,16 +180,63 @@ Question
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
 <p>This is false. For one site with <span class="math inline">\(U=+t\)</span> and <span class="math inline">\(\mu=0\)</span>, the doubly occupied state costs <span class="math inline">\(+t\)</span>, while the empty and the singly occupied states have energy <span class="math inline">\(0\)</span>. The ground states have <span class="math inline">\(\langle c_\downarrow c_\uparrow\rangle=0\)</span>, so there is no pair amplitude to sustain.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. The pair susceptibility <span class="math inline">\(g&gt;0\)</span> of the bands gives <span class="math inline">\(\Delta_\text{new}=-U g\Delta\)</span> in <a href="#eq-5-3">(5.3)</a>. For <span class="math inline">\(U&gt;0\)</span> the factor is negative, so every finite guess comes back with the opposite sign, and no finite <span class="math inline">\(\Delta_n\)</span> reproduces itself. For <span class="math inline">\(U&lt;0\)</span> the factor is positive and a finite <span class="math inline">\(\Delta_n\)</span> can be self-consistent.</p></li>
+<p>This is true. A finite fixed point needs <span class="math inline">\(-Ug=1\)</span>, which is impossible for <span class="math inline">\(U&gt;0\)</span> and <span class="math inline">\(g&gt;0\)</span>. So every finite guess comes back with the opposite sign, and no finite <span class="math inline">\(\Delta\)</span> reproduces itself. For <span class="math inline">\(U&lt;0\)</span> the factor <span class="math inline">\(-Ug\)</span> is positive, and a finite <span class="math inline">\(\Delta\)</span> can be self-consistent. The loop reaches <span class="math inline">\(\Delta=0\)</span> only when <span class="math inline">\(g\)</span> stays finite. In a metal at zero temperature <span class="math inline">\(g\)</span> grows as <span class="math inline">\(\Delta\)</span> goes to zero, so the plain loop can jump between <span class="math inline">\(+\Delta\)</span> and <span class="math inline">\(-\Delta\)</span> and never settle. With <code>filling=0.1</code>, <code>nk=100</code> and <code>mix=0.5</code> at <code>U=1.0</code>, the loop of pyqula does not converge.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. The sign of <span class="math inline">\(U\)</span> enters <a href="#eq-5-3">(5.3)</a> as a prefactor. If <span class="math inline">\(Ug=0.5\)</span> at <span class="math inline">\(U&gt;0\)</span>, the loop gives <span class="math inline">\(\Delta_\text{new}=-0.5\,\Delta\)</span> in each step, so the guess does not stay.</p>
+<p>This is false. The sign of <span class="math inline">\(U\)</span> enters the step as a prefactor. Take a finite <span class="math inline">\(g\)</span>, as at a finite temperature, with <span class="math inline">\(Ug=0.5\)</span> at <span class="math inline">\(U&gt;0\)</span>. Then the loop gives <span class="math inline">\(\Delta_\text{new}=-0.5\,\Delta\)</span> in each step, so the guess does not stay.</p>
 <figure class="quiz-fig schematic">
 <img src="../figures/web/session05/pairing_cobweb.svg" loading="lazy" alt="A staircase between a line of slope minus one half and the diagonal, which spirals into the origin." />
-<figcaption>The loop for <span class="math inline">\(Ug=0.5\)</span> and <span class="math inline">\(\Delta_0=1\)</span>. Each step flips the sign and halves the guess, so the iteration goes to zero.</figcaption>
+<figcaption>The loop for <span class="math inline">\(Ug=0.5\)</span> with a finite <span class="math inline">\(g\)</span>, with <span class="math inline">\(\Delta\)</span> and <span class="math inline">\(\Delta_\text{new}\)</span> in units of the first guess <span class="math inline">\(\Delta_0=1\)</span>. Each step flips the sign and halves the guess, from <span class="math inline">\(1\)</span> to <span class="math inline">\(-0.5\)</span> and <span class="math inline">\(0.25\)</span>, so the iteration goes to zero.</figcaption>
 </figure></li>
 </ul>
 </div>
 </details>
+</div>
+<div class="quiz quiz-pics" data-correct="A" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Three attractive Hubbard chains have <span class="math inline">\(0.2\)</span> electrons per site and different <span class="math inline">\(U&lt;0\)</span>. Their mean-field bands are</p>
+<p><span class="math display">\[E(k)=\pm\sqrt{\varepsilon(k)^2+|\Delta|^2}.\]</span></p>
+<p>Here <span class="math inline">\(\varepsilon(k)\)</span> is the band without pairing, measured from the chemical potential. The pairing <span class="math inline">\(\Delta\)</span> is found self-consistently. Each picture shows <span class="math inline">\(E(k)\)</span> in units of the hopping <span class="math inline">\(t\)</span>. Which chain has the strongest attraction?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session05/g1_quiz_bands_u20.svg" loading="lazy" alt="Two branches of the bands against k. The lowest point of the upper branch is at about 0.36, and the lower branch mirrors it." /></li>
+<li><img src="../figures/web/session05/g1_quiz_bands_u15.svg" loading="lazy" alt="Two branches of the bands against k. The lowest point of the upper branch is at about 0.22, and the lower branch mirrors it." /></li>
+<li><img src="../figures/web/session05/g1_quiz_bands_u10.svg" loading="lazy" alt="Two branches of the bands against k. The lowest point of the upper branch is at about 0.10, and the lower branch mirrors it." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. This chain has the largest gap, with the smallest energy <span class="math inline">\(|\Delta|=0.36\)</span> and the two branches <span class="math inline">\(2|\Delta|\)</span> apart, and it has <span class="math inline">\(U=-2\)</span>. A stronger attraction gives a larger self-consistent <span class="math inline">\(|\Delta|\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. Here the smallest energy is <span class="math inline">\(|\Delta|=0.22\)</span>, and the two branches are <span class="math inline">\(2|\Delta|\)</span> apart. This chain has <span class="math inline">\(U=-1.5\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. Here the smallest energy is <span class="math inline">\(|\Delta|=0.10\)</span>, and the two branches are <span class="math inline">\(2|\Delta|\)</span> apart, the smallest gap of the three. This chain has <span class="math inline">\(U=-1\)</span>.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>One site has the Hamiltonian <span class="math inline">\(H=Un_\uparrow n_\downarrow-\mu(n_\uparrow+n_\downarrow)\)</span> with <span class="math inline">\(U=-2t\)</span>. For which <span class="math inline">\(\mu\)</span> do the empty and the doubly occupied site have the same energy, and how far above them are the two singly occupied states?</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>The four states of the site are <span class="math inline">\(|0\rangle\)</span>, <span class="math inline">\(|\uparrow\rangle\)</span>, <span class="math inline">\(|\downarrow\rangle\)</span> and <span class="math inline">\(|\uparrow\downarrow\rangle\)</span>, and <span class="math inline">\(H\)</span> is diagonal in them, with the energies</p>
+<p><span class="math display">\[E_0=0,\qquad E_\uparrow=E_\downarrow=-\mu,\qquad E_{\uparrow\downarrow}=U-2\mu.\]</span></p>
+<p>The empty and the doubly occupied states have the same energy when <span class="math inline">\(U-2\mu=0\)</span>, so at <span class="math inline">\(\mu=U/2=-t\)</span>. At this <span class="math inline">\(\mu\)</span> both have the energy <span class="math inline">\(0\)</span>, and the singly occupied states have <span class="math inline">\(-\mu=t\)</span>, so they lie <span class="math inline">\(t\)</span> above the other two. This means that to add one electron to an empty site, or to remove one from a pair, costs <span class="math inline">\(t\)</span>, while two electrons together cost nothing.</p>
+<p>The two degenerate states differ by two electrons, so a small pairing term <span class="math inline">\(\Delta\,c_\uparrow^\dagger c_\downarrow^\dagger+\Delta^*c_\downarrow c_\uparrow\)</span> mixes them completely. We write <span class="math inline">\(\Delta=|\Delta|e^{i\phi}\)</span> and <span class="math inline">\(|\uparrow\downarrow\rangle=c_\uparrow^\dagger c_\downarrow^\dagger|0\rangle\)</span>. The ground state is then</p>
+<p><span class="math display">\[\frac{1}{\sqrt2}\left(|0\rangle-e^{i\phi}|\uparrow\downarrow\rangle\right),\]</span></p>
+<p>at the energy <span class="math inline">\(-|\Delta|\)</span>. For a real <span class="math inline">\(\Delta\)</span> the sign is minus for <span class="math inline">\(\Delta&gt;0\)</span> and plus for <span class="math inline">\(\Delta&lt;0\)</span>. The state has <span class="math inline">\(|\langle c_\downarrow c_\uparrow\rangle|=1/2\)</span> for any small <span class="math inline">\(\Delta\)</span>. This bound pair is the seed of the pair amplitude <span class="math inline">\(\Delta_n\)</span> of <a href="#eq-5-3">(5.3)</a>, which the loop of this page computes on the chain.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb"><code>session5.ipynb</code></a>, “s-wave superconductivity driven by attractive interactions” (Core), and “Dependence on the strength of the attractive interaction” (Challenge)</p>

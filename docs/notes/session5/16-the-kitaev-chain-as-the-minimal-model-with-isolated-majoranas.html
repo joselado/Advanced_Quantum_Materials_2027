@@ -85,14 +85,50 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="on" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 5. Superconductivity, Nambu Representation and Majorana Physics</a></p>
 <h1 id="sec-5-16"><span class="num">5.16</span> The Kitaev chain as the minimal model with isolated Majoranas</h1>
+<p>What is the simplest Hamiltonian in which the two Majorana halves of an electron end up far apart? We will now see that a spinless chain with pairing on its bonds does it. At one special point the Hamiltonian binds only halves of neighboring sites, so the first and the last half are left alone at the two ends and cost no energy.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[c = \frac{1}{2}\left(\gamma_A + i\gamma_B\right), \qquad c^\dagger = \frac{1}{2}\left(\gamma_A - i\gamma_B\right). \tag{5.18}\]</span></p>
+</div>
+<p>These are the two Majorana operators of Section <a href="15-majorana-bound-states-and-how-to-split-an-electron-into-two-majoranas.html#sec-5-15">5.15</a> that make one fermion <span class="math inline">\(c\)</span>. They are Hermitian, <span class="math inline">\(\gamma_A^2=\gamma_B^2=1\)</span> and <span class="math inline">\(\{\gamma_A,\gamma_B\}=0\)</span>. On a chain we give site <span class="math inline">\(n\)</span> the two halves <span class="math inline">\(\gamma_{2n-1}\)</span> and <span class="math inline">\(\gamma_{2n}\)</span>.</p>
+</div>
 <p>The simplest superconductor that can host isolated Majoranas is also one of the simplest superconducting Hamiltonians that we can write, which is a one-dimensional <em>spinless</em> chain with nearest-neighbor hopping and nearest-neighbor pairing,</p>
 <p><span id="eq-5-19" class="eq"><span class="math display">\[H_{\text{Kitaev}} = -t\sum_n \left(c_n^\dagger c_{n+1} + \text{h.c.}\right) - \mu\sum_n c_n^\dagger c_n + \Delta\sum_n \left(c_n c_{n+1} + c_{n+1}^\dagger c_n^\dagger\right). \tag{5.19}\]</span></span></p>
 <p>Here the pairing has to be on a bond and not onsite. For spinless fermions, an onsite term <span class="math inline">\(c_n c_n\)</span> vanishes identically because of the Pauli principle (<span class="math inline">\(c_n^2=0\)</span>), so the simplest allowed pairing is the nearest-neighbor term above. After a Fourier transform, the dispersion and the pairing become</p>
 <p><span id="eq-5-20" class="eq"><span class="math display">\[\varepsilon(k) = -2t\cos k - \mu, \qquad \Delta(k) = 2i\Delta\sin k, \tag{5.20}\]</span></span></p>
 <p>so the anomalous term is explicitly odd in <span class="math inline">\(k\)</span>. As <a href="11-the-general-pairing-hamiltonian-and-its-symmetry-classification.html#eq-5-12">(5.12)</a> already tells us, this means that it is necessarily a superconductor of spin-triplet type, here a spinless p-wave one. This agrees with the fact that the onsite channel is forbidden by the Pauli principle.</p>
-<p>Now let us set <span class="math inline">\(\mu=0\)</span> and go to the special point <span class="math inline">\(\Delta=t\)</span>, and let us substitute the Majorana decomposition <a href="15-majorana-bound-states-and-how-to-split-an-electron-into-two-majoranas.html#eq-5-17">(5.17)</a>-<a href="15-majorana-bound-states-and-how-to-split-an-electron-into-two-majoranas.html#eq-5-18">(5.18)</a> at every site, <span class="math inline">\(c_n = \frac{1}{2}(\gamma_{2n-1}+i\gamma_{2n})\)</span>. We do this substitution in both the hopping and the pairing term. The algebra is direct but a bit long, and it uses the anticommutation relations of the <span class="math inline">\(\gamma\)</span>’s, so we suggest that you check it yourself. The two terms combine so that every <span class="math inline">\(\gamma_{2n-1}\gamma_{2n+2}\)</span> contribution cancels exactly between hopping and pairing, and the result is very simple,</p>
+<p>Now let us set <span class="math inline">\(\mu=0\)</span> and go to the special point <span class="math inline">\(\Delta=t\)</span>, and let us substitute the Majorana decomposition <a href="15-majorana-bound-states-and-how-to-split-an-electron-into-two-majoranas.html#eq-5-17">(5.17)</a>-<a href="15-majorana-bound-states-and-how-to-split-an-electron-into-two-majoranas.html#eq-5-18">(5.18)</a> at every site, <span class="math inline">\(c_n = \frac{1}{2}(\gamma_{2n-1}+i\gamma_{2n})\)</span>. We do this substitution in both the hopping and the pairing term. The algebra is direct but a bit long, and it uses the anticommutation relations of the <span class="math inline">\(\gamma\)</span>’s, so we suggest that you check it yourself, and the steps are in the fold below. The two terms combine so that every <span class="math inline">\(\gamma_{2n-1}\gamma_{2n+2}\)</span> contribution cancels exactly between hopping and pairing, and the result is very simple.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>At <span class="math inline">\(\Delta=t\)</span> and <span class="math inline">\(\mu=0\)</span> the Kitaev chain of <span class="math inline">\(N\)</span> sites becomes</p>
 <p><span id="eq-5-21" class="eq"><span class="math display">\[H_{\text{Kitaev}}\Big|_{\Delta=t,\ \mu=0} = it\sum_{n=1}^{N-1} \gamma_{2n}\,\gamma_{2n+1}. \tag{5.21}\]</span></span></p>
-<p>Every Majorana operator <span class="math inline">\(\gamma_2, \gamma_3, \gamma_4, \dots, \gamma_{2N-1}\)</span> appears in this sum, paired between neighboring <em>sites</em>, but the first Majorana, <span class="math inline">\(\gamma_1\)</span>, and the last one, <span class="math inline">\(\gamma_{2N}\)</span>, do not appear at all. They are completely absent from the Hamiltonian, so they cost zero energy and are completely decoupled from the rest of the system. This is the same structure that we saw in the SSH model of Section <a href="../session3/08-three-topological-material-classes.html#sec-3-9">3.9</a> and Section <a href="../session3/09b-the-ssh-chain-in-the-opposite-limit-and-the-zero-modes.html#sec-3-9b">3.9b</a>, in its dimerized strong-coupling limit. There, at full dimerization, the bulk forms bonding and antibonding dimers, while one remaining site at each end decouples and gives a zero-energy edge mode. The Kitaev chain in <a href="#eq-5-21">(5.21)</a> <em>is</em> this same structure, written in terms of Majorana operators instead of ordinary fermion operators. The two decoupled end Majoranas play the role of the two decoupled end sites of the SSH model. We do not derive the SSH model again here, and we only recognize it in terms of a new set of operators. Figure <a href="#fig:s05:kitaev">5.5</a> shows which Majorana is bound to which, in this phase and in the trivial one.</p>
+<p>Each term binds the second half of site <span class="math inline">\(n\)</span> to the first half of site <span class="math inline">\(n+1\)</span>. The first Majorana <span class="math inline">\(\gamma_1\)</span> and the last one <span class="math inline">\(\gamma_{2N}\)</span> do not appear, so they cost no energy, and they sit at the two ends of the chain.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the Kitaev chain (5.19) to the Majorana form (5.21)</span></summary>
+<div class="fold-body">
+<p>Let us take one bond first, the sites <span class="math inline">\(1\)</span> and <span class="math inline">\(2\)</span> with the Majoranas <span class="math inline">\(\gamma_1,\dots,\gamma_4\)</span>. With <span class="math inline">\(c_n=\frac12(\gamma_{2n-1}+i\gamma_{2n})\)</span> and <span class="math inline">\(c_n^\dagger=\frac12(\gamma_{2n-1}-i\gamma_{2n})\)</span>, the hopping term gives eight products of two <span class="math inline">\(\gamma\)</span>’s. We put every product in the order of the indices with <span class="math inline">\(\gamma_j\gamma_i=-\gamma_i\gamma_j\)</span> for <span class="math inline">\(i\neq j\)</span>, and the products <span class="math inline">\(\gamma_1\gamma_3\)</span> and <span class="math inline">\(\gamma_2\gamma_4\)</span> cancel between <span class="math inline">\(c_1^\dagger c_2\)</span> and <span class="math inline">\(c_2^\dagger c_1\)</span>. What is left is</p>
+<p><span class="math display">\[-t\left(c_1^\dagger c_2+c_2^\dagger c_1\right)=\frac{it}{2}\left(\gamma_2\gamma_3-\gamma_1\gamma_4\right).\]</span></p>
+<p>The pairing term gives in the same way</p>
+<p><span class="math display">\[\Delta\left(c_1c_2+c_2^\dagger c_1^\dagger\right)=\frac{i\Delta}{2}\left(\gamma_2\gamma_3+\gamma_1\gamma_4\right).\]</span></p>
+<p>The bond is then the sum of the two,</p>
+<p><span class="math display">\[\frac{i}{2}(t+\Delta)\,\gamma_2\gamma_3+\frac{i}{2}(\Delta-t)\,\gamma_1\gamma_4,\]</span></p>
+<p>meaning that the hopping and the pairing bind the same two pairs of Majoranas, with signs that add for <span class="math inline">\(\gamma_2\gamma_3\)</span> and cancel for <span class="math inline">\(\gamma_1\gamma_4\)</span>. At <span class="math inline">\(\Delta=t\)</span> only <span class="math inline">\(it\,\gamma_2\gamma_3\)</span> is left, and <span class="math inline">\(\gamma_1\)</span> and <span class="math inline">\(\gamma_4\)</span> do not appear.</p>
+<p>For the chain we sum over the bonds, where the bond between <span class="math inline">\(n\)</span> and <span class="math inline">\(n+1\)</span> has <span class="math inline">\(\gamma_{2n}\gamma_{2n+1}\)</span> in place of <span class="math inline">\(\gamma_2\gamma_3\)</span> and <span class="math inline">\(\gamma_{2n-1}\gamma_{2n+2}\)</span> in place of <span class="math inline">\(\gamma_1\gamma_4\)</span>. The chemical potential gives <span class="math inline">\(-\mu c_n^\dagger c_n=-\frac{\mu}{2}\left(1+i\gamma_{2n-1}\gamma_{2n}\right)\)</span>, which binds the two halves of the same site and is absent at <span class="math inline">\(\mu=0\)</span>. At <span class="math inline">\(\Delta=t\)</span> and <span class="math inline">\(\mu=0\)</span> the sum is <a href="#eq-5-21">(5.21)</a>, where <span class="math inline">\(\gamma_1\)</span> is in no bond on its left and <span class="math inline">\(\gamma_{2N}\)</span> in no bond on its right. Each of these lines can be checked with the <span class="math inline">\(4\times4\)</span> matrices of the operators of two sites.</p>
+</div>
+</details>
+</div>
+<p>Every Majorana operator <span class="math inline">\(\gamma_2, \gamma_3, \gamma_4, \dots, \gamma_{2N-1}\)</span> appears in this sum, paired between neighboring <em>sites</em>, but the first Majorana, <span class="math inline">\(\gamma_1\)</span>, and the last one, <span class="math inline">\(\gamma_{2N}\)</span>, do not appear at all. They are completely absent from the Hamiltonian, so they cost zero energy and are completely decoupled from the rest of the system. On an open chain this gives two levels at zero energy, while every bond <span class="math inline">\(it\gamma_{2n}\gamma_{2n+1}\)</span> costs <span class="math inline">\(2t\)</span> to fill, and <a href="#sch:s05:g5_kitaev_sweet_spot">Schematic 5.15</a> shows both.</p>
+<figure id="sch:s05:g5_kitaev_sweet_spot" class="schematic">
+<img src="../figures/web/session05/g5_kitaev_sweet_spot.svg" loading="lazy" alt="Left, forty dots of the levels against their index, two at zero and the others on two flat lines at plus and minus 2. Right, two bars of height one half on the first and on the last site of the chain, and nothing in between." />
+<figcaption><strong>Schematic 5.15.</strong> The open Kitaev chain of <span class="math inline">\(N=20\)</span> sites at <span class="math inline">\(\Delta=t\)</span> and <span class="math inline">\(\mu=0\)</span>, computed from <a href="#eq-5-19">(5.19)</a> in numpy, with the energy in units of <span class="math inline">\(t\)</span>. (a) The 40 BdG levels <span class="math inline">\(E_n\)</span> against their index <span class="math inline">\(n\)</span>. Two levels sit at zero, and the other 38 are at <span class="math inline">\(\pm2t\)</span>, 19 at each. (b) The weight <span class="math inline">\(|u|^2+|v|^2\)</span> of the two zero levels on each site, averaged over the two. Half of it is on the first site and half on the last, where <span class="math inline">\(\gamma_1\)</span> and <span class="math inline">\(\gamma_{2N}\)</span> live, and nothing is in between.</figcaption>
+</figure>
+<p>This is the same structure that we saw in the SSH model of Section <a href="../session3/08-three-topological-material-classes.html#sec-3-9">3.9</a> and Section <a href="../session3/09b-the-ssh-chain-in-the-opposite-limit-and-the-zero-modes.html#sec-3-9b">3.9b</a>, in its dimerized strong-coupling limit. There, at full dimerization, the bulk forms bonding and antibonding dimers, while one remaining site at each end decouples and gives a zero-energy edge mode. The Kitaev chain in <a href="#eq-5-21">(5.21)</a> <em>is</em> this same structure, written in terms of Majorana operators instead of ordinary fermion operators. The two decoupled end Majoranas play the role of the two decoupled end sites of the SSH model. We do not derive the SSH model again here, and we only recognize it in terms of a new set of operators. Figure <a href="#fig:s05:kitaev">5.5</a> shows which Majorana is bound to which, in this phase and in the trivial one.</p>
 <figure id="fig:s05:kitaev">
 <img src="../figures/s05f05_kitaev.svg" loading="lazy" alt="The Kitaev chain in terms of Majorana variables, for N=5 sites (so \gamma_{2N}=\gamma_{10}), seen from above." />
 <figcaption><strong>Figure 5.5.</strong> The Kitaev chain in terms of Majorana variables, for <span class="math inline">\(N=5\)</span> sites (so <span class="math inline">\(\gamma_{2N}=\gamma_{10}\)</span>), seen from above. Each site carries two balls, its two Majorana halves, and a translucent capsule binds two halves together. Splitting every electron into its two Majorana halves <a href="15-majorana-bound-states-and-how-to-split-an-electron-into-two-majoranas.html#eq-5-17">(5.17)</a> has no physical content by itself, and what matters is which halves the Hamiltonian binds together. In the trivial phase, at the top, the binding is inside each site. The two halves of each electron stay bound to each other, as they were in the vacuum, and every mode costs energy. In the topological phase, at the bottom, the binding is between sites, <span class="math inline">\(\gamma_{2n}\)</span> with <span class="math inline">\(\gamma_{2n+1}\)</span>, and the pattern has one bond missing at each end. So <span class="math inline">\(\gamma_1\)</span> and <span class="math inline">\(\gamma_{2N}\)</span> do not appear in <a href="#eq-5-21">(5.21)</a>, cost no energy and are at opposite ends of the sample. The ordinary fermion that they would form together has been split into two halves, which are now separated by the length of the chain, and this is what <em>deconfined</em> means here. This is the fully dimerized SSH chain of <a href="../session3/index.html">Session 3</a> with its two remaining end sites, with new labels, so the counting is the same and only the operators are new.</figcaption>
@@ -134,6 +170,80 @@ Question
 </ul>
 </div>
 </details>
+</div>
+<div class="quiz" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>The Kitaev chain is</p>
+<p><span class="math display">\[H=-t\sum_n\left(c_n^\dagger c_{n+1}+\text{h.c.}\right)-\mu\sum_n c_n^\dagger c_n+\Delta\sum_n\left(c_nc_{n+1}+c_{n+1}^\dagger c_n^\dagger\right).\]</span></p>
+<p>We split each site into two Majoranas, <span class="math inline">\(c_n=\frac12(\gamma_{2n-1}+i\gamma_{2n})\)</span>. What is <span class="math inline">\(H\)</span> at <span class="math inline">\(\Delta=t\)</span> and <span class="math inline">\(\mu=0\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(it\sum_n\gamma_{2n-1}\gamma_{2n}\)</span></li>
+<li><span class="math inline">\(it\sum_n\gamma_{2n}\gamma_{2n+1}\)</span></li>
+<li><span class="math inline">\(it\sum_n\gamma_{2n-1}\gamma_{2n+2}\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Since <span class="math inline">\(i\gamma_{2n-1}\gamma_{2n}=2c_n^\dagger c_n-1\)</span>, this sum is <span class="math inline">\(2t\sum_n c_n^\dagger c_n\)</span> up to a constant. That is the term <span class="math inline">\(-\mu\sum_nc_n^\dagger c_n\)</span> with <span class="math inline">\(\mu=-2t\)</span>, with no hopping and no pairing, while at <span class="math inline">\(\mu=0\)</span> the chain has no such term. It binds the two halves of each site, as in the trivial phase.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. One bond gives <span class="math inline">\(\frac{i}{2}(t+\Delta)\gamma_{2n}\gamma_{2n+1}+\frac{i}{2}(\Delta-t)\gamma_{2n-1}\gamma_{2n+2}\)</span>, and the second term vanishes at <span class="math inline">\(\Delta=t\)</span>. The halves <span class="math inline">\(\gamma_1\)</span> and <span class="math inline">\(\gamma_{2N}\)</span> are in no term, so they cost no energy.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. This is the term that cancels, since its coefficient is <span class="math inline">\(\frac{i}{2}(\Delta-t)\)</span>, which is zero at <span class="math inline">\(\Delta=t\)</span>. It is what is left at <span class="math inline">\(\Delta=-t\)</span>, with the opposite sign, and then the free halves are <span class="math inline">\(\gamma_2\)</span> and <span class="math inline">\(\gamma_{2N-1}\)</span>.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="quiz quiz-pics" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Each picture shows the BdG levels <span class="math inline">\(E_n\)</span> of an open Kitaev chain of 10 sites. Which chain has a free Majorana at each end?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session05/g5_quiz_levels_metal.svg" loading="lazy" alt="Twenty levels against their index, spread evenly from about minus 2 to plus 2, with no level at zero." /></li>
+<li><img src="../figures/web/session05/g5_quiz_levels_sweet.svg" loading="lazy" alt="Twenty levels against their index, two at zero and the others on two flat lines at plus and minus 2." /></li>
+<li><img src="../figures/web/session05/g5_quiz_levels_trivial.svg" loading="lazy" alt="Twenty levels against their index, from about minus 4.5 to plus 4.5, with a gap around zero and no level inside it." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The levels fill the band from <span class="math inline">\(-1.92t\)</span> to <span class="math inline">\(1.92t\)</span>, with no gap and no level at zero. This chain has <span class="math inline">\(\Delta=0\)</span> and <span class="math inline">\(\mu=0\)</span>, a metal, and its levels are <span class="math inline">\(\pm2t\cos(\pi j/11)\)</span>, which come closest to zero at <span class="math inline">\(0.28t\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. Two levels sit at <span class="math inline">\(E=0\)</span> inside a gap, and the 18 other levels are at <span class="math inline">\(\pm2t\)</span>. This chain has <span class="math inline">\(\Delta=t\)</span> and <span class="math inline">\(\mu=0\)</span>, where <span class="math inline">\(\gamma_1\)</span> and <span class="math inline">\(\gamma_{20}\)</span> do not appear in the Hamiltonian.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. There is a gap, but no level inside it, and the lowest level is at <span class="math inline">\(0.71t\)</span>. This chain has <span class="math inline">\(\Delta=t\)</span> and <span class="math inline">\(\mu=2.5t\)</span>, and the large <span class="math inline">\(\mu\)</span> binds the two halves of each site to each other.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>At <span class="math inline">\(\Delta=t\)</span> and <span class="math inline">\(\mu=0\)</span> the chain is <span class="math inline">\(H=it\sum_{n=1}^{N-1}\gamma_{2n}\gamma_{2n+1}\)</span>. On each bond we define <span class="math inline">\(d_n=\frac12(\gamma_{2n}+i\gamma_{2n+1})\)</span>. Show that <span class="math inline">\(d_n\)</span> is a fermion and that <span class="math inline">\(it\gamma_{2n}\gamma_{2n+1}=t\,(2d_n^\dagger d_n-1)\)</span>. What does it cost to fill one bond, and what is left at the two ends?</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>We use <span class="math inline">\(\gamma_i^\dagger=\gamma_i\)</span>, <span class="math inline">\(\gamma_i^2=1\)</span> and <span class="math inline">\(\gamma_i\gamma_j=-\gamma_j\gamma_i\)</span> for <span class="math inline">\(i\neq j\)</span>. We write <span class="math inline">\(a=\gamma_{2n}\)</span> and <span class="math inline">\(b=\gamma_{2n+1}\)</span>, so <span class="math inline">\(d_n=\frac12(a+ib)\)</span> and <span class="math inline">\(d_n^\dagger=\frac12(a-ib)\)</span>. Then</p>
+<p><span class="math display">\[d_n^2=\tfrac14\left(a^2-b^2+i(ab+ba)\right)=0,\qquad \{d_n,d_n^\dagger\}=\tfrac14\left(2a^2+2b^2\right)=1,\]</span></p>
+<p>so <span class="math inline">\(d_n\)</span> is a fermion. For the number operator we get</p>
+<p><span class="math display">\[d_n^\dagger d_n=\tfrac14\left(a^2+b^2+i(ab-ba)\right)=\tfrac12\left(1+iab\right),\]</span></p>
+<p>meaning that <span class="math inline">\(iab=2d_n^\dagger d_n-1\)</span>, and so <span class="math inline">\(it\gamma_{2n}\gamma_{2n+1}=t\,(2d_n^\dagger d_n-1)\)</span>. An empty bond has <span class="math inline">\(-t\)</span> and a filled bond <span class="math inline">\(+t\)</span>, so filling one bond costs <span class="math inline">\(2t\)</span> for every <span class="math inline">\(n\)</span>. This is the flat bulk energy <span class="math inline">\(E=2t\)</span> of the periodic chain, and the <span class="math inline">\(N-1\)</span> empty bonds give the ground state energy <span class="math inline">\(-(N-1)t\)</span>.</p>
+<p>At the ends, <span class="math inline">\(\gamma_1\)</span> and <span class="math inline">\(\gamma_{2N}\)</span> are in no bond. Together they form the fermion <span class="math inline">\(f=\frac12(\gamma_1+i\gamma_{2N})\)</span>, which commutes with <span class="math inline">\(H\)</span>, so <span class="math inline">\(f^\dagger f=0\)</span> and <span class="math inline">\(1\)</span> have the same energy. The ground state is then twofold degenerate, with one state of even and one of odd parity. In the BdG spectrum of <a href="#sch:s05:g5_kitaev_sweet_spot">Schematic 5.15</a> each fermion mode of energy <span class="math inline">\(E\)</span> gives two levels, at <span class="math inline">\(+E\)</span> and at <span class="math inline">\(-E\)</span>. So the <span class="math inline">\(N-1\)</span> bond fermions give the levels at <span class="math inline">\(\pm2t\)</span>, and the single mode <span class="math inline">\(f\)</span> gives the two levels at zero. In Section <a href="19-topological-quantum-computing-with-majoranas.html#sec-5-19">5.19</a> four such end Majoranas give the degenerate states of a topological qubit.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb"><code>session5.ipynb</code></a>, “Emergence of Majorana modes as a function of the size of the superconductor” (Core)</p>

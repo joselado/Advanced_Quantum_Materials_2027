@@ -85,28 +85,75 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="on" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 5. Superconductivity, Nambu Representation and Majorana Physics</a></p>
 <h1 id="sec-5-8"><span class="num">5.8</span> The Nambu spinor and the Bogoliubov-de Gennes Hamiltonian</h1>
+<p>How do we diagonalize a Hamiltonian that mixes creation and annihilation operators, such as the mean-field Hamiltonian of a superconductor? We will now see that a larger spinor, which holds electrons and holes, turns it into an ordinary matrix, the Bogoliubov-de Gennes Hamiltonian. For one band with two spins it splits into two identical <span class="math inline">\(2\times2\)</span> blocks, and its spectrum has a gap <span class="math inline">\(2|\Delta|\)</span> at the Fermi level.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[H_{\text{MF}} = -t\sum_{n\sigma}\left(c_{n\sigma}^\dagger c_{n+1,\sigma}+\text{h.c.}\right) - \mu\sum_{n\sigma}c_{n\sigma}^\dagger c_{n\sigma} + \sum_n\left(\Delta_n\, c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger + \Delta_n^*\, c_{n\downarrow}c_{n\uparrow}\right) - \sum_n\frac{|\Delta_n|^2}{U}. \tag{5.4}\]</span></p>
+</div>
+<p>This is the mean-field Hamiltonian of Section <a href="04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html#sec-5-5">5.5</a> for a chain, with the hopping <span class="math inline">\(t\)</span>, the chemical potential <span class="math inline">\(\mu\)</span> and the pair amplitude <span class="math inline">\(\Delta_n\)</span> of each site <span class="math inline">\(n\)</span>. The pairing terms have two creation or two annihilation operators, and the last term is a constant.</p>
+</div>
 <p>The pairing term creates a technical problem. We cannot diagonalize <a href="04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html#eq-5-4">(5.4)</a> with an ordinary vector of orbital operators, because the anomalous term mixes creation and annihilation operators. Every Hamiltonian that we diagonalized from <a href="../session1/index.html">Session 1</a> to <a href="../session4/index.html">Session 4</a> paired them up instead. The solution is to <em>enlarge</em> the operator basis, so that both the creation and the annihilation operators of the original problem become entries of a bigger spinor that behave like annihilation operators. We work in momentum space, with a single orbital and both spins, and we define the <strong>Nambu spinor</strong></p>
 <p><span id="eq-5-6" class="eq"><span class="math display">\[\Psi_{\mathbf{k}} = \begin{pmatrix} c_{\mathbf{k}\uparrow} \\ c_{\mathbf{k}\downarrow} \\ c_{-\mathbf{k}\downarrow}^\dagger \\ -c_{-\mathbf{k}\uparrow}^\dagger \end{pmatrix}, \tag{5.6}\]</span></span></p>
 <p>which has an electron sector and a hole sector. The electron sector is formed by the first two components, which are ordinary annihilation operators. The hole sector is formed by the last two components, which are creation operators at <span class="math inline">\(-\mathbf{k}\)</span>, with the spins exchanged and with an extra minus sign on the last entry. This sign has a real role. With it, when we write <span class="math inline">\(H_{\text{MF}}\)</span> in terms of <span class="math inline">\(\Psi_{\mathbf k}\)</span>, the pairing term gives two identical and decoupled copies of the same <span class="math inline">\(2\times 2\)</span> problem. Without it, the two spin blocks would mix through a Pauli matrix. Let us take a spin-singlet pairing <span class="math inline">\(\Delta(\mathbf k)\)</span> that does not depend on momentum, which is equal to <span class="math inline">\(\Delta\)</span> for the Fourier transform of the onsite case of <a href="04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html#eq-5-4">(5.4)</a>. Using the fermionic anticommutation relations to reorder operators where needed, one can check directly that the mean-field Hamiltonian can be written exactly as</p>
 <p><span id="eq-5-7" class="eq"><span class="math display">\[H_{\text{MF}} = \frac{1}{2}\sum_{\mathbf{k}} \Psi_{\mathbf{k}}^\dagger\, H_{\text{BdG}}(\mathbf{k})\, \Psi_{\mathbf{k}} + \text{const.}, \qquad H_{\text{BdG}}(\mathbf{k}) = \begin{pmatrix} \varepsilon(\mathbf{k}) &amp; 0 &amp; \Delta(\mathbf k) &amp; 0 \\ 0 &amp; \varepsilon(\mathbf k) &amp; 0 &amp; \Delta(\mathbf k) \\ \Delta(\mathbf k)^* &amp; 0 &amp; -\varepsilon(\mathbf{k}) &amp; 0 \\ 0 &amp; \Delta(\mathbf k)^* &amp; 0 &amp; -\varepsilon(\mathbf k) \end{pmatrix}, \tag{5.7}\]</span></span></p>
-<p>where <span class="math inline">\(\varepsilon(\mathbf k) = -2t(\cos k_x + \cos k_y) - \mu\)</span> is the ordinary band dispersion, which we assume to be inversion symmetric, <span class="math inline">\(\varepsilon(-\mathbf k) = \varepsilon(\mathbf k)\)</span>. This <span class="math inline">\(4\times 4\)</span> matrix is called the <strong>Bogoliubov-de Gennes (BdG) Hamiltonian</strong>, and in a concrete sense it is the most important object to describe the excitations of a superconductor. Note that the two diagonal entries in the lower-right part have <span class="math inline">\(-\varepsilon(\mathbf k)\)</span> and not <span class="math inline">\(+\varepsilon(\mathbf k)\)</span>. This comes directly from writing <span class="math inline">\(c_{-\mathbf k\sigma}^\dagger
-c_{-\mathbf k\sigma}\)</span> in terms of <span class="math inline">\(c_{-\mathbf k\sigma}c_{-\mathbf k\sigma}^\dagger = 1 -
-c_{-\mathbf k\sigma}^\dagger c_{-\mathbf
-k\sigma}\)</span> with the anticommutation relations. This is also where the name hole comes from, since a missing electron at <span class="math inline">\(-\mathbf k\)</span> behaves like a particle with opposite energy.</p>
-<p>Since the spinor <a href="#eq-5-6">(5.6)</a> was built with this extra minus sign, the <span class="math inline">\(4\times 4\)</span> problem in <a href="#eq-5-7">(5.7)</a> is already block-diagonal. There is one <span class="math inline">\(2\times 2\)</span> block built from <span class="math inline">\((c_{\mathbf k\uparrow},
-c_{-\mathbf k\downarrow}^\dagger)\)</span> and an identical one built from <span class="math inline">\((c_{\mathbf k\downarrow},
--c_{-\mathbf
-k\uparrow}^\dagger)\)</span>, and each of them has the reduced BdG matrix</p>
+<p>where <span class="math inline">\(\varepsilon(\mathbf k) = -2t(\cos k_x + \cos k_y) - \mu\)</span> is the ordinary band dispersion, which we assume to be inversion symmetric, <span class="math inline">\(\varepsilon(-\mathbf k) = \varepsilon(\mathbf k)\)</span>. This <span class="math inline">\(4\times 4\)</span> matrix is called the <strong>Bogoliubov-de Gennes (BdG) Hamiltonian</strong>, and in a concrete sense it is the most important object to describe the excitations of a superconductor. Note that the two diagonal entries in the lower-right part have <span class="math inline">\(-\varepsilon(\mathbf k)\)</span> and not <span class="math inline">\(+\varepsilon(\mathbf k)\)</span>. This comes directly from writing <span class="math inline">\(c_{-\mathbf k\sigma}^\dagger c_{-\mathbf k\sigma}\)</span> in terms of <span class="math inline">\(c_{-\mathbf k\sigma}c_{-\mathbf k\sigma}^\dagger = 1 - c_{-\mathbf k\sigma}^\dagger c_{-\mathbf k\sigma}\)</span> with the anticommutation relations. This is also where the name hole comes from, since a missing electron at <span class="math inline">\(-\mathbf k\)</span> behaves like a particle with opposite energy.</p>
+<p>Since the spinor <a href="#eq-5-6">(5.6)</a> was built with this extra minus sign, the <span class="math inline">\(4\times 4\)</span> problem in <a href="#eq-5-7">(5.7)</a> is already block-diagonal. There is one <span class="math inline">\(2\times 2\)</span> block built from <span class="math inline">\((c_{\mathbf k\uparrow}, c_{-\mathbf k\downarrow}^\dagger)\)</span> and an identical one built from <span class="math inline">\((c_{\mathbf k\downarrow}, -c_{-\mathbf k\uparrow}^\dagger)\)</span>.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>Each of the two blocks is the reduced BdG matrix</p>
 <p><span id="eq-5-8" class="eq"><span class="math display">\[h_{\text{BdG}}(\mathbf k) = \begin{pmatrix} \varepsilon(\mathbf k) &amp; \Delta(\mathbf k) \\ \Delta(\mathbf k)^* &amp; -\varepsilon(\mathbf k)\end{pmatrix}. \tag{5.8}\]</span></span></p>
+<p>The first entry is the energy <span class="math inline">\(\varepsilon(\mathbf k)\)</span> of an electron at <span class="math inline">\(\mathbf k\)</span>. The second one is the energy <span class="math inline">\(-\varepsilon(\mathbf k)\)</span> of a hole, which is a missing electron of the opposite spin at <span class="math inline">\(-\mathbf k\)</span>, and the pair amplitude <span class="math inline">\(\Delta(\mathbf k)\)</span> couples the two.</p>
+</div>
 <figure id="sch:s05:nambu_blocks" class="schematic">
 <img src="../figures/web/session05/nambu_blocks.svg" loading="lazy" alt="Two four by four matrices side by side. The left one has epsilon twice and minus epsilon twice on the diagonal and Delta in four off-diagonal places. The right one is the same matrix reordered into two identical two by two blocks." />
-<figcaption><strong>Schematic 5.4.</strong> The BdG matrix <a href="#eq-5-7">(5.7)</a> before and after a reordering of the basis. In the order of the Nambu spinor <a href="#eq-5-6">(5.6)</a> the two blocks are interleaved, as the two tints show. If we put <span class="math inline">\(c^\dagger_{-\mathbf k\downarrow}\)</span> next to <span class="math inline">\(c_{\mathbf k\uparrow}\)</span>, the matrix splits into two copies of <span class="math inline">\(h_{\text{BdG}}\)</span> of <a href="#eq-5-8">(5.8)</a>. The minus sign on the last entry of the spinor is what makes the two copies identical.</figcaption>
+<figcaption><strong>Schematic 5.5.</strong> The BdG matrix <a href="#eq-5-7">(5.7)</a> before and after a reordering of the basis. In the order of the Nambu spinor <a href="#eq-5-6">(5.6)</a> the two blocks are interleaved, as the two tints show. If we put <span class="math inline">\(c^\dagger_{-\mathbf k\downarrow}\)</span> next to <span class="math inline">\(c_{\mathbf k\uparrow}\)</span>, the matrix splits into two copies of <span class="math inline">\(h_{\text{BdG}}\)</span> of <a href="#eq-5-8">(5.8)</a>. The minus sign on the last entry of the spinor is what makes the two copies identical.</figcaption>
 </figure>
-<p>So the BdG Hamiltonian of a single orbital with two spins is a <span class="math inline">\(4\times 4\)</span> matrix, with diagonal entries <span class="math inline">\(\varepsilon(\mathbf k)\)</span>, <span class="math inline">\(\varepsilon(\mathbf k)\)</span>, <span class="math inline">\(-\varepsilon(\mathbf k)\)</span>, <span class="math inline">\(-\varepsilon(\mathbf k)\)</span> and off-diagonal entries <span class="math inline">\(\Delta\)</span>. If we diagonalize <a href="#eq-5-8">(5.8)</a>, we obtain the standard BCS quasiparticle dispersion</p>
+<p>So the BdG Hamiltonian of a single orbital with two spins is a <span class="math inline">\(4\times 4\)</span> matrix, with diagonal entries <span class="math inline">\(\varepsilon(\mathbf k)\)</span>, <span class="math inline">\(\varepsilon(\mathbf k)\)</span>, <span class="math inline">\(-\varepsilon(\mathbf k)\)</span>, <span class="math inline">\(-\varepsilon(\mathbf k)\)</span> and off-diagonal entries <span class="math inline">\(\Delta\)</span>. If we diagonalize <a href="#eq-5-8">(5.8)</a>, we obtain the standard BCS quasiparticle dispersion.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>The eigenvalues of <a href="#eq-5-8">(5.8)</a> are the quasiparticle energies</p>
 <p><span id="eq-5-9" class="eq"><span class="math display">\[E(\mathbf k) = \pm\sqrt{\varepsilon(\mathbf k)^2 + |\Delta(\mathbf k)|^2}. \tag{5.9}\]</span></span></p>
-<figure id="sch:s05:nambu_bands" class="schematic">
-<img src="../figures/web/session05/nambu_bands.svg" loading="lazy" alt="Two panels of a cosine band. On the left an electron band and its mirrored hole band cross at two points. On the right the crossings are replaced by a gap of size two Delta." />
-<figcaption><strong>Schematic 5.5.</strong> The Nambu doubling for a chain. (a) Without pairing the hole band is the mirror image of the electron band, and the two cross at the Fermi points. (b) A nonzero <span class="math inline">\(\Delta\)</span> opens a gap of <span class="math inline">\(2|\Delta|\)</span> at each crossing, and the two new bands mix electron and hole, which the blend of the colors shows.</figcaption>
+<p>For a uniform <span class="math inline">\(\Delta\)</span> and a band that crosses the Fermi level, the smallest <span class="math inline">\(|E|\)</span> is <span class="math inline">\(|\Delta|\)</span>, at the momenta where <span class="math inline">\(\varepsilon(\mathbf k)=0\)</span>, so the two branches are <span class="math inline">\(2|\Delta|\)</span> apart there.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the mean-field Hamiltonian (5.4) to the BdG matrix (5.7) and the spectrum (5.9)</span></summary>
+<div class="fold-body">
+<p>We take one band with both spins and a uniform <span class="math inline">\(\Delta\)</span>, and we leave out the constant <span class="math inline">\(-\sum_n|\Delta_n|^2/U\)</span> of <a href="04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html#eq-5-4">(5.4)</a>, which is a number. The first step is the Fourier transform, <span class="math inline">\(c_n=\frac{1}{\sqrt N}\sum_{\mathbf k}e^{i\mathbf k\cdot\mathbf r_n}c_{\mathbf k}\)</span> on <span class="math inline">\(N\)</span> sites. The hopping and the chemical potential give <span class="math inline">\(\sum_{\mathbf k\sigma}\varepsilon(\mathbf k)\,c^\dagger_{\mathbf k\sigma}c_{\mathbf k\sigma}\)</span>, and the onsite pairing gives</p>
+<p><span class="math display">\[\sum_n c^\dagger_{n\uparrow}c^\dagger_{n\downarrow}=\sum_{\mathbf k}c^\dagger_{\mathbf k\uparrow}c^\dagger_{-\mathbf k\downarrow},\]</span></p>
+<p>since the sum over <span class="math inline">\(n\)</span> of <span class="math inline">\(e^{-i(\mathbf k+\mathbf k&#39;)\cdot\mathbf r_n}\)</span> keeps only <span class="math inline">\(\mathbf k&#39;=-\mathbf k\)</span>. The opposite sign in the exponent gives the same result, so this step does not depend on the convention of the transform.</p>
+<p>The second step is one block, which is the simplest case. We collect the terms of <span class="math inline">\(c_{\mathbf k\uparrow}\)</span> and of <span class="math inline">\(c^\dagger_{-\mathbf k\downarrow}\)</span>. The energy of spin down at <span class="math inline">\(-\mathbf k\)</span> is written with <span class="math inline">\(c^\dagger c=1-cc^\dagger\)</span>, and with <span class="math inline">\(\varepsilon(-\mathbf k)=\varepsilon(\mathbf k)\)</span> it becomes</p>
+<p><span class="math display">\[\varepsilon(\mathbf k)\,c^\dagger_{-\mathbf k\downarrow}c_{-\mathbf k\downarrow}=-\varepsilon(\mathbf k)\,c_{-\mathbf k\downarrow}c^\dagger_{-\mathbf k\downarrow}+\varepsilon(\mathbf k).\]</span></p>
+<p>This is where the <span class="math inline">\(-\varepsilon\)</span> of the hole comes from, together with a constant. All the terms of <span class="math inline">\(H_{\text{MF}}\)</span> then fit in one <span class="math inline">\(2\times2\)</span> matrix,</p>
+<p><span class="math display">\[H_{\text{MF}}=\sum_{\mathbf k}\begin{pmatrix}c^\dagger_{\mathbf k\uparrow}&amp; c_{-\mathbf k\downarrow}\end{pmatrix}\begin{pmatrix}\varepsilon(\mathbf k)&amp;\Delta\\ \Delta^*&amp;-\varepsilon(\mathbf k)\end{pmatrix}\begin{pmatrix}c_{\mathbf k\uparrow}\\ c^\dagger_{-\mathbf k\downarrow}\end{pmatrix}+\sum_{\mathbf k}\varepsilon(\mathbf k),\]</span></p>
+<p>which is <a href="#eq-5-8">(5.8)</a>. Multiplying out the matrix gives back the energy of the two spins and the pairing <span class="math inline">\(\Delta\, c^\dagger_{\mathbf k\uparrow}c^\dagger_{-\mathbf k\downarrow}+\Delta^*c_{-\mathbf k\downarrow}c_{\mathbf k\uparrow}\)</span>.</p>
+<p>The third step is the factor <span class="math inline">\(\frac12\)</span>. The second block, with <span class="math inline">\((c_{\mathbf k\downarrow},-c^\dagger_{-\mathbf k\uparrow})\)</span>, gives the same terms again after the relabeling <span class="math inline">\(\mathbf k\to-\mathbf k\)</span>. For the pairing this uses <span class="math inline">\(-\Delta\, c^\dagger_{\mathbf k\downarrow}c^\dagger_{-\mathbf k\uparrow}=\Delta\, c^\dagger_{-\mathbf k\uparrow}c^\dagger_{\mathbf k\downarrow}\)</span>, where the minus sign of the spinor cancels the minus sign of the exchange. The full spinor <a href="#eq-5-6">(5.6)</a> holds both blocks, so it counts every term twice, and this is the factor <span class="math inline">\(\frac12\)</span> of <a href="#eq-5-7">(5.7)</a>. Its constant is <span class="math inline">\(\sum_{\mathbf k}\varepsilon(\mathbf k)\)</span>, plus the <span class="math inline">\(-\sum_n|\Delta_n|^2/U\)</span> that we left out.</p>
+<p>The last step is the spectrum. The eigenvalues of <a href="#eq-5-8">(5.8)</a> solve</p>
+<p><span class="math display">\[\det\begin{pmatrix}\varepsilon-E&amp;\Delta\\ \Delta^*&amp;-\varepsilon-E\end{pmatrix}=E^2-\varepsilon^2-|\Delta|^2=0,\]</span></p>
+<p>which is <a href="#eq-5-9">(5.9)</a>. As a number, <span class="math inline">\(\varepsilon=0.3\)</span> and <span class="math inline">\(\Delta=0.4\)</span> give <span class="math inline">\(E=\pm0.5\)</span>.</p>
+</div>
+</details>
+</div>
+<figure id="sch:s05:nambu_bands" class="schematic has-script">
+<img src="../figures/web/session05/nambu_bands.svg" loading="lazy" alt="Two panels of a cosine band colored from red for a hole to blue for an electron. On the left an electron band and its mirrored hole band cross at two points. On the right the crossings are replaced by a gap of size two Delta, with mixed colors next to it." />
+<div class="script-row">
+<a href="../scripts/session05/g2_nambu_chain.py" class="script-dl" download="g2_nambu_chain.py">Download the pyqula script</a> <span class="script-name"><code>g2_nambu_chain.py</code></span>
+</div>
+<figcaption><strong>Schematic 5.6.</strong> The Nambu doubling for a chain with <span class="math inline">\(t=1\)</span>, <span class="math inline">\(\mu=-1\)</span> and <span class="math inline">\(\Delta=0.45\)</span>, computed with pyqula. The energy is in units of <span class="math inline">\(t\)</span>, the momentum <span class="math inline">\(k\)</span> in units of the inverse lattice constant, and the color is the electron weight of each state. (a) Without pairing the hole band <span class="math inline">\(-\varepsilon(k)\)</span> is the mirror image of the electron band <span class="math inline">\(\varepsilon(k)=-2t\cos k-\mu\)</span>, and the two cross at the Fermi points <span class="math inline">\(k=\pm\pi/3\)</span>. (b) A nonzero <span class="math inline">\(\Delta\)</span> opens a gap of <span class="math inline">\(2|\Delta|=0.9\)</span> at each crossing, and the two new bands mix electron and hole, which the blend of the colors shows. Look at the Fermi points, where the electron weight of both branches is one half.</figcaption>
+</figure>
+<p>The same happens on the square lattice of the notebook, in <a href="#sch:s05:g2_nambu_square">Schematic 5.7</a>. The Fermi surface is a closed curve there, and the path through the Brillouin zone crosses it twice, with the same gap <span class="math inline">\(2|\Delta|\)</span> at both crossings.</p>
+<figure id="sch:s05:g2_nambu_square" class="schematic has-script">
+<img src="../figures/web/session05/g2_nambu_square.svg" loading="lazy" alt="Two panels of bands along Gamma, X, M, Gamma, colored from red for a hole to blue for an electron. On the left a blue band and a red band cross at two points near zero energy. On the right the crossings are replaced by gaps of the same size." />
+<div class="script-row">
+<a href="../scripts/session05/g2_nambu_square.py" class="script-dl" download="g2_nambu_square.py">Download the pyqula script</a> <span class="script-name"><code>g2_nambu_square.py</code></span>
+</div>
+<figcaption><strong>Schematic 5.7.</strong> The BdG bands of the square lattice of the notebook along the path <span class="math inline">\(\Gamma\)</span>, <span class="math inline">\(X\)</span>, <span class="math inline">\(M\)</span>, <span class="math inline">\(\Gamma\)</span>, computed with pyqula, with the energy in units of <span class="math inline">\(|t|\)</span> and the color as the electron weight. In pyqula the hopping is <span class="math inline">\(+1\)</span>, so the band is <span class="math inline">\(2(\cos k_x+\cos k_y)\)</span>, which is <span class="math inline">\(\varepsilon(\mathbf k)\)</span> of <a href="#eq-5-7">(5.7)</a> with <span class="math inline">\(t=-1\)</span>. The call <code>h.set_filling(0.2, nk=20)</code> of the cell puts the Fermi level at <span class="math inline">\(\mu=-1.90\)</span>, where about a fraction <span class="math inline">\(0.2\)</span> of the electron states is filled. With the default <code>nk=10</code> the same call gives <span class="math inline">\(\mu=-2.24\)</span>. The filled states form a pocket around <span class="math inline">\(M\)</span>. (a) Without pairing the electron band and the hole band cross on the Fermi surface, once between <span class="math inline">\(X\)</span> and <span class="math inline">\(M\)</span> and once between <span class="math inline">\(M\)</span> and <span class="math inline">\(\Gamma\)</span>. (b) With <code>h.add_swave(0.8)</code> the two bands anticross at both crossings, where the smallest energy is <span class="math inline">\(|\Delta|=0.8\)</span>. Look at the two crossings, since the gap <span class="math inline">\(2|\Delta|=1.6\)</span> is the same at both.</figcaption>
 </figure>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
@@ -129,7 +176,7 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
-<p>This is false. Take <span class="math inline">\(t=1\)</span> and <span class="math inline">\(\Delta=0.2\)</span>. At the band bottom <span class="math inline">\(\varepsilon=-4\)</span>, so <span class="math inline">\(E=\sqrt{16+0.04}\approx4.0\)</span>, which is the largest value of <span class="math inline">\(|E|\)</span> and not the smallest.</p></li>
+<p>This is false. Take <span class="math inline">\(t=1\)</span>, <span class="math inline">\(\mu=0\)</span> and <span class="math inline">\(\Delta=0.2\)</span>. At the band bottom <span class="math inline">\(\varepsilon=-4\)</span>, so <span class="math inline">\(E=\sqrt{16+0.04}\approx4.0\)</span>, which is the largest value of <span class="math inline">\(|E|\)</span> and not the smallest.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
 <p>This is true. Since <span class="math inline">\(E^2=\varepsilon^2+|\Delta|^2\)</span> in <a href="#eq-5-9">(5.9)</a>, the smallest <span class="math inline">\(|E|\)</span> is at <span class="math inline">\(\varepsilon=0\)</span>, and there <span class="math inline">\(|E|=|\Delta|\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
@@ -137,6 +184,85 @@ Question
 </ul>
 </div>
 </details>
+</div>
+<div class="quiz" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>One block of the BdG Hamiltonian is the matrix</p>
+<p><span class="math display">\[h_{\text{BdG}}=\begin{pmatrix}\varepsilon&amp;\Delta\\ \Delta^*&amp;-\varepsilon\end{pmatrix}.\]</span></p>
+<p>What are its two eigenvalues?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(E=\varepsilon\pm|\Delta|\)</span></li>
+<li><span class="math inline">\(E=\pm\sqrt{\varepsilon^2+|\Delta|^2}\)</span></li>
+<li><span class="math inline">\(E=\pm(|\varepsilon|+|\Delta|)\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The trace of <span class="math inline">\(h_{\text{BdG}}\)</span> is <span class="math inline">\(0\)</span>, so the two eigenvalues add up to zero. For <span class="math inline">\(\varepsilon=0.3\)</span> and <span class="math inline">\(\Delta=0.4\)</span> this option gives <span class="math inline">\(0.7\)</span> and <span class="math inline">\(-0.1\)</span>, which add up to <span class="math inline">\(0.6\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The trace is <span class="math inline">\(0\)</span> and the determinant is <span class="math inline">\(-\varepsilon^2-|\Delta|^2\)</span>, so <span class="math inline">\(E^2=\varepsilon^2+|\Delta|^2\)</span>. For <span class="math inline">\(\varepsilon=0.3\)</span> and <span class="math inline">\(\Delta=0.4\)</span> this gives <span class="math inline">\(E=\pm0.5\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The product of the two eigenvalues is the determinant, <span class="math inline">\(-\varepsilon^2-|\Delta|^2\)</span>. For <span class="math inline">\(\varepsilon=0.3\)</span> and <span class="math inline">\(\Delta=0.4\)</span> it is <span class="math inline">\(-0.25\)</span>, while this option gives <span class="math inline">\(-0.49\)</span>.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="quiz quiz-pics" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Each picture shows the BdG bands of a square lattice with a uniform pairing <span class="math inline">\(\Delta\)</span>. The color is the electron weight, blue for an electron and red for a hole. The quasiparticle energy is</p>
+<p><span class="math display">\[E=\pm\sqrt{\varepsilon^2+|\Delta|^2}.\]</span></p>
+<p>Which lattice has <span class="math inline">\(|\Delta|=0.8\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session05/g2_quiz_nambu_04.svg" loading="lazy" alt="BdG bands along Gamma, X, M, Gamma, where the two branches come closest at plus and minus 0.4, half way to the ticks at 0.8." /></li>
+<li><img src="../figures/web/session05/g2_quiz_nambu_08.svg" loading="lazy" alt="BdG bands along Gamma, X, M, Gamma, where the two branches come closest at plus and minus 0.8, at the ticks." /></li>
+<li><img src="../figures/web/session05/g2_quiz_nambu_02.svg" loading="lazy" alt="BdG bands along Gamma, X, M, Gamma, where the two branches come closest at plus and minus 0.2, close to zero energy." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Here the two branches come closest at <span class="math inline">\(E=\pm0.4\)</span>, so they are <span class="math inline">\(0.8\)</span> apart. This <span class="math inline">\(0.8\)</span> is the gap <span class="math inline">\(2|\Delta|\)</span>, and the pairing is <span class="math inline">\(|\Delta|=0.4\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The smallest <span class="math inline">\(|E|\)</span> is <span class="math inline">\(0.8\)</span>, at the two crossings of the electron and the hole band, where <span class="math inline">\(\varepsilon=0\)</span>. So <span class="math inline">\(|\Delta|=0.8\)</span>, and the two branches are <span class="math inline">\(1.6\)</span> apart.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. Here the branches come closest at <span class="math inline">\(E=\pm0.2\)</span>, so <span class="math inline">\(|\Delta|=0.2\)</span>, and the gap between the branches is <span class="math inline">\(0.4\)</span>, half of <span class="math inline">\(0.8\)</span>.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The three pictures are the notebook cell of the square lattice with <code>h.add_swave(0.4)</code>, <code>0.8</code> and <code>0.2</code>.</p>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>The upper eigenvector of the block <a href="#eq-5-8">(5.8)</a> is <span class="math inline">\((u,v)\)</span>, with the energy <span class="math inline">\(E=\sqrt{\varepsilon^2+|\Delta|^2}\)</span>. Show that its electron weight is <span class="math inline">\(|u|^2=\frac12(1+\varepsilon/E)\)</span>, and evaluate it at <span class="math inline">\(\varepsilon=|\Delta|\)</span>.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>The first row of <span class="math inline">\(h_{\text{BdG}}(u,v)^T=E\,(u,v)^T\)</span> gives <span class="math inline">\(\varepsilon u+\Delta v=Eu\)</span>, so <span class="math inline">\(v=(E-\varepsilon)\,u/\Delta\)</span> and <span class="math inline">\(|v|^2=(E-\varepsilon)^2|u|^2/|\Delta|^2\)</span>. With <span class="math inline">\(|\Delta|^2=E^2-\varepsilon^2=(E-\varepsilon)(E+\varepsilon)\)</span> this is</p>
+<p><span class="math display">\[|v|^2=\frac{E-\varepsilon}{E+\varepsilon}\,|u|^2 .\]</span></p>
+<p>The normalization <span class="math inline">\(|u|^2+|v|^2=1\)</span> then gives</p>
+<p><span class="math display">\[|u|^2=\frac{E+\varepsilon}{2E}=\frac12\Big(1+\frac{\varepsilon}{E}\Big), \qquad |v|^2=\frac12\Big(1-\frac{\varepsilon}{E}\Big).\]</span></p>
+<p>At <span class="math inline">\(\varepsilon=|\Delta|\)</span> we have <span class="math inline">\(E=\sqrt2\,|\Delta|\)</span>, so <span class="math inline">\(|u|^2=\frac12(1+1/\sqrt2)=0.854\)</span> and <span class="math inline">\(|v|^2=0.146\)</span>. Far above the Fermi level <span class="math inline">\(|u|^2\)</span> goes to <span class="math inline">\(1\)</span>, at the Fermi level it is <span class="math inline">\(\frac12\)</span>, and far below it goes to <span class="math inline">\(0\)</span>, which is the color of the bands in <a href="#sch:s05:nambu_bands">Schematic 5.6</a>.</p>
+<p>The lower branch at <span class="math inline">\(-E\)</span> has the eigenvector <span class="math inline">\((-v^*,u^*)\)</span>, so its electron weight is <span class="math inline">\(|v|^2\)</span>. ARPES removes electrons, so it sees the lower branch, and at this momentum it sees it with the weight <span class="math inline">\(0.146\)</span>, even though the band <span class="math inline">\(\varepsilon=|\Delta|\)</span> lies above the Fermi level. This weak copy below the Fermi level is a direct signature of the mixing of electrons and holes.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb"><code>session5.ipynb</code></a>, “Nambu electronic structure without superconductivity” and “Nambu electronic structure with superconductivity” (both Reminder)</p>

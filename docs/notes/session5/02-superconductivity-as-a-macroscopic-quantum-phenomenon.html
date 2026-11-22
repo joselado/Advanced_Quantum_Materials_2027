@@ -85,27 +85,62 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="on" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 5. Superconductivity, Nambu Representation and Majorana Physics</a></p>
 <h1 id="sec-5-2"><span class="num">5.2</span> Superconductivity as a macroscopic quantum phenomenon</h1>
+<p>How can a measurement on a sample of many atoms give the ratio <span class="math inline">\(h/2e\)</span> of two microscopic constants? We will now see that the answer is a phase that is the same for the whole condensate, and that it makes the flux through a superconducting ring come in steps of <span class="math inline">\(h/2e\)</span>. In the second part of the page we see zero resistance and the Meissner effect, which are two signatures of the same condensate.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[\Delta = \langle c_i c_j\rangle. \tag{1.9}\]</span></p>
+</div>
+<p>This is the pair amplitude of Section <a href="../session1/14-worked-example-2-magnetism.html#sec-1-15">1.15</a>, the expectation value of two annihilation operators, which is nonzero in a superconductor. Its phase is the phase <span class="math inline">\(\theta\)</span> of the condensate that we use on this page, up to a constant.</p>
+</div>
 <p>Before we write the Hamiltonian, let us see why superconductivity is one of the clearest ways that we have to observe quantum mechanics at the macroscopic scale. A superconductor is made of trillions of atoms, and still a measurement on the bulk sample can give, with a very high precision, the microscopic constants <span class="math inline">\(\hbar\)</span> and <span class="math inline">\(e\)</span>. This works because gauge symmetry breaking gives the many-body wave function a single well-defined phase <span class="math inline">\(\theta(\mathbf{r})\)</span>, and the condition that this phase is single-valued around a closed loop is a very strong constraint.</p>
 <p>Let us take a superconducting ring threaded by magnetic flux, or in the same way a hole in a bulk superconductor. We take the loop deep enough inside the superconductor that the supercurrent density vanishes there because of Meissner screening. The supercurrent of Cooper pairs, which have charge <span class="math inline">\(2e\)</span> since a pair is made of two electrons, is proportional to the gauge-invariant combination <span class="math inline">\(\hbar\nabla\theta -
 2e\mathbf{A}\)</span>. If we set the current to zero on our loop, we obtain</p>
 <p><span class="math display">\[\oint \nabla\theta \cdot d\boldsymbol\ell = \frac{2e}{\hbar}\oint \mathbf{A}\cdot d\boldsymbol\ell = \frac{2e}{\hbar}\Phi.\]</span></p>
 <p>However, <span class="math inline">\(\theta\)</span> is the phase of a single-valued wave function, so after one turn around the loop it can only change by an integer multiple of <span class="math inline">\(2\pi\)</span>, which means that <span class="math inline">\(\oint \nabla\theta\cdot
-d\boldsymbol\ell = 2\pi n\)</span> for integer <span class="math inline">\(n\)</span>. If we combine the two equations, we obtain flux quantization,</p>
+d\boldsymbol\ell = 2\pi n\)</span> for integer <span class="math inline">\(n\)</span>. If we combine the two equations, we obtain flux quantization.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>The flux through a hole in a superconductor, enclosed by a loop where the supercurrent vanishes, is quantized,</p>
 <p><span id="eq-5-1" class="eq"><span class="math display">\[\Phi = n\,\Phi_0, \qquad \Phi_0 = \frac{h}{2e}. \tag{5.1}\]</span></span></p>
-<p>Figure <a href="#fig:s05:flux">5.1</a> shows the geometry and the argument based on the winding of the phase. The same physics is behind the precision of Josephson junctions. In the AC Josephson effect, a voltage <span class="math inline">\(V\)</span> across the junction gives a current that oscillates with frequency <span class="math inline">\(2eV/h\)</span>, which is a direct macroscopic readout of <span class="math inline">\(h/2e\)</span>. This is possible only because gauge symmetry is broken. Note the parallel with the quantum Hall state of <a href="../session4/index.html">Session 4</a>. There, a macroscopic measurement also gives a ratio of the same two constants, which is the Hall conductance, quantized in units of <span class="math inline">\(e^2/h\)</span> by the Chern number of equation <a href="../session3/05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#eq-3-4">(3.4)</a>. However, the mechanism is completely different, since it is the quantization of a single-particle topological invariant and not the breaking of a continuous symmetry. In fact, if we combine the two measurements, the flux quantum and the conductance quantum of the Hall effect, we have one of the most precise ways to obtain <span class="math inline">\(h\)</span> and <span class="math inline">\(e\)</span> separately. This is a concrete example of the emergence that we keep coming back to in this course, where macroscopic measurements on billions of atoms give us exact microscopic constants.</p>
+<p>The <span class="math inline">\(2\)</span> is the charge <span class="math inline">\(2e\)</span> of a Cooper pair, and no parameter of the material enters, so every superconductor gives the same flux quantum <span class="math inline">\(\Phi_0\)</span>.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the phase of the condensate to flux quantization</span></summary>
+<div class="fold-body">
+<p>Let us take the simplest case first. The ring has a wall that is narrow compared with its radius <span class="math inline">\(R\)</span>, but much thicker than the penetration depth of the field. A circle of radius <span class="math inline">\(R\)</span> inside the wall is then a loop where the current vanishes. We write <span class="math inline">\(\psi=|\psi|e^{i\theta}\)</span> for the wave function of the condensate, with carriers of charge <span class="math inline">\(q\)</span> and mass <span class="math inline">\(m\)</span>. Its current density is</p>
+<p><span class="math display">\[\mathbf j=\frac{q|\psi|^2}{m}\left(\hbar\nabla\theta-q\mathbf A\right),\]</span></p>
+<p>which is the current of quantum mechanics in a vector potential, and for a pair <span class="math inline">\(q=2e\)</span>. By symmetry the vector potential on the circle points along the circle and has the same size <span class="math inline">\(A_\varphi\)</span> everywhere, with <span class="math inline">\(\varphi\)</span> the angle along the circle. Since <span class="math inline">\(\oint\mathbf A\cdot d\boldsymbol\ell=2\pi R\,A_\varphi\)</span> is the flux <span class="math inline">\(\Phi\)</span>, we have <span class="math inline">\(A_\varphi=\Phi/2\pi R\)</span>. The gradient of the phase along the circle is <span class="math inline">\((1/R)\,d\theta/d\varphi\)</span>, so <span class="math inline">\(\mathbf j=0\)</span> gives</p>
+<p><span class="math display">\[\frac{\hbar}{R}\,\frac{d\theta}{d\varphi}=\frac{q\Phi}{2\pi R}, \qquad \text{meaning that} \qquad \frac{d\theta}{d\varphi}=\frac{q\Phi}{h}.\]</span></p>
+<p>After one turn the phase has changed by <span class="math inline">\(2\pi q\Phi/h\)</span>. The wave function is single valued, so this change is <span class="math inline">\(2\pi n\)</span>, and <span class="math inline">\(\Phi=nh/q=nh/2e\)</span>, which is <a href="#eq-5-1">(5.1)</a>.</p>
+<p>For a loop of any shape the same steps hold with Stokes’ theorem, <span class="math inline">\(\oint\mathbf A\cdot d\boldsymbol\ell=\int(\nabla\times\mathbf A)\cdot d\mathbf S=\Phi\)</span>, so <span class="math inline">\(\mathbf j=0\)</span> on the loop gives <span class="math inline">\(\oint\nabla\theta\cdot d\boldsymbol\ell=(q/\hbar)\Phi=2\pi n\)</span>. The charge of a pair of electrons is in fact <span class="math inline">\(-2e\)</span>, and the sign of <span class="math inline">\(q\)</span> only changes the sign of <span class="math inline">\(n\)</span>, so the set of allowed fluxes is the same. When the wall is thinner than the penetration depth, the current does not vanish on any loop, and the flux alone is not quantized.</p>
+</div>
+</details>
+</div>
+<p>Figure <a href="#fig:s05:flux">5.1</a> shows the geometry and the argument based on the winding of the phase. The same physics is behind the precision of Josephson junctions. In the AC Josephson effect, a voltage <span class="math inline">\(V\)</span> across the junction gives a current that oscillates with frequency <span class="math inline">\(2eV/h\)</span>, which is a direct macroscopic readout of <span class="math inline">\(h/2e\)</span>. This is possible only because gauge symmetry is broken.</p>
+<p>Note the parallel with the quantum Hall state of <a href="../session4/index.html">Session 4</a>. There, a macroscopic measurement also gives a ratio of the same two constants, which is the Hall conductance, quantized in units of <span class="math inline">\(e^2/h\)</span> by the Chern number of equation <a href="../session3/05-the-berry-curvature-and-why-the-hall-conductivity-is-an-integer.html#eq-3-4">(3.4)</a>. However, the mechanism is completely different, since it is the quantization of a single-particle topological invariant and not the breaking of a continuous symmetry. In fact, if we combine the two measurements, the flux quantum and the conductance quantum of the Hall effect, we have one of the most precise ways to obtain <span class="math inline">\(h\)</span> and <span class="math inline">\(e\)</span> separately. This is a concrete example of the emergence that we keep coming back to in this course, where macroscopic measurements on billions of atoms give us exact microscopic constants.</p>
 <figure id="fig:s05:flux">
 <img src="../figures/s05f01_flux.svg" loading="lazy" alt="A drawing of flux quantization." />
 <figcaption><strong>Figure 5.1.</strong> A drawing of flux quantization. On the left there is a superconducting ring. Deep in the bulk the Meissner effect has already removed the supercurrent, so on the dashed contour the gauge-invariant combination <span class="math inline">\(\hbar\nabla\theta-2e\mathbf A\)</span> vanishes and the phase gradient is locked to the vector potential. On the right, the arrows are the condensate phase <span class="math inline">\(\theta\)</span> at points of this contour. When we move once around it, the phase must come back to itself, so it can only wind by an integer number of turns. Together, the two statements give <span class="math inline">\(\Phi=n\,h/2e\)</span>, which means that the flux through the hole is quantized, and the <span class="math inline">\(2\)</span> in the denominator is the charge <span class="math inline">\(2e\)</span> of a Cooper pair. None of this is a property of a single electron. It is a macroscopic sample that gives back a ratio of microscopic constants, only because gauge symmetry is broken.</figcaption>
 </figure>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>In the ac Josephson effect a dc voltage <span class="math inline">\(V\)</span> across a junction between two superconductors gives a current that oscillates at a frequency <span class="math inline">\(f\)</span> proportional to <span class="math inline">\(V\)</span>, with <span class="math inline">\(f/V=2e/h\)</span>. A measurement of a frequency and of a voltage then gives the ratio <span class="math inline">\(2e/h\)</span>, which is the inverse of the flux quantum of <a href="#eq-5-1">(5.1)</a>. With this method <a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.18.287">this article</a> determined <span class="math inline">\(2e/h=483.5912\pm0.0030\)</span> MHz/μV. The abstract names no material. In our reading, no parameter of a material enters this ratio. Our own conversion of this value is <span class="math inline">\(h/2e=2.068\times10^{-15}\)</span> Wb.</p>
+</div>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>Experiments find that the trapped flux in a ring comes in steps of <span class="math inline">\(h/2e\)</span>. Which step would <a href="#eq-5-1">(5.1)</a> give if the supercurrent were carried by single electrons of charge <span class="math inline">\(e\)</span>?</p>
-<div class="eq-again">
-<p><span class="math display">\[\Phi = n\,\Phi_0, \qquad \Phi_0 = \frac{h}{2e}. \tag{5.1}\]</span></p>
-</div>
+<p>Deep inside a superconducting ring, carriers of charge <span class="math inline">\(q\)</span> have a phase <span class="math inline">\(\theta\)</span> with</p>
+<p><span class="math display">\[\oint\nabla\theta\cdot d\boldsymbol\ell=\frac{q}{\hbar}\,\Phi=2\pi n.\]</span></p>
+<p>Here <span class="math inline">\(\Phi\)</span> is the flux through the ring and <span class="math inline">\(n\)</span> is an integer. Experiments find steps of <span class="math inline">\(h/2e\)</span> in <span class="math inline">\(\Phi\)</span>. Which step would single electrons of charge <span class="math inline">\(e\)</span> give?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -118,22 +153,91 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
-<p>This is false. The loop condition gives the step <span class="math inline">\(h/q\)</span>, so it depends on the charge. For <span class="math inline">\(q=e\)</span> we get <span class="math inline">\(h/e\approx4.1\times10^{-15}\)</span> Wb, which is twice the measured <span class="math inline">\(h/2e\)</span>.</p></li>
+<p>This is false. The condition gives <span class="math inline">\(\Phi=nh/q\)</span>, so the step depends on the charge. For <span class="math inline">\(q=e\)</span> we get <span class="math inline">\(h/e=4.1\times10^{-15}\)</span> Wb, which is twice <span class="math inline">\(h/2e=2.07\times10^{-15}\)</span> Wb.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
-<p>This is true. The loop condition gives <span class="math inline">\((q/\hbar)\Phi=2\pi n\)</span> and the step <span class="math inline">\(h/q\)</span>. For <span class="math inline">\(q=e\)</span> this is <span class="math inline">\(h/e\)</span>, and the measured step <span class="math inline">\(h/2e\)</span> then shows that the carriers have charge <span class="math inline">\(2e\)</span>.</p></li>
+<p>This is true. The condition gives the step <span class="math inline">\(h/q\)</span>, and for <span class="math inline">\(q=e\)</span> this is <span class="math inline">\(h/e\)</span>. So the measured step <span class="math inline">\(h/2e\)</span> shows that the carriers have charge <span class="math inline">\(2e\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
 <p>This is false. A step <span class="math inline">\(h/4e\)</span> needs the charge <span class="math inline">\(q=4e\)</span>. A single electron has charge <span class="math inline">\(e\)</span>, and a charge <span class="math inline">\(e/2\)</span> would give the larger step <span class="math inline">\(2h/e\)</span>, so this choice goes in the wrong direction.</p></li>
 </ul>
 </div>
 </details>
 </div>
+<div class="quiz" data-correct="A" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>A dc voltage <span class="math inline">\(V\)</span> across a Josephson junction gives a current that oscillates in time. At which frequency <span class="math inline">\(f\)</span> does it oscillate?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(f=2eV/h\)</span></li>
+<li><span class="math inline">\(f=eV/h\)</span></li>
+<li><span class="math inline">\(f=eV/2h\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. A pair that crosses the junction gains the energy <span class="math inline">\(2eV\)</span>, so the phase difference across the junction grows at the rate <span class="math inline">\(2eV/\hbar\)</span>, and the frequency is <span class="math inline">\(2eV/h\)</span>. For <span class="math inline">\(V=1\)</span> μV this is <span class="math inline">\(483.6\)</span> MHz, so a frequency and a voltage give the ratio <span class="math inline">\(2e/h\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. This is the frequency of carriers of charge <span class="math inline">\(e\)</span>. For <span class="math inline">\(V=1\)</span> μV it gives <span class="math inline">\(241.8\)</span> MHz, which is half of the <span class="math inline">\(483.6\)</span> MHz that pairs give.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. This frequency would need carriers of charge <span class="math inline">\(e/2\)</span>. For <span class="math inline">\(V=1\)</span> μV it gives <span class="math inline">\(120.9\)</span> MHz, which is a quarter of the <span class="math inline">\(483.6\)</span> MHz that pairs give.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>A superconducting ring has a hole of radius <span class="math inline">\(r=1\)</span> μm. Which uniform magnetic field <span class="math inline">\(B\)</span> through the hole gives one flux quantum <span class="math inline">\(\Phi_0=h/2e\)</span>?</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>One flux quantum is <span class="math inline">\(\Phi_0=h/2e=2.068\times10^{-15}\)</span> Wb. The area of the hole is <span class="math inline">\(\pi r^2=3.142\times10^{-12}\)</span> m<span class="math inline">\(^2\)</span>, so</p>
+<p><span class="math display">\[B=\frac{\Phi_0}{\pi r^2}=\frac{2.068\times10^{-15}\ \text{Wb}}{3.142\times10^{-12}\ \text{m}^2}=6.58\times10^{-4}\ \text{T}=0.658\ \text{mT}.\]</span></p>
+<p>A SQUID is a superconducting ring of this kind with two Josephson junctions, and its critical current is periodic in the flux through the ring, with the period <span class="math inline">\(\Phi_0\)</span>. For this ring one period is a change of the field of <span class="math inline">\(0.658\)</span> mT. A ring of radius <span class="math inline">\(10\)</span> μm has a period <span class="math inline">\(100\)</span> times smaller, <span class="math inline">\(6.58\)</span> μT, since the area grows as <span class="math inline">\(r^2\)</span>. This is why a SQUID can count single flux quanta, and why a large ring measures small fields.</p>
+</div>
+</details>
+</div>
+</div>
 <h1 class="sec-next" id="sec-5-3"><span class="num">5.3</span> Zero resistance and the Meissner effect in a superconductor</h1>
 <p>In the history of the field, superconductivity was discovered through its transport signature. When we cool an ordinary metal, the resistivity goes down smoothly, because there are fewer phonons from which the electrons can scatter. A superconductor instead shows a <em>sudden</em> drop of the resistance to exactly zero at a critical temperature <span class="math inline">\(T_c\)</span>. Below <span class="math inline">\(T_c\)</span> the resistance stays zero, and not only small. <span class="math inline">\(T_c\)</span> is the temperature at which gauge symmetry breaking starts. There is no notebook cell for these signatures, since the companion notebook starts from the Hamiltonian and not from transport measurements.</p>
-<p>The second signature is the <strong>Meissner effect</strong>. Above <span class="math inline">\(T_c\)</span> a metal allows an external magnetic field inside without any problem, but below <span class="math inline">\(T_c\)</span> the superconductor actively expels the field from its bulk. In type-II superconductors, the only field that remains inside the material is confined to quantized vortices, which are dynamical topological defects of the order parameter of the broken gauge symmetry. Both signatures, zero resistance and the expulsion of the flux, come from the same event. This is the condensation of Cooper pairs into a single macroscopic quantum state, with a rigid phase that is chosen spontaneously. Schematic <a href="#sch:s05:tc_meissner">Schematic 5.2</a> shows both signatures. The resistance drops to zero at <span class="math inline">\(T_c\)</span>, and below <span class="math inline">\(T_c\)</span> the field lines bend around the sample and do not cross it.</p>
+<p>The second signature is the <strong>Meissner effect</strong>. Above <span class="math inline">\(T_c\)</span> a metal allows an external magnetic field inside without any problem, but below <span class="math inline">\(T_c\)</span> the superconductor actively expels the field from its bulk. In type-II superconductors, the only field that remains inside the material is confined to quantized vortices, which are dynamical topological defects of the order parameter of the broken gauge symmetry. Both signatures, zero resistance and the expulsion of the flux, come from the same event. This is the condensation of Cooper pairs into a single macroscopic quantum state, with a rigid phase that is chosen spontaneously. <a href="#sch:s05:tc_meissner">Schematic 5.2</a> shows both signatures. The resistance drops to zero at <span class="math inline">\(T_c\)</span>, and below <span class="math inline">\(T_c\)</span> the field lines bend around the sample and do not cross it.</p>
 <figure id="sch:s05:tc_meissner" class="schematic">
 <img src="../figures/web/session05/tc_meissner.svg" loading="lazy" alt="Three panels. The resistance against temperature drops to zero at the critical temperature. The field lines of a field cross a sample above the critical temperature and bend around it below." />
 <figcaption><strong>Schematic 5.2.</strong> The two signatures of the superconducting state. (a) The resistance of a normal metal stays finite, and that of a superconductor is zero below <span class="math inline">\(T_c\)</span>. (b) Above <span class="math inline">\(T_c\)</span> the field lines cross the sample. (c) Below <span class="math inline">\(T_c\)</span> the field is zero inside and the lines go around, here for a sphere that is a perfect diamagnet.</figcaption>
 </figure>
+<div class="quiz quiz-pics" data-correct="C" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>A sphere sits in a magnetic field along <span class="math inline">\(z\)</span>. In each picture the lines are the field lines, and the circle is the sphere. The sphere is a type-II superconductor below <span class="math inline">\(T_c\)</span>. The field is between its lower and its upper critical field. Which picture shows it?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session05/g1_quiz_field_cross.svg" loading="lazy" alt="Straight vertical field lines with arrows that point up. They cross the circle as if it were not there." /></li>
+<li><img src="../figures/web/session05/g1_quiz_field_around.svg" loading="lazy" alt="Vertical field lines with arrows that point up. They bend around the circle, and no line enters it." /></li>
+<li><img src="../figures/web/session05/g1_quiz_field_vortices.svg" loading="lazy" alt="Vertical field lines with arrows that point up. They bend around the circle, and four of them pass through it, each inside a thin shaded tube." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Here the field crosses the sample unchanged, as in a normal metal. A type-II superconductor is in this state only above its upper critical field, or above <span class="math inline">\(T_c\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. Here the field is zero inside, which is the Meissner state. A type-II superconductor is in this state only at low fields. For a sphere the field at the equator is <span class="math inline">\(1.5\)</span> times the applied field, so vortices start to enter at <span class="math inline">\(2/3\)</span> of the lower critical field.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. Between the two critical fields the field enters, but only in thin tubes, which are the quantized vortices. Each vortex holds one flux quantum <span class="math inline">\(h/2e\)</span>, and between the vortices the field is still expelled.</p></li>
+</ul>
+</div>
+</details>
+</div>
 <div class="comesback">
 <div class="comesback-label">
 Where this comes back

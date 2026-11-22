@@ -85,7 +85,7 @@
   <nav class="sub"><a class="on" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 1. Second Quantization, Mean-Field, and Spontaneous Symmetry Breaking</a></p>
 <h1 id="sec-1-11b"><span class="num">1.11b</span> Classifying states of matter by the symmetry that they break</h1>
-<p>This gives us a useful way to classify states of matter, according to <em>which</em> symmetry they break spontaneously.</p>
+<p>Which symmetry does a magnet break, and which one does a ferroelectric or a superconductor break? We will now see that spontaneous symmetry breaking, the topic of Section <a href="11-spontaneous-symmetry-breaking-and-why-a-symmetric-hamiltonian-can-have-an-asymmetric-ground-state.html#sec-1-11">1.11a</a>, gives us a useful way to classify states of matter, according to <em>which</em> symmetry they break spontaneously. Each broken symmetry comes with its own quasiparticle, and broken time reversal gives the definition <a href="#eq-1-4">(1.4)</a> of a magnet.</p>
 <ul>
 <li><p>Broken <strong>time-reversal symmetry</strong> gives classical magnets. The magnetization is odd under time reversal, so a magnetic ground state is not invariant when we run the movie backward.</p></li>
 <li><p>Broken <strong>inversion symmetry</strong> gives ferroelectrics. These are materials that develop an electric polarization spontaneously, which is the electric analog of a magnetization, and in this way they break the inversion symmetry of the underlying crystal.</p></li>
@@ -136,8 +136,8 @@
 <p>Note that magnons and the Higgs mode both have zero charge but very different spin, and that only the phonon is gapless in every material. Magnons are gapless when the broken spin-rotational symmetry is continuous, and they become gapped when a magnetic anisotropy breaks this symmetry explicitly. The Higgs mode, which is an oscillation of the amplitude of the order parameter, is always gapped.</p>
 <p><a href="#sch:s01:gapless_gapped">Schematic 1.10</a> draws the dispersion of the three quasiparticles of the table.</p>
 <figure id="sch:s01:gapless_gapped" class="schematic">
-<img src="../figures/web/session01/gapless_gapped.svg" loading="lazy" alt="Three dispersions against k. A phonon that reaches zero at k equal to zero, a magnon that reaches zero and a copy shifted up by a gap, and a Higgs mode that stays above a gap." />
-<figcaption><strong>Schematic 1.10.</strong> The quasiparticle of each broken symmetry. The phonon is gapless, since it goes to zero at <span class="math inline">\(k=0\)</span>. The magnon is gapless as well, and an easy-axis anisotropy lifts it by a gap, shown in red. The Higgs mode is gapped by the size of the order parameter. The curves are <span class="math inline">\(\omega=2|\sin(k/2)|\)</span>, <span class="math inline">\(\omega=1-\cos k\)</span> plus <span class="math inline">\(0.45\)</span> for the red one, and <span class="math inline">\(\omega=\sqrt{1.2^2+k^2}\)</span>, in arbitrary units.</figcaption>
+<img src="../figures/web/session01/gapless_gapped.svg" loading="lazy" alt="Three dispersions omega against k from minus pi to pi. A phonon that reaches zero at k equal to zero, a magnon that reaches zero and a copy shifted up by a gap of 0.45, and a Higgs mode that stays above a gap of 1.2." />
+<figcaption><strong>Schematic 1.10.</strong> The quasiparticle of each broken symmetry. The phonon is gapless, since it goes to zero at <span class="math inline">\(k=0\)</span>. The magnon is gapless as well, and an easy-axis anisotropy lifts it by a gap, shown in red. The Higgs mode is gapped by the size of the order parameter. The curves are <span class="math inline">\(\omega=2|\sin(k/2)|\)</span>, <span class="math inline">\(\omega=1-\cos k\)</span> plus <span class="math inline">\(0.45\)</span> for the red one, and <span class="math inline">\(\omega=\sqrt{1.2^2+k^2}\)</span>. The momentum <span class="math inline">\(k\)</span> is in units of the inverse lattice constant, and <span class="math inline">\(\omega\)</span> is in arbitrary units, the same in the three panels. The phonon and the magnon are the forms of a chain, and the Higgs curve is the continuum form, drawn on the same range of <span class="math inline">\(k\)</span>. Look at the value at <span class="math inline">\(k=0\)</span>, which is the gap.</figcaption>
 </figure>
 <figure class="again panel">
 <img src="../figures/panel/s06f05_magnon_side.svg" loading="lazy" alt="A row of parallel spins, and below it a row of spins that precess with a phase that advances from site to site." />
@@ -170,6 +170,36 @@ Question
 </div>
 <div class="quiz-expl">
 <p>The order stays, and the Goldstone mode is gapped.</p>
+</div>
+</details>
+</div>
+<div class="quiz quiz-pics" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Each picture shows a dispersion <span class="math inline">\(\omega(k)\)</span> of a quasiparticle of a chain. Which one is a magnon with an easy-axis anisotropy?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session01/g3_quiz_disp_magnon.svg" loading="lazy" alt="A curve omega against k that starts at zero at k equal to zero, rises as k squared near zero and flattens at 2 at the edges of the zone." /></li>
+<li><img src="../figures/web/session01/g3_quiz_disp_magnon_gap.svg" loading="lazy" alt="A curve omega against k that starts at 0.45 at k equal to zero, rises as k squared near zero and flattens at 2.45 at the edges of the zone." /></li>
+<li><img src="../figures/web/session01/g3_quiz_disp_phonon.svg" loading="lazy" alt="A curve omega against k that starts at zero at k equal to zero with a sharp V and rises to 2 at the edges of the zone." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The curve is <span class="math inline">\(\omega=1-\cos k\)</span>, which is <span class="math inline">\(0\)</span> at <span class="math inline">\(k=0\)</span>, so it has no gap. It rises as <span class="math inline">\(k^2/2\)</span>, which is the magnon of the ferromagnet with no anisotropy.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The curve is <span class="math inline">\(\omega=1-\cos k+0.45\)</span>, which is <span class="math inline">\(0.45\)</span> at <span class="math inline">\(k=0\)</span>. This is the gap of the magnon, since with the anisotropy a tilt of all the spins costs a finite energy.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The curve is <span class="math inline">\(\omega=2|\sin(k/2)|\)</span>, which is <span class="math inline">\(0\)</span> at <span class="math inline">\(k=0\)</span> and rises linearly, as <span class="math inline">\(|k|\)</span>. This is the phonon of a chain of masses, which is a sound wave.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The gap is read at <span class="math inline">\(k=0\)</span>, where the curve has its lowest value.</p>
 </div>
 </details>
 </div>
@@ -208,10 +238,41 @@ Question
 </div>
 </details>
 </div>
-<p>With this we can finally give a precise and formal definition of a magnet, which goes beyond “the object that sticks to your fridge”. A magnet is a many-body state whose wave function is not invariant under the time-reversal operator <span class="math inline">\(\hat T\)</span>,</p>
+<p>With this we can finally give a precise and formal definition of a magnet, which goes beyond “the object that sticks to your fridge”.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>A magnet is a many-body state whose wave function is not invariant under the time-reversal operator <span class="math inline">\(\hat T\)</span>,</p>
 <p><span id="eq-1-4" class="eq"><span class="math display">\[\hat T|\Psi\rangle = |\Psi\rangle \;\Rightarrow\; \text{not magnetic}, \qquad
 \hat T|\Psi\rangle \neq |\Psi\rangle \;\Rightarrow\; \text{magnetic}. \tag{1.4}\]</span></span></p>
+<p>So time reversal changes a magnet, and a state that it leaves the same is not magnetic. A magnetization is odd under <span class="math inline">\(\hat T\)</span>, so a state with a magnetization fails this test.</p>
+</div>
 <p>The north and south poles of a bar magnet are exchanged under time reversal, since a magnetic pole is connected to an orbital angular momentum and angular momenta change sign under <span class="math inline">\(\hat T\)</span>. For this reason a bar magnet does not pass the invariance test in <a href="#eq-1-4">(1.4)</a>, and it is magnetic according to this definition. A plain stick that is not magnetic, on the other hand, looks the same under time reversal and passes the test.</p>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>Magneto-optical Kerr effect microscopy shows that monolayer chromium triiodide, CrI<span class="math inline">\(_3\)</span>, is an Ising ferromagnet, with its spins out of the plane. Its Curie temperature is <span class="math inline">\(45\)</span> K, only slightly lower than the <span class="math inline">\(61\)</span> K of the bulk crystal. Our reading is that below <span class="math inline">\(45\)</span> K the monolayer is magnetic in the sense of <a href="#eq-1-4">(1.4)</a>, and that its Kerr rotation probes this broken time reversal when it stays at zero applied field. The measurement is in <a href="https://www.nature.com/articles/nature22391">this article</a>.</p>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>Time reversal of one spin is <span class="math inline">\(\hat T=i\sigma_yK\)</span>, where <span class="math inline">\(K\)</span> takes the complex conjugate of the coefficients in the basis <span class="math inline">\(|{\uparrow}\rangle\)</span>, <span class="math inline">\(|{\downarrow}\rangle\)</span> of <span class="math inline">\(\sigma_z\)</span>. On two spins <span class="math inline">\(\hat T\)</span> acts on each spin. Show that the singlet <span class="math inline">\((|{\uparrow\downarrow}\rangle-|{\downarrow\uparrow}\rangle)/\sqrt2\)</span> passes the test <a href="#eq-1-4">(1.4)</a>, and that the Néel state <span class="math inline">\(|{\uparrow\downarrow}\rangle\)</span> does not.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>With the Pauli matrix <span class="math inline">\(\sigma_y\)</span>, the operator <span class="math inline">\(i\sigma_y\)</span> is the real matrix</p>
+<p><span class="math display">\[i\sigma_y=\begin{pmatrix}0&amp;1\\-1&amp;0\end{pmatrix},\]</span></p>
+<p>so <span class="math inline">\(\hat T|{\uparrow}\rangle=-|{\downarrow}\rangle\)</span> and <span class="math inline">\(\hat T|{\downarrow}\rangle=|{\uparrow}\rangle\)</span>, since <span class="math inline">\(K\)</span> does nothing to real coefficients. On two spins this gives <span class="math inline">\(\hat T|{\uparrow\downarrow}\rangle=-|{\downarrow\uparrow}\rangle\)</span> and <span class="math inline">\(\hat T|{\downarrow\uparrow}\rangle=-|{\uparrow\downarrow}\rangle\)</span>. For the singlet</p>
+<p><span class="math display">\[\hat T\,\frac{|{\uparrow\downarrow}\rangle-|{\downarrow\uparrow}\rangle}{\sqrt2}=\frac{-|{\downarrow\uparrow}\rangle+|{\uparrow\downarrow}\rangle}{\sqrt2},\]</span></p>
+<p>which is the singlet again, so it passes the test and it is not magnetic. Its moment <span class="math inline">\(m=n_\uparrow-n_\downarrow\)</span> is zero on each site. The Néel state <span class="math inline">\(|{\uparrow\downarrow}\rangle\)</span> goes to <span class="math inline">\(-|{\downarrow\uparrow}\rangle\)</span>, which is orthogonal to it, so it is another state and it fails the test. Its moment is <span class="math inline">\(m=1\)</span> on the first site, and after <span class="math inline">\(\hat T\)</span> it is <span class="math inline">\(m=-1\)</span>.</p>
+<p>This is the difference between the exact ground state of the Hubbard dimer and its mean-field state in <a href="12-the-general-interacting-hamiltonian-and-the-tool-we-will-use-on-it.html#sch:s01:dimer_meanfield">Schematic 1.11</a>. The exact ground state is a singlet with <span class="math inline">\(m=0\)</span> for every <span class="math inline">\(U\)</span>, and at large <span class="math inline">\(U\)</span> it has one electron on each site, with the spins in this singlet. The antiferromagnetic mean field gives a moment <span class="math inline">\(m\)</span> on the first site and <span class="math inline">\(-m\)</span> on the second for <span class="math inline">\(U&gt;2t\)</span>, and <span class="math inline">\(\hat T\)</span> changes the sign of <span class="math inline">\(m\)</span>. So the mean-field state breaks time reversal, while the exact ground state of two sites does not, as Section <a href="11-spontaneous-symmetry-breaking-and-why-a-symmetric-hamiltonian-can-have-an-asymmetric-ground-state.html#sec-1-11">1.11a</a> explains for a finite system.</p>
+</div>
+</details>
+</div>
+</div>
 <p>Let us now build this general picture explicitly, three times.</p>
 <div class="tryit">
 <p><strong>Try it.</strong> Run the cell and look at the arrows of the magnetization in the panel of the antiferromagnetic guess. Check that they alternate in sign from one site to the next. Time reversal flips every arrow, which gives another state with the same energy.</p>

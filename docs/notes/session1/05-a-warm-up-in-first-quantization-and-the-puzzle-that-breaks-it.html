@@ -85,8 +85,10 @@
   <nav class="sub"><a class="on" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 1. Second Quantization, Mean-Field, and Spontaneous Symmetry Breaking</a></p>
 <h1 id="sec-1-5"><span class="num">1.5</span> A warm-up in first quantization, and the puzzle that breaks it</h1>
+<p>Can a wave function describe a quantum dot in a superposition of zero and two electrons? We will now see that it cannot, and that this puzzle is the reason to build creation and annihilation operators. At the end of the page we arrive at their anticommutation relations <a href="#eq-1-3">(1.3)</a>, which contain the Pauli principle in the algebra of the operators.</p>
 <p>Let us take the simplest single-particle system, which is a lattice of sites with one level each and one electron, that forms a finite island such as a quantum dot. Without many-body interactions this is an ordinary diagonalization problem, in the same way as a particle in a box, with a lowest energy state, a first excited state and so on. In this language, “one electron in the ground level” and “one electron in the first excited level” are two different single-particle states, and we can also take superpositions of the two. In every case, however, there is exactly one electron in the system.</p>
-<p>Now let us say that we want to describe a quantum dot in a coherent superposition of zero electrons and two electrons, each with 50% probability. We cannot write this as an ordinary wave function. A wave function needs a fixed number of coordinates, and it makes no sense to have zero coordinates and two coordinates at the same time. This example is not artificial. Reasoning about a number of electrons that fluctuates is what allows us to understand how local magnetic moments couple to each other in real oxides. This is the basis of the Goodenough-Kanamori rules, which predict ferromagnetism or antiferromagnetism. It is also part of the definition of a superconductor, whose mean-field order parameter conserves only the <em>parity</em> of the electron number and not the number itself. This description of superconductors, which does not conserve the number of particles, has its own name, the Bogoliubov-de Gennes formalism. We use it in practice from Section <a href="../session5/08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#sec-5-8">5.8</a> on.</p>
+<p>Now let us say that we want to describe a quantum dot in a coherent superposition of zero electrons and two electrons, each with 50% probability. We cannot write this as an ordinary wave function. A wave function needs a fixed number of coordinates, and it makes no sense to have zero coordinates and two coordinates at the same time.</p>
+<p>This example is not artificial. Reasoning about a number of electrons that fluctuates is what allows us to understand how local magnetic moments couple to each other in real oxides. This is the basis of the Goodenough-Kanamori rules, which predict ferromagnetism or antiferromagnetism. It is also part of the definition of a superconductor, whose mean-field order parameter conserves only the <em>parity</em> of the electron number and not the number itself. This description of superconductors, which does not conserve the number of particles, has its own name, the Bogoliubov-de Gennes formalism. We use it in practice from Section <a href="../session5/08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#sec-5-8">5.8</a> on.</p>
 <h1 class="sec-next" id="sec-1-6"><span class="num">1.6</span> Building second quantization with creation and annihilation operators</h1>
 <p>To describe systems of this kind we introduce two operators at every site <span class="math inline">\(i\)</span>. The first one is the annihilation operator <span class="math inline">\(c_i\)</span>, which destroys an electron at site <span class="math inline">\(i\)</span>, and the second one is the creation operator <span class="math inline">\(c_i^\dagger\)</span>, which creates one. The Hamiltonian, and all the dynamics of the system, is written only in terms of these operators.</p>
 <p>We define the vacuum state, which is the empty state <span class="math inline">\(|0\rangle\)</span>, by</p>
@@ -103,10 +105,9 @@
 Question
 </div>
 <div class="quiz-q">
-<p>Both sites are occupied, and the state is <span class="math inline">\(c_0^\dagger c_1^\dagger|0\rangle\)</span>. What is its energy for the hopping of <a href="#eq-1-2">(1.2)</a>?</p>
-<div class="eq-again">
-<p><span class="math display">\[H_\text{hop} = t\left(c_0^\dagger c_1 + c_1^\dagger c_0\right), \tag{1.2}\]</span></p>
-</div>
+<p>Two sites are coupled by the hopping</p>
+<p><span class="math display">\[H_\text{hop}=t\left(c_0^\dagger c_1+c_1^\dagger c_0\right),\qquad t&gt;0.\]</span></p>
+<p>Both sites are occupied, in the state <span class="math inline">\(c_0^\dagger c_1^\dagger|0\rangle\)</span>. What is its energy?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -123,13 +124,30 @@ Question
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
 <p>This is true. The hopping needs an empty site, and none is empty, so <span class="math inline">\(H_\text{hop}\)</span> gives zero on this state. The same follows from adding the two levels, <span class="math inline">\((-t)+(+t)=0\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. It would need both electrons in the level <span class="math inline">\(+t\)</span>. The Pauli principle forbids this, since <span class="math inline">\((c_+^\dagger)^2=0\)</span>, so the largest energy of two electrons here is still <span class="math inline">\(0\)</span>.</p></li>
+<p>This is false. It would need both electrons in the level <span class="math inline">\(+t\)</span>. The Pauli principle forbids this, since <span class="math inline">\((c_+^\dagger)^2=0\)</span> for the operator <span class="math inline">\(c_+^\dagger\)</span> that creates an electron in this level, so the largest energy of two electrons here is still <span class="math inline">\(0\)</span>.</p></li>
 </ul>
 </div>
 <div class="quiz-expl">
 <p>Hopping an electron onto an occupied site gives zero, because <span class="math inline">\((c_0^\dagger)^2=0\)</span>.</p>
 </div>
 </details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>Two sites have the number operator <span class="math inline">\(N=c_0^\dagger c_0+c_1^\dagger c_1\)</span>. Compute the mean <span class="math inline">\(\langle N\rangle\)</span> and the variance <span class="math inline">\((\Delta N)^2=\langle N^2\rangle-\langle N\rangle^2\)</span> in the state</p>
+<p><span class="math display">\[|\Psi\rangle=\frac{1}{\sqrt2}\left(|0\rangle+c_0^\dagger c_1^\dagger|0\rangle\right).\]</span></p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>The operator <span class="math inline">\(c_i^\dagger c_i\)</span> counts the electrons at site <span class="math inline">\(i\)</span>. The empty state has <span class="math inline">\(N|0\rangle=0\)</span>, and the full state has <span class="math inline">\(N\,c_0^\dagger c_1^\dagger|0\rangle=2\,c_0^\dagger c_1^\dagger|0\rangle\)</span>. So the two terms of <span class="math inline">\(|\Psi\rangle\)</span> are eigenstates of <span class="math inline">\(N\)</span> with the eigenvalues <span class="math inline">\(0\)</span> and <span class="math inline">\(2\)</span>, each with the probability <span class="math inline">\(1/2\)</span>, and</p>
+<p><span class="math display">\[\langle N\rangle=\tfrac12\cdot 0+\tfrac12\cdot 2=1,\qquad \langle N^2\rangle=\tfrac12\cdot 0+\tfrac12\cdot 4=2.\]</span></p>
+<p>The variance is <span class="math inline">\((\Delta N)^2=2-1=1\)</span>, meaning that the number of electrons is <span class="math inline">\(1\)</span> on average and fluctuates by one electron around this mean.</p>
+<p>This is the puzzle of Section <a href="#sec-1-5">1.5</a> written with operators. No wave function with a fixed number of coordinates describes <span class="math inline">\(|\Psi\rangle\)</span>, while in second quantization it is one vector of the Fock space. Both terms have an even number of electrons, so the parity <span class="math inline">\((-1)^N\)</span> is fixed while <span class="math inline">\(N\)</span> is not. In the sector with an even number of electrons, a pairing term <span class="math inline">\(c_0^\dagger c_1^\dagger+c_1c_0\)</span>, which creates or destroys two electrons at once, has the eigenstates <span class="math inline">\((|0\rangle\pm c_0^\dagger c_1^\dagger|0\rangle)/\sqrt2\)</span>, with the eigenvalues <span class="math inline">\(+1\)</span> and <span class="math inline">\(-1\)</span>. The mean-field Hamiltonian of a superconductor has a pairing term of this kind, and this is why it needs second quantization, as we will see in Section <a href="14-worked-example-2-magnetism.html#sec-1-15">1.15</a>.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session1.ipynb"><code>session1.ipynb</code></a>, “The spectra of a dimer” (Core)</p>
@@ -142,9 +160,33 @@ Notebook <code>session1.ipynb</code>, cell “The spectra of a dimer”. Open it
 </div>
 </div>
 <h1 class="sec-next" id="sec-1-7"><span class="num">1.7</span> Enforcing fermionic statistics</h1>
-<p>Up to now nothing distinguishes fermions from bosons, and everything above applies to both in the same way. The difference is introduced through the algebra of the operators. Fermi statistics requires that the many-body wave function changes sign when we exchange two particles, and a direct consequence is that a given single-particle level can have zero fermions or one fermion, but never two. We impose this with anticommutation relations,</p>
+<p>Up to now nothing distinguishes fermions from bosons, and everything above applies to both in the same way. The difference is introduced through the algebra of the operators. Fermi statistics requires that the many-body wave function changes sign when we exchange two particles, and a direct consequence is that a given single-particle level can have zero fermions or one fermion, but never two. We impose this with anticommutation relations.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>The fermionic creation and annihilation operators obey the anticommutation relations</p>
 <p><span id="eq-1-3" class="eq"><span class="math display">\[\{c_i, c_j^\dagger\} = \delta_{ij}, \qquad \{c_i, c_j\} = \{c_i^\dagger, c_j^\dagger\} = 0. \tag{1.3}\]</span></span></p>
+<p>For <span class="math inline">\(i=j\)</span> the last relation gives <span class="math inline">\((c_i^\dagger)^2=0\)</span>, so a level holds zero fermions or one fermion, and the antisymmetry of the wave function under the exchange of two fermions comes from the same algebra.</p>
+</div>
 <p>The second relation is the important one. If we take <span class="math inline">\(i=j\)</span> it gives <span class="math inline">\((c_i^\dagger)^2 = 0\)</span>, which means that we cannot create two electrons in the same level. At the same time it imposes the antisymmetry of the wave function, so the Pauli exclusion principle is part of the algebra itself and we do not need to add it by hand.</p>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the anticommutation relations (1.3) to the Pauli principle</span></summary>
+<div class="fold-body">
+<p>We start with the simplest case, one level <span class="math inline">\(i\)</span>. The relation <span class="math inline">\(\{c_i^\dagger,c_i^\dagger\}=0\)</span> of <a href="#eq-1-3">(1.3)</a> reads <span class="math inline">\(2(c_i^\dagger)^2=0\)</span>, so</p>
+<p><span class="math display">\[(c_i^\dagger)^2=0,\]</span></p>
+<p>meaning that a second electron cannot be created in a level that already holds one. The occupation of the level is <span class="math inline">\(n_i=c_i^\dagger c_i\)</span>. The first relation with <span class="math inline">\(j=i\)</span> gives <span class="math inline">\(c_ic_i^\dagger=1-c_i^\dagger c_i\)</span>, and with it</p>
+<p><span class="math display">\[n_i^2=c_i^\dagger\,(c_ic_i^\dagger)\,c_i=c_i^\dagger c_i-c_i^\dagger c_i^\dagger c_ic_i=n_i,\]</span></p>
+<p>since the last term holds <span class="math inline">\((c_i^\dagger)^2=0\)</span>. An operator with <span class="math inline">\(n_i^2=n_i\)</span> has only the eigenvalues <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>, so the level holds zero fermions or one fermion, which is the Pauli principle.</p>
+<p>The relation <span class="math inline">\(\{c_0^\dagger,c_1^\dagger\}=0\)</span> gives <span class="math inline">\(c_1^\dagger c_0^\dagger|0\rangle=-c_0^\dagger c_1^\dagger|0\rangle\)</span>. The state of two fermions changes sign when we exchange the order in which they are created, and this is the antisymmetry of the wave function.</p>
+<p>We now take the two sites of <a href="#eq-1-2">(1.2)</a> with the four Fock states of <a href="#sch:s01:dimer_fock">Schematic 1.6</a>. The vacuum has <span class="math inline">\(H_\text{hop}|0\rangle=0\)</span>, since <span class="math inline">\(c_0|0\rangle=c_1|0\rangle=0\)</span> by <a href="#eq-1-1">(1.1)</a>. With one electron, <span class="math inline">\(H_\text{hop}\)</span> takes <span class="math inline">\(c_1^\dagger|0\rangle\)</span> to <span class="math inline">\(t\,c_0^\dagger|0\rangle\)</span> and back, so in the basis <span class="math inline">\(c_0^\dagger|0\rangle\)</span>, <span class="math inline">\(c_1^\dagger|0\rangle\)</span> it is the matrix</p>
+<p><span class="math display">\[\begin{pmatrix}0&amp;t\\ t&amp;0\end{pmatrix},\]</span></p>
+<p>whose eigenvalues are <span class="math inline">\(-t\)</span> and <span class="math inline">\(+t\)</span>. With two electrons, each term of <span class="math inline">\(H_\text{hop}\)</span> tries to put an electron on an occupied site. In the first term we move <span class="math inline">\(c_1\)</span> to the right with <a href="#eq-1-3">(1.3)</a>,</p>
+<p><span class="math display">\[c_0^\dagger c_1\,c_0^\dagger c_1^\dagger|0\rangle=-(c_0^\dagger)^2\,c_1c_1^\dagger|0\rangle=0,\]</span></p>
+<p>and the second term gives <span class="math inline">\((c_1^\dagger)^2=0\)</span> in the same way, together with a term that holds <span class="math inline">\(c_0|0\rangle=0\)</span>. So the energy of the full state is <span class="math inline">\(0\)</span>, and the four energies are <span class="math inline">\(0\)</span>, <span class="math inline">\(\pm t\)</span> and <span class="math inline">\(0\)</span>, as in <a href="#sch:s01:dimer_fock">Schematic 1.6</a>.</p>
+</div>
+</details>
+</div>
 <figure id="sch:s01:boson_fermion_pair" class="schematic">
 <img src="../figures/web/session01/boson_fermion_pair.svg" loading="lazy" alt="Two level diagrams. Two fermions have one level at zero. Two bosons have three levels at minus 2t, zero and plus 2t. Below each diagram are the ways to put two particles on two sites, one way for fermions and three for bosons." />
 <figcaption><strong>Schematic 1.7.</strong> Two particles on the two sites of <a href="#eq-1-2">(1.2)</a>, from exact diagonalization in the Fock space. For fermions <span class="math inline">\((c_i^\dagger)^2=0\)</span>, so the only state has one particle on each site, and its energy is <span class="math inline">\(0\)</span>. Bosons commute, so two of them can also share a site. This gives three states, with the energies <span class="math inline">\(-2t\)</span>, <span class="math inline">\(0\)</span> and <span class="math inline">\(+2t\)</span>. The Hamiltonian is the same in both cases, and only the algebra of the operators is different.</figcaption>
@@ -176,6 +218,38 @@ Question
 </div>
 <div class="quiz-expl">
 <p>Bosons and fermions differ in the algebra of the operators, and not in the vacuum or in the Hermiticity.</p>
+</div>
+</details>
+</div>
+<div class="quiz" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Fermionic operators obey the anticommutation relations</p>
+<p><span class="math display">\[\{c_i,c_j^\dagger\}=\delta_{ij},\qquad \{c_i,c_j\}=\{c_i^\dagger,c_j^\dagger\}=0.\]</span></p>
+<p>Which identity follows from them?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(c_ic_i^\dagger=1\)</span></li>
+<li><span class="math inline">\((c_i^\dagger)^2=0\)</span></li>
+<li><span class="math inline">\(c_i^\dagger c_j=c_jc_i^\dagger\)</span> for <span class="math inline">\(i\neq j\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The first relation with <span class="math inline">\(j=i\)</span> gives <span class="math inline">\(c_ic_i^\dagger=1-c_i^\dagger c_i\)</span>. On an occupied site, in the state <span class="math inline">\(c_i^\dagger|0\rangle\)</span>, this operator gives <span class="math inline">\(0\)</span> and not <span class="math inline">\(1\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The last relation with <span class="math inline">\(j=i\)</span> reads <span class="math inline">\(2(c_i^\dagger)^2=0\)</span>. So a second fermion cannot be created in the same level, which is the Pauli principle.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The first relation with <span class="math inline">\(i\neq j\)</span> gives <span class="math inline">\(c_jc_i^\dagger=-c_i^\dagger c_j\)</span>, with a minus sign. On the state <span class="math inline">\(c_j^\dagger|0\rangle\)</span> the left side gives <span class="math inline">\(c_i^\dagger|0\rangle\)</span> and the right side gives <span class="math inline">\(-c_i^\dagger|0\rangle\)</span>.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The anticommutation relations fix how every product of two operators changes when we swap its order.</p>
 </div>
 </details>
 </div>

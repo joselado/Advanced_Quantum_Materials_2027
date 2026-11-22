@@ -85,13 +85,50 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="on" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 5. Superconductivity, Nambu Representation and Majorana Physics</a></p>
 <h1 id="sec-5-13"><span class="num">5.13</span> Nodal singlet order, d-wave pairing in the cuprates and the angular-momentum expansion</h1>
-<p>Inside the spin-singlet, even-parity order there is a further useful distinction, since a singlet gap can be uniformly nonzero, as in the s-wave case of Section <a href="09-an-example-of-a-gap-that-opens-independently-of-the-dispersion.html#sec-5-9">5.9</a>, or it can be nodal. The standard example of the second case is <strong>d-wave</strong> order on the square lattice,</p>
-<p><span id="eq-5-13" class="eq"><span class="math display">\[\Delta_{d}(\mathbf k) = \Delta_0\left(\cos k_x - \cos k_y\right), \tag{5.13}\]</span></span></p>
-<p>which vanishes along the diagonals of the Brillouin zone, <span class="math inline">\(k_x = \pm k_y\)</span>. Together with <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#eq-5-9">(5.9)</a>, this means that the quasiparticle spectrum <span class="math inline">\(E(\mathbf k) = \sqrt{\varepsilon(\mathbf k)^2 +
+<p>Can a singlet gap vanish on part of the Fermi surface, and how do we name the patterns of sign of <span class="math inline">\(\Delta(\mathbf k)\)</span>? We arrive at the d-wave gap <a href="#eq-5-13">(5.13)</a>, whose nodes sit on the diagonals of the zone, and at the expansion <a href="#eq-5-14">(5.14)</a>, where we name an order by counting its lobes. On the triangular lattice the same counting gives an f-wave order, which is odd and so a spin triplet.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[E(\mathbf k) = \pm\sqrt{\varepsilon(\mathbf k)^2 + |\Delta(\mathbf k)|^2}. \tag{5.9}\]</span></p>
+</div>
+<div class="eq-again">
+<p><span class="math display">\[\textbf{Spin triplet (odd parity):} \quad \Delta(\mathbf k) = -\Delta(-\mathbf k), \qquad \Delta_{\sigma\sigma&#39;} = +\Delta_{\sigma&#39;\sigma}\ \text{(spin-symmetric)}. \tag{5.12}\]</span></p>
+</div>
+<p>The first equation is the spectrum of the BdG Hamiltonian of Section <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#sec-5-8">5.8</a>. At a point of the Fermi surface, where <span class="math inline">\(\varepsilon(\mathbf k)=0\)</span>, the smallest quasiparticle energy is <span class="math inline">\(|\Delta(\mathbf k)|\)</span>. The second is the triplet line of the classification of Section <a href="11-the-general-pairing-hamiltonian-and-its-symmetry-classification.html#sec-5-11">5.11</a>, and its other line says that a spin singlet is even in <span class="math inline">\(\mathbf k\)</span>.</p>
+</div>
+<p>Inside the spin-singlet, even-parity order there is a further useful distinction, since a singlet gap can be uniformly nonzero, as in the s-wave case of Section <a href="09-an-example-of-a-gap-that-opens-independently-of-the-dispersion.html#sec-5-9">5.9</a>, or it can be nodal. The standard example of the second case is <strong>d-wave</strong> order on the square lattice.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>The d-wave gap of the square lattice is</p>
+<p><span id="eq-5-13" class="eq"><span class="math display">\[\Delta_{d}(\mathbf k) = \Delta_0\left(\cos k_x - \cos k_y\right). \tag{5.13}\]</span></span></p>
+<p>It vanishes on the diagonals of the zone, <span class="math inline">\(k_x=\pm k_y\)</span>, so a superconductor with this gap is gapless where its Fermi surface crosses these diagonals.</p>
+</div>
+<p>The gap <a href="#eq-5-13">(5.13)</a> vanishes along the diagonals of the Brillouin zone, <span class="math inline">\(k_x = \pm k_y\)</span>. Together with <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#eq-5-9">(5.9)</a>, this means that the quasiparticle spectrum <span class="math inline">\(E(\mathbf k) = \sqrt{\varepsilon(\mathbf k)^2 +
 \Delta_d(\mathbf k)^2}\)</span> is gapless where the Fermi surface crosses these diagonals, which gives a nodal singlet superconductor. This is the pairing symmetry of the cuprate high-temperature superconductors. They have critical temperatures up to about 130 K at ambient pressure, above the boiling point of liquid nitrogen, and they are spin-singlet but clearly <em>not</em> s-wave.</p>
-<figure id="sch:s05:dwave_nodes" class="schematic">
-<img src="../figures/web/session05/dwave_nodes.svg" loading="lazy" alt="On the left, a square Brillouin zone with its two diagonals and a rounded Fermi surface in two colors, with four dots where it crosses the diagonals. On the right, the smallest energy against the angle, flat for s-wave and touching zero four times for d-wave." />
-<figcaption><strong>Schematic 5.9.</strong> The <span class="math inline">\(d\)</span>-wave gap <a href="#eq-5-13">(5.13)</a> on the Fermi surface of the square lattice, for <span class="math inline">\(\mu=-t\)</span> and <span class="math inline">\(\Delta_0=0.2t\)</span>. (a) The Fermi surface in the color of the sign of <span class="math inline">\(\Delta_d\)</span>. The sign changes on the diagonals of the zone, the dashed lines, and the four dots are the nodes. (b) The smallest quasiparticle energy <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#eq-5-9">(5.9)</a> along each direction from <span class="math inline">\(\Gamma\)</span>, at the angle <span class="math inline">\(\theta\)</span>, in units of <span class="math inline">\(\Delta_0\)</span>. For <span class="math inline">\(s\)</span>-wave pairing it is <span class="math inline">\(\Delta_0\)</span> in every direction. For <span class="math inline">\(d\)</span>-wave pairing it goes to zero at the four nodes, which is the nodal superconductor seen in the spectrum.</figcaption>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From pairing on the bonds to the d-wave gap (5.13)</span></summary>
+<div class="fold-body">
+<p>Let us start with a chain, where an <span class="math inline">\(\uparrow\)</span> electron on site <span class="math inline">\(n\)</span> pairs with a <span class="math inline">\(\downarrow\)</span> electron on the two neighboring sites <span class="math inline">\(n\pm1\)</span>, with the same amplitude <span class="math inline">\(\Delta_1\)</span> on both bonds,</p>
+<p><span class="math display">\[\Delta_1\sum_n\sum_{\delta=\pm1}c_{n\uparrow}^\dagger c_{n+\delta,\downarrow}^\dagger.\]</span></p>
+<p>The amplitude is even in the bond <span class="math inline">\(\delta\)</span>, so the pair is a singlet. With <span class="math inline">\(c_n^\dagger=N^{-1/2}\sum_k e^{-ikn}c_k^\dagger\)</span> the sum over <span class="math inline">\(n\)</span> sets the second momentum to <span class="math inline">\(-k\)</span>, and each bond gives the phase <span class="math inline">\(e^{ik\delta}\)</span>. The two bonds together give <span class="math inline">\(e^{ik}+e^{-ik}=2\cos k\)</span>, so the term is</p>
+<p><span class="math display">\[\sum_k 2\Delta_1\cos k\;c_{k\uparrow}^\dagger c_{-k\downarrow}^\dagger,\]</span></p>
+<p>which is the onsite pairing of <a href="04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.html#eq-5-4">(5.4)</a> written in momentum space, with the constant <span class="math inline">\(\Delta\)</span> replaced by <span class="math inline">\(\Delta(k)=2\Delta_1\cos k\)</span>. This is the extended <span class="math inline">\(s\)</span>-wave pairing of the chain. The sign of the transform does not enter, since both bonds are there.</p>
+<p>On the square lattice the bonds point along <span class="math inline">\(\pm\hat x\)</span> and <span class="math inline">\(\pm\hat y\)</span>, and the same steps give <span class="math inline">\(2\Delta_1\cos k_x\)</span> from the bonds along <span class="math inline">\(x\)</span> and <span class="math inline">\(2\Delta_1\cos k_y\)</span> from the bonds along <span class="math inline">\(y\)</span>. With the same amplitude on the four bonds the result is <span class="math inline">\(2\Delta_1(\cos k_x+\cos k_y)\)</span>, which is the extended <span class="math inline">\(s\)</span>-wave. With the amplitude <span class="math inline">\(+\Delta_1\)</span> on the bonds along <span class="math inline">\(x\)</span> and <span class="math inline">\(-\Delta_1\)</span> on the bonds along <span class="math inline">\(y\)</span> it is</p>
+<p><span class="math display">\[\Delta(\mathbf k) = 2\Delta_1\left(\cos k_x-\cos k_y\right),\]</span></p>
+<p>which is <a href="#eq-5-13">(5.13)</a> with <span class="math inline">\(\Delta_0=2\Delta_1\)</span>. Only the relative sign of the two kinds of bonds enters. An overall sign of <span class="math inline">\(\Delta_1\)</span> is a choice of gauge, as for any <span class="math inline">\(\Delta\)</span>, and it does not move the zeros, which are where <span class="math inline">\(\cos k_x=\cos k_y\)</span>, meaning <span class="math inline">\(k_x=\pm k_y\)</span> inside the zone. In pyqula <code>h.add_pairing(mode="dx2y2", delta=x)</code> gives this <span class="math inline">\(\Delta(\mathbf k)\)</span> with <span class="math inline">\(\Delta_1=x\)</span>, so <span class="math inline">\(\Delta_0=2x\)</span>.</p>
+</div>
+</details>
+</div>
+<figure id="sch:s05:dwave_nodes" class="schematic has-script">
+<img src="../figures/web/session05/dwave_nodes.svg" loading="lazy" alt="On the left, a color map of the d-wave pairing over reciprocal space, red along k y and blue along k x, with the dashed square zone, a rounded Fermi surface and four dots where it crosses the white diagonals. On the right, the smallest energy against the angle, flat at one for s-wave and touching zero four times for d-wave." />
+<div class="script-row">
+<a href="../scripts/session05/g3_dwave_square.py" class="script-dl" download="g3_dwave_square.py">Download the pyqula script</a> <span class="script-name"><code>g3_dwave_square.py</code></span>
+</div>
+<figcaption><strong>Schematic 5.12.</strong> The <span class="math inline">\(d\)</span>-wave gap <a href="#eq-5-13">(5.13)</a> on the Fermi surface of the square lattice, computed with pyqula for <span class="math inline">\(t=1\)</span>, <span class="math inline">\(\mu=-t\)</span> and <code>h.add_pairing(mode="dx2y2", delta=0.1)</code>, which is <span class="math inline">\(\Delta_0=0.2t\)</span>, with the momenta in units of the inverse lattice constant. (a) The map of <span class="math inline">\(\Delta_d(\mathbf k)/\Delta_0\)</span> in reciprocal space, with the first Brillouin zone dashed and the Fermi surface as a black line. The sign changes on the diagonals of the zone, where the map is white, and the four dots are the nodes, where the Fermi surface crosses the diagonals. (b) The smallest quasiparticle energy <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#eq-5-9">(5.9)</a> along each direction from <span class="math inline">\(\Gamma\)</span>, at the angle <span class="math inline">\(\theta\)</span>, in units of <span class="math inline">\(\Delta_0\)</span>. For <span class="math inline">\(s\)</span>-wave pairing, <code>h.add_swave(0.2)</code>, it is <span class="math inline">\(\Delta_0\)</span> in every direction. For <span class="math inline">\(d\)</span>-wave pairing it goes to zero at the four nodes, where it is below <span class="math inline">\(0.01\Delta_0\)</span> on the mesh of the script, which is the nodal superconductor seen in the spectrum.</figcaption>
 </figure>
 <p>Behind this there is a clear and general way to organize the possible cases, which is analogous to the expansion of an atomic orbital wave function in spherical harmonics. We expand the superconducting gap in an angular-momentum basis on the Fermi surface,</p>
 <p><span id="eq-5-14" class="eq"><span class="math display">\[\Delta(\mathbf k) \;\sim\; \sum_L \Delta_L\, Y_L(\mathbf k), \tag{5.14}\]</span></span></p>
@@ -107,12 +144,24 @@ L=2:\quad &amp;\text{d-wave (spin-singlet, often antiferromagnetic-magnon-driven
 <img src="../figures/s05f03_gapsymmetry.svg" loading="lazy" alt="The sign structure of \Delta(\mathbf k) over the Brillouin zone, ordered by angular momentum L as in (5.14)." />
 <figcaption><strong>Figure 5.3.</strong> The sign structure of <span class="math inline">\(\Delta(\mathbf k)\)</span> over the Brillouin zone, ordered by angular momentum <span class="math inline">\(L\)</span> as in <a href="#eq-5-14">(5.14)</a>. The positive regions are raised and the negative ones are sunk, in two colors, and the nodes are where the two colors meet. A reflection of a panel through its centre sends <span class="math inline">\(\mathbf k\to-\mathbf k\)</span>. Panels with even <span class="math inline">\(L\)</span> do not change and are therefore spin singlets, and panels with odd <span class="math inline">\(L\)</span> come back with every sign flipped and are spin triplets, which is <a href="11-the-general-pairing-hamiltonian-and-its-symmetry-classification.html#eq-5-12">(5.12)</a> seen in a picture. Counting lobes is the fastest way to identify the order. Two lobes mean <span class="math inline">\(L=1\)</span>, four mean <span class="math inline">\(L=2\)</span> and six mean <span class="math inline">\(L=3\)</span>. Any pattern whose lobes alternate an odd number of times in a half turn is necessarily odd in <span class="math inline">\(\mathbf k\)</span>, so it is a triplet. This is why the <span class="math inline">\(f\)</span>-wave state (e), with six lobes on the hexagonal zone of the triangular lattice, is a spin triplet. In every other respect it is similar to the singlet <span class="math inline">\(d\)</span>-wave state. Extended <span class="math inline">\(s\)</span>-wave (b) deserves a second look, since its node is radial and not angular. It has the same even parity and the same point-group symmetry as plain <span class="math inline">\(s\)</span>-wave, and only the position of its node ring relative to the Fermi surface decides whether it is nodal in the spectrum. The overall sign of <span class="math inline">\(\Delta\)</span> is a gauge choice, and only the sign <em>changes</em> are physical.</figcaption>
 </figure>
+<div class="notebookbox">
+<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb"><code>session5.ipynb</code></a>, “Gapped and nodal superconducting orders” (Core)</p>
+<p>Implement the <span class="math inline">\(d_{x^2-y^2}\)</span> gap of <a href="#eq-5-13">(5.13)</a> on the square lattice and plot <span class="math inline">\(\Delta(\mathbf k)\)</span> over the Brillouin zone. Check the pattern of four lobes with alternating sign, and the position of its nodes relative to a given Fermi surface. The nodal <span class="math inline">\(L=3\)</span> (f-wave) case of the triangular lattice discussed above is also in this section of the notebook, if you want to see the pattern of six lobes directly.</p>
+</div>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>Rings of the cuprate YBa<span class="math inline">\(_2\)</span>Cu<span class="math inline">\(_3\)</span>O<span class="math inline">\(_{7-\delta}\)</span> were made with 0, 2 and 3 grain-boundary Josephson junctions, and the magnetic flux through each ring was measured at <span class="math inline">\(4.2\)</span> K with a scanning SQUID microscope. A spontaneous half flux quantum, <span class="math inline">\(\Phi_0/2=h/4e\)</span>, was observed in the ring with 3 junctions and not in the rings with 2 junctions, and the authors write that these results are consistent with d-wave pairing symmetry. The measurement is in <a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.73.593">this article</a>. Our own reading is that a junction between two grains can join lobes of <span class="math inline">\(\Delta_d\)</span> of opposite sign. An odd number of such sign changes around the ring adds a phase <span class="math inline">\(\pi\)</span> to the winding of the phase of the condensate, so the flux quantization <a href="02-superconductivity-as-a-macroscopic-quantum-phenomenon.html#eq-5-1">(5.1)</a> becomes <span class="math inline">\(\Phi=(n+\tfrac12)\Phi_0\)</span>. This holds for a ring whose inductance times the critical current of its junctions is large compared with <span class="math inline">\(\Phi_0\)</span>.</p>
+</div>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>On the triangular lattice a gap has six lobes of alternating sign around the Fermi surface. What are its parity, its angular momentum and its spin?</p>
+<p>On the triangular lattice a gap goes around the Fermi surface as</p>
+<p><span class="math display">\[\Delta(\theta)\propto\cos3\theta,\]</span></p>
+<p>with <span class="math inline">\(\theta\)</span> the angle around <span class="math inline">\(\Gamma\)</span>. It has six lobes of alternating sign. What are its parity, its angular momentum and its spin?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -137,12 +186,49 @@ Question
 </div>
 </details>
 </div>
-<div class="notebookbox">
-<p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb"><code>session5.ipynb</code></a>, “Gapped and nodal superconducting orders” (Core)</p>
-<p>Implement the <span class="math inline">\(d_{x^2-y^2}\)</span> gap of <a href="#eq-5-13">(5.13)</a> on the square lattice and plot <span class="math inline">\(\Delta(\mathbf k)\)</span> over the Brillouin zone. Check the pattern of four lobes with alternating sign, and the position of its nodes relative to a given Fermi surface. The nodal <span class="math inline">\(L=3\)</span> (f-wave) case of the triangular lattice discussed above is also in this section of the notebook, if you want to see the pattern of six lobes directly.</p>
+<div class="quiz quiz-pics" data-correct="C" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Each plot shows the BdG bands of the triangular lattice along <span class="math inline">\(\Gamma\)</span>, <span class="math inline">\(K\)</span>, <span class="math inline">\(M\)</span>, <span class="math inline">\(\Gamma\)</span>. The Fermi level is at <span class="math inline">\(E=0\)</span>. Which one is a nodal superconductor?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session05/g3_quiz_tri_metal.svg" loading="lazy" alt="BdG bands along Gamma, K, M, Gamma, where two pairs of bands cross at zero energy, once between Gamma and K and once between M and Gamma." /></li>
+<li><img src="../figures/web/session05/g3_quiz_tri_swave.svg" loading="lazy" alt="BdG bands along Gamma, K, M, Gamma, with a gap around zero energy at both places where the bands come close to zero." /></li>
+<li><img src="../figures/web/session05/g3_quiz_tri_fwave.svg" loading="lazy" alt="BdG bands along Gamma, K, M, Gamma, with the bands at about plus and minus 0.9 between Gamma and K, and a crossing at zero energy between M and Gamma." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Here there is no pairing, so the bands are <span class="math inline">\(\varepsilon(\mathbf k)\)</span> and <span class="math inline">\(-\varepsilon(\mathbf k)\)</span>, and they cross at <span class="math inline">\(E=0\)</span> wherever the Fermi surface crosses the path, between <span class="math inline">\(\Gamma\)</span> and <span class="math inline">\(K\)</span> and between <span class="math inline">\(M\)</span> and <span class="math inline">\(\Gamma\)</span>. This is the metal.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. This is <span class="math inline">\(s\)</span>-wave pairing with <code>delta=0.4</code> of pyqula. The smallest quasiparticle energy is <span class="math inline">\(|\Delta|=0.4t\)</span> on the Fermi surface, so the spectrum has a gap everywhere.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. This is the nodal <span class="math inline">\(f\)</span>-wave pairing with <code>delta=0.2</code> of pyqula. The smallest quasiparticle energy between <span class="math inline">\(\Gamma\)</span> and <span class="math inline">\(K\)</span> is <span class="math inline">\(0.91t\)</span>, but the pairing vanishes on the line from <span class="math inline">\(\Gamma\)</span> to <span class="math inline">\(M\)</span>. The bands still cross at <span class="math inline">\(E=0\)</span> two thirds of the way from <span class="math inline">\(\Gamma\)</span> to <span class="math inline">\(M\)</span>, which is a node.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>The extended <span class="math inline">\(s\)</span>-wave gap is <span class="math inline">\(\Delta_{\text{ext}}(\mathbf k)=\Delta_0(\cos k_x+\cos k_y)\)</span>, and the Fermi surface of the square lattice is <span class="math inline">\(\varepsilon(\mathbf k)=-2t(\cos k_x+\cos k_y)-\mu=0\)</span>. Find <span class="math inline">\(\Delta_{\text{ext}}\)</span> on the Fermi surface for <span class="math inline">\(\mu=-t\)</span> and for <span class="math inline">\(\mu=0\)</span>.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>On the Fermi surface <span class="math inline">\(\cos k_x+\cos k_y=-\mu/2t\)</span>, so the gap there is <span class="math inline">\(\Delta_{\text{ext}}=-\Delta_0\mu/2t\)</span>, the same at every point of the Fermi surface. For <span class="math inline">\(\mu=-t\)</span> this is <span class="math inline">\(\Delta_0/2\)</span> at every point, so the spectrum <a href="08-the-nambu-spinor-and-the-bogoliubov-de-gennes-hamiltonian.html#eq-5-9">(5.9)</a> has no node on this Fermi surface. For <span class="math inline">\(\mu=0\)</span> it is zero at every point. The Fermi surface is then the square <span class="math inline">\(|k_x|+|k_y|=\pi\)</span>, where <span class="math inline">\(\cos k_x+\cos k_y=0\)</span>, which is the node ring of the gap.</p>
+<p>So the same order is gapped on the whole Fermi surface at one filling and gapless on the whole Fermi surface at another. Only the position of the node ring relative to the Fermi surface decides it, as the caption of Figure <a href="#fig:s05:gapsymmetry">5.3</a> says. Both ARPES and STM see this difference, while the symmetry of the order is the same. ARPES measures the gap at each point of the Fermi surface. STM measures the density of states, which has a full gap at <span class="math inline">\(\mu=-t\)</span> and states down to zero energy at <span class="math inline">\(\mu=0\)</span>.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="tryit">
-<p><strong>Try it.</strong> In the cell, compare the bands along the path <code>G</code>, <code>K</code>, <code>M</code>, <code>G</code> for the two orders. The <span class="math inline">\(s\)</span>-wave bands keep a gap of <span class="math inline">\(|\Delta|=0.4\)</span> at the Fermi surface. The nodal <span class="math inline">\(f\)</span>-wave bands touch zero energy, even though <span class="math inline">\(\Delta=0.2\)</span> is nonzero.</p>
+<p><strong>Try it.</strong> In the cell, compare the bands along the path <code>G</code>, <code>K</code>, <code>M</code>, <code>G</code> for the two orders. The <span class="math inline">\(s\)</span>-wave bands keep a smallest quasiparticle energy <span class="math inline">\(|\Delta|=0.4\)</span> at the Fermi surface. The nodal <span class="math inline">\(f\)</span>-wave bands touch zero energy, even though <span class="math inline">\(\Delta=0.2\)</span> is nonzero.</p>
 <div class="tryit-links">
 Notebook <code>session5.ipynb</code>, cell “Gapped and nodal superconducting orders”. Open it in <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb">GitHub</a>, <a href="https://colab.research.google.com/github/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session5.ipynb">Colab</a> or <a href="https://mybinder.org/v2/gh/joselado/Advanced_Quantum_Materials_2027/main?labpath=jupyter-notebooks%2Fsession5.ipynb">Binder</a>.
 </div>

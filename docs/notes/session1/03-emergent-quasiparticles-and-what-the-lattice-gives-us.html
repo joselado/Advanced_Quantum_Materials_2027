@@ -85,7 +85,8 @@
   <nav class="sub"><a class="on" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 1. Second Quantization, Mean-Field, and Spontaneous Symmetry Breaking</a></p>
 <h1 id="sec-1-3"><span class="num">1.3</span> Emergent quasiparticles and what the lattice gives us</h1>
-<p>Let us now state the puzzle that motivates everything that follows. All this phenomenology is built from the same four ingredients, which are electrons, protons, neutrons and photons, and a single isolated atom shows none of it. In a single atom there is no fractionalization, there are no vortices, no magnons and no spinons. So how can a lattice of identical atoms give rise to so many different kinds of collective behavior? Before we build the formalism to answer this question, it is useful to know what we are looking for. Some of the emergent quasiparticles that we will meet are the following.</p>
+<p>How can a lattice of identical atoms give rise to so many different kinds of collective behavior? This is the puzzle that motivates everything that follows. In this section we arrive at a list of the emergent quasiparticles that we will look for, with the vortex of a superconductor drawn as a winding of its phase.</p>
+<p>The phenomenology of the materials of Section <a href="02-a-tour-of-the-quantum-materials-we-will-meet.html#sec-1-2">1.2</a> is built from the same four ingredients, which are electrons, protons, neutrons and photons, and a single isolated atom shows none of it. In a single atom there is no fractionalization, there are no vortices, no magnons and no spinons. Before we build the formalism to answer the question above, it is useful to know what we are looking for. Some of the emergent quasiparticles that we will meet are the following.</p>
 <ul>
 <li><p><strong>Phonons.</strong> These are lattice vibrations, and they are the simplest quasiparticle of all, since they exist also in classical physics.</p></li>
 <li><p><strong>Magnons.</strong> These are spin-1 excitations of a magnetically ordered state, which are small precessions of the local moment that carry energy and spin through the material. Note that magnons can propagate also in a Mott insulator, where charge cannot propagate, so a magnetic insulator can still carry spin and heat.</p></li>
@@ -94,14 +95,20 @@
 <li><p><strong>Vortices.</strong> These are topological defects in the phase of a superconductor, and they are dynamical quasiparticles themselves. The same superconducting phase gives rise to flux quantization and to the Josephson effect. These two effects are the basis of some of our most precise measurements of the ratio between Planck’s constant and the electron charge.</p></li>
 </ul>
 <figure id="sch:s01:vortex_phase" class="schematic">
-<img src="../figures/web/session01/vortex_phase.svg" loading="lazy" alt="Two square grids of arrows. In the first all arrows point to the right. In the second the arrows turn once around a central point, which is marked by a small circle inside a larger red loop." />
-<figcaption><strong>Schematic 1.4.</strong> The phase of the superconducting order parameter, drawn at each point as an arrow in the complex plane. On the left the phase is the same everywhere. On the right there is one vortex. The amplitude goes to zero at the core, and along the red loop the phase winds by <span class="math inline">\(2\pi\)</span>. No smooth change of the arrows can remove this winding, and this is why we call a vortex a topological defect.</figcaption>
+<img src="../figures/web/session01/vortex_phase.svg" loading="lazy" alt="Two square grids of arrows with the axes x over xi and y over xi. In the first all arrows point to the right. In the second the arrows point away from a central point, which is marked by a small circle inside a larger red loop, so they turn once around it, and they shrink close to it." />
+<figcaption><strong>Schematic 1.4.</strong> The phase of the superconducting order parameter <span class="math inline">\(\Delta=|\Delta|e^{i\theta}\)</span>, drawn at each point as an arrow in the complex plane, with the length <span class="math inline">\(|\Delta|\)</span> and the angle <span class="math inline">\(\theta\)</span>. The positions <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are in units of the coherence length <span class="math inline">\(\xi\)</span>. On the left the phase is the same everywhere. On the right there is one vortex, where <span class="math inline">\(\theta\)</span> is the polar angle around the core and the amplitude is drawn as <span class="math inline">\(\tanh(r/\xi)\)</span>, with <span class="math inline">\(r\)</span> the distance from the core. The amplitude goes to zero at the core, and along the red loop, of radius <span class="math inline">\(2.2\,\xi\)</span>, the phase winds by <span class="math inline">\(2\pi\)</span>. No smooth change of the arrows can remove this winding, and this is why we call a vortex a topological defect.</figcaption>
 </figure>
 <p>Two more emergent particles belong to this list. The first are Majorana fermions, which we meet in <a href="../session5/index.html">Session 5</a> in connection with chiral superconductors. The second are anyons, which belong to the fractional quantum Hall effect of <a href="../session4/index.html">Session 4</a>, and we mention them here only so that the name is familiar.</p>
 <figure class="again">
 <img src="../figures/s08f01_magnon_spinon.svg" loading="lazy" alt="A chain of spins with one flipped spin, and a chain of singlet pairs with two unpaired spins." />
 <figcaption><strong><a href="../session8/01-two-classes-of-magnets-and-where-we-find-them.html#fig:s08:magnonspinon">Figure 8.1</a>, shown again.</strong> A magnon and a spinon, shown again from <a href="../session8/index.html">Session 8</a>. A magnon flips one spin of the ordered chain, so the total spin changes by one. A spinon carries only spin one half, and spinons are created in pairs when a singlet breaks.</figcaption>
 </figure>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>Magnons carry spin through yttrium iron garnet, YIG, which is a magnetic insulator where the large band gap does not allow the electrons to move. The magnons are excited and detected fully electrically, and they carry spin angular momentum through YIG over distances as large as <span class="math inline">\(40\)</span> μm. In a thin film of <span class="math inline">\(200\)</span> nm at room temperature, the magnon spin diffusion length is <span class="math inline">\(9.4\pm0.6\)</span> μm. The measurement is in <a href="https://www.nature.com/articles/nphys3465">this article</a>.</p>
+</div>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
@@ -163,6 +170,36 @@ Question
 </div>
 <div class="quiz-expl">
 <p>The magnons need no motion of charge, so they exist in an insulator.</p>
+</div>
+</details>
+</div>
+<div class="quiz quiz-pics" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Each picture shows <span class="math inline">\(\Delta=|\Delta|e^{i\theta}\)</span> as arrows, with the length <span class="math inline">\(|\Delta|\)</span> and the angle <span class="math inline">\(\theta\)</span>. The positions are in units of the coherence length <span class="math inline">\(\xi\)</span>. Which picture holds a vortex inside the red loop?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session01/g1_quiz_phase_uniform.svg" loading="lazy" alt="A square grid of arrows that all point to the right, with a red loop in the middle." /></li>
+<li><img src="../figures/web/session01/g1_quiz_phase_vortex.svg" loading="lazy" alt="A square grid of arrows that point away from the center and shrink close to it, with a red loop around the center." /></li>
+<li><img src="../figures/web/session01/g1_quiz_phase_bend.svg" loading="lazy" alt="A square grid of arrows with a red loop in the middle. The arrows point down and to the left in the bottom row, to the right in the middle row, and up and to the left in the top row. From row to row they turn gradually." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. All the arrows point the same way, so along the red loop the phase does not change, and its winding is <span class="math inline">\(0\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. Along the red loop the arrow turns once, so the phase winds by <span class="math inline">\(2\pi\)</span>, which is a winding of <span class="math inline">\(1\)</span>. The amplitude goes to zero at the center, which is the core of the vortex.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The phase is <span class="math inline">\(\theta=\pi y/(4\xi)\)</span>, so it turns, but it also turns back. Along the red loop it goes up to <span class="math inline">\(0.55\pi\)</span> at the top and down to <span class="math inline">\(-0.55\pi\)</span> at the bottom, and its winding is <span class="math inline">\(0\)</span>. A smooth change of the arrows makes this field uniform.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>Around a vortex the phase winds, and at its core the amplitude vanishes.</p>
 </div>
 </details>
 </div>

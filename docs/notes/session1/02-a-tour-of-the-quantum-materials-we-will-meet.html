@@ -85,7 +85,7 @@
   <nav class="sub"><a class="on" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 1. Second Quantization, Mean-Field, and Spontaneous Symmetry Breaking</a></p>
 <h1 id="sec-1-2"><span class="num">1.2</span> A tour of the quantum materials we will meet</h1>
-<p>Let us first give a short preview of the materials that this formalism will allow us to understand, so that the abstract tools of this session have concrete targets.</p>
+<p>Which materials will the formalism of this session allow us to understand? Let us first give a short preview of them, so that the abstract tools of this session have concrete targets. We arrive at six families of materials, and at a picture of how the filling of the bands tells the first two of them apart.</p>
 <ul>
 <li><p><strong>Insulators</strong>, such as magnesium oxide, sodium chloride or boron nitride, where a finite band gap does not allow electrons to propagate. <em>Topological</em> insulators look the same in the bulk, but they behave in a completely different way at the edge, and <a href="../session3/index.html">Session 3</a> explains this difference.</p></li>
 <li><p><strong>Semiconductors</strong>, such as gallium nitride, silicon and gallium arsenide, which have the same single-particle description as insulators but are lightly doped. For this reason they have free carriers, and these carriers are the ones that do the work in electronics and solar cells.</p></li>
@@ -95,9 +95,12 @@
 <li><p><strong>Fractional quantum matter.</strong> Here the fundamental excitations are real fractions of an electron. The fractional quantum Hall state is the best established example, and it has been observed for decades in materials such as gallium arsenide. Fractional Chern insulators are a newer and more accessible way to obtain the same physics, and they are a promising building block for new quantum devices.</p></li>
 </ul>
 <p>The first two items of this list differ only in how the bands of a single electron are filled, and <a href="#sch:s01:filling_bands">Schematic 1.3</a> shows this for an insulator and a doped semiconductor, next to a metal.</p>
-<figure id="sch:s01:filling_bands" class="schematic">
-<img src="../figures/web/session01/filling_bands.svg" loading="lazy" alt="Four band diagrams side by side. A metal with a half-filled band, an insulator with a gap, an n-doped semiconductor with a few electrons at the bottom of the conduction band, and a p-doped semiconductor with a few holes at the top of the valence band." />
-<figcaption><strong>Schematic 1.3.</strong> Four fillings of a band. In a metal the Fermi level <span class="math inline">\(E_F\)</span> cuts a band, so there are empty states next to the occupied ones. In an insulator the valence band is full and the conduction band is empty. Doping leaves the bands as they are and moves <span class="math inline">\(E_F\)</span>, so that a few electrons, the red dots, sit in the conduction band, or a few holes, the red segment, in the valence band. The metal is the band <span class="math inline">\(-2t\cos k\)</span>, and the other three are the bands <span class="math inline">\(\pm\sqrt{m^2+(2t\sin q)^2}\)</span> of a chain with two sites per cell, for <span class="math inline">\(m=0.6t\)</span>, with <span class="math inline">\(q\)</span> measured from the zone edge.</figcaption>
+<figure id="sch:s01:filling_bands" class="schematic has-script">
+<img src="../figures/web/session01/filling_bands.svg" loading="lazy" alt="Four band structures in a square of two by two, of the energy over t against the momentum k from minus pi to pi, with the Fermi level as a red dashed line. A metal with a half-filled band from minus 2 to 2, an insulator with a gap, an n-doped semiconductor with some electrons at the bottom of the conduction band, and a p-doped semiconductor with some holes at the top of the valence band." />
+<div class="script-row">
+<a href="../scripts/session01/g1_chain_bands.py" class="script-dl" download="g1_chain_bands.py">Download the pyqula script</a> <span class="script-name"><code>g1_chain_bands.py</code></span>
+</div>
+<figcaption><strong>Schematic 1.3.</strong> Four fillings of a band, computed with pyqula. In a metal the Fermi level <span class="math inline">\(E_F\)</span> cuts a band, so there are empty states next to the occupied ones. In an insulator the valence band is full and the conduction band is empty. Doping leaves the bands as they are and moves <span class="math inline">\(E_F\)</span>. Then some electrons, in red, sit at the bottom of the conduction band, or some holes, in red, at the top of the valence band. The other filled states are blue and the empty ones grey. The metal is the band <span class="math inline">\(-2t\cos k\)</span> of a chain with one site per cell, with <span class="math inline">\(E_F=0\)</span>. The other three are the bands <span class="math inline">\(\pm\sqrt{m^2+4t^2\cos^2k}\)</span> of a chain with two sites per cell, with the onsite energies <span class="math inline">\(\pm m\)</span> and <span class="math inline">\(m=0.6\,t\)</span>, so the gap goes from <span class="math inline">\(-0.6\,t\)</span> to <span class="math inline">\(0.6\,t\)</span>. Their Fermi levels are <span class="math inline">\(E_F=0\)</span> for the insulator, <span class="math inline">\(0.95\,t\)</span> for the n-doped chain and <span class="math inline">\(-0.95\,t\)</span> for the p-doped one. This doping is much larger than in a real semiconductor, so that the carriers can be seen. At <span class="math inline">\(E_F=0.95\,t\)</span> the spinless chain has <span class="math inline">\(0.12\)</span> electrons per site in the conduction band, which is <span class="math inline">\(0.24\)</span> of that band. The momentum <span class="math inline">\(k\)</span> is per site, in units of the inverse distance between sites, and the energy is in units of <span class="math inline">\(t\)</span>. The dotted lines are the edges of the Brillouin zone of the chain with two sites per cell, and its bands repeat outside them. Look at where <span class="math inline">\(E_F\)</span> sits, inside a band for the metal, in the gap for the insulator, and inside the band above or below the gap for the two doped chains.</figcaption>
 </figure>
 <figure class="again panel">
 <img src="../figures/panel/s02f04_dirac_c.svg" loading="lazy" alt="A hexagonal Brillouin zone with a Dirac cone at two of its corners." />
@@ -164,6 +167,36 @@ Question
 </div>
 <div class="quiz-expl">
 <p>The bands stay the same, and only the filling changes.</p>
+</div>
+</details>
+</div>
+<div class="quiz quiz-pics" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Each picture shows bands and their filling, with <span class="math inline">\(E\)</span> in units of the hopping <span class="math inline">\(t\)</span>. The dashed line is the Fermi level <span class="math inline">\(E_F\)</span>. The filled states are blue and the empty states grey. Which picture shows an n-doped semiconductor?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session01/g1_quiz_fill_insulator.svg" loading="lazy" alt="Two bands separated by a gap, with the dashed line in the middle of the gap. The lower band is blue and the upper band is grey." /></li>
+<li><img src="../figures/web/session01/g1_quiz_fill_ndoped.svg" loading="lazy" alt="Two bands separated by a gap, with the dashed line above the bottom of the upper band. The lower band and the bottom of the upper band are blue." /></li>
+<li><img src="../figures/web/session01/g1_quiz_fill_metal.svg" loading="lazy" alt="One band with no gap, with the dashed line at zero energy. The lower half of the band is blue and the upper half is grey." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Here <span class="math inline">\(E_F=0\)</span> lies in the middle of the gap, which goes from <span class="math inline">\(-0.6\,t\)</span> to <span class="math inline">\(0.6\,t\)</span>. The lower band is full and the upper band is empty, so this is an insulator.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The gap goes from <span class="math inline">\(-0.6\,t\)</span> to <span class="math inline">\(0.6\,t\)</span>, and <span class="math inline">\(E_F=0.95\,t\)</span> lies above the bottom of the upper band. The lower band is full, and some electrons sit at the bottom of the conduction band, where they carry a current.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. There is one band, <span class="math inline">\(-2t\cos k\)</span>, and <span class="math inline">\(E_F=0\)</span> cuts it in the middle, so half of its states are filled. There is no gap at all, so this is a metal.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The bands of a doped semiconductor are those of the insulator, and only <span class="math inline">\(E_F\)</span> moves into a band.</p>
 </div>
 </details>
 </div>

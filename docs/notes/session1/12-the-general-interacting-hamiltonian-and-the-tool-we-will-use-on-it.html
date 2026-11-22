@@ -85,34 +85,66 @@
   <nav class="sub"><a class="on" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 1. Second Quantization, Mean-Field, and Spontaneous Symmetry Breaking</a></p>
 <h1 id="sec-1-12"><span class="num">1.12</span> The general interacting Hamiltonian, and the tool we will use on it</h1>
-<p>We can now state the problem that this whole session leads to. The Hamiltonians that we are interested in have the generic form</p>
-<p><span id="eq-1-5" class="eq"><span class="math display">\[H = \sum_{ij} t_{ij}\, c_i^\dagger c_j \;+\; \sum_{ijkl} V_{ijkl}\, c_i^\dagger c_j^\dagger c_k c_l, \tag{1.5}\]</span></span></p>
-<p>which is a free part, single-particle and exactly solvable, plus a quartic interaction. The interaction itself can come from the plain electrostatic Coulomb repulsion. It can also be an effective interaction mediated by some other quasiparticle, such as phonons, magnons or plasmons, and this can make the total interaction attractive instead of repulsive. We will treat these interactions in a phenomenological way, as given effective models, and we will not derive them microscopically from first principles.</p>
+<p>Which Hamiltonian do we want to solve, and with which tool? We will now write it in a general form, a hopping plus a quartic interaction between the electrons. The tool is mean-field theory, a variational method whose ground state can have less symmetry than the Hamiltonian.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[H_\text{hop} = t\left(c_0^\dagger c_1 + c_1^\dagger c_0\right), \tag{1.2}\]</span></p>
+</div>
+<p>This is the hopping between two sites of Section <a href="05-a-warm-up-in-first-quantization-and-the-puzzle-that-breaks-it.html#sec-1-6">1.6</a>. The term <span class="math inline">\(c_0^\dagger c_1\)</span> destroys an electron at site 1 and creates one at site 0, and the second term is the reverse process. The first term of the Hamiltonian below is the same kind of term, summed over all pairs of sites <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>.</p>
+</div>
+<p>We can now state the problem that this whole session leads to.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>The Hamiltonians that we are interested in have the generic form</p>
+<p><span id="eq-1-5" class="eq"><span class="math display">\[H = \sum_{ij} t_{ij}\, c_i^\dagger c_j \;+\; \sum_{ijkl} V_{ijkl}\, c_i^\dagger c_j^\dagger c_k c_l. \tag{1.5}\]</span></span></p>
+<p>The quartic term, with four operators, makes the problem many-body. Mean field replaces it by a bilinear term built with expectation values, and these expectation values are solved self-consistently.</p>
+</div>
+<p>The Hamiltonian <a href="#eq-1-5">(1.5)</a> is a free part, single-particle and exactly solvable, plus a quartic interaction. The interaction itself can come from the plain electrostatic Coulomb repulsion. It can also be an effective interaction mediated by some other quasiparticle, such as phonons, magnons or plasmons, and this can make the total interaction attractive instead of repulsive. We will treat these interactions in a phenomenological way, as given effective models, and we will not derive them microscopically from first principles.</p>
 <p>To solve <a href="#eq-1-5">(1.5)</a> exactly is in general impossible, for the exponential reason of Section <a href="08-first-versus-second-quantization-for-the-same-problem.html#sec-1-9">1.9</a>. <strong>Mean-field theory</strong> is the tool that still allows us to obtain systematic solutions from it, even if they are approximate, and it can predict a wide range of symmetry-broken states. In this session we will study three of them, which are the same three cases that we classified in Section <a href="11b-classifying-states-of-matter-by-the-symmetry-they-break.html#sec-1-11b">1.11b</a>.</p>
 <ol type="1">
 <li><p><strong>Broken time-reversal symmetry</strong>, which is magnetism. If we run the movie of the system backward, it looks different from the original.</p></li>
 <li><p><strong>Broken lattice translational symmetry</strong>, which is the charge density wave. A Hamiltonian that is the same at every site at the start ends up with charge on some sites and not on others.</p></li>
 <li><p><strong>Broken gauge symmetry</strong>, which is superconductivity. The system develops an order parameter with a physical phase, which the symmetry of the original Hamiltonian does not allow.</p></li>
 </ol>
-<p>Figure <a href="#fig:s01:channels">1.3</a> shows these three branches next to each other, together with the equation from which each one is developed and the session where it appears again.</p>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the quartic term of (1.5) to a bilinear Hamiltonian</span></summary>
+<div class="fold-body">
+<p>A quartic term is a product of two bilinears, <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, each with two operators. We write each of them as its expectation value plus a deviation from it, <span class="math inline">\(A=\langle A\rangle+(A-\langle A\rangle)\)</span>, and the same for <span class="math inline">\(B\)</span>. Multiplying out gives the identity</p>
+<p><span class="math display">\[AB = \langle A\rangle B + A\langle B\rangle - \langle A\rangle\langle B\rangle + \big(A-\langle A\rangle\big)\big(B-\langle B\rangle\big).\]</span></p>
+<p>The last term is the product of two deviations, meaning the fluctuations of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> around their mean values. Mean field drops it, and this is the whole approximation. What is left has at most two operators in each term, so it is a single-particle Hamiltonian.</p>
+<p>The simplest case is the Hubbard term on one site, with <span class="math inline">\(A=n_\uparrow=c_\uparrow^\dagger c_\uparrow\)</span> and <span class="math inline">\(B=n_\downarrow\)</span>,</p>
+<p><span class="math display">\[U n_\uparrow n_\downarrow \;\to\; U\big(\langle n_\uparrow\rangle n_\downarrow + n_\uparrow\langle n_\downarrow\rangle - \langle n_\uparrow\rangle\langle n_\downarrow\rangle\big).\]</span></p>
+<p>An electron of spin down now feels the onsite energy <span class="math inline">\(U\langle n_\uparrow\rangle\)</span>, and an electron of spin up feels <span class="math inline">\(U\langle n_\downarrow\rangle\)</span>. The constant <span class="math inline">\(-U\langle n_\uparrow\rangle\langle n_\downarrow\rangle\)</span> removes the interaction energy that the first two terms count twice.</p>
+<p>A quartic term can be split into two bilinears in several ways, and three of them give the three cases above. With the densities of two neighboring sites, <span class="math inline">\(A=n_i\)</span> and <span class="math inline">\(B=n_j\)</span>, the onsite energy of a site depends on the charge of its neighbors. The charge can then differ from site to site, which is the charge density wave of Section <a href="13-worked-example-1-the-charge-density-wave.html#sec-1-13">1.13</a>. With the two spins of one site, <span class="math inline">\(A=n_{i\uparrow}\)</span> and <span class="math inline">\(B=n_{i\downarrow}\)</span> as above, the two spins can feel different energies, which is the magnet of Section <a href="14-worked-example-2-magnetism.html#sec-1-14">1.14</a>. The same Hubbard term can also be written as <span class="math inline">\(Un_\uparrow n_\downarrow=U c_\uparrow^\dagger c_\downarrow^\dagger\, c_\downarrow c_\uparrow\)</span>, and with <span class="math inline">\(A=c_\uparrow^\dagger c_\downarrow^\dagger\)</span> and <span class="math inline">\(B=c_\downarrow c_\uparrow\)</span> we get</p>
+<p><span class="math display">\[U c_\uparrow^\dagger c_\downarrow^\dagger c_\downarrow c_\uparrow \;\to\; U\big(\langle c_\uparrow^\dagger c_\downarrow^\dagger\rangle c_\downarrow c_\uparrow + c_\uparrow^\dagger c_\downarrow^\dagger\langle c_\downarrow c_\uparrow\rangle - \langle c_\uparrow^\dagger c_\downarrow^\dagger\rangle\langle c_\downarrow c_\uparrow\rangle\big),\]</span></p>
+<p>with an expectation value of two annihilation operators. This is the pairing of Section <a href="14-worked-example-2-magnetism.html#sec-1-15">1.15</a>. For a repulsive <span class="math inline">\(U&gt;0\)</span> its self-consistent value is zero, and for an attractive <span class="math inline">\(U&lt;0\)</span> it can give the superconductor.</p>
+</div>
+</details>
+</div>
+<p>Figure <a href="#fig:s01:channels">1.3</a> shows these three branches next to each other, together with the equation from which each one is developed and the session where it appears again.</p>
 <figure id="fig:s01:channels">
 <img src="../figures/s01f03_threechannels.svg" loading="lazy" alt="One Hamiltonian and three ordered states." />
 <figcaption><strong>Figure 1.3.</strong> One Hamiltonian and three ordered states. The same generic interacting Hamiltonian <a href="#eq-1-5">(1.5)</a>, on the left, where the glow is the interaction between two electrons on neighboring sites, is decoupled with three different bilinear expectation values. This gives a charge density wave, a magnet or a superconductor, each breaking a different symmetry. The charge is drawn as columns of alternating height, the spin as alternating arrows, and the electrons bound in pairs as two balls inside one capsule. These three branches are the structure on which the rest of the course is organized.</figcaption>
 </figure>
 <p>Two of the three cases of this session come back in their own sessions, where we treat them in much more detail. Superconductivity is the topic of <a href="../session5/index.html">Session 5</a>, and magnetism of <a href="../session6/index.html">Session 6</a>. You can think of what follows as a first pass, whose goal is to set up the mean-field method itself, and not as the final discussion of either of them.</p>
+<p>How good is mean field? <a href="#sch:s01:dimer_meanfield">Schematic 1.11</a> compares it with the exact solution of the smallest interacting system, the Hubbard dimer.</p>
 <figure id="sch:s01:dimer_meanfield" class="schematic">
 <img src="../figures/web/session01/dimer_meanfield.svg" loading="lazy" alt="Two panels against U over t. On the left the exact ground-state energy and the higher mean-field energy, both rising from minus 2t. On the right the mean-field moment, zero up to U equal to 2t and then rising toward one, and the exact moment, zero everywhere." />
-<figcaption><strong>Schematic 1.11.</strong> How good is mean field? The Hubbard dimer, two sites with two electrons, solved by exact diagonalization and in mean field with an antiferromagnetic guess. On the left, the mean-field energy stays above the exact one, since mean field is a variational method. At large <span class="math inline">\(U\)</span> it gains only <span class="math inline">\(-2t^2/U\)</span>, half of the exact <span class="math inline">\(-4t^2/U\)</span>. On the right, mean field gives a local moment <span class="math inline">\(m\)</span> for <span class="math inline">\(U&gt;2t\)</span>, while the exact ground state of two sites is a singlet with <span class="math inline">\(m=0\)</span> for every <span class="math inline">\(U\)</span>. In a system this small the broken symmetry comes from the approximation, as Section <a href="11-spontaneous-symmetry-breaking-and-why-a-symmetric-hamiltonian-can-have-an-asymmetric-ground-state.html#sec-1-11">1.11</a> explains.</figcaption>
+<figcaption><strong>Schematic 1.11.</strong> How good is mean field? The Hubbard dimer, two sites with two electrons, solved by exact diagonalization and in mean field with an antiferromagnetic guess. On the left, the mean-field energy stays above the exact one, since mean field is a variational method. Above <span class="math inline">\(U=2t\)</span> the mean-field energy is <span class="math inline">\(-2t^2/U\)</span>, which at large <span class="math inline">\(U\)</span> is half of the exact <span class="math inline">\(-4t^2/U\)</span>. On the right, mean field gives a local moment <span class="math inline">\(m\)</span> for <span class="math inline">\(U&gt;2t\)</span>, while the exact ground state of two sites is a singlet with <span class="math inline">\(m=0\)</span> for every <span class="math inline">\(U\)</span>. In a system this small the broken symmetry comes from the approximation, as Section <a href="11-spontaneous-symmetry-breaking-and-why-a-symmetric-hamiltonian-can-have-an-asymmetric-ground-state.html#sec-1-11">1.11</a> explains.</figcaption>
 </figure>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>The quartic term of <a href="#eq-1-5">(1.5)</a> has four operators, and the mean-field Hamiltonian has only two. What do we do with the other two?</p>
-<div class="eq-again">
-<p><span class="math display">\[H = \sum_{ij} t_{ij}\, c_i^\dagger c_j \;+\; \sum_{ijkl} V_{ijkl}\, c_i^\dagger c_j^\dagger c_k c_l, \tag{1.5}\]</span></p>
-</div>
+<p>The interaction of a general Hamiltonian is the quartic term</p>
+<p><span class="math display">\[\sum_{ijkl} V_{ijkl}\, c_i^\dagger c_j^\dagger c_k c_l.\]</span></p>
+<p>Each term has four operators. The mean-field Hamiltonian has only two in each term. What do we do with the other two?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -129,13 +161,62 @@ Question
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
 <p>This is true. The expectation value is a number, so the two operators that remain form a single-particle term. The number comes from the state itself, which is why we solve the problem self-consistently.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. In the vacuum <span class="math inline">\(\langle c_i^\dagger c_j\rangle=0\)</span> for every pair. The mean field would then vanish, and the chain would have no charge modulation, while the loop of the figure ends with charges that differ from site to site.</p></li>
+<p>This is false. In the vacuum <span class="math inline">\(\langle c_i^\dagger c_j\rangle=0\)</span> for every pair. The mean field would then vanish, and a chain would have no charge modulation. In the Hartree mean field, the half-filled chain with the repulsion <span class="math inline">\(V=3t\)</span> between neighbors ends instead with the charges <span class="math inline">\(0.95\)</span> and <span class="math inline">\(0.05\)</span> on alternate sites.</p></li>
 </ul>
 </div>
 <div class="quiz-expl">
 <p>The self-consistent loop closes because the expectation values depend on the state that they define.</p>
 </div>
 </details>
+</div>
+<div class="quiz" data-correct="A" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>On each site the Hubbard interaction is</p>
+<p><span class="math display">\[U\,n_\uparrow n_\downarrow,\]</span></p>
+<p>with <span class="math inline">\(n_\sigma=c_\sigma^\dagger c_\sigma\)</span> the number of electrons of spin <span class="math inline">\(\sigma\)</span>. Which term replaces it in mean field, with the right total energy?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(U\big(\langle n_\uparrow\rangle n_\downarrow+n_\uparrow\langle n_\downarrow\rangle-\langle n_\uparrow\rangle\langle n_\downarrow\rangle\big)\)</span></li>
+<li><span class="math inline">\(U\big(\langle n_\uparrow\rangle n_\downarrow+n_\uparrow\langle n_\downarrow\rangle\big)\)</span></li>
+<li><span class="math inline">\(U\langle n_\uparrow\rangle\langle n_\downarrow\rangle\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="true">A. ✓ True</span>
+<p>This is true. Each density is coupled to the mean value of the other one, and the constant removes the interaction energy that the first two terms count twice. On the dimer at <span class="math inline">\(U=4t\)</span>, in the antiferromagnetic solution with <span class="math inline">\(m=0.87\)</span>, its filled levels sum to <span class="math inline">\(0\)</span> and the constant adds <span class="math inline">\(-0.5t\)</span>. Together this is <span class="math inline">\(\langle H\rangle\)</span> in the mean-field state, <span class="math inline">\(-0.5t\)</span>, above the exact <span class="math inline">\(-0.83t\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. It gives the same states, but its energy counts the interaction twice. On the dimer at <span class="math inline">\(U=4t\)</span> its filled levels sum to <span class="math inline">\(0\)</span>, while <span class="math inline">\(\langle H\rangle\)</span> in the mean-field state is <span class="math inline">\(-0.5t\)</span>. The difference is <span class="math inline">\(U\sum_i\langle n_{i\uparrow}\rangle\langle n_{i\downarrow}\rangle=0.5t\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. This is a number with no operator, so the spectrum is the one of <span class="math inline">\(U=0\)</span>. The dimer then has the levels <span class="math inline">\(\pm t\)</span> for each spin, and no moment appears for any <span class="math inline">\(U\)</span>.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>Two sites share two electrons, with the Hamiltonian <a href="14-worked-example-2-magnetism.html#eq-1-7">(1.7)</a> of the Hubbard chain on two sites,</p>
+<p><span class="math display">\[H=-t\sum_\sigma\left(c_{1\sigma}^\dagger c_{2\sigma}+c_{2\sigma}^\dagger c_{1\sigma}\right)+U\sum_{i=1,2}n_{i\uparrow}n_{i\downarrow}.\]</span></p>
+<p>With <span class="math inline">\(S_z=0\)</span> there are four states. Show that the exact ground-state energy is <span class="math inline">\(E_0=U/2-\sqrt{U^2/4+4t^2}\)</span>. What is <span class="math inline">\(E_0\)</span> at <span class="math inline">\(U=4t\)</span>, and how does it behave at large <span class="math inline">\(U\)</span>?</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>With one electron on each site we have <span class="math inline">\(|a\rangle=c_{1\uparrow}^\dagger c_{2\downarrow}^\dagger|0\rangle\)</span> and <span class="math inline">\(|b\rangle=c_{1\downarrow}^\dagger c_{2\uparrow}^\dagger|0\rangle\)</span>, and with both electrons on one site <span class="math inline">\(|c\rangle=c_{1\uparrow}^\dagger c_{1\downarrow}^\dagger|0\rangle\)</span> and <span class="math inline">\(|d\rangle=c_{2\uparrow}^\dagger c_{2\downarrow}^\dagger|0\rangle\)</span>. The interaction gives <span class="math inline">\(0\)</span> to <span class="math inline">\(|a\rangle\)</span> and <span class="math inline">\(|b\rangle\)</span>, and <span class="math inline">\(U\)</span> to <span class="math inline">\(|c\rangle\)</span> and <span class="math inline">\(|d\rangle\)</span>. The hopping moves one electron, and with the order of the operators above it gives</p>
+<p><span class="math display">\[H|a\rangle=-t\big(|c\rangle+|d\rangle\big),\qquad H|b\rangle=t\big(|c\rangle+|d\rangle\big).\]</span></p>
+<p>So <span class="math inline">\((|a\rangle+|b\rangle)/\sqrt2\)</span>, a triplet state, has the energy <span class="math inline">\(0\)</span>, and <span class="math inline">\((|c\rangle-|d\rangle)/\sqrt2\)</span> has the energy <span class="math inline">\(U\)</span>. The singlet <span class="math inline">\(|S\rangle=(|a\rangle-|b\rangle)/\sqrt2\)</span> couples only to <span class="math inline">\(|D\rangle=(|c\rangle+|d\rangle)/\sqrt2\)</span>, and in the basis of <span class="math inline">\(|S\rangle\)</span> and <span class="math inline">\(|D\rangle\)</span></p>
+<p><span class="math display">\[H=\begin{pmatrix}0&amp;-2t\\-2t&amp;U\end{pmatrix},\qquad E=\frac U2\pm\sqrt{\frac{U^2}{4}+4t^2}.\]</span></p>
+<p>The lower sign is the ground state, <span class="math inline">\(E_0=U/2-\sqrt{U^2/4+4t^2}\)</span>. At <span class="math inline">\(U=4t\)</span> it is <span class="math inline">\((2-2\sqrt2)\,t=-0.83\,t\)</span>. At large <span class="math inline">\(U\)</span> we expand <span class="math inline">\(\sqrt{U^2/4+4t^2}\approx U/2+4t^2/U\)</span>, so <span class="math inline">\(E_0\approx-4t^2/U\)</span>.</p>
+<p>The ground state is a singlet for every <span class="math inline">\(U\)</span>, so it has no moment. At large <span class="math inline">\(U\)</span> it lies <span class="math inline">\(4t^2/U\)</span> below the triplet, which is the exchange coupling of the Heisenberg model of Section <a href="../session6/08-from-the-hubbard-dimer-to-the-heisenberg-model.html#sec-6-8">6.8</a>. Mean field gains only half of this energy, as <a href="#sch:s01:dimer_meanfield">Schematic 1.11</a> shows.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="tryit">
 <p><strong>Try it.</strong> Run the cell with the antiferromagnetic guess and watch the gap open as <span class="math inline">\(U\)</span> grows. Then use the ferromagnetic guess of the commented line. The gap stays closed, so the two guesses end in different solutions of the same Hamiltonian.</p>

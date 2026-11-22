@@ -85,12 +85,44 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="on" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 4. Electrons in a Magnetic Field, Quantum Hall Effect and Landau Levels</a></p>
 <h1 id="sec-4-8"><span class="num">4.8</span> The Landau gauge and the symmetric gauge</h1>
+<p>A uniform magnetic field can be written with many vector potentials, so which one do we take? We will see that the Landau gauge keeps the translation along <span class="math inline">\(y\)</span>, which a band structure needs, and that the symmetric gauge keeps the rotation, which the many-body states need. In both, only the sum of the Peierls phases around a closed loop is physical.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[t_{ij} \;\longrightarrow\; t_{ij}\, \exp\!\left(i\int_{\mathbf{R}_j}^{\mathbf{R}_i} \mathbf{A}\cdot d\boldsymbol{\ell}\right). \tag{4.4}\]</span></p>
+</div>
+<p>This is the Peierls substitution of Section <a href="06-quantized-hall-plateaus-in-experiment.html#sec-4-7">4.7</a>. The hopping <span class="math inline">\(t_{ij}\)</span> from site <span class="math inline">\(j\)</span> to site <span class="math inline">\(i\)</span> of a lattice gets a phase, which comes from the line integral of the vector potential <span class="math inline">\(\mathbf A\)</span> along the bond.</p>
+</div>
 <p>For a uniform field <span class="math inline">\(\mathbf{B} = B\hat{z}\)</span>, there are two gauges that will be important for us.</p>
 <ul>
 <li><p>The <strong>Landau gauge</strong>, <span class="math inline">\(\mathbf{A} = (0, Bx, 0)\)</span>, puts all the spatial dependence into one coordinate, <span class="math inline">\(x\)</span>. Since <span class="math inline">\(\mathbf{A}\)</span> does not depend on <span class="math inline">\(y\)</span>, the Hamiltonian built from it still commutes with <span class="math inline">\(p_y\)</span>, so translations along <span class="math inline">\(y\)</span> are still a good symmetry, but it does not commute with <span class="math inline">\(p_x\)</span>. This gauge keeps <em>one</em> translational symmetry, which is what we need to have a band structure at all, and it is the gauge that we use in every ribbon calculation in this session.</p></li>
 <li><p>The <strong>symmetric gauge</strong>, <span class="math inline">\(\mathbf{A} = \tfrac{B}{2}(-y, x, 0)\)</span>, breaks both translational symmetries but keeps the rotational symmetry of the system instead. It is the natural gauge to write many-body wavefunctions with a good angular momentum, which is what we need when we arrive at the fractional quantum Hall state, from Section <a href="13-the-symmetric-gauge-and-the-lowest-landau-level-wavefunctions.html#sec-4-13">4.13</a> on.</p></li>
 </ul>
 <p>Figure <a href="#fig:s04:gauge">4.2</a> shows the difference in a concrete way, by writing both gauges as Peierls phases <a href="06-quantized-hall-plateaus-in-experiment.html#eq-4-4">(4.4)</a> on a square lattice. The phases of the single bonds are completely different in the two gauges, but the sum around any plaquette is the same flux in both. This sum is the only gauge-invariant combination, and it is the only thing that the electrons respond to.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>For the uniform field <span class="math inline">\(\mathbf B=B\hat z\)</span> we use two vector potentials, the Landau gauge and the symmetric gauge,</p>
+<p><span class="math display">\[\mathbf A_L=(0,\,Bx,\,0), \qquad \mathbf A_S=\frac{B}{2}\,(-y,\,x,\,0).\]</span></p>
+<p>Both have <span class="math inline">\(\nabla\times\mathbf A=B\hat z\)</span>. So the sum of the Peierls phases around any plaquette is the same in the two gauges, and it is fixed by the flux through the plaquette.</p>
+</div>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the two vector potentials to the bond phases of one plaquette</span></summary>
+<div class="fold-body">
+<p>We take the lattice constant <span class="math inline">\(a=1\)</span> and one plaquette with its lower left corner at <span class="math inline">\((x,y)\)</span>. We go around it counterclockwise, along the bottom, the right, the top and the left bond. On the top bond we move in the direction <span class="math inline">\(-x\)</span>, and on the left bond in the direction <span class="math inline">\(-y\)</span>. The phase of each bond comes from the line integral of <span class="math inline">\(\mathbf A\)</span> along it in <a href="06-quantized-hall-plateaus-in-experiment.html#eq-4-4">(4.4)</a>. We write it in units of <span class="math inline">\(\varphi\)</span>, the sum of the four phases, as Figure <a href="#fig:s04:gauge">4.2</a> does. In these units a phase is the line integral divided by <span class="math inline">\(B\)</span>, the flux through the plaquette.</p>
+<p>The simplest case is the Landau gauge. There <span class="math inline">\(A_x=0\)</span>, so the bottom and the top bond have no phase. Along the right bond <span class="math inline">\(A_y=B(x+1)\)</span> is constant, and along the left bond <span class="math inline">\(A_y=Bx\)</span>, which we go down. The four phases are</p>
+<p><span class="math display">\[0,\qquad (x+1)\,\varphi,\qquad 0,\qquad -x\,\varphi,\]</span></p>
+<p>with the sum <span class="math inline">\(\varphi\)</span>. Only the vertical bonds have a phase, and it grows with the column <span class="math inline">\(x\)</span>, which is the pattern of panel (a) of Figure <a href="#fig:s04:gauge">4.2</a>.</p>
+<p>In the symmetric gauge <span class="math inline">\(A_x=-By/2\)</span> and <span class="math inline">\(A_y=Bx/2\)</span>, so the bottom bond has <span class="math inline">\(A_x=-By/2\)</span>, the right bond <span class="math inline">\(A_y=B(x+1)/2\)</span>, the top bond <span class="math inline">\(A_x=-B(y+1)/2\)</span> and the left bond <span class="math inline">\(A_y=Bx/2\)</span>. With the signs of the two bonds that we go backwards, the four phases are</p>
+<p><span class="math display">\[-\frac{y}{2}\,\varphi,\qquad \frac{x+1}{2}\,\varphi,\qquad \frac{y+1}{2}\,\varphi,\qquad -\frac{x}{2}\,\varphi,\]</span></p>
+<p>and their sum is again <span class="math inline">\(\varphi\)</span>, for any <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p>
+<p>The reason is Stokes’ theorem. The sum of the line integrals around the plaquette is the integral of <span class="math inline">\(\nabla\times\mathbf A\)</span> over its area, and this is <span class="math inline">\(B\)</span> times the area <span class="math inline">\(1\)</span> in both gauges, since both have the curl <span class="math inline">\(B\hat z\)</span>. For the plaquette with the corner <span class="math inline">\((2,1)\)</span> the phases are <span class="math inline">\(0\)</span>, <span class="math inline">\(3\varphi\)</span>, <span class="math inline">\(0\)</span> and <span class="math inline">\(-2\varphi\)</span> in the Landau gauge, and <span class="math inline">\(-\tfrac12\varphi\)</span>, <span class="math inline">\(\tfrac32\varphi\)</span>, <span class="math inline">\(\varphi\)</span> and <span class="math inline">\(-\varphi\)</span> in the symmetric gauge. No bond has the same phase in the two gauges, and both sums are <span class="math inline">\(\varphi\)</span>.</p>
+</div>
+</details>
+</div>
 <figure id="fig:s04:gauge">
 <img src="../figures/s04f02_gauge.svg" loading="lazy" alt="Two gauges for the same magnetic field, written as Peierls phases (4.4) on a square lattice, with a dial on every bond whose needle points at the angle of its phase, drawn for \varphi=\pi/4." />
 <figcaption><strong>Figure 4.2.</strong> Two gauges for the same magnetic field, written as Peierls phases <a href="06-quantized-hall-plateaus-in-experiment.html#eq-4-4">(4.4)</a> on a square lattice, with a dial on every bond whose needle points at the angle of its phase, drawn for <span class="math inline">\(\varphi=\pi/4\)</span>. (a) In the Landau gauge the horizontal bonds have no phase at all and the vertical bond in column <span class="math inline">\(x\)</span> has the phase <span class="math inline">\(x\varphi\)</span>. The phase pattern depends on <span class="math inline">\(x\)</span> but not on <span class="math inline">\(y\)</span>, so translations along <span class="math inline">\(y\)</span> are still an exact symmetry and a band structure in <span class="math inline">\(k_y\)</span> still exists. (b) In the symmetric gauge every bond has a phase and none of them is the same as in (a), so no translation survives. The pattern is instead invariant under rotation about the centre of the plaquette. There is no physical difference between the two. When we go once around any plaquette, such as the shaded one, the phases of the single bonds add up to the same <span class="math inline">\(\varphi\)</span>, which is the flux through that plaquette. The bond phases are a choice of gauge and the loop sum is not, and the electrons respond only to the loop sum.</figcaption>
@@ -100,7 +132,9 @@
 Question
 </div>
 <div class="quiz-q">
-<p>In the Landau gauge <span class="math inline">\(\mathbf{A}=(0,Bx,0)\)</span>, which momentum is a good quantum number and can label the eigenstates?</p>
+<p>We take the Landau gauge <span class="math inline">\(\mathbf{A}=(0,Bx,0)\)</span>, where the Hamiltonian is</p>
+<p><span class="math display">\[H=\frac{1}{2m}\Big[p_x^2+\big(p_y-eBx\big)^2\Big].\]</span></p>
+<p>Which momentum is a good quantum number?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -113,7 +147,7 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
-<p>This is false. The term <span class="math inline">\((p_y-eBx)^2\)</span> of the Hamiltonian contains <span class="math inline">\(x\)</span>, so <span class="math inline">\([p_x,H]\neq0\)</span>. The eigenstates are Gaussians in <span class="math inline">\(x\)</span> and not plane waves.</p></li>
+<p>This is false. The term <span class="math inline">\((p_y-eBx)^2\)</span> of the Hamiltonian contains <span class="math inline">\(x\)</span>, so <span class="math inline">\([p_x,H]\neq0\)</span>. The eigenstates are oscillator states centered at some <span class="math inline">\(x_0\)</span>, and not plane waves in <span class="math inline">\(x\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
 <p>This is false. The Hamiltonian does not depend on <span class="math inline">\(y\)</span>, so <span class="math inline">\([H,p_y]=0\)</span>. The eigenstates can be chosen as <span class="math inline">\(e^{ik_yy}\)</span> times a function of <span class="math inline">\(x\)</span>.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
@@ -127,7 +161,7 @@ Question
 Question
 </div>
 <div class="quiz-q">
-<p>Why is the Landau gauge the natural choice for the band structure of a ribbon, and not the symmetric gauge?</p>
+<p>A ribbon is periodic along <span class="math inline">\(y\)</span>, and we want its bands <span class="math inline">\(E(k_y)\)</span>. Why do we take the Landau gauge, and not the symmetric gauge?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -148,6 +182,53 @@ Question
 </ul>
 </div>
 </details>
+</div>
+<div class="quiz" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>The field is <span class="math inline">\(\mathbf B=\nabla\times\mathbf A\)</span>. Which vector potential gives the field <span class="math inline">\(B\hat z\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(\mathbf A=(By,\,0,\,0)\)</span></li>
+<li><span class="math inline">\(\mathbf A=(-By,\,0,\,0)\)</span></li>
+<li><span class="math inline">\(\mathbf A=(0,\,By,\,0)\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Here <span class="math inline">\(\partial_xA_y-\partial_yA_x=0-B=-B\)</span>, so this is the field <span class="math inline">\(-B\hat z\)</span>, with the same size and the opposite direction.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The <span class="math inline">\(z\)</span> component of the curl is <span class="math inline">\(\partial_xA_y-\partial_yA_x=0-(-B)=B\)</span>. This is also a Landau gauge, which keeps the translation along <span class="math inline">\(x\)</span>, and it differs from <span class="math inline">\((0,Bx,0)\)</span> by the gradient of <span class="math inline">\(-Bxy\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. Here <span class="math inline">\(A_y\)</span> depends only on <span class="math inline">\(y\)</span> and <span class="math inline">\(A_x=0\)</span>, so the curl is zero. This <span class="math inline">\(\mathbf A\)</span> is the gradient of <span class="math inline">\(By^2/2\)</span>, and it gives no field at all.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>The symmetric gauge and the Landau gauge give the same field, so they differ by a gauge change. Find the function <span class="math inline">\(\chi(x,y)\)</span> with</p>
+<p><span class="math display">\[\mathbf A_S=\mathbf A_L+\nabla\chi,\]</span></p>
+<p>where <span class="math inline">\(\mathbf A_L=(0,Bx,0)\)</span> and <span class="math inline">\(\mathbf A_S=\tfrac B2(-y,x,0)\)</span>.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>We subtract the two vector potentials,</p>
+<p><span class="math display">\[\mathbf A_S-\mathbf A_L=\Big(-\frac{By}{2},\ \frac{Bx}{2}-Bx,\ 0\Big)=\Big(-\frac{By}{2},\ -\frac{Bx}{2},\ 0\Big).\]</span></p>
+<p>So we need <span class="math inline">\(\partial_x\chi=-By/2\)</span> and <span class="math inline">\(\partial_y\chi=-Bx/2\)</span>. The first condition gives <span class="math inline">\(\chi=-Bxy/2+f(y)\)</span>, and the second one then gives <span class="math inline">\(f&#39;(y)=0\)</span>, so</p>
+<p><span class="math display">\[\chi=-\frac{Bxy}{2},\]</span></p>
+<p>up to a constant. A gauge change adds to the phase of a bond a term that depends only on <span class="math inline">\(\chi\)</span> at the two ends of the bond, so these terms cancel around any loop. For the plaquette with the corner <span class="math inline">\((2,1)\)</span> and <span class="math inline">\(a=1\)</span>, the values of <span class="math inline">\(\chi/B\)</span> at the four corners are <span class="math inline">\(-1\)</span>, <span class="math inline">\(-\tfrac32\)</span>, <span class="math inline">\(-3\)</span> and <span class="math inline">\(-2\)</span>. Their differences along the four bonds, taken counterclockwise, are <span class="math inline">\(-\tfrac12\)</span>, <span class="math inline">\(-\tfrac32\)</span>, <span class="math inline">\(1\)</span> and <span class="math inline">\(1\)</span>. These are the symmetric phases minus the Landau phases of the fold above, in units of <span class="math inline">\(\varphi\)</span>, and their sum is zero.</p>
+<p>So the two gauges give the same physics, and we can check it on a computer. A <span class="math inline">\(10\times10\)</span> island of the square lattice with the phase <span class="math inline">\(\varphi=\pi/6\)</span> around each plaquette has the same levels in the two gauges, to <span class="math inline">\(10^{-10}\)</span> in units of the hopping. On a ribbon along <span class="math inline">\(y\)</span> the symmetric gauge makes the Hamiltonian depend on <span class="math inline">\(y\)</span>, while the Landau gauge does not, and this is why we use the Landau gauge for a band structure.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="comesback">
 <div class="comesback-label">

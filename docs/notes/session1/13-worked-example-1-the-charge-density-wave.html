@@ -85,21 +85,78 @@
   <nav class="sub"><a class="on" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 1. Second Quantization, Mean-Field, and Spontaneous Symmetry Breaking</a></p>
 <h1 id="sec-1-13"><span class="num">1.13</span> Worked example 1, the charge density wave</h1>
-<p>Let us take the simplest interacting case, which is a spinless one-dimensional chain with nearest-neighbor hopping <span class="math inline">\(t\)</span> and a nearest-neighbor Coulomb repulsion <span class="math inline">\(V\)</span>,</p>
+<p>Can a chain with the same Hamiltonian at every site end with its charge on every second site? We will now see that in mean field the answer is yes, for spinless electrons that repel each other on neighboring sites. The result is a charge density wave, with a charge imbalance and a gap that grow with the repulsion <span class="math inline">\(V\)</span>.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[H = \sum_{ij} t_{ij}\, c_i^\dagger c_j \;+\; \sum_{ijkl} V_{ijkl}\, c_i^\dagger c_j^\dagger c_k c_l. \tag{1.5}\]</span></p>
+</div>
+<p>This is the general interacting Hamiltonian of Section <a href="12-the-general-interacting-hamiltonian-and-the-tool-we-will-use-on-it.html#sec-1-12">1.12</a>, a hopping <span class="math inline">\(t_{ij}\)</span> between sites plus a quartic interaction <span class="math inline">\(V_{ijkl}\)</span>. The chain below is its simplest case, with a hopping and a repulsion only between first neighbors.</p>
+</div>
+<p>Let us take the simplest interacting case, which is a spinless one-dimensional chain with nearest-neighbor hopping <span class="math inline">\(t\)</span> and a nearest-neighbor Coulomb repulsion <span class="math inline">\(V\)</span>.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>The spinless chain with a hopping <span class="math inline">\(t\)</span> and a repulsion <span class="math inline">\(V\)</span> between neighbors is</p>
 <p><span id="eq-1-6" class="eq"><span class="math display">\[H = -t\sum_n \left(c_n^\dagger c_{n+1} + \text{h.c.}\right) + V\sum_n c_n^\dagger c_n\, c_{n+1}^\dagger c_{n+1}. \tag{1.6}\]</span></span></p>
+<p>In the Hartree mean field the repulsion becomes the onsite energy <span class="math inline">\(V(\langle n_{n-1}\rangle+\langle n_{n+1}\rangle)\)</span> on site <span class="math inline">\(n\)</span>, with <span class="math inline">\(n_n=c_n^\dagger c_n\)</span>. This energy can differ from site to site, so the solution can break the translational symmetry of <a href="#eq-1-6">(1.6)</a>. The Fock term, which we leave out, also changes the hopping.</p>
+</div>
 <p>In this form, every site is equivalent because of translational symmetry. The quartic term is the difficult one, so mean-field theory factorizes it. We replace one pair of operators by its expectation value, and we keep the rest as it is. This is an <em>uncontrolled</em> approximation, and a more formal derivation exists with a path integral and a saddle-point approximation, but it is the practical method that we will use in the whole course. As a result, the interaction term becomes a single-particle onsite energy that depends on the position. Nothing forces the expectation value <span class="math inline">\(\langle c_n^\dagger c_n\rangle\)</span> to be the same at every site, so even if the bare Hamiltonian <a href="#eq-1-6">(1.6)</a> is translationally symmetric, the mean-field solution does not have to be. This difference, a symmetric Hamiltonian with an asymmetric ground state, <em>is</em> the charge density wave, and it is the same difference that Section <a href="11-spontaneous-symmetry-breaking-and-why-a-symmetric-hamiltonian-can-have-an-asymmetric-ground-state.html#sec-1-11">1.11</a> described in the abstract.</p>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the repulsion of (1.6) to a staggered onsite energy</span></summary>
+<div class="fold-body">
+<p>We write <span class="math inline">\(n_n=c_n^\dagger c_n\)</span>, so the repulsion of <a href="#eq-1-6">(1.6)</a> is <span class="math inline">\(V\sum_n n_n n_{n+1}\)</span>, with each bond once. Each product of two densities is decoupled as in Section <a href="12-the-general-interacting-hamiltonian-and-the-tool-we-will-use-on-it.html#sec-1-12">1.12</a>,</p>
+<p><span class="math display">\[V n_n n_{n+1} \;\to\; V\big(\langle n_n\rangle n_{n+1} + n_n\langle n_{n+1}\rangle - \langle n_n\rangle\langle n_{n+1}\rangle\big).\]</span></p>
+<p>Site <span class="math inline">\(n\)</span> is part of two bonds, so it feels the onsite energy</p>
+<p><span class="math display">\[\epsilon_n = V\big(\langle n_{n-1}\rangle+\langle n_{n+1}\rangle\big),\]</span></p>
+<p>and the constants add up to <span class="math inline">\(-V\sum_n\langle n_n\rangle\langle n_{n+1}\rangle\)</span>, which removes the energy that is counted twice. We keep only these terms of the densities, which are the Hartree terms, as the text does. The same product also gives a term with <span class="math inline">\(\langle c_{n+1}^\dagger c_n\rangle\)</span>, the Fock term, which changes the hopping, and we leave it out.</p>
+<p>The simplest guess that breaks the translational symmetry is a charge that alternates. At half filling, one electron for every two sites, we take</p>
+<p><span class="math display">\[\langle n_n\rangle = \tfrac12(1+\delta n)\ \text{on the even sites},\qquad \langle n_n\rangle=\tfrac12(1-\delta n)\ \text{on the odd sites}.\]</span></p>
+<p>An even site has two odd neighbors, so <span class="math inline">\(\epsilon_\text{even}=V(1-\delta n)\)</span>, and an odd site has <span class="math inline">\(\epsilon_\text{odd}=V(1+\delta n)\)</span>. Up to the constant <span class="math inline">\(V\)</span>, this is a staggered potential <span class="math inline">\(\mp V\delta n\)</span>, which is lower on the sites that already have more charge. A chain with these onsite energies and the hopping <span class="math inline">\(t\)</span> has the bands</p>
+<p><span class="math display">\[E_\pm(k) = V\pm\sqrt{(V\delta n)^2+4t^2\cos^2k},\]</span></p>
+<p>with <span class="math inline">\(k\)</span> in the reduced zone <span class="math inline">\(|k|\le\pi/2\)</span> of the cell of two sites, and the gap <span class="math inline">\(2V\delta n\)</span> at the zone edge <span class="math inline">\(k=\pi/2\)</span>. Filling the lower band gives a new imbalance, and self-consistency asks that it is the <span class="math inline">\(\delta n\)</span> that we put in,</p>
+<p><span class="math display">\[\delta n=\frac{V\delta n}{\pi}\int_{-\pi/2}^{\pi/2}\frac{dk}{\sqrt{(V\delta n)^2+4t^2\cos^2 k}}.\]</span></p>
+<p>We divide by <span class="math inline">\(\delta n\)</span>. The integral that is left grows without bound when <span class="math inline">\(\delta n\)</span> goes to zero, since <span class="math inline">\(\cos k\)</span> vanishes at the zone edge, so for every <span class="math inline">\(V&gt;0\)</span> there is a solution with <span class="math inline">\(\delta n\neq0\)</span>. Its value is the curve of <a href="#sch:s01:g4_cdw_meanfield">Schematic 1.12</a>.</p>
+</div>
+</details>
+</div>
 <p>More formally, mean-field theory is a variational search over single-particle product states, where we minimize <span class="math inline">\(\langle H\rangle\)</span> with respect to the bilinear expectation values <span class="math inline">\(\langle
-c_i^\dagger c_j\rangle\)</span> that define the mean-field Hamiltonian. Since the Hamiltonian depends on these expectation values and the expectation values depend on the Hamiltonian, we solve the problem self-consistently. We guess a Hamiltonian, we compute the expectation values that it gives, we build a new Hamiltonian from them, and we repeat until the process converges. Figure <a href="#fig:s01:mfloop">1.4</a> shows this loop, and every worked example below and every notebook box in this session uses it.</p>
+c_i^\dagger c_j\rangle\)</span> that define the mean-field Hamiltonian. Since the Hamiltonian depends on these expectation values and the expectation values depend on the Hamiltonian, we solve the problem self-consistently. We guess a Hamiltonian, we compute the expectation values that it gives, we build a new Hamiltonian from them, and we repeat until the process converges. Figure <a href="#fig:s01:mfloop">1.4</a> shows this loop, and every worked example below and every notebook box in this session uses it.</p>
 <figure id="fig:s01:mfloop">
 <img src="../figures/s01f05_selfconsistency.svg" loading="lazy" alt="The mean-field self-consistency loop." />
 <figcaption><strong>Figure 1.4.</strong> The mean-field self-consistency loop. We guess the bilinear expectation values, build the single-particle Hamiltonian that they give, and diagonalize it. Then we compute the new expectation values and repeat until they do not change anymore. The four stations are one pass of the loop, computed for the charge density wave of <a href="#eq-1-6">(1.6)</a> on a periodic chain of four sites with <span class="math inline">\(V=3t\)</span>. The guessed charges <span class="math inline">\(0.6\)</span> and <span class="math inline">\(0.4\)</span>, drawn as columns, raise the onsite energy of the neighboring sites, so the sites of the mean-field Hamiltonian stand at two heights. Filling its two lowest levels gives the new charges <span class="math inline">\(0.82\)</span> and <span class="math inline">\(0.18\)</span>, which are not the guess, so the loop goes round again. The three worked examples of this session and every notebook box in this session use this same loop.</figcaption>
 </figure>
+<p>Numerically, at <span class="math inline">\(V=0\)</span> the spectrum is gapless, which is a metal. When <span class="math inline">\(V\)</span> grows, a gap opens in the single-particle spectrum and becomes larger. At the same time the charge imbalance between even and odd sites grows from zero toward its maximal value, where it is fully polarized. Figure <a href="#fig:s01:cdw">1.5</a> shows the two limits in real space, together with the spectrum of each one.</p>
+<figure id="fig:s01:cdw">
+<img src="../figures/s01f04_cdw.svg" loading="lazy" alt="The charge density wave of the chain (1.6), solved in mean field for a periodic chain of eight sites at half filling." />
+<figcaption><strong>Figure 1.5.</strong> The charge density wave of the chain <a href="#eq-1-6">(1.6)</a>, solved in mean field for a periodic chain of eight sites at half filling. The height of the liquid in each cup is the charge <span class="math inline">\(\langle n_i\rangle\)</span>, and next to each chain is its single-particle spectrum, with an electron on every occupied level and degenerate levels side by side. In front, at <span class="math inline">\(V=0\)</span>, every site has the same charge and the spectrum is gapless, since the Fermi level is inside a pair of degenerate levels. Behind, the nearest-neighbor repulsion drives the mean-field instability (here <span class="math inline">\(V=3t\)</span>), and the charge accumulates on alternating sites, which doubles the unit cell, drawn as the translucent slab, and opens a gap in the spectrum. The Hamiltonian is translationally symmetric in both cases, but the ground state behind is not.</figcaption>
+</figure>
+<p><a href="#sch:s01:g4_cdw_meanfield">Schematic 1.12</a> shows the same two quantities for every <span class="math inline">\(V\)</span> in the infinite chain. In mean field the imbalance is not zero for any <span class="math inline">\(V&gt;0\)</span>, so there is no threshold, but at small <span class="math inline">\(V\)</span> it is exponentially small.</p>
+<figure id="sch:s01:g4_cdw_meanfield" class="schematic has-script">
+<img src="../figures/web/session01/g4_cdw_meanfield.svg" loading="lazy" alt="Two curves against V over t. On the left the charge imbalance rises from zero, slowly at first, and saturates close to one. On the right the gap stays far below the dashed line 2V at small V and approaches it at large V." />
+<div class="script-row">
+<a href="../scripts/session01/g4_cdw_chain.py" class="script-dl" download="g4_cdw_chain.py">Download the pyqula script</a> <span class="script-name"><code>g4_cdw_chain.py</code></span>
+</div>
+<figcaption><strong>Schematic 1.12.</strong> The charge density wave of the chain <a href="#eq-1-6">(1.6)</a> at half filling in mean field, against the repulsion <span class="math inline">\(V\)</span>, computed with pyqula for the infinite chain on a mesh of 400 cells. In (a) the charge imbalance <span class="math inline">\(\delta n=|\langle n_\text{even}\rangle-\langle n_\text{odd}\rangle|\)</span>, and in (b) the gap of the mean-field bands in units of <span class="math inline">\(t\)</span>. The dots are the computed values of <span class="math inline">\(V\)</span>, and the lines join them. The script keeps only the Hartree term, with <code>compute_cross=False</code>, as the steps above do. At <span class="math inline">\(V=3t\)</span> the imbalance is <span class="math inline">\(0.89\)</span> and the gap is <span class="math inline">\(2V\delta n=5.35\,t\)</span>. The imbalance is <span class="math inline">\(0.03\)</span> at <span class="math inline">\(V=0.5t\)</span> and goes to <span class="math inline">\(1\)</span> at large <span class="math inline">\(V\)</span>, where the gap approaches <span class="math inline">\(2V\)</span>, the dashed line. Look at the gap, since it is <span class="math inline">\(2V\delta n\)</span> at every <span class="math inline">\(V\)</span>. The default call of pyqula also keeps the Fock term, and it gives the smaller imbalance <span class="math inline">\(0.70\)</span> at <span class="math inline">\(V=3t\)</span>. The Hartree curve is the moment <span class="math inline">\(m\)</span> of the antiferromagnet of Section <a href="14-worked-example-2-magnetism.html#sec-1-14">1.14</a> at <span class="math inline">\(U=2V\)</span>.</figcaption>
+</figure>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>In a single layer of NbSe2 the <span class="math inline">\(3\times3\)</span> order of the charge density wave remains, and scanning tunneling spectroscopy at <span class="math inline">\(5\)</span> K shows a charge density wave gap <span class="math inline">\(\Delta=4\)</span> meV at the Fermi energy. The article says that this gap is accessible to the spectroscopy because bands that cross the Fermi level are removed in a single layer. The abstract does not say whether <span class="math inline">\(\Delta\)</span> is the full gap or half of it. Superconductivity also remains in the single layer, with its onset at <span class="math inline">\(1.9\)</span> K. In bulk NbSe2 the charge density wave sets in at <span class="math inline">\(33\)</span> K, and the article says that in the bulk the microscopic mechanisms of the charge density wave and of superconductivity remain controversial.</p>
+<p>In our reading, the chain of <a href="#eq-1-6">(1.6)</a> is not a model of this material, so we do not compare <span class="math inline">\(\Delta\)</span> with the gap <span class="math inline">\(2V\delta n\)</span>. In both a gap opens at the Fermi energy, but the <span class="math inline">\(3\times3\)</span> order repeats every three lattice constants and the order of the chain every two. The layer also becomes a superconductor, so its gap does not make it an insulator, as the gap <span class="math inline">\(2V\delta n\)</span> does for the chain. The measurement is in <a href="https://www.nature.com/articles/nphys3527">this article</a>.</p>
+</div>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>In the figure the guessed charges are <span class="math inline">\(0.6\)</span> and <span class="math inline">\(0.4\)</span>, and the loop gives <span class="math inline">\(0.82\)</span> and <span class="math inline">\(0.18\)</span>. What do we do next?</p>
+<p>A ring of four sites at half filling has the Hamiltonian</p>
+<p><span class="math display">\[H=-t\sum_n\left(c_n^\dagger c_{n+1}+\text{h.c.}\right)+V\sum_n n_n n_{n+1},\qquad V=3t.\]</span></p>
+<p>Here <span class="math inline">\(n_n=c_n^\dagger c_n\)</span> is the number of electrons on site <span class="math inline">\(n\)</span>. We guess the charges <span class="math inline">\(0.6\)</span> and <span class="math inline">\(0.4\)</span> on alternate sites. The mean-field Hamiltonian of this guess gives the charges <span class="math inline">\(0.82\)</span> and <span class="math inline">\(0.18\)</span>. What do we do next?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -112,11 +169,11 @@ Question
 <div class="quiz-fbs">
 <ul>
 <li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
-<p>This is false. The total charge is <span class="math inline">\(1\)</span> in both, but the Hamiltonian built from <span class="math inline">\(0.6\)</span> and <span class="math inline">\(0.4\)</span> has a ground state with <span class="math inline">\(0.82\)</span> and <span class="math inline">\(0.18\)</span>. The state is not the ground state of its own Hamiltonian, so it is not a solution.</p></li>
+<p>This is false. The charge of a pair of sites is <span class="math inline">\(1\)</span> in both, but the Hamiltonian built from <span class="math inline">\(0.6\)</span> and <span class="math inline">\(0.4\)</span> has a ground state with <span class="math inline">\(0.82\)</span> and <span class="math inline">\(0.18\)</span>. The state is not the ground state of its own Hamiltonian, so it is not a solution.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
 <p>This is true. The new charges differ from the guess, so the guess was not self-consistent. We build the Hamiltonian again from the new charges and repeat until the input and the output agree.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. In the figure <span class="math inline">\(V=3t\)</span> is a parameter of the model. If we tune it until the loop closes, we solve a different Hamiltonian, for another <span class="math inline">\(V\)</span>, and not the one that we want.</p></li>
+<p>This is false. Here <span class="math inline">\(V=3t\)</span> is a parameter of the model. If we tune it until the loop closes, we solve a different Hamiltonian, for another <span class="math inline">\(V\)</span>, and not the one that we want.</p></li>
 </ul>
 </div>
 <div class="quiz-expl">
@@ -124,11 +181,6 @@ Question
 </div>
 </details>
 </div>
-<p>Numerically, at <span class="math inline">\(V=0\)</span> the spectrum is gapless, which is a metal. When <span class="math inline">\(V\)</span> grows, a gap opens in the single-particle spectrum and becomes larger. At the same time the charge imbalance between even and odd sites grows from zero toward its maximal value, where it is fully polarized. Figure <a href="#fig:s01:cdw">1.5</a> shows the two limits in real space, together with the spectrum of each one.</p>
-<figure id="fig:s01:cdw">
-<img src="../figures/s01f04_cdw.svg" loading="lazy" alt="The charge density wave of the chain (1.6), solved in mean field for a periodic chain of eight sites at half filling." />
-<figcaption><strong>Figure 1.5.</strong> The charge density wave of the chain <a href="#eq-1-6">(1.6)</a>, solved in mean field for a periodic chain of eight sites at half filling. The height of the liquid in each cup is the charge <span class="math inline">\(\langle n_i\rangle\)</span>, and next to each chain is its single-particle spectrum, with an electron on every occupied level and degenerate levels side by side. In front, at <span class="math inline">\(V=0\)</span>, every site has the same charge and the spectrum is gapless, since the Fermi level is inside a pair of degenerate levels. Behind, the nearest-neighbor repulsion drives the mean-field instability (here <span class="math inline">\(V=3t\)</span>), and the charge accumulates on alternating sites, which doubles the unit cell, drawn as the translucent slab, and opens a gap in the spectrum. The Hamiltonian is translationally symmetric in both cases, but the ground state behind is not.</figcaption>
-</figure>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
@@ -162,6 +214,51 @@ Question
 <p>The number of degenerate states equals the number of different patterns that the broken symmetry generates.</p>
 </div>
 </details>
+</div>
+<div class="quiz quiz-pics" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Each picture shows the mean-field charges <span class="math inline">\(\langle n_i\rangle\)</span> of a half-filled chain with</p>
+<p><span class="math display">\[H=-t\sum_n\left(c_n^\dagger c_{n+1}+\text{h.c.}\right)+V\sum_n n_n n_{n+1}.\]</span></p>
+<p>Here <span class="math inline">\(n_n=c_n^\dagger c_n\)</span> is the number of electrons on site <span class="math inline">\(n\)</span>. The pictures are at <span class="math inline">\(V=0.5t\)</span>, <span class="math inline">\(V=t\)</span> and <span class="math inline">\(V=3t\)</span>. In mean field the gap is <span class="math inline">\(2V\delta n\)</span>, with <span class="math inline">\(\delta n\)</span> the charge imbalance. At <span class="math inline">\(V=3t\)</span> the gap is <span class="math inline">\(5.35t\)</span>. Which picture is at <span class="math inline">\(V=3t\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session01/g4_quiz_cdw_v05.svg" loading="lazy" alt="Bars of the charge on six sites, all close to one half, with a very small alternation." /></li>
+<li><img src="../figures/web/session01/g4_quiz_cdw_v3.svg" loading="lazy" alt="Bars of the charge on six sites that alternate between almost one and almost zero." /></li>
+<li><img src="../figures/web/session01/g4_quiz_cdw_v1.svg" loading="lazy" alt="Bars of the charge on six sites that alternate between about two thirds and one third." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. This is <span class="math inline">\(V=0.5t\)</span>, with the imbalance <span class="math inline">\(0.03\)</span> and the gap <span class="math inline">\(0.03t\)</span>. In mean field the imbalance is not zero, but at small <span class="math inline">\(V\)</span> it is exponentially small.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The gap <span class="math inline">\(5.35t\)</span> at <span class="math inline">\(V=3t\)</span> gives <span class="math inline">\(\delta n=5.35/6=0.89\)</span>, so the charges are <span class="math inline">\(0.95\)</span> and <span class="math inline">\(0.05\)</span>. One sublattice is almost full.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. This is <span class="math inline">\(V=t\)</span>, with the charges <span class="math inline">\(0.67\)</span> and <span class="math inline">\(0.33\)</span>. The imbalance is <span class="math inline">\(0.34\)</span>, so the gap is <span class="math inline">\(2V\delta n=0.68t\)</span> and not <span class="math inline">\(5.35t\)</span>.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>Do one pass of the mean-field loop by hand. Take a periodic ring of four sites with two electrons, the Hamiltonian <a href="#eq-1-6">(1.6)</a> and <span class="math inline">\(V=3t\)</span>. Guess the charges <span class="math inline">\(0.6\)</span> and <span class="math inline">\(0.4\)</span> on alternate sites. Find the onsite energies of the mean-field Hamiltonian, its two lowest levels and the new charges.</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>A site with the charge <span class="math inline">\(0.6\)</span> has two neighbors with <span class="math inline">\(0.4\)</span>, so its onsite energy is <span class="math inline">\(V(0.4+0.4)=2.4t\)</span>, and a site with <span class="math inline">\(0.4\)</span> has <span class="math inline">\(V(0.6+0.6)=3.6t\)</span>. The ring has two cells of two sites, so the momenta of the cells are <span class="math inline">\(K=0\)</span> and <span class="math inline">\(K=\pi\)</span>. In the momentum per site of the bands <span class="math inline">\(E_\pm(k)\)</span> in the steps above, these are <span class="math inline">\(k=0\)</span> and the zone edge <span class="math inline">\(k=\pi/2\)</span>. For <span class="math inline">\(K=0\)</span> the two bonds of a cell add up to the coupling <span class="math inline">\(2t\)</span>, and for <span class="math inline">\(K=\pi\)</span> they cancel. The levels are then</p>
+<p><span class="math display">\[E = 3t\pm\sqrt{(0.6t)^2+(2t)^2} = 0.91t,\ 5.09t \quad (K=0),\qquad E=2.4t,\ 3.6t\quad (K=\pi).\]</span></p>
+<p>The two lowest levels are <span class="math inline">\(0.91t\)</span> and <span class="math inline">\(2.4t\)</span>. The level at <span class="math inline">\(2.4t\)</span> sits only on the two sites with the guess <span class="math inline">\(0.6\)</span>, half an electron on each. The level at <span class="math inline">\(0.91t\)</span> has the weight <span class="math inline">\(\tfrac12\big(1+0.6/\sqrt{0.36+4}\big)=0.64\)</span> on these two sites together, so <span class="math inline">\(0.32\)</span> on each. The new charges are <span class="math inline">\(0.5+0.32=0.82\)</span> and <span class="math inline">\(0.18\)</span>, which is the closed form <span class="math inline">\(\tfrac34+\Delta/(4\sqrt{4t^2+\Delta^2})\)</span> with <span class="math inline">\(\Delta=V(0.6-0.4)\)</span>.</p>
+<p>The new charges are farther apart than the guess, so the imbalance grows in this pass. If we go on, the loop stops at <span class="math inline">\(0.95\)</span> and <span class="math inline">\(0.05\)</span> on this ring, which is its charge density wave. This pass is what the computer does at each step of the loop of Figure <a href="#fig:s01:mfloop">1.4</a>, for a chain of any length.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session1.ipynb"><code>session1.ipynb</code></a>, “Symmetry breaking in the spinless fermionic chain” (Core), and “Gap opening in a spinless interacting model” (Challenge)</p>

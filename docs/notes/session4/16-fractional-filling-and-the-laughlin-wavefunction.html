@@ -85,17 +85,46 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="on" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 4. Electrons in a Magnetic Field, Quantum Hall Effect and Landau Levels</a></p>
 <h1 id="sec-4-16"><span class="num">4.16</span> Fractional filling and the Laughlin wavefunction</h1>
+<p>How do we fill only a fraction of the lowest Landau level and still keep the electron gas uniform? We will now see that the answer is the Laughlin wavefunction <a href="#eq-4-12">(4.12)</a>, whose filling is <span class="math inline">\(\nu=1/m\)</span> with an odd integer <span class="math inline">\(m\)</span>. Its excitations, the quasiholes of Section <a href="#sec-4-17">4.17</a>, carry the charge <span class="math inline">\(e/m\)</span>.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[\Psi_1(z_1,\dots,z_N) = \prod_{i&lt;j}(z_i-z_j)\; \exp\!\left(-\sum_i \frac{|z_i|^2}{4\ell_B^2}\right). \tag{4.11}\]</span></p>
+</div>
+<p>This is the state of the filled lowest Landau level of Section <a href="13-the-symmetric-gauge-and-the-lowest-landau-level-wavefunctions.html#sec-4-14">4.14</a>, with <span class="math inline">\(z_i=x_i+iy_i\)</span> the position of the electron <span class="math inline">\(i\)</span> written as a complex number. It is the Slater determinant of the orbitals <span class="math inline">\(z^0\)</span> to <span class="math inline">\(z^{N-1}\)</span>, and its density is flat, with one electron per flux quantum.</p>
+</div>
 <p>Let us now say that we want to occupy only a fraction of the available LLL orbitals, for example two out of every three, but in a way that keeps the electron gas uniform. If we only leave some orbitals empty, we obtain a density that is clearly not uniform and has lumps, since each empty orbital is at its own fixed radius. We look for a many-body wavefunction with three properties. First, it still lives only in the LLL, so it is built only from the coordinates <span class="math inline">\(z_i\)</span> and never from <span class="math inline">\(\bar z_i\)</span>. Second, it is still antisymmetric, since the particles are still electrons. Third, in a heuristic sense, it keeps the electrons as far from each other as possible, since this is what a repulsive Coulomb interaction favors when we minimize its energy.</p>
-<p>The construction that satisfies the three conditions at the same time is very simple. We take the wavefunction of the filled LLL <a href="13-the-symmetric-gauge-and-the-lowest-landau-level-wavefunctions.html#eq-4-11">(4.11)</a> and we raise the Vandermonde factor to a power,</p>
+<p>The construction that satisfies the three conditions at the same time is very simple. We take the wavefunction of the filled LLL <a href="13-the-symmetric-gauge-and-the-lowest-landau-level-wavefunctions.html#eq-4-11">(4.11)</a> and we raise the Vandermonde factor to a power <span class="math inline">\(m\)</span>. This is what is called the <strong>Laughlin wavefunction</strong>.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>The Laughlin wavefunction of <span class="math inline">\(N\)</span> electrons is</p>
 <p><span id="eq-4-12" class="eq"><span class="math display">\[\Psi_m(z_1,\dots,z_N) = \prod_{i&lt;j}(z_i-z_j)^m\; \exp\!\left(-\sum_i \frac{|z_i|^2}{4\ell_B^2}\right), \tag{4.12}\]</span></span></p>
-<p>which is called the <strong>Laughlin wavefunction</strong>. The exponent <span class="math inline">\(m\)</span> must be an odd integer, since an even power would make the wavefunction <em>symmetric</em> and not antisymmetric under exchange, and this is not allowed for fermions. A larger exponent makes the electrons avoid each other more, since the wavefunction now vanishes to <span class="math inline">\(m\)</span>-th order, and not only linearly, when two electrons are at the same point. This is the correlation effect that we wanted. When we compute the electron density that follows from it, we obtain the filling factor</p>
+<p>with <span class="math inline">\(m\)</span> an odd integer. It stays in the lowest Landau level, it is antisymmetric, and it fills the fraction <span class="math inline">\(\nu=1/m\)</span> of the level, which is <a href="#eq-4-13">(4.13)</a>.</p>
+</div>
+<p>The exponent <span class="math inline">\(m\)</span> must be an odd integer, since an even power would make the wavefunction <em>symmetric</em> and not antisymmetric under exchange, and this is not allowed for fermions. A larger exponent makes the electrons avoid each other more, since the wavefunction now vanishes to <span class="math inline">\(m\)</span>-th order, and not only linearly, when two electrons are at the same point. This is the correlation effect that we wanted. When we compute the electron density that follows from it, we obtain the filling factor</p>
 <p><span id="eq-4-13" class="eq"><span class="math display">\[\nu = \frac{1}{m}, \tag{4.13}\]</span></span></p>
 <p>which we can also see directly by counting. The maximum power of any single coordinate in the fully expanded polynomial <a href="#eq-4-12">(4.12)</a> is <span class="math inline">\(m(N-1)\)</span>, so the wavefunction uses the angular-momentum orbitals up to <span class="math inline">\(m(N-1)\)</span>. This means that <span class="math inline">\(N\)</span> electrons are spread over <span class="math inline">\(\approx m(N-1)+1 \approx
 mN\)</span> available LLL orbitals, which gives a filling fraction of <span class="math inline">\(N/(mN)=1/m\)</span>, in agreement with <a href="#eq-4-13">(4.13)</a>. So we start only from the single-particle LLL orbitals, the Pauli exclusion principle and a heuristic argument about correlations. From them we arrive at the exact ground state of a strongly interacting many-body problem, which will give us fractional charge in the next section.</p>
-<p>The statement that a larger <span class="math inline">\(m\)</span> keeps the electrons apart can be seen already for two electrons, in <a href="#sch:s04:laughlin_pair">Schematic 4.8</a>.</p>
+<div class="fold steps">
+<details class="fold-details"><summary><span class="fold-label">The steps</span> <span class="fold-title">From the highest power of the polynomial to the filling (4.13)</span></summary>
+<div class="fold-body">
+<p>Let us take two electrons first. The polynomial of <a href="#eq-4-12">(4.12)</a> is</p>
+<p><span class="math display">\[(z_1-z_2)^m=\sum_{k=0}^{m}\binom{m}{k}\,z_1^{\,k}\,(-z_2)^{m-k},\]</span></p>
+<p>so each electron appears with every power from <span class="math inline">\(0\)</span> to <span class="math inline">\(m\)</span>, and the two electrons use the orbitals <span class="math inline">\(z^0\)</span> to <span class="math inline">\(z^m\)</span> of <a href="13-the-symmetric-gauge-and-the-lowest-landau-level-wavefunctions.html#eq-4-10">(4.10)</a>. These are <span class="math inline">\(m+1\)</span> orbitals for <span class="math inline">\(2\)</span> electrons, which for <span class="math inline">\(m=3\)</span> is <span class="math inline">\(2/4=1/2\)</span> electron per orbital.</p>
+<p>For <span class="math inline">\(N\)</span> electrons the coordinate <span class="math inline">\(z_1\)</span> appears in the <span class="math inline">\(N-1\)</span> factors <span class="math inline">\((z_1-z_j)^m\)</span> with <span class="math inline">\(j\neq1\)</span>. Its highest power is then <span class="math inline">\(m(N-1)\)</span>, and its lowest power is <span class="math inline">\(0\)</span>. The state is antisymmetric, so the same holds for every <span class="math inline">\(z_i\)</span>, and the droplet uses the orbitals <span class="math inline">\(0\)</span> to <span class="math inline">\(m(N-1)\)</span>. The orbital <span class="math inline">\(z^M\)</span> sits on the ring that encloses <span class="math inline">\(M\)</span> flux quanta, as Section <a href="13-the-symmetric-gauge-and-the-lowest-landau-level-wavefunctions.html#sec-4-15">4.15</a> says, so the droplet holds about one flux quantum per orbital. Its filling is then the number of electrons per orbital,</p>
+<p><span class="math display">\[\nu_N=\frac{N}{m(N-1)+1}.\]</span></p>
+<p>For <span class="math inline">\(m=3\)</span> this is <span class="math inline">\(1/2\)</span> for <span class="math inline">\(N=2\)</span> and <span class="math inline">\(20/58=0.345\)</span> for <span class="math inline">\(N=20\)</span>. This is a mean over the whole droplet, and for <span class="math inline">\(20\)</span> electrons the density in the bulk is already <span class="math inline">\(1/3\)</span>, as the problem below says. For large <span class="math inline">\(N\)</span> the terms <span class="math inline">\(1\)</span> and <span class="math inline">\(-m\)</span> are small against <span class="math inline">\(mN\)</span>, so <span class="math inline">\(\nu_N\to1/m\)</span>, which is <a href="#eq-4-13">(4.13)</a>.</p>
+</div>
+</details>
+</div>
+<p>The statement that a larger <span class="math inline">\(m\)</span> keeps the electrons apart can be seen already for two electrons, in <a href="#sch:s04:laughlin_pair">Schematic 4.11</a>.</p>
 <figure id="sch:s04:laughlin_pair" class="schematic">
 <img src="../figures/web/session04/laughlin_pair.svg" loading="lazy" alt="Three bell-shaped curves of the probability of the distance between two electrons, which move to larger distance and start more slowly from zero when the exponent grows." />
-<figcaption><strong>Schematic 4.8.</strong> The probability of the distance <span class="math inline">\(|z_1-z_2|\)</span> of two electrons in the state <span class="math inline">\((z_1-z_2)^m e^{-(|z_1|^2+|z_2|^2)/4\ell_B^2}\)</span>, for <span class="math inline">\(m=1,3,5\)</span>. It is proportional to <span class="math inline">\(r^{2m+1}e^{-r^2/4\ell_B^2}\)</span>, normalized to one, and the dotted lines mark the maximum at <span class="math inline">\(r=\sqrt{2(2m+1)}\,\ell_B\)</span>. The formula was checked against a direct integral of <span class="math inline">\(|\Psi|^2\)</span>. Look at how the curve is pushed away from <span class="math inline">\(r=0\)</span> when <span class="math inline">\(m\)</span> grows, since this is the correlation that the exponent builds in.</figcaption>
+<figcaption><strong>Schematic 4.11.</strong> The probability of the distance <span class="math inline">\(|z_1-z_2|\)</span> of two electrons in the state <span class="math inline">\((z_1-z_2)^m e^{-(|z_1|^2+|z_2|^2)/4\ell_B^2}\)</span>, for <span class="math inline">\(m=1,3,5\)</span>. It is proportional to <span class="math inline">\(r^{2m+1}e^{-r^2/4\ell_B^2}\)</span>, normalized to one, so it is a probability per unit length, in units of <span class="math inline">\(1/\ell_B\)</span>. The dotted lines mark the maximum at <span class="math inline">\(r=\sqrt{2(2m+1)}\,\ell_B\)</span>, which is <span class="math inline">\(2.45\)</span>, <span class="math inline">\(3.74\)</span> and <span class="math inline">\(4.69\,\ell_B\)</span>. The formula was checked against a direct integral of <span class="math inline">\(|\Psi|^2\)</span>. Look at how the curve is pushed away from <span class="math inline">\(r=0\)</span> when <span class="math inline">\(m\)</span> grows, since this is the correlation that the exponent builds in.</figcaption>
 </figure>
 <div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
@@ -127,21 +156,82 @@ Question
 </div>
 </details>
 </div>
-<h1 class="sec-next" id="sec-4-17"><span class="num">4.17</span> Quasiholes and quasielectrons</h1>
-<p><em>From this point to the end of Section <a href="18-berry-phase-fractional-charge-and-anyonic-statistics.html#sec-4-18">4.18</a>, the material has no counterpart in <code>session4.ipynb</code>. The notebook of this session stops at the integer quantum Hall state, its Landau levels and its edge and Chern-insulator physics, which are Sections <a href="10-landau-levels-of-dirac-electrons.html#sec-4-10">4.10</a>, <a href="11-numerical-check-of-the-landau-levels-and-edge-states-on-the-lattice.html#sec-4-11">4.11</a> and <a href="19-the-haldane-model-and-the-quantum-hall-effect-without-landau-levels.html#sec-4-19">4.19</a>. There is no numerical exercise on the quasiholes, the quasielectrons, the fractional charge or the anyonic statistics.</em></p>
-<p>The excitations above the Laughlin ground state <a href="#eq-4-12">(4.12)</a> also have a simple construction in these coordinates. A <strong>quasihole</strong> at the origin is obtained when we multiply the wavefunction by an extra overall factor <span class="math inline">\(z_i\)</span> for every electron. A quasihole at an arbitrary position <span class="math inline">\(w\)</span> is obtained instead when we insert a factor <span class="math inline">\((z_i-w)\)</span> for each electron,</p>
-<p><span id="eq-4-14" class="eq"><span class="math display">\[\Psi_{\text{qh}}(w) = \prod_i (z_i-w) \; \Psi_m(z_1,\dots,z_N). \tag{4.14}\]</span></span></p>
-<p>This extra factor raises by one the effective power of every orbital. With the relation between angular momentum and radius of Section <a href="13-the-symmetric-gauge-and-the-lowest-landau-level-wavefunctions.html#sec-4-15">4.15</a>, this moves the charge density outward, away from <span class="math inline">\(w\)</span>, and leaves a region with less charge there, which is the quasihole. When we repeat this construction <span class="math inline">\(m\)</span> times, at <span class="math inline">\(m\)</span> different positions, we remove in total the charge of one electron. This is consistent with each quasihole having only a fraction <span class="math inline">\(1/m\)</span> of the electron charge. We will confirm this fraction directly with the Berry phase in Section <a href="18-berry-phase-fractional-charge-and-anyonic-statistics.html#sec-4-18">4.18</a>. In the same language, a <strong>quasielectron</strong> is the inverse operation. Instead of raising the power, which we do when we multiply by <span class="math inline">\(z_i-w\)</span>, we lower it, and we do this with the derivative <span class="math inline">\(\partial/\partial z_i\)</span> acting on the polynomial part instead of a multiplication. This moves charge inward instead of outward, and it gives an excitation with the opposite, negative, fractional charge.</p>
-<figure class="again">
-<img src="../figures/s04f05_droplet.svg" loading="lazy" alt="Nested rings of growing radius, and two flat density profiles of different radius for the filled level and for the Laughlin state." />
-<figcaption><strong><a href="13-the-symmetric-gauge-and-the-lowest-landau-level-wavefunctions.html#fig:s04:droplet">Figure 4.5</a>, shown again.</strong> The picture of the droplet used for the quasihole. In (a) every orbital is a ring, and a larger angular momentum moves the ring outward. In (b) the Laughlin state at <span class="math inline">\(\nu=1/3\)</span> is as flat as the filled level, but it uses orbitals up to <span class="math inline">\(m=3(N-1)\)</span>. A factor <span class="math inline">\((z_i-w)\)</span> raises the angular momentum of every electron by one. Look at how this pushes charge outward, which leaves the dimple of the quasihole.</figcaption>
-</figure>
 <div class="quiz" data-correct="C" data-fb="1">
 <div class="quiz-label">
 Question
 </div>
 <div class="quiz-q">
-<p>We insert a quasihole three times, at three different places, in the Laughlin state with <span class="math inline">\(m=3\)</span>. The total charge removed is that of one electron. What is the charge of one quasihole?</p>
+<p>Each polynomial below multiplies the Gaussian <span class="math inline">\(e^{-\sum_i|z_i|^2/4\ell_B^2}\)</span> of <span class="math inline">\(N\)</span> electrons. Which state has the filling <span class="math inline">\(\nu=1/5\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(\prod_{i&lt;j}(z_i-z_j)^{1/5}\)</span></li>
+<li><span class="math inline">\(\prod_{i&lt;j}(z_i-z_j)^{4}\)</span></li>
+<li><span class="math inline">\(\prod_{i&lt;j}(z_i-z_j)^{5}\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. When <span class="math inline">\(z_1\)</span> goes once around <span class="math inline">\(z_2\)</span>, the factor <span class="math inline">\((z_1-z_2)^{1/5}\)</span> gets the phase <span class="math inline">\(e^{2\pi i/5}\)</span> and does not come back to itself. So it is not a wavefunction, and a smaller filling needs a higher power and not a lower one.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The exchange of <span class="math inline">\(z_1\)</span> and <span class="math inline">\(z_2\)</span> gives <span class="math inline">\((z_2-z_1)^4=(z_1-z_2)^4\)</span> with no minus sign, so this is a state of bosons. The highest power of <span class="math inline">\(z_1\)</span> is <span class="math inline">\(4(N-1)\)</span>, so its filling goes to <span class="math inline">\(1/4\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. The power <span class="math inline">\(5\)</span> is odd, so the state is antisymmetric. The highest power of <span class="math inline">\(z_1\)</span> is <span class="math inline">\(5(N-1)\)</span>, so <span class="math inline">\(N\)</span> electrons use <span class="math inline">\(5(N-1)+1\)</span> orbitals, and the filling goes to <span class="math inline">\(1/5\)</span> for large <span class="math inline">\(N\)</span>.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>Take <span class="math inline">\(N=3\)</span> electrons in the Laughlin state <a href="#eq-4-12">(4.12)</a> with <span class="math inline">\(m=3\)</span>. What is the highest power of <span class="math inline">\(z_1\)</span> in the polynomial? How many orbitals of the lowest Landau level does the state use, and what is its filling? What happens for large <span class="math inline">\(N\)</span>?</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>The coordinate <span class="math inline">\(z_1\)</span> appears in the two factors <span class="math inline">\((z_1-z_2)^3\)</span> and <span class="math inline">\((z_1-z_3)^3\)</span>, so its highest power is <span class="math inline">\(3+3=6\)</span>, which is <span class="math inline">\(m(N-1)\)</span>. Its lowest power is <span class="math inline">\(0\)</span>, from the term <span class="math inline">\((-z_2)^3(-z_3)^3(z_2-z_3)^3\)</span>. The state uses the orbitals <span class="math inline">\(z^0\)</span> to <span class="math inline">\(z^6\)</span>, which are <span class="math inline">\(7\)</span> orbitals, and the <span class="math inline">\(7\)</span> flux quanta of the droplet hold <span class="math inline">\(3\)</span> electrons, so the filling, the number of electrons per orbital, is <span class="math inline">\(3/7=0.43\)</span>.</p>
+<p>For <span class="math inline">\(N\)</span> electrons the same counting gives <span class="math inline">\(N/(3N-2)\)</span>, which goes to <span class="math inline">\(1/3\)</span> for large <span class="math inline">\(N\)</span>. For <span class="math inline">\(20\)</span> electrons there are <span class="math inline">\(20/58=0.345\)</span> electrons per orbital, above <span class="math inline">\(1/3\)</span> by a correction of order <span class="math inline">\(1/N\)</span>. This is a mean over the whole droplet. The density in the bulk is already <span class="math inline">\(1/3\)</span>, as the grey curve of <a href="#sch:s04:quasihole_dimple">Schematic 4.12</a> shows, and the difference comes from the edge, where the density has a bump above <span class="math inline">\(1/3\)</span>. So a calculation on a disc with a few electrons counts the orbitals as <span class="math inline">\(m(N-1)+1\)</span> and not as <span class="math inline">\(mN\)</span>.</p>
+</div>
+</details>
+</div>
+</div>
+<h1 class="sec-next" id="sec-4-17"><span class="num">4.17</span> Quasiholes and quasielectrons</h1>
+<p><em>From this point to the end of Section <a href="18-berry-phase-fractional-charge-and-anyonic-statistics.html#sec-4-18">4.18</a>, the material has no counterpart in <code>session4.ipynb</code>. The notebook of this session stops at the integer quantum Hall state, its Landau levels and its edge and Chern-insulator physics, which are Sections <a href="10-landau-levels-of-dirac-electrons.html#sec-4-10">4.10</a>, <a href="11-numerical-check-of-the-landau-levels-and-edge-states-on-the-lattice.html#sec-4-11">4.11</a> and <a href="19-the-haldane-model-and-the-quantum-hall-effect-without-landau-levels.html#sec-4-19">4.19</a>. There is no numerical exercise on the quasiholes, the quasielectrons, the fractional charge or the anyonic statistics.</em></p>
+<p>The excitations above the Laughlin ground state <a href="#eq-4-12">(4.12)</a> also have a simple construction in these coordinates. A <strong>quasihole</strong> at the origin is obtained when we multiply the wavefunction by an extra overall factor <span class="math inline">\(z_i\)</span> for every electron. A quasihole at an arbitrary position <span class="math inline">\(w\)</span> is obtained instead when we insert a factor <span class="math inline">\((z_i-w)\)</span> for each electron, which gives the following state.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>A quasihole of the Laughlin state at the position <span class="math inline">\(w\)</span> is</p>
+<p><span id="eq-4-14" class="eq"><span class="math display">\[\Psi_{\text{qh}}(w) = \prod_i (z_i-w) \; \Psi_m(z_1,\dots,z_N). \tag{4.14}\]</span></span></p>
+<p>It pushes the electrons away from <span class="math inline">\(w\)</span> and leaves a region with <span class="math inline">\(1/m\)</span> of an electron less. So the quasihole has the charge <span class="math inline">\(e/m\)</span> in size, with the sign opposite to the charge of the electrons.</p>
+</div>
+<p>This extra factor raises by one the effective power of every orbital. With the relation between angular momentum and radius of Section <a href="13-the-symmetric-gauge-and-the-lowest-landau-level-wavefunctions.html#sec-4-15">4.15</a>, this moves the charge density outward, away from <span class="math inline">\(w\)</span>, and leaves a region with less charge there, which is the quasihole. When we repeat this construction <span class="math inline">\(m\)</span> times, at <span class="math inline">\(m\)</span> different positions, we remove in total the charge of one electron. This is consistent with each quasihole having only a fraction <span class="math inline">\(1/m\)</span> of the electron charge. We will confirm this fraction directly with the Berry phase in Section <a href="18-berry-phase-fractional-charge-and-anyonic-statistics.html#sec-4-18">4.18</a>. <a href="#sch:s04:quasihole_dimple">Schematic 4.12</a> shows the region with less charge for <span class="math inline">\(m=3\)</span> and <span class="math inline">\(20\)</span> electrons.</p>
+<figure id="sch:s04:quasihole_dimple" class="schematic">
+<img src="../figures/web/session04/g4_quasihole_dimple.svg" loading="lazy" alt="Two panels. Above, two density profiles against the radius, flat at one third, one of them with a dip to zero at the origin. Below, four curves of the number of removed electrons against the radius of the disc, with a plateau near one third between 5 and 8 and a return to zero at the edge." />
+<figcaption><strong>Schematic 4.12.</strong> The Laughlin state with <span class="math inline">\(m=3\)</span> and <span class="math inline">\(N=20\)</span> electrons, sampled with a Monte Carlo method, without a quasihole (grey) and with a quasihole at the origin (blue), which is the factor <span class="math inline">\(\prod_iz_i\)</span> of <a href="#eq-4-14">(4.14)</a> with <span class="math inline">\(w=0\)</span>. (a) The density times <span class="math inline">\(2\pi\ell_B^2\)</span>, the mean of four runs. At the origin it drops to zero, and a few <span class="math inline">\(\ell_B\)</span> away it is back at <span class="math inline">\(1/3\)</span>. (b) The number of electrons <span class="math inline">\(\Delta N(R)\)</span> that the quasihole removes from the disc of radius <span class="math inline">\(R\)</span> around it, one curve per run. It rises to about <span class="math inline">\(0.4\)</span> at <span class="math inline">\(R\approx3\,\ell_B\)</span>, and for the discs of radius <span class="math inline">\(5\)</span> to <span class="math inline">\(8\,\ell_B\)</span>, the grey band, its mean is <span class="math inline">\(0.32\)</span> to <span class="math inline">\(0.34\)</span> in the four runs, which is the charge <span class="math inline">\(e/3\)</span>. Beyond <span class="math inline">\(8\,\ell_B\)</span> the disc reaches the edge of the droplet, near <span class="math inline">\(\sqrt{6N}\,\ell_B=11\,\ell_B\)</span>. Near <span class="math inline">\(R=9\,\ell_B\)</span> the count rises again to about <span class="math inline">\(0.4\)</span>, since the factor <span class="math inline">\(\prod_iz_i\)</span> raises every power by one and pushes the edge of the droplet outward. Once the disc holds all <span class="math inline">\(20\)</span> electrons <span class="math inline">\(\Delta N\)</span> is back at zero, since the charge that the quasihole removes is pushed to the edge. Look at the plateau of (b), since its height is the charge of the quasihole.</figcaption>
+</figure>
+<p>In the same language, a <strong>quasielectron</strong> is the inverse operation. Instead of raising the power, which we do when we multiply by <span class="math inline">\(z_i-w\)</span>, we lower it, and we do this with the derivative <span class="math inline">\(\partial/\partial z_i\)</span> acting on the polynomial part instead of a multiplication. This moves charge inward instead of outward, and it gives an excitation with the opposite, negative, fractional charge.</p>
+<figure class="again">
+<img src="../figures/s04f05_droplet.svg" loading="lazy" alt="Nested rings of growing radius, and two flat density profiles of different radius for the filled level and for the Laughlin state." />
+<figcaption><strong><a href="13-the-symmetric-gauge-and-the-lowest-landau-level-wavefunctions.html#fig:s04:droplet">Figure 4.5</a>, shown again.</strong> The picture of the droplet used for the quasihole. In (a) every orbital is a ring, and a larger angular momentum moves the ring outward. In (b) the Laughlin state at <span class="math inline">\(\nu=1/3\)</span> is as flat as the filled level, but it uses orbitals up to <span class="math inline">\(m=3(N-1)\)</span>. A factor <span class="math inline">\((z_i-w)\)</span> raises the angular momentum of every electron by one. Look at how this pushes charge outward, which leaves the dimple of the quasihole.</figcaption>
+</figure>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>The charge of the quasiparticles can be read from the shot noise of a current. In a two-dimensional electron system in a high magnetic field, at the filling factor <span class="math inline">\(1/3\)</span>, the shot noise of the tunneling current gives the charge of the quasiparticles directly, and it is <span class="math inline">\(e^*=e/3\)</span>. In our reading, the noise of a current grows with the charge of each particle that carries it. So this current is carried by pieces of charge <span class="math inline">\(e/3\)</span> and not <span class="math inline">\(e\)</span>, which is the charge <span class="math inline">\(e/m\)</span> of a quasihole for <span class="math inline">\(m=3\)</span>. The measurement is in <a href="https://arxiv.org/abs/cond-mat/9706307">this article</a>.</p>
+</div>
+<div class="quiz" data-correct="C" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>The Laughlin state has <span class="math inline">\(m=3\)</span>. We insert three quasiholes at three different places,</p>
+<p><span class="math display">\[\Psi=\prod_i(z_i-w_1)(z_i-w_2)(z_i-w_3)\,\Psi_3 .\]</span></p>
+<p>Together they remove the charge of one electron. What is the charge of one quasihole?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -159,6 +249,33 @@ Question
 <p>This is false. Three quasiholes with <span class="math inline">\(e/9\)</span> remove <span class="math inline">\(e/3\)</span>. This is a third of the charge of one electron and not the full charge.</p></li>
 <li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
 <p>This is true. Three identical quasiholes remove the charge <span class="math inline">\(e\)</span> together, so each one has <span class="math inline">\(e/3\)</span>. This agrees with <span class="math inline">\(q=e/m\)</span>, which we confirm with the Berry phase in the next section.</p></li>
+</ul>
+</div>
+</details>
+</div>
+<div class="quiz quiz-pics" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Each picture is the density <span class="math inline">\(2\pi\ell_B^2\rho\)</span> of <span class="math inline">\(20\)</span> electrons against the radius <span class="math inline">\(r\)</span>. A quasihole at the origin multiplies the state by <span class="math inline">\(\prod_iz_i\)</span>. Which picture has a quasihole at the origin?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session04/g4_quiz_density_filled.svg" loading="lazy" alt="A density curve that is flat at one from the origin and drops to zero near 6." /></li>
+<li><img src="../figures/web/session04/g4_quiz_density_quasihole.svg" loading="lazy" alt="A density curve that starts at zero at the origin, rises to one third, and has a bump near 9 before it drops to zero." /></li>
+<li><img src="../figures/web/session04/g4_quiz_density_laughlin.svg" loading="lazy" alt="A density curve that is flat at one third from the origin, with a bump near 9 before it drops to zero." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The density is flat at <span class="math inline">\(1\)</span> from the origin to the edge, with no dip. This is the filled lowest Landau level, with <span class="math inline">\(\nu=1\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. The factor <span class="math inline">\(\prod_iz_i\)</span> vanishes when an electron sits at the origin, so the density is zero there. Away from the dip the density is back at <span class="math inline">\(1/3\)</span>, and the dip holds about <span class="math inline">\(1/3\)</span> of an electron less, counted in a disc of radius <span class="math inline">\(5\)</span> to <span class="math inline">\(8\,\ell_B\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. The density is flat at <span class="math inline">\(1/3\)</span> down to the origin, with no dip. This is the Laughlin state with <span class="math inline">\(m=3\)</span> and no quasihole, and the bump near <span class="math inline">\(9\,\ell_B\)</span> is the edge of the droplet.</p></li>
 </ul>
 </div>
 </details>

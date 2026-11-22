@@ -85,13 +85,37 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="on" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 4. Electrons in a Magnetic Field, Quantum Hall Effect and Landau Levels</a></p>
 <h1 id="sec-4-5"><span class="num">4.5</span> Edge states and why an insulating bulk still conducts</h1>
-<p>There is an obvious puzzle. If the chemical potential is in a gap between two Landau levels, the bulk of the sample is by definition an insulator. There is no partially filled band, and there are no bulk states at the Fermi energy. So how can such a system carry a finite, quantized current?</p>
-<p>The answer is the same as in the general bulk-boundary argument of Section <a href="../session3/07-what-topology-means-for-a-hamiltonian-and-the-bulk-boundary-correspondence.html#sec-3-7">3.7</a>. A nonzero Chern number cannot end without consequences. At any interface where the Chern number changes there must be protected, gapless and chiral edge modes. Here the interface is the boundary between a sample with Chern number <span class="math inline">\(N\)</span> and the vacuum, which has <span class="math inline">\(C=0\)</span>, so there are <span class="math inline">\(N\)</span> such modes. A chiral mode propagates in only one direction, and the number of edge modes at an interface is equal to the difference in Chern number across it. Every real sample is finite, so it always has an edge, and the edge states are always there, even when we do not think about them. A voltage between the top edge and the bottom edge of the sample creates an imbalance between the edge electrons that move to the right and the ones that move to the left. This imbalance is the quantized Hall current.</p>
+<p>There is an obvious puzzle. If the chemical potential is in a gap between two Landau levels, the bulk of the sample is by definition an insulator, with no partially filled band and no bulk states at the Fermi energy. So how can such a system carry a finite, quantized current? We will now see that the current is carried at the edge, by <span class="math inline">\(N\)</span> chiral modes, one for each filled Landau level, which cannot backscatter.</p>
+<div class="recall">
+<div class="recall-label">
+From before
+</div>
+<div class="eq-again">
+<p><span class="math display">\[C_{\text{tot}} = \sum_{n=0}^{N-1} C_n = N \quad\Longrightarrow\quad \sigma_{xy} = N\,\frac{e^2}{h}, \tag{4.2}\]</span></p>
+</div>
+<p>This is the Hall conductance of <span class="math inline">\(N\)</span> filled Landau levels, from Section <a href="03-from-the-kubo-formula-to-the-chern-number-briefly.html#sec-4-4">4.4</a>. Here <span class="math inline">\(C_n\)</span> is the Chern number of the level <span class="math inline">\(n\)</span>, and <span class="math inline">\(C_{\text{tot}}\)</span> is the Chern number of all the filled bands together.</p>
+</div>
+<p>The answer is the same as in the general bulk-boundary argument of Section <a href="../session3/07-what-topology-means-for-a-hamiltonian-and-the-bulk-boundary-correspondence.html#sec-3-7">3.7</a>. A nonzero Chern number cannot end without consequences. At any interface where the Chern number changes there must be protected, gapless and chiral edge modes. Here the interface is the boundary between a sample with Chern number <span class="math inline">\(N\)</span> and the vacuum, which has <span class="math inline">\(C=0\)</span>, so there are <span class="math inline">\(N\)</span> such modes. A chiral mode propagates in only one direction, and the number of edge modes at an interface is equal to the difference in Chern number across it.</p>
+<div class="keybox">
+<div class="keybox-label">
+To remember
+</div>
+<p>At an interface between two gapped regions with the Chern numbers <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span>, the number of chiral modes is</p>
+<p><span class="math display">\[N_{\text{modes}}=|C_1-C_2|.\]</span></p>
+<p>At the edge of a sample with <span class="math inline">\(N\)</span> filled Landau levels the vacuum has <span class="math inline">\(C=0\)</span>, so there are <span class="math inline">\(N\)</span> modes. All the modes of one edge move in the same direction, and the states that move the other way sit at the opposite edge. So a local impurity cannot backscatter an electron, and the edge carries the current with no dissipation.</p>
+</div>
+<p>Every real sample is finite, so it always has an edge, and the edge states are always there, even when we do not think about them. A voltage between the top edge and the bottom edge of the sample creates an imbalance between the edge electrons that move to the right and the ones that move to the left. This imbalance is the quantized Hall current.</p>
 <p>The band structure of a ribbon, which is a sample that is infinite in <span class="math inline">\(y\)</span> and finite in <span class="math inline">\(x\)</span>, shows this picture in a completely explicit way. Next to the flat bulk Landau levels, we find a set of dispersive states localized at the left edge, which all propagate in one direction. A mirror set is localized at the right edge and propagates in the opposite direction. Each propagation direction is tied to a <em>location</em>, the left edge or the right edge. So an impurity on the left edge cannot scatter a left-moving electron into a right-moving one, because the right edge is at a macroscopic distance. There is no available final state, so there is no backscattering, and the edge transport has no dissipation. Figure <a href="#fig:s04:ribbon">4.1</a> shows the ribbon spectrum next to its real-space picture, together with the chiral modes that cross the chemical potential.</p>
 <figure id="fig:s04:ribbon">
 <img src="../figures/s04f01_ribbon.svg" loading="lazy" alt="The quantum Hall ribbon." />
 <figcaption><strong>Figure 4.1.</strong> The quantum Hall ribbon. (a) The spectrum of a strip that is infinite along <span class="math inline">\(y\)</span> and finite along <span class="math inline">\(x\)</span>, computed for a width of <span class="math inline">\(12\,\ell_B\)</span> with hard walls. In the bulk the Landau levels <a href="09-landau-levels-of-schrodinger-electrons.html#eq-4-6">(4.6)</a> are flat, so they carry no current at all. Near each boundary the guiding centre <span class="math inline">\(x_0=\hbar k_y/B\)</span> is pushed into the wall and the level bends up strongly. These bending branches are the edge states. Each of them crosses the chemical potential, the translucent plane, once per edge, at the balls. So the number of chiral modes at a given edge is equal to the number <span class="math inline">\(N\)</span> of filled Landau levels, here <span class="math inline">\(N=2\)</span>. (b) The same statement in real space, seen from above. The branches with <span class="math inline">\(k_y&gt;0\)</span> have <span class="math inline">\(v_y=\hbar^{-1}\partial_{k_y}E&gt;0\)</span> and live on the right edge, and the branches with <span class="math inline">\(k_y&lt;0\)</span> move in the opposite direction and live on the left edge. To reverse the velocity of an electron we would have to move it to the other side of the sample, which no local impurity can do. This is why the edge transport has no dissipation.</figcaption>
 </figure>
+<div class="lab">
+<div class="lab-label">
+In the lab
+</div>
+<p>The absence of backscattering is measured with the longitudinal resistance of a Hall bar, which vanishes when the current flows with no dissipation. In films of V-doped (Bi,Sb)<span class="math inline">\(_2\)</span>Te<span class="math inline">\(_3\)</span> at zero magnetic field the longitudinal resistance goes down to <span class="math inline">\(0.00013\pm0.00007\)</span> in units of <span class="math inline">\(h/e^2\)</span>, which is <span class="math inline">\(3.35\pm1.76\ \Omega\)</span>, against <span class="math inline">\(h/e^2=25.8\)</span> k<span class="math inline">\(\Omega\)</span>. The measurement is in <a href="https://arxiv.org/abs/1412.3758">this article</a>. The state of these films is the quantum anomalous Hall state, which comes from spin-orbit coupling and ferromagnetism. In our reading it is a Chern insulator with <span class="math inline">\(|C|=1\)</span> and not a Landau level, and its chiral edge follows from the same argument of Section <a href="../session3/07-what-topology-means-for-a-hamiltonian-and-the-bulk-boundary-correspondence.html#sec-3-7">3.7</a>.</p>
+</div>
 <div class="quiz" data-correct="B" data-fb="1">
 <div class="quiz-label">
 Question
@@ -114,7 +138,7 @@ Question
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
 <p>This is true. On one edge all the modes propagate in the same direction. A state that propagates the other way is on the other side of the sample, and a local impurity cannot connect the two.</p></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
-<p>This is false. The magnetic field breaks time-reversal symmetry in this system. Time reversal protects the helical edge of the quantum spin Hall insulator of Section <a href="../session3/11b-kramers-protection-of-the-helical-edge.html#sec-3-11b">3.11b</a>, and here the chirality does the job.</p></li>
+<p>This is false. The magnetic field breaks time-reversal symmetry in this system. Time reversal protects the helical edge of the quantum spin Hall insulator, and here the protection comes from the chirality.</p></li>
 </ul>
 </div>
 </details>
@@ -124,7 +148,7 @@ Question
 Question
 </div>
 <div class="quiz-q">
-<p>The chemical potential moves from the gap above the first Landau level to the gap above the third. How do the number of chiral modes at one edge and <span class="math inline">\(\sigma_{xy}\)</span> change?</p>
+<p>The chemical potential is in the gap above the first Landau level. It moves to the gap above the third level. How do the number of chiral modes at one edge and <span class="math inline">\(\sigma_{xy}\)</span> change?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -141,14 +165,60 @@ Question
 <li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
 <p>This is true. The number of chiral modes at an edge is equal to the Chern number of the bulk, which counts the filled Landau levels. The Hall conductance is this number times <span class="math inline">\(e^2/h\)</span>.</p>
 <figure class="quiz-fig schematic">
-<img src="../figures/web/session04/ribbon_three.svg" loading="lazy" alt="Ribbon spectrum with flat Landau levels that bend up at both walls, and the chemical potential above the third level with three crossings at each edge." />
-<figcaption>The chemical potential in the gap above the third Landau level. Each edge has three crossings, marked by the circles, which are the three chiral modes.</figcaption>
+<img src="../figures/web/session04/ribbon_three.svg" loading="lazy" alt="Ribbon spectrum with five flat Landau levels, ticked at 0.5, 1.5, 2.5 and 3.5, that bend up at both walls, and the chemical potential at 3 with three crossings at each edge." />
+<figcaption>The continuum ribbon of width <span class="math inline">\(12\,\ell_B\)</span> with hard walls, with the energy in units of <span class="math inline">\(\hbar\omega_c\)</span> and the chemical potential <span class="math inline">\(\mu=3\hbar\omega_c\)</span> in the gap above the third Landau level. The momentum <span class="math inline">\(k_y\ell_B\)</span> is the guiding center in units of <span class="math inline">\(\ell_B\)</span>, measured from the left wall and not from the middle, so the walls are at <span class="math inline">\(0\)</span> and <span class="math inline">\(12\)</span>. Each edge has three crossings, marked by the circles, which are the three chiral modes.</figcaption>
 </figure></li>
 <li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
 <p>This is false. Two modes and <span class="math inline">\(2e^2/h\)</span> belong to the gap above the second level. The gap above the third level has three filled levels, so three modes.</p></li>
 </ul>
 </div>
 </details>
+</div>
+<div class="quiz quiz-pics" data-correct="B" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>Each picture is the spectrum of a quantum Hall ribbon. The guiding center <span class="math inline">\(x_0=k_y\ell_B^2\)</span> is on the hard walls at <span class="math inline">\(k_y\ell_B=0\)</span> and <span class="math inline">\(12\)</span>. The dashed line is the chemical potential <span class="math inline">\(\mu\)</span>. Which ribbon has <span class="math inline">\(|\sigma_{xy}|=2e^2/h\)</span>?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><img src="../figures/web/session04/g2_quiz_qhribbon_gap1.svg" loading="lazy" alt="A ribbon spectrum with flat levels at 0.5, 1.5, 2.5 and 3.5 that bend up at both walls, and the dashed line of the chemical potential between the first and the second level." /></li>
+<li><img src="../figures/web/session04/g2_quiz_qhribbon_gap2.svg" loading="lazy" alt="A ribbon spectrum with flat levels at 0.5, 1.5, 2.5 and 3.5 that bend up at both walls, and the dashed line of the chemical potential between the second and the third level." /></li>
+<li><img src="../figures/web/session04/g2_quiz_qhribbon_gap3.svg" loading="lazy" alt="A ribbon spectrum with flat levels at 0.5, 1.5, 2.5 and 3.5 that bend up at both walls, and the dashed line of the chemical potential between the third and the fourth level." /></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. Here <span class="math inline">\(\mu=\hbar\omega_c\)</span>, between the levels at <span class="math inline">\(\tfrac12\)</span> and <span class="math inline">\(\tfrac32\)</span> in units of <span class="math inline">\(\hbar\omega_c\)</span>. One branch crosses <span class="math inline">\(\mu\)</span> at each edge, so there is one chiral mode per edge and <span class="math inline">\(|\sigma_{xy}|=e^2/h\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">B. ✓ True</span>
+<p>This is true. Here <span class="math inline">\(\mu=2\hbar\omega_c\)</span>, so two levels are filled. Two branches cross <span class="math inline">\(\mu\)</span> at each edge, which are two chiral modes, and each mode adds <span class="math inline">\(e^2/h\)</span>.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">C. ✗ False</span>
+<p>This is false. Here <span class="math inline">\(\mu=3\hbar\omega_c\)</span>, so three levels are filled and three branches cross <span class="math inline">\(\mu\)</span> at each edge. This gives <span class="math inline">\(|\sigma_{xy}|=3e^2/h\)</span>.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>We count the crossings at one edge and not at both, since the modes of the two edges move in opposite directions. When the field is reversed, the modes of each edge move the other way and <span class="math inline">\(\sigma_{xy}\)</span> changes sign, while <span class="math inline">\(|\sigma_{xy}|\)</span>, the number of modes times <span class="math inline">\(e^2/h\)</span>, stays the same.</p>
+</div>
+</details>
+</div>
+<div class="problem">
+<div class="problem-label">
+Problem
+</div>
+<p>A gate sets <span class="math inline">\(N=2\)</span> filled Landau levels on the left half of a sample and <span class="math inline">\(N=5\)</span> on the right half, in the same field. How many chiral modes run along the line between the two halves?</p>
+<div class="fold solution">
+<details class="fold-details"><summary><span class="fold-label">Solution</span></summary>
+<div class="fold-body">
+<p>Each half is a gapped quantum Hall state. The left half has a Chern number of magnitude <span class="math inline">\(2\)</span> and the right half of magnitude <span class="math inline">\(5\)</span>, with the same sign, since the field is the same. The key box gives</p>
+<p><span class="math display">\[N_{\text{modes}}=|C_1-C_2|=|5-2|=3.\]</span></p>
+<p>We can also count the edge modes of each half. Along the line the right half has its own edge with five modes, and the left half has its edge with two modes. These two move in the opposite direction, since the two halves touch the line from opposite sides. Two pairs of opposite modes can mix and backscatter, and three modes remain, which move in the direction of the five modes of the right half.</p>
+<p>The continuum ribbon of the figures gives the same count. We take a ribbon of width <span class="math inline">\(24\,\ell_B\)</span> and the chemical potential <span class="math inline">\(\mu=5\hbar\omega_c\)</span>, with a step of the potential of <span class="math inline">\(3\hbar\omega_c\)</span> on its left half. So the left half has <span class="math inline">\(2\)</span> filled levels and the right half <span class="math inline">\(5\)</span>. Then <span class="math inline">\(2\)</span> branches cross <span class="math inline">\(\mu\)</span> at the left wall, <span class="math inline">\(3\)</span> at the step and <span class="math inline">\(5\)</span> at the right wall. The three modes at the step move in the same direction as the two at the left wall, and opposite to the five at the right wall. The count uses only the two Chern numbers, and a gate on one half of a Hall bar gives a line with three modes.</p>
+</div>
+</details>
+</div>
 </div>
 <div class="notebookbox">
 <p><strong>Notebook check-in:</strong> <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session4.ipynb"><code>session4.ipynb</code></a>, “Localization of the edge states in the quantum Hall effect in a ribbon” (Challenge), and “Localization of the edge states in the quantum Hall effect in an island” (Challenge)</p>

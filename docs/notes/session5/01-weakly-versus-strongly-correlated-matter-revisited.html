@@ -85,6 +85,7 @@
   <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="on" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
   <p class="crumb"><a href="index.html">Session 5. Superconductivity, Nambu Representation and Majorana Physics</a></p>
 <h1 id="sec-5-1"><span class="num">5.1</span> Weakly versus strongly correlated matter, revisited</h1>
+<p>Why does a superconductor have a mean-field description, while the fractional quantum Hall state needs exact methods? We will now see that interacting matter splits into weakly and strongly correlated matter. The superconductor comes from an attractive interaction, and it is on the weak side.</p>
 <p>Before we specialize, let us state again the general setting, since it is useful to have it clearly in mind. Every interacting Hamiltonian that we consider in this course has the same general form,</p>
 <p><span class="math display">\[H = \sum_{ij} t_{ij}\, c_i^\dagger c_j \;+\; \sum_{ijkl} V_{ijkl}\, c_i^\dagger c_j^\dagger c_k c_l,\]</span></p>
 <p>which is a free bilinear part plus a quartic interaction, and it is equation <a href="../session1/12-the-general-interacting-hamiltonian-and-the-tool-we-will-use-on-it.html#eq-1-5">(1.5)</a> of <a href="../session1/index.html">Session 1</a>. When mean-field theory can turn the quartic term into a good effective bilinear Hamiltonian, we call the resulting state <em>weakly correlated matter</em>. This includes magnets, charge density waves and superconductors, which are all the states that we built in <a href="../session1/index.html">Session 1</a>. When no single-particle mean-field Hamiltonian of this kind describes the physics, we have <em>strongly correlated matter</em>, and we need exact or numerical solutions instead. The fractional quantum Hall state of Section <a href="../session4/16-fractional-filling-and-the-laughlin-wavefunction.html#sec-4-16">4.16</a> is our main example of this harder case.</p>
@@ -98,7 +99,7 @@
 Question
 </div>
 <div class="quiz-q">
-<p>A superconductor and a fractional quantum Hall state both host excitations that are a fraction of an electron. Which statement separates their origin?</p>
+<p>Two states host excitations that are a fraction of an electron. They are a superconductor and a fractional quantum Hall state. Which statement separates their origin?</p>
 </div>
 <div class="quiz-options">
 <ol type="A">
@@ -123,6 +124,36 @@ Question
 <p><span class="math display">\[H_{\text{MF}} = -t\sum_{n\sigma}\left(c_{n\sigma}^\dagger c_{n+1,\sigma}+\text{h.c.}\right) - \mu\sum_{n\sigma}c_{n\sigma}^\dagger c_{n\sigma} + \sum_n\left(\Delta_n\, c_{n\uparrow}^\dagger c_{n\downarrow}^\dagger + \Delta_n^*\, c_{n\downarrow}c_{n\uparrow}\right) - \sum_n\frac{|\Delta_n|^2}{U}. \tag{5.4}\]</span></p>
 </div></li>
 </ul>
+</div>
+</details>
+</div>
+<div class="quiz" data-correct="C" data-fb="1">
+<div class="quiz-label">
+Question
+</div>
+<div class="quiz-q">
+<p>The onsite interaction is <span class="math inline">\(U n_\uparrow n_\downarrow\)</span>, with <span class="math inline">\(n_\sigma=c_\sigma^\dagger c_\sigma\)</span>. Mean-field theory keeps one expectation value in each term. Which term gives a superconductor?</p>
+</div>
+<div class="quiz-options">
+<ol type="A">
+<li><span class="math inline">\(U\langle c_\uparrow^\dagger c_\uparrow\rangle\, c_\downarrow^\dagger c_\downarrow\)</span></li>
+<li><span class="math inline">\(-U\langle c_\uparrow^\dagger c_\downarrow\rangle\, c_\downarrow^\dagger c_\uparrow\)</span></li>
+<li><span class="math inline">\(U\langle c_\downarrow c_\uparrow\rangle\, c_\uparrow^\dagger c_\downarrow^\dagger\)</span></li>
+</ol>
+</div>
+<details class="quiz-answer"><summary>Show the answers</summary>
+<div class="quiz-fbs">
+<ul>
+<li><span class="quiz-verdict" data-verdict="false">A. ✗ False</span>
+<p>This is false. The term has one creation and one annihilation operator, so it keeps the number of electrons. On one site with <span class="math inline">\(U=2\)</span> and <span class="math inline">\(\langle c_\uparrow^\dagger c_\uparrow\rangle=0.8\)</span> it only moves the spin-down level up by <span class="math inline">\(1.6\)</span>, and <span class="math inline">\(\langle c_\downarrow c_\uparrow\rangle\)</span> stays zero. This channel gives a charge density wave or a magnet.</p></li>
+<li><span class="quiz-verdict" data-verdict="false">B. ✗ False</span>
+<p>This is false. The term flips a spin and keeps the number of electrons, so <span class="math inline">\(\langle c_\downarrow c_\uparrow\rangle\)</span> stays zero. This channel gives a magnet with its moment in the <span class="math inline">\(xy\)</span> plane.</p></li>
+<li><span class="quiz-verdict" data-verdict="true">C. ✓ True</span>
+<p>This is true. The operator <span class="math inline">\(c_\uparrow^\dagger c_\downarrow^\dagger\)</span> creates two electrons, so the term changes the number of electrons by two. With <span class="math inline">\(\Delta=U\langle c_\downarrow c_\uparrow\rangle\)</span> it is the pairing term <span class="math inline">\(\Delta\, c_\uparrow^\dagger c_\downarrow^\dagger\)</span> of a superconductor.</p></li>
+</ul>
+</div>
+<div class="quiz-expl">
+<p>The three terms come from the same quartic term, and the expectation value that we keep decides which ordered state we get.</p>
 </div>
 </details>
 </div>
