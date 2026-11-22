@@ -617,7 +617,8 @@ def course_index(sessions, mans):
 
 def copy_widgets(outputs):
     """For every widget the pages use (data-widget="ID"), checks that widgets/defs/ID.py and widgets/data/ID.json exist
-    and match, and copies both to notes/widgets/. The JSON is made by widgets/precompute.py."""
+    and match, and writes notes/widgets/ID.py, the code to read, and notes/widgets/ID.js, the data and the code that
+    notes.js loads. The JSON is made by widgets/precompute.py."""
     import hashlib
     ids = sorted({m for t in outputs.values() for m in re.findall(r'data-widget="([^"]+)"', t)})
     for wid in ids:
@@ -630,7 +631,52 @@ def copy_widgets(outputs):
         if json.load(open(js))['meta'].get('sha') != sha:
             check.ERRORS.append(f'widget {wid}: widgets/defs/{wid}.py changed after its JSON, run widgets/precompute.py {wid}')
         write(os.path.join(NOTES, 'widgets', wid + '.py'), open(py).read())
-        write(os.path.join(NOTES, 'widgets', wid + '.json'), open(js).read())
+        write(os.path.join(NOTES, 'widgets', wid + '.js'), widget_js(wid, open(js).read(), open(py).read()))
+        old = os.path.join(NOTES, 'widgets', wid + '.json')     # the form before the pages worked from a file
+        if os.path.exists(old):
+            os.unlink(old)
+
+
+def widget_js(wid, data, src):
+    """The data and the code of a widget as one script. notes.js loads it with a script tag and not with fetch(),
+    since a page opened from a file (the notes downloaded as a zip) is not allowed to fetch its neighbors."""
+    body = json.dumps({'data': json.loads(data), 'src': src}, separators=(',', ':')).replace('</', '<\\/')
+    return f'(window.__aqmWidgets = window.__aqmWidgets || {{}})[{json.dumps(wid)}] = {body};\n'
+
+
+# What the pages can ask of MathJax: the bundle, the TeX extensions that it loads when a macro needs them, the fonts,
+# and the accessibility tools of its menu with the speech rules.
+MATHJAX_PARTS = ['tex-chtml.js', 'input/tex/extensions', 'output/chtml/fonts/woff-v2', 'a11y', 'sre']
+
+
+def copy_mathjax():
+    """Copies MathJax to notes/mathjax/, so that the pages need no CDN and work without network. The master is the
+    package of the math check (mathcheck/node_modules), the same version. Without it the copy of docs/notes/ is
+    used, which is what a private build on a machine without node gets."""
+    dst = os.path.join(NOTES, 'mathjax')
+    src = os.path.join(HERE, 'mathcheck', 'node_modules', 'mathjax-full', 'es5')
+    licence = os.path.join(os.path.dirname(src), 'LICENSE')
+    if not os.path.isdir(src):
+        src = os.path.join(DOCS, 'notes', 'mathjax')
+        licence = os.path.join(src, 'LICENSE')
+    if not os.path.exists(os.path.join(src, 'tex-chtml.js')):
+        check.ERRORS.append('MathJax: no copy to put in notes/mathjax/ (run npm install in webnotes/mathcheck/)')
+        return
+    if os.path.abspath(src) == os.path.abspath(dst):
+        return
+    pairs = [(licence, 'LICENSE')]
+    for part in MATHJAX_PARTS:
+        a = os.path.join(src, part)
+        files = [a] if os.path.isfile(a) else [os.path.join(r, f) for r, _, fs in os.walk(a) for f in fs]
+        pairs += [(f, os.path.relpath(f, src)) for f in sorted(files)]
+    for f, rel in pairs:
+        out = os.path.join(dst, rel)
+        data = open(f, 'rb').read()
+        if os.path.exists(out) and open(out, 'rb').read() == data:
+            continue
+        os.makedirs(os.path.dirname(out), exist_ok=True)
+        with open(out, 'wb') as g:
+            g.write(data)
 
 
 def build(only=None, page=None):
@@ -656,6 +702,7 @@ def build(only=None, page=None):
     if any(T.CSS_LINK in t for t in outputs.values()):
         write(os.path.join(NOTES, 'notes.css'), open(os.path.join(HERE, 'widgets', 'notes.css')).read())
     copy_widgets(outputs)
+    copy_mathjax()
     # a page of a built session that the manifest does not know is stale
     if not only:
         known = set(outputs)

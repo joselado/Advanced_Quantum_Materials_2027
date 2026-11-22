@@ -77,9 +77,10 @@ NOTES_STYLE = """
   @media print { .withside { display: block; max-width: none; } }
 """
 
+MATHJAX_DIR = 'mathjax/'     # the copy of MathJax 3.2.2 in notes/, written by build.py, so that the pages work without network
 MATHJAX = ('<script>window.MathJax={tex:{inlineMath:[["\\\\(","\\\\)"]],displayMath:[["\\\\[","\\\\]"]],tags:"none"},'
            'options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>\n'
-           '<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>')
+           '<script id="MathJax-script" async src="%stex-chtml.js"></script>')
 
 
 def esc(s):
@@ -92,7 +93,7 @@ def shell(title, body, depth):
     up = '../' * depth
     assets = '../' * (depth - 1) if PRIVATE else f'{up}notes/'
     css = f'<link rel="stylesheet" href="{assets}{CSS_LINK}\n' if NEW_BLOCKS.search(body) else ''
-    head = f'{MATHJAX}\n{css}<script src="{assets}notes.js" defer></script>\n'
+    head = f'{MATHJAX % (assets + MATHJAX_DIR)}\n{css}<script src="{assets}notes.js" defer></script>\n'
     return site.page(title, body, depth, head=head, style=NOTES_STYLE)
 
 

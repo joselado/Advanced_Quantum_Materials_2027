@@ -123,9 +123,10 @@
 
   // ---------------------------------------------------------------------------------------------------------------
   // Widgets. <div class="widget" data-widget="ID"> holds the introduction written in the Markdown. This script adds
-  // the sliders and the plots. The curves come from widgets/ID.json, computed by webnotes/widgets/precompute.py with
-  // the code of widgets/ID.py, so that they appear at once and without network. The button "Run live" loads Pyodide
-  // from the CDN, installs what ID.py needs, and runs the same code in the browser for any value of the sliders.
+  // the sliders and the plots. The curves come from widgets/ID.js, computed by webnotes/widgets/precompute.py with
+  // the code of widgets/ID.py, so that they appear at once and without network, also in a page opened from a file.
+  // The button "Run live" loads Pyodide from the CDN, installs what ID.py needs, and runs the same code in the
+  // browser for any value of the sliders.
   // ---------------------------------------------------------------------------------------------------------------
   var PYODIDE = 'https://cdn.jsdelivr.net/pyodide/v0.27.7/full/';
   var PYQULA = 'pyqula==0.0.96';
@@ -400,7 +401,6 @@
         live.disabled = true;
         preparePython(meta, function (m) { say.textContent = m + '.'; }).then(async function (py) {
           window.__aqmPy = py;
-          if (!srcText) srcText = await (await fetch(BASE + 'widgets/' + id + '.py')).text();
           say.textContent = 'Running the code once.';
           py.globals.get('_w_load')(id, srcText);
           var par = {};
@@ -412,27 +412,28 @@
           say.textContent = 'Any value of the sliders is computed with the code below.';
           refresh();
         }).catch(function (e) {
-          say.textContent = 'Python could not start here (' + (e && e.message ? e.message.split('\n').slice(-1)[0] : e) +
-                            '). The precomputed curves still work.';
+          say.textContent = navigator.onLine === false
+            ? 'The live run needs an internet connection, since Python is loaded from the CDN. The precomputed curves still work.'
+            : 'Python could not start here (' + (e && e.message ? e.message.split('\n').slice(-1)[0] : e) +
+              '). The precomputed curves still work.';
           live.disabled = false;
         });
       });
-      code.addEventListener('toggle', async function () {
+      code.addEventListener('toggle', function () {
         if (!code.open || code.getAttribute('data-done')) return;
-        try {
-          if (!srcText) srcText = await (await fetch(BASE + 'widgets/' + id + '.py')).text();
-          code.querySelector('code').textContent = srcText;
-          code.setAttribute('data-done', '1');
-        } catch (e) { code.querySelector('code').textContent = 'The code could not be loaded.'; }
+        code.querySelector('code').textContent = srcText;
+        code.setAttribute('data-done', '1');
       });
       refresh();
     }
     function start() {
-      fetch(BASE + 'widgets/' + id + '.json').then(function (r) {
-        if (!r.ok) throw new Error(r.status);
-        return r.json();
-      }).then(function (d) { data = d; meta = d.meta; build(); }).catch(function () {
-        plots.textContent = 'The data of this widget could not be loaded. Open the notes from the web page and not from a file.';
+      // widgets/ID.js puts the data and the code in window.__aqmWidgets[ID]. A script tag also loads when the page
+      // is opened from a file, where fetch() of a neighbor file is refused.
+      loadScript(BASE + 'widgets/' + id + '.js').then(function () {
+        var w = window.__aqmWidgets[id];
+        data = w.data; meta = data.meta; srcText = w.src; build();
+      }).catch(function () {
+        plots.textContent = 'The data of this widget could not be loaded.';
       });
     }
     if ('IntersectionObserver' in window) {

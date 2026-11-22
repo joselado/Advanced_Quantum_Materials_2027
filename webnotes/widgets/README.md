@@ -6,11 +6,12 @@ one sentence of text follow. Ten of them exist, one per session, each tied to on
 ## What the student sees
 
 The page shows the introduction written in the Markdown, the sliders, the plots and a readout sentence. The curves
-come from a JSON computed in advance on the grid of the slider, so that they appear at once, also without network.
+come from a JSON computed in advance on the grid of the slider, so that they appear at once, also without network
+and in a page opened from a file.
 The button "Run live in the browser" loads Pyodide (Python in WebAssembly) from the jsDelivr CDN, installs what the
 widget needs and runs the same code for any value of the slider. The Python code is shown under "Show the Python
-code". Pyodide is loaded only when the button is pressed, so a page with a widget costs only `notes.js` and one JSON,
-which is fetched when the widget is about to come into view.
+code". Pyodide is loaded only when the button is pressed, so a page with a widget costs only `notes.js` and one script with
+the JSON, which is loaded when the widget is about to come into view.
 
 ## The block in the Markdown
 
@@ -47,7 +48,10 @@ to be pasted at the end of the section that is named in the table below.
 - `blocks/ID.md`, the Markdown block of the widget.
 - `notes.js`, the sliders, the plots and the Pyodide loader. `notes.css`, the look.
 
-`build.py` copies `defs/ID.py` and `data/ID.json` of every widget a page uses to `docs/notes/widgets/`.
+For every widget a page uses, `build.py` writes two files in `docs/notes/widgets/`. `ID.py` is the code, for the
+reader. `ID.js` holds the JSON and the code as one script that puts them in `window.__aqmWidgets[ID]`. `notes.js`
+loads it with a script tag and not with `fetch()`, since a page opened from a file is not allowed to fetch its
+neighbors, and the notes can be downloaded as a zip.
 
 ## META and the result of compute
 
@@ -77,8 +81,9 @@ numpy and the packages of `META`, and for a widget with `pyqula=True` it also do
   make `jit` do nothing, which is enough for the band structures and the finite systems of the widgets.
 - It installs `dill`, `threadpoolctl`, `multiprocess` and `pyqula==0.0.96` with `micropip`, without the dependencies.
 
-Then it fetches `widgets/ID.py`, runs it once and calls `compute` at each move of the slider. If anything fails,
-the status line says so and the precomputed curves stay. Offline, the widget works from the JSON alone.
+Then it runs the code of `widgets/ID.js` once and calls `compute` at each move of the slider. If anything fails,
+the status line says so and the precomputed curves stay. Offline, the widget works from the precomputed curves alone,
+and the status line says that the live run needs a connection.
 
 ## A new widget
 

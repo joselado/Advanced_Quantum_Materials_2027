@@ -171,7 +171,9 @@ MathJax 3 from the jsDelivr CDN, `tex-chtml`, with `tags: "none"` and the explic
 PDF, and do not depend on the order in which the browser renders the page. The inline delimiters
 are `\(` `\)` and the display ones `\[` `\]`, as pandoc writes them. Display equations scroll
 horizontally on a phone instead of overflowing. This is the renderer the lecturer chose.
-Vendoring MathJax into `docs/` stays the way out if the CDN becomes a problem.
+Vendoring MathJax into `docs/` stays the way out if the CDN becomes a problem. This way out was taken on
+2026-11-22, so that the site can be downloaded as a zip and read without network: the same MathJax 3.2.2 is now a
+copy in `docs/notes/mathjax/`, see "The site without network" in `webnotes/README.md`.
 
 ## Figures and captions
 

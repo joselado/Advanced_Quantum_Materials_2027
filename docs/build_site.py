@@ -15,6 +15,10 @@ import os
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = 'https://github.com/joselado/Advanced_Quantum_Materials_2027'
 RELEASE = REPO + '/releases/download'
+# The whole site as one zip, to read the notes without network. webnotes/offline.py makes it and uploads it.
+OFFLINE_TAG = 'offline'
+OFFLINE_ZIP = 'Advanced_Quantum_Materials_2027_site.zip'
+OFFLINE = f'{RELEASE}/{OFFLINE_TAG}/{OFFLINE_ZIP}'
 
 FORMATS = {
     'lectures': {
@@ -232,7 +236,8 @@ def pager(prev=None, nxt=None):
 def footer(up):
     return (f'  <footer class="foot">Teaching material of the course Advanced Quantum Materials at Aalto University, 2027 · '
             f'<a href="{REPO}">Course repository on GitHub</a> · <a href="{up}notes/index.html">Contents of the notes</a> · '
-            f'<a href="{REPO}/blob/main/lecture_notes/main.pdf">PDF of the notes</a></footer>\n')
+            f'<a href="{REPO}/blob/main/lecture_notes/main.pdf">PDF of the notes</a> · '
+            f'<a href="{OFFLINE}">Download the site (zip)</a></footer>\n')
 
 
 def page(title, body, depth, head='', style=''):
@@ -311,7 +316,9 @@ def landing(sessions):
           'lecture has a second version, the landscape lecture, which is chosen above the video. It is lighter, with '
           'less content on the screen, and the physics is shown while we travel through 3D landscapes.</span></p></section>\n')
     b += ('    <section id="notes"><h2>Lecture notes</h2><p>The written version of the lectures, with the equations of the '
-          'PDF. Each session is split in pages of one section, and the boxes point to the notebook of the session.</p>'
+          'PDF. Each session is split in pages of one section, and the boxes point to the notebook of the session. '
+          f'The site can be <a href="{OFFLINE}">downloaded as one zip</a> and read on your computer without network. '
+          'Only the videos and the live runs of the widgets need a connection.</p>'
           '</section>\n  </div>\n')
     b += '  <ol class="sessions">\n'
     for s in sessions:

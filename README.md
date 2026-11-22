@@ -29,6 +29,11 @@ boxes. A page has the explanations, the derivations in folded steps, short probl
 that can be read alone. The simulations are small pyqula scripts that you download next to each plot, and some pages
 have widgets that run in the browser. A box "In the lab" ties a result to a real measurement, with its source.
 
+The notes can also be read without network. The whole site is
+[one zip of 13 MB](https://github.com/joselado/Advanced_Quantum_Materials_2027/releases/download/offline/Advanced_Quantum_Materials_2027_site.zip),
+which you unpack and open at `index.html` in a browser, with nothing to install. Only the videos and the live runs
+of the widgets need a connection.
+
 <p>
 <img src="docs/readme/notes_keybox.jpg" width="49%" alt="A page of the web notes with the box of the main result, the band of the square lattice, and a folded derivation.">
 <img src="docs/readme/notes_figure.jpg" width="49%" alt="A plot of the web notes, the band of the square lattice along a path and over the Brillouin zone, with the button to download its pyqula script.">

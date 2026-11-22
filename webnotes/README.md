@@ -54,9 +54,43 @@ With `--session N` only that session is written, and a link to another session i
 in `pages/` is shared, so a build also shows the unfinished edit of somebody else. The default build, with no
 `--out`, is the one that updates `docs/notes/`, and only the coordinator runs it.
 
+## The site without network
+
+The site works when it is opened from a file, with no server and no network. This is what lets a student download
+it as one zip and read the notes on a computer that is offline. Three things make it possible. The links between the
+pages are relative. MathJax is a copy inside the site, in `docs/notes/mathjax/`, and not a CDN. The data of a widget
+is a script, `widgets/ID.js`, since a page opened from a file is not allowed to `fetch()` its neighbors. Only the
+videos, the button "Run live in the browser" of the widgets and the links to GitHub, Colab and the papers need a
+connection.
+
+`build.py` writes the copy of MathJax from the package of the math check, `mathcheck/node_modules/mathjax-full/es5`,
+which is the same version. It takes the bundle `tex-chtml.js`, the TeX extensions that the bundle loads when a macro
+needs them, the fonts, and the accessibility tools of the MathJax menu with their speech rules, 6.4 MB in total. On a
+machine without the package the copy of `docs/notes/mathjax/` is used.
+
+The zip is made with the command below, after the two builds. It holds `index.html`, the pages of the videos and
+`notes/`, under one folder with a `README.txt`, and it is 13 MB. The same site gives the same file.
+
+```
+python3 webnotes/offline.py             # writes webnotes/.cache/Advanced_Quantum_Materials_2027_site.zip
+python3 webnotes/offline.py --upload    # also uploads it to the release "offline" of the repository, with gh
+```
+
+The link "Download the site (zip)" in the footer of every page points to that release file, so the zip is uploaded
+again after each change of `docs/` that is pushed. The name of the release and of the file are `OFFLINE_TAG` and
+`OFFLINE_ZIP` in `docs/build_site.py`.
+
+To test a change we unpack the zip and open a page from the file with the network cut, as below. In the DOM that
+comes back every formula is a `mjx-container`, and a widget has its `widget-row`.
+
+```
+google-chrome --headless=new --no-sandbox --host-resolver-rules="MAP * ~NOTFOUND" --window-size=1000,40000 \
+  --virtual-time-budget=20000 --dump-dom file:///tmp/unz/Advanced_Quantum_Materials_2027_site/notes/session2/05-blochs-theorem-and-the-first-band-structure.html
+```
+
 ## The math check
 
-The pages render the math in the browser with MathJax 3.2.2. The math check renders every fragment of
+The pages render the math in the browser with MathJax 3.2.2, from the copy in `docs/notes/mathjax/`. The math check renders every fragment of
 `docs/notes/` with the same version and the same TeX configuration, in node, and lists each fragment that
 gives an error, with its page and its text. It needs node and one local package, installed once with the
 command below. The packages stay in `webnotes/mathcheck/node_modules/`, which git ignores.
@@ -666,6 +700,7 @@ reported as not found means the text is new or was reworded on the web.
 - `pages/`, `manifest/`, `SYNC`, the Markdown master, the frozen URLs and the commit of the `.tex` each
   session was last synced to.
 - `mathcheck/check.js`, `mathcheck/package.json`, the math check above.
+- `offline.py`, the zip of the site to read without network, described above.
 - `widgets/notes.js`, `widgets/notes.css`, the shared script of the pages and the style of the added blocks,
   copied to `docs/notes/`. The CSS is linked only by a page that has one of those blocks.
 - `widgets/defs/`, `widgets/data/`, `widgets/blocks/`, `widgets/precompute.py`, the ten widgets, see `widgets/README.md`.
