@@ -212,7 +212,9 @@ plotting, since "the plotting part of the script is not needed, just the part wh
 calculation". In practice the script is `webnotes/scripts/sessionNN/NAME.py`, the figure script
 draws from the variables of that script, so that the figure and the download are the same
 calculation, and the attribute `script="NAME.py"` of the figure makes the button. A calculation
-that pyqula cannot do stays in numpy and has no button. The details are in `webnotes/README.md`.
+that pyqula cannot do stays in numpy and has no button. The details are in `webnotes/README.md`. The scripts target
+the pyqula of GitHub, since the lecturer said on 2026-11-21 that the release of PyPI will be updated to it ("work as if
+pypi will have the one on github").
 
 The old figures that break these rules are redrawn under the same names, picked by the lecturer on 2026-11-21 from
 a list ("Redraw them, same names"), over redrawing only the plots or leaving them for a later pass. In practice the

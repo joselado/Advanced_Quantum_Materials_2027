@@ -1,6 +1,6 @@
 ## A tour of the quantum materials we will meet {#sec-1-2 number="1.2"}
 
-Let us first give a short preview of the materials that this formalism will allow us to understand, so that the abstract tools of this session have concrete targets.
+Which materials will the formalism of this session allow us to understand? Let us first give a short preview of them, so that the abstract tools of this session have concrete targets. We arrive at six families of materials, and at a picture of how the filling of the bands tells the first two of them apart.
 
 - **Insulators**, such as magnesium oxide, sodium chloride or boron nitride, where a finite band gap does not allow electrons to propagate. *Topological* insulators look the same in the bulk, but they behave in a completely different way at the edge, and Session 3 explains this difference.
 
@@ -16,7 +16,7 @@ Let us first give a short preview of the materials that this formalism will allo
 
 The first two items of this list differ only in how the bands of a single electron are filled, and [](#sch:s01:filling_bands) shows this for an insulator and a doped semiconductor, next to a metal.
 
-![Four fillings of a band. In a metal the Fermi level $E_F$ cuts a band, so there are empty states next to the occupied ones. In an insulator the valence band is full and the conduction band is empty. Doping leaves the bands as they are and moves $E_F$, so that a few electrons, the red dots, sit in the conduction band, or a few holes, the red segment, in the valence band. The metal is the band $-2t\cos k$, and the other three are the bands $\pm\sqrt{m^2+(2t\sin q)^2}$ of a chain with two sites per cell, for $m=0.6t$, with $q$ measured from the zone edge.](figures/web/session01/filling_bands.svg){#sch:s01:filling_bands alt="Four band diagrams side by side. A metal with a half-filled band, an insulator with a gap, an n-doped semiconductor with a few electrons at the bottom of the conduction band, and a p-doped semiconductor with a few holes at the top of the valence band."}
+![Four fillings of a band, computed with pyqula. In a metal the Fermi level $E_F$ cuts a band, so there are empty states next to the occupied ones. In an insulator the valence band is full and the conduction band is empty. Doping leaves the bands as they are and moves $E_F$. Then some electrons, in red, sit at the bottom of the conduction band, or some holes, in red, at the top of the valence band. The other filled states are blue and the empty ones grey. The metal is the band $-2t\cos k$ of a chain with one site per cell, with $E_F=0$. The other three are the bands $\pm\sqrt{m^2+4t^2\cos^2k}$ of a chain with two sites per cell, with the onsite energies $\pm m$ and $m=0.6\,t$, so the gap goes from $-0.6\,t$ to $0.6\,t$. Their Fermi levels are $E_F=0$ for the insulator, $0.95\,t$ for the n-doped chain and $-0.95\,t$ for the p-doped one. This doping is much larger than in a real semiconductor, so that the carriers can be seen. At $E_F=0.95\,t$ the spinless chain has $0.12$ electrons per site in the conduction band, which is $0.24$ of that band. The momentum $k$ is per site, in units of the inverse distance between sites, and the energy is in units of $t$. The dotted lines are the edges of the Brillouin zone of the chain with two sites per cell, and its bands repeat outside them. Look at where $E_F$ sits, inside a band for the metal, in the gap for the insulator, and inside the band above or below the gap for the two doped chains.](figures/web/session01/filling_bands.svg){#sch:s01:filling_bands alt="Four band structures in a square of two by two, of the energy over t against the momentum k from minus pi to pi, with the Fermi level as a red dashed line. A metal with a half-filled band from minus 2 to 2, an insulator with a gap, an n-doped semiconductor with some electrons at the bottom of the conduction band, and a p-doped semiconductor with some holes at the top of the valence band." script="g1_chain_bands.py"}
 
 ![The Dirac cone of graphene. The two bands touch at one point and rise linearly around it, which is why the electrons behave as massless particles. We derive this cone in Section [2.11](#sec-2-11).](figures/s02f04_dirac.svg){panel="c" alt="A hexagonal Brillouin zone with a Dirac cone at two of its corners."}
 
@@ -56,6 +56,24 @@ A doped semiconductor conducts, while the undoped one with the same bands does n
     This is false. In doped silicon the carriers are so dilute that they are almost free, and the material is not magnetic. The conduction comes from the number of carriers and not from their interaction.
 
 The bands stay the same, and only the filling changes.
+:::
+
+::: quiz
+Each picture shows bands and their filling, with $E$ in units of the hopping $t$. The dashed line is the Fermi level $E_F$. The filled states are blue and the empty states grey. Which picture shows an n-doped semiconductor?
+
+- [ ] ![Two bands separated by a gap, with the dashed line in the middle of the gap. The lower band is blue and the upper band is grey.](figures/web/session01/g1_quiz_fill_insulator.svg)
+
+    This is false. Here $E_F=0$ lies in the middle of the gap, which goes from $-0.6\,t$ to $0.6\,t$. The lower band is full and the upper band is empty, so this is an insulator.
+
+- [x] ![Two bands separated by a gap, with the dashed line above the bottom of the upper band. The lower band and the bottom of the upper band are blue.](figures/web/session01/g1_quiz_fill_ndoped.svg)
+
+    This is true. The gap goes from $-0.6\,t$ to $0.6\,t$, and $E_F=0.95\,t$ lies above the bottom of the upper band. The lower band is full, and some electrons sit at the bottom of the conduction band, where they carry a current.
+
+- [ ] ![One band with no gap, with the dashed line at zero energy. The lower half of the band is blue and the upper half is grey.](figures/web/session01/g1_quiz_fill_metal.svg)
+
+    This is false. There is one band, $-2t\cos k$, and $E_F=0$ cuts it in the middle, so half of its states are filled. There is no gap at all, so this is a metal.
+
+The bands of a doped semiconductor are those of the insulator, and only $E_F$ moves into a band.
 :::
 
 ::: comesback

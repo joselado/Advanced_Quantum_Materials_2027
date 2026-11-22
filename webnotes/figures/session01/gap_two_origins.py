@@ -1,46 +1,50 @@
-"""Session 1, two gaps that look alike. A band gap of the lattice and a pairing gap of the electrons."""
+"""Session 1, two gaps that look alike. A band gap of the lattice and a pairing gap of the electrons.
+
+Redrawn on 2026-11-21 with its axes, from the downloadable pyqula script webnotes/scripts/session01/g1_two_gaps.py.
+On the left the chain with two sites per cell (geometry.bichain) with the hopping -1 and the onsite energies +-m,
+m = 0.6, whose bands are +-sqrt(m^2 + 4t^2 cos^2 k). On the right the half-filled chain with one site per cell, the
+band xi = -2t cos k, with the s-wave pairing h.add_swave(0.6), whose Bogoliubov-de Gennes bands are
++-sqrt(xi^2 + Delta^2). The momentum k is per site, from -pi to pi in both panels, so the chain with two sites per
+cell is drawn over two of its zones, whose edges k = +-pi/2 are dashed. The grey lines are the bands without the gap,
++-2t cos k in both panels. For m = Delta the two spectra are the same curves, which is asserted below."""
 import os, sys
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.patches import Circle, FancyBboxPatch, Rectangle, Ellipse, FancyArrowPatch
 import style
 
-t, m, D = 1.0, 0.6, 0.6
-fig, axs = style.figure(height_cm=5.6, ncols=2)
-k = np.linspace(-np.pi / 2, np.pi / 2, 400)
-# (a) chain with two sites per cell and an onsite energy +-m, the bands are +-sqrt(m^2+(2t cos k)^2)
-ax = axs[0]
-band = 2 * t * np.cos(k)
-Ea = np.sqrt(m ** 2 + band ** 2)
-assert abs(Ea.min() - m) < 1e-3                       # the gap is 2m, at the zone edge
-H = lambda kk: np.array([[m, 2 * t * np.cos(kk)], [2 * t * np.cos(kk), -m]])
-assert abs(np.linalg.eigvalsh(H(0.3))[1] - np.sqrt(m ** 2 + (2 * t * np.cos(0.3)) ** 2)) < 1e-12
-ax.plot(k, band, color=style.GRID, lw=1.2, zorder=1)
-ax.plot(k, -band, color=style.GRID, lw=1.2, zorder=1)
-ax.plot(k, Ea, color=style.ACCENT)
-ax.plot(k, -Ea, color=style.ACCENT)
-style.guide(ax, y=0)
-style.arrows(ax, xlabel=r'$k$', ylabel=r'$E$')
-ax.set_xlim(-np.pi / 2, np.pi / 2); ax.set_ylim(-2.6, 2.6)
-ax.set_title('semiconductor', fontsize=8.5, pad=10)
-ax.annotate('', xy=(np.pi / 2 - 0.02, m), xytext=(np.pi / 2 - 0.02, -m), arrowprops=dict(arrowstyle='<->', color=style.BROKEN, lw=0.9, shrinkA=0, shrinkB=0))
-style.label(ax, np.pi / 2 - 0.12, 0.0, r'$2m$', color=style.BROKEN, ha='right', fontsize=9)
-# (b) quasiparticles of a superconductor, +-sqrt(xi^2+Delta^2), with xi = -2t cos k
-ax = axs[1]
-k = np.linspace(-np.pi, np.pi, 600)
-xi = -2 * t * np.cos(k)
-Eb = np.sqrt(xi ** 2 + D ** 2)
-assert abs(Eb.min() - D) < 1e-3
-ax.plot(k, xi, color=style.GRID, lw=1.2, zorder=1)
-ax.plot(k, -xi, color=style.GRID, lw=1.2, zorder=1)
-ax.plot(k, Eb, color=style.ACCENT)
-ax.plot(k, -Eb, color=style.ACCENT)
-style.guide(ax, y=0)
-style.arrows(ax, xlabel=r'$k$', ylabel=r'$E$')
-ax.set_xlim(-np.pi, np.pi); ax.set_ylim(-2.6, 2.6)
-ax.set_title('superconductor', fontsize=8.5, pad=10)
-ax.annotate('', xy=(np.pi / 2, D), xytext=(np.pi / 2, -D), arrowprops=dict(arrowstyle='<->', color=style.BROKEN, lw=0.9, shrinkA=0, shrinkB=0))
-style.label(ax, np.pi / 2 + 0.25, 0.0, r'$2\Delta$', color=style.BROKEN, ha='left', fontsize=9)
-fig.subplots_adjust(wspace=0.35)
+d = style.run_script('session01/g1_two_gaps.py')
+k, semi, sc = np.array(d['k']), np.array(d['semiconductor']), np.array(d['superconductor'])
+m = Delta = 0.6
+E = np.sqrt(m ** 2 + 4 * np.cos(k) ** 2)
+assert np.allclose(semi, np.array([-1, 1]) * E[:, None], atol=1e-12)            # +-sqrt(m^2 + (2t cos k)^2)
+assert np.allclose(sc, np.array([-1, -1, 1, 1]) * E[:, None], atol=1e-12)       # +-sqrt(xi^2 + Delta^2), twice
+assert abs(d['gap_semiconductor'] - 2 * m) < 1e-12 and abs(d['gap_superconductor'] - 2 * Delta) < 1e-12
+assert abs(d['gap_semiconductor'] - 1.2) < 1e-12                                 # both gaps are 1.2t
+assert np.allclose(semi[:, 1], sc[:, 2], atol=1e-12)                              # the same curves for m = Delta
+edges = k[np.isclose(semi[:, 1], semi[:, 1].min(), atol=1e-12)]
+assert np.allclose(np.sort(edges), [-np.pi / 2, np.pi / 2], atol=1e-12)          # both gaps sit at k = +-pi/2
+print('gaps', d['gap_semiconductor'], d['gap_superconductor'], 'at k =', edges)
+
+FS = 11
+fig, axs = plt.subplots(1, 2, figsize=(12.0 * style.CM, 5.6 * style.CM))
+for ax, bands, title, name in ((axs[0], semi, 'semiconductor', r'$2m$'), (axs[1], sc[:, 1:3], 'superconductor', r'$2\Delta$')):
+    ax.plot(k, 2 * np.cos(k), color=style.GRID, lw=1.2, zorder=1)
+    ax.plot(k, -2 * np.cos(k), color=style.GRID, lw=1.2, zorder=1)
+    ax.plot(k, bands[:, 0], color=style.ACCENT, zorder=2)
+    ax.plot(k, bands[:, 1], color=style.ACCENT, zorder=2)
+    style.arrows(ax, xlabel=r'$k$', ylabel=r'$E/t$', ticks=True)
+    ax.spines['left'].set_visible(True); ax.spines['bottom'].set_visible(True)
+    ax.set_xlim(-np.pi, np.pi); ax.set_ylim(-2.5, 2.5)
+    ax.set_xticks([-np.pi, -np.pi / 2, 0, np.pi / 2, np.pi])
+    ax.set_xticklabels([r'$-\pi$', r'$-\frac{\pi}{2}$', '0', r'$\frac{\pi}{2}$', r'$\pi$'], fontsize=FS)
+    ax.set_yticks([-2, -0.6, 0.6, 2]); ax.set_yticklabels(['$-2$', '$-0.6$', '0.6', '2'], fontsize=FS)
+    ax.tick_params(length=2.5, width=0.6, pad=2)
+    ax.set_title(title, fontsize=FS + 0.5, pad=12)
+    ax.annotate('', xy=(np.pi / 2, 0.6), xytext=(np.pi / 2, -0.6),
+                arrowprops=dict(arrowstyle='<->', color=style.BROKEN, lw=0.9, shrinkA=0, shrinkB=0))
+    style.label(ax, np.pi / 2 + 0.22, 0.0, name, color=style.BROKEN, ha='left', fontsize=FS + 0.5)
+for x in (-np.pi / 2, np.pi / 2):
+    axs[0].axvline(x, color=style.MUTED, lw=0.7, ls=(0, (2, 2)), zorder=0)
+fig.subplots_adjust(wspace=0.48)
 style.save(fig, __file__)

@@ -8,9 +8,11 @@ length. The recipes come from the scripts of `webnotes/scripts/session03/` and f
 and what the sentences state was checked with a number. pyqula writes files such as `BANDS.OUT` in the folder where
 a script runs.
 
-The recipes were checked with the development tree of pyqula, while the students install the release 0.0.96 of PyPI.
-Every recipe was also run with a copy of that release, and a recipe whose call fails there or gives other numbers at
-the digits of its sentences says so in one sentence. Two differences of that release concern many scripts. Its label
+The recipes were checked with the development tree of pyqula, the version on GitHub. The lecturer said on 2026-11-21
+that the release of PyPI will be updated to that version ("i will update the pypi pyqula to the latest version, work
+as if pypi will have the one on github"), so a script to download may use every call of the GitHub version. Until that
+release exists, the students who install from PyPI get 0.0.96. Every recipe was also run with a copy of 0.0.96, and a
+recipe whose call fails there or gives other numbers at the digits of its sentences says so in one sentence. Two differences of that release concern many scripts. Its label
 "M" is $(1/2,0)$ on every lattice, so on the square and Lieb lattices `kpath=["G","X","M","G"]` never reaches
 $(\pi,\pi)$, and its `get_dos` raises a `TypeError` with `integration="triangle"`. A script to download gives such a
 path as a list of reduced momenta and avoids that keyword. The recipes of Session 2, from "Bands with the sign of the

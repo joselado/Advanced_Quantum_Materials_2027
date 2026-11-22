@@ -16,6 +16,19 @@ This session needed nothing from before except the Schrödinger equation of a si
 
 ![The three channels of this session, shown again. The same Hamiltonian gives a charge density wave, a magnet and a superconductor, and each one breaks a different symmetry.](figures/s01f03_threechannels.svg){alt="One interacting Hamiltonian on the left and three ordered states on the right, a charge density wave, a magnet and a superconductor."}
 
+After this session we can do the following tasks, and each of them has the section that teaches it.
+
+- Say why a state with a fluctuating number of electrons, such as a dot in a superposition of zero and two electrons, needs second quantization. This is in Section [1.4](#sec-1-4) and Section [1.5](#sec-1-5).
+- Write a hopping between two sites with creation and annihilation operators, and find the levels of the two-site problem. This is in Section [1.6](#sec-1-6), and the steps are in Section [1.7](#sec-1-7).
+- Show that $(c_i^\dagger)^2=0$ follows from the anticommutation relations [(1.3)](#eq-1-3), and count the states of two spinless particles on two sites, for fermions and for bosons. This is in Section [1.7](#sec-1-7).
+- Count the states of the Fock space, $2^L$ for spinless fermions on $L$ sites and $4^L$ for spinful ones, and say why the full diagonalization of the $2^L$ states stops near $L\approx20$. This is in Section [1.9](#sec-1-9).
+- Relate the levels of a finite island to what STM maps, and say how the spacing between the levels shrinks when the island grows. This is in Section [1.10](#sec-1-10).
+- Explain why the two lowest states of a finite Ising chain in a transverse field $g<J$ are split, and why this splitting vanishes only in the thermodynamic limit. This is in Section [1.11a](#sec-1-11).
+- Say which symmetry a magnet, a ferroelectric and a superconductor break, and apply the test [(1.4)](#eq-1-4) to a state of two spins. This is in Section [1.11b](#sec-1-11b).
+- Decouple a quartic term into a bilinear one, and run one pass of the self-consistent loop by hand. This is in Section [1.12](#sec-1-12) and Section [1.13](#sec-1-13).
+- Solve the antiferromagnetic mean field of the Hubbard dimer, and find that the moment appears at $U=2t$. This is in Section [1.14](#sec-1-14).
+- Show that the pair $c_ic_j$, and with it $\Delta$ of [(1.9)](#eq-1-9), changes by the factor $e^{2i\varphi}$ under the gauge transformation [(1.10)](#eq-1-10). This is in Section [1.15](#sec-1-15).
+
 ::: quiz
 Why does a mean-field superconductor not have a fixed number of electrons?
 

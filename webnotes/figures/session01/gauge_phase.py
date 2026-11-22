@@ -13,6 +13,8 @@ for ax in axs:
     ax.plot(np.cos(th), np.sin(th), color=style.GRID, lw=1.0)
     ax.plot([-1.35, 1.35], [0, 0], color=style.GRID, lw=0.8); ax.plot([0, 0], [-1.35, 1.35], color=style.GRID, lw=0.8)
     ax.set_xlim(-1.6, 1.6); ax.set_ylim(-1.55, 1.55)
+    style.label(ax, 1.35, -0.17, 'Re', color=style.MUTED, fontsize=8.5, ha='right', va='top')    # the names of the
+    style.label(ax, -0.1, 1.35, 'Im', color=style.MUTED, fontsize=8.5, ha='right', va='top')     # complex plane
 phi = np.pi / 2
 # (a) c^dagger c: the phases e^{-i phi} and e^{i phi} cancel, the term stays at 1
 ax = axs[0]

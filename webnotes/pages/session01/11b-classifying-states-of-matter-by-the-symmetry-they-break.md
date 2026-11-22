@@ -1,6 +1,6 @@
 ## Classifying states of matter by the symmetry that they break {#sec-1-11b number="1.11b"}
 
-This gives us a useful way to classify states of matter, according to *which* symmetry they break spontaneously.
+Which symmetry does a magnet break, and which one does a ferroelectric or a superconductor break? We will now see that spontaneous symmetry breaking, the topic of Section [1.11a](#sec-1-11), gives us a useful way to classify states of matter, according to *which* symmetry they break spontaneously. Each broken symmetry comes with its own quasiparticle, and broken time reversal gives the definition [(1.4)](#eq-1-4) of a magnet.
 
 - Broken **time-reversal symmetry** gives classical magnets. The magnetization is odd under time reversal, so a magnetic ground state is not invariant when we run the movie backward.
 
@@ -24,7 +24,7 @@ Note that magnons and the Higgs mode both have zero charge but very different sp
 
 [](#sch:s01:gapless_gapped) draws the dispersion of the three quasiparticles of the table.
 
-![The quasiparticle of each broken symmetry. The phonon is gapless, since it goes to zero at $k=0$. The magnon is gapless as well, and an easy-axis anisotropy lifts it by a gap, shown in red. The Higgs mode is gapped by the size of the order parameter. The curves are $\omega=2|\sin(k/2)|$, $\omega=1-\cos k$ plus $0.45$ for the red one, and $\omega=\sqrt{1.2^2+k^2}$, in arbitrary units.](figures/web/session01/gapless_gapped.svg){#sch:s01:gapless_gapped alt="Three dispersions against k. A phonon that reaches zero at k equal to zero, a magnon that reaches zero and a copy shifted up by a gap, and a Higgs mode that stays above a gap."}
+![The quasiparticle of each broken symmetry. The phonon is gapless, since it goes to zero at $k=0$. The magnon is gapless as well, and an easy-axis anisotropy lifts it by a gap, shown in red. The Higgs mode is gapped by the size of the order parameter. The curves are $\omega=2|\sin(k/2)|$, $\omega=1-\cos k$ plus $0.45$ for the red one, and $\omega=\sqrt{1.2^2+k^2}$. The momentum $k$ is in units of the inverse lattice constant, and $\omega$ is in arbitrary units, the same in the three panels. The phonon and the magnon are the forms of a chain, and the Higgs curve is the continuum form, drawn on the same range of $k$. Look at the value at $k=0$, which is the gap.](figures/web/session01/gapless_gapped.svg){#sch:s01:gapless_gapped alt="Three dispersions omega against k from minus pi to pi. A phonon that reaches zero at k equal to zero, a magnon that reaches zero and a copy shifted up by a gap of 0.45, and a Higgs mode that stays above a gap of 1.2."}
 
 ![The magnon of a ferromagnet, one panel shown again from Session 6. In the ordered state every spin points the same way. A magnon is a precession wave of all the spins, which is the low-energy fluctuation of the order.](figures/s06f05_magnon.svg){panel="side" alt="A row of parallel spins, and below it a row of spins that precess with a phase that advances from site to site."}
 
@@ -44,6 +44,24 @@ A magnet has an easy-axis anisotropy, which breaks the spin-rotational symmetry 
     This is false. If the atoms are held fixed there are no phonons at all, yet the spin flip of the Ising limit remains, with a finite energy. The anisotropy changes the energy of the magnon and not its nature.
 
 The order stays, and the Goldstone mode is gapped.
+:::
+
+::: quiz
+Each picture shows a dispersion $\omega(k)$ of a quasiparticle of a chain. Which one is a magnon with an easy-axis anisotropy?
+
+- [ ] ![A curve omega against k that starts at zero at k equal to zero, rises as k squared near zero and flattens at 2 at the edges of the zone.](figures/web/session01/g3_quiz_disp_magnon.svg)
+
+    This is false. The curve is $\omega=1-\cos k$, which is $0$ at $k=0$, so it has no gap. It rises as $k^2/2$, which is the magnon of the ferromagnet with no anisotropy.
+
+- [x] ![A curve omega against k that starts at 0.45 at k equal to zero, rises as k squared near zero and flattens at 2.45 at the edges of the zone.](figures/web/session01/g3_quiz_disp_magnon_gap.svg)
+
+    This is true. The curve is $\omega=1-\cos k+0.45$, which is $0.45$ at $k=0$. This is the gap of the magnon, since with the anisotropy a tilt of all the spins costs a finite energy.
+
+- [ ] ![A curve omega against k that starts at zero at k equal to zero with a sharp V and rises to 2 at the edges of the zone.](figures/web/session01/g3_quiz_disp_phonon.svg)
+
+    This is false. The curve is $\omega=2|\sin(k/2)|$, which is $0$ at $k=0$ and rises linearly, as $|k|$. This is the phonon of a chain of masses, which is a sound wave.
+
+The gap is read at $k=0$, where the curve has its lowest value.
 :::
 
 Since we cannot run time backward in the lab to check if a material breaks time-reversal symmetry, we measure instead quantities that are themselves odd under time reversal. Two of them are especially useful. The first one is the **Hall conductivity**, which is a transverse current generated by a longitudinal voltage. The second one is the **magneto-optical Kerr effect**, which is a different optical reflection for left-handed and right-handed circularly polarized light. A nonzero signal in either of them is direct evidence of broken time-reversal symmetry.
@@ -66,12 +84,40 @@ A material shows a nonzero Kerr rotation without any applied magnetic field. Wha
 The Kerr rotation measures the breaking of time reversal, and not of other symmetries.
 :::
 
-With this we can finally give a precise and formal definition of a magnet, which goes beyond "the object that sticks to your fridge". A magnet is a many-body state whose wave function is not invariant under the time-reversal operator $\hat T$,
+With this we can finally give a precise and formal definition of a magnet, which goes beyond "the object that sticks to your fridge".
+
+::: key
+A magnet is a many-body state whose wave function is not invariant under the time-reversal operator $\hat T$,
 
 $$\hat T|\Psi\rangle = |\Psi\rangle \;\Rightarrow\; \text{not magnetic}, \qquad
 \hat T|\Psi\rangle \neq |\Psi\rangle \;\Rightarrow\; \text{magnetic}. \tag{1.4}$$
 
+So time reversal changes a magnet, and a state that it leaves the same is not magnetic. A magnetization is odd under $\hat T$, so a state with a magnetization fails this test.
+:::
+
 The north and south poles of a bar magnet are exchanged under time reversal, since a magnetic pole is connected to an orbital angular momentum and angular momenta change sign under $\hat T$. For this reason a bar magnet does not pass the invariance test in [(1.4)](#eq-1-4), and it is magnetic according to this definition. A plain stick that is not magnetic, on the other hand, looks the same under time reversal and passes the test.
+
+::: lab
+Magneto-optical Kerr effect microscopy shows that monolayer chromium triiodide, CrI$_3$, is an Ising ferromagnet, with its spins out of the plane. Its Curie temperature is $45$ K, only slightly lower than the $61$ K of the bulk crystal. Our reading is that below $45$ K the monolayer is magnetic in the sense of [(1.4)](#eq-1-4), and that its Kerr rotation probes this broken time reversal when it stays at zero applied field. The measurement is in [this article](https://www.nature.com/articles/nature22391).
+:::
+
+:::: problem
+Time reversal of one spin is $\hat T=i\sigma_yK$, where $K$ takes the complex conjugate of the coefficients in the basis $|{\uparrow}\rangle$, $|{\downarrow}\rangle$ of $\sigma_z$. On two spins $\hat T$ acts on each spin. Show that the singlet $(|{\uparrow\downarrow}\rangle-|{\downarrow\uparrow}\rangle)/\sqrt2$ passes the test [(1.4)](#eq-1-4), and that the Néel state $|{\uparrow\downarrow}\rangle$ does not.
+
+::: solution
+With the Pauli matrix $\sigma_y$, the operator $i\sigma_y$ is the real matrix
+
+$$i\sigma_y=\begin{pmatrix}0&1\\-1&0\end{pmatrix},$$
+
+so $\hat T|{\uparrow}\rangle=-|{\downarrow}\rangle$ and $\hat T|{\downarrow}\rangle=|{\uparrow}\rangle$, since $K$ does nothing to real coefficients. On two spins this gives $\hat T|{\uparrow\downarrow}\rangle=-|{\downarrow\uparrow}\rangle$ and $\hat T|{\downarrow\uparrow}\rangle=-|{\uparrow\downarrow}\rangle$. For the singlet
+
+$$\hat T\,\frac{|{\uparrow\downarrow}\rangle-|{\downarrow\uparrow}\rangle}{\sqrt2}=\frac{-|{\downarrow\uparrow}\rangle+|{\uparrow\downarrow}\rangle}{\sqrt2},$$
+
+which is the singlet again, so it passes the test and it is not magnetic. Its moment $m=n_\uparrow-n_\downarrow$ is zero on each site. The Néel state $|{\uparrow\downarrow}\rangle$ goes to $-|{\downarrow\uparrow}\rangle$, which is orthogonal to it, so it is another state and it fails the test. Its moment is $m=1$ on the first site, and after $\hat T$ it is $m=-1$.
+
+This is the difference between the exact ground state of the Hubbard dimer and its mean-field state in [](#sch:s01:dimer_meanfield). The exact ground state is a singlet with $m=0$ for every $U$, and at large $U$ it has one electron on each site, with the spins in this singlet. The antiferromagnetic mean field gives a moment $m$ on the first site and $-m$ on the second for $U>2t$, and $\hat T$ changes the sign of $m$. So the mean-field state breaks time reversal, while the exact ground state of two sites does not, as Section [1.11a](#sec-1-11) explains for a finite system.
+:::
+::::
 
 Let us now build this general picture explicitly, three times.
 

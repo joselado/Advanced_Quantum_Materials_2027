@@ -1,5 +1,7 @@
 ## The Haldane model and the quantum Hall effect without Landau levels {#sec-4-19 number="4.19"}
 
+Does a quantized Hall conductance need a magnetic field? We will now see that it does not, since the Haldane model at zero field and a filled Landau level with the same Chern number are the same phase of matter.
+
 This section is a recap of the Haldane model, which we built in Sections [3.10](#sec-3-10) and [3.10b](#sec-3-10b). We come back to it because it closes the argument of this session. Everything above needed a real magnetic field to give Landau levels, and the Haldane model shows that the quantized Hall conductance does not need one.
 
 We start from the honeycomb lattice with first-neighbor hopping, which has two Dirac cones at $K$ and $K'$. A staggered onsite potential gives the same mass at both valleys, so the two halves of [(3.8)](#eq-3-8) cancel and $C=0$. A purely imaginary second-neighbor hopping breaks time-reversal symmetry and gives masses of opposite sign at the two valleys. The two halves then add, which gives $C=\pm1$, an insulating bulk and a chiral edge state, all with $B=0$.
@@ -9,7 +11,7 @@ We start from the honeycomb lattice with first-neighbor hopping, which has two D
 What this session adds is the **adiabatic connection** between the two routes. We start in the Haldane model at zero field, we switch on a real magnetic field, and then we switch off the Haldane coupling. At every step of this path the bulk gap stays open and the chiral edge state survives. So the Chern insulator of the Haldane model and the quantum Hall state of the Landau levels are *topologically equivalent*. They are the same phase of matter, reached once with a magnetic field and once without it.
 
 ::: quiz
-Along the path from the Haldane model to the quantum Hall state, which condition has to hold at every step?
+We start from the Haldane model at zero field. We switch on a magnetic field, and then we switch off the Haldane coupling. Which condition has to hold at every step?
 
 - [ ] The magnetic field is zero.
 
