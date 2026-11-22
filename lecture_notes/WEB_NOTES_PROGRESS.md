@@ -1,9 +1,16 @@
 # Progress of the lecture notes as web pages
 
 The plan is `lecture_notes/WEB_NOTES_PLAN.md`. This file is the tracker that each session
-updates at its end, one line per phase and one per session. Last update 2026-11-06, phases 3 to 6.
+updates at its end, one line per phase and one per session. Last update 2026-11-22, the pedagogical pass of
+Sessions 1, 2, 4 and 5.
 
-Start here. Phases 3 to 6 are built and checked, and nothing is committed yet. The notes have 126 section pages
+Start here on 2026-11-22. Sessions 1 to 5 are in the shape locked on 2026-11-21 and published on the site. Sessions 6
+to 10 have their conventions sheet, plan and recipes, committed, and wait for the lecturer to read 1, 4 and 5. The
+errors of the old text of Sessions 1, 2, 4 and 5 are corrected on the web or listed for the lecturer in the section
+"Open for the lecturer" of each `webnotes/plans/sessionNN.md`. The log entries of 2026-11-21 and 2026-11-22 at the
+end say what was done and what is open.
+
+The paragraph below is the state of 2026-11-06. Phases 3 to 6 are built and checked, and nothing is committed yet. The notes have 126 section pages
 (median 554 prose words, 292 to 934), 35 redirect stubs for the retired URLs, every page with at least one figure
 (59 PDF figures, 29 shown again, 16 Blender panels, 27 new schematics), 212 quizzes, 62 try-it boxes and ten
 Pyodide widgets. The full build gives 0 errors, an empty pending list, 3583 math fragments with 0 errors, and a
@@ -209,3 +216,37 @@ Result, the live path works, so every widget has the button "Run live in the bro
   is 194 px too wide on a phone. The agent types `aqm-notes-builder` and `aqm-notes-checker` could not be launched
   in the session that wrote them, so they are untested. The film agent `aqm-physics-checker` states the Berry
   connection as $i\langle\partial_k u|u\rangle$, the opposite sign of the notes, and this is not changed.
+- 2026-11-21 to 2026-11-22, the pedagogical pass of Sessions 1, 2, 4 and 5, with the skill `aqm-webnotes-session` run
+  as workflows. The lecturer asked for all the other sessions with up to 20 agents, then picked 20 at a time in
+  waves, a lighter check (the recheck only where a finding is wrong) after the cost came out higher than estimated,
+  and three sessions first. Session 2 was the pilot of the agent type `aqm-notes-builder`. For every session two
+  agents wrote the conventions sheet with no sight of each other and a third settled each disagreement by a
+  calculation (10 to 20 per session), and one more agent made the nine sheets agree with each other. The plans of
+  all sessions are in `webnotes/plans/`, with 60 lab boxes backed by stored sources. `RECIPES.md` holds 81 recipes,
+  and its test runs in about 90 s. The lecturer picked on 2026-11-21 that the old figures that break the plot rules
+  are redrawn under the same names, and said that the PyPI release of pyqula will be updated to the GitHub version,
+  so the scripts target that version (both are in `WEB_NOTES_PLAN.md`). `labsource.py` takes a lock, since parallel
+  fetches lost entries of the index. Session 2 and 3 were published first, then 1, 4 and 5: the default build gives
+  171 pages, 0 errors, 12425 math fragments with 0 errors, and a second build writes nothing. Every group of pages
+  went through an independent physics check and a fix. Cost: about 35 million subagent tokens for the preparation of
+  all sessions and the pages of 1, 2, 4 and 5. Known and open: the Session 7 check of the Ising chain of the notebook
+  quiz failed once in three runs, so it is flaky; release 0.0.96 of PyPI lacks `get_anomalous_hall_conductivity`,
+  which `scripts/session03/hall_conductivity_haldane.py` needs until PyPI is updated; the sheets agent found that the
+  "flux per plaquette" line of the Session 3 sheet holds only on the square lattice, and that Session 3 puts "about
+  seven times at 10 T" in Section 4.1 while that quiz is in Section 4.2. A subagent cannot write a report file, so the
+  reports are the answers of the agents, kept in the workflow journals of the session.
+- 2026-11-22, running at the time of writing, in case the session stops. Three workflows of the Claude Code session
+  run in the background. (1) The correction of the old text of Sessions 1, 2, 4 and 5, run `wf_3db0c3d3-c48`, which
+  edits their pages and check scripts and rewrites the section "Open for the lecturer" of each plan as two lists,
+  "Corrected on the web, to carry over to the .tex" and "For the lecturer". (2) Session 6, run `wf_74e82c0a-9c0`, and
+  (3) Session 7, run `wf_cda36960-673`, each with builder, gate, physics check, fix and a recheck where a finding is
+  wrong, one chain per group of the section "Builder groups" of the plan. The scripts are in
+  `~/.claude/projects/-u-40-ladovj1-data-Documents-programs-Advanced-Quantum-Materials-2027/bbe18649-405d-487c-83fe-fcca11e6bfea/workflows/scripts/`,
+  and a run resumes only in the same Claude session (`Workflow` with `scriptPath` and `resumeFromRunId`). If the
+  session is gone, `git status` shows what each run left. A page with changes but no check script
+  `webnotes/checks/sessionNN/gK_*.py` was stopped in the middle, and its group is built again by a new builder on the
+  page as it is. When a run is finished, the steps are the gate of the skill on the session (the build with
+  `--out DIR --math`, `lint.py`, `layout.py`, `--verify`, `labsource.py --check`, an unfiltered `git status`), then a
+  commit, and the default build and push only on the lecturer's word. The flaky check of the Ising chain in
+  `checks/session07/conventions.py` now accepts any state of the two-fold ground level, which is what DMRG returns.
+  Sessions 8, 9 and 10 have not started.

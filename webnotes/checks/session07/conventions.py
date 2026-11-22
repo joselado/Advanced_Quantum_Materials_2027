@@ -1104,9 +1104,12 @@ def main():
     al = np.ones(len(s), bool)
     for i in range(19):
         al &= ((s >> i) & 1) != ((s >> (i + 1)) & 1)
-    check('the Ising chain of the quiz of the notebook', abs(ez + 4.75) < 1e-8 and sz_.max() < 1e-8 and al.sum() == 2,
-          'sum S^z S^z on 20 sites, dmrgpy gives %.4f and the largest bond entropy %.0e, and the ground level has %d '
-          'states, whose symmetric combination has ln 2 at every cut' % (ez, sz_.max(), al.sum()))
+    # the ground level is the pair of Neel states, and DMRG returns one of them (entropy 0) or a mix of the two, whose
+    # entropy is the same at every cut and at most ln 2, so the check accepts any state of the level
+    check('the Ising chain of the quiz of the notebook', abs(ez + 4.75) < 1e-8 and np.ptp(sz_) < 1e-6
+          and sz_.max() < np.log(2) + 1e-8 and al.sum() == 2,
+          'sum S^z S^z on 20 sites, dmrgpy gives %.4f and the bond entropy %.0e at every cut, at most ln 2, and the '
+          'ground level has %d states' % (ez, sz_.max(), al.sum()))
 
     L = 12
     H0, st0 = heis(L, chain_bonds([1.0] * (L - 1)), L // 2)

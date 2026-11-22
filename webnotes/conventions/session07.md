@@ -276,9 +276,10 @@ three minutes on a busy machine.
   and 19 give 0.271, 0.492 and 0.492 for 10 sites and 0.360, 0.686 and 0.708 for 30 sites, where $\ln\chi$ is 0.693,
   2.079 and 2.944. The chain of 10 sites is converged at $\chi=8$, and the one of 30 sites still grows.
 - The quiz of the cell "Entanglement entropy of the ground state" asks for the Ising chain $\sum_iS^z_iS^z_{i+1}$. On
-  20 sites dmrgpy gives the Néel energy $-4.75$ with the largest bond entropy $10^{-16}$. The ground level holds the
-  two Néel states, and their symmetric combination would have $\ln2$ at every cut, so the zero entanglement is the
-  state that DMRG returns.
+  20 sites dmrgpy gives the Néel energy $-4.75$. The ground level holds the two Néel states, and DMRG returns one of
+  them, with a bond entropy of $10^{-16}$, or a mix of the two, whose entropy is the same at every cut and at most
+  $\ln2$, the value of the symmetric combination. Which one comes out changes from run to run, so a page says that
+  a single Néel state has no entanglement and does not quote the entropy that DMRG gives.
 - The cell "Low energy excitations of a Heisenberg model", run on 12 sites. The triplet is 0.2809 above the singlet,
   and `Bz=0.03` lowers its member with $S^z=-1$ to 0.2509, which DMRG then finds, with the largest
   $|\langle1|S^x_i|0\rangle|$ equal to 0.179, as exact diagonalization gives. With `Bz=0` the excited level is the
