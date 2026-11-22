@@ -3,13 +3,13 @@
 What are the low-lying excitations of an ordered ferromagnet, and how do we compute them? We will now see that the spins can be written as bosons with no approximation, [(6.6)](#eq-6-6). Close to the ordered state the spin Hamiltonian then becomes a bosonic tight-binding Hamiltonian, where the magnon hops between neighbors with the amplitude $-|J|S$.
 
 ::: {.recall eq="6.5"}
-This is the Heisenberg model of Section [6.9](#sec-6-9), with each bond $\langle ij\rangle$ counted once and the spin operators $\mathbf S_i$ of size $S$. Through the direct hop $t_{ij}$ between two sites, the Hubbard model gives the superexchange $J_{ij}=4t_{ij}^2/U>0$, which is antiferromagnetic. On this page we take one coupling $J<0$ on all the first-neighbor bonds, which is a ferromagnet, and Section [6.11](#sec-6-11) shows where such a coupling comes from.
+This is the Heisenberg model of Section [6.9](#sec-6-9), with each bond $\langle ij\rangle$ counted once and the spin operators $\mathbf S_i$ of size $S$. For $U$ much larger than $t_{ij}$ and one electron per site, the direct hop $t_{ij}$ between two sites gives $J_{ij}=4t_{ij}^2/U>0$, which is antiferromagnetic. On this page we take one coupling $J<0$ on all the first-neighbor bonds, which is a ferromagnet, and Section [6.11](#sec-6-11) shows where such a coupling comes from.
 :::
 
 Until now we have only asked about ground states. Let us now ask about excitations. We take the Heisenberg model [(6.5)](#eq-6-5) with $J<0$, which is ferromagnetic, and we promote the spins to real quantum operators that satisfy the angular-momentum algebra $[S_i^a,S_j^b] = i\hbar\,\delta_{ij}\epsilon^{abc}S_i^c$. From here on we set $\hbar=1$, which is the standard choice for this kind of calculation, and we ask for the low-lying excited states.
 
-In contrast with the interacting electron problem, the exact ground state of the ferromagnetic Heisenberg model is known immediately. It is the fully polarized state with all spins aligned, since for $J<0$ no other configuration can lower $\langle \mathbf S_i\cdot\mathbf
-S_j\rangle$ further. A **magnon** is a small fluctuation of the magnetization that propagates on top of this fully polarized state. Qualitatively, it is a single spin tilted slightly out of alignment, delocalized coherently over the whole lattice as a wave. The question is how to obtain these excitations systematically from a many-body spin Hamiltonian. The answer is a change of variables that turns the spin problem into a bosonic tight-binding problem.
+In contrast with the interacting electron problem, the exact ground state of the ferromagnetic Heisenberg model is known immediately. It is the fully polarized state with all spins aligned, since for $J<0$ no other configuration can make $\langle \mathbf S_i\cdot\mathbf
+S_j\rangle$ larger than $S^2$, its value in this state, on any bond. A **magnon** is a small fluctuation of the magnetization that propagates on top of this fully polarized state. Qualitatively, it is a single spin tilted slightly out of alignment, delocalized coherently over the whole lattice as a wave. The question is how to obtain these excitations systematically from a many-body spin Hamiltonian. The answer is a change of variables that turns the spin problem into a bosonic tight-binding problem.
 
 ## The Holstein-Primakoff transformation {#sec-6-14 number="6.14"}
 

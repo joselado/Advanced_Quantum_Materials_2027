@@ -544,27 +544,315 @@ $z|J|S$.
 
 ## Open for the lecturer
 
-These change a statement of the old text, a caption that states it, or a convention, so a builder does not
-decide them.
+The lecturer decided on 2026-11-22 to "Fix old-text errors, ask the rest", and for the questions "ask me the top 5, other
+you decide by yourself". The points of the builders, of the fixers and of the rechecks, 40 entries with repeats, and the
+five points of the first version of this section were merged into 29 distinct points. None of them was marked "NOT FIXED"
+or "new wrong", so the eight points of the rechecks came first. A sentence that was false, or that contradicted another
+sentence of the notes, is corrected on the web with the smallest change, after a calculation of our own, by two routes
+where it is a number, and every number that changed or was added is an assert in `webnotes/checks/session06/`, in a block
+marked with the date, or in the figure script. A point that is a choice was decided by the coordinator with the rule of
+that day. It takes the option that makes the text true with the smallest change, and between two true wordings the
+shorter and clearer one, reduces a claim to what a source or a calculation supports, rewrites a box that does not match
+its notebook cell, and corrects an outdated line of the conventions sheet with its check. A point whose fix would change a
+numbered equation, a convention or a heading is left for the lecturer. No numbered equation changed, no converted Blender
+figure was touched, and the notebooks were not edited. The fields "Old figures of the page that break the plot rules" of
+the blocks above describe the figures before this pass, and panel (b) of `mf_chain` is now redrawn. The line numbers are
+those of `lecture_notes/src/sessions/session06.tex` on 2026-11-22, commit `bf5b1be`. The `.tex` is not changed in this
+pass, so until the first list is carried over the PDF keeps the old wording in these places.
 
-1. The uniform solution of 6.5. The text says that the uniform solution "is the paramagnet below $U\approx
-   4t$ and a fully polarized ferromagnet above it", and panel (b) of `mf_chain` switches there, which gives
-   its jump at $4t$. In mean field the energy per site of the paramagnet is $-4t/\pi+U/4$ and that of the
-   saturated ferromagnet is $0$, so the ferromagnet is lower only above $16t/\pi\simeq5.09t$. The value $4t$ is
-   where the saturated ferromagnet starts to be a solution, $-2t+U>2t$. The paramagnet becomes unstable at
-   $U=1/D(0)=2\pi t\simeq6.28t$. A scan over $m$ of the energy $-\tfrac4\pi\cos(\pi m/2)+U(1-m^2)/4$ gives
-   $m=0$ up to $5.09t$ and $m=1$ above, with no jump in the lower energy, only a kink.
-2. "Grows continuously" in 6.6. The text says that the magnetization of the chain "grows continuously once
-   $U$ is above this threshold", and the notebook check-in points to the chain at $n=0.2$. For that chain the
-   Stoner value is $1/D(E_F)=2\pi t\sin(0.1\pi)=1.94t$. A scan of the uniform mean-field energy gives $m=0$
-   up to $U=1.925t$ and the full polarization from $U=1.93t$ on, so the moment jumps. A pyqula curve on the
-   page would contradict the sentence next to it.
-3. "$m\neq0$ for $U>0$" in 6.3. The sentence "Self-consistency gives $m=0$ for $U<0$ and a magnetic solution
-   with $m\neq0$ for $U>0$" reads against the threshold of 6.6. On the half-filled bipartite chain the
-   antiferromagnet appears for any $U>0$, while the ferromagnet needs $UD(E_F)\geq1$.
-4. "The bosonic Bogoliubov Hamiltonian of Section 6.15" in 6.16. The honeycomb magnet of 6.16 is a
-   ferromagnet, whose magnon Hamiltonian conserves the number of bosons and needs no Bogoliubov
-   transformation. Only the antiferromagnet of 6.15 has the anomalous terms.
-5. The feedback of the second quiz of 6.16. "Reversing the vector is a mirror operation, so the spectrum is
-   the same" gives a reason that we did not check. In the Haldane model the change $\varphi\to-\varphi$ is a
-   complex conjugation, which maps $E(\mathbf k)$ to $E(-\mathbf k)$. The verdict of the option stays right.
+An independent check of the same day read these corrections again and found eight points, k1 to k8. Seven of them made a
+new text more exact, and they are in items 6, 11, 13, 14, 15, 17, 18 and 25 below, each with its new assert. For k2 our
+runs do not confirm the cause that the check gave, and item 11 says so. The eighth, k3, showed that the change to the
+solution of page `16` picks one corner of the zone, which is a convention, so that change was reverted, and it is now the
+point that is left for the lecturer. The lecturer picked the two other points on 2026-11-22, items 13 and 14 of the
+second list, and the change of the first one is item 27 below.
+
+### Corrected on the web, to carry over to the .tex
+
+1. Page `01`, Section 6.1, `.tex` lines 58 and 59. Old "Magnons have no charge, so electric fields do not affect them at
+   all, and they can propagate in materials that are electronic insulators." New "Magnons have no charge, so an electric
+   field does not push them as it pushes an electron, and they can propagate in materials that are electronic
+   insulators." `g1_01` asserts that a potential $V_in_i$ commutes with $S^-$ of each site, and that a potential
+   difference $V=4t$ between the two sites of the dimer at $U=20t$ raises the singlet-triplet splitting from $0.198t$ to
+   $0.206t$, close to $4t^2U/(U^2-V^2)=0.208t$, so an electric field does change the magnon energy.
+2. Page `02`, Section 6.3, `.tex` lines 114 and 115. Old "Self-consistency gives $m=0$ for $U<0$ and a magnetic solution
+   with $m\neq 0$ for $U>0$, as in Section 1.14." New "Self-consistency gives $m=0$ for $U<0$, and in the half-filled
+   chain a magnetic solution with $m\neq 0$ for every $U>0$, as in Section 1.14." The comesback box of the same page, not
+   in the `.tex`, now reads "the threshold of $U$ above which a uniform magnetization $m$ of (6.2) appears". `g1_02`
+   asserts that for $U<0$ the uniform energy grows with $m$ and the gap equation has a negative right side, and the
+   staggered moment $0.0299$ at $U=t$.
+3. Page `04`, Section 6.4, `.tex` line 142. Old "with a unit cell of one site at 20\% filling". New "with a unit cell of
+   one site and $n=0.2$ electrons per site". The caption gives $n=0.2$, which is `filling=0.1`, 10 percent of the states.
+   `g2_04` asserts $|m|=0.200$ and $Um=0.800$ for `filling=0.1`.
+4. Page `04`, the notebook box of Section 6.4, `.tex` lines 159 to 161. Old "The ferromagnetic case with one site per cell
+   at 20\% filling, from the same section, is the companion calculation." New "The ferromagnetic case with one site per
+   cell and $n=0.2$, which is `filling=0.1`, is the companion calculation, and it is in the cell "(Exercise) Intermediate
+   coupling regime and Stoner instability"." The cell of the box title is the bichain at half filling. `g2_04` reads the
+   two cells.
+5. Page `04`, Section 6.5, `.tex` lines 166 to 168. Old "It is the paramagnet below $U\approx 4t$ and a fully polarized
+   ferromagnet above it". New "Its lowest state is the paramagnet below $U=16t/\pi\approx5.1t$ and a fully polarized
+   ferromagnet above it". The saturated ferromagnet is a solution from $4t$, the problem of the page, and lower than the
+   paramagnet, $-4t/\pi+U/4$ per site, only from $16t/\pi$. `g2_04` asserts the crossing $5.093t$ by the closed form and
+   by a mesh of the filled bands over $m$, and the lowest $m$ at $4t$, $4.5t$, $5t$, $5.2t$ and $6t$.
+6. Page `04`, Section 6.5, `.tex` lines 171 to 173. Old "Opening a gap pushes the occupied single-particle energies down,
+   so the insulating configuration has a lower total energy than the gapless ferromagnetic one for every $U>0$ that we can
+   reach numerically in this half-filled chain." New "Below $16t/\pi$ the lowest uniform state is the paramagnet, which has
+   no gap, and opening a gap pushes the occupied single-particle energies down. Above $16t/\pi$ the lowest uniform state is
+   the saturated ferromagnet, which has the gap $U-4t$ too. There the antiferromagnet stays lower by about $2t^2/U$ per
+   site, the energy of the virtual hops that the Pauli principle blocks in the ferromagnet." The first correction of the
+   day changed only "the gapless ferromagnetic one" to "the uniform one", and the independent check found that its reason,
+   the gap, then held only below $16t/\pi$. `g2_04` asserts the gap $0.1$ at $4.1t$ and $2$ at $6t$, the antiferromagnet
+   below the lowest uniform state at eight values of $U$, and the second-order energy $-2t^2/U$ of a classical Néel bond
+   against zero for a parallel one, and `mf_chain.py` asserts the ratio to $2t^2/U$ above $0.96$ above the kink.
+7. Page `04`, the caption and the alt text of `mf_chain` (b), not in the `.tex`. Old "(b) The energy per site that the
+   antiferromagnet gains over the uniform solution. The jump at $4t$ is where the uniform solution changes from the
+   paramagnet to the fully polarized ferromagnet, and above it the curve follows $2t^2/U$." New "(b) The energy per site
+   that the antiferromagnet gains over the lowest uniform solution. The kink at $16t/\pi\approx5.1t$, where the curve is
+   largest, is where the lowest uniform solution changes from the paramagnet to the fully polarized ferromagnet, and above
+   it the curve approaches $2t^2/U$." Panel (b) is redrawn under the same name against the lowest uniform state, with $U/t$
+   and $(E_\mathrm{uniform}-E_\mathrm{AFM})/t$ on its axes and ticks. `mf_chain.py` asserts no jump at the kink, the
+   largest value $0.378$ there, and the ratio to $2t^2/U$ above $0.96$ above the kink and above $0.99$ from $10t$.
+8. Page `04`, the solution of the problem, not in the `.tex`. Old "At $U=3.9t$ the loop leaves the saturated state, and
+   where it ends depends on `mix`, the weight of the new mean field in each step. With `mix=0.9` it stops close to the
+   paramagnet, ... With a smaller `mix`, such as $0.5$, it reaches the antiferromagnet, which is lower in energy." New "At
+   $U=3.9t$ the loop leaves the saturated state. Where it ends depends on `mix`, the weight of the new mean field in each
+   step, and on `maxerror`, the change of the mean field below which the loop stops. With `mix=0.9` and the default
+   `maxerror=1e-5` it stops close to the paramagnet, ... This end is an early stop. With a smaller `mix`, such as $0.5$, or
+   with `maxerror=1e-9`, the loop runs longer and reaches the antiferromagnet, which is lower in energy. In these runs its
+   moment ends in the plane $xy$, so $|m|$ is read from $m_x$, $m_y$ and $m_z$." `g2_04` asserts the default `maxerror`,
+   the stop rule of the loop, $|m|=0.75815$ and $-0.95905$ per cell with `maxerror=1e-9` on `nk` 40 and 41, and $m_z$
+   below $10^{-4}$.
+9. Pages `04`, `06` and `11`, the word "Schematic" before a link `[](#sch:...)`, which rendered as "Schematic Schematic
+   6.3", "6.5" and "6.9". Not in the `.tex`. Now "The two solutions are drawn in [](#sch:s06:fm_afm_chain).", "We see in
+   [](#sch:s06:moment_vs_U) how the chain gets there." and "We see in [](#sch:s06:dm_spiral) how the angle between neighbors
+   depends on the strength of the term."
+10. Page `06`, Section 6.6, `.tex` lines 203 and 204. Old "Below the threshold only $m=0$ is stable, and the system stays
+    nonmagnetic for any perturbation." New "Below the threshold a small magnetization dies away, so the state with $m=0$ is
+    stable against it." Between $1.926t$ and $1.942t$ at $n=0.2$ the saturated state is lower. `g2_06` asserts the sign of
+    the curvature of $E(m)$ at $m=0$ below and above $1.94t$.
+11. Page `06`, Section 6.6, `.tex` lines 209 to 213. Old "The self-consistent magnetization of the chain stays at zero
+    below a critical $U$, and it grows continuously once $U$ is above this threshold. Figure 6.1 shows both parts of this
+    statement together. It shows why a nontrivial solution of the self-consistency condition only exists above the
+    threshold, and how the resulting magnetization curve looks." New "The self-consistent magnetization of the chain stays
+    at zero below a critical $U$, and it is finite above it. In mean field it does not grow continuously, since the
+    uniform chain jumps to the full moment. At $n=0.2$ it jumps from $m=0$ to $m=0.2$ at $U=1.93t$, just below the value
+    $1.94t$ of (6.3). The cell of the notebook can end at a moment between $0$ and $0.2$. At $U=1.8t$ its title shows
+    $0.13$, for a state above $m=0$ in energy that the finite k-mesh keeps, while it shows $0$ at $1.2t$ and $0.2$ at $2.4t$.
+    Figure 6.1 shows why a nontrivial solution of the self-consistency condition only exists above the threshold, for a
+    model of $f(m)$ where the magnetization grows continuously." The paragraph is split before "In the numerics", for its
+    length. The sentences on the cell were added after the independent check, which called the state at $1.8t$ an early
+    stop. Our runs do not confirm that cause: with `maxerror=1e-12`, or with `mix=0.5`, the loop ends in the same state,
+    with $0.0867$ on the mesh of `nk=300` and $0.093$ on `nk=301`, which is $26/300$ and $28/301$, while $E(m)$ of the
+    continuum has no stationary point between $0$ and $0.2$ at $1.8t$. `g2_06` asserts $1.9257t$ by the closed form and by
+    the mesh, $1.9416t$, the two sides of the jump with the call of the notebook cell, below $0.015$ at $1.2t$ and $0.200$
+    at $2.4t$, the titles $0.0$, $0.13$ and $0.2$ of the cell as written and $0.13$ with `nk=301`, the energy above $m=0$,
+    $0.00025t$ per site by the total energy of pyqula and $0.00026t$ by the closed form, and the continuous rise of the
+    model $\tanh(sm)$.
+12. Page `06`, the solution of the problem, not in the `.tex`. Old "With the default `nk` and `delta` the value is off by
+    more than $10$ percent close to the center of the band of the chain, above or below." New "With the default `nk` and
+    `delta` the value on the chain can be off by up to $18$ percent close to the center of the band, above or below,
+    depending on the energy." `g2_06` asserts $-15.2$ to $+17.9$ percent for $|E|<0.5t$, with pyqula and with a Lorentzian
+    sum of our own on `nk=100` with `delta=0.05`.
+13. Page `08`, the notebook box of Section 6.8, `.tex` lines 323 to 326. Old "Diagonalize the Hubbard dimer with six states
+    directly, ... with a direct numerical diagonalization." New "The first cell has no interaction, and it gives the
+    single-particle levels $\pm t$ of the dimer. The other three use mean field, and not the six states of this section.
+    The second one solves the dimer in mean field, where a moment appears only above $U=2t$, while the exact dimer of this
+    section has a singlet ground state with no ordered moment. The third one follows the mean-field gap of the chain as $U$
+    grows. The last one compares the energies of the ferromagnet and the antiferromagnet at large $U$, whose difference
+    falls as $1/U$, as the coupling $J$ of (6.4) does." The first two sentences and "no ordered moment" come from the
+    independent check, since the first cell has no interaction and the singlet has a local moment. `g3_08` reads the four
+    cells, asserts that the first one calls no mean field and the other three do, and asserts the levels $\pm1$, each
+    twice.
+14. Page `08`, the try-it box, not in the `.tex`. Old "In the cell, diagonalize the dimer with six states for $U/t$ equal
+    to 4, 8 and 16. ... about 0.83, 0.94 and 0.98, ..." New "In the cell, the dimer is solved in mean field for `Us` from 0
+    to 10. The moment of a site stays at zero up to $U=2t$ and then grows as $\sqrt{1-4t^2/U^2}$, to $0.87$ at $U=4t$ and
+    $0.98$ at $10t$, and the gap goes from $2t$ to $U$. The exact dimer of this section has no ordered moment at any $U$,
+    meaning that $\langle n_\uparrow-n_\downarrow\rangle=0$ on each site, since its ground state is the singlet. Its local
+    moment $\langle(n_\uparrow-n_\downarrow)^2\rangle$ is still $0.85$ at $U=4t$. So the ordered moment of the cell comes
+    from mean field." The ratios stay in the key box and the problem. The local moment was added after the independent
+    check. `g3_08` asserts the call of the cell at five values of $U$ against the closed form, $\mathbf S^2=0$ and
+    $\langle n_\uparrow-n_\downarrow\rangle=0$ in the exact ground state, and the local moment $0.854$ at $4t$ by the six
+    states and by the weight $1/(1+E_S^2/4t^2)$ of the covalent singlet, with $0.765$ at $2.5t$ and $0.964$ at $10t$.
+15. Page `09`, Section 6.10, `.tex` lines 358 and 359. Old "In the large-$U$ limit, the mean-field Hubbard model on a
+    bipartite lattice reduces to this Heisenberg model." (the `.tex` has "reduces exactly"). New "In the large-$U$ limit,
+    the mean-field Hubbard model on a bipartite lattice gives this Néel state, and not the quantum ground state of this
+    Heisenberg model. Its energy is the one of classical spins once we add the constant $-J_{ij}/4$ per bond that (6.5)
+    leaves out.", in a paragraph of its own for the length. The sentence on the constant comes from the independent check,
+    since classical antiparallel spins $\tfrac12$ give $-J/4$ per bond in (6.5) as written. `g3_09` asserts $-J/2$ per bond at $U=20t$ and $40t$, on the chain from the gap
+    equation and on the square lattice from a mean field of our own, $-J/4-J/4=-J/2$ for the classical Néel bond with the
+    constant, and $-0.4515J$ per bond for the exact ring of 10 spins.
+16. Page `11`, Section 6.12, `.tex` lines 416 to 418. Old "It requires broken mirror symmetry, which is the reason why it
+    is strong at surfaces and interfaces, where the substrate itself breaks this mirror symmetry." New "It requires a bond
+    with no inversion center, which is the reason why it is strong at surfaces and interfaces, where the substrate itself
+    breaks the inversion symmetry." `g3_11` finds the allowed $\mathbf D$ for random spins, none for an inversion center at
+    the middle of the bond, one direction for a mirror that contains the bond and two for a mirror normal to it.
+17. Page `11`, the notebook box of Section 6.12, `.tex` lines 440 to 442. Old "Add a term of Dzyaloshinskii-Moriya type to
+    the mean-field Hamiltonian, and see how the ground state tilts away from collinear order. This is the electronic
+    counterpart of the statement above for the spin model." New "The cell adds the Rashba spin-orbit coupling to a Hubbard
+    chain of 10 sites and solves it in mean field, starting from a random guess in the plane $xy$. The moments of the
+    solution leave this plane, and the arrows of the cell show only the $x$ and $y$ components of the mean field, which
+    points opposite to the moment. On this chain the Rashba hopping turns the spin by $90^\circ$ about $y$ on every bond,
+    and a change of the spin axes from site to site removes it. So the mean field has the same energy for every angle
+    between neighbors from $90^\circ$ to $180^\circ$, and the random guess of the cell picks one. This is not the spiral of
+    the key box." The first correction of the day said "with the moments in the plane", which the independent check found
+    false: in the turned frame the staggered moment is one vector $\mathbf n$, and the moments lie in the plane $xy$ only
+    for $\mathbf n$ along $y$, the angle of $180^\circ$. `g3_11` asserts the bond matrix, the map onto the plain chain with
+    the hopping $\sqrt2$, eight guesses with one energy within $10^{-5}$ and angles between $90^\circ$ and $180^\circ$ that differ by more than
+    $20^\circ$, from $91.5^\circ$ to $126.7^\circ$ in the middle of the chain, the
+    largest $|m_z|/|m|$ above $0.1$ in each of them (from $0.57$ to $0.97$), the guess of pyqula in the plane $xy$, and the
+    drawn field $-\tfrac U2\mathbf m=-5\mathbf m$.
+18. Page `11`, the try-it box, not in the `.tex`. Old "Without it, neighboring spins are antiparallel, and with it the
+    angle between neighbors moves away from 180 degrees." New "Without it, neighboring spins are antiparallel. With it, the
+    angle between neighbors moves away from 180 degrees and changes from run to run, since the random guess picks it,
+    while the energy stays the same. With the default `maxite=1000` the loop stops without converging in most runs, so add
+    `maxite=4000` to the call." The first correction of the day said "If the loop does not converge", and the independent
+    check found that failure is the common case. `g3_11` asserts that at least five of the guesses 0 to 7 stop with
+    `MeanFieldConvergenceError` at the default `maxite=1000`, seven in the development tree at commit `7567127`, all but
+    the seed 1, and that all eight converge with 4000. The release 0.0.96 was not run.
+19. Page `13`, Section 6.13, `.tex` lines 453 and 454. Old "since for $J<0$ no other configuration can lower $\langle
+    \mathbf S_i\cdot\mathbf S_j\rangle$ further." New "since for $J<0$ no other configuration can make $\langle \mathbf
+    S_i\cdot\mathbf S_j\rangle$ larger than $S^2$, its value in this state, on any bond." `g4_13` asserts the largest
+    eigenvalue $S^2$ of one bond for $S$ from $\tfrac12$ to $\tfrac32$, and $-N|J|S^2$ for the exact rings, $-2.0$, $-2.5$
+    and $-6.0$.
+20. Page `13`, the recall box, not in the `.tex`. Old "Through the direct hop $t_{ij}$ between two sites, the Hubbard model
+    gives the superexchange $J_{ij}=4t_{ij}^2/U>0$, which is antiferromagnetic." New "For $U$ much larger than $t_{ij}$ and
+    one electron per site, the direct hop $t_{ij}$ between two sites gives $J_{ij}=4t_{ij}^2/U>0$, which is
+    antiferromagnetic." The noun "superexchange" is dropped there, see item 14 of the decided points. `g4_13` asserts
+    the exact ratio $0.828$, $0.944$ and $0.9975$ at $U=4t$, $8t$ and $40t$.
+21. Page `15`, the caption of `afm_bogoliubov` (b), not in the `.tex`. Old "It is nonzero, so the magnon vacuum is not the
+    boson vacuum, which is the Néel state." New "It is zero only at $k=\pm\pi/2$, where $\gamma_k=0$, and positive
+    everywhere else, so the magnon vacuum is not the boson vacuum, which is the Néel state." `g4_15` asserts the two zeros
+    and $1.1919$ at $k=0.3$, by the closed form and by the Bogoliubov matrix of the fold.
+22. Page `16`, Section 6.16, `.tex` lines 569 and 570. Old "now to the bosonic Bogoliubov Hamiltonian of Section 6.15
+    instead of an electronic tight-binding Hamiltonian." New "now to the bosonic tight-binding Hamiltonian of the magnons
+    of Section 6.14 instead of an electronic one." `g5_16` asserts that the exact Hamiltonian keeps $S^z_\text{tot}$, so it
+    has no anomalous term.
+23. Page `16`, the solution of the problem, not in the `.tex`. Old "It survives because two parallel spins have $\mathbf
+    S_i\times\mathbf S_j=0$, meaning that a uniform tilt of all the spins costs no Dzyaloshinskii-Moriya energy." New "It
+    survives because each site has as many left turns as right turns to its second neighbors. So at $\Gamma$ the
+    Dzyaloshinskii-Moriya hops into a site add up to zero, and a uniform tilt of all the spins costs no energy." `g5_16`
+    asserts three left and three right turns on each sublattice, and an open flake of two hexagons where the uniform tilt
+    has zero mean energy but the lowest one-magnon level is $-0.025|J|S$.
+24. Page `16`, the try-it box, not in the `.tex`. Old "Change it to `-0.1` and compute `h.get_chern()` before building the
+    ribbon. The Chern number changes sign." New "Change it to `-0.1` and run the cell again. In the ribbon the branch of
+    each edge that crosses the gap now runs the other way, which is the change of sign of the Chern numbers. The cell does
+    not compute the Chern number. A call of `h.get_chern()` after the line with `h.set_filling(0.0)` and `h.add_onsite(0.5)`
+    gives 0.0 for both signs, since zero energy is then below both bands." `g5_16` runs the cell for both signs, with the
+    bands from 0.499.
+25. Page `17`, the third option of the quiz, not in the `.tex`. Old "An easy-axis anisotropy $A\,(S^z)^2$ keeps the magnon
+    neutral but opens a gap of order $A$." New "An easy-axis anisotropy $A\,(S^z)^2$ with $A<0$ keeps the magnon neutral,
+    but for $S\geq1$ it opens a gap. This gap is $|A|(2S-1)$ in the ferromagnet, and in linear spin waves a larger one, of
+    order $S\sqrt{zJ|A|}$ for $|A|\ll zJ$, in the antiferromagnet." The first correction of the day gave only the gap of the
+    ferromagnet, and the independent check found that the question names both dispersions. No number of a chain is given,
+    since linear spin waves are not reliable on a chain of spins 1. `g5_17` asserts 0, 1 and 2 for $S=\tfrac12$, 1 and
+    $\tfrac32$ on one site and on an exact ring of 4 spins, and for the antiferromagnet the gap
+    $\sqrt{(zJS+a)^2-(zJS)^2}$ of linear spin waves by the closed form and by the Bogoliubov matrix, larger than the cost
+    $a$ of one magnon on a site, $|A|(2S-1)$ or $2|A|S$, and between 1.4 and 2.1 times $S\sqrt{zJ|A|}$ for $|A|\leq0.05J$.
+26. `webnotes/conventions/session06.md`, not in the `.tex`. The bullet of the uniform states now gives the end of the loop
+    at $3.9t$ with `mix` and `maxerror` and reads $|m|$ from the three components, the bullet of the triangular lattice
+    gives the reason of its $0.2^\circ$, the first bullet no longer says that the quiz of Section 6.3 uses the bold
+    $\mathbf m$, and the section of the contradicted statements is now "settled on 2026-11-22", with each item marked.
+    After the independent check, the bullet of the mean-field dimer gives no ordered moment and the local moment $0.854$ at
+    $4t$, the bullet of the Rashba chain gives the moments out of the plane, the arrows of the cell as the field
+    $-\tfrac U2\mathbf m$ and seven of eight seeds that raise at the default `maxite`, the bullet of the easy axis gives
+    the gap of the antiferromagnet in linear spin waves, and the settled items of Sections 6.6, 6.8, 6.12 and 6.17 follow
+    the pages. `conventions.py` checks the new numbers, 47 checks.
+27. Page `02`, Section 6.3, `.tex` line 126, picked by the lecturer on 2026-11-22, item 13 of the second list. Old "and
+    the resulting exchange field points along $\mathbf{m} \equiv \langle\mathbf{S}\rangle$, in \emph{any} direction where
+    this expectation value is nonzero." New "... points along $\mathbf{m} \equiv 2\langle\mathbf{S}\rangle$, in
+    \emph{any} direction where this expectation value is nonzero. With the factor 2, the component
+    $m_z=2\langle S^z\rangle$ is the $m$ of (6.2)." The sentence of line 131, "noncollinear arrangements where
+    $\mathbf{m}$ points in different directions on different sites", holds with the new definition and does not change,
+    and no other line of the `.tex` writes the bold $\mathbf m$. The key box and the steps fold of the page, not in the
+    `.tex`, write $2U|\langle\mathbf S\rangle|$ and $2\langle S^z\rangle=m$, which agree with it. No other page of the web
+    notes writes the bold $\mathbf m$. `g1_02` asserts, for three mixed states of the site with the moment along $z$,
+    along $x$ and along a tilted axis, that $\mathbf m=2\langle\mathbf S\rangle$ has $|\mathbf m|=0.2$ and
+    $m_z=\langle n_\uparrow\rangle-\langle n_\downarrow\rangle$, equal to $0.2$, $0$ and $0.128$, that the Hartree-Fock
+    field is $\tfrac U2n-\tfrac U2\mathbf m\cdot\boldsymbol\sigma$ with its lower level along $\mathbf m$ and the
+    splitting $U|\mathbf m|=0.2U$ in each direction, and that the decoupling of $\mathbf S^2$ gives $\tfrac23U|\mathbf m|$.
+    The first bullet of the conventions sheet and its item of Section 6.3 in the last section now give the picked
+    definition, and `conventions.py` asserts $\mathbf m=(0,0,1)$ for one spin up, $(1,0,0)$ for the spinor
+    $(1,1)/\sqrt2$, and the splitting $U|\mathbf m|=0.2U$ along $z$ and along $x$.
+
+### Decided on 2026-11-22
+
+The coordinator decided points 1 to 12 with the rule of that day, and the lecturer picked points 13 and 14 from the list
+"For the lecturer". The changes of points 1 to 12 on the web are listed here and not in the list above, since the `.tex`
+either has them already or does not have the sentence. The change of point 13 is item 27 of the list above.
+
+1. "Iron for ferromagnets and antiferromagnets" on page `01`, which reads as if iron were an antiferromagnet. The
+   coordinator by the rule: "iron for the family of ferromagnets and antiferromagnets", the reading of the `.tex`, lines 49
+   to 51, which already says "iron for the ferromagnet and antiferromagnet family". No number.
+2. The sentence of the recheck on page `06`, after "not above $4t$". The coordinator added "The saturated ferromagnet, a
+   solution from $4t$ on, is already lower than the paramagnet from $16t/\pi$, about $5.1t$, so in mean field the uniform
+   chain jumps to the full moment before this instability.", so that the three values $4t$, $5.1t$ and $6.3t$ of pages
+   `04` and `06` agree. Asserted in `g2_06`.
+3. Figure 6.1, the converted figure `s06f01_stoner`. The coordinator kept its render and its caption, since panel (a) says
+   that it draws the shape $\tanh$ and for that model panel (b) does grow continuously. The text that reads it is item 11
+   of the first list. Asserted in `g2_06`.
+4. The caption of `dm_spiral`, "seen along $z$". The coordinator chose "seen looking along $\mathbf D$, which is from $-z$
+   for $D>0$". The drawing turns each spin counterclockwise in the frame of the figure, which is the ground state seen
+   from $-z$ for $D>0$ and from $+z$ for $D<0$, so the view along $\mathbf D$ holds for both signs and agrees with the
+   label in the drawing. The drawing is not redrawn. Asserted in `g3_11`.
+5. The third option of the second quiz of page `16`, "the phase $\varphi=+\pi/2$ gives $C=+1$", whose sign depends on
+   which hops carry the phase. The coordinator chose, as the conventions sheet asks, "the phases $\varphi=+\pi/2$ and
+   $\varphi=-\pi/2$ give opposite Chern numbers". Asserted in `g5_16`.
+6. The feedback "Reversing the vector is a mirror operation, so the spectrum is the same" of the second quiz of page `16`.
+   The coordinator kept it, since it holds. A mirror line along a first-neighbor bond keeps each sublattice and exchanges
+   left and right turns, so the magnon matrix with $-D$ at $\mathbf k$ is the one with $+D$ at the mirror image of
+   $\mathbf k$. `g5_16` asserts it within $10^{-12}$.
+7. The notebook box of Section 6.6 on page `06`. The coordinator kept it, since the cell does compute $m$ against $U$, at
+   $U$ from 0 to $3t$ in six steps.
+8. The notebook box of Section 6.16, "compute its Chern number with (6.10)". The coordinator kept it, since it asks the
+   student to compute it and does not say that the cell does. The try-it box, item 24 above, says that the cell does not.
+9. `webnotes/scripts/RECIPES.md`, "within a quarter of a degree" in the recipe of the triangular lattice. Not edited,
+   since it is a shared file of all the sessions and the sentence holds. The reason of the spread is now on the
+   conventions sheet, item 26 above.
+10. The folder `webnotes/figures/session06/__pycache__`, which is ignored by git. Left, since a recursive delete is not
+    used in this pass.
+11. The comesback box of Session 5, `session05/04-the-interacting-hamiltonian-and-the-origin-of-attractive-interactions.md`
+    line 147, "in Section 6.6 we find the threshold of $U$ above which it appears", with the same reading as the old
+    comesback of page `02`. Not applied, since it is a page of another session and a pointer that is true for a uniform
+    magnetization. The sessions that close it can write "a uniform magnetization".
+12. The phase rule "a hop along a vector $\mathbf d$ gives the phase $e^{i\mathbf k\cdot\mathbf d}$" of page `16` and of
+    Section 3.10b, under which $\mathbf k$ is minus the momentum of the Bloch state, as the sheet says of `_haldane.hk`.
+    Left, since it is a convention shared with Session 3 and no sentence is false with it stated. The point for the
+    lecturer below holds with this rule for each of its options.
+13. The bold $\mathbf m$ of Section 6.3, page `02`, `.tex` line 126, the former point 1 for the lecturer, next to the $m$
+    of (6.2), which is $2\langle S^z\rangle$. Picked by the lecturer on 2026-11-22: "$\mathbf m\equiv2\langle\mathbf
+    S\rangle$, so that $m_z$ is the $m$ of (6.2)", with every sentence of the session that uses the bold $\mathbf m$
+    made to agree. The page and the `.tex` change in one symbol and one sentence, item 27 of the first list. The field is
+    $-\tfrac U2\mathbf m\cdot\boldsymbol\sigma$ and its splitting $U|\mathbf m|$ in every direction, which `g1_02`
+    asserts.
+14. Which process the session calls superexchange, the former point 2 for the lecturer. Picked by the lecturer on
+    2026-11-22: the word keeps both of its uses, the direct $t^2/U$ process on pages `08` and `09` and in the caption of
+    Figure 6.2, and the exchange through a ligand in the heading of Section 6.11 and on page `17`. Nothing changes, and the
+    recall box of page `13` keeps its wording without the noun, item 20 of the first list, since the point that the
+    lecturer picked from said that this box no longer uses the noun. The independent check of the same day asked whether
+    the box could take the noun back, now that the word is allowed for the direct process. It is not changed, since the
+    pick says that nothing changes.
+
+### For the lecturer
+
+The lecturer picked the two other points of this list on 2026-11-22, and they are points 13 and 14 of the list
+above. One point is left.
+
+1. Which corner of the zone the solution of the problem of page `16` calls $\mathbf K$, not in the `.tex`. The solution
+   reads "The three products $\mathbf K\cdot\mathbf b_n$ are all $2\pi/3$ modulo $2\pi$, so
+   $\sum_n\sin(\mathbf K\cdot\mathbf b_n)=3\sqrt3/2$ and $m(\mathbf K)=-3\sqrt3\,DS$. The two energies are
+   $3|J|S\mp3\sqrt3\,DS$". With the phase rule of the page, a hop along $\mathbf d$ gives $e^{i\mathbf k\cdot\mathbf d}$,
+   and the $\mathbf b_n$ that turn left on $A$, these values hold at the point $(\mathbf B_1+\mathbf B_2)/3$ of pyqula,
+   which is the corner $\mathbf K'=-\mathbf K$ of Section 2.11. At the corner $\mathbf K=(2\pi/3a,\,2\pi/3\sqrt3a)$ of
+   Section 2.11 the three products are $-2\pi/3$ and $m(\mathbf K)=+3\sqrt3\,DS=+0.5196$ for $DS=0.1$, the value of
+   Section 3.10b. The page does not say which corner it means, so the sentence is not false, and the gap $6\sqrt3\,DS=1.04$,
+   the two levels $2.48$ and $3.52$ for $|J|S=1$ and the Chern numbers do not depend on which corner is named. A change of
+   2026-11-22 to the $\mathbf K$ of Section 2.11 was reverted after the independent check of the same day, since it picks a
+   convention. `g5_16` asserts the two corners, in the lattice of pyqula and in the frame of Section 2.11, and the levels
+   $2.48$ and $3.52$.
+   - Name the corner of Section 2.11, "For the corner $\mathbf K$ of Section 2.11, with this phase rule, the three
+     products $\mathbf K\cdot\mathbf b_n$ are all $-2\pi/3$ modulo $2\pi$, as in Section 3.10b, so
+     $\sum_n\sin(\mathbf K\cdot\mathbf b_n)=-3\sqrt3/2$ and $m(\mathbf K)=+3\sqrt3\,DS$. The two energies are
+     $3|J|S\pm3\sqrt3\,DS$", which matches Sections 2.11 and 3.10b.
+   - Keep the signs and name the other corner, "For the corner $\mathbf K'=-\mathbf K$ of Section 2.11 the three products
+     ...", which keeps the numbers of the solution.
+   - Keep the sentence as it is, with no corner named.

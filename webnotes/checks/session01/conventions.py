@@ -1111,9 +1111,13 @@ def main():
 
     spinor = np.array([1.0, 1.0]) / np.sqrt(2)
     sx_spinor = spinor @ (np.array([[0, 1], [1, 0]]) / 2) @ spinor
-    check('m in Section 6.3', abs(ratio_s2 - 2 / 3) < 1e-12 and abs(sx_spinor - 0.5) < 1e-12,
-          'the S^2 form gives %.3f of the splitting U m, and the spinor (1,1)/sqrt2 has <S_x> = %.2f, half of the m_x = 1 that '
-          'the m of (6.2) gives along x' % (ratio_s2, sx_spinor))
+    # since 2026-11-22, the pick of the lecturer, Section 6.3 writes the bold m = 2<S>, so the spinor has m = (1,0,0)
+    pauli = (np.array([[0, 1], [1, 0]]), np.array([[0, -1j], [1j, 0]]), np.diag([1.0, -1.0]))
+    bold_m = np.array([np.real(spinor @ s @ spinor) for s in pauli])
+    check('m in Section 6.3', abs(ratio_s2 - 2 / 3) < 1e-12 and abs(sx_spinor - 0.5) < 1e-12
+          and near(bold_m, [1.0, 0.0, 0.0], 1e-12),
+          'the S^2 form gives %.3f of the splitting U m, and the spinor (1,1)/sqrt2 has <S_x> = %.2f and the bold '
+          'm = 2<S> = (%.0f,%.0f,%.0f) of Section 6.3' % (ratio_s2, sx_spinor, *bold_m))
 
     print('%d checks hold, %.1f s' % (COUNT[0], time.time() - t0))
 

@@ -33,6 +33,8 @@ fl_g = np.array([[flux(gauge, x, y) for x in range(L - 1)] for y in range(L - 1)
 fl_v = np.array([[flux(vison, x, y) for x in range(L - 1)] for y in range(L - 1)])
 assert np.allclose(fl_g, 1) and np.isclose(fl_v[2, 2], -1) and np.isclose(fl_v.real.sum(), 23)
 assert np.abs(Eg - E0).max() < 1e-12 and np.abs(Ev - E0).max() > 0.3
+assert abs(np.abs(Ev - E0).max() - 0.36) < 0.005 and len(E0) == 36   # the caption: 36 levels, shifts up to 0.36
+print('largest shift with one vison %.4f, after a gauge rotation %.1e' % (np.abs(Ev - E0).max(), np.abs(Eg - E0).max()))
 
 n = np.arange(1, N + 1)
 fig, ax = style.figure(height_cm=6.0, width_cm=12.0)
@@ -40,7 +42,7 @@ style.guide(ax, y=0)
 ax.plot(n, Ev - E0, 'o', ms=4, color=style.BROKEN, zorder=3)
 ax.plot(n, Eg - E0, 'o', ms=4.5, mfc='white', mec=style.ACCENT, mew=1.1, zorder=4)
 ax.set_xlim(0, N + 1.5); ax.set_ylim(-0.5, 0.62)
-style.arrows(ax, xlabel=r'$n$', ylabel=r'$E_n-E_n^{(0)}$')
+style.arrows(ax, xlabel=r'$n$', ylabel=r'$(E_n-E_n^{(0)})/|\chi|$')
 ax.set_xticks([1, 18, 36]); ax.set_yticks([-0.3, 0, 0.3]); ax.set_yticklabels([r'$-0.3$', r'$0$', r'$0.3$'])
 ax.tick_params(length=2.5, pad=2, labelsize=9.5)
 ax.plot([2.0], [0.53], 'o', ms=4.5, mfc='white', mec=style.ACCENT, mew=1.1)

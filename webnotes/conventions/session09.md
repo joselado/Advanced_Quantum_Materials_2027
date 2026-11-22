@@ -14,8 +14,10 @@ them, with no change. A statement that is not on this sheet is checked before a 
 
 - $D(E_F)$ is the $g(\omega)$ of (2.16) at $\omega=E_F$, per spin and per site, and at a temperature it is
   $-\frac1N\sum_k n_F'(\varepsilon_k)$, the same density of states averaged over the thermal window. The half-filled
-  chain has $D(E_F)=1/(2\pi t)=0.159/t$, and `h.get_dos()` gives 0.159 with `has_spin=False` and 0.318 with the two
-  spins, since it sums over the spins of the Hamiltonian. The identity $Un_\uparrow n_\downarrow=\frac U4(n^2-m^2)$
+  chain has $D(E_F)=1/(2\pi t)=0.159/t$, and `h.get_dos(mode="Green", delta=1e-3)` gives 0.159 with `has_spin=False`
+  and 0.318 with the two spins, since it sums over the spins of the Hamiltonian. The bare `h.get_dos()` gives 0.18
+  with `has_spin=False`, on its default mesh and energy grid, so a page quotes the call with the Green mode. The
+  identity $Un_\uparrow n_\downarrow=\frac U4(n^2-m^2)$
   of Section 9.5b holds as an operator on the four states of one site.
 - pyqula builds the BdG Hamiltonian in the basis (5.6). After `h.add_exchange([0,0,0.3])` and `h.add_swave(0.1)` the
   onsite block of the chain has $0.3,-0.3,0.3,-0.3$ on its diagonal and 0.1 at the places (0,2) and (1,3). So an
@@ -73,8 +75,10 @@ them, with no change. A statement that is not on this sheet is checked before a 
 - At half filling $\chi_0(0,0)$ grows as $\ln(1/T)$, by $\ln2/(2\pi^2)=0.035$ for each halving of $T$, and
   $\chi_0(\pi,\pi)$ grows as $\ln^2(1/T)$, with the second differences $\ln^22/(2\pi^2)=0.024$, from $T=0.2t$ to
   $0.0125t$. So the enhancement at $(\pi,\pi)$ is the square of a logarithm.
-- On the $200\times200$ mesh of the figure `lindhard_map` at $T=0.1t$, $\chi_0(\pi,\pi)/\chi_0(0)=2.57$ at half filling.
-  At $\mu=-3t$ the Fermi surface has $k_F=1.03$ from its area, $\pi k_F^2=(2\pi)^2n$, between 1.02 along the diagonal
+- On a $200\times200$ mesh at $T=0.1t$, $\chi_0(\pi,\pi)/\chi_0(0)=2.57$ at half filling. The figure `lindhard_map`
+  uses `h.get_chi` with `integration="triangle"` on a $31\times31$ k-mesh, which gives $0.264/t$ and $0.677/t$ and the
+  ratio 2.56, the 2.6 of its caption. On the $200\times200$ mesh at $\mu=-3t$ the Fermi surface has $k_F=1.03$ from
+  its area, $\pi k_F^2=(2\pi)^2n$, between 1.02 along the diagonal
   and 1.05 along the axes. Along $q_x$ the ratio $\chi_0(q)/\chi_0(0)$ is 1.03 and 1.06 at 0.5 and 0.9 times $2k_F$,
   and 0.68 and 0.56 at 1.2 and 1.5 times $2k_F$. So it is flat inside $|q|=2k_F$ to six percent and falls outside it.
 - pyqula's chain has the band $2\cos k$, and `h.add_onsite(mu)` adds `mu` to every onsite energy, so the band moves
@@ -111,11 +115,14 @@ them, with no change. A statement that is not on this sheet is checked before a 
 
 ## The plasmon
 
-- Above the particle-hole continuum $\chi_0(q,\omega)$ of (9.5) is negative and goes to $-nq^2/(m\omega^2)$. At
-  $q=0.1k_F$ and $\omega=1.2\hbar k_F^2/m$ the closed form of Lindhard and the sum over the Fermi sea both give
-  $-0.002325$ in units of $N(0)$, and $-nq^2/(m\omega^2)$ is $-0.002315$. So the plasmon is a zero of
-  $1+v(q)\chi_0$, the denominator of (9.6), and $1-v(q)\chi_0$ has no zero above the continuum. The zero gives
-  $(\omega^2-\omega_p^2)/(v_Fq)^2=0.6000$ as $q\to0$, the $\tfrac35$ of (9.7).
+- Above the particle-hole continuum $\chi_0(q,\omega)$ of (9.5) is negative. Summed over the two spins it goes to
+  $-nq^2/(m\omega^2)$, with $n$ the density of both spins, and for one spin to half of it. At $q=0.1k_F$ and
+  $\omega=1.2\hbar k_F^2/m$ the closed form of Lindhard and the sum over the Fermi sea of both spins give $-0.002325$
+  in units of the $N(0)$ of both spins, and $-nq^2/(m\omega^2)$ is $-0.002315$. Since 2026-11-22, the pick of the
+  lecturer, Section 9.5a says that the $\chi_0$ of (9.6) counts one spin and that an interaction on the total density
+  gives the denominator $1+2v(q)\chi_0$. So the plasmon is a zero of $1+2v(q)\chi_0$, at $\omega_p$ as $q\to0$. The
+  denominator $1+v(q)\chi_0$ would put it at $\omega_p/\sqrt2$, 0.7073 for $q=0.02k_F$, and $1-2v(q)\chi_0$ has no
+  zero above the continuum. The zero gives $(\omega^2-\omega_p^2)/(v_Fq)^2=0.6000$ as $q\to0$, the $\tfrac35$ of (9.7).
 - The particle-hole continuum of the electron gas lies below $\omega_+=v_Fq+\hbar q^2/2m$, and above
   $\omega_-=\hbar q^2/2m-v_Fq$ when $q>2k_F$, as the caption of Figure 9.2 says. A sampling of the Fermi sphere at
   $q=0.5$, 1.5 and $2.5k_F$ gives these edges to 0.005.
@@ -156,7 +163,9 @@ them, with no change. A statement that is not on this sheet is checked before a 
   $\Delta=0.02t$, $0.004\Delta$ with $\Delta=0.2t$, and $0.105\Delta$ at $\mu=1.8t$ with $\Delta=0.2t$.
 - A pyqula ring of 300 sites with `add_exchange` on one site and `add_swave(0.1)` at half filling, where
   $\alpha=JS/2t$, gives $|E_b|=0.6005\Delta$ for $JS=t$ and $0.3837\Delta$ for $3t$. The T-matrix gives the same
-  numbers, and (9.10) gives 0.6000 and 0.3846.
+  numbers, and (9.10) gives 0.6000 and 0.3846. With $\Delta=0.2t$ the level of the half-filled chain crosses zero at
+  $JS=\sqrt{4t^2+\Delta^2}=2.01t$, from $\det(1-Jg(0))=0$ and on a ring of 400 sites, which is the $\alpha=1$ of (9.10)
+  to 0.5 percent, as the caption of `g5_ysr_dos` says.
 - In the cell "Single magnetic impurity in a superconductor", with `h.add_onsite(1.8)` and $\Delta=0.2t$, the level
   crosses zero at $J=1.04t$, while $\alpha=1$ gives $J=1/(\pi\nu_0)=v_F=0.872t$. $\Delta$ is not small next to the
   $0.2t$ between $E_F$ and the bottom of the band, so (9.10) does not hold there.
@@ -170,9 +179,11 @@ them, with no change. A statement that is not on this sheet is checked before a 
 
 ## Vacancies in topological matter
 
-- The figure `vacancy_dos` uses a numpy Haldane model of its own, with $t_2$, the phase $\pi/2$ and the mass $M$, and
-  not `add_haldane`. On the $18\times18$ torus, $t_2=0.15t$ gives the gap $1.559t$ and one level at $E=0$ with 0.45 of
-  its weight on the three neighbors of the vacancy, and $M=0.779t$ gives the same gap and no level inside it.
+- The figure `vacancy_dos` runs the pyqula script `g5_vacancy_honeycomb.py`, with `add_haldane(0.3/sqrt3)`, which is
+  $t_2=0.15t$ with the phase $\pi/2$, and `add_sublattice_imbalance(0.78)`, the mass $M=0.78t$. On the $18\times18$
+  torus, $t_2=0.15t$ gives the gap $1.559t$ and one level at $E=0$ with 0.45 of its weight on the three neighbors of
+  the vacancy, and $M=0.78t$ gives the gap $1.56t$ and no level inside it. A numpy Haldane model of our own, with $t_2$,
+  the phase $\pi/2$ and $M$ on the same torus, gives the same numbers.
 - For $t_2=0.1t$ and $M=0.3t$ the gap edges are $\pm0.2196t$. In the infinite lattice a vacancy binds a state where
   the local Green's function of its site vanishes. This is at $-0.135t$ for the vacancy on the sublattice with $+M$
   and at $+0.135t$ on the other one, for either sign of the phase. The $18\times18$ torus gives $-0.130t$ and the
@@ -207,9 +218,9 @@ them, with no change. A statement that is not on this sheet is checked before a 
 - For $\chi$ alternating 1 and 0.6, with the gap $2(1-0.6)\chi=0.8\chi$, the partner of site 0 in its dimer has
   $-0.81$ of the moment of site 0, which is 0.66 of all the moment off site 0, and the other neighbor $-0.05$. The
   moment decays at 0.57 and 0.53 per site on the two sublattices from $n=10$ to 40, which tends to $\ln(1/0.6)=0.51$.
-  It falls below $10^{-11}$, the lower end of the panel, from $n=32$ on the sublattice of site 0 and from $n=39$ on
-  the other one. At every point above $10^{-11}$ the diagonalization of the figure agrees with the Dyson equation to
-  $10^{-3}$, so the points of the panel are not round-off.
+  It falls below $10^{-8}$, the lower end of the panel, from $n=20$ on the sublattice of site 0 and from $n=27$ on the
+  other one, so the panel draws the points up to $n=18$ and $n=25$. At every point above $10^{-8}$ the diagonalization
+  of the figure agrees with the Dyson equation to $10^{-6}$, so the points of the panel are not round-off.
 
 ## Anderson localization
 
@@ -231,9 +242,9 @@ them, with no change. A statement that is not on this sheet is checked before a 
   are standing waves, while a plane wave gives 1. For $N=55$, 233 and 987 it is about 1.7 at $V_0=0.5t$, 2.00 to 2.10
   at $V_0=t$, 2.6 to 2.9 at $1.5t$ and 4.5 to 6.0 at $1.9t$. Above $V_0=2t$ the IPR does not depend on $N$, 0.418,
   0.411 and 0.409 at $V_0=2.5t$ and 0.549, 0.543 and 0.542 at $3t$.
-- In the 3D Anderson model at $W=20t$ the density of states at the band center is 0.022 to 0.027 states per site and
-  per unit of energy, over 4 cubes of $10^3$ sites. This is $1/(2W)=0.025$, the height of the distribution of $w_n$,
-  and the spectrum lies inside $\pm(6t+W)$.
+- In the 3D Anderson model at $W=20t$ the density of states at the band center is about 0.022 to 0.027 states per site
+  and per unit of energy in $|E|<5t$, over 8 cubes of $10^3$ sites, as the quiz of Section 9.10b says. This is
+  $1/(2W)=0.025$, the height of the distribution of $w_n$, and the spectrum lies inside $\pm(6t+W)$.
 - The numbers of the quizzes of Sections 9.6, 9.9 and 9.10 hold. The IPR of ten equal sites is 0.1, a factor
   $2^{-0.5}=0.71$ gives $\tau=0.5$, $e^{-4}=0.018$, and $\cos(\pi x/2)$ has the period 4.
 
@@ -243,52 +254,72 @@ Three statements of the figures have no check here. The critical disorder $W_c\a
 about $16.5t$ for the full width $2W$ of the box, is a value of numerical work on the 3D Anderson model. The spin-1
 Heisenberg chain has a correlation length of about 6 sites in numerical work, so the $\xi=2.5$ of Figure 9.5 and of
 its quiz is a drawn value and not the one of the spin-1 chain, and the spin-1/2 chain has a logarithmic correction to
-$1/n$ that the mean-field spinons do not have. The script `webnotes/figures/session09/spinon_impurity.py` does not give
-the same SVG twice, so after a redraw its SVG is restored from git.
+$1/n$ that the mean-field spinons do not have. The script `webnotes/figures/session09/spinon_impurity.py` gives the same
+SVG at every run since 2026-11-22, since it draws only the points above $10^{-8}$ and rounds them, so a redraw needs no
+restore from git.
 
-## Statements of the old text that these numbers contradict
+## Points of the old text, corrected, decided or open on 2026-11-22
 
-These are wrong by the numbers above. Each change of the old text is the lecturer's to decide.
+These restate lines above for the pages they concern. They were open points of the old text, and the plan of the
+session records what happened to each one on 2026-11-22. The check prints them in this order.
 
-- The caption of Figure 9.2 calls the plasmon a zero of $1-v(q)\chi_0$. With (9.6) and the positive $\chi_0$ of (9.4)
-  it is a zero of $1+v(q)\chi_0$, see the plasmon lines.
-- Section 9.6a writes $\delta n(x)=\int\frac{dq}{2\pi}e^{iqx}\chi_0(q)\,v_0$ with no minus sign. The numbers give
-  $\delta n(q)=-\chi_0(q)\,v_0$, so a repulsive impurity lowers the density on its site.
-- Section 9.7 says that (9.10) is the classical spin "in the Born approximation". It is the T-matrix to all orders in
-  $J$, and its first order gives 0.5 at $\alpha=0.5$ where the lattice gives 0.600.
-- The second quiz of Section 9.8 says that $t_2=0.1t$, $\varphi=\pi/2$ and $M=0.5t$ give a vacancy state at
+These were wrong by the numbers above, and they are corrected on the web.
+
+- The caption of Figure 9.2 called the plasmon a zero of $1-v(q)\chi_0$. With (9.6), the positive $\chi_0$ of (9.4)
+  and the $\chi_0$ of one spin, it is a zero of $1+2v(q)\chi_0$, see the plasmon lines, and the caption on the page now
+  says so. The render of the figure and its overlay are not changed.
+- Section 9.6a wrote $\delta n(x)=\int\frac{dq}{2\pi}e^{iqx}\chi_0(q)\,v_0$ with no minus sign. The numbers give
+  $\delta n(q)=-\chi_0(q)\,v_0$, so a repulsive impurity lowers the density on its site, and the page now has the
+  minus sign.
+- Section 9.7 said that (9.10) is the classical spin "in the Born approximation". It is the T-matrix to all orders in
+  $J$, and its first order gives 0.5 at $\alpha=0.5$ where the lattice gives 0.600. The page now says "In the
+  approximation of a classical spin".
+- The second quiz of Section 9.8 said that $t_2=0.1t$, $\varphi=\pi/2$ and $M=0.5t$ give a vacancy state at
   $-0.016t$. The infinite lattice has $G_{AA}=-0.197$ and $G_{BB}=0.236$ there and no zero in the gap away from its
-  edges, for either sublattice, and the $18\times18$ torus has its level at $-0.006t$.
-- The try-it of Section 9.9 says that the cell compares a gap of 0.1 with a gap of 0.3. The gaps are 0.2 and 0.6,
-  and 0.1 and 0.3 are the onsite energies $\pm m$.
-- The notebook box of Section 9.6b says that in the gapped chain the LDOS converges to its bulk value within one or
-  two sites. In that cell the LDOS change decays over 10.0 and 3.35 sites.
-- The try-it and the notebook box of Section 9.5b and the notebook box of Section 9.9 call `geometry.bichain()` a
-  dimerized chain. Its two hoppings are equal. The cell "The impact of a strong impurity" of the box of Section 9.9
-  compares an s-wave superconductor, a sublattice insulator and a p-wave superconductor, and not a stronger and a
-  weaker gap.
-- The second quiz of Section 9.10b gives the density of states of the Anderson insulator at $W=20t$ as about
-  $1/W=0.05/t$. It is $1/(2W)=0.025/t$ for $w_n$ in $[-W,W]$.
+  edges, for either sublattice, and the $18\times18$ torus has its level at $-0.006t$. The quiz now says that this
+  vacancy gives no level separated from the band edges.
+- The try-it of Section 9.9 said that the cell compares a gap of 0.1 with a gap of 0.3. The gaps are 0.2 and 0.6,
+  and 0.1 and 0.3 are the onsite energies $\pm m$, as the box now says.
+- The notebook box of Section 9.6b said that in the gapped chain the LDOS converges to its bulk value within one or
+  two sites. In that cell the LDOS change decays over 10.0 and 3.35 sites, which the box now gives as 10 and 3.3.
+- The try-it and the notebook box of Section 9.5b and the notebook box of Section 9.9 called `geometry.bichain()` a
+  dimerized chain. Its two hoppings are equal, and the boxes now say so. The cell "The impact of a strong impurity" of
+  the box of Section 9.9 compares an s-wave superconductor, a sublattice insulator and a p-wave superconductor, as the
+  box now says.
+- The second quiz of Section 9.10b gave the density of states of the Anderson insulator at $W=20t$ as about
+  $1/W=0.05/t$. It is $1/(2W)=0.025/t$ for $w_n$ in $[-W,W]$, as the quiz now says.
 
-These depend on a condition that the page does not write.
+These depended on a condition that the page did not write, and the page now writes it or no longer says it.
 
 - The first quiz of Section 9.8 gives $-0.14t$ for $M=0.3t$. This holds for the vacancy on the sublattice with $+M$,
-  and the other sublattice gives $+0.135t$.
-- Section 9.8 and the caption of Figure 9.4 say that a vacancy is guaranteed to bind an in-gap mode when the invariant
-  is non-zero. Close to the closing of the gap the bound state of the Haldane model lies exponentially close to the
-  band edge, so no separate peak is seen.
+  as the feedback says, and the other sublattice gives $+0.135t$.
+- Section 9.8 and the caption of Figure 9.4 say that a vacancy binds an in-gap mode when the invariant is non-zero.
+  Close to the closing of the gap the bound state of the Haldane model lies exponentially close to the band edge, so
+  no separate peak is seen, which the opener of the page now says. The caption no longer says "if and only if" or
+  "The rule is as direct as it looks".
 - The quiz of Section 9.8 on the SSH chain holds only with the onsite energy on the neighbor joined to the vacancy by
-  the strong bond, and on a ring the vacancy has its zero level for either order of the hoppings.
-- The caption of the figure `stoner` calls $0.26/t$ the density of states at $E_F$, which it is only as the thermal
-  average at $T=0.1t$, since $D(E)$ diverges at $E=0$. Section 9.5b says that $\chi_0(\pi,\pi)$ is "logarithmically
-  enhanced", and it grows as $\ln^2(1/T)$, where $\chi_0(0,0)$ grows as $\ln(1/T)$.
-- The second quiz of Section 9.10b writes the conductance as $e^{-L/\xi}$. With the $\xi$ of the amplitude, which the
-  figure `localization_length` draws, it is $e^{-2L/\xi}$.
-- The caption of the figure `aah_ipr` says that $N\cdot\mathrm{IPR}\approx2$ below $V_0=2t$. It is about 2 at
-  $V_0=t$, and it goes from 1.5 at $V_0=0$ to about 6 at $1.9t$.
+  the strong bond, as its feedback now says, and on a ring the vacancy has its zero level for either order of the
+  hoppings, as the key box says.
+- The caption of the figure `stoner` gives $0.26/t$ as the density of states averaged over the thermal window at
+  $T=0.1t$, since $D(E)$ diverges at $E=0$. Section 9.5b called $\chi_0(\pi,\pi)$ "logarithmically enhanced", and it
+  grows as $\ln^2(1/T)$, where $\chi_0(0,0)$ grows as $\ln(1/T)$, so the page now says "enhanced" and gives the two laws.
+- The second quiz of Section 9.10b wrote the conductance as $e^{-L/\xi}$. With the $\xi$ of the amplitude, which the
+  figure `localization_length` draws, it is $e^{-2L/\xi}$, and the quiz now writes it so.
+- The caption of the figure `aah_ipr` said that $N\cdot\mathrm{IPR}\approx2$ below $V_0=2t$. It is about 2 at
+  $V_0=t$, and it goes from 1.5 at $V_0=0$ to about 6 at $1.9t$, so the caption now quotes $V_0=t$.
 
-These change a definition or a numbered equation, so they are the lecturer's to decide.
+These were picked by the lecturer on 2026-11-22, and the pages now say so.
 
 - Section 9.3 defines $\chi_A=\partial A/\partial\lambda$, and Section 9.4a calls (9.4) the response of the density to
-  a shift of the onsite energy. With that definition the response is $-\chi_0$.
-- (9.6) is written without the factor 2 of the two spins, which leaves the ratio $\chi/\chi_0$ unchanged.
+  a shift of the onsite energy. With that definition the response is $-\chi_0$. Section 9.4a keeps (9.4) and now says
+  after its key box that the density changes by $\delta n(q)=-\chi_0(q)\,v_q$, so $\chi_A=-\chi_0(q)\,v_q$, and the
+  sentence before (9.4) has the denominator $\varepsilon(k)-\varepsilon(k+q)$ of (9.3).
+- (9.6) is written without the factor 2 of the two spins, which leaves the ratio $\chi/\chi_0$ unchanged. Section 9.5a
+  keeps (9.6) and now says after it that $\chi_0$ counts one spin and that an interaction on the total density gives
+  the denominator $1+2v(q)\chi_0$, as $U\to2v(q)$, the caption of Figure 9.2 and the fold of the plasma frequency write.
+
+These change a definition, a numbered equation or a rule that the .tex states, so they are the lecturer's to decide.
+
+- The key box of Section 9.8 keeps the italic rule of the .tex, that an in-gap mode means a topological phase and no
+  mode a trivial one. A vacancy in the SSH ring leaves its zero level in both orders of the hoppings, and for
+  $t_2=0.1t$ and $M=0.5t$, with $C=1$, the bound state is not separated from the band edges.

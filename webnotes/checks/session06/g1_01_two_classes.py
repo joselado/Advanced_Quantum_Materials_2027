@@ -132,4 +132,24 @@ check('S^- on one site of the ferromagnet of four spins changes the total S^z fr
       np.isclose(fm @ SzT @ fm, 2) and np.isclose(mag @ SzT @ mag / (mag @ mag), 1), 'ok')
 s2half = sum(m @ m for m in (0.5 * np.array([[0, 1], [1, 0]]), 0.5 * np.array([[0, -1j], [1j, 0]]), sz1))
 check('a spin 1/2 has S(S+1) = 3/4, the spin of a spinon', np.allclose(s2half, 0.75 * np.eye(2)), 'ok')
+
+# corrected on 2026-11-22, "Magnons have no charge, so an electric field does not push them as it pushes an electron".
+# A potential V_i n_i commutes with S^- of every site, so it gives no force on a spin flip, which moves no charge. The old
+# "electric fields do not affect them at all" is too strong: a potential difference V between the two sites of the dimer
+# changes the singlet-triplet splitting, from 4t^2/U to about 4t^2 U/(U^2 - V^2) at second order, which we check by
+# exact diagonalization and by that formula at U = 20t.
+Sm_site = [d(c[2 * i + 1]) @ c[2 * i] for i in (0, 1)]
+Vpot = 0.7 * (n[0] + n[1]) - 0.3 * (n[2] + n[3])
+check('a potential V_i n_i commutes with S^- of each site, so it does not act on a spin flip as a force',
+      all(np.allclose(comm(Vpot, s), 0) for s in Sm_site), 'ok')
+split = {}
+for V in (0.0, 4.0):
+    Hb = dimer(20.0) + V / 2 * (n[0] + n[1]) - V / 2 * (n[2] + n[3])
+    wb = np.linalg.eigvalsh(Hb[np.ix_(half, half)])
+    split[V] = wb[1] - wb[0]
+pert = 4 * t ** 2 * 20.0 / (20.0 ** 2 - 4.0 ** 2)
+check('a potential difference V = 4t between the two sites raises the singlet-triplet splitting of the dimer at U = 20t '
+      'from 0.198t to 0.206t, close to 4t^2 U/(U^2 - V^2) = 0.208t, so an electric field does change the magnon energy',
+      round(split[0.0], 3) == 0.198 and round(split[4.0], 3) == 0.206 and abs(split[4.0] - pert) / pert < 0.02,
+      (round(split[0.0], 4), round(split[4.0], 4), round(pert, 4)))
 print('page 01 of Session 6: all statements hold')

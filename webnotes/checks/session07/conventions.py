@@ -802,13 +802,19 @@ def main():
     qw = hb.get_entanglement_entropy(region=list(range(40)), nsuper=100)
     qs = hb.get_entanglement_entropy(region=list(range(1, 41)), nsuper=100)
     red = 't1, t2 = 1.0, 0.6' in source('critical_entropy.py') and '-(t1 if i % 2 == 0 else t2)' in source('critical_entropy.py')
+    # the red curve of critical_entropy since 2026-11-22: an open chain of 3002 sites, blocks in the middle from an even site
+    Co = corr(hop_chain([1.0 if i % 2 == 0 else 0.6 for i in range(3001)]))
+    st = [2 * ((1501 - l // 2) // 2) for l in (10, 32, 100, 316, 1000)]
+    red3002 = [ff(Co, list(range(a, a + l))) for a, l in zip(st, (10, 32, 100, 316, 1000))]
+    red = red and 'N = 3002' in source('entropy_critical_chain.py', os.path.join(WEBNOTES, 'scripts', 'session07')) and abs(red3002[0] - 0.4983) < 5e-5 \
+        and all(abs(x - 0.4992) < 5e-5 for x in red3002[1:]) and all(a % 2 == 0 for a in st)
     check('the dimerized chain of free fermions', abs(gap - 0.8) < 1e-9 and abs(blocks['weak'] - 0.4992) < 5e-5
           and abs(blocks['weak10'] - 0.4983) < 5e-5 and abs(blocks['mixed'] - 0.9554) < 5e-5 and abs(blocks['strong'] - 1.4117) < 5e-5
           and abs(qw - blocks['weak']) < 1e-6 and abs(qs - blocks['strong']) < 1e-6 and red,
           'hoppings 1 and 0.6, the gap %.3f, on a ring of 1000 sites a block whose two ends cut a 0.6 bond has %.4f, and %.4f '
-          'with 10 sites, one end of each kind %.4f, two ends on a bond 1 %.4f, pyqula bichain %.4f and %.4f, and '
-          'critical_entropy.py takes the hopping 1 on the bonds (2n, 2n+1)' % (gap, blocks['weak'], blocks['weak10'],
-                                                                               blocks['mixed'], blocks['strong'], qw, qs))
+          'with 10 sites, one end of each kind %.4f, two ends on a bond 1 %.4f, pyqula bichain %.4f and %.4f, '
+          'critical_entropy.py takes the hopping 1 on the bonds (2n, 2n+1), and its open chain of 3002 sites gives %s'
+          % (gap, blocks['weak'], blocks['weak10'], blocks['mixed'], blocks['strong'], qw, qs, np.round(red3002, 4).tolist()))
 
     # ---------------------------------------------------------------- pyqula
     gc = geometry.chain()
@@ -1138,7 +1144,7 @@ def main():
                                                                                          prof.max(), np.abs(profiles[0.03][0] - prof).max(), scale, tot.max()))
 
     # ---------------------------------------------------------------- statements of the pages
-    check('7.3, sixteen gigabytes', abs(b30 / 1e9 - 17.2) < 0.05, 'L = 30 is %.1f GB with the 1e9 bytes of the dashed line' % (b30 / 1e9))
+    check('7.3, about seventeen gigabytes', abs(b30 / 1e9 - 17.2) < 0.05, 'L = 30 is %.1f GB with the 1e9 bytes of the dashed line' % (b30 / 1e9))
     check('7.3 and 7.4, the product state', count(40, 1)[0] == 80 and count(100, 1)[0] == 200,
           'the MPS with M = 1 stores 2 numbers per site, 80 for 40 sites, 1280 bytes')
     check('7.3, exact diagonalization in the first cell', 'mode="DMRG"' in c3 and 'mode="ED"' not in c3,

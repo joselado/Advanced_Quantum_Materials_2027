@@ -4,7 +4,8 @@ problem make.
 One site is built with Jordan-Wigner matrices. The script checks the identity U n_up n_dn = U n/2 - (2U/3) S^2 and
 the value of each term on the four states, the Hartree decoupling of the densities and the splitting Um that it
 gives, the field -U <S>.sigma of the decoupling with the spin-flip averages, which splits the two spins by
-2U|<S>| along any direction and by U m only along z, and the factor 2/3 of the decoupling of S^2. It checks that
+2U|<S>| along any direction and by U m only along z, and the factor 2/3 of the decoupling of S^2. Since 2026-11-22
+the bold moment of the text is m = 2<S>, and the last block checks that the field is -(U/2) m.sigma. It checks that
 the exact Hubbard energy of a Slater determinant of the site is the Hartree-Fock one and that the S^2 route gives
 U/3 for one electron with spin up, where the exact value is 0, and the reading of the lab box on a toy model of
 two layers, two valleys and two spins. Then the numbers of the quizzes, the spinor (1,1)/sqrt2, the pair amplitude
@@ -246,4 +247,55 @@ check('the polarized state is a fixed point of the loop, m = 0.2 and splitting U
 filled = np.sort(e_up)[:int(round(nel * Nk))]
 check('the filled spin-up states go from -2t to the Fermi level -1.618t', np.isclose(filled.min(), -2, atol=1e-5)
       and np.isclose(filled.max(), EF, atol=5e-3), (filled.min(), filled.max()))
+
+# corrected on 2026-11-22, Section 6.3: "Self-consistency gives m=0 for U<0, and in the half-filled chain a magnetic
+# solution with m != 0 for every U>0". For U<0 the uniform energy (4t/pi)(1 - cos(pi m/2)) - U m^2/4 grows with m, and
+# the right side of the gap equation 1 = (U/2)<1/E_k> of the staggered moment is negative, so only m = 0 is left. For U>0
+# the gap equation has a solution at every U, 0.0299 at U = t, while a uniform moment needs the Stoner threshold of 6.6.
+import os, sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'figures', 'session06'))
+import _mf
+mg = np.linspace(0, 1, 101)
+Eunif = lambda m, U: 4 / np.pi * (1 - np.cos(np.pi * m / 2)) - U * m * m / 4
+rhs = [(U / 2) * _mf.avg(lambda e, D: 1 / np.sqrt(e * e + D * D), 0.1) for U in (-1.0, -4.0)]
+check('6.3: for U<0 the uniform energy grows with m and the gap equation has a negative right side, so m = 0',
+      all(np.all(np.diff(Eunif(mg, U)) > 0) for U in (-1.0, -4.0)) and all(r < 0 for r in rhs), np.round(rhs, 4))
+ms = [_mf.moment(U) for U in (0.5, 1.0, 2.0)]
+check('6.3: in the half-filled chain the staggered moment is finite for every U>0, 0.0299 at U = t, below the uniform '
+      'threshold 2 pi t', all(m > 0 for m in ms) and round(ms[1], 4) == 0.0299, np.round(ms, 5))
+
+# picked by the lecturer on 2026-11-22, Section 6.3: the bold moment is m = 2<S>, "so that m_z is the m of (6.2)". The
+# text says that the exchange field points along m, in any direction, and that m_z = 2<S^z> is the m of (6.2). For the
+# three mixed states above, along z, along x and along a tilted axis, m = 2<S> has |m| = 0.2, m_z equals
+# <n_up> - <n_dn>, the Hartree-Fock field is U n/2 - (U/2) m.sigma, its lower level is the spin along m, and it splits
+# the two spins by U|m| = 0.2U. The S^2 route gives the same direction and (2/3) U|m|.
+U = 1.0
+rows = []
+for direction in ([0, 0, 1], [1, 0, 0], [0.48, 0.6, 0.64]):
+    nvec = np.array(direction) / np.linalg.norm(direction)
+    th, ph = np.arccos(nvec[2]), np.arctan2(nvec[1], nvec[0])
+    chi = np.cos(th / 2) * d(cu) @ vac + np.exp(1j * ph) * np.sin(th / 2) * d(cd) @ vac
+    chib = -np.exp(-1j * ph) * np.sin(th / 2) * d(cu) @ vac + np.cos(th / 2) * d(cd) @ vac
+    dbl = d(cu) @ d(cd) @ vac
+    R = (0.4 * np.outer(vac, vac) + 0.35 * np.outer(chi, chi.conj()) + 0.15 * np.outer(chib, chib.conj())
+         + 0.1 * np.outer(dbl, dbl.conj()))
+    tr = lambda O: np.trace(R @ O)
+    mb = 2 * np.array([tr(Sx), tr(Sy), tr(Sz)]).real          # the bold m of the text
+    n_up, n_dn, nel = tr(nu).real, tr(nd).real, tr(n).real
+    upd, dnu = tr(d(cu) @ cd), tr(d(cd) @ cu)
+    h = np.array([[U * n_dn, -U * dnu], [-U * upd, U * n_up]])
+    w, v = np.linalg.eigh(h)
+    low = v[:, 0]
+    along = np.array([(low.conj() @ sig[k] @ low).real for k in range(3)])
+    w2 = np.linalg.eigvalsh(-(U / 3) * sum(mb[k] * sig[k] for k in range(3)))   # -(2U/3) 2<S>.S = -(U/3) m.sigma
+    rows.append((mb, n_up - n_dn, np.allclose(h, U * nel / 2 * I2 - (U / 2) * sum(mb[k] * sig[k] for k in range(3))),
+                 np.allclose(along, mb / np.linalg.norm(mb)), w[1] - w[0], w2[1] - w2[0]))
+check('6.3, picked 2026-11-22: m = 2<S> has |m| = 0.2 and m_z = <n_up> - <n_dn>, 0.2 along z, 0 along x, 0.128 tilted',
+      all(np.isclose(np.linalg.norm(r[0]), 0.2) and np.isclose(r[0][2], r[1]) for r in rows)
+      and np.isclose(rows[0][1], 0.2) and np.isclose(rows[1][1], 0) and np.isclose(rows[2][1], 0.128),
+      [(np.round(r[0], 4).tolist(), round(r[1], 4)) for r in rows])
+check('6.3, picked 2026-11-22: the field is U n/2 - (U/2) m.sigma, its lower level is the spin along m, and it splits '
+      'by U|m| = 0.2U in every direction, while the S^2 route splits by (2/3) U|m|',
+      all(r[2] and r[3] and np.isclose(r[4], 0.2 * U) and np.isclose(r[5], 2 / 3 * 0.2 * U) for r in rows),
+      [(round(r[4], 12), round(r[5], 12)) for r in rows])
 print('page 02 of Session 6: all statements hold')

@@ -4,11 +4,12 @@ This sheet fixes the signs, the units and the pyqula and dmrgpy facts that the p
 Session 8 use. An agent that edits the session reads it first and does not work these out again. Every bullet was
 checked with a number on 2026-11-21. Two drafts were written apart, and a third calculation settled each line where
 they differed or where only one of them had it. The spin energies are in units of the exchange $J$ and the band
-energies in units of the hopping $t$, which pyqula takes as $+1$. A number from a mesh of momenta is given with the
+energies in units of $|t|$. pyqula takes the hopping as $+1$, which is $t=-1$ in the sign $-t$ of (8.17) and (8.18),
+and $\chi=+1$ in (8.15). A number from a mesh of momenta is given with the
 mesh that holds it, or with two digits when the mesh moves the third. The pyqula of the checks is the development tree
 at commit 7567127, and the release that the students install was not run for these lines. A statement that is not on
 this sheet is checked before a page claims it. The check is `webnotes/checks/session08/conventions.py`, which prints
-one line per bullet below, in the same order and the open points included, in about two minutes.
+one line per bullet below, in the same order and the points of the old text included, in about two minutes.
 
 ## Spins and the exchange
 
@@ -23,7 +24,10 @@ one line per bullet below, in the same order and the open points included, in ab
   $-J\sigma_0\sigma_1$ with $\sigma=\pm1$, for $J=-1/4$, since there a positive $J$ favors parallel spins, as the sheet
   of Session 10 says. Checked on the $4\times4$ matrices and with the exact diagonalization of dmrgpy.
 - The singlet (8.3) has $\langle\mathbf S_i\rangle=0$, and time reversal maps it to itself. Its two Schmidt weights are
-  1/2 and 1/2, so its entanglement entropy is $\ln2=0.693$, with the natural logarithm of (7.7).
+  1/2 and 1/2, so its entanglement entropy is $\ln2=0.693$, with the natural logarithm of (7.7). The checks take time
+  reversal of two spins as $\Theta=(i\sigma^y)\otimes(i\sigma^y)K$, which is the same operator for both signs of
+  $i\sigma^y$ on one spin. It maps $|{\uparrow\downarrow}\rangle$ to $-|{\downarrow\uparrow}\rangle$, so each Ising ground
+  state breaks it although its net magnetization is zero.
 - The total spin of $N$ spins one half is an integer for even $N$ and a half-integer for odd $N$, and the spin $S$
   appears $\binom{N}{N/2-S}-\binom{N}{N/2-S-1}$ times. Four sites have $S=0$ twice, $S=1$ three times and $S=2$ once.
   Checked against the eigenvalues of $\mathbf S^2_\text{tot}$ for $N=2$ to 7.
@@ -121,10 +125,12 @@ one line per bullet below, in the same order and the open points included, in ab
   takes it as an ansatz.
 - Half filling of the spinons is one fermion per site, which is `filling=0.5` of pyqula for a spinful Hamiltonian,
   since pyqula counts the fraction of all the states and a spinful site has two.
-- The three classes of the figure `spinon_bands` of Section 8.9 hold, for one spin and $\chi=1$. The figure takes the
-  hopping $-\chi$, so its uniform chain is $-2\chi\cos k$, which crosses zero at $k=\pm\pi/2$. The chain with the hoppings 1 and 0.6 has the gap
-  $2|\chi_1-\chi_2|=0.8$, with numpy and with pyqula's `bichain()`. The $\pi$-flux square lattice of the figure, with
-  $-\chi$ along $x$ and $-\chi(-1)^x$ along $y$, has $\pm2\chi\sqrt{\cos^2k_x+\cos^2k_y}$ and $\Phi=-1$ on every
+- The three classes of the figure `spinon_bands` of Section 8.9 hold, for one spin and $\chi=1$. The figure is drawn
+  from pyqula with its hopping $+1$, so its uniform chain is $2\chi\cos k$, which crosses zero at $k=\pm\pi/2$. The
+  chain with the hoppings 1 and 0.6 has the gap $2|\chi_1-\chi_2|=0.8$, with numpy and with pyqula's `bichain()`. The
+  $\pi$-flux panel is the lattice of pyqula of the next bullet on the line $k_y=\pi/2$, with the bands $\pm2|\sin k_x|$
+  that touch at $k_x=0$ and $\pi$. Another gauge of the same flux, with $-\chi$ along $x$ and $-\chi(-1)^x$ along $y$,
+  has $\pm2\chi\sqrt{\cos^2k_x+\cos^2k_y}$ and $\Phi=-1$ on every
   plaquette, with the two Dirac points $(k_x,k_y)=(\pi/2,\pm\pi/2)$ of the zone of its cell of two sites.
 - In pyqula the same flux is `square_lattice().get_supercell([1, 2])` with `add_orbital_magnetic_field(0.5)`. This is
   another gauge, with the bands $\pm2\sqrt{\sin^22\pi k_1+\cos^2\pi k_2}$ from $-2\sqrt2$ to $2\sqrt2$ and the Dirac
@@ -137,6 +143,13 @@ one line per bullet below, in the same order and the open points included, in ab
   $6\times6$ lattice. On the triangular lattice it is not. `tij=[1., 0.5]` and `tij=[-1., -0.5]` fill complementary
   halves of the zone at half filling and so have the same Fermi surface, while `tij=[1., -0.5]` differs from them on
   0.23 of the zone. So the relative sign of $t_2/t_1$ is what the notebook changes.
+- Taking the same $\chi_{ij}$ for both spins gives $\langle\mathbf S_i\rangle=0$ for any $\chi_{ij}$, and with real
+  $\chi_{ij}$ time reversal maps the mean-field state to itself. A complex $\chi_{ij}$ can break time reversal with
+  $\langle\mathbf S_i\rangle=0$ on a lattice with triangles. In the half-filled mean-field state of four sites, a square
+  with one diagonal and the flux $\pi/4$ through each of its two triangles, the chirality
+  $\langle\mathbf S_0\cdot(\mathbf S_1\times\mathbf S_2)\rangle$, which time reversal turns into minus itself, is 0.050.
+  On the square alone with the flux $\pi/2$ it is zero on every triple of sites, so there the flux does not break the
+  symmetry, and real hoppings give zero too.
 
 ## The gauge structure
 
@@ -196,7 +209,8 @@ one line per bullet below, in the same order and the open points included, in ab
 ## pyqula and dmrgpy
 
 - `triangular_lattice()` has $a_1=(1,0)$ and $a_2=(-1/2,\sqrt3/2)$, one site per cell and the hopping $+1$, so the
-  band is $2[\cos2\pi k_1+\cos2\pi k_2+\cos2\pi(k_1+k_2)]$ in reduced momenta, from $-3$ to 6. `tij=[1., t2]` puts
+  band is $2[\cos2\pi k_1+\cos2\pi k_2+\cos2\pi(k_1+k_2)]$ in reduced momenta, from $-3$ to 6, which is $t=-1$ in
+  the sign $-t$ of (8.18). `tij=[1., t2]` puts
   $t_2$ on the six second neighbors with its sign, and the default Hamiltonian is spinful.
 - `h.set_filling(0.5, nk=10)` of the notebook takes the Fermi level from a $10\times10$ mesh, which holds degenerate
   levels, and moves it to zero. For $t_2=0$, $-0.5$ and $0.5$ the zero then sits at $-0.618$, $+0.236$ and $-1.000$,
@@ -215,7 +229,8 @@ one line per bullet below, in the same order and the open points included, in ab
   middle band. A mesh of 960 points per side gives $-0.4715$, and meshes of 120 to 240 points move the third digit.
 - `specialhamiltonian.H2HFH(h, JK, J)` puts one Kondo site at $z=+0.5$ above each site of `h`, which moves to
   $z=-0.5$, with its level at zero, and couples the two with the hopping `JK`. It is not self-consistent, so `JK` is the
-  $\gamma_K$ of (8.21) and not the $J_K$ of (8.17), and the direct gap is $2\,$`JK`. `J` is a first-neighbor hopping of
+  $\gamma_K$ of (8.21) and not the $J_K$ of (8.17), and the direct gap is $2\,$`JK`. It puts $+$`JK` where (8.21)
+  has $-\gamma_K$, so `JK` is $-\gamma_K$, which is $\gamma_K$ up to the gauge $f\to-f$ and gives the same bands. `J` is a first-neighbor hopping of
   the Kondo sites, a spinon hopping and not an exchange, and `set_filling(0.5)` on its default mesh `nk=10` moves their
   band so that zero sits at its filling 0.529. An `add_onsite` after the call moves the Kondo level too, so the onsite
   energy of the conduction electrons goes into `h` before. The operator `"dispersive_electrons"` is the weight on the
@@ -242,39 +257,54 @@ one line per bullet below, in the same order and the open points included, in ab
   A DMRG run of dmrgpy wrote no file in the folder where it ran, while pyqula's `get_bands` writes `BANDS.OUT` and
   `get_fermi_surface` writes `FERMI_MAP.OUT` there.
 
-## Open points of the old text, left as they are
+## Points of the old text, settled on 2026-11-22
 
-- Section 8.10 calls the state with $\Phi=+1$ on every plaquette of the square lattice "a ground state" and the
-  flipped plaquette "an excited state", and the caption of Figure 8.5 says that the flip "costs energy". For
+Each bullet below was an open point of the old text, and it is kept with its history. The plan of the session says how
+each one was settled, in its lists "Corrected on the web, to carry over to the .tex" and "Decided on 2026-11-22", and the
+check script of each page asserts the new text.
+
+- Section 8.10 called the state with $\Phi=+1$ on every plaquette of the square lattice "a ground state" and the
+  flipped plaquette "an excited state", and the caption of Figure 8.5 said that the flip "costs energy". For
   half-filled spinons with a fixed $|\chi|$ the flip lowers the energy, by 0.74 on the open $6\times6$ lattice, and the
-  $\pi$-flux state is the lower one.
-- The caption of Figure 8.2 says that on the frustrated triangle quantum fluctuations give "one superposition" with
+  $\pi$-flux state is the lower one. Corrected on the web. The background $\Phi=+1$ is a choice for concreteness, the
+  vison is an excitation against the flux of the ground state, and on this lattice this flux is $\pi$, so there the
+  vison is one plaquette with $\Phi=+1$.
+- The caption of Figure 8.2 said that on the frustrated triangle quantum fluctuations give "one superposition" with
   $\langle\mathbf S_i\rangle=0$ that does not break time reversal. Three spins one half have a fourfold ground level
-  with $S=1/2$, so this holds only for an even number of sites.
-- An answer of a quiz of Section 8.12 says that the hybridization "opens a gap $2\gamma_K$ as in the Kondo insulator".
+  with $S=1/2$, so this holds only for an even number of sites. Corrected on the web. Two triangles that share an edge,
+  four sites with five bonds, have one singlet at $-7J/4$, which is the even case.
+- An answer of a quiz of Section 8.12 said that the hybridization "opens a gap $2\gamma_K$ as in the Kondo insulator".
   The gap of the Kondo insulator is the indirect one, 0.332 for $\gamma_K=0.6t$ on the chain, and $2\gamma_K$ is the
-  direct gap at the crossing, as Section 8.13 says.
-- Section 8.13 compares the spectra "for increasing $J_K$" at $J_K=0.25$ and 0.5, and the try-it box of Section 8.12
-  uses the same values. These are the `JK` of the notebook, the $\gamma_K$ of (8.21), with the direct gaps 0.5 and 1.0.
-  The same try-it box asks whether the gap stays at the Fermi level when `add_onsite(-2.0)` changes. The energy zero is
-  in the gap for any onsite energy, and with `add_onsite(-2.0)` the Kondo sites hold 0.48 fermions there, so the
-  notebook model is not the half-filled Kondo insulator of Figure 8.6.
-- The try-it box of Section 8.13 says that the gap "should become smaller" when `J` grows. At `J=0.025` the bands
-  already overlap by 0.062, so the gap at the Fermi level is gone, and only the direct gap of 1.0 remains.
-- Section 8.11 calls $H_K$ a coupling to "the local spin density", while (8.17) couples to twice the spin density.
-- Section 8.12 calls (8.19) the "equivalent traceless form" of the constraint (8.11). (8.19) is the spin (8.10) as a
-  matrix, and its trace is zero for any occupation, so it does not fix one fermion per site.
-- Section 8.12 says that $\gamma_K$ is "the only mean-field parameter". The constraint (8.11) on average adds a
+  direct gap at the crossing, as Section 8.13 says. Corrected in the new shape of page 11, whose feedback names the
+  direct gap at the crossing and the smaller gap between the two bands.
+- Section 8.13 compared the spectra "for increasing $J_K$" at $J_K=0.25$ and 0.5, and the try-it box of Section 8.12
+  used the same values. These are the `JK` of the notebook, the $\gamma_K$ of (8.21), with the direct gaps 0.5 and 1.0.
+  Corrected on the web to $\gamma_K$ and `JK`. The same try-it box asks whether the gap stays at the Fermi level when
+  `add_onsite(-2.0)` changes, which is the quiz of the notebook cell, and it is kept. The energy zero is in the gap for
+  any onsite energy, and with `add_onsite(-2.0)` the Kondo sites hold 0.48 fermions there, so the notebook model is not
+  the half-filled Kondo insulator of Figure 8.6, as the caption of `g4_kondo_lattice_bands` says.
+- The try-it box of Section 8.13 said that the gap "should become smaller" when `J` grows. At `J=0.025` the bands
+  already overlap by 0.062, so the gap at the Fermi level is gone, and only the direct gap of 1.0 remains. Rewritten on
+  the web to match the cell, with `JK=1.0` as the case where the gap stays open for the three values of `J`.
+- Section 8.11 calls $H_K$ a coupling to "the local spin density", while (8.17) couples to twice the spin density. Kept,
+  since the sentence names what is coupled and the problem of the page gives the factor two.
+- Section 8.12 called (8.19) the "equivalent traceless form" of the constraint (8.11). (8.19) is the spin (8.10) as a
+  matrix, and its trace is zero for any occupation, so it does not fix one fermion per site. Corrected on the web, where
+  (8.19) is the traceless form of the spin.
+- Section 8.12 said that $\gamma_K$ is "the only mean-field parameter". The constraint (8.11) on average adds a
   Lagrange multiplier, the energy of the $f$ level, which is zero only for a half-filled band that is symmetric around
   zero. With the $f$ level at zero the triangular band of the notebook gives 0.48 $f$ fermions per site, and the
-  multiplier of `KondoLatticeHamiltonian` is $-1.12$ at the filling 0.15.
+  multiplier of `KondoLatticeHamiltonian` is $-1.12$ at the filling 0.15. Page 11 now gives this range, for another band
+  or another filling, and its second quiz gives it for "the chemical potential of the constraint".
 - Sections 8.9 and 9.9 use the uniform spinon chain, which the free loop of (8.14) leaves for the dimerized state.
   Section 9.9 says that the spin-1/2 chain "maps onto a gapless tight-binding chain of spinons", which holds for the
-  uniform ansatz.
+  uniform ansatz. The problem of Section 8.9 says that the uniform chain is an ansatz, and Section 9.9 is not changed.
 - Section 8.10 and its first quiz write $\chi_{ij}\to e^{i(\theta_i-\theta_j)}\chi_{ij}$ for the bond variable. This is
   right for the coefficient of (8.15), while the operator $\chi_{ij}$ of (8.12), which has the same name, gets the
-  opposite phase.
-- The caption of the figure `rvb_plaquette` does not give the order of the singlet pairs, which decides whether
-  $|a\rangle+|b\rangle$ or $|a\rangle-|b\rangle$ is the ground state.
+  opposite phase. The text now names the bond variable of (8.15), and the option of the quiz names the coefficient of
+  $f^\dagger_{i\sigma}f_{j\sigma}$. The symbols of (8.12) and (8.15) are not changed.
+- The caption of the figure `rvb_plaquette` did not give the order of the singlet pairs, which decides whether
+  $|a\rangle+|b\rangle$ or $|a\rangle-|b\rangle$ is the ground state. It now writes $|a\rangle=(01)(23)$ and
+  $|b\rangle=(12)(30)$, in the order of the fold of the page.
 - The notebook, not a page, draws the Fermi surface with $k_x$ on the vertical axis under the label $k_y$, and sets the
-  filling on a $10\times10$ mesh.
+  filling on a $10\times10$ mesh. The notebook is not edited.

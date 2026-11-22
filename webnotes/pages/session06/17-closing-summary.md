@@ -23,7 +23,7 @@ Both magnon dispersions of this session go to zero at $k=0$. What is the common 
 
 - [ ] Magnons carry no charge.
 
-    This is false. An easy-axis anisotropy $A\,(S^z)^2$ keeps the magnon neutral but opens a gap of order $A$. So neutrality alone does not give $E(0)=0$, and the missing continuous symmetry does.
+    This is false. An easy-axis anisotropy $A\,(S^z)^2$ with $A<0$ keeps the magnon neutral, but for $S\geq1$ it opens a gap. This gap is $|A|(2S-1)$ in the ferromagnet, and in linear spin waves a larger one, of order $S\sqrt{zJ|A|}$ for $|A|\ll zJ$, in the antiferromagnet. So neutrality alone does not give $E(0)=0$, and the missing continuous symmetry does.
 :::
 
 Every magnet that we have constructed in this session, from the mean-field exchange field to the topological magnon edge states, is a state that breaks time-reversal symmetry. It is a net, staggered or noncollinear spin arrangement that looks different when we run time backwards than when we run it forwards.

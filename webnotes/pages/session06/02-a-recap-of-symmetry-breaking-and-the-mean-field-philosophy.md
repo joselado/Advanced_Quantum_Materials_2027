@@ -28,10 +28,10 @@ $$m = \langle c_\uparrow^\dagger c_\uparrow\rangle - \langle c_\downarrow^\dagge
 In mean field it acts on the electrons as an exchange field. This field can point along any direction of the spin $\langle\mathbf S\rangle$ of the site, and it splits the two spins by $2U|\langle\mathbf S\rangle|$. For a moment along $z$ we have $2|\langle\mathbf S\rangle|=2\langle S^z\rangle=m$, so this splitting is $Um$.
 :::
 
-The magnetization [(6.2)](#eq-6-2) plays the role of an exchange field. In a schematic form, the resulting mean-field Hamiltonian is $H_\text{MF} \sim -\tfrac{U}{2}\, m\, \boldsymbol\sigma\cdot c$, where $\boldsymbol\sigma$ is the vector of Pauli matrices. Self-consistency gives $m=0$ for $U<0$ and a magnetic solution with $m\neq 0$ for $U>0$, as in Section [1.14](#sec-1-14).
+The magnetization [(6.2)](#eq-6-2) plays the role of an exchange field. In a schematic form, the resulting mean-field Hamiltonian is $H_\text{MF} \sim -\tfrac{U}{2}\, m\, \boldsymbol\sigma\cdot c$, where $\boldsymbol\sigma$ is the vector of Pauli matrices. Self-consistency gives $m=0$ for $U<0$, and in the half-filled chain a magnetic solution with $m\neq 0$ for every $U>0$, as in Section [1.14](#sec-1-14).
 
 There is a more careful point here. Nothing in this construction chooses the $z$ axis. For a single site, the Hubbard interaction can be rewritten exactly in terms of the local spin operator $\mathbf{S} = \tfrac12 c_\alpha^\dagger \boldsymbol\sigma_{\alpha\beta} c_\beta$ and the total occupation $n = n_\uparrow + n_\downarrow$, as $U\, n_\uparrow n_\downarrow = \tfrac{U}{2}n - \tfrac{2U}{3}\mathbf{S}^2$. Here we used that a single site has $\mathbf{S}^2=\tfrac34(n-2n_\uparrow n_\downarrow)$, since only a singly occupied site has a spin. Mean-field theory then factorizes the quadratic operator $\mathbf{S}^2$ in the same way as any product of two operators, $\mathbf{S}^2 \approx
-2\langle\mathbf{S}\rangle\cdot\mathbf{S} - \langle\mathbf{S}\rangle^2$. The resulting exchange field points along $\mathbf{m} \equiv \langle\mathbf{S}\rangle$, in *any* direction where this expectation value is nonzero. If we choose $\langle c_\uparrow^\dagger c_\uparrow\rangle \neq
+2\langle\mathbf{S}\rangle\cdot\mathbf{S} - \langle\mathbf{S}\rangle^2$. The resulting exchange field points along $\mathbf{m} \equiv 2\langle\mathbf{S}\rangle$, in *any* direction where this expectation value is nonzero. With the factor 2, the component $m_z=2\langle S^z\rangle$ is the $m$ of [(6.2)](#eq-6-2). If we choose $\langle c_\uparrow^\dagger c_\uparrow\rangle \neq
 \langle c_\downarrow^\dagger c_\downarrow\rangle$, as in [(6.2)](#eq-6-2), we select $m_z\neq 0$. If we choose instead $\langle c_\uparrow^\dagger c_\downarrow\rangle \neq 0$, we select $m_x$ or $m_y$. For this reason mean-field magnetism is not restricted to the $z$ axis. It gives magnets with a magnetization along any direction in space, and this includes noncollinear arrangements where $\mathbf{m}$ points in different directions on different sites.
 
 ::: {.steps title="From the Hubbard term to an exchange field"}
@@ -137,7 +137,7 @@ This splitting is the one between the two spin bands of the ferromagnetic chain 
 ::::
 
 ::: comesback
-- In Section [6.6](#sec-6-6) we find the threshold of $U$ above which the magnetization $m$ of [(6.2)](#eq-6-2) appears.
+- In Section [6.6](#sec-6-6) we find the threshold of $U$ above which a uniform magnetization $m$ of [(6.2)](#eq-6-2) appears.
 - In Section [7.1](#sec-7-1) the mean-field strategy of this section defines weakly correlated matter, and tensor networks are built for the cases where it fails.
 - In Section [8.9](#sec-8-9) a mean-field decoupling that does not break time-reversal symmetry gives the spinons of a quantum spin liquid.
 - In Section [9.5b](#sec-9-5b) the same magnetic instability appears as a divergence of the spin response, with the Stoner criterion [(9.8)](#eq-9-8).

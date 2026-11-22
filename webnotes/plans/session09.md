@@ -33,7 +33,7 @@ examples below were checked by number in the scratch scripts `plan_numbers.py`, 
 `lab_quotes.py` of the folder
 `/tmp/claude-3291340/-u-40-ladovj1-data-Documents-programs-Advanced-Quantum-Materials-2027/bbe18649-405d-487c-83fe-fcca11e6bfea/scratchpad/webnotes/s09/plan/checks/`,
 which a reboot can clear, so each number is an `assert` again in the check script of its page. A figure script is not run in place to read a number,
-since `style.save` rewrites the SVG, and `spinon_impurity.py` does not give the same SVG twice.
+since `style.save` rewrites the SVG. Since 2026-11-22 `spinon_impurity.py` gives the same SVG at every run.
 
 ## Introduction of the session
 
@@ -247,7 +247,9 @@ File `05-interactions-as-a-perturbation-with-rpa-plasmons-and-the-stoner-instabi
 - Derivation told in words, for a steps fold: two folds. "From the bubble series to (9.6)", the first terms
   and the geometric sum. "From a zero of the denominator to the plasma frequency", the expansion of (9.5) at
   $\omega\gg v_Fq$, $\chi_0\approx-nq^2/(m\omega^2)$, so $1+v(q)\chi_0=0$ gives $\omega_p$. The sign of this
-  fold depends on item 1 of "Open for the lecturer", so it is written after the pick.
+  fold depends on item 1 of "Open for the lecturer", so it is written after the pick. Here $\chi_0$ and $n$ are those
+  of both spins. Since the pick of 2026-11-22 the fold writes $\chi_0\approx-n_\sigma q^2/(m\omega^2)$ for one spin,
+  with $n_\sigma=n/2$, and the zero of $1+2v(q)\chi_0$, which is the same $\omega_p$.
 - Lab box, with the source and the number that the source states: graphene on SiO$_2$/Si,
   https://arxiv.org/abs/1202.4993, stored as `fei2012_arxiv1202.4993.txt`. The abstract says "The wavelength of
   graphene plasmons is of the order of 200 nm at technologically relevant infrared frequencies, and they can
@@ -637,41 +639,362 @@ $e^{-x/\xi}$ diagnostic and the $\xi\approx2.5$ sites of their quizzes, on 9.6b,
 
 ## Open for the lecturer
 
-These change a numbered equation, a statement of the old text, a caption that states it, or a convention, so a
-builder does not decide them. The numbers come from the scratch scripts `plan_numbers.py` and `sign_checks.py`
-named at the top of this plan.
+The lecturer decided on 2026-11-22 how to handle the points that the builders, the fixers and the rechecks left ("Fix
+old-text errors, ask the rest"), and for the questions "ask me the top 5, other you decide by yourself". The 66 entries
+of their lists and the seven items of the former version of this section were merged into 45 distinct points. The
+sentences that were false as written, or that contradicted another sentence of the session, are corrected on the web
+with the smallest change that makes them true. The points that were a choice were decided by the coordinator with the
+rule of that day. The rule takes the option that makes the text true with the smallest change, and between two true
+wordings the shorter and clearer one. It reduces a claim that no stored source or calculation supports to what is
+supported, redraws an old plot under its name, and rewrites a box that does not match its notebook cell. It does not
+touch a converted Blender figure or its overlay, while the caption of such a figure is text of the page, as point d1 of
+the plan of Session 2 records. Four points would change a numbered equation, a convention or a rule that the .tex states,
+and they were the list "For the lecturer". An independent check of the three lists on 2026-11-22 gave twelve findings.
+Two of them sent a change back to the lecturer, the change of the key box of page `08` and the denominator of page `04`,
+which were points 4 and 1 of that list, and the others are in the lists below. On the same day the lecturer picked
+points 1 and 2, the definition of the response and the factor 2 of the spins. They are now the last two points of the
+list "Decided on 2026-11-22", their changes are the last entries of the first list, and the two other points, now
+numbered 1 and 2, stay for the lecturer. The blocks of the pages above say that a fold or a sign waits for these picks,
+as they were written before them. Each change was checked first with a
+calculation of its own, by two routes where a number is involved,
+and the check script of its page, or the figure script that draws it, asserts it. The conventions sheet is up to date
+since 2026-11-22, and its last section gives each point of the old text with what happened to it.
 
-1. The sign of the plasmon denominator. The caption of Figure 9.2 says that the plasmon "is a zero of the RPA
-   *denominator* $1-v(q)\chi_0$", while (9.6) has $1+U\chi_0$. With $\chi_0$ of (9.5), at $\omega\gg v_Fq$ we get
-   $\chi_0\approx-nq^2/(m\omega^2)$, which is negative. On the half-filled chain at $q=0.3$ and $\omega=6t$, (9.5)
-   gives $-0.00160$ and the expansion $-0.00158$. So with the signs of the page the plasmon is a zero of
-   $1+v(q)\chi_0$, and the minus of the caption belongs to the other sign of $\chi_0$.
-2. The sign of the induced density in 9.6a. The page writes $\delta n(x)=\int\frac{dq}{2\pi}e^{iqx}\chi_0(q)v_0$,
-   with $\chi_0>0$ from (9.4). A repulsive impurity lowers the density on its site. On a chain at $\mu=-t$ with
-   $v_0=0.1t$ we get $\delta n(0)=-0.024$. So in the convention of (9.4) the relation is
-   $\delta n(q)=-\chi_0(q)v_0$. The period and the envelope of (9.9) do not change.
-3. "In the approximation of a classical spin, in the Born approximation" in 9.7. (9.10) is the exact energy of
-   the bound state of a classical spin, from the scattering to all orders in $J$. Expanded in $\alpha$, (9.10)
-   gives $E_b=\Delta(1-2\alpha^2+\dots)$, so at first order in $J$, the Born approximation, there is no state
-   below the gap edge.
-4. "If and only if" in 9.8 and in the caption of Figure 9.4. The converse fails when the vacancy leaves a
-   lattice with chiral symmetry and one more site on one sublattice. An SSH ring of 200 sites with one site
-   removed has a state at $E=0$ in the trivial phase (hoppings $1$ inside the cell, $0.5$ between) and in the
-   topological phase, and the next state is at $0.50$ in both. The second quiz of 9.8 uses the topological SSH
-   chain with a vacancy as its example. The honeycomb models of the page are not affected, since $M$ and $t_2$
-   both break the chiral symmetry.
-5. "Local density of states" in 9.6b. The text says that the LDOS oscillates with $\pi/k_F$ and contrasts the
-   insulator with "a slow power-law envelope", next to a figure of the density with a $1/x$ envelope. In a
-   chain the LDOS at one energy does not fall as $1/x$. At $\mu=-t$, $v_0=t$ and a broadening $0.01t$, its change
-   is $0.082$, $0.058$ and $0.014$ near $x=10$, $40$ and $160$, a decay set by the broadening, while the density
-   falls as $1/x$, with $0.0062$, $0.0017$ and $0.00043$. The period $\pi/k_F$ is the same for both.
-6. The quantity of (9.11). (9.11) is written for the correlation $\langle S_0\cdot S_n\rangle$, while the text
-   and `spinon_impurity` follow the moment $\langle S^z_n\rangle$ induced by a field on site 0. In the spinon
-   mean field they do not decay in the same way. At half filling $\langle S^z_0S^z_n\rangle=-\sin^2(\pi n/2)/(2\pi^2n^2)$,
-   which I checked to $0.0507/n^2$ for odd $n$, while the induced moment goes as $(-1)^n/n$. The $1/n$ of
-   $\langle S_0\cdot S_n\rangle$ for the true $S=1/2$ chain is a known result up to a logarithm, which I did not
-   check with a number.
-7. The width of the random potential. The page takes $w_n$ uniform in $[-W,W]$, and `mobility` uses
-   $W_c\approx8t$ for it. The notebook cells "Localization due to random disorder" and "The impact of disorder in
-   different systems" use `v*(random-0.5)`, a box of width $v$, so the `v` of a try-it box is $2W$ of the page.
-   A sentence in the try-it box of 9.10b would say so.
+The seven items of the former version of this section went as follows. Item 1, the sign of the plasmon denominator, and
+item 2, the sign of the induced density, were sentences that contradicted (9.6), (9.4) and the caption of `friedel`, so
+they are corrected on the web. Item 3, "in the Born approximation", is corrected on the web. Item 4, "if and only if",
+is corrected in the caption of Figure 9.4, and the italic rule of the key box is point 2 of "For the lecturer". Item 5,
+the word LDOS of Section 9.6b, is corrected where the sentence was false. Item 6, the quantity of (9.11), is in "For the
+lecturer". Item 7, the width of the random potential, was decided.
+
+### Corrected on the web, to carry over to the .tex
+
+The lines are those of `lecture_notes/src/sessions/session09.tex` on 2026-11-22, or of the figure file that is named.
+The `.tex` is not changed in this pass, so until this list is carried over the PDF keeps the old wording.
+
+- Page `01`, Section 9.1, third bullet. Old "A local change of temperature, measured as a change of temperature at
+  another place, which gives the **thermal conductance**." New "..., which gives the **thermal diffusivity**, the thermal
+  conductivity divided by the heat capacity per unit volume." Line 43. Asserted in `g1_01`, by finite differences of the
+  heat equation and by its Gaussian, where the response depends on $\kappa$ and $C$ only through $\kappa/C$, and by the
+  units, since $\kappa/C$ is in m$^2$/s only for a heat capacity per unit volume.
+- Page `02`, Section 9.2, the paragraph after Figure `curie_weiss`. Old "In the ferromagnetic case the fluctuations
+  *reinforce* the applied field ... In the antiferromagnetic case the fluctuations *oppose* the applied field, since they
+  favor staggered order and not uniform order". New "In the ferromagnetic case the exchange field of the neighbors
+  *reinforces* the applied field ... In the antiferromagnetic case the exchange field of the neighbors *opposes* the
+  applied field, since the exchange favors staggered order and not uniform order". The paragraph, now of 151 words, is
+  split before "In the antiferromagnetic case". Lines 89 to 92. Asserted in `g1_02`, the self-consistent $zJm$ is $+2h$
+  and $-0.4h$ at $T=1.5T_c$.
+- Page `02`, first quiz, the feedback of the right option, changed by the builder. Old "The exchange favors staggered
+  order, which the uniform $\chi$ does not feel, so it does not diverge for $T>0$." New "The exchange favors staggered
+  order, and a uniform field does not couple to this order. So the uniform $\chi$ does not diverge for $T>0$, and the
+  exchange only makes it smaller than the $\chi$ of a free spin." Not in the .tex.
+- Page `04b`, Section 9.4b, first paragraph. Old "This divergence is the Peierls instability, which drives
+  one-dimensional metals to dimerize into a charge density wave, the order that we found with mean field in Section
+  1.13." New "This divergence is the Peierls instability, which drives one-dimensional metals into a charge density wave
+  with the period $\pi/k_F$. At half filling this period is two sites, as in the order that we found with mean field in
+  Section 1.13." Lines 200 and 201. Asserted in `g2_04b`, the maximum of $\chi_0(q)$ at $2\pi/3$ for $\mu=-t$ and at
+  $\pi$ at half filling.
+- Page `04b`, caption of `lindhard_map`. Old "It uses the triangle integration of `h.get_chi`, which needs the pyqula of
+  GitHub." New "It uses the triangle integration of `h.get_chi`." The release 0.0.97 of PyPI has it and 0.0.96 does not,
+  which a version number on the page could not assert offline. Not in the .tex.
+- Page `05`, Section 9.5a, after the steps fold. Old "which is a real pole, meaning a real phase transition." New "which
+  is a real pole. A pole at $\omega=0$ is a phase transition, and a pole at a finite frequency, such as the plasmon, is a
+  collective mode." Line 276. Asserted in `g3_05`, the static $\chi_0(q,0)>0$ at every $q$, so $1+U\chi_0>1$ for $U>0$,
+  and the plasmon zero at $\omega_p$.
+- Page `05`, caption of Figure 9.2. Old "It is a zero of the RPA *denominator* $1-v(q)\chi_0$". New "It is a zero of
+  the RPA *denominator* $1+2v(q)\chi_0$". The first correction of 2026-11-22 gave $1+v(q)\chi_0$, the denominator of
+  (9.6), and the factor 2 came with the pick of the lecturer of the same day, see the last entries of this list. `lecture_notes/src/figures/s09f02_plasmon.tex`, line
+  12. The render and its overlay hold no formula and are not changed. Asserted in `g3_05`, $\chi_0<0$ above the continuum
+  by the sum over the Fermi sphere and by $-nq^2/m\omega^2$, so $1-v\chi_0>1$ there.
+- Page `05`, solution of the problem, new text of the builder. Old "Beyond this range the series does not converge ...
+  It also has the pole at $U\chi_0=-1$, which no truncation has." New "For $|U\chi_0|\geq1$ the series does not
+  converge ... The one exception is its pole at $U\chi_0=-1$, which no truncation has." Not in the .tex. Asserted in
+  `g3_05`, the partial sums go to $1/1.9$ at $U\chi_0=0.9$.
+- Page `05`, first quiz, by the rule. Old "$\chi_0(\pi,\pi)=0.68/t$". New "$\chi_0(q,0)=0.68/t$ at $q=(\pi,\pi)$", since
+  on this page the two arguments of $\chi_0$ are $q$ and $\omega$. Not in the .tex.
+- Page `05b`, Section 9.5b. Old "where it is already logarithmically enhanced." New "where it is already enhanced.", since
+  the next sentence gives $\ln^2(1/T)$. Line 322.
+- Page `05b`, try-it box. Old "which adds the interaction $U$ to a dimerized chain." New "which adds the interaction $U$
+  to the chain of `geometry.bichain()`, a chain with two sites in its cell and equal hoppings, and solves it in mean
+  field." Not in the .tex. Asserted in `g3_05b`, by the cell itself, at `U = 2.0` RPA raises the low-energy peak near
+  $q=0$ from 0.69 to 14.9 and at `U = 0.5` only from 0.23 to 0.34.
+- Page `05b`, notebook box. Old "You add a Hubbard interaction $U$ and an external staggered, antiferromagnetic field to
+  a dimerized chain, and you look at what happens to the response as $U$ increases." New "You add a Hubbard interaction
+  $U$ to the chain of `geometry.bichain()`, which has two sites in its cell and equal hoppings. You solve it in mean
+  field from an antiferromagnetic starting guess, and you look at what happens to the response as $U$ increases." Lines
+  357 and 358. Asserted in `g3_05b`.
+- Page `05b`, notebook box, last sentence. Old "This is the version of equation (9.8) on the scale of a notebook, where
+  the Stoner instability appears when $U$ goes above the threshold set by $\chi_0$." New "This is the version of equation
+  (9.8) on the scale of a notebook. At half filling $\chi_0$ of this chain diverges at $q=\pi$ as $T\to0$, so in mean
+  field it orders at any $U>0$, as the problem above finds. At small $U$ the gap is then set by the k-mesh of the cell,
+  `nk = 100`, and it becomes smaller as the mesh grows." Lines 358 to 360. Asserted in `g3_05b`, the gap equation of the
+  infinite chain gives the gap $16t\,e^{-2\pi t/U}$, $5.6\cdot10^{-5}t$ at $U=0.5t$, and the loop of the cell gives
+  $0.0081t$, $0.0045t$ and $0.0025t$ for `nk` 100, 200 and 400, and $0.0011t$ at $U=0.1t$, so its mesh holds the Fermi
+  point and shows no threshold. The bands of the cell were read on 2001 points, since the default path of
+  `h.get_bands()` gives $0.016t$ to $0.018t$ at any small $U$, and the check that gave $0.018t$ at $U=0.5t$ now reads
+  $0.0081t$.
+- Page `06`, Section 9.6a. Old "$\delta n(x) = \int \frac{dq}{2\pi}\, e^{iqx}\, \chi_0(q)\, v_0$". New
+  "$\delta n(x) = -\int \frac{dq}{2\pi}\, e^{iqx}\, \chi_0(q)\, v_0$", which agrees with (9.4) and with
+  $\delta n(0)=-0.15$ and $-0.19$ of the caption of `friedel`. Line 392. Asserted in `g4_06`, the exact density of a
+  ring of 400 sites against the Fourier sum, $\delta n(0)/v_0=-0.25$.
+- Page `06`, the widget text. Old "This is the pattern that an STM map shows around a single impurity." New "An STM map
+  at low bias around a single impurity shows the same period.", since the LDOS at the Fermi level has the period
+  $\pi/k_F$ and not the envelope $1/x$ of the density, and at the bias $V$ the period is $\pi/k(E_F+eV)$. Not in the .tex.
+  Asserted in `g4_06`, the period 4.89 sites by the closed form and by a sum over momenta, against $\pi/k_F=4.90$, and
+  3.2 sites at the bias $0.5t$, against $\pi/k(E_F+0.5t)=3.19$.
+- Page `06b`, Section 9.6b, second paragraph. Old "An impurity placed in a gapped 1D chain gives an LDOS that converges
+  very quickly to its uniform value, instead of oscillating with a slow power-law envelope." New "An impurity placed in a
+  gapped 1D chain changes the LDOS at the energies inside the gap, such as $E=0$ of the notebook, and there the change
+  decays exponentially. In a metallic chain the LDOS at the Fermi energy instead keeps oscillating with the period
+  $\pi/k_F$ far from the impurity." Lines 420 to 422. Asserted in `g4_06b`, the same amplitude at $x=10$, 40 and 160 by
+  the closed form of the T-matrix of the metal at the Fermi energy, with the period 3 sites at $\mu=-t$. In the gapped
+  chain of the cell, $m=0.1t$, the T-matrix gives at $E=0$ a fall from $3.7\cdot10^{-5}$ at 20 sites to
+  $5.7\cdot10^{-13}$ at 200 sites, at the rate $2\,\mathrm{asinh}(m/2t)$, while at $E=0.5t$, inside its band, the
+  envelope falls from 400 to 800 sites only by the factor 0.657 of the broadening.
+- Page `06b`, caption of `friedel`, by the rule. Old "in a chain of 4001 sites". New "in a spinless chain of 4001 sites",
+  since $-0.15$ and $-0.19$ are the values of one state per site. Not in the .tex.
+- Page `06b`, notebook box. Old "Check that the LDOS now converges to its bulk value within one or two sites". New "Check
+  that the change of the LDOS now decays exponentially, over about $10$ sites for the gap $0.2$ and about $3.3$ sites for
+  the gap $0.6$". Lines 430 to 432. Asserted in `g4_06b`, the cell itself gives 9.96 and 3.34 sites, and
+  $1/(2\,\mathrm{asinh}(m/2t))$ gives 10.00 and 3.35.
+- Page `07`, Section 9.7. Old "In the approximation of a classical spin, in the Born approximation, this is the
+  **Yu-Shiba-Rusinov** problem." New "In the approximation of a classical spin, this is the **Yu-Shiba-Rusinov**
+  problem." Line 453. Asserted in `g5_07`, at $JS=3t$ the lattice is within $0.004\Delta$ of (9.10), while its first
+  order $1-2\alpha^2$ gives $-3.5\Delta$.
+- Page `08`, caption of Figure 9.4. Old "The rule is as direct as it looks. Vacancies produce in-gap modes if and only
+  if the bulk invariant is non-zero". New "Vacancies produce in-gap modes when the bulk invariant is non-zero".
+  `lecture_notes/src/figures/s09f04_vacancy.tex`, lines 12 and 13. The converse fails for the SSH ring, and close to the
+  closing of the gap no separate mode is seen, which `g5_08` asserts.
+- Page `08`, second quiz. Old right option "The bulk is trivial, or the vacancy breaks the symmetry that protects the
+  invariant." with "We can conclude only one of two cases.", and old third feedback "A small gap does not prevent the
+  mode. ... and a vacancy still gives a state at $-0.016t$." New right option "The bulk is trivial, the vacancy breaks the
+  symmetry that protects the invariant, or the gap is too small to separate the mode from the bands.", with the feedback
+  "Each of the three cases gives no separate mode ...", and new third feedback "A small gap can hide the mode, as in the
+  Haldane model with $t_2=0.1t$, $\varphi=\pi/2$ and $M=0.5t$, which has $C=1$ and a gap of only $0.04t$. A vacancy there
+  gives no level that is separated from the band edges. But a small gap is not the only reason. The trivial insulator
+  with $t_2=0$ and the sublattice mass $M=0.78t$ has the large gap $1.56t$, and its vacancy leaves no level inside it."
+  This agrees with the opener of the page and with the key box, whose SSH ring has a zero level in its trivial order.
+  Not in the .tex. Asserted in `g5_08` on k-meshes of 600 and 1200, and for $M=0.78t$ on the torus of $18\times18$ cells
+  and by $G_{AA}$ of the infinite lattice, which keeps its sign over the gap.
+- Page `08`, second quiz, first feedback, the sentence added by the fixer. New "This holds for the neighbor joined to the
+  vacancy by the strong bond $t$, since on the other neighbor the level at zero stays." Not in the .tex. Asserted in
+  `g5_08`.
+- Page `08`, box "Where this comes back", second bullet. Old "a network must find a non-local quantity, since there the
+  phases have no local order parameter". New "a network must find a quantity of four spins, the plaquette product, since
+  there the two regimes have no local order parameter", since in Section 10.6b the Boltzmann weight depends only on the
+  plaquette products, and its two regimes are separated by a crossover. Not in the .tex.
+- Page `index` of Session 9, box "Where this comes back". Old "a phase with no local order parameter must be found from
+  a non-local quantity". New "a regime with no local order parameter must be found from a quantity of four spins, the
+  plaquette product", for the same reason. Not in the .tex.
+- Page `09`, try-it box. Old "Run the cell, which compares a gap of `0.1` with a gap of `0.3`. The LDOS reaches its bulk
+  value after about 25 sites for the smaller gap and after about 10 sites for the larger one." New "Run the cell, which
+  compares the gaps $0.2$ and $0.6$, since `gaps = [0.1,0.3]` are the onsite energies $\pm m$ and the gap is $2m$. The
+  change of the LDOS decays as $e^{-x/\xi}$, with $\xi\approx10$ sites for the smaller gap and $\xi\approx3.3$ sites for
+  the larger one." Not in the .tex. Asserted in `g5_09` and `g4_06b`.
+- Page `09`, notebook box. Old "This is not a spin model, but it is the closest exercise in its logic. It compares how a
+  dimerized chain, with a stronger or a weaker gap, responds to a strong local impurity. Run it with (9.11) in mind ...".
+  New "This is not a spin model. The cell puts one impurity of growing strength into three gapped chains built on
+  `geometry.bichain()`, which has two sites in its cell and equal hoppings. These are an s-wave superconductor, an
+  insulator with a sublattice imbalance and a topological p-wave superconductor. The cell plots the density of
+  states summed over four sites, the impurity site and the next three sites of the chain. Look at which of the three
+  gaps get a state inside them as the impurity grows, which is the question of Section 9.8 for one strong impurity. The
+  decay length of this page, which is shorter for the larger gap, is in the cell "Impurity in an electronic insulator"
+  that the box above runs." Lines 591 to 593. Read from the cell in `g5_09`, and asserted there with pyqula, since
+  `Embedding.multidos` sums the LDOS over the four sites of `get_supercell(2)`, with the impurity on the site at its end.
+- Page `09`, solution of the problem, new text of the builder. Old "where the exponential tends to a straight line of
+  slope $-1/\xi$". New "where the exponential of this problem is a straight line of slope $-1/\xi$". Not in the .tex.
+- Page `10`, Section 9.10a, the list of the three regimes. Old "Critical means localized with a power law, so that the
+  state is not even normalizable in the strict sense." New "Critical means neither extended nor localized, with an IPR
+  that falls as a power of $N$ slower than $1/N$.", as the caption of Figure 9.6 and the key box say. Lines 612 and 613.
+  Asserted in `g6_10`, $\tau=0.53$ for the mean over the states at $V_0=2t$, 0.98 at $t$ and 0.00 at $3t$.
+- Page `10`, last line before the box "Where this comes back". Old "The second regime, with random disorder". New "The
+  third regime, with random disorder", the third of the numbered list. Not in the .tex.
+- Page `10`, solution of the problem, by the rule. Old "while a fit of its tail gives $\xi$ between $2.1$ and $2.4$
+  sites." New "while fits of its tail that reach $30$ to $60$ sites from the center give $\xi$ between $2.1$ and $2.4$
+  sites.", the windows of the assert in `g6_10`. Not in the .tex.
+- Page `10`, caption of `aah_ipr`, changed by the builder. Old "Below $V_0=2t$ the three curves are apart, and
+  $N\cdot\mathrm{IPR}\approx2$ for all of them". New "Below $V_0=2t$ the three curves are apart, and at $V_0=t$ the
+  product $N\cdot\mathrm{IPR}$ is about $2$ for all of them". Not in the .tex.
+- Page `10b`, Section 9.10b, the quiz on halving $W$. Old "By which factor does the localization length $\xi$ change?"
+  New "By which factor does the localization length $\xi$ close to the band center change?", the condition of the key
+  box. Not in the .tex. Asserted in `g6_10b`, at the band edge halving $W$ multiplies $\xi$ by 1.59.
+- Page `10b`, the quiz on the Anderson insulator, first feedback, changed by the builder. Old "about $1/W=0.05/t$". New
+  "about $1/(2W)=0.025/t$", with the sentence "Eight cubes of $10^3$ sites give between about $0.022/t$ and $0.027/t$ in
+  the window $|E|<5t$." in place of "between $0.023/t$ and $0.027/t$", a range that depends on the seeds. Not in the
+  .tex. Asserted in `g6_10b` with bounds on the eight cubes, which give 0.0229 to 0.0270, and 24 other cubes gave 0.0222
+  to 0.0265.
+- Page `10b`, the same quiz, second and third feedback, by the rule. Old "falls as $e^{-L/\xi}$, where $\xi$ is the decay
+  length of $|\psi|^2$. With the decay length of the amplitude, $|\psi|\sim e^{-x/\xi}$, it falls as $e^{-2L/\xi}$." and
+  "decays as $e^{-L/\xi}$, with $\xi$ the decay length of $|\psi|^2$". New "falls as $e^{-2L/\xi}$, with $\xi$ the decay
+  length of the amplitude, $|\psi|\sim e^{-x/\xi}$." and "decays as $e^{-2L/\xi}$, with $\xi$ the decay length of the
+  amplitude", the $\xi$ of the rest of the page. Not in the .tex. Asserted in `g6_10b` in one dimension only, a slope of
+  $\langle\ln T\rangle$ equal to $2/\xi$ within 10 percent at $W=t$.
+- Page `10b`, caption of `localization_length`, by the rule. Old "The localization length $\xi$ of the random chain".
+  New "The localization length $\xi$ of the amplitude, $|\psi|\sim e^{-x/\xi}$, of the random chain". Not in the .tex.
+- Page `10b`, figure and caption of `mobility`, redrawn under the same name. The old guide $6\sqrt{1-(W/W_c)^2}$ stood at
+  $4.7t$ for $W=5t$, where the level statistics of cubes of $10^3$ and $12^3$ sites are those of extended states up to
+  $E=7t$. The new guide is $(6+0.8W)\sqrt{1-(W/W_c)^2}$, inside the band edges, with $E_c=8.0t$ at $W=5t$. The old SVG
+  is kept in the scratch folder of this pass. Old "The blue curve is a guide for the eye, and only its end point,
+  $W_c\approx8t$, is taken from numerical work. States inside the curve are extended and all others are localized". New
+  "The blue curve is a guide for the eye. Its end point, $W_c\approx8t$, is taken from numerical work. At $W=5t$ it lies
+  above $E=7t$, since our level statistics of cubes of $10^3$ and $12^3$ sites there are those of extended states
+  up to $E=7t$. Roughly, states inside the curve are extended and all others are localized". Not in the .tex. Asserted
+  in `g6_10b`, the ratio of neighboring spacings 0.52 to 0.55 for $5t<|E|<7t$, and in `mobility.py`. The window from
+  $7t$ to $8t$ gives 0.51 to 0.53 with about 200 levels, close to the edge, and it is not asserted. At $W=6t$ the guide
+  stands at $7.4t$, while the same statistics find extended states between $7t$ and $8t$, which "Roughly" covers.
+- Page `10b`, notebook box, by the rule. Old "and separately the strength $W$ of the random disorder". New "and
+  separately the strength of the random disorder", followed by the new sentence "The random potential of the cells has
+  the full width `v` or `w`, which is $2W$ of this page." Lines 674 and 675. Read from the cells in `g6_10b`.
+- Page `11`, Section 9.11, the bullet on the vacancy, by the rule. Old "gives an in-gap mode only because of the
+  bulk-boundary correspondence." New "gives an in-gap mode because of the bulk-boundary correspondence.", which is what
+  Section 9.8 says. Lines 711 and 712.
+- Page `11`, the list of tasks. Old "Use a vacancy to test a gapped phase for topology, when the vacancy keeps the
+  symmetry that protects the invariant." New "Use a vacancy to test a gapped phase for topology, and say when the test
+  fails.", since an SSH ring keeps its chiral symmetry and has the zero level in both phases. Not in the .tex.
+- Page `04`, Section 9.4a, the sentence before (9.4), picked by the lecturer on 2026-11-22. Old "where each term comes
+  from a matrix element $\langle k+q|V|k\rangle$ divided by the energy denominator $\varepsilon(k+q)-\varepsilon(k)$,
+  with the same structure as (9.3)". New "... divided by the energy denominator $\varepsilon(k)-\varepsilon(k+q)$, with the
+  same structure as (9.3)", the denominator of the mixing (9.3) and of the steps fold, $a=v_q/(\varepsilon(k)-
+  \varepsilon(k+q))$. Lines 177 to 179. Asserted in `g2_04`, on the exact eigenvectors of a ring of 16 sites.
+- Page `04`, Section 9.4a, after the key box, a new paragraph, picked by the lecturer on 2026-11-22. "The density then
+  changes by $\delta n(q)=-\chi_0(q)\,v_q$, with $v_q=\langle k+q|V|k\rangle$ the matrix element of the potential. With
+  the density as the observable $A$, this is the response $\chi_A=\partial A/\partial\lambda$ of Section 9.3, so
+  $\chi_A=-\chi_0(q)\,v_q$, and $\chi_0$ is the response to the local chemical potential $-v_q$. The minus sign comes
+  from the denominator $\varepsilon(k)-\varepsilon(k+q)$ of the mixing (9.3), which is minus the one of (9.4), and it
+  means that a higher onsite energy pushes the electrons away. Like (9.4), this counts one spin. For spinful electrons
+  each spin responds in the same way, and the total density changes by $-2\chi_0(q)\,v_q$." The last two sentences
+  were added after the independent check of 2026-11-22, so that page `04` agrees with "Here $\chi_0$ counts one spin" of
+  page `05`, and they are not in the wording of the pick. In the .tex after (9.4), whose `\end{equation}` is line
+  184. (9.4) does not change.
+  Asserted in `g2_04` by three routes, the exact density of a ring of 400 sites at $\mu=-t$ and $T=0.05t$, where
+  $\delta n_q/v_q$ is $-0.18636$, $-0.2609$ and $-0.25894$ against $\chi_0=0.18636$, 0.2609 and 0.25894 of (9.4), and on
+  a ring of 16 sites with a flux, where (9.3) taken state by state and the exact density both give $-0.222376$, minus
+  the $\chi_0$ of (9.4) on the same momenta. The ring of 400 sites with the two spins gives $-0.37271$, $-0.52179$ and
+  $-0.51787$ for the total density, which is $-2\chi_0$.
+- Page `05`, Section 9.5a, after the key box of (9.6), two new sentences, picked by the lecturer on 2026-11-22. "Here
+  $\chi_0$ counts one spin. For an interaction that couples to the total density, the denominator is
+  $1+2v(q)\chi_0$." In the .tex after (9.6), line 272. (9.6) does not change. Asserted in `g3_05` with a self-consistent
+  Hartree loop on a spinful ring of 200 sites at $\mu=-t$ and $T=0.1t$: a pair interaction $0.4e^{-|r|}$ on the total
+  density gives the response $-2\chi_0/(1+2v_q\chi_0)$ at three $q$, and not $-2\chi_0/(1+v_q\chi_0)$, and the Hubbard
+  $U=t$, which couples only opposite spins, gives $-2\chi_0/(1+U\chi_0)$.
+- Page `05`, Section 9.5a, the paragraph on the RPA denominator, by the same pick. Old "For a long-range Coulomb
+  interaction, $U \to v(q)$". New "For a long-range Coulomb interaction, $U \to 2v(q)$", which agrees with the new
+  sentences. Line 286. Asserted in `g3_05`, the zero of $1+2v(q)\chi_0$ with the $\chi_0$ of one spin of the 3D gas is
+  at $\omega_p$ for $q=0.02k_F$ and $0.04k_F$, while the zero of $1+v(q)\chi_0$ is at $\omega_p/\sqrt2$.
+- Page `05`, Section 9.5a, the first paragraph on the RPA, by the same pick. Old "Let us take a contact interaction of
+  the Hubbard type of (1.7), with strength $U$, which couples to the density." New "..., which couples the densities of
+  the two spins.", since the new sentences give $1+2v(q)\chi_0$ for an interaction on the total density and the Hubbard
+  term $Un_\uparrow n_\downarrow$ couples opposite spins only, which gives $1+U\chi_0$. Line 258, where the .tex has
+  "a contact interaction, of Hubbard type, with strength $U$, which couples to the density". Asserted in `g3_05` by the
+  same Hartree loop.
+- Page `05`, a new steps fold after the key box of (9.7), "From a zero of the denominator to the plasma frequency", the
+  fold that the block of 9.5a planned for the time after the two picks. It expands (9.5) at $\hbar\omega$ far above the
+  pair energies, where the first term vanishes and the shift $k\to k-q$ gives the bracket
+  $\varepsilon(k+q)+\varepsilon(k-q)-2\varepsilon(k)=\hbar^2q^2/m$ of free electrons, so
+  $\chi_0\approx-n_\sigma q^2/(m\omega^2)$ with $n_\sigma=n/2$ per unit volume, and the zero of $1+2v(q)\chi_0$ is at
+  $\omega_p^2=4\pi ne^2/m$, in Gaussian units, while $1+v(q)\chi_0$ would give $\omega_p/\sqrt2$. Not in the .tex.
+  Asserted in `g3_05`: the first term and the shift on a chain, the second term against (9.5) at $\omega=9t$ within
+  $10^{-3}$, the bracket for random $\mathbf k$, the $\chi_0$ of one spin of the 3D gas at $q=0.1k_F$ and
+  $\omega=1.2\hbar k_F^2/m$ against $-n_\sigma q^2/(m\omega^2)$ within two percent, and the two zeros.
+
+### Decided on 2026-11-22
+
+One bullet per point that was a choice, with the choice. The coordinator decided all of them with the rule above,
+except the last two, which the lecturer picked on 2026-11-22.
+
+- The first quiz of page `05`, $\chi_0(\pi,\pi)$ with two arguments that read as $(q,\omega)$. Written as
+  $\chi_0(q,0)$ at $q=(\pi,\pi)$, the clearer of two true wordings.
+- The caption of `friedel`, which did not say spinless. "spinless" is added, the smallest change.
+- The conductance of the quiz on the Anderson insulator, written with the $\xi$ of $|\psi|^2$ a few lines from the
+  $\xi$ of the amplitude of the rest of the page. Both feedbacks now use the $\xi$ of the amplitude, and the caption of
+  `localization_length` names it. The factor 2 of $e^{-2L/\xi}$ is checked in one dimension only, for a quiz on $d=3$.
+- The fit of the tail in the solution of page `10`, whose range depended on a window that the page did not name. The
+  windows of the assert, which reach 30 to 60 sites, are named, and no new number is added.
+- The pyqula sentence of the caption of `lindhard_map`. The clause "which needs the pyqula of GitHub" is dropped, which
+  is shorter than a version number that no offline check can assert. `webnotes/scripts/RECIPES.md` and line 216 of
+  `lecture_notes/WEB_NOTES_PLAN.md` say the same about PyPI and are not files of this session, so they are not changed.
+- The width of the random potential, item 7 of the former list. The notebook box of page `10b` now says that `v` and
+  `w` of the cells are $2W$. The try-it box quotes only `v` and no $W$, so it is not changed.
+- The bullet of page `11` that says "only because of the bulk-boundary correspondence". "only" is dropped, which reduces
+  the claim to what Section 9.8 says.
+- The figure `mobility`, whose guide put extended states outside the curve. It is redrawn under its name with a guide
+  that contains the extended states that the level statistics find, and the caption says so.
+- The assert of the condition of the first key box of page `04b`, which tested the axis and the diagonal and not the
+  maximum of $\chi_0$ at $\mu=-t$. `g2_04b` now finds the maximum on the zone boundary near $(\pi,1.83)$ and asserts
+  that its steps shrink, 0.011, 0.0067 and 0.0039, over three halvings of $T$. The page is not changed.
+- "exactly at the gap edges" and "exactly solvable" in the caption of Figure 9.3. They state physics, so they stay, and
+  the lint gives them as warnings and not as hits.
+- "a vacancy is guaranteed to host an in-gap bound state" in Section 9.8. Close to the closing of the gap the state is
+  still in the gap, exponentially close to its edge, and the opener of the page says that no separate peak is seen
+  then. No change.
+- $\xi=2.5$ of Figure 9.5, which is not the value of the spin-1 chain. The caption says "drawn for $\xi=2.5$" and claims
+  no material, and the lab box gives the measured $\xi=8(1)$. No change.
+- The steps fold of the plasma frequency planned for page `05`. It was not written, since it needed the factor 2 of the
+  spins for $v(q)$, then the second point of "For the lecturer". It is written since the pick of that point, and it is
+  the last entry of the first list.
+- The conventions sheet. Its lines on `h.get_dos`, on the mesh of `lindhard_map`, on `vacancy_dos`, on the floor of
+  `spinon_impurity` and on the SVG of that script are corrected, the crossing $JS=2.01t$ of `g5_ysr_dos` is added, and
+  its last section now gives the points of the old text with what happened to them. Its line on the density of states of
+  the 3D Anderson model now uses the eight cubes and the window $|E|<5t$ of the quiz of page `10b`, in place of four
+  other cubes and $|E|<2t$, and its last section has the rule of page `08` as a point of the lecturer.
+  `conventions.py` checks each line.
+- The notebook box of page `09`, whose cell "The impact of a strong impurity" asks the question of Section 9.8 and has no
+  decay length. The box stays on page `09`, where the .tex has it, and one sentence points to the cell "Impurity in an
+  electronic insulator" of the try-it box for the decay length of the page. Moving it to the list of page `08` would
+  change the blocks of two pages.
+- The stored source of the lab box of page `06`. `webnotes/sources/session09/sotthewes2021_physrevb.103.245311.txt`
+  holds only the two clauses with a number, as `labsource.py` writes the tracked copy of a text of a journal. The three
+  sentences of the box without a number are in the abstract of the full copy,
+  `webnotes/sources/.full/session09/sotthewes2021_physrevb.103.245311.txt`, which git ignores, so the box is not changed
+  and the tracked file is not written by hand.
+
+- The definition of the response of Section 9.3 against (9.4), the former point 1 for the lecturer. Picked by the
+  lecturer on 2026-11-22: keep (9.4) and add in Section 9.4a, after the key box, "The density then changes by
+  $\delta n(q)=-\chi_0(q)\,v_q$", in the form that fits the definition $\chi_A=\partial A/\partial\lambda$ of Section 9.3.
+  The sentence before (9.4) gets the denominator $\varepsilon(k)-\varepsilon(k+q)$ of (9.3), as the point said for each
+  of its candidates. The changes are two entries of the first list, asserted in `g2_04`.
+- The factor 2 of the spins in (9.6), the former point 2 for the lecturer. Picked by the lecturer on 2026-11-22: keep
+  (9.6) and add after it "Here $\chi_0$ counts one spin. For an interaction that couples to the total density, the
+  denominator is $1+2v(q)\chi_0$." The sentences of page `05` that wrote the Coulomb denominator without the factor 2, $U
+  \to v(q)$ and the caption of Figure 9.2, and the sentence that said that the Hubbard $U$ couples to the density, now
+  agree with it, and the steps fold of the plasma frequency is written. These are four new entries at the end of the
+  first list, and the entry of the caption of Figure 9.2 is updated, all asserted in `g3_05`. Four of these changes go
+  beyond the wording of the pick. The caption, the Hubbard sentence and $U\to2v(q)$ were changed so that they do not
+  contradict the picked sentences. The fold is new text with no counterpart in the .tex, which the block of 9.5a planned for the time after
+  the pick, so the lecturer can keep it or drop it.
+
+### For the lecturer
+
+These two points would change a numbered equation, a convention or a rule that the .tex states, so the rule leaves them
+to the lecturer. Each one comes with candidate texts, and the pages keep their present wording until the pick. The
+lecturer picked the two first points of the former list on 2026-11-22, and they are the last two points of the list
+above.
+
+1. The quantity of (9.11). (9.11) is written for the correlation $\langle S_0\cdot S_n\rangle$, while the text of
+   Section 9.9, its steps fold and the figure `spinon_impurity` follow the moment $\langle S^z_n\rangle$ that a field on
+   site 0 induces, and the bullet of Section 9.11 calls (9.11) "the induced spin correlation". In the spinon mean field
+   the two do not decay in the same way. The induced moment goes as $(-1)^n/n$, as `g5_09` asserts, while at half
+   filling $\langle S^z_0S^z_n\rangle=-\sin^2(\pi n/2)/(2\pi^2n^2)$, $0.0507/n^2$ for odd $n$, as the former version of
+   this list checked. The $1/n$ of $\langle S_0\cdot S_n\rangle$ for the true $S=1/2$ chain, up to a logarithm, is a
+   result of numerical work that is not checked here. The candidates are these.
+   - Change the left side of (9.11) to the induced moment $\langle S^z_n\rangle$, which the text, the fold and the
+     figure compute, and write "the induced moment" in Sections 9.9 and 9.11.
+   - Keep (9.11) for $\langle S_0\cdot S_n\rangle$ of the true chains, and add after it "The spinon mean field of the
+     steps fold gives this law for the moment induced by a field, and not for the correlation, which it gives as
+     $1/n^2$." The figure and the fold stay.
+   - Keep (9.11) and write in Sections 9.9 and 9.11 "the impurity response" in place of "the induced spin correlation",
+     with no claim on which of the two quantities the spinon mean field gives.
+2. The italic rule of the key box of Section 9.8, lines 510 to 512 of the .tex, "If vacancies produce in-gap modes, the
+   underlying phase is topological, and if they do not, the phase is trivial". The box adds the symmetry sentence and
+   the SSH ring, where a vacancy leaves a zero level in both orders of the hoppings, as `g5_08` asserts on a ring of 80
+   sites, so an in-gap mode does not always mean a topological phase. Close to the closing of the gap the second half
+   fails too. For $t_2=0.1t$, $\varphi=\pi/2$ and $M=0.5t$ the Haldane model has $C=1$ and the gap $0.039t$, and
+   $G_{AA}$ and $G_{BB}$ of the infinite lattice have no zero in the gap away from its edges, on meshes of 600 and 1200.
+   The opener and the second quiz of the page give this case, and the box does not. A clause of the gap was added to the
+   box on 2026-11-22 and taken back, since it changes the rule of the .tex. The candidates are these.
+   - Write the rule as a condition, "When the vacancy keeps the symmetry that protects the invariant and the gap is not
+     close to closing, an in-gap mode means a topological phase, and no mode means a trivial phase." The SSH sentence
+     stays as the case of a chiral chain, where the vacancy changes the count of the two sublattices.
+   - Keep the italic rule, and add to the box "and close to the closing of the gap the mode can sit too close to a band
+     edge to be seen" after the symmetry sentence.
+   - Keep the box as it is, with the case of the gap in the opener and in the second quiz only.

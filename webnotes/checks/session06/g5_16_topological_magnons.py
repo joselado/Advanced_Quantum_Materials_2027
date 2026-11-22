@@ -14,7 +14,9 @@ script checks what the text, the fold, the key box, the lab box, the quizzes and
   pyqula with add_haldane(-2 DS/sqrt(3)), and that add_haldane(x) is the hopping sqrt(3) x/2, so DS = 0.1 is x = -0.1155;
 - the Bloch matrix of the solution as it is printed, with -|J|S f* above the diagonal and m(k) = -2 DS sum sin(k.b_n): its
   diagonal at K is 3|J|S + m(K) with m(K) = -3 sqrt(3) DS, it has C = -1 for the lower band, like the lattice of the fold, and its
-  bands are those of pyqula;
+  bands are those of pyqula. The K of the page is the point (B1 + B2)/3 of the lattice of pyqula, which is the corner K' of
+  Section 2.11. At the corner K of Section 2.11 the same matrix has m(K) = +3 sqrt(3) DS, as in Section 3.10b. Which corner the
+  solution names is the third point for the lecturer in webnotes/plans/session06.md, and that block backs its numbers;
 - the gap at K, 6 sqrt(3) DS = 1.04 for DS = 0.1, from 2.48 to 3.52, with the first-neighbor term zero there and the second-neighbor
   term -+3 sqrt(3) DS on the two sublattices, the vectors b_n with K.b_n = 2 pi/3 modulo 2 pi, the bands 0 and 6 at Gamma, that
   6 sqrt(3) DS is the smallest gap of the two bands only for DS < 1/(3 sqrt(3)) = 0.19, that the smallest gap is 2|J|S at M from
@@ -25,10 +27,12 @@ script checks what the text, the fold, the key box, the lab box, the quizzes and
   two zigzag edges; the onsite energy 2M on one sublattice gives C = 0 with the gap 2M = 1.04;
 - the conversion of the lab box, DS = 4 meV / (6 sqrt(3)) = 0.4 meV.
 
-Not asserted: the feedback "Reversing the vector is a mirror operation" of the second quiz and the "bosonic Bogoliubov Hamiltonian"
-of the text, which are open for the lecturer, and the sentence "the phase +pi/2 gives C=+1" of the third option of the second
-quiz, whose sign depends on which hops carry the phase. The script prints C for the two readings. It writes no file, since pyqula
-runs in a temporary folder.
+Decided and corrected on 2026-11-22, and asserted in the blocks marked with that date: the feedback "Reversing the vector is a
+mirror operation" (the magnon matrix with -D is the one with D at the mirror image of k), the bosonic tight-binding Hamiltonian
+of the text (the Hamiltonian keeps S^z_tot, so there is no anomalous term), the third option of the second quiz, which now says
+only that the two phases give opposite Chern numbers, the reason of the zero at Gamma (three left and three right turns at each
+site, and an open flake of two hexagons where the zero is lost), and the try-it box against its notebook cell. It writes no file,
+since pyqula runs in a temporary folder.
 
 Run it from anywhere:  python3 webnotes/checks/session06/g5_16_topological_magnons.py"""
 import os
@@ -170,8 +174,12 @@ gK_sheet = np.diff(np.linalg.eigvalsh(hd.hk(np.array([4 * np.pi / 3, 0.0]), 1.0,
 check('the magnon matrix of the sheet, 3|J|S + _haldane.hk(t=|J|S, t2=-DS) for D>0, has the same C and gap at K',
       abs(c_sheet + 1) < 1e-9 and abs(gK_sheet - 6 * np.sqrt(3) * DS) < 1e-12, 'C = %+.0f, gap %.4f' % (c_sheet, gK_sheet))
 c_phi = pc.chern_links(lambda k: hd.hk(k, 1.0, 0.1), Bh, bands=0, nk=24)
-print('INFO   the third option of the second quiz: _haldane.hk with phi=+pi/2 has C = %+.0f for the lower band, while the '
-      'phases of panel (a), +pi/2 counterclockwise, give %+.0f' % (c_phi, c_mine[0]))
+print('INFO   _haldane.hk with phi=+pi/2 has C = %+.0f for the lower band, while the phases of panel (a), +pi/2 '
+      'counterclockwise, give %+.0f, so the sign of C at a given phase depends on which hops carry it' % (c_phi, c_mine[0]))
+# decided on 2026-11-22, the third option of the second quiz: the phases +pi/2 and -pi/2 give opposite Chern numbers
+c_phim = pc.chern_links(lambda k: hd.hk(k, 1.0, 0.1, phi=-np.pi / 2), Bh, bands=0, nk=24)
+check('quiz 2, third option: in the Haldane model the phases +pi/2 and -pi/2 give opposite Chern numbers, +-1',
+      abs(abs(c_phi) - 1) < 1e-9 and abs(c_phi + c_phim) < 1e-9, '%+.0f %+.0f' % (c_phi, c_phim))
 
 # ---------------------------------------------------------------- the key box and the problem: the gap at K and at Gamma
 hK = mine(K)
@@ -193,9 +201,39 @@ check('the b_n are at 120 degrees, |b_n| = sqrt 3, a hop along them turns left o
       np.allclose(np.diff(angles), 120) and np.allclose([np.linalg.norm(b) for b in bvec], np.sqrt(3))
       and all(turn(0, b) == 1 and turn(1, b) == -1 for b in bvec), 'angles %s' % np.round(angles, 6))
 m_sol = 1j * DS * sum(np.exp(1j * K @ b) - np.exp(-1j * K @ b) for b in bvec)        # m(K) of the solution, as it writes it
-check('K.b_n = 2 pi/3 modulo 2 pi, sum of sin = 3 sqrt(3)/2, and m(K) = -3 sqrt(3) DS in the form of the solution',
+check('K.b_n = 2 pi/3 modulo 2 pi, sum of sin = 3 sqrt(3)/2, and m(K) = -3 sqrt(3) DS in the form of the solution, at the '
+      'K = (B1 + B2)/3 of pyqula, which is the corner K\' of Section 2.11',
       np.allclose(phases, 2 * np.pi / 3) and abs(sum(np.sin(p) for p in phases) - 3 * np.sqrt(3) / 2) < 1e-12
       and abs(m_sol + 3 * np.sqrt(3) * DS) < 1e-12, '%s, m(K) = %.4f' % (np.round(phases, 6), m_sol.real))
+# for the lecturer, the third point of webnotes/plans/session06.md (the change of 2026-11-22 was reverted after the
+# independent check, k3): the corner K of Section 2.11 is (2 pi/3a, 2 pi/3 sqrt(3) a) in the frame where delta_1 = a(1, 0)
+# from a site of A. We turn that frame onto the lattice of pyqula by the rotation that takes (1, 0) onto one of its delta,
+# which keeps the set of the three delta, and there the left-turn b_n have K.b_n = -2 pi/3, as in Section 3.10b, so
+# m(K) = +3 sqrt(3) DS. The point (B1 + B2)/3 that the solution uses is the other corner, K' = -K up to a vector of the
+# reciprocal lattice. A second route works in the frame of Section 2.11 alone, with the b_n built there from the rule of
+# the left turn. The gap and C are the same at both corners.
+p211 = open(os.path.join(HERE, '..', '..', 'pages', 'session02',
+                         '11-the-dirac-cone-of-the-honeycomb-lattice-of-graphene-and-flat-band-lattices.md')).read()
+dl0 = [dl for dl in (site(1, n, m) - r0[0] for n, m in cells) if abs(np.linalg.norm(dl) - 1) < 1e-9]
+th0 = np.arctan2(dl0[0][1], dl0[0][0])
+Rot = np.array([[np.cos(th0), -np.sin(th0)], [np.sin(th0), np.cos(th0)]])
+d211 = np.array([[1, 0], [-0.5, np.sqrt(3) / 2], [-0.5, -np.sqrt(3) / 2]])
+K211 = np.array([2 * np.pi / 3, 2 * np.pi / (3 * np.sqrt(3))])
+Kn = Rot @ K211
+same_set = all(min(np.linalg.norm(Rot @ x - y) for y in dl0) < 1e-9 for x in d211)
+ph_n = [np.angle(np.exp(1j * Kn @ b)) for b in bvec]
+m_n = (1j * DS * sum(np.exp(1j * Kn @ b) - np.exp(-1j * Kn @ b) for b in bvec)).real
+Bloch_diff = Kn + K                                                       # K + K' is a vector of the reciprocal lattice
+coef = np.linalg.solve(np.array(B).T, Bloch_diff)
+bl211 = [d211[i] - d211[j] for i in range(3) for j in range(3) if i != j
+         and d211[i][0] * (d211[i] - d211[j] - d211[i])[1] - d211[i][1] * (d211[i] - d211[j] - d211[i])[0] > 0]
+m_211 = (1j * DS * sum(np.exp(1j * K211 @ b) - np.exp(-1j * K211 @ b) for b in bl211)).real
+check('for the lecturer, at the corner K of Section 2.11 the left-turn b_n have K.b_n = -2 pi/3 modulo 2 pi, as in Section '
+      '3.10b, and m(K) = +3 sqrt(3) DS = +0.5196, in the lattice of pyqula and in the frame of Section 2.11; (B1 + B2)/3 is K\'',
+      'a(1,0)' in p211 and '\\mathbf K=(2\\pi/3a,\\,2\\pi/3\\sqrt3a)' in p211 and same_set
+      and np.allclose(ph_n, -2 * np.pi / 3) and abs(m_n - 3 * np.sqrt(3) * DS) < 1e-12 and len(bl211) == 3
+      and abs(m_211 - 3 * np.sqrt(3) * DS) < 1e-12 and np.allclose(coef, np.round(coef), atol=1e-9),
+      'K.b_n %s, m(K) %.4f and %.4f, K + K\' = %s B' % (np.round(ph_n, 6), m_n, m_211, np.round(coef, 6)))
 deltas = [site(1, n, m) - r0[0] for n, m in cells if abs(np.linalg.norm(site(1, n, m) - r0[0]) - 1) < 1e-9]
 f_sol = lambda k: sum(np.exp(1j * (k @ dl)) for dl in deltas)
 m_of = lambda k, DS=DS: 1j * DS * sum(np.exp(1j * (k @ b)) - np.exp(-1j * (k @ b)) for b in bvec)
@@ -214,8 +252,10 @@ same_sol = max(np.abs(np.linalg.eigvalsh(sol_hk(k)) - 3 - np.linalg.eigvalsh(hkq
 same_ent = max(max(np.abs(np.diag(sol_hk(k)) - np.diag(mine(-k)))) + abs(abs(sol_hk(k)[0, 1]) - abs(mine(-k)[0, 1]))
                for k in ks)    # the printed matrix is the fold at -k, the phase e^{ik.R} of mine being the momentum of the state,
 #                                up to the phase of the off-diagonal entry, which mine takes with the cell R and not with delta
-check('the matrix of the solution as printed: [A,A] at K is 3 + m(K) = 3 - 3 sqrt(3) DS, C = -1 for the lower band (Kubo), '
-      'bands of pyqula', abs(sol_hk(K)[0, 0] - 3 + 3 * np.sqrt(3) * DS) < 1e-12 and abs(sol_hk(K)[0, 0].real - 2.48) < 5e-3
+check('the matrix of the solution as printed: [A,A] at K = (B1 + B2)/3 is 3 + m(K) = 3 - 3 sqrt(3) DS = 2.48, and for the '
+      'lecturer at the K of Section 2.11 it is 3 + 3 sqrt(3) DS = 3.52, C = -1 for the lower band (Kubo), bands of pyqula',
+      abs(sol_hk(K)[0, 0] - 3 + 3 * np.sqrt(3) * DS) < 1e-12 and abs(sol_hk(K)[0, 0].real - 2.48) < 5e-3
+      and abs(sol_hk(Kn)[0, 0] - 3 - 3 * np.sqrt(3) * DS) < 1e-12 and abs(sol_hk(Kn)[0, 0].real - 3.52) < 5e-3
       and abs(c_sol + 1) < 1e-3 and same_sol < 1e-12 and same_ent < 1e-12,
       'H_AA(K) = %.4f, C = %+.4f, bands within %.0e, the fold at -k within %.0e' % (sol_hk(K)[0, 0].real, c_sol, same_sol, same_ent))
 print('INFO   with f in the upper right and f* in the lower left, the old form of the matrix, the lower band has C = %+.4f' % c_swap)
@@ -332,6 +372,92 @@ ht.add_sublattice_imbalance(0.52)
 hkt, Bt = pc.from_pyqula(ht)
 check('an onsite energy 2M = 1.04 on one sublattice gives C = 0 and the gap 1.04', abs(pc.chern_links(hkt, Bt, bands=0, nk=24)) < 1e-9
       and abs(pc.gap(hkt, Bt, 1, nk=60) - 1.04) < 1e-9, 'C = %+.0f, gap %.4f' % (pc.chern_links(hkt, Bt, bands=0, nk=24), pc.gap(hkt, Bt, 1, nk=60)))
+
+# ---------------------------------------------------------------- decided and corrected on 2026-11-22
+# the text: the Chern number is applied to the bosonic tight-binding Hamiltonian of Section 6.14, not to a Bogoliubov one.
+# The exact spins of the hexagon keep S^z_tot with D along z, so H never leaves the states with one magnon, and there the
+# Heisenberg part is the hopping -|J|S with the onsite energy z|J|S, the matrix of Section 6.14
+check('text: H keeps S^z_tot, so the magnon Hamiltonian has no anomalous term and is the hopping matrix of Section 6.14',
+      comm(H, Szt) < 1e-12 and leak < 1e-12 and abs(first + abs(J) * Sv) < 1e-12 and abs(onsite - 2 * abs(J) * Sv) < 1e-12,
+      '[H, Sz_tot] = %.1e, leak %.1e' % (comm(H, Szt), leak))
+# the feedback of the first option of the second quiz: reversing D is a mirror operation. The mirror line through a site
+# of A along a first-neighbor bond keeps A on A and B on B and exchanges left and right turns, so the magnon bands with -D
+# at k are those with +D at the mirror image of k, and the two spectra are the same
+nb_ = dl0[0] / np.linalg.norm(dl0[0])
+Mir = 2 * np.outer(nb_, nb_) - np.eye(2)
+mir_sites = all(min(np.linalg.norm(Mir @ x - y) for y in dl0) < 1e-9 for x in dl0)
+mir_bands = max(np.abs(np.linalg.eigvalsh(magnon_hk(-DS)(k)) - np.linalg.eigvalsh(magnon_hk(DS)(Mir @ k))).max() for k in ks)
+mir_diag = max(np.abs(np.diag(magnon_hk(-DS)(k)) - np.diag(magnon_hk(DS)(Mir @ k))).max() for k in ks)
+check('quiz 2, first option: the bands with -D at k are those with +D at the mirror image of k, a mirror along a bond',
+      mir_sites and mir_bands < 1e-12 and mir_diag < 1e-12, 'bands within %.0e, diagonal within %.0e' % (mir_bands, mir_diag))
+# the solution, the zero at Gamma: every site has three left turns and three right turns to its six second neighbors, so
+# the amplitudes +-i DS of the hops into a site add to zero and m(Gamma) = 0. In an open flake of two hexagons the turns
+# do not balance at four sites, and there the uniform tilt still has zero mean energy, but the lowest one-magnon level is
+# -0.025 |J|S, below zero, so the parallel spins alone do not keep the zero
+counts = [(sum(turn(s, b) == 1 for b in bvec + [-b for b in bvec]), sum(turn(s, b) == -1 for b in bvec + [-b for b in bvec]))
+          for s in (0, 1)]
+a3 = np.sqrt(3)
+fl = []
+for cx in (0.0, a3):
+    for n_ in range(6):
+        p_ = np.array([cx + np.cos(np.pi / 2 + n_ * np.pi / 3), np.sin(np.pi / 2 + n_ * np.pi / 3)])
+        if not any(np.linalg.norm(p_ - q) < 1e-6 for q in fl):
+            fl.append(p_)
+fl = np.array(fl)
+Nf, Jf, Df, Sf = len(fl), -1.0, 0.3, 0.5
+Hf = np.zeros((Nf, Nf), complex)
+for i in range(Nf):
+    for j in range(Nf):
+        dist = np.linalg.norm(fl[i] - fl[j])
+        if abs(dist - 1) < 1e-6:
+            Hf[i, j] += -abs(Jf) * Sf; Hf[i, i] += abs(Jf) * Sf
+        elif abs(dist - a3) < 1e-6:
+            for k_ in range(Nf):
+                if abs(np.linalg.norm(fl[k_] - fl[i]) - 1) < 1e-6 and abs(np.linalg.norm(fl[k_] - fl[j]) - 1) < 1e-6:
+                    d1, d2 = fl[k_] - fl[i], fl[j] - fl[k_]
+                    Hf[j, i] += 1j * np.sign(d1[0] * d2[1] - d1[1] * d2[0]) * Df * Sf
+uf = np.ones(Nf) / np.sqrt(Nf)
+low = np.linalg.eigvalsh(Hf)[0]
+check('solution, the zero at Gamma: 3 left and 3 right turns at each site, m(Gamma) = 0; in an open flake of two hexagons '
+      'the uniform tilt has zero mean energy but the lowest level is -0.025 |J|S',
+      counts == [(3, 3), (3, 3)] and abs(m_of(np.zeros(2))) < 1e-15 and Nf == 10 and np.abs(Hf - Hf.conj().T).max() < 1e-15
+      and abs(uf @ Hf @ uf) < 1e-12 and np.linalg.norm(Hf @ uf) > 0.09 and round(low / (abs(Jf) * Sf), 3) == -0.025,
+      (counts, round(low / (abs(Jf) * Sf), 4)))
+# the try-it box, against the cell "Topological magnons in 2D magnets": the cell never calls get_chern, h.get_chern()
+# after set_filling(0.0) and add_onsite(0.5) gives 0.0 for both signs, since the bands start at 0.499 and zero energy is
+# below them, and in the ribbon of the cell the branch of each edge in the bulk gap runs the other way when the sign of
+# add_haldane changes
+import json
+from pyqula import ribbon as rib
+nbk = json.load(open(os.path.join(HERE, '..', '..', '..', 'jupyter-notebooks', 'session6.ipynb')))['cells']
+ih = [j for j, c in enumerate(nbk) if c['cell_type'] == 'markdown' and ''.join(c['source']).startswith('## Topological magnons in 2D magnets')]
+cell = next(''.join(c['source']) for c in nbk[ih[0] + 1:] if c['cell_type'] == 'code')
+cellres = {}
+for x in (0.1, -0.1):
+    hc = geometry.honeycomb_lattice().get_hamiltonian(tij=[1., 0.2])
+    hc.add_haldane(x)
+    hc.set_filling(0.0); hc.add_onsite(0.5)
+    ch = hc.get_chern()
+    gen = hc.get_hk_gen()
+    eb = np.array([np.linalg.eigvalsh(dense(gen([u, v, 0.]))) for u in np.linspace(0, 1, 31) for v in np.linspace(0, 1, 31)])
+    lo_, hi_ = eb[:, 1].max(), eb[:, 2].min()
+    hr = rib.bulk2ribbon(hc, n=20)
+    (kr, er, cr) = hr.get_bands(operator="yposition")
+    kr, er, cr = np.array(kr), np.array(er), np.array(cr)
+    sel = np.abs(er - 0.5 * (lo_ + hi_)) < 0.05
+    slope = {}
+    for name, side in (('lower', cr < 0), ('upper', cr > 0)):
+        kk_, ee_ = kr[sel & side], er[sel & side]
+        slope[name] = np.sign(np.polyfit(kk_, ee_, 1)[0]) if len(kk_) > 2 and np.ptp(kk_) > 0 else 0
+    cellres[x] = (ch, eb.min(), lo_, hi_, slope)
+check('try-it: the cell does not call get_chern, get_chern() after set_filling(0.0) gives 0.0 for both signs since the bands '
+      'start at 0.499, and the branch of each edge in the gap of the ribbon runs the other way for -0.1',
+      len(ih) == 1 and 'get_chern' not in cell and 'h.add_haldane(0.1)' in cell and 'h.set_filling(0.0) ; h.add_onsite(0.5)' in cell
+      and 'ribbon.bulk2ribbon(h,n=20)' in cell and all(abs(cellres[x][0]) < 1e-9 and abs(cellres[x][1] - 0.499) < 1e-3
+                                                        and cellres[x][3] - cellres[x][2] > 0.5 for x in (0.1, -0.1))
+      and all(cellres[0.1][4][e] == -cellres[-0.1][4][e] != 0 for e in ('lower', 'upper'))
+      and cellres[0.1][4]['lower'] == -cellres[0.1][4]['upper'],
+      {x: (round(v[0], 4), round(v[1], 4), round(v[2], 3), round(v[3], 3), v[4]) for x, v in cellres.items()})
 
 # ---------------------------------------------------------------- the lab box
 check('the lab box, 6 sqrt(3) DS = 4 meV gives DS = 0.4 meV, ours', abs(4 / (6 * np.sqrt(3)) - 0.4) < 0.02, '%.4f meV' % (4 / (6 * np.sqrt(3))))

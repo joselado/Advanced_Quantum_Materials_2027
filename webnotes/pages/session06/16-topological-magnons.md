@@ -6,7 +6,7 @@ Once magnons have a real band structure, which is a dispersion $E(\mathbf k)$ ov
 This is the Chern number of one gapped Dirac cone $k_x\sigma_x+\lambda k_y\sigma_y+m\sigma_z$, from Section [3.10](#sec-3-10). The mass is $m$, and the chirality $\lambda=\pm1$ has opposite signs at the two Dirac points $K$ and $K'$ of the honeycomb lattice. A mass that also changes sign between $K$ and $K'$, as a term that is odd under time reversal does, makes the two halves add up to $C=\pm1$.
 :::
 
-To see this, we use again the Chern number [(3.4)](#eq-3-4) of Session 3 and Session 4, where the Berry curvature $\Omega(\mathbf k)$ of a Bloch band is integrated over the Brillouin zone and gives an integer. This is the third time that we apply it, now to the bosonic Bogoliubov Hamiltonian of Section [6.15](#sec-6-15) instead of an electronic tight-binding Hamiltonian.
+To see this, we use again the Chern number [(3.4)](#eq-3-4) of Session 3 and Session 4, where the Berry curvature $\Omega(\mathbf k)$ of a Bloch band is integrated over the Brillouin zone and gives an integer. This is the third time that we apply it, now to the bosonic tight-binding Hamiltonian of the magnons of Section [6.14](#sec-6-14) instead of an electronic one.
 
 ::: key
 The Chern number of a magnon band is
@@ -75,7 +75,7 @@ We reverse the sign of the Dzyaloshinskii-Moriya vector. What happens to the top
 
 - [ ] Nothing, since the term is quadratic.
 
-    This is false. In the Haldane model the phase $\varphi=+\pi/2$ gives $C=+1$ and $\varphi=-\pi/2$ gives $C=-1$. The direction of the edge branch follows this sign, so it does change.
+    This is false. In the Haldane model the phases $\varphi=+\pi/2$ and $\varphi=-\pi/2$ give opposite Chern numbers. The direction of the edge branch follows this sign, so it does change.
 :::
 
 ::: quiz
@@ -108,7 +108,7 @@ $$m(\mathbf k) = iDS\sum_{n}\big(e^{i\mathbf k\cdot\mathbf b_n}-e^{-i\mathbf k\c
 
 and on $B$ the phases are reversed, which gives $-m(\mathbf k)$. At $K$ the three phases $\mathbf K\cdot\boldsymbol\delta$ are $0$ and $\pm2\pi/3$, so $f(\mathbf K)=1+e^{2\pi i/3}+e^{-2\pi i/3}=0$ and the first-neighbor term vanishes. The three products $\mathbf K\cdot\mathbf b_n$ are all $2\pi/3$ modulo $2\pi$, so $\sum_n\sin(\mathbf K\cdot\mathbf b_n)=3\sqrt3/2$ and $m(\mathbf K)=-3\sqrt3\,DS$. The two energies are $3|J|S\mp3\sqrt3\,DS$, and the gap at $K$ is $6\sqrt3\,DS$, which is $1.04\,|J|S$ for $DS=0.1\,|J|S$.
 
-At $\Gamma$ all the sines vanish and $f=3$, so the two energies are $3|J|S\pm3|J|S$, which are $0$ and $6|J|S$. The zero is the Goldstone mode of Section [6.15](#sec-6-15) for the Heisenberg part alone. The Dzyaloshinskii-Moriya term keeps only the rotations about $z$, and the ferromagnet along $z$ does not break them, so here the zero is not protected by a broken symmetry. It survives because two parallel spins have $\mathbf S_i\times\mathbf S_j=0$, meaning that a uniform tilt of all the spins costs no Dzyaloshinskii-Moriya energy.
+At $\Gamma$ all the sines vanish and $f=3$, so the two energies are $3|J|S\pm3|J|S$, which are $0$ and $6|J|S$. The zero is the Goldstone mode of Section [6.15](#sec-6-15) for the Heisenberg part alone. The Dzyaloshinskii-Moriya term keeps only the rotations about $z$, and the ferromagnet along $z$ does not break them, so here the zero is not protected by a broken symmetry. It survives because each site has as many left turns as right turns to its second neighbors. So at $\Gamma$ the Dzyaloshinskii-Moriya hops into a site add up to zero, and a uniform tilt of all the spins costs no energy.
 
 The gap at $K$ is linear in $D$, so a measured gap at the Dirac points gives $DS$ directly, as in the box on CrI$_3$ above. For $DS<0.19\,|J|S$ it is also the smallest gap between the two bands. Between $0.19\,|J|S$ and $0.58\,|J|S$ the smallest gap is $2|J|S$, at $M$. Above $0.58\,|J|S$ the lower band goes below zero at $K$, and the ferromagnet is no longer stable.
 :::
@@ -121,7 +121,7 @@ Construct a magnon Hamiltonian with a spin-orbit term of Dzyaloshinskii-Moriya t
 :::
 
 ::: {.tryit notebook="session6.ipynb" cell="Topological magnons in 2D magnets"}
-In the cell, `h.add_haldane(0.1)` sets the complex hopping that plays the role of the Dzyaloshinskii-Moriya term. Change it to `-0.1` and compute `h.get_chern()` before building the ribbon. The Chern number changes sign.
+In the cell, `h.add_haldane(0.1)` sets the complex hopping that plays the role of the Dzyaloshinskii-Moriya term. Change it to `-0.1` and run the cell again. In the ribbon the branch of each edge that crosses the gap now runs the other way, which is the change of sign of the Chern numbers. The cell does not compute the Chern number. A call of `h.get_chern()` after the line with `h.set_filling(0.0)` and `h.add_onsite(0.5)` gives 0.0 for both signs, since zero energy is then below both bands.
 :::
 
 The companion notebook goes further than these notes in two places, with exercises on electronic and magnetic symmetry breaking in graphene multilayers and on many-body spin response functions. We do not derive them here, so they are independent work with the notebook, and the spin response functions come back in Session 9.

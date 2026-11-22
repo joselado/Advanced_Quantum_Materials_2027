@@ -64,7 +64,7 @@ We have $J>0$, which is antiferromagnetic, and the singlet is below the triplet.
 ::: notebookbox
 **Notebook check-in:** [`session6.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb), "(Reminder) The spectra of a dimer," "(Exercise) The interacting Hubbard dimer," "Gap opening in the Hubbard model," and "(Exercise) The strongly interacting limit"
 
-Diagonalize the Hubbard dimer with six states directly, and check that the singlet-triplet splitting agrees with [(6.4)](#eq-6-4). Then take large values of $U/t$ and check that the gap and the low-energy spectrum converge to the prediction of the Heisenberg model. This compares the exact result of this section with a direct numerical diagonalization.
+The first cell has no interaction, and it gives the single-particle levels $\pm t$ of the dimer. The other three use mean field, and not the six states of this section. The second one solves the dimer in mean field, where a moment appears only above $U=2t$, while the exact dimer of this section has a singlet ground state with no ordered moment. The third one follows the mean-field gap of the chain as $U$ grows. The last one compares the energies of the ferromagnet and the antiferromagnet at large $U$, whose difference falls as $1/U$, as the coupling $J$ of [(6.4)](#eq-6-4) does.
 :::
 
 ::: lab
@@ -140,7 +140,7 @@ At $U=8t$ the first term is $0.5t$ and the second one is $-0.031t$, so the expan
 ::::
 
 ::: {.tryit notebook="session6.ipynb" cell="The interacting Hubbard dimer"}
-In the cell, diagonalize the dimer with six states for $U/t$ equal to 4, 8 and 16. The exact splitting $E_T-E_S$ divided by $4t^2/U$ is about 0.83, 0.94 and 0.98, and it approaches one as $U/t$ grows.
+In the cell, the dimer is solved in mean field for `Us` from 0 to 10. The moment of a site stays at zero up to $U=2t$ and then grows as $\sqrt{1-4t^2/U^2}$, to $0.87$ at $U=4t$ and $0.98$ at $10t$, and the gap goes from $2t$ to $U$. The exact dimer of this section has no ordered moment at any $U$, meaning that $\langle n_\uparrow-n_\downarrow\rangle=0$ on each site, since its ground state is the singlet. Its local moment $\langle(n_\uparrow-n_\downarrow)^2\rangle$ is still $0.85$ at $U=4t$. So the ordered moment of the cell comes from mean field.
 :::
 
 ::: comesback

@@ -11,9 +11,12 @@ route for the spin chains is the exact diagonalization of dmrgpy. The energies a
 $t$, and the temperature is in the same units with $k_B=1$. The figure scripts of `webnotes/figures/session10/` write
 their SVG when they run, so the check repeats their computation with their seed and never runs them. The units of
 (10.8) are Gaussian, with $\hbar$, $m$ and $e$, while the quiz of Section 10.5 writes $-\nabla^2/2$, which is atomic
-units, so a page that writes the Kohn-Sham Hamiltonian says which. The Fashion-MNIST accuracies of Section 10.4 and
-the sizes $L=10$ to 60 and $L=4$ to 28 of Section 10.6 come from the papers of the lab boxes, so they are checked
-with `labsource.py` and not here.
+units, so a page that writes the Kohn-Sham Hamiltonian says which. The Fashion-MNIST accuracies of Section 10.4 are
+on page 31 of the slides of the lecture, `slides_prerecordings/lecture10.pdf`, which the check of that page reads, and
+they are the numbers of Section VI of arXiv 1801.00315, a classifier of ten labels. The sizes $L=10$ to 60 of Section
+10.6a and $L=4$ to 28 of Section 10.6b are in the legends of the figures on pages 46 and 49 of the same slides, which
+were read on 2026-11-22 and are not checked by a script. None of them is a stored source of `labsource.py`, since
+the pages have no lab box.
 
 The pyqula of the checks is the development tree of version 0.0.95, at commit 7567127. The students install the
 release 0.0.96 of PyPI, whose code was read, and run only once for the loop that does not converge. It builds
@@ -144,7 +147,7 @@ place of the Hamiltonian, and `(None, energy)` with `return_total_energy=True`, 
 - (10.6) is the trace form with a $D\times D$ matrix on every site, $L\,d\,D^2=20000$ numbers for $L=100$, $d=2$ and
   $D=10$, against $2^{100}=1.27\cdot10^{30}$, which is 25.8 orders of magnitude more, the "26 orders of magnitude" of
   the quiz. The open form (7.5) of Session 7 has vectors at the two ends, 19640 numbers here, and calls the bond
-  dimension $M$. $D=1$ is a product state with $L\,d=200$ numbers, and 80 for the 40 spins of the quiz of
+  dimension $\chi$. $D=1$ is a product state with $L\,d=200$ numbers, and 80 for the 40 spins of the quiz of
   Section 10.3a.
 - The singlet has two Schmidt values $1/\sqrt2$ and the entropy $\ln2$, so it needs $D=2$. The trace form with
   $A^\uparrow=\mathrm{diag}(1,0)$, $A^\downarrow=\mathrm{diag}(0,1)$ on the first site and
@@ -169,8 +172,10 @@ place of the Hamiltonian, and `(None, energy)` with `return_total_energy=True`, 
   $v_{\rm ext}(i)=-2e^{-((i-29.5)/7)^2}$, the Hartree term $U\,n(i)$ on the total density with $U=2$, and 30 percent
   of the new density mixed in. The density at the center, the sites 29 and 30, is 0.9895 at convergence and 1.2143
   with no Hartree term, the 0.99 and 1.21 of the caption, and 0.831 and 0.949 after the iterations 1 and 3. The
-  largest change of the density falls below $10^{-10}$ at the iteration 36, and the ratio of two changes stays
-  between 0.48 and 0.53, so "the same factor" of the caption is true to about 10 percent.
+  largest difference $\max_i|\Delta n(i)|$ between the density that the diagonalization gives and the density that
+  went in falls below $10^{-10}$ at the iteration 36, and the ratio of two of them stays between 0.48 and 0.53, so
+  "the same factor" of the caption is true to about 10 percent. The stored density changes by 0.3 times this
+  difference, the weight of the mixing.
 - In pyqula the same loop is the Hubbard mean field of an open spinful chain of 60 sites with `tij=[-1.]`, the well in
   `add_onsite`, `U=4`, `filling=40/120` and `mix=0.3`. With `constrains=["no_magnetism"]` it gives the density of the
   toy to $2\cdot10^{-11}$, and its onsite energy is $v_{\rm ext}+2n(i)$ plus the constant 0.048, which puts the middle
@@ -205,14 +210,15 @@ place of the Hamiltonian, and `(None, energy)` with `return_total_energy=True`, 
 - The Monte Carlo of the figure `ising_sizes`, with its seed, 1500 sweeps to thermalize and 3000 to average, puts
   $L=8$, 16 and 32 within 0.0065 of the exact value at the seven temperatures from $T=1.5$ to 2.1. At $T=2.2$, the
   last point of the figure
-  below $T_c$, they are $+0.031$, $+0.012$ and $-0.013$ away. So "below $T_c$ the three sizes agree with it" holds up
-  to $T=2.1$, and at the last point the lattice of 8 is 0.03 above the exact curve.
+  below $T_c$, they are $+0.031$, $+0.012$ and $-0.013$ away. So the caption says that the three sizes agree with it
+  within 0.007 up to $T=2.1$, and that at $T=2.2$ the lattice of 8 is 0.03 above it.
 - At $T=3.0$ the same figure has $\langle|m|\rangle=0.352$, 0.170 and 0.086 for $L=8$, 16 and 32, so it halves when
   $L$ doubles, and $L\langle|m|\rangle$ is 2.7 to 2.8, the order $1/L$ of the caption. It is 3.4 to 3.5 times the
   $\sqrt{2/(\pi N)}$ of independent spins, since the spins are correlated.
-- The Ising side of the figure `igt_hist`, with its seed, has 1500 snapshots on $16\times16$ with $|m|$ from 0.898 to
-  1 and the mean 0.987 at $T=1.5$, and from 0 to 0.562 with the mean 0.126 at $T=3.5$. So the two histograms do not
-  overlap, while the largest $|m|$ at $T=3.5$ is above 0.5. A run of 8000 sweeps gives the mean 0.124 at $T=3.5$.
+- The Ising side of the figure `igt_hist` is the pyqula script `g4_ising_snapshots.py` with its seed, 1000 snapshots
+  on $16\times16$ every two sweeps after 500 sweeps. Its $|m|$ goes from 0.922 to 1 with the mean 0.987 at $T=1.5$,
+  and from 0 to 0.508 with the mean 0.125 at $T=3.5$. So the two histograms do not overlap, while the largest $|m|$ at
+  $T=3.5$ is above 0.5. A checkerboard run of 8000 sweeps in numpy gives the mean 0.124 at $T=3.5$.
 
 ## The Ising gauge theory of Section 10.6b
 
@@ -262,7 +268,8 @@ place of the Hamiltonian, and `(None, energy)` with `return_total_energy=True`, 
   quiz of Section 10.7.
 - The seed 3 of the figure gives the errors 0.0635 trained on clean rings, 0.1027 on the test rings with $W>1$, and
   0.0043 trained with $W$ in $[0,1.5]$, the numbers that the script prints. The seeds 0 to 9 give 0.058 to 0.074,
-  0.093 to 0.121 and 0.0040 to 0.0054, so the caption quotes one seed, and a page gives the range. The two fits have
+  0.093 to 0.121 and 0.0040 to 0.0054, so the caption gives the ranges $0.06$ to $0.07$, about
+  $0.1$ and $0.004$ to $0.005$ over ten draws. The two fits have
   the rank 27 and 38 of 41, since a clean ring leaves bins empty and the bins sum to 1 next to the constant, and
   `lstsq` takes the solution of smallest norm. Another least-squares solution of the clean fit, with a vector of norm
   1 of its null space added, gives 0.094 in place of 0.0635, so the clean numbers hold for `lstsq`. At most 1 percent
@@ -275,8 +282,8 @@ place of the Hamiltonian, and `(None, energy)` with `return_total_energy=True`, 
   their bins and does not assert them. This is a likely reason why the SVG of the script is not the same file at every
   run, which was not reproduced here with the script itself.
 - The pairs $(\mathcal O,t)$ and $(\mathcal O,-t)$ have the smallest squared loss at the output 0, where the sum
-  (10.12) over the two pairs is $2t^2$ and the mean is $t^2$. So the "mean-square loss ... is $t^2$" of the quiz of
-  Section 10.7 is the mean over the pairs.
+  (10.12) over the two pairs is $2t^2$ and the mean is $t^2$. So the quiz of Section 10.7 gives the loss $2t^2$, which is
+  $t^2$ per pair.
 
 ## pyqula
 
@@ -288,21 +295,20 @@ place of the Hamiltonian, and `(None, energy)` with `return_total_energy=True`, 
   pyqula does for this session is the classical Ising model, the Hubbard mean field, the density of states and the
   ring, with the recipes of `webnotes/scripts/RECIPES.md`.
 
-## Open points of the old text, left as they are
+## Points of the old text, corrected on 2026-11-22
 
-- The quiz on $L=40$ of Section 10.3a says "roughly 16 terabytes" in its option and "roughly 16 TiB" in its feedback,
-  while the figure `memory` of the same page counts in decimal units, where the table is 17.6 TB. Section 7.3 says
-  "about 17 terabytes" for the same table. See the line on the memory.
-- The text of the widget `netfit` in Section 10.2 says "4000 steps of gradient descent, with the loss of (10.1)",
-  while the code takes Adam and the mean of the squared error. It says that one or two neurons cannot follow the six
-  extrema, and three neurons cannot either, with 0.23, which is where the widget starts. It says "with more neurons
-  the loss goes down", while it rises from $3.0\cdot10^{-3}$ at $H=5$ to $5.0\cdot10^{-3}$ at $H=7$. See the line on
-  the widget.
-- The second quiz of Section 10.7 says that the mean-square loss is $t^2$, which holds for the mean over the two
-  pairs, while the sum (10.12) gives $2t^2$. See the line on the quiz of two labels.
-- Section 10.3b writes (10.5) without saying that $\theta_k$ is real. See the line on the gradient.
-- The caption of the figure `ham_learning` gives 0.06, 0.10 and 0.004 with no word on the seed. They hold for the
-  seed 3 of the script, and the seeds 0 to 9 give 0.058 to 0.074, 0.093 to 0.121 and 0.0040 to 0.0054.
-- The caption of the figure `ising_sizes` says that below $T_c$ the three sizes agree with the exact curve. This holds
-  to 0.0065 up to $T=2.1$, while at $T=2.2$, the last point below $T_c$, the lattice of 8 is 0.031 above it. See the
-  line on the figure below $T_c$.
+- The quiz on $L=40$ of Section 10.3a says "about 17.6 terabytes" in its option, in the decimal units of the figure
+  `memory` and of the feedback of the quiz of Section 7.3, and "roughly 16 TiB" in its feedback. See the line on the
+  memory.
+- The text of the widget `netfit` in Section 10.2 says "4000 steps of Adam, a form of gradient descent, with the mean of
+  the squared error". It says that one to three neurons cannot follow the six extrema, with $0.23$ for three, and that
+  the loss goes down on the whole but not at every step of $H$, since it rises from $3.0\cdot10^{-3}$ at $H=5$ to
+  $5.0\cdot10^{-3}$ at $H=7$. See the line on the widget.
+- The second quiz of Section 10.7 says that the sum (10.12) over the two pairs is $2t^2$, which is $t^2$ per pair. See
+  the line on the quiz of two labels.
+- Section 10.3b writes (10.5) as the gradient with respect to a real parameter $\theta_k$. See the line on the
+  gradient.
+- The caption of the figure `ham_learning` gives the ranges over the seeds 0 to 9, $0.06$ to $0.07$, about $0.1$ and
+  $0.004$ to $0.005$, of the 0.058 to 0.074, 0.093 to 0.121 and 0.0040 to 0.0054 of the seeds.
+- The caption of the figure `ising_sizes` says that the three sizes agree with the exact curve within 0.007 up to
+  $T=2.1$, and that at $T=2.2$ the lattice of 8 is 0.03 above it, 0.031 here. See the line on the figure below $T_c$.

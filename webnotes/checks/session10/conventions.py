@@ -8,9 +8,9 @@ Carlo numbers are asserted with tolerances wider than their statistical error, a
 are asserted as ranges over the seeds that the sheet names.
 
 Not asserted, since they are not a short calculation or not a number: the sentences on the release 0.0.96 of pyqula,
-which were read in its code and not run, the units of (10.8), the Fashion-MNIST accuracies of Section 10.4 and the
-sizes of the trained classifiers of Section 10.6, which come from the sources of the lab boxes, and the SVG of
-ham_learning.py that is not the same file at every run, of which the check asserts only the levels on the edges of
+which were read in its code and not run, the units of (10.8), the Fashion-MNIST accuracies of Section 10.4, which
+the check of that page reads on the slides of the lecture, the sizes of the trained classifiers of Section 10.6,
+which are in the figures of the same slides, and the SVG of ham_learning.py that is not the same file at every run, of which the check asserts only the levels on the edges of
 the bins, which were not shown to be the cause.
 
 The numbers that break first when pyqula, numpy or the BLAS library change are the magnetic state of the mean field
@@ -19,7 +19,7 @@ the side of the bin edge on which the levels at 0.7 fall. Their tolerances are t
 new number on the sheet and not for a new convention.
 
 Run it from anywhere:  python3 webnotes/checks/session10/conventions.py"""
-import os, sys, io, re, contextlib, importlib, importlib.util, tempfile, time
+import os, sys, io, re, contextlib, importlib, importlib.util, runpy, tempfile, time
 for _v in ('OMP_NUM_THREADS', 'OPENBLAS_NUM_THREADS', 'MKL_NUM_THREADS'):
     os.environ.setdefault(_v, '1')     # small matrices, threads only cost time on a busy machine
 import numpy as np
@@ -678,10 +678,15 @@ def main():
     q = res[1:] / res[:-1]
     ok = len(res) == 36 and abs(hist[-1][30] - 0.9895) < 5e-5 and abs(hist[-1][29] - hist[-1][30]) < 1e-12
     ok = ok and abs(n_free[30] - 1.2143) < 5e-5 and abs(hist[1][30] - 0.831) < 5e-4 and abs(hist[3][30] - 0.949) < 5e-4
+    out_in = np.abs(new(hist[0]) - hist[0]).max()
+    stored = np.abs(hist[1] - hist[0]).max()
+    ok = ok and abs(res[0] - out_in) < 1e-15 and abs(stored - 0.3 * out_in) < 1e-12
     check('the loop of the figure ks_loop', ok and abs(hist[-1].sum() - 40) < 1e-9 and 0.47 < q.min() and q.max() < 0.54,
           'the density at the center, the sites 29 and 30, is %.4f at convergence and %.4f with no Hartree term, %.3f and '
-          '%.3f after the iterations 1 and 3, the largest change is below 1e-10 at the iteration %d, and the ratio of two '
-          'changes stays between %.2f and %.2f' % (hist[-1][30], n_free[30], hist[1][30], hist[3][30], len(res), q.min(), q.max()))
+          '%.3f after the iterations 1 and 3, the largest difference between the density out and the density in is below '
+          '1e-10 at the iteration %d, the ratio of two of them stays between %.2f and %.2f, and the stored density changes '
+          'by %.2f times it' % (hist[-1][30], n_free[30], hist[1][30], hist[3][30], len(res), q.min(), q.max(),
+                                stored / out_in))
 
     out = {}
     for name, kw in (('constraint', dict(constrains=['no_magnetism'])), ('guess', dict(mf='potential'))):
@@ -786,17 +791,19 @@ def main():
           'at T=3.0 <|m|> = %.3f, %.3f and %.3f for L = 8, 16 and 32, so L <|m|> is %.2f, %.2f and %.2f, and it is %.2f to '
           '%.2f times the sqrt(2/(pi N)) of independent spins' % (*m30, *Lm, min(ind), max(ind)))
 
-    rf = np.random.default_rng(11)
-    lo, hi = np.abs(ising_snapshots(1.5, rf)), np.abs(ising_snapshots(3.5, rf))
+    # corrected on 2026-11-22: the Ising side of igt_hist is the pyqula script, with its seed
+    absm = quiet(runpy.run_path, os.path.join(WEBNOTES, 'scripts', 'session10', 'g4_ising_snapshots.py'))['absm']
+    lo, hi = absm[1.5], absm[3.5]
     longrun = np.abs(ising_snapshots(3.5, np.random.default_rng(101), nth=500, ns=8000, every=1))
     blocks = longrun.reshape(16, -1).mean(1)
-    ok = abs(lo.min() - 0.898) < 0.001 and lo.max() == 1.0 and abs(hi.max() - 0.562) < 0.001 and hi.min() < 0.005
-    check('the figure igt_hist, the Ising side', ok and abs(lo.mean() - 0.987) < 0.001 and abs(hi.mean() - 0.126) < 0.001
+    ok = len(lo) == len(hi) == 1000 and round(lo.min(), 3) == 0.922 and lo.max() == 1.0 and round(hi.max(), 3) == 0.508
+    ok = ok and hi.min() < 0.005 and hi.max() < lo.min() and hi.max() > 0.5
+    check('the figure igt_hist, the Ising side', ok and round(lo.mean(), 3) == 0.987 and round(hi.mean(), 3) == 0.125
           and abs(longrun.mean() - 0.124) < 0.0006,
-          'with its seed, 1500 snapshots on 16 x 16 have |m| from %.3f to %.3f with the mean %.3f at T=1.5, and from %.3f '
-          'to %.3f with the mean %.3f at T=3.5, so they do not overlap, and a run of 8000 sweeps gives %.3f +- %.3f at '
-          'T=3.5' % (lo.min(), lo.max(), lo.mean(), hi.min(), hi.max(), hi.mean(), longrun.mean(),
-                     blocks.std() / np.sqrt(16)))
+          'the pyqula script with its seed, 1000 snapshots on 16 x 16, has |m| from %.3f to %.3f with the mean %.3f at '
+          'T=1.5, and from %.3f to %.3f with the mean %.3f at T=3.5, so they do not overlap, and a checkerboard run of 8000 '
+          'sweeps gives %.3f +- %.3f at T=3.5' % (lo.min(), lo.max(), lo.mean(), hi.min(), hi.max(), hi.mean(),
+                                                  longrun.mean(), blocks.std() / np.sqrt(16)))
 
     # The Ising gauge theory of Section 10.6b
     ok = True
@@ -1012,20 +1019,26 @@ def main():
           and "missing 2 required positional arguments: 'r3' and 'r4'" in terr,
           '%s, %s, and add_tensor with a function of four positions gives "%s"' % (*errs_imp, terr))
 
-    # Open points of the old text
-    check('the quiz on the memory of Section 10.3a', abs(b40 / 1e12 - 17.6) < 0.05 and b40 / 2 ** 40 == 16,
-          'the table of L=40 is %.1f TB and 16 TiB, so "16 terabytes" holds only in binary units' % (b40 / 1e12))
-    check('the text of the widget netfit', loss[3] > 0.2 and loss[7] > loss[5],
-          'three neurons give %.2f, and the error rises from %.1e at H=5 to %.1e at H=7' % (loss[3], loss[5], loss[7]))
+    # Points of the old text, corrected on 2026-11-22
+    check('the quiz on the memory of Section 10.3a', round(b40 / 1e12, 1) == 17.6 and b40 / 2 ** 40 == 16,
+          'the table of L=40 is %.1f TB, the "about 17.6 terabytes" of the option, and 16 TiB' % (b40 / 1e12))
+    check('the text of the widget netfit', loss[3] > 0.2 and loss[7] > loss[5] and round(loss[3], 2) == 0.23
+          and loss[12] < loss[5] < loss[1],
+          'three neurons give %.2f, and the error rises from %.1e at H=5 to %.1e at H=7 while it falls from %.2f at H=1 '
+          'to %.1e at H=12' % (loss[3], loss[5], loss[7], loss[1], loss[12]))
     check('the second quiz of Section 10.7', abs(lsum.min() - 2) < 1e-12,
-          'the sum (10.12) over the two pairs is %.0f t^2 at its smallest and the mean is t^2' % lsum.min())
+          'the sum (10.12) over the two pairs is %.0f t^2 at its smallest, t^2 per pair' % lsum.min())
     check('the gradient (10.5) on the page', ex < 1e-8 and ey < 1e-8,
-          '(10.5) is the derivative along the real part of a parameter, and 2 Im F_k the one along its imaginary part')
-    check('the caption of ham_learning', abs(clean[3] - 0.0635) < 5e-5 and clean.max() - clean.min() > 0.01,
-          'the 0.06, 0.10 and 0.004 are the seed 3, and the seeds 0 to 9 give %.3f to %.3f, %.3f to %.3f and %.4f to %.4f'
-          % (clean.min(), clean.max(), wide.min(), wide.max(), dis.min(), dis.max()))
-    check('the caption of ising_sizes', dev[8][2.2] > 0.025,
-          'at T=2.2, the last point below T_c, the lattice of 8 is %+.3f from the exact curve' % dev[8][2.2])
+          '(10.5) is the derivative along a real parameter, and 2 Im F_k the one along the imaginary part')
+    check('the caption of ham_learning', round(clean.min(), 2) == 0.06 and round(clean.max(), 2) == 0.07
+          and round(wide.min(), 1) == 0.1 and round(wide.max(), 1) == 0.1 and round(dis.min(), 3) == 0.004
+          and round(dis.max(), 3) == 0.005,
+          'the seeds 0 to 9 give %.3f to %.3f, %.3f to %.3f and %.4f to %.4f, the 0.06 to 0.07, about 0.1 and 0.004 to '
+          '0.005 of the caption' % (clean.min(), clean.max(), wide.min(), wide.max(), dis.min(), dis.max()))
+    check('the caption of ising_sizes', round(dev[8][2.2], 2) == 0.03
+          and round(max(abs(dev[L][T]) for L in fs for T in low), 3) <= 0.007,
+          'up to T=2.1 the three sizes are within %.4f, and at T=2.2 the lattice of 8 is %+.3f from the exact curve'
+          % (max(abs(dev[L][T]) for L in fs for T in low), dev[8][2.2]))
     print('%d checks hold, %.1f s' % (COUNT[0], time.time() - t0))
 
 

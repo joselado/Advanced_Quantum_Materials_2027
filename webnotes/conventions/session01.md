@@ -306,7 +306,9 @@ number.
   polarized ferromagnet above it". In the half-filled chain the antiferromagnet has no threshold. The full
   polarization is a solution from $4t$, the lowest uniform state jumps from $m=0$ to $m=1$ only at $5.09t$, and
   $UD(E_F)=1$ is at $6.28t$. Left for the pass of Session 6.
-- Section 6.3 writes $\mathbf m\equiv\langle\mathbf S\rangle$, and its quiz takes $m_x=1/2$ for the spinor
-  $(1,1)/\sqrt2$, while (6.2) defines $m=n_\uparrow-n_\downarrow$, which is $2\langle S_z\rangle$. It also takes the
-  exchange field from $\mathbf S^2\approx2\langle\mathbf S\rangle\cdot\mathbf S-\langle\mathbf S\rangle^2$, which gives
-  $\tfrac23$ of the splitting $Um$ of the decoupling of the densities. Left for the pass of Session 6.
+- Section 6.3 wrote $\mathbf m\equiv\langle\mathbf S\rangle$, while (6.2) defines $m=n_\uparrow-n_\downarrow$, which
+  is $2\langle S_z\rangle$. Since 2026-11-22, the pick of the lecturer, it writes $\mathbf m\equiv2\langle\mathbf
+  S\rangle$, so $m_z$ is the $m$ of (6.2), and the spinor $(1,1)/\sqrt2$ has $\langle S_x\rangle=1/2$ and
+  $\mathbf m=(1,0,0)$. Section 6.3 also takes the direction of the exchange field from
+  $\mathbf S^2\approx2\langle\mathbf S\rangle\cdot\mathbf S-\langle\mathbf S\rangle^2$, which gives $\tfrac23$ of the
+  splitting $Um$ of the decoupling of the densities, and its steps fold says so and takes the size from the densities.

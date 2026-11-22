@@ -156,3 +156,155 @@ page = open(os.path.join(REPO, 'webnotes', 'pages', 'session06', '11-superexchan
 box = page.split('::: lab', 1)[1].split('\n:::', 1)[0]
 check('lab box, the box does not call CrI3 an insulator, which this abstract does not say of CrI3', 'insulat' not in box,
       'not found')
+
+# corrected on 2026-11-22, the text of 6.12: the term needs a bond with no inversion center, and a mirror does not forbid
+# it. A symmetry with the matrix R on the positions takes an axial vector S to det(R) R S and moves the sites. For random
+# spins we find the matrix T with D.(S'_i x S'_j) = (T D).(S_i x S_j), and the allowed D are those with T D = D. The
+# inversion through the middle of the bond leaves none, while a mirror that contains the bond allows D normal to it,
+# and a mirror normal to the bond through its middle allows D in the mirror plane.
+rng = np.random.default_rng(5)
+
+
+def allowed_D(R, swap):
+    Sp = rng.normal(size=(40, 2, 3))
+    T = np.zeros((3, 3))
+    X = np.cross(Sp[:, 0], Sp[:, 1])                                    # S_i x S_j for each sample
+    for a in range(3):
+        e = np.eye(3)[a]
+        Si2, Sj2 = (np.linalg.det(R) * Sp @ R.T).transpose(1, 0, 2)
+        if swap:
+            Si2, Sj2 = Sj2, Si2                                         # the symmetry exchanges the two sites
+        y = np.cross(Si2, Sj2) @ e
+        T[:, a] = np.linalg.lstsq(X, y, rcond=None)[0]
+    w, v = np.linalg.eig(T)
+    return int(np.sum(np.abs(w - 1) < 1e-9)), T
+
+
+n_inv, T_inv = allowed_D(-np.eye(3), True)                             # inversion through the middle of a bond along x
+n_mc, T_mc = allowed_D(np.diag([1., -1., 1.]), False)                  # the mirror y -> -y contains the bond
+n_mn, T_mn = allowed_D(np.diag([-1., 1., 1.]), True)                   # the mirror x -> -x through the middle
+check('text 6.12, an inversion center at the middle of the bond forbids D, a mirror that contains the bond allows D normal '
+      'to it, a mirror normal to the bond allows D in its plane', n_inv == 0 and np.allclose(T_inv, -np.eye(3))
+      and n_mc == 1 and np.allclose(T_mc, np.diag([-1., 1., -1.])) and n_mn == 2 and np.allclose(T_mn, np.diag([-1., 1., 1.])),
+      (n_inv, n_mc, n_mn))
+
+# decided on 2026-11-22, the caption of dm_spiral: the drawing turns each spin counterclockwise in the frame of the figure,
+# by the angle arccos(-J/sqrt(J^2+D^2)) > 0. The ground state for D > 0 turns clockwise seen from +z (sin theta < 0), so the
+# drawing is the view from -z, which is the view looking along D. For D < 0 the view along D is from +z, where the ground
+# state turns counterclockwise, so the drawing fits both signs.
+src = open(os.path.join(REPO, 'webnotes', 'figures', 'session06', 'dm_spiral.py')).read()
+sinth = {s: -s / np.hypot(1, 1) for s in (1.0, -1.0)}                  # sin theta of the ground state, J = 1, D = +-1
+check('caption dm_spiral, the drawing turns counterclockwise (a = pi/2 + i th, th > 0), which is the view from -z for D > 0 '
+      'and from +z for D < 0, so looking along D in both cases',
+      'a = np.pi / 2 + i * th' in src and 'return np.arccos(-J / np.hypot(J, D))' in src and "view along $\\mathbf{D}$" in src
+      and sinth[1.0] < 0 and sinth[-1.0] > 0, sinth)
+
+# corrected on 2026-11-22, the notebook box and the try-it box of 6.12, against the cell "Non-collinear magnetism from
+# spin-orbit coupling": a chain of 10 sites with open ends, add_rashba(1.), U = 10, mf="XY", mix=0.9. The bond is sqrt 2
+# times a rotation of the spin by 90 degrees about y, a turn of the spin axes by -90 degrees per site maps it onto the plain
+# chain with the hopping sqrt 2, so the energy does not depend on the angle, and the random guess picks an angle between
+# 90 and 180 degrees. Without the Rashba line the neighbors are antiparallel. With the default maxite=1000 some guesses do
+# not converge, and maxite=4000 does.
+import json, tempfile
+nb = json.load(open(os.path.join(REPO, 'jupyter-notebooks', 'session6.ipynb')))['cells']
+ih = [j for j, c in enumerate(nb) if c['cell_type'] == 'markdown'
+      and ''.join(c['source']).startswith('## Non-collinear magnetism from spin-orbit coupling')]
+code = next(''.join(c['source']) for c in nb[ih[0] + 1:] if c['cell_type'] == 'code')
+check('notebook box and try-it, the cell is the open chain of 10 sites with add_rashba(1.) at U=10 and mf="XY"',
+      len(ih) == 1 and 'get_supercell(10)' in code and 'h.add_rashba(1.)' in code and 'U = 10.' in code and 'mf="XY"' in code
+      and 'maxite' not in code, 'ok')
+os.chdir(tempfile.mkdtemp())
+from pyqula import geometry
+
+
+def rashba_chain(rashba=True):
+    g = geometry.chain(); g = g.get_supercell(10); g.dimensionality = 0
+    h = g.get_hamiltonian()
+    if rashba:
+        h.add_rashba(1.)
+    return h
+
+
+Mh = rashba_chain().intra
+Mh = np.asarray(Mh.todense() if hasattr(Mh, 'todense') else Mh)
+sy2 = np.array([[0, -1j], [1j, 0]])
+rot = lambda th: np.cos(th / 2) * np.eye(2) + 1j * np.sin(th / 2) * sy2
+Ug = np.zeros((20, 20), complex)
+for j in range(10):
+    Ug[2 * j:2 * j + 2, 2 * j:2 * j + 2] = rot(-np.pi / 2 * j)
+Mg = Ug.conj().T @ Mh @ Ug
+plain = np.zeros((20, 20))
+for j in range(9):
+    plain[2 * j:2 * j + 2, 2 * j + 2:2 * j + 4] = plain[2 * j + 2:2 * j + 4, 2 * j:2 * j + 2] = np.sqrt(2) * np.eye(2)
+check('notebook box, the Rashba bond is sqrt 2 times a rotation by 90 degrees about y, removed by turning the spin axes '
+      'by -90 degrees per site', np.allclose(Mh[2:4, 0:2], np.sqrt(2) * rot(-np.pi / 2)) and np.allclose(Mg, plain), 'ok')
+
+
+INFO = {}
+
+
+def run(seed, rashba=True, maxite=4000):
+    np.random.seed(seed)
+    kw = {} if maxite is None else dict(maxite=maxite)                  # None is the call of the cell, with no maxite
+    try:
+        hm, e = rashba_chain(rashba).get_mean_field_hamiltonian(U=10., mf="XY", mix=0.9, return_total_energy=True,
+                                                               verbose=0, **kw)
+    except Exception as ex:
+        return type(ex).__name__, None
+    m = np.array([np.real(hm.get_vev(c)) for c in ('mx', 'my', 'mz')]).T
+    f = np.array([np.real(hm.extract(c)) for c in ('mx', 'my', 'mz')]).T
+    n_ = m / np.linalg.norm(m, axis=1)[:, None]
+    big = np.abs(m) > 0.05
+    INFO[(seed, rashba, maxite)] = (np.max(np.abs(n_[:, 2])), (f[big] / m[big]).min(), (f[big] / m[big]).max())
+    return e, [np.degrees(np.arccos(np.clip(n_[i] @ n_[i + 1], -1, 1))) for i in range(9)]
+
+
+runs = [run(s) for s in range(8)]
+mids = [np.mean(a[3:6]) for e, a in runs]
+check('notebook box and try-it, eight random guesses give the same energy within 1e-5 and angles from run to run between '
+      '90 and 180 degrees', max(e for e, a in runs) - min(e for e, a in runs) < 1e-5 and max(mids) - min(mids) > 20
+      and all(90 - 1 < x < 180 for e, a in runs for x in a), ([round(e, 6) for e, a in runs], np.round(mids, 1)))
+e0, a0 = run(0, rashba=False)
+check('try-it, without the Rashba line the neighbors are antiparallel, within 1 degree', all(x > 179 for x in a0),
+      (round(min(a0), 3), round(max(a0), 3)))
+# corrected after the independent check of 2026-11-22 (k8): with the default maxite=1000 the loop stops without converging
+# in most runs. Of the guesses 0 to 7, at least five raise MeanFieldConvergenceError in the development tree (seven did when
+# this was written, all but the seed 1), and all eight converge with maxite=4000. The release 0.0.96 was not run.
+import inspect
+from pyqula.scftk import spinspin as _spinspin
+fails = [run(s, maxite=None)[0] for s in range(8)]
+nfail = sum(isinstance(f, str) for f in fails)
+check('try-it, the default maxite of the loop is 1000, with it most of the guesses 0 to 7 do not converge in the call of '
+      'the cell, at least 5 of 8, and with maxite=4000 all of them do',
+      'maxite = 1000 if maxite is _MAXITE_UNSET else maxite' in inspect.getsource(_spinspin)
+      and nfail >= 5 and isinstance(fails[0], str) and isinstance(fails[2], str)
+      and all(not isinstance(r[0], str) for r in runs), (nfail, fails))
+# corrected after the independent check of 2026-11-22 (k1): the guess mf="XY" is a random field in the plane xy, the moments
+# of the solution leave this plane, and the arrows of the cell, extract("mx") and extract("my"), are the x and y components of
+# the mean field -U m/2, which points opposite to the moment. In the frame turned by 90 degrees per site about y the
+# staggered moment is one unit vector n, so the moments of the chain are n turned by j 90 degrees about y on site j, with
+# alternating sign. They all lie in the plane xy only for n along y, the angle of 180 degrees, and for any other n half of
+# them have the component n_x or n_z along z. The threshold 0.1 leaves room for runs that land close to 180 degrees.
+import inspect
+from pyqula import meanfield as _mfmod
+gsrc = inspect.getsource(_mfmod._guess_randomXY)
+Ry90 = np.array([[0, 0, 1.], [0, 1, 0], [-1, 0, 0]])
+rngc = np.random.default_rng(3)
+cone = []
+for nvec in [np.array([0, 1., 0])] + [v / np.linalg.norm(v) for v in rngc.normal(size=(20, 3))]:
+    lab = np.array([(-1) ** j * np.linalg.matrix_power(Ry90, j) @ nvec for j in range(10)])
+    cone.append((abs(nvec[1]), np.abs(lab[:, 2]).max(), lab[0] @ lab[1], -nvec[1] ** 2))
+zr = [INFO[(s, True, 4000)][0] for s in range(8)]
+fr = [INFO[(s, True, 4000)][1:] for s in range(8)]
+check('notebook box, the guess XY is random in the plane xy, the moments of the solution leave it, max |m_z|/|m| above 0.1 '
+      'in each of the eight runs, the drawn mean field is -U/2 = -5 times the moment, and on the cone of the turned frame '
+      'the moments are in the plane xy only for n along y',
+      'np.random.random()-0.5,np.random.random()-0.5,0.' in gsrc and all(z > 0.1 for z in zr)
+      and all(abs(a + 5) < 0.01 and abs(b + 5) < 0.01 for a, b in fr)
+      and cone[0][1] < 1e-12 and all(c[1] > 0.05 for c in cone[1:]) and all(abs(c[2] - c[3]) < 1e-12 for c in cone),
+      (np.round(zr, 3), np.round(fr, 3).tolist()[:2]))
+page = open(os.path.join(REPO, 'webnotes', 'pages', 'session06', '11-superexchange-as-the-origin-of-ferromagnetic-coupling.md'),
+            encoding='utf-8').read()
+check('notebook box and try-it, the page says that the moments leave the plane and that most runs need maxite=4000',
+      'The moments of the solution leave this plane' in page and 'stops without converging in most runs' in page
+      and 'with the moments in the plane.' not in page, 'found')

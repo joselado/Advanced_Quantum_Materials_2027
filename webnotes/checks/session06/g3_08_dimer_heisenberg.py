@@ -73,9 +73,9 @@ for U in (50.0, 200.0):
     r = (ES(U) + 4 / U) * U ** 3
     check(f'text, U={U:g}: (E_S + 4t^2/U) U^3/t^4 is close to 16', abs(r - 16) < 0.2, round(r, 4))
 
-# the key box: the exact splitting is 0.83 of 4t^2/U at U=4t and 0.98 of it at U=16t (and 0.94 at 8t, the try-it box)
+# the key box: the exact splitting is 0.83 of 4t^2/U at U=4t and 0.98 of it at U=16t (and 0.94 at 8t, the problem)
 ratio = {U: (0 - ES(U)) / (4 / U) for U in (4.0, 8.0, 16.0)}
-check('key box and try-it, the ratio (E_T - E_S)/(4t^2/U) is 0.83, 0.94 and 0.98 at U/t = 4, 8, 16',
+check('key box and problem, the ratio (E_T - E_S)/(4t^2/U) is 0.83, 0.94 and 0.98 at U/t = 4, 8, 16',
       [round(ratio[U], 2) for U in (4.0, 8.0, 16.0)] == [0.83, 0.94, 0.98], {k: round(v, 4) for k, v in ratio.items()})
 
 # the fold: the basis with the operator of site 0 first, and the action of the hopping
@@ -170,3 +170,80 @@ if os.path.exists(full):
           and 'π-electron network' in txt, 'found')
 else:
     print('SKIPPED lab box, the full copy of the source is not on this machine (it is ignored by git)')
+
+# corrected on 2026-11-22, the notebook box and the try-it box, rewritten to match the cells. "(Reminder) The spectra of a
+# dimer" gives the single-particle levels +-t, each twice with the spin. "The interacting Hubbard dimer" is a mean-field
+# loop, with mf="antiferro" and mix=0.9 for Us = np.linspace(0.,10.,50): the moment n_up - n_dn of a site is zero up to
+# U = 2t and sqrt(1 - 4t^2/U^2) above, 0.87 at 4t and 0.98 at 10t, and the gap is 2t below and U above, by pyqula and
+# by the closed form. The exact dimer has no moment, since its ground state is the singlet, asserted here with S^2 = 0
+# and <n_up - n_dn> = 0 on each site at U = 2.5t, 4t and 10t. "Gap opening in the Hubbard model" is the mean-field chain over U, and "The strongly
+# interacting limit" compares E_FE - E_AF at large U, whose 1/U law g2_04 asserts.
+import json, tempfile
+spin_op = lambda i: [0.5 * (cd[2 * i] @ c[2 * i + 1] + cd[2 * i + 1] @ c[2 * i]),
+                     0.5 * (-1j * cd[2 * i] @ c[2 * i + 1] + 1j * cd[2 * i + 1] @ c[2 * i]), 0.5 * (n[2 * i] - n[2 * i + 1])]
+Stot = [a_ + b_ for a_, b_ in zip(spin_op(0), spin_op(1))]
+S2 = sum(x @ x for x in Stot)
+gsm = []
+for U in (2.5, 4.0, 10.0):
+    w_, v_ = np.linalg.eigh(hubbard(U)[np.ix_(keep, keep)])
+    g_ = np.zeros(16, complex); g_[keep] = v_[:, 0]
+    gsm.append((abs(g_.conj() @ S2 @ g_), abs(g_.conj() @ (n[0] - n[1]) @ g_), abs(g_.conj() @ (n[2] - n[3]) @ g_)))
+check('try-it, the exact dimer has the singlet as ground state, S^2 = 0, and no ordered moment on either site, at 2.5t, 4t '
+      'and 10t', np.allclose(gsm, 0, atol=1e-12), np.round(gsm, 12))
+# corrected after the independent check of 2026-11-22 (k6): <n_up - n_dn> = 0 on each site is no ordered moment, while the
+# local moment <(n_up - n_dn)^2> of a site is the weight of the singly occupied states in the singlet. Two routes: the
+# ground state of the six states, and the closed form 1/(1 + E_S^2/4t^2) from the 2x2 block [[0, -2t], [-2t, U]] of the
+# covalent and the ionic singlet. It is 0.765, 0.854 and 0.964 at 2.5t, 4t and 10t.
+loc = []
+for U in (2.5, 4.0, 10.0):
+    w_, v_ = np.linalg.eigh(hubbard(U)[np.ix_(keep, keep)])
+    g_ = np.zeros(16, complex); g_[keep] = v_[:, 0]
+    ES = U / 2 - np.sqrt(U * U / 4 + 4)
+    loc.append((np.real(g_.conj() @ (n[0] - n[1]) @ (n[0] - n[1]) @ g_), np.real(g_.conj() @ (n[2] - n[3]) @ (n[2] - n[3]) @ g_),
+                1 / (1 + ES * ES / 4)))
+check('try-it, the local moment <(n_up - n_dn)^2> of the exact dimer is 0.85 at 4t on each site, by the six states and by '
+      'the closed form, and 0.765 and 0.964 at 2.5t and 10t', all(abs(a - c) < 1e-12 and abs(b - c) < 1e-12 for a, b, c in loc)
+      and round(loc[1][0], 2) == 0.85 and round(loc[0][0], 3) == 0.765 and round(loc[2][0], 3) == 0.964,
+      np.round(loc, 4).tolist())
+nb = json.load(open(os.path.join(REPO, 'jupyter-notebooks', 'session6.ipynb')))['cells']
+
+
+def cell_code(title):
+    i = [j for j, c in enumerate(nb) if c['cell_type'] == 'markdown' and ''.join(c['source']).startswith('## ' + title)]
+    return len(i), next(''.join(c['source']) for c in nb[i[0] + 1:] if c['cell_type'] == 'code')
+
+
+cells = {t: cell_code(t) for t in ('The spectra of a dimer', 'The interacting Hubbard dimer', 'Gap opening in the Hubbard model',
+                                    'The strongly interacting limit')}
+check('notebook box, the four cells exist, the dimer cell is a mean-field loop over Us = np.linspace(0.,10.,50), the gap '
+      'cell runs the chain over U, the last one compares E_FE and E_AF',
+      all(n == 1 for n, c in cells.values()) and 'get_mean_field_hamiltonian(U=U,mf="antiferro",mix=0.9)' in cells['The interacting Hubbard dimer'][1]
+      and 'np.linspace(0.,10.,50)' in cells['The interacting Hubbard dimer'][1] and 'g.dimensionality = 0' in cells['The interacting Hubbard dimer'][1]
+      and 'get_mean_field_hamiltonian' in cells['Gap opening in the Hubbard model'][1]
+      and 'return_total_energy=True,mf="ferro"' in cells['The strongly interacting limit'][1]
+      and 'return_total_energy=True,mf="antiferro"' in cells['The strongly interacting limit'][1], 'ok')
+os.chdir(tempfile.mkdtemp())
+from pyqula import geometry
+g = geometry.bichain(); g.dimensionality = 0
+(ks, es) = g.get_hamiltonian(has_spin=True).get_bands()
+check('notebook box, the cell of the spectra of a dimer gives the single-particle levels -t and +t, each twice',
+      np.allclose(sorted(np.real(es)), [-1, -1, 1, 1]), np.round(sorted(np.real(es)), 6))
+# corrected after the independent check of 2026-11-22 (k6): the first cell has no interaction, and the other three call
+# the mean-field loop
+check('notebook box, the first cell has no interaction and the other three use mean field',
+      'get_mean_field_hamiltonian' not in cells['The spectra of a dimer'][1] and 'U' not in cells['The spectra of a dimer'][1]
+      and all('get_mean_field_hamiltonian' in cells[t][1] for t in ('The interacting Hubbard dimer',
+                                                                      'Gap opening in the Hubbard model', 'The strongly interacting limit')),
+      'ok')
+g = geometry.bichain(); g = g.get_supercell(1); g.dimensionality = 0
+h0 = g.get_hamiltonian()
+mf = {}
+for U in (1.8, 1.9, 2.5, 4.0, 10.0):
+    hU = h0.get_mean_field_hamiltonian(U=U, mf="antiferro", mix=0.9)
+    mf[U] = (abs(float(np.real(hU.get_vev("mz")[1]))), hU.get_gap())
+closed = lambda U: np.sqrt(max(0.0, 1 - 4 / U ** 2))
+check('try-it, the mean-field dimer has no moment below 2t and sqrt(1 - 4t^2/U^2) above, 0.87 at 4t and 0.98 at 10t, '
+      'and the gap is 2t below and U above',
+      mf[1.8][0] < 1e-3 and mf[1.9][0] < 1e-3 and all(abs(mf[U][0] - closed(U)) < 1e-3 for U in (2.5, 4.0, 10.0))
+      and round(mf[4.0][0], 2) == 0.87 and round(mf[10.0][0], 2) == 0.98 and abs(mf[1.8][1] - 2) < 1e-6
+      and all(abs(mf[U][1] - U) < 1e-3 for U in (2.5, 4.0, 10.0)), {U: (round(m, 5), round(e, 5)) for U, (m, e) in mf.items()})

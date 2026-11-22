@@ -14,8 +14,19 @@ We started from what we built before. These were the mean-field method of Sectio
 
 ![The central difference of the session. Look at the counting of $\Delta S$ in panel (a) and in panel (b), which is the reason why the excitations of a quantum spin liquid are spinons and not magnons.](figures/s08f01_magnon_spinon.svg){alt="A magnet with one flipped spin, and a pattern of singlets with one broken pair that leaves two unpaired spins."}
 
+After this session we can do the following tasks, and each of them has the section that teaches it.
+
+- Find the levels of the Ising dimer and of the Heisenberg dimer, and say why each of the Ising ground states $|{\uparrow\downarrow}\rangle$ and $|{\downarrow\uparrow}\rangle$ breaks time-reversal symmetry while the singlet keeps it. This is in Section [8.3](#sec-8-3).
+- Count the classical ground states of a frustrated cluster of Ising spins. This is in Section [8.4](#sec-8-4).
+- Tell a valence bond solid from an RVB state by the spin of their excitations. This is in Section [8.5](#sec-8-5) and Section [8.6](#sec-8-6).
+- Say why the Holstein-Primakoff expansion fails when $\langle\mathbf S_i\rangle=0$. This is in Section [8.7](#sec-8-7).
+- Write a spin with Abrikosov fermions and the single-occupancy constraint, and get the hopping model of the spinons. This is in Section [8.8](#sec-8-8) and Section [8.9](#sec-8-9).
+- Tell gapless, gapped and Dirac spinons apart in a band structure. This is in Section [8.9](#sec-8-9).
+- Say which quantity of the gauge field is physical, and what a vison is. This is in Section [8.10](#sec-8-10).
+- Compute the bands of the Kondo lattice per spin and the direct gap $2\gamma_K$ at the crossing, and say why the filling gives an insulator. This is in Section [8.12](#sec-8-12) and Section [8.13](#sec-8-13).
+
 ::: quiz
-Which excitation carries spin $1/2$, no charge, and appears in the parton construction of a quantum spin liquid?
+A quantum spin liquid has an excitation with spin $1/2$ and no charge. It comes from the parton construction. Which excitation is it?
 
 - [x] The spinon.
 
@@ -27,7 +38,7 @@ Which excitation carries spin $1/2$, no charge, and appears in the parton constr
 
 - [ ] The vison.
 
-    This is false. The vison is a plaquette with flux $\Phi=-1$ and it is a spin singlet. It carries no spin at all.
+    This is false. The vison is a plaquette with a flipped flux, and it is a spin singlet. It carries no spin at all.
 :::
 
 ::: comesback

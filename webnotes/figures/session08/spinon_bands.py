@@ -1,43 +1,39 @@
-"""Session 8, the three classes of spinon bands of (8.15), from Bloch Hamiltonians with chi=1 diagonalized on a k grid."""
+"""Session 8, Section 8.9, the three classes of spinon bands of (8.15) for one spin species, redrawn with pyqula.
+
+The calculation is the pyqula script webnotes/scripts/session08/g3_spinon_band_classes.py, which the student downloads
+under the figure. It takes the hopping chi = +1 of pyqula, so the uniform chain has the band +2 cos k, the chain of two
+sites per cell has the hoppings 0.6 inside the cell and 1 between the cells, and the pi-flux square lattice is
+square_lattice().get_supercell([1, 2]) with add_orbital_magnetic_field(0.5), cut along k_y = pi/2 of its cell of two
+sites along y, where the two Dirac points of this gauge lie, as webnotes/conventions/session08.md says. The momentum is
+the phase per cell, from -pi to pi, which is in units of the inverse distance between sites for the uniform chain and
+for k_x of the pi-flux lattice, and per cell of two sites for the dimerized chain. The helper _g3_bands.py checks the
+numbers of the caption and of the quiz and holds the drawing of one panel."""
 import os, sys
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import numpy as np
-import style
+import _g3_bands
+from _g3_bands import style
 
-chi = 1.0
-nk = 401
-k = np.linspace(-np.pi, np.pi, nk)
+d = style.run_script('session08/g3_spinon_band_classes.py')
+_g3_bands.check(d)
 
-# (a) uniform chain, H = -chi sum f^dag_i f_{i+1} + h.c., one site per cell
-Ea = (-2 * chi * np.cos(k))[:, None]
-
-# (b) dimerized chain, chi1 = 1 and chi2 = 0.6 alternating, two sites per cell: h(k) = chi1 + chi2 exp(-ik)
-chi1, chi2 = 1.0, 0.6
-Eb = np.array([np.linalg.eigvalsh(-np.array([[0, chi1 + chi2 * np.exp(-1j * q)], [chi1 + chi2 * np.exp(1j * q), 0]])) for q in k])
-
-# (c) pi-flux square lattice: hopping -chi along x, and -chi (-1)^x along y, two sites along x per cell, cut at ky = pi/2
-ky = np.pi / 2
-def Hpi(kx):
-    return np.array([[-2 * chi * np.cos(ky), -chi * (1 + np.exp(-2j * kx))], [-chi * (1 + np.exp(2j * kx)), 2 * chi * np.cos(ky)]])
-kx = np.linspace(0, np.pi, nk)
-Ec = np.array([np.linalg.eigvalsh(Hpi(q)) for q in kx])
-assert np.allclose(np.abs(Ec), 2 * chi * np.sqrt(np.cos(kx) ** 2 + np.cos(ky) ** 2)[:, None])    # the analytic result
-assert abs(Eb[:, 1].min() - Eb[:, 0].max()) < 2 * (chi1 - chi2) + 1e-9 and Eb[:, 1].min() > 0.39   # gap 2(chi1-chi2) = 0.8
-print('gap b', Eb[:, 1].min() - Eb[:, 0].max(), 'Dirac c', abs(Ec).min())
-
-fig, axs = style.plt.subplots(1, 3, figsize=(style.WIDTH_CM * style.CM, 4.9 * style.CM), sharey=True)
-panels = [(k, Ea, 'gapless', 'uniform chain', style.ACCENT), (k, Eb, 'gapped', 'dimerized chain', style.BROKEN),
-          (kx, Ec, 'Dirac', r'$\pi$-flux square lattice, $k_y=\pi/2$', style.ACCENT)]
-for ax, (x, E, cls, sub, col) in zip(axs, panels):
-    style.arrows(ax, xlabel=r'$k$')
-    ax.axhline(0, color=style.GRID, lw=1.0, zorder=0)
-    for b in range(E.shape[1]):
-        ax.plot(x, E[:, b], color=col)
-    ax.set_xlim(x[0], x[-1]); ax.set_ylim(-2.7, 2.7)
-    style.label(ax, (x[0] + x[-1]) / 2, 3.35, cls, fontsize=9)
-    style.label(ax, (x[0] + x[-1]) / 2, -3.15, sub, fontsize=8.0, color=style.MUTED)
-axs[0].set_ylabel(r'$E/\chi$', fontsize=9)
-axs[0].set_yticks([-2, 0, 2]); axs[0].tick_params(axis='y', length=2.5, pad=2)
-axs[1].tick_params(axis='y', left=False); axs[2].tick_params(axis='y', left=False)
-style.label(axs[0], 0, 0.45, r'$E_F=0$', fontsize=7.5, color=style.MUTED)
+fig, axs = style.plt.subplots(1, 3, figsize=(style.WIDTH_CM * style.CM, 5.4 * style.CM), sharey=True)
+panels = [('uniform', 'gapless', 'uniform chain', r'$k$'), ('dimerized', 'gapped', 'dimerized chain', r'$k$'),
+          ('piflux', 'Dirac', r'$\pi$-flux lattice, $k_y=\pi/2$', r'$k_x$')]
+for ax, (name, cls, sub, xl) in zip(axs, panels):
+    k, E = _g3_bands.panel(ax, d, name, xlabel=xl, fontsize=10.5, ylabel=r'$E/\chi$' if name == 'uniform' else None)
+    ax.set_title(cls, fontsize=10.5, pad=15)
+    ax.text(0.5, 1.035, sub, transform=ax.transAxes, ha='center', va='bottom', fontsize=9.5, color=style.MUTED)
+# the gap of the dimerized chain at the zone edge, and the Dirac points of the pi-flux lattice
+ax = axs[1]
+ax.annotate('', xy=(np.pi - 0.2, 0.4), xytext=(np.pi - 0.2, -0.4),
+            arrowprops=dict(arrowstyle='<->', color=style.INK, lw=0.7, mutation_scale=6, shrinkA=0, shrinkB=0))
+style.label(ax, np.pi - 0.38, 0.0, r'$0.8$', fontsize=10, ha='right')
+ax = axs[2]
+for x in (-np.pi, 0.0, np.pi):
+    ax.plot([x], [0], 'o', ms=3.2, color=style.INK, zorder=4, clip_on=False)
+ax.annotate('Dirac point', xy=(0, 0.12), xytext=(0, 2.25), ha='center', va='bottom', fontsize=9.5, color=style.INK,
+            arrowprops=dict(arrowstyle='-|>', color=style.INK, lw=0.6, mutation_scale=6, shrinkA=1, shrinkB=1))
+axs[0].tick_params(axis='y', length=2.5, pad=2)
+fig.subplots_adjust(wspace=0.3)
 style.save(fig, __file__)

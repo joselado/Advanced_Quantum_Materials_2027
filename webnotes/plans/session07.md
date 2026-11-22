@@ -548,34 +548,212 @@ What is special about each group.
 
 ## Open for the lecturer
 
-Each item touches a numbered equation, a statement of the old text or a convention, so a builder leaves it as it is
-and reports it.
+The builders, the physics checkers and the fixers left points of the old text and of the new text. They were closed on
+2026-11-22 by the rule of the lecturer of that day, "Fix old-text errors, ask the rest", with "ask me the top 5, other
+you decide by yourself" for the questions. A sentence that is false, or two sentences that contradict each other, is
+corrected with the smallest change. A choice is decided by the coordinator, with the option that makes the text true
+with the smallest change. Only a point that needs a change of a numbered equation or of a convention goes to the
+lecturer. Every number that the corrections add or change is an assert in `webnotes/checks/session07/`, and the
+conventions sheet says what the pages say now. The eight items of the earlier version of this section are closed below,
+items 2 to 5 in the first list and items 6 to 8 in the second, and item 1 was the one question for the lecturer. The
+lecturer picked it on 2026-11-22, and it is now the last point of the second list, with its change as the last entry of
+the first list. The blocks of the pages above write the bond dimension as $M$, as they were written before this pick,
+and the pages now write $\chi$.
 
-1. The symbol of the bond dimension. In (7.5) the letter $M$ is both the matrix $M_i^{s_i}$ and its size, the
-   try-it boxes and the notebook write $\chi$ (`maxm`), Section 7.9 writes $D$ for the MPO, and Section 10.4
-   writes $D$ for the bond dimension of an MPS.
-2. The geometry of (7.12). The factor $c/3$ holds for a block of $\ell$ sites inside an infinite chain, which has
-   two ends, and the notebook cell "Size dependence of the entanglement entropy" writes $\frac c6\ln L$ for half of
-   an open chain, with one end. The page writes no condition next to (7.12), and the caption of the old figure
-   says "a block of $\ell$ sites of an infinite chain".
-3. The notebook box of Section 7.8b says that the half-chain entropy of the Heisenberg chain "grows very little
-   with the system size, which is the 1D area-law saturation of Section 7.6, but this time in a gapless chain".
-   A gapless chain does not saturate. With exact diagonalization of the open chain, the entropy at the middle bond
-   is $0.457$, $0.537$, $0.592$ for $L=8,12,16$ and $0.738$, $0.762$, $0.784$ for $L=10,14,18$, so it grows
-   slowly with $L$, as the $\frac c6\ln L$ of the notebook says.
-4. The memory at $L=30$. The caption of `memory_scaling.svg` says "sixteen gigabytes", while its script draws
-   1 GB as $10^9$ bytes. $2^{30}$ numbers of 16 bytes are $1.72\times10^{10}$ bytes, which is 17.2 GB or 16 GiB,
-   and the first quiz of the page says $1.7\times10^{10}$ bytes and "about 17 terabytes" for $L=40$.
-5. The tetramer model of Section 7.7 is not written. The text says "one contribution per cut bond", the caption
-   of Figure 7.2 says "at most $\log 2$ per cut bond", and the quiz counts "cut tetramers". For a ring of four
-   spins with Heisenberg bonds, a cut of one site from three gives $\log2$, a cut into two neighboring pairs gives
-   $1.21\log2$ across two bonds, and a cut into the two diagonal pairs gives $\log3=1.58\log2$ across four bonds.
-   So the caption is right, and "one contribution per cut bond" is not exact.
-6. Download of `dmrgpy` scripts. The spin calculations of this session are what the notebook does with `dmrgpy`,
-   but the build refuses a script that does not import pyqula, so they stay numpy with no button.
-7. Figure 7.3 is a plot with no ticks and with curves that are not computed. On the web it could be replaced by a
-   computed plot from the pyqula script of Section 7.11, with the bars $\log4$ and $\log16$, or it stays.
-8. The lab box of Section 7.8b bends the locked rule of one material and one number with its unit. Its source is a
-   chain of 51 trapped ions, a quantum simulator, and the abstract gives only counts, 51 ions and subsystems of up
-   to 20 sites, with no value of an entropy. It is planned, since it shows the change from area law to volume law
-   between ground and excited states, which is the third case of the page. It stays, or the page has no lab box.
+### Corrected on the web, to carry over to the .tex
+
+- `index.md`, second paragraph. The old text is "A quantum spin liquid has none of these, so the self-consistent calculation
+  converges to zero, and this tells us nothing about the true ground state." The new text is "A quantum spin liquid has none of
+  these, but the self-consistent calculation still converges to a magnetic order, which the true ground state does not
+  have." The Weiss decoupling of the dimer and of the triangular lattice, started from spins of size $10^{-3}$, ends at
+  $|\langle\mathbf S_i\rangle|=\tfrac12$, and so does a kagome torus of 48 sites, at $-\tfrac14J$ per site (`g1_01`). In the .tex, `session07.tex` lines 15 to 17, "so the
+  self-consistent calculation has nothing to converge to and gives back zero, which tells us nothing about the real
+  ground state".
+- 7.1, first quiz, the first two options. The old text is "A small but finite magnetization that grows with the system size", with
+  the feedback "For the singlet of two spins we find $\langle S^z_i\rangle=0$ exactly, at every size", and the right
+  option "A zero order parameter, which tells us nothing about the true ground state", with the feedback "If the true
+  state has none, the loop converges to zero, which is a valid but empty answer." The new text is "A zero order parameter, as in
+  the true ground state", false, since zero solves the self-consistent equations but the loop leaves it, and the right
+  option "A magnetic order, which the true ground state does not have", with the dimer that mean field makes
+  antiparallel while the singlet has $\langle S^z_i\rangle=0$. The third option stays. Not in the .tex.
+- 7.1, the sentence after (7.1). The old text is "which only relabels $V_{ijkl}$ and adds a bilinear term to the hopping". New:
+  "which exchanges the two middle indices of $V_{ijkl}$ with a minus sign and adds a bilinear term to the hopping", as
+  the steps fold below it derives. Not in the .tex.
+- 7.2a, first paragraph. The old text is "$H=\sum_{ij}J_{ij}\,\mathbf S_i\cdot\mathbf S_j$ of (6.5)". New:
+  "$H=\sum_{\langle ij\rangle}J_{ij}\,\mathbf S_i\cdot\mathbf S_j$ of (6.5)", the sum of (6.5), which counts each bond
+  once. In the .tex, `session07.tex` lines 62 and 63.
+- 7.2b, caption of Figure 7.1. The old text is "The two chains in the figure differ only in the occupations to the left of the
+  marked site $i=6$, with three fermions in the chain behind and two in the chain in front". The new text is "The two chains in the
+  figure differ in the occupations of the sites 3 and 8, so the chain behind has three fermions to the left of the
+  marked site $i=6$ and the chain in front has two". The Blender script has the fermions on the sites 1, 3, 4, 7 and
+  1, 4, 7, 8 (`g1_02b`). The drawing is not touched. In the .tex, `figures/s07f01_jwstring.tex` line 10.
+- 7.2b, caption of `xx_spectrum`. The old text is "since pyqula has no solver for a chain of interacting spins". The new text is "since pyqula
+  does not diagonalize a chain of interacting quantum spins", since pyqula has classical spins, linear spin waves and
+  mean field for $\mathbf S_i\cdot\mathbf S_j$. Not in the .tex.
+- 7.3, after (7.3). The old text is "which is a state that does not break any symmetry, since the expectation value of every
+  single-site spin vanishes". The new text is "which is a state that does not break any symmetry, and the expectation value of
+  every single-site spin vanishes", so that the sentence no longer reads as its converse. In the .tex, `session07.tex`
+  lines 121 and 122.
+- 7.3, after the key box. The old text is "the dimension of the Hilbert space is $d = 2^L$". The new text is "the dimension of the Hilbert
+  space is $2^L$", since Section 7.5 and Section 10.4 use $d$ for the local dimension, $d=2$. In the .tex,
+  `session07.tex` line 136.
+- 7.3, caption of `memory_scaling`. The old text is "has reached sixteen gigabytes at $L=30$". The new text is "has reached about seventeen
+  gigabytes at $L=30$", $1.72\times10^{10}$ bytes in the unit of the dashed line, $10^9$ bytes (`memory_scaling.py`,
+  `g2_03`). Not in the .tex.
+- 7.3, notebook box. The old text is "In this exercise you compute the ground-state energy per site of the Heisenberg chain with
+  exact diagonalization, for growing system sizes. For this you use the `dmrgpy` library, which is new in this session,
+  together with `pyqula`. You will see how fast exact diagonalization stops being possible". The new text is the energy per site
+  for growing sizes with `dmrgpy`, "The text of the cell speaks of exact diagonalization, but its code calls
+  `sc.gs_energy(mode="DMRG")`, so it runs DMRG", and the quiz of the cell asks for the largest chain of exact
+  diagonalization. The cell imports no pyqula. In the .tex, `session07.tex` lines 148 to 154.
+- 7.3, try-it. The old text is "At which size does the calculation become slow, and how does this compare with the $2^L$ of
+  (7.4)?" The new text is "The cell runs DMRG, so time the loop and compare how the time grows with the $2^L$ of (7.4), which exact
+  diagonalization would follow." Not in the .tex.
+- 7.5, try-it. The old text is "the curve stays straight, which is the $LM^2$ structure of (7.5)". The new text is "the curve stays straight,
+  which is the linear growth in $L$ of (7.5)", since the time grows as $M^3$ and $LM^2$ is the storage. Not in the .tex.
+- 7.7, second paragraph. The old text is "Since the entropy again gets one contribution per cut bond". The new text is "Since the entropy
+  again gets one contribution from each cut cluster, at most $\log 2$ per cut bond". For the plaquette of the sheet the
+  cut bonds carry 0.50 and 0.55 times $\log 2$ (`g3_07`). In the .tex, `session07.tex` lines 282 and 283.
+- 7.7, caption of Figure 7.2. The old text is "and $S_A$ grows in proportion". The new text is "and $S_A$ grows roughly in proportion", 4 and
+  8.83 times $\log 2$ for 8 and 16 cut bonds, a factor 2.21 (`g3_07`). In the .tex, `figures/s07f02_arealaw.tex`
+  line 15.
+- 7.8a, the display of the Schmidt decomposition. It ended with a comma, and a new sentence follows it, so it ends with a
+  period. In the .tex, `session07.tex` line 317, which has the same comma.
+- 7.8a, notebook box, two sentences. The old text is "This is the $L\times M^2$ scaling of (7.5)" and "see how the fluctuation of
+  the ground-state energy becomes smaller and then saturates. The point where it saturates is where $M$ is large enough
+  to satisfy the bound (7.10) for that state." The new text is "This is the linear growth in $L$ of (7.5)" and "see how the
+  ground-state energy saturates, while its fluctuation keeps becoming smaller. The energy saturates once the Schmidt
+  weights that $M$ drops are negligible, and this happens well above the smallest $M$ that the bound (7.10) allows."
+  The 20 sites need $M=3$ by the bound and drop $6\times10^{-2}$ there, and less than $10^{-5}$ at $M=11$ (`g3_08`).
+  In the .tex, `session07.tex` lines 361 to 364.
+- 7.8a, try-it. The old text is "Check that the central bonds have the largest entropy." The new text is "Check that the largest entropy sits
+  on the two bonds next to the central bond, and not on the central bond itself.", 0.7924 against 0.6346 for 20 sites
+  (`g3_08`). Not in the .tex.
+- 7.8b, notebook box, two sentences. The old text is "Then you check that it grows very little with the system size, which is the
+  1D area-law saturation of Section 7.6, but this time in a gapless chain and not in a gapped one. Finally, you check
+  that it saturates once the bond dimension is large enough to satisfy (7.10)." The new text is "Then you check that it grows very
+  little with the system size. This is not the area-law saturation of Section 7.6, since the Heisenberg chain is
+  gapless and its entropy grows as $\frac c6\ln L$ with $c=1$, as the notebook writes. Finally, you check that it
+  saturates with the bond dimension once the Schmidt weights that $M$ drops are negligible, which is well above the
+  smallest $M$ that (7.10) allows." This was item 3 (`g4_08b`). In the .tex, `session07.tex` lines 369 to 372.
+- 7.8b, try-it. The old text is "Both curves follow the bound $\ln\chi$ at small $\chi$ and then saturate. Which chain saturates
+  at the larger bond dimension, and why?" The new text is "Both curves stay far below the bound $\ln\chi$ for $\chi\ge2$. Which
+  chain needs the larger bond dimension before its entropy saturates, and why?", 0.271 and 0.360 at $\chi=2$ against
+  0.693, and the chain of 30 sites still grows at $\chi=19$. Not in the .tex.
+- 7.9, end of the paragraph on the MPO. The old text is "including the ground-state search of the next section". The new text is "including
+  the two-site update of the ground-state search of the next section", since the one-site update of Section 7.10 keeps
+  its bonds, and the key box of Section 7.10 says that the two-site update truncates. In the .tex, `session07.tex`
+  line 400.
+- 7.9, caption of Figure 7.4. The old text is "This truncation is the core of every MPS algorithm, including DMRG." The new text is "This
+  truncation is the core of almost every MPS algorithm, including DMRG.", as the text and the key box say. In the .tex,
+  `figures/s07f04_tensordiagram.tex` line 15.
+- 7.9, steps fold. The old text is "the bond is 20 and the new state has at most 12 Schmidt terms at a bond". The new text is "the bonds in
+  the bulk are 20. The new state has at most 12 Schmidt terms at a bond.", since the two end bonds are 10 (`g4_09`).
+  Not in the .tex.
+- 7.11, key box. The old text is "At a critical point the entropy of a subsystem of $\ell$ sites grows as". The new text is "At a critical
+  point the entropy of a block of $\ell$ sites with two ends, such as a block inside a long chain, grows as", and after
+  (7.12) "A block at the end of an open chain has one end, and there the factor is $c/6$." The `\tag{7.12}` line is not
+  changed. This was item 2 (`g5_11`). In the .tex, `session07.tex` lines 459 to 466, where the condition can follow
+  (7.12).
+- 7.11, second quiz, feedback of the first option. The old text is "since its entropy goes from $0.77$ at $\ell=10$ to $2.3$ at
+  $\ell=1000$". The new text is "since its entropy grows by about $1.5$ from $\ell=10$ to $\ell=1000$", since 0.77 and 2.3 are
+  $\frac13\log\ell$ alone and the block has 1.49 and 3.03 (`g5_11`). Not in the .tex.
+- 7.11, lab box, the reading marked as ours. The old text is "The article measures the material only down to $k_BT/J=0.03$, and it
+  does not measure an entropy." The new text is "The article reports the material as gapless and paramagnetic at least down to
+  $k_BT/J=0.03$, and it does not measure an entanglement entropy.", as the stored abstract says. Not in the .tex.
+- 7.11, try-it. The old text is "so the peak should sit close to it". The new text is "but the peak of the scan sits below it, on the ordered
+  side. There the exact ground state of an open chain is the even superposition of the two ferromagnetic states, with an
+  entropy close to $\ln 2$." The exact peak is at $B_x=0.37$ for 20 sites and 0.44 for 40 sites (`g5_11`). Not in the
+  .tex.
+- 7.11, notebook box, found during the close and not on the list of the builders. The old text is "Away from criticality
+  you should see the area-law saturation of Section 7.8a. Close to the transition, you should see that the entropy does
+  not saturate, as predicted by (7.12)." The cell scans $B_x$ for one length, so the new text is "When you make the
+  chain smaller, as the quiz of the cell asks, the entropy at large $B_x$ stays the same, which is the area-law
+  saturation of Section 7.8a. Close to the transition it grows with the length of the chain, as predicted by (7.12)."
+  At $B_x=0.8$ and 1 the exact entropy is the same for 20 and 40 sites, and at 0.5 it grows by 0.062 (`g5_11`). In the
+  .tex, `session07.tex` lines 493 and 494.
+- 7.12, first bullet. The old text is "is the regime where mean field has no order parameter to converge to". The new text is "is the regime
+  where no mean-field decoupling gives the true ground state", as the key box of Section 7.1 says. In the .tex,
+  `session07.tex` lines 502 to 504.
+- All pages, the bond dimension, picked by the lecturer on 2026-11-22. The letter $M$ stays for the matrices
+  $M^{s_i}_i$ of (7.5), and the bond dimension is now $\chi$, as the notebook writes it with `maxm`. (7.5) holds only the
+  matrices and does not change. (7.10) writes the bond dimension, so its `\tag{7.10}` line is now
+  $S\;\le\;\log\chi$. On the web the change covers the text, the key boxes, the folds, the quizzes and their options,
+  the captions, the problems and their solutions of pages `03`, `04`, `07`, `08`, `08b`, `09`, `10`, `11` and `12`, more
+  than 200 symbols, such as $\chi\times\chi$, $L\chi^2$ and $2L\chi^2$, $\log\chi$, $\chi=2$ and the other values,
+  $\chi\ge e^S$, $\chi_\text{min}$ of the solution of page `11`, the $\chi$ terms of the Schmidt sum before (7.10), and
+  $\chi D$ after an MPO. The $D$ of an MPO stays, since it is a second quantity and $\chi\cdot\chi$ would mix the two,
+  and the matrices $M^{s_i}_i$, $M_k^{s_k}$ and $M^{\sigma'}_{\alpha\beta}$ stay. The title of the steps fold of page
+  `09` is now "From an MPO and an MPS to a bond of dimension chi times D, and back to chi", and the alt text of
+  `mpo_on_mps` says "labelled chi times D". The figures `memory_scaling`, `dmrg_sweeps`, `quench_entropy`,
+  `schmidt_spectrum` and `mpo_on_mps` are redrawn under their names with $\chi$ in their labels, with their asserts. The
+  converted figures `s07f03_entropyceiling` and `s07f04_tensordiagram` are not touched, and their overlays write $M$,
+  `$\log_2M$, $M=4$`, `$M=16$`, `MPS, $\sim2LM^2$ numbers` and `contract, then SVD back to $M$`, so their captions on
+  pages `04`, `08`, `09` and `12` end with "The labels of the drawing write the bond dimension as $M$." until the
+  overlays change. The conventions sheet writes $\chi$ for the bond dimension and $\chi_i$ for the dimension of the bond
+  $i$, where it wrote $D_i$, and keeps $D$ for the MPO. In the .tex, `session07.tex` lines 166, 167 and 170 (Section
+  7.4), 317, 320, 321, 323, 324, 327, which is (7.10), 330, 331, 338, 340 and 342 (Section 7.8), 352 (Section 7.8b), 361 and 364
+  (the notebook box of Section 7.8a, whose new text is its entry above), and 511, 513, 518 and 519 (Section 7.12), where $M$
+  is the bond dimension and becomes $\chi$, with $O(LM^2)$ of line 511 as $O(L\chi^2)$. The lines 163, 408, 426 and 432 write the matrices and stay. In
+  `figures/s07f03_entropyceiling.tex` lines 5 to 7, 11 and 13, in `figures/s07f04_tensordiagram.tex` lines 9, 10 and
+  15, and in the overlays `figures/overlays/s07f03_entropyceiling.tex` lines 23 and 24 and
+  `figures/overlays/s07f04_tensordiagram.tex` lines 30 and 33, with a new render of the two figures. The new texts of
+  the entries above that write $M$ take $\chi$ too. No page of another session links a sentence that now reads
+  differently. Page `10.4` links (7.5), which does not change, and writes $D$ for the bond dimension of its own MPS, and
+  `g2_04` of Session 10 still finds (7.5) and "with vectors at the two ends" on page `7.4`.
+
+### Decided on 2026-11-22
+
+- 7.2b, title of the steps fold. The fold goes on to a longer chain and a ring, so its title is now "Why the string
+  turns anticommutation into commutation, from two sites to a ring". The docstring of `xx_spectrum.py` keeps its
+  wording, since it is code and the figure does not change. Not in the .tex.
+- 7.7, caption and alt of `random_vs_gapped`. The weak cuts are 0.139 to 0.145 times $\log 2$, so "about $0.14\log 2$"
+  replaces "about $0.15\log 2$", and the assert of `g3_07` follows. Not in the .tex.
+- 7.7, the tetramer model stays unwritten on the page, which was item 5. The corrected text claims only one contribution
+  per cut cluster, at most $\log 2$ per cut bond, and a growth roughly in proportion, which the plaquette of the sheet
+  gives. The problem and the steps fold keep their dimers.
+- 7.8a, caption of Figure 7.3. "The area law of Section 7.6" stays, since that section holds the case of one dimension,
+  and "after a few sites" stays, since the volume law passes the bar of $M=16$ at 5 sites. The figure is a converted
+  Blender figure and stays, which was item 7.
+- 7.11, solution of the problem. The display names $M_\text{min}$, the smallest $M$ that the bound allows, so that its
+  2.15 does not read as the factor of about 7 of the next paragraph. Not in the .tex.
+- 7.3, first quiz. "About 17 terabytes" stays, since $1.76\times10^{13}$ bytes are 17.6 TB and 16 TiB, and the
+  feedback gives both.
+- 7.3 and 7.4, the count of a product state. The feedback of the 640 bytes of Section 7.3 already says that this count
+  keeps what is left once the norm and the phase of each site are fixed, and that an MPS with $M=1$ stores two numbers
+  per site, so it agrees with Section 7.4. No change.
+- 7.3, caption of `memory_scaling`. It already says that the curves leave out the factor 2 of the two spin values, and
+  "needs only $LM^2$ numbers" stays, since the comparison is made at the sizes where $2^L$ is large.
+- 7.10, try-it. "Set `Bz=0` and see whether the profile changes" stays, since the question is open. With `Bz=0` the
+  size of the profile changes from run to run, as the sheet says.
+- 7.12, the closing summary and its bullet on neural network quantum states stay, against item 10 of section 8 of
+  `VOICE.md`. The locked rules of `WEB_NOTES_PLAN.md` ask for a closing summary with the list of what the student can
+  do, the .tex has the section and the bullet, and the bullet says that these states are not developed in this session.
+  The bullet on the dimer and tetramer models stays, since it holds with the corrected Section 7.7.
+- 7.1, the first quiz is corrected, although the block of 7.1 above says that it stays, and the index page has one
+  corrected sentence, although the block of the index says that it is not edited. Both statements were false.
+- 7.1, the old third feedback of the second quiz, which called the image of $c_1^\dagger c_2+c_2^\dagger c_1$ wrong, was
+  removed by the builder with the planned rewrite, and the new quiz is right. No change.
+- 7.11, the notebook box already links Section 7.8a. No change.
+- The conventions sheet follows the corrections. Its last section is now "Statements of the pages that these numbers
+  contradicted, corrected on 2026-11-22", with the same ten bullets in the same order, each with what the page says now.
+  The line on the weak cuts of `random_vs_gapped` gives 0.14, the line on the red curve of `critical_entropy` gives the
+  open chain of 3002 sites with 0.4983 and 0.4992, now a condition of the check "the dimerized chain of free fermions"
+  in `conventions.py`, the line on the first cell says that the box of Section 7.3 names DMRG, and the line on pyqula says
+  that it does not diagonalize an interacting quantum chain and treats interactions with mean field, classical spins and
+  linear spin waves. This last sentence has no check line, and it was read in the source of pyqula. The 1.4929 and
+  2.9649 of the critical chain on 3002 sites are asserted to two decimals, in `g5_11` and in `critical_entropy.py`. The
+  label of the check "7.3, sixteen gigabytes" is now "7.3, about seventeen gigabytes".
+- Downloads of `dmrgpy` scripts, item 6. The spin calculations stay numpy with no button, by the locked rule that a
+  calculation that pyqula cannot do has no button, and the build refuses a script that does not import pyqula.
+- The lab box of Section 7.8b, item 8. The builder did not add it, so the page has no lab box, which keeps the locked
+  rule of one material and one number with its unit. No change.
+- The symbol of the bond dimension, item 1 of the earlier version and the former point 1 for the lecturer. Picked by the
+  lecturer on 2026-11-22: the letter $M$ stays for the matrices of the MPS, as in (7.5), and the bond dimension is
+  written $\chi$, as the notebook does with `maxm`. Every place of the session where $M$ meant the bond dimension now
+  has $\chi$, and (7.10) changes its symbol. The change is the last entry of the first list.
+
+### For the lecturer
+
+No point is left. The lecturer picked the symbol of the bond dimension on 2026-11-22, and it is the last point of the
+list "Decided on 2026-11-22".

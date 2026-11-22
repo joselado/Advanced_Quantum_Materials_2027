@@ -513,54 +513,269 @@ group, so `quiz_netfit_h1.py` of group 1 becomes `g1_quiz_netfit_h1.py`, as in S
 
 ## Open for the lecturer
 
-No change of a numbered equation is planned. These are statements of the old text, one convention and one rule,
-each with what was found. A builder leaves them as they are until the lecturer picks.
+The builders, the physics checkers, the fixers and the rechecks left 59 points, with repeats, and this section held ten
+more. The lecturer decided on 2026-11-22 to "Fix old-text errors, ask the rest", and for the questions "ask me the top
+5, other you decide by yourself". The points were merged into 38 distinct ones, and the sweep of their sibling sentences
+gave three more. The 24 of the first list below were false as written, or two sentences of the notes contradicted each
+other, and they are corrected on the web with the smallest change. Every number that they add or change was checked with
+a calculation of its own and is asserted in `webnotes/checks/session10/`, in the blocks marked "corrected on
+2026-11-22". The first 16 of the second list were choices, and the coordinator decided them on the same day by the rule of
+that day. It takes the option that makes the text true with the smallest change, and between two true wordings the
+shorter and clearer one. A claim that no stored source or calculation supports is reduced to what is supported. One
+point was left for the lecturer, since it is on a file of the toolkit, and the coordinator decided it on 2026-11-22, the
+last point of the second list. No numbered equation and no convention changed.
+The line numbers are those of `lecture_notes/src/sessions/session10.tex` on 2026-11-22, and the `.tex` is not changed in
+this pass, so until the first list is carried over the PDF keeps the old wording in these places.
 
-- The lab boxes of this session, a rule. All seven hold counts with no unit (qubits, atoms, spins, unit cells) or
-  a bare $10^{-5}$, so the tool checks none of them and each box gives the warning `lab-number`. The box of 10.5
-  is a calculation and nothing in its abstract is measured, and the box of 10.3a names no probe, since its
-  abstract names none. The locked rule asks for one material, one number with its unit and the probe. The
-  options are the seven boxes as planned, the boxes without 10.5, or no lab boxes in this session.
+Two sources were read on 2026-11-22 and are not stored, since `labsource.py` stores abstracts and writes the shared
+`sources/index.json`. They are the full text of arXiv 1801.00315 and the text of arXiv 1605.01735v1, the only arXiv
+version. The slides of the lecture, `slides_prerecordings/lecture10.pdf`, are in the repository and are the source of
+the Fashion-MNIST numbers, page 31, and of the sizes of the trained classifiers, pages 46 and 49.
 
-- 10.3a, the sentence after (10.3), "where the equality holds only when $|\psi_\theta\rangle$ is the true ground
-  state, or in practice the closest state that the ansatz can reach". It reads as if the equality held for the
-  best state of the ansatz, which is false unless the ansatz contains the ground state. The best state of the
-  ansatz has the lowest $E[\theta]$, and it is still above $E_0$. The options are "the equality holds only for the
-  ground state, and in practice the training reaches the best state of the ansatz, whose energy is above $E_0$",
-  or the old sentence.
-- 10.3b and 10.8, "NNQS is therefore the most expressive of the variational families of this course" and "NNQS is
-  above the matrix product states ... and the PEPS ... in the variational hierarchy" are written without the
-  condition that the caption of Figure 10.2 gives, "a statement about networks that are expressive enough and not
-  about every architecture". The options are to add this condition to the two sentences, or to leave them.
-- 10.4 and 10.8, the Fashion-MNIST numbers $95.38\%$ and $88.97\%$ have no link, and the slides of the lecture
-  have none either. They are in the body of arXiv 1801.00315, "Learning Relevant Features of Data with
-  Multi-scale Tensor Networks", in Section VI on the tree curtain model, "The optimized model reaches 95.38%
-  accuracy on the training set, and 88.97% accuracy on the testing set." Its abstract does not hold them, so the
-  store does not have them, and they were read in the PDF of arXiv. The model there classifies ten kinds of
-  clothes with four tree layers under a matrix product state, while the page tells the example as a purse against
-  a shirt. The same section gives XGBoost at 89.8%, AlexNet at 89.9% and a two-layer convolutional network at
-  87.6%, so "comparable" holds. The options are the link and "ten kinds of clothes", the link only, or the old
-  text.
-- 10.6b, "no local quantity can distinguish the two regimes", twice in the text, and "it learns a nonlocal
-  function". The plaquette product is a local quantity of four spins. Its average is $\tanh(J/k_BT)$ on an open
-  lattice, which is $0.9999$ at $k_BT=0.2J$ and $0.197$ at $5J$, the temperatures of `igt_hist`, so the energy
-  per plaquette tells the two regimes apart. No quantity of a single spin does, and the caption of Figure 10.5
-  says "no quantity on a single bond", which is right. The abstract of 1605.01735, read and not stored, says only
-  that a convolutional network detects "topological phases with no conventional order parameter". The options are
-  "no quantity of a single spin", "no local order parameter, a local quantity that is zero in one regime and not
-  in the other", or the old text. The new blocks of 10.6b are planned to hold for every option.
-- 10.7, the caption of `ham_learning` gives the errors of one seed, $0.06$, $0.10$ for $W>1$, and $0.004$. Ten
-  seeds of a copy of the script give $0.058$ to $0.074$, $0.093$ to $0.121$, and $0.0040$ to $0.0054$, and the
-  brief asks for a range. The options are "$0.06$ to $0.07$", "about $0.1$" and "$0.004$ to $0.005$", or the old
-  values with "for one realization".
-- 10.7, the third feedback of the quiz on many $\lambda$ says "the loss is $t^2$". With two pairs the sum (10.12)
-  gives $2t^2$, which is $t^2$ per pair. The options are "$2t^2$, which is $t^2$ per pair", or the old text.
-- 10.2, the box of the widget `netfit` says "trained for 4000 steps of gradient descent, with the loss of
-  (10.1)". The widget uses Adam with a falling step size and the mean of the squared error, not its sum. The
-  options are "4000 steps of Adam, a form of gradient descent, with the mean squared error", or the old text.
-- 10.4, a convention. (10.6) is written with a trace, the periodic form, while (7.5) of Session 7 is the open
-  product. The problem of 10.4 uses the open form and says so. The options are one sentence after (10.6) that
-  names the two forms, or nothing.
-- 10.6a and 10.6b, the sizes "from $L=10$ up to $L=60$" and "from $L=4$ up to $L=28$" have no source on the page,
-  and the abstract of 1605.01735 does not state them. No change is proposed, and they stay as the lecture gives
-  them.
+### Corrected on the web, to carry over to the .tex
+
+1. Page `03`, Section 10.3a, the sentence after (10.3), `.tex` lines 136 and 137. Old "Here the equality holds only
+   when $|\psi_\theta\rangle$ is the true ground state, or in practice the closest state that the ansatz can reach."
+   New "In practice the training reaches the best state that the ansatz can give, and its energy is above $E_0$ unless
+   the ansatz contains a ground state." The key box just above says that the equality holds only for a ground state.
+   The `.tex` has no key box, so there it reads "where the equality holds only when $|\psi_\theta\rangle$ is a ground
+   state. In practice the training reaches ...". `g2_03` asserts that the product states of $J\,\mathbf S_1\cdot\mathbf
+   S_2$ reach at best $-J/4$, above $E_0=-3J/4$, on a grid of the two spins and by $\langle\mathbf
+   S_1\rangle\cdot\langle\mathbf S_2\rangle$.
+2. Page `03`, the quiz on $L=40$, its three options, not in the `.tex`. Old "About $40^2$ numbers, which is a few
+   kilobytes.", "About $10^6$ numbers, which is a few megabytes." and "About $10^{12}$ numbers, which is roughly $16$
+   terabytes." New "... which is about $26$ kilobytes.", "... which is about $16$ megabytes." and "... which is about
+   $17.6$ terabytes." The figure `memory` of the page and the feedback of the quiz of Section 7.3 count in decimal
+   units. The feedback keeps "roughly $16$ TiB". `g2_03` asserts 25600 bytes, $1.6\cdot10^7$ bytes, 17.6 TB and 16 TiB.
+3. Page `03b`, Section 10.3b, the sentence before (10.5), `.tex` line 149. Old "We compute the energy and its gradient
+   with respect to the parameters of the network," New "We compute the energy and its gradient with respect to a real
+   parameter $\theta_k$ of the network,". For a complex parameter the derivatives are $2\,\mathrm{Re}\,F_k$ and
+   $2\,\mathrm{Im}\,F_k$, as the steps fold says. `g2_03b` and `conventions.py` assert both with finite differences.
+4. Pages `03b` and `08`, the place of NNQS in the hierarchy. The caption of Figure 10.2 says that the outer inclusion
+   holds for networks that are expressive enough, and the two sentences said it with no condition. Page `03b`, `.tex`
+   lines 165 to 167. Old "NNQS is therefore the most expressive of the variational families of this course, because it
+   imposes ..." New "NNQS is therefore the most expressive of the variational families of this course when the network
+   is large enough, because it imposes ...". Page `08`, `.tex` lines 483 to 485. Old "NNQS is above the matrix product
+   states of Section 7.4 and the PEPS of Section 7.11 in the variational hierarchy, and it imposes the least structure
+   of all the ansätze of this course." New "For a network that is large enough, NNQS is above the matrix product states
+   of Section 7.4 and the PEPS of Section 7.11 in the variational hierarchy. It imposes the least structure of all the
+   ansätze of this course." No number.
+5. Pages `03b` and `08`, tomography. The key box of Section 10.3.1 says that counts in one basis fix $|C(s)|$ and not
+   its phase, and the two sentences claimed the full state. No stored source gives the number of measurements, so the
+   claim is reduced to the number of parameters. Page `03b`, `.tex` lines 192 to 194. Old "This reconstructs a full
+   approximation to the unknown wavefunction with far fewer than $2^L$ measurements, and this is what makes it useful
+   ..." New "With counts in more than one basis, this reconstructs an approximation to the unknown wavefunction with a
+   network of far fewer parameters than $2^L$, and this is what makes it useful ...". Page `08`, `.tex` lines 485 and
+   486. Old "The same ansatz, fitted by maximum likelihood instead of energy minimization, solves quantum state
+   tomography with far fewer than $2^L$ measurements." New "The same ansatz, fitted by maximum likelihood instead of
+   energy minimization, approximates a measured state in quantum state tomography with far fewer parameters than
+   $2^L$, when the counts are taken in more than one basis." `g2_03b` and `g5_08` assert 1680 parameters for 40
+   visible and 40 hidden spins against $2^{40}$, and `conventions.py` the fidelities 0 and 0.0038 from counts along $z$.
+6. Page `04`, the steps fold, not in the `.tex`. Old "A generic state of $L$ spins has the Schmidt rank $2^{L/2}$ at
+   the middle cut," New "A generic state of an even number $L$ of spins has the Schmidt rank $2^{L/2}$ at the middle
+   cut,". `g2_04` asserts the rank 8, 16 and 32 for $L=7$, 9 and 11, which is $2^{(L-1)/2}$.
+7. Page `04`, Section 10.4, `.tex` lines 252 to 254. Old "On the Fashion-MNIST dataset, which is a standard benchmark
+   of images of clothes, this tensor-network classifier reaches **95.38% accuracy on the training set and 88.97% on the
+   test set**." New "The Fashion-MNIST dataset is a standard benchmark of images of clothes with ten labels. On it a
+   tree tensor-network classifier of this kind reaches **95.38% accuracy on the training set and 88.97% on the test
+   set**, in [this article](https://arxiv.org/abs/1801.00315)." The numbers belong to a classifier of ten labels, while
+   "this classifier" was the one of two labels, purse against shirt. Section VI of arXiv 1801.00315 says "The optimized
+   model reaches 95.38% accuracy on the training set, and 88.97% accuracy on the testing set." for the ten labels of
+   Fashion-MNIST. `g2_04` reads page 31 of the slides with `pdftotext` and asserts that the page gives its two numbers.
+   The `.tex` sentence "These numbers appear only on the slides" can stay, with the link added.
+8. Page `05`, Section 10.5, the Hohenberg-Kohn theorem, `.tex` lines 273 to 276. Old "For a given external potential
+   $v_{\rm ext}(\mathbf{r})$, the ground-state density $n(\mathbf{r})$ determines ..." New "For a given external
+   potential $v_{\rm ext}(\mathbf{r})$ with a non-degenerate ground state, the ground-state density $n(\mathbf{r})$
+   determines ...". The sentence goes on to the full many-body wavefunction, which a degenerate ground state does not
+   fix. The second quiz, not in the `.tex`, old "The theorem says that $\psi_0$ is unique, and it does not say how to
+   find it." new "For a non-degenerate ground state the theorem says that $\psi_0$ is unique, and it does not say how
+   to find it." `g3_05` asserts that one electron on a ring of 3 sites with the hopping $+1$ has two orthogonal ground
+   states at $-1$ with the same density $1/3$ on every site.
+9. Page `05`, the caption of Figure 10.4, `lecture_notes/src/figures/s10f04_dftml.tex` line 8, the text only. Old
+   "This is more accurate, but the diagonalization stays inside the loop," New "This can make the answer more accurate,
+   but the diagonalization stays inside the loop,". The body says "This can improve the accuracy". No number.
+10. Page `05`, the first quiz, two feedbacks, not in the `.tex`. Old "Diagonalization costs about $N^3$, and a local
+    $v_{\rm xc}(n)$ costs only about $N$ per evaluation. For $N=1000$ orbitals this is $10^9$ against $10^3$, ..." New
+    "On a grid of $M$ points, the diagonalization of $H_{\rm KS}$ costs about $M^3$, and a local $v_{\rm xc}(n)$ costs
+    only about $M$, one value per point. For $M=1000$ this is $10^9$ against $10^3$, ...". Old "A network does not make
+    this part larger or the limit different." New "A local network costs more per grid point than LDA, but its cost
+    still grows only linearly with the number of points, so the limit does not change." `g3_05` asserts $1000^3=10^9$.
+11. Page `05`, the caption of `ks_loop`, not in the `.tex`. Old "On the right the largest change of the density falls
+    by about the same factor at every iteration, ..." New "On the right we see the largest difference
+    $\max_i|\Delta n(i)|$ between the density that the diagonalization gives and the density that went in. It falls by
+    about the same factor at every iteration, ...". The stored density changes by 0.3 times this difference. `g3_05` and
+    `conventions.py` assert that the plotted number is the difference out minus in, the 36 iterations and the factor
+    0.3.
+12. Page `01`, Section 10.2, the box of the widget `netfit`, not in the `.tex`. Old "It is trained for 4000 steps of
+    gradient descent, with the loss of (10.1), to reproduce $\sin(3\pi x)$. With one or two neurons the network cannot
+    follow the six extrema of the target. With more neurons the loss goes down." New "It is trained for 4000 steps of
+    Adam, a form of gradient descent, with the mean of the squared error in place of the sum of (10.1), to reproduce
+    $\sin(3\pi x)$. With one to three neurons the network cannot follow the six extrema of the target, and from four
+    neurons on it follows all of them. With more neurons the loss goes down on the whole, but not at every step of
+    $H$." `g1_01` reads Adam and the mean in the source of the widget, and asserts 0, 0 and 2 extrema for $H=1$ to 3, six
+    from $H=4$ to 12, $0.46$ at $H=1$, $2.3\cdot10^{-4}$ at $H=12$ and $3.0\cdot10^{-3}$, $3.4\cdot10^{-3}$ and
+    $5.0\cdot10^{-3}$ for $H=5$ to 7. Since 2026-11-22 the template `webnotes/widgets/blocks/netfit.md` holds the same
+    text, the last point of the second list, and `g1_01` asserts that the two texts are equal.
+13. Page `06`, Section 10.6a, `.tex` line 362. Old "This model has ferromagnetic order ($|m|\to 1$) below a critical
+    temperature $T_c$" New "This model has ferromagnetic order ($|m|>0$) below a critical temperature $T_c$". `g4_06`
+    asserts that the exact $|m|$ is between 0 and 1 below $T_c$, 0.78 at $2.2J$, and goes to 1 only as $T\to0$.
+14. Page `06`, `.tex` line 367. Old "where the input is the $N\times N$ spin snapshot" New "where the input is the
+    $L\times L$ spin snapshot". (10.9) uses $N$ for the number of spins. No number.
+15. Page `06`, the caption of `ising_sizes`, not in the `.tex`. Old "Below $T_c$ the three sizes agree with it." New "Up
+    to $k_BT=2.1J$ the three sizes agree with it within $0.007$, and at $2.2J$, close to $T_c$, the lattice of $8$ is
+    $0.03$ above it." `g4_06` and `conventions.py` assert 0.0065 and $+0.031$.
+16. Pages `06b` and `06`, locality. The plaquette product is a local quantity of four spins, and its average
+    $\tanh(J/k_BT)$ is 0.9999 at $0.2J$ and 0.197 at $5J$, which `g4_06b` asserts, while the text said that no local
+    quantity tells the regimes apart. The text of arXiv 1605.01735v1 says that "local constraints are the only features
+    that the CNN relies on". Page `06b`, `.tex` lines 391 and 392, old "The reason is that no local quantity can
+    distinguish the two regimes." new "The reason is that no quantity of a single spin can distinguish the two
+    regimes.", and `.tex` line 397, old "and no local quantity can distinguish them" new "and no quantity of a single
+    spin can distinguish them". Page `06b`, `.tex` lines 402 and 403, old "In practice, it learns a nonlocal function of
+    the spin configuration, which plays the role that a topological invariant would play analytically." new "In
+    practice, the Boltzmann weight depends only on the plaquette products, so the network has to learn a function of
+    these products of four spins." Page `06`, the comesback box, not in the `.tex`, old "and the same classifier has to
+    find a non-local quantity." new "and the same classifier has to find a quantity of four spins, the plaquette
+    product." The line of page `08`, "no local order parameter distinguishes", is true with the definition of page `06`,
+    a quantity that is zero in one phase and not in the other, and stays.
+17. Page `06b`, the quiz on the crossover, not in the `.tex`. Stem, old "The trained classifier does not give a
+    transition that becomes sharper as $L$ grows. Why?" new "The trained classifier does not converge to a finite $T_c$
+    as $L$ grows. Why?" First feedback, old "This is false. The same convolutional network finds a sharp transition for
+    the Ising model as $L$ grows, so its size is not the limit." new "This is false. The network already tells the
+    states at low and at high temperature apart, so it is large enough. There is no transition at a finite temperature
+    for a larger network to find." Right feedback, old "... For an open lattice the plaquette average is
+    $\tanh(J/k_BT)$, which is smooth, so the crossover does not sharpen. What does not sharpen is the plaquette average,
+    which is the same for every size of an open lattice, so there is no finite $T_c$ that the classifier could converge
+    to." new "... For an open lattice the plaquette average is $\tanh(J/k_BT)$ for every size, which is smooth in $T$, so
+    there is no finite $T_c$ that the classifier could converge to. A classifier that looks for plaquettes at $-1$ still
+    gives a crossover, and it moves toward $T=0$ as $L$ grows." The Ising network of arXiv 1605.01735v1 is fully
+    connected, and slide 46 does not say convolutional. The new first feedback rests on slide 49, "Supervised learning
+    can distinguish the two states", and on the text of v1, where the network reaches 100% on states at $T=0$ against
+    infinite temperature. For a classifier of plaquettes on the $L\times L$ torus,
+    $P=2/[(1+x)^N+(1-x)^N]$ with $x=e^{-2J/k_BT}$ and $N=L^2$, which `g4_06b` asserts against all $2^{18}$
+    configurations of the $3\times3$ torus to $4\cdot10^{-16}$, with the middle at 0.817, 0.517, 0.380 and $0.313J$ and
+    the width from 0.335 down to $0.047J$ for $L=4$, 8, 16 and 28. So the crossover gets narrower while it moves to
+    $T=0$, as the figure on slide 49 shows for the trained network.
+18. Page `06b`, the caption of `igt_hist`, not in the `.tex`. Old "With flips of single bonds alone the bonds would stay
+    at $+1$ at $k_BT=0.2J$, since from there one flip costs $4J$ and is accepted with the probability
+    $e^{-20}\approx2\cdot10^{-9}$." New "With flips of single bonds alone the bonds would stay at $+1$ during the run at
+    $k_BT=0.2J$, since ... $e^{-20}\approx2\cdot10^{-9}$. This gives about $0.004$ accepted flips in the $3500$ sweeps of
+    $512$ tries of the run." `g4_06b` reads $500+1500\times2=3500$ sweeps in `igt_hist.py` and asserts
+    $3500\times512\times e^{-20}=0.0037$.
+19. Page `07`, Section 10.7, the third feedback of the quiz on many $\lambda$, not in the `.tex`. Old "The mean-square
+    loss is minimal when the network gives the mean of the two labels, which is $0$, and then the loss is $t^2$ and not
+    zero." New "The squared loss is minimal when the network gives the mean of the two labels, which is $0$, and then the
+    loss is $2t^2$, which is $t^2$ per pair, and not zero." The option names (10.12), which is a sum. `g5_07` and
+    `conventions.py` assert $2t^2$.
+20. Page `07`, `.tex` lines 472 and 473. Old "In this sense, the method of the course and the final method of the course
+    are the same method, applied in opposite directions." New "In this sense, the first method of the course and its
+    final method are the same method, applied in opposite directions." The caption of Figure 10.6 says "The final method
+    of the course and its first method". No number.
+21. Page `08`, Section 10.8, the first feedback of the first quiz, not in the `.tex`. Old "This is false. The
+    cat-and-dog classifier and the phase classifier can use the same convolutional architecture. They differ in the
+    input, the output and the loss, and the training step is the same." New "This is false. The cat-and-dog classifier
+    and the phase classifier can use the same architecture. They differ in the input, an image or a spin snapshot, and
+    in the meaning of the one-hot label. The squared loss above and the training step are the same." Page `01` trains
+    the classifier with (10.1) and a one-hot label, the recall box of page `06` gives the phase classifier a one-hot
+    label, and the second quiz of page `08` writes it as (s, one-hot label, squared error). `g5_08` reads pages `01` and
+    `06`.
+
+22. Pages `index` and `01`, the same claim as entry 5, a small number of measurements, which no stored source states.
+    The introduction of the chapter, `.tex` line 25, old "we will use it a second time to reconstruct wavefunctions
+    from a small number of measurements", and on the web, page `index`, old "The same network then reconstructs a state
+    from a small number of measurements." new "The same network then reconstructs a state from measurements in more
+    than one basis." Page `01`, Section 10.1, `.tex` lines 37 and 38, old "to reconstruct states from a small number of
+    measurements," new "to reconstruct states from measurements,". No number.
+23. Page `05`, the alt text of `ks_loop`, not in the `.tex`. Old "Right, the change of the density at each iteration on
+    a logarithmic scale," new "Right, the largest difference between the density that comes out of an iteration and the
+    density that goes in, on a logarithmic scale,", as the caption of entry 11. No number.
+24. Pages of other sessions that link Section 10.6b, three one-line corrections of the same claim as entry 16, in
+    comesback boxes, not in the `.tex`. Page `session09/08`, old "a network must find a non-local quantity," new "a
+    network must find a quantity of four spins, the plaquette product,". Page `session09/index`, old "must be found from
+    a non-local quantity," new "must be found from a quantity of four spins, the plaquette product,". Page
+    `session05/19`, old "a phase that no local quantity can tell apart," new "a phase with no local order parameter,".
+
+The sentence of page `06`, "the phases there are *not* distinguished by any local quantity at all, and the difference
+can only be seen in a non-local way", is about the topological phases of Sessions 3 and 4 and not about the gauge
+theory, and it was left.
+
+### Decided on 2026-11-22
+
+Each point with the choice, decided by the coordinator by the rule.
+
+1. The lab boxes of the session. No lab box, which is the option of no change and not the correction of a false
+   sentence. The locked rule asks for one material, one number with its unit and the probe, and the seven stored
+   abstracts give counts with no unit, a bare $10^{-5}$ or a calculation. The seven sources stay stored, so the boxes
+   can be built in a later pass. This covers the box of Section 10.7 that a fixer drafted from
+   `wang2017_arxiv1703.05402.txt`.
+2. Page `03`, the key box says "is a ground state", as a fixer wrote, in place of "is the ground state" of this plan,
+   since $E_0$ can be degenerate. `g2_03` asserts $E_0=-J$ twice for the open chain of 3 spins.
+3. Pages `03` and `03b`, the scare quotes of `lecture_notes/writing_style.md`. Page `03`, `.tex` line 138, old "meaning
+   that the "observable output" that the network is trained to minimize" new "meaning that the quantity that the
+   network is trained to minimize". Page `03`, `.tex` line 122, old "which is formally an $L$-pixel "image,"" new "which
+   is formally an image of $L$ pixels,". The caption of Figure 10.2 on page `03b`,
+   `lecture_notes/src/figures/s10f02_nnqs.tex` line 7, the same change.
+4. Page `03b`, the restricted Boltzmann machine in the steps fold, which no page writes out. Left, since the sentence is
+   true and `g2_03b` asserts $\partial C/\partial y_k=i\,O_k\,C$.
+5. Page `04`, the convention of (10.6), the trace form, against the open form (7.5) of Section 7.4. One paragraph after
+   the paragraph under the key box, "Equation (10.6) is the periodic form, closed with a trace. The open form (7.5) of
+   Section 7.4 has a vector in place of a matrix on the first and on the last site, and the problem of this page uses
+   it." (10.6) and (7.5) do not change. In the `.tex` it goes after line 221. `g2_04` reads the two equations on pages
+   `7.4` and `10.4`.
+6. The link texts "Section 10.3" and "Section 10.6" that point to the pages 10.3a and 10.6a. Left on all pages, since
+   Section 10.3 and Section 10.6 of the PDF hold both web pages and the link lands on the first one. The link of page
+   `06b` in "the topological order of Section 10.6" is removed, since page `06` does not treat topological order, and
+   the `.tex`, line 396, has no reference there. New "only its ground state at zero temperature has topological order."
+7. Page `05`, the last paragraph, not in the `.tex`. Old "and the derivation above is complete." New "and the
+   derivation above is complete, given the Hohenberg-Kohn theorem." The steps fold takes the theorem as given.
+8. Page `01`, the counts "two more times" and "the four later constructions". Left. The two uses are the phase
+   classifiers of Sections 10.6a and 10.6b, and the four constructions are Sections 10.3, 10.5, 10.6 and 10.7, since
+   the caption of Figure 10.3 says that Section 10.4 builds the function itself from matrices.
+9. The sizes "from $L=10$ up to $L=60$" of page `06` and "from $L=4$ up to $L=28$" of page `06b`. Kept, since they are
+   in the legends of the figures on pages 46 and 49 of `slides_prerecordings/lecture10.pdf`, read on the rendered
+   slides, and the `.tex` says "the sweep on the slides" and "The slides show it". The Ising sizes are also in Figure 1
+   of arXiv 1605.01735v1, and the gauge sizes are not in that version. The journal version, DOI 10.1038/nphys4035,
+   asks for a login and was not read. No script asserts them, since they are in an image. The sentence of page `06b`
+   that the network "has seen only one system size during training" is not in v1 and was not checked in the journal
+   version, and it stays as the lecture gives it.
+10. Page `08`, the Fashion-MNIST numbers. The sentence stays, since it is true as written. `g5_08` asserts that it gives
+    the two numbers of page `04`.
+11. Page `06b`, the two crossovers that a reader meets, one of the plaquette average that does not depend on the size
+    and one of the classifier that does. One sentence in the paragraph on the size-dependent crossover, `.tex` line
+    405, "This crossover moves to lower temperature as the lattice grows." The opener is true and stays. `g4_06b`
+    asserts the middles from 0.82 to $0.31J$ for a classifier of plaquettes, and the figure of slide 49 shows the move.
+12. Page `07`, the caption of `ham_learning` gave the numbers of one seed. It now gives ranges, as the brief asks for a
+    number of a realization. Old "it misses $t_2$ by $0.06$ as a root mean square, and by $0.10$ for $W>1$. Trained
+    with $W$ drawn from $[0,1.5]$, the error is $0.004$." New "it misses $t_2$ by $0.06$ to $0.07$ as a root mean square
+    over ten random draws of the rings, and by about $0.1$ for $W>1$. Trained with $W$ drawn from $[0,1.5]$, the error
+    is $0.004$ to $0.005$." The seed 3 of the picture, 0.0635, 0.1027 and 0.0043, is inside the ranges. `g5_07` and
+    `conventions.py` assert them over the seeds 0 to 9. Not in the `.tex`.
+13. Page `07`, the right feedback of the quiz on many $\lambda$, where the sign of $t$ is not a hidden variable. Old "A
+    chain with $t$ and a chain with $-t$ have the same density of states. The network cannot give the sign, so it gives
+    an estimate with an uncertainty and we must cover $\mu$ in training." New "A chain with $t$ and a chain with $-t$
+    have the same density of states, so the network cannot give the sign and gives an estimate with an uncertainty.
+    This estimate is the average of the labels of the training pairs with the same observable, so the training set must
+    cover the hidden variables $\mu$." The average is the result of the steps fold, which `g5_07` asserts.
+14. Page `07`, the option of the network trained with disorder. It now ends "over ten random draws of the rings, for
+    the fit of smallest norm", the condition that the clean option states, since a recheck found that at one seed a null
+    vector of norm 8 moves the error to 0.0056. `g5_07` asserts the range for the solution of `lstsq`, which has the smallest norm.
+15. Page `08`, the comesback box points to Section 1.3, a change of the working tree before this pass. Kept, since
+    Section 1.3 opens with "How can a lattice of identical atoms give rise to so many different kinds of collective
+    behavior?".
+16. The conventions sheet, with its checks in `conventions.py`. The opening paragraph now gives the slides as the source
+    of the Fashion-MNIST numbers and of the sizes, in place of `labsource.py`. The line of the Kohn-Sham loop names the
+    plotted difference and the factor 0.3. The line of the Ising side of `igt_hist` gives the pyqula script that the
+    figure now draws, with $|m|$ from 0.922 at $T=1.5$ and up to 0.508 at $T=3.5$ and the means 0.987 and 0.125, in
+    place of the numpy run of the figure before its redraw. The lines of `ising_sizes`, of `ham_learning` and of the
+    quiz of two labels say what the pages now say, and the section "Open points of the old text, left as they are" is
+    now "Points of the old text, corrected on 2026-11-22".
+17. `webnotes/widgets/blocks/netfit.md`, the template of the box of the widget `netfit`, the former point for the
+    lecturer. It kept the old text "4000 steps of gradient descent, with the loss of (10.1)", "With one or two neurons
+    ..." and "With more neurons the loss goes down.", which page `01` corrected, entry 12 of the first list. Decided by the
+    coordinator on 2026-11-22: the new text of the box of page `01` is copied into the template, so that a new conversion
+    of the widget box is true. The template is now the box of the page, from its fence line to its closing fence, and
+    `g1_01` asserts that the two are the same text, with the numbers that it asserts for the box.
+
+### For the lecturer
+
+No point is left. The one point of this list, the template of the widget `netfit`, was decided by the coordinator on
+2026-11-22, and it is point 17 of the list "Decided on 2026-11-22".

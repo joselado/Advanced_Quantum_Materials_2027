@@ -123,5 +123,5 @@ The same follows from one braid applied twice, $\gamma_1\to-\gamma_2\to-\gamma_1
 ::: comesback
 - In Session 6 we go to the other branch of the Hubbard model, $U>0$, which gives magnetism, starting from Section [6.3](#sec-6-3).
 - In Section [8.10](#sec-8-10) a quantum spin liquid has its own topological excitations, the visons, which are fluxes of an emergent gauge field.
-- In Section [10.6b](#sec-10-6b) a phase that no local quantity can tell apart, as for the states of a topological qubit, is the hard case of phase classification.
+- In Section [10.6b](#sec-10-6b) a phase with no local order parameter, as for the states of a topological qubit, is the hard case of phase classification.
 :::

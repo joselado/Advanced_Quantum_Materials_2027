@@ -1,4 +1,4 @@
-"""Checks of webnotes/conventions/session08.md, with numbers. Every bullet of the sheet, the open points included, is
+"""Checks of webnotes/conventions/session08.md, with numbers. Every bullet of the sheet, the points of the old text included, is
 one check here, in the order of the sheet, and the script prints one line per bullet and exits 0 when all hold.
 
 The many-body checks build the spin and fermion operators as matrices, with the Jordan-Wigner signs, and the second
@@ -285,10 +285,16 @@ def main():
     psi = np.array([0, 1, -1, 0]) / np.sqrt(2)
     sv = np.linalg.svd(psi.reshape(2, 2), compute_uv=False)
     ent = -np.sum(sv ** 2 * np.log(sv ** 2))
-    Tpsi = np.kron(1j * PAULI[1], 1j * PAULI[1]) @ psi.conj()
+    Theta = np.kron(1j * PAULI[1], 1j * PAULI[1])
+    Tpsi = Theta @ psi.conj()
     mag = max(abs(psi @ op(s, i, 2) @ psi) for s in SPIN for i in (0, 1))
-    check('the singlet (8.3)', np.allclose(sv ** 2, 0.5) and abs(ent - np.log(2)) < 1e-12 and np.allclose(Tpsi, psi) and mag < 1e-12,
-          '<S_i> = 0, time reversal gives the same state, the Schmidt weights are %s and the entropy %.4f = ln 2'
+    ud, du = np.array([0, 1, 0, 0]), np.array([0, 0, 1, 0])
+    tr_ok = np.allclose(Theta, np.kron(-1j * PAULI[1], -1j * PAULI[1])) and np.allclose(Theta @ ud, -du)
+    tr_ok = tr_ok and abs(ud @ Theta @ ud) < 1e-15 and max(abs(sum(ud @ op(s, i, 2) @ ud for i in (0, 1))) for s in SPIN) < 1e-15
+    check('the singlet (8.3)', np.allclose(sv ** 2, 0.5) and abs(ent - np.log(2)) < 1e-12 and np.allclose(Tpsi, psi) and mag < 1e-12
+          and tr_ok,
+          '<S_i> = 0, time reversal gives the same state, the Schmidt weights are %s and the entropy %.4f = ln 2, and '
+          '(i sigma^y)(i sigma^y)K = (-i sigma^y)(-i sigma^y)K maps |up down> to -|down up>, which has zero net magnetization'
           % (np.round(sv ** 2, 3), ent))
     ok = True
     for N in range(2, 8):
@@ -553,7 +559,14 @@ def main():
           'a spinful site has %d states, and filling=0.5 leaves %.3f fermions per site below zero on a dense mesh'
           % (ht.intra.shape[0], below))
     kk = np.linspace(-np.pi, np.pi, 401)
-    Ea = -2 * np.cos(kk)
+    gch = geometry.chain().get_hamiltonian(has_spin=False).get_hk_gen()
+    Ea = np.array([np.linalg.eigvalsh(gch([q / (2 * np.pi), 0.0, 0.0]))[0] for q in kk])
+    hpl = geometry.square_lattice().get_supercell([1, 2]).get_hamiltonian(has_spin=False)
+    hpl.add_orbital_magnetic_field(0.5)
+    gpl = hpl.get_hk_gen()
+    Epl = np.array([np.linalg.eigvalsh(gpl([q / (2 * np.pi), 0.5, 0.0])) for q in kk])
+    line_ok = np.abs(Epl[:, 1] - 2 * np.abs(np.sin(kk))).max() < 1e-9 and np.allclose(Epl[:, 0], -Epl[:, 1])
+    line_ok = line_ok and np.allclose(kk[Epl[:, 1] < 1e-9], [-np.pi, 0, np.pi])
     Eb = np.array([np.linalg.eigvalsh(-np.array([[0, 1 + 0.6 * np.exp(-1j * q)], [1 + 0.6 * np.exp(1j * q), 0]])) for q in kk])
     hbc = geometry.bichain().get_hamiltonian(has_spin=False)
     hbc.inter = 0.6 * hbc.inter
@@ -572,12 +585,13 @@ def main():
     qx, qy = np.linspace(-np.pi / 2, np.pi / 2, 81)[1:], np.linspace(-np.pi, np.pi, 161)[1:]
     zz = sorted((float(round(a / np.pi, 6)), float(round(b / np.pi, 6))) for a in qx for b in qy
                 if np.diff(np.linalg.eigvalsh(Hfig(a, b)))[0] < 1e-9)
-    ok = np.min(np.abs(Ea)) < 1e-12 and np.allclose(kk[np.abs(Ea) < 1e-12], [-np.pi / 2, np.pi / 2])
+    ok = np.abs(Ea - 2 * np.cos(kk)).max() < 1e-12 and np.allclose(kk[np.abs(Ea) < 1e-12], [-np.pi / 2, np.pi / 2]) and line_ok
     ok = ok and abs(Eb[:, 1].min() - Eb[:, 0].max() - 0.8) < 1e-9 and abs(eq[:, 1].min() - eq[:, 0].max() - 0.8) < 1e-9
     ok = ok and perr < 1e-12 and np.allclose(Ffig, -1) and zz == [(0.5, -0.5), (0.5, 0.5)]
     check('the three classes of the figure spinon_bands', ok,
-          'the uniform chain crosses zero at k = +-pi/2, the hoppings 1 and 0.6 give the gap %.3f with numpy and %.3f with '
-          'bichain, and the pi-flux lattice of the figure follows 2 sqrt(cos^2 kx + cos^2 ky) to %.0e, with Phi = -1 on all '
+          'the chain of pyqula is 2 cos k and crosses zero at k = +-pi/2, the hoppings 1 and 0.6 give the gap %.3f with numpy '
+          'and %.3f with bichain, the pi-flux lattice of pyqula is +-2|sin kx| on the line ky = pi/2 with zeros at kx = 0 and '
+          '+-pi, and in the other gauge it follows 2 sqrt(cos^2 kx + cos^2 ky) to %.0e, with Phi = -1 on all '
           '16 plaquettes of a 5x5 patch and its Dirac points at (kx, ky)/pi = %s' % (Eb[:, 1].min() - Eb[:, 0].max(),
                                                                                eq[:, 1].min() - eq[:, 0].max(), perr, zz))
     hp = geometry.square_lattice().get_supercell([1, 2]).get_hamiltonian(has_spin=False)
@@ -620,6 +634,39 @@ def main():
           'chi and -chi give the same levels on the open 6x6 lattice to %.0e, tij=[1, 0.5] and [-1, -0.5] fill complementary '
           'halves of the triangular zone (they differ on %.3f of it), and tij=[1, -0.5] differs from [1, 0.5] on %.2f'
           % (flip, comp, diff))
+
+    f8 = modes(8)
+    Sp8 = [[sum(Pm[a_, b_] * H_(f8[2 * i_ + a_]) @ f8[2 * i_ + b_] for a_ in range(2) for b_ in range(2)) / 2 for Pm in PAULI]
+           for i_ in range(4)]
+    sec4 = np.where(np.isclose(np.real(np.diag(sum(H_(x) @ x for x in f8))), 4))[0]
+
+    def chirality4(phi, diag):
+        h4 = np.zeros((4, 4), complex)
+        for i_, j_ in ((0, 1), (1, 2), (2, 3), (3, 0)):
+            h4[i_, j_] = np.exp(1j * phi / 4)
+        h4[0, 2] = diag
+        h4 = h4 + H_(h4)
+        H8 = sum(h4[i_, j_] * H_(f8[2 * i_ + s_]) @ f8[2 * j_ + s_] for i_ in range(4) for j_ in range(4) for s_ in range(2)
+                 if abs(h4[i_, j_]) > 0)
+        w_, v_ = np.linalg.eigh(H8[np.ix_(sec4, sec4)])
+        psi = np.zeros(256, complex)
+        psi[sec4] = v_[:, 0]
+        out = []
+        for i_, j_, k_ in itertools.combinations(range(4), 3):
+            cr = [Sp8[j_][1] @ Sp8[k_][2] - Sp8[j_][2] @ Sp8[k_][1], Sp8[j_][2] @ Sp8[k_][0] - Sp8[j_][0] @ Sp8[k_][2],
+                  Sp8[j_][0] @ Sp8[k_][1] - Sp8[j_][1] @ Sp8[k_][0]]
+            out.append(np.vdot(psi, sum(Sp8[i_][a_] @ cr[a_] for a_ in range(3)) @ psi).real)
+        mag = max(abs(np.vdot(psi, Sp8[i_][a_] @ psi)) for i_ in range(4) for a_ in range(3))
+        return out, mag, w_[1] - w_[0]
+    sq_ch, sq_m, sq_g = chirality4(np.pi / 2, 0.0)
+    tr_ch, tr_m, tr_g = chirality4(np.pi / 2, 0.7)
+    re_ch, re_m, re_g = chirality4(0.0, 0.7)
+    ok = max(map(abs, sq_ch)) < 1e-12 and abs(tr_ch[0] - 0.0504) < 1e-3 and max(map(abs, re_ch)) < 1e-12
+    ok = ok and max(sq_m, tr_m, re_m) < 1e-12 and min(sq_g, tr_g, re_g) > 0.5
+    check('time reversal of the spinon mean field', ok,
+          'in the half-filled mean-field state of four sites <S_i> = 0, and the chirality <S_0.(S_1 x S_2)> is %.4f with one '
+          'diagonal and the flux pi/4 through each triangle, %.0e on every triple of the square ring with the flux pi/2, and '
+          '%.0e with real hoppings' % (tr_ch[0], max(map(abs, sq_ch)), max(map(abs, re_ch))))
 
     # The gauge structure
     th2 = (0.7, -1.3)
@@ -762,8 +809,10 @@ def main():
     E60 = mesh_levels(h, 60)
     ok = np.allclose(g.a1[:2], [1, 0]) and np.allclose(g.a2[:2], [-0.5, np.sqrt(3) / 2]) and len(g.r) == 1 and h.intra.shape == (2, 2)
     ok = ok and ferr < 1e-12 and serr < 1e-12 and abs(E60.min() + 3) < 1e-9 and abs(E60.max() - 6) < 1e-9
-    check('triangular_lattice', ok, 'a1 = (1, 0), a2 = (-1/2, sqrt3/2), one site, spinful by default, the band by hand to %.0e, '
-          'from %.0f to %.0f, and tij=[0, 1] is +1 on the six second neighbors to %.0e' % (ferr, E60.min(), E60.max(), serr))
+    tminus = np.allclose(np.linalg.eigvalsh(gen([0.0, 0.0, 0.0])), -(-1.0) * 6) and np.allclose(np.linalg.eigvalsh(gen([1 / 3, 1 / 3, 0.0])), -(-1.0) * (-3))
+    check('triangular_lattice', ok and tminus, 'a1 = (1, 0), a2 = (-1/2, sqrt3/2), one site, spinful by default, the band by hand to %.0e, '
+          'from %.0f to %.0f, which is -t times 6 at Gamma and -t times -3 at K with t = -1, and tij=[0, 1] is +1 on the six '
+          'second neighbors to %.0e' % (ferr, E60.min(), E60.max(), serr))
     k12 = (np.arange(1200) + 0.5) / 1200
     sf = {}
     for t2 in (0.0, -0.5, 0.5):
@@ -842,7 +891,8 @@ def main():
     ok = ok and np.allclose(M1, [-1, -1, 1, 1]) and len(fhop) == 6 and all(np.allclose(np.abs(m), 0.025 * np.eye(2)) for m in fhop)
     ok = ok and abs(fb_fill - 0.529) < 1e-3 and np.min(cb) >= -1e-12 and np.max(cb) <= 1 + 1e-12 and np.min(cb) < 0.05 and np.max(cb) > 0.95
     check('H2HFH', ok,
-          'the conduction site at z = -0.5 and the Kondo site at +0.5 at E = 0, JK is the hopping between them, J a hopping of '
+          'the conduction site at z = -0.5 and the Kondo site at +0.5 at E = 0, JK is the hopping +JK between them, which is '
+          '-gamma_K of (8.21), J a hopping of '
           'the Kondo sites to six neighbors whose band set_filling puts at its filling %.3f at zero, an add_onsite after the '
           'call moves both levels, and the weight runs from %.2f to %.2f' % (fb_fill, np.min(cb), np.max(cb)))
     Ec = tri_band(K1, K2) - 2.0
@@ -919,36 +969,44 @@ def main():
           'Spin_Chain with "S=1/2" has S^z = %s, a DMRG run wrote %s in its folder, get_bands wrote %s and get_fermi_surface %s'
           % (lv1.tolist(), files['dmrgpy'], files['get_bands'], files['get_fermi_surface']))
 
-    # Open points of the old text
+    # Points of the old text, settled on 2026-11-22
     c6, eU, eP = R['vison']
-    check('open point, the flux of the ground state', c6 < -0.7 and eP < eU,
+    check('old text, the flux of the ground state', c6 < -0.7 and eP < eU,
           'the flip lowers the energy by %.2f on the 6x6 lattice, and the pi-flux state has %.3f against %.3f' % (-c6, eP, eU))
-    check('open point, the caption of Figure 8.2', R['triangle'][0] == 4 and abs(R['triangle'][1] - 0.75) < 1e-12,
-          'the triangle of spins one half has a ground level of %d states with S(S+1) = %.2f' % R['triangle'])
+    Hr = sum(sdot(i, j, 4) for i, j in ((0, 1), (1, 2), (2, 0), (1, 3), (2, 3)))
+    er, vr = np.linalg.eigh(Hr)
+    s2r = vr[:, 0] @ stot2(range(4), 4) @ vr[:, 0]
+    check('old text, the caption of Figure 8.2', R['triangle'][0] == 4 and abs(R['triangle'][1] - 0.75) < 1e-12
+          and abs(er[0] + 1.75) < 1e-12 and er[1] - er[0] > 0.5 and abs(s2r) < 1e-12,
+          'the triangle of spins one half has a ground level of %d states with S(S+1) = %.2f, and two triangles on an edge '
+          'have one singlet at %.2f' % (R['triangle'] + (er[0],)))
     r6 = R['gaps821'][2]
-    check('open point, the gap 2 gamma_K of a quiz of Section 8.12', abs(r6[2] - 0.332) < 1e-3 and abs(r6[1] - 1.2) < 1e-6,
+    check('old text, the gap 2 gamma_K of a quiz of Section 8.12', abs(r6[2] - 0.332) < 1e-3 and abs(r6[1] - 1.2) < 1e-6,
           'for gamma = 0.6t the indirect gap is %.3f and the direct gap %.2f' % (r6[2], r6[1]))
     res, nfk, half = R['kondo_cell']
-    check('open point, the JK of the notebook in Sections 8.12 and 8.13', abs(res[0.25][0] - 0.5) < 2e-3 and abs(res[0.5][0] - 1.0) < 2e-3
+    check('old text, the JK of the notebook in Sections 8.12 and 8.13', abs(res[0.25][0] - 0.5) < 2e-3 and abs(res[0.5][0] - 1.0) < 2e-3
           and abs(nfk[0.5] - 0.48) < 0.01 and all(v_[1] < 0 < v_[2] for v_ in half.values()),
           'JK = 0.25 and 0.5 give the direct gaps %.2f and %.2f, zero is in the gap for every onsite energy tried, and the '
           'Kondo sites hold %.2f with add_onsite(-2.0)' % (res[0.25][0], res[0.5][0], nfk[0.5]))
-    check('open point, the try-it box of Section 8.13', R['exchange'][0.025][0] < -0.05 and abs(R['exchange'][0.025][1] - 1) < 3e-3,
-          'at J = 0.025 the bands overlap by %.3f and the direct gap is %.2f' % (-R['exchange'][0.025][0], R['exchange'][0.025][1]))
-    check('open point, the local spin density of Section 8.11', R['twice'], 'c^dag sigma c is twice the spin density s')
-    check('open point, the traceless form (8.19)', R['trace819'] < 1e-14,
+    big = {J: (lambda E: E[:, 2].min() - E[:, 1].max())(mesh_levels(notebook_kondo(1.0, onsite=-4.0, J=J), 90)) for J in (0.0, 0.025, 0.05)}
+    check('old text, the try-it box of Section 8.13', R['exchange'][0.025][0] < -0.05 and abs(R['exchange'][0.025][1] - 1) < 3e-3
+          and all(v_ > 0.1 for v_ in big.values()),
+          'at J = 0.025 the bands overlap by %.3f and the direct gap is %.2f, and with JK = 1.0 the gap is %s at J = 0, 0.025 '
+          'and 0.05' % (-R['exchange'][0.025][0], R['exchange'][0.025][1], ' '.join('%.3f' % v_ for v_ in big.values())))
+    check('old text, the local spin density of Section 8.11', R['twice'], 'c^dag sigma c is twice the spin density s')
+    check('old text, the traceless form (8.19)', R['trace819'] < 1e-14,
           'the trace of (8.19) is %.0e on the empty, the singly and the doubly occupied states' % R['trace819'])
-    check('open point, the only mean-field parameter', abs(R['lambda'][1] + 1.12) < 0.01 and abs(nfk[0.5] - 0.48) < 0.01,
+    check('old text, the only mean-field parameter', abs(R['lambda'][1] + 1.12) < 0.01 and abs(nfk[0.5] - 0.48) < 0.01,
           'with the f level at zero the notebook band gives %.2f f fermions per site, and constraint_lambda is %.2f at the '
           'filling 0.15' % (nfk[0.5], R['lambda'][1]))
     dz, eu_ = R['dimerized']
-    check('open point, the uniform spinon chain as an ansatz', abs(dz) < 1e-9 and abs(eu_ - 0.0474) < 1e-4,
+    check('old text, the uniform spinon chain as an ansatz', abs(dz) < 1e-9 and abs(eu_ - 0.0474) < 1e-4,
           'the dimerized state has %.0e per bond and the uniform one %.4f' % (dz, eu_))
-    check('open point, the phase of the bond variable in Section 8.10', R['phases'],
+    check('old text, the phase of the bond variable in Section 8.10', R['phases'],
           'the coefficient of (8.15) gets e^{+i(theta_i - theta_j)} and the operator of (8.12) e^{-i(theta_i - theta_j)}')
-    check('open point, the order of the pairs in the caption of rvb_plaquette', np.allclose(R['overlaps'], [0.5, -0.5]),
+    check('old text, the order of the pairs in the caption of rvb_plaquette', np.allclose(R['overlaps'], [0.5, -0.5]),
           '<a|b> is %+.1f with (30) and %+.1f with (03)' % R['overlaps'])
-    check('open point, the notebook', R['asym'] > 0.9 and abs(R['setfill'][1] - 0.529) < 1e-3,
+    check('old text, the notebook', R['asym'] > 0.9 and abs(R['setfill'][1] - 0.529) < 1e-3,
           'the triangular map differs from its transpose by %.2f of its largest value, and nk=10 gives the filling %.3f'
           % (R['asym'], R['setfill'][1]))
     print('%d checks hold, %.1f s' % (COUNT[0], time.time() - t0))

@@ -4,8 +4,8 @@ contradict, which assert again the numbers that they quote. It prints one line p
 
 Not asserted, since they are not a short calculation here: the critical disorder W_c of about 8t of the figure
 mobility, the correlation length of about 6 sites of the spin-1 Heisenberg chain and the logarithmic correction of
-the spin-1/2 chain, which the sheet gives as values of numerical work, and the SVG of spinon_impurity.py that is not
-the same twice. One statement of the notebook is read from its code and not computed: the cell "The impact of a
+the spin-1/2 chain, which the sheet gives as values of numerical work. The SVG of spinon_impurity.py is the same at
+every run since 2026-11-22, which a run of the figure script twice showed, and it is not checked here. One statement of the notebook is read from its code and not computed: the cell "The impact of a
 strong impurity" compares three systems.
 The figure scripts of webnotes/figures/session09 are not imported, since they write their SVG when they run, and the
 few lines that a check needs are written again here.
@@ -389,15 +389,18 @@ def main():
     k = 2 * np.pi * (np.arange(200000) + 0.5) / 200000
     D = float(np.mean(fermi(-2 * np.cos(k), T) * (1 - fermi(-2 * np.cos(k), T)) / T))
     g = geometry.chain()
-    d1 = g.get_hamiltonian(has_spin=False).get_dos(energies=np.array([0.0]), delta=0.02, nk=4000)[1][0]
-    d2 = g.get_hamiltonian().get_dos(energies=np.array([0.0]), delta=0.02, nk=4000)[1][0]
+    d1 = float(np.real(g.get_hamiltonian(has_spin=False).get_dos(mode="Green", delta=1e-3, energies=[0.0])[1][0]))
+    d2 = float(np.real(g.get_hamiltonian().get_dos(mode="Green", delta=1e-3, energies=[0.0])[1][0]))
+    eb_, db_ = g.get_hamiltonian(has_spin=False).get_dos()
+    d0 = float(np.interp(0.0, np.real(eb_), np.real(db_)))
     cu = np.kron(np.array([[0, 1], [0, 0]]), np.eye(2)); cd = np.kron(np.diag([1, -1]), np.array([[0, 1], [0, 0]]))
     nu, nd = cu.T @ cu, cd.T @ cd
     ident = np.allclose(nu @ nd, ((nu + nd) @ (nu + nd) - (nu - nd) @ (nu - nd)) / 4) and np.allclose(cu @ cd + cd @ cu, 0)
     check('D(E_F) per spin and per site, and the Hubbard term', abs(D - 1 / (2 * np.pi)) < 1e-4 and abs(d1 - D) < 2e-4
-          and abs(d2 - 2 * D) < 4e-4 and ident,
-          'half-filled chain, -sum n_F\'/N = %.4f = 1/(2 pi t), h.get_dos() gives %.4f with has_spin=False and %.4f with the '
-          'two spins; n_up n_dn = (n^2 - m^2)/4 on the four states of one site' % (D, d1, d2))
+          and abs(d2 - 2 * D) < 4e-4 and round(d1, 3) == 0.159 and round(d2, 3) == 0.318 and round(d0, 2) == 0.18 and ident,
+          'half-filled chain, -sum n_F\'/N = %.4f = 1/(2 pi t), h.get_dos(mode="Green", delta=1e-3) gives %.4f with '
+          'has_spin=False and %.4f with the two spins, the bare h.get_dos() %.4f; n_up n_dn = (n^2 - m^2)/4 on the four '
+          'states of one site' % (D, d1, d2, d0))
     h = g.get_hamiltonian()
     h.add_exchange([0.0, 0.0, 0.3]); h.add_swave(0.1)
     m = dense(h.intra)
@@ -546,13 +549,18 @@ def main():
     kF = np.sqrt(4 * np.pi * np.mean(E < -3.0))
     prof = [chi_map(-3.0, int(round(s * 2 * kF * nk / (2 * np.pi))), 0) for s in (0.0, 0.5, 0.9, 1.2, 1.5)]
     prof = [p / prof[0] for p in prof]
+    hsq = geometry.square_lattice().get_hamiltonian(has_spin=False, tij=[-1.])
+    tri = [-float(np.real(hsq.get_chi(energies=[0.], q=[a_, a_, 0.], nk=31, delta=1e-3, T=0.1, integration="triangle")[1][0]))
+           for a_ in (0.0, 0.5)]
     ok = abs(half - 2.57) < 0.005 and abs(kF - 1.035) < 0.001 and abs(np.arccos(0.5) - 1.047) < 1e-3
+    ok = ok and round(tri[0], 3) == 0.264 and round(tri[1], 3) == 0.677 and round(tri[1] / tri[0], 2) == 2.56
     ok = ok and abs(np.sqrt(2) * np.arccos(0.75) - 1.022) < 1e-3 and max(abs(p - 1) for p in prof[1:3]) < 0.06
     ok = ok and abs(prof[3] - 0.68) < 0.01 and abs(prof[4] - 0.56) < 0.01
     check('the maps of chi_0 over the zone of q, T=0.1t', ok,
-          'half filling, chi_0(pi,pi)/chi_0(0) = %.3f on a 200x200 mesh. At mu=-3t, kF = %.3f from the area, %.3f along the '
+          'half filling, chi_0(pi,pi)/chi_0(0) = %.3f on a 200x200 mesh, and h.get_chi with the triangle integration on the '
+          '31x31 k-mesh of the figure gives %.4f and %.4f, the ratio %.3f. At mu=-3t, kF = %.3f from the area, %.3f along the '
           'diagonal and %.3f along the axes, and chi_0 at q_x = 0.5, 0.9, 1.2 and 1.5 times 2kF is %.3f, %.3f, %.3f and %.3f '
-          'of its value at q=0' % (half, kF, np.sqrt(2) * np.arccos(0.75), np.arccos(0.5), *prof[1:]))
+          'of its value at q=0' % (half, tri[0], tri[1], tri[1] / tri[0], kF, np.sqrt(2) * np.arccos(0.75), np.arccos(0.5), *prof[1:]))
     out = []
     for mu in (0.0, 1.0):
         hc = geometry.chain().get_hamiltonian(has_spin=False)
@@ -657,12 +665,17 @@ def main():
     extrap = (4 * coef[0] - coef[1]) / 3
     grid = np.linspace(0.05 + 0.05 ** 2 / 2 + 1e-3, 5, 400)
     neg = np.all(lindhard_3d_closed(0.05, grid) < 0)
+    # lindhard_3d_closed holds the two spins, so 1 + v chi_gas is 1 + 2 v chi_0 with the chi_0 of one spin, the denominator
+    # of Section 9.5a since the pick of 2026-11-22, and 1 + v chi_0 with the chi_0 of one spin puts the zero at omega_p/sqrt2
+    half = brentq(lambda w: 1 + vq(0.02) * lindhard_3d_closed(0.02, w) / np.pi ** 2 / 2, 0.02 + 0.0002 + 1e-3, 5.0)
     ok = s1 < 0 and abs(s1 - s2) < 1e-4 * abs(s1) and abs(s1 / lead - 1) < 0.01 and abs(extrap - 0.6) < 0.002 and neg
+    ok = ok and abs(half - 0.7073) < 5e-4 and abs(half - wp / np.sqrt(2)) < 1e-3
     R['plasmon'] = (s1, neg, extrap)
-    check('the plasmon is the zero of 1 + v(q) chi_0', ok,
-          'q=0.1kF, omega=1.2 hbar kF^2/m, Re chi_0 = %.6f N(0) from the closed form and %.6f from the sum, -n q^2/(m omega^2) '
-          '= %.6f N(0); omega_p = 1, (omega^2 - omega_p^2)/(v_F q)^2 = %.4f at q=0.02kF and %.4f at 0.04kF, %.4f at q -> 0, '
-          'and chi_0 < 0 at every omega above the continuum, so 1 - v(q) chi_0 has no zero there' % (s1, s2, lead, coef[0], coef[1], extrap))
+    check('the plasmon is the zero of 1 + 2 v(q) chi_0, with the chi_0 of one spin', ok,
+          'q=0.1kF, omega=1.2 hbar kF^2/m, Re chi_0 of both spins = %.6f N(0) from the closed form and %.6f from the sum, '
+          '-n q^2/(m omega^2) = %.6f N(0); omega_p = 1, (omega^2 - omega_p^2)/(v_F q)^2 = %.4f at q=0.02kF and %.4f at '
+          '0.04kF, %.4f at q -> 0, the zero of 1 + v chi_0 with chi_0 of one spin is at %.4f = omega_p/sqrt2, and chi_0 < 0 '
+          'at every omega above the continuum, so 1 - 2 v(q) chi_0 has no zero there' % (s1, s2, lead, coef[0], coef[1], extrap, half))
     rng = np.random.default_rng(3)
     kv = rng.normal(size=(400000, 3))
     kv *= (rng.random(400000) ** (1 / 3) / np.linalg.norm(kv, axis=1))[:, None]
@@ -796,9 +809,16 @@ def main():
         e = np.linalg.eigvalsh(dense(hy.get_hk_gen()([0., 0., 0.])))
         out.append((J, np.sort(np.abs(e))[0] / 0.1, abs(ysr_det(J, 0.0, 0.1)[0]) / 0.1, abs(ysr_formula(J, 0.0, 0.1)) / 0.1))
     ok = all(abs(a - b) < 1e-3 and abs(a - c) < 3e-3 for J, a, b, c in out) and abs(out[0][1] - 0.6005) < 2e-4 and abs(out[1][1] - 0.3837) < 2e-4
+    kz = 2 * np.pi * (np.arange(200000) + 0.5) / 200000
+    Jc_det = 1 / np.mean(0.2 / (4 * np.cos(kz) ** 2 + 0.04))           # det(1 - J g(0)) = 1 - J^2 g_x^2 at half filling
+    signed = lambda J: (lambda e_: e_[np.argmin(np.abs(e_))])(np.linalg.eigvalsh(bdg_block(400, 0.2, J=J)))
+    Jc_ring = brentq(signed, 1.9, 2.1, xtol=1e-6)
+    ok = ok and abs(Jc_det - np.sqrt(4.04)) < 1e-6 and abs(Jc_ring - np.sqrt(4.04)) < 1e-4 and round(Jc_det, 2) == 2.01
     check('the same state in a pyqula supercell', ok,
           'ring of 300 sites, add_exchange with J S on one site, add_swave(0.1), half filling, alpha = J S/2: '
-          + ', '.join('J S=%.0f gives |E_b| = %.4f Delta, the T-matrix %.4f, (9.10) %.4f' % o for o in out))
+          + ', '.join('J S=%.0f gives |E_b| = %.4f Delta, the T-matrix %.4f, (9.10) %.4f' % o for o in out)
+          + '; with Delta=0.2t the level crosses zero at J S = %.5f from det(1 - J g(0)) = 0 and %.5f on a ring of 400 sites, '
+          'sqrt(4 + Delta^2) = %.5f' % (Jc_det, Jc_ring, np.sqrt(4.04)))
     k = 2 * np.pi * (np.arange(20000) + 0.5) / 20000
     e = 2 * np.cos(k) + 1.8
     gz, gx = np.mean(-e / (e ** 2 + 0.2 ** 2)), np.mean(-0.2 / (e ** 2 + 0.2 ** 2))
@@ -822,12 +842,29 @@ def main():
 
     # Vacancies in topological matter
     lo, hi, ing_c = torus_vacancy(18, 0.15, 0.0, 0)
-    lo2, hi2, ing_t = torus_vacancy(18, 0.0, 3 * np.sqrt(3) * 0.15, 0)
-    ok = abs(hi - lo - 1.559) < 1e-3 and abs(hi2 - lo2 - 1.559) < 1e-3 and len(ing_c) == 1 and abs(ing_c[0][0]) < 1e-9
+    lo2, hi2, ing_t = torus_vacancy(18, 0.0, 0.78, 0)
+    ok = abs(hi - lo - 1.559) < 1e-3 and abs(hi2 - lo2 - 1.56) < 1e-6 and len(ing_c) == 1 and abs(ing_c[0][0]) < 1e-9
     ok = ok and abs(ing_c[0][1] - 0.45) < 0.005 and len(ing_t) == 0
+    from pyqula import algebra
+    pq_ = {}
+    for name_, (x_, M_) in (('chern', (0.3 / np.sqrt(3), 0.0)), ('trivial', (0.0, 0.78))):      # the calls of g5_vacancy_honeycomb.py
+        gv = geometry.honeycomb_lattice().get_supercell(18)
+        v_ = int(np.argmin(np.sum((gv.r - np.mean(gv.r, axis=0)) ** 2, axis=1)))
+        hq = gv.get_hamiltonian(has_spin=False); hq.add_haldane(x_); hq.add_sublattice_imbalance(M_)
+        Hq = algebra.todense(hq.get_hk_gen()([0., 0., 0.]))
+        nb_ = np.where((np.abs(np.abs(Hq[v_]) - 1.) < 1e-9) & (np.arange(len(Hq)) != v_))[0]
+        keep_ = np.arange(len(Hq)) != v_
+        e0_ = np.linalg.eigvalsh(Hq); ev_, wv_ = np.linalg.eigh(Hq[np.ix_(keep_, keep_)])
+        gap_ = e0_[e0_ > 0].min() - e0_[e0_ < 0].max()
+        ins_ = [(e_, float(np.sum(np.abs(wv_[nb_ - (nb_ > v_), i_]) ** 2))) for i_, e_ in enumerate(ev_) if abs(e_) < 0.45 * gap_]
+        pq_[name_] = (gap_, ins_)
+    ok = ok and abs(pq_['chern'][0] - 1.559) < 1e-3 and len(pq_['chern'][1]) == 1 and abs(pq_['chern'][1][0][0]) < 1e-9
+    ok = ok and abs(pq_['chern'][1][0][1] - 0.45) < 0.005 and abs(pq_['trivial'][0] - 1.56) < 1e-6 and len(pq_['trivial'][1]) == 0
     check('the figure vacancy_dos, a vacancy on an 18x18 torus', ok,
-          'Haldane t2=0.15t, gap %.3f, one level in the gap at %+.1e with %.3f of its weight on the three neighbors; mass '
-          'M=0.779t, gap %.3f, no level in the gap' % (hi - lo, ing_c[0][0], ing_c[0][1], hi2 - lo2))
+          'pyqula add_haldane(0.3/sqrt3), t2=0.15t: gap %.3f, one level in the gap at %+.1e with %.3f of its weight on the '
+          'three neighbors; add_sublattice_imbalance(0.78): gap %.3f, no level in the gap; the numpy model gives %.3f, '
+          '%+.1e, %.3f and %.3f' % (pq_['chern'][0], pq_['chern'][1][0][0], pq_['chern'][1][0][1], pq_['trivial'][0],
+                                    hi - lo, ing_c[0][0], ing_c[0][1], hi2 - lo2))
     zs = {}
     for M in (0.3, 0.4):
         el, eh = haldane_edges(0.1, M)
@@ -965,17 +1002,19 @@ def main():
     part, other = md[i0 + 1] / md[i0], md[i0 - 1] / md[i0]
     share = abs(md[i0 + 1]) / (np.abs(md).sum() - abs(md[i0]))
     rates = [-np.polyfit(np.arange(10 + p, 41, 2), np.log(np.abs(md[i0 + 10 + p:i0 + 41:2])), 1)[0] for p in (0, 1)]
-    first = [next(j for j in range(p, 41, 2) if abs(md[i0 + j]) < 1e-11) for p in (0, 1)]
-    shown = [j for j in range(41) if abs(md[i0 + j]) >= 1e-11]          # the points above the lower end of the panel
+    first = [next(j for j in range(p, 41, 2) if abs(md[i0 + j]) < 1e-8) for p in (0, 1)]
+    shown = [j for j in range(41) if abs(md[i0 + j]) >= 1e-8]           # the points above the lower end of the panel
     worst = max(rel[i0 + j] for j in shown)
     ok = abs(gap - 0.8) < 1e-6 and abs(part + 0.806) < 0.002 and abs(other + 0.053) < 0.002 and abs(share - 0.655) < 0.005
-    ok = ok and abs(rates[0] - 0.573) < 0.005 and abs(rates[1] - 0.532) < 0.005 and first == [32, 39] and worst < 1e-3
+    last = [max(j for j in shown if j % 2 == p) for p in (0, 1)]
+    ok = ok and abs(rates[0] - 0.573) < 0.005 and abs(rates[1] - 0.532) < 0.005 and first == [20, 27] and last == [18, 25]
+    ok = ok and worst < 1e-6
     check('the figure spinon_impurity, the dimerized chain', ok,
           'gap %.3f; from the Dyson equation of the infinite chain the partner of site 0 has %.3f of its moment, %.3f of all '
           'the moment off site 0, and the other neighbor %.3f; rates %.3f and %.3f per site on the two sublattices from n=10 '
-          'to 40, ln(1/0.6) = %.3f; |m_n| < 1e-11 from n=%d on the sublattice of site 0 and from n=%d on the other; at the '
-          'points above 1e-11 the diagonalization of the figure differs from it by at most %.0e, and by %.0e at n=38'
-          % (gap, part, share, other, rates[0], rates[1], np.log(1 / 0.6), first[0], first[1], worst, rel[i0 + 38]))
+          'to 40, ln(1/0.6) = %.3f; |m_n| < 1e-8 from n=%d on the sublattice of site 0 and from n=%d on the other, so the '
+          'panel ends at n=%d and %d; at the points above 1e-8 the diagonalization of the figure differs from it by at most '
+          '%.0e' % (gap, part, share, other, rates[0], rates[1], np.log(1 / 0.6), first[0], first[1], last[0], last[1], worst))
 
     # Anderson localization
     xi = {W: [lyapunov(W, 100000, s) for s in range(6)] for W in (0.25, 0.5, 1.0)}
@@ -1038,17 +1077,17 @@ def main():
     dens, ext = [], []
     x3, y3, z3 = np.meshgrid(np.arange(L3), np.arange(L3), np.arange(L3), indexing='ij')
     i3 = (x3 * L3 * L3 + y3 * L3 + z3).ravel()
-    for s in range(4):
-        rng = np.random.default_rng(10 + s)
+    for s in range(1, 9):                                   # the eight seeds of g6_10b_random_disorder.py
+        rng = np.random.default_rng(s)
         H = np.diag(W3 * (2 * rng.random(L3 ** 3) - 1))
         for dx, dy, dz in ((1, 0, 0), (0, 1, 0), (0, 0, 1)):
             j3 = ((((x3 + dx) % L3) * L3 + (y3 + dy) % L3) * L3 + (z3 + dz) % L3).ravel()
             H[i3, j3] = H[j3, i3] = -1.0
         ee = np.linalg.eigvalsh(H)
-        dens.append(np.sum(np.abs(ee) < 2.0) / (4.0 * L3 ** 3)); ext.append(np.abs(ee).max())
+        dens.append(np.sum(np.abs(ee) < 5.0) / (10.0 * L3 ** 3)); ext.append(np.abs(ee).max())
     R['dos3'] = (min(dens), max(dens))
-    check('the density of states of the 3D Anderson model at W=20t', 0.02 < min(dens) and max(dens) < 0.03 and max(ext) < 26,
-          'cubes of 10^3 sites, 4 seeds, states per site and per unit of energy in |E| < 2t, from %.4f to %.4f, and 1/(2W) = '
+    check('the density of states of the 3D Anderson model at W=20t', 0.0215 <= min(dens) and max(dens) < 0.0275 and max(ext) < 26,
+          'cubes of 10^3 sites, 8 seeds, states per site and per unit of energy in |E| < 5t, from %.4f to %.4f, and 1/(2W) = '
           '%.3f; the largest |E| is %.1f, inside 6t+W = 26t' % (min(dens), max(dens), 1 / (2 * W3), max(ext)))
     check('the numbers of the quizzes of Sections 9.6, 9.9 and 9.10', abs(10 * 0.1 ** 2 - 0.1) < 1e-12 and abs(2 ** -0.5 - 0.71) < 0.005
           and abs(np.exp(-4) - 0.018) < 0.0005 and np.allclose(np.cos(np.pi * np.arange(8) / 2), np.cos(np.pi * (np.arange(8) + 4) / 2)),
@@ -1056,46 +1095,52 @@ def main():
           % (10 * 0.1 ** 2, 2 ** -0.5, np.exp(-4)))
 
     # The statements of the old text that these numbers contradict, each with the numbers of its line above
-    check('wrong: the plasmon of Figure 9.2', R['plasmon'][0] < 0 and R['plasmon'][1],
-          'chi_0 = %.6f N(0) < 0 above the continuum, so the zero is of 1 + v chi_0 and not of 1 - v chi_0' % R['plasmon'][0])
-    check('wrong: the sign of delta n(x) in Section 9.6a', R['dn0'] < 0 and all(a < 0 < c for Q, a, c in R['dn_q']),
+    check('corrected: the plasmon of Figure 9.2', R['plasmon'][0] < 0 and R['plasmon'][1],
+          'chi_0 = %.6f N(0) < 0 above the continuum for both spins, so the zero is of 1 + 2 v chi_0 with the chi_0 of one '
+          'spin and not of 1 - v chi_0' % R['plasmon'][0])
+    check('corrected: the sign of delta n(x) in Section 9.6a', R['dn0'] < 0 and all(a < 0 < c for Q, a, c in R['dn_q']),
           'delta n(0)/v0 = %+.4f for a repulsive impurity, delta n(q) = -chi_0(q) v(q)' % R['dn0'])
-    check('wrong: "in the Born approximation" in Section 9.7', abs(R['born'][1] - 0.6) < 1e-3 and abs(R['born'][0] - 0.5) < 1e-12,
+    check('corrected: "in the Born approximation" in Section 9.7', abs(R['born'][1] - 0.6) < 1e-3 and abs(R['born'][0] - 0.5) < 1e-12,
           'the lattice gives %.4f Delta at alpha=0.5, (9.10) 0.6000, the first order %.2f' % (R['born'][1], R['born'][0]))
-    check('wrong: the state at -0.016t of the quiz of Section 9.8', abs(R['m05'][0] + 0.197) < 0.002 and R['m05'][1] > 0.2,
+    check('corrected: the state at -0.016t of the quiz of Section 9.8', abs(R['m05'][0] + 0.197) < 0.002 and R['m05'][1] > 0.2,
           'G_AA(-0.016t) = %.3f and G_BB(-0.016t) = %+.3f, neither is zero, and the 18x18 torus level is at %+.4f' % R['m05'])
     rows = R['insulator']
-    check('wrong: the gaps 0.1 and 0.3 of the try-it of Section 9.9', abs(rows[0][3] - 0.2) < 2e-3 and abs(rows[1][3] - 0.6) < 2e-3,
+    check('corrected: the gaps 0.1 and 0.3 of the try-it of Section 9.9', abs(rows[0][3] - 0.2) < 2e-3 and abs(rows[1][3] - 0.6) < 2e-3,
           'the gaps are %.3f and %.3f' % (rows[0][3], rows[1][3]))
-    check('wrong: "within one or two sites" in the notebook box of Section 9.6b', rows[0][6] > 9 and rows[1][6] > 3,
+    check('corrected: "within one or two sites" in the notebook box of Section 9.6b', rows[0][6] > 9 and rows[1][6] > 3,
           'the LDOS change decays over %.2f and %.2f sites' % (rows[0][6], rows[1][6]))
     hopb, spl, gapeq = R['bichain']
-    check('wrong: bichain as a dimerized chain, Sections 9.5b and 9.9', np.allclose(hopb, 1.0),
+    check('corrected: bichain as a dimerized chain, Sections 9.5b and 9.9', np.allclose(hopb, 1.0),
           'the two hoppings are %.0f and %.0f' % (hopb[0], hopb[1]))
-    check('wrong: 1/W for the density of states in the quiz of Section 9.10b', R['dos3'][1] < 0.03,
+    check('corrected: 1/W for the density of states in the quiz of Section 9.10b', R['dos3'][1] < 0.03,
           'from %.4f to %.4f per site and per unit of energy, 1/(2W) = 0.025 and not 1/W = 0.05' % R['dos3'])
-    check('depends: the state at -0.14t of the quiz of Section 9.8', R['m03'][0] < 0 < R['m03'][1],
+    check('condition written: the state at -0.14t of the quiz of Section 9.8', R['m03'][0] < 0 < R['m03'][1],
           '%+.4f for the vacancy on the sublattice with +M and %+.4f on the other' % R['m03'])
-    check('depends: the guaranteed in-gap mode of Section 9.8 and Figure 9.4', abs(R['m05'][0] + 0.197) < 0.002,
+    check('condition written: the in-gap mode of Section 9.8 and Figure 9.4 close to the closing of the gap', abs(R['m05'][0] + 0.197) < 0.002,
           'at M=0.5t with C=1 G_AA has no zero in the gap away from the edge')
     o = R['ssh'][0]
-    check('depends: the SSH quiz of Section 9.8', len(o[3][0]) == 0 and len(o[3][1]) == 2,
+    check('condition written: the SSH quiz of Section 9.8', len(o[3][0]) == 0 and len(o[3][1]) == 2,
           'the onsite energy 2t removes the zero level only on the neighbor joined by the strong bond')
     (b, c5_), (st, sd) = R['sq'], R['ln2']
-    check('depends: D(E_F) of the caption of stoner, and "logarithmically enhanced"', abs(b[0] - 0.264) < 1e-3 and c5_[0] > b[0] + 0.03
+    check('condition written: D(E_F) of the caption of stoner, and "logarithmically enhanced"', abs(b[0] - 0.264) < 1e-3 and c5_[0] > b[0] + 0.03
           and np.all(sd > 0.02),
           '0.264 at T=0.1t grows to %.3f at 0.05t, and chi_0(pi,pi) has the second differences %s in ln(1/T)'
           % (c5_[0], np.round(sd, 4).tolist()))
-    check('depends: e^{-L/xi} in the quiz of Section 9.10b', abs(R['cond'][0] / R['cond'][1] - 1) < 0.15,
+    check('condition written: e^{-2L/xi} in the quiz of Section 9.10b', abs(R['cond'][0] / R['cond'][1] - 1) < 0.15,
           'the slope of <ln T> is %.4f per site, 2/xi = %.4f' % R['cond'])
-    check('depends: N IPR about 2 below V0=2t in the caption of aah_ipr', all(abs(x_ - 1.5) < 0.01 for x_ in R['aah'][0])
+    check('condition written: N IPR about 2 at V0=t in the caption of aah_ipr', all(abs(x_ - 1.5) < 0.01 for x_ in R['aah'][0])
           and all(x_ > 4.4 for x_ in R['aah'][2]),
           'N IPR is %s at V0=0, %s at t and %s at 1.9t' % tuple(np.round(a_, 2).tolist() for a_ in R['aah']))
-    check('lecturer: chi_A of Section 9.3 for the density and an onsite energy', all(a < 0 for Q, a, c in R['dn_q']),
+    check('picked 2026-11-22: chi_A of Section 9.3 for the density and an onsite energy, delta n = -chi_0 v',
+          all(a < 0 and abs(a + c) < 2e-3 * c for Q, a, c in R['dn_q']),
           'dn/dv = %s, so chi_A = -chi_0' % ', '.join('%.4f' % a for Q, a, c in R['dn_q']))
     ch_, sp_, c0_ = R['rpa']
-    check('lecturer: (9.6) without the factor 2 of the spins', abs(-ch_ / (2 * c0_) - 1 / (1 + c0_)) < 1e-3,
+    check('picked 2026-11-22: (9.6) with the chi_0 of one spin, the factor 2 of the spins outside it', abs(-ch_ / (2 * c0_) - 1 / (1 + c0_)) < 1e-3,
           'the density response %.4f is 2 chi_0 = %.4f times 1/(1 + U chi_0) = %.4f' % (-ch_, 2 * c0_, 1 / (1 + c0_)))
+    check('lecturer: the italic rule of the key box of Section 9.8', all(o[0] < 1e-12 for o in R['ssh'])
+          and abs(R['m05'][0] + 0.197) < 0.002 and R['m05'][1] > 0.2,
+          'the SSH ring keeps its zero level for both orders, |E| = %.0e and %.0e, and at t2=0.1t, M=0.5t G_AA = %.3f and '
+          'G_BB = %+.3f have no zero in the gap' % (R['ssh'][0][0], R['ssh'][1][0], R['m05'][0], R['m05'][1]))
 
     print('%d checks hold, %.1f s' % (COUNT[0], time.time() - t0))
     assert COUNT[0] == SHEET_LINES, 'the sheet has %d bullets, the script made %d checks' % (SHEET_LINES, COUNT[0])

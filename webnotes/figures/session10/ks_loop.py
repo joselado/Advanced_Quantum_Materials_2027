@@ -48,6 +48,7 @@ ax.plot(x, 0.32 + 0.1 * vext, color=style.MUTED, lw=1.0, ls=(0, (3, 2)))
 style.arrows(ax, xlabel=r'site $i$', ylabel=r'$n(i)$')
 ax.set_xlim(0, N - 1); ax.set_ylim(0, 1.25)
 ax.set_yticks([0, 0.5, 1]); ax.tick_params(axis='y', length=2.5, pad=2)
+ax.set_xticks([0, 15, 30, 45]); ax.tick_params(axis='x', length=2.5, pad=2)   # the center of the chain is at 29.5
 style.label(ax, 3, 0.2, r'$v_{\rm ext}(i)$', color=style.MUTED, fontsize=11.5, ha='left')
 style.label(ax, 47, 1.12, 'iteration 1', color=style.WARM, fontsize=11)
 style.label(ax, 47, 0.96, 'iteration 3', color=style.LIGHT, fontsize=11)
@@ -58,8 +59,13 @@ ax = axs[1]
 it = np.arange(1, len(res) + 1)
 ax.semilogy(it, res, 'o-', color=style.ACCENT, ms=2.6, lw=1.0)
 style.arrows(ax, xlabel='iteration', ylabel=r'$\max_i|\Delta n(i)|$')
-ax.set_xlim(0, len(res) + 2); ax.set_ylim(res.min() / 3, res.max() * 3)
+ax.set_xlim(0, len(res) + 2); ax.set_ylim(1e-12, res.max() * 3)
 ax.yaxis.set_minor_locator(style.plt.NullLocator())
-ax.set_yticks([1e-9, 1e-5, 1e-1]); ax.tick_params(axis='y', length=2.5, pad=2)
-ax.set_xticks([0, 10, 20, 30]); ax.tick_params(axis='x', length=2.5, pad=2)
+ax.set_yticks([1e-10, 1e-6, 1e-2]); ax.tick_params(axis='y', length=2.5, pad=2)   # 1e-10, the end of the caption
+ax.set_xticks([0, 12, 24, 36]); ax.tick_params(axis='x', length=2.5, pad=2)        # 36, the iterations of the caption
+assert len(res) == 36 and res[-1] < 1e-10 <= res[-2]                                # the caption, 1e-10 after 36 iterations
+assert round(hist[-1][30], 2) == 0.99 and round(n0[30], 2) == 1.21                  # the caption, 0.99 and 1.21 at the center
+assert 0.47 < (res[1:] / res[:-1]).min() and (res[1:] / res[:-1]).max() < 0.54      # the caption, a factor close to one half
+assert [s[0] for s in show] == [0, 1, 3, len(hist) - 1]                             # the caption, the start, iterations 1 and 3, convergence
+assert np.allclose(vext, vext[::-1]) and np.isclose(np.log(vext[30] / vext[37]), 8 / 7)  # the caption, the well at 29.5 with width 7
 style.save(fig, __file__)

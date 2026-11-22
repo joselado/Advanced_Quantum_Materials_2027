@@ -15,9 +15,11 @@ statement that is not on this sheet is checked before a page claims it. The chec
 ## The magnetization and the Hubbard term
 
 - The $m$ of (1.8) and (6.2) is $n_\uparrow-n_\downarrow=2\langle S^z\rangle$ of one site, so it saturates at 1, one
-  Bohr magneton. The bold $\mathbf m\equiv\langle\mathbf S\rangle$ of Section 6.3 and of its quiz is half of it. The
-  spinor $(1,1)/\sqrt2$ has $n_\uparrow-n_\downarrow=0$ and $\langle S^x\rangle=1/2$, and a page that uses both says
-  which one it means.
+  Bohr magneton. The bold moment of Section 6.3 is $\mathbf m\equiv2\langle\mathbf S\rangle$, picked by the lecturer
+  on 2026-11-22, so its component $m_z$ is this $m$, 1 for one spin up, and the field of the bullet on the Hartree decoupling is
+  $-\tfrac U2\mathbf m\cdot\boldsymbol\sigma$ in every direction. The spinor $(1,1)/\sqrt2$ has
+  $n_\uparrow-n_\downarrow=0$, $\langle S^x\rangle=1/2$ and $\mathbf m=(1,0,0)$, and a page that uses $m$ and
+  $\mathbf m$ says which one it means.
 - On the four states of one site $Un_\uparrow n_\downarrow=\tfrac U2n-\tfrac{2U}{3}\mathbf S^2=\tfrac U4(n^2-m^2)$
   holds as an operator identity, with $\mathbf S^2=\tfrac34(n-2n_\uparrow n_\downarrow)$. The first form is the one of
   Section 6.3, and the last one is the one of Section 9.5b.
@@ -45,7 +47,11 @@ statement that is not on this sheet is checked before a page claims it. The chec
   of the two only above $U=16t/\pi=5.09t$, and the paramagnet is unstable only above $U=2\pi t=6.28t$. The
   antiferromagnet is below both at $U$ equal to $t$, $3t$, $4.5t$, $6t$, $10t$ and $20t$. pyqula started from the field
   of the saturated state, a copy of the Hamiltonian with `clean()` and `add_zeeman`, stays there with $|m|=1.000$ and
-  zero energy at $4.1t$ and $4.5t$, and goes back to the paramagnet, $|m|=0.025$, at $3.9t$.
+  zero energy at $4.1t$ and $4.5t$. At $3.9t$ it leaves the saturated state, and the end depends on `mix` and on
+  `maxerror`. With `mix=0.9` and the default `maxerror=1e-5` it stops close to the paramagnet, $|m|=0.025$ on `nk=40` and
+  0.049 on `nk=41`, a moment of one or two k-points. With `mix=0.5`, with the default `mix`, which is 0.3, or with
+  `mix=0.9` and `maxerror=1e-9`, it reaches the antiferromagnet, $|m|=0.758$ and $-0.95905$ per cell, with its moment in
+  the plane, $m_z$ below $10^{-4}$. So $|m|$ is read from `mx`, `my` and `mz`, as the next section says.
 - $E_\text{FM}-E_\text{AFM}$ per cell of two sites is 0.1995 at $U=20t$ and 0.0999 at $U=40t$, in pyqula and in numpy,
   and $U$ times it is 3.990 and 3.998. So it is $J=4t^2/U$ per cell and $J/2$ per bond, which is $2JS^2$ for $S=1/2$,
   the classical Néel state below the ferromagnet. This is the $1/U$ law of Section 6.5 and the "one half of the
@@ -53,8 +59,9 @@ statement that is not on this sheet is checked before a page claims it. The chec
 - The mean-field dimer, the cell "The interacting Hubbard dimer" of the notebooks of Sessions 1 and 6, has its
   threshold at $U=2t$. Below it the moment is zero and the gap is $2t$, and above it $m=\sqrt{1-4t^2/U^2}$ and the gap
   is $U$. pyqula gives less than 0.001 at $1.8t$ and $1.9t$, then 0.305 at $2.1t$, 0.4165 at $2.2t$, 0.600 at $2.5t$,
-  0.866 at $4t$ and 0.980 at $10t$. The exact dimer has no moment, since its ground state is the singlet, with
-  $\mathbf S^2=0$.
+  0.866 at $4t$ and 0.980 at $10t$. The exact dimer has no ordered moment, $\langle n_\uparrow-n_\downarrow\rangle=0$
+  on each site, since its ground state is the singlet, with $\mathbf S^2=0$, while its local moment
+  $\langle(n_\uparrow-n_\downarrow)^2\rangle$, the weight $1/(1+E_S^2/4t^2)$ of the covalent singlet, is 0.854 at $4t$.
 
 ## pyqula in mean field
 
@@ -171,13 +178,19 @@ statement that is not on this sheet is checked before a page claims it. The chec
   random seeds, with angles that change
   with the seed, and the same energy for the plain chain with hopping $\sqrt2$, at $180^\circ$. pyqula with
   `maxite=4000` gives this energy within $10^{-5}$ for four seeds, with angles between $95^\circ$ and $127^\circ$ and
-  $\cos\theta=-n_y^2$, and with the default `maxite=1000` the seed 0 raises `MeanFieldConvergenceError`. The release
+  $\cos\theta=-n_y^2$. The guess `mf="XY"` is a random field in the plane $xy$, and the moments of the solution leave
+  this plane, with the largest $|m_z|/|m|$ from 0.57 to 0.92 in these four runs, since they lie in it only for $n$ along
+  $y$. The cell draws `extract("mx")` and `extract("my")`, the field $-\tfrac U2\mathbf m$, so its arrows point opposite
+  to the moments and show only their part in the plane. With the default `maxite=1000` seven of the seeds 0 to 7, all but
+  the seed 1, raise `MeanFieldConvergenceError`. The release
   0.0.96 of the students prints a line there and returns `None` in place of the Hamiltonian, as the sheets of Sessions
   1 and 10 say. So the angle
   of the cell is set by the random guess and not by the coupling, and the Rashba chain is not the spiral of the line
   above.
 - The triangular lattice of the notebook, a supercell of $3\times3$ at $U=10t$ with `mf="XY"` and `maxite=4000`, has
-  $120^\circ$ within $0.2^\circ$ on its 27 bonds and $|m|=0.922$, with the energy $-3.8085$ per cell for two seeds.
+  $120^\circ$ within $0.2^\circ$ on its 27 bonds and $|m|=0.922$, with the energy $-3.8085$ per cell for two seeds. The
+  spread of $0.2^\circ$ is where the loop stops with the default `maxerror=1e-5`, and with `maxerror=1e-8` the 27 angles
+  are within $0.001^\circ$ of $120^\circ$.
 
 ## Holstein-Primakoff and the magnons
 
@@ -201,7 +214,10 @@ statement that is not on this sheet is checked before a page claims it. The chec
   Néel order in this theory. The exact chain of spins 1/2 has its lowest triplet at $(\pi/2)J|\sin k|$, and a ring of
   12 spins gives $1.727J$ at $k=\pi/2$, where (6.9) gives $1.000J$. This is where Section 8.7 can start.
 - An easy axis $-A(S^z)^2$ with $A>0$ costs $A(2S-1)$ for one magnon on a site, 0, $A$ and $2A$ for $S$ equal to 1/2,
-  1 and 3/2, while linear spin waves give $2AS$. For $S=1/2$ the term is the constant $-A/4$ and opens no gap.
+  1 and 3/2, while linear spin waves give $2AS$. For $S=1/2$ the term is the constant $-A/4$ and opens no gap. In linear
+  spin waves the antiferromagnet (6.9) has at $k=0$ the gap $\sqrt{(zJS+a)^2-(zJS)^2}$, with $a$ the cost of one magnon
+  on a site, which is larger than $a$ and between 1.4 and 2.1 times $S\sqrt{zJA}$ for $A\ll zJ$, with $a=A(2S-1)$ or
+  $2AS$.
 
 ## Topological magnons
 
@@ -234,41 +250,58 @@ statement that is not on this sheet is checked before a page claims it. The chec
   `add_haldane(-0.1)`, with the gap 0.900. A magnon Chern number is computed band by band, or with zero energy moved
   into the gap, as the recipe "The Chern number of a magnon band" does.
 
-## Statements of the pages that these numbers contradict
+## Statements of the pages that these numbers contradicted, settled on 2026-11-22
 
-These are left as they are until the lecturer decides. Each one is checked again by its number.
+These were statements of the old text that the numbers above contradict. On 2026-11-22 each one was corrected on the web
+or decided, as the section "Open for the lecturer" of `webnotes/plans/session06.md` lists, and each one is still checked by
+its number, in the same order, in `conventions.py`.
 
-- Section 6.6 says that the self-consistent magnetization of the chain "grows continuously once $U$ is above this
-  threshold", and Figure 6.1(b) draws such a rise. In mean field the uniform chain jumps from $m=0$ to $m=0.2$ at
-  $U=1.926t$ for $n=0.2$, and it jumps at every filling. A continuous rise needs a density of states with its maximum
-  at $E_F$, as in the widget.
-- Section 6.5 says that the uniform solution "is the paramagnet below $U\approx 4t$ and a fully polarized ferromagnet
-  above it", and the caption of `mf_chain` puts a jump at $4t$, where its script switches from the paramagnet to the
-  saturated ferromagnet. The saturated state exists from $4t$, but it stays above the paramagnet, by $0.27t$ per site
-  at $4t$, up to $16t/\pi=5.09t$. So the lowest uniform state changes at $5.09t$. Its energy has a kink there, with the
-  slope $1/4$ of the paramagnet below and 0 above, and no jump, while its moment jumps from 0 to 1, as the sheet of
-  Session 1 says.
-- Section 6.3 writes $\mathbf m\equiv\langle\mathbf S\rangle$ next to the $m$ of (6.2), which is twice
-  $\langle S^z\rangle$, and it says that self-consistency gives "a magnetic solution with $m\neq0$ for $U>0$". This
+- Section 6.6 said that the self-consistent magnetization of the chain "grows continuously once $U$ is above this
+  threshold". In mean field the uniform chain jumps from $m=0$ to $m=0.2$ at $U=1.926t$ for $n=0.2$, and it jumps at every
+  filling. A continuous rise needs a density of states with its maximum at $E_F$, as in the widget. Corrected: the page
+  gives the jump at $1.93t$, below the $1.94t$ of (6.3), and reads Figure 6.1, whose render is not changed, as a model
+  $f(m)$ where the moment grows continuously. After the independent check of the same day it adds that the cell of the
+  notebook can end at a moment between 0 and 0.2, with 0.13 in its title at $1.8t$, a state above $m=0$ that the finite k-mesh
+  keeps, the same with `maxerror=1e-12`, so not an early stop. "Only $m=0$ is stable" below the threshold became a stability against a small
+  magnetization.
+- Section 6.5 said that the uniform solution "is the paramagnet below $U\approx 4t$ and a fully polarized ferromagnet
+  above it", and the caption of `mf_chain` put a jump at $4t$. The saturated state exists from $4t$, but it stays above
+  the paramagnet, by $0.27t$ per site at $4t$, up to $16t/\pi=5.09t$. So the lowest uniform state changes at $5.09t$. Its
+  energy has a kink there, with the slope $1/4$ of the paramagnet below and 0 above, and no jump, while its moment jumps
+  from 0 to 1, as the sheet of Session 1 says. Corrected: the page says $16t/\pi\approx5.1t$, and panel (b) of
+  `mf_chain` is redrawn against the lowest uniform state, with the kink at $16t/\pi$.
+- Section 6.3 wrote $\mathbf m\equiv\langle\mathbf S\rangle$ next to the $m$ of (6.2), which is twice
+  $\langle S^z\rangle$, and it said that self-consistency gives "a magnetic solution with $m\neq0$ for $U>0$". This
   holds for the antiferromagnet of the half-filled chain, with $m=0.030$ at $U=t$, while a uniform moment needs the
-  Stoner threshold, $1.93t$ at $n=0.2$.
-- Section 6.4 and its notebook box say "20% filling" for the chain that the caption gives as $n=0.2$. That is
+  Stoner threshold, $1.93t$ at $n=0.2$. Corrected: "in the half-filled chain ... for every $U>0$". The bold
+  symbol is now $\mathbf m\equiv2\langle\mathbf S\rangle$, picked by the lecturer on 2026-11-22, so its $m_z$ is the
+  $m$ of (6.2) and it splits the two spins by $U|\mathbf m|$, $0.2U$ for $|\mathbf m|=0.2$ along $z$ and along $x$.
+- Section 6.4 and its notebook box said "20% filling" for the chain that the caption gives as $n=0.2$. That is
   `filling=0.1` in pyqula, 10 percent of the states. With `filling=0.2` the chain has $n=0.4$ and the splitting
-  $1.6t$ at $U=4t$, and not $0.8t$.
-- The notebook box and the try-it box of Section 6.8 say to diagonalize the dimer with six states in the cell "The
+  $1.6t$ at $U=4t$, and not $0.8t$. Corrected: the page says $n=0.2$, and the box names the cell with `filling=0.1`.
+- The notebook box and the try-it box of Section 6.8 said to diagonalize the dimer with six states in the cell "The
   interacting Hubbard dimer". That cell is a mean-field loop, with no moment below $U=2t$ and $\sqrt{1-4t^2/U^2}$
-  above, and the ratios 0.83, 0.94 and 0.98 belong to the exact dimer, which the cell does not have.
-- The try-it box of Section 6.12 reads the angle of the Rashba chain as the ground state tilting away from collinear
+  above, and the ratios 0.83, 0.94 and 0.98 belong to the exact dimer, which the cell does not have. Corrected: the two
+  boxes say what the cells do, that the first cell has no interaction, and that the exact dimer has no ordered moment and
+  the local moment 0.85 at $4t$.
+- The try-it box of Section 6.12 read the angle of the Rashba chain as the ground state tilting away from collinear
   order. The Rashba coupling of the chain is a rotation of the spin from bond to bond, which a change of the spin axes
   removes, so the mean field has one energy for every angle from $90^\circ$ to $180^\circ$, and the random guess of the
-  cell picks one, between $95^\circ$ and $127^\circ$ in four runs. With the default `maxite=1000` the cell can stop with
-  `MeanFieldConvergenceError` in the development tree, and with `None` in place of the Hamiltonian in the release.
-- The try-it box of Section 6.16 says that `h.get_chern()` changes sign with `add_haldane(-0.1)` when it is called
-  before the ribbon. In the cell, after `set_filling(0.0)` and `add_onsite(0.5)`, it gives 0.0 for both signs.
-- Section 6.16 applies the Chern number "to the bosonic Bogoliubov Hamiltonian of Section 6.15". The magnon
-  Hamiltonian of the honeycomb ferromagnet has no anomalous term, so it is an ordinary hopping matrix, and the
-  Bogoliubov form belongs to the antiferromagnet.
-- The quiz of Section 6.17 says that an easy-axis anisotropy $A\,(S^z)^2$ "opens a gap of order $A$". An easy axis is
-  $-A(S^z)^2$ with $A>0$, and its gap is $A(2S-1)$, which is of order $A$ for $S\geq1$ and zero for $S=1/2$.
-- The caption of `afm_bogoliubov` says of $v_k^2$ that "it is nonzero", while it is exactly zero at $k=\pm\pi/2$, as
-  the alt text of the same figure says, and 1.19 at $k=0.3$.
+  cell picks one, between $95^\circ$ and $127^\circ$ in four runs. With the default `maxite=1000` the cell stops with
+  `MeanFieldConvergenceError` for seven of eight seeds in the development tree, and the sheets of Sessions 1 and 10 give
+  `None` in place of the Hamiltonian in the release. Corrected: the notebook box and the try-it box say this, the try-it
+  box gives `maxite=4000` for most runs, and the notebook box says that the moments leave the plane of the guess.
+- The try-it box of Section 6.16 said that `h.get_chern()` changes sign with `add_haldane(-0.1)` when it is called
+  before the ribbon. In the cell, after `set_filling(0.0)` and `add_onsite(0.5)`, it gives 0.0 for both signs. Corrected:
+  the box points to the edge branches of the ribbon of the cell.
+- Section 6.16 applied the Chern number "to the bosonic Bogoliubov Hamiltonian of Section 6.15". The magnon Hamiltonian
+  of the honeycomb ferromagnet has no anomalous term, so it is an ordinary hopping matrix, and the Bogoliubov form belongs
+  to the antiferromagnet. Corrected: "the bosonic tight-binding Hamiltonian of the magnons of Section 6.14".
+- The quiz of Section 6.17 said that an easy-axis anisotropy $A\,(S^z)^2$ "opens a gap of order $A$". An easy axis is
+  $-A(S^z)^2$ with $A>0$, and its gap is $A(2S-1)$, which is of order $A$ for $S\geq1$ and zero for $S=1/2$. Corrected:
+  "with $A<0$ ... for $S\geq1$ it opens a gap. This gap is $|A|(2S-1)$ in the ferromagnet, and in linear spin waves a
+  larger one, of order $S\sqrt{zJ|A|}$ for $|A|\ll zJ$, in the antiferromagnet", since the question names both
+  dispersions.
+- The caption of `afm_bogoliubov` said of $v_k^2$ that "it is nonzero", while it is exactly zero at $k=\pm\pi/2$, as
+  the alt text of the same figure says, and 1.19 at $k=0.3$. Corrected: "It is zero only at $k=\pm\pi/2$ ... and
+  positive everywhere else".

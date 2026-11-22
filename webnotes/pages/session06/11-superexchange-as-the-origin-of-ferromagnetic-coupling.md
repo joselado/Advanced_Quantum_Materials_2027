@@ -23,7 +23,7 @@ S_j$, which is what the rotational spin symmetry requires when there is no spin-
 
 **Antisymmetric, or Dzyaloshinskii-Moriya, exchange**,
 $$H_\text{DM} = \sum_{\langle ij\rangle} \mathbf D_{ij}\cdot\big(\mathbf S_i\times\mathbf S_j\big),$$
-which is a cross product and not a dot product. It requires broken mirror symmetry, which is the reason why it is strong at surfaces and interfaces, where the substrate itself breaks this mirror symmetry. It favors neighboring spins rotated by roughly $90^\circ$ with respect to each other, so it favors noncollinear order, which is often a spiral. Schematic [](#sch:s06:dm_spiral) shows how the angle between neighbors depends on the strength of the term.
+which is a cross product and not a dot product. It requires a bond with no inversion center, which is the reason why it is strong at surfaces and interfaces, where the substrate itself breaks the inversion symmetry. It favors neighboring spins rotated by roughly $90^\circ$ with respect to each other, so it favors noncollinear order, which is often a spiral. We see in [](#sch:s06:dm_spiral) how the angle between neighbors depends on the strength of the term.
 
 ::: key
 A chain has the Heisenberg coupling $J>0$ and the Dzyaloshinskii-Moriya term with $\mathbf D=D\hat z$ on every bond. Its classical spins then lie in the plane normal to $\hat z$, and they turn by the same angle $\theta$ from site to site, with
@@ -45,7 +45,7 @@ $$\cos\theta=-\frac{J}{\sqrt{J^2+D^2}},\qquad \sin\theta=-\frac{D}{\sqrt{J^2+D^2
 For $D>0$ the sine is negative, so seen from $+z$ each spin is turned clockwise from the one before it. On a chain every bond has the same $J$ and $\mathbf D$, so one angle minimizes all the bonds at the same time, and the chain is a spiral with no frustration. The angle between neighbors is $135^\circ$ for $D=J$ and $101^\circ$ for $D=5J$, and it goes to $90^\circ$ when $D\gg J$.
 :::
 
-![Classical spins on a chain with $J>0$ and a vector $\mathbf{D}$ along $z$, seen along $z$. The angle between neighbors is $\arccos[-J/\sqrt{J^2+D^2}]$, which is $180^\circ$ for $D=0$, $135^\circ$ for $D=J$ and $101^\circ$ for $D=5J$. It goes to $90^\circ$ when $D$ is much larger than $J$.](figures/web/session06/dm_spiral.svg){#sch:s06:dm_spiral alt="Three rows of arrows on a chain. In the first the arrows alternate up and down. In the next two each arrow is rotated by a fixed smaller angle from its neighbor, so they form a spiral."}
+![Classical spins on a chain with $J>0$ and a vector $\mathbf{D}$ along $z$, seen looking along $\mathbf D$, which is from $-z$ for $D>0$. The angle between neighbors is $\arccos[-J/\sqrt{J^2+D^2}]$, which is $180^\circ$ for $D=0$, $135^\circ$ for $D=J$ and $101^\circ$ for $D=5J$. It goes to $90^\circ$ when $D$ is much larger than $J$.](figures/web/session06/dm_spiral.svg){#sch:s06:dm_spiral alt="Three rows of arrows on a chain. In the first the arrows alternate up and down. In the next two each arrow is rotated by a fixed smaller angle from its neighbor, so they form a spiral."}
 
 **Anisotropic, or Ising-like, exchange**, which is a coupling of a single component such as $\Lambda\, S_i^z S_j^z$. It favors an easy axis, or an easy plane for the opposite sign, which means that the system magnetizes more easily along one direction than along another.
 
@@ -58,7 +58,7 @@ The honeycomb lattice is bipartite, so the geometry alone would not give any fru
 ::: notebookbox
 **Notebook check-in:** [`session6.ipynb`](https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session6.ipynb), "(Exercise) Non-collinear magnetism from spin-orbit coupling"
 
-Add a term of Dzyaloshinskii-Moriya type to the mean-field Hamiltonian, and see how the ground state tilts away from collinear order. This is the electronic counterpart of the statement above for the spin model.
+The cell adds the Rashba spin-orbit coupling to a Hubbard chain of 10 sites and solves it in mean field, starting from a random guess in the plane $xy$. The moments of the solution leave this plane, and the arrows of the cell show only the $x$ and $y$ components of the mean field, which points opposite to the moment. On this chain the Rashba hopping turns the spin by $90^\circ$ about $y$ on every bond, and a change of the spin axes from site to site removes it. So the mean field has the same energy for every angle between neighbors from $90^\circ$ to $180^\circ$, and the random guess of the cell picks one. This is not the spiral of the key box.
 :::
 
 ::: lab
@@ -134,7 +134,7 @@ For $D=0.1J$ the angle moves by $\epsilon=0.1$, which is $5.7^\circ$, and the en
 ::::
 
 ::: {.tryit notebook="session6.ipynb" cell="Non-collinear magnetism from spin-orbit coupling"}
-In the cell, the chain gets `h.add_rashba(1.)` at `U=10.`. Run it with and without that line. Without it, neighboring spins are antiparallel, and with it the angle between neighbors moves away from 180 degrees.
+In the cell, the chain gets `h.add_rashba(1.)` at `U=10.`. Run it with and without that line. Without it, neighboring spins are antiparallel. With it, the angle between neighbors moves away from 180 degrees and changes from run to run, since the random guess picks it, while the energy stays the same. With the default `maxite=1000` the loop stops without converging in most runs, so add `maxite=4000` to the call.
 :::
 
 ::: comesback

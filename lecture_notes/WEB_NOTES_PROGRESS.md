@@ -1,14 +1,15 @@
 # Progress of the lecture notes as web pages
 
 The plan is `lecture_notes/WEB_NOTES_PLAN.md`. This file is the tracker that each session
-updates at its end, one line per phase and one per session. Last update 2026-11-22, the pedagogical pass of
-Sessions 1, 2, 4 and 5.
+updates at its end, one line per phase and one per session. Last update 2026-11-22, the end of the pedagogical pass
+of all ten sessions.
 
-Start here on 2026-11-22. Sessions 1 to 5 are in the shape locked on 2026-11-21 and published on the site. Sessions 6
-to 10 have their conventions sheet, plan and recipes, committed, and wait for the lecturer to read 1, 4 and 5. The
-errors of the old text of Sessions 1, 2, 4 and 5 are corrected on the web or listed for the lecturer in the section
-"Open for the lecturer" of each `webnotes/plans/sessionNN.md`. The log entries of 2026-11-21 and 2026-11-22 at the
-end say what was done and what is open.
+Start here after 2026-11-22. All ten sessions are in the shape locked on 2026-11-21. The site has Sessions 1 to 5 as
+they were before the old-text corrections; the corrections of 1, 2, 4 and 5 and the pages of 6 to 10 are committed and
+go to the site with the next default build and push, on the lecturer's word. Each `webnotes/plans/sessionNN.md` ends
+with the list of corrections to carry over to the `.tex`, the list "Decided on 2026-11-22", and the points left for
+the lecturer: three in all, the corner $\mathbf K$ of the solution of 6.16, the quantity of (9.11), and the italic rule
+of the key box of 9.8. The last log entries at the end say what was done and what is open.
 
 The paragraph below is the state of 2026-11-06. Phases 3 to 6 are built and checked, and nothing is committed yet. The notes have 126 section pages
 (median 554 prose words, 292 to 934), 35 redirect stubs for the retired URLs, every page with at least one figure
@@ -257,3 +258,27 @@ Result, the live path works, so every widget has the button "Run live in the bro
   workflow, run `wf_1a0244e4-53c`, and each plan ends with the list "Decided on 2026-11-22". Session 7 was paused at
   07:52 and resumed at 09:01 (same run `wf_cda36960-673`). Sessions 8, 9 and 10 run as `wf_26730ac0-c6d`, with at most
   7 groups at once so that all the runs together stay near 20 agents. The README was rewritten and pushed (80ab324).
+- 2026-11-22, afternoon, the end of the pass. Sessions 6 to 10 are built, checked and closed. Session 6 ran as
+  `wf_74e82c0a-9c0` and Session 7 as `wf_cda36960-673`. Sessions 8, 9 and 10 ran as `wf_dbde15d6-2ec`, which replaced
+  `wf_26730ac0-c6d` with up to 15 groups at once after the lecturer said that no cap at 20 agents is needed. A closing
+  workflow ran the physics check that the gate of group 2 of Session 8 had skipped, and closed the open points of
+  Sessions 6 to 10 with the rule of the lecturer ("Fix old-text errors, ask the rest", and "ask me the top 5, other you
+  decide by yourself"). The lecturer picked five points: $\mathbf m\equiv2\langle\mathbf S\rangle$ in Section 6.3,
+  both uses of the word superexchange, $M$ for the matrices and $\chi$ for the bond dimension in Session 7, a sentence on
+  the sign of $\delta n$ after the key box of 9.4, and a sentence on the factor 2 of the spins after (9.6). Run
+  `wf_daca3fa8-961` applied them, and an independent check found seven points, all settled. Some changes go beyond the
+  literal picks, so that no sentence contradicts a picked one: the sentence "With the factor 2..." in 6.3; two sentences
+  after the picked one in 9.4, on the total density of the two spins; in 9.5 the change $U\to2v(q)$, the Hubbard
+  sentence, the caption of Figure 9.2, and a steps fold from the zero of the denominator to the plasma frequency, which
+  is new text with no counterpart in the `.tex`. The overlays of the converted figures s07f03 and s07f04 still draw $M$,
+  and their four captions say so. Session 10 page 04 keeps $D$ for the bond dimension of an MPS, since the pick is on
+  Session 7. The Sotthewes quotes of the source of 9.6 were pasted by hand from the PDF. Three points are left for the
+  lecturer, each with candidates in its plan, and the pages keep their present wording: the corner $\mathbf K$ of the
+  solution of 6.16, the quantity of (9.11), and the italic rule of the key box of 9.8. One optional question of the
+  check is recorded in point 14 of the decided list of Session 6, the noun "superexchange" in the recall box of 6.13.
+  The final gate: the private build with `--math` gives 171 pages, 0 errors and 17755 math fragments with 0 errors;
+  `lint.py` 0 hits on Sessions 1 and 5 to 10; `layout.py` 0 findings and 0 not measured on the 63 pages of Sessions
+  6 to 10 and on page 5.19; `labsource.py --check` finds every planned number; `build.py --verify` gives 14, 15, 15, 18 and 12 scripts OK on Sessions 6 to 10, with
+  nothing else running. Cost: about 64 million
+  subagent tokens in the workflows of the pass of the nine sessions, about 27 million of them for the pages of Sessions
+  6 to 10, as a lower bound, since a stopped run may not be counted.

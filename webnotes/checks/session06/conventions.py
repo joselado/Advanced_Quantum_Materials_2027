@@ -285,10 +285,13 @@ def main():
     vac = np.zeros(4); vac[0] = 1
     up, xs = cu.T @ vac, (cu.T @ vac + cd.T @ vac) / np.sqrt(2)
     ev = lambda o, s: float(np.real(s @ o @ s))
+    bold = lambda s: 2 * np.array([ev(Sx, s), ev(Sy, s), ev(Sz, s)])     # the bold m = 2<S> of Section 6.3
     check('the m of (1.8) and (6.2)', near(ev(mop, up), 1, 1e-12) and near(ev(Sz, up), 0.5, 1e-12)
-          and near(ev(mop, xs), 0, 1e-12) and near(ev(Sx, xs), 0.5, 1e-12),
-          'one spin up has m = %.0f and <S^z> = %.1f, the spinor (1,1)/sqrt2 has m = %.0f and <S^x> = %.1f'
-          % (ev(mop, up), ev(Sz, up), ev(mop, xs), ev(Sx, xs)))
+          and near(ev(mop, xs), 0, 1e-12) and near(ev(Sx, xs), 0.5, 1e-12)
+          and np.allclose(bold(up), [0, 0, 1], atol=1e-12) and np.allclose(bold(xs), [1, 0, 0], atol=1e-12),
+          'one spin up has m = %.0f and <S^z> = %.1f, the spinor (1,1)/sqrt2 has m = %.0f and <S^x> = %.1f, and the bold '
+          'm = 2<S> is %s and %s, so m_z = m' % (ev(mop, up), ev(Sz, up), ev(mop, xs), ev(Sx, xs),
+                                                   np.round(bold(up), 12).tolist(), np.round(bold(xs), 12).tolist()))
 
     d1 = np.abs(nup @ ndn - (n / 2 - 2 / 3 * S2)).max()
     d2 = np.abs(nup @ ndn - 0.25 * (n @ n - mop @ mop)).max()
@@ -347,14 +350,31 @@ def main():
         h = gb.get_hamiltonian()
         seed = h.copy(); seed.clean(); seed.add_zeeman([0.0, 0.0, u / 2])
         hs, Es = h.get_mean_field_hamiltonian(U=u, mf=seed, nk=40, mix=0.9, return_total_energy=True)
-        seeded.append((abs(mz(hs, 40)[0]), Es))
+        seeded.append((np.linalg.norm(moments(hs, 40)[0]), Es))
+    # updated on 2026-11-22: at 3.9 the end depends on mix and on maxerror, and |m| is read from the three components
+    at39 = {}
+    for nk in (40, 41):
+        for mix, me in ((0.9, None), (0.5, None), (None, None), (0.9, 1e-9)):
+            h = gb.get_hamiltonian()
+            seed = h.copy(); seed.clean(); seed.add_zeeman([0.0, 0.0, 3.9 / 2])
+            kw = dict(U=3.9, mf=seed, nk=nk, return_total_energy=True)
+            if mix is not None: kw['mix'] = mix
+            if me is not None: kw['maxerror'] = me
+            hs, Es = h.get_mean_field_hamiltonian(**kw)
+            mm = moments(hs, nk)
+            at39[(nk, mix, me)] = (np.linalg.norm(mm[0]), abs(mm[0][2]), Es)
+    stop = near(at39[(40, 0.9, None)][0], 0.025, 1e-3) and near(at39[(41, 0.9, None)][0], 0.049, 1e-3)
+    afm39 = all(near(at39[(nk, mx, me)][0], 0.758, 1e-3) and at39[(nk, mx, me)][1] < 1e-4 and near(at39[(nk, mx, me)][2], -0.95905, 2e-5)
+                for nk in (40, 41) for mx, me in ((0.5, None), (None, None), (0.9, 1e-9)))
     ok = near(cross, 16 / np.pi, 1e-9) and near(cross, 5.09, 5e-3) and near(2 * np.pi, 6.28, 5e-3) and lower
-    ok = ok and near(U_sat, 4, 1e-9) and near(seeded[0][0], 0.025, 1e-3) and all(near(s[0], 1.0, 5e-4) and abs(s[1]) < 1e-6 for s in seeded[1:])
+    ok = ok and near(U_sat, 4, 1e-9) and stop and afm39 and all(near(s[0], 1.0, 5e-4) and abs(s[1]) < 1e-6 for s in seeded[1:])
     check('the uniform states of the half-filled chain', ok,
           'the saturated state is self-consistent from U = %.0f, E_PM = -4/pi + U/4 crosses E_FM = 0 at U = %.3f = 16/pi, the paramagnet is unstable above 2 pi = %.2f, the '
-          'antiferromagnet is below both at U = 1, 3, 4.5, 6, 10, 20, and the seed of the saturated field gives |m| = %.3f '
-          'at 3.9 and %.3f and %.3f with the energy %.0e at 4.1 and 4.5' % (U_sat, cross, 2 * np.pi, seeded[0][0], seeded[1][0],
-                                                                             seeded[2][0], seeded[1][1]))
+          'antiferromagnet is below both at U = 1, 3, 4.5, 6, 10, 20, the seed of the saturated field keeps |m| = %.3f and %.3f '
+          'with the energy %.0e at 4.1 and 4.5, and at 3.9 it stops at |m| = %.3f (nk=40) and %.3f (nk=41) with mix=0.9, and '
+          'reaches |m| = %.3f with m_z = %.0e and %.5f per cell with mix 0.5, the default 0.3 or maxerror=1e-9'
+          % (U_sat, cross, 2 * np.pi, seeded[1][0], seeded[2][0], seeded[1][1], at39[(40, 0.9, None)][0], at39[(41, 0.9, None)][0],
+             at39[(40, 0.5, None)][0], at39[(40, 0.5, None)][1], at39[(40, 0.5, None)][2]))
 
     out = []
     for u in (20.0, 40.0):
@@ -386,9 +406,18 @@ def main():
     Stot = [sum(0.5 * sum(PAULI[k][a, b] * (cdim[2 * i + a].T @ cdim[2 * i + b]) for a in range(2) for b in range(2))
                 for i in (0, 1)) for k in range(3)]
     s2gs = np.real(full @ sum(s @ s for s in Stot) @ full)
-    check('the mean-field dimer', ok and abs(s2gs) < 1e-12,
+    # the exact ground state at U = 4 has no ordered moment, <n_up - n_dn> = 0, and the local moment <(n_up - n_dn)^2>,
+    # the weight of the covalent singlet, 1/(1 + E_S^2/4) = 0.854
+    gs4 = np.linalg.eigh((Ht + Hu / 2)[np.ix_(idx, idx)])[1][:, 0]
+    full4 = np.zeros(16); full4[idx] = gs4
+    mloc = cdim[0].T @ cdim[0] - cdim[1].T @ cdim[1]
+    ES4 = 2 - np.sqrt(8)
+    ord4, loc4 = full4 @ mloc @ full4, full4 @ mloc @ mloc @ full4
+    check('the mean-field dimer', ok and abs(s2gs) < 1e-12 and abs(ord4) < 1e-12 and near(loc4, 1 / (1 + ES4 ** 2 / 4), 1e-12)
+          and near(loc4, 0.854, 5e-4),
           'pyqula gives %s, against sqrt(1 - 4/U^2), with the gap 2 below U = 2 and U above, and the exact ground state at '
-          'U = 8 has S^2 = %.0e' % (', '.join('%.4f at %.1f' % (m, u) for u, m, g in dim), s2gs))
+          'U = 8 has S^2 = %.0e, at U = 4 <n_up - n_dn> = %.0e and <(n_up - n_dn)^2> = %.4f'
+          % (', '.join('%.4f at %.1f' % (m, u) for u, m, g in dim), s2gs, ord4, loc4))
 
     # ---------------- pyqula in mean field
     updn4 = np.array(h4.get_vev('up', nk=40)).real - np.array(h4.get_vev('dn', nk=40)).real
@@ -707,24 +736,31 @@ def main():
         M = moments(hm)
         ny2 = (M[:, 1] / np.linalg.norm(M, axis=1)) ** 2
         cos = np.cos(np.radians(angles(M)))
-        runs.append((Em, angles(M).mean(), np.abs(cos + ny2[:-1]).max()))
-    np.random.seed(0)
-    try:
-        hr.get_mean_field_hamiltonian(U=10.0, mf='XY', mix=0.9)
-        raised = False
-    except MeanFieldConvergenceError:
-        raised = True
+        F = np.array([np.real(hm.extract(c)) for c in ('mx', 'my', 'mz')]).T
+        big = np.abs(M) > 0.05
+        runs.append((Em, angles(M).mean(), np.abs(cos + ny2[:-1]).max(), np.max(np.abs(M[:, 2]) / np.linalg.norm(M, axis=1)),
+                     np.abs(F[big] / M[big] + 5.0).max()))
+    raised_seeds = []
+    for seed in range(8):
+        np.random.seed(seed)
+        try:
+            hr.get_mean_field_hamiltonian(U=10.0, mf='XY', mix=0.9)
+        except MeanFieldConvergenceError:
+            raised_seeds.append(seed)
+    raised = 0 in raised_seeds
     Eref = ref[0]
     ok = np.allclose(bond, rot, atol=1e-12) and gauge < 1e-12 and near(Eref, -3.535751, 1e-6)
     ok = ok and all(near(E, Eref, 1e-7) for E, M, err in ours) and np.ptp(ang_ours) > 10 and angles(ref[1]).min() > 179.9
-    ok = ok and all(near(E, Eref, 1e-5) and 95 < a < 127 and c < 0.02 for E, a, c in runs) and np.ptp([r[1] for r in runs]) > 20
-    ok = ok and raised
+    ok = ok and all(near(E, Eref, 1e-5) and 95 < a < 127 and c < 0.02 for E, a, c, z, f in runs) and np.ptp([r[1] for r in runs]) > 20
+    ok = ok and all(z > 0.5 and f < 0.01 for E, a, c, z, f in runs) and raised and len(raised_seeds) >= 5
     check('the Rashba chain of the notebook', ok,
           'the bond is sqrt2 exp(i pi sigma_y/4), the rotation of 90 degrees per site gives the plain chain with hopping sqrt2 '
           'to %.0e, our Hartree-Fock gives %.6f for three seeds with %s degrees and for the plain chain with 180 degrees, '
-          'pyqula with maxite=4000 gives %s with %s degrees and cos = -n_y^2 to %.3f, and seed 0 raises with the default maxite'
+          'pyqula with maxite=4000 gives %s with %s degrees and cos = -n_y^2 to %.3f, the largest |m_z|/|m| %s, extract = -5 m '
+          'to %.3f, and the seeds %s of 0 to 7 raise with the default maxite'
           % (gauge, Eref, ' '.join('%.1f' % a for a in ang_ours), ' '.join('%.6f' % r[0] for r in runs),
-             ' '.join('%.1f' % r[1] for r in runs), max(r[2] for r in runs)))
+             ' '.join('%.1f' % r[1] for r in runs), max(r[2] for r in runs), ' '.join('%.2f' % r[3] for r in runs),
+             max(r[4] for r in runs), raised_seeds))
 
     gt = geometry.triangular_lattice(); gt = gt.get_supercell((3, 3))
     tri = []
@@ -737,11 +773,21 @@ def main():
                 for i in range(len(gt.r)) for j in range(i + 1, len(gt.r)) for n1 in (-1, 0, 1) for n2 in (-1, 0, 1)
                 if abs(np.linalg.norm(gt.r[j] + n1 * A[0] + n2 * A[1] - gt.r[i]) - 1) < 1e-6]
         tri.append((Et, min(angs), max(angs), np.linalg.norm(M, axis=1).mean(), len(angs)))
+    # updated on 2026-11-22: the spread of 0.2 degrees is set by the default maxerror=1e-5, and with maxerror=1e-8 it is
+    # below 0.001 degrees, as the caption of page 09 says
+    np.random.seed(1)
+    ht8 = gt.get_hamiltonian().get_mean_field_hamiltonian(U=10.0, mf='XY', mix=0.9, maxite=4000, maxerror=1e-8)
+    M8 = moments(ht8)
+    A8 = [np.array(gt.a1), np.array(gt.a2)]
+    angs8 = [np.degrees(np.arccos(np.clip(M8[i] @ M8[j] / np.linalg.norm(M8[i]) / np.linalg.norm(M8[j]), -1, 1)))
+             for i in range(len(gt.r)) for j in range(i + 1, len(gt.r)) for n1 in (-1, 0, 1) for n2 in (-1, 0, 1)
+             if abs(np.linalg.norm(gt.r[j] + n1 * A8[0] + n2 * A8[1] - gt.r[i]) - 1) < 1e-6]
     ok = all(abs(a - 120) < 0.2 and abs(b - 120) < 0.2 and c == 27 and near(mm, 0.922, 5e-4) for E, a, b, mm, c in tri)
-    ok = ok and all(near(t[0], -3.8085, 1e-4) for t in tri)
+    ok = ok and all(near(t[0], -3.8085, 1e-4) for t in tri) and len(angs8) == 27 and max(abs(np.array(angs8) - 120)) < 1e-3
     check('the triangular lattice in mean field', ok,
-          'supercell 3x3 at U=10, mf="XY", two seeds, the 27 bonds have %.2f to %.2f degrees, |m| = %.4f, energy %.4f per cell'
-          % (min(t[1] for t in tri), max(t[2] for t in tri), tri[0][3], tri[0][0]))
+          'supercell 3x3 at U=10, mf="XY", two seeds, the 27 bonds have %.2f to %.2f degrees, |m| = %.4f, energy %.4f per cell, '
+          'and with maxerror=1e-8 they are within %.0e degrees of 120'
+          % (min(t[1] for t in tri), max(t[2] for t in tri), tri[0][3], tri[0][0], max(abs(np.array(angs8) - 120))))
 
     # ---------------- Holstein-Primakoff and the magnons
     worst = 0.0
@@ -849,9 +895,19 @@ def main():
         lev = np.diag(-(spin_matrices(S)[2] @ spin_matrices(S)[2]))     # S^z = S, S-1, ..., so lev[1] has one magnon
         aniso.append((S, lev[1] - lev[0], 2 * S))
     ok = all(near(g, 2 * S - 1, 1e-12) for S, g, l in aniso) and np.allclose(np.diag(spin_matrices(0.5)[2] ** 2), 0.25)
+    # the antiferromagnet in linear spin waves: at k = 0 the block [[zJS + a, zJS], [zJS, zJS + a]], with a the cost of
+    # one magnon on a site, gives sqrt((zJS + a)^2 - (zJS)^2) > a, of order S sqrt(zJA) for A << zJ
+    afm_gap = []
+    for z_, S_, A_ in ((2, 1.0, 0.01), (4, 1.0, 0.01), (4, 1.5, 0.05), (6, 2.0, 0.001)):
+        for a_ in (2 * A_ * S_, A_ * (2 * S_ - 1)):
+            wb = np.max(np.real(np.linalg.eigvals(np.diag([1, -1]) @ np.array([[z_ * S_ + a_, z_ * S_], [z_ * S_, z_ * S_ + a_]]))))
+            afm_gap.append((wb, np.sqrt((z_ * S_ + a_) ** 2 - (z_ * S_) ** 2), a_, wb / (S_ * np.sqrt(z_ * A_))))
+    ok = ok and all(near(w, c, 1e-9) and w > a_ and 1.4 < q < 2.1 for w, c, a_, q in afm_gap)
     check('an easy axis -A (S^z)^2', ok,
-          'one magnon on a site costs %s, so A(2S-1), against 2AS of linear spin waves, and (S^z)^2 = 1/4 for S=1/2'
-          % ', '.join('%.0fA for S=%.1f' % (g, S) for S, g, l in aniso))
+          'one magnon on a site costs %s, so A(2S-1), against 2AS of linear spin waves, and (S^z)^2 = 1/4 for S=1/2, and the '
+          'antiferromagnet of linear spin waves has the larger gap sqrt((zJS + a)^2 - (zJS)^2), %.2f to %.2f times S sqrt(zJA)'
+          % (', '.join('%.0fA for S=%.1f' % (g, S) for S, g, l in aniso), min(q for w, c, a_, q in afm_gap),
+             max(q for w, c, a_, q in afm_gap)))
 
     # ---------------- topological magnons
     hk_ex, leakh = honeycomb_magnon_exact()
@@ -945,10 +1001,11 @@ def main():
           'after it, the bands start at %.3f, and the spinless lower band has C = %+.0f and %+.0f with the gap %.3f'
           % (t2p, nbk[0][1], nbk[1][1], nbk[0][2], nbk[1][2], nbk[0][3], nbk[0][4], nbk[1][4], nbk[0][5]))
 
-    # ---------------- statements of the pages that these numbers contradict
-    check('Section 6.6, the rise of the moment', interior == 0 and near(U_x, 1.926, 5e-4) and ms[1] > 0 and ms[1] < ms[2],
+    # ---------------- statements of the pages that these numbers contradicted, settled on 2026-11-22 (see the sheet)
+    check('Section 6.6, the rise of the moment', interior == 0 and near(U_x, 1.926, 5e-4) and ms[1] > 0 and ms[1] < ms[2]
+          and near(m_def, 0.13, 5e-3),
           'the chain jumps from 0 to 0.2 at U = %.3f for n=0.2, with no interior minimum at any filling, while the semicircle '
-          'rises continuously' % U_x)
+          'rises continuously, and the cell shows %.2f in its title at U=1.8' % (U_x, m_def))
     gap_at4 = 0.0 - (-4 / np.pi + 1.0)
     e_low = lambda U: min(-4 / np.pi + U / 4, 0.0)       # the lowest uniform state, paramagnet or saturated ferromagnet
     mgrid = np.linspace(0, 1, 2001)                      # the uniform energy E(m) per site of the half-filled chain
@@ -960,22 +1017,29 @@ def main():
           'at U=4 the saturated state is %.3f per site above the paramagnet, and the two cross at %.3f, where the lowest '
           'uniform energy has the slopes %.2f and %.2f and no jump, while m goes from %.0f to %.0f'
           % (gap_at4, cross, slopes[0], slopes[1], m_low(cross - 1e-6), m_low(cross + 1e-6)))
-    check('Section 6.3, m and U>0', near(sol[1.0][1], 0.030, 5e-4) and near(U_x, 1.93, 5e-3) and near(ev(Sx, xs), 0.5 * 1, 1e-12),
-          'm = %.3f at U=1 for the antiferromagnet, the uniform moment at n=0.2 needs U = %.2f, and <S> is half of m' % (sol[1.0][1], U_x))
+    check('Section 6.3, m and U>0', near(sol[1.0][1], 0.030, 5e-4) and near(U_x, 1.93, 5e-3) and near(ev(Sx, xs), 0.5 * 1, 1e-12)
+          and np.allclose(bold(up), [0, 0, ev(mop, up)], atol=1e-12) and near(split[0], 0.2, 1e-12) and near(split[1], 0.2, 1e-12),
+          'm = %.3f at U=1 for the antiferromagnet, the uniform moment at n=0.2 needs U = %.2f, and the bold m = 2<S> has '
+          'm_z = m and splits the spins by U|m| = %.3f U along z and %.3f U along x for |m| = 0.2' % (sol[1.0][1], U_x, split[0], split[1]))
     check('Section 6.4, the filling', near(fm[0][1], 0.2, 1e-4) and near(fm[1][2], 1.6, 1e-3),
           'filling=0.1 is n=0.2 with |m| = %.3f, and filling=0.2 has the splitting %.3f at U=4' % (fm[0][1], fm[1][2]))
     check('Section 6.8, the dimer cell', dim[0][1] < 1e-3 and near(dim[5][1], np.sqrt(0.75), 2e-3)
-          and np.allclose([o[0] for o in out], [0.83, 0.94, 0.98], atol=5e-3),
-          'the cell has m = %.4f at 1.8 and %.4f at 4, the exact ratios are %s' % (dim[0][1], dim[5][1], ' '.join('%.2f' % o[0] for o in out)))
+          and np.allclose([o[0] for o in out], [0.83, 0.94, 0.98], atol=5e-3) and abs(ord4) < 1e-12 and near(loc4, 0.854, 5e-4),
+          'the cell has m = %.4f at 1.8 and %.4f at 4, the exact ratios are %s, and the exact dimer at 4 has no ordered moment '
+          'and the local moment %.3f' % (dim[0][1], dim[5][1], ' '.join('%.2f' % o[0] for o in out), loc4))
     check('Section 6.12, the Rashba chain', gauge < 1e-12 and np.ptp(ang_ours) > 10 and raised
-          and 95 < min(r[1] for r in runs) and max(r[1] for r in runs) < 127,
-          'the coupling is removed by a rotation per site, the angle follows the seed, %.1f to %.1f degrees in four runs of pyqula'
-          % (min(r[1] for r in runs), max(r[1] for r in runs)))
+          and 95 < min(r[1] for r in runs) and max(r[1] for r in runs) < 127 and len(raised_seeds) >= 5
+          and min(r[3] for r in runs) > 0.5,
+          'the coupling is removed by a rotation per site, the angle follows the seed, %.1f to %.1f degrees in four runs of pyqula, '
+          'the moments leave the plane xy, and %d of 8 seeds raise with the default maxite'
+          % (min(r[1] for r in runs), max(r[1] for r in runs), len(raised_seeds)))
     check('Section 6.16, the Chern number of the cell', all(abs(r[2]) < 1e-9 for r in nbk),
           'h.get_chern() of the cell gives %.1f and %.1f for add_haldane(0.1) and add_haldane(-0.1)' % (nbk[0][2], nbk[1][2]))
     check('Section 6.16, no Bogoliubov form', leakh == 0, 'the ferromagnetic magnon matrix has no weight outside the one-magnon states')
-    check('Section 6.17, the easy axis', near(aniso[0][1], 0, 1e-12) and near(aniso[1][1], 1, 1e-12),
-          'the gap is %.0fA for S=1/2 and %.0fA for S=1' % (aniso[0][1], aniso[1][1]))
+    check('Section 6.17, the easy axis', near(aniso[0][1], 0, 1e-12) and near(aniso[1][1], 1, 1e-12)
+          and all(w > a_ for w, c, a_, q in afm_gap),
+          'the gap is %.0fA for S=1/2 and %.0fA for S=1 in the ferromagnet, and larger in the antiferromagnet of linear spin '
+          'waves' % (aniso[0][1], aniso[1][1]))
     check('the caption of afm_bogoliubov', bogo(0.0)[1] < 1e-12 and near(bogo(np.cos(0.3))[1], 1.19, 5e-3),
           'v_k^2 = %.0e at k = pi/2 and %.3f at k = 0.3' % (bogo(0.0)[1], bogo(np.cos(0.3))[1]))
     print('%d checks hold, %.1f s' % (COUNT[0], time.time() - t0))

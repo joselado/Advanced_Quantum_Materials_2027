@@ -339,6 +339,26 @@ def main():
     check('problem: Z_c = 1 + r/(2S) = 1.158 for S = 1/2 on the square lattice, r = 0.158, so about 16 percent',
           ok, (round(r, 6), round(n_, 6), round(m_, 6), round(Zc, 6)))
 
+    # corrected on 2026-11-22, the caption of afm_bogoliubov (b): v_k^2 = (1/sqrt(1 - cos^2 k) - 1)/2 is zero only at
+    # k = +-pi/2, where gamma_k = cos k = 0, and positive everywhere else on the chain, by the closed form and by the
+    # numerical Bogoliubov matrix of the fold at each k
+    kk = np.linspace(-np.pi, np.pi, 2001)[1:-1]
+    kk = kk[np.abs(np.abs(kk) - np.pi) > 1e-6]
+    kk = kk[np.abs(kk) > 1e-6]
+    v2c = 0.5 * (1 / np.abs(np.sin(kk)) - 1)
+    zero = kk[v2c < 1e-9]
+    v2n = []
+    for k in (0.3, 1.0, np.pi / 2, 2.0, 2.9):
+        gam = np.cos(k)
+        M = np.array([[1.0, -gam], [gam, -1.0]])                     # [[eps, -Delta], [Delta, -eps]] in units of JSz
+        w, vec = np.linalg.eig(M)
+        u, v = vec[:, np.argmax(w.real)].real
+        v2n.append(v ** 2 / (u ** 2 - v ** 2))                         # normalized to u^2 - v^2 = 1
+    check('caption of afm_bogoliubov (b): v_k^2 is zero only at k = +-pi/2 and positive elsewhere, closed form and '
+          'Bogoliubov matrix', len(zero) == 2 and np.allclose(np.abs(zero), np.pi / 2) and np.all(v2c[np.abs(np.abs(kk) - np.pi / 2) > 1e-3] > 0)
+          and np.allclose(v2n, [0.5 * (1 / abs(np.sin(k)) - 1) for k in (0.3, 1.0, np.pi / 2, 2.0, 2.9)], atol=1e-12),
+          (np.round(zero, 6).tolist(), np.round(v2n, 4).tolist()))
+
     print(f'{COUNT[0]} checks, all OK')
 
 

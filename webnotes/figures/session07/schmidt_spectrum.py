@@ -34,7 +34,7 @@ ax.semilogy(a, np.maximum(w1[:n], 1e-16), color=style.BROKEN, marker='o', ms=2.6
 ax.semilogy(a, np.maximum(w2[:n], 1e-16), color=style.ACCENT, marker='o', ms=2.6, lw=1.2)
 ax.axvline(M + 0.5, color=style.MUTED, lw=1.0, ls=(0, (3, 3)))
 ax.set_xlim(0, n + 1); ax.set_ylim(1e-11, 3)
-style.label(ax, M + 1.0, 3e-10, r'$M=16$', fontsize=8.5, ha='left', color=style.MUTED)
+style.label(ax, M + 1.0, 3e-10, r'$\chi=16$', fontsize=8.5, ha='left', color=style.MUTED)
 style.label(ax, 18.2, 0.3, 'uniform chain, $J_2=J_1$', color=style.BROKEN, fontsize=8.5, ha='left')
 style.label(ax, 18.2, 0.02, 'dimerized chain, $J_2=0.5J_1$', color=style.ACCENT, fontsize=8.5, ha='left')
 style.arrows(ax, xlabel=r'$\alpha$', ylabel=r'$\lambda_\alpha^2$')

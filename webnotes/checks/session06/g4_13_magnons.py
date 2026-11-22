@@ -223,6 +223,30 @@ def main():
     check('one_magnon: the exact one-magnon band is 2|J| wide for 10 spins 1/2 and 4|J| for 8 spins 1, twice as wide',
           np.allclose(widths, [2, 4]) and np.isclose(widths[1] / widths[0], 2), np.round(widths, 10).tolist())
 
+    # corrected on 2026-11-22, the recall box: 4t^2/U holds for U much larger than t and one electron per site. The exact
+    # dimer gives the ratio (E_T - E_S)/(4t^2/U) 0.828 at U = 4t, 0.944 at 8t and 0.9975 at 40t, by the closed form
+    # sqrt(U^2/4 + 4t^2) - U/2 and by the diagonalization above
+    near = [(np.sqrt(U ** 2 / 4 + 4) - U / 2) / (4 / U) for U in (4.0, 8.0, 40.0)]
+    check('recall box: J = 4t^2/U is the limit U >> t, the exact ratio is 0.828, 0.944 and 0.9975 at U = 4t, 8t and 40t',
+          np.allclose(near, [0.8284, 0.9443, 0.9975], atol=1e-4) and np.isclose(near[2], ratios[0]), np.round(near, 4).tolist())
+
+    # corrected on 2026-11-22, Section 6.13: for J < 0 the polarized state is the ground state because no state can make
+    # <S_i.S_j> larger than S^2 on any bond. S_i.S_j of two spins S has the largest eigenvalue S^2, at S_tot = 2S, which the
+    # polarized state reaches on every bond at once. Two routes: the eigenvalues of one bond, and the ground energy of the
+    # exact rings with J = -1, -N|J|S^2, which is -2.0 for 8 spins 1/2, -2.5 for 10 spins 1/2 and -6.0 for 6 spins 1.
+    tops_b = []
+    for S in (0.5, 1.0, 1.5):
+        Hb, _, _ = many_body(S, [(0, 1)], 2, 1.0)
+        tops_b.append(np.linalg.eigvalsh(Hb.toarray()).max())
+    gs = []
+    for S, N in ((0.5, 8), (0.5, 10), (1.0, 6)):
+        Hr, _, _ = many_body(S, [(i, (i + 1) % N) for i in range(N)], N, -1.0)
+        from scipy.sparse.linalg import eigsh
+        gs.append(eigsh(Hr, k=1, which='SA')[0][0])
+    check('6.13: the largest eigenvalue of S_i.S_j is S^2, and the exact rings with J = -1 have the ground energy -N|J|S^2, '
+          '-2.0, -2.5 and -6.0', np.allclose(tops_b, [0.25, 1.0, 2.25]) and np.allclose(gs, [-2.0, -2.5, -6.0]),
+          (np.round(tops_b, 10).tolist(), np.round(gs, 8).tolist()))
+
     print(f'{COUNT[0]} checks, all OK')
 
 

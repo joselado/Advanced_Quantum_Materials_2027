@@ -20,7 +20,7 @@ In this session we used the ground states of the earlier sessions as the objects
 
 - A magnetic impurity in a superconductor creates a Yu-Shiba-Rusinov in-gap bound state [(9.10)](#eq-9-10). Its energy crosses zero at a real quantum phase transition, where the fermion parity of the electrons changes and their spin goes as $S_{\rm tot}=0 \to 1/2$, while a non-magnetic impurity leaves the spectrum almost unchanged.
 
-- A vacancy in a topological superconductor or in a Chern insulator gives an in-gap mode only because of the bulk-boundary correspondence. This is a diagnostic for topology that a clean and fully gapped bulk spectrum alone cannot give, as we saw in Section [9.8](#sec-9-8).
+- A vacancy in a topological superconductor or in a Chern insulator gives an in-gap mode because of the bulk-boundary correspondence. This is a diagnostic for topology that a clean and fully gapped bulk spectrum alone cannot give, as we saw in Section [9.8](#sec-9-8).
 
 - The screening of a magnetic impurity in a quantum spin liquid uses directly the Abrikosov-fermion mean-field construction of Section [8.8](#sec-8-8), and it has the same mathematics as the impurity in a metal of Section [9.6](#sec-9-6). The induced spin correlation [(9.11)](#eq-9-11) decays as a power law for the gapless spin-1/2 chain and exponentially for the gapped spin-1 chain. This gives a general diagnostic of gapped and gapless states from the impurity response alone.
 
@@ -28,12 +28,29 @@ In this session we used the ground states of the earlier sessions as the objects
 
 Every session so far, this one included, has gone in the same direction. We start from a Hamiltonian, and we compute what it predicts, which can be an observable, a response function or a ground state. Session 10 asks the inverse question. Given only the observed data, can we find the Hamiltonian that produced it? In Section [10.7](#sec-10-7) we will see that machine learning makes this question precise, and that its training data are forward calculations such as the ones of this session.
 
+After this session we can do the following tasks, and each of them has the section that teaches it.
+
+- Read the sign of the exchange from the intercept of $1/\chi(T)$. This is in Section [9.2](#sec-9-2).
+- Write the first-order mixing of a state, and name the three cases where it fails. This is in Section [9.3](#sec-9-3).
+- Compute $\chi_0(q\to0)=D(E_F)$, and find the nesting vector of a band. This is in Section [9.4a](#sec-9-4) and Section [9.4b](#sec-9-4b).
+- Sum the RPA series, and tell a plasmon from the particle-hole continuum. This is in Section [9.5a](#sec-9-5).
+- Decide at which $q$ and at which $U$ a metal orders first. This is in Section [9.5b](#sec-9-5b).
+- Predict the period $\pi/k_F$ and the envelope of a Friedel oscillation. This is in Section [9.6a](#sec-9-6) and Section [9.6b](#sec-9-6b).
+- Compute the Shiba energy, and say where the fermion parity changes. This is in Section [9.7](#sec-9-7).
+- Use a vacancy to test a gapped phase for topology, and say when the test fails. This is in Section [9.8](#sec-9-8).
+- Tell a gapped magnet from a gapless one by the decay of an impurity response. This is in Section [9.9](#sec-9-9).
+- Compute the inverse participation ratio and use its scaling with $N$, and estimate the localization length $\xi(W)$ of a chain. This is in Section [9.10a](#sec-9-10) and Section [9.10b](#sec-9-10b).
+
 ::: quiz
-We put a single vacancy in a clean material, and we see a density oscillation that decays as $1/|x|$ in one dimension. What do we conclude about the ground state?
+We put one vacancy in a clean chain. Far from it the density oscillates with the envelope
+
+$$|\delta n(x)|\propto\frac{1}{|x|},$$
+
+and not with $e^{-|x|/\xi}$. What do we conclude about the ground state?
 
 - [ ] It is gapped, with a short correlation length.
 
-    This is false. A gapped state gives $e^{-x/\xi}$. For $\xi=2.5$ sites the response at $x=10$ is $0.02$ of the starting value, while $1/x$ gives $0.1$.
+    This is false. A gapped state gives $e^{-x/\xi}$. For $\xi=2.5$ sites the response falls by a factor $e^{-4}\approx0.02$ from $x=0$ to $x=10$, while $1/x$ falls by a factor $0.1$ from $x=1$ to $x=10$.
 
     ![An impurity response in a gapless chain, with a power-law envelope (upper), and in a gapped chain, with an exponential envelope (lower).](figures/s09f05_decay.svg){panel="chains" alt="Two chains of arrows with alternating signs around an impurity, the upper one decaying slowly and the lower one decaying faster."}
 

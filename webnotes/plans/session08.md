@@ -77,8 +77,8 @@ File `01-two-classes-of-magnets-and-where-we-find-them.md`, 1165 words, numbered
   excitations? We arrive at two classes, and at the spinon with $S=1/2$ against the magnon with $S=1$. Section
   8.1 is motivation, 8.2 carries the result. Split the paragraph of 177 words at "Let us now take a quantum
   spin liquid".
-- Main result for the key box: unnumbered. Flipping one spin of an ordered magnet changes the total spin by
-  $\Delta S=1$, which is the magnon, and leaving one site of a singlet covering unpaired changes it by
+- Main result for the key box: unnumbered. Flipping one spin of an ordered magnet changes $S^z_\text{tot}$ by one, and spread
+  over the lattice with a nonzero momentum it is the magnon, with $\Delta S=1$ (corrected on 2026-11-22), and leaving one site of a singlet covering unpaired changes it by
   $\Delta S=1/2$, which is the spinon. With an even number of sites spinons come in pairs.
 - Equation of another page that it starts from, for the recall box: none, the page starts from Section 6.1 and
   Section 6.13, which have no equation to show.
@@ -482,45 +482,234 @@ the article.
 
 ## Open for the lecturer
 
-1. The vison and the flux of the ground state, in Section 8.10 and in the caption of Figure 8.5. The page says
-   "let us take a square lattice where the hoppings around every elementary loop pick up the phase $\Phi=+1$,
-   which is a ground state, except for one loop", and the caption says "flipping a single plaquette to
-   $\Phi=-1$ costs energy". We take the uniform $|\chi|=1$ of `gauge_levels` on an open $L\times L$ square
-   lattice at half filling, flip the sign of the vertical links between rows $L/2-1$ and $L/2$ for $x<L/2$, as
-   `gauge_levels` does for $L=6$, and sum the lowest $L^2/2$ levels of one spin species. The flipped plaquette in
-   the middle lowers this sum by $0.74$ for $L=6$, $0.72$ for $L=8$, $0.70$ for $L=10$ and $0.69$ for $L=12$, in
-   units of $|\chi|$. In the bulk, on a k-mesh of 400 by 400, the $\pi$-flux state gives $-0.958$ per site
-   against $-0.811$ for zero flux. So at fixed $|\chi|$ and half filling the flux $\pi$ is lower on the square
-   lattice, and a flipped plaquette in the zero-flux background lowers the energy. The numbers come from a numpy
-   diagonalization of about twenty lines, which the builder of the group writes again as a check script if the
-   lecturer picks one of the last two options.
-   - Keep the text and add that the zero-flux background is a choice for concreteness.
-   - Define the vison as a plaquette whose flux differs by $\pi$ from the flux of the ground state, and say that
-     on the half-filled square lattice this ground-state flux is $\pi$.
-   - Take the $\pi$-flux state as the background, and the vison as one plaquette with $\Phi=+1$.
-2. Time-reversal symmetry of the spinon mean field, in Section 8.9 and in its Q2. The page says "If we take the
-   same $\chi_{ij}$ for spin up and spin down, we keep $\langle\mathbf S_i\rangle=0$ exactly, so the ground state
-   that we obtain is time-reversal symmetric by construction", and the correct option of Q2 reads
-   "$\langle\mathbf S_i\rangle=0$, so the state is time-reversal symmetric". Time reversal turns the
-   spin-independent $\chi_{ij}$ into $\chi_{ij}^*$, so the state keeps it only when the fluxes are $0$ or $\pi$. A
-   complex $\chi_{ij}$ with another flux gives $\langle\mathbf S_i\rangle=0$ and breaks time reversal, which is a
-   chiral spin liquid (worked out by hand, not computed).
-   - Add "for real $\chi_{ij}$, or fluxes $0$ and $\pi$" to the sentence and to the option.
-   - Keep the sentence and change only the option to "$\langle\mathbf S_i\rangle=0$ for any $\chi_{ij}$".
-3. The sign of the phase in (8.16) and the two meanings of $\chi_{ij}$. Equation (8.12) defines $\chi_{ij}$ as
-   the operator $\sum_\sigma f_{i\sigma}^\dagger f_{j\sigma}$, which under (8.16) gets $e^{-i(\theta_i-\theta_j)}$,
-   while in (8.15) $\chi_{ij}$ is the coefficient of $f_i^\dagger f_j$, which must get $e^{+i(\theta_i-\theta_j)}$
-   for $\mathcal H_\text{MF}$ to stay the same. The page and its Q1 write $e^{i(\theta_i-\theta_j)}$ for "the
-   mean-field bond variable", which is right for the coefficient.
-   - Keep the symbols and add one sentence that in (8.15) and (8.16) $\chi_{ij}$ is the coefficient.
-   - Give the coefficient of (8.15) its own symbol, such as $t_{ij}$, which touches a numbered equation.
-4. The values of $J_K$ in Section 8.13 and in the try-it boxes of 8.11 and 8.13. The page says "At $J_K=0.25$
-   there is already a visible gap at the crossing. At $J_K=0.5$ the gap is much larger", and these are the
-   values of `JK` in the notebook. In pyqula `JK` is the hybridization $\gamma_K$ of (8.21), with a direct gap
-   $2\,$`JK` on a chain.
-   - Write $\gamma_K=0.25$ and $\gamma_K=0.5$ in the text, and keep `JK` in the try-its with "which is $\gamma_K$".
-   - Keep $J_K$ and add one sentence that the notebook calls $\gamma_K$ `JK`.
-5. Key boxes on pages with no numbered equation, 8.2, 8.4 and 8.13. The plan puts an unnumbered display in each
-   box. A numbered one would need a new tag such as `\tag{8.21a}`.
-   - Unnumbered displays in the boxes.
-   - New tags with a letter for the result of 8.13 only.
+The lecturer decided on 2026-11-22 to "Fix old-text errors, ask the rest", and for the questions "ask me the top 5,
+other you decide by yourself". The points of the builders, of the fixers, of the rechecks, of the old list of this
+section and of the conventions sheet were merged into 30 distinct points. Fifteen of them were false as written, or
+contradicted another sentence of the session, and they are corrected on the web with the smallest change that makes
+them true, entries 1 to 15 of the first list. Three of these were the old points 1, 2 and 4 of this section. The other
+fifteen were choices, and the coordinator decided them on the same day with the rule of that day. It takes the option that makes the text true with the smallest change, and between two
+true wordings the shorter and clearer one. A claim that no stored source or calculation supports is reduced to what is
+supported, a try-it or notebook box that does not match its cell is rewritten to match it, and an outdated line of the
+conventions sheet is corrected with its check. A point whose fix would change a numbered equation or a convention goes
+to the lecturer, and no point of Session 8 needed this. The changes that the decisions made on the web are at the end of
+the first list. No numbered equation, no `\tag` line, no converted figure, no overlay and no notebook changed. Every
+number that a change adds is an assert in the block marked "corrected on 2026-11-22" or "decided on 2026-11-22" of the
+check script of its page, and in `webnotes/checks/session08/conventions.py` for the sheet. The line numbers are those of
+`lecture_notes/src/sessions/session08.tex` and of `lecture_notes/src/figures/s08fNN_*.tex` on 2026-11-22. The `.tex` is
+not changed in this pass, so until the first list is carried over the PDF keeps the old wording in these places.
+
+### Corrected on the web, to carry over to the .tex
+
+1. Page `01`, Section 8.1, `.tex` lines 30 and 31. Old "They cannot be described with mean-field theory in terms of
+   electrons, and their ground states have long-range entanglement." New "They cannot be described with mean-field
+   theory in terms of electrons, and their ground states are entangled." The class of the page is every magnet that
+   keeps time reversal, and the valence bond solid of Section 8.5 is one of them with short-range entanglement. `g1_01`
+   asserts that a spin one half of a product state has $|\langle\mathbf S_i\rangle|=1/2$, and that the product of
+   singlets has the entropy 0 or $\ln2=0.693147$ across every cut of 4, 8 and 12 sites. That the entanglement of a spin
+   liquid is long-ranged is not asserted, so it is not written.
+2. Page `01`, Section 8.2, `.tex` lines 59 to 61. Old "If we flip one spin to build an excited state, the total spin
+   of the excited state differs from the one of the ground state by $\Delta S = 1$, and this is a local magnon." New "If
+   we flip one spin to build an excited state, $S^z_\text{tot}$ of the excited state differs from the one of the ground
+   state by one. When this flip is spread over the lattice with a nonzero momentum, the total spin also differs by
+   $\Delta S = 1$, and this is a magnon." The old sentence disagreed with the key box of the same page. `g1_01` asserts
+   on rings of 4, 6 and 8 sites that one flipped spin has the weight $(N-1)/N$ on $S=N/2-1$ and $1/N$ on $S=N/2$, and
+   that every magnon with $k\neq0$ has $S=N/2-1$.
+3. Page `01`, the caption of Figure 8.1, `lecture_notes/src/figures/s08f01_magnon_spinon.tex` lines 6 to 8. Old
+   "Flipping one costs $\Delta S=1$, and this excitation is the magnon of session 6. The single flipped spin drawn here,
+   next to the ghost of its old direction, only does the counting of $\Delta S$" New "Flipping one lowers
+   $S^z_\text{tot}$ by one, and the magnon of Session 6 built from this flip has $\Delta S=1$. The single flipped spin
+   drawn here, next to the ghost of its old direction, only does this counting." The overlay label "$\Delta S=1$, magnon"
+   agrees with the new caption and is not changed. Asserted in `g1_01` as entry 2.
+4. Page `03`, Section 8.3, `.tex` lines 117 and 118, which there read "is exactly zero". Old "Second, it is
+   *time-reversal symmetric*, since its net magnetization is zero and time reversal maps $|GS\rangle$ to itself." New
+   "Second, it is *time-reversal symmetric*, since time reversal maps $|GS\rangle$ to itself, and so
+   $\langle\mathbf S_i\rangle=0$ on each site." The Ising ground state $|{\uparrow\downarrow}\rangle$ has a zero net
+   magnetization too, and it breaks time reversal. `g1_03` asserts with $\Theta=(i\sigma^y)\otimes(i\sigma^y)K$ that
+   $\Theta$ reverses every spin component, maps the singlet to itself and $|{\uparrow\downarrow}\rangle$ to
+   $-|{\downarrow\uparrow}\rangle$, orthogonal to it, while $|{\uparrow\downarrow}\rangle$ has a zero net magnetization.
+5. Page `03`, the third feedback of the first quiz, not in the `.tex`. Old "The state $|{\uparrow\uparrow}\rangle$ has
+   $S^z_0S^z_1=+\tfrac14$, and it is the one with energy $+1/4$." New "The states $|{\uparrow\uparrow}\rangle$ and
+   $|{\downarrow\downarrow}\rangle$ have $S^z_0S^z_1=+\tfrac14$, and they are the ones with energy $+1/4$." The caption of
+   `dimer_levels` on the same page says "two states each". `g1_03` asserts that the Ising level $+1/4$ is the span of the
+   two states.
+6. Page `04`, the caption of Figure 8.2, `lecture_notes/src/figures/s08f02_frustration.tex` lines 15 and 16. Old
+   "Quantum fluctuations mix the degenerate configurations into one superposition with $\langle\mathbf
+   S_i\rangle=\mathbf 0$, which does *not* break time-reversal symmetry." New "Quantum fluctuations mix the degenerate
+   configurations. The three spins one half of one triangle keep a fourfold ground level, and with an even number of
+   sites the mixing can give one superposition with $\langle\mathbf S_i\rangle=\mathbf 0$, which does *not* break
+   time-reversal symmetry." `g2_04` asserts that the Heisenberg triangle has $-3/4$ four times and $(\Theta K)^2=-1$, so
+   no state of three spins maps to itself, and that two triangles on an edge, four sites with five bonds, have one
+   singlet at $-7/4$ with $\langle\mathbf S_i\rangle=0$, which time reversal maps to itself.
+7. Page `05`, the caption of Figure 8.3 shown again, not in the `.tex`. Old "Look at the left panels (a1) and (a2)"
+   and "The right panels show", new "Look at the upper panels (a1) and (a2)" and "The lower panels (b1) and (b2) show".
+   The render of `s08f03_vbs_rvb.pdf` stacks the four panels in four rows. No number.
+8. Time reversal of the spinon mean field, the old point 2 of this section. Page `09`, Section 8.9, `.tex` lines 343 to
+   346. Old "If we take the same $\chi_{ij}$ for spin up and spin down, we keep $\langle \mathbf S_i\rangle = 0$ exactly,
+   so the ground state that we obtain is time-reversal symmetric by construction, as (8.5) and (8.9) require." New "If
+   we take the same $\chi_{ij}$ for spin up and spin down, we keep $\langle \mathbf S_i\rangle = 0$ exactly, as (8.5)
+   and (8.9) require. When the flux of the $\chi_{ij}$ around every plaquette, which we define in Section 8.10, is $0$
+   or $\pi$, as for real $\chi_{ij}$, the ground state is also time-reversal symmetric by construction. On a lattice
+   with triangles, a complex $\chi_{ij}$ with another flux keeps $\langle\mathbf S_i\rangle=0$ and can break
+   time reversal." The caption of Figure 8.4, `lecture_notes/src/figures/s08f04_parton.tex` lines 13 to 15, old "Taking the same $\chi_{ij}$ for both spin
+   species keeps $\langle\mathbf S_i\rangle=\mathbf 0$, so this mean field, unlike the magnetic mean fields of sessions 1
+   and 6, does not break time-reversal symmetry." new "Taking the same $\chi_{ij}$ for both spin species keeps
+   $\langle\mathbf S_i\rangle=\mathbf 0$. With real $\chi_{ij}$ this mean field also keeps time-reversal symmetry,
+   unlike the magnetic mean fields of Session 1 and Session 6." Not in the `.tex`, the correct option of the second quiz
+   of page `09`, old "$\langle\mathbf S_i\rangle=0$, so the state is time-reversal symmetric." new "$\langle\mathbf
+   S_i\rangle=0$, and with real $\chi_{ij}$ the state is also time-reversal symmetric.", with the added feedback "A complex $\chi_{ij}$ with another flux through a triangle of the lattice also has zero
+   magnetization, and it can break time reversal.", and the comes-back box of page `06`, old "the mean-field spinon Hamiltonian keeps the state", new "the
+   mean-field spinon Hamiltonian with real hoppings keeps the state". Page `13` compares the Kondo insulator with "the
+   quantum spin liquid of Section 8.9" and is not changed. `g3_09` asserts in the half-filled mean-field state of four sites, with the parton spins in the Fock space of eight
+   modes, that $\langle\mathbf S_i\rangle=0$ and that the chirality $\langle\mathbf S_0\cdot(\mathbf S_1\times\mathbf
+   S_2)\rangle$, which time reversal turns into minus itself, is 0.050 and 0.056 on a square with one diagonal and the
+   flux $\pi/4$ and $\pi/6$ through each triangle, zero with real hoppings, and zero on every triple of the square alone
+   with the flux $\pi/2$ and $\pi/3$. So the flux breaks the symmetry where there are triangles, and not on the square
+   lattice with first-neighbor hoppings, and the text says "can break". The old list said "worked out by hand, not
+   computed", and its claim that every flux other than 0 and $\pi$ breaks time reversal does not hold on the square
+   lattice.
+9. Page `09`, the feedback of the correct option of the first quiz, not in the `.tex`. Old "Each site holds exactly one
+   $f$ fermion", new "Each site holds one $f$ fermion on average", which the option itself says. `g3_09` asserts that on
+   the half-filled chain $\langle n_i\rangle=1$ with the variance $1/2$.
+10. Page `09`, the classes of spinon bands, `.tex` lines 362 to 365, where the third bullet has no pointer to graphene.
+    Old "**Gapless spinons**, with excitations at energies as close to zero as we want." and "**Dirac spinons**, with a
+    linear relation between energy and momentum at isolated points in the Brillouin zone, as for the Dirac cone of
+    graphene in Section 2.11." New "**Gapless spinons**, with a Fermi surface, so that there are excitations at energies
+    as close to zero as we want and a finite density of states at the Fermi level." and "**Dirac spinons**, where two
+    bands touch at isolated points in the Brillouin zone, with a linear relation between energy and momentum, as for the
+    Dirac cone of graphene in Section 2.11. In two dimensions the density of states then vanishes at the Fermi level."
+    By the old bullets the uniform chain, with its linear crossings at $k=\pm\pi/2$, was also of the Dirac class, while
+    the picture quiz of the page calls it gapless. `g3_09` asserts that the states below $|E|=\varepsilon$ grow as
+    $\varepsilon$ for the chain, the ratio 2.003, and as $\varepsilon^2$ for the $\pi$-flux lattice, the ratio 3.986.
+11. The vison and the flux of the ground state, the old point 1 of this section. Page `10`, Section 8.10, `.tex` lines
+    403 to 406. Old "pick up the phase $\Phi=+1$, which is a ground state, except for one loop, where the phase is
+    $\Phi=-1$. This single flipped plaquette is an excited state. It is a topological defect in the emergent gauge
+    field, and it is called a **vison**." New "pick up the phase $\Phi=+1$, except for one loop, where the phase is
+    $\Phi=-1$." and, in the next paragraph, "This single flipped plaquette is a topological defect in the emergent gauge
+    field, and it is called a **vison**. It is an excitation when the background has the flux of the ground state. For
+    spinons at half filling on the square lattice with a fixed $|\chi|$ this is the flux $\pi$, with $\Phi=-1$ on every
+    plaquette, so there the vison is one plaquette with $\Phi=+1$." The caption of Figure 8.5,
+    `lecture_notes/src/figures/s08f05_gauge_vison.tex` lines 12 to 14, old "With $\Phi=+1$ on every plaquette as the
+    ground state, flipping a single plaquette to $\Phi=-1$ costs energy, and no gauge transformation can remove it." new
+    "With $\Phi=+1$ on every plaquette as the background, a single plaquette flipped to $\Phi=-1$ changes the levels of
+    the spinons, and no gauge transformation can remove it." The overlay label "vison, $\Phi=-1$" is the defect against
+    this background and is not changed. Not in the `.tex`, the feedback of the second quiz of page `10`, old "the vison,
+    which is a plaquette with $\Phi=-1$, cannot be removed" new "the vison, a plaquette whose flux is flipped, cannot be
+    removed", and the third feedback of the quiz of page `14`, old "The vison is a plaquette with flux $\Phi=-1$ and it
+    is a spin singlet." new "The vison is a plaquette with a flipped flux, and it is a spin singlet." The caption of
+    `gauge_levels`, "A vison changes the spinon spectrum", holds for the defect and is not changed. `g3_10` asserts per
+    site and spin $-8/\pi^2=-0.811$ for $\Phi=+1$ and $-0.958$ for $\Phi=-1$, on a k-mesh and on a periodic $24\times24$
+    lattice, that among the uniform fluxes $2\pi m/24$ the lowest is $\pi$, and that on open lattices of side 6 to 12
+    one flipped plaquette lowers the uniform state, by 0.74 at side 6, while one plaquette set back to $+1$ raises the
+    $\pi$-flux state.
+12. Page `11`, Section 8.12, `.tex` lines 480 and 481. Old "with the same single-occupancy constraint (8.11), which we
+    write here in the equivalent traceless form" new "with the same single-occupancy constraint (8.11), and we write the
+    spin here in the equivalent traceless form". `g4_11` asserts that (8.19) is $(\mathbf S\cdot\boldsymbol\sigma)_{\beta\alpha}$
+    and has the trace zero on all 16 states, for $n_f=0$, 1 and 2.
+13. Page `11`, the feedback of the correct option of the second quiz of Section 8.12, not in the `.tex`. Old "Without it
+    their levels sit at zero energy, which is the chemical potential of the constraint." New "Without it their levels sit
+    at zero energy, which is the chemical potential of the constraint when the conduction band is half filled and
+    symmetric around zero." `g4_11` asserts that the Fermi level of the chain band is 0 at half filling and $-1.782$ at the
+    filling 0.15.
+14. The values of $J_K$, the old point 4 of this section. Page `13`, Section 8.13, `.tex` lines 522 and 523. Old "We see
+    this directly when we compare the spectra for increasing $J_K$. At $J_K=0$ the bands cross. At $J_K=0.25$ there is
+    already a visible gap at the crossing. At $J_K=0.5$ the gap is much larger." New "We see this directly when we compare
+    the spectra of the notebook for increasing $\gamma_K$, which the notebook calls `JK`. At $\gamma_K=0$ the bands
+    cross. At $\gamma_K=0.25$ there is already a visible gap at the crossing. At $\gamma_K=0.5$ the gap is much larger."
+    Not in the `.tex`, the try-it box of page `11`, old "the gap grows from $J_K=0.25$ to $J_K=0.5$." new "the gap grows
+    from `JK=0.25` to `JK=0.5`, where `JK` is the hybridization $\gamma_K$ of (8.21)." `g4_13` reads the values from the
+    cell of `session8.ipynb` and asserts the direct gaps 0.5 and 1.0, which are $2\gamma_K$.
+15. Page `13`, the alt text of the first picture of the third quiz, not in the `.tex`. Old "and a wide flat line in a
+    middle tone under the dashed line." New "A wide flat line in a middle tone sits at the energy of the dashed line, drawn
+    behind it." The flat $f$ level of `g4_quiz_kondo_metal.svg` is at $E=0$, drawn behind the dashed Fermi level. Asserted by
+    `_g4_kondo.py` and in `g4_13`.
+16. Changes of the decisions below, not in the `.tex`. Page `04`, the correct option of the second quiz, old "the Néel
+    state satisfies every bond", new "the classical Néel state satisfies every bond". Page `06`, the caption of
+    `rvb_plaquette`, old "has two singlet coverings, $|a\rangle$ and $|b\rangle$, each made of two singlets (8.3)." new
+    "has two singlet coverings, $|a\rangle=(01)(23)$ and $|b\rangle=(12)(30)$, each made of two singlets (8.3). Each
+    singlet is written in the order of its pair, as in the fold below." Page `06`, the first feedback of the first quiz,
+    the pairing $\Delta(c^\dagger_\uparrow c^\dagger_\downarrow-c^\dagger_\downarrow c^\dagger_\uparrow)$ now written with
+    the $f$ operators of its question. Page `10`, the correct option of the first quiz, old "The bond variable
+    $\chi_{ij}$, which gets the phase" new "The mean-field hopping $\chi_{ij}$, the coefficient of
+    $f^\dagger_{i\sigma}f_{j\sigma}$, which gets the phase". Page `13`, the first feedback of the third quiz, old "The
+    conduction band holds one half of a particle per $k$ and spin, so the $f$ level holds the other half" new "There is
+    one particle per $k$ and spin, and the conduction band holds one half of it, so the $f$ level holds the other half".
+    Page `13`, the try-it box, old "and the gap should become smaller. Then increase `JK` and check that the gapped regime
+    is more stable." new "and with `JK=0.5` the two bands already overlap in energy at `J=0.025`, so the gap between them
+    closes. Then increase `JK` to `1.0` and check that the gap stays open for the three values of `J`."
+17. Page `09`, decided below, `.tex` lines 336 and 358. Old "turns the original spin problem into a real Hamiltonian for
+    the auxiliary fermions" and "we obtain a real spinon band structure", new "turns the original spin problem into a
+    Hamiltonian for the auxiliary fermions" and "we obtain a spinon band structure". `g3_09` asserts that the
+    $\pi$-flux hoppings of pyqula along $x$ are $+i$ and $-i$.
+18. Page `10`, decided below, `.tex` line 389. Old "The mean-field bond variable $\chi_{ij}$, however, is \emph{not}
+    invariant" new "The mean-field bond variable $\chi_{ij}$ of (8.15), however, is \emph{not} invariant". `g3_10`
+    asserts that the coefficient gets $e^{+i(\theta_i-\theta_j)}$ and $\langle f^\dagger_if_j\rangle$ the opposite phase.
+19. Page `11`, decided below, after "coupling $J_K$." of `.tex` line 510, where the `.tex` has no range. The web has, since
+    the new shape and with "or another filling" since this pass, "This holds when the $f$ level stays at zero, as for a
+    half-filled conduction band that is symmetric around zero. For another band or another filling the constraint
+    (8.11), imposed on average, adds the energy of the $f$ level as a second mean-field parameter." `g4_11` asserts on
+    the chain with $\gamma_K=0.5$ held fixed that the $f$ level at zero gives $n_f=1$ at half filling and 0.36 at the
+    filling 0.15, where one $f$ fermion per site needs the $f$ level at $-1.93$, by the eigenvectors and by the closed
+    form of the weights.
+
+### Decided on 2026-11-22
+
+Each point below was decided by the coordinator on 2026-11-22 with the rule above. The points 1, 2 and 4 are the old
+points 1, 2 and 4 of this section, which turned out to be errors of the old text and are entries 11, 8 and 14 of the
+first list.
+
+1. The vison and the flux of the ground state. Of the three candidates, the second one is taken in its smallest form,
+   entry 11 of the first list. The first candidate kept "costs energy", which is false at fixed $|\chi|$, and the third
+   one changes the background of the text and of Figure 8.5.
+2. Time reversal of the spinon mean field. The first candidate is taken, written by the flux in the text and by real
+   $\chi_{ij}$ in the caption, the quiz and the pointer, with "can break" for another flux on a lattice with triangles,
+   entry 8.
+3. The sign of the phase in (8.16) and the two meanings of $\chi_{ij}$. The symbols stay, and the text and the first quiz
+   of Section 8.10 now name the coefficient of (8.15), entry 18 and entry 16. The second candidate, an own symbol for the
+   coefficient, would change (8.15) and is not applied.
+4. The values of $J_K$ in Section 8.13 and in the try-it box of Section 8.12. The first candidate is taken, entry 14.
+5. Key boxes on pages with no numbered equation, 8.2, 8.4 and 8.13. Unnumbered displays, as built, since a new tag is a
+   change of the numbering.
+6. Page `04`, the correct option of the second quiz. "classical" is added before "Néel state", since the question writes
+   the quantum Heisenberg model, whose Néel state is not an eigenstate. `g2_04` asserts on the plaquette that the Néel
+   state has $\langle H\rangle=-J$, every bond at $-J/4$, and is not an eigenstate, whose ground level is $-2J$.
+7. Page `06`, the caption of `rvb_plaquette`. The order of the pairs of the fold and of the figure script, $(01)(23)$ and
+   $(12)(30)$ with $\langle a|b\rangle=+1/2$, is written in the caption. `rvb_plaquette.py` and `g2_06` assert it.
+8. Page `06`, the first feedback of the first quiz. The pairing is written with the $f$ operators of the question. `g2_06`
+   asserts that it commutes with the spin of the site.
+9. Page `09`, the word "real" in "a real Hamiltonian" and "a real spinon band structure" is removed, entry 17, since the
+   $\pi$-flux panel of the page has complex hoppings.
+10. Page `11`, "For another band" becomes "For another band or another filling", entry 19.
+11. Page `13`, the first feedback of the third quiz says first that there is one particle per $k$ and spin, entry 16.
+12. Page `13`, the try-it box of the cell "Spinon dispersion in the Kondo lattice" is rewritten to match the cell, entry
+    16. `g4_13` asserts with pyqula on a mesh of 90 that with `JK=0.5` the gap is 0.154 at `J=0` and the bands overlap at
+    `J=0.025`, and that with `JK=1.0` the gap stays open at `J=0`, 0.025 and 0.05, and at `J=0` it agrees with $E_\pm$.
+13. Page `11`, "a Heisenberg-like coupling between the spin of the impurity and the local spin density" of Section 8.11
+    is kept. It names what is coupled, and the problem of the page gives $H_K=2J_K\,\mathbf s\cdot\mathbf S$.
+14. Page `11`, the try-it box "Then change `add_onsite(-2.0)` and see if the gap stays at the Fermi level." is kept, and
+    the notebook box of page `13`, "you check what happens to the gap when you change the chemical potential", is kept.
+    Both ask the quiz of the notebook cells, "Change the chemical potential. Do you still observe a gap opening in the
+    electronic structure?". The answer, that zero stays in the gap for any onsite energy with fewer than one $f$ fermion
+    per site, is in the caption of `g4_kondo_lattice_bands`.
+15. Page `14`, the first task, "say why each of the Ising ground states ... breaks time-reversal symmetry while the
+    singlet keeps it", is kept, since it is true and shorter than the proposed wording.
+16. Page `04`, "they mix these degenerate configurations into one quantum superposition, which in general does not break
+    time-reversal symmetry" is kept, since "in general" leaves
+    out the single triangle, and the sentence is about the many ground states of a lattice.
+17. The lab box of page `01`. `python3 webnotes/labsource.py --check 8` finds the six numbers of the four lab boxes of
+    the session in their stored sources, 99(8)% and 71% in `mourigal2013_nphys2652.txt` among them, and `g1_01` asserts
+    them in the tracked file. `labsource.py --quotes` was not run, since it writes the tracked sources of every session.
+18. The conventions sheet. The opening gives the band energies in units of $|t|$, with pyqula's hopping $+1$ equal to
+    $t=-1$ in (8.17) and (8.18) and to $\chi=+1$ in (8.15). The bullet of the singlet writes the time reversal of the
+    checks, $\Theta=(i\sigma^y)\otimes(i\sigma^y)K$. The bullet of `spinon_bands` describes the redrawn figure, with the
+    hopping $+1$ and the $\pi$-flux panel of pyqula. A new bullet gives the time reversal of the spinon mean field, with the chirality of four sites, the
+    bullet of `H2HFH` says that `JK` is $-\gamma_K$, and the bullet of `triangular_lattice` that its hopping is $t=-1$.
+    Its list of open points is now "Points of the old text, settled on 2026-11-22". Each change has its check in
+    `conventions.py`. Section 9.9, which the sheet names, is a page of another session, and its sentence holds for the
+    uniform ansatz, so it is not changed. The notebook draws the triangular Fermi surface with $k_x$ on the vertical axis,
+    sets the filling on a $10\times10$ mesh, and its comments call `JK` and `J` "chemical potentials", and it is not
+    edited.
+
+### For the lecturer
+
+None. No point of Session 8 needs a change of a numbered equation or of a convention, and the one candidate that would,
+an own symbol for the coefficient of (8.15), is not needed, as point 3 of the list above says.

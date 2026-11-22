@@ -212,3 +212,56 @@ with tempfile.TemporaryDirectory() as tmp:
         os.chdir(cwd)
 check('try-it, E_ferro - E_antiferro on the square lattice at U=3 is about 0.3 per cell of four sites', abs((Ef - Ea) - 0.3) < 0.01,
       round(Ef - Ea, 4))
+
+# corrected on 2026-11-22, Section 6.10: "In the large-U limit, the mean-field Hubbard model on a bipartite lattice gives
+# this Neel state with the energy of classical spins, and not the quantum ground state of this Heisenberg model". The
+# Hubbard model at large U is J (S_i.S_j - 1/4) per bond, so classical spins of length 1/2 give -J/2 per bond in the Neel
+# state and 0 in the ferromagnet. Two routes: the gap equation of the chain (one bond per site) and a mean field of our own
+# on the square lattice (two bonds per site) give -J/2 = -2t^2/U per bond at large U. The quantum ground state of the
+# Heisenberg ring of 10 spins 1/2 is lower, -0.4515 J per bond against the -1/4 J of classical antiparallel spins.
+sys.path.insert(0, os.path.join(REPO, 'webnotes', 'figures', 'session06'))
+import _mf
+from scipy.optimize import brentq
+
+
+def e_afm_chain(U):
+    D = _mf.gap_parameter(U); m = 2 * D / U
+    return -_mf.avg(lambda e, D: e * e / np.sqrt(e * e + D * D), D) + U * (1 - m * m) / 4
+
+
+kq = (np.arange(200) + 0.5) / 200 * 2 * np.pi - np.pi
+KX, KY = np.meshgrid(kq, kq)
+eps_sq = (-2 * (np.cos(KX) + np.cos(KY))).ravel()
+
+
+def e_afm_square(U):
+    """The Neel mean field of the half-filled square lattice, 1 = (U/2) <1/E_k> over the zone, energy per site. The
+    kinetic energy of the two spins per site is -<eps_k^2/E_k>, and the average over the reduced zone is the one over the
+    whole zone, since eps_k changes sign at k + (pi, pi)."""
+    D = brentq(lambda D: (U / 2) * np.mean(1 / np.sqrt(eps_sq ** 2 + D ** 2)) - 1, 1e-6, U)
+    m = 2 * D / U
+    return -np.mean(eps_sq ** 2 / np.sqrt(eps_sq ** 2 + D ** 2)) + U * (1 - m * m) / 4
+
+
+rows = []
+for U in (20.0, 40.0):
+    J = 4 / U
+    rows.append((U, e_afm_chain(U) / 1 / (-J / 2), e_afm_square(U) / 2 / (-J / 2)))
+check('6.10 text, at large U the mean-field Neel state has -J/2 per bond, the energy of classical spins 1/2 in '
+      'J (S_i.S_j - 1/4), on the chain and on the square lattice', all(abs(r1 - 1) < 0.01 and abs(r2 - 1) < 0.02 for U, r1, r2 in rows),
+      [(U, round(r1, 4), round(r2, 4)) for U, r1, r2 in rows])
+# corrected after the independent check of 2026-11-22 (k7): classical antiparallel spins 1/2 give -J/4 per bond in (6.5) as
+# written, so the -J/2 of mean field is their energy only once the constant -J/4 per bond that (6.5) leaves out is added,
+# and the page says so. The ferromagnet is the zero of both.
+page09 = open(os.path.join(REPO, 'webnotes', 'pages', 'session06', '09-the-heisenberg-model-on-a-general-lattice.md'),
+              encoding='utf-8').read()
+check('6.10 text, classical Neel spins 1/2 have -J/4 per bond in (6.5) and -J/2 with the constant -J/4, the saturated '
+      'ferromagnet 0 with it, and the page names the constant',
+      -0.25 - 0.25 == -0.5 and 0.25 - 0.25 == 0.0 and 'once we add the constant $-J_{ij}/4$ per bond that [(6.5)](#eq-6-5) leaves out' in page09
+      and 'plus the constant $-\\sum_{\\langle ij\\rangle}J_{ij}/4$' in page09, 'found')
+Nr = 10
+op1 = lambda o, i: reduce(np.kron, [o if j == i else np.eye(2) for j in range(Nr)])
+Hring = sum(sum(op1(s, i) @ op1(s, (i + 1) % Nr) for s in (sx, sy, sz)) for i in range(Nr)).real
+e0r = np.linalg.eigvalsh(Hring)[0] / Nr
+check('6.10 text, the quantum ground state of the Heisenberg ring of 10 spins 1/2 has -0.4515 J per bond, below the '
+      '-J/4 of classical antiparallel spins', round(e0r, 4) == -0.4515 and e0r < -0.25, round(e0r, 6))

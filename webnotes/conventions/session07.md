@@ -9,7 +9,10 @@ the dimerized Heisenberg chain is written so that Session 8 can use it as it is.
 the development tree at commit 7567127, dmrgpy at commit 3f73780 with its ITensor 3 backend, numpy 2.4.6 and scipy
 1.18.0. A statement that is not on this sheet is checked before a page claims it. The check is
 `webnotes/checks/session07/conventions.py`, which prints one line per bullet below, in the same order, in about
-three minutes on a busy machine.
+three minutes on a busy machine. The bond dimension of an MPS is $\chi$, as the notebook writes it with `maxm`, and the
+matrices of (7.5) are $M^{s_i}_i$, picked by the lecturer on 2026-11-22. When the bonds differ, $\chi_i$ is the
+dimension of the bond $i$. The bond dimension of an MPO is $D$. Section 10.4 writes $D$ for the bond dimension of an
+MPS, and its line below says so.
 
 ## Spins, units and the numbering of sites
 
@@ -78,34 +81,34 @@ three minutes on a busy machine.
 
 ## Matrix product states
 
-- An open MPS of spins $\frac12$ stores $\sum_i2D_{i-1}D_i$ numbers, with $D_0=D_L=1$. For $L=100$ and $M=10$ this is
-  18888 when every bond is $D_i=\min(M,2^i,2^{L-i})$, and 19640 when every inner bond is $M$. Both are the
-  $2LM^2=2\times10^4$ of Section 7.4. The case $M=1$ is a product state with 2 numbers per site, 200 for 100 sites and
-  80 for 40. `memory_scaling.py` draws $LM^2$, without the factor $d=2$. Session 10 writes the trace form (10.6), with
-  a $D\times D$ matrix on every site and the bond dimension called $D$, so its $D=10$ is the $M=10$ here, and it stores
+- An open MPS of spins $\frac12$ stores $\sum_i2\chi_{i-1}\chi_i$ numbers, with $\chi_0=\chi_L=1$. For $L=100$ and $\chi=10$ this is
+  18888 when every bond is $\chi_i=\min(\chi,2^i,2^{L-i})$, and 19640 when every inner bond is $\chi$. Both are the
+  $2L\chi^2=2\times10^4$ of Section 7.4. The case $\chi=1$ is a product state with 2 numbers per site, 200 for 100 sites and
+  80 for 40. `memory_scaling.py` draws $L\chi^2$, without the factor $d=2$. Session 10 writes the trace form (10.6), with
+  a $D\times D$ matrix on every site and the bond dimension called $D$, so its $D=10$ is the $\chi=10$ here, and it stores
   exactly 20000 numbers for $L=100$, as its sheet says. The $D=5$ of the MPO below is the bond dimension of an
   operator, another quantity.
-- The Schmidt rank at a bond is at most $M$. A random MPS with $M=4$ on 10 sites has the ranks 2, 4, 4, 4, 4, 4, 4,
-  4, 2, and a random state has $2^{\min(\ell,L-\ell)}$, so 2, 4, 8, 16, 32, 16, 8, 4, 2, which is the $M\sim2^{L/2}$
+- The Schmidt rank at a bond is at most $\chi$. A random MPS with $\chi=4$ on 10 sites has the ranks 2, 4, 4, 4, 4, 4, 4,
+  4, 2, and a random state has $2^{\min(\ell,L-\ell)}$, so 2, 4, 8, 16, 32, 16, 8, 4, 2, which is the $\chi\sim2^{L/2}$
   of a volume law. An MPS with these bonds stores 2728 numbers, more than the 1024 coefficients.
-- An MPS holds at most $\ln M$ across a bond, (7.10), and only $M$ equal Schmidt weights reach it. Sixteen equal
+- An MPS holds at most $\ln \chi$ across a bond, (7.10), and only $\chi$ equal Schmidt weights reach it. Sixteen equal
   weights give $2.7726=4\ln2$. A ground state stays far below the bound, as the notebook cells below show.
 - The Heisenberg chain is an MPO of bond dimension $D=5$, with $I$, $S^+$, $S^-$, $S^z$ in the first column and
   $\frac12S^-$, $\frac12S^+$, $S^z$, $I$ in the last row. It gives the dense matrix of 6 sites exactly, and 5 is the
-  operator Schmidt rank of $H$ at its center. On a random MPS with $M=4$ of 10 sites it gives $H|\psi\rangle$ to
-  $10^{-15}$ with the bonds $MD=20$ in the bulk, the dimension before any truncation.
+  operator Schmidt rank of $H$ at its center. On a random MPS with $\chi=4$ of 10 sites it gives $H|\psi\rangle$ to
+  $10^{-15}$ with the bonds $\chi D=20$ in the bulk, the dimension before any truncation.
 - A tensor has one number for each combination of its indices, 64 for three legs of dimension 4, 8 for three legs of
   dimension 2, and 256 for four legs of dimension 4.
 - The AKLT chain $\sum_i[\mathbf S_i\cdot\mathbf S_{i+1}+\frac13(\mathbf S_i\cdot\mathbf S_{i+1})^2]$ of spins 1 is
-  an MPS with $M=2$, with the matrices $A^{+1}=\sqrt{2/3}\,\sigma^+$, $A^0=-\sqrt{1/3}\,\sigma^z$ and
+  an MPS with $\chi=2$, with the matrices $A^{+1}=\sqrt{2/3}\,\sigma^+$, $A^0=-\sqrt{1/3}\,\sigma^z$ and
   $A^{-1}=-\sqrt{2/3}\,\sigma^-$. On 8 sites the four choices of the end vectors give eigenstates at
   $-\frac23(L-1)=-4.666667$ to $10^{-14}$, and exact diagonalization gives this level four times, for the two free
   spins $\frac12$ at the ends, and then $-3.9080$. This is the AKLT chain of the quizzes of Sections 7.8a and 7.8b.
-- The local problem of a one-site update has $dM^2=2M^2$ numbers in the bulk and $dM$ at an end, as Section 7.10
-  says, and $d^2M^2=4M^2$ for the two-site update, which dmrgpy uses by default. One product of the effective
-  Hamiltonian with the tensor costs $4dDM^3+2d^2D^2M^2$ operations by the count of `np.einsum_path`, with $D=5$ the
-  bond dimension of the MPO, so $4.2\times10^7$, $3.3\times10^8$ and $6.8\times10^8$ at $M=100$, 200 and 256, a
-  factor 7.81 from 100 to 200. So the time of a sweep grows as $LM^3$, while $LM^2$ is the storage, and the notebook
+- The local problem of a one-site update has $d\chi^2=2\chi^2$ numbers in the bulk and $d\chi$ at an end, as Section 7.10
+  says, and $d^2\chi^2=4\chi^2$ for the two-site update, which dmrgpy uses by default. One product of the effective
+  Hamiltonian with the tensor costs $4dD\chi^3+2d^2D^2\chi^2$ operations by the count of `np.einsum_path`, with $D=5$ the
+  bond dimension of the MPO, so $4.2\times10^7$, $3.3\times10^8$ and $6.8\times10^8$ at $\chi=100$, 200 and 256, a
+  factor 7.81 from 100 to 200. So the time of a sweep grows as $L\chi^3$, while $L\chi^2$ is the storage, and the notebook
   writes the cost as $O(N\chi^3)$.
 
 ## The entanglement entropy of the solvable states
@@ -153,8 +156,8 @@ three minutes on a busy machine.
   them.
 - For $J_1=1$ and $J_2=0.5$ on 14 sites the cuts through a $J_1$ bond give 1.0000 to 1.0021 times $\ln2$ and the cuts
   through a $J_2$ bond 0.139 to 0.145 times $\ln2$, for every position of the cut, by exact diagonalization and by
-  dmrgpy to $10^{-9}$. This is the blue curve of `random_vs_gapped`, whose caption rounds the weak cuts to about
-  $0.15\log2$, where 0.14 is closer.
+  dmrgpy to $10^{-9}$. This is the blue curve of `random_vs_gapped`, whose caption gives the weak cuts as about
+  $0.14\log2$ since 2026-11-22, in place of the old 0.15.
 - At the center of 16 sites, which is a $J_2$ bond, the weight beyond the 16 largest Schmidt weights is
   $1.95\times10^{-7}$ for $J_2=1$ and $2.75\times10^{-11}$ for $J_2=0.5$, and the entropy is 0.5923 and 0.1005. This
   is the figure `schmidt_spectrum`.
@@ -184,8 +187,9 @@ three minutes on a busy machine.
 - The free-fermion chain with the hopping 1 on the bonds $(2n,2n+1)$ and 0.6 on the others has the gap
   $2|1-0.6|=0.8$. On a ring of 1000 sites a block whose two ends cut a bond 0.6 has 0.4992, and already 0.4983 with
   10 sites. A block with one end of each kind has 0.9554, and a block whose two ends cut a bond 1 has 1.4117. pyqula
-  `bichain()` with `h.inter` times 0.6 gives the same. This is the red curve of `critical_entropy`, with even blocks
-  from site 0, and the spinon chain of Section 8.9 with the same gap 0.8. It is another model than the dimerized
+  `bichain()` with `h.inter` times 0.6 gives the same. The red curve of `critical_entropy` is this chain
+  open, with 3002 sites and blocks in the middle that start on an even site, so that both ends cut a bond 0.6, and it
+  gives 0.4983 at $\ell=10$ and 0.4992 from $\ell=32$ on. It is also the spinon chain of Section 8.9 with the same gap 0.8. It is another model than the dimerized
   Heisenberg chain, so a page names the model next to the number.
 
 ## pyqula
@@ -207,7 +211,8 @@ three minutes on a busy machine.
   the spinful call gave wrong values that change from run to run, between 1.2 and 2.2 in the runs of 2026-11-21,
   while `has_spin=False` gives 0.49835 again. The uniform `chain()` gave twice the spinless value on a ring of 602
   cells. The cause was not found, so a script takes `has_spin=False` and doubles the entropy by hand.
-- pyqula has no solver for an interacting chain. `pyqula2dmrgpy.generate_fermionic_chain(hf)` turns a finite pyqula
+- pyqula does not diagonalize an interacting quantum chain, and its solvers for interactions are mean field, classical
+  spins and linear spin waves. `pyqula2dmrgpy.generate_fermionic_chain(hf)` turns a finite pyqula
   Hamiltonian into a dmrgpy `Fermionic_Chain`, with `Cdag`, `C` and `N` for each site, and the interaction is added on
   the dmrgpy side. It drops every matrix element below $10^{-5}$, so an onsite energy $5\times10^{-6}$ changes the
   free energy by $2.5\times10^{-6}$ and the dmrgpy energy by 0. For a Hamiltonian with a period it prints "Only
@@ -244,10 +249,10 @@ three minutes on a busy machine.
 ## DMRG and dmrgpy
 
 - One sweep of the one-site update of `dmrg_sweeps.py` is $2L-2=18$ updates on 10 sites, and the energy never goes up.
-  After three sweeps the error $E-E_0$ is 0.2016 to 0.2018 for $M=2$ and $1.461\times10^{-5}$ for $M=8$. For $M=4$ it
+  After three sweeps the error $E-E_0$ is 0.2016 to 0.2018 for $\chi=2$ and $1.461\times10^{-5}$ for $\chi=8$. For $\chi=4$ it
   is $6.12\times10^{-3}$ from the start of the figure, `seed=1`, and $6.1\times10^{-3}$ to $8.9\times10^{-3}$ over the
   seeds 1 to 8. dmrgpy runs the two-site update, and with `maxm` 2, 4 and 8 it stops at 0.2156, $6.1\times10^{-3}$ and
-  $1.5\times10^{-5}$ above the exact $-4.258035$, so at $M=2$ the one-site sweep ends a little lower.
+  $1.5\times10^{-5}$ above the exact $-4.258035$, so at $\chi=2$ the one-site sweep ends a little lower.
 - dmrgpy takes by default `maxm=30`, `nsweeps=15`, the truncation cutoff $10^{-12}$ and the two-site update. A chain
   of two sites does not run DMRG, since dmrgpy falls back to exact diagonalization and returns a state without
   `get_bond_entropy`, which raises `AttributeError`. `sc.get_site_entropy(wf, 0)` gives the singlet entropy 0.69315
@@ -260,7 +265,8 @@ three minutes on a busy machine.
 ## The notebook cells, run on fewer points
 
 - The cell "Energy of the Heisenberg model as a function of the system size" calls `sc.gs_energy(mode="DMRG")` for
-  $N=2$, 6, ..., 38, so it runs DMRG, while its text and the box of Section 7.3 say exact diagonalization.
+  $N=2$, 6, ..., 38, so it runs DMRG, while its text says exact diagonalization. The box of Section 7.3 says that the
+  cell runs DMRG since 2026-11-22.
 - The cell "The role of the bond dimension in tensor networks" gives on 20 sites the fluctuation per site
   $5.4\times10^{-4}$, $6.1\times10^{-5}$ and $3.1\times10^{-6}$ at `maxm` 3, 11 and 23, while the energy per site is
   $-0.434118$ at 11 and $-0.434124$ at 23. In the range of the cell the energy saturates and the fluctuation does not.
@@ -287,42 +293,50 @@ three minutes on a busy machine.
   shape, times a factor between 0 and $\sqrt2$ that changes from run to run, 0.44 in one run of the check. The sum over
   $x$, $y$ and $z$ of $|\langle1|S^a_i|0\rangle|^2$ is the same in every run, $2\times0.179^2=0.064$ at its largest.
 
-## Statements of the pages that these numbers contradict, left as they are
+## Statements of the pages that these numbers contradicted, corrected on 2026-11-22
 
-- The caption of `memory_scaling` in Section 7.3 says sixteen gigabytes at $L=30$. This is $1.72\times10^{10}$ bytes,
-  17.2 GB in the unit of its dashed line, $10^9$ bytes, and 16 only in units of $2^{30}$ bytes. The first quiz of the
-  same page says $1.7\times10^{10}$ bytes.
-- Two pages count a product state in two ways. The first quiz of Section 7.3 calls 640 bytes for 40 sites "the
-  storage of a product state, one 16-byte number per site", and the first quiz of Section 7.4 says that the product
-  state, $M=1$, "needs two numbers per site". The MPS with $M=1$ stores two complex numbers per site, 80 numbers or
-  1280 bytes for 40 sites, and one per site is what is left after the norm and the phase of each site. So the two
-  pages count different things, and neither says which.
-- The notebook box of Section 7.3 says that the first cell computes the energy with exact diagonalization, and the
-  cell runs DMRG. The try-it of the same page asks at which size the calculation becomes slow compared with $2^L$,
-  which has the same premise.
-- The try-it of Section 7.5 calls the straight curve of the time against $L$ the $LM^2$ structure of (7.5), and the
-  notebook box of Section 7.8a calls the cost of DMRG the $L\times M^2$ scaling of (7.5). The time of a sweep is linear
-  in $L$ but grows as $M^3$, a factor 7.81 for a step from $M=100$ to 200, and $LM^2$ is the storage.
-- The try-it of Section 7.8a asks to check that the central bonds have the largest entropy. For 20 sites with
+The statements below were left as they were by the builders, and they were corrected on 2026-11-22 by the rule of the
+lecturer of that day, "Fix old-text errors". Each bullet says what the page says now, and the check prints the number
+that backs it.
+
+- The caption of `memory_scaling` in Section 7.3 said sixteen gigabytes at $L=30$. This is $1.72\times10^{10}$ bytes,
+  17.2 GB in the unit of its dashed line, $10^9$ bytes, and 16 only in units of $2^{30}$ bytes, so the caption says about
+  seventeen gigabytes. The first quiz of the same page says $1.7\times10^{10}$ bytes.
+- Two pages counted a product state in two ways. The first quiz of Section 7.3 calls 640 bytes for 40 sites the storage of
+  a product state, one 16-byte number per site, and it now adds that this count keeps only what is left once the norm and
+  the phase of each site are fixed, while an MPS with $\chi=1$ stores two numbers per site, 1280 bytes for 40 sites. This is
+  the count of the first quiz of Section 7.4, two numbers per site, 200 for 100 sites.
+- The notebook box of Section 7.3 said that the first cell computes the energy with exact diagonalization, and the cell
+  runs DMRG. The box now says that the code calls `sc.gs_energy(mode="DMRG")`, and the try-it of the same page asks to
+  compare the growth of the time with $2^L$.
+- The try-it of Section 7.5 called the straight curve of the time against $L$ the $L\chi^2$ structure of (7.5), and the
+  notebook box of Section 7.8a called the cost of DMRG the $L\times \chi^2$ scaling of (7.5). The time of a sweep is linear
+  in $L$ but grows as $\chi^3$, a factor 7.81 for a step from $\chi=100$ to 200, and $L\chi^2$ is the storage, so both now say the
+  linear growth in $L$ of (7.5).
+- The try-it of Section 7.8a asked to check that the central bonds have the largest entropy. For 20 sites with
   `maxm=20` the largest, 0.792, sits on the cuts after 9 and 11 sites, beside the center, and the center itself has
-  0.635, below every cut after an odd number of sites and below the $\ln2$ of the first cut.
-- The notebook box of Section 7.8a says that the fluctuation of the energy becomes smaller and then saturates where
-  $M$ satisfies the bound (7.10), and the box of Section 7.8b says that the entropy saturates once $M$ satisfies it.
+  0.635, below every cut after an odd number of sites and below the $\ln2$ of the first cut. The try-it now asks to check
+  that the largest entropy sits on the two bonds next to the central bond.
+- The notebook box of Section 7.8a said that the fluctuation of the energy becomes smaller and then saturates where
+  $\chi$ satisfies the bound (7.10), and the box of Section 7.8b said that the entropy saturates once $\chi$ satisfies it.
   In the cell the fluctuation still falls from `maxm=11` to 23, while the energy per site changes by
   $6\times10^{-6}$, so it is the energy that saturates. The bound holds much earlier, since the 20 sites need at most
-  0.792, below $\ln3$. What sets the saturation is the weight of the Schmidt values that are dropped, and not the
-  bound.
-- The notebook box of Section 7.8b calls the slow growth of the entropy with the size the area-law saturation of
+  0.792, below $\ln3$. What sets the saturation is the weight of the Schmidt values that are dropped, and both boxes now
+  say this.
+- The notebook box of Section 7.8b called the slow growth of the entropy with the size the area-law saturation of
   Section 7.6 in a gapless chain. The Heisenberg chain is critical, the notebook itself gives $\frac c6\ln L$ with
-  $c=1$, the center grows by 0.127 from 20 to 40 sites, and the cut of the cell zigzags.
-- The try-it of Section 7.8b says that the curves of $L=10$ and $L=30$ follow the bound $\ln\chi$ at small $\chi$. At
-  $\chi=2$ they have 0.271 and 0.360 against $\ln2=0.693$, so they stay far below it at every $\chi\geq2$.
-- In Section 7.11 the first answer of the second quiz says "The critical chain needs this, since its entropy goes
-  from $0.77$ at $\ell=10$ to $2.3$ at $\ell=1000$." These are the term $\frac13\ln\ell$ alone, while the figure
-  `critical_entropy` of the same page gives 1.49 and 3.03 for the critical chain. The first quiz takes
-  $S=\frac c3\log\ell$ with no constant as its premise, so its 0.77 and 2.3 hold on its own terms, and the growth
-  of 1.5 is right in both.
-- The try-it of Section 7.11 says that the peak of the entropy should sit close to $B_x=0.5$. The exact entropy at the
+  $c=1$, the center grows by 0.127 from 20 to 40 sites, and the cut of the cell zigzags. The box now says that this is
+  not the saturation of Section 7.6 and that the entropy grows as $\frac c6\ln L$.
+- The try-it of Section 7.8b said that the curves of $L=10$ and $L=30$ follow the bound $\ln\chi$ at small $\chi$. At
+  $\chi=2$ they have 0.271 and 0.360 against $\ln2=0.693$, so they stay far below it at every $\chi\geq2$, which the
+  try-it now says.
+- In Section 7.11 the first answer of the second quiz said "its entropy goes from $0.77$ at $\ell=10$ to $2.3$ at
+  $\ell=1000$." These are the term $\frac13\ln\ell$ alone, while the block of the infinite chain has 1.49 and 3.03, and
+  the figure `critical_entropy`, an open chain of 3002 sites with the blocks in the middle, gives 1.4929 and 2.9649. The
+  feedback now says that the entropy grows by about 1.5, which holds in both. The first quiz takes
+  $S=\frac c3\log\ell$ with no constant as its premise, so its 0.77 and 2.3 hold on its own terms.
+- The try-it of Section 7.11 said that the peak of the entropy should sit close to $B_x=0.5$. The exact entropy at the
   cut of the notebook has its largest value on the ordered side, at 0.37 for 20 sites and 0.44 for 40 sites, and has
   fallen to 0.4427 and 0.5050 at 0.5. The peak of the scan sits there, or where DMRG first leaves its ferromagnetic
-  guess, and its height near $\ln2$ comes from the even superposition of the two ferromagnetic states.
+  guess, and its height near $\ln2$ comes from the even superposition of the two ferromagnetic states. The try-it now
+  says that the peak sits below 0.5, on the ordered side.
