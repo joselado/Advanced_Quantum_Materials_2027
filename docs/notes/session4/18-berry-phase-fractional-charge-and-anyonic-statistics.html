@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>4.18 Berry phase, fractional charge, and anyonic statistics, session 4</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Cpath d=%27M16 3l11.3 6.5v13L16 29 4.7 22.5v-13z%27 fill=%27none%27 stroke=%27%231a5fb4%27 stroke-width=%273%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%273.5%27 fill=%27%231a5fb4%27/%3E%3C/svg%3E">
 <style>
   :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
           --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
@@ -14,46 +15,117 @@
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--fg);
          font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
-  main { max-width: 960px; margin: 0 auto; padding: 28px 16px 64px; }
+  main { max-width: 1040px; margin: 0 auto; padding: 18px 16px 40px; }
   h1 { font-size: 1.7rem; margin: 0 0 4px; line-height: 1.25; }
   h2 { font-size: 1.25rem; margin: 40px 0 8px; }
   h3 { font-size: 1.02rem; margin: 24px 0 4px; }
-  a { color: var(--link); }
-  .course { color: var(--muted); margin: 0 0 16px; }
-  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: 16px 0 0; flex-wrap: wrap; }
-  .tabs a { padding: 8px 14px; text-decoration: none; color: var(--muted); border-radius: 6px 6px 0 0; }
-  .tabs a.on { color: var(--fg); background: var(--tab); font-weight: 600; }
-  .sub { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 20px; }
-  .sub a { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
-           text-decoration: none; color: var(--fg); }
+  a { color: var(--link); text-underline-offset: 2px; }
+  /* the shell: the bar of the course with the sessions, the head of a session with its two tabs, the footer */
+  .top { display: flex; align-items: center; justify-content: space-between; gap: 8px 24px; flex-wrap: wrap;
+         padding-bottom: 12px; border-bottom: 1px solid var(--rule); margin-bottom: 22px; }
+  .brand { font-weight: 700; font-size: 1.05rem; color: var(--fg); text-decoration: none; }
+  .brand span { color: var(--muted); font-weight: 400; }
+  .sub { display: flex; gap: 5px; flex-wrap: wrap; align-items: center; }
+  .sub .sublab { color: var(--muted); font-size: 0.9rem; margin-right: 4px; }
+  .sub a, .sub span.no { min-width: 2.1em; text-align: center; padding: 2px 6px; border: 1px solid var(--rule);
+           border-radius: 6px; text-decoration: none; color: var(--fg); font-size: 0.95rem; }
+  .sub a:hover { border-color: var(--accent); }
   .sub a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
-  .sub a.off { color: var(--muted); border-style: dashed; }
+  .sub a.off, .sub span.no { color: var(--muted); border-style: dashed; }
+  .eyebrow { margin: 0; color: var(--muted); font-size: 0.82rem; font-weight: 700; letter-spacing: 0.07em;
+             text-transform: uppercase; }
+  .sess { margin: 0; font-weight: 600; font-size: 1.05rem; }
+  .sess a { color: var(--fg); text-decoration: none; } .sess a:hover { text-decoration: underline; }
+  .sess .k { color: var(--muted); font-weight: 400; }
+  .tabs { display: flex; gap: 2px 22px; border-bottom: 1px solid var(--rule); margin: 10px 0 0; flex-wrap: wrap; }
+  .tabs a, .tabs span { padding: 6px 1px 7px; text-decoration: none; color: var(--muted); border-bottom: 3px solid transparent;
+            margin-bottom: -1px; }
+  .tabs a:hover { color: var(--fg); }
+  .tabs a.on { color: var(--fg); font-weight: 600; border-bottom-color: var(--accent); }
+  .tabs span { opacity: 0.6; }
+  .links { color: var(--muted); font-size: 0.93rem; margin: 10px 0 16px; }
+  /* the version of a video lecture, slides or landscape, chosen above the video */
+  .mode { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0 6px; }
+  .mode .sublab { color: var(--muted); font-size: 0.9rem; margin-right: 4px; }
+  .mode a { padding: 3px 14px; border: 1px solid var(--rule); border-radius: 999px; text-decoration: none; color: var(--fg);
+            background: var(--card); font-size: 0.93rem; }
+  .mode a:hover { border-color: var(--accent); }
+  .mode a.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+  .modenote { color: var(--muted); font-size: 0.93rem; margin: 0 0 12px; }
   video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; display: block; }
   .pending { width: 100%; aspect-ratio: 16 / 9; border: 1px dashed var(--rule); border-radius: 6px; display: flex;
              align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 16px; }
   .note { color: var(--muted); font-size: 0.95rem; }
   ul { padding-left: 1.3em; margin: 4px 0; }
   li { margin: 2px 0; }
-  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
-  .cols.three { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
-  @media (max-width: 900px) { .cols.three { grid-template-columns: 1fr; } }
-  .half { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 16px; }
-  .half h2 { margin-top: 14px; }
-  .half ol { padding-left: 1.6em; margin: 8px 0; }
-  .half li { margin: 4px 0; }
   .soon { color: var(--muted); }
-  .pager { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 12px;
-           border-top: 1px solid var(--rule); gap: 12px; }
+  /* the home page: what the three formats are, then one row per session */
+  .formats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 40px; margin: 18px 0 8px; }
+  @media (max-width: 800px) { .formats { grid-template-columns: 1fr; } }
+  .formats h2 { font-size: 1rem; margin: 0 0 2px; }
+  .formats p { margin: 0; color: var(--muted); font-size: 0.93rem; }
+  .sessions { list-style: none; padding: 0; margin: 26px 0 0; border-top: 1px solid var(--rule); }
+  .sessions > li { display: grid; grid-template-columns: 2.6rem 1fr; gap: 0 8px; padding: 14px 0; margin: 0;
+                   border-bottom: 1px solid var(--rule); }
+  .sessions .k { font-size: 1.5rem; font-weight: 700; color: var(--muted); line-height: 1.3; }
+  .sessions h2 { font-size: 1.12rem; margin: 0 0 8px; line-height: 1.35; }
+  .go { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; margin: 0; }
+  .go a { text-decoration: none; padding: 3px 12px; border: 1px solid var(--rule); border-radius: 6px; background: var(--card);
+          color: var(--link); font-size: 0.93rem; font-weight: 600; }
+  .go a:hover { border-color: var(--accent); }
+  .go a.minor { border-color: transparent; background: none; font-weight: 400; padding: 3px 4px; text-decoration: underline; }
+  .go .soon { font-size: 0.93rem; padding: 3px 4px; }
+  /* previous and next, with what each one is */
+  .pager { display: grid; grid-template-columns: 1fr 1fr; margin-top: 40px; gap: 12px; }
+  .pager a { display: block; border: 1px solid var(--rule); border-radius: 8px; padding: 8px 14px; text-decoration: none;
+             background: var(--card); color: var(--fg); }
+  .pager a:hover { border-color: var(--accent); }
+  .pager a.next { text-align: right; grid-column: 2; }
+  .pager small { display: block; color: var(--muted); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.07em;
+                 text-transform: uppercase; }
+  .pager .t { color: var(--link); }
+  @media (max-width: 560px) { .pager { grid-template-columns: 1fr; } .pager a.next { grid-column: 1; } }
+  .foot { margin-top: 48px; padding-top: 14px; border-top: 1px solid var(--rule); color: var(--muted); font-size: 0.88rem; }
+  @media print {
+    .top, .tabs, .pager, .foot, .secnav, .links, .mode, .modenote, video { display: none !important; }
+    body { background: #fff; color: #000; font-size: 11.5pt; } main { max-width: none; padding: 0; }
+    a { color: inherit; text-decoration: none; }
+  }
 
-  main { max-width: 860px; }
-  .sub span { min-width: 2.4em; text-align: center; padding: 4px 8px; border: 1px dashed var(--rule);
-              border-radius: 6px; color: var(--muted); }
-  .crumb { margin: 0 0 4px; font-size: 0.95rem; }
+  /* a page of the notes: the list of the sections of the session at the left, the text in a column of 728 px, about
+     85 characters. At 680 px 19 of the 997 display equations scrolled sideways, at 728 px 8, at the old 828 px 4. */
+  .withside { display: grid; grid-template-columns: 240px minmax(0, 728px); gap: 0 40px; margin-top: 22px; }
+  .withside > article { min-width: 0; }
+  /* the list is as tall as the window below the head of the page, so that it is whole before the page is scrolled */
+  .secnav { font-size: 0.9rem; align-self: start; position: sticky; top: 14px; max-height: calc(100vh - 200px);
+            overflow-y: auto; padding-right: 6px; }
+  .secnav summary { list-style: none; color: var(--muted); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.07em;
+                    text-transform: uppercase; padding: 0 0 6px 10px; pointer-events: none; }
+  .secnav summary::-webkit-details-marker { display: none; }
+  .secnav summary .pos { display: none; }
+  .secnav ol { list-style: none; margin: 0; padding: 0; }
+  .secnav li { margin: 0; }
+  .secnav a { display: grid; grid-template-columns: 3.3em 1fr; padding: 4px 6px 4px 8px; text-decoration: none;
+              color: var(--fg); border-left: 2px solid var(--rule); line-height: 1.35; }
+  .secnav a .n { color: var(--muted); }
+  .secnav a:hover { background: var(--tab); }
+  .secnav a[aria-current] { border-left-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, var(--bg));
+                            font-weight: 600; }
+  @media (max-width: 1039px) {
+    .withside { display: block; max-width: 728px; margin-left: auto; margin-right: auto; }
+    .secnav { position: static; max-height: none; border: 1px solid var(--rule); border-radius: 8px; background: var(--card);
+              padding: 0; margin-bottom: 18px; }
+    .secnav summary { pointer-events: auto; cursor: pointer; padding: 8px 12px; list-style: revert; text-transform: none;
+                      letter-spacing: 0; font-size: 0.93rem; font-weight: 600; color: var(--fg); }
+    .secnav summary::-webkit-details-marker { display: revert; }
+    .secnav summary .pos { display: inline; color: var(--muted); font-weight: 400; }
+    .secnav ol { padding: 0 8px 8px; }
+  }
+  .crumb { margin: 0 0 4px; font-size: 0.85rem; color: var(--muted); }
   .num { color: var(--muted); font-weight: 400; margin-right: 0.15em; }
-  .toc ol { list-style: none; padding-left: 0; } .toc li { margin: 5px 0; }
-  .toc .n { display: inline-block; min-width: 3.4em; padding-right: .4em; color: var(--muted); }
-  .links { color: var(--muted); font-size: 0.95rem; margin: 6px 0 18px; }
+  .toc ol { list-style: none; padding-left: 0; }
+  .toc li { margin: 5px 0; display: grid; grid-template-columns: 3.6em 1fr; }
+  .toc .n { color: var(--muted); }
   figure { margin: 24px 0; }
   figure img { width: 100%; height: auto; background: #fff; border-radius: 6px; display: block; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 8px; }
@@ -61,8 +133,9 @@
   .math.display { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
   mjx-assistive-mml { max-width: 100%; }
-  .notebookbox { background: color-mix(in srgb, var(--accent) 8%, var(--card)); border-left: 3px solid var(--accent);
-                 border-radius: 6px; padding: 8px 16px; margin: 20px 0; font-size: 0.95rem; }
+  .notebookbox { background: color-mix(in srgb, var(--w1, #c64600) 6%, var(--card)); border: 1px solid var(--rule);
+                 border-left: 3px solid var(--w1, #c64600); border-radius: 6px; padding: 8px 16px; margin: 20px 0;
+                 font-size: 0.95rem; }
   .tryit { background: var(--card); border-left: 3px solid var(--muted); border-radius: 6px; padding: 8px 16px;
            margin: 20px 0; font-size: 0.95rem; }
   .quiz, .widget { border: 1px solid var(--rule); border-radius: 8px; padding: 8px 16px; margin: 24px 0; }
@@ -71,7 +144,9 @@
   div.center { overflow-x: auto; }
   div.center table { margin-left: auto; margin-right: auto; }
   th { border-bottom: 2px solid var(--rule); }
+  .coursecontents { max-width: 760px; }
   .coursecontents h2 { margin-top: 28px; }
+  @media print { .withside { display: block; max-width: none; } }
 </style>
 <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],tags:"none"},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
@@ -80,10 +155,14 @@
 </head>
 <body>
 <main>
-  <p class="course"><a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Advanced Quantum Materials 2027</a> · <a href="../../index.html">All lectures</a> · <a href="../../notes/index.html">Lecture notes</a></p>
-  <nav class="tabs"><a href="../../lectures/session4.html">Video lectures</a><a href="../../landscape/session4.html">Landscape lectures</a><a class="on" href="../../notes/session4/index.html">Lecture notes</a></nav>
-  <nav class="sub"><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="on" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav>
-  <p class="crumb"><a href="index.html">Session 4. Electrons in a Magnetic Field, Quantum Hall Effect and Landau Levels</a></p>
+  <header class="top"><a class="brand" href="../../index.html">Advanced Quantum Materials <span>2027</span></a><nav class="sub" aria-label="Sessions"><span class="sublab">Session</span><a class="" href="../../notes/session1/index.html" title="Second quantization, mean field and spontaneous symmetry breaking">1</a><a class="" href="../../notes/session2/index.html" title="Symmetries, band structure theory and effective models">2</a><a class="" href="../../notes/session3/index.html" title="Topological band structure theory">3</a><a class="on" href="../../notes/session4/index.html" title="Electrons in magnetic fields, the quantum Hall effect and Landau levels" aria-current="true">4</a><a class="" href="../../notes/session5/index.html" title="Superconductivity, Nambu representation and Majorana physics">5</a><a class="" href="../../notes/session6/index.html" title="Classical magnetism and magnons">6</a><a class="" href="../../notes/session7/index.html" title="Quantum entanglement and tensor networks">7</a><a class="" href="../../notes/session8/index.html" title="Quantum magnetism, spinons and Kondo physics">8</a><a class="" href="../../notes/session9/index.html" title="Excitations and defects in quantum materials">9</a><a class="" href="../../notes/session10/index.html" title="Machine learning quantum materials">10</a></nav></header>
+  <p class="sess"><a href="index.html"><span class="k">Session 4.</span> Electrons in magnetic fields, the quantum Hall effect and Landau levels</a></p>
+  <nav class="tabs" aria-label="Video lecture and notes of this session"><a class="" href="../../lectures/session4.html">Video lecture</a><a class="on" href="../../notes/session4/index.html">Lecture notes</a></nav>
+  <div class="withside">
+  <details class="secnav"><summary>Session 4 <span class="pos">· all sections</span></summary><ol><li><a href="index.html"><span class="n"></span><span>Introduction</span></a></li><li><a href="01-where-the-quantum-hall-state-shows-up.html"><span class="n">4.1</span><span>Where the quantum Hall state shows up</span></a></li><li class="also"><a href="01-where-the-quantum-hall-state-shows-up.html#sec-4-2"><span class="n">4.2</span><span>Measuring the Hall conductance</span></a></li><li><a href="03-from-the-kubo-formula-to-the-chern-number-briefly.html"><span class="n">4.3</span><span>From the Kubo formula to the Chern number, briefly</span></a></li><li class="also"><a href="03-from-the-kubo-formula-to-the-chern-number-briefly.html#sec-4-4"><span class="n">4.4</span><span>Landau levels as Chern-number-one flat bands</span></a></li><li><a href="05-edge-states-and-why-an-insulating-bulk-still-conducts.html"><span class="n">4.5</span><span>Edge states and why an insulating bulk still conducts</span></a></li><li><a href="06-quantized-hall-plateaus-in-experiment.html"><span class="n">4.6</span><span>Quantized Hall plateaus in experiment</span></a></li><li class="also"><a href="06-quantized-hall-plateaus-in-experiment.html#sec-4-7"><span class="n">4.7</span><span>Coupling electrons to a magnetic field with minimal coupling and the Peierls substitution</span></a></li><li><a href="08-the-landau-gauge-and-the-symmetric-gauge.html"><span class="n">4.8</span><span>The Landau gauge and the symmetric gauge</span></a></li><li><a href="09-landau-levels-of-schrodinger-electrons.html"><span class="n">4.9</span><span>Landau levels of Schrödinger electrons</span></a></li><li><a href="10-landau-levels-of-dirac-electrons.html"><span class="n">4.10</span><span>Landau levels of Dirac electrons</span></a></li><li><a href="11-numerical-check-of-the-landau-levels-and-edge-states-on-the-lattice.html"><span class="n">4.11</span><span>Numerical check of the Landau levels and edge states on the lattice</span></a></li><li class="also"><a href="11-numerical-check-of-the-landau-levels-and-edge-states-on-the-lattice.html#sec-4-12"><span class="n">4.12</span><span>Ladder operators and the many-body Landau Hamiltonian</span></a></li><li><a href="13-the-symmetric-gauge-and-the-lowest-landau-level-wavefunctions.html"><span class="n">4.13</span><span>The symmetric gauge and the lowest-Landau-level wavefunctions</span></a></li><li class="also"><a href="13-the-symmetric-gauge-and-the-lowest-landau-level-wavefunctions.html#sec-4-14"><span class="n">4.14</span><span>The many-body wavefunction of the filled lowest Landau level</span></a></li><li class="also"><a href="13-the-symmetric-gauge-and-the-lowest-landau-level-wavefunctions.html#sec-4-15"><span class="n">4.15</span><span>Angular momentum, enclosed flux, and the uniform electron gas</span></a></li><li><a href="16-fractional-filling-and-the-laughlin-wavefunction.html"><span class="n">4.16</span><span>Fractional filling and the Laughlin wavefunction</span></a></li><li class="also"><a href="16-fractional-filling-and-the-laughlin-wavefunction.html#sec-4-17"><span class="n">4.17</span><span>Quasiholes and quasielectrons</span></a></li><li><a href="18-berry-phase-fractional-charge-and-anyonic-statistics.html" aria-current="page"><span class="n">4.18</span><span>Berry phase, fractional charge, and anyonic statistics</span></a></li><li><a href="19-the-haldane-model-and-the-quantum-hall-effect-without-landau-levels.html"><span class="n">4.19</span><span>The Haldane model and the quantum Hall effect without Landau levels</span></a></li><li><a href="20-real-materials-realizing-chern-and-fractional-chern-physics.html"><span class="n">4.20</span><span>Real materials realizing Chern and fractional Chern physics</span></a></li><li class="also"><a href="20-real-materials-realizing-chern-and-fractional-chern-physics.html#sec-4-21"><span class="n">4.21</span><span>Closing summary</span></a></li></ol></details>
+  <script>(function(d){if(matchMedia("(min-width:1040px)").matches){d.open=true;var a=d.querySelector("[aria-current]");if(a)d.scrollTop=a.offsetTop-d.clientHeight/2;}})(document.currentScript.previousElementSibling);</script>
+  <article>
+  <p class="crumb">Page 11 of 13 of this session</p>
 <h1 id="sec-4-18"><span class="num">4.18</span> Berry phase, fractional charge, and anyonic statistics</h1>
 <p>How can a Berry phase measure the charge of an excitation, and its statistics? We will now see that a quasihole that goes once around a loop gets the Aharonov-Bohm phase of a charge of magnitude <span class="math inline">\(e/m\)</span>. A second quasihole inside the loop adds the phase <span class="math inline">\(2\pi/m\)</span>, which for <span class="math inline">\(m&gt;1\)</span> is neither the phase of bosons nor the phase of fermions.</p>
 <div class="recall">
@@ -233,8 +312,10 @@ Where this comes back
 </ul>
 </div>
 
-  <nav class="pager"><a href="16-fractional-filling-and-the-laughlin-wavefunction.html">4.16 Fractional filling and the Laughlin wavefunction</a><a href="19-the-haldane-model-and-the-quantum-hall-effect-without-landau-levels.html">4.19 The Haldane model and the quantum Hall effect without Landau levels</a></nav>
-
+  <nav class="pager" aria-label="Previous and next"><a class="prev" href="16-fractional-filling-and-the-laughlin-wavefunction.html"><small>← Previous</small><span class="t">4.16 Fractional filling and the Laughlin wavefunction</span></a><a class="next" href="19-the-haldane-model-and-the-quantum-hall-effect-without-landau-levels.html"><small>Next →</small><span class="t">4.19 The Haldane model and the quantum Hall effect without Landau levels</span></a></nav>
+  </article>
+  </div>
+  <footer class="foot">Teaching material of the course Advanced Quantum Materials at Aalto University, 2027 · <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027">Course repository on GitHub</a> · <a href="../../notes/index.html">Contents of the notes</a> · <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/lecture_notes/main.pdf">PDF of the notes</a></footer>
 </main>
 </body>
 </html>

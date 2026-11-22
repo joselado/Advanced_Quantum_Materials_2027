@@ -523,9 +523,7 @@ def render(n, p, url, labels_path, kind):
     return r.stdout
 
 
-def title_html(t):
-    """A title of the manifest as HTML. Inline math is passed to MathJax."""
-    return re.sub(r'\$([^$]+)\$', lambda m: '\\(' + m.group(1) + '\\)', html.escape(t, quote=False))
+title_html = T.title_html
 
 
 def toc(pages, prefix=''):
@@ -541,7 +539,7 @@ def toc(pages, prefix=''):
 
 
 def pager_link(p):
-    return f'<a href="{p["file"][:-3]}.html">{p["number"]} {title_html(p["title"])}</a>'
+    return (f'{p["file"][:-3]}.html', f'{p["number"]} {title_html(p["title"])}')
 
 
 def build_session(n, m, sessions, built, labels_path, page=None):
@@ -549,39 +547,34 @@ def build_session(n, m, sessions, built, labels_path, page=None):
     pages = m['pages']
     intro = pages[0]
     sdir = os.path.join(NOTES, f'session{n}')
-    head = intro['title']
-    links = (f'<p class="links"><a href="../../lectures/session{n}.html">Video lecture</a> · '
-             f'<a href="../../landscape/session{n}.html">Landscape lecture</a> · '
-             f'<a href="{T.REPO}/blob/main/jupyter-notebooks/session{n}.ipynb">session{n}.ipynb</a> · '
+    links = (f'  <p class="links">Exercises <a href="{T.REPO}/blob/main/jupyter-notebooks/session{n}.ipynb">session{n}.ipynb</a> · '
+             f'Slides <a href="{T.REPO}/blob/main/slides_prerecordings/lecture{n}.pdf">lecture{n}.pdf</a> · '
              f'<a href="{T.REPO}/blob/main/lecture_notes/main.pdf">PDF of the notes</a></p>\n')
-    body = T.tabs(n, 2) + T.session_row(sessions, built, n, 2)
-    body += f'  <h1>Session {n}. {title_html(head)}</h1>\n  {links}'
-    if page and intro['file'] != page:
-        body = None
-    else:
-        body += render(n, intro, page_url(n, intro), labels_path, 'index')
     out = {}
-    if body is not None:
+    if not page or intro['file'] == page:
+        body = T.top(sessions, built, n, 2) + T.session_head(n, titles[n], 2) + links
+        body += '  <div class="withside">\n' + T.secnav(n, pages, 0) + '  <article>\n'
+        body += render(n, intro, page_url(n, intro), labels_path, 'index')
         body += '\n  <h2>Contents</h2>\n  ' + toc(pages) + '\n'
-        first = pages[1]
-        body += f'  <nav class="pager"><a href="../index.html">Lecture notes</a>{pager_link(first)}</nav>\n'
+        body += T.site.pager(('../index.html', 'Contents of the notes'), pager_link(pages[1]))
+        body += '  </article>\n  </div>\n'
         out[os.path.join(sdir, 'index.html')] = T.shell(f'Session {n}, lecture notes', body, 2)
     for i, p in enumerate(pages[1:], start=1):
         url = page_url(n, p)
         if page and p['file'] != page:
             continue
-        prev = pages[i - 1]
-        pv = f'<a href="index.html">Session {n}</a>' if i == 1 else pager_link(prev)
+        pv = ('index.html', f'Session {n}, introduction') if i == 1 else pager_link(pages[i - 1])
         if i + 1 < len(pages):
             nv = pager_link(pages[i + 1])
         elif n + 1 in built:
-            nv = f'<a href="../session{n + 1}/index.html">Session {n + 1}. {esc_t(titles[n + 1])}</a>'
+            nv = (f'../session{n + 1}/index.html', f'Session {n + 1}. {esc_t(titles[n + 1])}')
         else:
-            nv = '<span></span>'
-        b = T.tabs(n, 2) + T.session_row(sessions, built, n, 2)
-        b += (f'  <p class="crumb"><a href="index.html">Session {n}. {title_html(head)}</a></p>\n')
+            nv = None
+        b = T.top(sessions, built, n, 2) + T.session_head(n, titles[n], 2, h1=False)
+        b += '  <div class="withside">\n' + T.secnav(n, pages, i) + '  <article>\n'
+        b += f'  <p class="crumb">Page {i} of {len(pages) - 1} of this session</p>\n'
         b += render(n, p, url, labels_path, 'section')
-        b += f'\n  <nav class="pager">{pv}{nv}</nav>\n'
+        b += '\n' + T.site.pager(pv, nv) + '  </article>\n  </div>\n'
         out[os.path.join(NOTES, url)] = T.shell(f'{p["number"]} {re.sub(r"[$]", "", p["title"])}, session {n}', b, 2)
     if not page:
         for r in m.get('redirects', []):
@@ -606,7 +599,7 @@ def esc_t(s):
 
 
 def course_index(sessions, mans):
-    b = '  <nav class="tabs"><a class="on" href="index.html">Lecture notes</a></nav>\n'
+    b = T.top(sessions, set(mans), 0, 1)
     b += '  <h1>Lecture notes</h1>\n'
     b += ('  <p>The lecture notes of the course, one page per section, with the equations numbered as in the PDF '
           'of the notes. A session whose notes are not on the page yet is listed without a link.</p>\n')

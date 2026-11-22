@@ -447,6 +447,17 @@
     document.querySelectorAll('.quiz').forEach(initQuiz);
     document.querySelectorAll('.widget[data-widget]').forEach(initWidget);
   }
+  // On paper every fold is open. The folds that the reader had closed are closed again after printing.
+  var folded = [];
+  window.addEventListener('beforeprint', function () {
+    folded = Array.prototype.filter.call(document.querySelectorAll('details'), function (d) { return !d.open; });
+    folded.forEach(function (d) { d.open = true; });
+  });
+  window.addEventListener('afterprint', function () {
+    folded.forEach(function (d) { d.open = false; });
+    folded = [];
+  });
+
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();

@@ -56,7 +56,9 @@ the PDF.
 
 The notes become a third part of the site, `docs/notes/`, in the look of the existing pages,
 with the same colors, the same header line and the same tabs. Nothing of `docs/lectures/` and
-`docs/landscape/` changes except one added link to the notes of the session.
+`docs/landscape/` changes except one added link to the notes of the session. This last sentence
+held until 2026-11-22. From then on the video pages and the notes share one shell, which is
+described in the section "The shell of the site, 2026-11-22" at the end.
 
 The pages are the following.
 
@@ -75,6 +77,8 @@ The pages are the following.
   pages. The style is inline in each page, as in the existing pages, taken from the `STYLE` of
   `docs/build_site.py` with the few rules the notes add.
 
+The navigation described in this paragraph is the one of 2026-11-06, and the one of today is in
+the section "The shell of the site, 2026-11-22".
 The navigation is the header line of the site, then the row of session numbers as on the video
 pages, then the title of the session as a link back to its page, then the section. Equation
 references `(2.8)` become links to the equation, also across sessions, section references
@@ -772,3 +776,39 @@ Reality differed from the plan in four points. The page length rule gave 126 pag
 sections were merged and long ones split, with 35 redirect stubs and the URLs frozen in `manifest/frozen_urls.txt`.
 The widgets use numpy, except `island`, since pyqula could not set a second-neighbor hopping in the chain. Binder needs
 a `requirements.txt` that does not exist yet. The display math was wider than a phone screen, which the template now fixes.
+
+## The shell of the site, 2026-11-22
+
+The lecturer asked on 2026-11-22 to make the containers of the site look more professional and
+work better for a student, in their words "it's more about the containers themselves", with the
+example that "in the tab about the recording, one doesn't see the tab about the lecture notes".
+The cause was that the navigation existed twice, in `docs/build_site.py` with two tabs and in
+`webnotes/template.py` with three. The lecturer picked the four changes below and then made the
+landscape lecture a version of the video lecture. They replace what "The target" says about the
+header line, the tabs and the video pages. The text of the notes does not change.
+
+1. One shell everywhere. Every page has the bar of the course, whose name links to the home
+   page, with the row of the sessions. Every page of a session has the same two tabs, "Video
+   lecture" and "Lecture notes", written by one function of `docs/build_site.py` that
+   `template.py` imports. The landscape lecture is not a tab, in the words of the lecturer it is
+   "a mode to choose inside of video lecture". It is the row "Version" above the video, with
+   "Slides", "Landscape" and "Landscape with floating formulas". The slides, the notebook and
+   the PDF are one line under the tabs. The title of a session is the one of
+   `docs/sessions.json` on every page. The chapter titles of the PDF differ from it in sessions
+   2, 4 and 7, and they stay in the PDF.
+2. The list of the sections. A page of the notes shows the pages of its session at the left, with
+   the page we are on marked and "Page 4 of 16 of this session" above the title. On a narrow
+   screen the list is a fold. The previous and the next page are two labeled boxes with their
+   titles.
+3. The home page by session. One row per session with its video lecture, its notes, its
+   notebook and its slides. The chart of the film rules is no longer on the site, since the
+   lecturer said "the rules about the landscape can go meaning that image".
+4. Reading. The text is a column of 728 px, about 85 characters instead of 96. A column of 680 px
+   was tried first, and 19 of the 997 display equations scrolled sideways in it, against 8 at
+   728 px and 4 before. Each box has the look of its role, blue
+   for the result and the questions, purple for a problem, orange for code, green for the lab,
+   grey and dashed for the two boxes that point to other pages. On paper the folds are open and
+   the navigation is not printed. The pages have a footer and an icon.
+
+No URL changed. The shell is described in `webnotes/README.md`, in the section "The shell of the
+site".

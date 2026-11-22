@@ -88,9 +88,35 @@ keyword `--force` regenerates it and loses the web edits.
 python3 webnotes/convert.py --session N
 ```
 
-After a conversion or a change of the video pages that links the notes, we also run
-`python3 docs/build_site.py`, which adds the link "Notes of this session" to the video pages of every
-session that has a manifest.
+After a conversion we also run `python3 docs/build_site.py`. On the video pages the tab "Lecture notes" is a
+link for every session that has a manifest, and the home page shows the notes of that session.
+
+## The shell of the site
+
+The navigation of the site exists once, in `docs/build_site.py`, and `template.py` imports it. Every page starts
+with `top()`, the name of the course as the link to the home page and the row of the sessions from `chips()`.
+A page of a session then has `session_head()`, the number and the title of the session and the two tabs
+"Video lecture" and "Lecture notes" from `session_tabs()`. The landscape lecture is not a tab. It is a version
+of the video lecture, and `modes()` writes the row "Version" above the video, with "Slides", "Landscape" and,
+when the session has it, "Landscape with floating formulas". The two recordings keep their pages in
+`docs/lectures/` and `docs/landscape/`, and the floating version is the landscape page with `#floating`. The pages end with `pager()`,
+the previous and the next page with their titles, and with `footer()`. A change of the navigation is done
+there and nowhere else. After it we run both builds, since the style is inline in every page.
+
+The notes add three things in `template.py`. `secnav()` is the list of the pages of the session, a column at
+the left on a wide screen and a fold on a narrow one, with the page we are on marked. The text is a column of
+728 px, about 85 characters, which is the width where only 8 of the 997 display equations scroll sideways. `shell()` adds MathJax, `notes.js` and the style of the notes to the frame of the site.
+
+The boxes have one look per role, and the list is at the top of `widgets/notes.css`. A new block takes the look
+of its role and does not get a color of its own.
+
+To look at a change of the shell without touching `docs/`, we build the whole site in a private folder.
+
+```
+python3 docs/build_site.py --out /tmp/mysite
+python3 webnotes/build.py --out /tmp/mysite/notes
+python3 webnotes/layout.py /tmp/mysite/notes --width 1280 1000 390
+```
 
 ## What is in the Markdown
 
@@ -587,7 +613,7 @@ A merge puts several sections on one page. In the Markdown of the page that stay
 other section and keep its heading with its own id and number, so that all anchors stay. Delete the old file
 with `git rm`. In `manifest/sessionNN.json` remove the old page, add it to the kept one as `also`, and list its
 old URL in `redirects` of the manifest, which is a key next to `pages`. The build writes a stub with a meta
-refresh and a canonical link at the old URL. The contents and the pager show the sections of `also` as extra
+refresh and a canonical link at the old URL. The contents and the list of the sections show the sections of `also` as extra
 rows with their anchors, and the later sections of the page start with a rule.
 
 ```
