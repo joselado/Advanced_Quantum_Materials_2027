@@ -23,6 +23,7 @@ OFFLINE = f'{RELEASE}/{OFFLINE_TAG}/{OFFLINE_ZIP}'
 FORMATS = {
     'lectures': {
         'name': 'Video lectures',
+        'mode': 'Blackboard',
         'release': 'lectures',
         'blurb': ('The prerecorded lectures with slides that follow the voice. Each step of a calculation is written '
                   'when it is said. Next to the formulas there is a schematic or a plot, computed with the codes of '
@@ -36,13 +37,6 @@ FORMATS = {
                   'and the physics is shown while we travel through 3D landscapes.'),
     },
 }
-FLOATING = {
-    'mode': 'Landscape with floating formulas',
-    'release': 'films-floating',
-    'blurb': ('A second version of the landscape lecture. When the voice talks over a still picture, short formulas and '
-              'steps of the derivation float in the landscape.'),
-}
-
 STYLE = """
   :root { --bg: #fbfbfa; --fg: #1d1d1f; --muted: #5f6368; --rule: #dadce0; --link: #1a5fb4;
           --card: #ffffff; --tab: #eef0f3; --accent: #1a5fb4; }
@@ -164,9 +158,9 @@ def chips(sessions, n, href, ready=lambda k: True, off=lambda k: False):
 
 def session_tabs(n, on, up, notes=None):
     """The two views of session n, the video lecture and the notes. on is 'lectures', 'landscape' or 'notes'. The
-    landscape lecture is a version of the video lecture, switched on above the video with modes(), so both recordings
-    have the tab of the video lecture on. The tab always opens the video lecture itself, which is also the way back
-    from the landscape version. Every page of a session has the same tabs, from this one function."""
+    two recordings, blackboard and landscape, are chosen above the video with modes(), so both have the tab of the
+    video lecture on. The tab always opens the blackboard recording. Every page of a session has the same tabs, from
+    this one function."""
     out = [f'<a class="{"on" if on in FORMATS else ""}" href="{up}lectures/session{n}.html">Video lecture</a>']
     if has_notes(n) if notes is None else notes:
         out.append(f'<a class="{"on" if on == "notes" else ""}" href="{up}notes/session{n}/index.html">Lecture notes</a>')
@@ -176,41 +170,68 @@ def session_tabs(n, on, up, notes=None):
 
 
 def modes(fmt, s):
-    """The landscape versions of the video lecture of a session, as a row of switches above the video, and one line
-    that says what the video on the page is. The video lecture itself has no switch: a switch that is on links back to
-    it, and so does the tab. The landscape lecture with floating formulas is the landscape page with #floating, and
-    the script of that page changes the video, the switches and the line when the hash changes."""
+    """The two recordings of a session as a switch above the video, Blackboard (the detailed video lecture with slides)
+    and Landscape (the artistic one), and one line that says what the video on the page is. Each recording is its own
+    page, so the switch is two links, and the one of the page we are on is on."""
     n = s['session']
-    back = f'../lectures/session{n}.html'
-    go = {'landscape': f'../landscape/session{n}.html', 'floating': f'../landscape/session{n}.html#floating'}
-    names = {'landscape': FORMATS['landscape']['mode'], 'floating': FLOATING['mode']}
     out = ['<span class="sublab">Version</span>']
-    for m in ['landscape'] + (['floating'] if s.get('floating') else []):
-        on = m == fmt
-        out.append(f'<a class="{"on" if on else ""}" data-mode="{m}" data-go="{go[m]}" data-back="{back}" '
-                   f'href="{back if on else go[m]}">{names[m]}</a>')
-    b = '  <nav class="mode" aria-label="Landscape versions of the video lecture">' + ''.join(out) + '</nav>\n'
+    for m, F in FORMATS.items():
+        on = ' class="on" aria-current="true"' if m == fmt else ''
+        out.append(f'<a{on} href="../{m}/session{n}.html">{F["mode"]}</a>')
+    b = '  <nav class="mode" aria-label="The two recordings of this session">' + ''.join(out) + '</nav>\n'
     b += f'  <p class="modenote">{FORMATS[fmt]["blurb"]}</p>\n'
     return b
 
 
-FLOATING_SCRIPT = """  <script>
+PLAYER_STYLE = """
+  .vnote { color: var(--muted); font-size: 0.93rem; margin: 8px 0 0; }
+  @media print { .vnote { display: none !important; } }
+"""
+
+PLAYER_SCRIPT = """  <script>
     (function () {
-      var video = document.querySelector('video'), note = document.querySelector('.modenote');
-      var links = document.querySelectorAll('.mode a');
-      var V = {landscape: [%s, %s], floating: [%s, %s]};
-      function set() {
-        var m = location.hash === '#floating' ? 'floating' : 'landscape';
-        if (video.getAttribute('src') !== V[m][0]) video.setAttribute('src', V[m][0]);
-        note.textContent = V[m][1];
-        links.forEach(function (a) {
-          var on = a.dataset.mode === m;
-          a.classList.toggle('on', on);
-          a.setAttribute('href', on ? a.dataset.back : a.dataset.go);
-        });
+      // GitHub answers the link of a video with a redirect to a signed link that lives one hour, and the browser keeps
+      // the signed link. Once it is dead, the next request of the browser (a seek, or more data after a pause) is
+      // refused and the player stops. So when the video fails we ask the first link again, at the same time.
+      var video = document.querySelector('video'), source = video.querySelector('source');
+      var msg = document.querySelector('.vnote');
+      var url = source.getAttribute('src').split('#')[0], last = 0, tries = [], waiting = false, playing = false;
+      function load(t, play) {
+        source.setAttribute('src', url + '#t=' + Math.max(t, 0.1).toFixed(1));
+        msg.hidden = true;
+        video.load();
+        if (play) { var p = video.play(); if (p) p.catch(function () {}); }
       }
-      window.addEventListener('hashchange', set);
-      set();
+      function clock(t) {
+        var h = Math.floor(t / 3600), m = Math.floor(t / 60) % 60, s = Math.floor(t) % 60;
+        return (h ? h + ':' + (m < 10 ? '0' : '') : '') + m + ':' + (s < 10 ? '0' : '') + s;
+      }
+      function failed() {
+        if (waiting) return;
+        var e = video.error, now = Date.now(), t = video.currentTime || last, play = playing;
+        tries = tries.filter(function (x) { return now - x < 60000; });
+        if (tries.length < 3) {
+          tries.push(now);
+          waiting = true;
+          setTimeout(function () { waiting = false; load(t, play); }, 400 * tries.length);
+          return;
+        }
+        msg.textContent = '';
+        msg.append('The video does not load. You can reload the page, or ');
+        var a = document.createElement('a');
+        a.href = url;
+        a.textContent = 'download the video';
+        msg.append(a, ' and open it with the player of your phone or computer. If you report this, please copy this: ' +
+          'error ' + (e ? e.code + (e.message ? ' (' + e.message + ')' : '') : 'at the source') +
+          ', network state ' + video.networkState + ', at ' + clock(t) + '.');
+        msg.hidden = false;
+      }
+      video.addEventListener('timeupdate', function () { if (video.currentTime > 0) last = video.currentTime; });
+      // video.paused is already true when the error arrives, so we keep what the viewer asked for
+      video.addEventListener('play', function () { playing = true; });
+      video.addEventListener('pause', function () { if (!video.error && !waiting) playing = false; });
+      video.addEventListener('error', failed);
+      source.addEventListener('error', failed);
     })();
   </script>
 """
@@ -284,17 +305,21 @@ def session_page(fmt, sessions, s):
     b += '  <p class="links">'
     if s.get('notebook'):
         b += f'Exercises <a href="{REPO}/blob/main/jupyter-notebooks/session{n}.ipynb">session{n}.ipynb</a> · '
-    b += f'<a href="{REPO}/blob/main/lecture_notes/main.pdf">PDF of the notes</a></p>\n'
-    b += modes(fmt, s)
-    src = lambda release: f'{RELEASE}/{release}/session{n}.mp4#t=0.1'
+    b += f'<a href="{REPO}/blob/main/lecture_notes/main.pdf">PDF of the notes</a>'
+    src = lambda release: f'{RELEASE}/{release}/session{n}.mp4'
     if has_video(s, fmt):
-        b += f'  <video controls playsinline preload="metadata" src="{src(F["release"])}"></video>\n'
+        # the file itself, for a phone whose browser does not play it: the player of the phone does
+        b += f' · <a class="vfile" href="{src(F["release"])}">Download the video</a>'
+    b += '</p>\n'
+    b += modes(fmt, s)
+    if has_video(s, fmt):
+        # the type is said here because GitHub serves the file as application/octet-stream, as a download
+        b += (f'  <video controls playsinline preload="metadata"><source src="{src(F["release"])}#t=0.1" '
+              'type="video/mp4"></video>\n  <p class="vnote" hidden></p>\n')
+        b += PLAYER_SCRIPT
     else:
-        b += ('  <div class="pending">The video lecture with slides of this session is not ready yet. The landscape '
-              'version is ready, and it is chosen above.</div>\n')
-    if fmt == 'landscape' and s.get('floating'):
-        b += FLOATING_SCRIPT % tuple(json.dumps(x) for x in (src(F['release']), F['blurb'],
-                                                             src(FLOATING['release']), FLOATING['blurb']))
+        b += ('  <div class="pending">The blackboard version of this session is not ready yet. The landscape version '
+              'is ready, and it is chosen above.</div>\n')
     b += bullets('Learning outcomes', s.get('outcomes'))
     b += bullets('Contents', s.get('contents'))
     b += bullets('Simulations shown', s.get('simulations'))
@@ -302,7 +327,8 @@ def session_page(fmt, sessions, s):
     i = ns.index(n)
     link = lambda k: (f'session{k}.html', f'Session {k}. {esc(by[k]["title"])}')
     b += pager(link(ns[i - 1]) if i > 0 else None, link(ns[i + 1]) if i + 1 < len(ns) else None)
-    return page(f'Session {n}, {"video lecture" if fmt == "lectures" else "landscape lecture"}', b, 1)
+    return page(f'Session {n}, {"video lecture" if fmt == "lectures" else "landscape lecture"}', b, 1,
+                style=PLAYER_STYLE)
 
 
 def landing(sessions):
@@ -336,9 +362,9 @@ def landing(sessions):
     b += '  </ol>\n'
     b += ('  <p class="note"><a href="notes/index.html">Contents of the notes</a> · '
           f'<a href="{REPO}/blob/main/lecture_notes/main.pdf">PDF of the notes</a></p>\n')
-    # the old single-page links (index.html#session3, #session2-floating) land on the new pages
+    # the old single-page links (index.html#session3, #session2-floating) land on the landscape pages
     b += ('  <script>\n    (function () {\n      var m = location.hash.match(/^#session(\\d+)(-floating)?$/);\n'
-          '      if (m) location.replace("landscape/session" + m[1] + ".html" + (m[2] ? "#floating" : ""));\n'
+          '      if (m) location.replace("landscape/session" + m[1] + ".html");\n'
           '    })();\n  </script>\n')
     return page('Advanced Quantum Materials 2027, lectures', b, 0)
 

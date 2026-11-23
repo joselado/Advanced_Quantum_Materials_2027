@@ -91,6 +91,9 @@
     body { background: #fff; color: #000; font-size: 11.5pt; } main { max-width: none; padding: 0; }
     a { color: inherit; text-decoration: none; }
   }
+
+  .vnote { color: var(--muted); font-size: 0.93rem; margin: 8px 0 0; }
+  @media print { .vnote { display: none !important; } }
 </style>
 </head>
 <body>
@@ -99,27 +102,55 @@
   <p class="eyebrow">Session 8</p>
   <h1>Quantum magnetism, spinons and Kondo physics</h1>
   <nav class="tabs" aria-label="Video lecture and notes of this session"><a class="on" href="../lectures/session8.html">Video lecture</a><a class="" href="../notes/session8/index.html">Lecture notes</a></nav>
-  <p class="links">Exercises <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session8.ipynb">session8.ipynb</a> · <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/lecture_notes/main.pdf">PDF of the notes</a></p>
-  <nav class="mode" aria-label="Landscape versions of the video lecture"><span class="sublab">Version</span><a class="on" data-mode="landscape" data-go="../landscape/session8.html" data-back="../lectures/session8.html" href="../lectures/session8.html">Landscape</a><a class="" data-mode="floating" data-go="../landscape/session8.html#floating" data-back="../lectures/session8.html" href="../landscape/session8.html#floating">Landscape with floating formulas</a></nav>
+  <p class="links">Exercises <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/jupyter-notebooks/session8.ipynb">session8.ipynb</a> · <a href="https://github.com/joselado/Advanced_Quantum_Materials_2027/blob/main/lecture_notes/main.pdf">PDF of the notes</a> · <a class="vfile" href="https://github.com/joselado/Advanced_Quantum_Materials_2027/releases/download/films/session8.mp4">Download the video</a></p>
+  <nav class="mode" aria-label="The two recordings of this session"><span class="sublab">Version</span><a href="../lectures/session8.html">Blackboard</a><a class="on" aria-current="true" href="../landscape/session8.html">Landscape</a></nav>
   <p class="modenote">A lighter version of the same lectures, with the same voice. There is less content on the screen, and the physics is shown while we travel through 3D landscapes.</p>
-  <video controls playsinline preload="metadata" src="https://github.com/joselado/Advanced_Quantum_Materials_2027/releases/download/films/session8.mp4#t=0.1"></video>
+  <video controls playsinline preload="metadata"><source src="https://github.com/joselado/Advanced_Quantum_Materials_2027/releases/download/films/session8.mp4#t=0.1" type="video/mp4"></video>
+  <p class="vnote" hidden></p>
   <script>
     (function () {
-      var video = document.querySelector('video'), note = document.querySelector('.modenote');
-      var links = document.querySelectorAll('.mode a');
-      var V = {landscape: ["https://github.com/joselado/Advanced_Quantum_Materials_2027/releases/download/films/session8.mp4#t=0.1", "A lighter version of the same lectures, with the same voice. There is less content on the screen, and the physics is shown while we travel through 3D landscapes."], floating: ["https://github.com/joselado/Advanced_Quantum_Materials_2027/releases/download/films-floating/session8.mp4#t=0.1", "A second version of the landscape lecture. When the voice talks over a still picture, short formulas and steps of the derivation float in the landscape."]};
-      function set() {
-        var m = location.hash === '#floating' ? 'floating' : 'landscape';
-        if (video.getAttribute('src') !== V[m][0]) video.setAttribute('src', V[m][0]);
-        note.textContent = V[m][1];
-        links.forEach(function (a) {
-          var on = a.dataset.mode === m;
-          a.classList.toggle('on', on);
-          a.setAttribute('href', on ? a.dataset.back : a.dataset.go);
-        });
+      // GitHub answers the link of a video with a redirect to a signed link that lives one hour, and the browser keeps
+      // the signed link. Once it is dead, the next request of the browser (a seek, or more data after a pause) is
+      // refused and the player stops. So when the video fails we ask the first link again, at the same time.
+      var video = document.querySelector('video'), source = video.querySelector('source');
+      var msg = document.querySelector('.vnote');
+      var url = source.getAttribute('src').split('#')[0], last = 0, tries = [], waiting = false, playing = false;
+      function load(t, play) {
+        source.setAttribute('src', url + '#t=' + Math.max(t, 0.1).toFixed(1));
+        msg.hidden = true;
+        video.load();
+        if (play) { var p = video.play(); if (p) p.catch(function () {}); }
       }
-      window.addEventListener('hashchange', set);
-      set();
+      function clock(t) {
+        var h = Math.floor(t / 3600), m = Math.floor(t / 60) % 60, s = Math.floor(t) % 60;
+        return (h ? h + ':' + (m < 10 ? '0' : '') : '') + m + ':' + (s < 10 ? '0' : '') + s;
+      }
+      function failed() {
+        if (waiting) return;
+        var e = video.error, now = Date.now(), t = video.currentTime || last, play = playing;
+        tries = tries.filter(function (x) { return now - x < 60000; });
+        if (tries.length < 3) {
+          tries.push(now);
+          waiting = true;
+          setTimeout(function () { waiting = false; load(t, play); }, 400 * tries.length);
+          return;
+        }
+        msg.textContent = '';
+        msg.append('The video does not load. You can reload the page, or ');
+        var a = document.createElement('a');
+        a.href = url;
+        a.textContent = 'download the video';
+        msg.append(a, ' and open it with the player of your phone or computer. If you report this, please copy this: ' +
+          'error ' + (e ? e.code + (e.message ? ' (' + e.message + ')' : '') : 'at the source') +
+          ', network state ' + video.networkState + ', at ' + clock(t) + '.');
+        msg.hidden = false;
+      }
+      video.addEventListener('timeupdate', function () { if (video.currentTime > 0) last = video.currentTime; });
+      // video.paused is already true when the error arrives, so we keep what the viewer asked for
+      video.addEventListener('play', function () { playing = true; });
+      video.addEventListener('pause', function () { if (!video.error && !waiting) playing = false; });
+      video.addEventListener('error', failed);
+      source.addEventListener('error', failed);
     })();
   </script>
   <h3>Learning outcomes</h3>
